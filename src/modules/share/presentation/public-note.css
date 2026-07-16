@@ -1,0 +1,192 @@
+/* Public note shell — published view of a shared markdown note. */
+
+.public-note-shell {
+  max-width: 720px;
+  margin: 0 auto;
+  padding: 64px 24px 96px;
+  color: var(--fg, #e9ecf2);
+  background: var(--bg, #0d0e11);
+  min-height: 100vh;
+  font-family: -apple-system, BlinkMacSystemFont, "Inter", "SF Pro Text", system-ui, sans-serif;
+  line-height: 1.6;
+}
+
+.public-note-header {
+  padding-bottom: 24px;
+  margin-bottom: 32px;
+  border-bottom: 1px solid var(--hairline, color-mix(in srgb, var(--fg, #fff) 12%, transparent));
+}
+
+.public-note-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  margin: 0 0 14px;
+  padding: 4px 10px 4px 8px;
+  font-size: 11px;
+  font-weight: 500;
+  letter-spacing: 0.4px;
+  text-transform: uppercase;
+  color: var(--muted, #8a93a4);
+  background: color-mix(in srgb, var(--fg, #fff) 5%, transparent);
+  border: 1px solid var(--hairline, color-mix(in srgb, var(--fg, #fff) 10%, transparent));
+  border-radius: 999px;
+}
+.public-note-eyebrow code {
+  font-family: ui-monospace, "SF Mono", Menlo, monospace;
+  font-size: 11px;
+  background: transparent;
+  padding: 0;
+  border: 0;
+  color: var(--fg, #e9ecf2);
+}
+.public-note-dot {
+  width: 6px;
+  height: 6px;
+  border-radius: 999px;
+  background: #10b981;
+  box-shadow: 0 0 0 3px color-mix(in srgb, #10b981 18%, transparent);
+}
+.public-note-sep { opacity: 0.5; padding: 0 4px; }
+
+.public-note-title {
+  margin: 0;
+  font-size: clamp(32px, 5vw, 44px);
+  font-weight: 600;
+  letter-spacing: -0.02em;
+  line-height: 1.1;
+  color: var(--fg, #e9ecf2);
+}
+
+.public-note-body {
+  font-size: 16px;
+  line-height: 1.7;
+}
+
+.public-note-empty {
+  margin: 0;
+  padding: 48px 0;
+  text-align: center;
+  color: var(--muted, #8a93a4);
+  font-style: italic;
+  font-size: 14px;
+}
+
+.public-note-footer {
+  margin-top: 64px;
+  padding-top: 24px;
+  border-top: 1px solid var(--hairline, color-mix(in srgb, var(--fg, #fff) 10%, transparent));
+  font-size: 13px;
+  color: var(--muted, #8a93a4);
+  text-align: center;
+}
+.public-note-footer a {
+  color: var(--fg, #e9ecf2);
+  border-bottom: 1px solid color-mix(in srgb, var(--fg, #fff) 25%, transparent);
+}
+.public-note-footer a:hover {
+  border-bottom-color: var(--fg, #e9ecf2);
+}
+
+/* ─── Prose typography (.markdown-body) ─────────────────────────────────── */
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4 {
+  margin: 32px 0 12px;
+  font-weight: 600;
+  letter-spacing: -0.01em;
+  line-height: 1.25;
+  color: var(--fg, #e9ecf2);
+}
+.markdown-body h1 { font-size: 28px; margin-top: 40px; }
+.markdown-body h2 { font-size: 22px; padding-bottom: 6px; border-bottom: 1px solid var(--hairline, color-mix(in srgb, var(--fg,#fff) 10%, transparent)); }
+.markdown-body h3 { font-size: 18px; }
+.markdown-body h4 { font-size: 15px; color: var(--muted, #8a93a4); text-transform: uppercase; letter-spacing: 0.06em; }
+
+.markdown-body p { margin: 0 0 16px; }
+.markdown-body p:last-child { margin-bottom: 0; }
+
+.markdown-body a {
+  /* Links use --link (purple), not --accent (neutral body-text color) —
+     otherwise links are indistinguishable from prose. */
+  color: var(--link, #8b5cf6);
+  text-decoration: none;
+  border-bottom: 1px solid color-mix(in srgb, var(--link, #8b5cf6) 40%, transparent);
+}
+.markdown-body a:hover { border-bottom-color: var(--link, #8b5cf6); }
+
+.markdown-body ul,
+.markdown-body ol { margin: 0 0 16px; padding-left: 1.4em; }
+.markdown-body li { margin: 4px 0; }
+.markdown-body li > p { margin: 0; }
+.markdown-body ul ul, .markdown-body ol ol { margin-bottom: 0; }
+
+.markdown-body blockquote {
+  margin: 16px 0;
+  padding: 4px 16px;
+  border-left: 3px solid var(--accent, #7cc4ff);
+  color: var(--muted, #c4cad6);
+  background: color-mix(in srgb, var(--accent, #7cc4ff) 6%, transparent);
+  border-radius: 0 6px 6px 0;
+}
+.markdown-body blockquote p { margin: 8px 0; }
+
+.markdown-body code {
+  font-family: ui-monospace, "SF Mono", Menlo, "JetBrains Mono", monospace;
+  font-size: 0.88em;
+  padding: 1px 6px;
+  border-radius: 4px;
+  background: color-mix(in srgb, var(--fg, #fff) 8%, transparent);
+  border: 1px solid var(--hairline, color-mix(in srgb, var(--fg, #fff) 10%, transparent));
+}
+.markdown-body pre {
+  margin: 16px 0;
+  padding: 16px 20px;
+  background: color-mix(in srgb, var(--fg, #fff) 5%, transparent);
+  border: 1px solid var(--hairline, color-mix(in srgb, var(--fg, #fff) 10%, transparent));
+  border-radius: 8px;
+  overflow: auto;
+  font-size: 13px;
+  line-height: 1.5;
+}
+.markdown-body pre code { background: transparent; border: 0; padding: 0; font-size: inherit; }
+
+.markdown-body hr {
+  margin: 32px 0;
+  border: 0;
+  border-top: 1px solid var(--hairline, color-mix(in srgb, var(--fg, #fff) 12%, transparent));
+}
+
+.markdown-body table { border-collapse: collapse; margin: 16px 0; }
+.markdown-body th, .markdown-body td {
+  border: 1px solid var(--hairline, color-mix(in srgb, var(--fg, #fff) 12%, transparent));
+  padding: 6px 12px;
+  text-align: left;
+}
+.markdown-body th { background: color-mix(in srgb, var(--fg, #fff) 5%, transparent); font-weight: 600; }
+
+.markdown-body img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 6px;
+  margin: 16px 0;
+}
+
+.markdown-body input[type="checkbox"] {
+  margin-right: 6px;
+}
+
+/* Wikilinks render as plain text by default in the Markdown component when
+   no onWikilink handler is provided — style them subtly. */
+.markdown-body .wikilink {
+  color: var(--link, #8b5cf6);
+  border-bottom: 1px dashed color-mix(in srgb, var(--link, #8b5cf6) 50%, transparent);
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+  .public-note-shell { padding: 40px 18px 64px; }
+  .public-note-title { font-size: 28px; }
+  .public-note-body { font-size: 15px; }
+}

@@ -1,78 +1,865 @@
-:root {
+@import "tailwindcss";
+@import "material-symbols/rounded.css";
+
+/* Google Sans is wired through `next/font/google` in src/app/layout.tsx
+   — that injects the `--font-sans-google` CSS variable on <html>. The
+   --font-sans token below references it so every consumer (sgnk-btn,
+   sgnk-input, markdown body…) picks it up without per-component changes. */
+
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* ===========================================================================
+   sgnk-md design system — Linear-style modern SaaS
+   Tokens are applied via an explicit .light / .dark class on <html> (set by an
+   inline script in layout.tsx before paint) so both these CSS variables AND
+   Tailwind `dark:` variants stay in sync. Default (no class) = light.
+   =========================================================================== */
+
+:root,
+.light {
+  /* ---------------------------------------------------------------------
+     LIGHT — flat architectural canvas. Panels share the bg; structural
+     dividers stay (the editor genuinely needs file tree | editor | preview
+     boundaries), but they collapse to rgba hair-lines, not coloured fills.
+     --------------------------------------------------------------------- */
+  --bg: #fafafa;
+  --bg-subtle: #fafafa;
+  --panel: #fafafa;
+  --panel-2: rgba(10, 10, 10, 0.025);
+  --fg: #18181b;
+  --fg-muted: #6b6b73;
+  --muted: #9b9ba3;
+  --border: rgba(10, 10, 10, 0.06);
+  --border-strong: rgba(10, 10, 10, 0.10);
+  --accent: #18181b;
+  --accent-hover: #0a0a0a;
+  --accent-fg: #fafafa;
+  --accent-soft: rgba(10, 10, 10, 0.04);
+  --hover: rgba(10, 10, 10, 0.04);
+  --active: rgba(10, 10, 10, 0.05);
+  --selected: rgba(10, 10, 10, 0.09);
+  --ring: rgba(91, 33, 182, 0.40);
+  /* Link colour — deep violet, WCAG AAA on #fafafa (≈10:1). Dark swaps
+     to a soft lavender below. Keeps link affordance distinct from
+     UI chrome (`--accent`). */
+  /* Clickable / hyperlink colour — anchors, wikilinks, backlinks.
+     #0044cc on #fafafa hits ~7.4:1 (WCAG AAA for normal text). Hover
+     deepens to the requested brand #0055ff (5.4:1 — AA) which has
+     enough delta to read as interactive without breaking accessibility. */
+  --link: #0044cc;
+  --link-hover: #0055ff;
+  --link-visited: #4c1d95;
+  /* Desaturated semantics. Communicate state without screaming. */
+  --danger: #b2625e;
+  --success: #4f8b6b;
+
+  --radius-sm: 6px;
+  --radius: 8px;
+  --radius-lg: 12px;
+  --radius-pill: 9999px;
+
+  /* No drop shadows — negative space + hair-line borders only.
+     Tokens kept (set to none) so existing `box-shadow: var(--shadow-*)`
+     consumers don't break. */
+  --shadow-sm: none;
+  --shadow-md: none;
+  --shadow-lg: 0 12px 40px rgba(17, 18, 22, 0.16);
+
+  --font-sans: var(--font-sans-google, "Google Sans"), "Roboto", ui-sans-serif,
+    -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+  --font-mono: "JetBrains Mono", "Fira Code", "Cascadia Code", ui-monospace,
+    SFMono-Regular, Menlo, monospace;
+
   color-scheme: light;
-  background: #f7f4ee;
-  color: #161616;
 }
 
+.dark {
+  /* ---------------------------------------------------------------------
+     DARK — Claude grey canvas (#1a1a1a). Slightly warmer/lighter than the
+     prior #0A0A0A jet-black; reads as architectural rather than void.
+     Sidebar shares the canvas; structural separators sit at ~9% rgba so
+     panes are subtly differentiated without coloured fills.
+     --------------------------------------------------------------------- */
+  --bg: #1a1a1a;
+  --bg-subtle: #161616;
+  --panel: #1a1a1a;
+  --panel-2: rgba(255, 255, 255, 0.035);
+  --fg: #ededed;
+  --fg-muted: rgba(237, 237, 237, 0.62);
+  --muted: rgba(237, 237, 237, 0.40);
+  --border: rgba(255, 255, 255, 0.09);
+  --border-strong: rgba(255, 255, 255, 0.14);
+  /* UI chrome accent stays neutral so primary buttons read as architectural
+     surfaces, not coloured fills. */
+  --accent: #ededed;
+  --accent-hover: #ffffff;
+  --accent-fg: #1a1a1a;
+  --accent-soft: rgba(255, 255, 255, 0.05);
+  --hover: rgba(255, 255, 255, 0.04);
+  --active: rgba(255, 255, 255, 0.05);
+  --selected: rgba(255, 255, 255, 0.12);
+  --ring: rgba(196, 181, 253, 0.50);
+  /* Link colour — soft lavender. #c4b5fd on #0A0A0A ≈ 11.8:1 (AAA),
+     hover #ddd6fe ≈ 14.6:1. Used for anchors, mentions, wiki links. */
+  /* Clickable / hyperlink colour — dark mode. #5b9eff on #1a1a1a is
+     ~7.4:1 (WCAG AAA for normal text). Hover lightens to #80b6ff
+     (~9.2:1) so hover stays visibly distinct from rest. */
+  --link: #5b9eff;
+  --link-hover: #80b6ff;
+  --link-visited: #b3a4ff;
+  --danger: #d49391;
+  --success: #7fb09a;
+
+  --shadow-sm: none;
+  --shadow-md: none;
+  --shadow-lg: 0 16px 48px rgba(0, 0, 0, 0.6);
+
+  color-scheme: dark;
+}
+
+/* Match-system fallback before the inline script runs (no class yet). */
+@media (prefers-color-scheme: dark) {
+  :root:not(.light):not(.dark) {
+    --bg: #1a1a1a;
+    --bg-subtle: #161616;
+    --panel: #1a1a1a;
+    --panel-2: rgba(255, 255, 255, 0.035);
+    --fg: #ededed;
+    --fg-muted: rgba(237, 237, 237, 0.62);
+    --muted: rgba(237, 237, 237, 0.40);
+    --border: rgba(255, 255, 255, 0.09);
+    --border-strong: rgba(255, 255, 255, 0.14);
+    --accent: #ededed;
+    --accent-hover: #ffffff;
+    --accent-fg: #1a1a1a;
+    --accent-soft: rgba(255, 255, 255, 0.05);
+    --hover: rgba(255, 255, 255, 0.04);
+    --active: rgba(255, 255, 255, 0.05);
+    --selected: rgba(255, 255, 255, 0.12);
+    --ring: rgba(196, 181, 253, 0.50);
+    --link: #5b9eff;
+    --link-hover: #80b6ff;
+    --link-visited: #b3a4ff;
+    --danger: #d49391;
+    --success: #7fb09a;
+    color-scheme: dark;
+  }
+}
+
+html,
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--fg);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-rendering: optimizeLegibility;
+}
 * {
   box-sizing: border-box;
 }
 
-body {
-  margin: 0;
-  font-family: Arial, Helvetica, sans-serif;
+/* ---------------------------------------------------------------------------
+   Scrollbars — thin, themed, unobtrusive
+   --------------------------------------------------------------------------- */
+* {
+  scrollbar-width: thin;
+  scrollbar-color: var(--border-strong) transparent;
+}
+*::-webkit-scrollbar {
+  width: 10px;
+  height: 10px;
+}
+*::-webkit-scrollbar-track {
+  background: transparent;
+}
+*::-webkit-scrollbar-thumb {
+  background: var(--border-strong);
+  border-radius: 8px;
+  border: 2px solid transparent;
+  background-clip: padding-box;
+}
+*::-webkit-scrollbar-thumb:hover {
+  background: var(--muted);
+  background-clip: padding-box;
+  border: 2px solid transparent;
 }
 
-.page-shell {
-  min-height: 100vh;
-  background: #f7f4ee;
-  color: #161616;
+/* ---------------------------------------------------------------------------
+   Reading-position indicator toggle — when `.scrollind-hidden` is on
+   the <html> element (set pre-paint by /theme-init.js, flipped at
+   runtime by <ScrollbarToggle />), the right-edge ScrollIndicator
+   widget (percent + tick scrubber) is hidden. Native scrollbars are
+   left untouched.
+   --------------------------------------------------------------------- */
+html.scrollind-hidden .sgnk-scrollind {
+  display: none !important;
 }
 
-.hero {
-  width: min(100%, 64rem);
-  min-height: 100vh;
-  margin: 0 auto;
-  padding: 4rem 1.5rem;
+::selection {
+  background: var(--accent-soft);
+}
+
+/* ---------------------------------------------------------------------------
+   Reusable component classes
+   --------------------------------------------------------------------------- */
+
+.sgnk-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  height: 30px;
+  padding: 0 12px;
+  font-size: 13px;
+  font-weight: 500;
+  font-family: var(--font-sans);
+  color: var(--fg);
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.12s ease, border-color 0.12s ease,
+    color 0.12s ease, box-shadow 0.12s ease, transform 0.06s ease;
+}
+.sgnk-btn:hover {
+  background: var(--panel);
+  border-color: var(--border-strong);
+}
+.sgnk-btn:active {
+  transform: translateY(0.5px);
+}
+.sgnk-btn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--ring);
+}
+.sgnk-btn:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.sgnk-btn-primary {
+  background: var(--accent);
+  border-color: transparent;
+  color: var(--accent-fg);
+  box-shadow: var(--shadow-sm);
+}
+.sgnk-btn-primary:hover {
+  background: var(--accent-hover);
+  border-color: transparent;
+}
+.sgnk-btn-primary:disabled {
+  background: var(--panel-2);
+  color: var(--muted);
+  box-shadow: none;
+}
+
+.sgnk-btn-ghost {
+  background: transparent;
+  border-color: transparent;
+  color: var(--fg-muted);
+}
+.sgnk-btn-ghost:hover {
+  background: var(--hover);
+  border-color: transparent;
+  color: var(--fg);
+}
+
+.sgnk-icon-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  padding: 0;
+  font-size: 14px;
+  color: var(--fg-muted);
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: background 0.12s ease, color 0.12s ease;
+}
+.sgnk-icon-btn:hover {
+  background: var(--hover);
+  color: var(--fg);
+}
+.sgnk-icon-btn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--ring);
+}
+
+.sgnk-input {
+  height: 30px;
+  padding: 0 10px;
+  font-size: 13px;
+  font-family: var(--font-sans);
+  color: var(--fg);
+  background: var(--bg);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  outline: none;
+  transition: border-color 0.12s ease, box-shadow 0.12s ease;
+}
+.sgnk-input::placeholder {
+  color: var(--muted);
+}
+.sgnk-input:focus {
+  border-color: var(--accent);
+  box-shadow: 0 0 0 3px var(--ring);
+}
+
+/* Segmented control (mode toggle) */
+.sgnk-seg {
+  display: inline-flex;
+  padding: 2px;
+  gap: 2px;
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+}
+.sgnk-seg-item {
+  padding: 3px 11px;
+  font-size: 12px;
+  font-weight: 500;
+  color: var(--fg-muted);
+  background: transparent;
+  border: none;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  transition: background 0.12s ease, color 0.12s ease, box-shadow 0.12s ease;
+}
+.sgnk-seg-item:hover {
+  color: var(--fg);
+}
+.sgnk-seg-item[aria-pressed="true"] {
+  color: var(--fg);
+  background: var(--bg);
+  box-shadow: var(--shadow-sm);
+}
+
+/* Editor tabs */
+.sgnk-tab {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  height: 38px;
+  padding: 0 10px 0 14px;
+  font-size: 13px;
+  font-weight: 450;
+  color: var(--muted);
+  background: transparent;
+  border: none;
+  border-right: 1px solid var(--border);
+  cursor: pointer;
+  white-space: nowrap;
+  flex-shrink: 0;
+  position: relative;
+  transition: background 0.12s ease, color 0.12s ease;
+}
+.sgnk-tab:hover {
+  background: var(--hover);
+  color: var(--fg);
+}
+.sgnk-tab[data-active="true"] {
+  color: var(--fg);
+  background: var(--bg);
+}
+.sgnk-tab[data-active="true"]::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -1px;
+  height: 2px;
+  background: var(--accent);
+}
+.sgnk-tab__close {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 18px;
+  height: 18px;
+  padding: 0;
+  border: none;
+  background: transparent;
+  cursor: pointer;
+  border-radius: 4px;
+  color: var(--muted);
+  font-size: 13px;
+  line-height: 1;
+  opacity: 0;
+  transition: opacity 0.12s ease, background 0.12s ease, color 0.12s ease;
+}
+.sgnk-tab__close:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 2px var(--ring);
+  opacity: 1;
+}
+.sgnk-tab:hover .sgnk-tab__close,
+.sgnk-tab[data-active="true"] .sgnk-tab__close {
+  opacity: 1;
+}
+.sgnk-tab__close:hover {
+  background: var(--hover);
+  color: var(--fg);
+}
+
+/* File tree scroll container — isolate layout/paint from the rest of the page
+   and stop scroll chaining into the editor. */
+.sgnk-tree-scroll {
+  contain: layout style;
+  overscroll-behavior: contain;
+}
+
+/* File tree rows */
+.sgnk-tree-row {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  width: 100%;
+  text-align: left;
+  font-size: 13px;
+  border-radius: var(--radius-sm);
+  padding: 4px 8px;
+  color: var(--fg-muted);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  transition: background 0.1s ease, color 0.1s ease;
+  /* Skip layout/paint for off-screen rows so large vaults scroll smoothly.
+     Rows are single-line and ~26px tall, so the intrinsic-size placeholder
+     keeps the scrollbar stable. */
+  content-visibility: auto;
+  contain-intrinsic-size: auto 26px;
+}
+.sgnk-tree-row:hover {
+  background: var(--hover);
+  color: var(--fg);
+}
+.sgnk-tree-row[data-active="true"] {
+  background: var(--selected);
+  color: var(--fg);
+  font-weight: 500;
+  /* Left accent bar (inset = no layout shift) so the selected note is
+     unmistakable — previously --active (5%) read almost identically to
+     --hover (4%) and the selection was nearly invisible. */
+  box-shadow: inset 2px 0 0 var(--accent);
+}
+
+/* Live mode (preview-first, click-to-edit) */
+.sgnk-live-block {
+  border-radius: var(--radius-sm);
+  padding: 0 6px;
+  margin: 0 -6px;
+  cursor: text;
+  transition: background 0.1s ease;
+}
+.sgnk-live-block:hover {
+  background: var(--hover);
+}
+.sgnk-live-edit {
+  border-radius: var(--radius-sm);
+  padding: 2px 6px;
+  margin: 2px -6px;
+  background: var(--accent-soft);
+  box-shadow: inset 0 0 0 1px var(--border-strong);
+}
+
+/* Split-mode resize divider */
+.sgnk-gutter {
+  flex-shrink: 0;
+  width: 7px;
+  cursor: col-resize;
+  background: var(--border);
+  position: relative;
+  touch-action: none;
+  transition: background 0.12s ease;
+}
+.sgnk-gutter::after {
+  content: "";
+  position: absolute;
+  inset: 0 -3px;
+}
+.sgnk-gutter:hover,
+.sgnk-gutter:active {
+  background: var(--accent);
+}
+
+/* Authoring toolbar buttons */
+.sgnk-tool-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 28px;
+  height: 26px;
+  padding: 0 7px;
+  font-size: 12px;
+  font-family: var(--font-mono);
+  color: var(--fg-muted);
+  background: transparent;
+  border: 1px solid transparent;
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  white-space: nowrap;
+  transition: background 0.1s ease, color 0.1s ease, border-color 0.1s ease;
+}
+.sgnk-tool-btn:hover {
+  background: var(--hover);
+  color: var(--fg);
+  border-color: var(--border);
+}
+.sgnk-tool-btn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px var(--ring);
+}
+
+/* Tag / status chips */
+.sgnk-chip {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  height: 22px;
+  padding: 0 9px;
+  font-size: 11px;
+  font-weight: 500;
+  color: var(--fg-muted);
+  background: var(--panel-2);
+  border: 1px solid var(--border);
+  border-radius: 999px;
+}
+
+/* Dynamic scroll / reading-position indicator (occupies its own slim lane
+   when the right pane is collapsed — never overlaps content). */
+.sgnk-scrollind {
   display: flex;
   flex-direction: column;
+  align-items: center;
   justify-content: center;
+  gap: 10px;
+  height: 100%;
+  width: 100%;
+  user-select: none;
 }
-
-.eyebrow {
-  margin: 0;
-  color: #65615a;
-  font-size: 0.875rem;
-  font-weight: 700;
-  letter-spacing: 0.18em;
-  text-transform: uppercase;
+.sgnk-scrollind__pct {
+  font-size: 10px;
+  font-weight: 600;
+  color: var(--muted);
+  background: transparent;
+  border: none;
+  padding: 0;
 }
-
-h1 {
-  margin: 1rem 0 0;
-  max-width: 12ch;
-  font-size: clamp(3rem, 9vw, 6rem);
-  line-height: 0.98;
+.sgnk-scrollind__ticks {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  gap: 9px;
+  padding: 4px 0;
+  background: transparent;
+  border: none;
 }
-
-.lede {
-  margin: 1.5rem 0 0;
-  max-width: 42rem;
-  color: #4f4a43;
-  font-size: 1.125rem;
-  line-height: 1.8;
+.sgnk-scrollind__tick {
+  width: 15px;
+  height: 2px;
+  border: none;
+  border-radius: 2px;
+  background: var(--border-strong);
+  cursor: pointer;
+  padding: 0;
+  transition: background 0.15s ease, width 0.15s ease, height 0.15s ease;
 }
-
-.checks {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 0.75rem;
-  margin-top: 2.5rem;
+.sgnk-scrollind__tick:hover {
+  width: 21px;
+  background: var(--muted);
 }
-
-.check {
-  border: 1px solid #d8d2c7;
-  border-radius: 8px;
-  background: #fff;
-  padding: 1rem;
-  font-size: 0.9rem;
-  font-weight: 700;
-  box-shadow: 0 1px 2px rgb(0 0 0 / 0.05);
+.sgnk-scrollind__tick[data-active] {
+  background: var(--fg-muted);
 }
-
-@media (max-width: 640px) {
-  .checks {
-    grid-template-columns: 1fr;
+.sgnk-scrollind__tick[data-current] {
+  background: var(--accent);
+  width: 22px;
+  height: 3px;
+}
+@media (max-width: 1023px) {
+  .sgnk-scrollind {
+    display: none;
   }
 }
-        
+
+/* Generic elevated surface */
+.sgnk-surface {
+  background: var(--panel);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-lg);
+}
+
+@keyframes sgnk-fade-in {
+  from {
+    opacity: 0;
+    transform: translateY(4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.sgnk-fade-in {
+  animation: sgnk-fade-in 0.16s ease;
+}
+
+/* ---------------------------------------------------------------------------
+   Rendered markdown typography (restores styles Tailwind preflight strips)
+   --------------------------------------------------------------------------- */
+.markdown-body {
+  color: var(--fg);
+  line-height: 1.7;
+  font-size: 15px;
+  max-width: 65ch;
+  margin: 0 auto;
+  word-wrap: break-word;
+}
+.markdown-body > :first-child {
+  margin-top: 0;
+}
+.markdown-body h1,
+.markdown-body h2,
+.markdown-body h3,
+.markdown-body h4,
+.markdown-body h5,
+.markdown-body h6 {
+  font-weight: 650;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  margin: 1.6em 0 0.6em;
+  scroll-margin-top: 80px;
+}
+.markdown-body h1 {
+  font-size: 1.9em;
+  letter-spacing: -0.02em;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0.3em;
+}
+.markdown-body h2 {
+  font-size: 1.5em;
+  border-bottom: 1px solid var(--border);
+  padding-bottom: 0.25em;
+}
+.markdown-body h3 {
+  font-size: 1.25em;
+}
+.markdown-body h4 {
+  font-size: 1.05em;
+}
+.markdown-body h5 {
+  font-size: 0.95em;
+  color: var(--muted);
+}
+.markdown-body h6 {
+  font-size: 0.9em;
+  color: var(--muted);
+}
+.markdown-body p {
+  margin: 1em 0;
+}
+.markdown-body strong {
+  font-weight: 700;
+}
+.markdown-body em {
+  font-style: italic;
+}
+.markdown-body del {
+  text-decoration: line-through;
+}
+.markdown-body mark {
+  background: rgba(255, 220, 0, 0.35);
+  color: inherit;
+  padding: 0 0.15em;
+  border-radius: 3px;
+}
+.markdown-body a {
+  /* Rendered markdown links — blue (`--link`), AAA contrast in both
+     themes. Keep links visually quiet inside dense documents. */
+  color: var(--link);
+  font-weight: 500;
+  text-decoration: none;
+  transition: color 0.12s ease;
+}
+.markdown-body a:hover {
+  color: var(--link-hover);
+}
+.markdown-body a:visited {
+  color: var(--link-visited);
+}
+.markdown-body a:focus-visible {
+  outline: 2px solid var(--ring);
+  outline-offset: 2px;
+  border-radius: 2px;
+}
+.markdown-body ul {
+  list-style: disc;
+  padding-left: 1.6em;
+  margin: 0.6em 0;
+}
+.markdown-body ol {
+  list-style: decimal;
+  padding-left: 1.6em;
+  margin: 0.6em 0;
+}
+.markdown-body li {
+  margin: 0.25em 0;
+}
+.markdown-body li.task-list-item {
+  list-style: none;
+  margin-left: -1.4em;
+}
+.markdown-body li.task-list-item .task-list-checkbox {
+  margin-right: 0.5em;
+  vertical-align: middle;
+}
+.markdown-body blockquote,
+.markdown-body .markdown-blockquote {
+  margin: 0.9em 0;
+  padding: 0.3em 1.1em;
+  border-left: 3px solid var(--accent);
+  background: var(--accent-soft);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  color: var(--fg-muted);
+}
+.markdown-body code {
+  font-family: var(--font-mono);
+  font-size: 0.86em;
+  background: color-mix(in srgb, var(--fg) 8%, transparent);
+  padding: 0.12em 0.38em;
+  border-radius: 5px;
+}
+.markdown-body pre {
+  background: var(--panel-2);
+  padding: 1em 1.1em;
+  border-radius: var(--radius);
+  overflow-x: auto;
+  margin: 0.9em 0;
+  border: 1px solid var(--border);
+}
+.markdown-body pre code {
+  background: none;
+  padding: 0;
+  font-size: 0.85em;
+}
+.markdown-body table {
+  border-collapse: collapse;
+  margin: 0.9em 0;
+  display: block;
+  overflow-x: auto;
+  border-radius: var(--radius-sm);
+}
+.markdown-body th,
+.markdown-body td {
+  border: 1px solid var(--border);
+  padding: 0.45em 0.8em;
+  text-align: left;
+}
+.markdown-body th {
+  background: var(--panel-2);
+  font-weight: 650;
+}
+.markdown-body tr:nth-child(even) td {
+  background: color-mix(in srgb, var(--fg) 2.5%, transparent);
+}
+.markdown-body hr {
+  border: none;
+  border-top: 1px solid var(--border);
+  margin: 2em 0;
+}
+.markdown-body img {
+  max-width: 100%;
+  border-radius: var(--radius);
+  border: 1px solid var(--border);
+}
+.markdown-body .callout {
+  margin: 1em 0;
+  padding: 0.8em 1.1em;
+  border: 1px solid var(--border);
+  border-left: 3px solid var(--accent);
+  border-radius: var(--radius);
+  background: var(--accent-soft);
+}
+.markdown-body .callout__header {
+  display: flex;
+  gap: 0.5em;
+  align-items: baseline;
+  font-weight: 650;
+  margin-bottom: 0.3em;
+}
+.markdown-body .callout__type {
+  font-size: 0.72em;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+.markdown-body .callout__title {
+  font-weight: 650;
+  color: var(--fg);
+}
+.markdown-body .callout__body > :first-child {
+  margin-top: 0;
+}
+.markdown-body .callout__body > :last-child {
+  margin-bottom: 0;
+}
+
+/* App-router loading spinner */
+@keyframes sgnk-spin {
+  to { transform: rotate(360deg); }
+}
+
+
+/* Login bitmap — theme-correct variant */
+/* Login bitmap — theme-correct variant.
+   Covers BOTH explicit .dark class AND prefers-color-scheme: dark when no
+   class has been set yet (the inline theme-init.js runs after first paint
+   on the very first visit). */
+.dark .login-bitmap-light { display: none !important; }
+.dark .login-bitmap-dark  { display: block !important; }
+@media (prefers-color-scheme: dark) {
+  :root:not(.light) .login-bitmap-light { display: none !important; }
+  :root:not(.light) .login-bitmap-dark  { display: block !important; }
+}
+
+/* ---------------------------------------------------------------------------
+   AI suggestion highlight (inline accept/reject) + trigger pulse
+   --------------------------------------------------------------------------- */
+.cm-ai-suggestion {
+  background: color-mix(in srgb, #0055ff 16%, transparent);
+  border-radius: 3px;
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, #0055ff 30%, transparent);
+}
+.dark .cm-ai-suggestion,
+html[data-theme="dark"] .cm-ai-suggestion {
+  background: color-mix(in srgb, #5b9eff 22%, transparent);
+  box-shadow: inset 0 0 0 1px color-mix(in srgb, #5b9eff 38%, transparent);
+}
+
+@keyframes sgnk-ai-pulse {
+  0%, 100% { box-shadow: 0 0 0 0 color-mix(in srgb, #0055ff 45%, transparent); }
+  50%      { box-shadow: 0 0 0 6px color-mix(in srgb, #0055ff 0%, transparent); }
+}
+.sgnk-ai-busy {
+  animation: sgnk-ai-pulse 1.1s ease-in-out infinite;
+}
+
+@keyframes sgnk-ai-shimmer {
+  0%   { background-position: -200% 0; }
+  100% { background-position: 200% 0; }
+}
+.sgnk-ai-shimmer {
+  background-image: linear-gradient(
+    90deg,
+    transparent 0%,
+    color-mix(in srgb, #0055ff 22%, transparent) 50%,
+    transparent 100%
+  );
+  background-size: 200% 100%;
+  animation: sgnk-ai-shimmer 1.2s linear infinite;
+}

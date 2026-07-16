@@ -6,3 +6,32 @@ out
 vercel
 .vercel
 *.log
+.DS_Store
+coverage
+*.tsbuildinfo
+.claude/worktrees/
+.claire/
+.sgnk-md-sync.log
+
+# Claude runtime lock
+.claude/scheduled_tasks.lock
+
+# Tauri (Rust) build output. Cargo emits to ./target at the repo root
+# when invoked via the Tauri CLI; src-tauri/target appears with a direct
+# `cargo` invocation. Cover both.
+target
+src-tauri/target
+src-tauri/gen/schemas
+src-tauri/Cargo.lock
+src-tauri/icons/android
+src-tauri/icons/ios
+src-tauri/icons/Square*.png
+src-tauri/icons/StoreLogo.png
+src-tauri/icons/source.png
+
+# Test + tooling artifacts (never commit)
+.playwright-mcp/
+graphify-out/
+
+# NOTE: .sgnk/ is intentionally NOT gitignored — snapshots travel with the repo
+# so other Claude accounts can /sgnk-recall the resume KEY card.

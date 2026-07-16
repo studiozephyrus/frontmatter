@@ -1,0 +1,207 @@
+"use client";
+
+/**
+ * PropertiesPanel — Obsidian-style frontmatter "Properties" editor rendered
+ * above the note body in reading/split preview.
+ *
+ * Parses the YAML frontmatter via the browser-safe `yaml` package (see
+ * ./frontmatter), shows each scalar/array key→value as an editable row, and
+ * rewrites the frontmatter block (preserving the body + any complex/nested
+ * values) on every edit — calling `onEdit(newContent)` so the normal
+ * dirty/autosave/commit path picks it up.
+ *
+ * Arrays (e.g. `tags`) round-trip as comma-separated text. Booleans/numbers
+ * are coerced back from text on blur. Nested/complex values are shown
+ * read-only so an edit can never corrupt or drop them. Adding a new property
+ * appends a key.
+ */
+import { memo, useMemo, useState } from "react";
+import { GoogleIcon } from "@/shared/presentation/GoogleIcon";
+import {
+  parseFrontmatter,
+  stringifyFrontmatterDoc,
+  isSimpleValue,
+  type FrontmatterValue,
+} from "./frontmatter";
+
+interface Props {
+  content: string;
+  onEdit?: ((newContent: string) => void) | undefined;
+}
+
+function valueToText(v: unknown): string {
+  if (Array.isArray(v)) return v.join(", ");
+  if (v === null || v === undefined) return "";
+  return String(v);
+}
+
+/** Coerce edited text back toward the original value's type. */
+function textToValue(text: string, original: unknown): FrontmatterValue {
+  if (Array.isArray(original)) {
+    return text
+      .split(",")
+      .map((s) => s.trim())
+      .filter((s) => s.length > 0);
+  }
+  if (typeof original === "number") {
+    const n = Number(text);
+    return Number.isFinite(n) ? n : text;
+  }
+  if (typeof original === "boolean") return text === "true";
+  return text;
+}
+
+export const PropertiesPanel = memo(function PropertiesPanel({ content, onEdit }: Props): React.JSX.Element | null {
+  const parsed = useMemo(() => parseFrontmatter(content), [content]);
+  const [adding, setAdding] = useState(false);
+  const [newKey, setNewKey] = useState("");
+
+  if (!parsed || !onEdit) return null;
+  const entries = Object.entries(parsed.data);
+  if (entries.length === 0 && !adding) {
+    return (
+      <div style={{ margin: "0 auto 14px", maxWidth: 760 }}>
+        <button
+          className="sgnk-btn sgnk-btn-ghost"
+          style={{ height: 24, fontSize: 12 }}
+          onClick={() => setAdding(true)}
+        >
+          + Add property
+        </button>
+      </div>
+    );
+  }
+
+  // All mutations go through the live YAML Document so comments / quoting /
+  // key order survive the edit (object-rebuild dropped them).
+  function commit() {
+    if (!parsed || !onEdit) return;
+    onEdit(stringifyFrontmatterDoc(parsed.doc, parsed.body));
+  }
+
+  function setValue(key: string, text: string) {
+    if (!parsed) return;
+    parsed.doc.set(key, textToValue(text, parsed.data[key]));
+    commit();
+  }
+
+  function renameKey(oldKey: string, nextKey: string) {
+    const trimmed = nextKey.trim();
+    if (!parsed || trimmed === oldKey || trimmed === "") return;
+    // Refuse to rename onto an existing key — would silently merge/drop a value.
+    if (Object.prototype.hasOwnProperty.call(parsed.data, trimmed)) return;
+    const v = parsed.doc.get(oldKey);
+    parsed.doc.set(trimmed, v);
+    parsed.doc.delete(oldKey);
+    commit();
+  }
+
+  function removeKey(key: string) {
+    if (!parsed) return;
+    parsed.doc.delete(key);
+    commit();
+  }
+
+  function addProperty() {
+    const k = newKey.trim();
+    if (k === "" || !parsed) {
+      setAdding(false);
+      setNewKey("");
+      return;
+    }
+    parsed.doc.set(k, "");
+    commit();
+    setAdding(false);
+    setNewKey("");
+  }
+
+  return (
+    <div
+      style={{
+        margin: "0 auto 18px",
+        maxWidth: 760,
+        border: "1px solid var(--border)",
+        borderRadius: "var(--radius)",
+        background: "var(--panel-2)",
+        padding: "8px 12px",
+      }}
+    >
+      <table style={{ width: "100%", borderCollapse: "collapse", fontSize: 13 }}>
+        <tbody>
+          {entries.map(([key, value]) => {
+            const simple = isSimpleValue(value);
+            return (
+            <tr key={key}>
+              <td style={{ padding: "3px 8px 3px 0", width: 160, verticalAlign: "top" }}>
+                <input
+                  className="sgnk-input"
+                  defaultValue={key}
+                  onBlur={(e) => renameKey(key, e.target.value)}
+                  disabled={!simple}
+                  style={{ height: 26, width: "100%", fontWeight: 600, color: "var(--fg-muted)" }}
+                />
+              </td>
+              <td style={{ padding: "3px 0" }}>
+                {simple ? (
+                  <input
+                    key={valueToText(value)}
+                    className="sgnk-input"
+                    defaultValue={valueToText(value)}
+                    onBlur={(e) => setValue(key, e.target.value)}
+                    style={{ height: 26, width: "100%" }}
+                  />
+                ) : (
+                  <span
+                    title="Nested value — edit in source"
+                    style={{ fontSize: 12, color: "var(--muted)", fontStyle: "italic", display: "inline-block", padding: "4px 0" }}
+                  >
+                    {Array.isArray(value) ? "[…]" : "{ nested — edit in source }"}
+                  </span>
+                )}
+              </td>
+              <td style={{ width: 28, textAlign: "right" }}>
+                <button
+                  className="sgnk-icon-btn"
+                  title={`Remove ${key}`}
+                  onClick={() => removeKey(key)}
+                  style={{ width: 22, height: 22 }}
+                ><GoogleIcon name="close" size={16} weight={500} /></button>
+              </td>
+            </tr>
+            );
+          })}
+        </tbody>
+      </table>
+      {adding ? (
+        <div style={{ display: "flex", gap: 6, marginTop: 6 }}>
+          <input
+            className="sgnk-input"
+            autoFocus
+            placeholder="property name"
+            value={newKey}
+            onChange={(e) => setNewKey(e.target.value)}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") addProperty();
+              if (e.key === "Escape") {
+                setAdding(false);
+                setNewKey("");
+              }
+            }}
+            style={{ height: 26, flex: 1 }}
+          />
+          <button className="sgnk-btn" style={{ height: 26 }} onClick={addProperty}>
+            Add
+          </button>
+        </div>
+      ) : (
+        <button
+          className="sgnk-btn sgnk-btn-ghost"
+          style={{ height: 22, fontSize: 12, marginTop: 4 }}
+          onClick={() => setAdding(true)}
+        >
+          + Add property
+        </button>
+      )}
+    </div>
+  );
+});

@@ -1,0 +1,11 @@
+{
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": "nextjs",
+  "ignoreCommand": "bash scripts/vercel-ignore-build.sh",
+  "functions": {
+    "src/app/api/export/pdf/[...path]/route.ts": {
+      "memory": 1769,
+      "maxDuration": 60
+    }
+  }
+}
