@@ -60,7 +60,7 @@ export default async function VaultLayout({ children }: { children: React.ReactN
               color: "var(--fg)",
             }}
           >
-            sgnk MD
+            frontmatter
           </span>
         </div>
 

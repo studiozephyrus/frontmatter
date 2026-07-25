@@ -131,7 +131,7 @@ export const shareApi = {
   setShare: makeSetShare({
     writer: shareWriter,
     snapshot: shareSnapshot,
-    publicBaseUrl: process.env["NEXT_PUBLIC_SITE_URL"] ?? "https://md.sgnk.ai",
+    publicBaseUrl: process.env["NEXT_PUBLIC_SITE_URL"] ?? "https://frontmatter.in",
   }),
   removeShare: makeRemoveShare({ writer: shareWriter }),
   listConflicts: makeListConflicts({ snapshot: shareSnapshot }),

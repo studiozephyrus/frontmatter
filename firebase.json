@@ -1,0 +1,29 @@
+{
+  "firestore": {
+    "rules": "firestore.rules",
+    "indexes": "firestore.indexes.json"
+  },
+  "auth": {
+    "authorizedDomains": [
+      "localhost",
+      "frontmatter-md.firebaseapp.com",
+      "frontmatter-md.web.app",
+      "frontmatter.in",
+      "www.frontmatter.in",
+      "frontmatter.vercel.app"
+    ],
+    "providers": {
+      "anonymous": false,
+      "emailPassword": false,
+      "googleSignIn": {
+        "oAuthBrandDisplayName": "frontmatter",
+        "supportEmail": "studiozephyrus@gmail.com"
+      }
+    }
+  },
+  "emulators": {
+    "auth": { "port": 9099 },
+    "firestore": { "port": 8080 },
+    "ui": { "enabled": true }
+  }
+}

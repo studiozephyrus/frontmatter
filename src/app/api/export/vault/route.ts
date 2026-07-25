@@ -26,7 +26,7 @@ export async function GET(): Promise<Response> {
       status: 200,
       headers: {
         "content-type": "application/zip",
-        "content-disposition": 'attachment; filename="sgnk-md-vault.zip"',
+        "content-disposition": 'attachment; filename="frontmatter-vault.zip"',
       },
     });
   } catch (err) {

@@ -28,7 +28,7 @@ export function PublicNoteView({ title, content, slug }: PublicNoteViewProps) {
       </article>
       <footer className="public-note-footer">
         <span>Hosted on </span>
-        <a href="/" rel="noreferrer">md.sgnk.ai</a>
+        <a href="/" rel="noreferrer">frontmatter.in</a>
       </footer>
     </div>
   );

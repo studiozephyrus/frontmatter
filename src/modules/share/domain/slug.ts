@@ -13,7 +13,7 @@
  *
  * Reserved words are the comprehensive set of first-segment paths the
  * app owns or reasonably might own. Slugs sit at the ROOT of the URL
- * (md.sgnk.ai/<slug>), so any future static route would shadow a
+ * (frontmatter.in/<slug>), so any future static route would shadow a
  * conflicting slug. The list is generous on purpose — false-positive
  * rejections are recoverable (user picks another slug); false-negative
  * (slug clashes with future route) is a bug shipped to users.
@@ -194,7 +194,7 @@ export const RESERVED_SLUGS: ReadonlySet<string> = new Set([
   "ok", "cancel", "yes", "no",
 
   // ─── Brand / domain self-references ────────────────────────────────
-  "sgnk", "md", "mdx", "sgnk-md", "zephyrus",
+  "sgnk", "md", "mdx", "sgnk-md", "zephyrus", "frontmatter",
 ]);
 
 export class InvalidSlugError extends Error {

@@ -2,8 +2,8 @@ import type { MetadataRoute } from "next";
 
 export default function manifest(): MetadataRoute.Manifest {
   return {
-    name: "sgnk MD — Your Markdown HQ",
-    short_name: "sgnk MD",
+    name: "frontmatter — Your markdown vault, in any browser",
+    short_name: "frontmatter",
     description: "A GitHub-backed markdown workspace with share links, graph, and a native macOS app.",
     start_url: "/",
     scope: "/",

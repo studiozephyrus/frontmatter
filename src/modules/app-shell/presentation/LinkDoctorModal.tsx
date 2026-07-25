@@ -161,7 +161,7 @@ export function LinkDoctorModal({ open, onClose }: LinkDoctorModalProps): React.
         headers: { "content-type": "application/json" },
         body: JSON.stringify({
           files,
-          message: `AI Link Doctor: wikilink ${files.length} note(s) via sgnk-md`,
+          message: `AI Link Doctor: wikilink ${files.length} note(s) via frontmatter`,
         }),
       });
       if (!res.ok) {

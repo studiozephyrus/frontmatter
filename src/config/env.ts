@@ -176,6 +176,54 @@ export function hasAnyAiProvider(raw?: Record<string, string | undefined>): bool
 }
 
 // ---------------------------------------------------------------------------
+// Firebase web client config
+// ---------------------------------------------------------------------------
+
+const firebaseSchema = z.object({
+  apiKey: z.string().min(1),
+  authDomain: z.string().min(1),
+  projectId: z.string().min(1),
+  storageBucket: z.string().min(1),
+  messagingSenderId: z.string().min(1),
+  appId: z.string().min(1),
+  measurementId: z.string().min(1).optional(),
+});
+
+export type FirebaseConfig = z.infer<typeof firebaseSchema>;
+
+/**
+ * Reads the Firebase web-app config from `NEXT_PUBLIC_*` env vars.
+ *
+ * These are NOT secrets — Firebase web config ships inside the client bundle
+ * by design, and access is governed by Firestore security rules, not by
+ * hiding the API key. They live in env vars anyway so a staging project can
+ * be swapped in without a code change.
+ *
+ * CRITICAL: every var is read as a **literal** `process.env.NEXT_PUBLIC_X`
+ * expression. Next.js inlines client-side env vars by static text
+ * substitution at build time — a dynamic lookup (`process.env[key]`, or the
+ * Proxy pattern used elsewhere in this file) resolves to `undefined` in the
+ * browser. Do not refactor these into a loop.
+ */
+export function parseFirebaseConfig(): FirebaseConfig {
+  const result = firebaseSchema.safeParse({
+    apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
+    authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
+    projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
+    storageBucket: process.env.NEXT_PUBLIC_FIREBASE_STORAGE_BUCKET,
+    messagingSenderId: process.env.NEXT_PUBLIC_FIREBASE_MESSAGING_SENDER_ID,
+    appId: process.env.NEXT_PUBLIC_FIREBASE_APP_ID,
+    measurementId: process.env.NEXT_PUBLIC_FIREBASE_MEASUREMENT_ID,
+  });
+  if (!result.success) {
+    throw new Error(
+      `Invalid Firebase config: ${result.error.issues.map((i) => `${i.path.join(".")}: ${i.message}`).join("; ")}`,
+    );
+  }
+  return result.data;
+}
+
+// ---------------------------------------------------------------------------
 // Dev-only bypass flags
 // ---------------------------------------------------------------------------
 

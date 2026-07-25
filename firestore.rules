@@ -1,0 +1,419 @@
+rules_version = '2';
+
+// =============================================================================
+// frontmatter — Firestore Security Rules
+// =============================================================================
+//
+// PROTOTYPE. Reviewed against the attack list in the firebase-firestore skill,
+// but not yet exercised against the emulator or a live client. Harden before
+// taking paid signups.
+//
+// -----------------------------------------------------------------------------
+// Assumed Data Model
+// -----------------------------------------------------------------------------
+//
+// Collection: users
+// Document ID: {uid} — the Firebase Auth uid
+// Fields:
+//   - email: string (required, immutable after create) — from the auth token
+//   - displayName: string|null (optional, <=200)
+//   - photoURL: string|null (optional, https URL, <=2000)
+//   - providers: list<string> (required, <=8 entries; element type NOT enforceable in rules)
+//   - plan: string (required, one of free|pro|team) — SERVER-OWNED after create.
+//           Client may only ever write 'free'. Upgrades happen via the billing
+//           webhook using the Admin SDK, which bypasses these rules.
+//   - defaultVaultId: string (optional, <=128)
+//   - createdAt: timestamp (required, immutable)
+//   - lastSeenAt: timestamp (required)
+//
+// Collection: billing
+// Document ID: {uid}
+// Fields: status, priceId, currentPeriodEnd, provider, customerId
+// Access: owner-read only. NO client writes at all — Admin SDK only.
+//
+// Collection: usage/{uid}/months
+// Document ID: {YYYY-MM}
+// Fields: aiTokens, noteCount, bytesUsed
+// Access: owner-read only. NO client writes — metered server-side.
+//
+// Collection: vaults
+// Document ID: {vaultId} (auto-id)
+// Fields:
+//   - ownerUid: string (required, immutable)
+//   - name: string (required, 1..200)
+//   - rev: number (required, >= 0)
+//   - memberUids: list<string> (required, <=100 entries) — owner MUST be in it
+//   - roles: map<uid, "owner"|"editor"|"viewer"> (required, <=100 keys)
+//   - createdAt: timestamp (required, immutable)
+//   - updatedAt: timestamp (required)
+// Access: members read. Only the OWNER may change memberUids/roles/ownerUid.
+//
+// Collection: vaults/{vaultId}/notes
+// Document ID: {noteId} (auto-id)
+// Fields:
+//   - path: string (required, 1..1024) — vault-relative, e.g. "Projects/HQ/Foo.md"
+//   - pathLower: string (required, 1..1024) — lowercased path for case-insensitive lookup
+//   - title: string (required, <=300)
+//   - tags / outbound / backlinks / embeds: list<string> (<=200 / <=500 entries)
+//   - frontmatter: map (required, <=100 keys) — arbitrary user YAML
+//   - excludeFromGraph: bool (required)
+//   - publicSlug: string|null (optional, <=60)
+//   - content: string (required, <=900000) — under the 1 MiB document ceiling
+//   - storagePath: string|null (optional, <=1024) — overflow to Cloud Storage
+//   - size: number (required, >= 0)
+//   - createdAt: timestamp (required, immutable)
+//   - updatedAt: timestamp (required)
+//   - deletedAt: timestamp|null (optional) — soft delete / trash
+//
+// Collection: vaults/{vaultId}/notes/{noteId}/revisions
+// Document ID: {revId}
+// Fields: noteId, content, authorUid, message, createdAt, parentRev
+// Access: members read, editors create. APPEND-ONLY — no update, no delete.
+//
+// Collection: shares
+// Document ID: {slug} — the public URL segment. Doc ID gives global uniqueness.
+// Fields:
+//   - vaultId, noteId, ownerUid: string (required, immutable)
+//   - title: string (required, <=300)
+//   - contentSnapshot: string (required, <=900000) — rendered copy, so public
+//     readers never touch the vault itself
+//   - visibility: string (required, "public"|"unlisted")
+//   - createdAt: timestamp (required, immutable)
+//   - renderedAt: timestamp (required)
+// Access: UNAUTHENTICATED GET is allowed for visibility=="public" — this is the
+// product's public-note feature (/p/{slug}). LIST is owner-only, so the share
+// set cannot be enumerated by strangers. Slug reservation (RESERVED_SLUGS) is
+// enforced in src/modules/share/domain/slug.ts, not here — the list is far too
+// large for a rules file.
+//
+// =============================================================================
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // =========================================================================
+    // Helper functions
+    // =========================================================================
+
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isOwner(uid) {
+      return isAuthenticated() && request.auth.uid == uid;
+    }
+
+    function hasOnlyAllowedFields(fields) {
+      return request.resource.data.keys().hasOnly(fields);
+    }
+
+    function hasRequiredFields(fields) {
+      return request.resource.data.keys().hasAll(fields);
+    }
+
+    function unchanged(fields) {
+      return !request.resource.data.diff(resource.data).affectedKeys().hasAny(fields);
+    }
+
+    function isBoundedString(value, maxLen) {
+      return value is string && value.size() <= maxLen;
+    }
+
+    function isNullOrBoundedString(value, maxLen) {
+      return value == null || (value is string && value.size() <= maxLen);
+    }
+
+    function isNullOrTimestamp(value) {
+      return value == null || value is timestamp;
+    }
+
+    function isHttpsUrl(value) {
+      return value == null || (value is string && value.size() <= 2000 && value.matches('^https://.*'));
+    }
+
+    // KNOWN GAP — read before hardening.
+    //
+    // The rules language has no list iteration: no `map`, no `filter`, no
+    // `all`. `List` exposes only size/hasAll/hasAny/hasOnly/toSet/concat/join.
+    // So there is NO way here to assert "every element is a string under N
+    // chars". We can only bound the element COUNT.
+    //
+    // What still protects us:
+    //   - Firestore's own hard 1 MiB document ceiling, and
+    //   - the `content` cap below, which leaves little headroom for a list
+    //     to be inflated inside the same document.
+    //
+    // What does NOT: schema purity. A caller can put numbers, maps, or a
+    // single 100 KB string into `tags`. Element-level validation belongs in a
+    // Cloud Function trigger or an Admin-SDK write path — not here.
+    function isBoundedList(value, maxItems) {
+      return value is list && value.size() <= maxItems;
+    }
+
+    // -------------------------------------------------------------------------
+    // Vault membership — resolved by reading the parent vault document.
+    // Each of these costs one document read against the rules budget.
+    // -------------------------------------------------------------------------
+
+    function vault(vaultId) {
+      return get(/databases/$(database)/documents/vaults/$(vaultId)).data;
+    }
+
+    function vaultExists(vaultId) {
+      return exists(/databases/$(database)/documents/vaults/$(vaultId));
+    }
+
+    function isVaultMember(vaultId) {
+      return isAuthenticated()
+        && vaultExists(vaultId)
+        && request.auth.uid in vault(vaultId).memberUids;
+    }
+
+    function vaultRole(vaultId) {
+      return vault(vaultId).roles[request.auth.uid];
+    }
+
+    function canEditVault(vaultId) {
+      return isVaultMember(vaultId) && vaultRole(vaultId) in ['owner', 'editor'];
+    }
+
+    function isVaultOwner(vaultId) {
+      return isAuthenticated()
+        && vaultExists(vaultId)
+        && vault(vaultId).ownerUid == request.auth.uid;
+    }
+
+    // =========================================================================
+    // users — private profile. Contains email (PII), so owner-only read.
+    // =========================================================================
+
+    function isValidUser(data) {
+      return hasOnlyAllowedFields([
+               'email', 'displayName', 'photoURL', 'providers',
+               'plan', 'defaultVaultId', 'createdAt', 'lastSeenAt'
+             ])
+        && hasRequiredFields(['email', 'providers', 'plan', 'createdAt', 'lastSeenAt'])
+        && isBoundedString(data.email, 320)
+        && data.email == request.auth.token.email
+        && isNullOrBoundedString(data.get('displayName', null), 200)
+        && isHttpsUrl(data.get('photoURL', null))
+        && isBoundedList(data.providers, 8)
+        && data.plan in ['free', 'pro', 'team']
+        && isNullOrBoundedString(data.get('defaultVaultId', null), 128)
+        && data.createdAt is timestamp
+        && data.lastSeenAt is timestamp;
+    }
+
+    match /users/{uid} {
+      allow read: if isOwner(uid);
+
+      // A new user may only ever provision themselves on the free plan.
+      // Writing 'pro' here would be a paywall bypass.
+      allow create: if isOwner(uid)
+        && isValidUser(request.resource.data)
+        && request.resource.data.plan == 'free';
+
+      // plan, email and createdAt are server-owned or immutable on update.
+      allow update: if isOwner(uid)
+        && isValidUser(request.resource.data)
+        && unchanged(['plan', 'email', 'createdAt']);
+
+      allow delete: if false;
+    }
+
+    // =========================================================================
+    // billing — written exclusively by the payment webhook via the Admin SDK.
+    // =========================================================================
+
+    match /billing/{uid} {
+      allow read: if isOwner(uid);
+      allow write: if false;
+    }
+
+    // =========================================================================
+    // usage — server-side metering for plan enforcement.
+    // =========================================================================
+
+    match /usage/{uid} {
+      allow read: if isOwner(uid);
+      allow write: if false;
+
+      match /months/{month} {
+        allow read: if isOwner(uid);
+        allow write: if false;
+      }
+    }
+
+    // =========================================================================
+    // vaults
+    // =========================================================================
+
+    function isValidVault(data) {
+      return hasOnlyAllowedFields([
+               'ownerUid', 'name', 'rev', 'memberUids', 'roles', 'createdAt', 'updatedAt'
+             ])
+        && hasRequiredFields([
+             'ownerUid', 'name', 'rev', 'memberUids', 'roles', 'createdAt', 'updatedAt'
+           ])
+        && isBoundedString(data.ownerUid, 128)
+        && data.name is string && data.name.size() >= 1 && data.name.size() <= 200
+        && data.rev is number && data.rev >= 0
+        && isBoundedList(data.memberUids, 100)
+        && data.ownerUid in data.memberUids
+        && data.roles is map
+        && data.roles.keys().size() <= 100
+        && data.roles.keys().hasOnly(data.memberUids)
+        && data.roles[data.ownerUid] == 'owner'
+        && data.createdAt is timestamp
+        && data.updatedAt is timestamp;
+    }
+
+    match /vaults/{vaultId} {
+      allow get: if isVaultMember(vaultId);
+      // Enumerating vaults is only meaningful filtered by membership, and the
+      // rule below is satisfiable only for such a query.
+      allow list: if isAuthenticated() && request.auth.uid in resource.data.memberUids;
+
+      allow create: if isAuthenticated()
+        && isValidVault(request.resource.data)
+        && request.resource.data.ownerUid == request.auth.uid;
+
+      // Editors may touch name/rev/updatedAt. Only the owner may change the
+      // permission fields — otherwise a collaborator could promote themselves
+      // or evict the owner.
+      allow update: if isValidVault(request.resource.data)
+        && unchanged(['ownerUid', 'createdAt'])
+        && (
+             isVaultOwner(vaultId)
+             || (canEditVault(vaultId) && unchanged(['memberUids', 'roles']))
+           );
+
+      allow delete: if isVaultOwner(vaultId);
+
+      // -----------------------------------------------------------------------
+      // notes
+      // -----------------------------------------------------------------------
+
+      function isValidNote(data) {
+        return hasOnlyAllowedFields([
+                 'path', 'pathLower', 'title', 'tags', 'outbound', 'backlinks',
+                 'embeds', 'frontmatter', 'excludeFromGraph', 'publicSlug',
+                 'content', 'storagePath', 'size', 'createdAt', 'updatedAt', 'deletedAt'
+               ])
+          && hasRequiredFields([
+               'path', 'pathLower', 'title', 'tags', 'outbound', 'backlinks',
+               'embeds', 'frontmatter', 'excludeFromGraph', 'content', 'size',
+               'createdAt', 'updatedAt'
+             ])
+          && data.path is string && data.path.size() >= 1 && data.path.size() <= 1024
+          && data.pathLower == data.path.lower()
+          && isBoundedString(data.title, 300)
+          && isBoundedList(data.tags, 200)
+          && isBoundedList(data.outbound, 500)
+          && isBoundedList(data.backlinks, 500)
+          && isBoundedList(data.embeds, 500)
+          && data.frontmatter is map && data.frontmatter.keys().size() <= 100
+          && data.excludeFromGraph is bool
+          && isNullOrBoundedString(data.get('publicSlug', null), 60)
+          && isBoundedString(data.content, 900000)
+          && isNullOrBoundedString(data.get('storagePath', null), 1024)
+          && data.size is number && data.size >= 0
+          && data.createdAt is timestamp
+          && data.updatedAt is timestamp
+          && isNullOrTimestamp(data.get('deletedAt', null));
+      }
+
+      match /notes/{noteId} {
+        allow read: if isVaultMember(vaultId);
+
+        allow create: if canEditVault(vaultId)
+          && isValidNote(request.resource.data);
+
+        allow update: if canEditVault(vaultId)
+          && isValidNote(request.resource.data)
+          && unchanged(['createdAt']);
+
+        // Soft delete via deletedAt is the product path; hard delete is the
+        // trash-empty action and stays owner/editor-gated.
+        allow delete: if canEditVault(vaultId);
+
+        // ---------------------------------------------------------------------
+        // revisions — append-only version history
+        // ---------------------------------------------------------------------
+
+        function isValidRevision(data) {
+          return hasOnlyAllowedFields([
+                   'noteId', 'content', 'authorUid', 'message', 'createdAt', 'parentRev'
+                 ])
+            && hasRequiredFields(['noteId', 'content', 'authorUid', 'createdAt'])
+            && isBoundedString(data.noteId, 128)
+            && isBoundedString(data.content, 900000)
+            && data.authorUid == request.auth.uid
+            && isNullOrBoundedString(data.get('message', null), 500)
+            && isNullOrBoundedString(data.get('parentRev', null), 128)
+            && data.createdAt is timestamp;
+        }
+
+        match /revisions/{revId} {
+          allow read: if isVaultMember(vaultId);
+          allow create: if canEditVault(vaultId) && isValidRevision(request.resource.data);
+          allow update: if false;
+          allow delete: if false;
+        }
+      }
+    }
+
+    // =========================================================================
+    // shares — the public-note surface
+    // =========================================================================
+
+    function isValidShare(data) {
+      return hasOnlyAllowedFields([
+               'vaultId', 'noteId', 'ownerUid', 'title', 'contentSnapshot',
+               'visibility', 'createdAt', 'renderedAt'
+             ])
+        && hasRequiredFields([
+             'vaultId', 'noteId', 'ownerUid', 'title', 'contentSnapshot',
+             'visibility', 'createdAt', 'renderedAt'
+           ])
+        && isBoundedString(data.vaultId, 128)
+        && isBoundedString(data.noteId, 128)
+        && data.ownerUid == request.auth.uid
+        && isBoundedString(data.title, 300)
+        && isBoundedString(data.contentSnapshot, 900000)
+        && data.visibility in ['public', 'unlisted']
+        && data.createdAt is timestamp
+        && data.renderedAt is timestamp;
+    }
+
+    match /shares/{slug} {
+      // Deliberate unauthenticated read — this IS the public-note product
+      // feature. Scoped to `get` so nobody can enumerate the collection, and
+      // gated on visibility so unlisted shares stay link-only.
+      allow get: if resource.data.visibility == 'public'
+                 || (isAuthenticated() && resource.data.ownerUid == request.auth.uid);
+
+      // Owner-only enumeration, for the share-management UI.
+      allow list: if isAuthenticated() && resource.data.ownerUid == request.auth.uid;
+
+      allow create: if isAuthenticated()
+        && isValidShare(request.resource.data)
+        && isVaultOwner(request.resource.data.vaultId);
+
+      allow update: if isAuthenticated()
+        && resource.data.ownerUid == request.auth.uid
+        && isValidShare(request.resource.data)
+        && unchanged(['ownerUid', 'vaultId', 'noteId', 'createdAt']);
+
+      allow delete: if isAuthenticated() && resource.data.ownerUid == request.auth.uid;
+    }
+
+    // =========================================================================
+    // Default deny — anything not matched above
+    // =========================================================================
+
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

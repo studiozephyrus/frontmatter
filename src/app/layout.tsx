@@ -18,19 +18,19 @@ const googleSans = Google_Sans({
   display: "swap",
 });
 
-const SITE_URL = process.env["NEXT_PUBLIC_SITE_URL"] ?? "https://md.sgnk.ai";
+const SITE_URL = process.env["NEXT_PUBLIC_SITE_URL"] ?? "https://frontmatter.in";
 
 export const metadata: Metadata = {
   metadataBase: new URL(SITE_URL),
   title: {
-    default: "sgnk MD",
-    template: "%s — sgnk MD",
+    default: "frontmatter",
+    template: "%s — frontmatter",
   },
   description: "Your Markdown HQ — a GitHub-backed markdown workspace with share links, graph, and a native macOS app.",
-  applicationName: "sgnk MD",
+  applicationName: "frontmatter",
   appleWebApp: {
     capable: true,
-    title: "sgnk MD",
+    title: "frontmatter",
     statusBarStyle: "black-translucent",
   },
   icons: {
@@ -39,14 +39,14 @@ export const metadata: Metadata = {
   },
   openGraph: {
     type: "website",
-    siteName: "sgnk MD",
-    title: "sgnk MD — Your Markdown HQ",
+    siteName: "frontmatter",
+    title: "frontmatter — Your markdown vault, in any browser",
     description: "A GitHub-backed markdown workspace. Write, link, graph, share by URL, edit anywhere — web, mobile, native app.",
     url: SITE_URL,
   },
   twitter: {
     card: "summary_large_image",
-    title: "sgnk MD — Your Markdown HQ",
+    title: "frontmatter — Your markdown vault, in any browser",
     description: "GitHub-backed markdown workspace with share links, graph, and a native macOS app.",
   },
   robots: { index: true, follow: true },

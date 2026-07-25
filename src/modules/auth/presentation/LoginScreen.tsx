@@ -67,7 +67,7 @@ export function LoginScreen() {
         <div style={{ display: "flex", flexDirection: "column", gap: "1.25rem", maxWidth: 440 }}>
           <img
             src="/favicon.png"
-            alt="sgnk-md"
+            alt="frontmatter"
             width={44}
             height={44}
             style={{

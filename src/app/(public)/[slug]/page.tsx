@@ -22,9 +22,9 @@ type Params = { slug: string };
 export async function generateMetadata({ params }: { params: Promise<Params> }): Promise<Metadata> {
   const { slug } = await params;
   const note = await shareApi.resolvePublicNote(slug);
-  if (!note) return { title: "Not found · sgnk MD" };
+  if (!note) return { title: "Not found · frontmatter" };
   return {
-    title: `${note.title} · sgnk MD`,
+    title: `${note.title} · frontmatter`,
     description: note.content.slice(0, 160).replace(/\s+/g, " "),
     openGraph: { title: note.title, type: "article" },
     robots: { index: true, follow: true },

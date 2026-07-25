@@ -2,7 +2,7 @@
  * Legacy redirect: /p/<slug> → /<slug>
  *
  * Public note URLs moved off the `/p/` prefix to expose slugs at the
- * root (`md.sgnk.ai/<slug>`). This route keeps every previously-shared
+ * root (`frontmatter.in/<slug>`). This route keeps every previously-shared
  * link working — a 301 sends crawlers and bookmarks to the new URL.
  */
 import { permanentRedirect } from "next/navigation";

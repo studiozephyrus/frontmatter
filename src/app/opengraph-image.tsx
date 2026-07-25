@@ -1,12 +1,12 @@
 import { ImageResponse } from "next/og";
 
 export const runtime = "nodejs";
-export const alt = "sgnk MD — Your Markdown HQ";
+export const alt = "frontmatter — Your markdown vault, in any browser";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
 /**
- * Default Open Graph image for sgnk MD. Rendered at request time by Next's
+ * Default Open Graph image for frontmatter. Rendered at request time by Next's
  * built-in `next/og` so it always matches the current brand tokens.
  */
 export default function OpengraphImage() {
@@ -62,7 +62,7 @@ export default function OpengraphImage() {
               color: "#e9eaec",
             }}
           >
-            sgnk MD
+            frontmatter
           </div>
         </div>
         <div

@@ -69,7 +69,7 @@ export function CommitBar() {
   }, [tabs, indexPaths]);
 
   const count = dirtyPaths.length;
-  const defaultMessage = `Update ${count} note(s) via sgnk-md`;
+  const defaultMessage = `Update ${count} note(s) via frontmatter`;
 
   const [message, setMessage] = useState("");
   const [status, setStatus] = useState<CommitStatus>({ kind: "idle" });

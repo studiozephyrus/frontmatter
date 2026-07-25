@@ -34,7 +34,7 @@ export default function GlobalError({
       >
         <div style={{ maxWidth: 440, textAlign: "center" }}>
           <h1 style={{ fontSize: 22, fontWeight: 650, margin: "0 0 8px" }}>
-            sgnk MD crashed
+            frontmatter crashed
           </h1>
           <p style={{ fontSize: 13, color: "#8a93a4", lineHeight: 1.55, margin: "0 0 16px" }}>
             A fatal error escaped the root layout. Reload or head home.
