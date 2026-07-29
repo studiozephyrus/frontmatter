@@ -1,10 +1,10 @@
 ---
 title: The frontmatter engine — plan
 status: draft
-version: 0.4.0
-date: 2026-07-29
+version: 0.5.0
+date: 2026-07-30
 decides: what we build, what we refuse to build, and in what order
-supersedes: PLAN.md v0.3.0 (same path)
+supersedes: PLAN.md v0.4.0 (same path)
 evidence: ~14M subagent tokens across 90 research agents + 20 local experiments, 2026-07-28/30
 ---
 
@@ -1048,6 +1048,16 @@ Mermaid renders natively on **30 platforms** that never coordinated. GitHub ship
 with a purely operational rationale — **there is no standardisation story because there was no
 standardisation.**
 
+> **⚠ CORRECTION — the absolute counts above are real; the RATE is not high.** Measured directly on
+> a 42,643-file corpus: mermaid appears in **340 of 37,990 external files (0.89%)**, and **0.26%**
+> excluding mermaid's own docs. On this repo's vaults: **7 of 4,229 (0.17%)** and 0 of 410. Against
+> GitHub's own `.md` proxy, 330,496 / 18,841,600 = **1.75%**. All non-code diagram/math fences
+> together are **3.45% of fences**.
+>
+> So what fence dispatch demonstrates is that **the mechanism works permissionlessly** — 30
+> uncoordinated platforms — **not that it is widely used.** Do not cite the absolute count as
+> evidence of penetration; that was an error in the first draft of this section.
+
 **And the fence is a real container primitive, not a code-display feature.** Tested: fence widths
 3→500 backticks all parse; a **13-level recursive nest** unwrapped with the innermost payload
 byte-identical; a fence body containing YAML frontmatter, an HTML comment, its own fence, a GFM
@@ -1226,3 +1236,235 @@ immediate context. The model that will actually write into a user's file in an e
 faster, and every published curve says that is precisely where format adherence collapses. **The
 experiment establishes a ceiling, not an operating point.** Re-run the harness against the production
 model before shipping a notation feature.
+
+---
+
+## §16 — The utilization sweep: what the plugin ecosystems reveal
+
+Added v0.5.0, 2026-07-30. §15 argued markdown is *extensible*. §16 asks a different and more
+useful question: **extensible toward what?** The answer is not a matter of opinion — six ecosystems
+have been voting with implementations for a decade, and the votes are counted.
+
+Method: the Obsidian community catalogue is a ranked, download-weighted list of things markdown
+cannot do. Every plugin is a person who wanted something badly enough to build it. Read as revealed
+preference, the catalogue is the most honest requirements document available for this project.
+
+### 16.1 The headline, and it replicates three times
+
+Live catalogue, re-verified 2026-07-30 (the file updates daily, so exact totals drift):
+
+```
+stats entries=6118   catalogue entries=6112   matched=6047
+total cumulative downloads=132,834,339   median=628
+top10 share=27.5%   top300 share=83.9%
+```
+
+Classifying the **top 300** (83.9% of all demand) into five gap classes — FORMAT (markdown cannot
+express it), RENDER (can express, cannot present), ERGONOMICS (expressible but hostile to
+hand-editing), APP (editor behaviour), EXTERNAL (sync/AI/import):
+
+| gap class | n | cumulative | share |
+|---|---|---|---|
+| **F — markdown cannot express it** | 78 | 44,622,998 | **40.1%** |
+| R — can express, cannot present | 23 | 3,747,303 | 3.4% |
+| E — syntax exists, hostile to hand-edit | 14 | 6,720,063 | 6.0% |
+| A — app/editor only | 118 | 34,592,652 | 31.0% |
+| X — external service | 67 | 21,727,694 | 19.5% |
+| **FORMAT IMPLICATED (F+R+E)** | **115** | **55,090,364** | **49.4%** |
+
+**Two-fifths of revealed demand is markdown failing to express something.** The app-gap column is
+real and large, and it is *smaller* than the format column — the opposite of what "markdown is fine,
+the apps are just limited" predicts.
+
+The number replicates across three populations that share no mechanism:
+
+| dataset | weight | hard format gap | F+R+E |
+|---|---|---|---|
+| Obsidian plugins, top 300 | 111.4M downloads | **40.1%** | 49.4% |
+| Obsidian forum feature requests, top 45 | 22,042 likes | **39.0%** | 48.1% |
+| VS Code markdown extensions, top 45 | 68.2M installs | **35.4%** | **85.9%** |
+
+What people *build*, what people *ask for*, and what people *install in a code editor* converge on
+35–40%. VS Code's F+R+E is far higher for a structural reason worth naming: **VS Code has no PKM app
+layer to be missing**, so app gaps barely register. Strip the app layer and markdown's share of the
+complaint rises toward 86%.
+
+> **Metric caveat, load-bearing.** Obsidian's `downloads` field sums over *every release*, so it
+> rewards release frequency, not adoption. Median release count in the top 300 is 31; median
+> cumulative/peak ratio 2.7. Excalidraw is #1 on cumulative and **not top-30 on peak installs**.
+> Recomputed on peak-single-version the F share is 33.3% and F+R+E is 45.8% — the conclusion holds
+> on either metric, which is the only reason to trust it.
+
+### 16.2 The Logseq natural experiment — the causal evidence
+
+Logseq's *format* natively has block IDs, `key:: value` properties, a query language, task states
+with `SCHEDULED:`/`DEADLINE:`, and spaced repetition. Obsidian's does not. Compare cluster sizes:
+
+| capability | Obsidian plugins | Logseq plugins | Logseq native? |
+|---|---|---|---|
+| spaced repetition / flashcards | **70** | **2** (both merely Anki *sync*) | yes |
+| query / database | 46 | 20 (mostly UI over the native query) | **yes** |
+| task management | 149 | 30 | **yes** |
+| kanban / board | 63 | 6 | no |
+| tables / spreadsheet | 128 | 12 | no |
+
+Logseq is a *worse app* than Obsidian by most measures, yet every cluster corresponding to a native
+format feature is **10–35× smaller**, and the clusters where neither format helps (kanban, tables)
+stay proportionally large. **When the format absorbs a capability, the plugin cluster collapses.**
+That is as close to a controlled experiment as this domain offers, and it is the strongest available
+answer to "are these format gaps or app gaps?"
+
+(Logseq publishes no download counts. This is an ordinal presence/absence signal, deliberately
+unweighted — it is not comparable to the Obsidian and VS Code percentages above.)
+
+### 16.3 The datapoint that cuts against extending markdown
+
+Faced with the largest format gap in its own ecosystem — Dataview, a 4.65M-download query DSL living
+in a fence — **Obsidian did not extend markdown. It shipped two new file formats.**
+
+- **`.base`** (YAML): `filters` with nested `and`/`or`/`not` and functions (`file.hasTag()`),
+  `formulas` with an expression language, `properties`, `views` (`type: table`, `groupBy`, `order`,
+  `limit`), `summaries` (`values.mean().round(3)`).
+- **`.canvas`** (JSON, open spec v1.0, 2024-03-11): `nodes` with x/y/z-index, and **`edges` —
+  directed, labelled, typed.**
+
+The two things markdown provably cannot express — **spatial arrangement and typed relations** — each
+got a non-markdown sidecar file. A third plugin generation is already growing on top: **78 Bases
+plugins, 396,460 downloads**, and the kanban gap reappeared *immediately* on the new substrate
+(232 forum likes for "Bases: kanban view", plus four independent Bases board plugins).
+
+**This is genuine counterevidence to this project's direction and it is recorded as such.** The
+best-resourced actor in the ecosystem examined the same gaps this section catalogues and concluded
+markdown was the wrong place to put them. Any decision to extend markdown instead must be made
+knowing that — not in ignorance of it.
+
+The absorption pattern is otherwise consistent, and every absorption is the vendor conceding a
+format gap: Admonition (934k) → native callouts. Footnotes → native. Block refs → native `^id`.
+Properties UI → native. Query → `.base`. Canvas → `.canvas`.
+
+### 16.4 The ranked gap list
+
+Severity weights, not a partition — a plugin may serve more than one primitive, so these do not sum.
+
+| # | missing primitive | install weight |
+|---|---|---|
+| 1 | **Embedded freehand graphics** (drawing, whiteboard, diagram as content) | 8,791,289 |
+| 2 | **Task semantics beyond a binary checkbox** (due, scheduled, recurring, status, priority) | 8,543,855 |
+| 3 | **A queryable relation over documents** (data model + query language) | 7,222,563 |
+| 4 | **Templating, variables, computed content** | 7,162,433 |
+| 5 | **Page-level presentation metadata** (icon, banner, per-document chrome) | 4,924,973 |
+| 6 | **A cell grid with formulas; tables that merge and nest** | 3,821,379 |
+| 7 | **Board / non-linear spatial arrangement of blocks** | 3,545,560 |
+| 8 | **Alternative output projections from one source** (slides, print, pagination) | 2,459,584 |
+| 9 | **Addressing into external documents** (PDF page/region, media timecode) | 2,398,025 |
+| 10 | **Semantic block types** (a callout with declared meaning) | 1,607,696 |
+| … | inline text attributes · calendar/event semantics · interactive widgets and data binding · charts and maps from document data · inline syntax CommonMark omits (emoji, footnotes, extended math) · user-defined record types · **typed directed links** · review/scheduling state · **multi-file composition** · executable blocks · grid layout · figure/caption semantics · per-block encryption | 880k–1.5M each |
+
+**Four cross-cutting absences have no row because no plugin can implement them.** They surface in the
+forum data instead, and they are the ones that matter most here:
+
+1. **Stable identity.** Rename a heading and every link to it dies (340 likes). A note's identity
+   *is* its filename (711 likes). Every refactoring plugin in the ecosystem — Tag Wrangler at 1.0M,
+   Consistent Attachments and Links at 131k, Filename Heading Sync at 68k — exists to paper over
+   this. **This is the gap §1.1a's re-anchoring algorithm addresses, and the ecosystem confirms it is
+   real, load-bearing, and unaddressed.**
+2. **Composability.** Constructs do not nest. A checkbox inside a table cell is unexpressible
+   (299 likes); Dice Roller advertises working inside a table cell as a *feature*.
+3. **An extension mechanism with a namespace.** See §16.5.
+4. **A place for mutable machine state.** See §16.5.
+
+### 16.5 Six placement strategies, all in production, all colliding
+
+Every plugin that extends markdown must choose where to put its syntax. All six choices are in use at
+scale, which is itself the finding — there is no convention, only an unmanaged commons.
+
+1. **A fence with an invented mini-language** — the dominant choice, and therefore an *ad-hoc
+   namespace registry with no coordination*: `dataview`, `chart`, `leaflet`, `button`, `ad-tip`,
+   `col`, `tx`, `meta-bind`, `column-settings`.
+2. **Inline sigils in prose** — `key::` (Dataview), `📅 2022-12-17` (Tasks), `::`/`?`/`??` (SR),
+   `dice: 1d20`, `` `= expr` ``, `` `#: expr` ``. **This is where the collisions live.**
+3. **Frontmatter as a typed record store** — and it is doing enormous unintended work. TaskNotes puts
+   RFC-5545 recurrence rules in it (`recurrence: "FREQ=WEEKLY;BYDAY=MO"`); Metadata Menu builds a
+   *class system* on it; Breadcrumbs hoists a typed graph into it; Longform declares a manuscript
+   tree in it. The #3 forum request (781 likes) is literally *"let frontmatter nest."*
+4. **Comments as a private data channel** — Kanban writes JSON config into `%% … %%`; Spaced
+   Repetition writes **mutable scheduling state** into `<!--SR:!2023-09-02,4,270-->`. Both are
+   smuggling machine state through a channel designed to be discarded, because the format offers
+   nowhere legitimate to put it.
+5. **Overloading an existing construct** — Kanban: `##` = lane, `***` = archive boundary, literal
+   `**Complete**` = done-lane flag. Multi-Column: `---` = region delimiter (already thematic break
+   *and* frontmatter fence). SR: `==highlight==` = cloze. Image Captions: the wikilink alias slot.
+   **Every one produces a file that silently corrupts when edited as ordinary markdown** — Kanban's
+   board breaks if you add an H2.
+6. **A separate file format** — Excalidraw's `.excalidraw.md`, and decisively Obsidian's own `.base`
+   and `.canvas` (§16.3).
+
+**The collisions are live, not hypothetical.** Spaced Repetition's single-line card separator is
+`::`. Dataview's inline field syntax is `key:: value`. Both are top-50 plugins (569k and 4.65M) and
+they occupy the same two characters. This is what an extension mechanism without a namespace looks
+like at scale — and it is a direct argument for §15's conclusion that any notation this project
+introduces must be **namespaced and declared**, never a bare sigil.
+
+### 16.6 Two designs to steal outright
+
+- **Excalidraw's dual encoding.** The authoritative payload is opaque compressed JSON, but the file
+  *also* carries a plain-text `## Text Elements` projection so grep, vault search, and any dumb
+  markdown reader still see the content. It is the only design in the 6,047-plugin catalogue that
+  solves rich content **without making the file illegible to every other tool** — which is exactly
+  the constraint §2's invariants impose. Adopt the pattern: opaque payload plus searchable projection,
+  same file.
+- **Spaced Repetition's inline-or-sidecar toggle for mutable state.** The same scheduling data can
+  live in a comment beside the card or in a separate location, user's choice, because locality vs.
+  diff-cleanliness genuinely has no single right answer. Make it a declared option, not a hardcoded
+  assumption.
+
+### 16.7 Tables are an ergonomics gap, not a format gap
+
+The clearest single misdiagnosis this sweep corrects. Markdown *has* tables. **3,057,811 downloads
+went to Advanced Tables purely to make the existing syntax survivable**, plus 193k for Excel-paste
+conversion, 116k for a table editor, 61k for a generator. Only 391k went to genuine expressiveness
+gaps (formulas, merged cells). Category mix: **90% ERGONOMICS, 10% FORMAT.**
+
+**The lesson is not "markdown needs tables." It is that a syntax requiring manual column alignment
+spawns a tool ecosystem regardless of its expressiveness.** Any construct this project adds must be
+checked against that: *is it writable by hand without a tool?* If not, it will grow a plugin whether
+or not the semantics are right.
+
+### 16.8 The two supply-starved gaps — and why they matter most here
+
+Almost every gap in §16.4 has many competing implementations. Two do not, and the asymmetry is the
+most interesting finding in the sweep.
+
+**Typed links: 820 forum likes — #2 request overall, #1 pure-format request — against 5
+implementations above 5k downloads**, led by Breadcrumbs at 240k. Compare "board" (16 implementations,
+2.99M) or "mindmap" (12, 2.06M).
+
+**Multi-file composition: 449 likes** for a Gingko-style document-as-tree-of-cards and **174** for
+"Document Spanning" — both in the forum's most-liked plugin ideas, **both unbuilt**, while nearly
+every other top idea in that category eventually shipped.
+
+Enormous demand, near-zero supply. **That is the signature of a gap a plugin cannot close.** A board
+can be faked by overloading headings; a mindmap can be rendered from lists. But a typed link needs
+*the link itself* to carry the relation, and Breadcrumbs' only available workaround hoists every edge
+into frontmatter — so the relation no longer lives at the point of reference. Users can feel the
+workaround is wrong, which is why they keep asking instead of installing.
+
+**These are therefore the highest-leverage things a format-level project can offer that no plugin
+ecosystem will ever provide.** Obsidian conceded exactly this: `.canvas` has `edges` because markdown
+could not.
+
+### 16.9 What §16 changes
+
+- **Confirms the project's core bet.** Stable identity is the #1 cross-cutting absence, it is what
+  340 + 711 forum likes are asking for, and it is what §1.1a's re-anchoring algorithm delivers at
+  99.627%. The ecosystem independently ranks this project's central invention as its top unmet need.
+- **Names the two additive targets** — typed links and multi-file composition (§16.8) — as
+  supply-starved rather than merely unbuilt, which is a much stronger reason to build them.
+- **Hardens §15's namespace requirement** from a design preference to a measured necessity: `::` is
+  contested between two top-50 plugins *today* (§16.5).
+- **Adds a hand-writability gate** to any new construct (§16.7).
+- **Adds the dual-encoding pattern** to the invariants toolkit (§16.6).
+- **Records real counterevidence** (§16.3). Obsidian chose sidecar files over markdown extensions,
+  twice, for the two hardest gaps. That does not settle the question, but it must be answered rather
+  than ignored — and the honest form of the answer is that this project's differentiator is *identity
+  across edits*, which a sidecar file cannot provide, not *expressiveness*, which one can.
