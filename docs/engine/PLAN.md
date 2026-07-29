@@ -592,6 +592,101 @@ Also live: *"Markdown is good enough. It will take an order-of-magnitude differe
 
 ---
 
+## 11a. The block is the unit of IDENTITY, not of MEANING
+
+The most important measurement in the project, because it constrains what we may *claim*.
+A TextTiling implementation was validated first on a known-answer Choi-style task (P_k 0.296
+vs 0.481 chance — a 38.6% error reduction), so the null results below are a property of
+markdown, not a broken instrument. All conclusions come from **paired** comparisons.
+
+**A markdown heading is almost exactly as good a topic boundary as a blank line.**
+Per-document AUC of heading-vs-plain-paragraph depth: **0.508** (0.478 on a clean
+human-prose subset). Cohen's d = +0.064.
+
+**But heading LEVEL carries real, monotone signal**, position-matched against plain paragraph
+breaks within ±15 gaps:
+
+| level | position-matched AUC | reading |
+|---|---|---|
+| **H1** | **0.701** | a genuine topic boundary |
+| H2 | 0.534 | weakly one |
+| H3 | 0.507 | indistinguishable from a blank line |
+| **H4** | **0.350** | **significantly WORSE than a plain paragraph break** |
+
+A deep heading systematically marks a place where the vocabulary is *continuing* — it
+subdivides one coherent discussion. **A chunker that splits on every heading splits at the
+wrong place most of the time.** Prefer H1/H2 as hard splits; treat H3+ as merge candidates.
+
+**Headings interrupt discourse; they do not reset it.** The paragraph immediately after a
+heading is **1.50× more likely** to open with an anaphor or connective than a mid-section
+paragraph (6.48% vs 4.33%, z = +14.71, n = 95,896). If headings were resets this would be
+well below 1. Writers add a heading and carry straight on with "This means…", "However…".
+
+### Why the block still wins — from the direction the field never looks
+
+Replace 60 content tokens mid-document with off-topic text, **holding token count constant**
+so the segmenter's grid cannot re-phase:
+
+| | topic segmenter | markdown block |
+|---|---|---|
+| remote units unchanged | 96.0% | **99.3%** |
+| **documents with ≥1 spurious REMOTE change** | **89.6%** | — |
+| identity on raw text (after reflow) | — | 30.0% |
+| identity on **whitespace-normalised** text | — | **89.0%** |
+
+**Mechanism, and it generalises:** TextTiling's cutoff is `mean(depth) − sd(depth)/2`, a
+**document-global statistic**. Edit any paragraph and the threshold moves and boundaries flip
+*everywhere*. C99's rank matrix and U00's dynamic program are global too. This is inherent to
+"how many segments does this document have" being a global decision.
+
+> **A topic segmenter cannot be an identity anchor.** Block boundaries are decided by local
+> syntax — a blank line, a `#`, a fence — computable in one left-to-right pass.
+
+The 30% → 89% row independently confirms §12's canonicalization requirement from a second
+direction: **normalise whitespace before hashing, or reflow invalidates everything.**
+
+### Both candidate units fail as retrieval chunks, for opposite reasons
+
+Measured on 424,419 blocks (independently re-derived; the research agent's own splitter gave
+the same shape):
+
+```
+list items 48.0%  ·  paragraphs 30.3%  ·  headings 15.2%  ·  fences 4.6%
+words: p25=4  p50=9  p75=18  p90=33  p95=48  p99=129  max=91,165
+Gini of token mass 0.647 — the top 1% of blocks hold 22.5% of all content
+```
+
+A median of 9 words is not retrievable under any embedding model; and a fraction of a percent
+of blocks holds a sixth of all content and will blow any fixed budget.
+
+> **The chunker's real job is packing, not boundary-finding. Test on the p99, not the mean.**
+
+And the literature has said so for thirty years: **Hearst & Plaunt (1993) found no significant
+difference between motivated subtopic segments and arbitrary blocks of the same length**, and
+**Moffat et al. (1994) found author-supplied sectioning gave *worse* retrieval than automatic
+subdivision.** Confirmed recently — Qu, Tu & Bao (NAACL 2025 Findings): *"the computational
+cost of semantic chunking is not justified by consistent performance gains."*
+
+**Where the measured wins actually are: self-containedness, not boundaries.** Anthropic's
+contextual retrieval cuts top-20 failure by 35% → 49% → 67% — and the mechanism is *prepending
+document context to each chunk*, i.e. an admission that a chunk alone is not self-contained.
+Dense X (EMNLP 2024) wins with *propositions*, defined by self-containedness rather than syntax.
+
+**Our free win:** the **heading path** is an exact, author-supplied context prefix. Prepending
+it is contextual retrieval at zero LLM cost — a structural advantage generic RAG does not have.
+
+**Design consequence:** blocks own identity; retrieval chunks are a **derived, rebuildable
+projection** that nothing durable points at, and are therefore allowed to be unstable. If a
+semantic layer is ever added, make a segment a *set of block IDs* — re-segmentation then changes
+grouping without invalidating a single anchor.
+
+*Limits: token figures in the source experiment were chars/4 estimates (pypi TLS blocked);
+TextTiling is a noisy oracle (F1 0.459 even on known boundaries); and this is one author's
+heading-dense, list-heavy corpus — stratification hinted headings track topic better at
+200+ words/section (n=35, directional only).*
+
+---
+
 ## 12. Token-cost claims, corrected
 
 Two figures this project has repeated were wrong or wrongly explained. Both are now
