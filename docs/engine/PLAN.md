@@ -337,7 +337,9 @@ See §4.
   **>20% more inference**. Emit procedures and preserved structure instead.
 - Structure is worth up to ~20 accuracy points; **the syntax carrying it has no stable winner**
   across models. Markdown's edge is token-economic, not structural: a markdown table costs
-  **37.9% of JSON's tokens** for 0.4 accuracy points less — but HTML beats markdown on table
+  **37.9% of JSON's tokens** for 0.4 accuracy points less *(inherited from the improvingagents
+  benchmark against **pretty-printed** JSON; like-for-like it is 46.2%, and against columnar JSON
+  only 9.7% — see §12.2)* — but HTML beats markdown on table
   size-detection **67.00% vs 40.67%**. It keeps its advantage by staying dumb.
 
 ### 3.8 The editor's live preview (for the consumer, not the engine)
@@ -546,7 +548,7 @@ and edit-mapping back to source files.
 |---|---|
 | No new format or extension | MDX 3.07%; Markdoc 0.136%; djot 65,990× behind — **and** the tree/graph boundary (§2.1) |
 | No new sigil | character-namespace exhaustion, stated by jgm |
-| No base64 binary | 0.90 tok/byte entropy floor; 200 KB JPEG = 93% of a 200K window |
+| No base64 binary | 0.91 tok/byte measured (o200k); 200 KB JPEG = 93% of a 200K window. **Not an "entropy floor"** — see §12.1 |
 | **No polyglot ZIP tail** | UTF-8 round trip → 82,957 U+FFFD, +81% bytes; `.gitattributes` `*.md text` corrupted the archive in one checkin (`unzip -t`: *bad zipfile offset*); git binary-detects below an 8,000-byte head and line-merges above it |
 | "MDX but polyglot" is not novel | org-babel, JSS 46(3) 2012, 40 language backends |
 | MD3 and MDZ both dead | MD3 = Material Design 3; `.mdz` = an existing compressed-markdown extension with 4 live projects |
@@ -590,7 +592,92 @@ Also live: *"Markdown is good enough. It will take an order-of-magnitude differe
 
 ---
 
-## 12. Two confirmed bugs in the editor, unfixed
+## 12. Token-cost claims, corrected
+
+Two figures this project has repeated were wrong or wrongly explained. Both are now
+independently re-measured with `tiktoken` `o200k_base`; the raw numbers survive, the
+*mechanisms and comparisons* do not.
+
+### 12.1 "Entropy floor" is refuted — the number is right, the explanation was wrong
+
+base64 measures **0.912 tok/source-byte** (o200k, random bytes) — confirmed. But it is **not**
+an entropy floor. The information-theoretic counting bound is `8 / log2(200019)` = **0.4543**,
+so the measured value sits at **2.01×** the bound, never at it.
+
+The decisive test — encode in base-2 and vary entropy from maximal to zero:
+
+```
+base2 of random bytes    : 5,334 tokens   gzip(raw) = 2,023 B
+base2 of all-zero bytes  : 5,334 tokens   gzip(raw) =    35 B
+```
+
+**Identical token counts across a 58× difference in compressibility.** A quantity that does not
+move when entropy goes from maximum to zero is not set by entropy.
+
+**The real mechanism is two-stage and neither part is information-theoretic:**
+1. **The pre-tokenization regex.** No token may cross a pre-token boundary, and o200k caps digit
+   runs at `\p{N}{1,3}`. That alone predicts the pure-digit encodings exactly with no entropy
+   term: base2 = 8/3 = 2.6667 (measured 2.6667); base8 = 3/3 = 1.0000 (measured 1.0000).
+   Pearson **r = +0.942** between *percent digits in the alphabet* and tok/source-byte.
+2. **Merge-table coverage.** Only vocabulary entries composed entirely of the encoding's alphabet
+   are reachable — hex **0.66%** of the vocab, base64 **19.91%**, ASCII letters+space **53.0%**.
+   On base64 BPE emits just 1,465 distinct tokens at 8.77 bits/token against a nominal 17.61.
+   That ratio *is* the 2× gap.
+
+**Also corrected:** the encodings are *not* all within a few percent. base64/85/91/58 span 2.8%,
+but **hex is 24.8% higher** (1.137 tok/byte, 2.50× the bound) because it is 62.6% digits and
+thrashes the digit/letter boundary.
+
+**Cite instead:** Zouhar et al., *A Formal Perspective on Byte-Pair Encoding* (ACL Findings 2023,
+arXiv 2306.16837) — greedy BPE provably achieves only `(1/σ)(1−e^(−σ))` of optimal compression
+utility, empirical lower bound ≈ 0.37. Say *"~2× the counting bound, set by pre-tokenization and
+merge coverage"*, never *"entropy floor"*.
+
+### 12.2 Markdown's token advantage is real, small, and mostly not markdown's
+
+The 37.9% figure is **inherited, not measured here**, from the improvingagents benchmark — whose
+tokenizer is unstated and whose denominator is **pretty-printed** JSON. Against JSONL from the
+same table it is **46.2%**. And CSV in that same table is **22.3% cheaper than markdown**: the
+benchmark cited to praise markdown's economy puts markdown second.
+
+Independent ladder over identical data (60 rows × 6 cols, o200k), each rung removing one thing:
+
+```
+json pretty      4,339  100.0%
+json minified    3,020   69.6%   ← -30.4% is JSON's indentation
+markdown table   1,506   34.7%   ← -51.1% is PER-ROW KEY REPETITION
+json columnar    1,668   38.4%   ← same removal, still JSON
+csv              1,461   33.7%   ← markdown's pipes are a net loss
+```
+
+**~91% of the apparent win is not markdown**: 41.4% is JSON's indentation, 49.3% is JSON-of-records
+repeating every key per row — a *data-modeling* difference — and markdown's own syntax is a 1.4%
+**loss**. Hold the data model fixed (columnar JSON) and markdown saves **9.7%**. Against CSV/TSV it
+loses by 3–6%. And on **hierarchical** data a nested markdown list costs **157% of minified JSON**.
+
+> **Markdown is a good tabular encoding and a bad tree encoding.**
+
+### 12.3 Three findings that go the other way
+
+- **Indentation is nearly free, and the old worry is obsolete.** In o200k/cl100k, **2 through 64
+  spaces all cost exactly 2 tokens**, and `\n`, `\n\n`, `\n\n\n` all cost **1**. Indentation costs
+  1 token per indented line regardless of depth; de-indenting the entire real corpus saves
+  **0.67%**. The "markdown pays for whitespace" intuition is an r50k/GPT-2-era artifact.
+- **gzip does not predict token count** — r=0.92 vs r=0.96 for raw bytes, with CV 36.9% vs 15.7%.
+  DEFLATE has LZ77 backreferences and dedupes repeated JSON keys; BPE is a static dictionary with
+  none, so gzip systematically mis-ranks formats. **Raw byte count is the better cheap proxy.**
+- **Box-drawing glyphs are half-and-half**: `├ │ ─` cost 1 token, `└ ┌ ┐ ┘ ┬ ┴ ┼` cost 2. But the
+  useful number is that **plain 2-space indentation is 42.9% cheaper than any tree-drawing glyphs**.
+
+### 12.4 One actionable asset finding
+
+gzip-then-base64 of the vault's SVG: **0.060 tok/byte — 1,313 tokens against 9,419 raw and 19,002
+base64.** A **14×** reduction for any asset the model must carry but never edit. This project's own
+measurement table already contains that number and files it as a footnote; it deserves to be a rule.
+
+---
+
+## 13. Two confirmed bugs in the editor, unfixed
 
 - `src/modules/vault/infrastructure/search-index.ts:59` — strips fenced code blocks **and** inline
   code before indexing. Code and table nodes are 9.2% of nodes but **29.8% of content tokens**.
