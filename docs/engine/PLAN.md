@@ -1,10 +1,10 @@
 ---
 title: The frontmatter engine — plan
 status: draft
-version: 0.5.0
+version: 0.6.0
 date: 2026-07-30
 decides: what we build, what we refuse to build, and in what order
-supersedes: PLAN.md v0.4.0 (same path)
+supersedes: PLAN.md v0.5.0 (same path)
 evidence: ~14M subagent tokens across 90 research agents + 20 local experiments, 2026-07-28/30
 ---
 
@@ -1468,3 +1468,281 @@ could not.
   twice, for the two hardest gaps. That does not settle the question, but it must be answered rather
   than ignored — and the honest form of the answer is that this project's differentiator is *identity
   across edits*, which a sidecar file cannot provide, not *expressiveness*, which one can.
+
+---
+
+## §17 — The utilization sweep, part 2: what breaks outside English
+
+Added v0.6.0, 2026-07-30. §16 asked what markdown cannot express. §17 asks a narrower question with
+sharper answers: **for the constructs markdown DOES have, where do they stop working?** Three sweeps
+— security, accessibility, internationalization — each measured against live libraries and this
+repo's own vaults. Every number below was re-derived locally before being written here.
+
+### 17.1 The finding that most changes the plan: normalization
+
+**§2's canonicalization rule is independently confirmed, and it is not implemented.**
+
+The plan already says: normalize for the HASH ONLY, never the bytes written, because NFC on a Bengali
+file produces a phantom diff via composition exclusions. An independent sweep measured exactly that,
+on a real file in the `md` vault (`Research/Satinath Chattoraj/Satinath - Poems.md`, 14,187 bytes):
+
+```
+U+09DC BENGALI RRA  NFC -> U+09A1 U+09BC   NFC == raw?  false
+U+09DF BENGALI YYA  NFC -> U+09AF U+09BC   NFC == raw?  false
+U+09DD BENGALI RHA  NFC -> U+09A2 U+09BC   NFC == raw?  false
+
+lines changed by NFC:            77 of 437
+headings whose bytes change:      3 of 11
+Bengali words in file:           462 unique
+normalization-sensitive:          45  (9.7%)
+```
+
+These three are **composition exclusions**: NFC *decomposes* them rather than composing. So "just run
+NFC on everything" rewrites 77 lines of the user's own poetry and changes bytes he did not author.
+That is why the rule is *normalize for comparison, leave storage byte-exact* — and the sweep arrived
+at the identical wording from the opposite direction. **Convergent derivation of §2's most subtle
+decision. Treat it as settled.**
+
+What is new is the consequence, measured on this repo's shipped code:
+
+```
+grep -rn "normalize(" src/    ->  ZERO HITS
+```
+
+The rule is specified in the plan and performed nowhere. Two live effects, both verified against the
+real modules:
+
+- **Search.** The same visible Bengali word in two normalization forms: in-file form → 1 hit; NFC
+  form → **0 hits**. They render pixel-identically, so nothing in the UI can ever explain the
+  failure. Paste Bengali from a browser, another editor, or a different keyboard and search silently
+  returns nothing for a word plainly present in the file.
+- **Anchors.** `github-slugger` performs no normalization, so `[[Note#১. সাদা শাড়ী]]` resolves only
+  if the link was typed in the same form as the heading. This bears directly on `file.md#heading`
+  cross-file resolution.
+
+**Action for the engine: `.normalize("NFC")` on the comparison key in slug generation, link-fragment
+matching, and the search `processTerm` — indexing both forms — while the splice writer continues to
+touch no byte it was not asked to change.** This is §2's invariant applied at three call sites, and
+it is the cheapest high-value fix identified anywhere in the sweep.
+
+### 17.2 Anchors are not stable under i18n, which undercuts §1's premise
+
+§1 bets on durable identity. `github-slugger` is three operations — lowercase, strip `\p{P}|\p{S}`,
+replace U+0020 with `-` — and each one leaks:
+
+| class | example | both slug to | measured in vault |
+|---|---|---|---|
+| **CJK punctuation** | `搜索，笔记` / `搜索。笔记` | `搜索笔记` | collision by construction |
+| **fullwidth space** | `中文 标题` (U+0020) vs `中文　标题` (U+3000, what a CJK IME emits) | `中文-标题` / `中文标题` | same heading, different anchor |
+| **emoji** | `🎉 Release` / `🚀 Release` | `-release` | **252 emoji headings** |
+| **Arabic** | `كتاب` / `كِتَاب` / `كــتاب` (tatweel) | three different anchors | presentational elongation changes identity |
+| **Turkish** | `İSTANBUL` → `i̇stanbul` (stray U+0307) | untypeable anchor | locale-independent `toLowerCase()` |
+
+In CJK, punctuation is the *only* separator, and the slugger deletes separators while converting
+spaces to hyphens — so the collision is not an edge case, it is the common case. Emoji-prefixed
+headings collide 100% of the time and disambiguate **positionally** (`-release`, `-release-1`), so
+inserting a heading above renumbers every anchor below it. That is anchor *instability*, which is
+worse than a hard failure: it breaks links that used to work.
+
+Vault scan: 82,090 non-empty headings, 10,578 non-ASCII, **188 files with 189 colliding slugs**
+(all ASCII case/hyphen collisions today, so this is latent rather than live — but the mechanism is
+proven).
+
+> One good result worth preserving: `extractOutline()` and `rehype-slug` **agree on all 8 i18n
+> probes**, so the dual-slug design in `outline-utils.ts` is sound. The bug is in the slugger both
+> of them share, not in the duplication.
+
+### 17.3 Emphasis: markdown's own grammar fails outside Latin
+
+The failure condition is narrower and sharper than "CJK has no spaces". `**粗体**中文` works fine.
+What breaks is **punctuation inside the delimiter with a letter or ideograph outside it** — in Latin
+the space after `**Note:**` satisfies right-flanking; CJK has no space there, so the run is neither
+left- nor right-flanking and the delimiter cannot close:
+
+```
+**注意：**该文档已过期        -> literal ** in ALL FOUR engines
+**সাদা শাড়ী।**আজও ভিজে      -> literal ** in ALL FOUR engines  (Bengali danda)
+**ملاحظة:**النص              -> literal ** in ALL FOUR engines  (Arabic)
+```
+
+Tested against remark/micromark, markdown-it, commonmark.js, and cmark-gfm as GitHub actually runs
+it. `commonmark/commonmark-spec#650` has been **open since 2020-05-26** with no assignee and no
+linked PR.
+
+Two consequences the plan must absorb:
+
+1. **A live WYSIWYG divergence with GitHub.** CommonMark 0.31.2 widened "punctuation" to include the
+   `S` symbol categories; micromark and commonmark.js ship `/\p{P}|\p{S}/u`, **cmark-gfm has not
+   adopted it.** So `**price¥**tag`, `**A→B**next`, `**©2026**note` bold on GitHub and do *not* bold
+   in this repo's preview. The vault is stored on GitHub. Same bytes, two renderings.
+2. **The ecosystem's fix is CJK-only.** `remark-cjk-friendly` fixes 6 of 6 CJK cases with 0 Latin
+   regressions — and **0 of 2** Bengali/Arabic cases, because the rule is gated on East Asian Width.
+   Indic and Arabic have no fix, in-tree or out. For a project whose own corpus contains 19+ Bengali
+   files, adopting the CJK plugin is not a solution, it is a partial one that must be labelled as
+   such.
+
+### 17.4 Bidi: markdown's delimiters are the wrong alphabet, and Trojan Source is live
+
+Checked `\p{Bidi_Mirrored}` against markdown's syntax alphabet:
+
+```
+MIRRORS in RTL:      [  ]  (  )  <  >  {  }
+does NOT mirror:     *  _  -  +  #  |  `  ~  !  :  =  \  ^  .
+```
+
+**Markdown's entire link and blockquote syntax is built from bidi-mirroring, bidi-neutral
+characters.** In `[موقع](https://example.com)` the `](` boundary sits between an RTL and an LTR run;
+as neutrals its resolved direction comes from context and the glyphs flip, so the source line's
+visual order stops matching its logical order. That is *why* cursor placement becomes unpredictable —
+the caret moves logically through text laid out visually. It is not a renderer bug and no parser
+cleverness fixes it; it is what happens when a format uses paired brackets as delimiters and has no
+direction channel. **This is a structural argument that belongs in §11's steelman, not a bug.**
+
+And the security consequence is live in this repo, verified:
+
+```
+fenced code block   controls surviving into HTML: U+202E U+202C
+inline code span    controls surviving into HTML: U+202E U+202C
+link text           controls surviving into HTML: U+202E U+202C
+heading             controls surviving into HTML: U+2067 U+2069
+
+grep -rniE "202e|bidi_control" src/   ->  ZERO HITS
+```
+
+Trojan Source (CVE-2021-42574) inside a fenced code block that a human is reading in order to make a
+decision. `let access = "user"; /*<RLO> } if (admin) {<PDF>*/` reaches the DOM with the override
+intact, so the reviewer sees different logic than the bytes contain. **The engine should escape
+`\p{Bidi_Control}` or render a visible marker; a compiler that silently passes them through is
+actively harmful.**
+
+### 17.5 Column ≠ character, and the product already gets this wrong
+
+| script | codepoints | ASCII spaces | `Intl.Segmenter` words | display columns |
+|---|---|---|---|---|
+| English | 43 | 8 | 9 | 43 |
+| Chinese | 21 | **0** | 15 | **42 (2×)** |
+| Japanese | 19 | **0** | 13 | **38 (2×)** |
+| Thai | 32 | **0** | 8 | 32 |
+| Khmer | 29 | **0** | 5 | 29 |
+| Bengali | 42 | 6 | 7 | 42 |
+
+Three separate results, and they do not reduce to one another:
+
+- **A space-based wrapper cannot wrap CJK at all** — zero break opportunities. UAX #14 permits a
+  break between essentially any two ideographs, so the correct answer is the opposite extreme.
+  `proseWrap` is not "slightly off" for CJK; **it is undefined**, and no format can decide it. This
+  retires "reflow to 80 columns" as a candidate engine feature for anything but Latin.
+- **Thai and Khmer are class SA — dictionary-only.** `Intl.Segmenter` is the only JS facility that
+  does it and it works. The information is not in the document, so any word-boundary feature requires
+  a runtime dictionary.
+- **Graphemes ≠ columns.** `Intl.Segmenter` gives correct *cursor* movement; a UAX #11 width table
+  gives correct *width*. Two different problems, two different tables. A table "aligned" by character
+  count reads aligned in the source (18/20/18/20) and **misaligned on screen** (20/20/21/20).
+
+Live in shipped code: `countWords` splits on `/\s+/`, so a 42-character Chinese paragraph counts as
+**one word** (`Intl.Segmenter`: 30). Whole-file undercount on the vault's real Chinese files is
+**1.7×–2.0×**, and reading time inherits it.
+
+### 17.6 Tokenization: CJK search is prefix-only, measured on this repo's index
+
+MiniSearch tokenizes on `/[\n\r\p{Z}\p{P}]+/u`, so a Chinese sentence splits into *clause*-sized
+tokens, up to 17 characters as a single indexed term. Measured against the real `buildSearchIndex`
+and the three-pass search this session shipped:
+
+```
+小红书      (clause-initial)  hits=1  found
+再用对应    (clause-initial)  hits=1  found
+有三个后端  (mid-clause)      hits=0  *** NOT FOUND ***
+三个后      (mid-clause)      hits=0  *** NOT FOUND ***
+命令组      (clause-final)    hits=0  *** NOT FOUND ***
+```
+
+Full-population recall (249 pairs, every query literally present in its own document):
+
+| query position | finds its own document |
+|---|---|
+| Chinese, clause-initial | **100.0%** |
+| Chinese, whole clause | **100.0%** |
+| Chinese, clause-final | **35.7%** |
+| Chinese, **mid-clause** | **18.1%** |
+| *Latin control, whole word* | **100.0%** |
+
+**A user cannot find a Chinese heading by searching the words in it** — the indexed token is
+`通用注意事项` and the query `注意事项` is not a prefix. The rescuer is the prefix pass added this
+session; the fuzzy pass cannot help, because `fuzzy: 1` is one absolute edit and the gap is 3.
+
+This is a direct hit on §6's positioning. Search is the feature the vault-scale story rests on, and
+outside Latin it degrades from 100% to 18%.
+
+### 17.7 Automated a11y checkers cannot see markdown's failures — which is the wedge
+
+On 2,286 real vault files rendered through this repo's actual pipeline onto its actual publish
+surface, **axe-core 4.12.1 fired 7 of its 105 rules**, and **98.5% of 11,695 violation nodes trace to
+two root causes in page chrome** (a missing landmark, an unlabelled GFM checkbox). Every
+*content-level* markdown defect produced **zero** violations.
+
+Not because they are absent — because markdown's grammar cannot emit the HTML shapes axe knows how to
+fault. `![](x)` compiles to `alt=""`, which is **valid**: it asserts *decorative*. Missing and
+decorative are the same bytes. A green axe report on markdown is a false green.
+
+Two results make this a differentiator rather than a complaint:
+
+- **Cross-validation held exactly.** A source-level (mdast) checker vs axe: `heading-skip` 81
+  nodes/40 files vs `heading-order` 81/40; `table-empty-header-cell` 20/15 vs `empty-table-header`
+  20/15. Two independent mechanisms, identical counts.
+- **`remark-math` is this project's thesis turned on its own repo.** Default `$…$` delimiters swallow
+  prose between two dollar signs — verified: `$0.02 per million CPU-ms, $0.30` yields
+  `inlineMath: "0.02 per million CPU-ms, "` — and KaTeX then wraps the visible text in
+  `aria-hidden="true"`. **36 captures in 20 of 272 files, and axe reported zero violations on all
+  20.** A *parser mis-tokenization* produced a serious accessibility defect that only a
+  markdown-aware compiler could ever detect. That is the argument for the engine, found by accident.
+
+**The container caveat is the sharpest constraint the sweep produced.** A `no-top-heading` check fires
+on **81% of files** — and is *false at publish scope*, because `PublicNoteView` injects the `<h1>`
+from frontmatter, so body `h2`s nest correctly. **Heading diagnostics are only sound when evaluated
+against the composed outline, never against the file.** That is precisely the transclusion and
+container-format problem §5 creates, and shipping the check file-scoped would emit 515 false warnings
+and train the user to ignore the panel — LR#65's disease, in the product.
+
+One more constraint on the diagnostics layer, self-reported by the sweep and worth inheriting: a
+checker scoped to mdast node types **silently ignores the raw-HTML escape hatch**, which is exactly
+where authors go when markdown cannot express something. It missed 58 nodes of raw-HTML `<a>`
+wrapping a badge `<img>`.
+
+### 17.8 The escape hatch is frontmatter, and CommonMark closed the alternative on purpose
+
+A `lang` syntax was proposed on talk.commonmark.org by a Web Accessibility Technical Advisor for the
+Government of Canada, citing WCAG 3.1.2 directly. It was **rejected**: markdown "is designed
+specifically for readability by human eyes… with zero accommodations for metadata, presentation
+attributes." jgm redirected to Pandoc's bracketed spans (explicitly not a CommonMark extension) or
+embedded HTML.
+
+**That door is closed by design and will not open.** Which makes frontmatter-as-escape-hatch a
+structural advantage rather than a workaround, and it converges with §15/§16's namespace conclusion:
+every gap CommonMark closed deliberately — `lang`, table captions, long descriptions, decorative
+intent — is expressible in typed frontmatter that the compiler reads and the renderer honours.
+
+`language:` is **already present in 111 of 272** knowledge notes, and `layout.tsx` hardcodes
+`<html lang="en">` and throws it away.
+
+### 17.9 What §17 changes
+
+- **§2's canonicalization rule is confirmed by independent derivation** (17.1) and promoted from a
+  design decision to a settled one. Its three comparison call sites — slug, link fragment, search
+  term — are now named, and the storage path is explicitly excluded.
+- **§1's identity bet needs a normalization-aware slug** (17.2). Content-derived anchoring is sound;
+  the *heading* slug it interoperates with is not, and emoji headings make it positionally unstable.
+- **Adds a structural entry to §11's steelman** (17.4): markdown's link syntax is built from
+  bidi-mirroring neutrals, so source visual order cannot be made to match logical order in RTL
+  without a different delimiter alphabet. This is a real limit of the format, not of an implementation.
+- **Retires `proseWrap`/reflow as a general engine feature** (17.5) — undefined for CJK by UAX #14.
+- **Constrains §6's search positioning** (17.6): 100% → 18% outside Latin. Tokenization is a
+  first-class requirement, not polish.
+- **Names the diagnostics wedge and its hardest constraint** (17.7): a markdown-aware compiler sees a
+  class of defect no HTML-level checker can reach — but heading and structure checks MUST take the
+  composed outline as input, and must cover raw-HTML nodes, or they will train the user to ignore them.
+- **Confirms frontmatter as the sanctioned escape hatch** (17.8) with the CommonMark rejection as
+  evidence, converging with §15 and §16.
+- **The engine must escape `\p{Bidi_Control}`** (17.4). Silently passing Trojan Source through a code
+  fence is the one finding in the sweep that makes a compiler actively harmful rather than merely
+  incomplete.
