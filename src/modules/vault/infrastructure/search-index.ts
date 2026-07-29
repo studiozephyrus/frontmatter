@@ -44,21 +44,48 @@ function stripTopLevelDir(zipPath: string): string {
 // Body text: frontmatter + code stripped for indexing
 // ---------------------------------------------------------------------------
 
+const FRONTMATTER_RE = /^---\r?\n[\s\S]*?\r?\n---\r?\n?/;
+const FENCED_CODE_RE = /```[\s\S]*?```/g;
+const INLINE_CODE_RE = /`[^`]*`/g;
+
 /**
- * Produces a plain-text representation suitable for full-text indexing:
- *   - Strips YAML frontmatter (--- block)
- *   - Strips fenced code blocks
- *   - Strips inline code spans
- * This is purely additive — does not affect parseMarkdown.
+ * Produces the PROSE-ONLY text of a note: frontmatter, fenced code blocks and
+ * inline code spans removed.
+ *
+ * Code is excluded here on purpose — this text backs unlinked-mention scanning,
+ * where a note title appearing inside a code sample is a false positive, not a
+ * mention. Code is indexed separately by `extractCodeText` so it stays
+ * searchable. This is purely additive — does not affect parseMarkdown.
  */
 function extractBodyText(raw: string): string {
-  // Strip frontmatter
-  let text = raw.replace(/^---\r?\n[\s\S]*?\r?\n---\r?\n?/, "");
-  // Strip fenced code blocks
-  text = text.replace(/```[\s\S]*?```/g, "");
-  // Strip inline code
-  text = text.replace(/`[^`]*`/g, "");
+  let text = raw.replace(FRONTMATTER_RE, "");
+  text = text.replace(FENCED_CODE_RE, "");
+  text = text.replace(INLINE_CODE_RE, "");
   return text;
+}
+
+/**
+ * Produces the CODE-ONLY text of a note: the contents of every fenced block and
+ * inline code span, concatenated.
+ *
+ * Without this, code and table content is unfindable: it is ~9% of nodes but
+ * ~30% of content tokens in a real vault, and `extractBodyText` deletes all of
+ * it before indexing. Indexed as its own MiniSearch field so a query can match
+ * a symbol, a command or a config key without polluting unlinked mentions.
+ */
+function extractCodeText(raw: string): string {
+  const withoutFrontmatter = raw.replace(FRONTMATTER_RE, "");
+  const parts: string[] = [];
+
+  for (const block of withoutFrontmatter.match(FENCED_CODE_RE) ?? []) {
+    // Drop the opening fence + info string and the closing fence.
+    parts.push(block.replace(/^```[^\n]*\n?/, "").replace(/```$/, ""));
+  }
+  for (const span of withoutFrontmatter.match(INLINE_CODE_RE) ?? []) {
+    parts.push(span.slice(1, -1));
+  }
+
+  return parts.join("\n");
 }
 
 // ---------------------------------------------------------------------------
@@ -70,6 +97,7 @@ interface SearchDoc {
   title: string;
   tags: string;
   body: string;
+  code: string;
 }
 
 export interface SearchResult {
@@ -84,7 +112,7 @@ export interface SearchResult {
 
 export function buildSearchIndex(docs: SearchDoc[]): MiniSearch<SearchDoc> {
   const index = new MiniSearch<SearchDoc>({
-    fields: ["title", "tags", "body"],
+    fields: ["title", "tags", "body", "code"],
     storeFields: ["path", "title"],
     idField: "path",
   });
@@ -99,7 +127,10 @@ export function buildSearchIndex(docs: SearchDoc[]): MiniSearch<SearchDoc> {
 interface IndexCache {
   sha: string;
   index: MiniSearch<SearchDoc>;
+  /** Prose only — backs unlinked mentions and snippets. */
   bodyByPath: Map<string, string>;
+  /** Code only — backs snippets for hits that matched inside a code block. */
+  codeByPath: Map<string, string>;
   titleByPath: Map<string, string>;
 }
 
@@ -120,6 +151,7 @@ async function ensureCache(): Promise<IndexCache> {
 
   const docs: SearchDoc[] = [];
   const bodyByPath = new Map<string, string>();
+  const codeByPath = new Map<string, string>();
   const titleByPath = new Map<string, string>();
 
   for (const [zipPath, bytes] of Object.entries(entries)) {
@@ -130,13 +162,15 @@ async function ensureCache(): Promise<IndexCache> {
     const raw = dec.decode(bytes);
     const parsed = parseMarkdown(relPath, raw);
     const body = extractBodyText(raw);
+    const code = extractCodeText(raw);
 
-    docs.push({ path: relPath, title: parsed.title, tags: parsed.tags.join(" "), body });
+    docs.push({ path: relPath, title: parsed.title, tags: parsed.tags.join(" "), body, code });
     bodyByPath.set(relPath, body);
+    codeByPath.set(relPath, code);
     titleByPath.set(relPath, parsed.title);
   }
 
-  _cache = { sha, index: buildSearchIndex(docs), bodyByPath, titleByPath };
+  _cache = { sha, index: buildSearchIndex(docs), bodyByPath, codeByPath, titleByPath };
   return _cache;
 }
 
@@ -187,6 +221,16 @@ export function _resetSearchCache(): void {
 // Snippet helper
 // ---------------------------------------------------------------------------
 
+/** True when any whitespace-separated term of `query` occurs in `text`. */
+function containsAnyTerm(text: string, query: string): boolean {
+  if (text === "") return false;
+  return query
+    .trim()
+    .split(/\s+/)
+    .filter((t) => t.length > 0)
+    .some((term) => new RegExp(escapeRegExp(term), "i").test(text));
+}
+
 function makeSnippet(body: string, query: string, maxLen = 120): string {
   const terms = query
     .trim()
@@ -231,7 +275,11 @@ export async function searchNotes(query: string): Promise<SearchResult[]> {
     const path = (hit as unknown as { path: string }).path ?? (hit.id as string);
     const title = (hit as unknown as { title: string }).title ?? path;
     const body = cache.bodyByPath.get(path) ?? "";
-    const snippet = makeSnippet(body, query);
-    return { path, title, snippet };
+    const code = cache.codeByPath.get(path) ?? "";
+    // A hit may have matched only inside a code block. Snippet from whichever
+    // text actually contains a query term, so those results show the match
+    // rather than the first 120 characters of unrelated prose.
+    const source = containsAnyTerm(body, query) || !code ? body : code;
+    return { path, title, snippet: makeSnippet(source, query) };
   });
 }

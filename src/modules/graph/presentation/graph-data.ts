@@ -87,9 +87,26 @@ export interface GraphLink {
   target: string;
 }
 
+/**
+ * An outbound wikilink whose target could not be resolved to an included note.
+ *
+ * These are NOT graph edges — they have no target node to attach to — but they
+ * are the single most useful diagnostic the graph can produce: a broken link,
+ * or a note that has been referenced but not yet written. Dropping them
+ * silently loses that signal, so they are reported alongside the graph.
+ */
+export interface UnresolvedLink {
+  /** Path of the note containing the link. */
+  source: string;
+  /** The unresolved link target, as written. */
+  target: string;
+  reason: "no-such-note" | "target-excluded";
+}
+
 export interface GraphData {
   nodes: GraphNode[];
   links: GraphLink[];
+  unresolved: UnresolvedLink[];
 }
 
 // ---------------------------------------------------------------------------
@@ -108,6 +125,16 @@ export function buildGraph(notes: NoteMeta[]): GraphData {
     setBasenameEntry(basenameToPath, note.path);
   }
 
+  // Diagnosis-only map over EVERY note, including opted-out ones. Resolution
+  // still uses `basenameToPath` (included notes only) so graph edges are
+  // unchanged; this map exists solely to tell "the note does not exist" apart
+  // from "the note exists but opted out of the graph", which are different
+  // problems for the author.
+  const allBasenameToPath = new Map<string, string>();
+  for (const note of notes) {
+    setBasenameEntry(allBasenameToPath, note.path);
+  }
+
   // 3. Build node list
   const nodes: GraphNode[] = included.map((note) => {
     const group = groupForTags(note.tags);
@@ -119,19 +146,44 @@ export function buildGraph(notes: NoteMeta[]): GraphData {
     };
   });
 
-  // 4. Build included path set for fast membership checks
-  const includedPaths = new Set(included.map((n) => n.path));
-
-  // 5. Build links with deduplication
+  // 4. Build links with deduplication
+  //
+  // Note: there is no separate "is the target included?" check. `basenameToPath`
+  // is built from included notes only, so anything it resolves is included by
+  // construction; the old check could never fire. Exclusion is detected on the
+  // unresolved path instead, via `allBasenameToPath`.
   const seenLinks = new Set<string>();
   const links: GraphLink[] = [];
+  const unresolved: UnresolvedLink[] = [];
+  const seenUnresolved = new Set<string>();
+
+  const reportUnresolved = (
+    source: string,
+    target: string,
+    reason: UnresolvedLink["reason"],
+  ): void => {
+    const key = `${source}→${target}`;
+    if (seenUnresolved.has(key)) return;
+    seenUnresolved.add(key);
+    unresolved.push({ source, target, reason });
+  };
 
   for (const note of included) {
     for (const outbound of note.outbound) {
       const targetPath = basenameToPath.get(outbound);
-      if (targetPath === undefined) continue; // unresolved — drop
-      if (targetPath === note.path) continue; // self-link — drop
-      if (!includedPaths.has(targetPath)) continue; // target excluded — drop
+      // Unresolved links are not edges — there is no node to point at — but
+      // they are a diagnostic, so they are reported rather than dropped.
+      if (targetPath === undefined) {
+        // Distinguish a genuinely missing note from one that merely opted out.
+        const existsButExcluded = allBasenameToPath.has(outbound);
+        reportUnresolved(
+          note.path,
+          outbound,
+          existsButExcluded ? "target-excluded" : "no-such-note",
+        );
+        continue;
+      }
+      if (targetPath === note.path) continue; // self-link — not an edge
 
       const key = `${note.path}→${targetPath}`;
       if (seenLinks.has(key)) continue; // duplicate — drop
@@ -141,5 +193,5 @@ export function buildGraph(notes: NoteMeta[]): GraphData {
     }
   }
 
-  return { nodes, links };
+  return { nodes, links, unresolved };
 }

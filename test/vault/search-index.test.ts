@@ -60,6 +60,26 @@ tags: [welcome]
 Welcome to the vault.
 `,
     ),
+    // Content that lives ONLY inside code — fenced and inline. Regression
+    // guard: extractBodyText deletes both before indexing, so without a
+    // dedicated code field these terms are unfindable.
+    "repo-abc123/Runbook.md": enc.encode(
+      `---
+title: Runbook
+tags: [ops]
+---
+
+# Runbook
+
+Restart the service.
+
+\`\`\`bash
+kubectl rollout restart deployment/zephyrus-api
+\`\`\`
+
+Then set \`FRONTMATTER_VAULT_ROOT\` and retry.
+`,
+    ),
     // App artifacts that must NOT be indexed
     "repo-abc123/src/modules/README.md": enc.encode("# scaffold readme"),
     "repo-abc123/README.md": enc.encode("# repo readme"),
@@ -100,6 +120,37 @@ describe("searchNotes", () => {
     const hq = results.find((r) => r.path === "Projects/HQ/HQ.md");
     expect(hq).toBeDefined();
     expect(hq!.snippet.toLowerCase()).toContain("headquarter");
+  });
+
+  it("finds a term that appears only inside a fenced code block", async () => {
+    mockGetHeadSha.mockResolvedValue("sha-001");
+    mockGetZipball.mockResolvedValue(testZip);
+
+    const results = await searchNotes("kubectl");
+
+    const runbook = results.find((r) => r.path === "Runbook.md");
+    expect(runbook).toBeDefined();
+    expect(runbook!.title).toBe("Runbook");
+  });
+
+  it("finds a term that appears only inside an inline code span", async () => {
+    mockGetHeadSha.mockResolvedValue("sha-001");
+    mockGetZipball.mockResolvedValue(testZip);
+
+    const results = await searchNotes("FRONTMATTER_VAULT_ROOT");
+
+    expect(results.some((r) => r.path === "Runbook.md")).toBe(true);
+  });
+
+  it("snippets a code-only hit from the code text, not unrelated prose", async () => {
+    mockGetHeadSha.mockResolvedValue("sha-001");
+    mockGetZipball.mockResolvedValue(testZip);
+
+    const results = await searchNotes("kubectl");
+    const runbook = results.find((r) => r.path === "Runbook.md");
+
+    expect(runbook).toBeDefined();
+    expect(runbook!.snippet).toContain("kubectl");
   });
 
   it("does NOT call getZipball a second time when SHA is the same", async () => {
