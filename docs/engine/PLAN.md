@@ -960,7 +960,55 @@ constraint to start at **W** and reach **E** only by human acceptance. The shipp
 state, so an AI suggestion is currently indistinguishable from an accepted fact. **Closing that is a
 prerequisite to Phase 3**, not an enhancement.
 
-### 14.6 Deliberately not adopted
+### 14.6 Reconciliation against `docs/FRONTMATTER-PRODUCT-PLAN.md` and `FEATURE-GAP-REPORT.md`
+
+Read in full 2026-07-29. The product plan is **demand-side** research (92 sourced pain points, 20-app
+competitor matrix, 2026-07-12/13); this plan is **engine-side**. They were produced independently and
+mostly converge — which is the strongest evidence either of them has.
+
+**Convergences, and they matter because the methods were independent:**
+
+- **Splice-only, decided twice.** Product plan §4b, 2026-07-13: *"**Single CodeMirror 6 engine** for
+  WYSIWYG … NOT a second ProseMirror engine — **byte-identical no-edit round-trip (R-FIDELITY)
+  becomes a permanent CI gate**."* That is §1.2's requirement, locked from product reasoning **two
+  weeks before** the TOPLAS 2007 lens proof was found. Independent derivation.
+- **The wedge, decided twice.** Product plan Pillar 1: *"Round-trip-sacred frontmatter … (the app is
+  NAMED frontmatter — this is the credibility signal)"*, and Phase 0 item 6 makes YAML-preserving
+  property edits a shipping gate. §1.5 reached the same place from Obsidian's `processFrontMatter`
+  source and its 4.6M-vs-2,000 demand ratio. **Pain theme T13 is the market-side evidence for it.**
+- **Stand-off annotations.** Product plan §4b: *"Comments/suggestions live in Supabase sidecar but
+  with guaranteed materialization … deleting the Supabase layer must leave a valid markdown repo."*
+  That is the only model TEI's overlapping-hierarchy result leaves open (§14.3, and the CONCUR
+  removal in XML 1.0). Same conclusion, different literature.
+- **`suggest-links` is listed ✅ shipped** in the product plan's head-start inventory, confirming
+  §14.5's finding — and making the missing tier a live gap in *shipped* code, not a planning gap.
+
+**A CONFLICT that needs a product decision — flagged, not resolved here.**
+
+| document | position |
+|---|---|
+| `FRONTMATTER-PRODUCT-PLAN.md` §4b (2026-07-13, "tension resolutions") | **"No peer CRDT.** Server-authoritative sequencing over the existing merge3 + baseSha engine; session-batched commits with `Co-authored-by`; live layer ephemeral, file remains the document." |
+| this plan, §8 | Collaboration via **Eg-walker / Braid `simpleton`** — a CRDT whose event graph is disposable and git-ignored |
+
+**These are different architectures.** Server-authoritative is legitimate — it is Overleaf's, which §8
+itself cites approvingly — but §8 currently reads as if the choice is open when the product plan
+closed it earlier. Anyone building from §8 alone would build the wrong thing.
+
+Note also an unresolved tension *within* the product plan: Pillar 3 lists "CRDT merge (Yjs/Loro)" and
+Pillar 5 lists "Multiplayer editing (CRDT, Yjs + Supabase Realtime)" as planned, while §4b says no
+peer CRDT. §4b is later and is explicitly a resolution, so it presumably governs — but the feature
+tables were never updated.
+
+**Until Sagnik rules:** treat §8 as *"what the CRDT literature makes available"*, and
+`PRODUCT-PLAN §4b` as *"what this product has chosen."* Where they differ, the product plan governs
+the editor track and §8 governs only what the engine must not preclude.
+
+**Feature-gap cross-check (`FEATURE-GAP-REPORT.md`):** C10 comments ❌, B4 multiplayer ❌ (XL), G2
+vault-RAG ❌ (L) — so §14.4's verdict stands: no AI-review orchestrator anywhere in the planned
+surface. S3 "Properties / frontmatter UI" ⚠️ *parsed, no UI* is the concrete ticket the §1.5 wedge
+must be built behind.
+
+### 14.7 Deliberately not adopted
 
 The handover's Part II proposed a `Markdown++` superset with a typed-link sigil `[[id | rel]]`, a
 `content_hash` identity column, stored community/centrality, and remark-based extraction. Each is
