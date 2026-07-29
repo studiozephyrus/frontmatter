@@ -1,11 +1,11 @@
 ---
 title: The frontmatter engine — plan
 status: draft
-version: 0.2.0
+version: 0.3.0
 date: 2026-07-29
 decides: what we build, what we refuse to build, and in what order
-supersedes: PLAN.md v0.1.0 (same path, same day)
-evidence: ~14M subagent tokens across 78 research agents + 12 local experiments, 2026-07-28/29
+supersedes: PLAN.md v0.2.0 (same path)
+evidence: ~14M subagent tokens across 90 research agents + 20 local experiments, 2026-07-28/30
 ---
 
 # The frontmatter engine
@@ -24,6 +24,18 @@ provenance is demoted to an explicit bet (§7); the delimiter is settled by expe
 Volar's virtual-file model is adopted (§3); the tree/graph boundary gives an independent
 derivation of the no-new-format verdict (§2.1); and Obsidian's YAML handling is identified
 as the wedge (§1.5).
+
+**What changed in v0.3** — the header had drifted three sections behind the body:
+**§1.1a** specifies the re-anchoring algorithm (99.627% correct / 0.050% false over 41,642
+block-versions; withdraws v0.2's rigid k=2 fingerprint, which gets *worse* as k grows);
+**§11a** establishes the block as the unit of **identity, not of meaning** (a heading is
+almost exactly as good a topic boundary as a blank line, AUC 0.508 — but H1 is 0.701 and H4
+is 0.350); **§12** corrects two token-cost claims this project had repeated ("entropy floor"
+refuted; ~91% of markdown's apparent token win is not markdown); **§8** reverses the diff3
+claim — excluding blank lines, markdown *beats* TypeScript on Theorem 4.1.1's precondition;
+**§13** records the editor bugs as fixed in `58322f7` and names the one defect left open on
+purpose; and **§14** folds in the graph-engineering research, whose only additive residue is
+an AI-review orchestrator that is genuinely absent from the codebase.
 
 ---
 
@@ -859,8 +871,98 @@ measurement table already contains that number and files it as a footnote; it de
 
 ---
 
-## 13. Two confirmed bugs in the editor, unfixed
+## 13. Editor bugs found during this research — both FIXED in `58322f7`
 
-- `src/modules/vault/infrastructure/search-index.ts:59` — strips fenced code blocks **and** inline
-  code before indexing. Code and table nodes are 9.2% of nodes but **29.8% of content tokens**.
-- `src/modules/graph/presentation/graph-data.ts:132` — unresolved links silently dropped.
+Kept as a record of what the audit found and what it cost to fix, not as an open worklist.
+
+- `src/modules/vault/infrastructure/search-index.ts` — stripped fenced code blocks **and** inline
+  code before indexing, so ~30% of content tokens were unfindable. **Fixed:** code is extracted into
+  its own MiniSearch field rather than kept in `body`, because `body` also backs unlinked-mention
+  scanning where a title inside a code sample is a false positive, not a mention.
+- `src/modules/graph/presentation/graph-data.ts` — unresolved links silently dropped. **Fixed:**
+  `buildGraph` now returns `unresolved: UnresolvedLink[]` alongside nodes and links. Graph edges are
+  unchanged and the existing tests asserting zero edges still pass.
+- **A third bug surfaced while writing the test.** The `target-excluded` branch was unreachable:
+  `basenameToPath` is built from included notes only, so anything it resolves is included by
+  construction. A note that existed but opted out of the graph was indistinguishable from one that
+  did not exist. Fixed with a diagnosis-only map; resolution semantics untouched.
+
+Verified at fix time: typecheck clean, **2,366 tests passing across 164 files** (8 new), architecture
+gate 0 violations.
+
+**One defect remains open, deliberately — it is a product decision, not a bug fix.**
+`searchNotes` runs `prefix: true, fuzzy: 0.2`, which admits edit distance 2 on any 8-character term
+(`maxDistance = min(6, round(len × 0.2))`). Measured against a relevance set built from the vault's
+own wikilinks: on a sentence lifted verbatim from a note, the live configuration ranks that note
+first **0.33% of the time**; exact-only is 16× better on MRR at **−90% latency**. `combineWith: 'AND'`
+alone was worth 10×. Not applied, because it changes search *relevance behaviour* rather than
+correcting a logic error.
+
+---
+
+## 14. Folded in from the graph-engineering research (2026-07-30)
+
+Source: `HANDOFF-graph-engineering-research-2026-07-30.md` (untracked, repo root), from an analysis
+of YouTube `H7t3uUp3HVw`. **That handover complements this plan and does not supersede it** — its own
+Part III.B is the supersession table, and it is correct. Only the additive residue is recorded here.
+
+### 14.1 The correction worth keeping
+
+*"Graph engineering"* is a **community coinage that trended mid-July 2026, not an Anthropic release.**
+The patterns it names — parallelization, orchestrator-workers, evaluator-optimizer — are from
+Anthropic's *Building Effective Agents* (December **2024**); LangChain publicly argued the concept is
+nothing new. Anything citing it as a 2026 product launch is repeating marketing.
+
+### 14.2 The one durable engineering lesson
+
+> **"The node that does the judging is the one place where saving tokens costs you everything."**
+
+Observed concretely: a Haiku reviewer returned a long list of issues that were mostly *intentional*;
+Opus flagged fewer, all real. This is the empirical case for §4's rule that **a strong model judges**,
+and it converges with §4's precision argument from the opposite direction — a weak judge does not
+merely miss defects, it manufactures false ones, which is the failure mode that gets a checker
+disabled permanently (§9, Phase 3 gate).
+
+### 14.3 Agent-graph vs knowledge-graph — and why §2.1 is the rigorous version
+
+The research thread's pivot was noticing two different graphs share one name: an **agent** graph
+(nodes = agents, edges = data flow) versus a **knowledge** graph (nodes = notes/blocks, edges =
+links). Agent-graph ideas belong to the editor's AI features; knowledge-graph ideas belong to the
+engine.
+
+**§2.1 already states this rigorously and more usefully:** a single `.md` file is a tree over a
+closed 21-label alphabet and **cannot carry any edge that is not parent-child**, so cross-file
+relations live in a resolver, never in syntax. The informal distinction is a special case of the
+tree/graph boundary.
+
+### 14.4 What is genuinely additive — verified, and narrower than claimed
+
+The handover flagged one candidate as `[UNVERIFIED]`: an editor-side **AI-review orchestrator**
+(fan-in-at-barrier, multi-lens, judge-model routing). **Verified against the code: it is absent.**
+What exists is adjacent but differently shaped —
+
+| shipped | what it actually is |
+|---|---|
+| `ai/application/suggest-links.ts` | edge suggestion, **untyped** — `{phrase, basename}`, no relation, no confidence, no provenance, no pending state |
+| `ai/application/link-doctor.ts` | a **batch runner** over paths at concurrency 3 — not a multi-lens review |
+| `ai/infrastructure/provider-race.ts` | races providers for **latency**: *"the first non-empty success wins and the losers are aborted"* |
+
+**A race is first-wins; a barrier is wait-for-all-then-synthesise. They cannot be the same code
+path.** So the orchestrator is additive, and should be built *on* `ports.ts`'s `LlmClient` and the
+race primitive rather than beside them. Constraints if built: deterministic lenses first and free
+(schema, links, structure — 0 tokens, 0 false positives), model lenses only after, **disjoint** by
+LR#20, strong judge per §14.2, findings entering at tier **W** per §4.
+
+### 14.5 A gap between shipped code and this plan
+
+`suggest-links.ts` returns bare suggestions with **no tier**. §1.3 and §4 require an inferred
+constraint to start at **W** and reach **E** only by human acceptance. The shipped path has no such
+state, so an AI suggestion is currently indistinguishable from an accepted fact. **Closing that is a
+prerequisite to Phase 3**, not an enhancement.
+
+### 14.6 Deliberately not adopted
+
+The handover's Part II proposed a `Markdown++` superset with a typed-link sigil `[[id | rel]]`, a
+`content_hash` identity column, stored community/centrality, and remark-based extraction. Each is
+superseded by §10, §1.1a, §2.3/§2.4 and §3.2 respectively; the handover's own Part III.B says so.
+Recorded here only so the decision is not re-opened by someone reading Part II in isolation.
