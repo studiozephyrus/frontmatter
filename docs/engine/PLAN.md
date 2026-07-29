@@ -1,10 +1,10 @@
 ---
 title: The frontmatter engine — plan
 status: draft
-version: 0.3.0
+version: 0.4.0
 date: 2026-07-29
 decides: what we build, what we refuse to build, and in what order
-supersedes: PLAN.md v0.2.0 (same path)
+supersedes: PLAN.md v0.3.0 (same path)
 evidence: ~14M subagent tokens across 90 research agents + 20 local experiments, 2026-07-28/30
 ---
 
@@ -643,10 +643,14 @@ and edit-mapping back to source files.
 
 ## 10. Settled — do not re-litigate
 
+> **⚠ Two rows in this table were CORRECTED on 2026-07-29 — see §15.** "No new extension" was
+> refuted by measurement; "no new sigil" is narrower than it reads. The rest stands.
+
 | decision | evidence |
 |---|---|
-| No new format or extension | MDX 3.07%; Markdoc 0.136%; djot 65,990× behind — **and** the tree/graph boundary (§2.1) |
-| No new sigil | character-namespace exhaustion, stated by jgm |
+| No new **format** (a dialect requiring its own parser) | MDX 3.07%; Markdoc 0.136%; djot 65,990× behind — **and** the tree/graph boundary (§2.1). **This survives, strengthened.** |
+| ~~No new extension~~ → **extend via dispatch, never via dialect** | **REFUTED as written — see §15.1.** Fence dispatch is markdown's winning extension mechanism: 330,496 `.md` files carry a ```` ```mermaid ```` fence against 259,136 `.mdx` files in existence. |
+| ~~No new sigil~~ → **no sigil that REDEFINES an existing one** | **NARROWED — see §15.2.** Novel sigils are safe; redefining `#`/`*`/`[]()` fails measurably (GPT-4: 98.2% base-10 → 38.6% base-9 *with the rule stated in the prompt*). |
 | No base64 binary | 0.91 tok/byte measured (o200k); 200 KB JPEG = 93% of a 200K window. **Not an "entropy floor"** — see §12.1 |
 | **No polyglot ZIP tail** | UTF-8 round trip → 82,957 U+FFFD, +81% bytes; `.gitattributes` `*.md text` corrupted the archive in one checkin (`unzip -t`: *bad zipfile offset*); git binary-detects below an 8,000-byte head and line-merges above it |
 | "MDX but polyglot" is not novel | org-babel, JSS 46(3) 2012, 40 language backends |
@@ -1014,3 +1018,211 @@ The handover's Part II proposed a `Markdown++` superset with a typed-link sigil 
 `content_hash` identity column, stored community/centrality, and remark-based extraction. Each is
 superseded by §10, §1.1a, §2.3/§2.4 and §3.2 respectively; the handover's own Part III.B says so.
 Recorded here only so the decision is not re-opened by someone reading Part II in isolation.
+
+---
+
+## 15. CORRECTION — markdown is far more extensible than §10 claimed
+
+Added 2026-07-29 after five agents re-examined the extensibility question **openly**, briefed to
+build the strongest case FOR extending markdown rather than to confirm the prior. Three of the
+findings overturn positions this document previously stated as settled. All headline numbers below
+were re-verified in the main loop before being written here.
+
+### 15.1 Fence dispatch is the winning mechanism, and §10 called it a negative result
+
+CommonMark, verbatim: *"Although this spec doesn't mandate any particular treatment of the info
+string, the first word is typically used to specify the language."* **That refusal to define
+semantics IS the extension point.** A renderer matches one string and replaces the node; every
+non-participating tool degrades to a code block. Coordination cost: zero.
+
+Measured on GitHub code search, same method, same day, re-verified in the main loop:
+
+| | files |
+|---|---|
+| `.md` files containing a ```` ```mermaid ```` fence | **330,496** |
+| `.mdx` files that exist at all | 259,136 |
+| 13 fence languages summed | 475,190 (**1.83×** the entire MDX corpus) |
+
+npm/week: `mermaid` **11,733,880** · `@mdx-js/mdx` 8,848,466 · `@djot/djot` **693** (16,932×).
+Mermaid renders natively on **30 platforms** that never coordinated. GitHub shipped it 2022-02-14
+with a purely operational rationale — **there is no standardisation story because there was no
+standardisation.**
+
+**And the fence is a real container primitive, not a code-display feature.** Tested: fence widths
+3→500 backticks all parse; a **13-level recursive nest** unwrapped with the innermost payload
+byte-identical; a fence body containing YAML frontmatter, an HTML comment, its own fence, a GFM
+table and a link came back as one `code` node with `value` byte-identical to input.
+
+### 15.2 Declare, never redefine — the rule with experimental backing on both sides
+
+| regime | evidence | verdict |
+|---|---|---|
+| **Declare a NEW notation** (no prior) | MTOB: Gemini 1.5 Pro given a Kalamang grammar book in context scored **58.3 chrF vs a human learner's 57.0** | **works at human level** |
+| **Redefine an EXISTING notation** (strong prior) | Wu et al., *Reasoning or Reciting?*: GPT-4 two-digit addition **98.2% base-10 → 38.6% base-9**, with the base stated in the prompt and the comprehension check still high | **collapses** |
+
+**The above was too strong, and a fifth experiment corrected it within the hour.** A deliberately
+prior-conflicting notation — `` `code` `` means a *person*, `**bold**` means a *date*, `> quote` is
+the title and comes *after* the metadata, dependency lists written in **reverse order** — scored
+**140/140 on generation** and 120/120 on parsing, with a negative control catching 10/10 injected
+faults, so the harness demonstrably works.
+
+**Reconciling the two:** they measure different things.
+
+| | example | result |
+|---|---|---|
+| Redefine a **procedure** — the model must *compute* differently | `+` now works in base 9 | **collapses** (98.2% → 38.6%) |
+| Redefine a **denotation** — the model must *label* differently | `` `x` `` now marks a person | **holds** (140/140) |
+
+Markdown notation is denotation, not procedure. **So the design is safer than the base-9 result
+implies.** The revised rule:
+
+> Redefining what a symbol **denotes** is safe. Redefining how an operation **computes** is not.
+> A read error is recoverable — the file on disk is still correct. **A write error corrupts the
+> user's file.** Gate the write path, not the vocabulary.
+
+Prefer novel sigils (`?>`, `=>>`, `::decision`, `@@`, `..`) anyway — not because models can't handle
+reuse, but because reuse costs the *human* reader and forfeits existing markdown tooling.
+
+**And the familiarity argument is weaker than assumed.** Table Meets LLM (WSDM 2024) spans just
+**1.66 points** across five serializations — HTML 65.43%, XML 65.33%, JSON 64.33%, Markdown 63.77%.
+Pretraining familiarity buys single digits. It does not carry an argument.
+
+### 15.3 The cost of a construct is ~139 lines, not a format-scale project
+
+Built end to end this session — a `==highlight==` inline construct absent from CommonMark and GFM
+and not expressible as a directive:
+
+```
+micromark syntax extension    85 lines
+mdast from/to handlers        34
+unified + rehype glue         20
+                             139   ← compiler side, 13/13 round-trip cases stable
+@lezer/markdown (CodeMirror)  14   ← editor side
+                             153   total, both parsers
+```
+
+**That is roughly two orders of magnitude below what "don't build a format" implied.** And the large
+fixed cost is already paid: `remark-directive` (**3,176,157 downloads/week**) ships `:::name{k=v}`,
+`::leaf`, `:text[x]` with full attribute grammar and lossless round-trip — ~1,945 lines you do not
+write. *Most of a "custom format" is just remark-directive plus chosen names.*
+
+**Correction to a claim this project previously reported:** the `[` → `\[` corruption in directive
+round-trips happens **only when the extension is registered on parse but not on stringify**. With
+both halves registered — which we control — it is byte-identical. Half-registered fails *loudly*.
+
+### 15.4 The constraints that survive, and they are the real design inputs
+
+- **The fence body is opaque to every markdown tool.** Verified: a link inside a fence does not
+  appear in the mdast link inventory; frontmatter inside a fence produces no `yaml` node. No link
+  checking, no backlinks, no search indexing, no diagnostics, no rename propagation. **Every fence
+  is a hole in the graph a linker is trying to build.**
+- **The info-string meta dies at HTML serialization.** mdast keeps it, hast keeps it in a non-standard
+  side channel, HTML emits only `class="language-x"`. Only the first word has standardised transport.
+- **`node.data` never reaches disk.** Confirmed empirically *and* by zero `.data` hits in
+  `mdast-util-to-markdown/lib/`. `hName`/`hProperties`/`hChildren` survive into hast only. Metadata
+  must be syntax or sidecar — it cannot ride on a node.
+- **Two parsers, forever.** micromark for the compiler, Lezer for CodeMirror. A per-construct tax,
+  small but permanent, and they disagree at the edges. Every construct needs a shared conformance
+  fixture run against both.
+- **Silent-disable failure modes.** Four spaces of indentation, or one backtick in a backtick-fence
+  info string, disables dispatch with no error anywhere.
+
+### 15.5 The deciding constraint against the MDX path — and it is not adoption
+
+**MDX cannot write the document back out.** Markdoc's `format()` is byte-identical and idempotent;
+MDX has no equivalent and cannot have one, because arbitrary JavaScript expressions do not
+losslessly re-serialize to source. For a product that edits and saves, that is disqualifying — and
+it is independent of market share entirely.
+
+MDX also *deletes* four CommonMark constructs in three lines (`autolink`, `codeIndented`, `htmlFlow`,
+`htmlText`) and **silently miscompiles valid CommonMark**: `the set {1,2}` renders as `the set 2`,
+with no warning at any stage.
+
+### 15.6 Independent convergence: GitHub shipped this architecture
+
+**GitHub Agentic Workflows** (`gh-aw`, technical preview 2026-02-13) compiles `workflow.md` →
+`workflow.lock.yml`, and *"GitHub Actions executes the lock file while referencing the markdown for
+instructions."* Rich deterministic frontmatter; natural-language body; **Safe Outputs** so the agent
+has no write access and a separate permissioned job applies changes.
+
+That is the compiler-plus-lock-file architecture this plan converged on independently, shipped by
+GitHub, in production. It is the strongest external validation the thesis has.
+
+### 15.7 What this changes
+
+**Keep:** no new dialect requiring its own parser (§10 row 1, strengthened). Keep splice-only, the
+anchor, the confidence ladder, and every measured result in §11a and §12.
+
+**Change:** extension is not forbidden — it is *cheap*, and it must go through **dispatch** (fence
+info string, directive name, frontmatter vocabulary) rather than through a new dialect. Add one hard
+rule: **never redefine a symbol CommonMark already defines.**
+
+**Add to the build:** edges belong in a **manifest**, never in prose — every serious system measured
+does this (`gh-aw`'s `.lock.yml`, Obsidian's `.canvas`, Logseq's `.edn`, Altari's app-side catalog).
+Note that Obsidian and Logseq, the two vendors most committed to markdown-as-substrate, both
+invented a **non-markdown sidecar** when they needed an editable graph — Obsidian went as far as
+publishing JSON Canvas as an open standard rather than encode it in markdown. **No shipping product
+writes graph layout back to markdown.** Write-back exists only for identity operations: rename →
+relink, and block-reference → ID injection.
+
+### 15.8 The three rules that actually govern a declared notation
+
+From a dedicated experiment (four notation arms × read / write / edit-under-load, 1,200 field
+judgments, plus a 10/10 negative control) and the instruction-following literature.
+
+**Rule 1 — declare by EXAMPLE, not by rule. This is the highest-value finding in §15.**
+
+Aycock et al. (arXiv 2409.19151) ablated MTOB and found *"almost all improvements stem from the
+book's parallel examples rather than its grammatical explanations"*, and — flatly — *"we find no
+evidence that long-context LLMs can make effective use of grammatical explanations."* Replicated
+across Kalamang, Nepali and Guarani.
+
+The naive frontmatter design states rules (*"`..` means due-date"*). The evidence says models take
+their competence from **worked examples**. So a `vocab` entry must carry two or three annotated
+instances of each construct, not a sentence describing it. Nearly free, and it targets the exact
+mechanism the design depends on.
+
+**Rule 2 — cap the vocabulary in the single digits, and enforce the cap in the product.**
+
+IFScale (arXiv 2507.11538, 20 models, seven providers): *"even the best frontier models only achieve
+68% accuracy at the max density of 500 instructions."* Reasoning models hold near-perfect through
+~100–150 then threshold-decay; mid-size decay linearly; small models exponentially. There is also
+**primacy bias** — early instructions are honoured more reliably than late ones.
+
+A declared notation *is* a set of standing instructions, and the geometry is unfavourable: the
+declaration sits at the top of the file where compliance is highest, but the constructs must fire in
+the fortieth note, where it is lowest. **Construct count is the parameter that decides whether this
+works, and a feature inviting users to declare their own syntax will violate it by default.**
+
+**Rule 3 — the renderer is already a parser. Make it the write gate. Do NOT use constrained decoding.**
+
+Grammar-constrained decoding fails exactly where a user-declared notation lives — empirical coverage
+on complex ("GitHub Hard") schemas: **Guidance 41%, llama.cpp 39%, XGrammar 28%, Outlines 3%**. And
+Grammar-Aligned Decoding (NeurIPS 2024) shows naive masking *"distorts the output distribution"* —
+you get strings that are grammatical and low-likelihood, i.e. valid and bad.
+
+Validate-and-repair gets the same guarantee at no distribution cost, and it is the **cheapest
+applicable verifier** per §4's ladder. Every AI write passes through the parser before touching disk;
+a parse failure or a semantic round-trip mismatch triggers repair, never a silent save.
+
+**The failure mode this prevents, stated precisely.** JSON fails *loudly* — a parser throws, a retry
+fires. A private prose notation fails *quietly*: the model writes `~ doing` instead of `~doing`, or
+falls back to `**doing**` under load, the renderer does not match, and **the field silently
+vanishes**. The document still looks like a document. Nothing throws. The next agent to read the file
+sees a note with no status and treats the absence as information.
+
+**Two supporting results:**
+- **Declared syntax is 31% smaller** than the equivalent in ordinary markdown; the declaration costs
+  ~593 bytes once and saves ~52 bytes per note — **break-even at about 11 notes.** So terseness is a
+  real argument for a private notation, independent of expressiveness.
+- **Constrained decoding's reputational hit is model-specific, not universal.** "Let Me Speak Freely?"
+  reports Claude-3-Haiku −63.1pp on GSM8K under JSON mode but **Gemini-1.5-Flash −0.1pp**, and
+  JSONSchemaBench finds the *opposite sign* (+3.3 to +3.7pp) with Guidance. Do not cite a single
+  number here as settled.
+
+**The measurement that has NOT been made, and it is the one that decides the operating point:**
+every number above is Opus-class, five constructs, one task at a time, with the declaration in
+immediate context. The model that will actually write into a user's file in an editor is smaller and
+faster, and every published curve says that is precisely where format adherence collapses. **The
+experiment establishes a ceiling, not an operating point.** Re-run the harness against the production
+model before shipping a notation feature.
