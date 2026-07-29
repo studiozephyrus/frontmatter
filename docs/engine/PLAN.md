@@ -61,19 +61,90 @@ plain text file an external tool can read — and it survives only by owning eve
 We cannot: `git pull` yields a new string with no op stream; a `vim` edit yields no op at all.
 
 **The fourth strategy — content-derived re-anchoring — is used by no system above, and is
-therefore the one with no precedent to lean on.** We have measured it. On 27,092 real
-block-versions across this repo's own git history:
+therefore the one with no precedent to lean on.** It is now specified and measured; see §1.1a.
 
-| scheme | false-match rate (silently wrong) |
-|---|---|
-| byte offset | 40.33% |
-| block index | 25.80% |
-| content hash | 2.69% |
-| **k=2 context fingerprint** | **8 matches, all 8 oracle artifacts on hand audit** |
+### 1.1a The re-anchoring algorithm — specified, swept, and hand-audited
 
-*(Verifier correction: "27,092 block-versions" is 330 files / 771 edits, and one file is
-27.4% of the denominator. Drop it and positional falls 26.17% → 13.09%. **Direction confirmed,
-magnitude roughly halved.** Fingerprints still win.)*
+Measured over **41,642 block-versions** from 294 consecutive real revision pairs across `md`,
+`knowledge` and this repo. Parameters chosen by a **384-configuration sweep**.
+
+```
+resolve(block i, new document) -> index | AMBIGUOUS | LOST
+
+  gate:  anchorable(i)? else NO_IDENTITY          # 14.2% of blocks have no identity
+  S1     exact: blake2b-64 over normalize(text)
+         exactly one match            -> return it          # resolves 87.0%
+  S2     several exact matches: score by softctx; unique argmax > 0 -> it, else AMBIGUOUS
+  S3     no exact match (edited): candidates = blocks sharing any 3-gram shingle
+         keep jaccard >= TAU; score = jaccard + W * softctx
+         top1 - top2 <= DELTA -> AMBIGUOUS, else argmax
+
+  softctx(i,j,K) = distance-weighted 1/d agreement of the K neighbours either side
+  anchorable    = not a rule, not punctuation-only, >= 3 tokens
+```
+
+| parameter | value | why |
+|---|---|---|
+| normalize | NFC + collapse whitespace + lowercase | recovers reflow and case edits free |
+| K (context radius) | **3** | 1→97.88%, 3→98.13%, 5→98.21%; K=3 captures the gain |
+| TAU (Jaccard floor) | **0.20** | 0.20→99.14% vs 0.70→96.47% correct at **no** false-match cost |
+| W (context weight) | **1.0** | best on both axes — weight context as heavily as content |
+| DELTA (tie margin) | **0.05** | lowest false rate; below it, refuse |
+
+**Results (denominator = 32,919 surviving block-versions):**
+
+| scheme | correct | **false match** | safe refusal |
+|---|---|---|---|
+| byte offset | 36.93% | **62.12%** | 0.95% |
+| block index | 44.43% | **55.50%** | 0.08% |
+| content hash alone | 83.36% | 0.00% | 16.64% |
+| content hash + nearest-position tiebreak | 77.80% | **22.20%** | 0% |
+| **rigid context fingerprint k=1 / k=2 / k=3** | 90.65 / 88.68 / 87.22% | 0.25% | 9–13% |
+| content-defined chunking (rolling hash) | 18.92% | **67.30%** | 13.79% |
+| **recommended, anchorable blocks only** | **99.627%** | **0.050%** | **0.323%** |
+
+Cost: **~41 ms** for a 446 KB / 2,225-block document.
+
+**Three things this overturns.**
+
+1. **Rigid context fingerprints are the wrong shape** — and they get *worse* as k grows
+   (90.65 → 88.68 → 87.22). A ±k window straddles a moved section's boundary, so the
+   guaranteed failure fraction is `min(2k, L)/L` — for k=2, L≈10 that is 40%, and 39.9% was
+   measured. Neighbour edits then degrade it as `(1−p)^{2k}`. **Score context softly; never
+   hash it rigidly.** (This supersedes the k=2 fingerprint recommendation in v0.2.)
+2. **Content-defined chunking is the wrong granularity.** Median block is 84 bytes; a 512 B
+   chunk spans ~6 blocks, so "the chunk moved here" cannot say *which* block. It is a decent
+   coarse *region* filter (0.3% wrong-region) and a terrible block identifier.
+3. **Every position-based tiebreak made things dramatically worse** — content-hash plus
+   nearest-position goes from 0.00% to **22.20%** false. **Refusing is cheap; a silently
+   wrong anchor is not.**
+
+**The `anchorable()` gate is the highest-leverage single line in the design.** It moves the
+false rate from 0.349% → **0.050%** by declining to answer unanswerable questions: **88.9% of
+raw false matches are `---` horizontal rules.** 14.2% of blocks are identity-free (short
+headings, rules, short list items) and must be positionally interpolated between their
+anchorable neighbours, never anchored.
+
+**When two candidates tie — the question §2.4 requires an answer to.** 12.9% of blocks present
+more than one candidate, and on that subpopulation the resolver scores 94.94% correct / 2.66%
+false — **50× the single-candidate error rate**. Hence DELTA: within 0.05 after context
+weighting, **return AMBIGUOUS**. Removing that refusal produced 183 extra false matches.
+
+**All 14 false matches on anchorable blocks were hand-audited, not sampled.** 4 are oracle
+artifacts (byte-identical duplicate headings — indistinguishable by construction), 6 are a bulk
+markdown→HTML migration, 3 are homogeneous-list drift, 1 a table rewrite. **Genuine substantive
+errors: 10 in 28,170 = 0.036%.**
+
+**The known adversarial input, and it is in this corpus.** `knowledge` scores 8× worse (0.280%
+false) because `knowledge.md` is one enormous homogeneous index list where every entry shares a
+template. Low inter-item distinctiveness defeats content hashing, shingle Jaccard *and* context
+simultaneously. **List items should carry a structural key — position within the parent list
+plus the parent's identity — rather than relying on text alone.**
+
+*Caveats: the oracle is itself an algorithm and shares a candidate generator with the resolver
+(the full hand-audit is the defence, and it found 4 of 14 errors to be oracle artifacts). Move
+figures are **SIMULATED** — real history contained zero multi-block moves, 138 singletons only.
+Concurrent edits from two sources were not tested, so nothing here validates a merge path.*
 
 ### 1.2 Splice-only writing — now a theorem
 
@@ -506,11 +577,27 @@ to fix it with delimiter counting.
 on pull/fetch. Commit granularity is a product decision, not an algorithm one.
 
 **Git's diff3 is the async fallback, never the concurrency mechanism.** Theorem 4.1.1 requires a
-uniquely-occurring line in an untouched separator; measured on these vaults, markdown lines are
-61.0–68.4% unique vs TypeScript's 70.6% — a real but modest gap. **The sharper mechanism: the
-separator between edited regions in prose is a blank line (43,526 of them, 22% of all lines), which
-is by definition non-unique.** Plus reflow changes every line, destroying line matching before the
-theorem is reachable.
+uniquely-occurring line in an untouched separator — and its counterexample shows separator *size*
+buys nothing, only uniqueness does.
+
+**Correction to v0.2: markdown is NOT intrinsically worse than code here.** Re-measured:
+
+| corpus | all lines unique | **non-blank lines unique** |
+|---|---|---|
+| markdown (`md`) | 64.6% | **84.8%** |
+| markdown (`knowledge`) | 68.4% | **94.2%** |
+| TypeScript | 70.6% | 78.1% |
+
+Excluding blank lines, markdown **beats** TypeScript. Blank lines are the entire deficit, and they
+are non-unique by definition. **A block-structured representation that never emits a bare blank
+line as an alignable atom removes the deficit completely** — which is another argument for
+diffing blocks rather than lines.
+
+What remains true: reflow changes every line in a paragraph, destroying line-level matching before
+the theorem is reachable. And measured on 294 real revision pairs, **43.3% of deleted lines are
+≥0.80 similar to a line in the same hunk** — light edits reported as a full delete plus insert.
+**The lever for prose is granularity, not algorithm:** myers, minimal, patience and histogram
+produce byte-identical output on **289 of 294 pairs (98.3%)**, differing in total churn by 0.08%.
 
 **Schema evolution:** adopt Cambria's (Litt, van Hardenberg & Henry, PaPoC 2021) **read-time lens
 translation** — store the lens *in the document*, translate on read, no mass rewrite of the corpus.
