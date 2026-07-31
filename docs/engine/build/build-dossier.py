@@ -15,9 +15,7 @@ ORG = "SGNK · SAGNIK MITRA"
 
 
 def lock(light=False):
-    src = LIGHT if light else DARK
-    return (f'<div class="lock"><img src="{src}" alt="">'
-            f'<div class="wm">sgnk<i>ai</i></div></div>')
+    return '<div class="lock"><div class="wm">sgnk</div></div>'
 
 
 def header():
@@ -43,58 +41,18 @@ def page(n, num, title, body):
 {footer(n)}</div></section>"""
 
 
-# ─────────────────────────── COVER ───────────────────────────
-def blk(cls, ident):
-    return f'<div class="blk {cls}"><span class="id">{ident}</span></div>'
-
-
-COVER = f"""<section class="page cover">
-<div class="pad">
-  <div class="hd">{lock(light=True)}
-    <div class="hd-r">
-      <div class="l1">RESEARCH &amp; ENGINEERING DOSSIER</div>
-      <div class="l1">PREPARED FOR <b>SAGNIK MITRA</b></div>
-      <div class="l1">SGNK INTERNAL · REVISION 1.0</div>
-    </div>
-  </div>
-  <div class="cover-art">
-    <div class="frame"></div><div class="grid"></div><div class="glow"></div>
-    <div class="stack">
-      {blk("w92", "b1f4·a2")}
-      {blk("w80 on", "7c03·d1")}
-      {blk("w62", "e918·4f")}
-      {blk("w92 on", "2a7d·90")}
-      {blk("w45", "c410·6b")}
-      {blk("w80", "f082·1e")}
-    </div>
-    <span class="brk tl"></span><span class="brk tr"></span>
-    <span class="brk bl"></span><span class="brk br"></span>
-  </div>
-  <div class="cover-b">
-    <span class="chip">Technical research record</span>
-    <h1>A markdown compiler.<br>The block keeps<br><span>its name.</span></h1>
-    <p class="sub">Three weeks of measurement against live libraries and three real corpora.
-      What we researched, what it overturned, and what it means we should build.</p>
-    <div class="rule"></div>
-    <div class="cf">
-      <span>SGNK · SAGNIK MITRA</span>
-      <span class="r">ISSUED 31 JULY 2026<br>ENGINE PLAN v0.6.0 · §0–§17</span>
-    </div>
-  </div>
-</div></section>"""
-
 # ─────────────────────────── PAGE 02 ───────────────────────────
 TOC = [
-    ("01", "The problem, and why it is not a format problem", "03"),
-    ("02", "What we researched", "04"),
-    ("03", "How markdown actually works", "05"),
-    ("04", "How the industry does it", "06"),
-    ("05", "What we found", "07"),
-    ("06", "Taking markdown to the next level", "08"),
-    ("07", "Defining our own representations", "09"),
-    ("08", "frontmatter as the first renderer", "10"),
-    ("09", "Fusing into the AI OS", "11"),
-    ("10", "The plan, the benchmarks, the open questions", "12"),
+    ("01", "The problem, and why it is not a format problem", "02"),
+    ("02", "What we researched", "03"),
+    ("03", "How markdown actually works", "04"),
+    ("04", "How the industry does it", "05"),
+    ("05", "What we found", "06"),
+    ("06", "Taking markdown to the next level", "07"),
+    ("07", "Defining our own representations", "08"),
+    ("08", "frontmatter as the first renderer", "09"),
+    ("09", "Fusing into the AI OS", "10"),
+    ("10", "The plan, the benchmarks, the open questions", "11"),
 ]
 
 STATS = [
@@ -463,9 +421,9 @@ that fight.</div>"""),
 ]
 
 # ─────────────────────────── ASSEMBLE ───────────────────────────
-pages_html = [COVER]
+pages_html = []
 for i, (num, title, body) in enumerate(PAGES):
-    pages_html.append(page(i + 2, num, title, body))
+    pages_html.append(page(i + 1, num, title, body))
 
 html = f"""<!doctype html>
 <html lang="en"><head><meta charset="utf-8">
