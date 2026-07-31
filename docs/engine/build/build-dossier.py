@@ -52,7 +52,8 @@ TOC = [
     ("07", "Defining our own representations", "08"),
     ("08", "frontmatter as the first renderer", "09"),
     ("09", "Fusing into the AI OS", "10"),
-    ("10", "The plan, the benchmarks, the open questions", "11"),
+    ("10", "The plan and its kill-gates", "11"),
+    ("11", "Benchmarks, and what is still open", "12"),
 ]
 
 STATS = [
@@ -230,7 +231,7 @@ quoting, <b>deletes YAML comments outright</b> and destroys type tags. Their own
     # ── 06 ──
     ("06", "Taking markdown to the next level", """
 <p>The answer to <em>"why can't we have folder trees, self-including files, new representations?"</em> is
-<strong>we can — through dispatch, never through new syntax.</strong> There are exactly four channels.</p>
+<strong>we can — through dispatch, never through new syntax.</strong> Four channels exist.</p>
 <table class="tw-22">
 <thead><tr><th>Tier</th><th>Channel</th><th>A dumb viewer sees</th><th>Proven by</th></tr></thead>
 <tbody>
@@ -240,12 +241,11 @@ quoting, <b>deletes YAML comments outright</b> and destroys type tags. Their own
 <tr><td>4</td><td><strong>derived, never stored</strong></td><td>—</td><td>graphs, outlines, site maps</td></tr>
 </tbody></table>
 <h3>What must never happen: spending a sigil</h3>
-<p>Markdown has ~32 punctuation extension points. From jgm: <em>"Guaranteeing that any extension is
-compatible with any other one is not feasible, as two extensions may want to interpret the same character
-for two different purposes."</em> That is <strong>character-namespace exhaustion</strong> — resource
-exhaustion, not governance. And it is live today: Spaced Repetition's card separator is
-<span class="mono">::</span>; Dataview's inline field is <span class="mono">key:: value</span>. Two top-50
-plugins, same two characters, colliding right now.</p>
+<p>Markdown has ~32 punctuation extension points. From jgm: <em>"two extensions may want to interpret
+the same character for two different purposes."</em> That is <strong>character-namespace exhaustion</strong>
+— resource exhaustion, not governance, and it is live today: Spaced Repetition's card separator is
+<span class="mono">::</span>, Dataview's inline field is <span class="mono">key:: value</span>. Two top-50
+plugins, same two characters.</p>
 <h3>What should fuse, ranked by measured demand</h3>
 <table class="tw-40">
 <thead><tr><th>Primitive</th><th>Install weight</th><th>Our channel</th></tr></thead>
@@ -253,16 +253,15 @@ plugins, same two characters, colliding right now.</p>
 <tr><td>embedded freehand graphics</td><td class="num">8.79M</td><td>fence + opaque payload</td></tr>
 <tr><td>task semantics beyond a checkbox</td><td class="num">8.54M</td><td>frontmatter vocabulary</td></tr>
 <tr><td>a queryable relation over documents</td><td class="num">7.22M</td><td><strong>resolver</strong>, not syntax</td></tr>
-<tr><td>templating / computed content</td><td class="num">7.16M</td><td><strong>out of scope — that is a runtime</strong></td></tr>
 <tr class="hi"><td><strong>typed links</strong></td><td class="num">820 likes · #1</td><td>resolver + manifest</td></tr>
 <tr class="hi"><td><strong>multi-file composition</strong></td><td class="num">449 + 174 · unbuilt</td><td>container + transclusion</td></tr>
 </tbody></table>
-<p>The last two matter most because they are <strong>supply-starved</strong> — enormous demand, near-zero
-supply. That is the signature of a gap a plugin <em>cannot</em> close. A board can be faked by overloading
-headings; a typed link needs <em>the link itself</em> to carry the relation.</p>
+<p>The last two matter most because they are <strong>supply-starved</strong> — the signature of a gap a
+plugin <em>cannot</em> close. A typed link needs <em>the link itself</em> to carry the relation. Templating
+(7.16M) is deliberately absent: that one is a runtime, and a runtime is what makes a format unreadable.</p>
 <div class="call"><b>The MDX lesson is a warning, not a template.</b> MDX <b>cannot write the document back
-out</b> — arbitrary JavaScript does not losslessly re-serialize. For a product that edits and saves that is
-disqualifying, independent of market share. Take MDX's ambition; refuse MDX's mechanism.</div>"""),
+out</b> — arbitrary JavaScript does not losslessly re-serialize, which for a product that edits and saves is
+disqualifying. Take MDX's ambition; refuse MDX's mechanism.</div>"""),
 
     # ── 07 ──
     ("07", "Defining our own representations", """
@@ -375,49 +374,60 @@ identity. Every other layer has gates. Applying the compiler to <span class="mon
 last unchecked surface, and it does so with a CLI that needs no editor and no product decision.</div>"""),
 
     # ── 10 ──
-    ("10", "The plan, the benchmarks, the open questions", """
-<pre>1  parse       .md → AST + byte positions       incremental
-2  identify    mint / recover block anchors     ← the invention
-3  interface   frontmatter → module signature   schema INFERRED, never demanded
+    ("10", "The plan and its kill-gates", """
+<pre>1  parse       .md &#8594; AST + byte positions       incremental
+2  identify    mint / recover block anchors     &#8592; the invention
+3  interface   frontmatter &#8594; module signature   schema INFERRED, never demanded
 4  resolve     bind every cross-reference       unresolved = diagnostic, never a silent drop
-5  index       symbol table + reverse index     → outline, tags, backlinks
-6  check       schema · links · drift           → the confidence ladder
-7  project     outline · graph · site · tokens  never stored</pre>
+5  index       symbol table + reverse index     &#8594; outline, tags, backlinks
+6  check       schema &#183; links &#183; drift           &#8594; the confidence ladder
+7  project     outline &#183; graph &#183; site &#183; tokens  never stored</pre>
+<p>Each phase carries a gate that can <strong>stop</strong> it. A phase without a falsifiable gate is a wish.</p>
 <table class="tw-22">
 <thead><tr><th>Phase</th><th>Ships</th><th>Kill-gate</th></tr></thead>
 <tbody>
-<tr><td><strong>1 · core/</strong></td><td>splice writer, anchors, <strong>the YAML wedge</strong></td><td>100% byte-fidelity on untouched regions, 50 files, verified by an <strong>independent oracle</strong></td></tr>
-<tr><td><strong>2 · resolve/check/</strong></td><td>linker, symbol table, <span class="mono">frontmatter check</span></td><td>per-class precision across 4,117 files</td></tr>
-<tr><td><strong>3 · schema/</strong></td><td>infer → propose → accept</td><td>false-positive rate on a corpus <em>verified human-authored</em>; above ~0.4 users disable it permanently</td></tr>
-<tr><td><strong>4 · pack/unpack</strong></td><td>container + edit-mapping back to source</td><td>byte-identical unpack, per-file digests</td></tr>
-<tr><td><strong>5 · reconciler</strong></td><td>prose ↔ code drift</td><td>tier I only at first</td></tr>
+<tr><td><strong>1 &#183; core/</strong></td><td>splice writer, anchors, <strong>the YAML wedge</strong></td><td>100% byte-fidelity on untouched regions, 50 files, verified by an <strong>independent oracle</strong> &#8212; the current check uses the writer&#8217;s own code path and cannot catch an offset bug</td></tr>
+<tr><td><strong>2 &#183; resolve/check/</strong></td><td>linker, symbol table, <span class="mono">frontmatter check</span></td><td>per-class precision across 4,117 files</td></tr>
+<tr><td><strong>3 &#183; schema/</strong></td><td>infer &#8594; propose &#8594; accept</td><td>false-positive rate on a corpus <em>verified human-authored</em>; above ~0.4 users disable it permanently</td></tr>
+<tr><td><strong>4 &#183; pack/unpack</strong></td><td>container + edit-mapping back to source</td><td>byte-identical unpack, per-file digests</td></tr>
+<tr><td><strong>5 &#183; reconciler</strong></td><td>prose &#8596; code drift</td><td>tier I only at first</td></tr>
 </tbody></table>
-<h3>Benchmarks — pass what exists, publish what does not</h3>
+<h3>Two rules keep it usable</h3>
+<p><strong>A diagnostic may only reach tier E &#8212; the tier that fails a build &#8212; if a human accepted
+the constraint that produced it.</strong> Inferred schemas start at Warn; accepting the proposal is what
+converts advice into a guarantee. A wrong inference can never break a build.</p>
+<div class="call"><b>And a scope check from our own data.</b> A compiler run over 833 authored files found
+365 true problems touching only <b>112 files (13.4%)</b>, and one file held 56% of everything. A random note
+therefore has an <b>86.6% chance of an empty panel</b>. A vault-level <span class="mono">check</span> command
+is earned by that data; a persistent Problems panel is not.</div>"""),
+
+    ("11", "Benchmarks, and what is still open", """
+<p>Pass the benchmarks that exist. <strong>Publish the ones that do not</strong> &#8212; that is how a compiler
+becomes an industry reference instead of a product feature.</p>
 <table class="tw-30">
 <thead><tr><th>Layer</th><th>Target</th></tr></thead>
 <tbody>
 <tr><td>CommonMark 0.31.2 + GFM suites</td><td>100%, non-negotiable</td></tr>
 <tr><td>Differential fuzz vs <span class="mono">cmark-gfm</span></td><td>zero unexplained divergences</td></tr>
-<tr><td>DoS corpus — <span class="mono">remark-parse</span> is quadratic and <strong>crashes on 20 KB of nesting</strong>; markdown-it does it in 12 ms</td><td>depth cap + wall-clock budget, in a worker</td></tr>
-<tr class="hi"><td><strong>B1 · anchor durability</strong> — six baselines already measured</td><td><strong>the moat play. Publish with a runner and a leaderboard.</strong></td></tr>
-<tr class="hi"><td><strong>B2 · splice fidelity</strong></td><td>100%, permanent CI gate</td></tr>
-<tr class="hi"><td><strong>B6 · renderer security</strong> — already built and live</td><td>55 payloads, DOM-verified, fails 28/55 against an unprotected pipeline</td></tr>
+<tr><td>DoS corpus &#8212; <span class="mono">remark-parse</span> is quadratic and <strong>crashes on 20&#160;KB of nesting</strong>; markdown-it does it in 12&#160;ms</td><td>depth cap + wall-clock budget, enforced in a worker</td></tr>
+<tr class="hi"><td><strong>B1 &#183; anchor durability</strong> &#8212; six baselines already measured against ours</td><td><strong>the moat play. Publish with a runner and a leaderboard.</strong></td></tr>
+<tr class="hi"><td><strong>B2 &#183; splice fidelity</strong> &#8212; byte-identity outside the edited span</td><td>100%, permanent CI gate</td></tr>
+<tr class="hi"><td><strong>B6 &#183; renderer security</strong> &#8212; already built and live</td><td>55 payloads, DOM-verified, fails 28/55 against an unprotected pipeline</td></tr>
 </tbody></table>
-<div class="call"><b>The rule governing every benchmark.</b> A benchmark whose subject is a rare fault
-proves nothing until it reproduces the fault. A green suite is the expected result of running it, not
-evidence of correctness. Every gate must be shown to <em>fail</em> against the unfixed implementation
-before its pass is reported.</div>
-<h3>Open — and honest</h3>
-<p>The notation result is <strong>Opus-class only</strong>; the production-model measurement is unmade.
-The schema-inference corpus was <strong>voided</strong> by its own verifier (27.2% vendored, 24.4% LLM
-output). Multi-block moves are <strong>simulated</strong>; the merge path is <strong>untested</strong>.
-Three decisions are open: the CRDT architecture conflict, whether the notation ships at all, and ten
-verified bugs in shipped editor code.</p>
-<div class="call dark"><b>The risk, recorded rather than buried.</b> Obsidian, holding every advantage,
-looked at these same gaps and shipped sidecar files twice. Our differentiator is <b>identity across
-edits</b> — which a sidecar cannot provide — not expressiveness, which a sidecar provides perfectly well.
-If we ever compete on expressiveness we have lost, because <span class="mono">.canvas</span> already won
-that fight.</div>"""),
+<div class="call"><b>The rule governing every benchmark.</b> A benchmark whose subject is a rare fault proves
+nothing until it reproduces the fault. A green suite is the expected result of running it, not evidence of
+correctness. Every gate must be shown to <em>fail</em> against the unfixed implementation before its pass is
+reported.</div>
+<h3>Open &#8212; and honest</h3>
+<p>The notation result is <strong>Opus-class only</strong>; the production-model measurement is unmade. The
+schema-inference corpus was <strong>voided</strong> by its own verifier (27.2% vendored, 24.4% LLM output).
+Multi-block moves are <strong>simulated</strong>; the merge path is <strong>untested</strong>. Three decisions
+are open: the CRDT architecture conflict, whether the notation ships at all, and ten verified bugs in shipped
+editor code.</p>
+<div class="call dark"><b>The risk, recorded rather than buried.</b> Obsidian, holding every advantage, looked
+at these same gaps and shipped sidecar files twice. Our differentiator is <b>identity across edits</b> &#8212;
+which a sidecar cannot provide &#8212; not expressiveness, which a sidecar provides perfectly well. If we ever
+compete on expressiveness we have lost, because <span class="mono">.canvas</span> already won that fight.</div>"""),
 ]
 
 # ─────────────────────────── ASSEMBLE ───────────────────────────
