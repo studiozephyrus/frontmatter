@@ -15,9 +15,19 @@
  */
 import fs from 'node:fs'
 import path from 'node:path'
+import os from 'node:os'
+import { pathToFileURL } from 'node:url'
 import matter from 'gray-matter'
 import { parseDocument, isMap } from 'yaml'
-import { spliceFrontmatterValue } from '../src/modules/share/domain/splice-frontmatter.mjs'
+// Load the TS source without a build step. Node 24 strips types; we read and eval so the
+// oracle has NO build dependency and cannot silently test a stale artifact.
+const _tsSrc = fs.readFileSync(new URL('../src/modules/share/domain/splice-frontmatter.ts', import.meta.url), 'utf8')
+  .replace(/: string \| number \| boolean \| null/g, '').replace(/: string/g, '')
+  .replace(/: boolean/g, '').replace(/\(\n  src,\n  key,\n  value,\n\)/, '(src, key, value)')
+const _tmp = path.join(os.tmpdir(), `mdmax-splice-${process.pid}.mjs`)
+fs.writeFileSync(_tmp, _tsSrc)
+const { spliceFrontmatterValue } = await import(pathToFileURL(_tmp).href)
+fs.unlinkSync(_tmp)
 
 const MANIFEST = 'docs/engine/research/corpus-manifest.json'
 const ROOTS = {
@@ -91,13 +101,12 @@ for (const [root, info] of Object.entries(man.roots)) {
       const had = /^public_slug[ \t]*:[ \t]*(.*)$/m.exec(
         (/^---\r?\n([\s\S]*?)\r?\n---/.exec(src)?.[1]) ?? '')
       const published = impl(src, KEY, VAL)
+      if (published === src) { refused++; continue }   // publish was a NO-OP: a refusal, not a pass
       const back = had
         ? impl(published, KEY, had[1].trim().replace(/^["']|["']$/g, ''))
         : impl(published, KEY, null)
-      if (back === src) {
+      if (Buffer.compare(Buffer.from(back, 'utf8'), Buffer.from(src, 'utf8')) === 0) {
         identical++
-      } else if (published === src && back === src) {
-        refused++
       } else {
         changed++
         if (examples.length < 4) {
@@ -133,6 +142,12 @@ if (examples.length) {
     console.log(`      was: ${JSON.stringify(e.was).slice(0, 96)}`)
     console.log(`      now: ${JSON.stringify(e.now).slice(0, 96)}`)
   }
+}
+const EXPECTED = 907
+if (withFm !== EXPECTED) {
+  console.log(`\n  REFUSING: corpus is incomplete — saw ${withFm} frontmatter files, expected ${EXPECTED}.`)
+  console.log('  This oracle is meaningless on a partial corpus. Mount the vaults or re-pin the manifest.')
+  process.exit(2)
 }
 const failed = changed + threw
 console.log(`\n  VERDICT: ${failed === 0 ? 'PASS — 0 files altered' : `FAIL — ${failed} of ${withFm} files altered by a no-op round trip`}`)

@@ -169,6 +169,13 @@ function score(impl: Impl, corpus: { path: string; src: string }[]) {
 
 describe("corpus gate — publish then unpublish is byte-identical", () => {
   const corpus = loadCorpus();
+  const EXPECTED = 907;
+
+  // A gate that shrinks its own population is a gate that always passes. Without the private
+  // vaults this saw 23 of 907 files and printed 100%. Assert the denominator (LR#65).
+  it.skipIf(corpus.length === 0)("sees the WHOLE pinned corpus, not a subset", () => {
+    expect(corpus.length, `corpus is ${corpus.length}/${EXPECTED} — mount the vaults or re-pin`).toBe(EXPECTED);
+  });
 
   it.skipIf(corpus.length === 0)(
     "the assertion is capable of failing: the shipped writers DO alter files",

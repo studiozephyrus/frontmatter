@@ -14,6 +14,7 @@ const config = [
   // ── 1. Files to ignore ────────────────────────────────────────────────────
   {
     ignores: [
+      ".claude/**",
       "node_modules/**",
       ".next/**",
       "out/**",
