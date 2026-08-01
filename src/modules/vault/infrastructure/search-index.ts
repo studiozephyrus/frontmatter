@@ -71,10 +71,17 @@ function extractBodyText(raw: string): string {
  * Produces the CODE-ONLY text of a note: the contents of every fenced block and
  * inline code span, concatenated.
  *
- * Without this, code and table content is unfindable: it is ~9% of nodes but
- * ~30% of content tokens in a real vault, and `extractBodyText` deletes all of
- * it before indexing. Indexed as its own MiniSearch field so a query can match
- * a symbol, a command or a config key without polluting unlinked mentions.
+ * Without this, code content is unfindable: `extractBodyText` deletes every
+ * fence and span before indexing. Indexed as its own MiniSearch field so a
+ * query can match a symbol, a command or a config key without polluting
+ * unlinked mentions.
+ *
+ * NOT covered here: GFM tables. They contain neither a fence nor a code span,
+ * so they flow to `body` with their pipes intact — and MiniSearch's tokenizer
+ * splits on `\p{Z}\p{P}` but NOT on `\p{S}`, which leaves `|` attached. A
+ * compact row `|Name|Type|` therefore indexes as ONE token and no cell word in
+ * it is retrievable; the same row written `| Name | Type |` indexes each word
+ * correctly. Measured on this repo. Emission style, not extraction, is the fix.
  */
 function extractCodeText(raw: string): string {
   const withoutFrontmatter = raw.replace(FRONTMATTER_RE, "");
