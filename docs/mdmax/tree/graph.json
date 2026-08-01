@@ -1,0 +1,368 @@
+[
+ {
+  "n": 1,
+  "slug": "01-orientation",
+  "title": "Orientation \u2014 what we are building, why now, what is settled, and how to read this",
+  "short": "Orientation",
+  "lines": 760,
+  "words": 7231,
+  "forward": [
+   2,
+   3,
+   4,
+   5,
+   7,
+   9,
+   10,
+   14
+  ],
+  "back": [
+   2,
+   3,
+   4,
+   5,
+   8,
+   9,
+   10,
+   11,
+   12,
+   13,
+   14
+  ]
+ },
+ {
+  "n": 2,
+  "slug": "02-chronology",
+  "title": "The complete chronological record: what we researched, in order, and what each round concluded",
+  "short": "Chronology",
+  "lines": 1093,
+  "words": 12605,
+  "forward": [
+   1,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10,
+   12,
+   13,
+   14
+  ],
+  "back": [
+   1,
+   3,
+   4,
+   7,
+   9,
+   11,
+   12,
+   13,
+   14
+  ]
+ },
+ {
+  "n": 3,
+  "slug": "03-capabilities",
+  "title": "What MDMAX is: every capability, specified",
+  "short": "Capabilities",
+  "lines": 1646,
+  "words": 14820,
+  "forward": [
+   1,
+   2,
+   4,
+   5,
+   7,
+   9,
+   10
+  ],
+  "back": [
+   1,
+   2,
+   5,
+   6,
+   7,
+   10,
+   11,
+   12,
+   13,
+   14
+  ]
+ },
+ {
+  "n": 4,
+  "slug": "04-representation",
+  "title": "Representation \u2014 what a markdown file can be made to hold, convey and mean",
+  "short": "Representation",
+  "lines": 1262,
+  "words": 12716,
+  "forward": [
+   1,
+   2,
+   5
+  ],
+  "back": [
+   1,
+   2,
+   3,
+   5,
+   6,
+   7,
+   9,
+   11,
+   12,
+   13,
+   14
+  ]
+ },
+ {
+  "n": 5,
+  "slug": "05-rendering",
+  "title": "Rendering \u2014 functional and visual, custom rendering, custom formatting, custom parsing",
+  "short": "Rendering",
+  "lines": 1197,
+  "words": 11996,
+  "forward": [
+   1,
+   3,
+   4
+  ],
+  "back": [
+   1,
+   2,
+   3,
+   4,
+   6,
+   7,
+   8,
+   10,
+   11,
+   12,
+   13,
+   14
+  ]
+ },
+ {
+  "n": 6,
+  "slug": "06-conventions",
+  "title": "Our own conventions: the library model, custom definitions, reference pointers, and whether any of it ships",
+  "short": "Conventions",
+  "lines": 1117,
+  "words": 11325,
+  "forward": [
+   3,
+   4,
+   5,
+   11
+  ],
+  "back": [
+   2,
+   12,
+   13,
+   14
+  ]
+ },
+ {
+  "n": 7,
+  "slug": "07-product",
+  "title": "frontmatter the product: features, the gap, and what it needs on top of MDMAX",
+  "short": "Product",
+  "lines": 880,
+  "words": 13391,
+  "forward": [
+   2,
+   3,
+   4,
+   5,
+   8,
+   9,
+   10,
+   14
+  ],
+  "back": [
+   1,
+   2,
+   3,
+   8,
+   9,
+   11,
+   12,
+   13,
+   14
+  ]
+ },
+ {
+  "n": 8,
+  "slug": "08-market",
+  "title": "The market \u2014 USP, what competitors lack, what we solve, what we cannot solve",
+  "short": "Market",
+  "lines": 1111,
+  "words": 12505,
+  "forward": [
+   1,
+   5,
+   7
+  ],
+  "back": [
+   2,
+   7,
+   9,
+   14
+  ]
+ },
+ {
+  "n": 9,
+  "slug": "09-aios",
+  "title": "AIOS: what to import, what to refuse, and how it makes the build faster and safer",
+  "short": "AIOS",
+  "lines": 1035,
+  "words": 10206,
+  "forward": [
+   1,
+   2,
+   4,
+   7,
+   8,
+   11,
+   12
+  ],
+  "back": [
+   1,
+   2,
+   3,
+   7,
+   11,
+   12,
+   13,
+   14
+  ]
+ },
+ {
+  "n": 10,
+  "slug": "10-engine-spec",
+  "title": "The engine specification: passes, offset model, robustness, and the hazards that will bite",
+  "short": "Engine spec",
+  "lines": 1357,
+  "words": 13903,
+  "forward": [
+   1,
+   3,
+   5
+  ],
+  "back": [
+   1,
+   2,
+   3,
+   7,
+   11,
+   12,
+   13,
+   14
+  ]
+ },
+ {
+  "n": 11,
+  "slug": "11-execution",
+  "title": "The execution plan \u2014 every step, in order, with gates",
+  "short": "Execution",
+  "lines": 1223,
+  "words": 11992,
+  "forward": [
+   1,
+   2,
+   3,
+   4,
+   5,
+   7,
+   9,
+   10
+  ],
+  "back": [
+   6,
+   9,
+   12,
+   13,
+   14
+  ]
+ },
+ {
+  "n": 12,
+  "slug": "12-risks",
+  "title": "Risks, the pre-mortem, and the incompatible wants",
+  "short": "Risks",
+  "lines": 1095,
+  "words": 12051,
+  "forward": [
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   9,
+   10,
+   11
+  ],
+  "back": [
+   2,
+   9,
+   14
+  ]
+ },
+ {
+  "n": 13,
+  "slug": "13-appendix",
+  "title": "Appendix \u2014 the evidence base, the corpus, and where everything lives",
+  "short": "Appendix",
+  "lines": 1164,
+  "words": 12924,
+  "forward": [
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   9,
+   10,
+   11
+  ],
+  "back": [
+   2,
+   14
+  ]
+ },
+ {
+  "n": 14,
+  "slug": "14-verification",
+  "title": "Verification record",
+  "short": "Verification",
+  "lines": 505,
+  "words": 17714,
+  "forward": [
+   1,
+   2,
+   3,
+   4,
+   5,
+   6,
+   7,
+   8,
+   9,
+   10,
+   11,
+   12,
+   13
+  ],
+  "back": [
+   1,
+   2,
+   7
+  ]
+ }
+]
