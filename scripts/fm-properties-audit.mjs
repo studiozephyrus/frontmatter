@@ -160,7 +160,11 @@ for (const [name, run] of Object.entries(OPS)) {
     else ch++
   }
   const pct = (id / corpus.length * 100).toFixed(2)
-  console.log(`  ${name.padEnd(14)} ${String(id).padStart(4)} (${pct.padStart(5)}%)  ${String(ch).padStart(8)}  ${String(th).padStart(6)}  ${String(ref).padStart(8)}${narrowed ? `   (+${narrowed} date-typed, harness limit)` : ''}`)
+  const notes = [
+    narrowed ? `${narrowed} date-typed (harness limit)` : '',
+    skip ? `${skip} no top-level key` : '',
+  ].filter(Boolean).join(', ')
+  console.log(`  ${name.padEnd(14)} ${String(id).padStart(4)} (${pct.padStart(5)}%)  ${String(ch).padStart(8)}  ${String(th).padStart(6)}  ${String(ref).padStart(8)}${notes ? `   (+${notes})` : ''}`)
   if (ch > 0 || th > 0) anyFail = true
 }
 console.log(`\n  VERDICT: ${anyFail ? 'FAIL — at least one operation alters files' : 'PASS — no operation alters a file'}`)
