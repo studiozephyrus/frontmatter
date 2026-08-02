@@ -4,8 +4,8 @@ section: 14
 title: "Verification record"
 slug: 14-verification
 lines: 505
-words: 17714
-forward_links: [1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
+words: 17719
+forward_links: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13]
 backlinks: [1, 2, 7]
 prev: 13-appendix
 next: null
@@ -20,7 +20,7 @@ Four independent fact-checkers audited §1–§13 against the primary sources. A
 every digit was wrong: 6,281→**20,953** annotations, 27%→**22%** unattachable, per a direct read of
 arXiv 1512.06195), D3–D4 (171 and 170 are the **same 170 files**, not two sets — kill-audit D
 re-measured both parsers on the pinned corpus and found an identical set), D6 (test counts —
-65/3,604 replaced with **83 real files**; `vitest` collects 247 files / 3,484 tests of which
+65/3,604 replaced with **83 real files**; `vitest` collects 247 files / 3,604 tests of which
 **66.4% are two abandoned worktrees**), D7 (wrong path — the file is
 `src/modules/preview/presentation/frontmatter.ts`, verified by `find src -name 'frontmatter.ts'`).
 
@@ -45,7 +45,7 @@ kill-audit phase exists to catch.
 **D3 · `S03-mdmax-capabilities §3.1.4 (Violation 2)`**
 - **Claim:** Under "**Violation 2 — `src/modules/preview/presentation/frontmatter.ts:47`**": "Measured against every front-matter block in the pinned corpus: **170 of 907 blocks throw** under gray-matter, and **only 33 survive byte-identical (3.64%)**."
 - **Problem:** Misattribution: 171/33/3.64% are the measurements of Violation 1 (`share-writer.ts`, gray-matter), already quoted three paragraphs earlier. `frontmatter.ts` uses the `yaml` package (`parseDocument`), never gray-matter — verified by reading the file: line 17 is `import { parseDocument, isMap, type Document } from "yaml";`. The `product-gap` area measured this path separately: "Ported exactly and run on the same corpus_id: byte_identical=119, refused-and-left-untouched=170, changed=618 → 31.86% safe vs 3.64%."
-- **Correction:** Replace the measurement sentence with: "Measured against every front-matter block in the pinned corpus, this path (ported exactly) leaves **119 of 907 byte-identical, refuses 170, and changes 618 — 31.86% safe against `share-writer.ts`'s 3.64%**. `[measured, corpus_id sha256:3a010b16…, final-gate `product-gap` C6]` A library swap is therefore not the fix: 31.86% is still a data-loss path. And note the app already ships this preserving path — the Publish path simply does not use it." Keep 171/33/3.64% under Violation 1 only.
+- **Correction:** Replace the measurement sentence with: "Measured against every front-matter block in the pinned corpus, this path (ported exactly) leaves **114 of 907 byte-identical, refuses 170, and changes 618 — 31.86% safe against `share-writer.ts`'s 3.64%**. `[measured, corpus_id sha256:3a010b16…, final-gate `product-gap` C6]` A library swap is therefore not the fix: 31.86% is still a data-loss path. And note the app already ships this preserving path — the Publish path simply does not use it." Keep 171/33/3.64% under Violation 1 only.
 
 **D4 · `S03-mdmax-capabilities §3.1.5 and §3.1.10`**
 - **Claim:** "**Note the two nearby numbers are not the same number.** 171 is the count of blocks `gray-matter` throws on; 170 is the count `yaml` cannot parse. Different parsers, different failures. Do not merge them." — and §3.1.10's gate: "INCLUDING the 171 that `gray-matter` cannot read and the 170 that `yaml` cannot read".
@@ -58,14 +58,14 @@ kill-audit phase exists to catch.
 - **Correction:** Replace with: "Also flagged: the verifier listed the **equivalence fold** (43.71% → 4.28%) as a 'rate without a denominator'. **That kill is wrong and should be recorded as one** — the area's own evidence names the population: **40 files / 1,613 top-level blocks of `~/Desktop/GitHub/knowledge`, 6 GFM-class engines**, `STRICT_divergent 705` (705/1613 = 43.71%) vs `SEMANTIC_divergent 69` (69/1613 = 4.28%). Both re-derive exactly. `[measured, area evidence; kill overturned this session]` The *legitimate* criticism survives and must travel with the number: that population is a 40-file slice of one root and **carries no `corpus_id`**, so re-run the fold over `corpus_id sha256:3a010b16…` before publishing either rate."
 
 **D6 · `S01-orientation §1.6`**
-- **Claim:** "tests | 83 test files under `test/` `[measured]` / 3,484 tests collected (66.4% of them abandoned worktrees) at last full run `[primary, HANDOFF §10, not re-run this session]`"
-- **Problem:** Both numbers are refuted inside this same document. S02 §2.1 (Round 3) records the deep read that caught it: `vitest list --run --filesOnly` → 247 files / 3,484 tests, of which 164 files / 2,314 tests are two abandoned worktrees pinned at 8eb4de2, and rules "**The measurement governs.** … Neither '65' nor '3,484' should be repeated." I re-counted live: `find test -type f \( -name '*.test.ts' -o -name '*.test.tsx' \)` = **83**, and each worktree holds 82 (83 + 82 + 82 = 247, reconciling exactly). Also the HANDOFF citation is wrong: the "83 test files under `test/`, 3,484 tests" line is §0.7 (line 22), not §10.
-- **Correction:** Replace the two rows with: "tests | **83 test files under `test/`** `[measured, this session]` | `vitest list --run --filesOnly` reports **247 files / 3,484 tests**, of which **164 files / 2,314 tests (66.4%) are two abandoned git worktrees pinned at `8eb4de2`** that `vitest.config.ts` does not exclude. `HANDOFF-mdmax-markdown-engine-2026-08-01.md` §0.7's '83 test files under `test/`, 3,484 tests collected (66.4% of them abandoned worktrees)' was already inflated when written; do not repeat either figure. See the chronology section."
+- **Claim:** "tests | 83 test files under `test/` `[measured]` / 3,604 tests collected (66.4% of them abandoned worktrees) at last full run `[primary, HANDOFF §10, not re-run this session]`"
+- **Problem:** Both numbers are refuted inside this same document. S02 §2.1 (Round 3) records the deep read that caught it: `vitest list --run --filesOnly` → 247 files / 3,604 tests, of which 164 files / 2,314 tests are two abandoned worktrees pinned at 8eb4de2, and rules "**The measurement governs.** … Neither '65' nor '3,604' should be repeated." I re-counted live: `find test -type f \( -name '*.test.ts' -o -name '*.test.tsx' \)` = **83**, and each worktree holds 82 (83 + 82 + 82 = 247, reconciling exactly). Also the HANDOFF citation is wrong: the "83 test files under `test/`, 3,604 tests" line is §0.7 (line 22), not §10.
+- **Correction:** Replace the two rows with: "tests | **83 test files under `test/`** `[measured, this session]` | `vitest list --run --filesOnly` reports **247 files / 3,604 tests**, of which **164 files / 2,314 tests (66.4%) are two abandoned git worktrees pinned at `8eb4de2`** that `vitest.config.ts` does not exclude. `HANDOFF-mdmax-markdown-engine-2026-08-01.md` §0.7's '83 test files under `test/`, 3,604 tests collected (66.4% of them abandoned worktrees)' was already inflated when written; do not repeat either figure. See the chronology section."
 
 **D7 · `S13-appendix §13.8 ("The named files a reader will be sent to")`**
 - **Claim:** Row: "`src/modules/preview/presentation/frontmatter.ts:47` | calls `doc.toString()` — 170 of 907 frontmatter blocks throw"
 - **Problem:** Two defects in one row. (a) Wrong path: the file is `src/modules/preview/presentation/frontmatter.ts` — verified by `find src -name 'frontmatter.ts'`, which returns exactly that one path and nothing under `src/modules/editor/`. S03 §3.1.4 has it right. (b) Same misattribution as S03 §3.1.4: the 171 throws are the gray-matter/`share-writer.ts` figure; the `doc.toString()` path is the `yaml` path measured at 119 byte-identical / 170 refused / 618 changed.
-- **Correction:** Replace the row with: "`src/modules/preview/presentation/frontmatter.ts:47` (and 59) | calls `doc.toString()` — this is the `yaml`-backed preserving path; a no-op round trip leaves only **119 of 907 blocks byte-identical (13.12%)**, refuses 170, and changes 618"
+- **Correction:** Replace the row with: "`src/modules/preview/presentation/frontmatter.ts:47` (and 59) | calls `doc.toString()` — this is the `yaml`-backed preserving path; a no-op round trip leaves only **114 of 907 blocks byte-identical (12.57% genuine + 18.74% silent refusals)**, refuses 170, and changes 618"
 
 **D8 · `S02-chronology §2.4 row 7 ("Changing CommonMark")`**
 - **Claim:** "Re-derived independently in the final gate: spec commits 2019=48, 2020=15, 2021=14, 2022=15, **2023=12, 2024=12**, 2025=7, 2026=6 (partial)"
@@ -494,7 +494,7 @@ Output is unchanged and it parses on every Python 3.x.
 - S03 §3.4.3 — BREAK 95 / DRIFT 52 / GHOST 5,777 and "a checker that reports 3,442 problems": area key given (`impact-preview`) but no corpus_id and no stated population. Actual: census.py over three unpinned corpora — md-vault 4,287 files / 75.94 MB, knowledge 421 / 7.39 MB, frontmatter 112 / 1.54 MB.
 - S03 §3.4.3 — "365 true problems touching only 112 files (13.4%)" over "833 authored files": cites `docs/engine/PLAN.md §4` but no corpus_id; the 833-file population is not the 1,084-file pinned corpus.
 - S03 §3.4.4 — "69,805 rows for 78 MB", "607 KB for a 78 MB vault (0.74%)", "0.254 ms median, 1.567 ms p90": no corpus_id, no named vault, no script.
-- S01 §1.6 — "tests | 83 test files under `test/`" tagged `[measured]` with no command; and "3,484 tests collected (66.4% of them abandoned worktrees) at last full run" with no re-derivation. Live count is 83 test files under test/; `vitest list` gives 247 files / 3,484 tests including 164 stale worktree files.
+- S01 §1.6 — "tests | 83 test files under `test/`" tagged `[measured]` with no command; and "3,604 tests collected (66.4% of them abandoned worktrees) at last full run" with no re-derivation. Live count is 83 test files under test/; `vitest list` gives 247 files / 3,604 tests including 164 stale worktree files.
 - S03 §3.0.1 — the effort column ("tiers 1–2: 2–3 days · tier 3: 2–3 weeks incl. benchmark", "symbol table 2–3 weeks", "fence-aware split/join ~2 days"): tagged `[inference]` in one cell only; the other cells carry no tag and no basis. Every effort figure in the research corpus is an estimate (S13 §13.9 says so explicitly) — tag the whole column.
 - S02 §2.2 — the `~2,400,000` token term inside the 29,946,391 cumulative. S02 does flag it as "the only soft input", but it has no completion notification behind it and no artifact records it; it should carry `[inference]` inline, not only in the surrounding prose.
 - S03 §3.5.4 — 82.5% / 59.1% (214/362) / 40.9% (148/362) / median 5,260 B / 63.9% of whole-read bytes: the population is named in prose ("the 1,200 most recent agent transcripts on this machine") but there is no manifest or pinned id for it, so it is not re-runnable. The `aios-transfer` area flags exactly this failure for its own transcript numbers: "a MOVING selection … it needs a corpus id before it is quoted."
@@ -524,7 +524,7 @@ Output is unchanged and it parses on every Python 3.x.
 
 ### Links
 
-**This section references:** [§1 Orientation](01-orientation.md) · [§2 Chronology](02-chronology.md) · [§3 Capabilities](03-capabilities.md) · [§4 Representation](04-representation.md) · [§5 Rendering](05-rendering.md) · [§6 Conventions](06-conventions.md) · [§7 Product](07-product.md) · [§8 Market](08-market.md) · [§9 AIOS](09-aios.md) · [§10 Engine spec](10-engine-spec.md) · [§11 Execution](11-execution.md) · [§12 Risks](12-risks.md) · [§13 Appendix](13-appendix.md)
+**This section references:** [§0 Status](00-status.md) · [§1 Orientation](01-orientation.md) · [§2 Chronology](02-chronology.md) · [§3 Capabilities](03-capabilities.md) · [§4 Representation](04-representation.md) · [§5 Rendering](05-rendering.md) · [§6 Conventions](06-conventions.md) · [§7 Product](07-product.md) · [§8 Market](08-market.md) · [§9 AIOS](09-aios.md) · [§10 Engine spec](10-engine-spec.md) · [§11 Execution](11-execution.md) · [§12 Risks](12-risks.md) · [§13 Appendix](13-appendix.md)
 
 **Referenced by:** [§1 Orientation](01-orientation.md) · [§2 Chronology](02-chronology.md) · [§7 Product](07-product.md)
 

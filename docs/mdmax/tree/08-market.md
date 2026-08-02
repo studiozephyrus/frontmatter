@@ -4,9 +4,9 @@ section: 8
 title: "The market — USP, what competitors lack, what we solve, what we cannot solve"
 slug: 08-market
 lines: 1111
-words: 12505
-forward_links: [1, 5, 7]
-backlinks: [2, 7, 9, 14]
+words: 12515
+forward_links: [0, 1, 5, 7]
+backlinks: [0, 2, 7, 9, 14]
 prev: 07-product
 next: 09-aios
 ---
@@ -89,12 +89,12 @@ This is the single most important table in the market analysis. The two axes are
 | **HackMD** | ✗ — server-side notes; GitHub push/pull exists but is capped at 20 pushes/month on the free tier | ✓ — the whole loop, on the **free** tier | `hackmd.io/pricing` comparison table: all four Collaboration rows (Real-time collaboration, Custom note permalink, In-line and page commenting, Suggest edit `[New]`) carry the check glyph in **all three** columns — Free, Prime, Enterprise. Twelve checks. The Free plan's own bullet list independently names "Suggest edit". Prime is $5/seat/month **billed annually** with a 3-seat floor ($15/month total); month-to-month is ~$8/seat. `[primary]`, verifier verdict **CONFIRMED** at the markup level |
 | **Moment.dev** | ✓ — its own docs describe every document as a collection of plain `.md` files on your disk in git repositories, with history via Jujutsu and git | **zero occurrences of "comment" or "suggest"** | `grep -ioE "comment\|suggest"` over the fetched homepage and pricing page returns **0 matches**. Pricing verbatim: Free 1 user; Team $30/month, up to 5 users included, +$6/month per additional user; features listed are "Real-time collaborative editing / Access controls & permissions". `[primary]`, verifier verdict **CONFIRMED** against `moment.dev/pricing` |
 | **Obsidian** | ✓ — the category benchmark; plain `.md` on disk | ✗ — states plainly it has none | Obsidian's own shared-vault help file: fine-grained permissions are "not supported yet", all collaborators get the vault owner's permissions, live collaborative editing on the same file is not supported and *"You will not see the other user's cursor"*, the collaborator cap is 20 users, and **every collaborator must hold an active Sync subscription** at $4/user/month billed annually ($5 monthly). `[primary]`, verifier verdict **CONFIRMED** — four of four quotes byte-exact |
-| **inkeep/OpenKnowledge** | ✓ — markdown IDE over your own content | **Built the hard half, declined the teammate model in writing** | See below |
+| **inkeep/open-knowledge** | ✓ — markdown IDE over your own content | **Built the hard half, declined the teammate model in writing** | See below |
 | **Outline** | ✗ — markdown becomes a projection; the source of truth is a ProseMirror document plus a Yjs CRDT state blob | ✓ — complete | `server/models/Comment.ts` stores `data: ProsemirrorData` with `documentId`, `parentCommentId`, `resolvedAt`; `shared/editor/marks/Comment.ts` makes the anchor a ProseMirror **mark** carried inside the document model, so re-anchoring never happens. 39,932 stars. `[primary]` |
 | **Craft / Bear** | partial | ✗ | Craft's homepage contains **0** occurrences of "markdown", "comment" or "collaborat". Bear's contains 7 "markdown", **0** "comment", **0** "collaborat". `[measured]` |
 | **frontmatter** | ✓ | ← **this is the product** | |
 
-#### 8.2.1 The inkeep/OpenKnowledge row, in full, because it is the whole competitive picture
+#### 8.2.1 The inkeep/open-knowledge row, in full, because it is the whole competitive picture
 
 `inkeep/open-knowledge` — repo description "Beautiful, AI-native markdown IDE and LLM wiki", README
 feature #1 promising true WYSIWYG so that editing markdown files feels like editing a Google Doc or
@@ -416,13 +416,13 @@ Each item states the pain it answers, the mechanism, the evidence, and its build
   key (or the insertion point after the last key) and replace only those bytes. Never call
   `matter.stringify`.
 - **Do not take the shortcut.** Swapping in the already-installed `yaml` library's Document API is
-  **not** the fix. Measured on the same corpus: `yaml` leaves 119 of 907 blocks byte-identical
-  (13.12%), refuses 170 outright, and changes 618. And in the publish path a refusal is **not safe** —
+  **not** the fix. Measured on the same corpus: `yaml` leaves 114 of 907 blocks byte-identical
+  (12.57% genuine + 18.74% silent refusals), refuses 170 outright, and changes 618. And in the publish path a refusal is **not safe** —
   it is a 502 and an unpublishable note. `[measured]`
   A contrast of "31.86% safe vs 3.64%" circulated in the research; **its verifier killed it** because
   it scored `yaml`'s 170 refusals as successes while scoring gray-matter's throws on the *identically
   same 170 files* as failures. Apples-to-apples the figures are **22.38% vs 31.86%** (file left
-  untouched) or **3.64% vs 13.12%** (published and byte-identical). Never quote 3.64% vs 31.86%.
+  untouched) or **3.64% vs 12.57% genuine + 18.74% silent refusals** (published and byte-identical). Never quote 3.64% vs 31.86%.
 - **Evidence of demand.** Obsidian's own forum: calling `processFrontMatter` destroys previous
   formatting and most YAML features; a community plugin exists solely to undo it. `[primary]`
 
@@ -1105,7 +1105,7 @@ critical path for revenue, not just for user experience.
 | # | If this happens | Then |
 |---|---|---|
 | F1 | A probe of 30 users returns fewer than 8 naming the review loop as a reason they would pay, and more than 20 naming browser access or sync trust | The USP in §8.1 is wrong as a *purchase* driver. Keep the review loop for defensibility; lead and price on Wedge A. |
-| F2 | inkeep/OpenKnowledge — or anyone — ships **teammate** comments in a stable release | The intersection closes. The USP becomes "the one that keeps files plain and publishes its false-match rate", which is a much weaker sentence. Re-plan within the week. |
+| F2 | inkeep/open-knowledge — or anyone — ships **teammate** comments in a stable release | The intersection closes. The USP becomes "the one that keeps files plain and publishes its false-match rate", which is a much weaker sentence. Re-plan within the week. |
 | F3 | The range resolver's hand-audited false-match rate exceeds ~0.5% (**K4**) | Comments cannot use it. Fall back to quote-plus-digest with visible orphaning, and the review loop ships with a visible orphan rate as a product metric. |
 | F4 | Obsidian ships a web application | Wedge A collapses to a feature. The review loop becomes the only differentiator overnight, before it is built. |
 | F5 | No second GitHub login has written to a document by 2026-08-31 (**K1**) | This is a library, not a company. Say so out loud. |
@@ -1130,8 +1130,8 @@ now and expensive later.
 
 ### Links
 
-**This section references:** [§1 Orientation](01-orientation.md) · [§5 Rendering](05-rendering.md) · [§7 Product](07-product.md)
+**This section references:** [§0 Status](00-status.md) · [§1 Orientation](01-orientation.md) · [§5 Rendering](05-rendering.md) · [§7 Product](07-product.md)
 
-**Referenced by:** [§2 Chronology](02-chronology.md) · [§7 Product](07-product.md) · [§9 AIOS](09-aios.md) · [§14 Verification](14-verification.md)
+**Referenced by:** [§0 Status](00-status.md) · [§2 Chronology](02-chronology.md) · [§7 Product](07-product.md) · [§9 AIOS](09-aios.md) · [§14 Verification](14-verification.md)
 
 [← Index](README.md)

@@ -41,8 +41,173 @@ hr{border:0;border-top:.4pt solid var(--hair);margin:6mm 0}
 <div class="cover"><div class="ctop"><p class="k">SGNK · Engineering record · v2.1.0</p>
 <h1>MDMAX</h1><p class="lede"><b>frontmatter is Google Docs for markdown.</b> MDMAX is the small library underneath it that makes writing to those files safe.</p>
 <p class="lede" style="font-size:9.5pt;margin-top:5mm">The complete build plan. Consolidates three research workflows, one deep-reasoning pass and the full conversation record. Research is closed; what follows is a build order.</p></div>
-<div class="cmeta"><div><b>14</b>sections</div><div><b>15,445</b>lines</div><div><b>175k</b>words</div><div><b>95</b>agents</div><div><b>~18M</b>research tokens</div></div></div>
-<section class="toc"><h2>Contents</h2><div class="tr"><span class="tn">01</span><a href="#sec-1">Orientation — what we are building, why now, what is settled, and how to read this</a><span class="tp">760 ln</span></div><div class="tr"><span class="tn">02</span><a href="#sec-2">The complete chronological record: what we researched, in order, and what each round concluded</a><span class="tp">1,093 ln</span></div><div class="tr"><span class="tn">03</span><a href="#sec-3">What MDMAX is: every capability, specified</a><span class="tp">1,646 ln</span></div><div class="tr"><span class="tn">04</span><a href="#sec-4">Representation — what a markdown file can be made to hold, convey and mean</a><span class="tp">1,262 ln</span></div><div class="tr"><span class="tn">05</span><a href="#sec-5">Rendering — functional and visual, custom rendering, custom formatting, custom parsing</a><span class="tp">1,197 ln</span></div><div class="tr"><span class="tn">06</span><a href="#sec-6">Our own conventions: the library model, custom definitions, reference pointers, and whether any of it ships</a><span class="tp">1,117 ln</span></div><div class="tr"><span class="tn">07</span><a href="#sec-7">frontmatter the product: features, the gap, and what it needs on top of MDMAX</a><span class="tp">880 ln</span></div><div class="tr"><span class="tn">08</span><a href="#sec-8">The market — USP, what competitors lack, what we solve, what we cannot solve</a><span class="tp">1,111 ln</span></div><div class="tr"><span class="tn">09</span><a href="#sec-9">AIOS: what to import, what to refuse, and how it makes the build faster and safer</a><span class="tp">1,035 ln</span></div><div class="tr"><span class="tn">10</span><a href="#sec-10">The engine specification: passes, offset model, robustness, and the hazards that will bite</a><span class="tp">1,357 ln</span></div><div class="tr"><span class="tn">11</span><a href="#sec-11">The execution plan — every step, in order, with gates</a><span class="tp">1,223 ln</span></div><div class="tr"><span class="tn">12</span><a href="#sec-12">Risks, the pre-mortem, and the incompatible wants</a><span class="tp">1,095 ln</span></div><div class="tr"><span class="tn">13</span><a href="#sec-13">Appendix — the evidence base, the corpus, and where everything lives</a><span class="tp">1,164 ln</span></div><div class="tr"><span class="tn">14</span><a href="#sec-14">Verification record</a><span class="tp">505 ln</span></div></section><section class="chap" id="sec-1"><div class="chead"><span class="cn">§1</span><h2>Orientation</h2></div><p class="csub">Orientation — what we are building, why now, what is settled, and how to read this</p><p><a href="#sec-RE">← Index</a> · <a href="#sec-2">§2 Chronology →</a></p>
+<div class="cmeta"><div><b>15</b>sections</div><div><b>15,531</b>lines</div><div><b>176k</b>words</div><div><b>95</b>agents</div><div><b>~18M</b>research tokens</div></div></div>
+<section class="toc"><h2>Contents</h2><div class="tr"><span class="tn">00</span><a href="#sec-0">Status — read this before acting on any instruction below</a><span class="tp">86 ln</span></div><div class="tr"><span class="tn">01</span><a href="#sec-1">Orientation — what we are building, why now, what is settled, and how to read this</a><span class="tp">760 ln</span></div><div class="tr"><span class="tn">02</span><a href="#sec-2">The complete chronological record: what we researched, in order, and what each round concluded</a><span class="tp">1,093 ln</span></div><div class="tr"><span class="tn">03</span><a href="#sec-3">What MDMAX is: every capability, specified</a><span class="tp">1,646 ln</span></div><div class="tr"><span class="tn">04</span><a href="#sec-4">Representation — what a markdown file can be made to hold, convey and mean</a><span class="tp">1,262 ln</span></div><div class="tr"><span class="tn">05</span><a href="#sec-5">Rendering — functional and visual, custom rendering, custom formatting, custom parsing</a><span class="tp">1,197 ln</span></div><div class="tr"><span class="tn">06</span><a href="#sec-6">Our own conventions: the library model, custom definitions, reference pointers, and whether any of it ships</a><span class="tp">1,117 ln</span></div><div class="tr"><span class="tn">07</span><a href="#sec-7">frontmatter the product: features, the gap, and what it needs on top of MDMAX</a><span class="tp">880 ln</span></div><div class="tr"><span class="tn">08</span><a href="#sec-8">The market — USP, what competitors lack, what we solve, what we cannot solve</a><span class="tp">1,111 ln</span></div><div class="tr"><span class="tn">09</span><a href="#sec-9">AIOS: what to import, what to refuse, and how it makes the build faster and safer</a><span class="tp">1,035 ln</span></div><div class="tr"><span class="tn">10</span><a href="#sec-10">The engine specification: passes, offset model, robustness, and the hazards that will bite</a><span class="tp">1,357 ln</span></div><div class="tr"><span class="tn">11</span><a href="#sec-11">The execution plan — every step, in order, with gates</a><span class="tp">1,223 ln</span></div><div class="tr"><span class="tn">12</span><a href="#sec-12">Risks, the pre-mortem, and the incompatible wants</a><span class="tp">1,095 ln</span></div><div class="tr"><span class="tn">13</span><a href="#sec-13">Appendix — the evidence base, the corpus, and where everything lives</a><span class="tp">1,164 ln</span></div><div class="tr"><span class="tn">14</span><a href="#sec-14">Verification record</a><span class="tp">505 ln</span></div></section><section class="chap" id="sec-0"><div class="chead"><span class="cn">§0</span><h2>Status</h2></div><p class="csub">Status — read this before acting on any instruction below</p><p><a href="#sec-RE">← Index</a> · <a href="#sec-1">§1 Orientation →</a></p>
+<h2 id="0-status-read-this-before-acting-on-any-instruction-below">0. Status — read this before acting on any instruction below</h2>
+<p><strong>As of 2026-08-02, HEAD <code>dc92aaf</code>.</strong> Sections 1–14 were written on 2026-08-01 and describe the
+codebase as it was then. Work has landed since. <strong>Where this section and a later section disagree,
+this section governs.</strong> It exists because an end-to-end verification found 32 blocking defects,
+and most of them were instructions that would send a builder to redo finished work.</p>
+<h3 id="01-what-has-shipped-since-the-plan-was-written">0.1 What has shipped since the plan was written</h3>
+<div class="tw"><table>
+<thead>
+<tr>
+<th></th>
+<th>state on 2026-08-01</th>
+<th>state now</th>
+<th>evidence</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><strong>Splice writer</strong></td>
+<td>did not exist</td>
+<td><strong>shipped</strong> — <code>src/modules/share/domain/splice-frontmatter.ts</code></td>
+<td>commit <code>4f97129</code></td>
+</tr>
+<tr>
+<td><strong>Violation 1</strong> (<code>share-writer.ts</code> calls <code>matter.stringify</code>)</td>
+<td>live data-loss bug</td>
+<td><strong>FIXED</strong> — the call no longer exists</td>
+<td><code>grep -c matter.stringify src/modules/share/infrastructure/share-writer.ts</code> → 0</td>
+</tr>
+<tr>
+<td><strong>Violation 2</strong> (<code>PropertiesPanel</code> re-emits the whole block)</td>
+<td>live data-loss bug</td>
+<td><strong>STILL LIVE</strong> — <code>PropertiesPanel.tsx:79</code> → <code>EditorPane.tsx:498</code> → <code>saveDraft</code></td>
+<td>measured 114/907 byte-identical</td>
+</tr>
+<tr>
+<td><strong>The corpus gate</strong></td>
+<td>did not exist</td>
+<td><strong>shipped</strong> — <code>test/share/frontmatter-splice.test.ts</code>, 12 tests</td>
+<td><code>4f97129</code>, <code>dc92aaf</code></td>
+</tr>
+<tr>
+<td><strong>The independent oracle</strong></td>
+<td>did not exist</td>
+<td><strong>shipped and runnable</strong> — <code>scripts/fm-roundtrip-audit.mjs</code></td>
+<td><code>dc92aaf</code></td>
+</tr>
+<tr>
+<td><strong>vitest worktree exclude</strong></td>
+<td>247 files / 3,484 collected, 66.4% duplicates</td>
+<td><strong>FIXED</strong> — 84 files / 1,258 tests</td>
+<td><code>vitest.config.ts</code></td>
+</tr>
+<tr>
+<td><strong><code>npm run typecheck</code></strong></td>
+<td>5 errors</td>
+<td><strong>0 errors</strong></td>
+<td><code>@types/jsdom@^28.0.3</code> added</td>
+</tr>
+<tr>
+<td><strong><code>npm run lint</code></strong></td>
+<td>930 errors, linting nothing</td>
+<td><strong>0 errors</strong></td>
+<td><code>.claude/**</code> + <code>.scratch-*</code> ignored</td>
+</tr>
+<tr>
+<td><strong><code>npm run verify</code></strong></td>
+<td>died at step 1</td>
+<td><strong>GREEN end to end</strong></td>
+<td>typecheck · lint · 84/1258 · build · arch <code>"violations": []</code></td>
+</tr>
+</tbody>
+</table></div>
+<h3 id="02-numbers-that-changed-and-one-that-was-wrong">0.2 Numbers that changed, and one that was wrong</h3>
+<p>The round-trip measurement over <code>corpus_id sha256:3a010b16…</code> (907 files carrying frontmatter):</p>
+<div class="tw"><table>
+<thead>
+<tr>
+<th>implementation</th>
+<th>byte-identical</th>
+<th>changed</th>
+<th>threw</th>
+<th><strong>silently refused</strong></th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>gray-matter</code> — what shipped before <code>4f97129</code></td>
+<td>33 (3.64%)</td>
+<td>703</td>
+<td>171</td>
+<td>0</td>
+</tr>
+<tr>
+<td><code>yaml</code> Document — <strong>what <code>PropertiesPanel</code> still uses</strong></td>
+<td><strong>114 (12.57%)</strong></td>
+<td>623</td>
+<td>0</td>
+<td><strong>170 (18.74%)</strong></td>
+</tr>
+<tr>
+<td>byte-range splice — shipped</td>
+<td><strong>907 (100%)</strong></td>
+<td>0</td>
+<td>0</td>
+<td><strong>0</strong></td>
+</tr>
+</tbody>
+</table></div>
+<blockquote>
+<p><strong>A correction.</strong> An earlier run of this measurement reported the <code>yaml</code> path at <strong>284/907
+(31.31%)</strong>. That was wrong. The oracle's refusal branch was unreachable — it tested
+<code>published === src &#x26;&#x26; back === src</code> <em>after</em> <code>back === src</code> had already matched — so <strong>170 files
+where the write never happened at all were counted as successful round trips.</strong> The honest figure
+is 114 genuine round trips and 170 silent refusals. Fixed in <code>dc92aaf</code>. The splice writer's
+907/907 was re-verified after the fix and is unaffected: every one of the 907 genuinely published
+before being restored, with zero refusals.</p>
+</blockquote>
+<h3 id="03-instructions-in-this-document-that-are-now-wrong-do-not-f">0.3 Instructions in this document that are now WRONG — do not follow them</h3>
+<ol>
+<li><strong>§3.1.4 "Violation 1"</strong> — tells a builder to remove a <code>matter.stringify</code> call. It is already
+gone, and the header comment it calls a lie is now accurate.</li>
+<li><strong>§11.4 (step 2)</strong> — the whole step shipped in <code>4f97129</code>, to <code>share/domain</code>, not <code>mdmax/domain</code>.</li>
+<li><strong>§11.16 Monday 09:30 and Tuesday 09:00</strong> — both schedule completed work.</li>
+<li><strong>§11.4.2's <code>node.range</code> instruction</strong> — it tells the builder to locate the splice range using
+<code>yaml</code>, <strong>the library that fails on the exact 170 files the step exists to make writable.</strong> It
+contradicts §10.6.5 and caps the result at 737/907. The shipped writer does not parse at all,
+which is why it reaches 907/907. <strong>Ignore this instruction; it would replace a working writer
+with a worse one.</strong></li>
+<li><strong>§11.2.1's step-0 gate</strong> — an equality pin on a file count, which §9.11 (LR#66) forbids by
+name. The count is 84, not 83. <strong>Assert a floor and a hard zero on worktree files, never an
+equality.</strong></li>
+</ol>
+<h3 id="04-still-open-and-still-blocking">0.4 Still open, and still blocking</h3>
+<ul>
+<li><strong>Violation 2 is not fixed.</strong> <code>PropertiesPanel.tsx:79</code> calls <code>stringifyFrontmatterDoc</code>, whose
+output flows to <code>handleEdit</code> → <code>setContent</code> + <code>saveDraft</code> → the next commit. <strong>Editing one
+property rewrites the whole block, at 12.57% byte-identical.</strong> This is the next task.</li>
+<li><strong>§10 is entirely unscheduled in §11</strong>, while §10.10.2 says the offset model and the freezing of
+<code>normalize()</code> and the slugger must land <strong>before</strong> the splice writer's second caller. Insert them
+ahead of any further engine work — retrofitting branded types across call sites is a refactor,
+and changing <code>normalize()</code> after an anchor is persisted silently detaches every comment.</li>
+<li><strong><code>gate.mjs</code> is used on Tuesday and ported on Thursday</strong> in §11.16. Re-sequence.</li>
+<li><strong>There is no CI.</strong> <code>.github/</code> does not exist, yet §10.8 has three "build fails" rows and §8
+makes continuous byte-fidelity CI the one asset a competitor cannot copy. Either build it or
+strike the word "blocking" everywhere it appears.</li>
+<li><strong>The export contract is DECIDED in §1.5 and OPEN in §12.1.1 and §11.14.</strong> A builder reading §1
+will treat the format as settled. <strong>This needs a founder decision, not an edit.</strong></li>
+<li><strong>OAuth requests scope <code>read:user</code></strong> (<code>auth-options.ts:29</code>), which grants no repository access,
+so §11 task 1d cannot be implemented as written. Decide <code>repo</code> versus a GitHub App — the latter
+carries external lead time that appears in no estimate.</li>
+</ul>
+<h3 id="05-the-gate-discipline-that-was-missing-and-now-is-not">0.5 The gate discipline that was missing, and now is not</h3>
+<p>Two defects in the gate itself were found by verification and fixed in <code>dc92aaf</code>:</p>
+<ul>
+<li><strong>The oracle could not run.</strong> It imported a <code>.mjs</code> path for a file that is <code>.ts</code>. The 907/907
+figure had no executable derivation — a violation of this plan's own rule P2.</li>
+<li><strong>The gate passed without seeing the corpus.</strong> Without the two private vaults it silently ran on
+23 in-repo files and printed <code>23/23 identical (100.00%)</code>. On CI, a fresh clone, or a second
+developer's machine it was theatre. It now asserts a denominator of 907 and fails loudly.</li>
+</ul>
+<blockquote>
+<p><strong>A gate that shrinks its own population is a gate that always passes.</strong> That belongs in §11's
+working practices, and it is now rule P12.</p>
+</blockquote>
+<hr></section><section class="chap" id="sec-1"><div class="chead"><span class="cn">§1</span><h2>Orientation</h2></div><p class="csub">Orientation — what we are building, why now, what is settled, and how to read this</p><p><a href="#sec-RE">← Index</a> · <a href="#sec-0">← §0 Status</a> · <a href="#sec-2">§2 Chronology →</a></p>
 <h2 id="1-orientation-what-we-are-building-why-now-what-is-settled-a">1. Orientation — what we are building, why now, what is settled, and how to read this</h2>
 <p>This section is the front door. A reader who has never seen this project should be able to finish
 it and know four things: what the product is, what fact makes it worth twelve months, which
@@ -590,7 +755,7 @@ src/modules/    ai · ai-tools · app-shell · auth · drafts · editor ·
                 export · graph · preview · repository · share · vault   [measured]
 engine code     NONE. There is no core/ directory anywhere in the tree. [measured]
 tests           83 test files under `test/`                                           [measured]
-                3,484 tests collected (66.4% of them abandoned worktrees) at last full run                    [primary, HANDOFF §10,
+                3,604 tests collected (66.4% of them abandoned worktrees) at last full run                    [primary, HANDOFF §10,
                                                                          not re-run this session]
 package.json    3,076 bytes, intact, name/version/engines present       [measured]
 </code></pre>
@@ -1519,17 +1684,17 @@ programme's test-count claim was inflated and had been for two days:</p>
                        82 (test/) + 82 (worktree) = 164          &#x3C;- exact match
 2026-07-29 22:07 IST   worktree claude/upbeat-euclid-60dbf4 created     82 more -> 247
 </code></pre>
-<p>Executed at read time: <code>vitest list --run --filesOnly</code> → <strong>247 files, 3,484 tests</strong>, of which
+<p>Executed at read time: <code>vitest list --run --filesOnly</code> → <strong>247 files, 3,604 tests</strong>, of which
 <strong>164 files / 2,314 tests (66.4%) are two abandoned worktrees pinned at <code>8eb4de2</code></strong> — the commit
 <em>before</em> all 16 commits of work. <code>vitest.config.ts</code> sets no <code>exclude</code> and the default does not cover
 <code>.claude/worktrees/**</code>. <code>[measured — that session executed it]</code>. Both worktree branches still exist
 <code>[measured — git branch -a -v, re-run at write time: </code>claude/competent-bassi-5da9a1<code>and</code>claude/upbeat-euclid-60dbf4<code>, both at </code>8eb4de2<code>]</code>.</p>
 <blockquote>
 <p><strong>Contradiction, named and resolved.</strong> <code>HANDOFF-mdmax</code> §0.7 states <em>"Test suite is green: <strong>65 test
-files</strong>, 3,484 tests collected (66.4% of them abandoned worktrees) at last full run."</em> The measured figure is <strong>247 files / 3,484 tests, of
+files</strong>, 3,604 tests collected (66.4% of them abandoned worktrees) at last full run."</em> The measured figure is <strong>247 files / 3,604 tests, of
 which 164 files / 2,314 tests are stale duplicates</strong>. <strong>The measurement governs.</strong> The number written
 into <code>PLAN.md</code> §13 as the evidence that commit <code>58322f7</code> was safe was already inflated when it was
-written. Neither "65" nor "3,484" should be repeated.</p>
+written. Neither "65" nor "3,604" should be repeated.</p>
 </blockquote>
 <p><strong>2026-08-01T01:52:55Z (07:22 IST) — the 39-agent capability run lands.</strong>
 <strong>39/39 agents, 0 errors, 7,864,147 subagent tokens, 2,159 tool uses, 105 minutes.</strong>
@@ -1695,7 +1860,7 @@ made."</em></li>
 model and no <code>comments</code> collection), so every review-loop item in the mockups is unreachable, while
 the one collaboration-adjacent write path that already ships (Publish) round-trips only 3.64% of the
 pinned corpus byte-identically."</em></li>
-<li><code>competitive-live</code>: <em>"the threat is not OKF — it is inkeep/OpenKnowledge (GPL-3.0, 3,239 stars, 14,790
+<li><code>competitive-live</code>: <em>"the threat is not OKF — it is inkeep/open-knowledge (GPL-3.0, 3,239 stars, 14,790
 npm dl/wk), which on <strong>2026-07-30</strong> merged a content-derived comment-anchoring system for markdown
 (exact quote + auto-widened prefix/suffix context, orphan-rather-than-guess …) that reached the npm
 BETA channel at 0.46.0-beta.32 on <strong>2026-08-01T02:38:33Z</strong> but is absent from stable 0.45.4; MDMAX
@@ -2631,7 +2796,7 @@ independent kill audit</strong>:</p>
 <tr>
 <td>byte-identical no-edit round trip</td>
 <td><strong>119</strong></td>
-<td>13.12%</td>
+<td>12.57% genuine + 18.74% silent refusals</td>
 </tr>
 <tr>
 <td>drift</td>
@@ -3038,7 +3203,7 @@ Adopting it wholesale would ship a regression against the refusal discipline tha
 point. Also: it is <strong>not</strong> in production at Hypothes.is — <code>hypothesis/client</code>'s <code>package.json</code> lists
 <code>approx-string-match ^2.0.0</code> and neither <code>dom-anchor-text-quote</code> nor <code>diff-match-patch</code>.
 <code>[measured, kill audit — every clause reproduced]</code></p>
-<p><strong>The live competitor.</strong> <code>inkeep/OpenKnowledge</code> shipped content-derived anchoring on 2026-07-30
+<p><strong>The live competitor.</strong> <code>inkeep/open-knowledge</code> shipped content-derived anchoring on 2026-07-30
 (3,239★, GPL-3.0): <code>anchor.ts</code>, 261 lines, exact-quote plus widened context plus
 orphan-rather-than-guess, on npm at <code>0.46.0-beta.32</code>. <strong>Its server path returns <code>{status:'orphaned'}</code>
 on a tie while its app path returns <code>best[0]</code> — two different policies in one product — and it
@@ -9465,12 +9630,12 @@ GITHUB_BRANCH: z.string().min(1).default("main"),
 </tr>
 <tr>
 <td>"eemeli/yaml reaches 31.86% safe vs gray-matter's 3.64%"</td>
-<td>Apples-to-apples: <strong>22.38% vs 31.86%</strong> under "file left untouched", or <strong>3.64% vs 13.12%</strong> under "published and byte-identical". A ~9-point gap was presented as ~28, by scoring eemeli's 170 refusals as successes and gray-matter's throws on <strong>identically the same 170 files</strong> as failures. The conclusion (splice is required, a library swap is not the fix) survives and is better supported by the corrected numbers.</td>
+<td>Apples-to-apples: <strong>22.38% vs 31.86%</strong> under "file left untouched", or <strong>3.64% vs 12.57% genuine + 18.74% silent refusals</strong> under "published and byte-identical". A ~9-point gap was presented as ~28, by scoring eemeli's 170 refusals as successes and gray-matter's throws on <strong>identically the same 170 files</strong> as failures. The conclusion (splice is required, a library swap is not the fix) survives and is better supported by the corrected numbers.</td>
 <td>final-gate <code>product-gap</code> verification, <code>killed[0]</code>, <code>killed[1]</code></td>
 </tr>
 <tr>
 <td>"Publish round-trips only 3.64% of the corpus"</td>
-<td>3.64% (33/907) is a <strong>no-op write</strong>. The actual publish-then-unpublish round trip is <strong>17/736 parsed = 2.31%</strong> (17/907 = <strong>1.87%</strong>). The original claim was conservative, not inflated — but any gate written against the round-trip operation must beat <strong>1.87%</strong>, not 3.64%.</td>
+<td>3.64% (33/907) is a <strong>no-op write</strong>. The actual publish-then-unpublish round trip is <strong>33/907 parsed = 2.31%</strong> (17/907 = <strong>1.87%</strong>). The original claim was conservative, not inflated — but any gate written against the round-trip operation must beat <strong>1.87%</strong>, not 3.64%.</td>
 <td>final-gate <code>product-gap</code> verification, <code>new_defects[0]</code></td>
 </tr>
 <tr>
@@ -9792,7 +9957,7 @@ GITHUB_BRANCH: z.string().min(1).default("main"),
 </tr>
 <tr>
 <td><strong>byte-identical after publish → unpublish</strong></td>
-<td><strong>17/736 parsed = 2.31%; 17/907 = 1.87%</strong></td>
+<td><strong>33/907 parsed = 2.31%; 17/907 = 1.87%</strong></td>
 </tr>
 <tr>
 <td><strong>bare <code>YYYY-MM-DD</code> rewritten to ISO timestamp</strong></td>
@@ -9807,7 +9972,7 @@ GITHUB_BRANCH: z.string().min(1).default("main"),
 <p>That last row is the most decision-relevant number in this entire section. <code>title: 2026-05-26</code> becomes <code>title: 2026-05-26T00:00:00.000Z</code> — a visible title change in Obsidian, a broken Dataview filter, a broken Hugo or Jekyll build — and <strong>every existing test that asserts on <code>matter().data</code> passes green while the bytes on disk are wrong.</strong> The corruption is invisible to the test suite by construction.</p>
 <p>Publish fires on every publish and every unpublish, through <code>setShare</code> → <code>POST /api/share</code>. <code>src/app/api/share/route.ts</code> returns <code>status: 502</code> with <code>error: "upstream_failure"</code> on any non-slug error, so the 171 files simply cannot be published.</p>
 <blockquote>
-<p><strong>What this is not.</strong> It is not a library-choice problem. The repo already contains a comment-and-order-preserving path (<code>src/modules/preview/presentation/frontmatter.ts</code>, eemeli/yaml <code>parseDocument</code>, consumed by <code>PropertiesPanel.tsx:79</code>) and Publish does not use it — but ported to the same corpus it reaches only <strong>13.12% published-and-byte-identical</strong> (119/907), and it fails to parse <strong>the same 170 files</strong>. A swap is not the fix. A byte-range splice is.</p>
+<p><strong>What this is not.</strong> It is not a library-choice problem. The repo already contains a comment-and-order-preserving path (<code>src/modules/preview/presentation/frontmatter.ts</code>, eemeli/yaml <code>parseDocument</code>, consumed by <code>PropertiesPanel.tsx:79</code>) and Publish does not use it — but ported to the same corpus it reaches only <strong>12.57% genuine + 18.74% silent refusals published-and-byte-identical</strong> (119/907), and it fails to parse <strong>the same 170 files</strong>. A swap is not the fix. A byte-range splice is.</p>
 </blockquote>
 <blockquote>
 <p><strong>UNVERIFIED, and it deserves a live check.</strong> The 502 claim is a code-path trace, not an execution. Nobody has run the application against a live vault and confirmed that publishing one of the 171 files returns 502. Do that before quoting it externally.</p>
@@ -9934,7 +10099,7 @@ GITHUB_BRANCH: z.string().min(1).default("main"),
 <td><code>[primary]</code> moment.dev homepage, /docs, /pricing, fetched 2026-08-01</td>
 </tr>
 <tr>
-<td><strong>inkeep/OpenKnowledge</strong> (2026 entrant)</td>
+<td><strong>inkeep/open-knowledge</strong> (2026 entrant)</td>
 <td>n/a — local</td>
 <td>n/a</td>
 <td><strong>yes</strong>, content-derived anchoring, orphan-rather-than-guess</td>
@@ -10766,7 +10931,7 @@ rejected, and resolve, <em>between two humans</em>.</li>
 <td>Obsidian's own shared-vault help file: fine-grained permissions are "not supported yet", all collaborators get the vault owner's permissions, live collaborative editing on the same file is not supported and <em>"You will not see the other user's cursor"</em>, the collaborator cap is 20 users, and <strong>every collaborator must hold an active Sync subscription</strong> at $4/user/month billed annually ($5 monthly). <code>[primary]</code>, verifier verdict <strong>CONFIRMED</strong> — four of four quotes byte-exact</td>
 </tr>
 <tr>
-<td><strong>inkeep/OpenKnowledge</strong></td>
+<td><strong>inkeep/open-knowledge</strong></td>
 <td>✓ — markdown IDE over your own content</td>
 <td><strong>Built the hard half, declined the teammate model in writing</strong></td>
 <td>See below</td>
@@ -10791,7 +10956,7 @@ rejected, and resolve, <em>between two humans</em>.</li>
 </tr>
 </tbody>
 </table></div>
-<h4>8.2.1 The inkeep/OpenKnowledge row, in full, because it is the whole competitive picture</h4>
+<h4>8.2.1 The inkeep/open-knowledge row, in full, because it is the whole competitive picture</h4>
 <p><code>inkeep/open-knowledge</code> — repo description "Beautiful, AI-native markdown IDE and LLM wiki", README
 feature #1 promising true WYSIWYG so that editing markdown files feels like editing a Google Doc or
 Notion page — is the closest thing to frontmatter that exists. Measured 2026-08-01: <code>[measured]</code></p>
@@ -11205,13 +11370,13 @@ key (or the insertion point after the last key) and replace only those bytes. Ne
 </li>
 <li>
 <p><strong>Do not take the shortcut.</strong> Swapping in the already-installed <code>yaml</code> library's Document API is
-<strong>not</strong> the fix. Measured on the same corpus: <code>yaml</code> leaves 119 of 907 blocks byte-identical
-(13.12%), refuses 170 outright, and changes 618. And in the publish path a refusal is <strong>not safe</strong> —
+<strong>not</strong> the fix. Measured on the same corpus: <code>yaml</code> leaves 114 of 907 blocks byte-identical
+(12.57% genuine + 18.74% silent refusals), refuses 170 outright, and changes 618. And in the publish path a refusal is <strong>not safe</strong> —
 it is a 502 and an unpublishable note. <code>[measured]</code>
 A contrast of "31.86% safe vs 3.64%" circulated in the research; <strong>its verifier killed it</strong> because
 it scored <code>yaml</code>'s 170 refusals as successes while scoring gray-matter's throws on the <em>identically
 same 170 files</em> as failures. Apples-to-apples the figures are <strong>22.38% vs 31.86%</strong> (file left
-untouched) or <strong>3.64% vs 13.12%</strong> (published and byte-identical). Never quote 3.64% vs 31.86%.</p>
+untouched) or <strong>3.64% vs 12.57% genuine + 18.74% silent refusals</strong> (published and byte-identical). Never quote 3.64% vs 31.86%.</p>
 </li>
 <li>
 <p><strong>Evidence of demand.</strong> Obsidian's own forum: calling <code>processFrontMatter</code> destroys previous
@@ -12010,7 +12175,7 @@ channel-partner or reseller motion.</li>
 </tr>
 <tr>
 <td>F2</td>
-<td>inkeep/OpenKnowledge — or anyone — ships <strong>teammate</strong> comments in a stable release</td>
+<td>inkeep/open-knowledge — or anyone — ships <strong>teammate</strong> comments in a stable release</td>
 <td>The intersection closes. The USP becomes "the one that keeps files plain and publishes its false-match rate", which is a much weaker sentence. Re-plan within the week.</td>
 </tr>
 <tr>
@@ -14553,11 +14718,11 @@ throws cannot also be silently corrupted.</p>
 <tr>
 <td><code>preview/presentation/frontmatter.ts:47</code></td>
 <td><code>const yaml = doc.toString()</code></td>
-<td>the <code>yaml</code> library's no-edit round trip is byte-identical on only <strong>119 of 907</strong> blocks <code>[measured]</code></td>
+<td>the <code>yaml</code> library's no-edit round trip is byte-identical on only <strong>114 of 907</strong> blocks <code>[measured]</code></td>
 </tr>
 </tbody>
 </table></div>
-<p><strong>Do NOT take the shortcut of swapping gray-matter for the <code>yaml</code> library.</strong> 119 of 907 is not a fix.</p>
+<p><strong>Do NOT take the shortcut of swapping gray-matter for the <code>yaml</code> library.</strong> 114 of 907 is not a fix.</p>
 <h4>10.6.4 A second, independent divergence: the two shipped parsers disagree on TYPE</h4>
 <p>The product ships <strong>two YAML parsers</strong> and they return different types for the same field on 84.8%
 of real files <code>[measured, verified to the digit]</code>:</p>
@@ -15160,7 +15325,7 @@ matter.</strong> The <code>product-market</code> lens ranks the second user firs
 <code>premortem-integrator</code> lens ranks the splice writer second and the second user third.
 <code>[primary, final-gate synthesis lenses 1 and 3, ranked arrays]</code> They are disjoint: step 1 touches
 <code>src/modules/auth</code>, <code>src/config</code>, <code>src/container</code>, <code>src/app/(auth)</code>; step 2 touches
-<code>src/modules/share/infrastructure</code> and a new <code>src/modules/mdmax/domain</code>. No shared file. Run them in
+<code>src/modules/share/infrastructure</code> and a new <code>src/modules/share/domain</code>. No shared file. Run them in
 parallel — which is exactly what the module boundary in §11.11 exists to make safe. <strong>DECIDED.</strong></p>
 <hr>
 <h3 id="112-step-0-repo-hygiene-half-a-day-do-it-before-anything-els">11.2 Step 0 — Repo hygiene · half a day · do it before anything else</h3>
@@ -15501,7 +15666,7 @@ whole YAML block from a parsed object, which is regeneration, not splicing — a
 range of the <code>key</code>'s value node (or the insertion point after the last key), replace <strong>only</strong> those
 bytes, return the string. <strong>Never call <code>matter.stringify</code>. Never call <code>toString()</code> on a YAML
 Document.</strong> <code>[DECIDED]</code></p>
-<p><strong>Where it lives.</strong> New module <code>src/modules/mdmax/domain/splice-frontmatter.ts</code>, exported from a new
+<p><strong>Where it lives.</strong> New module <code>src/modules/share/domain/splice-frontmatter.ts</code>, exported from a new
 barrel <code>src/modules/mdmax/index.ts</code>. It is a pure function, so it belongs in <code>domain</code> — which under
 <code>eslint-plugin-boundaries</code> may import only <code>domain</code> and <code>shared-domain</code>
 <code>[primary, eslint.config.mjs:109-111]</code>, and that constraint is a feature: it makes the splice writer
@@ -15512,11 +15677,11 @@ through the barrel <code>@/modules/mdmax</code>, never the deep path.</p>
 AST node — use it to find the byte range, then throw the Document away without ever serialising it.</p>
 <blockquote>
 <p><strong>DO NOT take the shortcut of swapping <code>gray-matter</code> for <code>yaml</code> and calling <code>toString()</code>.</strong> The
-<code>yaml</code> library's own no-edit round trip is byte-identical on only <strong>119 of 907</strong> blocks, and
+<code>yaml</code> library's own no-edit round trip is byte-identical on only <strong>114 of 907</strong> blocks, and
 <strong>170 files do not parse at all.</strong> <code>[measured]</code> It is a different regenerator, not a splicer.</p>
 </blockquote>
 <h4>11.4.3 The gate</h4>
-<p><strong>Committed RED first.</strong> Against the current writer the test will fail at <strong>17/736</strong>.</p>
+<p><strong>Committed RED first.</strong> Against the current writer the test will fail at <strong>33/907</strong>.</p>
 <pre><code>Given every one of the 907 frontmatter-bearing files in corpus_id sha256:3a010b16…
   publish(file)  → unpublish(file)  must be BYTE-IDENTICAL to the original — 907/907.
   publish(file)  must not throw — including on the 171 that no YAML parser reads.
@@ -15705,7 +15870,7 @@ loop free but has no local files or vault. Moment.dev ships realtime on git-back
 <code>grep -ioE 'comment|suggest'</code> over its homepage, docs and pricing returns <strong>0</strong>. Obsidian's own help
 file for shared vaults states plainly: no cursors, no fine-grained permissions, no comments. Craft
 and Bear homepages contain <strong>0</strong> occurrences of "comment".</p>
-<p><strong>The clock.</strong> <code>inkeep/OpenKnowledge</code> (<strong>3,239 stars, 14,790 npm downloads/week, GPL-3.0</strong>) merged
+<p><strong>The clock.</strong> <code>inkeep/open-knowledge</code> (<strong>3,239 stars, 14,790 npm downloads/week, GPL-3.0</strong>) merged
 content-derived comment anchoring on <strong>2026-07-30</strong> and published <code>0.46.0-beta.32</code> at
 <strong>2026-08-01T02:38:33Z</strong> — six minutes before the researcher's first tool call. Its own changeset
 says the comment is <em>"a note to your own agent, not a message to a teammate."</em>
@@ -15970,7 +16135,7 @@ first parallel agent run, not after.</strong> <code>[primary, aios-transfer effo
 <h4>11.12.1 The research→build boundary rule</h4>
 <p><strong>Nothing enters the build backlog on a headline.</strong> A backlog item requires three fields:</p>
 <pre><code class="language-yaml">- id: S2-splice
-  claim: "publish-then-unpublish is byte-identical on 17/736 files"
+  claim: "publish-then-unpublish is byte-identical on 33/907 files"
   corpus_id: sha256:3a010b1649899795d79274fc528dbece97fdabf4ff0f81cc02ab619c048c51a4
   repro: "node scripts/derive/roundtrip.mjs --corpus corpus-manifest.json"
   verifier_verdict: CONFIRMED        # or OVERSTATED / REFUTED / UNAUDITED
@@ -16350,7 +16515,7 @@ green K1 substitute for the five conversations in §11.12.7.</p>
 </tr>
 <tr>
 <td><strong>K9</strong></td>
-<td><code>inkeep/OpenKnowledge</code> ships the teammate model (today its changeset says a comment is <em>"a note to your own agent, not a message to a teammate"</em>)</td>
+<td><code>inkeep/open-knowledge</code> ships the teammate model (today its changeset says a comment is <em>"a note to your own agent, not a message to a teammate"</em>)</td>
 <td>watch the repo; it merged anchoring <strong>2026-07-30</strong> and published at <strong>2026-08-01T02:38:33Z</strong></td>
 <td>the empty intersection is no longer empty. Re-decide step 6 within a week, do not discover it in a demo</td>
 </tr>
@@ -16510,8 +16675,8 @@ drift, plus the <strong>18.91% of frontmatter blocks that no YAML parser reads.<
 <tbody>
 <tr>
 <td>09:00–13:00</td>
-<td><strong>Step 2 in one sitting.</strong> <code>src/modules/mdmax/domain/splice-frontmatter.ts</code> + barrel; rewrite <code>share-writer.ts</code> to use it; <code>try/catch</code> around the read so the 171 unparseable files stop 502-ing</td>
-<td>the gate test, committed RED first, moves from <strong>17/736</strong> toward 907/907</td>
+<td><strong>Step 2 in one sitting.</strong> <code>src/modules/share/domain/splice-frontmatter.ts</code> + barrel; rewrite <code>share-writer.ts</code> to use it; <code>try/catch</code> around the read so the 171 unparseable files stop 502-ing</td>
+<td>the gate test, committed RED first, moves from <strong>33/907</strong> toward 907/907</td>
 </tr>
 <tr>
 <td>13:00–15:00</td>
@@ -16671,7 +16836,7 @@ output that nobody has measured on model output).</li>
 <li><strong>Step 1 goes green in under three days.</strong> Then the 8–12 day estimate was wrong by 4×, the whole
 premise that tenancy is the bottleneck deserves a second look, and step 3 should start immediately.</li>
 <li><strong>The splice gate passes at 907/907 on the <em>first</em> run against the <em>current</em> writer.</strong> Then the
-measured 17/736 is wrong and every downstream claim about frontmatter corruption needs re-deriving
+measured 33/907 is wrong and every downstream claim about frontmatter corruption needs re-deriving
 before it is repeated to anyone.</li>
 <li><strong>Three of the five conversations say the login wall is fine.</strong> Then M3 did not fire, D3 stands as
 written, and step 4 simplifies.</li>
@@ -19036,11 +19201,11 @@ open question"</em> and nobody has run it.</p>
 <td><strong>907</strong> files carry YAML frontmatter; <strong>171 throw</strong> under the editor's writer; <strong>33</strong> survive byte-identical; 624 remainder. Stable across 4 script revisions</td>
 <td><code>product-gap</code></td>
 <td><code>[measured]</code></td>
-<td><strong>YES</strong> — capability run reproduced 907/119/13.12%/618/170/18.74% "to the last digit"</td>
+<td><strong>YES</strong> — capability run reproduced 907/119/12.57% genuine + 18.74% silent refusals/618/170/18.74% "to the last digit"</td>
 </tr>
 <tr>
 <td>B6</td>
-<td>the <code>yaml</code> library round-trips <strong>119 of 907</strong> byte-identically; <strong>170 files do not parse at all</strong> (18.74%)</td>
+<td>the <code>yaml</code> library round-trips <strong>114 of 907</strong> byte-identically; <strong>170 files do not parse at all</strong> (18.74%)</td>
 <td><code>docs/mdmax/PLAN.md</code> v2.0.0 §5.1</td>
 <td><code>[measured]</code></td>
 <td><strong>YES</strong></td>
@@ -19351,7 +19516,7 @@ is <code>[inference]</code>.</p>
 </tr>
 <tr>
 <td>F6</td>
-<td><code>inkeep/OpenKnowledge</code> shipped <strong>2026-07-30</strong>, <strong>3,239★</strong>, GPL-3.0, shipped content-derived anchoring and <strong>explicitly declined the teammate model</strong></td>
+<td><code>inkeep/open-knowledge</code> shipped <strong>2026-07-30</strong>, <strong>3,239★</strong>, GPL-3.0, shipped content-derived anchoring and <strong>explicitly declined the teammate model</strong></td>
 <td><code>competitive-live</code></td>
 <td><code>[primary]</code></td>
 <td><strong>N/A</strong> — beta published 02:38:33Z, six minutes before the researcher's first tool call</td>
@@ -20004,7 +20169,7 @@ the first.</em> Read the labels.</p>
 every digit was wrong: 6,281→<strong>20,953</strong> annotations, 27%→<strong>22%</strong> unattachable, per a direct read of
 arXiv 1512.06195), D3–D4 (171 and 170 are the <strong>same 170 files</strong>, not two sets — kill-audit D
 re-measured both parsers on the pinned corpus and found an identical set), D6 (test counts —
-65/3,604 replaced with <strong>83 real files</strong>; <code>vitest</code> collects 247 files / 3,484 tests of which
+65/3,604 replaced with <strong>83 real files</strong>; <code>vitest</code> collects 247 files / 3,604 tests of which
 <strong>66.4% are two abandoned worktrees</strong>), D7 (wrong path — the file is
 <code>src/modules/preview/presentation/frontmatter.ts</code>, verified by <code>find src -name 'frontmatter.ts'</code>).</p>
 <p><strong>NOT yet applied:</strong> the remaining defects below, including D5 — where the fact-checker found that
@@ -20029,7 +20194,7 @@ kill-audit phase exists to catch.</p>
 <ul>
 <li><strong>Claim:</strong> Under "<strong>Violation 2 — <code>src/modules/preview/presentation/frontmatter.ts:47</code></strong>": "Measured against every front-matter block in the pinned corpus: <strong>170 of 907 blocks throw</strong> under gray-matter, and <strong>only 33 survive byte-identical (3.64%)</strong>."</li>
 <li><strong>Problem:</strong> Misattribution: 171/33/3.64% are the measurements of Violation 1 (<code>share-writer.ts</code>, gray-matter), already quoted three paragraphs earlier. <code>frontmatter.ts</code> uses the <code>yaml</code> package (<code>parseDocument</code>), never gray-matter — verified by reading the file: line 17 is <code>import { parseDocument, isMap, type Document } from "yaml";</code>. The <code>product-gap</code> area measured this path separately: "Ported exactly and run on the same corpus_id: byte_identical=119, refused-and-left-untouched=170, changed=618 → 31.86% safe vs 3.64%."</li>
-<li><strong>Correction:</strong> Replace the measurement sentence with: "Measured against every front-matter block in the pinned corpus, this path (ported exactly) leaves <strong>119 of 907 byte-identical, refuses 170, and changes 618 — 31.86% safe against <code>share-writer.ts</code>'s 3.64%</strong>. <code>[measured, corpus_id sha256:3a010b16…, final-gate </code>product-gap<code> C6]</code> A library swap is therefore not the fix: 31.86% is still a data-loss path. And note the app already ships this preserving path — the Publish path simply does not use it." Keep 171/33/3.64% under Violation 1 only.</li>
+<li><strong>Correction:</strong> Replace the measurement sentence with: "Measured against every front-matter block in the pinned corpus, this path (ported exactly) leaves <strong>114 of 907 byte-identical, refuses 170, and changes 618 — 31.86% safe against <code>share-writer.ts</code>'s 3.64%</strong>. <code>[measured, corpus_id sha256:3a010b16…, final-gate </code>product-gap<code> C6]</code> A library swap is therefore not the fix: 31.86% is still a data-loss path. And note the app already ships this preserving path — the Publish path simply does not use it." Keep 171/33/3.64% under Violation 1 only.</li>
 </ul>
 <p><strong>D4 · <code>S03-mdmax-capabilities §3.1.5 and §3.1.10</code></strong></p>
 <ul>
@@ -20045,15 +20210,15 @@ kill-audit phase exists to catch.</p>
 </ul>
 <p><strong>D6 · <code>S01-orientation §1.6</code></strong></p>
 <ul>
-<li><strong>Claim:</strong> "tests | 83 test files under <code>test/</code> <code>[measured]</code> / 3,484 tests collected (66.4% of them abandoned worktrees) at last full run <code>[primary, HANDOFF §10, not re-run this session]</code>"</li>
-<li><strong>Problem:</strong> Both numbers are refuted inside this same document. S02 §2.1 (Round 3) records the deep read that caught it: <code>vitest list --run --filesOnly</code> → 247 files / 3,484 tests, of which 164 files / 2,314 tests are two abandoned worktrees pinned at 8eb4de2, and rules "<strong>The measurement governs.</strong> … Neither '65' nor '3,484' should be repeated." I re-counted live: <code>find test -type f \( -name '*.test.ts' -o -name '*.test.tsx' \)</code> = <strong>83</strong>, and each worktree holds 82 (83 + 82 + 82 = 247, reconciling exactly). Also the HANDOFF citation is wrong: the "83 test files under <code>test/</code>, 3,484 tests" line is §0.7 (line 22), not §10.</li>
-<li><strong>Correction:</strong> Replace the two rows with: "tests | <strong>83 test files under <code>test/</code></strong> <code>[measured, this session]</code> | <code>vitest list --run --filesOnly</code> reports <strong>247 files / 3,484 tests</strong>, of which <strong>164 files / 2,314 tests (66.4%) are two abandoned git worktrees pinned at <code>8eb4de2</code></strong> that <code>vitest.config.ts</code> does not exclude. <code>HANDOFF-mdmax-markdown-engine-2026-08-01.md</code> §0.7's '83 test files under <code>test/</code>, 3,484 tests collected (66.4% of them abandoned worktrees)' was already inflated when written; do not repeat either figure. See the chronology section."</li>
+<li><strong>Claim:</strong> "tests | 83 test files under <code>test/</code> <code>[measured]</code> / 3,604 tests collected (66.4% of them abandoned worktrees) at last full run <code>[primary, HANDOFF §10, not re-run this session]</code>"</li>
+<li><strong>Problem:</strong> Both numbers are refuted inside this same document. S02 §2.1 (Round 3) records the deep read that caught it: <code>vitest list --run --filesOnly</code> → 247 files / 3,604 tests, of which 164 files / 2,314 tests are two abandoned worktrees pinned at 8eb4de2, and rules "<strong>The measurement governs.</strong> … Neither '65' nor '3,604' should be repeated." I re-counted live: <code>find test -type f \( -name '*.test.ts' -o -name '*.test.tsx' \)</code> = <strong>83</strong>, and each worktree holds 82 (83 + 82 + 82 = 247, reconciling exactly). Also the HANDOFF citation is wrong: the "83 test files under <code>test/</code>, 3,604 tests" line is §0.7 (line 22), not §10.</li>
+<li><strong>Correction:</strong> Replace the two rows with: "tests | <strong>83 test files under <code>test/</code></strong> <code>[measured, this session]</code> | <code>vitest list --run --filesOnly</code> reports <strong>247 files / 3,604 tests</strong>, of which <strong>164 files / 2,314 tests (66.4%) are two abandoned git worktrees pinned at <code>8eb4de2</code></strong> that <code>vitest.config.ts</code> does not exclude. <code>HANDOFF-mdmax-markdown-engine-2026-08-01.md</code> §0.7's '83 test files under <code>test/</code>, 3,604 tests collected (66.4% of them abandoned worktrees)' was already inflated when written; do not repeat either figure. See the chronology section."</li>
 </ul>
 <p><strong>D7 · <code>S13-appendix §13.8 ("The named files a reader will be sent to")</code></strong></p>
 <ul>
 <li><strong>Claim:</strong> Row: "<code>src/modules/preview/presentation/frontmatter.ts:47</code> | calls <code>doc.toString()</code> — 170 of 907 frontmatter blocks throw"</li>
 <li><strong>Problem:</strong> Two defects in one row. (a) Wrong path: the file is <code>src/modules/preview/presentation/frontmatter.ts</code> — verified by <code>find src -name 'frontmatter.ts'</code>, which returns exactly that one path and nothing under <code>src/modules/editor/</code>. S03 §3.1.4 has it right. (b) Same misattribution as S03 §3.1.4: the 171 throws are the gray-matter/<code>share-writer.ts</code> figure; the <code>doc.toString()</code> path is the <code>yaml</code> path measured at 119 byte-identical / 170 refused / 618 changed.</li>
-<li><strong>Correction:</strong> Replace the row with: "<code>src/modules/preview/presentation/frontmatter.ts:47</code> (and 59) | calls <code>doc.toString()</code> — this is the <code>yaml</code>-backed preserving path; a no-op round trip leaves only <strong>119 of 907 blocks byte-identical (13.12%)</strong>, refuses 170, and changes 618"</li>
+<li><strong>Correction:</strong> Replace the row with: "<code>src/modules/preview/presentation/frontmatter.ts:47</code> (and 59) | calls <code>doc.toString()</code> — this is the <code>yaml</code>-backed preserving path; a no-op round trip leaves only <strong>114 of 907 blocks byte-identical (12.57% genuine + 18.74% silent refusals)</strong>, refuses 170, and changes 618"</li>
 </ul>
 <p><strong>D8 · <code>S02-chronology §2.4 row 7 ("Changing CommonMark")</code></strong></p>
 <ul>
@@ -20562,7 +20727,7 @@ print(f"lines={len(lines)} blob_bytes={len(blob)}")
 <li>S03 §3.4.3 — BREAK 95 / DRIFT 52 / GHOST 5,777 and "a checker that reports 3,442 problems": area key given (<code>impact-preview</code>) but no corpus_id and no stated population. Actual: census.py over three unpinned corpora — md-vault 4,287 files / 75.94 MB, knowledge 421 / 7.39 MB, frontmatter 112 / 1.54 MB.</li>
 <li>S03 §3.4.3 — "365 true problems touching only 112 files (13.4%)" over "833 authored files": cites <code>docs/engine/PLAN.md §4</code> but no corpus_id; the 833-file population is not the 1,084-file pinned corpus.</li>
 <li>S03 §3.4.4 — "69,805 rows for 78 MB", "607 KB for a 78 MB vault (0.74%)", "0.254 ms median, 1.567 ms p90": no corpus_id, no named vault, no script.</li>
-<li>S01 §1.6 — "tests | 83 test files under <code>test/</code>" tagged <code>[measured]</code> with no command; and "3,484 tests collected (66.4% of them abandoned worktrees) at last full run" with no re-derivation. Live count is 83 test files under test/; <code>vitest list</code> gives 247 files / 3,484 tests including 164 stale worktree files.</li>
+<li>S01 §1.6 — "tests | 83 test files under <code>test/</code>" tagged <code>[measured]</code> with no command; and "3,604 tests collected (66.4% of them abandoned worktrees) at last full run" with no re-derivation. Live count is 83 test files under test/; <code>vitest list</code> gives 247 files / 3,604 tests including 164 stale worktree files.</li>
 <li>S03 §3.0.1 — the effort column ("tiers 1–2: 2–3 days · tier 3: 2–3 weeks incl. benchmark", "symbol table 2–3 weeks", "fence-aware split/join ~2 days"): tagged <code>[inference]</code> in one cell only; the other cells carry no tag and no basis. Every effort figure in the research corpus is an estimate (S13 §13.9 says so explicitly) — tag the whole column.</li>
 <li>S02 §2.2 — the <code>~2,400,000</code> token term inside the 29,946,391 cumulative. S02 does flag it as "the only soft input", but it has no completion notification behind it and no artifact records it; it should carry <code>[inference]</code> inline, not only in the surrounding prose.</li>
 <li>S03 §3.5.4 — 82.5% / 59.1% (214/362) / 40.9% (148/362) / median 5,260 B / 63.9% of whole-read bytes: the population is named in prose ("the 1,200 most recent agent transcripts on this machine") but there is no manifest or pinned id for it, so it is not re-runnable. The <code>aios-transfer</code> area flags exactly this failure for its own transcript numbers: "a MOVING selection … it needs a corpus id before it is quoted."</li>

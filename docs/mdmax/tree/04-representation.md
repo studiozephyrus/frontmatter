@@ -5,7 +5,7 @@ title: "Representation — what a markdown file can be made to hold, convey and 
 slug: 04-representation
 lines: 1262
 words: 12716
-forward_links: [1, 2, 5]
+forward_links: [0, 1, 2, 5]
 backlinks: [1, 2, 3, 5, 6, 7, 9, 11, 12, 13, 14]
 prev: 03-capabilities
 next: 05-rendering
@@ -1281,7 +1281,7 @@ re-litigated):
 
 ### Links
 
-**This section references:** [§1 Orientation](01-orientation.md) · [§2 Chronology](02-chronology.md) · [§5 Rendering](05-rendering.md)
+**This section references:** [§0 Status](00-status.md) · [§1 Orientation](01-orientation.md) · [§2 Chronology](02-chronology.md) · [§5 Rendering](05-rendering.md)
 
 **Referenced by:** [§1 Orientation](01-orientation.md) · [§2 Chronology](02-chronology.md) · [§3 Capabilities](03-capabilities.md) · [§5 Rendering](05-rendering.md) · [§6 Conventions](06-conventions.md) · [§7 Product](07-product.md) · [§9 AIOS](09-aios.md) · [§11 Execution](11-execution.md) · [§12 Risks](12-risks.md) · [§13 Appendix](13-appendix.md) · [§14 Verification](14-verification.md)
 

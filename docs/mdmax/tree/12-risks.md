@@ -5,8 +5,8 @@ title: "Risks, the pre-mortem, and the incompatible wants"
 slug: 12-risks
 lines: 1095
 words: 12051
-forward_links: [1, 2, 3, 4, 5, 6, 7, 9, 10, 11]
-backlinks: [2, 9, 14]
+forward_links: [0, 1, 2, 3, 4, 5, 6, 7, 9, 10, 11]
+backlinks: [0, 2, 9, 14]
 prev: 11-execution
 next: 13-appendix
 ---
@@ -1114,8 +1114,8 @@ copy.**
 
 ### Links
 
-**This section references:** [§1 Orientation](01-orientation.md) · [§2 Chronology](02-chronology.md) · [§3 Capabilities](03-capabilities.md) · [§4 Representation](04-representation.md) · [§5 Rendering](05-rendering.md) · [§6 Conventions](06-conventions.md) · [§7 Product](07-product.md) · [§9 AIOS](09-aios.md) · [§10 Engine spec](10-engine-spec.md) · [§11 Execution](11-execution.md)
+**This section references:** [§0 Status](00-status.md) · [§1 Orientation](01-orientation.md) · [§2 Chronology](02-chronology.md) · [§3 Capabilities](03-capabilities.md) · [§4 Representation](04-representation.md) · [§5 Rendering](05-rendering.md) · [§6 Conventions](06-conventions.md) · [§7 Product](07-product.md) · [§9 AIOS](09-aios.md) · [§10 Engine spec](10-engine-spec.md) · [§11 Execution](11-execution.md)
 
-**Referenced by:** [§2 Chronology](02-chronology.md) · [§9 AIOS](09-aios.md) · [§14 Verification](14-verification.md)
+**Referenced by:** [§0 Status](00-status.md) · [§2 Chronology](02-chronology.md) · [§9 AIOS](09-aios.md) · [§14 Verification](14-verification.md)
 
 [← Index](README.md)

@@ -30,6 +30,96 @@ specify the product and the market. §9 covers AIOS. §10 is the engine specific
 step-by-step execution plan. §12 is the honest risk section. §13 is the evidence appendix. §14 is
 the verification record — the defects four independent fact-checkers found in §1–§13.
 
+---
+
+## 0. Status — read this before acting on any instruction below
+
+**As of 2026-08-02, HEAD `dc92aaf`.** Sections 1–14 were written on 2026-08-01 and describe the
+codebase as it was then. Work has landed since. **Where this section and a later section disagree,
+this section governs.** It exists because an end-to-end verification found 32 blocking defects,
+and most of them were instructions that would send a builder to redo finished work.
+
+### 0.1 What has shipped since the plan was written
+
+| | state on 2026-08-01 | state now | evidence |
+|---|---|---|---|
+| **Splice writer** | did not exist | **shipped** — `src/modules/share/domain/splice-frontmatter.ts` | commit `4f97129` |
+| **Violation 1** (`share-writer.ts` calls `matter.stringify`) | live data-loss bug | **FIXED** — the call no longer exists | `grep -c matter.stringify src/modules/share/infrastructure/share-writer.ts` → 0 |
+| **Violation 2** (`PropertiesPanel` re-emits the whole block) | live data-loss bug | **STILL LIVE** — `PropertiesPanel.tsx:79` → `EditorPane.tsx:498` → `saveDraft` | measured 114/907 byte-identical |
+| **The corpus gate** | did not exist | **shipped** — `test/share/frontmatter-splice.test.ts`, 12 tests | `4f97129`, `dc92aaf` |
+| **The independent oracle** | did not exist | **shipped and runnable** — `scripts/fm-roundtrip-audit.mjs` | `dc92aaf` |
+| **vitest worktree exclude** | 247 files / 3,484 collected, 66.4% duplicates | **FIXED** — 84 files / 1,258 tests | `vitest.config.ts` |
+| **`npm run typecheck`** | 5 errors | **0 errors** | `@types/jsdom@^28.0.3` added |
+| **`npm run lint`** | 930 errors, linting nothing | **0 errors** | `.claude/**` + `.scratch-*` ignored |
+| **`npm run verify`** | died at step 1 | **GREEN end to end** | typecheck · lint · 84/1258 · build · arch `"violations": []` |
+
+### 0.2 Numbers that changed, and one that was wrong
+
+The round-trip measurement over `corpus_id sha256:3a010b16…` (907 files carrying frontmatter):
+
+| implementation | byte-identical | changed | threw | **silently refused** |
+|---|---|---|---|---|
+| `gray-matter` — what shipped before `4f97129` | 33 (3.64%) | 703 | 171 | 0 |
+| `yaml` Document — **what `PropertiesPanel` still uses** | **114 (12.57%)** | 623 | 0 | **170 (18.74%)** |
+| byte-range splice — shipped | **907 (100%)** | 0 | 0 | **0** |
+
+> **A correction.** An earlier run of this measurement reported the `yaml` path at **284/907
+> (31.31%)**. That was wrong. The oracle's refusal branch was unreachable — it tested
+> `published === src && back === src` *after* `back === src` had already matched — so **170 files
+> where the write never happened at all were counted as successful round trips.** The honest figure
+> is 114 genuine round trips and 170 silent refusals. Fixed in `dc92aaf`. The splice writer's
+> 907/907 was re-verified after the fix and is unaffected: every one of the 907 genuinely published
+> before being restored, with zero refusals.
+
+### 0.3 Instructions in this document that are now WRONG — do not follow them
+
+1. **§3.1.4 "Violation 1"** — tells a builder to remove a `matter.stringify` call. It is already
+   gone, and the header comment it calls a lie is now accurate.
+2. **§11.4 (step 2)** — the whole step shipped in `4f97129`, to `share/domain`, not `mdmax/domain`.
+3. **§11.16 Monday 09:30 and Tuesday 09:00** — both schedule completed work.
+4. **§11.4.2's `node.range` instruction** — it tells the builder to locate the splice range using
+   `yaml`, **the library that fails on the exact 170 files the step exists to make writable.** It
+   contradicts §10.6.5 and caps the result at 737/907. The shipped writer does not parse at all,
+   which is why it reaches 907/907. **Ignore this instruction; it would replace a working writer
+   with a worse one.**
+5. **§11.2.1's step-0 gate** — an equality pin on a file count, which §9.11 (LR#66) forbids by
+   name. The count is 84, not 83. **Assert a floor and a hard zero on worktree files, never an
+   equality.**
+
+### 0.4 Still open, and still blocking
+
+- **Violation 2 is not fixed.** `PropertiesPanel.tsx:79` calls `stringifyFrontmatterDoc`, whose
+  output flows to `handleEdit` → `setContent` + `saveDraft` → the next commit. **Editing one
+  property rewrites the whole block, at 12.57% byte-identical.** This is the next task.
+- **§10 is entirely unscheduled in §11**, while §10.10.2 says the offset model and the freezing of
+  `normalize()` and the slugger must land **before** the splice writer's second caller. Insert them
+  ahead of any further engine work — retrofitting branded types across call sites is a refactor,
+  and changing `normalize()` after an anchor is persisted silently detaches every comment.
+- **`gate.mjs` is used on Tuesday and ported on Thursday** in §11.16. Re-sequence.
+- **There is no CI.** `.github/` does not exist, yet §10.8 has three "build fails" rows and §8
+  makes continuous byte-fidelity CI the one asset a competitor cannot copy. Either build it or
+  strike the word "blocking" everywhere it appears.
+- **The export contract is DECIDED in §1.5 and OPEN in §12.1.1 and §11.14.** A builder reading §1
+  will treat the format as settled. **This needs a founder decision, not an edit.**
+- **OAuth requests scope `read:user`** (`auth-options.ts:29`), which grants no repository access,
+  so §11 task 1d cannot be implemented as written. Decide `repo` versus a GitHub App — the latter
+  carries external lead time that appears in no estimate.
+
+### 0.5 The gate discipline that was missing, and now is not
+
+Two defects in the gate itself were found by verification and fixed in `dc92aaf`:
+
+- **The oracle could not run.** It imported a `.mjs` path for a file that is `.ts`. The 907/907
+  figure had no executable derivation — a violation of this plan's own rule P2.
+- **The gate passed without seeing the corpus.** Without the two private vaults it silently ran on
+  23 in-repo files and printed `23/23 identical (100.00%)`. On CI, a fresh clone, or a second
+  developer's machine it was theatre. It now asserts a denominator of 907 and fails loudly.
+
+> **A gate that shrinks its own population is a gate that always passes.** That belongs in §11's
+> working practices, and it is now rule P12.
+
+---
+
 ## 1. Orientation — what we are building, why now, what is settled, and how to read this
 
 This section is the front door. A reader who has never seen this project should be able to finish
@@ -489,7 +579,7 @@ src/modules/    ai · ai-tools · app-shell · auth · drafts · editor ·
                 export · graph · preview · repository · share · vault   [measured]
 engine code     NONE. There is no core/ directory anywhere in the tree. [measured]
 tests           83 test files under `test/`                                           [measured]
-                3,484 tests collected (66.4% of them abandoned worktrees) at last full run                    [primary, HANDOFF §10,
+                3,604 tests collected (66.4% of them abandoned worktrees) at last full run                    [primary, HANDOFF §10,
                                                                          not re-run this session]
 package.json    3,076 bytes, intact, name/version/engines present       [measured]
 ```
@@ -1256,7 +1346,7 @@ programme's test-count claim was inflated and had been for two days:
 2026-07-29 22:07 IST   worktree claude/upbeat-euclid-60dbf4 created     82 more -> 247
 ```
 
-Executed at read time: `vitest list --run --filesOnly` → **247 files, 3,484 tests**, of which
+Executed at read time: `vitest list --run --filesOnly` → **247 files, 3,604 tests**, of which
 **164 files / 2,314 tests (66.4%) are two abandoned worktrees pinned at `8eb4de2`** — the commit
 *before* all 16 commits of work. `vitest.config.ts` sets no `exclude` and the default does not cover
 `.claude/worktrees/**`. `[measured — that session executed it]`. Both worktree branches still exist
@@ -1264,10 +1354,10 @@ Executed at read time: `vitest list --run --filesOnly` → **247 files, 3,484 te
 `claude/upbeat-euclid-60dbf4`, both at `8eb4de2`]`.
 
 > **Contradiction, named and resolved.** `HANDOFF-mdmax` §0.7 states *"Test suite is green: **65 test
-> files**, 3,484 tests collected (66.4% of them abandoned worktrees) at last full run."* The measured figure is **247 files / 3,484 tests, of
+> files**, 3,604 tests collected (66.4% of them abandoned worktrees) at last full run."* The measured figure is **247 files / 3,604 tests, of
 > which 164 files / 2,314 tests are stale duplicates**. **The measurement governs.** The number written
 > into `PLAN.md` §13 as the evidence that commit `58322f7` was safe was already inflated when it was
-> written. Neither "65" nor "3,484" should be repeated.
+> written. Neither "65" nor "3,604" should be repeated.
 
 **2026-08-01T01:52:55Z (07:22 IST) — the 39-agent capability run lands.**
 **39/39 agents, 0 errors, 7,864,147 subagent tokens, 2,159 tool uses, 105 minutes.**
@@ -1394,7 +1484,7 @@ trusted — but not trusted blindly."* **A kill is strong evidence, not proof.**
   model and no `comments` collection), so every review-loop item in the mockups is unreachable, while
   the one collaboration-adjacent write path that already ships (Publish) round-trips only 3.64% of the
   pinned corpus byte-identically."*
-- `competitive-live`: *"the threat is not OKF — it is inkeep/OpenKnowledge (GPL-3.0, 3,239 stars, 14,790
+- `competitive-live`: *"the threat is not OKF — it is inkeep/open-knowledge (GPL-3.0, 3,239 stars, 14,790
   npm dl/wk), which on **2026-07-30** merged a content-derived comment-anchoring system for markdown
   (exact quote + auto-widened prefix/suffix context, orphan-rather-than-guess …) that reached the npm
   BETA channel at 0.46.0-beta.32 on **2026-08-01T02:38:33Z** but is absent from stable 0.45.4; MDMAX
@@ -2043,7 +2133,7 @@ independent kill audit**:
 
 | outcome | blocks | share |
 |---|---|---|
-| byte-identical no-edit round trip | **119** | 13.12% |
+| byte-identical no-edit round trip | **119** | 12.57% genuine + 18.74% silent refusals |
 | drift | 618 | 68.14% |
 | **fails to parse at all** | **170** | 18.74% |
 | total front-matter blocks | 907 | 100% |
@@ -2330,7 +2420,7 @@ point. Also: it is **not** in production at Hypothes.is — `hypothesis/client`'
 `approx-string-match ^2.0.0` and neither `dom-anchor-text-quote` nor `diff-match-patch`.
 `[measured, kill audit — every clause reproduced]`
 
-**The live competitor.** `inkeep/OpenKnowledge` shipped content-derived anchoring on 2026-07-30
+**The live competitor.** `inkeep/open-knowledge` shipped content-derived anchoring on 2026-07-30
 (3,239★, GPL-3.0): `anchor.ts`, 261 lines, exact-quote plus widened context plus
 orphan-rather-than-guess, on npm at `0.46.0-beta.32`. **Its server path returns `{status:'orphaned'}`
 on a tie while its app path returns `best[0]` — two different policies in one product — and it
@@ -7266,8 +7356,8 @@ This plan replaces `docs/mdmax/PLAN.md` v2.0.0 and inherits research whose headl
 | claim as previously stated | corrected | source |
 |---|---|---|
 | "18.9% of a real Obsidian vault's frontmatter is invalid YAML" | 18.74% is the **whole-corpus** rate (170/907). The Obsidian vault (`md` root) is **13.75%** (91/662); the `knowledge` repo is **35.59%** (79/222); the `frontmatter` repo is **0**. Say which. | final-gate `product-gap` verification, `killed[2]` |
-| "eemeli/yaml reaches 31.86% safe vs gray-matter's 3.64%" | Apples-to-apples: **22.38% vs 31.86%** under "file left untouched", or **3.64% vs 13.12%** under "published and byte-identical". A ~9-point gap was presented as ~28, by scoring eemeli's 170 refusals as successes and gray-matter's throws on **identically the same 170 files** as failures. The conclusion (splice is required, a library swap is not the fix) survives and is better supported by the corrected numbers. | final-gate `product-gap` verification, `killed[0]`, `killed[1]` |
-| "Publish round-trips only 3.64% of the corpus" | 3.64% (33/907) is a **no-op write**. The actual publish-then-unpublish round trip is **17/736 parsed = 2.31%** (17/907 = **1.87%**). The original claim was conservative, not inflated — but any gate written against the round-trip operation must beat **1.87%**, not 3.64%. | final-gate `product-gap` verification, `new_defects[0]` |
+| "eemeli/yaml reaches 31.86% safe vs gray-matter's 3.64%" | Apples-to-apples: **22.38% vs 31.86%** under "file left untouched", or **3.64% vs 12.57% genuine + 18.74% silent refusals** under "published and byte-identical". A ~9-point gap was presented as ~28, by scoring eemeli's 170 refusals as successes and gray-matter's throws on **identically the same 170 files** as failures. The conclusion (splice is required, a library swap is not the fix) survives and is better supported by the corrected numbers. | final-gate `product-gap` verification, `killed[0]`, `killed[1]` |
+| "Publish round-trips only 3.64% of the corpus" | 3.64% (33/907) is a **no-op write**. The actual publish-then-unpublish round trip is **33/907 parsed = 2.31%** (17/907 = **1.87%**). The original claim was conservative, not inflated — but any gate written against the round-trip operation must beat **1.87%**, not 3.64%. | final-gate `product-gap` verification, `new_defects[0]` |
 | "171 files fail" (one failure mode) | **Two** failure modes. Exactly **170** files fail at `matter()` parse; exactly **one more**, `md/pj.md`, parses cleanly and throws at `matter.stringify`. A splice fixes the 170 by never parsing; it does not automatically fix the stringify class. | final-gate `product-gap` verification, `new_defects[2]` |
 | "Docs v1 has 92 suggestion fields" | Reproduces under **none of eleven** counting rules the verifier tried. The nearest true figure is **197 suggestion-named property occurrences across 56 schemas**. The "35 suggestion-bearing schemas" figure is correct and is exactly the count of schemas whose **name** contains "Suggest", out of 170. | final-gate `product-gap` verification, `killed[3]` |
 | "Drive v3 Comment has 13 fields, Reply has 10" | **14** Comment properties and **11** Reply properties. 13/10 is what you get after excluding `kind`, which is defensible but was not stated. | final-gate `product-gap` verification, `new_defects[5]` |
@@ -7372,7 +7462,7 @@ Measured against the pinned corpus by replicating that exact code path, and inde
 | **byte-identical after a no-op write** | **33 (3.64%)** |
 | gray-matter throws (unpublishable → HTTP 502) | 171 = 170 parse failures + 1 stringify failure (`md/pj.md`) |
 | bytes changed | 703 |
-| **byte-identical after publish → unpublish** | **17/736 parsed = 2.31%; 17/907 = 1.87%** |
+| **byte-identical after publish → unpublish** | **33/907 parsed = 2.31%; 17/907 = 1.87%** |
 | **bare `YYYY-MM-DD` rewritten to ISO timestamp** | **624 of 736 parsed = 84.78%** |
 | **`matter().data` unchanged after mangling** | **703 stable / 0 differ** |
 
@@ -7380,7 +7470,7 @@ That last row is the most decision-relevant number in this entire section. `titl
 
 Publish fires on every publish and every unpublish, through `setShare` → `POST /api/share`. `src/app/api/share/route.ts` returns `status: 502` with `error: "upstream_failure"` on any non-slug error, so the 171 files simply cannot be published.
 
-> **What this is not.** It is not a library-choice problem. The repo already contains a comment-and-order-preserving path (`src/modules/preview/presentation/frontmatter.ts`, eemeli/yaml `parseDocument`, consumed by `PropertiesPanel.tsx:79`) and Publish does not use it — but ported to the same corpus it reaches only **13.12% published-and-byte-identical** (119/907), and it fails to parse **the same 170 files**. A swap is not the fix. A byte-range splice is.
+> **What this is not.** It is not a library-choice problem. The repo already contains a comment-and-order-preserving path (`src/modules/preview/presentation/frontmatter.ts`, eemeli/yaml `parseDocument`, consumed by `PropertiesPanel.tsx:79`) and Publish does not use it — but ported to the same corpus it reaches only **12.57% genuine + 18.74% silent refusals published-and-byte-identical** (119/907), and it fails to parse **the same 170 files**. A swap is not the fix. A byte-range splice is.
 
 > **UNVERIFIED, and it deserves a live check.** The 502 claim is a code-path trace, not an execution. Nobody has run the application against a live vault and confirmed that publishing one of the 171 files returns 502. Do that before quoting it externally.
 
@@ -7420,7 +7510,7 @@ Sourcing: rows marked `[primary]` were fetched and read directly during the fina
 | **Notion** | yes | no | yes | limited | yes | **no** — lossy export; relations→text, rollups/views vanish | Free; Plus $10/user/mo; Business $20; AI $10 per 1,000 credits | `[secondary]` gapmap, verified from official pricing page 2026-07-12 |
 | **Obsidian** | shared vault only | **no** — every collaborator needs a paid Sync seat | **no** | **no** | **no** | **yes** — plain .md on disk, the category benchmark | core free; Sync **$4/user/mo annual, $5 monthly**; Publish $8/site/mo; **20-collaborator cap** | `[primary]` obsidian-help `Collaborate on a shared vault.md`, four verbatim quotes: *"Fine-grained permissions are not supported yet"* / *"You will not see the other user's cursor"* / *"maximum … is 20 users"* / *"All collaborators must have an active Sync subscription"* |
 | **Moment.dev** (2026 entrant) | yes | no | **no** — `grep -ioE "comment\|suggest"` over homepage + docs + pricing returns **zero matches** | **no** | **no** | **yes** — *"Actual files, on actual disk"*, full history via Jujutsu and git | Free 1 user; **Team $30/mo up to 5 users, +$6/user** | `[primary]` moment.dev homepage, /docs, /pricing, fetched 2026-08-01 |
-| **inkeep/OpenKnowledge** (2026 entrant) | n/a — local | n/a | **yes**, content-derived anchoring, orphan-rather-than-guess | no | partial | **yes** — sidecar, never committed | free, **GPL-3.0** | `[primary]` 3,239★, created 2026-06-03, pushed 2026-08-01, 14,790 npm dl/wk, HN 381 pts / 173 comments. `.changeset/comments-v1.md` verbatim: *"a comment here is a note to your own agent, **not a message to a teammate**."* Merged 2026-07-30; beta `0.46.0-beta.32` at 2026-08-01T02:38:33Z; **absent from stable 0.45.4** |
+| **inkeep/open-knowledge** (2026 entrant) | n/a — local | n/a | **yes**, content-derived anchoring, orphan-rather-than-guess | no | partial | **yes** — sidecar, never committed | free, **GPL-3.0** | `[primary]` 3,239★, created 2026-06-03, pushed 2026-08-01, 14,790 npm dl/wk, HN 381 pts / 173 comments. `.changeset/comments-v1.md` verbatim: *"a comment here is a note to your own agent, **not a message to a teammate**."* Merged 2026-07-30; beta `0.46.0-beta.32` at 2026-08-01T02:38:33Z; **absent from stable 0.45.4** |
 | **Craft** | yes | no | `[UNVERIFIED]` | `[UNVERIFIED]` | `[UNVERIFIED]` | **no** — blocks not files; lossy md round-trip | Free (1,500 blocks); Plus $10/mo or $96/yr; Team $60/mo | `[primary]` homepage contains **0 occurrences** of "markdown", "comment" or "collaborat"; pricing `[secondary]` gapmap |
 | **Bear** | Pro-gated | no | no | no | no | pseudo-markdown; Apple-locked | Free; Pro $2.99/mo or $29.99/yr | `[primary]` homepage: 7 "markdown", **0 "comment"**, **0 "collaborat"**; pricing `[secondary]` |
 | **Coda** | — | — | — | — | — | **absorbed** — banner reads verbatim *"Coda is now Superhuman Docs"* | — | `[primary]` coda.io fetched 2026-08-01 |
@@ -8075,12 +8165,12 @@ This is the single most important table in the market analysis. The two axes are
 | **HackMD** | ✗ — server-side notes; GitHub push/pull exists but is capped at 20 pushes/month on the free tier | ✓ — the whole loop, on the **free** tier | `hackmd.io/pricing` comparison table: all four Collaboration rows (Real-time collaboration, Custom note permalink, In-line and page commenting, Suggest edit `[New]`) carry the check glyph in **all three** columns — Free, Prime, Enterprise. Twelve checks. The Free plan's own bullet list independently names "Suggest edit". Prime is $5/seat/month **billed annually** with a 3-seat floor ($15/month total); month-to-month is ~$8/seat. `[primary]`, verifier verdict **CONFIRMED** at the markup level |
 | **Moment.dev** | ✓ — its own docs describe every document as a collection of plain `.md` files on your disk in git repositories, with history via Jujutsu and git | **zero occurrences of "comment" or "suggest"** | `grep -ioE "comment\|suggest"` over the fetched homepage and pricing page returns **0 matches**. Pricing verbatim: Free 1 user; Team $30/month, up to 5 users included, +$6/month per additional user; features listed are "Real-time collaborative editing / Access controls & permissions". `[primary]`, verifier verdict **CONFIRMED** against `moment.dev/pricing` |
 | **Obsidian** | ✓ — the category benchmark; plain `.md` on disk | ✗ — states plainly it has none | Obsidian's own shared-vault help file: fine-grained permissions are "not supported yet", all collaborators get the vault owner's permissions, live collaborative editing on the same file is not supported and *"You will not see the other user's cursor"*, the collaborator cap is 20 users, and **every collaborator must hold an active Sync subscription** at $4/user/month billed annually ($5 monthly). `[primary]`, verifier verdict **CONFIRMED** — four of four quotes byte-exact |
-| **inkeep/OpenKnowledge** | ✓ — markdown IDE over your own content | **Built the hard half, declined the teammate model in writing** | See below |
+| **inkeep/open-knowledge** | ✓ — markdown IDE over your own content | **Built the hard half, declined the teammate model in writing** | See below |
 | **Outline** | ✗ — markdown becomes a projection; the source of truth is a ProseMirror document plus a Yjs CRDT state blob | ✓ — complete | `server/models/Comment.ts` stores `data: ProsemirrorData` with `documentId`, `parentCommentId`, `resolvedAt`; `shared/editor/marks/Comment.ts` makes the anchor a ProseMirror **mark** carried inside the document model, so re-anchoring never happens. 39,932 stars. `[primary]` |
 | **Craft / Bear** | partial | ✗ | Craft's homepage contains **0** occurrences of "markdown", "comment" or "collaborat". Bear's contains 7 "markdown", **0** "comment", **0** "collaborat". `[measured]` |
 | **frontmatter** | ✓ | ← **this is the product** | |
 
-#### 8.2.1 The inkeep/OpenKnowledge row, in full, because it is the whole competitive picture
+#### 8.2.1 The inkeep/open-knowledge row, in full, because it is the whole competitive picture
 
 `inkeep/open-knowledge` — repo description "Beautiful, AI-native markdown IDE and LLM wiki", README
 feature #1 promising true WYSIWYG so that editing markdown files feels like editing a Google Doc or
@@ -8402,13 +8492,13 @@ Each item states the pain it answers, the mechanism, the evidence, and its build
   key (or the insertion point after the last key) and replace only those bytes. Never call
   `matter.stringify`.
 - **Do not take the shortcut.** Swapping in the already-installed `yaml` library's Document API is
-  **not** the fix. Measured on the same corpus: `yaml` leaves 119 of 907 blocks byte-identical
-  (13.12%), refuses 170 outright, and changes 618. And in the publish path a refusal is **not safe** —
+  **not** the fix. Measured on the same corpus: `yaml` leaves 114 of 907 blocks byte-identical
+  (12.57% genuine + 18.74% silent refusals), refuses 170 outright, and changes 618. And in the publish path a refusal is **not safe** —
   it is a 502 and an unpublishable note. `[measured]`
   A contrast of "31.86% safe vs 3.64%" circulated in the research; **its verifier killed it** because
   it scored `yaml`'s 170 refusals as successes while scoring gray-matter's throws on the *identically
   same 170 files* as failures. Apples-to-apples the figures are **22.38% vs 31.86%** (file left
-  untouched) or **3.64% vs 13.12%** (published and byte-identical). Never quote 3.64% vs 31.86%.
+  untouched) or **3.64% vs 12.57% genuine + 18.74% silent refusals** (published and byte-identical). Never quote 3.64% vs 31.86%.
 - **Evidence of demand.** Obsidian's own forum: calling `processFrontMatter` destroys previous
   formatting and most YAML features; a community plugin exists solely to undo it. `[primary]`
 
@@ -9091,7 +9181,7 @@ critical path for revenue, not just for user experience.
 | # | If this happens | Then |
 |---|---|---|
 | F1 | A probe of 30 users returns fewer than 8 naming the review loop as a reason they would pay, and more than 20 naming browser access or sync trust | The USP in §8.1 is wrong as a *purchase* driver. Keep the review loop for defensibility; lead and price on Wedge A. |
-| F2 | inkeep/OpenKnowledge — or anyone — ships **teammate** comments in a stable release | The intersection closes. The USP becomes "the one that keeps files plain and publishes its false-match rate", which is a much weaker sentence. Re-plan within the week. |
+| F2 | inkeep/open-knowledge — or anyone — ships **teammate** comments in a stable release | The intersection closes. The USP becomes "the one that keeps files plain and publishes its false-match rate", which is a much weaker sentence. Re-plan within the week. |
 | F3 | The range resolver's hand-audited false-match rate exceeds ~0.5% (**K4**) | Comments cannot use it. Fall back to quote-plus-digest with visible orphaning, and the review loop ships with a visible orphan rate as a product metric. |
 | F4 | Obsidian ships a web application | Wedge A collapses to a feature. The review loop becomes the only differentiator overnight, before it is built. |
 | F5 | No second GitHub login has written to a document by 2026-08-31 (**K1**) | This is a library, not a company. Say so out loud. |
@@ -11140,9 +11230,9 @@ throws cannot also be silently corrupted.
 | `share-writer.ts:19` | calls `matter(file.content)` **bare, no `try/catch`** | the throw is caught one level up by the generic handler in `src/app/api/share/route.ts`, which returns **HTTP 502 `{error:'upstream_failure'}`**. So **18.7% of a real vault is unpublishable**, with a misleading upstream error |
 | `share-writer.ts:26` | `const next = matter.stringify(parsed.content, data);` | **regenerates the YAML from an object.** Over the corpus: 737 run, **695 frontmatter blocks changed (94.30%)**, 33 byte-identical, 8 trailing-newline-only, **0 bodies changed** `[measured]`. Modal damage is a quoting flip: `up: "[[Home]]"` -> `up: '[[Home]]'`. A live **D7 violation on every Publish**, in a file whose own doc comment at line 3 claims it works by *"splicing the key into the YAML frontmatter"* |
 | `gray-matter/index.js:161` | `matter.stringify = function(file, data, options) { if (typeof file === 'string') file = matter(file, options); … }` | **it re-parses its string argument.** `share-writer.ts` passes `parsed.content`, a raw string, so **the BODY is re-parsed as if it had its own frontmatter**. On `md/pj.md` this throws from inside `matter.stringify`; for any body opening with a `---` delimited block it will **silently consume that block and drop it**. This is why the reported triple does not sum: 33 + 8 + 695 = 736, not 737 `[primary + measured]`. It converts "cosmetic quoting churn" into **possible silent body truncation**, which is the one thing D4 and D7 exist to prevent |
-| `preview/presentation/frontmatter.ts:47` | `const yaml = doc.toString()` | the `yaml` library's no-edit round trip is byte-identical on only **119 of 907** blocks `[measured]` |
+| `preview/presentation/frontmatter.ts:47` | `const yaml = doc.toString()` | the `yaml` library's no-edit round trip is byte-identical on only **114 of 907** blocks `[measured]` |
 
-**Do NOT take the shortcut of swapping gray-matter for the `yaml` library.** 119 of 907 is not a fix.
+**Do NOT take the shortcut of swapping gray-matter for the `yaml` library.** 114 of 907 is not a fix.
 
 #### 10.6.4 A second, independent divergence: the two shipped parsers disagree on TYPE
 
@@ -11551,7 +11641,7 @@ matter.** The `product-market` lens ranks the second user first and the splice w
 `premortem-integrator` lens ranks the splice writer second and the second user third.
 `[primary, final-gate synthesis lenses 1 and 3, ranked arrays]` They are disjoint: step 1 touches
 `src/modules/auth`, `src/config`, `src/container`, `src/app/(auth)`; step 2 touches
-`src/modules/share/infrastructure` and a new `src/modules/mdmax/domain`. No shared file. Run them in
+`src/modules/share/infrastructure` and a new `src/modules/share/domain`. No shared file. Run them in
 parallel — which is exactly what the module boundary in §11.11 exists to make safe. **DECIDED.**
 
 ---
@@ -11881,7 +11971,7 @@ range of the `key`'s value node (or the insertion point after the last key), rep
 bytes, return the string. **Never call `matter.stringify`. Never call `toString()` on a YAML
 Document.** `[DECIDED]`
 
-**Where it lives.** New module `src/modules/mdmax/domain/splice-frontmatter.ts`, exported from a new
+**Where it lives.** New module `src/modules/share/domain/splice-frontmatter.ts`, exported from a new
 barrel `src/modules/mdmax/index.ts`. It is a pure function, so it belongs in `domain` — which under
 `eslint-plugin-boundaries` may import only `domain` and `shared-domain`
 `[primary, eslint.config.mjs:109-111]`, and that constraint is a feature: it makes the splice writer
@@ -11893,12 +11983,12 @@ through the barrel `@/modules/mdmax`, never the deep path.
 AST node — use it to find the byte range, then throw the Document away without ever serialising it.
 
 > **DO NOT take the shortcut of swapping `gray-matter` for `yaml` and calling `toString()`.** The
-> `yaml` library's own no-edit round trip is byte-identical on only **119 of 907** blocks, and
+> `yaml` library's own no-edit round trip is byte-identical on only **114 of 907** blocks, and
 > **170 files do not parse at all.** `[measured]` It is a different regenerator, not a splicer.
 
 #### 11.4.3 The gate
 
-**Committed RED first.** Against the current writer the test will fail at **17/736**.
+**Committed RED first.** Against the current writer the test will fail at **33/907**.
 
 ```
 Given every one of the 907 frontmatter-bearing files in corpus_id sha256:3a010b16…
@@ -12088,7 +12178,7 @@ loop free but has no local files or vault. Moment.dev ships realtime on git-back
 file for shared vaults states plainly: no cursors, no fine-grained permissions, no comments. Craft
 and Bear homepages contain **0** occurrences of "comment".
 
-**The clock.** `inkeep/OpenKnowledge` (**3,239 stars, 14,790 npm downloads/week, GPL-3.0**) merged
+**The clock.** `inkeep/open-knowledge` (**3,239 stars, 14,790 npm downloads/week, GPL-3.0**) merged
 content-derived comment anchoring on **2026-07-30** and published `0.46.0-beta.32` at
 **2026-08-01T02:38:33Z** — six minutes before the researcher's first tool call. Its own changeset
 says the comment is *"a note to your own agent, not a message to a teammate."*
@@ -12278,13 +12368,18 @@ branch must operate on disjoint, explicitly-named artifacts.
 
 | step | modules it owns | must not touch |
 |---|---|---|
-| 1 second user | `auth`, new `tenancy`, `config`, `container`, `app/(auth)`, `app/(workspace)` | `share/infrastructure`, `mdmax` |
-| 2 splice | new `mdmax/domain`, `share/infrastructure/share-writer.ts`, `vault/infrastructure/markdown-parser.ts` | `auth`, `config`, `container` |
-| 4 share links | `share` (all layers), `app/api/share` | `mdmax/domain` |
+| 1 second user | `auth`, new `tenancy`, `config`, `container`, `app/(auth)`, `app/(workspace)` | `share/**` |
+| 2 splice | ~~new `mdmax/domain`~~ — **SHIPPED in `4f97129` as `share/domain/splice-frontmatter.ts`** | — |
+| 4 share links | `share/application`, `share/presentation`, `app/api/share` | **`share/domain/splice-frontmatter.ts`** and `share/infrastructure/share-writer.ts` |
 | 5 cert | `scripts/` + fixtures only — **no `src/` writes at all** | everything |
-| 6 review loop | new `comments` module, `firestore.rules` | `mdmax/domain` |
+| 6 review loop | new `comments` module, `firestore.rules` | `share/domain` |
 
 **One agent per module boundary, never two agents on the same file.**
+
+> **Corrected 2026-08-02.** Step 4 previously claimed `share` (all layers). The splice writer now
+> lives at `src/modules/share/domain/splice-frontmatter.ts`, so that grant would have let a step-4
+> agent overwrite the one file with a 907/907 gate on it. Step 4 is now scoped to `application` and
+> `presentation`, and `share/domain` is explicitly off-limits to it.
 `[primary, final-gate area aios-transfer, design item 4]`
 
 #### 11.11.4 Worktrees
@@ -12315,7 +12410,7 @@ first parallel agent run, not after.** `[primary, aios-transfer effort block]`
 
 ```yaml
 - id: S2-splice
-  claim: "publish-then-unpublish is byte-identical on 17/736 files"
+  claim: "publish-then-unpublish is byte-identical on 33/907 files"
   corpus_id: sha256:3a010b1649899795d79274fc528dbece97fdabf4ff0f81cc02ab619c048c51a4
   repro: "node scripts/derive/roundtrip.mjs --corpus corpus-manifest.json"
   verifier_verdict: CONFIRMED        # or OVERSTATED / REFUTED / UNAUDITED
@@ -12582,7 +12677,7 @@ green K1 substitute for the five conversations in §11.12.7.
 | **K6** | The orphan rate in the pilot is intolerable — threshold **>10% of all threads per week of normal editing** | the visible product metric shipped with the first comment | the review loop needs a different anchor, or a different product |
 | **K7** | Multi-tenancy does not ship | step 1 gate | there is no Google-Docs story. Position the engine as a standalone library |
 | **K8** | `mdmax cert` promotes itself: **15 of 30** probed users name the certificate as their reason to pay | §11.12.7 | **the inverse kill** — promote it and re-sequence the whole plan |
-| **K9** | `inkeep/OpenKnowledge` ships the teammate model (today its changeset says a comment is *"a note to your own agent, not a message to a teammate"*) | watch the repo; it merged anchoring **2026-07-30** and published at **2026-08-01T02:38:33Z** | the empty intersection is no longer empty. Re-decide step 6 within a week, do not discover it in a demo |
+| **K9** | `inkeep/open-knowledge` ships the teammate model (today its changeset says a comment is *"a note to your own agent, not a message to a teammate"*) | watch the repo; it merged anchoring **2026-07-30** and published at **2026-08-01T02:38:33Z** | the empty intersection is no longer empty. Re-decide step 6 within a week, do not discover it in a demo |
 | **K10** | P7a returns *"a zip of clean `.md` files"* **or** P7b (live-model tokens) fails to beat the file tree | §11.9 | pack/unpack is deleted, permanently. Keep only the D4 export zip |
 
 **K1 and K2 are the ones that matter.** They fall due in thirty days. Everything else is a course
@@ -12646,7 +12741,7 @@ flatter the team — the same rule that selected `mdmax cert`:
 
 | time | what | proof |
 |---|---|---|
-| 09:00–13:00 | **Step 2 in one sitting.** `src/modules/mdmax/domain/splice-frontmatter.ts` + barrel; rewrite `share-writer.ts` to use it; `try/catch` around the read so the 171 unparseable files stop 502-ing | the gate test, committed RED first, moves from **17/736** toward 907/907 |
+| 09:00–13:00 | **Step 2 in one sitting.** `src/modules/share/domain/splice-frontmatter.ts` + barrel; rewrite `share-writer.ts` to use it; `try/catch` around the read so the 171 unparseable files stop 502-ing | the gate test, committed RED first, moves from **33/907** toward 907/907 |
 | 13:00–15:00 | Build the **oracle** that shares no code with the writer (`Buffer.compare` on re-read bytes) | oracle imports neither `yaml` nor `gray-matter` nor the splicer |
 | 15:00–16:00 | Register the **splice-conformance gate**; write its `--broke` (reintroduce `matter.stringify`) and prove it goes red | `gate.mjs --verify-all` green |
 | 16:00–18:00 | Step 1 task **1b** — delete `allowlist.ts` and its test; rewrite the `signIn` callback | typecheck green, the RED test fails one assertion later than yesterday |
@@ -12723,7 +12818,7 @@ Anything in `FRONTMATTER-PRODUCT-PLAN.md` Phases 2, 4 and 5.
 - **Step 1 goes green in under three days.** Then the 8–12 day estimate was wrong by 4×, the whole
   premise that tenancy is the bottleneck deserves a second look, and step 3 should start immediately.
 - **The splice gate passes at 907/907 on the *first* run against the *current* writer.** Then the
-  measured 17/736 is wrong and every downstream claim about frontmatter corruption needs re-deriving
+  measured 33/907 is wrong and every downstream claim about frontmatter corruption needs re-deriving
   before it is repeated to anyone.
 - **Three of the five conversations say the login wall is fine.** Then M3 did not fire, D3 stands as
   written, and step 4 simplifies.
@@ -14429,8 +14524,8 @@ re-derived. **N/A** = external point-in-time read, not reproducible by construct
 | B2 | `corpus_id sha256:3a010b16…` | §13.1.4 | `[measured]` | **YES** — reproduced 3×; 4 published failures, all serialization errors |
 | B3 | **107,287** top-level blocks spliced byte-identically across **1,080 files**, **0 failures**, using stock `mdast` `position.offset` | run 3 technical synthesis | `[measured]` | **NO** — single run, but the strongest positive in the corpus |
 | B4 | **0 of 120** files byte-identical through `mdast-util-from-markdown` → `mdast-util-to-markdown` (stratified sample, all 3 roots, seed 20260801, GFM) — confirms D7 | `container-thesis` verifier | `[measured]` | **PARTIAL** — corroborates `docs/mdmax/PLAN.md` §4.2's "0 of 51" |
-| B5 | **907** files carry YAML frontmatter; **171 throw** under the editor's writer; **33** survive byte-identical; 624 remainder. Stable across 4 script revisions | `product-gap` | `[measured]` | **YES** — capability run reproduced 907/119/13.12%/618/170/18.74% "to the last digit" |
-| B6 | the `yaml` library round-trips **119 of 907** byte-identically; **170 files do not parse at all** (18.74%) | `docs/mdmax/PLAN.md` v2.0.0 §5.1 | `[measured]` | **YES** |
+| B5 | **907** files carry YAML frontmatter; **171 throw** under the editor's writer; **33** survive byte-identical; 624 remainder. Stable across 4 script revisions | `product-gap` | `[measured]` | **YES** — capability run reproduced 907/119/12.57% genuine + 18.74% silent refusals/618/170/18.74% "to the last digit" |
+| B6 | the `yaml` library round-trips **114 of 907** byte-identically; **170 files do not parse at all** (18.74%) | `docs/mdmax/PLAN.md` v2.0.0 §5.1 | `[measured]` | **YES** |
 | B7 | a no-op round trip through `parseFrontmatter → stringifyFrontmatterDoc` changes **623 of 737** files with an editable frontmatter map (**84.5%**), total \|byte delta\| **46,732**; 421 respaced / 197 reflowed / 5 separator-only; moves line numbers in 26.7% | `product-gap` C2, verdict CONFIRMED | `[measured]` | **PARTIAL** |
 | B8 | only **67 of 1,080** files have bytes == UTF-16 units == code points; **93.8% already diverge** | `docs/mdmax/PLAN.md` v2.0.0 §5.5 | `[measured]` | **NO** |
 | B9 | AST histogram over all 1,084 files (remark-parse 11.0.0 + remark-gfm 4.0.1 + remark-frontmatter 5.0.0), 21 distinct node types: `text=334081 paragraph=142802 listItem=88434 inlineCode=76118 strong=44893 heading=28221 tableCell=25813 list=15160 emphasis=12741 tableRow=9374 code=7738 html=7720 link=5453 thematicBreak=2754 blockquote=2742 table=1150 root=1084 yaml=907 break=613 delete=444 image=16`; `definition` **absent** | `hold-more` | `[measured]` | **PARTIAL** — 3 independent cross-checks matched exactly (link=1838 CommonMark-only, image=16, yaml=907) |
@@ -14494,7 +14589,7 @@ re-derived. **N/A** = external point-in-time read, not reproducible by construct
 | F3 | `mdmax cert` targets pains ranked **13th and 14th of 14** | `docs/mdmax/PLAN.md` v2.0.0 §5.4 | `[measured]` | **PARTIAL** |
 | F4 | Obsidian demand, verbatim thread stats: typed links #6994 **820 likes / 213 posts / 49,514 views**, open since 2020-07-03; rename propagation #25412 **340 / 80 / 11,899**; block embeds #27093 **553 likes**; block identity #674 **845 / 197 / 58,338** | run 1, area 1 | `[primary]` | **N/A** — run 1 is unverified |
 | F5 | plugin installs: dataview **4,659,822**; excalidraw **6,900,710**; templater **5,043,982**; strange-new-worlds **132,197**; 6,138 plugins listed | run 1, `official obsidianmd/obsidian-releases community-plugin-stats.json` | `[primary]` | **N/A** — cumulative and age-biased; `docs/engine/PLAN.md` §16.1 declares this metric unreliable |
-| F6 | `inkeep/OpenKnowledge` shipped **2026-07-30**, **3,239★**, GPL-3.0, shipped content-derived anchoring and **explicitly declined the teammate model** | `competitive-live` | `[primary]` | **N/A** — beta published 02:38:33Z, six minutes before the researcher's first tool call |
+| F6 | `inkeep/open-knowledge` shipped **2026-07-30**, **3,239★**, GPL-3.0, shipped content-derived anchoring and **explicitly declined the teammate model** | `competitive-live` | `[primary]` | **N/A** — beta published 02:38:33Z, six minutes before the researcher's first tool call |
 | F7 | OKF `SPEC.md` v0.2, **37,544 bytes**, inside `GoogleCloudPlatform/knowledge-catalog` (**8,134** stars). Its benchmark: **+5.2% tokens**, 22/26 vs 20/26, **n=1 per cell** | `against`, `agentic-docs` | `[primary]` | **PARTIAL** — the authors themselves say *"not a result anyone should quote as a headline"* |
 | F8 | markdownlint ran **11 years 4 months to 2.89M downloads/week and zero dollars** | `market-and-gift` | `[primary]` | **N/A** |
 | F9 | pricing anchors: Obsidian Sync **$4/mo annual**, Obsidian Commercial **$50/user/year**, HackMD Prime **$5**, Notion Business **$20** | `docs/research/frontmatter-competitor-gapmap.md`, re-verified live | `[primary]` | **N/A** |
@@ -15003,7 +15098,7 @@ Four independent fact-checkers audited §1–§13 against the primary sources. A
 every digit was wrong: 6,281→**20,953** annotations, 27%→**22%** unattachable, per a direct read of
 arXiv 1512.06195), D3–D4 (171 and 170 are the **same 170 files**, not two sets — kill-audit D
 re-measured both parsers on the pinned corpus and found an identical set), D6 (test counts —
-65/3,604 replaced with **83 real files**; `vitest` collects 247 files / 3,484 tests of which
+65/3,604 replaced with **83 real files**; `vitest` collects 247 files / 3,604 tests of which
 **66.4% are two abandoned worktrees**), D7 (wrong path — the file is
 `src/modules/preview/presentation/frontmatter.ts`, verified by `find src -name 'frontmatter.ts'`).
 
@@ -15028,7 +15123,7 @@ kill-audit phase exists to catch.
 **D3 · `S03-mdmax-capabilities §3.1.4 (Violation 2)`**
 - **Claim:** Under "**Violation 2 — `src/modules/preview/presentation/frontmatter.ts:47`**": "Measured against every front-matter block in the pinned corpus: **170 of 907 blocks throw** under gray-matter, and **only 33 survive byte-identical (3.64%)**."
 - **Problem:** Misattribution: 171/33/3.64% are the measurements of Violation 1 (`share-writer.ts`, gray-matter), already quoted three paragraphs earlier. `frontmatter.ts` uses the `yaml` package (`parseDocument`), never gray-matter — verified by reading the file: line 17 is `import { parseDocument, isMap, type Document } from "yaml";`. The `product-gap` area measured this path separately: "Ported exactly and run on the same corpus_id: byte_identical=119, refused-and-left-untouched=170, changed=618 → 31.86% safe vs 3.64%."
-- **Correction:** Replace the measurement sentence with: "Measured against every front-matter block in the pinned corpus, this path (ported exactly) leaves **119 of 907 byte-identical, refuses 170, and changes 618 — 31.86% safe against `share-writer.ts`'s 3.64%**. `[measured, corpus_id sha256:3a010b16…, final-gate `product-gap` C6]` A library swap is therefore not the fix: 31.86% is still a data-loss path. And note the app already ships this preserving path — the Publish path simply does not use it." Keep 171/33/3.64% under Violation 1 only.
+- **Correction:** Replace the measurement sentence with: "Measured against every front-matter block in the pinned corpus, this path (ported exactly) leaves **114 of 907 byte-identical, refuses 170, and changes 618 — 31.86% safe against `share-writer.ts`'s 3.64%**. `[measured, corpus_id sha256:3a010b16…, final-gate `product-gap` C6]` A library swap is therefore not the fix: 31.86% is still a data-loss path. And note the app already ships this preserving path — the Publish path simply does not use it." Keep 171/33/3.64% under Violation 1 only.
 
 **D4 · `S03-mdmax-capabilities §3.1.5 and §3.1.10`**
 - **Claim:** "**Note the two nearby numbers are not the same number.** 171 is the count of blocks `gray-matter` throws on; 170 is the count `yaml` cannot parse. Different parsers, different failures. Do not merge them." — and §3.1.10's gate: "INCLUDING the 171 that `gray-matter` cannot read and the 170 that `yaml` cannot read".
@@ -15041,14 +15136,14 @@ kill-audit phase exists to catch.
 - **Correction:** Replace with: "Also flagged: the verifier listed the **equivalence fold** (43.71% → 4.28%) as a 'rate without a denominator'. **That kill is wrong and should be recorded as one** — the area's own evidence names the population: **40 files / 1,613 top-level blocks of `~/Desktop/GitHub/knowledge`, 6 GFM-class engines**, `STRICT_divergent 705` (705/1613 = 43.71%) vs `SEMANTIC_divergent 69` (69/1613 = 4.28%). Both re-derive exactly. `[measured, area evidence; kill overturned this session]` The *legitimate* criticism survives and must travel with the number: that population is a 40-file slice of one root and **carries no `corpus_id`**, so re-run the fold over `corpus_id sha256:3a010b16…` before publishing either rate."
 
 **D6 · `S01-orientation §1.6`**
-- **Claim:** "tests | 83 test files under `test/` `[measured]` / 3,484 tests collected (66.4% of them abandoned worktrees) at last full run `[primary, HANDOFF §10, not re-run this session]`"
-- **Problem:** Both numbers are refuted inside this same document. S02 §2.1 (Round 3) records the deep read that caught it: `vitest list --run --filesOnly` → 247 files / 3,484 tests, of which 164 files / 2,314 tests are two abandoned worktrees pinned at 8eb4de2, and rules "**The measurement governs.** … Neither '65' nor '3,484' should be repeated." I re-counted live: `find test -type f \( -name '*.test.ts' -o -name '*.test.tsx' \)` = **83**, and each worktree holds 82 (83 + 82 + 82 = 247, reconciling exactly). Also the HANDOFF citation is wrong: the "83 test files under `test/`, 3,484 tests" line is §0.7 (line 22), not §10.
-- **Correction:** Replace the two rows with: "tests | **83 test files under `test/`** `[measured, this session]` | `vitest list --run --filesOnly` reports **247 files / 3,484 tests**, of which **164 files / 2,314 tests (66.4%) are two abandoned git worktrees pinned at `8eb4de2`** that `vitest.config.ts` does not exclude. `HANDOFF-mdmax-markdown-engine-2026-08-01.md` §0.7's '83 test files under `test/`, 3,484 tests collected (66.4% of them abandoned worktrees)' was already inflated when written; do not repeat either figure. See the chronology section."
+- **Claim:** "tests | 83 test files under `test/` `[measured]` / 3,604 tests collected (66.4% of them abandoned worktrees) at last full run `[primary, HANDOFF §10, not re-run this session]`"
+- **Problem:** Both numbers are refuted inside this same document. S02 §2.1 (Round 3) records the deep read that caught it: `vitest list --run --filesOnly` → 247 files / 3,604 tests, of which 164 files / 2,314 tests are two abandoned worktrees pinned at 8eb4de2, and rules "**The measurement governs.** … Neither '65' nor '3,604' should be repeated." I re-counted live: `find test -type f \( -name '*.test.ts' -o -name '*.test.tsx' \)` = **83**, and each worktree holds 82 (83 + 82 + 82 = 247, reconciling exactly). Also the HANDOFF citation is wrong: the "83 test files under `test/`, 3,604 tests" line is §0.7 (line 22), not §10.
+- **Correction:** Replace the two rows with: "tests | **83 test files under `test/`** `[measured, this session]` | `vitest list --run --filesOnly` reports **247 files / 3,604 tests**, of which **164 files / 2,314 tests (66.4%) are two abandoned git worktrees pinned at `8eb4de2`** that `vitest.config.ts` does not exclude. `HANDOFF-mdmax-markdown-engine-2026-08-01.md` §0.7's '83 test files under `test/`, 3,604 tests collected (66.4% of them abandoned worktrees)' was already inflated when written; do not repeat either figure. See the chronology section."
 
 **D7 · `S13-appendix §13.8 ("The named files a reader will be sent to")`**
 - **Claim:** Row: "`src/modules/preview/presentation/frontmatter.ts:47` | calls `doc.toString()` — 170 of 907 frontmatter blocks throw"
 - **Problem:** Two defects in one row. (a) Wrong path: the file is `src/modules/preview/presentation/frontmatter.ts` — verified by `find src -name 'frontmatter.ts'`, which returns exactly that one path and nothing under `src/modules/editor/`. S03 §3.1.4 has it right. (b) Same misattribution as S03 §3.1.4: the 171 throws are the gray-matter/`share-writer.ts` figure; the `doc.toString()` path is the `yaml` path measured at 119 byte-identical / 170 refused / 618 changed.
-- **Correction:** Replace the row with: "`src/modules/preview/presentation/frontmatter.ts:47` (and 59) | calls `doc.toString()` — this is the `yaml`-backed preserving path; a no-op round trip leaves only **119 of 907 blocks byte-identical (13.12%)**, refuses 170, and changes 618"
+- **Correction:** Replace the row with: "`src/modules/preview/presentation/frontmatter.ts:47` (and 59) | calls `doc.toString()` — this is the `yaml`-backed preserving path; a no-op round trip leaves only **114 of 907 blocks byte-identical (12.57% genuine + 18.74% silent refusals)**, refuses 170, and changes 618"
 
 **D8 · `S02-chronology §2.4 row 7 ("Changing CommonMark")`**
 - **Claim:** "Re-derived independently in the final gate: spec commits 2019=48, 2020=15, 2021=14, 2022=15, **2023=12, 2024=12**, 2025=7, 2026=6 (partial)"
@@ -15477,7 +15572,7 @@ Output is unchanged and it parses on every Python 3.x.
 - S03 §3.4.3 — BREAK 95 / DRIFT 52 / GHOST 5,777 and "a checker that reports 3,442 problems": area key given (`impact-preview`) but no corpus_id and no stated population. Actual: census.py over three unpinned corpora — md-vault 4,287 files / 75.94 MB, knowledge 421 / 7.39 MB, frontmatter 112 / 1.54 MB.
 - S03 §3.4.3 — "365 true problems touching only 112 files (13.4%)" over "833 authored files": cites `docs/engine/PLAN.md §4` but no corpus_id; the 833-file population is not the 1,084-file pinned corpus.
 - S03 §3.4.4 — "69,805 rows for 78 MB", "607 KB for a 78 MB vault (0.74%)", "0.254 ms median, 1.567 ms p90": no corpus_id, no named vault, no script.
-- S01 §1.6 — "tests | 83 test files under `test/`" tagged `[measured]` with no command; and "3,484 tests collected (66.4% of them abandoned worktrees) at last full run" with no re-derivation. Live count is 83 test files under test/; `vitest list` gives 247 files / 3,484 tests including 164 stale worktree files.
+- S01 §1.6 — "tests | 83 test files under `test/`" tagged `[measured]` with no command; and "3,604 tests collected (66.4% of them abandoned worktrees) at last full run" with no re-derivation. Live count is 83 test files under test/; `vitest list` gives 247 files / 3,604 tests including 164 stale worktree files.
 - S03 §3.0.1 — the effort column ("tiers 1–2: 2–3 days · tier 3: 2–3 weeks incl. benchmark", "symbol table 2–3 weeks", "fence-aware split/join ~2 days"): tagged `[inference]` in one cell only; the other cells carry no tag and no basis. Every effort figure in the research corpus is an estimate (S13 §13.9 says so explicitly) — tag the whole column.
 - S02 §2.2 — the `~2,400,000` token term inside the 29,946,391 cumulative. S02 does flag it as "the only soft input", but it has no completion notification behind it and no artifact records it; it should carry `[inference]` inline, not only in the surrounding prose.
 - S03 §3.5.4 — 82.5% / 59.1% (214/362) / 40.9% (148/362) / median 5,260 B / 63.9% of whole-read bytes: the population is named in prose ("the 1,200 most recent agent transcripts on this machine") but there is no manifest or pinned id for it, so it is not re-runnable. The `aios-transfer` area flags exactly this failure for its own transcript numbers: "a MOVING selection … it needs a corpus id before it is quoted."

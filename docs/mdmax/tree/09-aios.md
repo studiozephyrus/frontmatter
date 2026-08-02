@@ -5,8 +5,8 @@ title: "AIOS: what to import, what to refuse, and how it makes the build faster 
 slug: 09-aios
 lines: 1035
 words: 10206
-forward_links: [1, 2, 4, 7, 8, 11, 12]
-backlinks: [1, 2, 3, 7, 11, 12, 13, 14]
+forward_links: [0, 1, 2, 4, 7, 8, 11, 12]
+backlinks: [0, 1, 2, 3, 7, 11, 12, 13, 14]
 prev: 08-market
 next: 10-engine-spec
 ---
@@ -1054,8 +1054,8 @@ JSONL, and MDMAX does not touch JSONL.**
 
 ### Links
 
-**This section references:** [§1 Orientation](01-orientation.md) · [§2 Chronology](02-chronology.md) · [§4 Representation](04-representation.md) · [§7 Product](07-product.md) · [§8 Market](08-market.md) · [§11 Execution](11-execution.md) · [§12 Risks](12-risks.md)
+**This section references:** [§0 Status](00-status.md) · [§1 Orientation](01-orientation.md) · [§2 Chronology](02-chronology.md) · [§4 Representation](04-representation.md) · [§7 Product](07-product.md) · [§8 Market](08-market.md) · [§11 Execution](11-execution.md) · [§12 Risks](12-risks.md)
 
-**Referenced by:** [§1 Orientation](01-orientation.md) · [§2 Chronology](02-chronology.md) · [§3 Capabilities](03-capabilities.md) · [§7 Product](07-product.md) · [§11 Execution](11-execution.md) · [§12 Risks](12-risks.md) · [§13 Appendix](13-appendix.md) · [§14 Verification](14-verification.md)
+**Referenced by:** [§0 Status](00-status.md) · [§1 Orientation](01-orientation.md) · [§2 Chronology](02-chronology.md) · [§3 Capabilities](03-capabilities.md) · [§7 Product](07-product.md) · [§11 Execution](11-execution.md) · [§12 Risks](12-risks.md) · [§13 Appendix](13-appendix.md) · [§14 Verification](14-verification.md)
 
 [← Index](README.md)

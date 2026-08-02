@@ -5,13 +5,13 @@ title: "Orientation — what we are building, why now, what is settled, and how 
 slug: 01-orientation
 lines: 760
 words: 7231
-forward_links: [2, 3, 4, 5, 7, 9, 10, 14]
-backlinks: [2, 3, 4, 5, 8, 9, 10, 11, 12, 13, 14]
-prev: null
+forward_links: [0, 2, 3, 4, 5, 7, 9, 10, 14]
+backlinks: [0, 2, 3, 4, 5, 8, 9, 10, 11, 12, 13, 14]
+prev: 00-status
 next: 02-chronology
 ---
 
-[← Index](README.md) · [§2 Chronology →](02-chronology.md)
+[← Index](README.md) · [← §0 Status](00-status.md) · [§2 Chronology →](02-chronology.md)
 
 ## 1. Orientation — what we are building, why now, what is settled, and how to read this
 
@@ -472,7 +472,7 @@ src/modules/    ai · ai-tools · app-shell · auth · drafts · editor ·
                 export · graph · preview · repository · share · vault   [measured]
 engine code     NONE. There is no core/ directory anywhere in the tree. [measured]
 tests           83 test files under `test/`                                           [measured]
-                3,484 tests collected (66.4% of them abandoned worktrees) at last full run                    [primary, HANDOFF §10,
+                3,604 tests collected (66.4% of them abandoned worktrees) at last full run                    [primary, HANDOFF §10,
                                                                          not re-run this session]
 package.json    3,076 bytes, intact, name/version/engines present       [measured]
 ```
@@ -779,8 +779,8 @@ is published.**
 
 ### Links
 
-**This section references:** [§2 Chronology](02-chronology.md) · [§3 Capabilities](03-capabilities.md) · [§4 Representation](04-representation.md) · [§5 Rendering](05-rendering.md) · [§7 Product](07-product.md) · [§9 AIOS](09-aios.md) · [§10 Engine spec](10-engine-spec.md) · [§14 Verification](14-verification.md)
+**This section references:** [§0 Status](00-status.md) · [§2 Chronology](02-chronology.md) · [§3 Capabilities](03-capabilities.md) · [§4 Representation](04-representation.md) · [§5 Rendering](05-rendering.md) · [§7 Product](07-product.md) · [§9 AIOS](09-aios.md) · [§10 Engine spec](10-engine-spec.md) · [§14 Verification](14-verification.md)
 
-**Referenced by:** [§2 Chronology](02-chronology.md) · [§3 Capabilities](03-capabilities.md) · [§4 Representation](04-representation.md) · [§5 Rendering](05-rendering.md) · [§8 Market](08-market.md) · [§9 AIOS](09-aios.md) · [§10 Engine spec](10-engine-spec.md) · [§11 Execution](11-execution.md) · [§12 Risks](12-risks.md) · [§13 Appendix](13-appendix.md) · [§14 Verification](14-verification.md)
+**Referenced by:** [§0 Status](00-status.md) · [§2 Chronology](02-chronology.md) · [§3 Capabilities](03-capabilities.md) · [§4 Representation](04-representation.md) · [§5 Rendering](05-rendering.md) · [§8 Market](08-market.md) · [§9 AIOS](09-aios.md) · [§10 Engine spec](10-engine-spec.md) · [§11 Execution](11-execution.md) · [§12 Risks](12-risks.md) · [§13 Appendix](13-appendix.md) · [§14 Verification](14-verification.md)
 
 [← Index](README.md)

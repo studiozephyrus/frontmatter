@@ -4,8 +4,8 @@ section: 7
 title: "frontmatter the product: features, the gap, and what it needs on top of MDMAX"
 slug: 07-product
 lines: 880
-words: 13391
-forward_links: [2, 3, 4, 5, 8, 9, 10, 14]
+words: 13401
+forward_links: [0, 2, 3, 4, 5, 8, 9, 10, 14]
 backlinks: [1, 2, 3, 8, 9, 11, 12, 13, 14]
 prev: 06-conventions
 next: 08-market
@@ -162,8 +162,8 @@ This plan replaces `docs/mdmax/PLAN.md` v2.0.0 and inherits research whose headl
 | claim as previously stated | corrected | source |
 |---|---|---|
 | "18.9% of a real Obsidian vault's frontmatter is invalid YAML" | 18.74% is the **whole-corpus** rate (170/907). The Obsidian vault (`md` root) is **13.75%** (91/662); the `knowledge` repo is **35.59%** (79/222); the `frontmatter` repo is **0**. Say which. | final-gate `product-gap` verification, `killed[2]` |
-| "eemeli/yaml reaches 31.86% safe vs gray-matter's 3.64%" | Apples-to-apples: **22.38% vs 31.86%** under "file left untouched", or **3.64% vs 13.12%** under "published and byte-identical". A ~9-point gap was presented as ~28, by scoring eemeli's 170 refusals as successes and gray-matter's throws on **identically the same 170 files** as failures. The conclusion (splice is required, a library swap is not the fix) survives and is better supported by the corrected numbers. | final-gate `product-gap` verification, `killed[0]`, `killed[1]` |
-| "Publish round-trips only 3.64% of the corpus" | 3.64% (33/907) is a **no-op write**. The actual publish-then-unpublish round trip is **17/736 parsed = 2.31%** (17/907 = **1.87%**). The original claim was conservative, not inflated — but any gate written against the round-trip operation must beat **1.87%**, not 3.64%. | final-gate `product-gap` verification, `new_defects[0]` |
+| "eemeli/yaml reaches 31.86% safe vs gray-matter's 3.64%" | Apples-to-apples: **22.38% vs 31.86%** under "file left untouched", or **3.64% vs 12.57% genuine + 18.74% silent refusals** under "published and byte-identical". A ~9-point gap was presented as ~28, by scoring eemeli's 170 refusals as successes and gray-matter's throws on **identically the same 170 files** as failures. The conclusion (splice is required, a library swap is not the fix) survives and is better supported by the corrected numbers. | final-gate `product-gap` verification, `killed[0]`, `killed[1]` |
+| "Publish round-trips only 3.64% of the corpus" | 3.64% (33/907) is a **no-op write**. The actual publish-then-unpublish round trip is **33/907 parsed = 2.31%** (17/907 = **1.87%**). The original claim was conservative, not inflated — but any gate written against the round-trip operation must beat **1.87%**, not 3.64%. | final-gate `product-gap` verification, `new_defects[0]` |
 | "171 files fail" (one failure mode) | **Two** failure modes. Exactly **170** files fail at `matter()` parse; exactly **one more**, `md/pj.md`, parses cleanly and throws at `matter.stringify`. A splice fixes the 170 by never parsing; it does not automatically fix the stringify class. | final-gate `product-gap` verification, `new_defects[2]` |
 | "Docs v1 has 92 suggestion fields" | Reproduces under **none of eleven** counting rules the verifier tried. The nearest true figure is **197 suggestion-named property occurrences across 56 schemas**. The "35 suggestion-bearing schemas" figure is correct and is exactly the count of schemas whose **name** contains "Suggest", out of 170. | final-gate `product-gap` verification, `killed[3]` |
 | "Drive v3 Comment has 13 fields, Reply has 10" | **14** Comment properties and **11** Reply properties. 13/10 is what you get after excluding `kind`, which is defensible but was not stated. | final-gate `product-gap` verification, `new_defects[5]` |
@@ -268,7 +268,7 @@ Measured against the pinned corpus by replicating that exact code path, and inde
 | **byte-identical after a no-op write** | **33 (3.64%)** |
 | gray-matter throws (unpublishable → HTTP 502) | 171 = 170 parse failures + 1 stringify failure (`md/pj.md`) |
 | bytes changed | 703 |
-| **byte-identical after publish → unpublish** | **17/736 parsed = 2.31%; 17/907 = 1.87%** |
+| **byte-identical after publish → unpublish** | **33/907 parsed = 2.31%; 17/907 = 1.87%** |
 | **bare `YYYY-MM-DD` rewritten to ISO timestamp** | **624 of 736 parsed = 84.78%** |
 | **`matter().data` unchanged after mangling** | **703 stable / 0 differ** |
 
@@ -276,7 +276,7 @@ That last row is the most decision-relevant number in this entire section. `titl
 
 Publish fires on every publish and every unpublish, through `setShare` → `POST /api/share`. `src/app/api/share/route.ts` returns `status: 502` with `error: "upstream_failure"` on any non-slug error, so the 171 files simply cannot be published.
 
-> **What this is not.** It is not a library-choice problem. The repo already contains a comment-and-order-preserving path (`src/modules/preview/presentation/frontmatter.ts`, eemeli/yaml `parseDocument`, consumed by `PropertiesPanel.tsx:79`) and Publish does not use it — but ported to the same corpus it reaches only **13.12% published-and-byte-identical** (119/907), and it fails to parse **the same 170 files**. A swap is not the fix. A byte-range splice is.
+> **What this is not.** It is not a library-choice problem. The repo already contains a comment-and-order-preserving path (`src/modules/preview/presentation/frontmatter.ts`, eemeli/yaml `parseDocument`, consumed by `PropertiesPanel.tsx:79`) and Publish does not use it — but ported to the same corpus it reaches only **12.57% genuine + 18.74% silent refusals published-and-byte-identical** (119/907), and it fails to parse **the same 170 files**. A swap is not the fix. A byte-range splice is.
 
 > **UNVERIFIED, and it deserves a live check.** The 502 claim is a code-path trace, not an execution. Nobody has run the application against a live vault and confirmed that publishing one of the 171 files returns 502. Do that before quoting it externally.
 
@@ -316,7 +316,7 @@ Sourcing: rows marked `[primary]` were fetched and read directly during the fina
 | **Notion** | yes | no | yes | limited | yes | **no** — lossy export; relations→text, rollups/views vanish | Free; Plus $10/user/mo; Business $20; AI $10 per 1,000 credits | `[secondary]` gapmap, verified from official pricing page 2026-07-12 |
 | **Obsidian** | shared vault only | **no** — every collaborator needs a paid Sync seat | **no** | **no** | **no** | **yes** — plain .md on disk, the category benchmark | core free; Sync **$4/user/mo annual, $5 monthly**; Publish $8/site/mo; **20-collaborator cap** | `[primary]` obsidian-help `Collaborate on a shared vault.md`, four verbatim quotes: *"Fine-grained permissions are not supported yet"* / *"You will not see the other user's cursor"* / *"maximum … is 20 users"* / *"All collaborators must have an active Sync subscription"* |
 | **Moment.dev** (2026 entrant) | yes | no | **no** — `grep -ioE "comment\|suggest"` over homepage + docs + pricing returns **zero matches** | **no** | **no** | **yes** — *"Actual files, on actual disk"*, full history via Jujutsu and git | Free 1 user; **Team $30/mo up to 5 users, +$6/user** | `[primary]` moment.dev homepage, /docs, /pricing, fetched 2026-08-01 |
-| **inkeep/OpenKnowledge** (2026 entrant) | n/a — local | n/a | **yes**, content-derived anchoring, orphan-rather-than-guess | no | partial | **yes** — sidecar, never committed | free, **GPL-3.0** | `[primary]` 3,239★, created 2026-06-03, pushed 2026-08-01, 14,790 npm dl/wk, HN 381 pts / 173 comments. `.changeset/comments-v1.md` verbatim: *"a comment here is a note to your own agent, **not a message to a teammate**."* Merged 2026-07-30; beta `0.46.0-beta.32` at 2026-08-01T02:38:33Z; **absent from stable 0.45.4** |
+| **inkeep/open-knowledge** (2026 entrant) | n/a — local | n/a | **yes**, content-derived anchoring, orphan-rather-than-guess | no | partial | **yes** — sidecar, never committed | free, **GPL-3.0** | `[primary]` 3,239★, created 2026-06-03, pushed 2026-08-01, 14,790 npm dl/wk, HN 381 pts / 173 comments. `.changeset/comments-v1.md` verbatim: *"a comment here is a note to your own agent, **not a message to a teammate**."* Merged 2026-07-30; beta `0.46.0-beta.32` at 2026-08-01T02:38:33Z; **absent from stable 0.45.4** |
 | **Craft** | yes | no | `[UNVERIFIED]` | `[UNVERIFIED]` | `[UNVERIFIED]` | **no** — blocks not files; lossy md round-trip | Free (1,500 blocks); Plus $10/mo or $96/yr; Team $60/mo | `[primary]` homepage contains **0 occurrences** of "markdown", "comment" or "collaborat"; pricing `[secondary]` gapmap |
 | **Bear** | Pro-gated | no | no | no | no | pseudo-markdown; Apple-locked | Free; Pro $2.99/mo or $29.99/yr | `[primary]` homepage: 7 "markdown", **0 "comment"**, **0 "collaborat"**; pricing `[secondary]` |
 | **Coda** | — | — | — | — | — | **absorbed** — banner reads verbatim *"Coda is now Superhuman Docs"* | — | `[primary]` coda.io fetched 2026-08-01 |
@@ -899,7 +899,7 @@ Per the plan's own standard: a section that only argues its own case is marketin
 
 ### Links
 
-**This section references:** [§2 Chronology](02-chronology.md) · [§3 Capabilities](03-capabilities.md) · [§4 Representation](04-representation.md) · [§5 Rendering](05-rendering.md) · [§8 Market](08-market.md) · [§9 AIOS](09-aios.md) · [§10 Engine spec](10-engine-spec.md) · [§14 Verification](14-verification.md)
+**This section references:** [§0 Status](00-status.md) · [§2 Chronology](02-chronology.md) · [§3 Capabilities](03-capabilities.md) · [§4 Representation](04-representation.md) · [§5 Rendering](05-rendering.md) · [§8 Market](08-market.md) · [§9 AIOS](09-aios.md) · [§10 Engine spec](10-engine-spec.md) · [§14 Verification](14-verification.md)
 
 **Referenced by:** [§1 Orientation](01-orientation.md) · [§2 Chronology](02-chronology.md) · [§3 Capabilities](03-capabilities.md) · [§8 Market](08-market.md) · [§9 AIOS](09-aios.md) · [§11 Execution](11-execution.md) · [§12 Risks](12-risks.md) · [§13 Appendix](13-appendix.md) · [§14 Verification](14-verification.md)
 

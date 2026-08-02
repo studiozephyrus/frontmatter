@@ -124,12 +124,12 @@ img{max-width:100%;height:auto}
 <header class="top">
   <button class="iconbtn" id="mb" aria-label="Menu"><svg viewBox="0 -960 960 960" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M120-240v-80h720v80H120Zm0-200v-80h720v80H120Zm0-200v-80h720v80H120Z"/></svg></button>
   <a class="brand" href="index.html">MD<b>MAX</b></a>
-  <span class="meta">1,223 lines · 11,992 words</span><span class="sp"></span>
+  <span class="meta">1,228 lines · 12,049 words</span><span class="sp"></span>
   <button class="iconbtn" id="tb" aria-label="Toggle theme"><svg viewBox="0 -960 960 960" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M480-120q-150 0-255-105T120-480q0-150 105-255t255-105q14 0 27.5 1t26.5 3q-41 29-65.5 75.5T444-660q0 90 63 153t153 63q55 0 101-24.5t75-65.5q2 13 3 26.5t1 27.5q0 150-105 255T480-120Z"/></svg></button>
 </header>
 <div class="wrap">
-  <nav class="side" aria-label="Sections"><h4>The plan</h4><ol><li><a href="01-orientation.html"><span class="num">01</span><span>Orientation</span></a></li><li><a href="02-chronology.html"><span class="num">02</span><span>Chronology</span></a></li><li><a href="03-capabilities.html"><span class="num">03</span><span>Capabilities</span></a></li><li><a href="04-representation.html"><span class="num">04</span><span>Representation</span></a></li><li><a href="05-rendering.html"><span class="num">05</span><span>Rendering</span></a></li><li><a href="06-conventions.html"><span class="num">06</span><span>Conventions</span></a></li><li><a href="07-product.html"><span class="num">07</span><span>Product</span></a></li><li><a href="08-market.html"><span class="num">08</span><span>Market</span></a></li><li><a href="09-aios.html"><span class="num">09</span><span>AIOS</span></a></li><li><a href="10-engine-spec.html"><span class="num">10</span><span>Engine spec</span></a></li><li><a href="11-execution.html" class="on"><span class="num">11</span><span>Execution</span></a></li><li><a href="12-risks.html"><span class="num">12</span><span>Risks</span></a></li><li><a href="13-appendix.html"><span class="num">13</span><span>Appendix</span></a></li><li><a href="14-verification.html"><span class="num">14</span><span>Verification</span></a></li></ol></nav>
-  <main id="main"><p class="kick">Section 11 of 14</p><p><a href="index.html">← Index</a> · <a href="10-engine-spec.html">← §10 Engine spec</a> · <a href="12-risks.html">§12 Risks →</a></p>
+  <nav class="side" aria-label="Sections"><h4>The plan</h4><ol><li><a href="00-status.html"><span class="num">00</span><span>Status</span></a></li><li><a href="01-orientation.html"><span class="num">01</span><span>Orientation</span></a></li><li><a href="02-chronology.html"><span class="num">02</span><span>Chronology</span></a></li><li><a href="03-capabilities.html"><span class="num">03</span><span>Capabilities</span></a></li><li><a href="04-representation.html"><span class="num">04</span><span>Representation</span></a></li><li><a href="05-rendering.html"><span class="num">05</span><span>Rendering</span></a></li><li><a href="06-conventions.html"><span class="num">06</span><span>Conventions</span></a></li><li><a href="07-product.html"><span class="num">07</span><span>Product</span></a></li><li><a href="08-market.html"><span class="num">08</span><span>Market</span></a></li><li><a href="09-aios.html"><span class="num">09</span><span>AIOS</span></a></li><li><a href="10-engine-spec.html"><span class="num">10</span><span>Engine spec</span></a></li><li><a href="11-execution.html" class="on"><span class="num">11</span><span>Execution</span></a></li><li><a href="12-risks.html"><span class="num">12</span><span>Risks</span></a></li><li><a href="13-appendix.html"><span class="num">13</span><span>Appendix</span></a></li><li><a href="14-verification.html"><span class="num">14</span><span>Verification</span></a></li></ol></nav>
+  <main id="main"><p class="kick">Section 11 of 15</p><p><a href="index.html">← Index</a> · <a href="10-engine-spec.html">← §10 Engine spec</a> · <a href="12-risks.html">§12 Risks →</a></p>
 <h2 id="11-the-execution-plan-every-step-in-order-with-gates">11. The execution plan — every step, in order, with gates</h2>
 <p>This section says what to do, in what order, who does it, which files it touches, what command
 proves it done, and what happens if it does not get done. It is written for someone who has never
@@ -251,7 +251,7 @@ matter.</strong> The <code>product-market</code> lens ranks the second user firs
 <code>premortem-integrator</code> lens ranks the splice writer second and the second user third.
 <code>[primary, final-gate synthesis lenses 1 and 3, ranked arrays]</code> They are disjoint: step 1 touches
 <code>src/modules/auth</code>, <code>src/config</code>, <code>src/container</code>, <code>src/app/(auth)</code>; step 2 touches
-<code>src/modules/share/infrastructure</code> and a new <code>src/modules/mdmax/domain</code>. No shared file. Run them in
+<code>src/modules/share/infrastructure</code> and a new <code>src/modules/share/domain</code>. No shared file. Run them in
 parallel — which is exactly what the module boundary in §11.11 exists to make safe. <strong>DECIDED.</strong></p>
 <hr>
 <h3 id="112-step-0-repo-hygiene-half-a-day-do-it-before-anything-els">11.2 Step 0 — Repo hygiene · half a day · do it before anything else</h3>
@@ -592,7 +592,7 @@ whole YAML block from a parsed object, which is regeneration, not splicing — a
 range of the <code>key</code>'s value node (or the insertion point after the last key), replace <strong>only</strong> those
 bytes, return the string. <strong>Never call <code>matter.stringify</code>. Never call <code>toString()</code> on a YAML
 Document.</strong> <code>[DECIDED]</code></p>
-<p><strong>Where it lives.</strong> New module <code>src/modules/mdmax/domain/splice-frontmatter.ts</code>, exported from a new
+<p><strong>Where it lives.</strong> New module <code>src/modules/share/domain/splice-frontmatter.ts</code>, exported from a new
 barrel <code>src/modules/mdmax/index.ts</code>. It is a pure function, so it belongs in <code>domain</code> — which under
 <code>eslint-plugin-boundaries</code> may import only <code>domain</code> and <code>shared-domain</code>
 <code>[primary, eslint.config.mjs:109-111]</code>, and that constraint is a feature: it makes the splice writer
@@ -603,11 +603,11 @@ through the barrel <code>@/modules/mdmax</code>, never the deep path.</p>
 AST node — use it to find the byte range, then throw the Document away without ever serialising it.</p>
 <blockquote>
 <p><strong>DO NOT take the shortcut of swapping <code>gray-matter</code> for <code>yaml</code> and calling <code>toString()</code>.</strong> The
-<code>yaml</code> library's own no-edit round trip is byte-identical on only <strong>119 of 907</strong> blocks, and
+<code>yaml</code> library's own no-edit round trip is byte-identical on only <strong>114 of 907</strong> blocks, and
 <strong>170 files do not parse at all.</strong> <code>[measured]</code> It is a different regenerator, not a splicer.</p>
 </blockquote>
 <h4>11.4.3 The gate</h4>
-<p><strong>Committed RED first.</strong> Against the current writer the test will fail at <strong>17/736</strong>.</p>
+<p><strong>Committed RED first.</strong> Against the current writer the test will fail at <strong>33/907</strong>.</p>
 <pre><code>Given every one of the 907 frontmatter-bearing files in corpus_id sha256:3a010b16…
   publish(file)  → unpublish(file)  must be BYTE-IDENTICAL to the original — 907/907.
   publish(file)  must not throw — including on the 171 that no YAML parser reads.
@@ -796,7 +796,7 @@ loop free but has no local files or vault. Moment.dev ships realtime on git-back
 <code>grep -ioE 'comment|suggest'</code> over its homepage, docs and pricing returns <strong>0</strong>. Obsidian's own help
 file for shared vaults states plainly: no cursors, no fine-grained permissions, no comments. Craft
 and Bear homepages contain <strong>0</strong> occurrences of "comment".</p>
-<p><strong>The clock.</strong> <code>inkeep/OpenKnowledge</code> (<strong>3,239 stars, 14,790 npm downloads/week, GPL-3.0</strong>) merged
+<p><strong>The clock.</strong> <code>inkeep/open-knowledge</code> (<strong>3,239 stars, 14,790 npm downloads/week, GPL-3.0</strong>) merged
 content-derived comment anchoring on <strong>2026-07-30</strong> and published <code>0.46.0-beta.32</code> at
 <strong>2026-08-01T02:38:33Z</strong> — six minutes before the researcher's first tool call. Its own changeset
 says the comment is <em>"a note to your own agent, not a message to a teammate."</em>
@@ -1014,17 +1014,17 @@ branch must operate on disjoint, explicitly-named artifacts.</p>
 <tr>
 <td>1 second user</td>
 <td><code>auth</code>, new <code>tenancy</code>, <code>config</code>, <code>container</code>, <code>app/(auth)</code>, <code>app/(workspace)</code></td>
-<td><code>share/infrastructure</code>, <code>mdmax</code></td>
+<td><code>share/**</code></td>
 </tr>
 <tr>
 <td>2 splice</td>
-<td>new <code>mdmax/domain</code>, <code>share/infrastructure/share-writer.ts</code>, <code>vault/infrastructure/markdown-parser.ts</code></td>
-<td><code>auth</code>, <code>config</code>, <code>container</code></td>
+<td><del>new <code>mdmax/domain</code></del> — <strong>SHIPPED in <code>4f97129</code> as <code>share/domain/splice-frontmatter.ts</code></strong></td>
+<td>—</td>
 </tr>
 <tr>
 <td>4 share links</td>
-<td><code>share</code> (all layers), <code>app/api/share</code></td>
-<td><code>mdmax/domain</code></td>
+<td><code>share/application</code>, <code>share/presentation</code>, <code>app/api/share</code></td>
+<td><strong><code>share/domain/splice-frontmatter.ts</code></strong> and <code>share/infrastructure/share-writer.ts</code></td>
 </tr>
 <tr>
 <td>5 cert</td>
@@ -1034,12 +1034,18 @@ branch must operate on disjoint, explicitly-named artifacts.</p>
 <tr>
 <td>6 review loop</td>
 <td>new <code>comments</code> module, <code>firestore.rules</code></td>
-<td><code>mdmax/domain</code></td>
+<td><code>share/domain</code></td>
 </tr>
 </tbody>
 </table></div>
-<p><strong>One agent per module boundary, never two agents on the same file.</strong>
+<p><strong>One agent per module boundary, never two agents on the same file.</strong></p>
+<blockquote>
+<p><strong>Corrected 2026-08-02.</strong> Step 4 previously claimed <code>share</code> (all layers). The splice writer now
+lives at <code>src/modules/share/domain/splice-frontmatter.ts</code>, so that grant would have let a step-4
+agent overwrite the one file with a 907/907 gate on it. Step 4 is now scoped to <code>application</code> and
+<code>presentation</code>, and <code>share/domain</code> is explicitly off-limits to it.
 <code>[primary, final-gate area aios-transfer, design item 4]</code></p>
+</blockquote>
 <h4>11.11.4 Worktrees</h4>
 <p>Two exist and both are stale (§11.2.1). The rule going forward, from <code>aios-transfer</code>:</p>
 <ol>
@@ -1061,7 +1067,7 @@ first parallel agent run, not after.</strong> <code>[primary, aios-transfer effo
 <h4>11.12.1 The research→build boundary rule</h4>
 <p><strong>Nothing enters the build backlog on a headline.</strong> A backlog item requires three fields:</p>
 <pre><code class="language-yaml">- id: S2-splice
-  claim: "publish-then-unpublish is byte-identical on 17/736 files"
+  claim: "publish-then-unpublish is byte-identical on 33/907 files"
   corpus_id: sha256:3a010b1649899795d79274fc528dbece97fdabf4ff0f81cc02ab619c048c51a4
   repro: "node scripts/derive/roundtrip.mjs --corpus corpus-manifest.json"
   verifier_verdict: CONFIRMED        # or OVERSTATED / REFUTED / UNAUDITED
@@ -1441,7 +1447,7 @@ green K1 substitute for the five conversations in §11.12.7.</p>
 </tr>
 <tr>
 <td><strong>K9</strong></td>
-<td><code>inkeep/OpenKnowledge</code> ships the teammate model (today its changeset says a comment is <em>"a note to your own agent, not a message to a teammate"</em>)</td>
+<td><code>inkeep/open-knowledge</code> ships the teammate model (today its changeset says a comment is <em>"a note to your own agent, not a message to a teammate"</em>)</td>
 <td>watch the repo; it merged anchoring <strong>2026-07-30</strong> and published at <strong>2026-08-01T02:38:33Z</strong></td>
 <td>the empty intersection is no longer empty. Re-decide step 6 within a week, do not discover it in a demo</td>
 </tr>
@@ -1601,8 +1607,8 @@ drift, plus the <strong>18.91% of frontmatter blocks that no YAML parser reads.<
 <tbody>
 <tr>
 <td>09:00–13:00</td>
-<td><strong>Step 2 in one sitting.</strong> <code>src/modules/mdmax/domain/splice-frontmatter.ts</code> + barrel; rewrite <code>share-writer.ts</code> to use it; <code>try/catch</code> around the read so the 171 unparseable files stop 502-ing</td>
-<td>the gate test, committed RED first, moves from <strong>17/736</strong> toward 907/907</td>
+<td><strong>Step 2 in one sitting.</strong> <code>src/modules/share/domain/splice-frontmatter.ts</code> + barrel; rewrite <code>share-writer.ts</code> to use it; <code>try/catch</code> around the read so the 171 unparseable files stop 502-ing</td>
+<td>the gate test, committed RED first, moves from <strong>33/907</strong> toward 907/907</td>
 </tr>
 <tr>
 <td>13:00–15:00</td>
@@ -1762,7 +1768,7 @@ output that nobody has measured on model output).</li>
 <li><strong>Step 1 goes green in under three days.</strong> Then the 8–12 day estimate was wrong by 4×, the whole
 premise that tenancy is the bottleneck deserves a second look, and step 3 should start immediately.</li>
 <li><strong>The splice gate passes at 907/907 on the <em>first</em> run against the <em>current</em> writer.</strong> Then the
-measured 17/736 is wrong and every downstream claim about frontmatter corruption needs re-deriving
+measured 33/907 is wrong and every downstream claim about frontmatter corruption needs re-deriving
 before it is repeated to anyone.</li>
 <li><strong>Three of the five conversations say the login wall is fine.</strong> Then M3 did not fire, D3 stands as
 written, and step 4 simplifies.</li>
@@ -1772,9 +1778,9 @@ and the plan still has no customer — which is the failure mode §11.13's falsi
 <hr>
 <hr>
 <h3 id="links">Links</h3>
-<p><strong>This section references:</strong> <a href="01-orientation.html">§1 Orientation</a> · <a href="02-chronology.html">§2 Chronology</a> · <a href="03-capabilities.html">§3 Capabilities</a> · <a href="04-representation.html">§4 Representation</a> · <a href="05-rendering.html">§5 Rendering</a> · <a href="07-product.html">§7 Product</a> · <a href="09-aios.html">§9 AIOS</a> · <a href="10-engine-spec.html">§10 Engine spec</a></p>
-<p><strong>Referenced by:</strong> <a href="06-conventions.html">§6 Conventions</a> · <a href="09-aios.html">§9 AIOS</a> · <a href="12-risks.html">§12 Risks</a> · <a href="13-appendix.html">§13 Appendix</a> · <a href="14-verification.html">§14 Verification</a></p>
-<p><a href="index.html">← Index</a></p><div class="pager"><a href="10-engine-spec.html"><span class="l">Previous</span><span class="t">§10 Engine spec</span></a><a class="r" href="12-risks.html"><span class="l">Next</span><span class="t">§12 Risks</span></a></div></main>
+<p><strong>This section references:</strong> <a href="00-status.html">§0 Status</a> · <a href="01-orientation.html">§1 Orientation</a> · <a href="02-chronology.html">§2 Chronology</a> · <a href="03-capabilities.html">§3 Capabilities</a> · <a href="04-representation.html">§4 Representation</a> · <a href="05-rendering.html">§5 Rendering</a> · <a href="07-product.html">§7 Product</a> · <a href="09-aios.html">§9 AIOS</a> · <a href="10-engine-spec.html">§10 Engine spec</a></p>
+<p><strong>Referenced by:</strong> <a href="00-status.html">§0 Status</a> · <a href="06-conventions.html">§6 Conventions</a> · <a href="09-aios.html">§9 AIOS</a> · <a href="12-risks.html">§12 Risks</a> · <a href="13-appendix.html">§13 Appendix</a> · <a href="14-verification.html">§14 Verification</a></p>
+<p><a href="index.html">← Index</a></p><div class="pager"><a href="09-aios.html"><span class="l">Previous</span><span class="t">§9 AIOS</span></a><a class="r" href="11-execution.html"><span class="l">Next</span><span class="t">§11 Execution</span></a></div></main>
   <aside class="toc" aria-label="On this page"><h4>On this page</h4><a href="#11-the-execution-plan-every-step-in-order-with-gates">11. The execution plan — every step, in order, with gates</a><a href="#111-the-sequence-at-a-glance" class="h3">11.1 The sequence at a glance</a><a href="#112-step-0-repo-hygiene-half-a-day-do-it-before-anything-els" class="h3">11.2 Step 0 — Repo hygiene · half a day · do it before anything else</a><a href="#113-step-1-the-second-user-812-founder-days-the-only-step-th" class="h3">11.3 Step 1 — THE SECOND USER · 8–12 founder-days · the only step that matters this month</a><a href="#114-step-2-the-frontmatter-splice-half-a-founder-day-paralle" class="h3">11.4 Step 2 — THE FRONTMATTER SPLICE · half a founder-day · parallel with step 1</a><a href="#115-step-3-wedge-a-your-vault-in-any-browser-1525-founder-da" class="h3">11.5 Step 3 — WEDGE A: "your vault, in any browser" · 15–25 founder-days · the paid beachhead</a><a href="#116-step-4-share-links-with-enforced-roles-expiry-and-a-comm" class="h3">11.6 Step 4 — SHARE LINKS with enforced roles, expiry and a comment box · 5–8 days</a><a href="#117-step-5-mdmax-cert-two-days-hard-cap-the-capped-give-away" class="h3">11.7 Step 5 — mdmax cert · two days, hard cap · the capped give-away</a><a href="#118-step-6-the-review-loop-2030-founder-days-the-thing-twelv" class="h3">11.8 Step 6 — THE REVIEW LOOP · 20–30 founder-days · the thing twelve months buys</a><a href="#119-step-7-pack-unpack-sequenced-here-and-contested" class="h3">11.9 Step 7 — pack / unpack · sequenced here, and contested</a><a href="#1110-step-8-real-time-collaboration-not-this-cycle" class="h3">11.10 Step 8 — REAL-TIME COLLABORATION · not this cycle</a><a href="#1111-where-the-work-happens" class="h3">11.11 Where the work happens</a><a href="#1112-the-workflow-how-a-task-goes-from-backlog-to-merged" class="h3">11.12 The workflow — how a task goes from backlog to merged</a><a href="#1113-the-30-day-test-written-as-a-gate" class="h3">11.13 The 30-day test, written as a gate</a><a href="#1114-the-kill-gates-complete-each-with-the-number-that-trips" class="h3">11.14 The kill gates, complete, each with the number that trips it</a><a href="#1115-what-we-do-not-build-with-the-reason-and-the-measuremen" class="h3">11.15 What we do not build — with the reason and the measurement</a><a href="#1116-the-first-week-monday-2026-08-03-to-friday-2026-08-07" class="h3">11.16 The first week — Monday 2026-08-03 to Friday 2026-08-07</a><a href="#1117-what-this-section-does-not-cover-and-what-would-falsify" class="h3">11.17 What this section does not cover, and what would falsify it</a><a href="#links" class="h3">Links</a></aside>
 </div>
 <button class="up" aria-label="Back to top"><svg viewBox="0 -960 960 960" width="20" height="20" fill="currentColor" aria-hidden="true"><path d="M440-160v-487L216-423l-56-57 320-320 320 320-56 57-224-224v487h-80Z"/></svg></button>

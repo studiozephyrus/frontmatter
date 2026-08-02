@@ -3,10 +3,10 @@ mdmax: 1
 section: 11
 title: "The execution plan — every step, in order, with gates"
 slug: 11-execution
-lines: 1223
-words: 11992
-forward_links: [1, 2, 3, 4, 5, 7, 9, 10]
-backlinks: [6, 9, 12, 13, 14]
+lines: 1228
+words: 12049
+forward_links: [0, 1, 2, 3, 4, 5, 7, 9, 10]
+backlinks: [0, 6, 9, 12, 13, 14]
 prev: 10-engine-spec
 next: 12-risks
 ---
@@ -56,7 +56,7 @@ matter.** The `product-market` lens ranks the second user first and the splice w
 `premortem-integrator` lens ranks the splice writer second and the second user third.
 `[primary, final-gate synthesis lenses 1 and 3, ranked arrays]` They are disjoint: step 1 touches
 `src/modules/auth`, `src/config`, `src/container`, `src/app/(auth)`; step 2 touches
-`src/modules/share/infrastructure` and a new `src/modules/mdmax/domain`. No shared file. Run them in
+`src/modules/share/infrastructure` and a new `src/modules/share/domain`. No shared file. Run them in
 parallel — which is exactly what the module boundary in §11.11 exists to make safe. **DECIDED.**
 
 ---
@@ -386,7 +386,7 @@ range of the `key`'s value node (or the insertion point after the last key), rep
 bytes, return the string. **Never call `matter.stringify`. Never call `toString()` on a YAML
 Document.** `[DECIDED]`
 
-**Where it lives.** New module `src/modules/mdmax/domain/splice-frontmatter.ts`, exported from a new
+**Where it lives.** New module `src/modules/share/domain/splice-frontmatter.ts`, exported from a new
 barrel `src/modules/mdmax/index.ts`. It is a pure function, so it belongs in `domain` — which under
 `eslint-plugin-boundaries` may import only `domain` and `shared-domain`
 `[primary, eslint.config.mjs:109-111]`, and that constraint is a feature: it makes the splice writer
@@ -398,12 +398,12 @@ through the barrel `@/modules/mdmax`, never the deep path.
 AST node — use it to find the byte range, then throw the Document away without ever serialising it.
 
 > **DO NOT take the shortcut of swapping `gray-matter` for `yaml` and calling `toString()`.** The
-> `yaml` library's own no-edit round trip is byte-identical on only **119 of 907** blocks, and
+> `yaml` library's own no-edit round trip is byte-identical on only **114 of 907** blocks, and
 > **170 files do not parse at all.** `[measured]` It is a different regenerator, not a splicer.
 
 #### 11.4.3 The gate
 
-**Committed RED first.** Against the current writer the test will fail at **17/736**.
+**Committed RED first.** Against the current writer the test will fail at **33/907**.
 
 ```
 Given every one of the 907 frontmatter-bearing files in corpus_id sha256:3a010b16…
@@ -593,7 +593,7 @@ loop free but has no local files or vault. Moment.dev ships realtime on git-back
 file for shared vaults states plainly: no cursors, no fine-grained permissions, no comments. Craft
 and Bear homepages contain **0** occurrences of "comment".
 
-**The clock.** `inkeep/OpenKnowledge` (**3,239 stars, 14,790 npm downloads/week, GPL-3.0**) merged
+**The clock.** `inkeep/open-knowledge` (**3,239 stars, 14,790 npm downloads/week, GPL-3.0**) merged
 content-derived comment anchoring on **2026-07-30** and published `0.46.0-beta.32` at
 **2026-08-01T02:38:33Z** — six minutes before the researcher's first tool call. Its own changeset
 says the comment is *"a note to your own agent, not a message to a teammate."*
@@ -783,13 +783,18 @@ branch must operate on disjoint, explicitly-named artifacts.
 
 | step | modules it owns | must not touch |
 |---|---|---|
-| 1 second user | `auth`, new `tenancy`, `config`, `container`, `app/(auth)`, `app/(workspace)` | `share/infrastructure`, `mdmax` |
-| 2 splice | new `mdmax/domain`, `share/infrastructure/share-writer.ts`, `vault/infrastructure/markdown-parser.ts` | `auth`, `config`, `container` |
-| 4 share links | `share` (all layers), `app/api/share` | `mdmax/domain` |
+| 1 second user | `auth`, new `tenancy`, `config`, `container`, `app/(auth)`, `app/(workspace)` | `share/**` |
+| 2 splice | ~~new `mdmax/domain`~~ — **SHIPPED in `4f97129` as `share/domain/splice-frontmatter.ts`** | — |
+| 4 share links | `share/application`, `share/presentation`, `app/api/share` | **`share/domain/splice-frontmatter.ts`** and `share/infrastructure/share-writer.ts` |
 | 5 cert | `scripts/` + fixtures only — **no `src/` writes at all** | everything |
-| 6 review loop | new `comments` module, `firestore.rules` | `mdmax/domain` |
+| 6 review loop | new `comments` module, `firestore.rules` | `share/domain` |
 
 **One agent per module boundary, never two agents on the same file.**
+
+> **Corrected 2026-08-02.** Step 4 previously claimed `share` (all layers). The splice writer now
+> lives at `src/modules/share/domain/splice-frontmatter.ts`, so that grant would have let a step-4
+> agent overwrite the one file with a 907/907 gate on it. Step 4 is now scoped to `application` and
+> `presentation`, and `share/domain` is explicitly off-limits to it.
 `[primary, final-gate area aios-transfer, design item 4]`
 
 #### 11.11.4 Worktrees
@@ -820,7 +825,7 @@ first parallel agent run, not after.** `[primary, aios-transfer effort block]`
 
 ```yaml
 - id: S2-splice
-  claim: "publish-then-unpublish is byte-identical on 17/736 files"
+  claim: "publish-then-unpublish is byte-identical on 33/907 files"
   corpus_id: sha256:3a010b1649899795d79274fc528dbece97fdabf4ff0f81cc02ab619c048c51a4
   repro: "node scripts/derive/roundtrip.mjs --corpus corpus-manifest.json"
   verifier_verdict: CONFIRMED        # or OVERSTATED / REFUTED / UNAUDITED
@@ -1087,7 +1092,7 @@ green K1 substitute for the five conversations in §11.12.7.
 | **K6** | The orphan rate in the pilot is intolerable — threshold **>10% of all threads per week of normal editing** | the visible product metric shipped with the first comment | the review loop needs a different anchor, or a different product |
 | **K7** | Multi-tenancy does not ship | step 1 gate | there is no Google-Docs story. Position the engine as a standalone library |
 | **K8** | `mdmax cert` promotes itself: **15 of 30** probed users name the certificate as their reason to pay | §11.12.7 | **the inverse kill** — promote it and re-sequence the whole plan |
-| **K9** | `inkeep/OpenKnowledge` ships the teammate model (today its changeset says a comment is *"a note to your own agent, not a message to a teammate"*) | watch the repo; it merged anchoring **2026-07-30** and published at **2026-08-01T02:38:33Z** | the empty intersection is no longer empty. Re-decide step 6 within a week, do not discover it in a demo |
+| **K9** | `inkeep/open-knowledge` ships the teammate model (today its changeset says a comment is *"a note to your own agent, not a message to a teammate"*) | watch the repo; it merged anchoring **2026-07-30** and published at **2026-08-01T02:38:33Z** | the empty intersection is no longer empty. Re-decide step 6 within a week, do not discover it in a demo |
 | **K10** | P7a returns *"a zip of clean `.md` files"* **or** P7b (live-model tokens) fails to beat the file tree | §11.9 | pack/unpack is deleted, permanently. Keep only the D4 export zip |
 
 **K1 and K2 are the ones that matter.** They fall due in thirty days. Everything else is a course
@@ -1151,7 +1156,7 @@ flatter the team — the same rule that selected `mdmax cert`:
 
 | time | what | proof |
 |---|---|---|
-| 09:00–13:00 | **Step 2 in one sitting.** `src/modules/mdmax/domain/splice-frontmatter.ts` + barrel; rewrite `share-writer.ts` to use it; `try/catch` around the read so the 171 unparseable files stop 502-ing | the gate test, committed RED first, moves from **17/736** toward 907/907 |
+| 09:00–13:00 | **Step 2 in one sitting.** `src/modules/share/domain/splice-frontmatter.ts` + barrel; rewrite `share-writer.ts` to use it; `try/catch` around the read so the 171 unparseable files stop 502-ing | the gate test, committed RED first, moves from **33/907** toward 907/907 |
 | 13:00–15:00 | Build the **oracle** that shares no code with the writer (`Buffer.compare` on re-read bytes) | oracle imports neither `yaml` nor `gray-matter` nor the splicer |
 | 15:00–16:00 | Register the **splice-conformance gate**; write its `--broke` (reintroduce `matter.stringify`) and prove it goes red | `gate.mjs --verify-all` green |
 | 16:00–18:00 | Step 1 task **1b** — delete `allowlist.ts` and its test; rewrite the `signIn` callback | typecheck green, the RED test fails one assertion later than yesterday |
@@ -1228,7 +1233,7 @@ Anything in `FRONTMATTER-PRODUCT-PLAN.md` Phases 2, 4 and 5.
 - **Step 1 goes green in under three days.** Then the 8–12 day estimate was wrong by 4×, the whole
   premise that tenancy is the bottleneck deserves a second look, and step 3 should start immediately.
 - **The splice gate passes at 907/907 on the *first* run against the *current* writer.** Then the
-  measured 17/736 is wrong and every downstream claim about frontmatter corruption needs re-deriving
+  measured 33/907 is wrong and every downstream claim about frontmatter corruption needs re-deriving
   before it is repeated to anyone.
 - **Three of the five conversations say the login wall is fine.** Then M3 did not fire, D3 stands as
   written, and step 4 simplifies.
@@ -1242,8 +1247,8 @@ Anything in `FRONTMATTER-PRODUCT-PLAN.md` Phases 2, 4 and 5.
 
 ### Links
 
-**This section references:** [§1 Orientation](01-orientation.md) · [§2 Chronology](02-chronology.md) · [§3 Capabilities](03-capabilities.md) · [§4 Representation](04-representation.md) · [§5 Rendering](05-rendering.md) · [§7 Product](07-product.md) · [§9 AIOS](09-aios.md) · [§10 Engine spec](10-engine-spec.md)
+**This section references:** [§0 Status](00-status.md) · [§1 Orientation](01-orientation.md) · [§2 Chronology](02-chronology.md) · [§3 Capabilities](03-capabilities.md) · [§4 Representation](04-representation.md) · [§5 Rendering](05-rendering.md) · [§7 Product](07-product.md) · [§9 AIOS](09-aios.md) · [§10 Engine spec](10-engine-spec.md)
 
-**Referenced by:** [§6 Conventions](06-conventions.md) · [§9 AIOS](09-aios.md) · [§12 Risks](12-risks.md) · [§13 Appendix](13-appendix.md) · [§14 Verification](14-verification.md)
+**Referenced by:** [§0 Status](00-status.md) · [§6 Conventions](06-conventions.md) · [§9 AIOS](09-aios.md) · [§12 Risks](12-risks.md) · [§13 Appendix](13-appendix.md) · [§14 Verification](14-verification.md)
 
 [← Index](README.md)

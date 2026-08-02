@@ -6,7 +6,7 @@ slug: 10-engine-spec
 lines: 1357
 words: 13903
 forward_links: [1, 3, 5]
-backlinks: [1, 2, 3, 7, 11, 12, 13, 14]
+backlinks: [0, 1, 2, 3, 7, 11, 12, 13, 14]
 prev: 09-aios
 next: 11-execution
 ---
@@ -1004,9 +1004,9 @@ throws cannot also be silently corrupted.
 | `share-writer.ts:19` | calls `matter(file.content)` **bare, no `try/catch`** | the throw is caught one level up by the generic handler in `src/app/api/share/route.ts`, which returns **HTTP 502 `{error:'upstream_failure'}`**. So **18.7% of a real vault is unpublishable**, with a misleading upstream error |
 | `share-writer.ts:26` | `const next = matter.stringify(parsed.content, data);` | **regenerates the YAML from an object.** Over the corpus: 737 run, **695 frontmatter blocks changed (94.30%)**, 33 byte-identical, 8 trailing-newline-only, **0 bodies changed** `[measured]`. Modal damage is a quoting flip: `up: "[[Home]]"` -> `up: '[[Home]]'`. A live **D7 violation on every Publish**, in a file whose own doc comment at line 3 claims it works by *"splicing the key into the YAML frontmatter"* |
 | `gray-matter/index.js:161` | `matter.stringify = function(file, data, options) { if (typeof file === 'string') file = matter(file, options); … }` | **it re-parses its string argument.** `share-writer.ts` passes `parsed.content`, a raw string, so **the BODY is re-parsed as if it had its own frontmatter**. On `md/pj.md` this throws from inside `matter.stringify`; for any body opening with a `---` delimited block it will **silently consume that block and drop it**. This is why the reported triple does not sum: 33 + 8 + 695 = 736, not 737 `[primary + measured]`. It converts "cosmetic quoting churn" into **possible silent body truncation**, which is the one thing D4 and D7 exist to prevent |
-| `preview/presentation/frontmatter.ts:47` | `const yaml = doc.toString()` | the `yaml` library's no-edit round trip is byte-identical on only **119 of 907** blocks `[measured]` |
+| `preview/presentation/frontmatter.ts:47` | `const yaml = doc.toString()` | the `yaml` library's no-edit round trip is byte-identical on only **114 of 907** blocks `[measured]` |
 
-**Do NOT take the shortcut of swapping gray-matter for the `yaml` library.** 119 of 907 is not a fix.
+**Do NOT take the shortcut of swapping gray-matter for the `yaml` library.** 114 of 907 is not a fix.
 
 #### 10.6.4 A second, independent divergence: the two shipped parsers disagree on TYPE
 
@@ -1378,6 +1378,6 @@ implies, and the work is editor work.
 
 **This section references:** [§1 Orientation](01-orientation.md) · [§3 Capabilities](03-capabilities.md) · [§5 Rendering](05-rendering.md)
 
-**Referenced by:** [§1 Orientation](01-orientation.md) · [§2 Chronology](02-chronology.md) · [§3 Capabilities](03-capabilities.md) · [§7 Product](07-product.md) · [§11 Execution](11-execution.md) · [§12 Risks](12-risks.md) · [§13 Appendix](13-appendix.md) · [§14 Verification](14-verification.md)
+**Referenced by:** [§0 Status](00-status.md) · [§1 Orientation](01-orientation.md) · [§2 Chronology](02-chronology.md) · [§3 Capabilities](03-capabilities.md) · [§7 Product](07-product.md) · [§11 Execution](11-execution.md) · [§12 Risks](12-risks.md) · [§13 Appendix](13-appendix.md) · [§14 Verification](14-verification.md)
 
 [← Index](README.md)

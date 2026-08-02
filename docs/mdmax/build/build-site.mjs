@@ -206,7 +206,7 @@ function slugify(t) {
   return t.toLowerCase().replace(/[^\w\s-]/g, '').trim().replace(/\s+/g, '-').slice(0, 60)
 }
 
-function shell({ title, kicker, sectionNum, bodyHtml, toc, sidebar, pager, meta }) {
+function shell({ title, kicker, bodyHtml, toc, sidebar, pager, meta }) {
   return `<!doctype html><html lang="en"><head>
 <meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
 <title>${title} — MDMAX</title>
@@ -239,7 +239,7 @@ let built = 0
 for (const f of files) {
   if (f === 'README.md') continue
   const raw = fs.readFileSync(path.join(TREE, f), 'utf8')
-  const [fm, body] = splitFm(raw)
+  const [, body] = splitFm(raw)
   const slug = f.replace(/\.md$/, '')
   const s = bySlug[slug]
   let html = String(proc.processSync(body))
@@ -268,7 +268,7 @@ for (const f of files) {
     `</div>`
 
   fs.writeFileSync(path.join(OUT, `${slug}.html`), shell({
-    title: `§${s.n} ${s.short}`, kicker: `Section ${s.n} of ${graph.length}`, sectionNum: s.n,
+    title: `§${s.n} ${s.short}`, kicker: `Section ${s.n} of ${graph.length}`,
     bodyHtml: html, toc: toc.join(''), sidebar: sidebarFor(slug), pager,
     meta: `${s.lines.toLocaleString()} lines · ${s.words.toLocaleString()} words`,
   }))
@@ -299,7 +299,7 @@ for (const f of files) {
   </div>`
   html = html.replace('<hr>', stats + '<hr>')
   fs.writeFileSync(path.join(OUT, 'index.html'), shell({
-    title: 'The plan', kicker: 'MDMAX · build plan v2.1.0', sectionNum: 0,
+    title: 'The plan', kicker: 'MDMAX · build plan v2.1.0',
     bodyHtml: html, toc: toc.join(''), sidebar: sidebarFor(''), pager: '',
     meta: `v2.1.0 · ${new Date().toISOString().slice(0, 10)}`,
   }))

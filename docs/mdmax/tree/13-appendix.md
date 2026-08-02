@@ -4,8 +4,8 @@ section: 13
 title: "Appendix — the evidence base, the corpus, and where everything lives"
 slug: 13-appendix
 lines: 1164
-words: 12924
-forward_links: [1, 2, 3, 4, 5, 6, 7, 9, 10, 11]
+words: 12929
+forward_links: [0, 1, 2, 3, 4, 5, 6, 7, 9, 10, 11]
 backlinks: [2, 14]
 prev: 12-risks
 next: 14-verification
@@ -612,8 +612,8 @@ re-derived. **N/A** = external point-in-time read, not reproducible by construct
 | B2 | `corpus_id sha256:3a010b16…` | §13.1.4 | `[measured]` | **YES** — reproduced 3×; 4 published failures, all serialization errors |
 | B3 | **107,287** top-level blocks spliced byte-identically across **1,080 files**, **0 failures**, using stock `mdast` `position.offset` | run 3 technical synthesis | `[measured]` | **NO** — single run, but the strongest positive in the corpus |
 | B4 | **0 of 120** files byte-identical through `mdast-util-from-markdown` → `mdast-util-to-markdown` (stratified sample, all 3 roots, seed 20260801, GFM) — confirms D7 | `container-thesis` verifier | `[measured]` | **PARTIAL** — corroborates `docs/mdmax/PLAN.md` §4.2's "0 of 51" |
-| B5 | **907** files carry YAML frontmatter; **171 throw** under the editor's writer; **33** survive byte-identical; 624 remainder. Stable across 4 script revisions | `product-gap` | `[measured]` | **YES** — capability run reproduced 907/119/13.12%/618/170/18.74% "to the last digit" |
-| B6 | the `yaml` library round-trips **119 of 907** byte-identically; **170 files do not parse at all** (18.74%) | `docs/mdmax/PLAN.md` v2.0.0 §5.1 | `[measured]` | **YES** |
+| B5 | **907** files carry YAML frontmatter; **171 throw** under the editor's writer; **33** survive byte-identical; 624 remainder. Stable across 4 script revisions | `product-gap` | `[measured]` | **YES** — capability run reproduced 907/119/12.57% genuine + 18.74% silent refusals/618/170/18.74% "to the last digit" |
+| B6 | the `yaml` library round-trips **114 of 907** byte-identically; **170 files do not parse at all** (18.74%) | `docs/mdmax/PLAN.md` v2.0.0 §5.1 | `[measured]` | **YES** |
 | B7 | a no-op round trip through `parseFrontmatter → stringifyFrontmatterDoc` changes **623 of 737** files with an editable frontmatter map (**84.5%**), total \|byte delta\| **46,732**; 421 respaced / 197 reflowed / 5 separator-only; moves line numbers in 26.7% | `product-gap` C2, verdict CONFIRMED | `[measured]` | **PARTIAL** |
 | B8 | only **67 of 1,080** files have bytes == UTF-16 units == code points; **93.8% already diverge** | `docs/mdmax/PLAN.md` v2.0.0 §5.5 | `[measured]` | **NO** |
 | B9 | AST histogram over all 1,084 files (remark-parse 11.0.0 + remark-gfm 4.0.1 + remark-frontmatter 5.0.0), 21 distinct node types: `text=334081 paragraph=142802 listItem=88434 inlineCode=76118 strong=44893 heading=28221 tableCell=25813 list=15160 emphasis=12741 tableRow=9374 code=7738 html=7720 link=5453 thematicBreak=2754 blockquote=2742 table=1150 root=1084 yaml=907 break=613 delete=444 image=16`; `definition` **absent** | `hold-more` | `[measured]` | **PARTIAL** — 3 independent cross-checks matched exactly (link=1838 CommonMark-only, image=16, yaml=907) |
@@ -677,7 +677,7 @@ re-derived. **N/A** = external point-in-time read, not reproducible by construct
 | F3 | `mdmax cert` targets pains ranked **13th and 14th of 14** | `docs/mdmax/PLAN.md` v2.0.0 §5.4 | `[measured]` | **PARTIAL** |
 | F4 | Obsidian demand, verbatim thread stats: typed links #6994 **820 likes / 213 posts / 49,514 views**, open since 2020-07-03; rename propagation #25412 **340 / 80 / 11,899**; block embeds #27093 **553 likes**; block identity #674 **845 / 197 / 58,338** | run 1, area 1 | `[primary]` | **N/A** — run 1 is unverified |
 | F5 | plugin installs: dataview **4,659,822**; excalidraw **6,900,710**; templater **5,043,982**; strange-new-worlds **132,197**; 6,138 plugins listed | run 1, `official obsidianmd/obsidian-releases community-plugin-stats.json` | `[primary]` | **N/A** — cumulative and age-biased; `docs/engine/PLAN.md` §16.1 declares this metric unreliable |
-| F6 | `inkeep/OpenKnowledge` shipped **2026-07-30**, **3,239★**, GPL-3.0, shipped content-derived anchoring and **explicitly declined the teammate model** | `competitive-live` | `[primary]` | **N/A** — beta published 02:38:33Z, six minutes before the researcher's first tool call |
+| F6 | `inkeep/open-knowledge` shipped **2026-07-30**, **3,239★**, GPL-3.0, shipped content-derived anchoring and **explicitly declined the teammate model** | `competitive-live` | `[primary]` | **N/A** — beta published 02:38:33Z, six minutes before the researcher's first tool call |
 | F7 | OKF `SPEC.md` v0.2, **37,544 bytes**, inside `GoogleCloudPlatform/knowledge-catalog` (**8,134** stars). Its benchmark: **+5.2% tokens**, 22/26 vs 20/26, **n=1 per cell** | `against`, `agentic-docs` | `[primary]` | **PARTIAL** — the authors themselves say *"not a result anyone should quote as a headline"* |
 | F8 | markdownlint ran **11 years 4 months to 2.89M downloads/week and zero dollars** | `market-and-gift` | `[primary]` | **N/A** |
 | F9 | pricing anchors: Obsidian Sync **$4/mo annual**, Obsidian Commercial **$50/user/year**, HackMD Prime **$5**, Notion Business **$20** | `docs/research/frontmatter-competitor-gapmap.md`, re-verified live | `[primary]` | **N/A** |
@@ -1183,7 +1183,7 @@ the first.* Read the labels.
 
 ### Links
 
-**This section references:** [§1 Orientation](01-orientation.md) · [§2 Chronology](02-chronology.md) · [§3 Capabilities](03-capabilities.md) · [§4 Representation](04-representation.md) · [§5 Rendering](05-rendering.md) · [§6 Conventions](06-conventions.md) · [§7 Product](07-product.md) · [§9 AIOS](09-aios.md) · [§10 Engine spec](10-engine-spec.md) · [§11 Execution](11-execution.md)
+**This section references:** [§0 Status](00-status.md) · [§1 Orientation](01-orientation.md) · [§2 Chronology](02-chronology.md) · [§3 Capabilities](03-capabilities.md) · [§4 Representation](04-representation.md) · [§5 Rendering](05-rendering.md) · [§6 Conventions](06-conventions.md) · [§7 Product](07-product.md) · [§9 AIOS](09-aios.md) · [§10 Engine spec](10-engine-spec.md) · [§11 Execution](11-execution.md)
 
 **Referenced by:** [§2 Chronology](02-chronology.md) · [§14 Verification](14-verification.md)
 

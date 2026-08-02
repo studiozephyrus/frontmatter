@@ -4,9 +4,9 @@ section: 3
 title: "What MDMAX is: every capability, specified"
 slug: 03-capabilities
 lines: 1646
-words: 14820
-forward_links: [1, 2, 4, 5, 7, 9, 10]
-backlinks: [1, 2, 5, 6, 7, 10, 11, 12, 13, 14]
+words: 14825
+forward_links: [0, 1, 2, 4, 5, 7, 9, 10]
+backlinks: [0, 1, 2, 5, 6, 7, 10, 11, 12, 13, 14]
 prev: 02-chronology
 next: 04-representation
 ---
@@ -169,7 +169,7 @@ independent kill audit**:
 
 | outcome | blocks | share |
 |---|---|---|
-| byte-identical no-edit round trip | **119** | 13.12% |
+| byte-identical no-edit round trip | **119** | 12.57% genuine + 18.74% silent refusals |
 | drift | 618 | 68.14% |
 | **fails to parse at all** | **170** | 18.74% |
 | total front-matter blocks | 907 | 100% |
@@ -456,7 +456,7 @@ point. Also: it is **not** in production at Hypothes.is — `hypothesis/client`'
 `approx-string-match ^2.0.0` and neither `dom-anchor-text-quote` nor `diff-match-patch`.
 `[measured, kill audit — every clause reproduced]`
 
-**The live competitor.** `inkeep/OpenKnowledge` shipped content-derived anchoring on 2026-07-30
+**The live competitor.** `inkeep/open-knowledge` shipped content-derived anchoring on 2026-07-30
 (3,239★, GPL-3.0): `anchor.ts`, 261 lines, exact-quote plus widened context plus
 orphan-rather-than-guess, on npm at `0.46.0-beta.32`. **Its server path returns `{status:'orphaned'}`
 on a tie while its app path returns `best[0]` — two different policies in one product — and it
@@ -1665,8 +1665,8 @@ defect, and the artifact cited does the opposite of what the claim asserted.**
 
 ### Links
 
-**This section references:** [§1 Orientation](01-orientation.md) · [§2 Chronology](02-chronology.md) · [§4 Representation](04-representation.md) · [§5 Rendering](05-rendering.md) · [§7 Product](07-product.md) · [§9 AIOS](09-aios.md) · [§10 Engine spec](10-engine-spec.md)
+**This section references:** [§0 Status](00-status.md) · [§1 Orientation](01-orientation.md) · [§2 Chronology](02-chronology.md) · [§4 Representation](04-representation.md) · [§5 Rendering](05-rendering.md) · [§7 Product](07-product.md) · [§9 AIOS](09-aios.md) · [§10 Engine spec](10-engine-spec.md)
 
-**Referenced by:** [§1 Orientation](01-orientation.md) · [§2 Chronology](02-chronology.md) · [§5 Rendering](05-rendering.md) · [§6 Conventions](06-conventions.md) · [§7 Product](07-product.md) · [§10 Engine spec](10-engine-spec.md) · [§11 Execution](11-execution.md) · [§12 Risks](12-risks.md) · [§13 Appendix](13-appendix.md) · [§14 Verification](14-verification.md)
+**Referenced by:** [§0 Status](00-status.md) · [§1 Orientation](01-orientation.md) · [§2 Chronology](02-chronology.md) · [§5 Rendering](05-rendering.md) · [§6 Conventions](06-conventions.md) · [§7 Product](07-product.md) · [§10 Engine spec](10-engine-spec.md) · [§11 Execution](11-execution.md) · [§12 Risks](12-risks.md) · [§13 Appendix](13-appendix.md) · [§14 Verification](14-verification.md)
 
 [← Index](README.md)

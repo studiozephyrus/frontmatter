@@ -14,6 +14,7 @@ const config = [
   // ── 1. Files to ignore ────────────────────────────────────────────────────
   {
     ignores: [
+      ".scratch-*.mjs",
       ".claude/**",
       "node_modules/**",
       ".next/**",
@@ -40,9 +41,12 @@ const config = [
   // They are not part of the Next.js bundle, so the browser-strict
   // `no-undef` defaults don't apply.
   {
-    files: ["specs/**/*.mjs", "scripts/**/*.{mjs,js}"],
+    files: ["specs/**/*.mjs", "scripts/**/*.{mjs,js}", "docs/**/build/**/*.{mjs,js}"],
     languageOptions: {
       globals: {
+          // page.evaluate() callbacks run in a browser context
+          document: "readonly",
+          window: "readonly",
         console: "readonly",
         process: "readonly",
         Buffer: "readonly",

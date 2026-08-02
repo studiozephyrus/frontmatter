@@ -1,5 +1,35 @@
 [
  {
+  "n": 0,
+  "slug": "00-status",
+  "title": "Status \u2014 read this before acting on any instruction below",
+  "short": "Status",
+  "lines": 86,
+  "words": 1001,
+  "forward": [
+   1,
+   3,
+   8,
+   9,
+   10,
+   11,
+   12
+  ],
+  "back": [
+   1,
+   2,
+   3,
+   4,
+   7,
+   8,
+   9,
+   11,
+   12,
+   13,
+   14
+  ]
+ },
+ {
   "n": 1,
   "slug": "01-orientation",
   "title": "Orientation \u2014 what we are building, why now, what is settled, and how to read this",
@@ -7,6 +37,7 @@
   "lines": 760,
   "words": 7231,
   "forward": [
+   0,
    2,
    3,
    4,
@@ -17,6 +48,7 @@
    14
   ],
   "back": [
+   0,
    2,
    3,
    4,
@@ -38,6 +70,7 @@
   "lines": 1093,
   "words": 12605,
   "forward": [
+   0,
    1,
    3,
    4,
@@ -69,8 +102,9 @@
   "title": "What MDMAX is: every capability, specified",
   "short": "Capabilities",
   "lines": 1646,
-  "words": 14820,
+  "words": 14825,
   "forward": [
+   0,
    1,
    2,
    4,
@@ -80,6 +114,7 @@
    10
   ],
   "back": [
+   0,
    1,
    2,
    5,
@@ -100,6 +135,7 @@
   "lines": 1262,
   "words": 12716,
   "forward": [
+   0,
    1,
    2,
    5
@@ -171,8 +207,9 @@
   "title": "frontmatter the product: features, the gap, and what it needs on top of MDMAX",
   "short": "Product",
   "lines": 880,
-  "words": 13391,
+  "words": 13401,
   "forward": [
+   0,
    2,
    3,
    4,
@@ -200,13 +237,15 @@
   "title": "The market \u2014 USP, what competitors lack, what we solve, what we cannot solve",
   "short": "Market",
   "lines": 1111,
-  "words": 12505,
+  "words": 12515,
   "forward": [
+   0,
    1,
    5,
    7
   ],
   "back": [
+   0,
    2,
    7,
    9,
@@ -221,6 +260,7 @@
   "lines": 1035,
   "words": 10206,
   "forward": [
+   0,
    1,
    2,
    4,
@@ -230,6 +270,7 @@
    12
   ],
   "back": [
+   0,
    1,
    2,
    3,
@@ -253,6 +294,7 @@
    5
   ],
   "back": [
+   0,
    1,
    2,
    3,
@@ -268,9 +310,10 @@
   "slug": "11-execution",
   "title": "The execution plan \u2014 every step, in order, with gates",
   "short": "Execution",
-  "lines": 1223,
-  "words": 11992,
+  "lines": 1228,
+  "words": 12049,
   "forward": [
+   0,
    1,
    2,
    3,
@@ -281,6 +324,7 @@
    10
   ],
   "back": [
+   0,
    6,
    9,
    12,
@@ -296,6 +340,7 @@
   "lines": 1095,
   "words": 12051,
   "forward": [
+   0,
    1,
    2,
    3,
@@ -308,6 +353,7 @@
    11
   ],
   "back": [
+   0,
    2,
    9,
    14
@@ -319,8 +365,9 @@
   "title": "Appendix \u2014 the evidence base, the corpus, and where everything lives",
   "short": "Appendix",
   "lines": 1164,
-  "words": 12924,
+  "words": 12929,
   "forward": [
+   0,
    1,
    2,
    3,
@@ -343,8 +390,9 @@
   "title": "Verification record",
   "short": "Verification",
   "lines": 505,
-  "words": 17714,
+  "words": 17719,
   "forward": [
+   0,
    1,
    2,
    3,

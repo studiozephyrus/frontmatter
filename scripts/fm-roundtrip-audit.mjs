@@ -22,8 +22,8 @@ import { parseDocument, isMap } from 'yaml'
 // Load the TS source without a build step. Node 24 strips types; we read and eval so the
 // oracle has NO build dependency and cannot silently test a stale artifact.
 const _tsSrc = fs.readFileSync(new URL('../src/modules/share/domain/splice-frontmatter.ts', import.meta.url), 'utf8')
-  .replace(/: string \| number \| boolean \| null/g, '').replace(/: string/g, '')
-  .replace(/: boolean/g, '').replace(/\(\n  src,\n  key,\n  value,\n\)/, '(src, key, value)')
+  .replace(/:\s*string\s*\|\s*number\s*\|\s*boolean\s*\|\s*null/g, '').replace(/:\s*string/g, '')
+  .replace(/:\s*boolean/g, '').replace(/\(\s*src,\s*key,\s*value,\s*\)/, '(src, key, value)')
 const _tmp = path.join(os.tmpdir(), `mdmax-splice-${process.pid}.mjs`)
 fs.writeFileSync(_tmp, _tsSrc)
 const { spliceFrontmatterValue } = await import(pathToFileURL(_tmp).href)

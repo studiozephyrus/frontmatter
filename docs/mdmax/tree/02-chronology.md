@@ -5,7 +5,7 @@ title: "The complete chronological record: what we researched, in order, and wha
 slug: 02-chronology
 lines: 1093
 words: 12605
-forward_links: [1, 3, 4, 5, 6, 7, 8, 9, 10, 12, 13, 14]
+forward_links: [0, 1, 3, 4, 5, 6, 7, 8, 9, 10, 12, 13, 14]
 backlinks: [1, 3, 4, 7, 9, 11, 12, 13, 14]
 prev: 01-orientation
 next: 03-capabilities
@@ -477,7 +477,7 @@ programme's test-count claim was inflated and had been for two days:
 2026-07-29 22:07 IST   worktree claude/upbeat-euclid-60dbf4 created     82 more -> 247
 ```
 
-Executed at read time: `vitest list --run --filesOnly` → **247 files, 3,484 tests**, of which
+Executed at read time: `vitest list --run --filesOnly` → **247 files, 3,604 tests**, of which
 **164 files / 2,314 tests (66.4%) are two abandoned worktrees pinned at `8eb4de2`** — the commit
 *before* all 16 commits of work. `vitest.config.ts` sets no `exclude` and the default does not cover
 `.claude/worktrees/**`. `[measured — that session executed it]`. Both worktree branches still exist
@@ -485,10 +485,10 @@ Executed at read time: `vitest list --run --filesOnly` → **247 files, 3,484 te
 `claude/upbeat-euclid-60dbf4`, both at `8eb4de2`]`.
 
 > **Contradiction, named and resolved.** `HANDOFF-mdmax` §0.7 states *"Test suite is green: **65 test
-> files**, 3,484 tests collected (66.4% of them abandoned worktrees) at last full run."* The measured figure is **247 files / 3,484 tests, of
+> files**, 3,604 tests collected (66.4% of them abandoned worktrees) at last full run."* The measured figure is **247 files / 3,604 tests, of
 > which 164 files / 2,314 tests are stale duplicates**. **The measurement governs.** The number written
 > into `PLAN.md` §13 as the evidence that commit `58322f7` was safe was already inflated when it was
-> written. Neither "65" nor "3,484" should be repeated.
+> written. Neither "65" nor "3,604" should be repeated.
 
 **2026-08-01T01:52:55Z (07:22 IST) — the 39-agent capability run lands.**
 **39/39 agents, 0 errors, 7,864,147 subagent tokens, 2,159 tool uses, 105 minutes.**
@@ -615,7 +615,7 @@ trusted — but not trusted blindly."* **A kill is strong evidence, not proof.**
   model and no `comments` collection), so every review-loop item in the mockups is unreachable, while
   the one collaboration-adjacent write path that already ships (Publish) round-trips only 3.64% of the
   pinned corpus byte-identically."*
-- `competitive-live`: *"the threat is not OKF — it is inkeep/OpenKnowledge (GPL-3.0, 3,239 stars, 14,790
+- `competitive-live`: *"the threat is not OKF — it is inkeep/open-knowledge (GPL-3.0, 3,239 stars, 14,790
   npm dl/wk), which on **2026-07-30** merged a content-derived comment-anchoring system for markdown
   (exact quote + auto-widened prefix/suffix context, orphan-rather-than-guess …) that reached the npm
   BETA channel at 0.46.0-beta.32 on **2026-08-01T02:38:33Z** but is absent from stable 0.45.4; MDMAX
@@ -1112,7 +1112,7 @@ area: *"this entire area was a code review wearing a research costume and should
 
 ### Links
 
-**This section references:** [§1 Orientation](01-orientation.md) · [§3 Capabilities](03-capabilities.md) · [§4 Representation](04-representation.md) · [§5 Rendering](05-rendering.md) · [§6 Conventions](06-conventions.md) · [§7 Product](07-product.md) · [§8 Market](08-market.md) · [§9 AIOS](09-aios.md) · [§10 Engine spec](10-engine-spec.md) · [§12 Risks](12-risks.md) · [§13 Appendix](13-appendix.md) · [§14 Verification](14-verification.md)
+**This section references:** [§0 Status](00-status.md) · [§1 Orientation](01-orientation.md) · [§3 Capabilities](03-capabilities.md) · [§4 Representation](04-representation.md) · [§5 Rendering](05-rendering.md) · [§6 Conventions](06-conventions.md) · [§7 Product](07-product.md) · [§8 Market](08-market.md) · [§9 AIOS](09-aios.md) · [§10 Engine spec](10-engine-spec.md) · [§12 Risks](12-risks.md) · [§13 Appendix](13-appendix.md) · [§14 Verification](14-verification.md)
 
 **Referenced by:** [§1 Orientation](01-orientation.md) · [§3 Capabilities](03-capabilities.md) · [§4 Representation](04-representation.md) · [§7 Product](07-product.md) · [§9 AIOS](09-aios.md) · [§11 Execution](11-execution.md) · [§12 Risks](12-risks.md) · [§13 Appendix](13-appendix.md) · [§14 Verification](14-verification.md)
 
