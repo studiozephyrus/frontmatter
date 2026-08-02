@@ -14,7 +14,12 @@ import path from "node:path";
 import os from "node:os";
 import matter from "gray-matter";
 import { parseDocument, isMap } from "yaml";
-import { spliceFrontmatterValue, emitScalar } from "@/modules/share/domain/splice-frontmatter";
+import {
+  spliceFrontmatterValue,
+  spliceFrontmatterKey,
+  emitScalar,
+  emitValue,
+} from "@/modules/share/domain/splice-frontmatter";
 
 const KEY = "public_slug";
 const VAL = "audit-test-slug";
@@ -92,6 +97,67 @@ describe("spliceFrontmatterValue — bytes outside the key are never touched", (
     expect(emitScalar("true")).toBe('"true"');
     expect(emitScalar("123")).toBe('"123"');
     expect(emitScalar("")).toBe('""');
+  });
+});
+
+describe("list values keep the shape the file already uses", () => {
+  it("keeps a flow list flow — 90.1% of the corpus writes them this way", () => {
+    const src = "---\ntags: [a, b]\n---\n\nbody\n";
+    expect(spliceFrontmatterValue(src, "tags", ["x", "y"]))
+      .toBe("---\ntags: [x, y]\n---\n\nbody\n");
+  });
+
+  it("keeps a block list block, at the indent already in use", () => {
+    const src = "---\ntags:\n  - a\n  - b\n---\n\nbody\n";
+    expect(spliceFrontmatterValue(src, "tags", ["x", "y"]))
+      .toBe("---\ntags:\n  - x\n  - y\n---\n\nbody\n");
+  });
+
+  it("emits a flow list for a key that does not exist yet", () => {
+    expect(emitValue(["a", "b"])).toBe("[a, b]");
+  });
+});
+
+describe("spliceFrontmatterKey — renames the key and nothing else", () => {
+  it("preserves the value, its quoting and a trailing comment", () => {
+    const src = '---\na: 1\nold: "keep me"   # and this\nz: 2\n---\n\nbody\n';
+    expect(spliceFrontmatterKey(src, "old", "new"))
+      .toBe('---\na: 1\nnew: "keep me"   # and this\nz: 2\n---\n\nbody\n');
+  });
+
+  it("REFUSES to rename onto a key that already exists", () => {
+    const src = "---\na: 1\nb: 2\n---\n\nbody\n";
+    expect(spliceFrontmatterKey(src, "a", "b")).toBe(src);
+  });
+
+  it("REFUSES a new key that would need quoting", () => {
+    const src = "---\na: 1\n---\n\nbody\n";
+    expect(spliceFrontmatterKey(src, "a", "has space")).toBe(src);
+  });
+
+  it("is its own inverse", () => {
+    const src = "---\nalpha: 1\nbeta: 2\n---\n\nbody\n";
+    const once = spliceFrontmatterKey(src, "alpha", "gamma");
+    expect(spliceFrontmatterKey(once, "gamma", "alpha")).toBe(src);
+  });
+});
+
+describe("quoting is minimal — indicators are only special in first position", () => {
+  it("does not quote an ampersand or pipe mid-value", () => {
+    expect(emitScalar("Marketing & QA")).toBe("Marketing & QA");
+    expect(emitScalar("JD | DRM | CC")).toBe("JD | DRM | CC");
+  });
+  it("does quote when the indicator leads", () => {
+    expect(emitScalar("&anchor")).toBe('"&anchor"');
+    expect(emitScalar("| block")).toBe('"| block"');
+  });
+  it("quotes a value that would read as a date or a number", () => {
+    expect(emitScalar("2026-05-26")).toBe('"2026-05-26"');
+    expect(emitScalar("1")).toBe('"1"');
+  });
+  it("quotes only a colon FOLLOWED BY SPACE, not every colon", () => {
+    expect(emitScalar("10:30")).toBe("10:30");
+    expect(emitScalar("key: value")).toBe('"key: value"');
   });
 });
 

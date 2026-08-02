@@ -43,20 +43,52 @@ function isUnsafeContinuation(line: string): boolean {
   return /^[A-Za-z0-9_.$-]+[ \t]*:[ \t]*[|>&*!]/.test(line) || /^\?[ \t]/.test(line)
 }
 
+/**
+ * Serialise a value, PRESERVING the shape the file already uses.
+ *
+ * 90.1% of the pinned corpus writes lists in flow form (`tags: [a, b]`) and 8.4% in block form
+ * (`tags:\n  - a`). Converting one to the other is a rewrite of bytes the user authored, so the
+ * caller passes the existing value text and we match it.
+ */
+export function emitValue(
+  value: string | number | boolean | string[] | null,
+  existingValueText = '',
+): string {
+  if (!Array.isArray(value)) return emitScalar(value)
+  // Block form is signalled by the value CONTINUING on the next line. An empty string means
+  // there is no existing value at all — a new key — which takes the dominant flow form.
+  const isBlock = /^\r?\n/.test(existingValueText)
+  if (isBlock) {
+    // block sequence: keep the indent already in use, defaulting to two spaces
+    const indent = /\n(\s+)-/.exec(existingValueText)?.[1] ?? '  '
+    return '\n' + value.map((v) => `${indent}- ${emitScalar(v)}`).join('\n')
+  }
+  return `[${value.map((v) => emitScalar(v)).join(', ')}]`
+}
+
 /** Serialise a scalar the way YAML wants it, quoting only when it must. */
 export function emitScalar(value: string | number | boolean | null): string {
   if (value === null || value === undefined) return ''
   if (typeof value === 'boolean' || typeof value === 'number') return String(value)
   const s = String(value)
   if (s === '') return '""'
-  // Quote when the value could be mis-read as something other than a plain string.
+  // Quote only when the PLAIN form would not read back as this exact string.
+  //
+  // The common mistake — and the one this replaced — is treating YAML indicator characters as
+  // special anywhere in a value. They are special only in FIRST position. `Marketing & QA` and
+  // `JD | DRM | CC` are perfectly good plain scalars; quoting them rewrites bytes the user
+  // authored. Measured on the pinned corpus, the over-broad rule quoted 435 of 907 files
+  // unnecessarily.
   const needsQuote =
-    /^[\s]|[\s]$/.test(s) ||                       // leading/trailing space
-    /[:#{}[\],&*!|>'"%@`]/.test(s) ||              // YAML indicators
-    /^[-?]/.test(s) ||                             // could start a list or complex key
-    /^(true|false|null|yes|no|on|off|~)$/i.test(s) || // implicit typing
-    /^[+-]?(\d|\.\d)/.test(s) ||                   // could be read as a number/date
-    NEWLINE.test(s)
+    /^\s|\s$/.test(s) ||                              // leading/trailing space is not preserved plain
+    /^[-?:,[\]{}#&*!|>'"%@`]/.test(s) ||              // indicator in FIRST position only
+    /:\s/.test(s) || /\s#/.test(s) ||                 // `: ` ends a key, ` #` starts a comment
+    NEWLINE.test(s) ||
+    // would be read as something other than a string
+    /^(true|false|null|yes|no|on|off|~)$/i.test(s) ||
+    /^[+-]?(\d+\.?\d*|\.\d+)([eE][+-]?\d+)?$/.test(s) ||   // a complete number
+    /^\d{4}-\d{2}-\d{2}([Tt ].*)?$/.test(s) ||             // a date or timestamp
+    /^0[xob]/i.test(s)                                     // hex / octal / binary
   if (!needsQuote) return s
   return `"${s.replace(/\\/g, '\\\\').replace(/"/g, '\\"').replace(/\n/g, '\\n')}"`
 }
@@ -64,7 +96,7 @@ export function emitScalar(value: string | number | boolean | null): string {
 export function spliceFrontmatterValue(
   src: string,
   key: string,
-  value: string | number | boolean | null,
+  value: string | number | boolean | string[] | null,
 ): string {
   if (typeof src !== 'string' || src.length === 0) return src
 
@@ -73,7 +105,7 @@ export function spliceFrontmatterValue(
     // No frontmatter block. Only a set can proceed; a delete is a no-op.
     if (value === null) return src
     const eol = CRLF.test(src) ? '\r\n' : '\n'
-    return `---${eol}${key}: ${emitScalar(value)}${eol}---${eol}${eol}${src.replace(/^\r?\n+/, '')}`
+    return `---${eol}${key}: ${emitValue(value)}${eol}---${eol}${eol}${src.replace(/^\r?\n+/, '')}`
   }
 
   const eol = open[1]                       // preserve the file's own line ending
@@ -150,15 +182,64 @@ export function spliceFrontmatterValue(
   }
 
   // ---- set ----------------------------------------------------------------------
-  const emitted = `${key}: ${emitScalar(value)}${eol}`
-
   if (keyStart !== -1) {
+    // Read the value bytes currently in place so a list keeps its flow/block form.
+    const existing = src.slice(keyStart, keyEnd)
+    const afterColon = existing.slice(existing.indexOf(':') + 1).replace(/\r?\n$/, '')
+    const rendered = emitValue(value, afterColon)
     // Replace exactly the key's existing bytes. Everything else is untouched.
-    return src.slice(0, keyStart) + emitted + src.slice(keyEnd)
+    return src.slice(0, keyStart) + `${key}:${rendered.startsWith('\n') ? '' : ' '}${rendered}${eol}` + src.slice(keyEnd)
   }
+
+  const emitted = `${key}: ${emitValue(value)}${eol}`
 
   // Append after the last top-level entry, immediately before the closing fence.
   return src.slice(0, closeIdx) + emitted + src.slice(closeIdx)
+}
+
+/**
+ * Rename a top-level key, touching ONLY the key's own bytes. The value, its quoting, any
+ * trailing comment and the key's position in the block are all preserved.
+ *
+ * Refuses when the old key is absent, the new key already exists (renaming onto it would
+ * silently merge two values), or the block is not a plain map.
+ */
+export function spliceFrontmatterKey(src: string, oldKey: string, newKey: string): string {
+  if (oldKey === newKey || newKey.trim() === '') return src
+  if (!/^[A-Za-z0-9_.$-]+$/.test(newKey)) return src        // would need quoting: refuse
+  const open = FM_OPEN.exec(src)
+  if (open === null) return src
+  const blockStart = open[0].length
+  let closeIdx = -1
+  {
+    let i = blockStart
+    while (i < src.length) {
+      const nl = src.indexOf('\n', i)
+      const lineEnd = nl === -1 ? src.length : nl
+      const line = src.slice(i, lineEnd).replace(/\r$/, '')
+      if (line === '---' || line === '...') { closeIdx = i; break }
+      if (nl === -1) break
+      i = nl + 1
+    }
+  }
+  if (closeIdx === -1) return src
+  const block = src.slice(blockStart, closeIdx)
+  const lines = block.split(/(?<=\n)/)
+  let off = blockStart, hit = -1
+  for (const rawLine of lines) {
+    const raw = rawLine ?? ''
+    const text = raw.replace(/\r?\n$/, '')
+    if (text !== '' && !/^[ \t]/.test(text) && !/^#/.test(text)) {
+      if (topLevelKeyLine(text, newKey)) return src         // target exists: refuse
+      if (topLevelKeyLine(text, oldKey)) {
+        if (hit !== -1) return src                          // duplicate: refuse
+        hit = off
+      }
+    }
+    off += raw.length
+  }
+  if (hit === -1) return src
+  return src.slice(0, hit) + newKey + src.slice(hit + oldKey.length)
 }
 
 export default spliceFrontmatterValue
