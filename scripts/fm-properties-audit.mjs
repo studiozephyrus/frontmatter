@@ -20,20 +20,10 @@
  */
 import fs from 'node:fs'
 import path from 'node:path'
-import os from 'node:os'
-import { pathToFileURL } from 'node:url'
 import { parseDocument, isMap } from 'yaml'
-
-// Load the TS source with no build step, so this can never test a stale artifact.
-const _ts = fs.readFileSync(new URL('../src/modules/share/domain/splice-frontmatter.ts', import.meta.url), 'utf8')
-  .replace(/:\s*string\s*\|\s*number\s*\|\s*boolean\s*\|\s*string\[\]\s*\|\s*null/g, '')
-  .replace(/:\s*string\s*\|\s*number\s*\|\s*boolean\s*\|\s*null/g, '')
-  .replace(/:\s*string\[\]/g, '').replace(/:\s*string/g, '').replace(/:\s*boolean/g, '')
-  .replace(/\(\s*src,\s*key,\s*value,\s*\)/, '(src, key, value)')
-const _tmp = path.join(os.tmpdir(), `mdmax-props-${process.pid}.mjs`)
-fs.writeFileSync(_tmp, _ts)
-const M = await import(pathToFileURL(_tmp).href)
-fs.unlinkSync(_tmp)
+// The writer under test, loaded via the shared loader which refuses (exit 2) rather than
+// crashing silently if the source will not import. See scripts/load-splice.mjs.
+import * as M from './load-splice.mjs'
 
 const FM = /^---\r?\n([\s\S]*?)\r?\n---\r?\n?/
 const SENTINEL = '__mdmax_audit__'

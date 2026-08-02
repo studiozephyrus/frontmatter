@@ -15,19 +15,11 @@
  */
 import fs from 'node:fs'
 import path from 'node:path'
-import os from 'node:os'
-import { pathToFileURL } from 'node:url'
 import matter from 'gray-matter'
 import { parseDocument, isMap } from 'yaml'
-// Load the TS source without a build step. Node 24 strips types; we read and eval so the
-// oracle has NO build dependency and cannot silently test a stale artifact.
-const _tsSrc = fs.readFileSync(new URL('../src/modules/share/domain/splice-frontmatter.ts', import.meta.url), 'utf8')
-  .replace(/:\s*string\s*\|\s*number\s*\|\s*boolean\s*\|\s*null/g, '').replace(/:\s*string/g, '')
-  .replace(/:\s*boolean/g, '').replace(/\(\s*src,\s*key,\s*value,\s*\)/, '(src, key, value)')
-const _tmp = path.join(os.tmpdir(), `mdmax-splice-${process.pid}.mjs`)
-fs.writeFileSync(_tmp, _tsSrc)
-const { spliceFrontmatterValue } = await import(pathToFileURL(_tmp).href)
-fs.unlinkSync(_tmp)
+// The writer under test, loaded via the shared loader which refuses (exit 2) rather than
+// crashing silently if the source will not import. See scripts/load-splice.mjs.
+import { spliceFrontmatterValue } from './load-splice.mjs'
 
 const MANIFEST = 'docs/engine/research/corpus-manifest.json'
 const ROOTS = {
