@@ -34,7 +34,7 @@ the verification record — the defects four independent fact-checkers found in 
 
 ## 0. Status — read this before acting on any instruction below
 
-**As of 2026-08-02, HEAD `dc92aaf`.** Sections 1–14 were written on 2026-08-01 and describe the
+**As of 2026-08-02, HEAD `7f412f1`.** Sections 1–14 were written on 2026-08-01 and describe the
 codebase as it was then. Work has landed since. **Where this section and a later section disagree,
 this section governs.** It exists because an end-to-end verification found 32 blocking defects,
 and most of them were instructions that would send a builder to redo finished work.
@@ -43,15 +43,16 @@ and most of them were instructions that would send a builder to redo finished wo
 
 | | state on 2026-08-01 | state now | evidence |
 |---|---|---|---|
-| **Splice writer** | did not exist | **shipped** — `src/modules/share/domain/splice-frontmatter.ts` | commit `4f97129` |
+| **Splice writer** | did not exist | **shipped** — `src/modules/share/domain/splice-frontmatter.ts`, now also `emitValue` + `spliceFrontmatterKey` | `4f97129`, `56e3d9c` |
 | **Violation 1** (`share-writer.ts` calls `matter.stringify`) | live data-loss bug | **FIXED** — the call no longer exists | `grep -c matter.stringify src/modules/share/infrastructure/share-writer.ts` → 0 |
-| **Violation 2** (`PropertiesPanel` re-emits the whole block) | live data-loss bug | **STILL LIVE** — `PropertiesPanel.tsx:79` → `EditorPane.tsx:498` → `saveDraft` | measured 114/907 byte-identical |
-| **The corpus gate** | did not exist | **shipped** — `test/share/frontmatter-splice.test.ts`, 12 tests | `4f97129`, `dc92aaf` |
-| **The independent oracle** | did not exist | **shipped and runnable** — `scripts/fm-roundtrip-audit.mjs` | `dc92aaf` |
-| **vitest worktree exclude** | 247 files / 3,484 collected, 66.4% duplicates | **FIXED** — 84 files / 1,258 tests | `vitest.config.ts` |
+| **Violation 2** (`PropertiesPanel` re-emits the whole block) | live data-loss bug | **FIXED** — all four mutations splice | `56e3d9c`; `grep -c stringifyFrontmatterDoc src/modules/preview/presentation/PropertiesPanel.tsx` → 0 |
+| **The corpus gate** | did not exist | **shipped** — `test/share/frontmatter-splice.test.ts`, 23 tests | `4f97129`, `dc92aaf`, `56e3d9c` |
+| **The round-trip oracle** | did not exist | **shipped, and now actually executes** — see §0.5 | `dc92aaf`, `7f412f1` |
+| **The properties oracle** | did not exist | **shipped** — `scripts/fm-properties-audit.mjs` | `56e3d9c` |
+| **vitest worktree exclude** | 247 files / 3,484 collected, 66.4% duplicates | **FIXED** — 84 files / 1,269 tests | `vitest.config.ts` |
 | **`npm run typecheck`** | 5 errors | **0 errors** | `@types/jsdom@^28.0.3` added |
 | **`npm run lint`** | 930 errors, linting nothing | **0 errors** | `.claude/**` + `.scratch-*` ignored |
-| **`npm run verify`** | died at step 1 | **GREEN end to end** | typecheck · lint · 84/1258 · build · arch `"violations": []` |
+| **`npm run verify`** | died at step 1 | **GREEN end to end** | typecheck · lint · 84/1269 · build · arch `"violations": []` |
 
 ### 0.2 Numbers that changed, and one that was wrong
 
@@ -88,9 +89,29 @@ The round-trip measurement over `corpus_id sha256:3a010b16…` (907 files carryi
 
 ### 0.4 Still open, and still blocking
 
-- **Violation 2 is not fixed.** `PropertiesPanel.tsx:79` calls `stringifyFrontmatterDoc`, whose
-  output flows to `handleEdit` → `setContent` + `saveDraft` → the next commit. **Editing one
-  property rewrites the whole block, at 12.57% byte-identical.** This is the next task.
+**Violation 2 is closed.** `56e3d9c` replaced all four `PropertiesPanel` mutations — set a value,
+rename a key, remove a key, add a property — with byte-range splices. Measured over the same 907
+files, each operation round-tripped against its own inverse:
+
+| operation | re-emit (what shipped) | byte-range splice |
+|---|---|---|
+| set value | 114 (12.57%) | **906 (99.89%)** |
+| rename key | **0 (0.00%)** — altered *every* file | **907 (100.00%)** |
+| add + remove | 114 (12.57%) | **907 (100.00%)** |
+| silently refused | 170 (18.74%) | **0** |
+
+The single remaining set-value divergence is a date-shaped value: unquoted it reads as a YAML Date,
+the harness can only hand back a string, and quoting a string is the correct way to preserve
+stringness. It cannot occur in the product unless a user deliberately edits that field, because the
+splicer touches only the key being changed. Counted separately, never folded into the pass rate.
+
+Two writer bugs the corpus found, both fixed in `56e3d9c`: **over-quoting** (YAML indicators are
+special only in *first* position — the over-broad rule requoted 435 of 907 files unnecessarily), and
+**new list keys taking block form** (an empty existing-value string means "no value yet", not "value
+continues on the next line").
+
+Still open:
+
 - **§10 is entirely unscheduled in §11**, while §10.10.2 says the offset model and the freezing of
   `normalize()` and the slugger must land **before** the splice writer's second caller. Insert them
   ahead of any further engine work — retrofitting branded types across call sites is a refactor,
@@ -107,7 +128,7 @@ The round-trip measurement over `corpus_id sha256:3a010b16…` (907 files carryi
 
 ### 0.5 The gate discipline that was missing, and now is not
 
-Two defects in the gate itself were found by verification and fixed in `dc92aaf`:
+Four defects in the gate itself were found by verification. Two were fixed in `dc92aaf`:
 
 - **The oracle could not run.** It imported a `.mjs` path for a file that is `.ts`. The 907/907
   figure had no executable derivation — a violation of this plan's own rule P2.
@@ -115,8 +136,25 @@ Two defects in the gate itself were found by verification and fixed in `dc92aaf`
   23 in-repo files and printed `23/23 identical (100.00%)`. On CI, a fresh clone, or a second
   developer's machine it was theatre. It now asserts a denominator of 907 and fails loudly.
 
+Two more were found on 2026-08-02 and fixed in `7f412f1`:
+
+- **The oracle was crashing on import, and the crash read as a pass.** The workaround for the
+  `.ts`/`.mjs` problem above was a hand-written list of regexes that stripped type annotations. That
+  list went stale the instant `emitValue` introduced a union broken across lines, and the script
+  began dying with `SyntaxError: Unexpected token '|'` **before printing a single line**. Piped
+  through a `grep` for the verdict, a crash and a pass are byte-identical: both print nothing. Node
+  ≥22.18 strips types natively, so the regexes were never needed. `scripts/load-splice.mjs` now
+  imports the source directly and asserts all four exports are callable, exiting 2 with a stated
+  reason otherwise — verified by deliberately breaking the writer and watching it refuse.
+- **A counter was incremented and never read**, so files with no top-level key vanished from the
+  report rather than being disclosed as skipped.
+
 > **A gate that shrinks its own population is a gate that always passes.** That belongs in §11's
 > working practices, and it is now rule P12.
+>
+> **P13, added 2026-08-02: a harness that cannot run must say so louder than one that fails.** Never
+> read silence as success. Every oracle asserts that what it loads is what it claims to test, and no
+> verdict is ever reported through a filter that would swallow the absence of one.
 
 ---
 
