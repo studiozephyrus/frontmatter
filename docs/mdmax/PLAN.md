@@ -110,6 +110,21 @@ special only in *first* position — the over-broad rule requoted 435 of 907 fil
 **new list keys taking block form** (an empty existing-value string means "no value yet", not "value
 continues on the next line").
 
+**§3.8, the cross-cutting prerequisites, has shipped** (`c56a04e`) — the item §0.4 previously
+called the blocker on all further engine work. `src/modules/mdmax/domain/` now holds the offset
+model (branded `U16Offset`/`ByteOffset`/`GraphemeIndex`, one `OffsetMap`, refuse-never-round), the
+two pinned pure functions behind a 200-case golden digest, the lenient front-matter pre-pass, the
+shape gate, and the placement fixture. 93 tests; suite at 89 files / 1,362.
+
+**D11 — the slug decision, measured and made.** `scripts/slug-decision-audit.mjs` re-derived the
+number rather than trusting it. Over the 393 intra-document anchors in the pinned corpus:
+`github-slugger` **86 (21.88%)**, dash-collapsing **375 (95.42%)**, accept-either **388 (98.73%)**.
+The plan's 86 reproduces exactly. The two single algorithms describe two *different populations of
+author*, not competing theories of one — so the decision is a split: **write** the canonical GitHub
+form, **resolve** tolerantly, and report which form matched so a link that works here and breaks on
+GitHub can be surfaced. **Caveat that travels with the number: 85.2% of those anchors come from one
+file, across six files total.** Enough to break a tie; not a law.
+
 Still open:
 
 - **§10 is entirely unscheduled in §11**, while §10.10.2 says the offset model and the freezing of
