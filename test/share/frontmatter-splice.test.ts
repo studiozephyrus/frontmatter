@@ -161,6 +161,76 @@ describe("quoting is minimal — indicators are only special in first position",
   });
 });
 
+// ---------------------------------------------------------------- corpus blind spots
+//
+// THE CORPUS CANNOT CATCH THESE, BY CONSTRUCTION. It is one author's Obsidian export.
+// A probe over all 1,084 pinned files counted: BOM 0, CR-only 0, `...`-close 0,
+// non-ASCII key 0, sequence-document 0. Two data-loss bugs lived in exactly those gaps
+// and the 907/907 gate was green the whole time.
+//
+// So these are hand-written fixtures, not corpus-derived, and they are the first
+// instalment of the corpus-widening the audit called for. Each one FAILED against the
+// code as shipped at f0603c2 — that red proof is the only reason to trust the green
+// (LR#68: a passing test on a shape the corpus lacks proves nothing until it has failed).
+
+describe("BOM — a leading U+FEFF must not demote the block to body text", () => {
+  const BOM_SRC = "\uFEFF---\ntitle: T\ntags: [a]\n---\n\nBody\n";
+
+  it("keeps the original keys IN the frontmatter block", () => {
+    const out = spliceFrontmatterValue(BOM_SRC, KEY, VAL);
+    // Before the fix this produced a NEW block and pushed the original into the body:
+    //   "---\npublic_slug: …\n---\n\n\uFEFF---\ntitle: T\n…"
+    expect(out).toContain("title: T");
+    expect(out.indexOf("title: T")).toBeLessThan(out.indexOf("Body"));
+    // NB the optional BOM in this pattern is load-bearing: the opening fence shares its line
+    // with the BOM (`\uFEFF---`), so a bare /^---$/ cannot match it and would under-count.
+    expect(out.match(/^\uFEFF?---[ \t]*$/gm)?.length).toBe(2); // exactly one block, not two
+    expect(out).toContain(`${KEY}: ${VAL}`);
+  });
+
+  it("preserves the BOM itself, still in first position", () => {
+    const out = spliceFrontmatterValue(BOM_SRC, KEY, VAL);
+    expect(out.charCodeAt(0)).toBe(0xfeff);
+    expect(out.indexOf("\uFEFF", 1)).toBe(-1); // exactly one, never duplicated
+  });
+
+  it("round-trips byte-identically on set-then-delete", () => {
+    const out = spliceFrontmatterValue(spliceFrontmatterValue(BOM_SRC, KEY, VAL), KEY, null);
+    expect(out).toBe(BOM_SRC);
+  });
+
+  it("renames a key under a BOM without moving anything else", () => {
+    const out = spliceFrontmatterKey(BOM_SRC, "title", "heading");
+    expect(out).toBe("\uFEFF---\nheading: T\ntags: [a]\n---\n\nBody\n");
+  });
+});
+
+describe("non-ASCII keys — refuse, because a miss silently appends a duplicate", () => {
+  const SRC = "---\ntitle: T\ntítulo: one\n---\n\nBody\n";
+
+  it("never duplicates a key it cannot locate", () => {
+    let s = SRC;
+    for (const v of ["two", "three", "four"]) s = spliceFrontmatterValue(s, "título", v);
+    // Before the fix: 4 occurrences, and the document is no longer valid YAML
+    // (`Map keys must be unique`).
+    expect((s.match(/título:/g) ?? []).length).toBe(1);
+  });
+
+  it("REFUSES every key shape it cannot address, leaving the file untouched", () => {
+    for (const k of ["título", "🔑", "日付", "a b", "café"]) {
+      expect(spliceFrontmatterValue(SRC, k, "x")).toBe(SRC);
+      expect(spliceFrontmatterValue(SRC, k, null)).toBe(SRC);
+    }
+  });
+
+  it("still splices an ASCII key in a file that CONTAINS a non-ASCII key", () => {
+    // Refusal is about the target key, not about the document.
+    const out = spliceFrontmatterValue(SRC, KEY, VAL);
+    expect(out).toContain("título: one"); // untouched
+    expect(out).toContain(`${KEY}: ${VAL}`);
+  });
+});
+
 // ---------------------------------------------------------------- the corpus gate
 
 const MANIFEST = "docs/engine/research/corpus-manifest.json";

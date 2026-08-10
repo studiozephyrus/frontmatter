@@ -30,6 +30,28 @@ const CRLF = /\r\n/
 const FM_OPEN = /^---[ \t]*(\r?\n)/
 const NEWLINE = /\r?\n/
 
+/** U+FEFF. Legal as the first character of a UTF-8 file and invisible in every editor. */
+const BOM = '\uFEFF'
+
+/**
+ * The only key shapes this module can LOCATE — the same character class `topLevelKeyLine`
+ * scans for, stated once so the two can never drift apart.
+ *
+ * Anything outside it is refused at the door. That is not squeamishness: a key the scanner
+ * cannot find is reported as absent, and "absent" sends a `set` down the append path, so the
+ * key is written a second time. Three edits to `título` produced three extra lines and a
+ * document YAML then refuses to load (`Map keys must be unique`). The failure is unbounded and
+ * silent, and it is reachable from the UI because `addProperty` does not validate the name.
+ *
+ * Supporting non-ASCII keys properly is a real piece of work, not a widened regex: `café`
+ * typed NFC and NFD renders identically and keys separately, so the module would first have to
+ * decide what key EQUALITY means. Until that decision is made, refusing is the honest answer.
+ *
+ * Exported so the UI can refuse the same shapes at the point of typing rather than letting the
+ * user watch an add silently do nothing. One definition, two call sites, no drift.
+ */
+export const SAFE_KEY = /^[A-Za-z0-9_.$-]+$/
+
 /** A top-level `key:` line inside a frontmatter block. Not indented, not a list item. */
 function topLevelKeyLine(line: string, key: string): boolean {
   // key at column 0, optional spaces before the colon, then EOL or a space + value
@@ -99,6 +121,19 @@ export function spliceFrontmatterValue(
   value: string | number | boolean | string[] | null,
 ): string {
   if (typeof src !== 'string' || src.length === 0) return src
+  if (!SAFE_KEY.test(key)) return src       // cannot address this key — refuse, never append
+
+  // A BOM sits BEFORE the document, it is not part of it. `FM_OPEN` is anchored at index 0,
+  // so without this the fence never matches, the no-frontmatter branch runs, and the file's
+  // real block is pushed into the body while a new one is prepended.
+  //
+  // Splitting it off and re-attaching it keeps the byte exactly where the author put it and
+  // lets every offset below stay relative to the document proper.
+  //
+  // Why the corpus never caught this: the oracle replays set-then-delete, and those two
+  // operations cancel — set prepends a block, delete finds it as the only key and removes the
+  // whole block — so the round trip was byte-identical even while `set` alone was destructive.
+  if (src.charCodeAt(0) === 0xfeff) return BOM + spliceFrontmatterValue(src.slice(1), key, value)
 
   const open = FM_OPEN.exec(src)
   if (open === null) {
@@ -206,7 +241,9 @@ export function spliceFrontmatterValue(
  */
 export function spliceFrontmatterKey(src: string, oldKey: string, newKey: string): string {
   if (oldKey === newKey || newKey.trim() === '') return src
-  if (!/^[A-Za-z0-9_.$-]+$/.test(newKey)) return src        // would need quoting: refuse
+  if (!SAFE_KEY.test(newKey)) return src        // would need quoting: refuse
+  if (!SAFE_KEY.test(oldKey)) return src        // unlocatable: would rename the wrong bytes
+  if (src.charCodeAt(0) === 0xfeff) return BOM + spliceFrontmatterKey(src.slice(1), oldKey, newKey)
   const open = FM_OPEN.exec(src)
   if (open === null) return src
   const blockStart = open[0].length
