@@ -13,6 +13,7 @@ import MiniSearch, {
 import { unzipSync } from "fflate";
 import { getHeadSha, getZipball } from "@/shared/infrastructure/github/client";
 import { parseMarkdown } from "@/modules/vault/infrastructure/markdown-parser";
+import { decodeStrict } from "@/modules/mdmax/domain/shape-gate";
 
 // ---------------------------------------------------------------------------
 // Vault-scope guard (mirrors get-snapshot.ts — keep in sync)
@@ -157,7 +158,6 @@ async function ensureCache(): Promise<IndexCache> {
 
   const buf = await getZipball();
   const entries = unzipSync(new Uint8Array(buf));
-  const dec = new TextDecoder();
 
   const docs: SearchDoc[] = [];
   const bodyByPath = new Map<string, string>();
@@ -169,7 +169,18 @@ async function ensureCache(): Promise<IndexCache> {
     const relPath = stripTopLevelDir(zipPath);
     if (!isVaultNote(relPath)) continue;
 
-    const raw = dec.decode(bytes);
+    // Strict decode — see get-snapshot.ts for why non-fatal decoding is
+    // never safe here (mojibake round-trips into git on the note's next
+    // save). A file that fails is simply left out of the index.
+    const decoded = decodeStrict(bytes);
+    if (!decoded.ok) {
+      // decodeStrict only ever fails with INVALID_UTF8 — `at` belongs to that variant of the
+      // wider ShapeFailure union it shares with shapeGate.
+      const where = decoded.reason === "INVALID_UTF8" ? ` at line ${decoded.at.line}, col ${decoded.at.col}` : "";
+      console.error(`[vault] skipping ${relPath} from search index: invalid UTF-8${where}`);
+      continue;
+    }
+    const raw = decoded.text;
     const parsed = parseMarkdown(relPath, raw);
     const body = extractBodyText(raw);
     const code = extractCodeText(raw);

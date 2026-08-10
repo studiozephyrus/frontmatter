@@ -1,5 +1,5 @@
 /**
- * Public note page: /p/[slug]
+ * Public note page: /[slug]
  *
  * Renders any note whose frontmatter `public_slug:` matches. Unauthenticated.
  * Returns 404 when the slug is unknown OR claimed by multiple notes

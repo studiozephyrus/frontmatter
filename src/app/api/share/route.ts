@@ -62,7 +62,9 @@ export async function DELETE(req: Request): Promise<Response> {
   }
   try {
     // Grab the slug BEFORE removal so we can purge its ISR-cached public page
-    // (otherwise an unpublished note stays readable at /p/<slug> for up to 60s).
+    // (otherwise an unpublished note stays readable at /<slug> for up to 60s).
+    // The real page lives at /<slug> (revalidate = 60) — /p/<slug> is only a
+    // permanent-redirect stub (revalidate = false) kept for old links.
     let slug: string | undefined;
     try {
       const snap = await container.getSnapshot();
@@ -72,7 +74,7 @@ export async function DELETE(req: Request): Promise<Response> {
     }
     const result = await shareApi.removeShare(parsed.data.path);
     container.clearSnapshotCache();
-    if (slug) revalidatePath(`/p/${slug}`);
+    if (slug) revalidatePath(`/${slug}`);
     return new Response(JSON.stringify(result), { status: 200, headers: JSON_HEADERS });
   } catch (err) {
     const message = err instanceof Error ? err.message : "upstream error";

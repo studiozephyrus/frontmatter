@@ -10,6 +10,7 @@
 
 import { unzipSync } from "fflate";
 import { buildLinkIndex } from "@/modules/vault/domain/link-index";
+import { decodeStrict } from "@/modules/mdmax/domain/shape-gate";
 import type { VaultReader, NoteParserFn } from "./ports";
 import type { VaultSnapshot, TreeNode, NoteMeta } from "./dto";
 
@@ -154,7 +155,6 @@ export function makeGetSnapshot(deps: {
     const entries = unzipSync(new Uint8Array(buf));
 
     // Decode markdown files, strip top-level dir prefix
-    const dec = new TextDecoder();
     const rawNotes: Array<{ path: string; content: string }> = [];
     // Track folders made visible by an explicit `.gitkeep` placeholder
     // (so "New folder" can show an empty folder in the tree).
@@ -164,7 +164,20 @@ export function makeGetSnapshot(deps: {
       const relPath = stripTopLevelDir(zipPath);
       if (zipPath.endsWith(".md")) {
         if (!isVaultNote(relPath)) continue;
-        rawNotes.push({ path: relPath, content: dec.decode(bytes) });
+        // Strict decode, never lossy. A non-fatal TextDecoder would silently
+        // turn an invalid byte into U+FFFD, and that mojibake is what gets
+        // committed back to git on the note's next save — permanently, and
+        // without the user ever knowing a byte changed. Refusing leaves the
+        // file untouched on disk; it just can't appear in this snapshot.
+        const decoded = decodeStrict(bytes);
+        if (!decoded.ok) {
+          // decodeStrict only ever fails with INVALID_UTF8 — the `at` field belongs to that
+          // variant of the wider ShapeFailure union it shares with shapeGate.
+          const where = decoded.reason === "INVALID_UTF8" ? ` at line ${decoded.at.line}, col ${decoded.at.col}` : "";
+          console.error(`[vault] skipping ${relPath}: invalid UTF-8${where}`);
+          continue;
+        }
+        rawNotes.push({ path: relPath, content: decoded.text });
         continue;
       }
       if (zipPath.endsWith("/.gitkeep") && isVaultNote(relPath)) {
