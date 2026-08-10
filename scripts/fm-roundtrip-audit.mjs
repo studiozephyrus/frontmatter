@@ -13,13 +13,15 @@
  * Corpus: docs/engine/research/corpus-manifest.json
  *   corpus_id sha256:3a010b1649899795d79274fc528dbece97fdabf4ff0f81cc02ab619c048c51a4
  */
-import fs from 'node:fs'
 import path from 'node:path'
 import matter from 'gray-matter'
 import { parseDocument, isMap } from 'yaml'
 // The writer under test, loaded via the shared loader which refuses (exit 2) rather than
 // crashing silently if the source will not import. See scripts/load-splice.mjs.
 import { spliceFrontmatterValue } from './load-splice.mjs'
+// Re-hashes every loaded file against the manifest's own pinned sha256 instead of trusting a
+// stale byte count — see scripts/lib/corpus-hash.mjs and PLAN.md §6.7 finding 4.
+import { loadVerifiedCorpus } from './lib/corpus-hash.mjs'
 
 const MANIFEST = 'docs/engine/research/corpus-manifest.json'
 const ROOTS = {
@@ -73,50 +75,44 @@ if (!impl) {
   process.exit(2)
 }
 
-const man = JSON.parse(fs.readFileSync(MANIFEST, 'utf8'))
+const { man, files: corpusFiles, drifted } = loadVerifiedCorpus(MANIFEST, ROOTS)
 let scanned = 0, withFm = 0, identical = 0, changed = 0, threw = 0, refused = 0
 const examples = []
 
-for (const [root, info] of Object.entries(man.roots)) {
-  const base = ROOTS[root]
-  if (!base) continue
-  for (const f of info.files) {
-    let src
-    try { src = fs.readFileSync(path.join(base, f.path), 'utf8') } catch { continue }
-    scanned++
-    if (!/^---\r?\n/.test(src)) continue
-    withFm++
-    try {
-      // If the file ALREADY carries the key, the inverse of "publish" is "restore the old
-      // value", not "delete". Asserting byte-identity after a delete would be asserting that
-      // deleting a line leaves the line — which is a bug in the test, not in the writer.
-      const had = /^public_slug[ \t]*:[ \t]*(.*)$/m.exec(
-        (/^---\r?\n([\s\S]*?)\r?\n---/.exec(src)?.[1]) ?? '')
-      const published = impl(src, KEY, VAL)
-      if (published === src) { refused++; continue }   // publish was a NO-OP: a refusal, not a pass
-      const back = had
-        ? impl(published, KEY, had[1].trim().replace(/^["']|["']$/g, ''))
-        : impl(published, KEY, null)
-      if (Buffer.compare(Buffer.from(back, 'utf8'), Buffer.from(src, 'utf8')) === 0) {
-        identical++
-      } else {
-        changed++
-        if (examples.length < 4) {
-          // first differing line, for a human
-          const a = src.split('\n'), b = back.split('\n')
-          let i = 0; while (i < a.length && a[i] === b[i]) i++
-          examples.push({ p: `${root}/${f.path}`, line: i + 1, was: a[i] ?? '<eof>', now: b[i] ?? '<eof>' })
-        }
+for (const { path: relPath, src } of corpusFiles) {
+  scanned++
+  if (!/^---\r?\n/.test(src)) continue
+  withFm++
+  try {
+    // If the file ALREADY carries the key, the inverse of "publish" is "restore the old
+    // value", not "delete". Asserting byte-identity after a delete would be asserting that
+    // deleting a line leaves the line — which is a bug in the test, not in the writer.
+    const had = /^public_slug[ \t]*:[ \t]*(.*)$/m.exec(
+      (/^---\r?\n([\s\S]*?)\r?\n---/.exec(src)?.[1]) ?? '')
+    const published = impl(src, KEY, VAL)
+    if (published === src) { refused++; continue }   // publish was a NO-OP: a refusal, not a pass
+    const back = had
+      ? impl(published, KEY, had[1].trim().replace(/^["']|["']$/g, ''))
+      : impl(published, KEY, null)
+    if (Buffer.compare(Buffer.from(back, 'utf8'), Buffer.from(src, 'utf8')) === 0) {
+      identical++
+    } else {
+      changed++
+      if (examples.length < 4) {
+        // first differing line, for a human
+        const a = src.split('\n'), b = back.split('\n')
+        let i = 0; while (i < a.length && a[i] === b[i]) i++
+        examples.push({ p: relPath, line: i + 1, was: a[i] ?? '<eof>', now: b[i] ?? '<eof>' })
       }
-    } catch (e) {
-      threw++
-      if (examples.length < 4) examples.push({ p: `${root}/${f.path}`, line: 0, was: 'THREW', now: String(e.message).slice(0, 70) })
     }
+  } catch (e) {
+    threw++
+    if (examples.length < 4) examples.push({ p: relPath, line: 0, was: 'THREW', now: String(e.message).slice(0, 70) })
   }
 }
 
 const pct = (n) => withFm ? `${(n / withFm * 100).toFixed(2)}%` : '—'
-console.log(`corpus_id  ${man.corpus_id}`)
+console.log(`corpus_id  ${man.corpus_id}${drifted.length ? '  (' + drifted.length + ' file(s) drifted from pin — tested against live content)' : '  (verified: every file matches its pinned sha256)'}`)
 console.log(`impl       ${which}`)
 console.log(`operation  set ${KEY}=${VAL}, then delete ${KEY}`)
 console.log(`assertion  result is BYTE-IDENTICAL to the original\n`)

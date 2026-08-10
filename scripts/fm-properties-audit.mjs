@@ -18,12 +18,14 @@
  *
  * corpus_id sha256:3a010b1649899795d79274fc528dbece97fdabf4ff0f81cc02ab619c048c51a4
  */
-import fs from 'node:fs'
 import path from 'node:path'
 import { parseDocument, isMap } from 'yaml'
 // The writer under test, loaded via the shared loader which refuses (exit 2) rather than
 // crashing silently if the source will not import. See scripts/load-splice.mjs.
 import * as M from './load-splice.mjs'
+// Re-hashes every loaded file against the manifest's own pinned sha256 instead of trusting a
+// stale byte count — see scripts/lib/corpus-hash.mjs and PLAN.md §6.7 finding 4.
+import { loadVerifiedCorpus } from './lib/corpus-hash.mjs'
 
 const FM = /^---\r?\n([\s\S]*?)\r?\n---\r?\n?/
 const SENTINEL = '__mdmax_audit__'
@@ -56,28 +58,24 @@ const which = process.argv[2] ?? 'splice'
 const impl = IMPLS[which]
 if (!impl) { console.error(`unknown impl "${which}"`); process.exit(2) }
 
-const man = JSON.parse(fs.readFileSync('docs/engine/research/corpus-manifest.json', 'utf8'))
 const ROOTS = {
   md: path.join(process.env.HOME, 'Desktop/GitHub/md'),
   knowledge: path.join(process.env.HOME, 'Desktop/GitHub/knowledge'),
   frontmatter: process.cwd(),
 }
-const corpus = []
-for (const [root, info] of Object.entries(man.roots)) {
-  const base = ROOTS[root]; if (!base) continue
-  for (const f of info.files) {
-    try {
-      const src = fs.readFileSync(path.join(base, f.path), 'utf8')
-      if (/^---\r?\n/.test(src)) corpus.push({ p: `${root}/${f.path}`, src })
-    } catch { /* moved since the manifest was pinned */ }
-  }
-}
+const { man, files: loaded, drifted } = loadVerifiedCorpus('docs/engine/research/corpus-manifest.json', ROOTS)
+const corpus = loaded.filter((f) => /^---\r?\n/.test(f.src)).map((f) => ({ p: f.path, src: f.src }))
 
+// A floor, not an equality (LR#66): the corpus is allowed to GROW as vault files gain
+// frontmatter — only SHRINKING (wrong cwd, unmounted vaults, deleted files) is the real bug.
 const EXPECTED = 907
-if (corpus.length !== EXPECTED) {
-  console.log(`REFUSING: saw ${corpus.length} frontmatter files, expected ${EXPECTED}.`)
+if (corpus.length < EXPECTED) {
+  console.log(`REFUSING: saw ${corpus.length} frontmatter files, expected at least ${EXPECTED}.`)
   console.log('This oracle is meaningless on a partial corpus. Mount the vaults or re-pin.')
   process.exit(2)
+}
+if (drifted.length > 0) {
+  console.log(`NOTE: ${drifted.length} file(s) no longer match their pinned sha256 (edited since pinning) — tested against live content anyway.`)
 }
 
 /**

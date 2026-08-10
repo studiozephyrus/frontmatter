@@ -13,16 +13,18 @@
  *
  * corpus_id sha256:3a010b1649899795d79274fc528dbece97fdabf4ff0f81cc02ab619c048c51a4
  */
-import fs from 'node:fs'
 import path from 'node:path'
 import GithubSlugger from 'github-slugger'
+// Re-hashes every loaded file against the manifest's own pinned sha256 instead of trusting a
+// stale byte count — see scripts/lib/corpus-hash.mjs and PLAN.md §6.7 finding 4.
+import { loadVerifiedCorpus } from './lib/corpus-hash.mjs'
 
-const man = JSON.parse(fs.readFileSync('docs/engine/research/corpus-manifest.json', 'utf8'))
 const ROOTS = {
   md: path.join(process.env.HOME, 'Desktop/GitHub/md'),
   knowledge: path.join(process.env.HOME, 'Desktop/GitHub/knowledge'),
   frontmatter: process.cwd(),
 }
+const { man, files: corpusFiles, drifted } = loadVerifiedCorpus('docs/engine/research/corpus-manifest.json', ROOTS)
 
 // ---- candidates ------------------------------------------------------------------
 
@@ -86,16 +88,7 @@ const perCandidate = Object.fromEntries(ALL.map((k) => [k, { resolved: 0 }]))
 const unresolvedExamples = Object.fromEntries(ALL.map((k) => [k, []]))
 const perFile = []
 
-for (const [root, info] of Object.entries(man.roots)) {
-  const base = ROOTS[root]
-  if (!base) continue
-  for (const f of info.files) {
-    let src
-    try {
-      src = fs.readFileSync(path.join(base, f.path), 'utf8')
-    } catch {
-      continue
-    }
+for (const { path: relPath, src } of corpusFiles) {
     const body = stripFences(src)
     const headings = []
     HEADING.lastIndex = 0
@@ -119,9 +112,9 @@ for (const [root, info] of Object.entries(man.roots)) {
       for (const a of anchors) {
         if (both.has(a)) perCandidate[TOLERANT].resolved++
         else if (unresolvedExamples[TOLERANT].length < 6)
-          unresolvedExamples[TOLERANT].push(`${root}/${f.path} -> #${a}`)
+          unresolvedExamples[TOLERANT].push(`${relPath} -> #${a}`)
       }
-      perFile.push({ f: `${root}/${f.path}`, n: anchors.length })
+      perFile.push({ f: relPath, n: anchors.length })
     }
     for (const [name, fn] of Object.entries(CANDIDATES)) {
       // a fresh slugger per document: GitHub de-duplicates within a page, not across
@@ -130,13 +123,12 @@ for (const [root, info] of Object.entries(man.roots)) {
       for (const a of anchors) {
         if (produced.has(a)) perCandidate[name].resolved++
         else if (unresolvedExamples[name].length < 5)
-          unresolvedExamples[name].push(`${root}/${f.path} → #${a}`)
+          unresolvedExamples[name].push(`${relPath} → #${a}`)
       }
     }
-  }
 }
 
-console.log(`corpus_id  ${man.corpus_id}`)
+console.log(`corpus_id  ${man.corpus_id}${drifted.length ? '  (' + drifted.length + ' file(s) drifted from pin — tested against live content)' : '  (verified: every file matches its pinned sha256)'}`)
 console.log(`files carrying at least one intra-document anchor   ${files}`)
 console.log(`intra-document anchor links found                   ${anchorsTotal}\n`)
 console.log(`  ${'algorithm'.padEnd(38)} ${'resolved'.padStart(10)}  ${'rate'.padStart(8)}`)

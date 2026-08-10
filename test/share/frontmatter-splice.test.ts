@@ -9,11 +9,11 @@
  * corpus_id sha256:3a010b1649899795d79274fc528dbece97fdabf4ff0f81cc02ab619c048c51a4
  */
 import { describe, it, expect } from "vitest";
-import fs from "node:fs";
 import path from "node:path";
 import os from "node:os";
 import matter from "gray-matter";
 import { parseDocument, isMap } from "yaml";
+import { loadVerifiedCorpus } from "../../scripts/lib/corpus-hash.mjs";
 import {
   spliceFrontmatterValue,
   spliceFrontmatterKey,
@@ -264,21 +264,22 @@ const yamldoc: Impl = (src, key, value) => {
   return `---\n${y}\n---\n\n${body.replace(/^\n+/, "")}`;
 };
 
-function loadCorpus(): { path: string; src: string }[] {
-  if (!fs.existsSync(MANIFEST)) return [];
-  const man = JSON.parse(fs.readFileSync(MANIFEST, "utf8"));
-  const out: { path: string; src: string }[] = [];
-  for (const [root, info] of Object.entries(man.roots as Record<string, { files: { path: string }[] }>)) {
-    const base = ROOTS[root];
-    if (!base || !fs.existsSync(base)) continue;
-    for (const f of info.files) {
-      try {
-        const src = fs.readFileSync(path.join(base, f.path), "utf8");
-        if (/^---\r?\n/.test(src)) out.push({ path: `${root}/${f.path}`, src });
-      } catch { /* file moved since the manifest was pinned */ }
-    }
-  }
-  return out;
+interface LoadedCorpus {
+  files: { path: string; src: string }[];
+  /** Files whose live content no longer matches the manifest's pinned sha256 — still tested
+   *  (the writer has to work on what's really on disk), but visible instead of silently
+   *  absorbed into the file count. See scripts/lib/corpus-hash.mjs and PLAN.md §6.7 finding 4. */
+  drifted: { path: string; pinned: string; live: string }[];
+}
+
+function loadCorpus(): LoadedCorpus {
+  const { files, drifted } = loadVerifiedCorpus(MANIFEST, ROOTS) as {
+    man: unknown;
+    files: { path: string; src: string }[];
+    drifted: { path: string; pinned: string; live: string }[];
+    missing: string[];
+  };
+  return { files: files.filter((f) => /^---\r?\n/.test(f.src)), drifted };
 }
 
 /** publish, then invert. If the key pre-existed, the inverse is restore — not delete. */
@@ -304,33 +305,52 @@ function score(impl: Impl, corpus: { path: string; src: string }[]) {
 }
 
 describe("corpus gate — publish then unpublish is byte-identical", () => {
-  const corpus = loadCorpus();
+  const { files: corpus, drifted } = loadCorpus();
   const EXPECTED = 907;
 
-  // A gate that shrinks its own population is a gate that always passes. Without the private
-  // vaults this saw 23 of 907 files and printed 100%. Assert the denominator (LR#65).
-  it.skipIf(corpus.length === 0)("sees the WHOLE pinned corpus, not a subset", () => {
-    expect(corpus.length, `corpus is ${corpus.length}/${EXPECTED} — mount the vaults or re-pin`).toBe(EXPECTED);
+  if (drifted.length > 0) {
+    console.log(
+      `\n  corpus drift: ${drifted.length} file(s) no longer match their pinned sha256 ` +
+      `(edited since the manifest was pinned) — tested against LIVE content anyway:\n` +
+      drifted.map((d) => `    ${d.path}`).join("\n"),
+    );
+  }
+
+  // §6.7 finding 1: `it.skipIf(corpus.length === 0)` on all three tests meant a corpus that
+  // shrinks to NOTHING — wrong cwd, vaults unmounted, a fake HOME — reported "3 skipped, exit
+  // 0", indistinguishable from "working as intended" in a run of hundreds of tests. There is no
+  // CI, so this only ever runs on one laptop, where the vaults are always present — a corpus of
+  // 0 here is a real bug, not a legitimate absence, and must FAIL loudly, not skip silently.
+  //
+  // §6.7 finding 5 (LR#66): the corpus is allowed to GROW (any of the 177 no-frontmatter files
+  // can gain some) without that being a problem — only SHRINKING is the actual signal. A strict
+  // `toBe(EXPECTED)` punishes healthy growth exactly like a shrinkage bug; assert a floor.
+  it("sees at least the WHOLE pinned corpus, not a subset", () => {
+    expect(corpus.length, `corpus is ${corpus.length}/${EXPECTED} — mount the vaults or re-pin`).toBeGreaterThanOrEqual(EXPECTED);
   });
 
-  it.skipIf(corpus.length === 0)(
-    "the assertion is capable of failing: the shipped writers DO alter files",
-    () => {
-      const gm = score(graymatter, corpus);
-      const yd = score(yamldoc, corpus);
-      // This is the RED proof required by LR#68 — if these ever pass, the gate is vacuous.
-      expect(gm.changed + gm.threw).toBeGreaterThan(0);
-      expect(yd.changed).toBeGreaterThan(0);
-      console.log(
-        `\n  gray-matter (shipped): ${gm.identical}/${gm.total} identical ` +
-        `(${((gm.identical / gm.total) * 100).toFixed(2)}%), ${gm.changed} changed, ${gm.threw} threw` +
-        `\n  yaml Document:         ${yd.identical}/${yd.total} identical ` +
-        `(${((yd.identical / yd.total) * 100).toFixed(2)}%), ${yd.changed} changed`,
-      );
-    },
-  );
+  it("the assertion is capable of failing: the shipped writers DO alter files", () => {
+    // An empty corpus trivially satisfies "changed > 0"? No — it satisfies NOTHING, both
+    // `toBeGreaterThan(0)` checks below would correctly fail on 0 files. This guard exists so
+    // that failure reads as "the corpus is empty" instead of a confusing writer-shaped failure.
+    expect(corpus.length, "corpus is empty — the red proof below cannot run without it").toBeGreaterThan(0);
+    const gm = score(graymatter, corpus);
+    const yd = score(yamldoc, corpus);
+    // This is the RED proof required by LR#68 — if these ever pass, the gate is vacuous.
+    expect(gm.changed + gm.threw).toBeGreaterThan(0);
+    expect(yd.changed).toBeGreaterThan(0);
+    console.log(
+      `\n  gray-matter (shipped): ${gm.identical}/${gm.total} identical ` +
+      `(${((gm.identical / gm.total) * 100).toFixed(2)}%), ${gm.changed} changed, ${gm.threw} threw` +
+      `\n  yaml Document:         ${yd.identical}/${yd.total} identical ` +
+      `(${((yd.identical / yd.total) * 100).toFixed(2)}%), ${yd.changed} changed`,
+    );
+  });
 
-  it.skipIf(corpus.length === 0)("splice writer alters ZERO files", () => {
+  it("splice writer alters ZERO files", () => {
+    // Without this, an empty corpus trivially satisfies `changed === 0` and the test PASSES —
+    // the exact false-green LR#65 already warned about, just reachable through a different door.
+    expect(corpus.length, "corpus is empty — changed===0 would be vacuously true, not a pass").toBeGreaterThan(0);
     const s = score(spliceFrontmatterValue as Impl, corpus);
     console.log(
       `\n  splice:                ${s.identical}/${s.total} identical ` +

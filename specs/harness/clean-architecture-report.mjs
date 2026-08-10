@@ -15,6 +15,14 @@
  * (src/app, src/modules/<m>/{domain,application,infrastructure,presentation},
  * src/shared/{domain,application,infrastructure,presentation}). Zero deps.
  *
+ * §6.7 finding 3: this used to report `{"total":0,"violations":[]}` and exit 0 whether it had
+ * scanned 208 files or zero — `total` counted VIOLATIONS, and a gate with nothing to scan has
+ * no violations by definition. Proven exploitable in a sandbox: renaming `src/modules/` to
+ * `src/features/` (which `layerOf()` below does not recognise) took a violating tree from
+ * `{"total":3}` exit 1 to `{"total":0}` exit 0 — the gate "passed" by going blind. `filesScanned`
+ * is the real denominator, and MIN_SCANNED_FILES refuses rather than reporting a silent pass
+ * when it collapses.
+ *
  * Run: node specs/harness/clean-architecture-report.mjs
  */
 import { existsSync, readdirSync, readFileSync, statSync } from "node:fs";
@@ -22,6 +30,9 @@ import { extname, join } from "node:path";
 
 const roots = ["src"];
 const sourceExtensions = new Set([".ts", ".tsx"]);
+// Comfortably below this repo's real count (208 at write time) so ordinary file moves never
+// trip it, but far enough above 0 to catch the layer-blindness attack described above.
+const MIN_SCANNED_FILES = 50;
 const violations = [];
 
 function statSafe(path) {
@@ -120,9 +131,11 @@ function scanDbClient(text, file, layer) {
   }
 }
 
+let filesScanned = 0;
 for (const file of roots.flatMap((root) => walk(root))) {
   const layer = layerOf(file);
   if (!layer) continue;
+  filesScanned++;
 
   const text = readFileSync(file, "utf8");
   for (const { specifier, index } of importSpecifiers(text)) {
@@ -144,5 +157,12 @@ const summary = violations.reduce((acc, violation) => {
   return acc;
 }, {});
 
-console.log(JSON.stringify({ total: violations.length, summary, violations }, null, 2));
+console.log(JSON.stringify({ total: violations.length, filesScanned, summary, violations }, null, 2));
+if (filesScanned < MIN_SCANNED_FILES) {
+  console.error(
+    `[arch] refusing: only ${filesScanned} layered file(s) scanned (floor ${MIN_SCANNED_FILES}) — ` +
+    `the gate has gone blind, not clean. Check layerOf()'s folder names still match the tree.`,
+  );
+  process.exit(2);
+}
 if (violations.length) process.exit(1);
