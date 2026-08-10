@@ -264,6 +264,37 @@ describe("the artifact", () => {
     }
   });
 
+  it("byte ranges are real UTF-8 byte offsets, not UTF-16 code-unit counts (§6.10)", async () => {
+    // An all-ASCII fixture can't tell a byte offset from a UTF-16 code-unit count apart — they're
+    // numerically identical. Front-load multi-byte characters (CJK: 3 bytes/1 u16 unit each;
+    // an astral emoji: 4 bytes/2 u16 units) so the two units actually diverge.
+    const src = "# 日本語\n\n🚀 rocket\n\n- a\n- b\n";
+    const u16Blocks = splitBlocks(src); // independently known-correct u16 ranges
+    const r = await certify({
+      path: "doc.md",
+      source: src,
+      sha256: "d",
+      engines: [passthrough],
+      targets: [target("t", "e1")],
+      constructs: [],
+      benchId: "b",
+      foldVersion: "f",
+      classify: () => alwaysPass,
+      foldText: (h) => h,
+    });
+    if (!r.ok) return;
+    expect(r.certificate.file.bytes).toBe(Buffer.byteLength(src, "utf8"));
+    expect(r.certificate.blocks).toHaveLength(u16Blocks.length);
+    r.certificate.blocks.forEach((b, i) => {
+      const u16 = u16Blocks[i];
+      if (!u16) throw new Error("fixture mismatch");
+      expect(b.byteRange, `block ${i}`).toEqual([
+        Buffer.byteLength(src.slice(0, u16.start), "utf8"),
+        Buffer.byteLength(src.slice(0, u16.end), "utf8"),
+      ]);
+    });
+  });
+
   it("applies a target's pre-pipeline — Jekyll strips front matter before kramdown runs", async () => {
     const seen: string[] = [];
     const spy = fakeEngine("spy", (s) => {

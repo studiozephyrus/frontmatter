@@ -282,8 +282,16 @@ function scan(html: string): Segment[] {
     }
 
     // An unterminated `<` is text, not markup. Leave it in the text run.
+    //
+    // `j` reached `html.length` without ever seeing `>` — which proves no `>` exists anywhere
+    // in the rest of the document, so NOTHING from here to the end can be a closed tag either.
+    // Jumping straight to the end (rather than `i++` and letting the outer loop retry at the
+    // very next `<`) is what makes this O(n): without it, a run of N tag-looking-but-unclosed
+    // `<...` sequences re-runs this same O(remaining-length) inner walk from each one, which is
+    // O(n^2) (measured k=1.94, §6.11). flushText(html.length) below still emits everything from
+    // textStart onward as one text segment — nothing is lost, only the redundant re-scanning is.
     if (!closed) {
-      i++
+      i = html.length
       continue
     }
 

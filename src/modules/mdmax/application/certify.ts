@@ -26,6 +26,7 @@ import type {
   Engine,
   Target,
 } from '../domain/cert-contract'
+import { OffsetMap, unsafeU16 } from '../domain/offsets'
 
 export interface CertifyOptions {
   readonly path: string
@@ -175,6 +176,13 @@ export async function certify(opts: CertifyOptions): Promise<CertResult> {
   }
 
   const blocks = splitBlocks(opts.source)
+  // splitBlocks (and file.length) report UTF-16 code-unit offsets — what JS strings are indexed
+  // in. A certificate reports on bytes a user can find with `wc -c` / their editor's byte count,
+  // so every offset that leaves this function goes through the one conversion point. block.start
+  // and block.end are always immediately after a whole line (split on `(?<=\n)`), so they can
+  // never land inside a surrogate pair — `unsafeU16` is the documented escape hatch for offsets
+  // already known good. See PLAN.md §6.10.
+  const offsetMap = new OffsetMap(opts.source)
   const oracleId = opts.oracleEngineId ?? 'commonmark'
   const oracle = engineById.get(oracleId)
 
@@ -274,7 +282,7 @@ export async function certify(opts: CertifyOptions): Promise<CertResult> {
     out.push({
       anchor: blockAnchor(b.text, b.start),
       type: blockType(b.text),
-      byteRange: [b.start, b.end],
+      byteRange: [offsetMap.toByte(unsafeU16(b.start)), offsetMap.toByte(unsafeU16(b.end))],
       constructs,
       verdicts,
     })
@@ -287,7 +295,7 @@ export async function certify(opts: CertifyOptions): Promise<CertResult> {
       engines: opts.engines.map(({ render: _render, ...rest }) => rest),
     },
     fold: { version: opts.foldVersion },
-    file: { path: opts.path, sha256: opts.sha256, bytes: opts.source.length },
+    file: { path: opts.path, sha256: opts.sha256, bytes: offsetMap.lengthBytes },
     targets: opts.targets.map((t) => t.id),
     summary: summary as CertSummary,
     blocks: out,

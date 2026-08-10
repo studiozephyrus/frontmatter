@@ -110,12 +110,37 @@ describe("OffsetMap — the one conversion point", () => {
 
   it("handles a document longer than one block without drifting", () => {
     // BLOCK is 512; cross several boundaries with multi-byte content so the checkpoints matter.
-    const long = `${"日".repeat(600)}${EMOJI}${"a".repeat(600)}`;
+    //
+    // Pinned at 511 (not 600) on purpose: the emoji's low surrogate then lands EXACTLY at
+    // code-unit index 512, a block-checkpoint boundary. §6.6 — the constructor's checkpoint
+    // fires AFTER charging the full 4-byte pair, so `byteAt[1]` records the post-pair offset
+    // while the walk in toByte/toU16 starts scanning FROM that same index treating it as a
+    // fresh character — misreading the low surrogate as a lone 3-byte char and overcounting
+    // by 3 for every offset past it until the next checkpoint. A pair at 600 (601 % 512 = 89)
+    // never lands on a boundary and is a near-miss that doesn't reproduce the bug (LR#68).
+    const long = `${"日".repeat(511)}${EMOJI}${"a".repeat(600)}`;
     const m = new OffsetMap(long);
     expect(m.lengthBytes).toBe(Buffer.byteLength(long, "utf8"));
     for (const i of [0, 100, 511, 512, 513, 600, 601, 602, 1000, long.length]) {
       if (splitsSurrogatePair(long, i)) continue;
       expect(m.toByte(unsafeU16(i)), `at ${i}`).toBe(Buffer.byteLength(long.slice(0, i), "utf8"));
+    }
+  });
+
+  it("is exact at every offset for a pair landing anywhere near a block boundary", () => {
+    // Exhaustive sweep, not sampled: for every low-surrogate landing position from 6 units
+    // before the 512 boundary to 6 after, walk EVERY valid u16 offset in the document and
+    // check it against Buffer.byteLength — not just the offset immediately after the pair.
+    for (let lowAt = 506; lowAt <= 518; lowAt++) {
+      const doc = `${"x".repeat(lowAt - 1)}${EMOJI}${"y".repeat(40)}`;
+      const m = new OffsetMap(doc);
+      expect(m.lengthBytes, `lowAt=${lowAt} total`).toBe(Buffer.byteLength(doc, "utf8"));
+      for (let i = 0; i <= doc.length; i++) {
+        if (splitsSurrogatePair(doc, i)) continue;
+        expect(m.toByte(unsafeU16(i)), `lowAt=${lowAt} offset=${i}`).toBe(
+          Buffer.byteLength(doc.slice(0, i), "utf8"),
+        );
+      }
     }
   });
 

@@ -356,4 +356,26 @@ describe("totality and shape", () => {
     expect(out.text.length).toBe(200_000 * "&lt;".length);
     expect(out.applied).toEqual(["entity-decode"]);
   });
+
+  it(
+    "stays linear on a document of unclosed tag-looking angle brackets (§6.11)",
+    () => {
+      // Different hazard from the one above: `<a ` DOES match the tag-start regex, so `scan()`
+      // walks its inner loop all the way to end-of-string looking for a `>` that never comes.
+      // The unfixed code then does `i++` and lets the OUTER loop retry at the very next `<a `,
+      // re-running that same full-length inner walk again — one inner O(n) scan per `<a `
+      // occurrence, O(n) occurrences, O(n^2) total. Measured k=1.94, 90 KB -> 46.8s.
+      // A 3s per-test timeout turns "still running" into a fast, unambiguous FAIL rather than
+      // a multi-second wait, matching the sibling test's own no-timing-assertion convention.
+      // Sized off the measured fold()-only table (94 KB -> 3663.8ms at k=1.94, NOT the 46.8s
+      // CLI end-to-end figure, which includes 7-engine rendering on top of one fold() call).
+      const hostile = "<a ".repeat(50_000); // 150,000 chars, no `>` anywhere
+      const out = fold(hostile);
+      // Treated as plain text throughout: every `<` entity-decodes to `&lt;`, and the
+      // whitespace rule trims the final trailing space.
+      expect(out.text).toBe(hostile.replace(/</g, "&lt;").replace(/\s+$/, ""));
+      expect(out.applied).toEqual(["entity-decode", "whitespace"]);
+    },
+    3_000,
+  );
 });

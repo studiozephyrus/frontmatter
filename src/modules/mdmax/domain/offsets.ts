@@ -156,14 +156,28 @@ export class OffsetMap {
     return this.totalBytes
   }
 
+  /**
+   * A block checkpoint is recorded by CODE-UNIT INDEX, but a pair whose low surrogate lands
+   * exactly on a boundary charges the whole 4-byte pair to that same index (the constructor
+   * charges pairs to the high surrogate's iteration, one unit early). The stored byte count is
+   * correct — it is the WALK that isn't: starting from a low surrogate and reading it as a
+   * fresh character overcounts by 3. Back the walk up to the high surrogate (the pair's real
+   * start) and undo the 4-byte charge so it re-derives the pair correctly instead of twice.
+   */
+  private resolveCheckpoint(i: number, bytes: number): { i: number; bytes: number } {
+    if (i > 0 && i < this.text.length && isLowSurrogate(this.text.charCodeAt(i)) && isHighSurrogate(this.text.charCodeAt(i - 1))) {
+      return { i: i - 1, bytes: bytes - 4 }
+    }
+    return { i, bytes }
+  }
+
   /** UTF-16 code-unit offset → UTF-8 byte offset. */
   toByte(offset: U16Offset): ByteOffset {
     const target = offset as number
     if (target <= 0) return 0 as ByteOffset
     if (target >= this.text.length) return this.totalBytes as ByteOffset
     const block = Math.floor(target / BLOCK)
-    let i = block * BLOCK
-    let bytes = this.byteAt[block] ?? 0
+    let { i, bytes } = this.resolveCheckpoint(block * BLOCK, this.byteAt[block] ?? 0)
     while (i < target) {
       const code = this.text.charCodeAt(i)
       if (code < 0x80) bytes += 1
@@ -197,8 +211,7 @@ export class OffsetMap {
       if ((this.byteAt[mid] ?? 0) <= target) lo = mid
       else hi = mid - 1
     }
-    let i = lo * BLOCK
-    let bytes = this.byteAt[lo] ?? 0
+    let { i, bytes } = this.resolveCheckpoint(lo * BLOCK, this.byteAt[lo] ?? 0)
     while (i < this.text.length && bytes < target) {
       const code = this.text.charCodeAt(i)
       let width: number
