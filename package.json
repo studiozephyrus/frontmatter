@@ -16,14 +16,16 @@
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "arch": "node specs/harness/clean-architecture-report.mjs",
-    "verify": "npm run typecheck && npm run lint && npm run test && npm run build && npm run arch",
+    "verify": "npm run typecheck && npm run lint && npm run test && npm run build && npm run arch && npm run spec",
     "budget": "echo 'No bundle budget configured yet — skipping'",
     "tauri": "tauri",
     "tauri:dev": "tauri dev",
     "tauri:build": "tauri build",
     "tauri:build:mac-arm": "tauri build --target aarch64-apple-darwin",
     "tauri:build:mac-intel": "tauri build --target x86_64-apple-darwin",
-    "tauri:build:mac-universal": "tauri build --target universal-apple-darwin"
+    "tauri:build:mac-universal": "tauri build --target universal-apple-darwin",
+    "spec": "node specs/harness/spec-report.mjs",
+    "corpus": "node scripts/corpus-foreign.mjs verify"
   },
   "dependencies": {
     "@ai-sdk/cerebras": "^2.0.54",
