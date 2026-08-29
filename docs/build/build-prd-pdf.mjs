@@ -284,7 +284,7 @@ const complete = () => {
   return tail.toString('latin1').includes('%%EOF') ? size : 0
 }
 const DEADLINE = Date.now() + 300_000
-let size = 0
+let size
 while (!(size = complete()) && Date.now() < DEADLINE) {
   await new Promise((r) => setTimeout(r, 400))
 }

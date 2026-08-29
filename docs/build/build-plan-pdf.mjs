@@ -163,7 +163,7 @@ if (fs.existsSync(chrome)) {
     return tail.toString('latin1').includes('%%EOF') ? size : 0
   }
   const DEADLINE = Date.now() + 120_000
-  let size = 0
+  let size
   while (!(size = done()) && Date.now() < DEADLINE) {
     await new Promise((r) => setTimeout(r, 250))
   }

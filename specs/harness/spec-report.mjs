@@ -50,7 +50,7 @@ const readSpec = (file) => {
   const raw = fs.readFileSync(file, 'utf8')
   const m = /^---\r?\n([\s\S]*?)\r?\n---\r?\n?/.exec(raw)
   if (!m) return { file, raw, fm: null, body: raw, error: 'no frontmatter block' }
-  let fm = null
+  let fm
   try { fm = parseYaml(m[1]) } catch (e) { return { file, raw, fm: null, body: raw, error: `frontmatter did not parse: ${e.message}` } }
   return { file, raw, fm: fm || {}, body: raw.slice(m[0].length) }
 }
