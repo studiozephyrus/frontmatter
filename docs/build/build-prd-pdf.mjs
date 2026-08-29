@@ -283,7 +283,9 @@ const complete = () => {
   fs.closeSync(fd)
   return tail.toString('latin1').includes('%%EOF') ? size : 0
 }
-const DEADLINE = Date.now() + 300_000
+// A 1,300-page record needs far longer than a 60-page one. Override with
+// FM_PDF_TIMEOUT_MS when rendering the complete record.
+const DEADLINE = Date.now() + Number(process.env.FM_PDF_TIMEOUT_MS || 300_000)
 let size
 while (!(size = complete()) && Date.now() < DEADLINE) {
   await new Promise((r) => setTimeout(r, 400))
