@@ -32,8 +32,10 @@ The contract layer. One spec per **contract**, never per file of code.
 
 | id | state | track | one line |
 |---|---|---|---|
+| `engine/splice-writer` | draft | R0 | The byte-preservation contract: locate the range, replace only those bytes, refuse rather than guess |
 | `render/carrier` | draft | T2 | How a render profile is written on disk: callout for prose, fence for data, nothing else |
 | `engine/nf-001-zero-indent-sequence` | draft | R0 | A zero-indent YAML block sequence must not refuse the write — 83% of foreign refusals |
+| `engine/nf-003-bare-cr-fence` | draft | R0 | A bare-CR fence prepends a second frontmatter block — set-destructive, and the corpus cannot see it |
 
 ## Navigate
 

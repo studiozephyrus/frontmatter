@@ -9,7 +9,8 @@ prd_file: docs/FRONTMATTER-PRD-2026-08-29.md
 prd_sha256: 4d80021f97d8390cb33cd09e99ade24fc409ddc934b35148bcb36841ff8d0dea
 prd_sections: ["24", "7.1", "26.1"]
 governs:
-  - src/modules/share/domain/splice-frontmatter.ts
+  - test/corpus/foreign/nf-001-red-proof.test.ts
+depends_on: [engine/splice-writer]
 verify:
   - node scripts/corpus-foreign.mjs verify
   - node specs/harness/spec-report.mjs --id engine/nf-001-zero-indent-sequence
