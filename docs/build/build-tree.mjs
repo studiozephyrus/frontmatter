@@ -11,9 +11,11 @@
 // NUMBERING. The agents were given global section numbers. They are preserved
 // verbatim, because every cross-reference an agent wrote points at them:
 //
-//     PRD          §0–66    product, market, why
-//     ENGINE.md    §67–80   audit (r15) + design (r16)
-//     BUSINESS.md  §81–87   the gaps round 14 found
+//     PRD             §0–66    product, market, why
+//     ENGINE.md       §67–80   audit (r15) + design (r16)
+//     BUSINESS.md     §81–88   the gaps round 14 found, plus the war-game
+//     VERIFICATION.md §89      every load-bearing claim, opened
+//     PRODUCT.md      §90–97   the founding-session substrate
 //     DEV-PLAN.md  §1–13    LOCAL run — cite as `DEV-PLAN §5`
 //     REFERENCES   §1–7     LOCAL run — cite as `REFERENCES §3`
 //
@@ -110,15 +112,61 @@ const head = (title, sub, lines) =>
     'h3-pricing-experiments', 'h4-refunds-lifecycle', 'h5-business-operations',
     'h6-plugin-tension', 'h7-content-seo-distribution']
     .map((s) => part(`r17-${s}.md`)).filter(Boolean)
+  // §88 is two agents' output merged: the scenarios and the kill-shots. The second was
+  // told to number its H3s 88.9 onward and carries a placeholder `## 88b.` heading, which
+  // is stripped here — one section, two authors.
+  const war = part('r18-w1-competitor-response.md')
+  const kill = part('r18-w2-kill-shots.md')
+  if (war) blocks.push(kill ? war + '\n\n' + kill.replace(/^##\s+88b\..*\n+/m, '') : war)
+
   if (blocks.length) {
     fs.writeFileSync('docs/BUSINESS.md', head(
       'BUSINESS — the parts nobody adds up',
       '**Tier 1.** Round 14 swept the record for what thirteen rounds had never asked, and these ' +
-      'seven came back. They are not softer than the engineering; a product with no route to tell ' +
-      'a user about a breaking change has an operational defect, not a marketing gap.',
+      'seven came back, and §88 adds the war-game that thirteen rounds never ran. They are not ' +
+      'softer than the engineering; a product with no route to tell a user about a breaking change ' +
+      'has an operational defect, not a marketing gap.',
       ['> Every number here obeys PRD §57: re-derive at write time. Every public claim obeys PRD §58.'],
     ) + blocks.join('\n\n---\n\n') + '\n')
-    built.push(`BUSINESS.md — ${blocks.length}/7 sections`)
+    built.push(`BUSINESS.md — ${blocks.length}/8 sections`)
+  }
+}
+
+// ------------------------------------------------------------ VERIFICATION §89
+{
+  const b = part('r18-ledger-synthesis.md')
+  if (b) {
+    fs.writeFileSync('docs/VERIFICATION.md', head(
+      'VERIFICATION — every load-bearing claim, opened',
+      '**Tier 1.** Twenty-one claims the record leans on were carrying no primary source. This is ' +
+      'what happened when someone opened one for each. Read it before quoting any number at all.',
+      ['> A REVISED verdict is worth more than a CONFIRMED one: it means the record said something ' +
+       'nearly right, and nearly right is what ships wrong.'],
+    ) + b + '\n')
+    built.push('VERIFICATION.md — §89')
+  }
+}
+
+// -------------------------------------------------------------- PRODUCT §90–97
+{
+  const blocks = ['p1-ai-economics', 'p2-offline-or-online', 'p3-dogfooding',
+    'p4-credits-and-limits', 'p5-feature-inventory', 'p6-mvp-staging',
+    'p7-critique-frames', 'session-pack']
+    .map((s) => part(`r19-${s}.md`)).filter(Boolean)
+  if (blocks.length) {
+    fs.writeFileSync('docs/PRODUCT.md', head(
+      'PRODUCT — the founding-session substrate',
+      '**Tier 1, and the one to open first when the question is "what are we building".** Everything ' +
+      'else in the tree is evidence. This is the decision surface: what the AI actually costs, whether ' +
+      'the app is offline or online, every feature that has ever been proposed, where the MVP line ' +
+      'falls, and how to attack all of it.',
+      ['> **§97 is the operating manual.** It carries the decision queue in dependency order and a ' +
+       'copy-pasteable brief for handing this whole record to a fresh AI assistant.',
+       '',
+       `> ${blocks.length} of 8 sections present.` +
+       (blocks.length < 8 ? ' The rest are still being written.' : '')],
+    ) + blocks.join('\n\n---\n\n') + '\n')
+    built.push(`PRODUCT.md — ${blocks.length}/8 sections`)
   }
 }
 

@@ -28,6 +28,8 @@ const PARTS = [
   { file: 'docs/FRONTMATTER-PRD-v2-2026-08-29.md', verbatim: true },
   { file: 'docs/ENGINE.md', title: 'The engine', identity: true },
   { file: 'docs/BUSINESS.md', title: 'The business', identity: true },
+  { file: 'docs/VERIFICATION.md', title: 'Verification', identity: true },
+  { file: 'docs/PRODUCT.md', title: 'The product decision surface', identity: true },
   { file: 'docs/DEV-PLAN.md', title: 'The engineering plan' },
   { file: 'docs/REFERENCES.md', title: 'References' },
 ]

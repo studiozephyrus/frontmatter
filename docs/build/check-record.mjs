@@ -16,6 +16,8 @@ const TREE = [
   ['docs/FRONTMATTER-PRD-v2-2026-08-29.md', 'PRD'],
   ['docs/ENGINE.md', 'ENGINE'],
   ['docs/BUSINESS.md', 'BUSINESS'],
+  ['docs/VERIFICATION.md', 'VERIFY'],
+  ['docs/PRODUCT.md', 'PRODUCT'],
   ['docs/DEV-PLAN.md', 'DEV-PLAN'],
   ['docs/REFERENCES.md', 'REFERENCES'],
 ]

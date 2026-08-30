@@ -427,7 +427,7 @@ Currently **one symbol from one of thirteen files** is used in product code: `de
 
 1. **`docs/mdmax/PLAN.md` says MDMAX "shipped".** It is implemented and unit-tested; twelve of thirteen files are unreached by product code.
 2. **There is no CI**, in a product that intends to sell document CI.
-3. **The shipped design system is not our design system.** `src/app/globals.css` is byte-identical to sgnk-md's, self-labels *"Linear-style modern SaaS"*, and ships `--accent: #18181b` with 6/8/12px radii — neither the canonical `#1a5cff` accent nor the square-corner rule. A `body-faint` token at **2.14:1 fails WCAG AA** while being in the shipped set `[measured]`.
+3. **The shipped design system is not our design system.** `src/app/globals.css` is byte-identical to sgnk-md's, self-labels *"Linear-style modern SaaS"*, and ships `--accent: #18181b` with 6/8/12px radii — neither the canonical `#1a5cff` accent nor the square-corner rule. A `body-faint` token **fails WCAG AA** while being in the shipped set `[measured]` — at **1.984:1**, not the 2.14:1 the design-system row claims; §35.3 shows that figure is not reproducible.
 
 ---
 
@@ -1653,7 +1653,7 @@ Ordered by churn risk `[inference]`, each anchored to a fact in 16.1.
 
 | Differentiator | Nearest thing anyone else has | Distance |
 |---|---|---|
-| Byte-preserving splice edits — every mutation is a span replacement, never a re-serialisation | Hubble.md regenerates the whole body, deletes reference links along with their visible text, and is not even a fixed point `[measured, §15]` | Categorical. No opened competitor claims byte preservation |
+| Byte-preserving splice edits — every mutation is a span replacement, never a re-serialisation | Hubble.md regenerates the whole body, deletes reference links along with their visible text, and is not even a fixed point `[measured, §19]` | Categorical. No opened competitor claims byte preservation |
 | Cross-engine degradation certification (`mdmax cert`, `--fail-on=BROKEN`) | None found in any opened source | Categorical |
 | Typed evidence tiers `{value, source, tier, re_verify_cmd}` with a working linter | iA Authorship dims AI text and underlines other-human text `[fetched]` — presentation, not typed data | iA proves the need; nobody types it |
 | Machine-write zones — fenced regions an agent may rewrite and outside which it may not, splice-enforced | Obsidian Bases writes derived *views*, never guarded regions `[fetched]` | Categorical |
@@ -1672,7 +1672,7 @@ Tier 1 — must build, in this order:
 
 | # | Item | Size |
 |---|---|---|
-| 0 | **Fix the three self-contradictions first** (§7.2): `mdmax/` is imported by zero product files while `docs/mdmax/PLAN.md` says "shipped"; there is no CI in a product that sells document CI; the shipped design system is not our design system `[measured]` | — |
+| 0 | **Fix the three self-contradictions first** (§7.4): `mdmax/` is imported by zero product files while `docs/mdmax/PLAN.md` says "shipped"; there is no CI in a product that sells document CI; the shipped design system is not our design system `[measured]` | — |
 | 1 | Search operators (`path:`, `file:`, `OR`, quoted, exclude) | S |
 | 2 | Saved searches, including bookmarking a search | S |
 | 3 | Sort and group controls on tree and Home | S |
@@ -2112,7 +2112,7 @@ The most load-bearing evidence in this document. We ran their write paths.
 
 | Product | Scale | What happened | Verdict |
 |---|---|---|---|
-| **Front Matter CMS** | **80,527 installs** `[fetched]`, VS Code, since 2019, owns our name | Edited one title field → deleted YAML comments, resolved anchors, stripped leading zeros. Its own source comments *"Do our own parsing to keep the comments"* — then builds the comment-preserving Document object **and throws it away**. Output differs warm vs cold | `[measured]` The bolt-on was tried and shipped broken |
+| **Front Matter CMS** | **80,605 installs** `[fetched, §52.1]`, VS Code, since 2019, owns our name | Edited one title field → deleted YAML comments, resolved anchors, stripped leading zeros. Its own source comments *"Do our own parsing to keep the comments"* — then builds the comment-preserving Document object **and throws it away**. Output differs warm vs cold | `[measured]` The bolt-on was tried and shipped broken |
 | **Hubble.md** | Markdown collab | Body fully regenerated on any edit; **reference links deleted along with their visible text**; the round trip is not even a fixed point; the properties panel silently drops valid keys containing colons | `[measured]` |
 | **OpenKnowledge** | Most serious competitor; ~100 releases/week; 3,239 → 3,673★ in 27 days `[fetched]` | **Body path is byte-perfect — respect it.** But frontmatter permanently drifts (`tags: [alpha, beta]` → `tags: [ alpha, beta ]`, never restored); requires a running CRDT daemon; O(document) per edit *by their own docblock*; comments machine-local, never committed; GPL + CLA dual-licensing | `[measured on their shipped build]` |
 
@@ -4957,7 +4957,7 @@ Accessibility (WCAG 2.2 AA plan, screen-reader model, VPAT/ACR cost); error and 
 | PRC labelling conformance | A PRC-qualified adviser who can read the incorporated 强制性国家标准 | Before any China-facing export claim |
 | Intermediary liability, grievance officer, takedown timelines under India IT Rules 2021; DMCA agent for the US | Indian counsel + a US agent of record | Before one-toggle publish goes live to the public internet |
 | GST treatment, GSTIN on invoice, e-invoicing, and the s.8(5) exposure on customer documents | Chartered accountant / company secretary | Before the first paid invoice |
-| WCAG 2.2 AA conformance and an ACR/VPAT | Accessibility auditor | Before any B2B procurement conversation; the current `body-faint #b8b8b8` at **2.14:1** already fails AA [measured] |
+| WCAG 2.2 AA conformance and an ACR/VPAT | Accessibility auditor | Before any B2B procurement conversation; the current `body-faint #b8b8b8` already fails AA at **1.984:1** [derived, §35.3 — the 2.14:1 in the design-system row is not reproducible] |
 | Independent adversarial review of the engine's own verifiers | A reviewer who did not write them | Per LR#60 — a verifier written beside its subject inherits its blind spots |
 | Domain availability for every §52 candidate | Anyone with unrestricted network access | Re-run npm and GitHub 404s **on the day of registration**; nothing reserves them |
 

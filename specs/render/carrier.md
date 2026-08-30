@@ -6,7 +6,7 @@ type: render
 state: draft
 track: T2
 prd_file: docs/FRONTMATTER-PRD-v2-2026-08-29.md
-prd_sha256: "400aef0d4008c19d4f4ae85515bbc058d638be309090af8411b17ff280c0442d"
+prd_sha256: "4241a78faa4063f0493d47a829b354cdf9ea691dc8fe6f2b4a2320f1210b56dc"
 prd_sections: ["9", "9.1", "9.2", "5", "6.2"]
 governs:
   - src/modules/preview/presentation/markdown/components.tsx

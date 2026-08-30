@@ -20,7 +20,9 @@ const VERBOSE = process.argv.includes('--verbose')
 const GLOBAL = [
   ['docs/FRONTMATTER-PRD-v2-2026-08-29.md', 0, 66],
   ['docs/ENGINE.md', 67, 80],
-  ['docs/BUSINESS.md', 81, 87],
+  ['docs/BUSINESS.md', 81, 88],
+  ['docs/VERIFICATION.md', 89, 89],
+  ['docs/PRODUCT.md', 90, 97],
 ]
 const LOCAL = { 'DEV-PLAN': 'docs/DEV-PLAN.md', REFERENCES: 'docs/REFERENCES.md' }
 

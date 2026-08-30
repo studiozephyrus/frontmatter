@@ -12,16 +12,36 @@ updated: 2026-08-31
 
 > **Never open a lower tier when a higher tier answers the question.** Tier 3 is 374,866 words. Reading it to answer a Tier 1 question is how a context window dies.
 
+## If you are here to decide what to build
+
+Read **`docs/PRODUCT.md` §97 first.** It is the operating manual: what is already settled and may
+not be reopened, the open decisions in dependency order, a session agenda, and a copy-pasteable
+brief for handing this whole record to a fresh AI assistant.
+
+| The question on the table | Open |
+|---|---|
+| What does the AI actually cost us, and what can the free tier have? | `PRODUCT.md` §90 |
+| Offline app, online app, or both — and how does it reach the user's files? | `PRODUCT.md` §91 |
+| What does a user *do* with this to run their own product work? | `PRODUCT.md` §92 |
+| Credits, quotas, and what a refusal looks like | `PRODUCT.md` §93 |
+| Every feature ever proposed, including the ones we refused | `PRODUCT.md` §94 |
+| Where the MVP line falls, and what gets argued back in | `PRODUCT.md` §95 |
+| How to attack all of it — product, D2C, B2B, distribution, capacity | `PRODUCT.md` §96 |
+| What happens when an incumbent moves | `BUSINESS.md` §88 |
+| Is this number trustworthy? | **`VERIFICATION.md` §89, always** |
+
 ## Tiers
 
 | Tier | What | Read it when | Cost |
 |---|---|---|---|
 | **0** | `AGENTS.md` | Always. Every session, first. | ~2k tok |
 | **0** | `docs/MAP.md` (this file) | Always, with AGENTS.md | ~2k tok |
+| **1** | **`docs/PRODUCT.md`** | **"What are we building?" — AI cost, offline vs online, every feature, the MVP line, how to attack it** | **§90–97; start at §97** |
 | **1** | `docs/FRONTMATTER-PRD-v2-2026-08-29.md` | Starting any product work — why, what, for whom | §0–66; read the section, not the file |
 | **1** | `docs/DEV-PLAN.md` | Starting any engineering work — stack, layers, ops | local §1–13 |
 | **1** | `docs/ENGINE.md` | Touching MDMAX or the splice contract | §67–80 |
-| **1** | `docs/BUSINESS.md` | Pricing, churn, refunds, comms, distribution, the plugin question | §81–87 |
+| **1** | `docs/BUSINESS.md` | Pricing, churn, refunds, comms, distribution, plugins, the war-game | §81–88 |
+| **1** | `docs/VERIFICATION.md` | **Before quoting any number.** Every load-bearing claim, opened | §89 |
 | **1** | `docs/REFERENCES.md` | Choosing what to read, copy, or buy before building | local §1–7 |
 | **1** | `specs/SPECS.md` | Before implementing anything | ~1.3k tok, budget-enforced |
 | **2** | `specs/<area>/<id>.md` | Implementing that one contract | one file, ~1–2k tok |
@@ -34,7 +54,7 @@ Two numbering runs exist, and mixing them sends a reader to the wrong document.
 
 | Run | Files | Cite as |
 |---|---|---|
-| **Global §0–87** | PRD (§0–66) · `ENGINE.md` (§67–80) · `BUSINESS.md` (§81–87) | a bare `§74` — it resolves to exactly one place |
+| **Global §0–97** | PRD (§0–66) · `ENGINE.md` (§67–80) · `BUSINESS.md` (§81–88) · `VERIFICATION.md` (§89) · `PRODUCT.md` (§90–97) | a bare `§74` — it resolves to exactly one place |
 | **Local** | `DEV-PLAN.md` (§1–13) · `REFERENCES.md` (§1–7) | **always file-qualified**: `DEV-PLAN §5`, `REFERENCES §3` |
 
 The three global-run files were written as one continuous document and split by subject, so
@@ -74,6 +94,9 @@ documentation, and it is deliberate.
 | Argue about plugins | `BUSINESS.md` §86 | The ban and the community moat are in genuine tension |
 | Quote any number | **PRD §57 first** | Twenty numbers went stale; re-derive at write time |
 | Claim a lane is done | `specs/_schema/states.md` | Only the harness writes `verified` |
+| Argue about a feature | `PRODUCT.md` §94 → §96 | §94 says whether anyone asked for it; §96 is how to attack it |
+| Decide what ships first | `PRODUCT.md` §95 | The cut line is the section, not the feature list |
+| Spend money on inference | `PRODUCT.md` §90 | The free tier has an arithmetic limit, not a policy one |
 
 ## Canonical — one fact, one home
 
@@ -92,6 +115,10 @@ A fact stated twice will drift. These are the homes; everywhere else cross-refer
 | What to read / copy / buy | `docs/REFERENCES.md` |
 | What may not be published | PRD §58 |
 | Stale numbers | PRD §57 |
+| Whether a claim was ever sourced | `VERIFICATION.md` §89 |
+| Feature list, MVP staging, cut lines | `PRODUCT.md` §94–95 |
+| AI unit economics and the credit mechanism | `PRODUCT.md` §90, §93 |
+| Offline/online and local file access | `PRODUCT.md` §91 |
 
 ## Superseded — do not read, do not cite
 
@@ -115,6 +142,8 @@ npm run corpus    # 8,513 files, byte-pinned, exits 1 on one changed byte
 npm run verify    # typecheck → lint → test → build → arch → spec
 npm run tree      # rebuild the derived Tier-1 docs from the agent reports
 npm run doc       # assemble the tree into one printable document, with integrity gates
+npm run record    # prove the assembled record carries every tree file, line for line
+npm run pdf       # tree -> refs -> assemble -> record -> render, in that order
 ```
 
 ## The four rules that override everything
