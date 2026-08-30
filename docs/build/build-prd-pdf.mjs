@@ -49,6 +49,16 @@ const FONTCSS = [
   face('GoogleSansCode-600.woff2', 'Google Sans Code', 600),
 ].join('')
 
+// FM_PDF_COMPACT=1 tightens the type scale, margins and section breaks. Same content,
+// fewer pages: the default forces every H2 onto a fresh page, which wastes a lot of
+// paper when a document has 61 short-to-medium sections.
+const COMPACT = process.env.FM_PDF_COMPACT === '1'
+const T = COMPACT
+  ? { body: 8.5, lh: 1.44, h1: 26, h2: 13, h3: 10.2, h4: 9, tbl: 7.0, tlh: 1.32,
+      pad: '1.0mm 1.4mm', margin: '13mm 12mm 11mm', pGap: 2.4, secBreak: 'auto', chapPad: 4 }
+  : { body: 9.4, lh: 1.58, h1: 30, h2: 15, h3: 11.4, h4: 9.8, tbl: 7.7, tlh: 1.4,
+      pad: '1.4mm 1.8mm', margin: '17mm 15mm 15mm', pGap: 3, secBreak: 'page', chapPad: 5.5 }
+
 const raw = fs.readFileSync(input, 'utf8')
 const src = raw.replace(/^---\n[\s\S]*?\n---\n/, '')
 
@@ -128,21 +138,21 @@ const tables = (src.match(/^\|/gm) || []).length ? (src.match(/^\|\s*---/gm) || 
 
 const html = `<!doctype html><html lang="en"><head><meta charset="utf-8"><title>${h1}</title><style>
 ${FONTCSS}
-@page{size:A4;margin:17mm 15mm 15mm}
+@page{size:A4;margin:${T.margin}}
 *,*::before,*::after{box-sizing:border-box}
 :root{--blue:#1a5cff;--ink:#111318;--ink2:#454c5a;--ink3:#79818f;--hair:#e4e7ec;--bg2:#fafbfc;
  --mono:"Google Sans Code",ui-monospace,SFMono-Regular,Menlo,monospace;
  --sans:"Google Sans","Product Sans",system-ui,-apple-system,"Segoe UI",Roboto,sans-serif}
-body{margin:0;color:var(--ink);font:400 9.4pt/1.58 var(--sans);-webkit-font-smoothing:antialiased}
+body{margin:0;color:var(--ink);font:400 ${T.body}pt/${T.lh} var(--sans);-webkit-font-smoothing:antialiased}
 a{color:var(--blue);text-decoration:none}
-h1{font:700 30pt/1.06 var(--sans);letter-spacing:-.025em;margin:0 0 7mm}
-h2{font:700 15pt/1.15 var(--sans);letter-spacing:-.015em;margin:0}
-h3{font:600 11.4pt/1.25 var(--sans);margin:7mm 0 2.5mm;break-after:avoid;letter-spacing:-.008em}
-h4{font:600 9.8pt/1.3 var(--sans);margin:5mm 0 1.8mm;break-after:avoid;color:var(--ink2)}
+h1{font:700 ${T.h1}pt/1.06 var(--sans);letter-spacing:-.025em;margin:0 0 6mm}
+h2{font:700 ${T.h2}pt/1.15 var(--sans);letter-spacing:-.015em;margin:0}
+h3{font:600 ${T.h3}pt/1.25 var(--sans);margin:${COMPACT?4:7}mm 0 2mm;break-after:avoid;letter-spacing:-.008em}
+h4{font:600 ${T.h4}pt/1.3 var(--sans);margin:${COMPACT?3:5}mm 0 1.5mm;break-after:avoid;color:var(--ink2)}
 h5{font:600 7.6pt/1.3 var(--mono);letter-spacing:.1em;text-transform:uppercase;color:var(--ink3);margin:4.5mm 0 1.5mm;break-after:avoid}
-p{margin:0 0 3mm}
-ul,ol{margin:0 0 3mm;padding-left:4.6mm}
-li{margin:0 0 1.2mm}
+p{margin:0 0 ${T.pGap}mm}
+ul,ol{margin:0 0 ${T.pGap}mm;padding-left:4.4mm}
+li{margin:0 0 ${COMPACT?0.8:1.2}mm}
 li>ul,li>ol{margin:1.2mm 0 0}
 strong{font-weight:600;color:var(--ink)}
 em{font-style:italic}
@@ -150,8 +160,8 @@ code{font:400 .87em var(--mono);background:var(--bg2);border:.4pt solid var(--ha
 pre{background:var(--bg2);border:.4pt solid var(--hair);border-left:1.2pt solid var(--blue);padding:2.8mm 3mm;margin:3.2mm 0;break-inside:avoid}
 pre code{border:0;background:none;padding:0;font-size:7.4pt;line-height:1.45;white-space:pre-wrap;word-break:break-word}
 .tw{margin:3.2mm 0;break-inside:avoid}
-table{border-collapse:collapse;width:100%;font-size:7.7pt;line-height:1.4}
-th,td{padding:1.4mm 1.8mm;text-align:left;border-bottom:.4pt solid var(--hair);vertical-align:top}
+table{border-collapse:collapse;width:100%;font-size:${T.tbl}pt;line-height:${T.tlh}}
+th,td{padding:${T.pad};text-align:left;border-bottom:.4pt solid var(--hair);vertical-align:top}
 th{font:600 6.6pt var(--mono);letter-spacing:.07em;text-transform:uppercase;color:var(--ink3);background:var(--bg2);border-bottom:.7pt solid var(--hair)}
 td code{font-size:.9em;white-space:normal}
 blockquote{margin:3.2mm 0;padding:2.5mm 0 2.5mm 4mm;border-left:1.5pt solid var(--blue);color:var(--ink2);background:var(--bg2)}
@@ -177,8 +187,8 @@ hr{border:0;border-top:.4pt solid var(--hair);margin:6mm 0}
 .ts{padding:0 0 1.8mm 10mm;border-bottom:.4pt solid var(--hair);font:400 7.4pt/1.5 var(--sans);color:var(--ink3)}
 .ts a{color:var(--ink3)}
 .ts i{font-style:normal;color:var(--hair);padding:0 1.5mm}
-.chap{break-before:page}
-.chead{display:flex;align-items:baseline;gap:3mm;border-bottom:1.2pt solid var(--blue);padding-bottom:2.2mm;margin-bottom:5.5mm}
+.chap{break-before:${T.secBreak}}\n.chap+.chap{margin-top:${COMPACT?6:0}mm}
+.chead{display:flex;align-items:baseline;gap:3mm;border-bottom:1.2pt solid var(--blue);padding-bottom:2mm;margin-bottom:${T.chapPad}mm;break-after:avoid}
 .cn{font:700 15pt/1 var(--sans);color:var(--blue);letter-spacing:-.02em}
 .intro{break-after:page}
 </style></head><body>
