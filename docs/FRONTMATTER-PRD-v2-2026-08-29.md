@@ -1,10 +1,83 @@
 # frontmatter — Product Requirements Document
 
-**v2.0 · 2026-08-29 · Zephyrus Studio · owner: Sagnik Mitra**
+**v2.1 · 2026-08-30 · Zephyrus Studio · owner: Sagnik Mitra**
+
+*v2.1 adds the four-page digest that opens this document, and the compact typeset. No finding was added, changed or removed from v2.0.*
 
 **Supersedes** `FRONTMATTER-PRD-2026-08-29.md` (v1.1), `FRONTMATTER-BUILD-PLAN-2026-08-29.md`, and `FRONTMATTER-DECISIONS-2026-08-29.md`. Those three are now historical; this is the single governing document.
 
 **Status: pre-development.** This is the input to the build, not a report on it.
+
+---
+
+---
+
+# The whole thing, in four pages
+
+*Read this. Open the rest only when you need the working. Every claim below is expanded, sourced and evidence-tagged in the section named beside it.*
+
+**The product.** A markdown editor with a deliberately simple surface and a deep engine. You prompt any LLM anywhere; the outputs that matter land as structured, rendered, agent-legible markdown in files you own.
+
+> **The law (§5).** The file is the only source of truth. Every app-like thing — board, calendar, decision card, dashboard, published site, and every AI edit — is a deterministic, reversible projection of that file, owning no state of its own.
+>
+> **The category sentence.** Notion made the app the source of truth and trapped your data inside it. frontmatter makes the *file* the source of truth and lets every app be a disposable lens over it — provably, byte for byte, reversibly.
+
+**The problem, in one line (§2).** Six of the nine problems share one shape: *the tool reports success while quietly losing something.* Sync said green and lied. Import said 47 succeeded and lost 4. The editor said it preserved comments and deleted them. **So: be the tool that does not lie about what it did to your file — and can prove it.**
+
+### What is actually proven
+
+| Claim | Evidence |
+|---|---|
+| Our engine does not corrupt strangers' data | **8,513 files, 7 vaults, 0 corruption, 0 throws** `[measured]`, byte-pinned and re-verifiable via `npm run corpus` |
+| Competitors do | Three write paths **executed**: Front Matter CMS deletes YAML comments while its own source says it preserves them; Hubble deletes reference links with their text; OpenKnowledge's frontmatter permanently drifts `[measured]` |
+| Every rich-text framework is lossy by design | `blocksToMarkdownLossy()` is a real shipping API name `[fetched]` |
+| The internal substrate works at scale | 124 SKILL.md automations, 24,539 gate decisions, 5,014 trace rows `[measured]` |
+
+### What is not proven
+
+**Nobody has paid us anything.** And developers are the hardest freemium audience there is — median dev-focused free-to-paid is **5%, half the non-developer rate** `[fetched]`. Every conversion, churn, ticket-rate and cost figure in §23–26 is an assumption, stated so it can be replaced by measurement.
+
+**The biggest risk is not technical: a fidelity guarantee may be something engineers admire and nobody buys.**
+
+### The decisions, all of them
+
+| # | Decision | Why | §|
+|---|---|---|---|
+| 1 | No new markdown format | Profiles over valid CommonMark that degrade in a dumb renderer | 0.2 |
+| 2 | **Carrier = blockquote callout for prose, fenced code for opaque data** | A callout has **no closing marker to lose**; an unclosed fence swallows the rest of the document (CommonMark §4.5) | 8.2 |
+| 3 | **Sync = git-merge + splice journal + compare-and-swap. Never a CRDT** | A CRDT cannot own the bytes, cannot refuse, and **interleaves** — convergence buys byte-identical garbage (arXiv 2305.00583) | 31.1 |
+| 4 | Never a tree-of-record | The market's own confession, above | 0.2 |
+| 5 | **The eval lane is refused** | It ends the corruption guarantee *and* turns every prompt injection into RCE on infrastructure holding all customer documents and keys | 9.2 |
+| 6 | Control plane in Postgres, zero document bytes; `workspace_id` from day one | Retrofitting tenancy post-launch is the highest-cost change on the board | 7 |
+| 7 | MDMAX wires in as four ordered seams | Currently 1 symbol from 1 of 13 files is used | 7.3 |
+| 8 | Publishing v1 = narrow, paid, `noindex`, no uploads | Paid + noindex + random slug removes the entire commercial abuse motive | 44 |
+| 9 | Not a Notion-style PM tool | Founder boundary | 0.2 |
+
+### The numbers that decide things
+
+| | |
+|---|---|
+| Foreign-vault refusal rate **today** | **83%** — one cause, zero-indent YAML sequences. **Every fidelity number we would market is false until NF-1 and NF-3 land** (§28.1, §58) |
+| FX | **₹95.4/$**, not ₹83. So ₹699 = $7.33, above every India AI anchor → **₹599** (§24.1) |
+| RBI ceiling | **₹15,000/transaction** is an architectural constant. Indian cards get **exactly one** payment attempt (§45) |
+| Contribution margin | **57–73%** on every INR tier. Margin was never the problem (§23.2) |
+| ₹20L/mo requires | **113,507 free signups, ~1.26M visitors.** A distribution problem, not a pricing problem (§25.3) |
+| Support wall | **46.4 founder-hours/month at 10,000 users** — before engineering (§25.1) |
+| Cloudflare R2 | **No object versioning.** The standard DR recipe does not port (§32.1) |
+
+### The plan
+
+**R0 engine truth → T0 trust surface → T1 tenancy → T3 AI protocol → T4 capture → v1.** R0 alone is ~9 weeks and is the part most likely to be wished away. Renders (T2) are out of v1 except two one-line cleanups.
+
+**First week (§28.8):** rotate the two PATs · stand up CI and **make it fail once** before trusting a green · NF-3 red proof (set-only, on a synthetic fixture — the corpus has zero bare-CR fences and cannot prove it) · NF-1 fix · re-derive the recovery rate to replace an inference with a measurement · write the NFC/NFD key-equality decision.
+
+### What only you can decide (§54)
+
+The name · whether documents leave the device · BYO vs platform key · does the agent get write authority · CJK in or out of v1 · does `café` in NFC equal `café` in NFD for key addressing — **the one engine unit an agent cannot start.** And the two unrotated PATs, today.
+
+### What we may not say in public (§58)
+
+Any fidelity percentage · "NF-1 recovers 99.98%" (an inference, not a measurement) · anything about Obsidian's onboarding funnel (the widely-repeated claim is **unsourced**) · "first AI attribution" (Cursor and Grammarly exist) · "serve markdown to agents and get cited" (refuted) · any `[SS]`-tagged number.
 
 ---
 
