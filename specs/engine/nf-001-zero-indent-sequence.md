@@ -5,9 +5,9 @@ title: NF-1 — a block sequence at zero indentation must not refuse the write
 type: engine
 state: draft
 track: R0
-prd_file: docs/FRONTMATTER-PRD-2026-08-29.md
-prd_sha256: 4d80021f97d8390cb33cd09e99ade24fc409ddc934b35148bcb36841ff8d0dea
-prd_sections: ["24", "7.1", "26.1"]
+prd_file: docs/FRONTMATTER-PRD-v2-2026-08-29.md
+prd_sha256: "400aef0d4008c19d4f4ae85515bbc058d638be309090af8411b17ff280c0442d"
+prd_sections: ["28.1", "7.1", "50.1"]
 governs:
   - test/corpus/foreign/nf-001-red-proof.test.ts
 depends_on: [engine/splice-writer]
@@ -22,7 +22,7 @@ owner: sagnik
 updated: 2026-08-29
 commit: 5e0d5a5
 x:
-  blast_radius: 6613 of 6614 foreign refusals, 83.10% aggregate across 7,959 files
+  blast_radius: 6613 of 6614 foreign refusals, 83.10% aggregate across 7,969 files
 ---
 
 # NF-1 — zero-indent block sequence
@@ -44,7 +44,7 @@ tags:
 | 1 | A `-` item at column 0 following a `key:` line belongs to that key's span | The writer refuses the file, so publish silently never happens | `test/corpus/foreign/nf-001-red-proof.test.ts` |
 | 2 | The fix changes **availability only**: bytes outside the target key stay identical | An availability fix that rewrites neighbouring bytes is a corruption bug wearing a fix's clothes | corpus verify: `changed = 0` |
 | 3 | A file the writer still cannot address is **refused**, never guessed | Guessing YAML is how the competitors lose comments and anchors | `test/render/carrier/degrade.test.ts` pattern, applied to the writer |
-| 4 | Post-fix refusals over the pinned corpus are **≤ 2 of 7,959** | If the residual is above 2, NF-1 was never one bug and the estimate is wrong | corpus runner, reported count |
+| 4 | Post-fix refusals over the pinned corpus are **≤ 2 of 7,969** | If the residual is above 2, NF-1 was never one bug and the estimate is wrong | corpus runner, reported count |
 | 5 | The corpus is re-hashed before the gate runs | A corpus that drifted is not evidence; the clone already drifted +2 once | `node scripts/corpus-foreign.mjs verify` exits 0 |
 
 ## Interface
@@ -80,8 +80,8 @@ tags:
   real corpus file with a zero-indent sequence — set-then-delete would cancel out and hide
   the defect, which is exactly how NF-3 stayed invisible.
 - Gate: `node scripts/corpus-foreign.mjs verify` (8,513 files, exit 1 on any drift) then the
-  writer run over the 7,959 frontmatter-bearing subset.
-- Exit condition, PRD §24: refused ≤ 2 of 7,959, **changed = 0, threw = 0**.
+  writer run over the 7,969 frontmatter-bearing subset.
+- Exit condition, PRD §28.1: refused ≤ 2 of 7,969, **changed = 0, threw = 0**.
 - Assert a floor and a hard zero, never an equality: `refused <= 2 && changed == 0 && threw == 0`.
 
 <!-- SPEC:DRIFT:START -->

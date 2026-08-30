@@ -42,4 +42,6 @@ The contract layer. One spec per **contract**, never per file of code.
 - Schema: `_schema/spec.schema.json` · States: `_schema/states.md`
 - Gate: `node specs/harness/spec-report.mjs` (add `--id <id>` for one spec, `--json` for machine output)
 - Corpus gate: `node scripts/corpus-foreign.mjs verify`
-- Source of record: `docs/FRONTMATTER-PRD-2026-08-29.md` — cite it by section number, never by heading text.
+- Source of record: `docs/FRONTMATTER-PRD-v2-2026-08-29.md` (§0–66) — cite by section number, never by heading text.
+- Engine internals: `docs/ENGINE.md` (§67–80) · Stack: `docs/DEV-PLAN.md` (cite as `DEV-PLAN §N`)
+- Routing for everything else: `docs/MAP.md`. It also lists what NOT to open.

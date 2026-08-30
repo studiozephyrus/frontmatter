@@ -25,7 +25,11 @@
     "tauri:build:mac-intel": "tauri build --target x86_64-apple-darwin",
     "tauri:build:mac-universal": "tauri build --target universal-apple-darwin",
     "spec": "node specs/harness/spec-report.mjs",
-    "corpus": "node scripts/corpus-foreign.mjs verify"
+    "corpus": "node scripts/corpus-foreign.mjs verify",
+    "tree": "node docs/build/build-tree.mjs",
+    "doc": "node docs/build/assemble-tree.mjs docs/FRONTMATTER-RECORD.md",
+    "pdf": "node docs/build/build-final.mjs",
+    "refs": "node docs/build/check-refs.mjs"
   },
   "dependencies": {
     "@ai-sdk/cerebras": "^2.0.54",

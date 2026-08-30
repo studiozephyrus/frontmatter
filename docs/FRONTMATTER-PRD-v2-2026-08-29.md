@@ -892,7 +892,7 @@ Claim-level method and confidence is claimed by no spec, and OKF explicitly argu
 ## 11. The AI layer — what AI-native actually means
 
 
-**11.1 The retention evidence, before any feature list**
+### 11.1 The retention evidence, before any feature list
 
 Active-install proxy = peak single-version downloads, across 7,020 plugins with stats and 142,701,824 cumulative downloads. `[measured, obsidianmd/obsidian-releases, 2026-08-29]`
 
@@ -910,7 +910,7 @@ Active-install proxy = peak single-version downloads, across 7,020 plugins with 
 - Source disagreement, recorded not resolved: the popular "AI plugins get abandoned" story is **false on the supply side**. AI-described plugins are *less* stale — **11.3% (78/688) unreleased >12 months vs 20.9% (1,464/7,020)**, median 50 days since last release vs 71. The cohort is younger, which partly confounds it. The abandonment is demand-side: actively maintained products that few people install. `[measured]` `[inference]`
 - The largest file-native editor in the category ships no AI at all: **zero occurrences of the token "AI" across 9,502 chars** of its full Active/Planned/Launched roadmap back to July 2023. What it does ship is Bases (data in local markdown properties, views described in valid YAML), Kanban and Calendar views for Bases, an Airtable→Markdown import, a CLI, and a Keychain for plugin API keys. `[measured]` `[fetched]`
 
-**11.2 Ranked capabilities — build in this order**
+### 11.2 Ranked capabilities — build in this order
 
 | Rank | Capability | Retention evidence | Splice shape | Cost/op |
 |---|---|---|---|---|
@@ -924,7 +924,7 @@ Active-install proxy = peak single-version downloads, across 7,020 plugins with 
 | **8** | Ambient related-notes / duplicate detection | **Highest maintenance burden per install in the category**: Smart Connections 5,407★ with 489 open issues = **9.05% issues-per-star vs Copilot's 1.30% (99/7,640)**; the most-commented open issues are all silent index breakage — "Pane is always loading" (39), "Embeddings no longer function (linux)" (24), "Doesn't seem to look at my notes" (22) `[measured]` `[fetched]` | **Poor** — requires a second index beside the file | **$38.79/user/month** |
 | **9** | Ghost text / continuous completion | Declining cohort (202,778, below both agentic and ambient); `textgenerator` last released 2026-04-27, `gpt3-notes` 2023-07-07, `vault-chat` 2023-06-03 `[measured]` | Poor — writes without being asked; contradicts propose-first at the mechanism level | continuous |
 
-**11.3 Cost arithmetic**
+### 11.3 Cost arithmetic
 
 Corpus: `knowledge` n=590 md files, p50 **479 words**, p90 **3,584**, total 1,980,166 words; `frontmatter` repo n=186, p50 2,439, p90 10,328. `[measured]` Prices: Haiku 4.5 **$1/MTok in, $5/MTok out**; Sonnet 5 $2/$10; Opus 5 $5/$25; batch Haiku $0.50/$2.50. The same page warns Claude 4.7+ tokenizers emit "approximately 30% more tokens for the same text." `[fetched, docs.claude.com/pricing]` Assume 1 word ≈ 1.33 tokens `[inference]`.
 
@@ -936,7 +936,7 @@ Corpus: `knowledge` n=590 md files, p50 **479 words**, p90 **3,584**, total 1,98
 | One full pass over a 590-note vault | 2,633,621 in | **$2.63** `[derived]` | Input only |
 | Ambient re-rank on every save, 20 neighbours @ p50, 100 saves/day | 1.274 MTok/day | **$38.79/user/month** `[derived: 1.274 × $1 × 30.44]` | The line that kills rank 8 |
 
-**11.4 Explicit refusals**
+### 11.4 Explicit refusals
 
 | Refuse | Because |
 |---|---|
@@ -948,7 +948,7 @@ Corpus: `knowledge` n=590 md files, p50 **479 words**, p90 **3,584**, total 1,98
 | **No meeting bot, no chief-of-staff agent** | Tana and Mem both left the document to chase it. That is a different company `[fetched]` |
 | **No standalone AI SKU** | On **2024-06-01** Notion sold AI at **$8/member/month annual, $10 monthly**, "Now with Q&A". On **2026-08-29** that add-on does not exist: Free and Plus get only a trial, Agent and Enterprise Search sit inside **Business at $20/member/month**, and Custom Agents meter at **$10 per 1,000 monthly Notion credits**. Standalone document-AI became bundled table stakes plus a metered agent line in ~26 months `[fetched, two dated snapshots]` `[derived]`. Price AI as a metered line inside a free-forever editor |
 
-**11.5 The instrumentation contract**
+### 11.5 The instrumentation contract
 
 - Report **Strong Acceptance** — accepted only if <50% of the proposal was edited *and* the edits do not change critical parts — not raw acceptance. The only published figures for a propose-first assistant are Ansible Lightspeed: **49.08% strong acceptance on multi-line suggestions**, **Day-30 retention 13.66%** (10,696 users, 3,910 returning; arXiv 2402.17442, pub 2024-02-27, upd 2024-10-22, self-described as the first code-completion tool to publish N-day retention). `[fetched]`
 - That is a small model on one narrow YAML dialect, so 49.08% is a ceiling for a constrained verb, not a general rate. `[inference]`
@@ -956,7 +956,7 @@ Corpus: `knowledge` n=590 md files, p50 **479 words**, p90 **3,584**, total 1,98
 - Record accept / reject / partial / edit-distance-after-accept **per verb, locally, publish nothing**. The entire ranking in 11.2 was reconstructed from install counts, version distributions, issue ratios, and roadmap absences — never from a survey — which is a working demonstration that behaviour is readable without asking. Telling a user who somewhat distrusts AI (26.1%) that you are measuring their rejections is the same conversation twice. `[measured]` `[inference]`
 - Kill rule per verb: below 20% strong acceptance or below 10% D30 after 90 days of data, the verb is removed, not tuned.
 
-**11.6 What "AI-native" means, in the words a user gets**
+### 11.6 What "AI-native" means, in the words a user gets
 
 AI-native does not mean the app writes for you. It means your markdown file is the only thing that exists, and the AI is a set of precise verbs you point at a piece of it — summarise this section, turn these paragraphs into a table, fill in the tags, translate this, restructure these headings — where every verb comes back as a proposed change you can see, byte for byte, before it touches the file, and lands through the same splice writer that guarantees nothing you did not select gets rewritten. **Nothing runs in the background, nothing is indexed behind your back, nothing is published or decided on your behalf, and if you delete every model key tomorrow the file, the board, the calendar and the site all still work exactly as they did — because those were never AI features, they were always just your file, read a different way.**
 
@@ -3140,7 +3140,7 @@ Silent-failure modes to instrument against. This studio has already lived the ca
 ## 33. Search and retrieval
 
 
-**33.1 Decisions**
+### 33.1 Decisions
 
 | # | Decision | Anti-recommendation | Falsified by |
 |---|---|---|---|
@@ -3151,7 +3151,7 @@ Silent-failure modes to instrument against. This studio has already lived the ca
 | S5 | Ripgrep in `src-tauri` is the permanent exact/regex fallback path | Do not compile Tantivy to wasm; do not adopt DuckDB-wasm | Fallback latency exceeding index latency on a 74 MiB corpus |
 | S6 | No persistent vector store. Embeddings permitted only as a query-time re-rank of ≤30 BM25 candidates | Do not build local RAG as a retrieval path; do not add an ANN index | Re-rank moving top-1 by ≥10 pp on the wikilink relevance harness — below that, delete it |
 
-**33.2 Engine comparison, read 2026-08-29**
+### 33.2 Engine comparison, read 2026-08-29
 
 | Engine | Version / published | Size or downloads | Query | CJK support | Verdict |
 |---|---|---|---|---|---|
@@ -3168,7 +3168,7 @@ Silent-failure modes to instrument against. This studio has already lived the ca
 
 Recorded disagreement: the FlexSearch table is the vendor's own harness and puts MiniSearch at 5,849 q/s against Orama's 4,454 — a 1.3× gap — while claiming 13,981,110 for itself. Treat the ordering as informative and the magnitudes as not. `[fetched]`
 
-**33.3 Measured baseline — what ships today**
+### 33.3 Measured baseline — what ships today
 
 | Item | Value |
 |---|---|
@@ -3183,7 +3183,7 @@ Recorded disagreement: the FlexSearch table is the vendor's own harness and puts
 
 Reference corpus: **4,548 `.md` files, 77,549,893 bytes (74.0 MiB), mean 17,051 B/note**; 358 files (7.9%) contain CJK, 9,577 CJK characters total. `[measured]`
 
-**33.4 The CJK fix**
+### 33.4 The CJK fix
 
 Harness: every CJK n-gram of length 2–4, keep the **2,389** occurring in exactly one file (of 2,854 distinct), deterministically sample 200, gold = that file, run the shipped 3-pass ladder. Node v24.6.0, macOS 25.6.0. `[measured]`
 
@@ -3200,14 +3200,14 @@ Harness: every CJK n-gram of length 2–4, keep the **2,389** occurring in exact
 - Implementation, no new dependency, no wasm, no download: split on `/[\n\r\p{Z}\p{P}]+/u` as today; for any part matching `/[\u3040-\u30FF\u3400-\u4DBF\u4E00-\u9FFF\uAC00-\uD7AF]/`, emit every character **and** every adjacent bigram; else emit the part unchanged. Pass the same function as the search-time `tokenize`.
 - Rejected on size: `kuromoji@0.1.2` (**2018-03-19**, 41,263,301 B), `jieba-wasm@2.4.0` (16,126,591 B), `budoux@0.9.1` (2,659,103 B, a phrase-breaker not an index). `lindera-wasm@6.0.0` (1,842,304 B) is the only defensible wasm option and is still unnecessary. `[fetched]`
 
-**33.5 Diacritics and Indic — a separate defect**
+### 33.5 Diacritics and Indic — a separate defect
 
 - Devanagari uses spaces, so it is **not** the CJK failure; `भारत की राजधानी नई दिल्ली है` tokenises correctly today. `[measured]`
 - The real Indic failure is normalisation: `हिंदी` (anusvara) does not match `हिन्दी` (conjunct) — 0 hits. `[measured]`
 - The obvious fix is a trap: `t.normalize("NFD").replace(/\p{Mn}/gu,"")` fixes `cafe`→`café` but **corrupts Devanagari** (`हिन्दी`→`हिनदी`) and still does not fix `strasse`→`Straße`. `[measured]`
 - Fold only within `\p{Script=Latin}`, add the explicit `ß/æ/ø` map, and handle Indic with NFC plus a small anusvara↔conjunct equivalence table. Accent-insensitivity is the single largest user request in the category: forum.obsidian.md/t/1655, opened 2020-06-11, **760 likes, 151 posts, 11,376 views**. `[fetched]`
 
-**33.6 Architecture by scale, and where each tier breaks**
+### 33.6 Architecture by scale, and where each tier breaks
 
 | Tier | Stack | Measured / derived cost | Breaks at |
 |---|---|---|---|
@@ -3219,7 +3219,7 @@ Scaling is linear in **bytes**, not notes: 78.8 ms/MiB at 1k, 95.0 ms/MiB at 4,5
 
 Constant across all three tiers: the index is a projection of the files, never a source of truth, deletable and rebuildable at any moment — the same rule the board, calendar, and decision-card views already obey.
 
-**33.7 Local RAG over the vault — distraction as a retrieval path**
+### 33.7 Local RAG over the vault — distraction as a retrieval path
 
 - The published evidence does not support replacing lexical retrieval: BEIR (arXiv 2104.08663, 2021-04-17, rev 2021-10-21, 18 datasets, 10 systems) finds BM25 a robust baseline with dense retrievers often underperforming and re-rankers winning "at high computational costs"; *Lucene Is All You Need* (arXiv 2308.14963, 2023-08-29) finds a dedicated vector store unnecessary; BM25S (arXiv 2407.03618, 2024-07-04) reports up to **500×** over the popular Python BM25. `[fetched]`
 - *Seven Failure Points of RAG* (arXiv 2401.05856, 2024-01-11) states validation "is only feasible during operation." For an engine whose differentiator is cross-engine degradation certification, shipping a component validatable only in production is a category error. `[fetched]` `[inference]`
@@ -3228,14 +3228,14 @@ Constant across all three tiers: the index is a projection of the files, never a
 - **Verdict: permitted only as a hidden query-time re-rank of the ≤30 BM25 candidates — no persistent store, no first-run pass, no settings — and deleted if it does not move top-1 by ≥10 pp on the wikilink-derived relevance harness.** `[inference]`
 - No study cited here measures a personal markdown vault; anyone claiming embeddings win for personal notes is extrapolating from web/QA benchmarks. `[inference]`
 
-**33.8 Anti-recommendations**
+### 33.8 Anti-recommendations
 
 1. Do not expose search settings. Every top complaint in the category is a **default** being wrong; a "CJK mode" toggle converts a fixed bug into a permanent support surface.
 2. Do not build a plugin API for custom analyzers — already excluded by the no-marketplace and no-eval constraints, and it would let a third party silently break the degradation certificate.
 3. Do not add an ANN index: `voy-search@0.6.3` (2023-09-20) and `hnswlib-wasm@0.8.2` (2023-07-08) are ~3 years stale, and a flat scan under 100k vectors is faster than the index build. `[fetched]`
 4. Do not build persistent RAG before the tokenizer ships. Between 57.5 and 81.9 pp of free recall is sitting unclaimed behind a 15-line function. `[measured]`
 
-**33.9 Build order**
+### 33.9 Build order
 
 1. CJK bigram `tokenize`, index and search side, one function, zero dependencies.
 2. Latin-scoped diacritic folding plus the `ß/æ/ø` map.
@@ -3253,7 +3253,9 @@ Constant across all three tiers: the index is a projection of the files, never a
 
 The sync substrate is settled: git-merge plus splice journal plus compare-and-swap, never a CRDT. This section specifies the collaboration model that rides on it.
 
-**34.1 Model scorecard** (1–5, 5 best; "splice fit" = compatibility with `locate byte range → replace those bytes only → every untouched byte bit-identical → else REFUSE`)
+### 34.1 Model scorecard
+
+(1–5, 5 best; "splice fit" = compatibility with `locate byte range → replace those bytes only → every untouched byte bit-identical → else REFUSE`)
 
 | | Real-time CRDT (peer) | Server-authoritative OT | **Git branch-and-review** | Patch exchange |
 |---|---|---|---|---|
@@ -3265,7 +3267,7 @@ The sync substrate is settled: git-merge plus splice journal plus compare-and-sw
 | Splice fit | **1 — actively hostile.** REFUSE has no meaning inside a CRDT | 3 | **5 — native.** A splice *is* a patch | **5** |
 | **Total /30** | **13** | **16** | **28** | **27** |
 
-**34.2 Why the category does not ask for live cursors**
+### 34.2 Why the category does not ask for live cursors
 
 | Evidence | Number | Source |
 |---|---|---|
@@ -3280,7 +3282,7 @@ Three independent commercial products converged on proposal-and-adjudication rat
 
 **Suggesting mode is asynchronous review implemented on top of a real-time substrate — the substrate is not what users are buying, the proposal-to-adjudication loop is.** `[inference]`
 
-**34.3 What we lose without live cursors, stated honestly**
+### 34.3 What we lose without live cursors, stated honestly
 
 | Genuinely lost | Not lost |
 |---|---|
@@ -3292,11 +3294,11 @@ Three independent commercial products converged on proposal-and-adjudication rat
 
 Ship a **presence badge without a cursor** — "Priya has this file open, last edit 2m ago" — which recovers the coordination value at roughly 1% of the cost and does not create the fishbowl. Anti-recommendation: do not build live cursors as a trust signal.
 
-**34.4 Strongest counter-argument, at full strength**
+### 34.4 Strongest counter-argument, at full strength
 
 Ink & Switch — the most credible primary source here and the one this section otherwise leans on — found async-only insufficient: they "experimented with an asynchronous-only collaboration model but found that while drafts often have a single primary author, those authors often find it useful to be able to share an in-progress draft for initial feedback." `[fetched]` GitBook independently ships Live edits alongside Change requests. `[fetched]` The honest reading is that async-only fails at the limit, and the failure mode is *two people on one draft for twenty minutes* — served by an ephemeral live layer over a shared branch, not by peer CRDT, per-keystroke persistence, or a bespoke sync engine. `[inference]`
 
-**34.5 Staged migration**
+### 34.5 Staged migration
 
 | Stage | Ship | Reversible? |
 |---|---|---|
@@ -3306,7 +3308,7 @@ Ink & Switch — the most credible primary source here and the one this section 
 | **3 — only if evidence demands** | **Ephemeral live layer.** Presence plus a short-lived shared buffer over one branch; persist on session close as one splice batch, never per keystroke | Yes, by design |
 | **4 — exit hatch** | If Stage 3 proves insufficient, adopt **Loro** (`loro-crdt` 1.15.0, published 2026-08-27, Fugue + Eg-walker) **as an ephemeral in-session buffer only**. The persisted artifact stays the `.md` | The one-way door is persisting CRDT state. Never cross it |
 
-**34.6 Anti-recommendations**
+### 34.6 Anti-recommendations
 
 - **Never persist CRDT state as the document.** This is the single irreversible decision in this section and it deletes the splice guarantee: a CRDT always converges, so REFUSE has no meaning inside one. The measured failure in a competitor is exactly this — a byte contract that exists only inside a live CRDT server, where agent edits error out without it. `[measured]`
 - Do not adopt Automerge on the strength of its 3.0 blog post alone. The "memory usage cut by over 10×" and "700 MB → 1.3 MB" claims are the vendor's `[fetched]`; the only independent table available still pins automerge 2.1.10, yjs 13.6.11, ywasm 0.9.3, loro 0.10.1 against today's 3.4.1 / 13.6.32 / 1.15.0. The numbers are not reconciled and must not be quoted as if they were.
@@ -4336,7 +4338,7 @@ Substitute proxy — public-forum topic rate for two editor-class products, read
 
 Cursor's public-help rate is **4.19×** Obsidian's [derived]. Read as: an AI-mediated, non-deterministic dev tool generates about four times the public help traffic of a deterministic local-file editor at comparable forum size [inference]. These are floors, not contact rates — forum registrations are far below product users and neither counts private email.
 
-Our own model, from §21.1: 0.02 tickets/free-user/month, 0.10/paid-user/month, 12 min each → at 10,000 users (9,600 free / 400 paid) = 9,600 × 0.02 + 400 × 0.10 = **232 tickets/month**, × 12 ÷ 60 = **46.4 founder-hours** [derived]. Blended **2.32 tickets per 100 users/month**.
+Our own model, from §25.1: 0.02 tickets/free-user/month, 0.10/paid-user/month, 12 min each → at 10,000 users (9,600 free / 400 paid) = 9,600 × 0.02 + 400 × 0.10 = **232 tickets/month**, × 12 ÷ 60 = **46.4 founder-hours** [derived]. Blended **2.32 tickets per 100 users/month**.
 
 ### 46.2 Projected mix — and why 46.4 hours is optimistic
 
@@ -4932,7 +4934,7 @@ Each re-scopes a lane. None is researchable.
 | 10 | "21.9M India GitHub contributors, +5.2M in a year" `[SS]` | Octoverse is one click away |
 | 11 | Dataview ceiling "~30s past 3,000 notes" `[SS]` | We promise to publish ceilings honestly; publishing an **unopened** ceiling is self-defeating |
 | 12 | r/ObsidianMD ~344,000 / Discord ~195,000 — **untagged in the PRD** | Untagged numbers read as measured |
-| 13 | §21.1 support model (0.02 / 0.10 tickets per user-month, 12 min each) → **46.4 founder-hours/month** | Labelled an assumption in prose, then quoted as a conclusion twice |
+| 13 | §25.1 support model (0.02 / 0.10 tickets per user-month, 12 min each) → **46.4 founder-hours/month** | Labelled an assumption in prose, then quoted as a conclusion twice |
 | 14 | Overleaf's total user count | Its own two pages said 20M and 25M on the same day [fetched]. **Never state one figure** |
 | 15 | Tunisia RMS survey generalised to India | n=121, single study, fieldwork 2016 [fetched]. Cite it as a warning about a *low-income research population*, never as an India number |
 | 16 | The 7.8%–**20.9%** academic-plugin bracket | The 20.9% upper bound is not reproducible from the three published peak-version numbers; **23.3%** is what the arithmetic gives (§22.1). Re-derive before use |
@@ -5001,7 +5003,7 @@ Accessibility (WCAG 2.2 AA plan, screen-reader model, VPAT/ACR cost); error and 
 | AIOS skills | **124 SKILL.md / 130 linked** | "~93", "99", "95", "~102" | Every historical figure is stale |
 | Trace rows / gate rows | **5,014 / 24,539** | 4,994 / 23,778 | Both correct on their day |
 | Knowledge-base notes | **234** | 175 · 171 · 212 · 273 | **Five different counts for one corpus** |
-| **Corpus fence count** | **7,969 LF-terminated** | 7,959 "frontmatter files" | +10, probably definitional. **Reconcile before publishing either** |
+| **Corpus fence count** | **7,969** | 7,959 "frontmatter files" | **RESOLVED 2026-08-31 [measured]. 7,969 is correct; 7,959 was an error, not a definition.** Counted four ways over the pinned 8,513-file corpus — files opening `---\n` at byte 0; those with a non-empty block; those with at least one `key:`; those closed by exactly `---` — and all four return 7,969. Also measured on the same pass: **0 CRLF, 0 bare-CR, 0 BOM, 0 unterminated blocks**, which is why the corpus cannot red-prove NF-3 and a synthetic fixture is required. Use 7,969. |
 | **Bare-CR / CRLF / BOM in corpus** | **0 / 0 / 0** | assumed present | **The corpus cannot red-prove NF-3.** A synthetic fixture is required |
 | **Claude Sonnet 5** | **$2/$10 per MTok**, September rise cancelled | ~$3/$15 | Frontier assumption was 50% high |
 | **Gemini cheap tier** | **3.1 Flash-Lite $0.25/$1.50** | "2.5 Flash $0.15/$0.60" | **That SKU does not exist** |
@@ -5090,3 +5092,954 @@ Accessibility (WCAG 2.2 AA plan, screen-reader model, VPAT/ACR cost); error and 
 *Prepared for the frontmatter build team. Every number is tagged. Nothing tagged `[SS]` may be published as fact without being opened first. Re-derive before you quote — see §57.*
 
 ---
+
+---
+
+## 61. The system as one thing
+
+Every preceding section describes a layer. This one describes how they compose: one diagram, one contract table, three traces, the seams between them, and what each layer is load-bearing for.
+
+### 61.1 The whole system on one page
+
+```mermaid
+flowchart TB
+  P["Projections · L1<br/>board · calendar · decision card · table"]
+  E["Editor · L0<br/>CodeMirror 6 + @lezer/markdown 1.7.2"]
+  A["Agent surface · L2<br/>MCP land → review loop"]
+  ENG["MDMAX<br/>locate byte range → replace those bytes only<br/>→ REFUSE rather than guess"]
+  F[("note.md<br/>the only source of truth")]
+  S["Sync · git three-way merge<br/>+ splice journal + compare-and-swap"]
+  C["Degradation certificate<br/>JSON sidecar, never inside the .md"]
+  PUB["Publish · post-as-document<br/>AEO linter · quality gates"]
+  P --> ENG
+  E --> ENG
+  A --> ENG
+  ENG --> F
+  F --> P
+  F --> E
+  F --> A
+  F <--> S
+  F --> C --> PUB
+```
+
+Three properties of the drawing carry the whole argument. Every arrow into the file passes through one node, so there is exactly one write grammar for a human keystroke, an agent proposal, a card drag and a merge result [inference, from §6.1 principle 6]. Every arrow out of the file is a read, so no box above the file may hold state. The certificate hangs off the file and feeds publish — it is a fact computed *about* the bytes, never a fact stored *in* them (`cert-contract.ts`: "the artifact is a JSON sidecar, never written into the `.md`") [measured, §7.1].
+
+### 61.2 The layer contract
+
+| LAYER | OWNS | MUST NOT | TALKS TO | FAILS BY |
+|---|---|---|---|---|
+| **The file** — `.md` in a git repo the user owns | Every byte. All state. History, via git. | Carry a block id, a certificate, a cache, or any token we invented [§6.2, §8.3] | git; MDMAX | Being rewritten whole — normalize-on-save is the single failure that ends the product's distinguishing property [§8.1 F4] |
+| **MDMAX engine** — 13 files, 3,614 lines, 10 tests [measured, §7.1] | Byte ranges, refusal, strict decode, shape gate, placement, equivalence fold, certificate computation | Import anything from `src/modules/*`; write files; throw | Bytes in, bytes-or-refusal out. Nothing else. | Guessing a range instead of refusing. A wrong splice is worse than no splice. |
+| **L0 editor** — `src/modules/editor` | The caret, undo, incremental parse, the `U16Offset` ↔ `ByteOffset` map | Reserialize the document; normalize on save; assume UTF-16 units equal bytes | MDMAX (write gate), the file (read) | Offset drift. mdast reports root end 36 where UTF-8 length is 41 on the same string [measured, §9] |
+| **L1 projections** — board, calendar, decision card, table | Layout, grouping, the gesture | Hold state; write by any path other than a splice; promote L2 inline fields into L1 frontmatter [§8.5] | The file (read), MDMAX (write) | A cache that disagrees with the file and is believed. If they disagree, the file wins and the cache is wrong [§8.5] |
+| **L2 AI protocol** — `src/modules/ai`, `src/modules/ai-tools` [measured, directory listing] | Verbs, proposals, provenance, `land()`, the review loop, local instrumentation | Write without a review step; index the vault; execute model-authored code [§6.2, §11.4] | MDMAX via `land()`; the file read-only | Landing against a stale `baseSha`, or an ambient suggestion nobody asked for [§11.4] |
+| **L3 markdown-OS** — schema profiles, evidence tiers, machine-write zones | `fm.profile`, `fm.version`, `fm.projections`, `fm.cert`; type coercion rules | Invent a bare top-level key or a new block-level token [§8.4, §8.3] | Frontmatter prepass; projections | Writing a key it did not create, making our edits indistinguishable from the user's |
+| **L4 publish** — post-as-document, AEO linter, gates | Rendered output, the published page | Mutate the source file; publish a construct with a DESTROY verdict | The certificate; the file (read) | Shipping a construct the certificate never cleared |
+| **Sync** — git merge + journal + CAS | Server-issued revisions, `base_bytes`, the append-only splice journal, conflict artifacts | Merge on the server; use `git merge-file --union`; use fuzzy patch in the write path; write conflict markers into the `.md` [§31.1, §31.2] | MDMAX (`fold`), the file, R2 + Durable Object | Displaying "Fully synced" without a server-ACKed digest match — the UI that lied [§31.2] |
+
+**Anti-recommendation for the whole table:** do NOT let a layer acquire a second responsibility because it is convenient — the board reading `status:` is a projection, the board *caching* `status:` is a second source of truth, and the difference is one line of code and the entire thesis.
+
+### 61.3 Trace A — one byte through a human edit
+
+The user types one character into the body of an open note. Status column: LIVE = shipped today; SEAM n = the ordered wiring plan of §7.3.
+
+| # | HOP | MODULE / FILE | ASSERTED AT THE HOP | STATUS |
+|---|---|---|---|---|
+| 1 | Read from disk | `get-snapshot.ts` → `decodeStrict` (`mdmax/domain/shape-gate.ts`) | Strict UTF-8. Refuse, never repair [measured, §7.1] | **LIVE** — the only MDMAX symbol reachable from product code today, one of thirteen files [measured, §7.3] |
+| 2 | Parse for the editor | `@lezer/markdown` 1.7.2 inside CodeMirror 6, `src/modules/editor` | Exact offsets on inline marks + incremental reparse; 3.58× on a 56 KB doc [measured, §9] | **LIVE** |
+| 3 | Keystroke | CodeMirror `ChangeSet` at a UTF-16 offset | The caret position is a `U16Offset`, not a byte offset | **LIVE** |
+| 4 | Address translation | `mdmax/domain/offsets.ts` — `OffsetMap`, branded `U16Offset` / `ByteOffset` / `GraphemeIndex` | Only 67 of 1,080 corpus files have bytes == UTF-16 units; 93.8% diverge; 103 of 2,314 contain non-BMP [measured, §7.1] | SEAM 2 |
+| 5 | Shape gate | `mdmax/domain/shape-gate.ts` | `MAX_BYTES 4MB`, `MAX_LINES 200,000`; refuse over quadratic paths (`WIKILINK_RE` k=1.98, 36,865 ms on 320 KB) [measured, §7.1] | SEAM 2 |
+| 6 | Placement check | `mdmax/domain/placement.ts` | The setext defect (`"Heading\n---"` → h2) is refused, not repaired — blank-line isolation does not fix it [measured, §7.1] | SEAM 2 |
+| 7 | Splice | replaces the single-key scanner in `share/domain/splice-frontmatter.ts` | Exactly the located bytes are replaced; every other byte bit-identical | SEAM 3 |
+| 8 | Commit | `src/modules/repository/application/commit-changes.ts` | A refusal is a 4xx with a reason, never a silent pass [§7.3] | **LIVE** (write gate not yet enforced) |
+| 9 | Journal | `{seq, base_digest, offset, deleted_len, inserted_bytes, result_digest}` [§31.2] | `fold(journal, base_bytes) == working_bytes` | SEAM 3 |
+| 10 | Re-project | All L1 views recompute from the new bytes | Views store nothing; nothing to invalidate | Partial |
+| 11 | Recertify | `mdmax/application/certify.ts` → JSON sidecar in R2 | `certify.ts` never throws; the artifact never enters the `.md` [measured, §7.1] | SEAM 4 |
+
+### 61.4 Trace B — one byte through an agent edit via `land()`
+
+| # | HOP | MODULE / FILE | ASSERTED AT THE HOP | STATUS |
+|---|---|---|---|---|
+| 1 | Agent reads | MCP surface, `src/modules/ai-tools` [measured, directory exists; no `land` handler file exists under `src/` today, measured by `find`] | The agent receives bytes plus a `baseSha`. Never a tree, never an AST | PLANNED |
+| 2 | Model proposes | `src/modules/ai` — a §11.2 rank-1 transformation verb on a selection | The output *is* a byte range. The model gets a data slot, never a canvas [§6.1 principle 5] | PLANNED |
+| 3 | `land()` arrives | `{path, baseSha, offset, deleted_len, inserted_bytes}` | Same envelope shape as the sync journal record — one grammar for every change [§6.1 principle 6] | PLANNED |
+| 4 | Compare-and-swap | `baseSha` vs the file's current digest | Mismatch → refuse whole. No partial write, no rebase-and-hope | PLANNED |
+| 5 | Address, gate, place | `mdmax/domain/offsets.ts` → `shape-gate.ts` → `placement.ts` | Identical to Trace A steps 4–6. The agent gets no shortcut a human does not get | SEAM 2 |
+| 6 | Review loop | Proposed diff rendered over the byte range | Nothing is written yet. Users are filing "Improve Agent Mode review and consent controls" against the market leader — asking a competitor for this [measured, §11.2] | PLANNED |
+| 7 | Human accepts | `repository/application/commit-changes.ts` | Provenance recorded with the splice; AI may propose, the human commits [§11.4] | **LIVE** (call site exists) |
+| 8 | Human rejects | — | Input returned unchanged. Zero bytes touched. Refusal is a first-class outcome [§6.1 principle 2] | PLANNED |
+| 9 | Instrument | Local store only | Strong Acceptance per verb — accepted only if <50% of the proposal was edited. Ansible Lightspeed's 49.08% is a ceiling for a constrained verb, not a general rate [fetched + inference, §11.5]. Publish nothing | PLANNED |
+
+### 61.5 Trace C — one byte through a kanban drag
+
+| # | HOP | MODULE / FILE | ASSERTED AT THE HOP | STATUS |
+|---|---|---|---|---|
+| 1 | Board reads | `mdmax/domain/frontmatter-prepass.ts` | Never writes, never throws. 170 of 907 home frontmatter blocks are invalid YAML = 18.74% [measured, §7.1] | PLANNED — no `kanban` or `board` file exists under `src/` today [measured, `find`] |
+| 2 | Invalid YAML | — | The card renders read-only and the drag is refused. Never repair a block we did not write [§8.4] | PLANNED |
+| 3 | Drag gesture | Board projection | The card moves in the DOM and nothing is persisted. The board owns no state | PLANNED |
+| 4 | Locate | `share/domain/splice-frontmatter.ts` today; MDMAX splice engine at SEAM 3 | The target is the *value bytes* of the `status:` key — not the key, not the line, not the block | SEAM 3 |
+| 5 | Duplicate-key check | Frontmatter contract, §8.4 | Two `status:` keys → REFUSE. YAML 1.1 parsers disagree on last-wins vs error, so any choice we make is wrong somewhere | SEAM 3 |
+| 6 | Preserve | Splice writer | Key order, comments, blank lines, quoting style and indentation survive. No load-then-dump YAML round trip, even a "round-trip-safe" one [§8.4] | SEAM 3 |
+| 7 | Container indent | `mdmax/domain/constructs.ts` (19 constructs, UTF-8 byte ranges) | The splice computes container indent from the byte range, never assumes column 0 [§8.2] | SEAM 3 |
+| 8 | Commit + journal | `repository/application/commit-changes.ts` → splice journal | Same two hops as Traces A and B | **LIVE** / SEAM 3 |
+| 9 | Board re-reads | Board projection | If the board and the file disagree, the file wins and the board is wrong [§8.5] | PLANNED |
+
+The three traces converge at step 4–7 of Trace A. That convergence is the composition claim: a keystroke, an agent proposal and a card drag are the same operation with three different origins, which is why there is one place to make the guarantee and one place it can fail.
+
+### 61.6 The seams, and what is asserted at each
+
+| # | SEAM | HANDOFF | ASSERTED | ON FAILURE | STATE |
+|---|---|---|---|---|---|
+| 1 | Disk → engine | Ingress gate | Valid UTF-8 via `decodeStrict`; within `MAX_BYTES 4MB` / `MAX_LINES 200,000` | Refuse the file; never repair | **LIVE** — `get-snapshot.ts`, `search-index.ts` [measured, §7.3] |
+| 2 | Engine → editor | Address translation | Byte offsets round-trip through `OffsetMap`; branded types make a mixed-unit call a compile error | Type error at build, not corruption at runtime | Blocked by NF-1, NF-3 |
+| 3 | Any writer → engine | Write gate | Every write passes shape-gate + placement before a blob is created; a refusal is a 4xx with a reason | 4xx with the byte offset surfaced | **Do not wire before NF-1 and NF-3.** At the measured refusal rate this gate rejects 83% of foreign vaults' publishes — an availability incident wearing a correctness costume [§7.3] |
+| 4 | Engine → file | Splice | Exactly the located bytes are replaced; `result_digest` recorded | Refuse and return the input unchanged | SEAM 3 of §7.3 |
+| 5 | File → sync | Journal fold | `fold(journal, base_bytes) == working_bytes` must hold at every boundary. The journal is a checkable derivative, never authority [§31.2] | Refuse to sync; fall back to whole-file conflict copy | Planned |
+| 6 | Sync → file | Merge | Three-way merge against the *stored true base*, never a diff against the winner. CAS on upload | Conflict → write `note (conflict <device> <server-rev>).md` holding your bytes untouched. Never conflict markers in the user's `.md` [§31.2, M9 measured] | Planned |
+| 7 | File → certificate | Certification | `certify.ts` never throws; 4 verdicts PASS / STRIP / CORRUPT / VOID, 3 classes LEAK / DESTROY / MUTATE; artifact is a JSON sidecar | Certificate marks the construct unprobeable — `uncertifiableShare()` = 8 of 15 (53.3%) not locally probeable [measured, §15.1] | SEAM 4 of §7.3 |
+| 8 | Certificate → publish | Publish gate | No construct carrying a DESTROY class may publish | Refuse the publish and name the construct | Planned |
+| 9 | Engine ↔ everything | Boundary rule | MDMAX exports pure functions over bytes and imports nothing from `src/modules/*`, enforced by `eslint-plugin-boundaries` plus an arch report with a minimum-files-scanned floor so the gate cannot pass by going blind | Arch report `"violations"` non-empty; `npm run verify` red | **LIVE** [measured, §7.3] |
+
+**Anti-recommendation on seams:** do NOT enforce a seam before the layer below it can satisfy it. Seam 3 is correct, ready, and would today produce a 4xx on 83% of imported vaults — correctness enforced ahead of capability reads to a user as a broken product, and the fix is NF-1 and NF-3, not a weaker gate.
+
+### 61.7 What breaks if a layer is removed
+
+| REMOVE | WHAT STILL WORKS | WHAT BREAKS | WHAT THE PRODUCT BECOMES |
+|---|---|---|---|
+| **L2 AI** | Everything. Delete every model key and the file, the board, the calendar and the site work exactly as they did — those were never AI features [§11.6] | The verbs, `land()`, the review loop | A file-native editor with a degradation certificate. Still sellable |
+| **L1 projections** | File, editor, engine, sync, publish | The board, calendar, decision card, table | A careful markdown editor. This is the honest v1 fallback, not a catastrophe |
+| **Sync** | Every single-device path; no data is at risk | Multi-device, conflict artifacts, the journal oracle | A local editor. The least fatal removal |
+| **L3 profiles** | Reads and writes; projections fall back to conventions | Typed data, `fm.*` namespacing, evidence tiers | Dataview with better write safety |
+| **The certificate** | Every edit path | Publishing becomes a guess; the degradation claim becomes unfalsifiable; `verdict.ts`'s findings (`![[Some Note]]` → VOID on marked 16.4.2 **and** commonmark 0.31.2; 21 of 24 `{#id}` leak; front matter LEAKs in 23 of 24 bench configurations) go unshipped [measured, §7.1] | A nicer editor carrying a marketing claim it cannot prove |
+| **The engine** | Every layer still renders; every write becomes a regenerate-from-parse-tree | Byte preservation, refusal, the certificate, the 8,513-file / 0-corruption / 0-throws result, and the reason any of the above is trustworthy | A competitor. This is the only removal that is fatal rather than reductive |
+| **The file** (adopt a tree-of-record or a CRDT document) | Nothing, in the sense that matters | The projection law inverts: the CRDT or the tree becomes the record and the `.md` becomes a projection of it [§31.1 D1] | Notion |
+
+The ordering above is also the ordering of what may be cut under schedule pressure: AI first, projections second, sync third; the engine and the file never.
+
+### 61.8 The system in one sentence
+
+> **frontmatter is one markdown file on your disk, an engine that changes only the exact bytes you pointed at or refuses to change anything, and a set of disposable lenses — a board, a calendar, an agent verb, a published page — that all read those bytes and all write back through that one engine, so nothing you did not select can be rewritten by anyone, including the AI.**
+
+The twenty-second version drops the lenses: *the file is the truth, the engine only ever replaces bytes you named, and everything else is a view.*
+
+What would falsify the composition: any shipped path that writes to the file without passing seams 3 and 4 — a projection that persists its own state, an AI verb that lands without a review step, or a sync merge that resolves rather than refuses. Each of those is a single pull request away at any time, which is why the boundary rule in seam 9 is a lint gate and not a convention [inference].
+
+---
+
+## 62. AIOS inside the product — orchestration as a user feature
+
+| QUESTION | VERDICT | FALSIFIED BY |
+|---|---|---|
+| Does a user get their own orchestration layer? | **Yes — but they never learn that word.** They get house rules over a folder, made of files they can read, edit and delete | A user in a support ticket or a forum post using our internal vocabulary unprompted, at a rate above 20% of orchestration-related tickets |
+| Is it visible on day one? | **No. Rung 0 is an empty surface.** Every rung above it is unlocked by an act the user performed, never by a calendar | A release cohort shipped with the full surface visible at first run showing day-7 return **≥** the trigger-gated cohort |
+| Where is the creepy line? | **At disclosure, not at observation.** The software may hold what it saw; it may not volunteer it | A measured demand signal for unprompted assistance that survives the ambient-cost line of **$38.79/user/month** [derived, §11.3] |
+
+Section 15 answered which internal assets become features. This section governs what the resulting layer *is* from the user's chair, and where it must stop.
+
+---
+
+### 62.1 The user-facing model
+
+**An orchestration layer, in the user's vocabulary, is the set of house rules their folder enforces on anything that edits it — a person, an agent, or a CI job — and every one of those rules is a file in the folder.**
+
+| OUR WORD | INTERNAL ARTIFACT, LIVE [measured] | THE USER'S WORD | WHERE IT LIVES | WHAT THEY ACTUALLY SEE |
+|---|---|---|---|---|
+| Skill / `SKILL.md` | **124** SKILL.md across **27** dirs | **an automation** | `.frontmatter/automations/<name>/SKILL.md` | a document, opened and read like any other |
+| Constitution / learned rules | **892** lines, **74** rules, **69/69 uncited** | **house rules** | `.frontmatter/rules/*.md` | a document they wrote, edit, and delete |
+| Trace ledger | **5,018** rows, 30 keys, `files_sha256` | **who wrote this** | `.frontmatter/trace.jsonl` sidecar | a hover chip on a paragraph |
+| Complexity gate | **24,669** rows, **95.1194%** floor | **what this costs** | corner meter | a currency figure, never a tier word |
+| Escalation ladder | **7** deterministic rungs | **try harder** | button on any AI result | cost delta shown before it runs |
+| Assert/break gate pair | **69** scripts = 33 + 34 + 2 | **a check** | `mdmax cert` output | pass/fail with the failing line linked |
+| Freeze / guard skills | 3 skills | **locked section** | `.frontmatter/` lock | a padlock in the gutter |
+| Eval, judge, calibration, bandit, propensity | **26,037** routing-journal rows | *no user word exists* | — | **nothing, ever** |
+
+- **Banned from every user-facing surface:** orchestrator, agent loop, skill, bandit, arm, tier, eval, judge, kappa, propensity, trace, telemetry, self-improving, "learns you", health score, confidence. Each is either a claim we cannot defend (§15.4) or a concept charged against the §18 **C** counter for no user benefit.
+- **The naming test, applied to every candidate:** if the shortest honest label for a surface is a machine-learning term, the surface is internal. If it is a noun the user already owns — a rule, a check, a cost, a lock, a note — it may ship.
+- Anti-recommendation: do not ship a settings page called Automations, Agents, or AI. The house rules live in the folder as documents; a settings page duplicates them and creates a second source of truth, which the projection law forbids.
+
+---
+
+### 62.2 The user loop
+
+```mermaid
+flowchart LR
+  D["note.md"] --> A["Agent proposes<br/>a splice"]
+  A --> G{"Gates<br/>lint · cert · lock"}
+  G -->|"REFUSED"| R["Refusal names<br/>the byte range"]
+  G -->|"passes"| H["Hunk in the<br/>review surface"]
+  H -->|"reject"| R
+  H -->|"accept"| S["Splice against<br/>baseSha"]
+  S --> T["trace row +<br/>who-wrote-this chip"]
+  T --> D
+  R --> D
+```
+
+| STATION | WHO ACTS | DETERMINISTIC? | WHAT THE USER SEES ON FAILURE | GROUNDING |
+|---|---|---|---|---|
+| Propose | agent | no | nothing — a proposal that never reaches a gate is discarded silently | §11.2 rank 3 |
+| Gate | software | **yes, zero model calls** | the byte range, the named check, and the reason — not a dialog | `apply-patches.py` four-verdict vocabulary [measured] |
+| Review | **human, per hunk** | n/a | the hunk stays Open; the file is untouched | §13; per-hunk accept is the most-demanded feature in AI editors [fetched] |
+| Splice | software | **yes** | `REFUSED_CONFLICT` on `baseSha` drift | §12 read-before-patch |
+| Trace | software | **yes** | the chip reads *unattributed* rather than guessing | **78.637%** of internal trace rows carry `skill: "unknown"` [derived] — guessing attribution is the documented failure |
+| Next action | human | n/a | — | — |
+
+- The loop has exactly **one** human gate and it is non-skippable for any agent-authored byte. **58.7%** of ~33,000 developers do not plan to use AI for committing and reviewing, and **75.8%** decline it for deployment [fetched, Stack Overflow 2025].
+- Refusal is a first-class terminal state, not an error path. The engine's law is *locate the byte range, replace only those bytes, REFUSE rather than guess* — the loop inherits it verbatim.
+- Anti-recommendation: do not add an "apply all" that bypasses the review station. Cursor and Windsurf both regressed per-hunk control and both got publicly burned [§13].
+
+---
+
+### 62.3 Scope — per user, per workspace, ours only
+
+**The scope rule is one sentence: state describing the *file* goes to the workspace, state describing the *person* stays on their machine, and state describing the *software's own intelligence* never leaves ours.**
+
+| # | LOOP | SCOPE | STATE LIVES IN | WHY THIS SCOPE |
+|---|---|---|---|---|
+| 1 | Edit-survival log (accept / reject / edit-distance-after-accept) | **PER USER** | `.frontmatter/state.json`, local, never transmitted | It is a fact about a person's taste. **96.121%** of our own preference rows carry no attribution [derived] — sharing it would share noise |
+| 2 | Cost meter and spend | **PER USER** | local | Bundled inference is billed per person |
+| 3 | Escalation history ("try harder" rungs used) | **PER USER** | local | An act, not a rule |
+| 4 | Session continuity cards | **PER USER** | local snapshot dir | Contains the working context of one head |
+| 5 | Automation listing budget | **PER USER** | local | The budget is **1% of the model context window** [fetched] — a per-call, therefore per-user, constraint |
+| 6 | Disclosure rung reached | **PER USER** | local | UI state, never a document |
+| 7 | Automations (`SKILL.md` + optional `scripts/`) | **PER WORKSPACE** | repo, reviewed as a PR | They edit shared files; §37 role model governs who may change them |
+| 8 | House rules / memory file | **PER WORKSPACE** | repo | The honest answer to "what does it remember" is a file in your repo you can delete |
+| 9 | Frontmatter schema contract (`fm lint --schema`) | **PER WORKSPACE** | repo | A contract with no second party is decoration |
+| 10 | Section locks (freeze) | **PER WORKSPACE** | repo | A lock only one person can see is not a lock |
+| 11 | Doc Health deterministic checks | **PER WORKSPACE** | computed from the repo, cached nowhere | Broken anchors are facts about files |
+| 12 | `mdmax cert` config and `--fail-on=BROKEN` | **PER WORKSPACE** | repo + CI | The build gate is the team's |
+| 13 | Decision/incident blocks with an executable `broke:` field | **PER WORKSPACE** | repo | **40/40** internal gates carry `proven_nonvacuous` [measured]; the proof is the artifact |
+| 14 | Template and rule versioning with preview | **PER WORKSPACE** | repo | A prompt change silently degrades every future document made from it |
+| 15 | Who-wrote-this sidecar | **PER WORKSPACE** | `.frontmatter/trace.jsonl`, committed | Travels with the document or it is not provenance |
+| 16 | Routing bandit + propensity (**26,037** rows) | **OURS ONLY** | founder machine | Largest arm is named `__unattributed__`; 3/10 arms are `offline-0.5x` seeds |
+| 17 | Complexity-gate verdict internals | **OURS ONLY** | founder machine | The user sees the price; the tier word invites an argument we cannot win |
+| 18 | Eval judges + calibration | **OURS ONLY** | founder machine | Top bucket corrects at **0.269** against a **0.20** bar [derived] |
+| 19 | Debate / consensus / reflexion / best-of-N | **OURS ONLY** | founder machine | Multiplies COGS per user action; LR#16 holds convergence ≠ correctness |
+| 20 | `break-*.sh` execution (**34** scripts) | **OURS ONLY** | founder machine | A user-triggered "break my document" action is a data-loss vector |
+| 21 | Exploration routing | **OURS ONLY** | founder machine | Routing a paying user's document to a non-default model for counterfactual signal is indefensible |
+| 22 | `skill-health.json` metric | **OURS ONLY** | founder machine | Reports **active 0 of 131** while **446** trace rows contradict it in the same window |
+| 23 | Digression guard | **OURS ONLY** | founder machine | **0** contract files and **0** trace rows — it has never fired here |
+| 24 | Raw `traces/` store | **OURS ONLY** | founder machine | 30 keys including `cwd` — absolute paths into client repos; **zero** tenancy fields |
+| 25 | Learned-rules ledger about the user | **OURS ONLY** | founder machine | "The AI keeps a private file of rules about you" has no demand signal anywhere in the record |
+
+- Split: **6 per user (24.0%) · 9 per workspace (36.0%) · 10 ours only (40.0%)** [derived: 6/25, 9/25, 10/25].
+- Nothing in the per-user column is ever transmitted, aggregated, or used to train anything. Under the §17 instrumentation contract there is no event stream and no identifier to attach it to.
+- Anti-recommendation: do not add a server-side store for per-user state to make it follow the user across machines. That converts a local file into a database, and the first question a compliance buyer asks — *scoped to which org* — has no answer, because the schema has **zero** tenancy fields today.
+
+---
+
+### 62.4 The progressive-disclosure ladder
+
+| RUNG | WHAT APPEARS | UNLOCK — an act, never a timer | AT-REST CONTROLS ADDED (V0) | GROUNDING |
+|---|---|---|---|---|
+| **R0** | **Nothing.** Editor, projections, and AI verbs on a selection | first run | **0** | §17: no tour, no "What's New" modal, no consent prompt [fetched, NN/g] |
+| **R1** | Who-wrote-this chip, shown inline **once**, then hover-only | the first agent-authored hunk is accepted | 0 (hover affordance) | §17 step 6 precedent: show the byte diff once, then never unprompted |
+| **R2** | Cost meter in currency | cumulative AI spend crosses the first displayable unit | 1 | §15.2; **95.1194%** floor-tier is the COGS story stated as a user benefit |
+| **R3** | "Try harder" on a result | the user rejects a proposal twice on the same selection | 1 | Escalation as an explicit user act; zero learning claim |
+| **R4** | Doc Health panel | **≥1 deterministic finding exists** in the opened folder | 1 | Zero findings ⇒ no panel, ever. A panel that opens empty is the damaging pattern |
+| **R5** | Locked sections | a second collaborator gains write access | 1 | A lock with no second party is decoration |
+| **R6** | Frontmatter schema contract + `fm lint --schema` | a repo is connected, or ≥2 people commit | 1 | §37: contracts are workspace-scoped |
+| **R7** | Automations — author, dry-run, hand to one person | the user performs the same multi-step transform **3** times, offered as a pre-filled draft they must save | 2 | The offer is a one-line affordance in the transform's own result, never a modal |
+| **R8** | `mdmax cert` in CI, gates, `broke:` blocks, tamper-evident export | the user opens the CLI or the Actions tab | **0 in the editor** | B2B surface; never rendered in the writing view |
+
+- **Week two shows nothing by virtue of being week two.** Every unlock is an act; the median user reaches R1–R2 in that window because that is when the acts happen, and a user who never triggers one never sees the surface.
+- The power-user ceiling: author automations, write house rules, lock sections, declare a schema, wire `cert` into CI, export the tamper-evident AI-edit record. The floor beneath every rung: **no rung ever exposes a model, a tier, a score, or a claim about learning.**
+- Automations are hard-capped per workspace with a visible budget meter. **17/124** internal descriptions already exceed the 1024-char cap and `sgnk-mobbin` at **1,885** chars is *visibly truncated in this session's own listing* [measured] — growth silently disables older automations, and the user cannot see it happen.
+- Anti-recommendation: no timer-based reveal, no "you've been here two weeks" card, no feature-discovery nudge. §17 already bans streaks, badges, digests and "you haven't opened X in N days"; a disclosure timer is the same mechanism with a friendlier name.
+
+---
+
+### 62.5 The trust boundary
+
+| MAY OBSERVE, ALWAYS, WITHOUT ASKING | MAY ACT UNASKED (deterministic, **zero model calls**) | ALWAYS NEEDS A HUMAN, PER OPERATION |
+|---|---|---|
+| Bytes of the open file | Compute a projection | Land any agent-authored splice |
+| Filesystem shape of the opened folder — names, counts, mtimes | Run deterministic lint / health checks and mark findings | Publish or unpublish |
+| Files the user explicitly named in this action | Autosave bytes **the user typed** | Anything outward: commit to a remote, deploy, send, post |
+| Whether an AI edit was accepted, rejected, or edited after accept | Refuse, and name the byte range | Grant an automation any of `fs-write · net · deploy · db · outbound` |
+| Its own cost, latency, and refusals | Snapshot session continuity locally | Re-consent on **any** `allowed-tools` change — diff the grant, not the prose |
+| — | Compute a degradation certificate on request | Run an imported automation for the first N runs |
+| — | — | Delete anything |
+| — | — | Change house rules other people's documents depend on |
+
+| MAY NEVER OBSERVE | WHY |
+|---|---|
+| Files outside the opened folder | The folder is the consent boundary |
+| A background semantic index of the corpus | Already refused in §11.4: a second source of truth, **$38.79/user/month** at 100 saves/day [derived], and the market leader's most-discussed open issues are all silent index failure |
+| Clipboard, keystrokes outside the editor, other applications | No mechanism, no exception, no setting |
+| Prompt or document content leaving the machine except to complete an action the user just took | Nothing runs in the background; nothing is indexed behind your back (§11.6) |
+
+**The creepy line sits at disclosure, not at observation: the software may hold what it saw and may never volunteer it.** Observing that a user rejected three summaries is legitimate and local; saying *"I notice you keep rejecting my summaries"* is the ambient-coach pattern the record already bans — internally, **5 of 5** `UserPromptSubmit` hooks are interruption hooks, and **5 of 28** hooks map to editor lifecycle events [derived: 5/28 = 17.857%]. The test for any new surface: if a colleague reading over your shoulder would be unwelcome saying it aloud, the software may compute it but may not say it.
+
+- The tool-grant checkbox is **not** the boundary. `allowed-tools` is documented as experimental with support varying between implementations, and Claude Code clears the grant on the user's next message [fetched] — the UI must say *for this turn*, and the host permission system is the real gate.
+- The invocation-lock ratio is the design pattern, not an accident: **11 of 124** internal skills set `disable-model-invocation: true` and **every one is destructive or outward** [measured; 8.871%]. Outward or destructive ⇒ never auto-fires, in the product as on the machine.
+- Imported automation text is **data, never instruction**. Body text asserting authority, urgency, or pre-authorisation is the primary attack surface the moment sharing exists; **0 of 124** local files use the `` !`cmd` `` shell-injection syntax [measured], so refusing it in imported documents costs this corpus nothing.
+
+---
+
+### 62.6 The anti-section — orchestration capabilities that would harm users
+
+Items 1–8 are specific to a user owning an orchestration layer; §15.4 governs the internal-asset list they build on.
+
+| CAPABILITY | LIVE STATE [measured] | THE HARM | WHAT SHIPS INSTEAD |
+|---|---|---|---|
+| **An uncapped personal automation library** | Listing budget = **1%** of the model context window; description + when-clause truncated at **1,536** chars; least-invoked lose their descriptions first [fetched] | The user's 15th automation silently disables their 3rd, with no error and no way to see it | A hard per-workspace cap with a visible budget meter and an explicit *retire one to add one* prompt |
+| **Auto-authored automations** ("we noticed you do this, so we made one") | The nudge/suggest hooks this pattern comes from are **5 of 5** interruption hooks | It creates a file the user never read that carries a tool grant — the two properties that must never coexist | A one-line offer inside the transform's own result that opens a **pre-filled draft the user must save** |
+| **A user-facing automation health dashboard** | `skill-health.json`: **active 0**, dormant 5, dead 116, infrastructure 10 of 131 — contradicted by **446** trace rows in the same window | Telling a paying customer that 116 of the 131 things they built are dead, on a metric another ledger in the same system refutes | A last-run timestamp per automation. No verdict word. Dormant is not dead |
+| **A cross-document background agent** | Ambient bucket is the highest-maintenance in the category at **9.05%** issues-per-star vs Copilot's 1.30%; ambient re-rank costs **$38.79/user/month** [derived] | Unfundable at a bundled-inference consumer price, and its failure mode is silent | Scoped multi-document synthesis over an **explicit N files** the user named (§11.2 rank 6) |
+| **A self-amending rules file** | **892** lines, **74** rules, **69/69** carrying zero citations; the hygiene report is **5 rules stale** | A source of truth the user did not author, inside a product whose whole law is that the file is the only source of truth | Hygiene as a **review prompt**; a human is the only writer. Never an auto-prune |
+| **Standing tool grants** | Grant is cleared on the user's next message; the key is experimental [fetched] | Users read a checkbox as a permanent capability boundary; it is not one | Default-deny, per-turn language in the UI, host permission system as the boundary |
+| **An approval queue** | **41.311%** of gate decisions are `rule2_gated` — internally a human approves roughly 4 in 10 operations | A queue in an editor trains click-through, which converts a safety mechanism into a formality | Gate at the write: the refusal arrives **at the byte range, in the document**, with the check named |
+| **Orchestration vocabulary in the UI at all** | 20 distinct frontmatter keys locally against **6** in the spec; **54/124 = 43.5%** would hard-fail packaging today | Every internal word is a concept charged against §18's **C** counter, and several are claims we cannot defend | The seven user nouns in 62.1 and nothing else |
+| Multi-agent debate on a user's document | `~/.sgnk/insights/` does not exist after 14 months | LR#16: convergence is not correctness, so a converged panel authorises nothing — the user pays for deliberation carrying no authority | Single proposal, human gate |
+| Any "it learns you" claim | `shadow-log.jsonl` **1** row; `prereg.jsonl` **2** rows; `precision[rejected] = 0/8 = 0.000` | Every rejection this system has ever emitted was wrong; acting on that signal is worse than acting on nothing | The **7-rung deterministic ladder as a button**, cost delta first |
+
+- The single structural constraint behind all ten: **machine-fed stores all exceed 1,000 rows and every human-fed store is under 250** — roughly **176,000** machine rows against **232** preference rows [derived]. Build nothing whose value depends on the user rating something.
+- Anti-recommendation to this anti-section: do not read it as "ship less AI". The deterministic-projection cohort out-installs every AI capability combined by **7.25×** [derived: 7,289,307 ÷ 1,005,651], which is an argument for putting the intelligence in the gate rather than in the suggestion — not for removing it.
+
+---
+
+### 62.7 What would falsify this direction
+
+| CLAIM THIS SECTION MAKES | FALSIFIER | HOW WE WOULD KNOW | WHAT WE DO THEN |
+|---|---|---|---|
+| Users want house rules over a folder at all | Automations authored by **<5%** of week-4-retained users after 6 months **and** zero inbound requests for the capability | Generator marker + docs page-hit ratios (§17 implicit telemetry) plus the support queue | Cut the authoring surface; keep only the gates we author and ship `mdmax cert` alone |
+| Trigger-gated disclosure beats a visible surface | A release cohort shipped with R1–R4 visible at first run returns on day 7 at **≥** the trigger-gated cohort | Release experiment, one element changed, cohort comparison — never a user-level experiment | Reveal earlier, rung by rung, re-testing each |
+| "Automation" is the user's word | Users hand-writing `SKILL.md` outside the editor, or internal vocabulary appearing unprompted in **>20%** of orchestration tickets | Support queue, verbatim | Adopt their word; the vocabulary table is descriptive, not doctrinal |
+| One non-skippable human gate per agent write | **>20%** of active users disabling review and asking for auto-apply | Setting toggles are local, so this arrives as tickets, not as data | Auto-apply **only inside an explicitly fenced machine-write region**; never a global switch |
+| Per-workspace state belongs in the repo | Teams requesting automations or rules that must **not** be committed | Sales and support conversations | A per-user scope inside the workspace — never a server-side store |
+| No loop needs to run in the background | A deterministic Doc Health check that cannot complete inside the §29 save-path budget | Performance CI gate | A scheduled **local, deterministic, zero-model-call** job. Not an agent |
+| Deterministic beats agentic in this category | The Obsidian install ratio inverting — agentic + ambient + generation peak-version sum exceeding **7,289,307** | Re-measure `obsidianmd/obsidian-releases` at each roadmap review | Reweight §11.2 before reweighting this section |
+| The whole direction | The artifact-facing half ships and shows **no** day-7 return difference against a build with zero orchestration surface | Version-cohort comparison under §17 | Delete the layer, keep the editor and the engine. The projection law survives without it |
+
+- **What does not falsify it:** low usage of a power-user rung on its own. Dormancy is not death (LR#51) — falsification requires the absence of *demand* as well as the absence of *use*, which is why every falsifier above pairs a usage threshold with a demand-signal check.
+- **What we may not do with a falsifier:** quote it before re-deriving the number at write time. **"90% floor" is already wrong** — live is **95.1194%** at 24,669 rows [derived] — and "110 daily trace files" appears in three prior grounding documents while counting 46 lockfiles; the daily ledger is **63**.
+- Anti-recommendation on the falsifiers themselves: do not convert any of them into a dashboard. Every scalar in this stack is contradicted by at least one other ledger in the same stack, and a falsification bar that becomes a metric becomes a target.
+
+---
+
+## 63. Who this is for — personas and jobs to be done
+
+### 63.1 The six personas
+
+| # | Persona | Who they are | Tool today | Population signal |
+|---|---|---|---|---|
+| P1 | **Devraj, the file-owning solo dev** | Backend/infra engineer, 5–15y, runs a personal vault of notes + a blog repo + `~/.claude` skills. Reads the bytes. | Obsidian + a terminal editor, or plain Neovim + git | Obsidian's own commercial-use licence exists because this persona keeps notes in the same repo as work [SS] |
+| P2 | **Nina, the dev-tool startup docs owner** | 4–20 person startup; one person owns docs + changelog + roadmap; PRs review the docs like code | Docusaurus/Mintlify + Linear + Notion (three places, one truth) | — |
+| P3 | **Kabir, the agency delivery lead** | 6–25 person studio, 4–9 concurrent clients, hands off a repo at the end of every engagement | Notion per client + Google Docs + a static site generator | — |
+| P4 | **Sena, the AI-heavy knowledge worker** | Runs Claude Code / Cursor daily; her context IS markdown; wants agents to edit the same files she edits | Raw files + an agent CLI, no editor in between | AIOS on the founder machine: 124 SKILL.md automations, 892-line constitution, 5,014 trace rows, 24,539 gate decisions [measured] |
+| P5 | **Ondrej, the compliance-adjacent technical writer** | Regulated-industry doc owner; needs to prove a rendered artifact matches its source | DITA/AsciiDoc toolchain, or Word with a change log | — |
+| A1 | **ANTI: Priya, the ops-team lead** (deliberately not for) | 12-person non-technical ops team; wants assignees, notifications, and a shared inbox | Notion / ClickUp / Airtable | — |
+
+### 63.2 Job stories, pain, switch, churn, willingness to pay
+
+| # | Job story (when / I want to / so I can) | Moment of pain | What makes them switch | What makes them leave | WTP | Evidence |
+|---|---|---|---|---|---|---|
+| P1 | When I want a board view of my own repo, I want it without a database, so I can keep every file greppable and diff-able | A tool rewrites his frontmatter on save; the diff is 400 lines for a 3-word edit | A byte-preserving guarantee he can verify himself: 8,513 third-party files, 0 corruption, 0 throws [measured] | Any lock-in surface — a proprietary sidecar, a login before first edit | $8–15/mo, or a one-time licence; will not pay per-seat | [inference] from the byte-preservation guarantee being the only claim he can independently test |
+| P2 | When our docs, changelog and roadmap drift apart, I want one file per item and views generated from it, so I can review docs in the same PR as the code | Roadmap in Notion says shipped; changelog says nothing; site says v1.2 | Board and site as projections of the same repo files, reviewable in a PR | Missing multiplayer presence; a teammate who will not use git | $20–40/seat/mo for 3–8 seats | [inference] |
+| P3 | When an engagement ends, I want to hand the client a folder that opens in anything, so I can leave without leaving a subscription behind | Client asks for the Notion export; export is 900 files of `Untitled 3.md` with broken links | Handoff = a git repo; the published site is a projection, not a second copy | Client-branded publishing weak; no per-client access boundary | $50–150/mo studio tier | [inference] |
+| P4 | When my agent edits my notes, I want it to change only the bytes it means to, so I can let it run unattended | Agent rewrites a whole file to change one field; the git diff is unreviewable | Locate the byte range, replace only those bytes, REFUSE rather than guess — the splice contract itself | Refusals she cannot fix: today 83% publish-refusals from one YAML defect [measured] | $20–30/mo, highest tolerance of the six | [measured] on the AIOS substrate: 24,539 gate decisions is a person who already pays for determinism |
+| P5 | When I ship a rendered doc, I want proof of what degraded on the way, so I can sign off | Reviewer sees a callout; the PDF renderer swallowed it; nobody knows until audit | Cross-engine degradation certification over 7 markdown engines | Certification that stops at 7 engines when the auditor names an 8th | $100+/seat, slowest cycle | [inference] |
+| A1 | When work is assigned to me, I want a notification and a due date, so I can chase my team | Nothing in frontmatter hurts here — the pain is elsewhere | Nothing we will build | Everything: no assignees, no notifications, no shared inbox | High and irrelevant | Settled: not a Notion-style project-management tool |
+
+### 63.3 Persona → section map
+
+| Persona | Sections that serve them |
+|---|---|
+| P1 solo dev | §2 (product thesis), §21, §22, §24, §26 |
+| P2 startup docs owner | §2, §21, §22, §24 |
+| P3 agency lead | §21, §22, §24, §26 |
+| P4 AI knowledge worker | §2, §22, §24, §26 |
+| P5 compliance writer | §24, §26 |
+| A1 anti-persona | none — appears only here and as an explicit non-goal |
+
+Section numbers are taken from the sections named in the reading brief (2, 21, 22, 24, 26) plus C4 onboarding/activation; a full cross-reference must be rebuilt against the PRD's live table of contents before print [inference].
+
+### 63.4 The one persona to build v1 for
+
+Build v1 for **P4, the AI-heavy knowledge worker.**
+
+```mermaid
+flowchart TD
+  A["P4 pain: agent rewrites whole file"] --> B["Splice: byte range only, else REFUSE"]
+  B --> C["Diff is reviewable"]
+  C --> D["Agent can run unattended"]
+  D --> E["P1 gets the same guarantee free"]
+  B --> F["83% publish-refusal defect"]
+  F --> G{"Fixed in R0?"}
+  G -->|yes| D
+  G -->|no| H["Refusal reads as breakage"]
+```
+
+- The engine already built is P4's whole product; every other persona buys a projection layered on top of it [inference].
+- P4's substrate is measured, not assumed — 5,014 trace rows and 24,539 complexity-gate decisions on one machine [measured].
+- Serving P4 serves P1 for free: the byte-preservation guarantee is identical; only the trigger differs (agent vs human).
+
+**The strongest argument against P4: it is a market of one plus a hypothesis — the only measured instance of this persona is the founder's own machine, and building for yourself is the most common way a solo founder builds something nobody else buys.**
+
+- Falsifier: if 20 outreach conversations with agent-CLI users produce fewer than 5 who name whole-file rewrites as a real cost, P4 is a projection of the founder, not a segment — switch the v1 target to P2.
+- Anti-recommendation: do NOT build v1 for P2 first even though P2 has the clearest budget. P2 needs multiplayer presence and a review workflow before the product is usable at all, which is a second product; P4 needs only what exists.
+
+### 63.5 Switching costs — what each persona must give up
+
+| Persona | Must give up | Cost class | Mitigation in scope |
+|---|---|---|---|
+| P1 | Obsidian's plugin ecosystem, graph view, mobile app | High, emotional | None honest — plugin marketplace is settled out. Say so in marketing. |
+| P2 | Notion's comment threads and @-mentions; Linear's assignee model | High, organizational | Projections replace views, not conversations. Position as adjacent, not replacing. |
+| P3 | Client-facing polish of a Notion share link; non-technical staff access | Very high | Published site projection must match Notion-share polish or P3 never converts |
+| P4 | Almost nothing — files stay files; adds a surface she does not have | Near zero | This is the case for §63.4 |
+| P5 | An audited toolchain and a validated-tool paper trail | Prohibitive in year 1 | Do not chase; the certificate is the wedge for later |
+| A1 | Everything she uses the tool for | Total | Not attempted |
+
+### 63.6 Anti-recommendations — attractive traps
+
+| Trap persona | Why it looks attractive | Why it is a trap | What would change the verdict |
+|---|---|---|---|
+| **The Notion-refugee team** | Loud, large, actively churning | They want assignees and notifications, not projections; serving them re-litigates a settled non-goal | Nothing short of reversing the settled position |
+| **The enterprise compliance buyer (P5) early** | $100+/seat, defensible moat via the 7-engine certificate | A 9–18 month sales cycle and a procurement/security review a solo founder in India cannot staff [inference] | An inbound design partner who pays before the review, not after |
+| **Non-technical writers "who could learn markdown"** | Enormous TAM | Every one of them needs the exact features settled out; they churn on git | Never |
+| **Obsidian plugin authors** | Distribution for free | No plugin marketplace, no arbitrary client-side code execution — nothing to port to | Nothing; settled |
+| **P3 agency before the publish defect is fixed** | Highest revenue per logo | 83% publish-refusals today from one YAML defect [measured]; the agency's whole job-to-be-done is publishing | R0 lands the zero-indent-sequence fix and the refusal rate is re-measured on the same 8,513-file corpus |
+
+---
+
+## 64. Positioning, messaging and objections
+
+### 64.1 The positioning statement, canonical form
+
+> **For a software team of 2–20 that already keeps its specs, docs, runbooks and ADRs as markdown files it owns, and that now lets AI agents write into those files, frontmatter is a source-of-truth workspace whose engine edits by byte-range splice and refuses rather than guesses — so every view is a reversible projection and every AI edit is byte-attributed, reviewable and provable — unlike Notion, where the view *is* the data, and unlike every markdown tool that rebuilds the file from an in-memory model of it.**
+
+| Slot | Filled with | Source | Tag |
+|---|---|---|---|
+| **X** — for whom | Dev-tool / API startups, 2–20 seats (ICP 1, the beachhead) | §21 | — |
+| **Y** — who what | Already live in this substrate: `gray-matter` 35,782,970 dl/mo, `front-matter` 18.41M, `js-yaml` 1,228,031,655 | §21 | `[fetched]` |
+| **Z** — what it is | A source-of-truth workspace (not an editor, not a wiki, not a PM tool) | §26, §6.2 | — |
+| **W** — what it does | Byte-range splice; refuse over guess; every view a reversible projection | §5, §7 | `[measured]` |
+| **V** — unlike | Notion (view is the data); the lossy-model class — Front Matter CMS, Hubble.md, and every mainstream rich-text framework in the vendors' own words | §19 | `[measured]` + `[fetched]` |
+
+**Deliberately excluded from V, and this is a discipline not an oversight.** OpenKnowledge is named nowhere in the positioning line, because their body path is genuinely byte-perfect and an overstated comparison is the kind of claim that gets refuted in public `[measured]` (§19). The comparison we may make against them is narrow and factual — frontmatter drifts, a running CRDT daemon is required, O(document) per edit by their own docblock — and it belongs in a teardown page, never in a headline.
+
+- **Anti-recommendation.** Do not author a second positioning statement for Funnel 2 ("beautiful documents from plain text"). §26 rates that funnel **Low** confidence, and a second position with an unproven audience halves the teaching budget of the first. Funnel 2 gets a *campaign line*, not a position, until Funnel 1 clears post-20.
+- **Falsifier.** If the first 25 sales conversations show ICP 1 buys for the consolidation wedge (§21) rather than for fidelity, slot **W** is wrong and the line must be rebuilt around "one file, four surfaces" — the engine then becomes the reason to believe, not the offer.
+
+### 64.2 Messaging hierarchy
+
+```mermaid
+flowchart TB
+  L["One-liner:<br/>the file survives the edit"]
+  P1["Pillar 1 · Fidelity"]
+  P2["Pillar 2 · Projection"]
+  P3["Pillar 3 · Provenance"]
+  E1["8,513 files, 7 vaults<br/>0 corruption, 0 throws"]
+  E2["Board, calendar, site, agent<br/>all splice back to bytes"]
+  E3["The file is its own audit log"]
+  L --> P1 & P2 & P3
+  P1 --> E1
+  P2 --> E2
+  P3 --> E3
+```
+
+**The one-liner, with its known defect.**
+
+| Form | Status |
+|---|---|
+| §26 as written: *"The markdown source of truth AI can't corrupt"* | **Blocked.** "can't" is an absolute-safety claim; §58 bans fidelity claims that outrun measurement, and the corpus proves *did not*, never *cannot*. Log the §26/§58 clash in §57 |
+| Sanctioned: *"Markdown that AI edits without rewriting the rest of your file — and we can prove it on 8,513 files that aren't ours"* | Publishable today `[measured]` |
+| Short form for a 60-character surface: *"The file survives the edit."* | Publishable; carries no number, so it never goes stale |
+
+**Pillars and proof.**
+
+| # | Pillar | Claim in one line | Proof point | Tag |
+|---|---|---|---|---|
+| 1 | **Fidelity** | It changes the bytes you asked for and nothing else | 8,513 third-party files, 7 vaults, **0 corruption, 0 throws**, sha256-pinned, re-runnable via `npm run corpus`; three competitor write paths executed with the exact destroyed bytes shown | `[measured]` |
+| 2 | **Projection** | The file is the truth; the board, the calendar, the site and the agent's context are lenses that own nothing | Drag a card → splice `status:`; accept a suggestion → splice a body span. Precedent: org-mode's agenda since 2003, Obsidian Bases, Potluck | `[measured]` + `[SS]` |
+| 3 | **Provenance** | You can see what the AI changed, where, and undo exactly that | Google's public API **cannot create suggestions at all**; Lex's track-changes "in development"; OpenKnowledge comments machine-local, never committed. Byte-level attribution makes the file its own audit log | `[fetched]` + `[SS]` |
+
+**Which pillar leads, by persona.**
+
+| Persona | Leads | Second | Never opens with | Why |
+|---|---|---|---|---|
+| Dev-tool / API startup 2–20 (ICP 1) | Fidelity | Projection | "Beautiful documents" | They can verify the corpus claim themselves in an afternoon; that is the point |
+| Agency / studio 2–15 (ICP 2) | Projection | Provenance | Fidelity | They never *felt* corruption; they feel four surfaces from one file |
+| Support-heavy SMB (ICP 3) | Provenance | Projection | **Deflection or "structured data"** | Intercom, Zendesk, Document360 and GitBook all sell exactly that (§21) |
+| Obsidian power user (Funnel 1 prosumer) | Fidelity, framed as *"integrates with your vault"* | Projection | **"Obsidian competitor"** | The community code of conduct removes the launch rather than debating it (§26) |
+| Researcher / academic (§22) | Projection | Fidelity | Collaboration features | One file → paper, site, and dataset appendix |
+| The buyer's security or ops reviewer | Provenance | Fidelity | Anything compliance-shaped | See §64.5 — we have no SOC 2 and no attorney review (§53) |
+
+- **Anti-recommendation.** Do not run all three pillars in one asset. A page that argues fidelity, projection and provenance simultaneously reads as a feature list, which is precisely the shape §64.4 objection 3 attacks.
+- **Falsifier.** If the ICP-1 landing variant that leads with Fidelity converts below the Projection variant across 400 sessions, the pillar order inverts and the engine becomes the reason-to-believe rather than the offer.
+
+### 64.3 The category question
+
+```mermaid
+flowchart LR
+  Q{"Which door"}
+  A["Enter:<br/>'markdown editor'"]
+  B["Rename:<br/>'source-of-truth workspace'"]
+  C["Create:<br/>a new category noun"]
+  Q --> A & B & C
+  A --> AO["Show HN becomes a<br/>free-alternatives thread"]
+  B --> BO["Keep markdown search intent,<br/>refuse the label"]
+  C --> CO["Teaching budget a solo<br/>founder does not have"]
+```
+
+| Door | Evidence for | Evidence against | Verdict |
+|---|---|---|---|
+| **Enter** "markdown editor" | Highest search intent; the substrate's own download volume proves the audience exists — `js-yaml` 1,228,031,655, `gray-matter` 35,782,970/mo `[fetched]` | Every Show HN named "markdown editor" becomes a thread of free alternatives (§26). The price floor is $0 and well-maintained: AppFlowy 76,040★, AFFiNE 71,976★, SiYuan 46,023★, Logseq 44,669★, Outline 40,362★, Trilium 37,624★, Docmost 21,501★, all pushed within 24h `[fetched]` | **Reject as a label** |
+| **Rename** to *source-of-truth workspace* | The category winners all renamed: Obsidian sold *ownership*, Notion a *workspace*, Linear *speed* (§26). Keeps "markdown" as the substrate noun, so search and plugin-directory intent survive | A two-hop name costs one sentence of teaching in every conversation | **Recommended** |
+| **Create** a new category noun | §3.2 names the empty box explicitly: *"the rendered, evolving AI-output document — open — the category to name"* | Category creation is a paid activity. Solo throughput is ~**1 substantial shipped surface per 2–3 weeks** (§53) and exactly **two posts have ever shipped**, one with a visible defect since 2026-08-10 `[measured]` | **Defer** |
+
+**Recommendation: rename, do not create.** Be findable inside the markdown category — the "Open in frontmatter" plugin, npm, docs-tool comparisons — and refuse the category *label* in every headline; Relay proved the bridge-plugin path with 172,544 downloads of a commercial service's plugin `[SS]`.
+
+- **Strongest counter-argument, stated in full.** A renamed category is an unrecognised category, and an unrecognised category has no search volume, no G2 grid, no budget line and no comparison page to rank against. The buyer must name the outcome to get it approved (§21), and "source-of-truth workspace" is a *mechanism* dressed as an outcome. The counter-argument is not defeated by evidence — it is answered by sequencing: lead with the mechanism to the beachhead who can verify it, and let the *outcome* line ("one file that is editor, AI workspace, rendered surface and audit trail") do the work in every asset aimed at anyone else.
+- **Falsifier.** If, at post-20, prospects cannot repeat the category noun back unprompted, drop the noun entirely and ship a category-of-one description: *"it is where the file, not the app, is in charge."*
+
+### 64.4 Objection handling
+
+| # | Objection | Raised by | What we concede as true | The honest answer, with evidence |
+|---|---|---|---|---|
+| 1 | **Why not just Obsidian?** | Prosumer, ICP 1 | It is better than us at plugins, graph, mobile and community, and it is the vault we integrate with — never the competitor we name (§26) | Obsidian is single-player by design: no review loop, no provenance, no fidelity proof `[measured]` §3.1. Its own community proves the missing piece — the Homepage plugin has **1,294,057 downloads**, ~20× every bespoke dashboard plugin, and no product ships that natively `[fetched]`. We are the review-and-proof layer over the vault you keep |
+| 2 | **Why not Notion?** | ICP 2, ICP 4 | Notion is better at databases-as-views, onboarding and team defaults, and we will never be a Notion-style PM tool (§6.2, founder boundary) | In Notion the view *is* the data and export is lossy by architecture `[SS]`; formulas cannot aggregate across rows; Coda's export returns disconnected strings with formulas stripped `[SS]`. Price behaviour is the second answer: free AI cut to 20 responses *for life* and Business up ~20% `[SS]` §2 |
+| 3 | **This is a feature, not a product.** | Investor, senior engineer | As a *capability*, yes — a byte-exact writer is a library. Conceding this is more credible than denying it | The product is the loop the capability makes possible: projection, review and provenance all require it and none exists without it. The three teardowns show the bolt-on route fails — Front Matter CMS builds a comment-preserving Document object **and throws it away** `[measured]`. Joint verdict: the failure is architectural, not a library choice §19 |
+| 4 | **You are one person.** | Every buyer | Fully. It is the binding constraint on the whole document (§53): ~1 shipped surface per 2–3 weeks, and support, incidents, invoicing and patching do not compress with skill | Three structural answers, none of them "trust me": the substrate is the file, so leaving costs you nothing (§27 rank 7, the anti-moat, priced in deliberately); the shutdown promise is written and public (§48); and the leverage is measured — 124 SKILL.md automations, 24,539 complexity-gate decisions, 5,014 trace rows, 69 gate scripts, 149 bin tools, and 10 complete multi-surface campaign episodes built in about a week `[measured]` |
+| 5 | **Markdown is for developers; my team won't write it.** | ICP 2, ICP 3, ICP 4 | Largely true for authoring. This is why the surface is deliberately simple and why the projections exist at all | Nobody on the team writes markdown — they drag a card, pick a date, accept a suggestion, and the splice writes the file (§5). The markdown is the *storage*, exactly as SQL is storage for a CRM. Anti-answer we must not give: "markdown is easy, they'll learn." They will not, and saying so loses the room |
+| 6 | **I already have Cursor / Claude Code.** | ICP 1, the sharpest objection in the list | It edits markdown well, agent-markdown is now **commodity** (§3.2: obsidian agent-skills 47,418★, the skills CLI at 9.3M downloads in one week `[fetched]`), and **§3.2 says explicitly: do not position here** | Cursor's provenance evaporates at accept — the AI/human distinction is lost forever after `[SS]` §2 problem 4 — and its attribution is *admin telemetry*, not something in your file that your reader can see. Our claim is narrow and defensible: byte-anchored, document-portable, reader-visible provenance (§58). Second answer: Cursor is a code editor whose users are engineers; the document your CEO reviews does not live there |
+| 7 | **Seven free self-hosted alternatives sit at 21K–76K stars. Why pay?** | ICP 1, ICP 4 | The price floor is genuinely **$0** and those projects are actively maintained `[fetched]` §3.1 | Every one of them regenerates the file. Zero of them certify cross-engine degradation, and the *testing* layer already monetises where the data layer stays free — Litmus at $500/mo is the proof `[SS]` §3.2. Pricing follows: INR 299 / USD 5 Pro is priced against $0, and the money is $20–40/editor seat in teams (§21, §26) |
+| 8 | **Git already gives me history, diffs and review.** | ICP 1 | It does, and we build on it rather than around it — sync is git-merge plus a splice journal plus compare-and-swap, never a CRDT | Git's three-way merge preserves CRLF and a missing final newline exactly, and refuses where a splice writer would want to refuse `[measured]` §58 — that is a compliment, and it is also the gap: git diffs *lines*, not the byte range one agent touched, and it cannot tell you which change was the model's. Non-engineers do not review in a PR |
+| 9 | **An incumbent ships this next quarter.** | Investor | The engine work is hard but finite and increasingly LLM-assistable. §27 gives the fidelity moat **18–36 months** and the certificate **12–24** — not forever | Incentives point elsewhere: Notion toward blocks, OpenAI toward artifacts-as-output (it **removed** Canvas in May 2026 `[SS]`), Google toward Docs, OpenKnowledge toward the team wiki (§3.3). The honest framing is a window, not a fortress — and the sequencing law says the differentiation tracks must land inside 6–12 months |
+| 10 | **Nobody has paid you anything.** | Investor, and the hardest to answer | **True and unmitigated: zero paying users.** Developers are the hardest freemium audience — median dev-focused free-to-paid is **5%, half the non-dev rate** `[fetched]` §4 | Do not argue. State the arithmetic and the test: 1,000 free developer signups × 5% × USD 5 = **USD 250/mo** `[derived: 1000 × 0.05 × 5]`, which is why the revenue centre is self-serve teams, not Pro. The pain is evidenced (GitBook's dominant complaint cluster is reliability and lost work `[SS]`); the *willingness to pay a premium to avoid it* is the single biggest risk in this document and is stated as such in §4 |
+
+**Two rules for using this table.** Lead every answer with the concession, because the concession is the only part the sceptic did not expect. And when an objection has no answer — objection 10 today — say so and name the test that would produce one; §58's whole discipline is that a claim we cannot re-derive is worse than silence.
+
+### 64.5 Claims we may not make
+
+Inherits every row of §58 unchanged. This section adds the positioning-specific bans, because a marketing sentence is where an honest engineering number goes to die.
+
+| Banned | Why | Sanctioned substitute |
+|---|---|---|
+| *"AI can't corrupt it"*, "corruption-proof", "AI-proof" | Absolute-safety claim; the corpus proves **did not**, never **cannot**. This is the §26 Funnel-1 line as written — log the clash in §57 | *"0 corruption and 0 throws across 8,513 third-party files from 7 vaults, re-verifiable"* `[measured]` |
+| "Lossless", bare | Unqualified, it claims the whole surface; today there are **83% publish-refusals from one YAML defect** `[measured]` | *"Byte-preserving on every edit it accepts — and it refuses rather than guessing"* |
+| Any fidelity or coverage **percentage** | §58: at the measured refusal rate the headline number is false until NF-1 and NF-3 land | The absolute counts, with the corpus named |
+| "First", "only", "the first AI attribution" | §58 and §6.2 — one such claim was already caught and refuted | *"The first markdown editor with byte-anchored, document-portable, reader-visible provenance"* — the narrow form, and only after one more verification round |
+| "Audit-ready", "compliance-grade", "SOC 2" | No SOC 2, no attorney review, no auditor has seen the artefact (§51, §53). Vanta and Drata charge **$7,000–$30,000/yr** for the thing this phrase implies `[SS]` | *"The file is its own audit log: every change carries the byte range and the actor"* |
+| *"Replaces your $1,163/mo stack"* | §21 explicitly: quote the range, never only the top. The honest light stack is **$78/mo** — a **14.91×** spread `[derived: 1163 ÷ 78 = 14.91]` | *"Teams replace somewhere between $78 and $1,223 a month of tooling with this — here is the arithmetic for both ends"* |
+| **"Markdown editor"** as the category noun | Every Show HN with that name becomes a thread of free alternatives (§26) | *"Source-of-truth workspace"*, with markdown named as the substrate |
+| *"It learns how you write"* | §58 — never market a learning loop before a decision demonstrably bends on real data | Say nothing about learning |
+| Any `[SS]`-tagged number, in any public asset | **47 remain in this document's inherited material** | Re-derive it, or cut the sentence |
+
+### 64.6 What the name must communicate
+
+The naming decision and the positioning decision are one decision, because they split the teaching load between them. A coinage (`stetfile`) teaches nothing on sight, so the one-liner must carry the entire category — which is affordable only because the beachhead can verify the mechanism themselves. A retained "Frontmatter (Studio)" teaches the substrate instantly but costs the *"not the VS Code one"* tax in every conversation forever, against an incumbent at **80,605 installs** and **2,539 stars** read 2026-08-29 `[fetched]`.
+
+| # | The name must… | Source | Test | `stetfile` | "Frontmatter Studio" |
+|---|---|---|---|---|---|
+| 1 | Name the **guarantee**, not the format | §52.2 — naming from the format ages with the format | Is it still right if the substrate stops being markdown? | Yes — *stet* = "let it stand" | No |
+| 2 | Survive being **said aloud** in support | §52.2 — the `-wright/-write/-right` hazard that killed `bytewright` | Spell it once over a call | Yes | Yes, but requires the qualifier every time |
+| 3 | Be free on **npm and GitHub with zero named repos** | §52.2 `[measured]` | Re-run the 404 probe **on registration day** — nothing reserves them | npm 404, GitHub 404, 0 repos | Handles free only in qualified form |
+| 4 | Not force a permanent **disambiguation tax** | §52.3 | Count the words spent explaining the name per conversation | 0 | ≥1, forever |
+| 5 | Not collide in the **adjacent market** | §52.2 | Search the product space, not just the registry | Clean; but bare `stet` collides with `stetmark`, npm-published **2026-08-05**, **5,753 dl/mo** `[measured]` | Direct collision, same keyword space |
+| 6 | Carry the **category rename** of §64.3 | §26 | Does the name make "editor" the obvious next word? | No — good | Yes — bad; "frontmatter" is the generic name of the substrate (§27 rank 5) |
+
+- **Recommendation, unchanged from §52: `stetfile`, with `stet` as the spoken shorthand and the CLI verb.** Positioning consequence: the one-liner must then do all the category work, so the sanctioned form in §64.2 becomes load-bearing copy rather than a tagline.
+- **Anti-recommendation.** Do not ship bare "Frontmatter" while quietly holding qualified handles — §52.3 rates that the highest-risk option with extra steps. And do not spend on domain, logo or launch copy before a trademark attorney's knock-out search; §52.4 is explicit that handle availability is a different question in kind from mark rights.
+- **Falsifier.** A clean knock-out search on the incumbent's class overlap flips the decision to "Frontmatter Studio", because a taught name costs more than a qualifier — and if that happens, pillar order in §64.2 does not change, but the one-liner sheds its category-teaching job and can shorten to *"The file survives the edit."*
+
+---
+
+## 65. The markdown thesis — every role the format plays
+
+### 65.1 The six roles, in escalating order
+
+Each role is enabled by a mechanism CommonMark already defines, and each is permitted to fail back into the role below it. No role above 1 may introduce a token the floor does not already contain.
+
+| # | Role | The file is… | Enabling mechanism | Fails back to |
+|---|---|---|---|---|
+| 1 | **Document** | prose a stranger reads | CommonMark 0.31.2 (2024-01-28) block grammar plus the four GFM extensions every certified engine implements: tables, task list items, strikethrough, autolink literals `[fetched]` `[inference]` | — (the floor) |
+| 2 | **Schema carrier** | typed data a machine parses | A YAML block delimited at byte 0 — one contiguous range whose boundaries are computable without running an inline parser `[inference]` | 1, as an `<hr>` and an `<h2>` |
+| 3 | **Projection driver** | its own view definition | The three-slot rule: `render:` switch in frontmatter, spec in a fenced `fm-view` lane, data in body constructs that already degrade `[measured]` | 1, as a code block plus an outline |
+| 4 | **Agent contract** | the interface a model writes through | Path is identity; `base_version` enforces read-before-patch; every edit is a splice against `baseSha` and arrives as a hunk | 2, as an unmerged suggestion sidecar |
+| 5 | **Ledger** | an append-only record of what happened | Append-only body sections plus a splice journal; C2PA A.9's front-matter manifest form carries a single byte exclusion range with start and length **in bytes** `[fetched]` | 1, as dated headings |
+| 6 | **Application substrate** | the program's config, state and control surface | Frontmatter-typed instruction files read by a runtime: 124 `SKILL.md` across 27 category dirs, 69 gate scripts (33 `assert-*` + 34 `break-*` + 2 harness meta), 147 executables in 21,481 lines `[measured, 2026-08-29]` | 5, then 1 |
+
+**Role 1 — document.** The floor is not "CommonMark" in the abstract; it is 0.31.2 plus exactly four extensions, and everything past those four is a profile feature that must be degradation-certified before a projection may depend on it `[inference]`.
+
+```markdown
+## Decision — vendor @lezer/markdown
+
+~~Deferred to Q4.~~ The repository moved to https://code.haverbeke.berlin —
+147 stars, one maintainer, and the only JS parser with exact inline-mark
+offsets *and* incremental reparse.
+
+| Option        | 56 KB reparse | Inline offsets |
+|:--------------|--------------:|:---------------|
+| full          |      16.88 ms | yes            |
+| incremental   |       4.71 ms | yes            |
+
+- [x] Read the licence
+- [ ] Budget a quarter for owning the fork
+```
+
+**Role 2 — schema carrier.** CommonMark 0.31.2 contains the strings "front matter" 0×, "frontmatter" 0×, "YAML" 0× and "metadata" 0×; the GFM spec contains the same three at 0× `[measured]`. **Every typed-data mechanism available to this product is therefore out of spec, so the only real choice is between profiles that degrade well and profiles that degrade badly** `[inference]`.
+
+```markdown
+---
+title: Vendor @lezer/markdown
+status: doing
+due: 2026-09-30
+tags: [engine, parser]
+fm.profile: adr
+fm.version: "1"
+---
+```
+
+**Role 3 — projection driver.** A single key `render: board` degrades to `<hr><h2>render: board</h2>` in marked 16.4.2, markdown-it 15.0.0 (commonmark preset) and commonmark 0.31.2 — a setext H2 that outranks the document's own H1 in every non-frontmatter-aware renderer `[measured]`. Cost is linear in key count: 4 keys ≈ 60 characters of H2 junk, 12 keys ≈ 180 `[derived]`.
+
+````markdown
+---
+render: board
+---
+
+```fm-view
+group: heading
+columns: [Todo, Doing, Done]
+card: {title: text, badge: due}
+```
+
+## Doing
+- [ ] Vendor @lezer/markdown
+````
+
+**Role 4 — agent contract.** The protocol carries the identity and the version explicitly because both failures are documented: on claude.ai, where identity is inferred from phrasing, "it made a new artifact instead of updating mine" is the top documented failure, and `base_version` structurally kills the drift bug where a user hand-edits while the model keeps talking about the version it remembers.
+
+```text
+land({ path: "docs/adr/0007-vendor-lezer.md",
+       type: "adr",
+       title: "Vendor @lezer/markdown",
+       body_md: "…",
+       base_version: "sha256:…",
+       mode: "patch",
+       source: { tool, model, conversation_url, session_id } })
+  → { LANDED | VERSIONED | REFUSED_CONFLICT | NEEDS_TARGET,
+      path, version, url, bytes_written, cert }
+```
+
+**Role 5 — ledger.** C2PA's A.9 structured-text binding is line-for-line a byte-splice contract — fixed `-----BEGIN/END-----` delimiters modelled on RFC 4880 §6.2, files read in binary mode "to preserve the exact byte representation of line terminators", a claim generator that "shall **not** alter the line ending convention of the file content outside the manifest block", and at most one block per file `[fetched]`.
+
+```markdown
+> [!DECISION] Vendor the parser
+> Accepted 2026-08-29. Supersedes ADR-0004.
+
+## [1.2.0] - 2026-08-29
+### Changed
+- Splice writer returns a typed refusal instead of a bare `src`.
+
+-----BEGIN C2PA MANIFEST-----
+<base64 manifest, hashed over a single byte exclusion range>
+-----END C2PA MANIFEST-----
+```
+
+**Role 6 — application substrate.** The instruction file is the program: frontmatter declares identity and invocation policy, the body is the contract, and a separate gate script asserts the contract held.
+
+```markdown
+---
+name: sgnk-complexity-gate
+description: Route a task by shape before any model call.
+disable-model-invocation: false
+---
+
+## Contract
+Emit `{tier, mode, rule2_gated}` and nothing else.
+
+## Gates
+- `assert-*.sh` — refuse if the routing distribution moves off baseline
+- `break-*.sh` — prove the assertion can fail before trusting a green
+```
+
+### 65.2 One file, six roles
+
+```mermaid
+flowchart TD
+  F["note.md — the bytes<br/>the only source of truth"]
+  R1["1 Document<br/>CommonMark 0.31.2 + 4 GFM"]
+  R2["2 Schema carrier<br/>YAML frontmatter"]
+  R3["3 Projection driver<br/>render: switch + fm-view lane"]
+  R4["4 Agent contract<br/>path identity + base_version"]
+  R5["5 Ledger<br/>append-only + splice journal"]
+  R6["6 Application substrate<br/>SKILL.md + gate scripts"]
+  X["No textual home<br/>sidecar, then database"]
+  F --> R1 --> R2 --> R3 --> R4 --> R5 --> R6
+  R6 -. "any role fails" .-> R1
+  R3 -. "positions, intervals, hunks" .-> X
+```
+
+### 65.3 The maximisation table
+
+| Role | What we exploit | The ceiling | Measured evidence for that ceiling |
+|---|---|---|---|
+| 1 Document | The floor renders everywhere with no configuration; degradation is a property of block-level constructs, not of our code | No block containers, no colspan or rowspan, no auto-numbered cross-references, no multi-column reading order | Pandoc grid tables degrade to `<p>+------+------+ \| Fruit\| Note \|…</p>` `[measured]`; `{#fig-plot}` leaks as visible text after the image `[measured]`; GFM's own normative text: "Block-level elements cannot be inserted in a table" `[fetched]`; nested `:::` columns collapse into one run-on paragraph `[measured]` |
+| 2 Schema carrier | One contiguous range at offset 0 with two fixed sentinels — the best splice target in the format; every certified engine already has a frontmatter mode or documented extension `[fetched]` | Junk is linear in key count; the key string *is* the identity, so a rename is lossy; today the parser refuses most foreign vaults | `<hr>` + `<h2>` of the first key in 3/3 engines `[measured]`; 4 keys ≈ 60 chars, 12 keys ≈ 180 `[derived]`; **83% aggregate foreign-vault refusal — 6,613 of 6,614 foreign files refused on zero-indent block sequences** `[project-measured]`; `SAFE_KEY` excludes a space, so `date created` fails in 812/957 files of one vault and CJK keys fail in 905 files of another `[measured]`; four ecosystems normalise keys four different ways — Logseq lowercases and rewrites `_`→`-`, Dataview sanitises to lowercase-with-dashes, org is case-insensitive, Notion sidesteps it entirely with an opaque `id` such as `"fy:{"` `[fetched]` |
+| 3 Projection driver | Fenced lanes degrade to contained, labelled code with zero sigil leakage — the best degradation profile of any carrier tested; drags map to four typed write-backs (BODY-MOVE, KEY-SET, CELL-SET, FENCE-SET) | Only C0 and C1 lanes; a projection must be a pure function of bytes, so an LLM can never be a render lane; anything with no textual home is 100% sidecar and the render then carries none of the value | `<!--fm ... -->` is fully suppressed at markdown-it's `commonmark` preset (`html:true`) but escapes to visible `&lt;!--fm…--&gt;` at its **default** `html:false` `[measured, two runs disagreeing on which config counts as "dumb"]`; excalidraw's 7,578,223 downloads are the largest single demand number in the survey and are 100% sidecar `[fetched]`; population evidence that in-document execution does not buy reproducibility: 1,159,166 notebooks from 264,023 repositories, 24.11% executed without errors, **4.03% produced the same results** `[fetched]` (denominator discrepancy recorded, not resolved: 863,878 published vs 788,813 reconstructed → 26.41% / 4.42% `[derived]`) |
+| 4 Agent contract | An edit *is* a byte range, so a proposal, a citation and a diff are the same object; the review surface accepts human, agent and sync-conflict hunks through one grammar | Acceptance, not capability, is the limit — and the only published propose-first numbers are from a small model on one narrow dialect | Ansible Lightspeed: **49.08% strong acceptance on multi-line suggestions**, Day-30 retention **13.66%** across 10,696 users / 3,910 returning (arXiv 2402.17442, pub 2024-02-27, upd 2024-10-22) `[fetched]` — a ceiling for a constrained verb, not a general rate `[inference]`; deterministic projections out-install every AI capability combined by **7.25×** (7,289,307 vs 1,005,651 peak-version installs) `[derived]` |
+| 5 Ledger | Append is free and byte-safe; the record and the document are the same artifact, so provenance survives export | Ledgers do not rot at the append — they rot at the attribution field, and they go stale silently | Live AIOS trace ledger: 63 daily `.jsonl`, **5,018 rows**, of which `accepted` is non-null in **181 = 3.607%** and `skill: "unknown"` in **3,946 = 78.637%** `[measured/derived]`; `PREFERENCE-LOG.jsonl` 232 rows of which **223 = 96.121% carry no skill attribution** `[derived]`; `regression-gates.jsonl` 40 rows, last registered 2026-08-13T01:41:14Z = **16 days stale** `[derived]` |
+| 6 Application substrate | A whole orchestrator runs on frontmatter-typed markdown with no database: 124 `SKILL.md`, an 892-line self-amending constitution, 69 gates, 28 hooks across 9 events, **24,669 complexity-gate rows** over 42 days = 587.357 rows/day `[measured/derived]` | Single-tenant by construction, and the substrate cannot reliably measure itself | **Zero tenancy fields** in the trace ledger and **2 of 151 files** containing any HTTP-listener code `[measured]`; `skill-health.json` (7-day window) reports **active 0, dormant 5, dead 116, infrastructure 10** while the ledger holds **446 trace rows for `sgnk-drift-watch` in the same window** `[measured]`; `calibration.json` high bucket n=26 rate 0.269 against a 0.20 bar — the drift condition is met and unactioned `[measured/derived]` |
+
+- Recorded drift, not reconciled: the product-context figures 5,014 trace rows and 24,539 gate decisions are an earlier read of the same append-only stores measured at 5,018 and 24,669 on 2026-08-29 `[measured]`. Both stand; never publish either without its read date. The same class already sits in the record as `baselines/` at 2,382 vs 2,381 on one day.
+- Anti-recommendation for the whole table: **do not promote a role because one engine handles it well.** The gate is the certificate across all seven local targets, and `uncertifiableShare()` already reports **8 of 15 declared targets (53.3%) as not locally probeable** `[measured]` — a declared row is not evidence.
+
+### 65.4 The hard boundary as a rule a builder can apply
+
+**The placement ladder. Stop at the first yes.**
+
+| # | Question | Home | Literal form | Falsifying case for this row |
+|---|---|---|---|---|
+| 1 | Would a person reading the raw bytes want to see it, and does it survive a renderer that knows nothing about us? | **Body text** | heading, list item, GFM table cell, task checkbox, blockquote callout | An inline field inside a table cell: the same bytes have two different block structures across the matrix (GFM `<td>` vs commonmark one paragraph), so it passes the read test and fails addressability `[measured]` |
+| 2 | Is it one scalar, whole-file, and does an existing ecosystem tool already read that key? | **Frontmatter**, 1–3 keys | `status: doing`, `due: 2026-09-30`, `render: board` | Every key added costs an `<h2>` line in a dumb renderer, so a rich view spec here is a degradation regression, not a neutral choice `[measured]` |
+| 3 | Is it machine-shaped and whole-block — harmful as prose, but still reconstructable from these bytes alone? | **Fenced lane**, reserved info string | ` ```fm-view `, ` ```fm-query `, ` ```fm-schema ` | An unclosed fence "runs until the end of the containing block" per CommonMark §4.5, so one dropped backtick line turns the rest of a 4,000-line note into code `[fetched]` — the writer must emit open and close in one splice, never two |
+| 4 | Does it have no textual home at all, and can it be deleted without changing what the document *means*? | **Sidecar** | JSON Canvas-class positions, SRS intervals, suggestion hunks, embeddings | Bases' shape is the correct one — data in frontmatter, *query* in the `.base` sidecar; inverting it breaks on rename, move and copy, and makes the `.md` non-self-describing `[fetched]` |
+| 5 | Does it need identity surviving a rename, multi-writer concurrency, or a cross-file transaction? | **Database — and say out loud it is not a document feature** | — | Notion's 21 property types key on an opaque `id`, which is precisely why renaming a property there is safe and renaming a frontmatter key here is not `[fetched]`; multi-respondent form state is a database, not a file `[inference]` |
+
+**The one-line decider: if deleting it changes what the document means, it belongs in the file; if deleting it only changes what a view looks like, it belongs in a sidecar; if it cannot be deleted at all without breaking another person's session, it belongs in a database and therefore not in this product.**
+
+- Carrier rule that falls out of rows 1–3, unchanged from the settled position: **prose a human reads goes in a blockquote callout; opaque machine data goes in a fenced code block.** A block quote is delimited by a per-line prefix, so there is no state to leave open — the construct ends the moment the `>` stops `[measured]`. A fence is delimited by a matching close, and CommonMark §4.5 is unforgiving about its absence `[fetched]`.
+- Anti-recommendation: **do not adopt the invisible HTML-comment carrier globally** on the strength of the cleaner measurement. It is clean in exactly two of the three configurations we certify, and `COMMENT-SET` is permitted only where the certificate explicitly records `html:false` visibility for that target.
+- Anti-recommendation: **do not promote an inline `key:: value` field into frontmatter automatically "for queryability".** That rewrites lines the user did not edit, changes the rendered output, and is the exact behaviour that makes people distrust editors that touch their files. Dataview's own parser must resolve bracket nesting, `\` escapes and overlapping spans heuristically, and it sanitises `**Bold Field**` → `bold-field`, so the index provably cannot write back the source bytes `[fetched]`.
+- Recorded disagreement, unresolved: m5 recommends **emitting `...` as the frontmatter closer**, because 3/3 dumb engines then degrade to a paragraph instead of a setext heading and pandoc explicitly permits it `[fetched]` `[measured]`; §8.4 as written supports `---` fully and says nothing about `...`. Both closers are legal on read. Do not resolve this by preference — resolve it by running the closer through the seven local targets and recording which strip-pipelines match on `---` alone.
+- What falsifies the ladder: a datum that passes row 1 and is nonetheless unaddressable by a byte range surviving an unrelated edit. The table-cell inline field is already that case, which is why the ladder carries an addressability clause and not just a readability one.
+
+### 65.5 What markdown genuinely cannot do, and what we say instead
+
+Faking any of these is worse than refusing them, because a fake succeeds locally and fails on someone else's renderer, which is exactly where the user cannot see it happen.
+
+| Impossible | Why, with evidence | What we tell the user |
+|---|---|---|
+| Merged cells | No colspan or rowspan syntax in CommonMark or GFM; pandoc's MANUAL contains **zero** occurrences of either in the markdown reader docs `[measured over fetched HTML]`. Grid tables buy spans and cost readable degradation `[measured]` | "Markdown has no merged cells. Split the column, or export to DOCX where the format does." |
+| Block content inside a table cell | GFM normative text, verbatim `[fetched]` | "A list inside a table cell is a lie in every renderer but one. Put the list under the table." |
+| Multi-column pages, floats, sidebars, wrapped pull quotes | No block-container syntax exists; nested `:::` collapses into one run-on paragraph and leaks two sigil lines per block in all three engines `[measured]` | "There is no reading order for two columns in a linear renderer. Use PDF layout for print, one column for the file." |
+| Auto-numbered cross-references ("Figure 3") | Requires a numbering pass no dumb renderer will run; `{#fig-x}` leaks as visible text `[measured]` | "We can link to the figure. We cannot number it in a way that survives leaving this app." |
+| Portable footnotes | Not in the GFM spec — `grep -ci footnote` on cmark-gfm's `spec.txt` returns **1**, an intro-prose mention; the syntax lives in `test/extensions.txt:702` `[measured]`. A footnote whose body is a *single token* is parsed as a link reference definition in **all three** engines, producing live broken links `[measured]` | "Your note body stays readable everywhere. The little superscript link does not. Give the note more than one word." |
+| Spoilers and hidden text | `\|\|spoiler\|\|` degrades to the literal content, verbatim `[measured]` — a spoiler that degrades open is a defect, not degradation | "Anything you can type, a plain renderer can show. There is no hidden text in markdown." |
+| Transclusion on publish | `![[Note#Heading]]` degrades to the literal brackets with the content **silently absent and no marker that anything is missing** `[measured]` | "We keep your embed exactly as written and we open it in the editor. We will not publish a page where content vanished without saying so." |
+| A stable table caption position | Immediately after the table it is absorbed as a data row (`<td>Table: my caption</td>`); with a blank line it degrades readably `[measured]` | "Leave a blank line above the caption, or it becomes a row." |
+| Guaranteed CJK line joining | CSS Text 3 (CR Draft, 2026-08-14) §4.1.3: a segment break "is either transformed into a space (U+0020) or removed… **The rules for this operation are UA-defined in this level**" `[fetched]` | "We can normalise our own renderer. We cannot promise GitHub's." |
+| Correct word counts without a segmenter | `countWords` splits on `/\s+/` and undercounts against `Intl.Segmenter` by **20.00× on Chinese prose, 17.00× on Japanese, 12.00× on Thai, 1.19× on a markup-heavy mixed document**; ko/hi/en are exact `[measured]` | "Approximate for Chinese, Japanese and Thai" — until the segmenter ships, which is four lines and zero new dependencies |
+| Sanitised HTML by default | `marked` ships no sanitiser and no URL-scheme filter: it renders `<script>alert(1)</script>` verbatim and `[click](javascript:alert(1))` as a live href; `markdown-it` refuses dangerous schemes even at `html:true` `[measured]`. GFM's `tagfilter` filters exactly nine tags and states "All other HTML tags are left untouched"; GitHub compensates with private post-processing `[fetched]` | "The spec is not a security boundary; the platform is. Any 'renders like GitHub' claim excludes GitHub's private layer." |
+| Round-trip-exact pipes and tabs | `\|` in a cell renders `|`, and CommonMark treats tabs "as if they were replaced by spaces with a tab stop of 4" `[fetched]` — semantically equal, byte-different | We state which one the splice engine preserves, in the refusal text, at the byte offset |
+| WCAG AA out of the box | §5.2 makes AA all-or-nothing `[fetched]`; measured against this repo: **11 of 14 images with empty alt = 78.6%**, no `<caption>`/`scope=`/`<colgroup>` on GFM tables, **35 heading-level skips**, **5 of 186 files with more than one `<h1>`**, no `lang=` and no `dir=` from `marked`, no accessible name on task-list checkboxes `[measured]` | "Conformance is something the publisher adds. It is never something the format supplies." And never image-rendered math — that is 1.1.1 with a text alternative you cannot generate |
+
+- Anti-recommendation: **do not build an auto-fixer that silently normalises ambiguous indentation, reference-link placement, or a bare-CR line ending.** Reference links are non-local — CommonMark's own author writes that `[foo][bar]` has four possible meanings "depending on whether the references… are defined elsewhere (perhaps later)" and that this makes "accurate syntax highlighting nearly impossible" `[fetched]`, confirmed locally as three different renderings of one source `[measured]`. C2PA A.9 says convert bare CR; we have committed not to silently mutate bytes, so the honest behaviour is refuse and cite the code.
+- The refusal is only honest if it is typed. Live baseline at commit `9e84628`: `spliceFrontmatterValue` and `spliceFrontmatterKey` both return a bare string across **20 `return src` sites**, so a refusal is byte-identical to a successful no-op `[measured]` — while `mdmax` already emits 32 uppercase symbols, 13 verdict classes and **19 typed failure codes** `[derived]`. Refusal text without a reason code and a byte range is not a refusal; it is silence.
+
+### 65.6 The strongest argument this thesis over-reaches, and the answer
+
+**The argument, at full strength, using our own numbers.**
+
+1. Five of the six roles are being carried today by a purpose-built store that carries them better. Notion's property model has opaque ids and therefore safe renames; a database has transactions; a queue has multi-writer semantics. Markdown has a key string.
+2. The substrate has only ever met its author. The trace ledger has **zero tenancy fields** and **2 of 151 files** contain any HTTP-listener code `[measured]`. Roles 5 and 6 are not demonstrated at scale; they are demonstrated at n=1, on one machine, with one writer and no concurrency.
+3. It cannot measure itself. `skill-health.json` reports **active 0 / dead 116** while the ledger holds **446 rows for one of those "dead" skills in the same window** `[measured]`. **78.637%** of trace rows carry `skill: "unknown"` and **96.121%** of preference rows carry no attribution at all `[derived]`. A system whose own instrumentation disagrees with its own record is not evidence for a thesis about durable records.
+4. Role 2 does not survive contact with strangers. **83%** of foreign vaults refuse today, on a single YAML defect `[project-measured]`. Every fidelity number in the document is false until that lands.
+5. The certificate that is supposed to police all of this is itself half-blind: **8 of 15 declared targets (53.3%) are not locally probeable** `[measured]`, and the shipped preview scores **439/652 = 67.3%** on CommonMark 0.31.2 against a bare remark pipeline's **498/652 = 76.4%** `[measured/derived]` — certifying seven engines against a preview less conformant than the engines it certifies is not a certificate.
+6. Therefore: the thesis is a description of one person's workflow, generalised past its evidence.
+
+**The answer. Three concessions first, because they are correct.**
+
+- Points 3, 4 and 5 are conceded without qualification, and they are already the queue: NF-1, NF-3 and NF-4 are R0 work, the preview conformance fix is gated *before* any render profile ships, and the corpus gate is pinned and red-proofed at 8,513 files. Point 2 is conceded and settled the same way — §15 answers "sell the orchestrator" with **No**, on exactly the tenancy evidence the argument cites. The internal system ships only the artifact-facing half: an asset ships if its output is a fact about the user's file, and stays internal if its output is a claim about the software's own intelligence.
+- Point 1 is conceded on capability and rejected on framing. The thesis has never been "markdown can do everything". It is narrower and testable: **the file is the only source of truth, and every role above role 1 is either a deterministic projection of those bytes or a sidecar that can be deleted without changing what the document means** — which is why the placement ladder ends at "database, and it is not a document feature" instead of pretending otherwise.
+- Point 6 is where the argument actually fails, and it fails on evidence that arrives from outside the thesis. Across 7,020 plugins with stats, deterministic projections take **7,289,307** peak-version installs against **1,005,651** for every AI capability combined — **7.25×** `[derived]` — and **697 of 7,058 plugins (9.9%) describe an AI capability but take 3.44% of the peak-version sum** `[measured]`. The largest file-native editor in the category ships **zero occurrences of the token "AI" across 9,502 characters** of its full roadmap back to July 2023, and what it did ship is data in local markdown properties with views described in valid YAML `[measured]` `[fetched]`. Role 3 is not an extrapolation from one machine; it is the single most-installed thing in the category, arriving at the same design independently.
+- The remaining role-6 claim is deliberately not the product claim. The orchestrator is evidence that markdown-typed instruction files scale to a working system — 124 `SKILL.md`, 69 gates, 24,669 gate decisions over 42 days `[measured]` — corroborated externally by `CLAUDE.md` appearing in ~774,144 indexed files and `agents.md` at 23,968 stars, `spec-kit` at 132,035 `[measured/fetched]`. It is not evidence that the same substrate is multi-tenant, and the document never claims it is.
+
+**What would actually falsify the thesis.**
+
+| Role | Falsifier | Status |
+|---|---|---|
+| 1 Document | A majority of the 7 local targets fail one of the four GFM core extensions on a realistic corpus — the floor then drops to bare CommonMark and tables become a profile feature | Not tested at that framing |
+| 2 Schema carrier | NF-1 lands and the foreign-vault refusal rate does not move materially off 83%, meaning the defect was never the single cause | Queued R0; the 83% is the number the fidelity claim rests on |
+| 3 Projection driver | Obsidian ships a first-party board with splice-clean write-back before we do; item 1 of the v1 ranking loses its rationale entirely | Live risk — Bases shipped natively while obsidian-kanban's repo last moved 2026-03-06 `[fetched]` |
+| 4 Agent contract | Transformation verbs fail to clear 20% strong acceptance in the first 90 days, or the top unmet request six months after Lane A is still "run my Python here" rather than "query my vault here" | Instrumented, no data yet |
+| 5 Ledger | Attribution stays below ~50% after the trace schema is fixed, proving the rot is structural to file-based ledgers rather than to one implementation | 3.607% accepted, 78.637% unattributed today `[derived]` |
+| 6 Application substrate | ≥1 tenant field in the schema, ≥1 non-self paying customer, and ≥10,000 chained ledger rows — **all three, not any one** — which would falsify the decision *not* to productise it | None of the three met |
+
+- Anti-recommendation for this section: **do not quote any of these numbers in public without re-deriving them at write time.** The record already contains the failure — "90% floor" appears in two internal documents while live is 95.1194% at n=24,669 `[derived]`, and "110 daily trace files" appears in three prior grounding documents while the daily ledger is 63 files, because the 110 counts 46 `.lock` files and a `steps/` subdirectory `[measured]`. A thesis this dependent on measurement is falsified fastest by its own stale citations.
+
+---
+
+## 66. What we still do not know
+
+### 66.1 The count, measured here
+
+| Measurement | Value | How |
+|---|---|---|
+| Document size | **5,092 lines · 100,114 words** | `wc -lw` [measured] |
+| `[SS…]` tags, whole file | **81** | `grep -o '\[SS[^]]*\]'` [measured] |
+| — in the body, lines 1–4898 | **64** | [measured] |
+| — inside §55 itself, lines 4899–4963 | 15 | [measured] |
+| — after §56 (§58 row, closing line) | 2 | [measured] |
+| Body tags that are *references to the tag*, not claims | 6 | lines 80, 100, 955, 1192, 1347, 4676 [measured] |
+| **Claim-bearing `[SS]` tags** | **58** | 64 − 6 = 58 [derived] |
+| Tag variants beyond bare `[SS]` | 8 | `[SS/fetched]` · `[SS, vendor-sourced]` · `[SS, unverified]` ×2 · `[SS, August 2026]` · `[SS 2026-08-29]` · `[SS — must not be published as fact]` · `[SS — the CBIC notification page was not opened…]` [measured] |
+| Full live census | `[fetched]` 874 · `[measured]` 465 · `[derived]` 198 · `[inference]` 144 · `[SS]` 81 | [measured] |
+
+All 58 claim-bearing tags were read and classified; no sampling was necessary [measured].
+
+**This document gives three different answers for its own `[SS]` count — §55 says 52, §58 says 47, and the file contains 58 — and none of the three is the one a reader would arrive at.** Deltas: 58 − 52 = 6, 58 − 47 = 11 [derived].
+
+The 52 is traceable. §55's opening census — `[fetched]` 86 · `[SS]` 52 · `[measured]` 50 · `[derived]` 9 · `[inference]` 1 — is the census recorded at `docs/research/agent-reports-2026-08-29-r11/c1-research-gap-audit.md` line 8, which measured a PRD of **1,551 lines / 20,174 words** [measured]. This document is **3.28× the lines and 4.96× the words** of the one that census describes [derived: 5,092 ÷ 1,551; 100,114 ÷ 20,174]. The row was inherited, not re-derived — the exact failure §41 and §57 exist to prevent.
+
+---
+
+### 66.2 The existing register describes a document that no longer exists
+
+| §55 claim | Status in the v2 body (lines 1–4898) | Evidence |
+|---|---|---|
+| §55.2 #1 Princeton GEO "25–40% visibility lift" | **Absent.** `Princeton` = 0 hits | [measured] |
+| §55.2 #9 "Perplexity Pro free via Airtel to ~400M, worth ₹17,000/yr" | **Absent.** `400M` = 0, `17,000` = 0 | [measured] |
+| §55.2 #11 Dataview "~30s past 3,000 notes" | **Absent.** `3,000 notes` = 0 | [measured] |
+| §55.2 #12 r/ObsidianMD ~344,000 / Discord ~195,000 | **Live and still untagged**, §26 line 2519 | [measured] |
+| §55.3 "never researched": accessibility, DR, sync, API, roles, i18n, desktop, analytics | **Mostly closed by R12.** `RPO` 35 · `RTO` 24 · `WCAG` 22 · `rate limit` 9 · `PostHog` 5 · `takedown` 4 · `moderation` 4 · `screen reader` 3 · `service worker` 2 · `privacy policy` 2 · `schema version` 1 | [measured] |
+
+The register is stale in both directions: it warns about three claims that were deleted and under-counts the live ones by six, while its "never researched" list names fourteen areas that now carry their own sections. Treat §55 as a historical artefact of PRD v1.1 and this section as the live one.
+
+- **Anti-recommendation:** do not delete §55. It is the record of what was true on 2026-08-29 and deleting it destroys the audit trail that makes this drift visible. Mark it superseded, keep it, and point §55's header at §66.
+
+---
+
+### 66.3 The closure ladder
+
+```mermaid
+flowchart TD
+  A["Claim tagged SS"] --> B{"Quoted outside<br/>this document?"}
+  B -->|No| C["Leave tagged.<br/>Never quote — 66.5"]
+  B -->|Yes| D{"Primary source<br/>reachable by curl?"}
+  D -->|Yes| E["Re-fetch.<br/>Record the date read"]
+  D -->|No| F{"403 / JS wall,<br/>or domain expertise?"}
+  F -->|Bot gate| G["Human with a browser<br/>— 66.7"]
+  F -->|Expertise| H["CA · counsel · auditor<br/>— 66.7"]
+  E --> I["Retag fetched + date"]
+  G --> I
+  H --> I
+  I --> J{"Still supports<br/>the sentence?"}
+  J -->|No| K["Delete the sentence"]
+```
+
+The ladder's only non-obvious rung is the last one. A claim that survives re-fetching may still fail to support the sentence it was written into — the Pimentel notebook figure carries a specific reproducibility definition, and the sentence in §5 does not state which one [inference].
+
+---
+
+### 66.4 Load-bearing, ranked by risk if wrong
+
+Rank = (money or legal exposure) × (irreversibility) × (would be quoted). Costs are [inference] unless tagged otherwise.
+
+| # | Claim | § | Why it matters | What would close it | Cost | Risk if wrong |
+|---|---|---|---|---|---|---|
+| 1 | Export-of-services zero-rating · LUT vs pay-and-refund · "convertible foreign exchange" · reverse charge on imported services (LLM APIs, hosting, MoR fees) | §51.2, L4756–4758 | Decides whether every export invoice is zero-rated or carries IGST. `cbic-gst.gov.in` **failed TLS and 404'd on every IGST-Act path** [measured] | A chartered accountant's written opinion **with the MoR contract in front of them** | ₹15,000–₹50,000 + one meeting | Retrospective IGST + interest + penalty on every invoice since the first. It also changes the MoR choice, which §53 makes a hard gate before the first paid signup |
+| 2 | E-invoicing threshold AATO > ₹5 crore, sticky across FYs · ₹20 lakh services registration threshold · FEMA/EDPMS closure and FIRC/BRC per remittance | §45, L4287 · L4314 · L4293 | §45 derives the crossing at ₹5,000/customer/year ≈ ₹417/month [derived]. The CBIC notification page was never opened | Same CA engagement; ask for it in the same sitting | Included above | Missed e-invoicing is a penalty regime, not a correction. Missed EDPMS closure blocks future inward remittance |
+| 3 | India IT Rules 2021: the "50 lakh" significant-social-media-intermediary threshold | §44, L4119 | The Rules defer to a Central Government notification that **is not in the Rules** (Rule 2(1)(v)) [fetched]. Whether a one-to-many publishing tool is a "social media intermediary" at all is [inference] | Indian counsel, one written note covering Rule 2(1)(v), 2(1)(w) and the 24-hour acknowledgement duty | ₹40,000–₹1,20,000 (itself `[SS, unverified]`, §44 L4194) | D15 ships publish either under obligations that do not apply, or without ones that do |
+| 4 | EU Art. 13 representative €200–€500/month · Indian counsel ₹40,000–₹1,20,000 | §44, L4194 | §53 makes the EU representative a **date-gate before the first EU free signup**, not an effort-gate | Two written quotes | One week of email; free | A recurring cost line that gates launch, budgeted from a search summary |
+| 5 | "International gateways without UPI lose 30–40% of Indian checkouts" `[SS, vendor-sourced]` | §24, L2441 | Chooses Razorpay over Paddle / Lemon Squeezy. §53: migrating billing counterparties mid-flight **breaks the FEMA paper trail** | Razorpay's or NPCI's own published funnel data; failing that, decide the rail on the FEMA/MoR question and demote this to a prior | 1 hour | An irreversible rail chosen on a vendor's own marketing number |
+| 6 | "By month 24 the median solo B2B founder's revenue is more than 4× the median solo B2C founder's" | §21, L2221 | The two-motion strategy — D2C acquisition, B2B monetisation — rests on this one sentence. **No study is named** | Name the study and its n, or delete the sentence and keep the reasoning | 20 minutes, or free | The first investor or HN commenter asks for the source and there is none |
+| 7 | "21.9M India GitHub contributors, +5.2M in a year, +35% YoY consumer app spend" | §24, L2439 | Underwrites India-first distribution and the ₹299 anchor — against §24's own [derived] finding that ₹299 needs **59.5% more paying humans** than $5 for identical revenue | GitHub Octoverse, one page | 20 minutes | The single most checkable number in the document, in the section where being wrong costs the most |
+| 8 | "Zero category-specific willingness-to-pay evidence for markdown tools in India" · "India's markdown community is greenfield" · moat #1 "does not exist yet" | §24 L2439 · §24 L2339 · §27 L2546 | Three absence claims from one source. They rank the moats and sequence the market | An absence claim cannot be closed by searching. State the searches run, the date, and the languages — bound it instead of asserting it | 1 hour | Highest social blowback per word: one reply from someone who runs the thing you said does not exist |
+| 9 | Support deflection "18% median, 40–60% with AI, $25–35/ticket" | §21, L2227 | Prices ICP #3 at $99–249 per knowledge base | Open Zendesk's, Intercom's and Document360's own published benchmarks | 1–2 hours | Goes into B2B collateral aimed at three vendors who publish their own, different numbers |
+| 10 | "Vanta and Drata charge $7,000–$30,000/yr for continuous audit trails" | §21, L2235 | The ROI headline of the audit-trail wedge | Two pricing pages | 15 minutes | Two named vendors' prices, misquoted in a sales deck |
+| 11 | Code-signing: hardware-token surcharge +50–150 USD, DigiCert token +120 · max validity drops to **460 days from 2026-03-01** · DigiCert stops 2- and 3-year code-signing certs **from Feb 2026** | §39, L3734 · L3749 | §39 already records that all Windows cert prices are reseller quotes and SSL.com's product pages **404'd through curl** [measured]. If the two deadlines are real, multi-year prepayment is no longer a lever | A CA's own pricing page plus the CA/Browser Forum ballot record | 1 hour | Budgeting a cost lever that has already expired |
+| 12 | "561 of 3,220 HN comments" — sync silently destroys data | §2 #2, L174 | Problem #2, the headline pain, and the justification for T0 being the first customer-visible lane. The cell carries **`[SS]` and `[fetched]` simultaneously** [measured] | Resolve to one tag; publish the query, the date window and the classifier | 2 hours | The product's stated reason to exist is tagged two ways in one table cell |
+| 13 | CommonMark "0.31.2, released 2024-01-28; still the current release as of 2026-08" | §8, L445 | The spec floor the entire substrate is defined against | `commonmark.org`, one fetch | 5 minutes | Building the floor against a superseded version |
+| 14 | "Under 4% of GitHub notebooks reproduce" (Pimentel 2019) | §2 #5 and §5 (3 body occurrences) | §5's survivors-and-traps table — the projection law's clearest external evidence | Open the paper; quote its reproducibility definition alongside the figure | 30 minutes | LR#72's exact class: a specific figure, a specific paper, a specific definition, never opened |
+| 15 | "OpenAI **removed** Canvas in May 2026" | §3.1, L205 | §3.3's structural hedge against chat-to-artifact rests on it | OpenAI's changelog or release notes | 15 minutes | A falsifiable claim about a named company carrying a structural argument |
+| 16 | "Notion cut free AI to 20 responses *for life* and raised Business ~20%; Microsoft's +43% Copilot bundling drew a CMA probe" | §2 #8, L180 | §24.8's pricing-promise section | Notion's pricing page and the CMA case page | 30 minutes | Names a regulator and two competitors' pricing, inside a section whose argument is that *they* misstate things |
+| 17 | "Relay proved the path with 172,544 downloads of a commercial service's bridge plugin" | §26, L2525 | The "Open in frontmatter" plugin is named the **primary distribution play** | Obsidian's community-plugin stats JSON | 10 minutes | The distribution thesis rests on one competitor's download count |
+| 18 | "GitBook's dominant complaint cluster is reliability and lost work — the gap is real today" | §27, L2547 | Moat #2's only fresh external evidence that the 18–36-month window is real | GitBook's public issue tracker and community, with counts and a date window | 2 hours | The moat duration argument loses its evidence and keeps its number |
+| 19 | ADA Title III "no technical standard promulgated" · axe "covers roughly a third of WCAG issues" | §35, L3339 · L3414 | A US legal posture and the (correct) anti-recommendation against an axe CI threshold | Counsel for the first; Deque's own published coverage claim for the second | 20 min + counsel time | A legal posture stated as fact in a procurement conversation |
+| 20 | `blocksToMarkdownLossy()` "is a real API name" | §6 L111, §6.2 L328 | Principle #3's entire published justification — "the market's own confession" | **Nothing.** §36 line 3463 already tags the identical fact `[fetched]`. Retag | 5 minutes | Publishing the flagship line under `[SS]` when the fetched evidence is three sections away |
+| 21 | r/ObsidianMD ~344,000 / Discord ~195,000 — **untagged** | §26, L2519 | Channel sizing for the whole GTM plan | Read the subreddit header and the Discord landing page | 5 minutes | An untagged number reads as measured, which is worse than an honest `[SS]` |
+
+- **Recommendation:** close rows 13, 15, 16, 17, 20 and 21 first. Six rows, under two hours, no professional required, and they remove the six most publicly checkable exposures.
+- **Anti-recommendation:** do not close rows 1–4 by reading more. Tax and intermediary law is not a research problem with a better search query; the primary hosts already refused, and an agent's confident summary of a paywalled clause is exactly the artefact §51 exists to forbid.
+
+---
+
+### 66.5 Decorative — may stay unverified, may never be quoted
+
+Each of these can be deleted without changing a single decision. Keep them as texture; never move them into a slide, a landing page, or an investor answer.
+
+- org-mode's agenda "running since 2003, computed on the fly from date tags" (§5) — illustrative; the projection law does not depend on it.
+- Obsidian Bases: "the `.base` file saves only how you want to look" (§5) — a contrast, not evidence.
+- "Notion formulas cannot aggregate across rows" (§2 #5, §5, twice) — colour on a point Coda's export already carries.
+- "Coda's export loses formulas, buttons, canvas properties" (§5) — same point, second vendor.
+- "Notion users write ad-blocker rules against AI buttons" (§6.2) — an anecdote decorating an already-settled non-goal.
+- "VS Code's own wiki names extensions the #1 performance suspect; Typora's most-requested feature has 251 votes" (§6.2) — the no-marketplace decision is settled on blast radius, not on these.
+- "Granola: $1.5B valuation on template-typed capture" (§12) — a valuation is not evidence that typing at capture works.
+- "Litmus at $500/mo proves the testing layer monetises" (§3) — supports an argument, not a plan.
+- Lex's review loop "in development" (§3) — a competitor's roadmap; the same row's other two cells are `[fetched]`.
+- "Writing editors have nothing" for byte-anchored provenance (§3) — keep as reasoning; §58 already narrows the publishable form.
+- "The view IS the data; export lossy by architecture" (§3) — a category summary; the load-bearing instance is row 20 above.
+- "Provenance evaporates at accept" for Cursor / Windsurf / Lex / Grammarly (§3, §2 #4) — one instance is enough and it is already triaged.
+- Prince and Typst footnote support and repeating table headers (§9, two cells) — our own column is `[measured]`; theirs is decoration.
+- "No PRD standard exists; the circulating SRS clause list is `[SS]` from a secondary encyclopedia page" (§14) — already fenced by §14's own refusal to publish a clause list.
+- The ACM row (§42.2) — already labelled "do not cite as verified". Correct as written.
+- Failed-payment recovery, 47.6% vs 12.7% (§45) — already fenced with "do not set a target from either". Correct as written.
+- "No primary source for a competitor's activation threshold was opened" (§47) and "no invite-to-activation figure was reachable" (§37) — self-cancelling tags. Correct as written; these are the model.
+- ₹95.4/USD (§36) — superseded by §57's live ₹95.39 / ₹95.59 [measured]. Retag or delete, do not re-verify.
+- DPDP Gazette number G.S.R. 846(E) (§47) — the date (14 Nov 2025) is `[fetched, PIB]`; the number is decoration on top of it. Open the Gazette or drop the number.
+- Cowlishaw's 1977 STET editor and *Stet* public-commenting software (§52) — historical colour. The collision that actually decides the name is `elberacasa/stet` shipping `stetmark` on 2026-08-05 at 5,753 dl/mo, and that is `[measured]`.
+
+---
+
+### 66.6 Researched by nobody
+
+R12's fourteen agents closed most of §55.3. What remains at or near zero in this document [measured, word-boundary counts over 100,114 words]:
+
+| Gap | Evidence | Consequence |
+|---|---|---|
+| **SEO for published pages** | `open graph` 0 · `meta tag` 0 · `robots.txt` 0 · `Core Web Vitals` 0 · `sitemap` 1 | Publish is half the Power tier and its discoverability surface is undesigned |
+| **Transactional email and deliverability** | `SPF` 0 · `DKIM` 0 · `unsubscribe` 0 · `transactional email` 0 · `DMARC` 1 (and that hit is GitLab's backup-alarm postmortem, not our sender config) | The review surface and the conflict inbox are inert without notification; §32's own dead-man switch depends on mail arriving |
+| **Browser consent surface** | `cookie` 0 · `cookie banner` 0 (`consent` 10 hits are DPDP-side) | §47's funnel is unobservable without a lawful basis stated in a banner |
+| **Platform AI-disclosure norms** | §55.1: the YouTube help page returned 1,420,253 bytes of navigation chrome and no policy body | §42 cannot state what any platform requires of published AI-assisted content |
+| **PRC 强制性国家标准 label syntax** | Not opened | The exact mandated text-label form is unknown; §42 must not assert one |
+| **Digital Omnibus effective date** | The amending act URL returned a 404 page | The 2 Aug vs 2 Dec 2027 disagreement in §42.1 stands unresolved |
+
+- **Anti-recommendation:** do not open a research round for these. Five of the six are configuration decisions a builder makes in an afternoon once a surface exists; only the last three need a source, and two of those need a human (§66.7).
+
+---
+
+### 66.7 What only a human can close
+
+| # | Need | Why no agent closes it | Gate |
+|---|---|---|---|
+| 1 | **Bot-gated: ACM publications policy** | HTTP 403 to an agent, 200 to a browser [PRD §55.1] | Before §42.2's ACM row is repeated to any academic customer |
+| 2 | **Bot-gated: OpenAI classifier-withdrawal post** | HTTP 403 **plus a JS wall** [PRD §55.1] | Before any claim about detector retirement appears anywhere |
+| 3 | **The visual design pass — never run** | §7.4's defect is read out of `src/app/globals.css`, not seen on a screen. Browser verification was **BLOCKED**: the Next 16 + Turbopack dev server reproducibly crashed compiling the heavy workspace route across 4+ attempts over 2 sessions [measured, project memory via `research/frontmatter-raw-corpus.json`]. In the r7 naming session both WebFetch and the browser pane were session-gate-refused [measured, `agent-reports-2026-08-29-r7/x4-external-frontier-importer-naming.md:133`] | **R0.10 cannot be marked done without it.** A shipped `--accent: #18181b` with 6/8/12px radii, and a `body-faint` token failing AA, have never been looked at |
+| 4 | **GST position** — export test, LUT vs pay-and-refund, convertible-foreign-exchange, reverse charge, e-invoicing, EDPMS | Chartered accountant, with the MoR contract | Before the first paid invoice (§53) |
+| 5 | **DPDP + IT Rules 2021** — data-fiduciary duties, SSMI threshold, grievance officer, 24-hour acknowledgement, DMCA agent | Indian counsel + a US agent of record | Before one-toggle publish reaches the public internet |
+| 6 | **Trademark clearance** | USPTO TESS, EUIPO, IP India/TMR, WIPO Madrid, unregistered common-law rights — **UNCHECKED and not checkable here** (§52.4). Handle availability is a different question in kind | Before any spend on domains, logo or launch copy, and before choosing between a qualified "frontmatter" and a coinage |
+| 7 | **Domain availability, all of §52** | No registrar or RDAP host is in the sandbox allowlist — **every domain in §52 is UNCHECKED** (§55.1) | Re-run on the day of registration; nothing reserves them |
+| 8 | **WCAG 2.2 AA conformance + ACR/VPAT** | Accessibility auditor | Before any B2B procurement conversation |
+| 9 | **Whether an EU AI Act obligation is discharged** | The customer's own counsel. A solo founder in India must never be the party asserting EU compliance (§42.6) | Before any EU compliance language ships |
+| 10 | **PRC labelling conformance** | A PRC-qualified adviser who can read the incorporated standard | Before any China-facing export claim |
+| 11 | **Independent adversarial review of the engine's own verifiers** | A reviewer who did not write them — LR#60 | Before the corpus gate is cited as proof of anything |
+| 12 | **The M3 two-device run** | §28.5 already assigns it to the founder: "watched by a human, recorded" | M3 |
+| 13 | **D5, the two unrotated PATs** | §54: "Only you. Today" | Today |
+| 14 | **Whether a stranger will pay** | §66.8 | — |
+
+The distinction in rows 1–2 versus row 7 matters because the fixes differ: a bot gate needs a human with a browser and five minutes; the registrar block needs network access the agent does not have and cannot request. Rows 4, 5, 8, 9 and 10 need a person who carries professional liability for the answer, which is the only real reason to pay for one.
+
+---
+
+### 66.8 The single most dangerous unverified assumption
+
+**That anyone outside this building will pay for byte-fidelity.**
+
+| Test | Result |
+|---|---|
+| `interview` in 100,114 words | **1** — and it is Ink & Switch's Upwelling interviewees from March 2023, other people's research (§34, L3274) [measured] |
+| `interviews` · `design partner` · `waitlist` · `beta tester` · `pre-order` · `landing page` · `user test` · `focus group` · `willingness to pay` | **0 each** [measured] |
+| `customer discovery` · `design partner`, across all 105 reports and 374,866 words | **0 each** [measured] |
+| Where a paying non-founder first appears in the plan | **M7**, the final gate: "M0–M6 green + MoR live + EU rep appointed + ToS published + one paying non-founder account" (§28.4) |
+| M7 calendar date | **2027-04-28**, a Wednesday — **241 days from today** [measured: `date`; derived] |
+
+Everything else in this register is a number that might be wrong. This one is a number that does not exist. The document contains 105 reports, seven markdown engines, 8,513 pinned third-party files, a foreign-corpus gate, a degradation certificate, three merchant-of-record analyses, an Indian tax position and an EU representative — and not one conversation with a person who might hand over ₹299. Section 24 argues at length about ₹299 versus $5 and derives that the rupee price needs 59.5% more paying humans for identical revenue [derived]. Both figures assume a numerator nobody has observed.
+
+**Cost of being wrong:** 241 days of solo build to 2027-04-28, plus the R0 lane that §53 calls "a multi-month lane before any customer-visible feature", plus the non-recoverable spend the plan front-loads by design — the MoR before the first paid signup, the EU Art. 27 representative before the first EU *free* signup, the CA, the lawyer, the trademark attorney, the accessibility auditor. The sequencing in §53 is correct for a product with demand and is the most expensive possible ordering for one without it: every irreversible commitment lands *before* the first signal.
+
+- **Recommendation:** put one falsifiable demand test in front of R0, not after M6. The cheapest form consistent with §58's publication ban is a page that shows the *refusal contract* — "here is what this tool will refuse to do to your file, and why" — with a paid-waitlist button, no fidelity percentage, no engine number, nothing tagged `[SS]`. That is publishable today under §58's own rules, because it markets a behaviour rather than a measurement.
+- **Anti-recommendation:** do not build the demand test into the product, and do not let it reorder R0. NF-1, NF-3 and CI are correctness work that must happen regardless of what the test says, and §28.3 already puts R0.5 in the first 48 hours. A landing page that delays the engine has converted one unverified assumption into two.
+- **What would falsify the recommendation:** if fewer than 20 people leave an email against the refusal-contract page in 30 days, the answer is not "market harder" — it is that the wedge is wrong and §21's two-motion strategy needs rewriting before month four, not month nine. If the test cannot be run without publishing a fidelity number, do not run it; §58's ban outranks this section.

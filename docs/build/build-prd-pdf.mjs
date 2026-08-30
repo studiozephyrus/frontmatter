@@ -52,12 +52,20 @@ const FONTCSS = [
 // FM_PDF_COMPACT=1 tightens the type scale, margins and section breaks. Same content,
 // fewer pages: the default forces every H2 onto a fresh page, which wastes a lot of
 // paper when a document has 61 short-to-medium sections.
-const COMPACT = process.env.FM_PDF_COMPACT === '1'
-const T = COMPACT
-  ? { body: 8.5, lh: 1.44, h1: 26, h2: 13, h3: 10.2, h4: 9, tbl: 7.0, tlh: 1.32,
-      pad: '1.0mm 1.4mm', margin: '13mm 12mm 11mm', pGap: 2.4, secBreak: 'auto', chapPad: 4 }
-  : { body: 9.4, lh: 1.58, h1: 30, h2: 15, h3: 11.4, h4: 9.8, tbl: 7.7, tlh: 1.4,
-      pad: '1.4mm 1.8mm', margin: '17mm 15mm 15mm', pGap: 3, secBreak: 'page', chapPad: 5.5 }
+const MODE = process.env.FM_PDF_MODE || (process.env.FM_PDF_COMPACT === '1' ? 'compact' : 'default')
+const COMPACT = MODE === 'compact'
+// PRINT is the mode this document is meant to be read in: sized for paper, not screens.
+// Body at 9.4pt/1.5 and tables at 8.3pt are legible in hand; the compact mode's
+// 8.5/7.0 is not, and was a bad trade of legibility for page count.
+const SCALES = {
+  default: { body: 9.4, lh: 1.58, h1: 30, h2: 15, h3: 11.4, h4: 9.8, tbl: 7.7, tlh: 1.4,
+             pad: '1.4mm 1.8mm', margin: '17mm 15mm 15mm', pGap: 3, secBreak: 'page', chapPad: 5.5, chapGap: 0 },
+  compact: { body: 8.5, lh: 1.44, h1: 26, h2: 13, h3: 10.2, h4: 9, tbl: 7.0, tlh: 1.32,
+             pad: '1.0mm 1.4mm', margin: '13mm 12mm 11mm', pGap: 2.4, secBreak: 'auto', chapPad: 4, chapGap: 6 },
+  print:   { body: 9.4, lh: 1.5, h1: 30, h2: 16, h3: 11.2, h4: 9.6, tbl: 8.3, tlh: 1.38,
+             pad: '1.5mm 2.0mm', margin: '16mm 15mm 14mm', pGap: 3, secBreak: 'auto', chapPad: 5, chapGap: 9 },
+}
+const T = SCALES[MODE] || SCALES.default
 
 const raw = fs.readFileSync(input, 'utf8')
 const src = raw.replace(/^---\n[\s\S]*?\n---\n/, '')
@@ -109,6 +117,18 @@ const render = (md) => {
     /<pre><code class="language-mermaid">([\s\S]*?)<\/code><\/pre>/g,
     (m, code) => `<figure class="dia"><div class="mermaid">${code}</div></figure>`
   )
+  // Evidence tags appear 300+ times. As inline <code> they shout on every line and
+  // fight the text for attention. As small lettered chips they stay checkable and
+  // stop being visual noise — the legend in §0.1 carries the meaning.
+  // Tags come in compound forms too: [SS/fetched], [measured, on their shipped build],
+  // [fetched, PRD 32]. Match the whole bracket, colour it by the FIRST tag word, and
+  // keep the qualifier visible — the qualifier is often the load-bearing part.
+  h = h.replace(/<code>\[((?:measured|fetched|derived|SS|inference|live-verified)[^\]]*)\]<\/code>/g,
+    (m, body) => {
+      const first = /^[a-zA-Z-]+/.exec(body)[0].toLowerCase()
+      const key = first === 'live-verified' ? 'measured' : first
+      return `<span class="ev ev-${key}">${body}</span>`
+    })
   h = h.replace(/<table>/g, '<div class="tw"><table>').replace(/<\/table>/g, '</table></div>')
   h = h.replace(/<(h[3456])>([\s\S]*?)<\/\1>/g, (m, t, i) =>
     `<${t} id="${slug(i.replace(/<[^>]+>/g, ''))}">${i}</${t}>`)
@@ -159,13 +179,20 @@ em{font-style:italic}
 code{font:400 .87em var(--mono);background:var(--bg2);border:.4pt solid var(--hair);padding:.2mm 1mm;white-space:nowrap}
 pre{background:var(--bg2);border:.4pt solid var(--hair);border-left:1.2pt solid var(--blue);padding:2.8mm 3mm;margin:3.2mm 0;break-inside:avoid}
 pre code{border:0;background:none;padding:0;font-size:7.4pt;line-height:1.45;white-space:pre-wrap;word-break:break-word}
-.tw{margin:3.2mm 0;break-inside:avoid}
+.tw{margin:${MODE==='print'?4:3.2}mm 0;break-inside:avoid}
+.ev{display:inline-block;font:600 6.2pt/1 var(--mono);letter-spacing:.06em;text-transform:uppercase;
+ padding:.5mm 1mm;border-radius:1.5pt;vertical-align:.6pt;white-space:nowrap}
+.ev-measured{background:#e8f0ff;color:#1a4bd8}
+.ev-fetched{background:#e9f5ec;color:#1d6b3a}
+.ev-derived{background:#f2ecfb;color:#5b3ba8}
+.ev-ss{background:#fdeeee;color:#b03434}
+.ev-inference{background:#f3f4f6;color:#5b6270}
 table{border-collapse:collapse;width:100%;font-size:${T.tbl}pt;line-height:${T.tlh}}
-th,td{padding:${T.pad};text-align:left;border-bottom:.4pt solid var(--hair);vertical-align:top}
-th{font:600 6.6pt var(--mono);letter-spacing:.07em;text-transform:uppercase;color:var(--ink3);background:var(--bg2);border-bottom:.7pt solid var(--hair)}
+th,td{padding:${T.pad};text-align:left;border-bottom:.3pt solid #eef0f3;vertical-align:top}\ntbody tr:last-child td{border-bottom:0}
+th{font:600 ${MODE==='print'?7.0:6.6}pt var(--mono);letter-spacing:.07em;text-transform:uppercase;color:var(--ink3);background:var(--bg2);border-bottom:.8pt solid #d8dce2}
 td code{font-size:.9em;white-space:normal}
-blockquote{margin:3.2mm 0;padding:2.5mm 0 2.5mm 4mm;border-left:1.5pt solid var(--blue);color:var(--ink2);background:var(--bg2)}
-blockquote p:last-child{margin:0}
+blockquote{margin:${MODE==='print'?4:3.2}mm 0;padding:${MODE==='print'?'3mm 3mm 3mm 4.5mm':'2.5mm 0 2.5mm 4mm'};border-left:2pt solid var(--blue);color:var(--ink2);background:var(--bg2);break-inside:avoid}
+blockquote p:last-child{margin:0}\nblockquote strong{color:var(--ink)}\nblockquote p:only-child{font-size:1.04em}
 hr{border:0;border-top:.4pt solid var(--hair);margin:6mm 0}
 .dia{margin:4mm 0;padding:3.5mm 3mm;border:.4pt solid var(--hair);background:var(--bg2);text-align:center;break-inside:avoid}
 /* A Mermaid graph has no natural page sense: a tall one would overflow the page box and
@@ -187,9 +214,9 @@ hr{border:0;border-top:.4pt solid var(--hair);margin:6mm 0}
 .ts{padding:0 0 1.8mm 10mm;border-bottom:.4pt solid var(--hair);font:400 7.4pt/1.5 var(--sans);color:var(--ink3)}
 .ts a{color:var(--ink3)}
 .ts i{font-style:normal;color:var(--hair);padding:0 1.5mm}
-.chap{break-before:${T.secBreak}}\n.chap+.chap{margin-top:${COMPACT?6:0}mm}
+.chap{break-before:${T.secBreak};orphans:2;widows:2}\n.chap+.chap{margin-top:${T.chapGap}mm}
 .chead{display:flex;align-items:baseline;gap:3mm;border-bottom:1.2pt solid var(--blue);padding-bottom:2mm;margin-bottom:${T.chapPad}mm;break-after:avoid}
-.cn{font:700 15pt/1 var(--sans);color:var(--blue);letter-spacing:-.02em}
+.cn{font:700 ${T.h2}pt/1 var(--sans);color:var(--blue);letter-spacing:-.02em;min-width:${MODE==='print'?11:9}mm}
 .intro{break-after:page}
 </style></head><body>
 <div class="cover"><div class="ctop"><p class="k">SGNK · Zephyrus Studio · Product requirements &amp; research record</p>

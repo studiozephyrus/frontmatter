@@ -1,7 +1,7 @@
 ---
 budget: 2200
 budget_covers: Tiers through Routing
-updated: 2026-08-30
+updated: 2026-08-31
 ---
 
 # MAP — the referential architecture
@@ -18,13 +18,42 @@ updated: 2026-08-30
 |---|---|---|---|
 | **0** | `AGENTS.md` | Always. Every session, first. | ~2k tok |
 | **0** | `docs/MAP.md` (this file) | Always, with AGENTS.md | ~2k tok |
-| **1** | `docs/FRONTMATTER-PRD-v2-2026-08-29.md` | Starting any product work — why, what, for whom | 61 sections; read the section, not the file |
-| **1** | `docs/DEV-PLAN.md` | Starting any engineering work — stack, layers, ops | read the section |
-| **1** | `docs/ENGINE.md` | Touching MDMAX or the splice contract | read the section |
+| **1** | `docs/FRONTMATTER-PRD-v2-2026-08-29.md` | Starting any product work — why, what, for whom | §0–66; read the section, not the file |
+| **1** | `docs/DEV-PLAN.md` | Starting any engineering work — stack, layers, ops | local §1–13 |
+| **1** | `docs/ENGINE.md` | Touching MDMAX or the splice contract | §67–80 |
+| **1** | `docs/BUSINESS.md` | Pricing, churn, refunds, comms, distribution, the plugin question | §81–87 |
+| **1** | `docs/REFERENCES.md` | Choosing what to read, copy, or buy before building | local §1–7 |
 | **1** | `specs/SPECS.md` | Before implementing anything | ~1.3k tok, budget-enforced |
 | **2** | `specs/<area>/<id>.md` | Implementing that one contract | one file, ~1–2k tok |
 | **2** | `docs/adr/NNNN-*.md` | Asking "why is it this way" | one file |
 | **3** | `docs/research/agent-reports-*/**` | **Only** to verify a claim you are about to publish | 105 files, 374,866 words |
+
+## How to cite a section
+
+Two numbering runs exist, and mixing them sends a reader to the wrong document.
+
+| Run | Files | Cite as |
+|---|---|---|
+| **Global §0–87** | PRD (§0–66) · `ENGINE.md` (§67–80) · `BUSINESS.md` (§81–87) | a bare `§74` — it resolves to exactly one place |
+| **Local** | `DEV-PLAN.md` (§1–13) · `REFERENCES.md` (§1–7) | **always file-qualified**: `DEV-PLAN §5`, `REFERENCES §3` |
+
+The three global-run files were written as one continuous document and split by subject, so
+every cross-reference an agent wrote still resolves. `docs/build/assemble-tree.mjs` asserts
+that their numbers survive assembly unchanged and exits 1 if any would be renumbered.
+
+## How the tree is built
+
+Tier-1 files are **derived**, not hand-edited. The sources are the agent reports under
+`docs/research/`; `docs/build/build-tree.mjs` projects them into the files above.
+
+```bash
+npm run tree      # rebuild DEV-PLAN / ENGINE / BUSINESS / REFERENCES from the reports
+npm run doc       # assemble the whole tree into one printable markdown document
+```
+
+If a section is wrong, fix the report and re-run — editing the derived file by hand means
+the next run silently reverts you. That is the projection law (PRD §5) applied to our own
+documentation, and it is deliberate.
 
 ## Routing — task to artifact
 
@@ -40,6 +69,9 @@ updated: 2026-08-30
 | Touch sync or conflicts | `docs/DEV-PLAN.md` §Live → PRD §31 | Never a CRDT for document bytes |
 | Price, package, or bill | PRD §23–25, §45 | ₹15,000/txn is an architectural constant |
 | Write anything public | **PRD §58 first** | Lists what may and may not be claimed |
+| Change a price or a plan | `BUSINESS.md` §83 → PRD §45 | ₹15,000/txn is an architectural constant |
+| Tell users anything at all | `BUSINESS.md` §81 | There is no channel yet; that is a defect, not a gap |
+| Argue about plugins | `BUSINESS.md` §86 | The ban and the community moat are in genuine tension |
 | Quote any number | **PRD §57 first** | Twenty numbers went stale; re-derive at write time |
 | Claim a lane is done | `specs/_schema/states.md` | Only the harness writes `verified` |
 
@@ -55,7 +87,9 @@ A fact stated twice will drift. These are the homes; everywhere else cross-refer
 | Corpus results and refusal rate | PRD §7.1, corpus at `test/corpus/foreign/` |
 | Sync decision and its disqualifications | PRD §31.1 |
 | Stack choices and costs | `docs/DEV-PLAN.md` |
-| Engine internals | `docs/ENGINE.md` |
+| Engine internals | `docs/ENGINE.md` §67–80 |
+| Churn, refunds, pricing experiments, comms | `docs/BUSINESS.md` §81–87 |
+| What to read / copy / buy | `docs/REFERENCES.md` |
 | What may not be published | PRD §58 |
 | Stale numbers | PRD §57 |
 
@@ -79,6 +113,8 @@ Kept for provenance only. Reading them will give you an answer that was true onc
 npm run spec      # contract gate — 0 errors required
 npm run corpus    # 8,513 files, byte-pinned, exits 1 on one changed byte
 npm run verify    # typecheck → lint → test → build → arch → spec
+npm run tree      # rebuild the derived Tier-1 docs from the agent reports
+npm run doc       # assemble the tree into one printable document, with integrity gates
 ```
 
 ## The four rules that override everything
