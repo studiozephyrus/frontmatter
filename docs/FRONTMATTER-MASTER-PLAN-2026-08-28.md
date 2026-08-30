@@ -1,3 +1,6 @@
+> **SUPERSEDED — do not build from this file.** It is kept for provenance only.
+> The current record is `docs/FRONTMATTER-PRD-v2-2026-08-29.md`. See `docs/MAP.md`.
+
 # FRONTMATTER — THE MASTER PLAN (v2.0, integration complete)
 
 **Written 2026-08-28, final integration ~19:00 IST.** Five research rounds, 29 agents, ~5.5M research tokens, synthesized with the prior internal record (mdmax PLAN §4/5/7/8, engine PLAN, mdmap, the July demand corpus, AIOS). Every claim carries a tag: `[measured]` = executed here against live code/corpora · `[fetched]` = primary source opened · `[SS]` = search-summary, unverified · `[inference]` = reasoning. Full evidence: **`docs/research/agent-reports-2026-08-28/`** (29 reports, referenced as `→ i1..i7, e1..e8, h1..h4, ed1..ed5, aj1..aj4, f1`).

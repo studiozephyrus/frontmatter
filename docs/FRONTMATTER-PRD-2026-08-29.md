@@ -1,3 +1,6 @@
+> **SUPERSEDED — do not build from this file.** It is kept for provenance only.
+> The current record is `docs/FRONTMATTER-PRD-v2-2026-08-29.md`. See `docs/MAP.md`.
+
 # frontmatter — Product Requirements & Research Record
 
 **v1.1 · 2026-08-29 · Zephyrus Studio · owner: Sagnik Mitra**
