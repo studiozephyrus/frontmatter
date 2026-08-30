@@ -102,12 +102,20 @@ for (const part of PARTS.slice(1)) {
   for (const block of blocks) {
     const m = /^##\s+(\d+)\.\s*(.+)$/m.exec(block)
     if (!m) continue
+    // When a LOCAL-run section moves (DEV-PLAN §3 -> §90), its subsections and every
+    // reference to them must move with it, or the printed record shows "§90" containing
+    // "3.1" and reads as broken. Only `### N.x` headings and `§N.x` references are
+    // rewritten - a bare `3.6` in prose or a version string is left alone.
+    const renumberBody = (text, from, to) => from === to ? text : text
+      .replace(new RegExp(`^(###+\\s+)${from}\\.(\\d+)`, 'gm'), `$1${to}.$2`)
+      .replace(new RegExp(`§\\s*${from}\\.(\\d+)`, 'g'), `\u00a7${to}.$1`)
+
     if (part.identity && Number(m[1]) !== n) {
       console.error(`FATAL ${part.file}: authored \u00a7${m[1]} would be renumbered to \u00a7${n}.`)
       console.error('  These files share the global run; renumbering breaks every cross-reference.')
       process.exit(1)
     }
-    push(m[2].trim(), block.slice(block.indexOf('\n') + 1))
+    push(m[2].trim(), renumberBody(block.slice(block.indexOf('\n') + 1), Number(m[1]), n))
   }
 }
 

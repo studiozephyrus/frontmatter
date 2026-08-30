@@ -33,7 +33,12 @@ run('node', ['docs/build/check-refs.mjs'])
 console.log('\n── assemble ──')
 run('node', ['docs/build/assemble-tree.mjs', RECORD])
 
-// 4 — name the artifact
+// 4 — the record must carry every tree file unchanged. Section counts are not
+// evidence: a heading can survive while its body is dropped.
+console.log('\n── record integrity ──')
+run('node', ['docs/build/check-record.mjs'])
+
+// 5 — name the artifact
 const doc = fs.readFileSync(RECORD, 'utf8')
 const words = doc.split(/\s+/).filter(Boolean).length
 const now = new Date()
@@ -49,7 +54,7 @@ if (fs.existsSync(`docs/${base}.pdf`)) {
   process.exit(1)
 }
 
-// 5 — render
+// 6 — render
 console.log(`\n── render (${MODE}) ──`)
 run('node', ['docs/build/build-prd-pdf.mjs', RECORD, base,
   'frontmatter',

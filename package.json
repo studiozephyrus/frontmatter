@@ -17,7 +17,7 @@
     "format:check": "prettier --check .",
     "arch": "node specs/harness/clean-architecture-report.mjs",
     "verify": "npm run typecheck && npm run lint && npm run test && npm run build && npm run arch && npm run spec",
-    "budget": "echo 'No bundle budget configured yet — skipping'",
+    "budget": "echo 'No bundle budget configured yet \u2014 skipping'",
     "tauri": "tauri",
     "tauri:dev": "tauri dev",
     "tauri:build": "tauri build",
@@ -29,7 +29,8 @@
     "tree": "node docs/build/build-tree.mjs",
     "doc": "node docs/build/assemble-tree.mjs docs/FRONTMATTER-RECORD.md",
     "pdf": "node docs/build/build-final.mjs",
-    "refs": "node docs/build/check-refs.mjs"
+    "refs": "node docs/build/check-refs.mjs",
+    "record": "node docs/build/check-record.mjs"
   },
   "dependencies": {
     "@ai-sdk/cerebras": "^2.0.54",
