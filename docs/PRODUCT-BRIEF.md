@@ -52,13 +52,73 @@ We measured this rather than assumed it. Across the complaint corpora we mined:
 
 > [!good] Read row 6 and 7 together. The incumbents have the defect we fixed, they know it, and they have not fixed it. That is a real edge. We were just selling it with the wrong sentence.
 
-## PART II — Who this is for, and what the market has
+## PART II — The research, and who this is for
 
-### 3. What people are actually struggling with
+### 3. What we actually researched, and what it cost
+
+Twenty-six rounds, 109 reports, ~282,000 words of research behind a 40-page document. This is what was covered, so the depth is visible rather than claimed.
+
+::exhibit 3 | The research programme
+
+| Round group | What it asked | Reports | Headline finding |
+|---|---|---|---|
+| R1–R6 | Markdown as a substrate · competitors · formats · AEO · knowledge formats | 35 | The projection law; markdown is the right base |
+| R7 | Cost and payment rails, re-derived | 16 | Margin was never the problem; **distribution is** |
+| R8–R10 | Engine, sync, rendering, protocol | 29 | Never a CRDT — they interleave; git merge is byte-faithful |
+| R11–R12 | Perf, data, DR, search, a11y, API, roles, i18n, billing | 25 | 20 unresearched areas closed |
+| R13–R14 | System view, personas, positioning, gap sweep | 13 | Found 14 gaps nobody had asked about |
+| R15–R16 | MDMAX audited and redesigned | 14 | 11 real engine defects, all scoped |
+| R17 | Comms, churn, refunds, ops, plugins, distribution | 7 | **No channel existed to tell a user anything** |
+| R18 | War-game + 21 load-bearing claims verified | 9 | **62% of our own claims needed correction** |
+| R19 | AI economics, offline/online, features, MVP staging | 8 | "MVP" appeared **zero times** in the record until here |
+| R20 | The fusion thesis, provider keys, repo access | 7 | *"It turns your repo into the prompt"* |
+| R21 | **What actually makes AI hard** — permitted to refute us | 7 | Slop +149%; handover products already launched 89× |
+| R22 | Niche problem · ecosystem fusion · money | 3 | **frontmatter IS sgnk-md** (202/228 identical) |
+| R23 | AIOS audited · 5,135 traces mined · consulting | 4 | Instrumentation alive, **learning loop not running** |
+| R24 | The editor as an editor · the USP | 4 | **Byte-exactness is not what users talk about** |
+| R25 | Reddit recovered · AI-editor teardown · WTP · retention | 5 | **Zed already ships our demo** |
+| R26 | Twelve adversarial audits + the plan | 12 | Two mutually exclusive buyers, never chosen |
+
+**Sources opened directly:** Hacker News (Algolia API, 22,662 comments), Reddit JSON, GitHub API (43,656 issues), arXiv, vendor pricing pages, Indian tax statute, EU regulation, RBI circulars, CommonMark spec, CA/Browser Forum.
+
+**Measured on our own machines:** the 8,513-file corpus run · the table-editor byte destruction · 5,135 trace rows · the `sgnk-md` file-by-file comparison · four independent counts of the corpus.
+
+### 4. The twenty insights that changed something
+
+Not everything we found — the things that changed a decision.
+
+::exhibit 4 | The findings that moved the plan
+
+| # | Insight | What it changed |
+|---|---|---|
+| 1 | Byte-exactness: 4 complaints in 12,556 | Killed it as the pitch, kept it as the mechanism |
+| 2 | Zed ships per-hunk review, documented | Killed our MVP-0 demo |
+| 3 | Slop: 23.7% of complaints, **+149%** | Became the problem we aim at |
+| 4 | Half of AI complaints are *model* problems, declining 19–67% | Stopped us building for hallucination |
+| 5 | Obsidian: editor free, sync $4 | Inverted the pricing model |
+| 6 | 89 handover products, median 2 points | Killed the context-pack wedge |
+| 7 | Decision renders: 0.0004% of downloads | Killed the flagship render |
+| 8 | Nested live preview: 501 likes | Became the free wedge |
+| 9 | Broken links on rename: 86 likes | Became MVP-1 |
+| 10 | Sync: #1 loved, #1 switching trigger | Pulled back into scope |
+| 11 | Cursor staff admit CRLF destruction | Proved the defect is real and unfixed |
+| 12 | 62% of our claims needed correction | Forced the verification pass |
+| 13 | frontmatter *is* sgnk-md, 202/228 identical | Settled D1; parked a codebase |
+| 14 | 83% of foreign vaults refused, one bug | Made NF-1 the first thing we fix |
+| 15 | Output tokens = 75.8% of AI spend | Cap output, not input |
+| 16 | RCM has **no** turnover floor | GST registration starts at the first API purchase |
+| 17 | Learning loop: 1 label per 6,884 decisions | Stopped us calling AIOS self-improving |
+| 18 | 87 words of docs per line of code | Diagnosed our own behaviour under uncertainty |
+| 19 | Obsidian runs B2B with **zero** B2B features | Killed the enterprise-feature roadmap |
+| 20 | Two mutually exclusive buyers | The decision still open |
+
+> [!note] **Nine of twenty killed something we planned to build.** That is the argument for having done the research: it is much cheaper to delete a feature from a document than from a codebase.
+
+### 5. What people are actually struggling with
 
 We did not guess at this. We mined Hacker News, Reddit, and GitHub issues and counted, with denominators, so that a number here means something.
 
-::exhibit 3 | The pain, ranked, with what it is really about
+::exhibit 5 | The pain, ranked, with what it is really about
 
 | Rank | What they say | How often | Is it the model, or the work around it? |
 |---|---|---|---|
@@ -83,11 +143,11 @@ The other half is not getting better, because it is not a model problem. It is t
 
 > [!warn] **The uncomfortable one.** We looked hard for people complaining that their editor mangled a file. In 12,556 comments about editors, four. In 1,000 Reddit posts, once. Across 43,656 GitHub issues, the phrase "line endings" appears once. **Nobody is asking for byte-exactness.** We spent months building an argument for a feature the market has never requested.
 
-### 4. Who has this problem badly enough to pay
+### 6. Who has this problem badly enough to pay
 
 Not everyone with the problem will pay for a fix. These are the people who might.
 
-::exhibit 4 | The candidate buyers, ranked by how much it costs them
+::exhibit 6 | The candidate buyers, ranked by how much it costs them
 
 | Who | What breaks for them | Would they pay? |
 |---|---|---|
@@ -100,9 +160,9 @@ Not everyone with the problem will pay for a fix. These are the people who might
 
 **We have never chosen between the first group and the last two, and that is a real problem.** The developer who ships fast wants speed and will not pay much. The agency and the regulated team want *proof* and will pay properly. They need different products. Building for both is how you build for neither.
 
-### 5. Market segments, and who we actually serve
+### 7. Market segments, and who we actually serve
 
-::exhibit 5 | The segments, sized and ranked
+::exhibit 7 | The segments, sized and ranked
 
 | # | Segment | Size signal | Pain | Will they pay? | Verdict |
 |---|---|---|---|---|---|
@@ -115,11 +175,11 @@ Not everyone with the problem will pay for a fix. These are the people who might
 
 **The wedge user, specific enough to email ten of this week:** a technical founder or lead engineer in a two-to-five person team, shipping with Claude Code or Cursor daily, keeping specs and decisions in a git repo, who has been burned at least once by a document nobody realised was machine-written. They are in r/ClaudeAI, r/ExperiencedDevs and the Obsidian forum, and they will tell you exactly what they think within an hour of trying something.
 
-### 6. The two buyers, and why we must choose
+### 8. The two buyers, and why we must choose
 
 This is the deepest problem in our plan and it is not a research gap — it is a decision nobody made.
 
-::exhibit 6 | The same product, sold to two different people
+::exhibit 8 | The same product, sold to two different people
 
 | | **The AI-native developer** | **The person who is liable** |
 |---|---|---|
@@ -137,11 +197,11 @@ This is the deepest problem in our plan and it is not a research gap — it is a
 
 > [!warn] If we do not pick, the roadmap will drift toward whoever complains loudest, which is always the developer, who is also the one who will not pay.
 
-### 7. Positioning, and the objections we will actually hear
+### 9. Positioning, and the objections we will actually hear
 
 **The positioning statement.** For teams building software with AI, frontmatter is the markdown editor that records which bytes the machine wrote — so you can review what matters instead of re-reading everything. Unlike Cursor or Zed, which rewrite whole files and cannot tell you what they changed, we only ever write an exact byte range.
 
-::exhibit 7 | Objections, and honest answers
+::exhibit 9 | Objections, and honest answers
 
 | Objection | Our answer | Is the answer good enough? |
 |---|---|---|
@@ -154,11 +214,11 @@ This is the deepest problem in our plan and it is not a research gap — it is a
 | "Zed has per-hunk review already" | It does. It also has no idea what a wikilink or a frontmatter key is | Adequate, not crushing |
 | "I don't have this problem" | Then we are not for you today | The right answer, and we should give it |
 
-### 8. What happens if we stop
+### 10. What happens if we stop
 
 A shutdown promise is normally marketing. Ours is architectural, which means it holds whether or not we are around to honour it.
 
-::exhibit 8 | The promises, and whether we could break them
+::exhibit 10 | The promises, and whether we could break them
 
 | # | Promise | Mechanism | Could we revoke it? |
 |---|---|---|---|
@@ -170,11 +230,11 @@ A shutdown promise is normally marketing. Ours is architectural, which means it 
 
 **Why this is a commercial argument, not just an ethical one.** The single most common objection to a small vendor is "what if you disappear". Our answer is not a promise, it is a property of the design: there is nothing to take back. That is worth more in a B2B conversation than any feature.
 
-### 9. What the market has today
+### 11. What the market has today
 
 We tore down every serious tool in two categories — the markdown editors and the AI coding tools — by opening their docs, pricing pages and changelogs.
 
-::exhibit 9 | The landscape, and where each one stops
+::exhibit 11 | The landscape, and where each one stops
 
 | Tool | What it is | What it does well | Where it stops |
 |---|---|---|---|
@@ -191,11 +251,11 @@ We tore down every serious tool in two categories — the markdown editors and t
 - **The incumbents genuinely have the corruption defect we fixed.** Cursor's own staff described doubled blank lines and destroyed carriage returns on CRLF files as *"a known issue we're tracking"* three days before I looked. They know. They have not fixed it.
 - **In this category the editor is free.** Obsidian gives the whole editor away and charges $4/user/month for sync alone. We had planned to charge ₹299 (~$3.13) for the entire editor — less than one competitor charges for a single add-on.
 
-### 10. Where each competitor stops, in detail
+### 12. Where each competitor stops, in detail
 
 We opened every one of these — docs, pricing, changelogs — rather than describing them from memory.
 
-::exhibit 10 | The teardown
+::exhibit 12 | The teardown
 
 | Tool | Price today | How it writes files | What it cannot do |
 |---|---|---|---|
@@ -216,7 +276,7 @@ We opened every one of these — docs, pricing, changelogs — rather than descr
 
 > [!risk] **The finding that changed our plan most.** Zed's documentation says: *"You can accept or reject each individual change hunk, or the whole set of changes made by the agent."* That was our flagship demo — sixteen of thirty-eight planned points. It is shipped, documented, and free. We would have found this out at launch.
 
-### 11. So where is the actual opening
+### 13. So where is the actual opening
 
 Three facts, laid next to each other:
 
@@ -239,7 +299,7 @@ flowchart TD
 
 ## PART III — What we already have
 
-### 12. The engine, in plain terms
+### 14. The engine, in plain terms
 
 The thing we have built and that nobody else has is a way of editing a file that changes only the exact bytes you asked to change, and refuses when it cannot be certain.
 
@@ -258,7 +318,7 @@ flowchart LR
 
 **Why this is hard and therefore worth something.** Getting it right means handling every way a markdown file can be strange: Windows line endings, byte-order marks, tabs, unusual YAML, non-English text, files written by other tools. We tested it against 8,513 real markdown files pulled from seven strangers' public vaults — pinned by checksum so the test cannot drift — and it does not corrupt them.
 
-::exhibit 11 | What is already built and proven
+::exhibit 13 | What is already built and proven
 
 | | |
 |---|---|
@@ -270,7 +330,7 @@ flowchart LR
 
 > [!warn] **What is not built, and we should be honest about it.** No CI at all, in a product that wants to sell document checking. Four of our own quality gates have reported "green" while actually being blind. One symbol from one of thirteen engine files reaches the product code — the engine is largely not wired in yet. And 83% of foreign vaults are currently *refused* because of one bug, which means the front door does not open for most people.
 
-### 13. How the engine actually works
+### 15. How the engine actually works
 
 Worth understanding properly, because everything we are selling rests on it.
 
@@ -278,7 +338,7 @@ Worth understanding properly, because everything we are selling rests on it.
 
 **What that rules out.** We never parse the document into a tree and write the tree back. That single decision is why we do not have the defects the others have, and it is also why our engine is harder to write than theirs.
 
-::exhibit 12 | What happens to a file, by tool
+::exhibit 14 | What happens to a file, by tool
 
 | Operation | A regenerating editor | Ours |
 |---|---|---|
@@ -301,7 +361,7 @@ Worth understanding properly, because everything we are selling rests on it.
 
 > [!warn] **Read NF-1 again.** Eighty-three percent of the vaults we tested are refused today, for one bug, with a known fix. That is not a research problem or a design problem. It is four days of work standing between us and a product that opens.
 
-### 14. Why refusing is the hard part
+### 16. Why refusing is the hard part
 
 Every other tool guesses. Guessing looks better in a demo and is worse in practice.
 
@@ -311,7 +371,7 @@ Every other tool guesses. Guessing looks better in a demo and is worse in practi
 
 **The counter-argument, recorded rather than dismissed:** conservative merging produces conflicts, and users hate conflicts. That is precisely why competitors ship fuzzy patching. Our mitigation is to make conflict rate a shipped, published metric with a budget — if we are refusing too often, we should know before our users tell us.
 
-### 15. Where we sit, drawn
+### 17. Where we sit, drawn
 
 ```mermaid
 flowchart TB
@@ -334,11 +394,11 @@ flowchart TB
 
 **Read the diagram as one sentence:** the code-first tools review changes but do not understand a markdown vault; the document-first tools understand the vault but either damage files or have no AI at all. Nothing occupies the corner where both are true.
 
-### 16. What we got wrong
+### 18. What we got wrong
 
 We ran a verification pass over the twenty-one claims the plan leaned on hardest, opening a primary source for each.
 
-::exhibit 13 | Our own review, against our own case
+::exhibit 15 | Our own review, against our own case
 
 | Verdict | Count | Meaning |
 |---|---|---|
@@ -360,9 +420,9 @@ We ran a verification pass over the twenty-one claims the plan leaned on hardest
 
 > [!risk] I want to be direct about this. **We spent months building an argument for something users do not care about.** The engine is right. The sentence we attached to it was wrong. That is a recoverable mistake and it is much cheaper to find now than after launch — but it is a real mistake and it came from believing our own reasoning instead of checking it.
 
-### 17. Corrections to the record
+### 19. Corrections to the record
 
-::exhibit 14 | Our own review, against our own case
+::exhibit 16 | Our own review, against our own case
 
 | # | What we believed | The correction | Effect |
 |---|---|---|---|
@@ -378,11 +438,11 @@ We ran a verification pass over the twenty-one claims the plan leaned on hardest
 
 > [!note] **62% of our load-bearing claims needed correction** when someone opened a primary source: 13 confirmed, 13 revised, 5 refuted, 3 unverifiable. Re-derive before quoting anything in the record.
 
-### 18. What we take from everything else we have built
+### 20. What we take from everything else we have built
 
 We have shipped roughly twenty things. The temptation is to combine them. That temptation is how a focused product becomes a platform nobody buys, so the default answer was **no** and each yes had to be earned by a real mechanism — a shared format, a shared engine, or a shared buyer. "They are both AI" is not a mechanism.
 
-::exhibit 15 | The ecosystem, item by item
+::exhibit 17 | The ecosystem, item by item
 
 | Project | Fuses? | The reasoning |
 |---|---|---|
@@ -400,7 +460,7 @@ We have shipped roughly twenty things. The temptation is to combine them. That t
 
 ## PART IV — What we should build
 
-### 19. The product, in one sentence
+### 21. The product, in one sentence
 
 > [!good] **frontmatter is a markdown editor that knows which bytes a machine wrote.** Every AI edit is recorded as a byte range with the prompt, the model and the time. Machine-written spans look different from yours on screen. One keystroke reverts any of them. Nothing else in the file moves.
 
@@ -422,11 +482,11 @@ flowchart TD
   F -- "revert" --> H["One key. Bytes restored.<br/>Nothing else moves"]
 ```
 
-### 20. The principles, and the things we will never do
+### 22. The principles, and the things we will never do
 
 Five rules that settle arguments before they start. Each one has a cost, and the cost is stated.
 
-::exhibit 16 | The principles
+::exhibit 18 | The principles
 
 | # | Principle | What it means in practice | What it costs |
 |---|---|---|---|
@@ -444,13 +504,13 @@ Five rules that settle arguments before they start. Each one has a cost, and the
 - **Not a publishing platform**, at least not in v1. It is a permanent, personal, unbounded on-call obligation the day the first stranger publishes.
 - **Not a knowledge graph.** Graph views are beautiful and almost nobody uses them twice.
 
-### 21. How the markdown itself is designed
+### 23. How the markdown itself is designed
 
 You asked how the markdown will be designed. This is the most consequential design decision in the product and almost nobody outside engineering thinks about it.
 
 **The rule: we add nothing to markdown that breaks it somewhere else.** A file we touch must render correctly on GitHub, in Obsidian, in a plain text editor, and in whatever the user opens it with next year.
 
-::exhibit 17 | How we store things markdown has no syntax for
+::exhibit 19 | How we store things markdown has no syntax for
 
 | What we need to store | How we store it | Why not the alternative |
 |---|---|---|
@@ -464,7 +524,7 @@ You asked how the markdown will be designed. This is the most consequential desi
 
 **What a file looks like after we touch it.** Identical, except for the bytes you asked to change. Same line endings, same key order, same quoting, same trailing whitespace, same missing final newline if that is how you had it. **If you `git diff` after an edit, you see only your edit.** That is the whole promise, and it is testable on every release.
 
-### 22. How it feels to use
+### 24. How it feels to use
 
 Six flows. Every one names the step most likely to lose the user, because that is where the work actually is.
 
@@ -495,7 +555,7 @@ flowchart LR
 
 **Flow 6 — a teammate picks it up.** They open the repo and can see which parts of the work were machine-written and never reviewed. Today that information does not exist anywhere, in any tool.
 
-### 23. The onboarding, minute by minute
+### 25. The onboarding, minute by minute
 
 The first five minutes decide everything, and we have historically under-designed them.
 
@@ -510,11 +570,24 @@ The first five minutes decide everything, and we have historically under-designe
 
 > [!warn] **The single change most likely to hurt us is a form at first run.** We collect nothing until there is something to collect it for.
 
-### 24. The features, and why each one exists
+### 26. Intuitivity — how we know it is understandable
+
+Not a feeling. Four things we can observe.
+
+| Test | Pass condition |
+|---|---|
+| **The unassisted first minute** | A new user opens a folder and edits, with no tour, no docs, no prompt |
+| **The five-second explanation** | Someone who has seen the screen for five seconds can say what the tinted text means |
+| **The seven-concept budget** | A first session introduces no more than seven ideas: folder, document, machine span, revert, quick-switch, search, settings |
+| **The no-manual rule** | If a feature needs documentation to be understood, it is designed wrong — remove it or redesign it |
+
+**The specific intuitivity risk in this product:** tinted text could read as "highlighted", "selected", or "an error". If a first-time user thinks a machine span is a problem rather than information, the whole metaphor fails. **That is the single thing the prototype must test**, and it is cheap to test — show five people a screenshot and ask what the blue means.
+
+### 27. The features, and why each one exists
 
 Every feature below names the person who uses it and how often. Anything that could not name one was cut, and the cuts are listed after.
 
-::exhibit 18 | What ships, and the reason it ships
+::exhibit 20 | What ships, and the reason it ships
 
 | Feature | Who uses it, how often | Why it exists | Stage |
 |---|---|---|---|
@@ -528,7 +601,7 @@ Every feature below names the person who uses it and how often. Anything that co
 | **Nested-construct live preview** | Every Obsidian user, constantly | 501 likes — the most-voted bug in the category's history. Our free wedge | MVP-2 |
 | **Sync, provably safe** | Everyone, daily | #1 loved feature, #1 switching trigger, and the only price this category has proven | MVP-2 |
 
-### 25. Each feature, specified
+### 28. Each feature, specified
 
 Enough detail that you can argue with the design, not just the idea.
 
@@ -576,7 +649,7 @@ Enough detail that you can argue with the design, not just the idea.
 - *Why later:* it is a team product with a team sale, and we should not be selling to teams before we have individuals.
 - *Evidence it works:* we run four of these on ourselves and they caught real errors in this document.
 
-::exhibit 19 | The build order, and the reasoning
+::exhibit 21 | The build order, and the reasoning
 
 | | Feature | Weeks | Why it is in this stage |
 |---|---|---|---|
@@ -585,11 +658,11 @@ Enough detail that you can argue with the design, not just the idea.
 | MVP-1 | F4 + F5 + billing + teams | 8 | The first things worth money, and the first things that need money to exist |
 | MVP-2 | F6 free + sync | 12 | Distribution and the only proven price in the category |
 
-### 26. Why provenance and not the other twenty ideas
+### 29. Why provenance and not the other twenty ideas
 
 We scored nine serious options against evidence of demand, time to revenue, defensibility, fit with our size, and how much of the existing code they reuse.
 
-::exhibit 20 | The options we considered, scored
+::exhibit 22 | The options we considered, scored
 
 | Option | Demand | Time to revenue | Reuses engine | Verdict |
 |---|---|---|---|---|
@@ -605,11 +678,11 @@ We scored nine serious options against evidence of demand, time to revenue, defe
 
 **Why provenance wins on the axis that matters.** It is the only option where the thing that makes it hard to build — knowing exactly which bytes changed — is a thing we already solved and nobody else has. Every other option on that list could be built by a competitor in a quarter.
 
-### 27. What we deliberately will not build
+### 30. What we deliberately will not build
 
 A refusal with no cost is not a real refusal, so each one names what we give up.
 
-::exhibit 21 | The no list
+::exhibit 23 | The no list
 
 | Not building | Why | What we lose |
 |---|---|---|
@@ -623,7 +696,7 @@ A refusal with no cost is not a real refusal, so each one names what we give up.
 
 > [!warn] **The plugin refusal deserves a proper argument.** Obsidian's moat *is* its plugin ecosystem. Refusing plugins means refusing the thing that made the category leader unassailable. We refuse it because arbitrary third-party code in the editor makes "we never corrupt your file" unprovable, and that guarantee is the entire product. But we should be clear-eyed: this closes the most proven growth path in the category, and we need the free live-preview plugin *in their store* partly to compensate.
 
-### 28. Simplicity, as something we enforce rather than intend
+### 31. Simplicity, as something we enforce rather than intend
 
 Every product intends to stay simple. This is how we make it structural.
 
@@ -633,13 +706,13 @@ Every product intends to stay simple. This is how we make it structural.
 - **The projection law does the heavy lifting.** Because every view must be a deterministic projection of the file owning no state, anything requiring its own hidden state is *already* forbidden by the architecture. Most feature bloat is state bloat, and we made that structurally impossible.
 - **What this costs us:** we will say no to things customers ask for. Some will leave. That is the trade, and it is the reason the product can stay comprehensible.
 
-### 29. How the product should be designed
+### 32. How the product should be designed
 
 The design job here is unusual: the most important thing on screen is information *about* the text, shown without making the text harder to read.
 
 **The governing rule.** A document with provenance on must be as readable as one with it off. If a user turns provenance off to read comfortably, we have failed.
 
-::exhibit 22 | The visual language
+::exhibit 24 | The visual language
 
 | Element | Decision | Why |
 |---|---|---|
@@ -661,11 +734,11 @@ The design job here is unusual: the most important thing on screen is informatio
 - No dashboard. Nobody opens an editor to look at a dashboard.
 - No chat window. The user already has an agent; duplicating it badly helps nobody.
 
-### 30. Every screen, and what it is for
+### 33. Every screen, and what it is for
 
 The product is deliberately small. Eleven screens, and four of them are dialogs.
 
-::exhibit 23 | The screen inventory
+::exhibit 25 | The screen inventory
 
 | # | Screen | What it does | Why it exists | Stage |
 |---|---|---|---|---|
@@ -699,11 +772,11 @@ flowchart TD
   S2 --> S11["S11 Settings"]
 ```
 
-### 31. What is in each screen
+### 34. What is in each screen
 
 Screen by screen, the actual elements, so this can be designed from.
 
-::exhibit 24 | S2 — the editor, the 95% screen
+::exhibit 26 | S2 — the editor, the 95% screen
 
 | Region | What is in it | Behaviour |
 |---|---|---|
@@ -714,7 +787,7 @@ Screen by screen, the actual elements, so this can be designed from.
 | Bottom, thin | Word count, cursor position, unreviewed count for this file | Ambient. Never demands attention |
 | On hover over a span | Small panel: prompt, model, timestamp, revert | On demand only, after a delay, dismissible with Escape |
 
-::exhibit 25 | The other screens, and their elements
+::exhibit 27 | The other screens, and their elements
 
 | Screen | Elements |
 |---|---|
@@ -728,7 +801,7 @@ Screen by screen, the actual elements, so this can be designed from.
 | **S10 Team view** | Repo picker · per-document unreviewed share · per-person contribution · a filter for "machine-written, nobody reviewed" |
 | **S11 Settings** | One page, six groups, no tabs: appearance · keymap · AI provider and key · provenance defaults · git identity · about |
 
-### 32. How the screens talk to each other
+### 35. How the screens talk to each other
 
 ```mermaid
 flowchart LR
@@ -751,9 +824,112 @@ flowchart LR
 - **Escape always goes back one step**, and never loses work.
 - **No modal blocks the document** except the conflict view, which blocks because proceeding without a decision would lose data.
 
-### 33. The components, and who owns each
+### 36. The screens, drawn
 
-::exhibit 26 | The system, by component
+Low fidelity on purpose. These say what goes where and what talks to what; they do not say what anything looks like. That belongs to a design pass with the real system, and pretending otherwise invites argument about corner radii instead of about structure.
+
+::exhibit 28 | S1 · First run — the only screen before you are working
+
+
+<svg viewBox="0 0 720 426" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:720px;height:auto">
+  <rect x="1" y="1" width="718" height="400" fill="#fff" stroke="#14161a" stroke-width="1.5"  />
+  <rect x="1" y="1" width="718" height="30" fill="#fafbfc" stroke="#8a93a3" stroke-width="1"  /><text x="14" y="20" font-family="system-ui,sans-serif" font-size="11" fill="#14161a" font-weight="600" >frontmatter</text><text x="706" y="20" font-family="system-ui,sans-serif" font-size="9" fill="#8a93a3"  text-anchor="end">— ▫ ✕</text><text x="360" y="130" font-family="system-ui,sans-serif" font-size="16" fill="#14161a" font-weight="600" text-anchor="middle">Open a folder of markdown</text><text x="360" y="152" font-family="system-ui,sans-serif" font-size="9.5" fill="#4a5160"  text-anchor="middle">Point it at a vault, a repo, or any folder. It reads what is already there.</text><rect x="270" y="176" width="180" height="32" fill="#1a5cff" stroke="#1a5cff" stroke-width="1"  rx="3"/><text x="360" y="196" font-family="system-ui,sans-serif" font-size="10" fill="#fff" font-weight="600" text-anchor="middle">Choose folder</text><text x="360" y="228" font-family="system-ui,sans-serif" font-size="9" fill="#1a5cff"  text-anchor="middle">or connect a GitHub repository</text><rect x="210" y="258" width="300" height="1" fill="#c9cfda" stroke="none" stroke-width="1"  /><text x="360" y="282" font-family="system-ui,sans-serif" font-size="8" fill="#8a93a3"  text-anchor="middle">Recent</text><text x="360" y="300" font-family="system-ui,sans-serif" font-size="9" fill="#4a5160"  text-anchor="middle">~/work/product-docs      ~/notes</text><text x="360" y="356" font-family="system-ui,sans-serif" font-size="8.5" fill="#8a93a3"  text-anchor="middle">Nothing leaves your machine. No account needed.</text>
+  <text x="2" y="420" font-family="system-ui,sans-serif" font-size="8.5" fill="#4a5160"  >No sign-up, no email field, no onboarding tour. The single change most likely to hurt adoption is a form here.</text>
+</svg>
+
+**One button, no account.** The line about files never leaving the machine is doing real work: it is the objection every privacy-conscious developer raises, answered before they ask.
+
+::exhibit 29 | S2 · The editor — the 95% screen, with the side drawer open
+
+
+<svg viewBox="0 0 720 426" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:720px;height:auto">
+  <rect x="1" y="1" width="718" height="400" fill="#fff" stroke="#14161a" stroke-width="1.5"  />
+  <rect x="1" y="1" width="718" height="26" fill="#fafbfc" stroke="#8a93a3" stroke-width="1"  /><text x="12" y="18" font-family="system-ui,sans-serif" font-size="9" fill="#4a5160"  >product-docs  ›  specs  ›  auth.md</text><text x="600" y="18" font-family="system-ui,sans-serif" font-size="8.5" fill="#0d8a4f"  >● synced</text><text x="686" y="18" font-family="system-ui,sans-serif" font-size="12" fill="#8a93a3"  >⋯</text><rect x="1" y="27" width="168" height="373" fill="#fafbfc" stroke="#8a93a3" stroke-width="1"  /><text x="12" y="46" font-family="system-ui,sans-serif" font-size="7.5" fill="#8a93a3" font-weight="600" >FILES</text><text x="14" y="64" font-family="system-ui,sans-serif" font-size="8.5" fill="#14161a"  >README.md</text><text x="14" y="84" font-family="system-ui,sans-serif" font-size="8.5" fill="#14161a"  >adr/</text><text x="14" y="104" font-family="system-ui,sans-serif" font-size="8.5" fill="#14161a"  >  0001-sync.md</text><rect x="140" y="96" width="20" height="3" fill="#dfe3ea" stroke="none" stroke-width="1"  /><rect x="140" y="96" width="6.4" height="3" fill="#1a5cff" stroke="none" stroke-width="1"  /><text x="14" y="124" font-family="system-ui,sans-serif" font-size="8.5" fill="#14161a"  >  0002-engine.md</text><text x="14" y="144" font-family="system-ui,sans-serif" font-size="8.5" fill="#14161a"  >specs/</text><rect x="6" y="153" width="158" height="18" fill="#f2f6ff" stroke="none" stroke-width="1"  /><text x="14" y="164" font-family="system-ui,sans-serif" font-size="8.5" fill="#1a5cff" font-weight="600" >  auth.md</text><rect x="140" y="156" width="20" height="3" fill="#dfe3ea" stroke="none" stroke-width="1"  /><rect x="140" y="156" width="12.8" height="3" fill="#1a5cff" stroke="none" stroke-width="1"  /><text x="14" y="184" font-family="system-ui,sans-serif" font-size="8.5" fill="#14161a"  >  billing.md</text><rect x="140" y="176" width="20" height="3" fill="#dfe3ea" stroke="none" stroke-width="1"  /><rect x="140" y="176" width="2.4" height="3" fill="#1a5cff" stroke="none" stroke-width="1"  /><text x="14" y="204" font-family="system-ui,sans-serif" font-size="8.5" fill="#14161a"  >notes/</text><text x="12" y="386" font-family="system-ui,sans-serif" font-size="7" fill="#8a93a3"  >unreviewed share ▔▔</text><text x="196" y="56" font-family="system-ui,sans-serif" font-size="14" fill="#14161a" font-weight="700" >Authentication</text><rect x="196" y="74" width="480" height="3.5" fill="#c9cfda" stroke="none" stroke-width="1"  /><rect x="196" y="83" width="480" height="3.5" fill="#c9cfda" stroke="none" stroke-width="1"  /><rect x="196" y="92" width="297.6" height="3.5" fill="#c9cfda" stroke="none" stroke-width="1"  /><rect x="192" y="108" width="494" height="40" fill="#e3edff" stroke="none" stroke-width="1"  /><rect x="196" y="118" width="480" height="3.5" fill="#a8c4f5" stroke="none" stroke-width="1"  /><rect x="196" y="127" width="480" height="3.5" fill="#a8c4f5" stroke="none" stroke-width="1"  /><rect x="196" y="136" width="297.6" height="3.5" fill="#a8c4f5" stroke="none" stroke-width="1"  /><text x="688" y="122" font-family="system-ui,sans-serif" font-size="7" fill="#1a5cff"  >◆</text><rect x="196" y="162" width="480" height="3.5" fill="#c9cfda" stroke="none" stroke-width="1"  /><rect x="196" y="171" width="297.6" height="3.5" fill="#c9cfda" stroke="none" stroke-width="1"  /><text x="196" y="198" font-family="system-ui,sans-serif" font-size="11" fill="#14161a" font-weight="600" >The GitHub App</text><rect x="196" y="212" width="480" height="3.5" fill="#c9cfda" stroke="none" stroke-width="1"  /><rect x="196" y="221" width="480" height="3.5" fill="#c9cfda" stroke="none" stroke-width="1"  /><rect x="196" y="230" width="480" height="3.5" fill="#c9cfda" stroke="none" stroke-width="1"  /><rect x="196" y="239" width="297.6" height="3.5" fill="#c9cfda" stroke="none" stroke-width="1"  /><rect x="192" y="258" width="380" height="34" fill="#e3edff" stroke="none" stroke-width="1"  /><rect x="196" y="268" width="366" height="3.5" fill="#a8c4f5" stroke="none" stroke-width="1"  /><rect x="196" y="277" width="226.92" height="3.5" fill="#a8c4f5" stroke="none" stroke-width="1"  /><rect x="196" y="304" width="480" height="3.5" fill="#c9cfda" stroke="none" stroke-width="1"  /><rect x="196" y="313" width="480" height="3.5" fill="#c9cfda" stroke="none" stroke-width="1"  /><rect x="196" y="322" width="297.6" height="3.5" fill="#c9cfda" stroke="none" stroke-width="1"  /><rect x="169" y="378" width="550" height="21" fill="#fafbfc" stroke="#8a93a3" stroke-width="1"  /><text x="180" y="392" font-family="system-ui,sans-serif" font-size="8" fill="#8a93a3"  >2,140 words</text><text x="300" y="392" font-family="system-ui,sans-serif" font-size="8" fill="#8a93a3"  >Ln 84, Col 12</text><text x="704" y="392" font-family="system-ui,sans-serif" font-size="8" fill="#1a5cff" font-weight="600" text-anchor="end">2 unreviewed</text>
+  <text x="2" y="420" font-family="system-ui,sans-serif" font-size="8.5" fill="#4a5160"  >Tinted spans are machine-written and unreviewed. No borders, no gutter icons — it has to be ignorable while you read.</text>
+</svg>
+
+**The document is the interface.** No toolbar: formatting is markdown, typed. The left drawer collapses to nothing. Each file in the tree carries a thin bar showing how much of it is unreviewed machine text — the only ambient signal in the product.
+
+::exhibit 30 | S3 · The provenance panel — on hover, never uninvited
+
+
+<svg viewBox="0 0 720 426" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:720px;height:auto">
+  <rect x="1" y="1" width="718" height="400" fill="#fff" stroke="#14161a" stroke-width="1.5"  />
+  <rect x="40" y="40" width="620" height="3.5" fill="#c9cfda" stroke="none" stroke-width="1"  /><rect x="40" y="49" width="384.4" height="3.5" fill="#c9cfda" stroke="none" stroke-width="1"  /><rect x="36" y="66" width="628" height="34" fill="#e3edff" stroke="none" stroke-width="1"  /><rect x="40" y="76" width="614" height="3.5" fill="#a8c4f5" stroke="none" stroke-width="1"  /><rect x="40" y="85" width="380.68" height="3.5" fill="#a8c4f5" stroke="none" stroke-width="1"  /><rect x="120" y="108" width="400" height="128" fill="#fff" stroke="#14161a" stroke-width="1.2"  rx="3"/><rect x="120" y="108" width="400" height="26" fill="#f2f6ff" stroke="none" stroke-width="1"  /><text x="132" y="125" font-family="system-ui,sans-serif" font-size="9.5" fill="#1a5cff" font-weight="600" >Written by claude-opus-5</text><text x="508" y="125" font-family="system-ui,sans-serif" font-size="9" fill="#8a93a3"  text-anchor="end">✕</text><text x="132" y="152" font-family="system-ui,sans-serif" font-size="7.5" fill="#8a93a3" font-weight="600" >Prompt</text><text x="132" y="168" font-family="system-ui,sans-serif" font-size="9" fill="#14161a"  >"Document the token refresh flow and note the</text><text x="132" y="182" font-family="system-ui,sans-serif" font-size="9" fill="#14161a"  > 8-hour expiry we settled on."</text><text x="132" y="206" font-family="system-ui,sans-serif" font-size="8.5" fill="#4a5160"  >Tuesday 09:14  ·  312 bytes  ·  not reviewed</text><rect x="132" y="214" width="118" height="20" fill="#1a5cff" stroke="#1a5cff" stroke-width="1"  rx="2"/><text x="191" y="228" font-family="system-ui,sans-serif" font-size="8" fill="#fff" font-weight="600" text-anchor="middle">Keep — mark reviewed</text><rect x="260" y="214" width="90" height="20" fill="#fff" stroke="#8a93a3" stroke-width="1"  rx="2"/><text x="305" y="228" font-family="system-ui,sans-serif" font-size="8" fill="#14161a"  text-anchor="middle">Revert  ⌘Z</text><text x="370" y="228" font-family="system-ui,sans-serif" font-size="8" fill="#1a5cff"  >Jump to next  ⇥</text><rect x="40" y="260" width="620" height="3.5" fill="#c9cfda" stroke="none" stroke-width="1"  /><rect x="40" y="269" width="620" height="3.5" fill="#c9cfda" stroke="none" stroke-width="1"  /><rect x="40" y="278" width="384.4" height="3.5" fill="#c9cfda" stroke="none" stroke-width="1"  />
+  <text x="2" y="420" font-family="system-ui,sans-serif" font-size="8.5" fill="#4a5160"  >Hover only, after a delay, dismissible with Escape. Reverting restores the exact bytes and moves nothing else.</text>
+</svg>
+
+**This is the whole product in one interaction.** Everything above it is a text editor; this is the part nothing else can do, because every other tool rewrote the whole file and does not know which bytes were its own.
+
+::exhibit 31 | S4 · Review panel — the right drawer
+
+
+<svg viewBox="0 0 720 426" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:720px;height:auto">
+  <rect x="1" y="1" width="718" height="400" fill="#fff" stroke="#14161a" stroke-width="1.5"  />
+  <rect x="1" y="1" width="718" height="26" fill="#fafbfc" stroke="#8a93a3" stroke-width="1"  /><text x="12" y="18" font-family="system-ui,sans-serif" font-size="9" fill="#4a5160"  >specs / auth.md</text><rect x="30" y="60" width="380" height="3.5" fill="#c9cfda" stroke="none" stroke-width="1"  /><rect x="30" y="69" width="380" height="3.5" fill="#c9cfda" stroke="none" stroke-width="1"  /><rect x="30" y="78" width="235.6" height="3.5" fill="#c9cfda" stroke="none" stroke-width="1"  /><rect x="26" y="100" width="388" height="30" fill="#e3edff" stroke="none" stroke-width="1"  /><rect x="30" y="110" width="374" height="3.5" fill="#a8c4f5" stroke="none" stroke-width="1"  /><rect x="30" y="119" width="231.88" height="3.5" fill="#a8c4f5" stroke="none" stroke-width="1"  /><rect x="30" y="146" width="380" height="3.5" fill="#c9cfda" stroke="none" stroke-width="1"  /><rect x="30" y="155" width="380" height="3.5" fill="#c9cfda" stroke="none" stroke-width="1"  /><rect x="30" y="164" width="380" height="3.5" fill="#c9cfda" stroke="none" stroke-width="1"  /><rect x="30" y="173" width="235.6" height="3.5" fill="#c9cfda" stroke="none" stroke-width="1"  /><rect x="440" y="27" width="279" height="373" fill="#fafbfc" stroke="#8a93a3" stroke-width="1"  /><text x="456" y="50" font-family="system-ui,sans-serif" font-size="7.5" fill="#8a93a3" font-weight="600" >UNREVIEWED</text><text x="700" y="50" font-family="system-ui,sans-serif" font-size="12" fill="#1a5cff" font-weight="700" text-anchor="end">4</text><rect x="452" y="70" width="248" height="62" fill="#fff" stroke="#1a5cff" stroke-width="1.4"  rx="2"/><text x="464" y="88" font-family="system-ui,sans-serif" font-size="8.5" fill="#14161a" font-weight="600" >"Document the token refresh…"</text><text x="464" y="104" font-family="system-ui,sans-serif" font-size="7.5" fill="#4a5160"  >claude-opus-5 · 312 B · Tue 09:14</text><rect x="464" y="112" width="52" height="14" fill="#1a5cff" stroke="#1a5cff" stroke-width="1"  rx="2"/><text x="490" y="122" font-family="system-ui,sans-serif" font-size="7.5" fill="#fff"  text-anchor="middle">Keep</text><rect x="522" y="112" width="52" height="14" fill="#fff" stroke="#8a93a3" stroke-width="1"  rx="2"/><text x="548" y="122" font-family="system-ui,sans-serif" font-size="7.5" fill="#14161a"  text-anchor="middle">Revert</text><rect x="452" y="144" width="248" height="62" fill="#fff" stroke="#c9cfda" stroke-width="1"  rx="2"/><text x="464" y="162" font-family="system-ui,sans-serif" font-size="8.5" fill="#14161a"  >"Add the rate-limit note"</text><text x="464" y="178" font-family="system-ui,sans-serif" font-size="7.5" fill="#4a5160"  >claude-opus-5 · 312 B · Tue 09:14</text><rect x="464" y="186" width="52" height="14" fill="#fff" stroke="#8a93a3" stroke-width="1"  rx="2"/><text x="490" y="196" font-family="system-ui,sans-serif" font-size="7.5" fill="#14161a"  text-anchor="middle">Keep</text><rect x="522" y="186" width="52" height="14" fill="#fff" stroke="#8a93a3" stroke-width="1"  rx="2"/><text x="548" y="196" font-family="system-ui,sans-serif" font-size="7.5" fill="#14161a"  text-anchor="middle">Revert</text><rect x="452" y="218" width="248" height="62" fill="#fff" stroke="#c9cfda" stroke-width="1"  rx="2"/><text x="464" y="236" font-family="system-ui,sans-serif" font-size="8.5" fill="#14161a"  >"Clarify scope wording"</text><text x="464" y="252" font-family="system-ui,sans-serif" font-size="7.5" fill="#4a5160"  >claude-opus-5 · 312 B · Tue 09:14</text><rect x="464" y="260" width="52" height="14" fill="#fff" stroke="#8a93a3" stroke-width="1"  rx="2"/><text x="490" y="270" font-family="system-ui,sans-serif" font-size="7.5" fill="#14161a"  text-anchor="middle">Keep</text><rect x="522" y="260" width="52" height="14" fill="#fff" stroke="#8a93a3" stroke-width="1"  rx="2"/><text x="548" y="270" font-family="system-ui,sans-serif" font-size="7.5" fill="#14161a"  text-anchor="middle">Revert</text><rect x="452" y="292" width="248" height="62" fill="#fff" stroke="#c9cfda" stroke-width="1"  rx="2"/><text x="464" y="310" font-family="system-ui,sans-serif" font-size="8.5" fill="#14161a"  >"List the error codes"</text><text x="464" y="326" font-family="system-ui,sans-serif" font-size="7.5" fill="#4a5160"  >claude-opus-5 · 312 B · Tue 09:14</text><rect x="464" y="334" width="52" height="14" fill="#fff" stroke="#8a93a3" stroke-width="1"  rx="2"/><text x="490" y="344" font-family="system-ui,sans-serif" font-size="7.5" fill="#14161a"  text-anchor="middle">Keep</text><rect x="522" y="334" width="52" height="14" fill="#fff" stroke="#8a93a3" stroke-width="1"  rx="2"/><text x="548" y="344" font-family="system-ui,sans-serif" font-size="7.5" fill="#14161a"  text-anchor="middle">Revert</text><text x="456" y="388" font-family="system-ui,sans-serif" font-size="7.5" fill="#8a93a3"  >j / k  move      a  keep      r  revert</text>
+  <text x="2" y="420" font-family="system-ui,sans-serif" font-size="8.5" fill="#4a5160"  >The drawer is the only persistent panel in the product, and it can be closed entirely.</text>
+</svg>
+
+**For catching up on a document you did not watch being written.** Keyboard-first: `j` and `k` to move, `a` to accept, `r` to revert. The counter going to zero is the entire point of the screen.
+
+::exhibit 32 | S5 and S6 · Quick switcher and command palette
+
+
+<svg viewBox="0 0 720 426" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:720px;height:auto">
+  <rect x="1" y="1" width="718" height="400" fill="#fff" stroke="#14161a" stroke-width="1.5"  />
+  <rect x="20" y="20" width="330" height="250" fill="#fafbfc" stroke="#c9cfda" stroke-width="1" stroke-dasharray="4 3" /><text x="30" y="38" font-family="system-ui,sans-serif" font-size="8.5" fill="#8a93a3" font-weight="600" >S5  ⌘P  Quick switch</text><rect x="36" y="50" width="298" height="200" fill="#fff" stroke="#14161a" stroke-width="1.2"  rx="3"/><rect x="36" y="50" width="298" height="30" fill="#fff" stroke="none" stroke-width="1"  /><text x="48" y="70" font-family="system-ui,sans-serif" font-size="10" fill="#14161a"  >auth</text><rect x="48" y="74" width="26" height="1" fill="#1a5cff" stroke="none" stroke-width="1"  /><rect x="36" y="80" width="298" height="1" fill="#c9cfda" stroke="none" stroke-width="1"  /><rect x="36" y="86" width="298" height="28" fill="#f2f6ff" stroke="none" stroke-width="1"  /><text x="48" y="104" font-family="system-ui,sans-serif" font-size="9" fill="#1a5cff" font-weight="600" >specs/auth.md</text><text x="48" y="132" font-family="system-ui,sans-serif" font-size="9" fill="#14161a"  >adr/0003-auth-scope.md</text><text x="48" y="160" font-family="system-ui,sans-serif" font-size="9" fill="#14161a"  >notes/auth-questions.md</text><text x="48" y="188" font-family="system-ui,sans-serif" font-size="9" fill="#14161a"  >README.md</text><rect x="370" y="20" width="330" height="250" fill="#fafbfc" stroke="#c9cfda" stroke-width="1" stroke-dasharray="4 3" /><text x="380" y="38" font-family="system-ui,sans-serif" font-size="8.5" fill="#8a93a3" font-weight="600" >S6  ⌘K  Command palette</text><rect x="386" y="50" width="298" height="200" fill="#fff" stroke="#14161a" stroke-width="1.2"  rx="3"/><text x="398" y="70" font-family="system-ui,sans-serif" font-size="10" fill="#14161a"  >rename</text><rect x="398" y="74" width="40" height="1" fill="#1a5cff" stroke="none" stroke-width="1"  /><rect x="386" y="80" width="298" height="1" fill="#c9cfda" stroke="none" stroke-width="1"  /><rect x="386" y="86" width="298" height="28" fill="#f2f6ff" stroke="none" stroke-width="1"  /><text x="398" y="104" font-family="system-ui,sans-serif" font-size="9" fill="#1a5cff" font-weight="600" >Rename heading across vault</text><text x="672" y="104" font-family="system-ui,sans-serif" font-size="8" fill="#8a93a3"  text-anchor="end">⇧⌘R</text><text x="398" y="132" font-family="system-ui,sans-serif" font-size="9" fill="#14161a"  >Rename tag</text><text x="398" y="160" font-family="system-ui,sans-serif" font-size="9" fill="#14161a"  >Rename property key</text><text x="398" y="188" font-family="system-ui,sans-serif" font-size="9" fill="#14161a"  >Revert all unreviewed</text><text x="30" y="300" font-family="system-ui,sans-serif" font-size="9" fill="#4a5160"  >Both are overlays on the document. Escape returns you exactly where you were, with nothing lost.</text>
+  <text x="2" y="420" font-family="system-ui,sans-serif" font-size="8.5" fill="#4a5160"  >Neither is a destination. Every overlay hands you back to the document.</text>
+</svg>
+
+**Table stakes, and their absence is disqualifying.** A reviewer who cannot find a file in two keystrokes stops reviewing before they reach anything we built. The palette shows what a command does *before* you run it, which is how people learn a product without a tour.
+
+::exhibit 33 | S8 · Refactor preview — the engine made visible
+
+
+<svg viewBox="0 0 720 426" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:720px;height:auto">
+  <rect x="1" y="1" width="718" height="400" fill="#fff" stroke="#14161a" stroke-width="1.5"  />
+  <rect x="1" y="1" width="718" height="30" fill="#f2f6ff" stroke="#8a93a3" stroke-width="1"  /><text x="14" y="20" font-family="system-ui,sans-serif" font-size="9.5" fill="#14161a" font-weight="600" >Rename heading  "Token refresh"  →  "Refreshing tokens"</text><text x="706" y="20" font-family="system-ui,sans-serif" font-size="8.5" fill="#1a5cff"  text-anchor="end">11 files · 14 changes</text><rect x="14" y="44" width="692" height="46" fill="#fff" stroke="#c9cfda" stroke-width="1"  rx="2"/><text x="26" y="61" font-family="system-ui,sans-serif" font-size="9" fill="#14161a" font-weight="600" >specs/auth.md</text><text x="150" y="61" font-family="system-ui,sans-serif" font-size="8" fill="#8a93a3"  >3 changes</text><rect x="24" y="68" width="420" height="3.5" fill="#fde0e0" stroke="none" stroke-width="1"  /><rect x="24" y="76" width="400" height="3.5" fill="#d9f2e3" stroke="none" stroke-width="1"  /><rect x="570" y="56" width="56" height="18" fill="#1a5cff" stroke="#1a5cff" stroke-width="1"  rx="2"/><text x="598" y="69" font-family="system-ui,sans-serif" font-size="8" fill="#fff"  text-anchor="middle">Accept</text><rect x="634" y="56" width="56" height="18" fill="#fff" stroke="#8a93a3" stroke-width="1"  rx="2"/><text x="662" y="69" font-family="system-ui,sans-serif" font-size="8" fill="#14161a"  text-anchor="middle">Skip</text><rect x="14" y="98" width="692" height="46" fill="#fff" stroke="#c9cfda" stroke-width="1"  rx="2"/><text x="26" y="115" font-family="system-ui,sans-serif" font-size="9" fill="#14161a" font-weight="600" >adr/0003-auth-scope.md</text><text x="150" y="115" font-family="system-ui,sans-serif" font-size="8" fill="#8a93a3"  >2 changes</text><rect x="24" y="122" width="420" height="3.5" fill="#fde0e0" stroke="none" stroke-width="1"  /><rect x="24" y="130" width="400" height="3.5" fill="#d9f2e3" stroke="none" stroke-width="1"  /><rect x="570" y="110" width="56" height="18" fill="#1a5cff" stroke="#1a5cff" stroke-width="1"  rx="2"/><text x="598" y="123" font-family="system-ui,sans-serif" font-size="8" fill="#fff"  text-anchor="middle">Accept</text><rect x="634" y="110" width="56" height="18" fill="#fff" stroke="#8a93a3" stroke-width="1"  rx="2"/><text x="662" y="123" font-family="system-ui,sans-serif" font-size="8" fill="#14161a"  text-anchor="middle">Skip</text><rect x="14" y="152" width="692" height="46" fill="#fff" stroke="#c9cfda" stroke-width="1"  rx="2"/><text x="26" y="169" font-family="system-ui,sans-serif" font-size="9" fill="#14161a" font-weight="600" >README.md</text><text x="150" y="169" font-family="system-ui,sans-serif" font-size="8" fill="#8a93a3"  >1 change</text><rect x="24" y="176" width="420" height="3.5" fill="#fde0e0" stroke="none" stroke-width="1"  /><rect x="24" y="184" width="400" height="3.5" fill="#d9f2e3" stroke="none" stroke-width="1"  /><rect x="570" y="164" width="56" height="18" fill="#1a5cff" stroke="#1a5cff" stroke-width="1"  rx="2"/><text x="598" y="177" font-family="system-ui,sans-serif" font-size="8" fill="#fff"  text-anchor="middle">Accept</text><rect x="634" y="164" width="56" height="18" fill="#fff" stroke="#8a93a3" stroke-width="1"  rx="2"/><text x="662" y="177" font-family="system-ui,sans-serif" font-size="8" fill="#14161a"  text-anchor="middle">Skip</text><rect x="14" y="206" width="692" height="46" fill="#fff" stroke="#c9cfda" stroke-width="1"  rx="2"/><text x="26" y="223" font-family="system-ui,sans-serif" font-size="9" fill="#14161a" font-weight="600" >notes/auth-questions.md</text><text x="150" y="223" font-family="system-ui,sans-serif" font-size="8" fill="#8a93a3"  >4 changes</text><rect x="24" y="230" width="420" height="3.5" fill="#fde0e0" stroke="none" stroke-width="1"  /><rect x="24" y="238" width="400" height="3.5" fill="#d9f2e3" stroke="none" stroke-width="1"  /><rect x="570" y="218" width="56" height="18" fill="#1a5cff" stroke="#1a5cff" stroke-width="1"  rx="2"/><text x="598" y="231" font-family="system-ui,sans-serif" font-size="8" fill="#fff"  text-anchor="middle">Accept</text><rect x="634" y="218" width="56" height="18" fill="#fff" stroke="#8a93a3" stroke-width="1"  rx="2"/><text x="662" y="231" font-family="system-ui,sans-serif" font-size="8" fill="#14161a"  text-anchor="middle">Skip</text><rect x="14" y="266" width="692" height="52" fill="#fffbf0" stroke="#b8860b" stroke-width="1.2"  rx="2"/><text x="26" y="286" font-family="system-ui,sans-serif" font-size="9" fill="#8a5a06" font-weight="600" >Refused — 2 files</text><text x="26" y="302" font-family="system-ui,sans-serif" font-size="8.5" fill="#8a5a06"  >drafts/old-auth.md — the heading appears twice and we cannot tell which one you meant.</text><rect x="14" y="360" width="130" height="24" fill="#1a5cff" stroke="#1a5cff" stroke-width="1"  rx="2"/><text x="79" y="376" font-family="system-ui,sans-serif" font-size="8.5" fill="#fff" font-weight="600" text-anchor="middle">Apply 12 changes</text><text x="160" y="376" font-family="system-ui,sans-serif" font-size="8.5" fill="#4a5160"  >Nothing else in any file will change.</text>
+  <text x="2" y="420" font-family="system-ui,sans-serif" font-size="8.5" fill="#4a5160"  >Refusing two files and saying why is the product working, not failing.</text>
+</svg>
+
+**This is the screen that sells the engine.** Rename something and every file that will change is listed as an accept-or-reject hunk. The refusal box at the bottom is the differentiator: where a competitor guesses, we stop and say why.
+
+::exhibit 34 | S10 · Team view — the only paid screen
+
+
+<svg viewBox="0 0 720 426" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:720px;height:auto">
+  <rect x="1" y="1" width="718" height="400" fill="#fff" stroke="#14161a" stroke-width="1.5"  />
+  <rect x="1" y="1" width="718" height="30" fill="#fafbfc" stroke="#8a93a3" stroke-width="1"  /><text x="14" y="20" font-family="system-ui,sans-serif" font-size="10" fill="#14161a" font-weight="600" >product-docs  ·  Team</text><text x="706" y="20" font-family="system-ui,sans-serif" font-size="8.5" fill="#8a93a3"  text-anchor="end">4 seats</text><rect x="14" y="44" width="220" height="58" fill="#fafbfc" stroke="#c9cfda" stroke-width="1"  rx="2"/><text x="28" y="68" font-family="system-ui,sans-serif" font-size="17" fill="#1a5cff" font-weight="700" >7</text><text x="28" y="86" font-family="system-ui,sans-serif" font-size="8" fill="#4a5160"  >Unreviewed documents</text><rect x="246" y="44" width="220" height="58" fill="#fafbfc" stroke="#c9cfda" stroke-width="1"  rx="2"/><text x="260" y="68" font-family="system-ui,sans-serif" font-size="17" fill="#1a5cff" font-weight="700" >18%</text><text x="260" y="86" font-family="system-ui,sans-serif" font-size="8" fill="#4a5160"  >Machine-written, unread</text><rect x="478" y="44" width="220" height="58" fill="#fafbfc" stroke="#c9cfda" stroke-width="1"  rx="2"/><text x="492" y="68" font-family="system-ui,sans-serif" font-size="17" fill="#1a5cff" font-weight="700" >42</text><text x="492" y="86" font-family="system-ui,sans-serif" font-size="8" fill="#4a5160"  >Reviewed this week</text><text x="14" y="128" font-family="system-ui,sans-serif" font-size="7.5" fill="#8a93a3" font-weight="600" >DOCUMENTS</text><rect x="14" y="148" width="692" height="28" fill="#fff" stroke="#c9cfda" stroke-width="1"  rx="2"/><text x="26" y="166" font-family="system-ui,sans-serif" font-size="9" fill="#14161a"  >specs/auth.md</text><text x="200" y="166" font-family="system-ui,sans-serif" font-size="8.5" fill="#4a5160"  >Sagnik</text><rect x="300" y="159" width="120" height="5" fill="#eceff4" stroke="none" stroke-width="1"  /><rect x="300" y="159" width="76.8" height="5" fill="#1a5cff" stroke="none" stroke-width="1"  /><text x="430" y="166" font-family="system-ui,sans-serif" font-size="8" fill="#8a93a3"  >64% machine</text><text x="694" y="166" font-family="system-ui,sans-serif" font-size="8" fill="#a51c1c"  text-anchor="end">not reviewed</text><rect x="14" y="182" width="692" height="28" fill="#fff" stroke="#c9cfda" stroke-width="1"  rx="2"/><text x="26" y="200" font-family="system-ui,sans-serif" font-size="9" fill="#14161a"  >specs/billing.md</text><text x="200" y="200" font-family="system-ui,sans-serif" font-size="8.5" fill="#4a5160"  >Amit</text><rect x="300" y="193" width="120" height="5" fill="#eceff4" stroke="none" stroke-width="1"  /><rect x="300" y="193" width="14.4" height="5" fill="#a8c4f5" stroke="none" stroke-width="1"  /><text x="430" y="200" font-family="system-ui,sans-serif" font-size="8" fill="#8a93a3"  >12% machine</text><text x="694" y="200" font-family="system-ui,sans-serif" font-size="8" fill="#0d8a4f"  text-anchor="end">reviewed</text><rect x="14" y="216" width="692" height="28" fill="#fff" stroke="#c9cfda" stroke-width="1"  rx="2"/><text x="26" y="234" font-family="system-ui,sans-serif" font-size="9" fill="#14161a"  >adr/0004-sync.md</text><text x="200" y="234" font-family="system-ui,sans-serif" font-size="8.5" fill="#4a5160"  >Sagnik</text><rect x="300" y="227" width="120" height="5" fill="#eceff4" stroke="none" stroke-width="1"  /><rect x="300" y="227" width="105.6" height="5" fill="#1a5cff" stroke="none" stroke-width="1"  /><text x="430" y="234" font-family="system-ui,sans-serif" font-size="8" fill="#8a93a3"  >88% machine</text><text x="694" y="234" font-family="system-ui,sans-serif" font-size="8" fill="#a51c1c"  text-anchor="end">not reviewed</text><rect x="14" y="250" width="692" height="28" fill="#fff" stroke="#c9cfda" stroke-width="1"  rx="2"/><text x="26" y="268" font-family="system-ui,sans-serif" font-size="9" fill="#14161a"  >README.md</text><text x="200" y="268" font-family="system-ui,sans-serif" font-size="8.5" fill="#4a5160"  >Amit</text><rect x="300" y="261" width="120" height="5" fill="#eceff4" stroke="none" stroke-width="1"  /><rect x="300" y="261" width="0" height="5" fill="#a8c4f5" stroke="none" stroke-width="1"  /><text x="430" y="268" font-family="system-ui,sans-serif" font-size="8" fill="#8a93a3"  >0% machine</text><text x="694" y="268" font-family="system-ui,sans-serif" font-size="8" fill="#0d8a4f"  text-anchor="end">reviewed</text><rect x="14" y="284" width="692" height="28" fill="#fff" stroke="#c9cfda" stroke-width="1"  rx="2"/><text x="26" y="302" font-family="system-ui,sans-serif" font-size="9" fill="#14161a"  >notes/pricing.md</text><text x="200" y="302" font-family="system-ui,sans-serif" font-size="8.5" fill="#4a5160"  >Sagnik</text><rect x="300" y="295" width="120" height="5" fill="#eceff4" stroke="none" stroke-width="1"  /><rect x="300" y="295" width="37.2" height="5" fill="#a8c4f5" stroke="none" stroke-width="1"  /><text x="430" y="302" font-family="system-ui,sans-serif" font-size="8" fill="#8a93a3"  >31% machine</text><text x="694" y="302" font-family="system-ui,sans-serif" font-size="8" fill="#8a5a06"  text-anchor="end">partial</text><text x="14" y="386" font-family="system-ui,sans-serif" font-size="8.5" fill="#1a5cff"  >Filter:  machine-written and nobody has read it  ·  7 documents</text>
+  <text x="2" y="420" font-family="system-ui,sans-serif" font-size="8.5" fill="#4a5160"  >The filter at the bottom is the feature a team lead actually opens this for.</text>
+</svg>
+
+**Provenance for one person is a convenience; provenance across a team is a record.** That is the whole reason this screen is behind the paywall and everything else is free.
+
+::exhibit 35 | S9 and S11 · Conflict view, and settings
+
+
+<svg viewBox="0 0 720 426" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:720px;height:auto">
+  <rect x="1" y="1" width="718" height="400" fill="#fff" stroke="#14161a" stroke-width="1.5"  />
+  <rect x="16" y="16" width="400" height="330" fill="#fff" stroke="#14161a" stroke-width="1.2"  rx="3"/><rect x="16" y="16" width="400" height="26" fill="#fdf3f3" stroke="none" stroke-width="1"  /><text x="28" y="34" font-family="system-ui,sans-serif" font-size="9" fill="#a51c1c" font-weight="600" >S9 · Two versions of specs/auth.md</text><text x="28" y="62" font-family="system-ui,sans-serif" font-size="8" fill="#8a93a3" font-weight="600" >This device</text><rect x="28" y="70" width="174" height="110" fill="#fafbfc" stroke="#c9cfda" stroke-width="1"  /><rect x="36" y="84" width="158" height="3.5" fill="#c9cfda" stroke="none" stroke-width="1"  /><rect x="36" y="93" width="158" height="3.5" fill="#c9cfda" stroke="none" stroke-width="1"  /><rect x="36" y="102" width="97.96" height="3.5" fill="#c9cfda" stroke="none" stroke-width="1"  /><rect x="32" y="116" width="166" height="16" fill="#fde0e0" stroke="none" stroke-width="1"  /><rect x="36" y="142" width="158" height="3.5" fill="#c9cfda" stroke="none" stroke-width="1"  /><rect x="36" y="151" width="158" height="3.5" fill="#c9cfda" stroke="none" stroke-width="1"  /><rect x="36" y="160" width="97.96" height="3.5" fill="#c9cfda" stroke="none" stroke-width="1"  /><text x="230" y="62" font-family="system-ui,sans-serif" font-size="8" fill="#8a93a3" font-weight="600" >Other device</text><rect x="230" y="70" width="174" height="110" fill="#fafbfc" stroke="#c9cfda" stroke-width="1"  /><rect x="238" y="84" width="158" height="3.5" fill="#c9cfda" stroke="none" stroke-width="1"  /><rect x="238" y="93" width="158" height="3.5" fill="#c9cfda" stroke="none" stroke-width="1"  /><rect x="238" y="102" width="97.96" height="3.5" fill="#c9cfda" stroke="none" stroke-width="1"  /><rect x="234" y="116" width="166" height="16" fill="#d9f2e3" stroke="none" stroke-width="1"  /><rect x="238" y="142" width="158" height="3.5" fill="#c9cfda" stroke="none" stroke-width="1"  /><rect x="238" y="151" width="158" height="3.5" fill="#c9cfda" stroke="none" stroke-width="1"  /><rect x="238" y="160" width="97.96" height="3.5" fill="#c9cfda" stroke="none" stroke-width="1"  /><text x="28" y="204" font-family="system-ui,sans-serif" font-size="8" fill="#8a93a3" font-weight="600" >Result</text><rect x="28" y="212" width="376" height="76" fill="#fff" stroke="#1a5cff" stroke-width="1"  /><rect x="36" y="226" width="360" height="3.5" fill="#c9cfda" stroke="none" stroke-width="1"  /><rect x="36" y="235" width="360" height="3.5" fill="#c9cfda" stroke="none" stroke-width="1"  /><rect x="36" y="244" width="360" height="3.5" fill="#c9cfda" stroke="none" stroke-width="1"  /><rect x="36" y="253" width="360" height="3.5" fill="#c9cfda" stroke="none" stroke-width="1"  /><rect x="36" y="262" width="223.2" height="3.5" fill="#c9cfda" stroke="none" stroke-width="1"  /><rect x="28" y="300" width="110" height="22" fill="#fff" stroke="#8a93a3" stroke-width="1"  rx="2"/><text x="83" y="315" font-family="system-ui,sans-serif" font-size="8" fill="#14161a"  text-anchor="middle">Keep this device</text><rect x="146" y="300" width="110" height="22" fill="#fff" stroke="#8a93a3" stroke-width="1"  rx="2"/><text x="201" y="315" font-family="system-ui,sans-serif" font-size="8" fill="#14161a"  text-anchor="middle">Keep the other</text><rect x="264" y="300" width="140" height="22" fill="#1a5cff" stroke="#1a5cff" stroke-width="1"  rx="2"/><text x="334" y="315" font-family="system-ui,sans-serif" font-size="8" fill="#fff" font-weight="600" text-anchor="middle">Edit the result</text><rect x="440" y="16" width="264" height="330" fill="#fff" stroke="#14161a" stroke-width="1.2"  rx="3"/><rect x="440" y="16" width="264" height="26" fill="#fafbfc" stroke="none" stroke-width="1"  /><text x="452" y="34" font-family="system-ui,sans-serif" font-size="9" fill="#14161a" font-weight="600" >S11 · Settings</text><text x="452" y="62" font-family="system-ui,sans-serif" font-size="9" fill="#14161a" font-weight="600" >Appearance</text><rect x="452" y="70" width="200" height="3" fill="#c9cfda" stroke="none" stroke-width="1"  /><text x="452" y="108" font-family="system-ui,sans-serif" font-size="9" fill="#14161a" font-weight="600" >Keyboard</text><rect x="452" y="116" width="200" height="3" fill="#c9cfda" stroke="none" stroke-width="1"  /><text x="452" y="154" font-family="system-ui,sans-serif" font-size="9" fill="#14161a" font-weight="600" >AI provider and key</text><rect x="452" y="162" width="200" height="3" fill="#c9cfda" stroke="none" stroke-width="1"  /><text x="452" y="180" font-family="system-ui,sans-serif" font-size="8" fill="#4a5160"  >Anthropic  ·  key stored locally</text><text x="452" y="200" font-family="system-ui,sans-serif" font-size="9" fill="#14161a" font-weight="600" >Provenance</text><rect x="452" y="208" width="200" height="3" fill="#c9cfda" stroke="none" stroke-width="1"  /><text x="452" y="226" font-family="system-ui,sans-serif" font-size="8" fill="#4a5160"  >Show machine-written spans   ●━</text><text x="452" y="246" font-family="system-ui,sans-serif" font-size="9" fill="#14161a" font-weight="600" >Git identity</text><rect x="452" y="254" width="200" height="3" fill="#c9cfda" stroke="none" stroke-width="1"  /><text x="452" y="292" font-family="system-ui,sans-serif" font-size="9" fill="#14161a" font-weight="600" >About</text><rect x="452" y="300" width="200" height="3" fill="#c9cfda" stroke="none" stroke-width="1"  /><text x="452" y="378" font-family="system-ui,sans-serif" font-size="8" fill="#8a93a3"  >One screen. No tabs. Six groups.</text>
+  <text x="2" y="420" font-family="system-ui,sans-serif" font-size="8.5" fill="#4a5160"  >Everything else in the product is a document with things drawn on it.</text>
+</svg>
+
+**The conflict view is the only modal in the product that blocks the document**, because proceeding without a decision loses work. Settings is one screen with six groups and stays one screen — every toggle is a decision we failed to make.
+
+::exhibit 36 | The AI edit, as three frames
+
+
+<svg viewBox="0 0 720 426" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:720px;height:auto">
+  <rect x="1" y="1" width="718" height="400" fill="#fff" stroke="#14161a" stroke-width="1.5"  />
+  <rect x="14" y="30" width="220" height="300" fill="#fff" stroke="#8a93a3" stroke-width="1"  rx="2"/><rect x="14" y="30" width="220" height="24" fill="#fafbfc" stroke="none" stroke-width="1"  /><text x="26" y="46" font-family="system-ui,sans-serif" font-size="8.5" fill="#14161a" font-weight="600" >1 · You ask</text><rect x="250" y="30" width="220" height="300" fill="#fff" stroke="#8a93a3" stroke-width="1"  rx="2"/><rect x="250" y="30" width="220" height="24" fill="#f2f6ff" stroke="none" stroke-width="1"  /><text x="262" y="46" font-family="system-ui,sans-serif" font-size="8.5" fill="#1a5cff" font-weight="600" >2 · Proposed, not written</text><rect x="486" y="30" width="220" height="300" fill="#fff" stroke="#8a93a3" stroke-width="1"  rx="2"/><rect x="486" y="30" width="220" height="24" fill="#fafbfc" stroke="none" stroke-width="1"  /><text x="498" y="46" font-family="system-ui,sans-serif" font-size="8.5" fill="#14161a" font-weight="600" >3 · You decide</text><rect x="26" y="76" width="190" height="3.5" fill="#c9cfda" stroke="none" stroke-width="1"  /><rect x="26" y="85" width="190" height="3.5" fill="#c9cfda" stroke="none" stroke-width="1"  /><rect x="26" y="94" width="117.8" height="3.5" fill="#c9cfda" stroke="none" stroke-width="1"  /><rect x="22" y="110" width="200" height="40" fill="#fafbfc" stroke="#c9cfda" stroke-width="1"  rx="2"/><text x="32" y="128" font-family="system-ui,sans-serif" font-size="8.5" fill="#14161a"  >"Document the token</text><text x="32" y="142" font-family="system-ui,sans-serif" font-size="8.5" fill="#14161a"  > refresh flow"</text><rect x="26" y="172" width="190" height="3.5" fill="#c9cfda" stroke="none" stroke-width="1"  /><rect x="26" y="181" width="190" height="3.5" fill="#c9cfda" stroke="none" stroke-width="1"  /><rect x="26" y="190" width="190" height="3.5" fill="#c9cfda" stroke="none" stroke-width="1"  /><rect x="26" y="199" width="117.8" height="3.5" fill="#c9cfda" stroke="none" stroke-width="1"  /><rect x="262" y="76" width="190" height="3.5" fill="#c9cfda" stroke="none" stroke-width="1"  /><rect x="262" y="85" width="117.8" height="3.5" fill="#c9cfda" stroke="none" stroke-width="1"  /><rect x="258" y="104" width="200" height="44" fill="#e3edff" stroke="#1a5cff" stroke-width="1"  rx="2"/><rect x="266" y="116" width="184" height="3.5" fill="#a8c4f5" stroke="none" stroke-width="1"  /><rect x="266" y="125" width="184" height="3.5" fill="#a8c4f5" stroke="none" stroke-width="1"  /><rect x="266" y="134" width="114.08" height="3.5" fill="#a8c4f5" stroke="none" stroke-width="1"  /><text x="262" y="166" font-family="system-ui,sans-serif" font-size="8" fill="#1a5cff"  >nothing written to disk yet</text><rect x="262" y="186" width="190" height="3.5" fill="#c9cfda" stroke="none" stroke-width="1"  /><rect x="262" y="195" width="190" height="3.5" fill="#c9cfda" stroke="none" stroke-width="1"  /><rect x="262" y="204" width="117.8" height="3.5" fill="#c9cfda" stroke="none" stroke-width="1"  /><rect x="498" y="76" width="190" height="3.5" fill="#c9cfda" stroke="none" stroke-width="1"  /><rect x="498" y="85" width="117.8" height="3.5" fill="#c9cfda" stroke="none" stroke-width="1"  /><rect x="494" y="104" width="200" height="30" fill="#f1faf5" stroke="#0d8a4f" stroke-width="1"  rx="2"/><rect x="502" y="114" width="184" height="3.5" fill="#9ad3b4" stroke="none" stroke-width="1"  /><rect x="502" y="123" width="114.08" height="3.5" fill="#9ad3b4" stroke="none" stroke-width="1"  /><text x="498" y="152" font-family="system-ui,sans-serif" font-size="8" fill="#0d8a4f"  >kept — now ordinary text</text><rect x="494" y="172" width="200" height="26" fill="#fff" stroke="#c9cfda" stroke-width="1"  rx="2"/><text x="504" y="189" font-family="system-ui,sans-serif" font-size="8" fill="#4a5160"  >$ git diff  →  1 file, 4 lines</text><rect x="498" y="214" width="190" height="3.5" fill="#c9cfda" stroke="none" stroke-width="1"  /><rect x="498" y="223" width="190" height="3.5" fill="#c9cfda" stroke="none" stroke-width="1"  /><rect x="498" y="232" width="117.8" height="3.5" fill="#c9cfda" stroke="none" stroke-width="1"  /><text x="14" y="356" font-family="system-ui,sans-serif" font-size="9" fill="#4a5160"  >At frame 2 a regenerating editor has already rewritten the whole file. We have written nothing.</text>
+  <text x="2" y="420" font-family="system-ui,sans-serif" font-size="8.5" fill="#4a5160"  >The proof is frame 3: git diff shows your change and nothing else. Every release is tested against that.</text>
+</svg>
+
+**Read left to right — this is the loop the whole product exists to make safe.** The middle frame is where every other tool has already rewritten your file; we have only proposed a byte range. The third frame is the promise, and it is testable on every release.
+
+### 37. The components, and who owns each
+
+::exhibit 37 | The system, by component
 
 | Component | What it is | Where it runs | Risk |
 |---|---|---|---|
@@ -768,11 +944,11 @@ flowchart LR
 | **Certificate** | Cross-engine render comparison | Server, batch | Internal only for now |
 | **Gates** | Reference checks, drift detection over a repo | CI | Becomes the team product later |
 
-### 34. How we play with the tools people already use
+### 38. How we play with the tools people already use
 
 We are joining a workflow, not replacing one. That means interoperating with things that already have adoption rather than inventing a format and hoping.
 
-::exhibit 27 | What we interoperate with, and how
+::exhibit 38 | What we interoperate with, and how
 
 | Thing | Status | Our position |
 |---|---|---|
@@ -789,11 +965,11 @@ We are joining a workflow, not replacing one. That means interoperating with thi
 
 **The strategic question inside this table.** Do we compete with the terminal agent the user already runs, or feed it? Feeding it is cheaper, and it may be the whole product: frontmatter as the place where the agent's work becomes reviewable, rather than as another place to talk to an agent. **That is the MCP answer and I think it is right**, but it is a decision, not a conclusion, and it belongs in the session.
 
-### 35. What documents we understand, and where those definitions come from
+### 39. What documents we understand, and where those definitions come from
 
 We do not invent document formats. We render the ones that already exist, and we researched which of those are real standards and which are folklore — because promising to "support ADRs" means nothing if the format is undefined.
 
-::exhibit 28 | The document canon, with its actual provenance
+::exhibit 39 | The document canon, with its actual provenance
 
 | Document | Is there a real standard? | What we do |
 |---|---|---|
@@ -810,7 +986,7 @@ We do not invent document formats. We render the ones that already exist, and we
 
 > [!note] **Why this table is in a product document.** It is the difference between "we support decision records" and "we render MADR and Nygard, and we will not pretend PRD has a standard because it does not". The second is credible to the exact buyer we want. The first is marketing.
 
-### 36. Accessibility, and text that is not English
+### 40. Accessibility, and text that is not English
 
 Both were absent from our plan and both are cheap now and expensive later.
 
@@ -831,11 +1007,11 @@ Both were absent from our plan and both are cheap now and expensive later.
 
 ## PART V — The honest assessment
 
-### 37. Strengths, weaknesses, opportunities, threats
+### 41. Strengths, weaknesses, opportunities, threats
 
 I ran twelve separate adversarial audits against our own case. This is what survived.
 
-::exhibit 29 | Where we actually stand
+::exhibit 40 | Where we actually stand
 
 | | |
 |---|---|
@@ -844,11 +1020,11 @@ I ran twelve separate adversarial audits against our own case. This is what surv
 | **OPPORTUNITIES** | Slop is 23.7% and growing 149%/year with nobody on it · provenance is uncopyable by any tool that regenerates files · the 501-like live-preview bug is an audience we can buy for one week of work · teams reviewing AI output is a budget that did not exist two years ago |
 | **THREATS** | Zed or Cursor adding markdown vault semantics — one sprint for them · Obsidian shipping first-party AI editing · the labs making review unnecessary by making output trustworthy · us running out of attention before revenue |
 
-### 38. The twelve audits, in one table
+### 42. The twelve audits, in one table
 
 We ran twelve separate adversarial reviews against our own case. Each had to steelman the idea first, rank severity, and say what evidence would change its mind.
 
-::exhibit 30 | What each audit concluded
+::exhibit 41 | What each audit concluded
 
 | # | Angle | Worst finding | Severity |
 |---|---|---|---|
@@ -865,7 +1041,7 @@ We ran twelve separate adversarial reviews against our own case. Each had to ste
 | 11 | What to build | Not a different product — a different **claim** on the same code | — |
 | 12 | The plan | Test for two weeks before building for ten | — |
 
-### 39. The critique in full, audit by audit
+### 43. The critique in full, audit by audit
 
 Each of the twelve had to steelman our position first, then take it apart, rank severity, and say what evidence would change its mind. These are their findings, not mine.
 
@@ -947,9 +1123,9 @@ Each of the twelve had to steelman our position first, then take it apart, rank 
 
 > [!note] **What the critique did not find.** No audit concluded the engine was wrong, the code was bad, or the correctness work was wasted. Every severe finding was about the *claim*, the *buyer*, the *price* or the *channel* — never the machine. That is a repairable position.
 
-### 40. Risks, ranked, with what we do about each
+### 44. Risks, ranked, with what we do about each
 
-::exhibit 31 | The risk register
+::exhibit 42 | The risk register
 
 | # | Risk | Severity | What we do |
 |---|---|---|---|
@@ -964,11 +1140,11 @@ Each of the twelve had to steelman our position first, then take it apart, rank 
 | 9 | GST registration triggered unexpectedly | MEDIUM | Reverse charge has **no turnover floor** — registration starts with the first API purchase |
 | 10 | Support load with two founders and a team | MEDIUM | Free tier has no SLA. Say so on the page |
 
-### 41. The war-game — what happens when someone bigger moves
+### 45. The war-game — what happens when someone bigger moves
 
 Not a risk list. Specific scenarios, what breaks, and whether our response is credible for two founders.
 
-::exhibit 32 | Six moves, and our answer to each
+::exhibit 43 | Six moves, and our answer to each
 
 | Scenario | How long we would have | What breaks | What we do | Credible for us? |
 |---|---|---|---|---|
@@ -979,7 +1155,7 @@ Not a risk list. Specific scenarios, what breaks, and whether our response is cr
 | **A funded startup ships the same thesis with eight engineers** | 3–6 months | Our lead | Ship faster on the narrow thing, and lean on the corpus and tests we already have | Partly |
 | **Nobody moves and the category never forms** | — | The quiet one nobody war-games | This is the most likely failure and the two-week test is aimed directly at it | Yes — it is why we test first |
 
-::exhibit 33 | Our claimed advantages, stress-tested
+::exhibit 44 | Our claimed advantages, stress-tested
 
 | What we claim | Obsidian moves | Zed adds markdown | A lab ships it |
 |---|---|---|---|
@@ -995,7 +1171,7 @@ Not a risk list. Specific scenarios, what breaks, and whether our response is cr
 
 **The one that should worry us most** is not a competitor. It is scenario six — that byte-exactness and provenance are things we find interesting and the market does not. Every other row has a response. That one only has a test.
 
-### 42. The three arguments I cannot fully answer
+### 46. The three arguments I cannot fully answer
 
 > [!risk] **One. The money.** If everything goes right — 502 paying users, 171,200 cumulative visitors, two years — this produces about **₹1,09,135 a month.** That is the same as roughly **78 hours of consulting**, billable next week. Building this is not the fast route to that number. It is the route to owning something that keeps paying after we stop. That is a real reason. It is also the *only* reason, and we should both say it out loud before committing two years.
 
@@ -1005,11 +1181,11 @@ Not a risk list. Specific scenarios, what breaks, and whether our response is cr
 
 ## PART VI — How we build it
 
-### 43. The stack, and why each choice
+### 47. The stack, and why each choice
 
 Everything here is chosen for two people plus a team who must operate it without a dedicated ops person.
 
-::exhibit 34 | The stack
+::exhibit 45 | The stack
 
 | Layer | Choice | Why this one |
 |---|---|---|
@@ -1042,11 +1218,11 @@ flowchart LR
 
 > [!note] **The one rule that governs the architecture: we never hold your documents.** It is the right thing ethically, it removes most of our legal surface, and it is commercially awkward because it means leaving us costs a user nothing. We accept that trade knowingly.
 
-### 44. Every layer, decided
+### 48. Every layer, decided
 
 The full engineering plan runs to thirteen sections in the record. This is each decision and the reason, so you can argue with any of them.
 
-::exhibit 35 | The eleven layers
+::exhibit 46 | The eleven layers
 
 | Layer | What we picked | What we rejected, and why |
 |---|---|---|
@@ -1064,7 +1240,7 @@ The full engineering plan runs to thirteen sections in the record. This is each 
 | **AI** | User's own key first, ours as a paid option | Solves our budget and their trust in one decision. CORS means a browser may not be able to call some providers directly — this is checked per provider, not assumed |
 | **CI** | GitHub Actions, ported from the sibling repo | One day. Currently absent entirely |
 
-### 45. The things that will bite us
+### 49. The things that will bite us
 
 Named now so they are not surprises.
 
@@ -1074,7 +1250,7 @@ Named now so they are not surprises.
 - **R2 has no versioning.** If we overwrite a derived artifact wrongly, it is gone. Recovery has to be designed into how we name keys.
 - **Our own CI does not exist.** Four gates in this repo reported green while blind. Until CI runs on a deliberately broken commit and fails, we do not actually know that our checks work.
 
-### 46. Cost, security, and running it
+### 50. Cost, security, and running it
 
 | Concern | Position |
 |---|---|
@@ -1086,9 +1262,9 @@ Named now so they are not surprises.
 | **Reverse charge** | **Starts at the first rupee.** Buying Claude API access is importing a service; registration is compelled with no turnover floor |
 | **On call** | Two founders and a team, no rotation. The free tier gets no SLA and we say so publicly |
 
-### 47. Roles, permissions, and sharing
+### 51. Roles, permissions, and sharing
 
-::exhibit 36 | Who can do what, and how it is enforced
+::exhibit 47 | Who can do what, and how it is enforced
 
 | Operation | Our posture | Enforced by |
 |---|---|---|
@@ -1100,7 +1276,7 @@ Named now so they are not surprises.
 
 **The principle underneath:** we never grant access to a repository that GitHub would not grant. We can only ever be *more* restrictive, never less. That means a security question about us becomes a question about GitHub's model, which is a much easier conversation.
 
-### 48. Trust, safety, and the abuse surface
+### 52. Trust, safety, and the abuse surface
 
 | Surface | The risk | What we do |
 |---|---|---|
@@ -1110,11 +1286,11 @@ Named now so they are not surprises.
 | Publishing abuse | If we ever publish, a free indexable page is a spam magnet | Publishing is out of v1. If it returns: paid accounts only, noindex by default, system-assigned slugs |
 | Our own supply chain | A dependency compromise reaching user files | No plugin system at all is the largest single mitigation we have |
 
-### 49. Auth, hosting, caching and the rest of the plumbing
+### 53. Auth, hosting, caching and the rest of the plumbing
 
 The parts nobody asks about until they break.
 
-::exhibit 37 | The operational layers
+::exhibit 48 | The operational layers
 
 | Layer | Decision | The reason, and the trap |
 |---|---|---|
@@ -1130,7 +1306,7 @@ The parts nobody asks about until they break.
 | **Disaster recovery** | R2 has **no object versioning** — recovery must be designed into the key layout | This is a real constraint, discovered by reading their docs rather than assuming |
 | **Error tracking** | Sentry, with document content scrubbed at the SDK before send | **No session replay, ever.** The DOM we would be replaying is the user's private document |
 
-### 50. Incremental parsing, and why it matters to a user
+### 54. Incremental parsing, and why it matters to a user
 
 A technical decision that shows up as something a person feels.
 
@@ -1139,7 +1315,7 @@ A technical decision that shows up as something a person feels.
 - **Why it is not optional:** our provenance spans have to survive edits happening around them. That means knowing precisely which byte ranges moved and by how much, on every keystroke, cheaply.
 - **The user-visible measure:** time to first keystroke on a cold start, and typing latency on a 10,000-word document. We publish both.
 
-### 51. What has to be fixed before anything else
+### 55. What has to be fixed before anything else
 
 These are not features. They are the reasons the product does not currently work.
 
@@ -1153,11 +1329,11 @@ These are not features. They are the reasons the product does not currently work
 
 ## PART VII — The plan
 
-### 52. Before we write any code — two weeks, zero rupees
+### 56. Before we write any code — two weeks, zero rupees
 
 This is the highest-value fortnight available to us, and it is the part I most want you to agree to.
 
-::exhibit 38 | The four tests, and what kills each
+::exhibit 49 | The four tests, and what kills each
 
 | # | Test | What it costs | Kill signal |
 |---|---|---|---|
@@ -1169,7 +1345,7 @@ This is the highest-value fortnight available to us, and it is the part I most w
 - If **1 and 3 both fail**, the provenance thesis is dead and we should say so in week two rather than month six.
 - If **2 succeeds**, we have an audience before we have a product. That has never been true for us before, and it is the cheapest distribution we will ever get.
 
-### 53. MVP-0 — the proof
+### 57. MVP-0 — the proof
 
 **Ten weeks elapsed** at our real availability, not six. The estimate assumes full-time work and we do not have it.
 
@@ -1190,19 +1366,19 @@ This is the highest-value fortnight available to us, and it is the part I most w
 
 **Exit criterion:** ten strangers, their own repositories. **Six of ten say they would keep using it.** Not "like it" — keep it.
 
-### 54. MVP-1 — the first money
+### 58. MVP-1 — the first money
 
 - **Vault-wide refactor.** Rename a tag, a heading, a property key. Every link that will change shows as a reviewable hunk. Refuse when a target is ambiguous. This is the 86-like problem and it is the strongest asked-for capability our engine uniquely enables.
 - **The editor stays free forever.** We charge for teams.
 - **Team provenance** is the first paid line: shared repos, who-wrote-what across a team, per-seat. The model is Obsidian's commercial licence — $50/user/year with no enterprise features at all, which is what a nine-figure-logo B2B business actually looks like in this category.
 - The unglamorous half: billing, a support inbox, terms of service, and a way to tell users about a breaking change. **None of these exist and all are required before the first paid signup.**
 
-### 55. MVP-2 — the moat
+### 59. MVP-2 — the moat
 
 - **Sync, done provably safely.** The #1 loved feature and #1 switching trigger. A competitor's sync duplicates sections of files; ours structurally cannot, and we can demonstrate it. This is also the only price this category has ever proven.
 - **The free live-preview plugin** in Obsidian's store, permanently. 501 likes on the bug it fixes. It is the cheapest audience available to us and it should ship in week two regardless.
 
-### 56. Money
+### 60. Money
 
 | Line | Number |
 |---|---|
@@ -1214,7 +1390,7 @@ This is the highest-value fortnight available to us, and it is the part I most w
 
 > [!test] **The pricing decision, which inverts our original plan.** The editor is free. Teams pay per seat. Sync is a separate paid service later. We charge for the two things this category has proven people pay for, and we give away the thing it has proven they do not.
 
-### 57. The cost model, and how we avoid a surprise bill
+### 61. The cost model, and how we avoid a surprise bill
 
 | Where money goes | At 100 users | At 10,000 users |
 |---|---|---|
@@ -1233,11 +1409,11 @@ This is the highest-value fortnight available to us, and it is the part I most w
 - **Nothing runs in the background.** No ambient AI, no automatic passes over the vault. Every call is something a person asked for, which makes the cost predictable by construction.
 - **Measured, not guessed:** in our own usage data, output tokens are 75.8% of spend across 2,333 measured turns. Context is nearly free; generation is the cost. That tells us where to optimise and it is why we cap output length rather than input.
 
-### 58. Pricing, worked through properly
+### 62. Pricing, worked through properly
 
 Our original ₹299/₹599 was set with evidence from zero humans. Here is what the category actually shows.
 
-::exhibit 39 | What this market charges, opened and dated
+::exhibit 50 | What this market charges, opened and dated
 
 | Product | Editor | Sync | Teams | What that tells us |
 |---|---|---|---|---|
@@ -1255,7 +1431,7 @@ Our original ₹299/₹599 was set with evidence from zero humans. Here is what 
 - **The two proven prices in this category are sync (~$4) and a commercial team licence (~$50/user/year).** Those are the two things we should charge for.
 - **The buyer already spends $20–40/month on AI tooling.** We are not asking for a new budget line; we are asking for a share of one that exists.
 
-::exhibit 40 | What I propose
+::exhibit 51 | What I propose
 
 | Tier | Price | What it is |
 |---|---|---|
@@ -1269,7 +1445,7 @@ Our original ₹299/₹599 was set with evidence from zero humans. Here is what 
 
 > [!test] **The pricing decision in one line: give away the thing the category has proven is free, and charge for the two things it has proven people pay for.** That inverts our original plan and it is better supported by evidence than anything we had.
 
-### 59. Refunds, cancellation, and what happens to your data
+### 63. Refunds, cancellation, and what happens to your data
 
 Boring, and it is in the checkout flow, so it must be written before the first paid signup rather than after the first complaint.
 
@@ -1284,9 +1460,9 @@ Boring, and it is in the checkout flow, so it must be written before the first p
 
 **The one that matters:** downgrading loses you features, never files. A user who stops paying keeps a working editor. That is unusual, it is a consequence of never holding their data, and it should be said out loud in the pricing page.
 
-### 60. What comes in which plan
+### 64. What comes in which plan
 
-::exhibit 41 | The feature-to-tier map
+::exhibit 52 | The feature-to-tier map
 
 | | **Free** | **Team — $8/user/mo** | **Sync — +$4/user/mo** |
 |---|---|---|---|
@@ -1310,13 +1486,13 @@ Boring, and it is in the checkout flow, so it must be written before the first p
 
 > [!warn] **The obvious objection: we are giving away our differentiator.** Yes. Deliberately. Provenance free is what makes anyone try it at all, and a product nobody tries has no team to sell to. The paid thing is not the feature — it is the feature *across people*.
 
-### 61. B2B and D2C, decided rather than described
+### 65. B2B and D2C, decided rather than described
 
 **The counter-intuitive finding that shaped this.** The closest structural analogue to us runs a substantial business selling to companies **with no enterprise features whatsoever.** Obsidian's entire commercial offering is a $50/user/year licence; their own FAQ answers the "do I have to pay for commercial use" question and that is essentially the whole product.
 
 That tells us our B2B strategy is probably not SSO, SCIM, audit exports and a SOC 2 report. It is a commercial licence and a clear answer about where the data lives.
 
-::exhibit 42 | The two motions, honestly
+::exhibit 53 | The two motions, honestly
 
 | | **D2C** | **B2B** |
 |---|---|---|
@@ -1346,13 +1522,13 @@ That tells us our B2B strategy is probably not SSO, SCIM, audit exports and a SO
 
 > [!note] **The recommendation: D2C free to build the audience, B2B paid to build the revenue, and do not build a single enterprise feature until a customer refuses to pay without it.** Obsidian's precedent says that can go a very long way.
 
-### 62. Distribution — our weakest area, stated honestly
+### 66. Distribution — our weakest area, stated honestly
 
 Everything above is a product argument. This is the part where I have least to offer, and I would rather say that than dress it up.
 
 **What we have today:** no email list, no audience, no store presence, no inbound. Every channel we have identified belongs to someone else.
 
-::exhibit 43 | Channels, and who actually owns them
+::exhibit 54 | Channels, and who actually owns them
 
 | Channel | Who owns it | Compounds? | Our honest read |
 |---|---|---|---|
@@ -1367,7 +1543,7 @@ Everything above is a product argument. This is the part where I have least to o
 
 > [!warn] **Say this out loud: a good product does not find its own users.** We have assumed it will. The plugin is the one cheap, ownable move on the table, and it costs about four days.
 
-### 63. Marketing — who, where, and what we say
+### 67. Marketing — who, where, and what we say
 
 We have never written this down and it is our weakest area, so this is a first draft to argue with rather than a plan to execute.
 
@@ -1382,7 +1558,7 @@ We have never written this down and it is our weakest area, so this is a first d
 
 **Where these people actually are**, ranked by how cheaply we can reach them.
 
-::exhibit 44 | Channels, honestly rated
+::exhibit 55 | Channels, honestly rated
 
 | Channel | Size / reach | Cost to us | Do we own it? | Verdict |
 |---|---|---|---|---|
@@ -1398,7 +1574,41 @@ We have never written this down and it is our weakest area, so this is a first d
 
 **What we do not do:** no launch countdown, no waitlist theatre, no "we are building in public" posting that is really just posting. If we have nothing to show, we say nothing.
 
-### 64. How users hear from us, and how they reach us
+### 68. Positioning — how we say it
+
+**The rule: lead with the problem, never the mechanism.** "Byte-preserving splice engine" is what we built. "You can see what the AI wrote" is what someone buys.
+
+::exhibit 56 | The message ladder
+
+| Length | The message |
+|---|---|
+| 5 words | **See what the AI wrote.** |
+| 1 line | A markdown editor that shows which parts of your document a machine wrote — and lets you undo any of them. |
+| 1 paragraph | You write with AI now. A week later nobody knows which paragraphs were generated and never properly read. frontmatter records every AI edit as an exact byte range, marks it in the document, and reverts it with one key — leaving every other byte untouched. |
+| The proof | `git diff` after an edit shows your change and nothing else. Tested on 8,513 real files, every release. |
+
+**What we never say:** "revolutionary", "seamless", "powerful", "AI-native", "10x". Also never "byte-preserving" in a headline — it is the reason, not the pitch.
+
+**Objection-led positioning.** Our audience is sceptical of AI tooling, so lead with what we *refuse* to do: no plugins, no code execution, no holding your files, no lock-in. **The refusals are more persuasive than the features** to this buyer.
+
+### 69. Launch — Product Hunt and the rest
+
+::exhibit 57 | The launch surfaces, ranked
+
+| Surface | When | What we need ready | Realistic outcome |
+|---|---|---|---|
+| **Obsidian plugin store** | **Week 2, before anything else** | The live-preview fix, a README, a GIF | The only compounding channel. Measure installs at day 14 |
+| **Show HN** | After 6 of 10 strangers keep it | Working binary, a 20-second GIF, one honest paragraph | One-shot. High variance. Good for a spike, not a plan |
+| **Product Hunt** | MVP-1, when there is something to pay for | Gallery, a 60-second video, a hunter, a first comment that is not marketing | A day of traffic; converts poorly for developer tools but earns durable backlinks |
+| **r/ObsidianMD, r/ClaudeAI** | Continuously, never as a launch | Genuine participation for weeks first | These communities punish launch-posting and reward being useful |
+| **GitHub** | When the engine is stable | The engine as a readable open library | Credibility with the exact people we want; also feeds competitors |
+| **Our own writing** | Start now | The research in this document | **Slowest and the only one we own** |
+
+**The Product Hunt specifics**, since you asked: ship on a Tuesday or Wednesday, have the first comment written before launch (it should explain what you *refused* to build, not what you built), reply to every comment within the hour for the first six, and treat the day as backlinks and a spike — not as a growth strategy.
+
+**What we launch with is not the product, it is the demo.** Fifteen seconds: a document with machine spans marked, one key pressed, `git diff` showing nothing else moved. If that clip is not compelling, no launch surface will save it — and if it is, they all work.
+
+### 70. How users hear from us, and how they reach us
 
 The record found we had **no route to tell a user anything** — not a breaking change, not a price change, not a security incident. That is an operational defect, not a marketing gap.
 
@@ -1418,11 +1628,11 @@ The record found we had **no route to tell a user anything** — not a breaking 
 
 **How they reach us:** one email address, a published response window, and an honest statement that the free tier has no service commitment. One person on call cannot promise more than that, and promising more is how you get a reputation for silence.
 
-### 65. How people actually get it, and keep it updated
+### 71. How people actually get it, and keep it updated
 
 You asked how users install it. This is the part of a desktop product that quietly decides whether anyone uses it.
 
-::exhibit 45 | Distribution, by surface
+::exhibit 58 | Distribution, by surface
 
 | Surface | How they get it | What it costs us |
 |---|---|---|
@@ -1442,7 +1652,7 @@ You asked how users install it. This is the part of a desktop product that quiet
 
 > [!warn] **Two things that will catch us out.** Code-signing certificates now require a physical hardware token and renew on a shorter cycle than they used to — that is a recurring cost and an operational chore, not a one-off. And the auto-updater has to be signed and configured before the first public build; retrofitting it means asking every early user to manually re-download, which is exactly how you lose them.
 
-### 66. How we know what we know
+### 72. How we know what we know
 
 So you can judge the evidence rather than take it on trust.
 
@@ -1464,7 +1674,7 @@ So you can judge the evidence rather than take it on trust.
 
 > [!note] **The most important methodological point.** We ran adversarial rounds specifically permitted to refute our own thesis, and they did — twice. That is the reason to trust the rest of it. A research process that never contradicts its sponsor is marketing.
 
-### 67. What we have not done, and would do next
+### 73. What we have not done, and would do next
 
 Being explicit about the edges of this document.
 
@@ -1478,7 +1688,7 @@ Being explicit about the edges of this document.
 | Sync is designed but unproven | It is MVP-2 and the hardest thing on the list | Deliberately deferred |
 | No security review by anyone outside | We are asserting our own safety | A paid review before the first team customer |
 
-### 68. The words we use, defined
+### 74. The words we use, defined
 
 Because half of these mean different things to different people.
 
@@ -1495,7 +1705,7 @@ Because half of these mean different things to different people.
 | **The gates** | Automated checks over a repo of documents: references resolve, nothing is stale |
 | **Vault** | A folder of markdown the user already had. We never create one |
 
-### 69. What we measure, and what we refuse to measure
+### 75. What we measure, and what we refuse to measure
 
 | We measure | Why |
 |---|---|
@@ -1513,11 +1723,11 @@ Because half of these mean different things to different people.
 | Document content, ever | We never hold documents. That is the promise |
 | Vanity metrics — signups, stars, page views | They move without the business moving |
 
-### 70. The ninety days, week by week
+### 76. The ninety days, week by week
 
 Assumes both of us, part-time on product, with client work continuing to fund everything.
 
-::exhibit 46 | The plan, with an observable outcome every fortnight
+::exhibit 59 | The plan, with an observable outcome every fortnight
 
 | Weeks | What happens | Observable outcome |
 |---|---|---|
@@ -1531,9 +1741,9 @@ Assumes both of us, part-time on product, with client work continuing to fund ev
 | **10–12** | Table stakes: quick-switch, palette, search. Ten strangers try it | 6 of 10 say they would keep it |
 | **13** | Decide MVP-1 scope on what the ten said | Written scope |
 
-### 71. What we decide, and when we stop
+### 77. What we decide, and when we stop
 
-::exhibit 47 | Decisions with owners
+::exhibit 60 | Decisions with owners
 
 | # | Decision | Owner | By |
 |---|---|---|---|
@@ -1543,7 +1753,7 @@ Assumes both of us, part-time on product, with client work continuing to fund ev
 | 4 | The two unrotated access tokens | Sagnik | **Today** |
 | 5 | Do we ship the free plugin regardless of test 1 | Both | Week 2 |
 
-::exhibit 48 | The kill switches, dated
+::exhibit 61 | The kill switches, dated
 
 | Bet | Falsified when | By |
 |---|---|---|
@@ -1554,7 +1764,7 @@ Assumes both of us, part-time on product, with client work continuing to fund ev
 | Anyone pays | 60 days with a working checkout and zero non-founder paid signups | Day 150 |
 | Teams pay | No team converts after 20 qualified conversations | Day 180 |
 
-### 72. The decisions only you can make
+### 78. The decisions only you can make
 
 | # | Decision | Why it is first |
 |---|---|---|
@@ -1566,9 +1776,9 @@ Assumes both of us, part-time on product, with client work continuing to fund ev
 
 > [!risk] **What would make me tell you to stop.** If the two-week tests come back with fewer than 4 of 10 developers calling provenance useful, and nobody who bills for documents has ever been asked for it, then there is no product here — only an engine, a consulting business, and a free plugin that makes people happy. That is not a failure. It is a smaller, truer version of the same work, and it pays better sooner.
 
-### 73. Everything we are betting on, in one place
+### 79. Everything we are betting on, in one place
 
-::exhibit 49 | The bets, and the evidence that would settle each
+::exhibit 62 | The bets, and the evidence that would settle each
 
 | # | The bet | Falsified when | When we know |
 |---|---|---|---|
@@ -1583,7 +1793,7 @@ Assumes both of us, part-time on product, with client work continuing to fund ev
 
 > [!good] **Why I think this is worth doing, stated plainly.** We have built the only editing engine in this category that does not damage files, and the incumbents have publicly admitted they have the defect. We were describing it wrongly — as a promise about bytes rather than as a capability nobody else can offer. Provenance is that capability. It answers the fastest-growing complaint in the market, it reuses ninety percent of what exists, and it cannot be copied by anyone who rewrites whole files. The two weeks of tests cost nothing and will tell us whether that reasoning survives contact with real people. If it does not, we will have lost a fortnight and gained the most valuable thing we could have bought.
 
-### 74. If I am wrong, here is how we will know early
+### 80. If I am wrong, here is how we will know early
 
 The failure mode I most want to avoid is spending ten weeks and learning nothing. Every phase has a signal that arrives before the money runs out.
 
@@ -1602,7 +1812,7 @@ flowchart TD
 
 **Note what the "no" branches are.** None of them is "we wasted two years". Every one lands somewhere useful — a free tool people like, an engine that works, a services business already paying our bills. **That asymmetry is the actual argument for trying.**
 
-### 75. What I actually think
+### 81. What I actually think
 
 - **The engine is the best thing either of us has built.** It is correct in a way the funded competitors are not, and they have admitted the defect in public.
 - **We were selling it wrong.** "We don't corrupt your bytes" is a promise nobody asked for. "You can see which parts the machine wrote, and undo any of them" is the same engine answering the fastest-growing complaint in the market.
