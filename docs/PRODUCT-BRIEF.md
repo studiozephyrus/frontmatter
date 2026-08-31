@@ -100,11 +100,26 @@ Not everyone with the problem will pay for a fix. These are the people who might
 
 **We have never chosen between the first group and the last two, and that is a real problem.** The developer who ships fast wants speed and will not pay much. The agency and the regulated team want *proof* and will pay properly. They need different products. Building for both is how you build for neither.
 
-### 5. The two buyers, and why we must choose
+### 5. Market segments, and who we actually serve
+
+::exhibit 5 | The segments, sized and ranked
+
+| # | Segment | Size signal | Pain | Will they pay? | Verdict |
+|---|---|---|---|---|---|
+| 1 | Developers using an AI agent daily | Large and growing fast | Slop, review load | A little, reluctantly | **Free tier. Our volume** |
+| 2 | Two-to-five person product teams | Very large | Nobody knows why a decision was made | **Yes, per seat** | **The wedge** |
+| 3 | Agencies and consultancies | Large | Handover *is* the deliverable | **Yes, and more** | Second target |
+| 4 | Docs and DX teams | Medium | Docs rot silently | Yes, slowly | Later, via gates |
+| 5 | Regulated or audited teams | Smaller | Must evidence who wrote what | **Most of all** | Hardest to reach. Design for, do not chase |
+| 6 | Individual note-takers | Huge | None. Obsidian works | No | Not our buyer |
+
+**The wedge user, specific enough to email ten of this week:** a technical founder or lead engineer in a two-to-five person team, shipping with Claude Code or Cursor daily, keeping specs and decisions in a git repo, who has been burned at least once by a document nobody realised was machine-written. They are in r/ClaudeAI, r/ExperiencedDevs and the Obsidian forum, and they will tell you exactly what they think within an hour of trying something.
+
+### 6. The two buyers, and why we must choose
 
 This is the deepest problem in our plan and it is not a research gap — it is a decision nobody made.
 
-::exhibit 5 | The same product, sold to two different people
+::exhibit 6 | The same product, sold to two different people
 
 | | **The AI-native developer** | **The person who is liable** |
 |---|---|---|
@@ -122,11 +137,44 @@ This is the deepest problem in our plan and it is not a research gap — it is a
 
 > [!warn] If we do not pick, the roadmap will drift toward whoever complains loudest, which is always the developer, who is also the one who will not pay.
 
-### 6. What the market has today
+### 7. Positioning, and the objections we will actually hear
+
+**The positioning statement.** For teams building software with AI, frontmatter is the markdown editor that records which bytes the machine wrote — so you can review what matters instead of re-reading everything. Unlike Cursor or Zed, which rewrite whole files and cannot tell you what they changed, we only ever write an exact byte range.
+
+::exhibit 7 | Objections, and honest answers
+
+| Objection | Our answer | Is the answer good enough? |
+|---|---|---|
+| "Obsidian is free and I like it" | So is ours, and it does something Obsidian does not | Yes |
+| "Cursor already shows me diffs" | A diff is a moment. Provenance is a state that persists until someone deals with it | Yes, but it needs demonstrating, not explaining |
+| "I trust my own review" | Then this changes nothing for you, and you should keep your workflow | Honest, and it loses the sale. Correctly |
+| "Another editor to learn" | It reads your existing folder as-is. No import, no migration, no new format | Yes |
+| "What if you shut down?" | Your files are your files. There is nothing to export because nothing was ever taken | **Our strongest answer** |
+| "Why should I trust byte-exactness?" | There is a test, it runs on 8,513 real files, and it fails if one byte changes | Yes |
+| "Zed has per-hunk review already" | It does. It also has no idea what a wikilink or a frontmatter key is | Adequate, not crushing |
+| "I don't have this problem" | Then we are not for you today | The right answer, and we should give it |
+
+### 8. What happens if we stop
+
+A shutdown promise is normally marketing. Ours is architectural, which means it holds whether or not we are around to honour it.
+
+::exhibit 8 | The promises, and whether we could break them
+
+| # | Promise | Mechanism | Could we revoke it? |
+|---|---|---|---|
+| 1 | Your files stay plain files in folders you chose | The filesystem | **No.** Not for anything already written |
+| 2 | No proprietary sidecar carrying meaning you would lose | Delete our files; your documents still work | **No** |
+| 3 | Byte-preserving edits | Hash, edit, diff — testable per release | **No.** Falsifiable on every build |
+| 4 | Your git history is yours | It is in your repo | **No** |
+| 5 | Provenance data is readable without us | Plain text sidecar, documented format | No, provided we document it — and we will |
+
+**Why this is a commercial argument, not just an ethical one.** The single most common objection to a small vendor is "what if you disappear". Our answer is not a promise, it is a property of the design: there is nothing to take back. That is worth more in a B2B conversation than any feature.
+
+### 9. What the market has today
 
 We tore down every serious tool in two categories — the markdown editors and the AI coding tools — by opening their docs, pricing pages and changelogs.
 
-::exhibit 6 | The landscape, and where each one stops
+::exhibit 9 | The landscape, and where each one stops
 
 | Tool | What it is | What it does well | Where it stops |
 |---|---|---|---|
@@ -143,11 +191,11 @@ We tore down every serious tool in two categories — the markdown editors and t
 - **The incumbents genuinely have the corruption defect we fixed.** Cursor's own staff described doubled blank lines and destroyed carriage returns on CRLF files as *"a known issue we're tracking"* three days before I looked. They know. They have not fixed it.
 - **In this category the editor is free.** Obsidian gives the whole editor away and charges $4/user/month for sync alone. We had planned to charge ₹299 (~$3.13) for the entire editor — less than one competitor charges for a single add-on.
 
-### 7. Where each competitor stops, in detail
+### 10. Where each competitor stops, in detail
 
 We opened every one of these — docs, pricing, changelogs — rather than describing them from memory.
 
-::exhibit 7 | The teardown
+::exhibit 10 | The teardown
 
 | Tool | Price today | How it writes files | What it cannot do |
 |---|---|---|---|
@@ -168,7 +216,7 @@ We opened every one of these — docs, pricing, changelogs — rather than descr
 
 > [!risk] **The finding that changed our plan most.** Zed's documentation says: *"You can accept or reject each individual change hunk, or the whole set of changes made by the agent."* That was our flagship demo — sixteen of thirty-eight planned points. It is shipped, documented, and free. We would have found this out at launch.
 
-### 8. So where is the actual opening
+### 11. So where is the actual opening
 
 Three facts, laid next to each other:
 
@@ -191,7 +239,7 @@ flowchart TD
 
 ## PART III — What we already have
 
-### 9. The engine, in plain terms
+### 12. The engine, in plain terms
 
 The thing we have built and that nobody else has is a way of editing a file that changes only the exact bytes you asked to change, and refuses when it cannot be certain.
 
@@ -210,7 +258,7 @@ flowchart LR
 
 **Why this is hard and therefore worth something.** Getting it right means handling every way a markdown file can be strange: Windows line endings, byte-order marks, tabs, unusual YAML, non-English text, files written by other tools. We tested it against 8,513 real markdown files pulled from seven strangers' public vaults — pinned by checksum so the test cannot drift — and it does not corrupt them.
 
-::exhibit 8 | What is already built and proven
+::exhibit 11 | What is already built and proven
 
 | | |
 |---|---|
@@ -222,7 +270,7 @@ flowchart LR
 
 > [!warn] **What is not built, and we should be honest about it.** No CI at all, in a product that wants to sell document checking. Four of our own quality gates have reported "green" while actually being blind. One symbol from one of thirteen engine files reaches the product code — the engine is largely not wired in yet. And 83% of foreign vaults are currently *refused* because of one bug, which means the front door does not open for most people.
 
-### 10. How the engine actually works
+### 13. How the engine actually works
 
 Worth understanding properly, because everything we are selling rests on it.
 
@@ -230,7 +278,7 @@ Worth understanding properly, because everything we are selling rests on it.
 
 **What that rules out.** We never parse the document into a tree and write the tree back. That single decision is why we do not have the defects the others have, and it is also why our engine is harder to write than theirs.
 
-::exhibit 9 | What happens to a file, by tool
+::exhibit 12 | What happens to a file, by tool
 
 | Operation | A regenerating editor | Ours |
 |---|---|---|
@@ -253,7 +301,7 @@ Worth understanding properly, because everything we are selling rests on it.
 
 > [!warn] **Read NF-1 again.** Eighty-three percent of the vaults we tested are refused today, for one bug, with a known fix. That is not a research problem or a design problem. It is four days of work standing between us and a product that opens.
 
-### 11. Why refusing is the hard part
+### 14. Why refusing is the hard part
 
 Every other tool guesses. Guessing looks better in a demo and is worse in practice.
 
@@ -263,7 +311,7 @@ Every other tool guesses. Guessing looks better in a demo and is worse in practi
 
 **The counter-argument, recorded rather than dismissed:** conservative merging produces conflicts, and users hate conflicts. That is precisely why competitors ship fuzzy patching. Our mitigation is to make conflict rate a shipped, published metric with a budget — if we are refusing too often, we should know before our users tell us.
 
-### 12. Where we sit, drawn
+### 15. Where we sit, drawn
 
 ```mermaid
 flowchart TB
@@ -286,11 +334,11 @@ flowchart TB
 
 **Read the diagram as one sentence:** the code-first tools review changes but do not understand a markdown vault; the document-first tools understand the vault but either damage files or have no AI at all. Nothing occupies the corner where both are true.
 
-### 13. What we got wrong
+### 16. What we got wrong
 
 We ran a verification pass over the twenty-one claims the plan leaned on hardest, opening a primary source for each.
 
-::exhibit 10 | Our own review, against our own case
+::exhibit 13 | Our own review, against our own case
 
 | Verdict | Count | Meaning |
 |---|---|---|
@@ -312,9 +360,9 @@ We ran a verification pass over the twenty-one claims the plan leaned on hardest
 
 > [!risk] I want to be direct about this. **We spent months building an argument for something users do not care about.** The engine is right. The sentence we attached to it was wrong. That is a recoverable mistake and it is much cheaper to find now than after launch — but it is a real mistake and it came from believing our own reasoning instead of checking it.
 
-### 14. Corrections to the record
+### 17. Corrections to the record
 
-::exhibit 11 | Our own review, against our own case
+::exhibit 14 | Our own review, against our own case
 
 | # | What we believed | The correction | Effect |
 |---|---|---|---|
@@ -330,11 +378,11 @@ We ran a verification pass over the twenty-one claims the plan leaned on hardest
 
 > [!note] **62% of our load-bearing claims needed correction** when someone opened a primary source: 13 confirmed, 13 revised, 5 refuted, 3 unverifiable. Re-derive before quoting anything in the record.
 
-### 15. What we take from everything else we have built
+### 18. What we take from everything else we have built
 
 We have shipped roughly twenty things. The temptation is to combine them. That temptation is how a focused product becomes a platform nobody buys, so the default answer was **no** and each yes had to be earned by a real mechanism — a shared format, a shared engine, or a shared buyer. "They are both AI" is not a mechanism.
 
-::exhibit 12 | The ecosystem, item by item
+::exhibit 15 | The ecosystem, item by item
 
 | Project | Fuses? | The reasoning |
 |---|---|---|
@@ -352,7 +400,7 @@ We have shipped roughly twenty things. The temptation is to combine them. That t
 
 ## PART IV — What we should build
 
-### 16. The product, in one sentence
+### 19. The product, in one sentence
 
 > [!good] **frontmatter is a markdown editor that knows which bytes a machine wrote.** Every AI edit is recorded as a byte range with the prompt, the model and the time. Machine-written spans look different from yours on screen. One keystroke reverts any of them. Nothing else in the file moves.
 
@@ -374,7 +422,49 @@ flowchart TD
   F -- "revert" --> H["One key. Bytes restored.<br/>Nothing else moves"]
 ```
 
-### 17. How it feels to use
+### 20. The principles, and the things we will never do
+
+Five rules that settle arguments before they start. Each one has a cost, and the cost is stated.
+
+::exhibit 16 | The principles
+
+| # | Principle | What it means in practice | What it costs |
+|---|---|---|---|
+| 1 | **The file is the only source of truth** | Every view is a projection. No view owns state the file does not have | We cannot build features that need hidden state — no comment threads that live only in our database |
+| 2 | **Refuse rather than guess** | If we cannot locate a change unambiguously, we change nothing and say why | Some edits fail that a fuzzier tool would complete |
+| 3 | **Never hold the user's documents** | Files stay in their repo. We store identity, teams and billing, nothing else | Exit is free, so retention must be earned every month |
+| 4 | **No arbitrary code execution, ever** | No plugins, no eval, no user scripts | We refuse the exact moat that made Obsidian unassailable |
+| 5 | **Every claim must be falsifiable** | If we say "byte-preserving", there is a test that fails when it is not | Slower to ship, and much harder to be wrong in public |
+
+**The non-goals, stated so nobody proposes them again.**
+
+- **Not a project manager.** No kanban, no sprints, no assignees. This is a founder boundary, not a resourcing decision.
+- **Not a chat interface.** The user already has an agent. Duplicating it badly helps nobody.
+- **Not a plugin platform.** See principle 4. This is the most expensive refusal we make and we make it knowingly.
+- **Not a publishing platform**, at least not in v1. It is a permanent, personal, unbounded on-call obligation the day the first stranger publishes.
+- **Not a knowledge graph.** Graph views are beautiful and almost nobody uses them twice.
+
+### 21. How the markdown itself is designed
+
+You asked how the markdown will be designed. This is the most consequential design decision in the product and almost nobody outside engineering thinks about it.
+
+**The rule: we add nothing to markdown that breaks it somewhere else.** A file we touch must render correctly on GitHub, in Obsidian, in a plain text editor, and in whatever the user opens it with next year.
+
+::exhibit 17 | How we store things markdown has no syntax for
+
+| What we need to store | How we store it | Why not the alternative |
+|---|---|---|
+| **Document metadata** | YAML frontmatter, the existing convention | Nothing else is universally understood |
+| **A prose annotation** (a note, a decision card) | A blockquote callout — `> [!kind]` | It has **no closing marker to lose.** An unclosed fence swallows the rest of the document; a callout cannot |
+| **Opaque data** (provenance ranges) | A fenced code block with an info string, written open-and-close in one atomic splice | A fence is unambiguous for data, and writing both ends together means it can never be left open |
+| **Where provenance lives** | A sidecar file next to the document, in the user's repo | Inline would pollute the prose. A database would mean holding their data |
+| Nothing | Custom syntax, HTML, `:::` directives | Every one of them degrades on some renderer. We accept `:::` on input and normalise it away on save |
+
+**Why the callout decision matters more than it sounds.** We tested this across four markdown engines plus GitHub live. An unclosed fence is catastrophic — the CommonMark spec mandates that it swallows everything after it, so one lost closing line destroys the whole document downstream. A callout has no closer to lose. That single measured difference chose our carrier format, and it corrects an earlier decision in our own record.
+
+**What a file looks like after we touch it.** Identical, except for the bytes you asked to change. Same line endings, same key order, same quoting, same trailing whitespace, same missing final newline if that is how you had it. **If you `git diff` after an edit, you see only your edit.** That is the whole promise, and it is testable on every release.
+
+### 22. How it feels to use
 
 Six flows. Every one names the step most likely to lose the user, because that is where the work actually is.
 
@@ -405,7 +495,7 @@ flowchart LR
 
 **Flow 6 — a teammate picks it up.** They open the repo and can see which parts of the work were machine-written and never reviewed. Today that information does not exist anywhere, in any tool.
 
-### 18. The onboarding, minute by minute
+### 23. The onboarding, minute by minute
 
 The first five minutes decide everything, and we have historically under-designed them.
 
@@ -420,11 +510,11 @@ The first five minutes decide everything, and we have historically under-designe
 
 > [!warn] **The single change most likely to hurt us is a form at first run.** We collect nothing until there is something to collect it for.
 
-### 19. The features, and why each one exists
+### 24. The features, and why each one exists
 
 Every feature below names the person who uses it and how often. Anything that could not name one was cut, and the cuts are listed after.
 
-::exhibit 13 | What ships, and the reason it ships
+::exhibit 18 | What ships, and the reason it ships
 
 | Feature | Who uses it, how often | Why it exists | Stage |
 |---|---|---|---|
@@ -438,7 +528,7 @@ Every feature below names the person who uses it and how often. Anything that co
 | **Nested-construct live preview** | Every Obsidian user, constantly | 501 likes — the most-voted bug in the category's history. Our free wedge | MVP-2 |
 | **Sync, provably safe** | Everyone, daily | #1 loved feature, #1 switching trigger, and the only price this category has proven | MVP-2 |
 
-### 20. Each feature, specified
+### 25. Each feature, specified
 
 Enough detail that you can argue with the design, not just the idea.
 
@@ -486,7 +576,7 @@ Enough detail that you can argue with the design, not just the idea.
 - *Why later:* it is a team product with a team sale, and we should not be selling to teams before we have individuals.
 - *Evidence it works:* we run four of these on ourselves and they caught real errors in this document.
 
-::exhibit 14 | The build order, and the reasoning
+::exhibit 19 | The build order, and the reasoning
 
 | | Feature | Weeks | Why it is in this stage |
 |---|---|---|---|
@@ -495,11 +585,11 @@ Enough detail that you can argue with the design, not just the idea.
 | MVP-1 | F4 + F5 + billing + teams | 8 | The first things worth money, and the first things that need money to exist |
 | MVP-2 | F6 free + sync | 12 | Distribution and the only proven price in the category |
 
-### 21. Why provenance and not the other twenty ideas
+### 26. Why provenance and not the other twenty ideas
 
 We scored nine serious options against evidence of demand, time to revenue, defensibility, fit with our size, and how much of the existing code they reuse.
 
-::exhibit 15 | The options we considered, scored
+::exhibit 20 | The options we considered, scored
 
 | Option | Demand | Time to revenue | Reuses engine | Verdict |
 |---|---|---|---|---|
@@ -515,11 +605,11 @@ We scored nine serious options against evidence of demand, time to revenue, defe
 
 **Why provenance wins on the axis that matters.** It is the only option where the thing that makes it hard to build — knowing exactly which bytes changed — is a thing we already solved and nobody else has. Every other option on that list could be built by a competitor in a quarter.
 
-### 22. What we deliberately will not build
+### 27. What we deliberately will not build
 
 A refusal with no cost is not a real refusal, so each one names what we give up.
 
-::exhibit 16 | The no list
+::exhibit 21 | The no list
 
 | Not building | Why | What we lose |
 |---|---|---|
@@ -533,11 +623,49 @@ A refusal with no cost is not a real refusal, so each one names what we give up.
 
 > [!warn] **The plugin refusal deserves a proper argument.** Obsidian's moat *is* its plugin ecosystem. Refusing plugins means refusing the thing that made the category leader unassailable. We refuse it because arbitrary third-party code in the editor makes "we never corrupt your file" unprovable, and that guarantee is the entire product. But we should be clear-eyed: this closes the most proven growth path in the category, and we need the free live-preview plugin *in their store* partly to compensate.
 
-### 23. Every screen, and what it is for
+### 28. Simplicity, as something we enforce rather than intend
+
+Every product intends to stay simple. This is how we make it structural.
+
+- **The surface budget.** A new user may meet no more than **seven** top-level concepts in their first session: the folder, the document, the machine span, revert, quick-switch, search, settings. Anything that would be the eighth has to displace one of them.
+- **The admission test.** A proposed feature must name the person who uses it and how often. If it cannot, it is cut, and the cut is recorded so nobody re-proposes it in three months.
+- **The settings rule.** Every toggle is a decision we failed to make. The settings page is one screen and stays one screen.
+- **The projection law does the heavy lifting.** Because every view must be a deterministic projection of the file owning no state, anything requiring its own hidden state is *already* forbidden by the architecture. Most feature bloat is state bloat, and we made that structurally impossible.
+- **What this costs us:** we will say no to things customers ask for. Some will leave. That is the trade, and it is the reason the product can stay comprehensible.
+
+### 29. How the product should be designed
+
+The design job here is unusual: the most important thing on screen is information *about* the text, shown without making the text harder to read.
+
+**The governing rule.** A document with provenance on must be as readable as one with it off. If a user turns provenance off to read comfortably, we have failed.
+
+::exhibit 22 | The visual language
+
+| Element | Decision | Why |
+|---|---|---|
+| Machine-written, unreviewed | A very light tinted background, no border, no icon | It has to be ignorable. A border or icon fragments the line and destroys reading rhythm |
+| Machine-written, reviewed | Nothing. It renders as normal text | Once you have read it, it is yours. Permanent marking would be noise |
+| Hover | A small panel: prompt, model, when, and a revert control | On demand only. Nothing hovers into view by itself |
+| Document-level state | A thin bar in the file tree showing unreviewed share | Glanceable. Never a number you have to interpret |
+| Refusal | An inline note where the change would have gone, in plain words | Never a modal. A modal for a refusal makes a normal outcome feel like an error |
+| Conflict | Two versions side by side, with what differs marked | The one place we may interrupt, because the cost of guessing is losing work |
+
+**The typography and the surface.** Google Sans for interface, Google Sans Code for the editor, on white. One accent colour. Square corners. Hairline borders. One elevation rule. This is our existing design system and it is already written down — the important thing is that we actually apply it, since the shipped `globals.css` is currently a different system inherited from a sibling project and self-describes as *"Linear-style modern SaaS"*. That is a real inconsistency and it is on the fix list.
+
+**Icons: inline SVG only, from one set.** Never emoji, never a web font. An icon font that fails to load renders the literal ligature text or a blank box, and it will fail to load on a slow connection or a strict content policy. Inline SVG carries the vector in the markup and renders every time.
+
+**What the interface must not become.**
+
+- No sidebar of panels. The document is the interface.
+- No settings page that grows. Every toggle we add is a decision we failed to make.
+- No dashboard. Nobody opens an editor to look at a dashboard.
+- No chat window. The user already has an agent; duplicating it badly helps nobody.
+
+### 30. Every screen, and what it is for
 
 The product is deliberately small. Eleven screens, and four of them are dialogs.
 
-::exhibit 17 | The screen inventory
+::exhibit 23 | The screen inventory
 
 | # | Screen | What it does | Why it exists | Stage |
 |---|---|---|---|---|
@@ -571,9 +699,61 @@ flowchart TD
   S2 --> S11["S11 Settings"]
 ```
 
-### 24. The components, and who owns each
+### 31. What is in each screen
 
-::exhibit 18 | The system, by component
+Screen by screen, the actual elements, so this can be designed from.
+
+::exhibit 24 | S2 — the editor, the 95% screen
+
+| Region | What is in it | Behaviour |
+|---|---|---|
+| Left rail, collapsible | File tree. Each file shows a thin bar for unreviewed machine share | Collapses to nothing. Keyboard-toggleable. Remembers state |
+| Centre, always | The document. Full measure, generous line height | This is the product. Nothing overlays it uninvited |
+| Provenance layer | Tinted spans for unreviewed machine text | Toggleable. No borders, no icons, no gutter marks |
+| Top, minimal | Breadcrumb path, sync state, one overflow menu | No toolbar. Formatting is markdown, typed |
+| Bottom, thin | Word count, cursor position, unreviewed count for this file | Ambient. Never demands attention |
+| On hover over a span | Small panel: prompt, model, timestamp, revert | On demand only, after a delay, dismissible with Escape |
+
+::exhibit 25 | The other screens, and their elements
+
+| Screen | Elements |
+|---|---|
+| **S1 Open a folder** | One button. A recent-folders list if any. A line explaining nothing leaves your machine. No account, no email |
+| **S4 Review panel** | Ordered list of unreviewed spans · each with its first line, model, age · accept / revert / skip · keyboard j-k-a-r · a counter that goes to zero |
+| **S5 Quick switcher** | Input, fuzzy-ranked results, path shown, recent-first when empty. Enter opens, Escape closes |
+| **S6 Command palette** | Input, grouped commands, keyboard hints beside each. Shows what a command does before you run it |
+| **S7 Search** | Query, results grouped by file with two lines of context, count. Replace is a separate deliberate mode |
+| **S8 Refactor preview** | What is changing, stated in one line · the affected-file list with per-file hunks · accept all / per file / cancel · a refusal list with the reason for each |
+| **S9 Conflict view** | Two panes, differences marked, a third pane for the result · take-mine / take-theirs / edit · never auto-resolves |
+| **S10 Team view** | Repo picker · per-document unreviewed share · per-person contribution · a filter for "machine-written, nobody reviewed" |
+| **S11 Settings** | One page, six groups, no tabs: appearance · keymap · AI provider and key · provenance defaults · git identity · about |
+
+### 32. How the screens talk to each other
+
+```mermaid
+flowchart LR
+  S1["S1 Open folder"] --> S2["S2 Editor"]
+  S2 <-->|"cmd-P"| S5["S5 Quick switch"]
+  S2 <-->|"cmd-K"| S6["S6 Palette"]
+  S2 <-->|"cmd-shift-F"| S7["S7 Search"]
+  S2 -->|"unreviewed count clicked"| S4["S4 Review panel"]
+  S4 -->|"jump to span"| S2
+  S6 -->|"rename..."| S8["S8 Refactor preview"]
+  S8 -->|"applied"| S2
+  S2 -->|"divergence detected"| S9["S9 Conflict"]
+  S9 --> S2
+  S10["S10 Team"] -.->|"open a document"| S2
+```
+
+**Three rules the navigation obeys.**
+
+- **Everything returns to S2.** No screen is a destination; each is a detour that hands you back to the document.
+- **Escape always goes back one step**, and never loses work.
+- **No modal blocks the document** except the conflict view, which blocks because proceeding without a decision would lose data.
+
+### 33. The components, and who owns each
+
+::exhibit 26 | The system, by component
 
 | Component | What it is | Where it runs | Risk |
 |---|---|---|---|
@@ -588,11 +768,32 @@ flowchart TD
 | **Certificate** | Cross-engine render comparison | Server, batch | Internal only for now |
 | **Gates** | Reference checks, drift detection over a repo | CI | Becomes the team product later |
 
-### 25. What documents we understand, and where those definitions come from
+### 34. How we play with the tools people already use
+
+We are joining a workflow, not replacing one. That means interoperating with things that already have adoption rather than inventing a format and hoping.
+
+::exhibit 27 | What we interoperate with, and how
+
+| Thing | Status | Our position |
+|---|---|---|
+| **Plain markdown / CommonMark** | The substrate | Everything we write must render correctly everywhere. Non-negotiable |
+| **YAML frontmatter** | Universal convention | We read and write it byte-exactly, preserving key order and quoting |
+| **`AGENTS.md` / `CLAUDE.md`** | Real, adopted conventions | **Read them, respect them, never compete with them.** Inventing a rival file would be a mistake |
+| **`.cursorrules` and similar** | Tool-specific | Read where useful. Do not write |
+| **MCP (Model Context Protocol)** | Growing standard | **Strong candidate: be an MCP server the user's existing agent connects to.** Feeds the agent they already run rather than duplicating it |
+| **Git** | The transport and the history | We are a git client. We never invent our own versioning |
+| **GitHub App** | Repo access | The connector, never the identity |
+| **Obsidian vault conventions** | Wikilinks, tags, properties | Read and preserve. Their users are our audience |
+| **Mermaid** | Diagrams in markdown | Render. Do not extend |
+| **Our own provenance sidecar** | New | **Documented and plain text.** If it is not readable without us, we have broken our own promise |
+
+**The strategic question inside this table.** Do we compete with the terminal agent the user already runs, or feed it? Feeding it is cheaper, and it may be the whole product: frontmatter as the place where the agent's work becomes reviewable, rather than as another place to talk to an agent. **That is the MCP answer and I think it is right**, but it is a decision, not a conclusion, and it belongs in the session.
+
+### 35. What documents we understand, and where those definitions come from
 
 We do not invent document formats. We render the ones that already exist, and we researched which of those are real standards and which are folklore — because promising to "support ADRs" means nothing if the format is undefined.
 
-::exhibit 19 | The document canon, with its actual provenance
+::exhibit 28 | The document canon, with its actual provenance
 
 | Document | Is there a real standard? | What we do |
 |---|---|---|
@@ -609,35 +810,7 @@ We do not invent document formats. We render the ones that already exist, and we
 
 > [!note] **Why this table is in a product document.** It is the difference between "we support decision records" and "we render MADR and Nygard, and we will not pretend PRD has a standard because it does not". The second is credible to the exact buyer we want. The first is marketing.
 
-### 26. How the product should be designed
-
-The design job here is unusual: the most important thing on screen is information *about* the text, shown without making the text harder to read.
-
-**The governing rule.** A document with provenance on must be as readable as one with it off. If a user turns provenance off to read comfortably, we have failed.
-
-::exhibit 20 | The visual language
-
-| Element | Decision | Why |
-|---|---|---|
-| Machine-written, unreviewed | A very light tinted background, no border, no icon | It has to be ignorable. A border or icon fragments the line and destroys reading rhythm |
-| Machine-written, reviewed | Nothing. It renders as normal text | Once you have read it, it is yours. Permanent marking would be noise |
-| Hover | A small panel: prompt, model, when, and a revert control | On demand only. Nothing hovers into view by itself |
-| Document-level state | A thin bar in the file tree showing unreviewed share | Glanceable. Never a number you have to interpret |
-| Refusal | An inline note where the change would have gone, in plain words | Never a modal. A modal for a refusal makes a normal outcome feel like an error |
-| Conflict | Two versions side by side, with what differs marked | The one place we may interrupt, because the cost of guessing is losing work |
-
-**The typography and the surface.** Google Sans for interface, Google Sans Code for the editor, on white. One accent colour. Square corners. Hairline borders. One elevation rule. This is our existing design system and it is already written down — the important thing is that we actually apply it, since the shipped `globals.css` is currently a different system inherited from a sibling project and self-describes as *"Linear-style modern SaaS"*. That is a real inconsistency and it is on the fix list.
-
-**Icons: inline SVG only, from one set.** Never emoji, never a web font. An icon font that fails to load renders the literal ligature text or a blank box, and it will fail to load on a slow connection or a strict content policy. Inline SVG carries the vector in the markup and renders every time.
-
-**What the interface must not become.**
-
-- No sidebar of panels. The document is the interface.
-- No settings page that grows. Every toggle we add is a decision we failed to make.
-- No dashboard. Nobody opens an editor to look at a dashboard.
-- No chat window. The user already has an agent; duplicating it badly helps nobody.
-
-### 27. Accessibility, and text that is not English
+### 36. Accessibility, and text that is not English
 
 Both were absent from our plan and both are cheap now and expensive later.
 
@@ -658,11 +831,11 @@ Both were absent from our plan and both are cheap now and expensive later.
 
 ## PART V — The honest assessment
 
-### 28. Strengths, weaknesses, opportunities, threats
+### 37. Strengths, weaknesses, opportunities, threats
 
 I ran twelve separate adversarial audits against our own case. This is what survived.
 
-::exhibit 21 | Where we actually stand
+::exhibit 29 | Where we actually stand
 
 | | |
 |---|---|
@@ -671,11 +844,11 @@ I ran twelve separate adversarial audits against our own case. This is what surv
 | **OPPORTUNITIES** | Slop is 23.7% and growing 149%/year with nobody on it · provenance is uncopyable by any tool that regenerates files · the 501-like live-preview bug is an audience we can buy for one week of work · teams reviewing AI output is a budget that did not exist two years ago |
 | **THREATS** | Zed or Cursor adding markdown vault semantics — one sprint for them · Obsidian shipping first-party AI editing · the labs making review unnecessary by making output trustworthy · us running out of attention before revenue |
 
-### 29. The twelve audits, in one table
+### 38. The twelve audits, in one table
 
 We ran twelve separate adversarial reviews against our own case. Each had to steelman the idea first, rank severity, and say what evidence would change its mind.
 
-::exhibit 22 | What each audit concluded
+::exhibit 30 | What each audit concluded
 
 | # | Angle | Worst finding | Severity |
 |---|---|---|---|
@@ -692,7 +865,7 @@ We ran twelve separate adversarial reviews against our own case. Each had to ste
 | 11 | What to build | Not a different product — a different **claim** on the same code | — |
 | 12 | The plan | Test for two weeks before building for ten | — |
 
-### 30. The critique in full, audit by audit
+### 39. The critique in full, audit by audit
 
 Each of the twelve had to steelman our position first, then take it apart, rank severity, and say what evidence would change its mind. These are their findings, not mine.
 
@@ -774,9 +947,9 @@ Each of the twelve had to steelman our position first, then take it apart, rank 
 
 > [!note] **What the critique did not find.** No audit concluded the engine was wrong, the code was bad, or the correctness work was wasted. Every severe finding was about the *claim*, the *buyer*, the *price* or the *channel* — never the machine. That is a repairable position.
 
-### 31. Risks, ranked, with what we do about each
+### 40. Risks, ranked, with what we do about each
 
-::exhibit 23 | The risk register
+::exhibit 31 | The risk register
 
 | # | Risk | Severity | What we do |
 |---|---|---|---|
@@ -791,7 +964,38 @@ Each of the twelve had to steelman our position first, then take it apart, rank 
 | 9 | GST registration triggered unexpectedly | MEDIUM | Reverse charge has **no turnover floor** — registration starts with the first API purchase |
 | 10 | Support load with two founders and a team | MEDIUM | Free tier has no SLA. Say so on the page |
 
-### 32. The three arguments I cannot fully answer
+### 41. The war-game — what happens when someone bigger moves
+
+Not a risk list. Specific scenarios, what breaks, and whether our response is credible for two founders.
+
+::exhibit 32 | Six moves, and our answer to each
+
+| Scenario | How long we would have | What breaks | What we do | Credible for us? |
+|---|---|---|---|---|
+| **Obsidian ships first-party AI editing** | 6–12 months | Our reason to exist as a separate editor | Become excellent *inside* Obsidian via the plugin, and keep the standalone for teams | **Yes** — the plugin is already our week-2 move |
+| **Zed or Cursor add markdown vault semantics** | One sprint for them | Our differentiation narrows to provenance alone | Go deeper on provenance: signing, export, audit. They will not follow into compliance | Partly. It is a real squeeze |
+| **GitHub ships an editor over repo markdown** | 12+ months | They own the substrate, auth and distribution | Be the thing their agent writes *into*, not a competitor to their editor | Yes, but it caps us |
+| **A lab ships a filesystem-backed document surface** | Unknowable | Possibly everything | Nothing. This is unhedgeable and we should say so | **No** |
+| **A funded startup ships the same thesis with eight engineers** | 3–6 months | Our lead | Ship faster on the narrow thing, and lean on the corpus and tests we already have | Partly |
+| **Nobody moves and the category never forms** | — | The quiet one nobody war-games | This is the most likely failure and the two-week test is aimed directly at it | Yes — it is why we test first |
+
+::exhibit 33 | Our claimed advantages, stress-tested
+
+| What we claim | Obsidian moves | Zed adds markdown | A lab ships it |
+|---|---|---|---|
+| Byte-exact engine | SURVIVES | SURVIVES | SURVIVES |
+| Provenance | SURVIVES | ERODES | GONE |
+| Refuse rather than guess | SURVIVES | SURVIVES | ERODES |
+| Reads any existing vault | ERODES | SURVIVES | ERODES |
+| Files never leave the user | SURVIVES | SURVIVES | ERODES |
+| Being small and fast to ship | SURVIVES | ERODES | GONE |
+| Community and ecosystem | GONE | GONE | GONE |
+
+**Read the last row honestly.** We have no community advantage and cannot build one while refusing plugins. Every scenario takes it away because we never had it.
+
+**The one that should worry us most** is not a competitor. It is scenario six — that byte-exactness and provenance are things we find interesting and the market does not. Every other row has a response. That one only has a test.
+
+### 42. The three arguments I cannot fully answer
 
 > [!risk] **One. The money.** If everything goes right — 502 paying users, 171,200 cumulative visitors, two years — this produces about **₹1,09,135 a month.** That is the same as roughly **78 hours of consulting**, billable next week. Building this is not the fast route to that number. It is the route to owning something that keeps paying after we stop. That is a real reason. It is also the *only* reason, and we should both say it out loud before committing two years.
 
@@ -801,11 +1005,11 @@ Each of the twelve had to steelman our position first, then take it apart, rank 
 
 ## PART VI — How we build it
 
-### 33. The stack, and why each choice
+### 43. The stack, and why each choice
 
 Everything here is chosen for two people plus a team who must operate it without a dedicated ops person.
 
-::exhibit 24 | The stack
+::exhibit 34 | The stack
 
 | Layer | Choice | Why this one |
 |---|---|---|
@@ -838,11 +1042,11 @@ flowchart LR
 
 > [!note] **The one rule that governs the architecture: we never hold your documents.** It is the right thing ethically, it removes most of our legal surface, and it is commercially awkward because it means leaving us costs a user nothing. We accept that trade knowingly.
 
-### 34. Every layer, decided
+### 44. Every layer, decided
 
 The full engineering plan runs to thirteen sections in the record. This is each decision and the reason, so you can argue with any of them.
 
-::exhibit 25 | The eleven layers
+::exhibit 35 | The eleven layers
 
 | Layer | What we picked | What we rejected, and why |
 |---|---|---|
@@ -860,7 +1064,7 @@ The full engineering plan runs to thirteen sections in the record. This is each 
 | **AI** | User's own key first, ours as a paid option | Solves our budget and their trust in one decision. CORS means a browser may not be able to call some providers directly — this is checked per provider, not assumed |
 | **CI** | GitHub Actions, ported from the sibling repo | One day. Currently absent entirely |
 
-### 35. The things that will bite us
+### 45. The things that will bite us
 
 Named now so they are not surprises.
 
@@ -870,7 +1074,7 @@ Named now so they are not surprises.
 - **R2 has no versioning.** If we overwrite a derived artifact wrongly, it is gone. Recovery has to be designed into how we name keys.
 - **Our own CI does not exist.** Four gates in this repo reported green while blind. Until CI runs on a deliberately broken commit and fails, we do not actually know that our checks work.
 
-### 36. Cost, security, and running it
+### 46. Cost, security, and running it
 
 | Concern | Position |
 |---|---|
@@ -882,7 +1086,60 @@ Named now so they are not surprises.
 | **Reverse charge** | **Starts at the first rupee.** Buying Claude API access is importing a service; registration is compelled with no turnover floor |
 | **On call** | Two founders and a team, no rotation. The free tier gets no SLA and we say so publicly |
 
-### 37. What has to be fixed before anything else
+### 47. Roles, permissions, and sharing
+
+::exhibit 36 | Who can do what, and how it is enforced
+
+| Operation | Our posture | Enforced by |
+|---|---|---|
+| Connect a repository | **Defer to GitHub.** Only someone with admin on the repo can install the App | GitHub, not us |
+| Write bytes | **Intersection, checked at commit time.** The commit succeeds only if the acting identity has push rights *and* our own grant allows it | Both, evaluated together |
+| Read and comment | **Ours.** Our grants apply to our rendered projection, not to the repo | Us |
+| Commit attribution | **Deliberately duplicated.** The human's identity goes in the commit trailer even when an agent made the change | Git trailer + our provenance record |
+| Team seats | Ours | Control plane |
+
+**The principle underneath:** we never grant access to a repository that GitHub would not grant. We can only ever be *more* restrictive, never less. That means a security question about us becomes a question about GitHub's model, which is a much easier conversation.
+
+### 48. Trust, safety, and the abuse surface
+
+| Surface | The risk | What we do |
+|---|---|---|
+| Prompt injection in a document | A malicious document instructs the agent to exfiltrate other files | The AI never gets ambient repo access. Every read is scoped to what the user opened |
+| A malicious repository | Someone connects a repo designed to break our parser | Shape gate: 4 MB and 200,000 line ceilings, strict UTF-8 decode, refuse rather than repair |
+| Abuse of hosted AI | One account, an automation loop, a large bill | Hard caps, no background jobs, per-account ceilings |
+| Publishing abuse | If we ever publish, a free indexable page is a spam magnet | Publishing is out of v1. If it returns: paid accounts only, noindex by default, system-assigned slugs |
+| Our own supply chain | A dependency compromise reaching user files | No plugin system at all is the largest single mitigation we have |
+
+### 49. Auth, hosting, caching and the rest of the plumbing
+
+The parts nobody asks about until they break.
+
+::exhibit 37 | The operational layers
+
+| Layer | Decision | The reason, and the trap |
+|---|---|---|
+| **Authentication** | GitHub App installation, plus NextAuth for session. **Delete the second identity path** | Two auth paths is two session-fixation surfaces for one operator. We currently have an unused Firebase import in the client bundle |
+| **Authorisation** | `workspace_id` on every row, pooled row-level security, from day one | **Retrofitting tenancy after launch is the highest-cost change on the board.** Not a later decision |
+| **Hosting** | Vercel for the app, Cloudflare for edge and storage | Boring, managed, swappable. Two founders cannot run a cluster |
+| **Environments** | Preview per pull request, one staging, one production | Preview environments are where the document gates actually run |
+| **Caching** | Render cache keyed by content hash; nothing user-specific at the edge | A cache that can serve one user's document to another is the worst bug this product could have. Content-hash keys make it structurally impossible |
+| **CDN** | Static assets only. Never documents | Documents do not leave the user's machine to be cached |
+| **Rate limiting** | Per identity and per installation, not per IP | GitHub App installation tokens have their own limits we must live inside |
+| **Search** | Postgres full-text and trigram server-side; MiniSearch client-side only | We currently ship the whole vault to the client — 77 MB parsed per cold start. That has to stop |
+| **Backups** | The user's git repo *is* the backup for documents. Postgres has PITR | The thing normally hardest to back up is the thing we do not hold |
+| **Disaster recovery** | R2 has **no object versioning** — recovery must be designed into the key layout | This is a real constraint, discovered by reading their docs rather than assuming |
+| **Error tracking** | Sentry, with document content scrubbed at the SDK before send | **No session replay, ever.** The DOM we would be replaying is the user's private document |
+
+### 50. Incremental parsing, and why it matters to a user
+
+A technical decision that shows up as something a person feels.
+
+- Re-parsing a large document on every keystroke is what makes editors feel heavy. Incremental parsing re-parses only what changed.
+- The candidate is `@lezer/markdown`, which CodeMirror already uses. **Vendoring it is the recorded decision** rather than depending on it loosely, because we need to control exactly which constructs it recognises.
+- **Why it is not optional:** our provenance spans have to survive edits happening around them. That means knowing precisely which byte ranges moved and by how much, on every keystroke, cheaply.
+- **The user-visible measure:** time to first keystroke on a cold start, and typing latency on a 10,000-word document. We publish both.
+
+### 51. What has to be fixed before anything else
 
 These are not features. They are the reasons the product does not currently work.
 
@@ -896,11 +1153,11 @@ These are not features. They are the reasons the product does not currently work
 
 ## PART VII — The plan
 
-### 38. Before we write any code — two weeks, zero rupees
+### 52. Before we write any code — two weeks, zero rupees
 
 This is the highest-value fortnight available to us, and it is the part I most want you to agree to.
 
-::exhibit 26 | The four tests, and what kills each
+::exhibit 38 | The four tests, and what kills each
 
 | # | Test | What it costs | Kill signal |
 |---|---|---|---|
@@ -912,7 +1169,7 @@ This is the highest-value fortnight available to us, and it is the part I most w
 - If **1 and 3 both fail**, the provenance thesis is dead and we should say so in week two rather than month six.
 - If **2 succeeds**, we have an audience before we have a product. That has never been true for us before, and it is the cheapest distribution we will ever get.
 
-### 39. MVP-0 — the proof
+### 53. MVP-0 — the proof
 
 **Ten weeks elapsed** at our real availability, not six. The estimate assumes full-time work and we do not have it.
 
@@ -933,19 +1190,19 @@ This is the highest-value fortnight available to us, and it is the part I most w
 
 **Exit criterion:** ten strangers, their own repositories. **Six of ten say they would keep using it.** Not "like it" — keep it.
 
-### 40. MVP-1 — the first money
+### 54. MVP-1 — the first money
 
 - **Vault-wide refactor.** Rename a tag, a heading, a property key. Every link that will change shows as a reviewable hunk. Refuse when a target is ambiguous. This is the 86-like problem and it is the strongest asked-for capability our engine uniquely enables.
 - **The editor stays free forever.** We charge for teams.
 - **Team provenance** is the first paid line: shared repos, who-wrote-what across a team, per-seat. The model is Obsidian's commercial licence — $50/user/year with no enterprise features at all, which is what a nine-figure-logo B2B business actually looks like in this category.
 - The unglamorous half: billing, a support inbox, terms of service, and a way to tell users about a breaking change. **None of these exist and all are required before the first paid signup.**
 
-### 41. MVP-2 — the moat
+### 55. MVP-2 — the moat
 
 - **Sync, done provably safely.** The #1 loved feature and #1 switching trigger. A competitor's sync duplicates sections of files; ours structurally cannot, and we can demonstrate it. This is also the only price this category has ever proven.
 - **The free live-preview plugin** in Obsidian's store, permanently. 501 likes on the bug it fixes. It is the cheapest audience available to us and it should ship in week two regardless.
 
-### 42. Money
+### 56. Money
 
 | Line | Number |
 |---|---|
@@ -957,7 +1214,7 @@ This is the highest-value fortnight available to us, and it is the part I most w
 
 > [!test] **The pricing decision, which inverts our original plan.** The editor is free. Teams pay per seat. Sync is a separate paid service later. We charge for the two things this category has proven people pay for, and we give away the thing it has proven they do not.
 
-### 43. The cost model, and how we avoid a surprise bill
+### 57. The cost model, and how we avoid a surprise bill
 
 | Where money goes | At 100 users | At 10,000 users |
 |---|---|---|
@@ -976,11 +1233,11 @@ This is the highest-value fortnight available to us, and it is the part I most w
 - **Nothing runs in the background.** No ambient AI, no automatic passes over the vault. Every call is something a person asked for, which makes the cost predictable by construction.
 - **Measured, not guessed:** in our own usage data, output tokens are 75.8% of spend across 2,333 measured turns. Context is nearly free; generation is the cost. That tells us where to optimise and it is why we cap output length rather than input.
 
-### 44. Pricing, worked through properly
+### 58. Pricing, worked through properly
 
 Our original ₹299/₹599 was set with evidence from zero humans. Here is what the category actually shows.
 
-::exhibit 27 | What this market charges, opened and dated
+::exhibit 39 | What this market charges, opened and dated
 
 | Product | Editor | Sync | Teams | What that tells us |
 |---|---|---|---|---|
@@ -998,7 +1255,7 @@ Our original ₹299/₹599 was set with evidence from zero humans. Here is what 
 - **The two proven prices in this category are sync (~$4) and a commercial team licence (~$50/user/year).** Those are the two things we should charge for.
 - **The buyer already spends $20–40/month on AI tooling.** We are not asking for a new budget line; we are asking for a share of one that exists.
 
-::exhibit 28 | What I propose
+::exhibit 40 | What I propose
 
 | Tier | Price | What it is |
 |---|---|---|
@@ -1012,9 +1269,24 @@ Our original ₹299/₹599 was set with evidence from zero humans. Here is what 
 
 > [!test] **The pricing decision in one line: give away the thing the category has proven is free, and charge for the two things it has proven people pay for.** That inverts our original plan and it is better supported by evidence than anything we had.
 
-### 45. What comes in which plan
+### 59. Refunds, cancellation, and what happens to your data
 
-::exhibit 29 | The feature-to-tier map
+Boring, and it is in the checkout flow, so it must be written before the first paid signup rather than after the first complaint.
+
+| Situation | What happens |
+|---|---|
+| Cancel a team plan | Runs to the end of the paid period. No pro-rata clawback |
+| Refund request inside 14 days | Granted, no questions. EU withdrawal rights make this mandatory for consumers anyway |
+| After 14 days | Case by case, and generous. The reputational cost of a fight exceeds the money |
+| Payment fails | Retry, then email, then a grace period, then downgrade to free. **Never delete anything** |
+| Downgrade to free | Team features stop. **The editor keeps working and every file stays exactly where it is** |
+| Account deleted | We erase identity and billing. Your documents were never ours to delete |
+
+**The one that matters:** downgrading loses you features, never files. A user who stops paying keeps a working editor. That is unusual, it is a consequence of never holding their data, and it should be said out loud in the pricing page.
+
+### 60. What comes in which plan
+
+::exhibit 41 | The feature-to-tier map
 
 | | **Free** | **Team — $8/user/mo** | **Sync — +$4/user/mo** |
 |---|---|---|---|
@@ -1038,13 +1310,13 @@ Our original ₹299/₹599 was set with evidence from zero humans. Here is what 
 
 > [!warn] **The obvious objection: we are giving away our differentiator.** Yes. Deliberately. Provenance free is what makes anyone try it at all, and a product nobody tries has no team to sell to. The paid thing is not the feature — it is the feature *across people*.
 
-### 46. B2B and D2C, decided rather than described
+### 61. B2B and D2C, decided rather than described
 
 **The counter-intuitive finding that shaped this.** The closest structural analogue to us runs a substantial business selling to companies **with no enterprise features whatsoever.** Obsidian's entire commercial offering is a $50/user/year licence; their own FAQ answers the "do I have to pay for commercial use" question and that is essentially the whole product.
 
 That tells us our B2B strategy is probably not SSO, SCIM, audit exports and a SOC 2 report. It is a commercial licence and a clear answer about where the data lives.
 
-::exhibit 30 | The two motions, honestly
+::exhibit 42 | The two motions, honestly
 
 | | **D2C** | **B2B** |
 |---|---|---|
@@ -1074,13 +1346,13 @@ That tells us our B2B strategy is probably not SSO, SCIM, audit exports and a SO
 
 > [!note] **The recommendation: D2C free to build the audience, B2B paid to build the revenue, and do not build a single enterprise feature until a customer refuses to pay without it.** Obsidian's precedent says that can go a very long way.
 
-### 47. Distribution — our weakest area, stated honestly
+### 62. Distribution — our weakest area, stated honestly
 
 Everything above is a product argument. This is the part where I have least to offer, and I would rather say that than dress it up.
 
 **What we have today:** no email list, no audience, no store presence, no inbound. Every channel we have identified belongs to someone else.
 
-::exhibit 31 | Channels, and who actually owns them
+::exhibit 43 | Channels, and who actually owns them
 
 | Channel | Who owns it | Compounds? | Our honest read |
 |---|---|---|---|
@@ -1095,7 +1367,7 @@ Everything above is a product argument. This is the part where I have least to o
 
 > [!warn] **Say this out loud: a good product does not find its own users.** We have assumed it will. The plugin is the one cheap, ownable move on the table, and it costs about four days.
 
-### 48. Marketing — who, where, and what we say
+### 63. Marketing — who, where, and what we say
 
 We have never written this down and it is our weakest area, so this is a first draft to argue with rather than a plan to execute.
 
@@ -1110,7 +1382,7 @@ We have never written this down and it is our weakest area, so this is a first d
 
 **Where these people actually are**, ranked by how cheaply we can reach them.
 
-::exhibit 32 | Channels, honestly rated
+::exhibit 44 | Channels, honestly rated
 
 | Channel | Size / reach | Cost to us | Do we own it? | Verdict |
 |---|---|---|---|---|
@@ -1126,7 +1398,7 @@ We have never written this down and it is our weakest area, so this is a first d
 
 **What we do not do:** no launch countdown, no waitlist theatre, no "we are building in public" posting that is really just posting. If we have nothing to show, we say nothing.
 
-### 49. How users hear from us, and how they reach us
+### 64. How users hear from us, and how they reach us
 
 The record found we had **no route to tell a user anything** — not a breaking change, not a price change, not a security incident. That is an operational defect, not a marketing gap.
 
@@ -1146,11 +1418,11 @@ The record found we had **no route to tell a user anything** — not a breaking 
 
 **How they reach us:** one email address, a published response window, and an honest statement that the free tier has no service commitment. One person on call cannot promise more than that, and promising more is how you get a reputation for silence.
 
-### 50. How people actually get it, and keep it updated
+### 65. How people actually get it, and keep it updated
 
 You asked how users install it. This is the part of a desktop product that quietly decides whether anyone uses it.
 
-::exhibit 33 | Distribution, by surface
+::exhibit 45 | Distribution, by surface
 
 | Surface | How they get it | What it costs us |
 |---|---|---|
@@ -1170,7 +1442,7 @@ You asked how users install it. This is the part of a desktop product that quiet
 
 > [!warn] **Two things that will catch us out.** Code-signing certificates now require a physical hardware token and renew on a shorter cycle than they used to — that is a recurring cost and an operational chore, not a one-off. And the auto-updater has to be signed and configured before the first public build; retrofitting it means asking every early user to manually re-download, which is exactly how you lose them.
 
-### 51. How we know what we know
+### 66. How we know what we know
 
 So you can judge the evidence rather than take it on trust.
 
@@ -1192,7 +1464,38 @@ So you can judge the evidence rather than take it on trust.
 
 > [!note] **The most important methodological point.** We ran adversarial rounds specifically permitted to refute our own thesis, and they did — twice. That is the reason to trust the rest of it. A research process that never contradicts its sponsor is marketing.
 
-### 52. What we measure, and what we refuse to measure
+### 67. What we have not done, and would do next
+
+Being explicit about the edges of this document.
+
+| Not done | Why it matters | Cost to close |
+|---|---|---|
+| **Zero user interviews** | Every demand claim is inferred from public complaints | Two weeks. It is test #1 |
+| No pricing tested with a human | ₹299 came from us, not a buyer | Included in the two weeks |
+| No visual design work | We have a design system and no screens drawn | One week with the system we already own |
+| Reddit access was intermittent | Some sentiment data is Hacker News only, which skews to launches | Re-run when access is stable |
+| No performance benchmark against Obsidian | Speed is the most-loved attribute in the category and we have not measured ours | Two days |
+| Sync is designed but unproven | It is MVP-2 and the hardest thing on the list | Deliberately deferred |
+| No security review by anyone outside | We are asserting our own safety | A paid review before the first team customer |
+
+### 68. The words we use, defined
+
+Because half of these mean different things to different people.
+
+| Term | What we mean by it |
+|---|---|
+| **Splice** | Replacing an exact byte range and nothing else |
+| **Provenance** | The record of which bytes a machine wrote, with prompt, model and time |
+| **Span** | One contiguous byte range with a provenance record attached |
+| **Reviewed** | A human has looked at a span and accepted it. It then renders as ordinary text |
+| **Refusal** | We could not locate a change unambiguously, so we changed nothing and said why |
+| **The corpus** | 8,513 real markdown files from strangers' public vaults, pinned by checksum |
+| **Red proof** | A test that fails against the unfixed code. Until it fails, it does not cover the bug |
+| **Carrier** | How we write something markdown has no syntax for — a callout for prose, a fence for data |
+| **The gates** | Automated checks over a repo of documents: references resolve, nothing is stale |
+| **Vault** | A folder of markdown the user already had. We never create one |
+
+### 69. What we measure, and what we refuse to measure
 
 | We measure | Why |
 |---|---|
@@ -1210,11 +1513,11 @@ So you can judge the evidence rather than take it on trust.
 | Document content, ever | We never hold documents. That is the promise |
 | Vanity metrics — signups, stars, page views | They move without the business moving |
 
-### 53. The ninety days, week by week
+### 70. The ninety days, week by week
 
 Assumes both of us, part-time on product, with client work continuing to fund everything.
 
-::exhibit 34 | The plan, with an observable outcome every fortnight
+::exhibit 46 | The plan, with an observable outcome every fortnight
 
 | Weeks | What happens | Observable outcome |
 |---|---|---|
@@ -1228,9 +1531,9 @@ Assumes both of us, part-time on product, with client work continuing to fund ev
 | **10–12** | Table stakes: quick-switch, palette, search. Ten strangers try it | 6 of 10 say they would keep it |
 | **13** | Decide MVP-1 scope on what the ten said | Written scope |
 
-### 54. What we decide, and when we stop
+### 71. What we decide, and when we stop
 
-::exhibit 35 | Decisions with owners
+::exhibit 47 | Decisions with owners
 
 | # | Decision | Owner | By |
 |---|---|---|---|
@@ -1240,7 +1543,7 @@ Assumes both of us, part-time on product, with client work continuing to fund ev
 | 4 | The two unrotated access tokens | Sagnik | **Today** |
 | 5 | Do we ship the free plugin regardless of test 1 | Both | Week 2 |
 
-::exhibit 36 | The kill switches, dated
+::exhibit 48 | The kill switches, dated
 
 | Bet | Falsified when | By |
 |---|---|---|
@@ -1251,7 +1554,7 @@ Assumes both of us, part-time on product, with client work continuing to fund ev
 | Anyone pays | 60 days with a working checkout and zero non-founder paid signups | Day 150 |
 | Teams pay | No team converts after 20 qualified conversations | Day 180 |
 
-### 55. The decisions only you can make
+### 72. The decisions only you can make
 
 | # | Decision | Why it is first |
 |---|---|---|
@@ -1263,9 +1566,9 @@ Assumes both of us, part-time on product, with client work continuing to fund ev
 
 > [!risk] **What would make me tell you to stop.** If the two-week tests come back with fewer than 4 of 10 developers calling provenance useful, and nobody who bills for documents has ever been asked for it, then there is no product here — only an engine, a consulting business, and a free plugin that makes people happy. That is not a failure. It is a smaller, truer version of the same work, and it pays better sooner.
 
-### 56. Everything we are betting on, in one place
+### 73. Everything we are betting on, in one place
 
-::exhibit 37 | The bets, and the evidence that would settle each
+::exhibit 49 | The bets, and the evidence that would settle each
 
 | # | The bet | Falsified when | When we know |
 |---|---|---|---|
@@ -1280,7 +1583,7 @@ Assumes both of us, part-time on product, with client work continuing to fund ev
 
 > [!good] **Why I think this is worth doing, stated plainly.** We have built the only editing engine in this category that does not damage files, and the incumbents have publicly admitted they have the defect. We were describing it wrongly — as a promise about bytes rather than as a capability nobody else can offer. Provenance is that capability. It answers the fastest-growing complaint in the market, it reuses ninety percent of what exists, and it cannot be copied by anyone who rewrites whole files. The two weeks of tests cost nothing and will tell us whether that reasoning survives contact with real people. If it does not, we will have lost a fortnight and gained the most valuable thing we could have bought.
 
-### 57. If I am wrong, here is how we will know early
+### 74. If I am wrong, here is how we will know early
 
 The failure mode I most want to avoid is spending ten weeks and learning nothing. Every phase has a signal that arrives before the money runs out.
 
@@ -1299,7 +1602,7 @@ flowchart TD
 
 **Note what the "no" branches are.** None of them is "we wasted two years". Every one lands somewhere useful — a free tool people like, an engine that works, a services business already paying our bills. **That asymmetry is the actual argument for trying.**
 
-### 58. What I actually think
+### 75. What I actually think
 
 - **The engine is the best thing either of us has built.** It is correct in a way the funded competitors are not, and they have admitted the defect in public.
 - **We were selling it wrong.** "We don't corrupt your bytes" is a promise nobody asked for. "You can see which parts the machine wrote, and undo any of them" is the same engine answering the fastest-growing complaint in the market.
