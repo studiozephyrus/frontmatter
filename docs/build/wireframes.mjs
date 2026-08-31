@@ -32,7 +32,25 @@ const r = (x, y, w, h, o = {}) =>
   `${o.dash ? ` stroke-dasharray="${o.dash}"` : ''}${o.rx ? ` rx="${o.rx}"` : ''}/>`
 const ln = (x1, y1, x2, y2, o = {}) =>
   `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${o.stroke || HAIR}" stroke-width="${o.sw || 1}"${o.dash ? ` stroke-dasharray="${o.dash}"` : ''}/>`
-/** grey bars standing in for body text */
+/** Real prose, not grey bars. Placeholder bars read as an unfinished sketch; actual
+ *  sentences let a reader judge line length, density and hierarchy — which is the
+ *  whole reason to draw a screen before building it. */
+const PROSE = [
+  'We use the GitHub App installation flow rather than an OAuth app, because the App',
+  'grants permission per repository instead of across the whole account.',
+  'The installation token is scoped to the repositories the user selected and expires',
+  'after one hour, which means a leaked token has a bounded blast radius.',
+  'Refresh happens transparently on the next request; the user never sees it.',
+  'If the installation is revoked the next call fails cleanly and we surface it once,',
+  'rather than retrying silently and appearing broken.',
+]
+const prose = (x, y, w, n, o = {}) => {
+  const size = o.size || 7.6, lh = o.lh || 11.5
+  return Array.from({ length: n }, (_, i) =>
+    t(x, y + i * lh, (o.lines || PROSE)[(o.from || 0) + i] || PROSE[i % PROSE.length],
+      { size, fill: o.fill || '#3a4048' })).join('')
+}
+/** kept for dense thumbnails where real text would be illegible */
 const bars = (x, y, w, n, gap = 8, o = {}) =>
   Array.from({ length: n }, (_, i) =>
     r(x, y + i * gap, i === n - 1 ? w * (o.last || 0.6) : w, 3, { fill: o.fill || HAIR })).join('')
@@ -120,12 +138,13 @@ const add = (id, name, note, w, h, body, caption) => out.push(
         return rows.map(([k, n, sel], i) => {
           const y = 72 + i * 21
           const ind = k === 'p' ? 10 : k === 'd' ? 18 : 28
-          return (sel ? r(6, y - 11, TREE - 12, 18, { fill: WASH, rx: 2 }) : '') +
-            (k === 'p' ? r(8, y - 11, TREE - 60, 18, { fill: '#fff', stroke: FAINT, rx: 3 }) : '') +
-            (k === 'f' ? ln(22, y - 11, 22, y + 7, { stroke: FAINT }) : '') +
-            t(ind, y + 2, (k === 'd' ? '▾ ' : '') + n, {
-              size: 8, weight: k === 'p' || sel ? 600 : null, fill: sel ? BLUE : k === 'p' ? INK : '#3a4048' }) +
-            (k === 'p' ? btn(TREE - 46, y - 10, 15, 15, 'f+') + btn(TREE - 28, y - 10, 16, 15, 'F+') : '')
+          return (sel ? r(6, y - 12, TREE - 12, 19, { fill: '#fff', stroke: BLUE, rx: 3 }) : '') +
+            (k === 'p' ? r(0, y - 13, TREE, 21, { fill: '#eef1f6' }) : '') +
+            (k === 'f' ? ln(23, y - 12, 23, y + 7, { stroke: FAINT }) : '') +
+            t(ind, y + 2, (k === 'p' ? '' : k === 'd' ? '\u25be  ' : '') + n, {
+              size: k === 'p' ? 7.6 : 8, weight: k === 'p' || sel ? 700 : null,
+              fill: sel ? BLUE : k === 'p' ? '#2c3038' : '#3a4048' }) +
+            (k === 'p' ? t(TREE - 14, y + 2, '+', { size: 10, anchor: 'end', fill: LINE }) : '')
         }).join('')
       })(),
       // ── mode bar
@@ -138,25 +157,32 @@ const add = (id, name, note, w, h, body, caption) => out.push(
       ln(TREE + 224, 38, TREE + 224, 56, { stroke: FAINT }),
       t(TREE + 236, 50, 'B  I  “  ≡  ⌗  ⌗⌗  ⟨⟩  ⊞  ⛓  ☑', { size: 8.5, fill: '#4a5160' }),
       btn(TREE + MAIN - 34, 39, 26, 16, '↓'),
-      // ── document, LIVE mode: rendered, editable
-      t(TREE + 24, 92, 'Authentication', { size: 15, weight: 700 }),
-      bars(TREE + 24, 108, MAIN - 60, 3),
-      r(TREE + 20, 140, MAIN - 52, 34, { fill: MACHINE }),
-      bars(TREE + 24, 150, MAIN - 60, 3, 8, { fill: MTEXT }),
-      t(TREE + MAIN - 26, 154, '◆', { size: 7, fill: BLUE }),
-      t(TREE + 24, 196, 'The GitHub App', { size: 11, weight: 700 }),
-      bars(TREE + 24, 208, MAIN - 60, 2),
-      // a rendered table
-      r(TREE + 20, 234, MAIN - 52, 46, { fill: GREY, stroke: HAIR }),
-      ln(TREE + 20, 250, TREE + MAIN - 32, 250, { stroke: FAINT }),
-      ...[0, 1, 2].map((c) => ln(TREE + 20 + (c + 1) * ((MAIN - 52) / 4), 234, TREE + 20 + (c + 1) * ((MAIN - 52) / 4), 280, { stroke: HAIR })),
-      t(TREE + 28, 246, 'scope', { size: 7.5, weight: 600, fill: LINE }),
-      t(TREE + 28, 264, 'contents:read', { size: 7.5 }),
-      // a rendered code block
-      r(TREE + 20, 292, MAIN - 52, 40, { fill: '#f4f6fa', stroke: HAIR }),
-      t(TREE + 28, 306, 'gh api /repos/:owner/:repo', { size: 7.5, mono: true, fill: '#3a4048' }),
-      t(TREE + 28, 320, '  --jq .permissions', { size: 7.5, mono: true, fill: '#3a4048' }),
-      bars(TREE + 24, 346, MAIN - 60, 2),
+      // document body, LIVE mode — rendered, editable, real sentences
+      t(TREE + 26, 96, 'Authentication', { size: 16, weight: 700 }),
+      prose(TREE + 26, 118, MAIN - 62, 2),
+      r(TREE + 20, 138, MAIN - 52, 30, { fill: MACHINE }),
+      prose(TREE + 26, 151, MAIN - 62, 2, { from: 2, fill: '#2c4a86' }),
+      t(TREE + MAIN - 28, 156, '\u25c6', { size: 7, fill: BLUE }),
+      prose(TREE + 26, 186, MAIN - 62, 1, { from: 4 }),
+      t(TREE + 26, 216, 'Scopes we request', { size: 11.5, weight: 700 }),
+      ...(() => {
+        const tx = TREE + 20, tw = MAIN - 52, c0 = 0.3
+        return [r(tx, 228, tw, 62, { fill: '#fff', stroke: HAIR }),
+          r(tx, 228, tw, 18, { fill: GREY }),
+          ln(tx, 246, tx + tw, 246, { stroke: FAINT }),
+          ln(tx + tw * c0, 228, tx + tw * c0, 290, { stroke: HAIR }),
+          t(tx + 10, 241, 'scope', { size: 7, weight: 700, fill: LINE }),
+          t(tx + tw * c0 + 10, 241, 'what it lets us do', { size: 7, weight: 700, fill: LINE }),
+          t(tx + 10, 261, 'contents:read', { size: 7.4, mono: true }),
+          t(tx + tw * c0 + 10, 261, 'read the file tree and file contents', { size: 7.4 }),
+          ln(tx, 270, tx + tw, 270, { stroke: HAIR }),
+          t(tx + 10, 283, 'contents:write', { size: 7.4, mono: true }),
+          t(tx + tw * c0 + 10, 283, 'commit a splice, only when you ask', { size: 7.4 })].join('')
+      })(),
+      r(TREE + 20, 302, MAIN - 52, 42, { fill: '#f4f6fa', stroke: HAIR, rx: 3 }),
+      t(TREE + 28, 318, 'gh api /repos/:owner/:repo/installation', { size: 7.4, mono: true, fill: '#2c3038' }),
+      t(TREE + 28, 332, '  --jq .permissions', { size: 7.4, mono: true, fill: '#6b7280' }),
+      prose(TREE + 26, 362, MAIN - 62, 2, { from: 5 }),
       // ── AI strip
       r(TREE + 14, H - 96, MAIN - 40, 58, { fill: AI, stroke: AIB, rx: 4 }),
       t(TREE + 28, H - 74, 'Ask, or select text and transform', { size: 8.5, fill: '#4a2a8a', weight: 600 }),
@@ -271,8 +297,8 @@ const add = (id, name, note, w, h, body, caption) => out.push(
   add('W4', 'S3 · The provenance panel — the interaction nothing else can do',
     'Hover only, after a delay, dismissible with Escape.',
     W, H, [
-      bars(40, 40, 720, 2),
-      r(36, 66, 728, 32, { fill: MACHINE }), bars(40, 76, 714, 2, 8, { fill: MTEXT }),
+      prose(40, 44, 720, 2),
+      r(36, 66, 728, 30, { fill: MACHINE }), prose(40, 80, 714, 2, { from: 2, fill: '#2c4a86' }),
       r(150, 106, 460, 132, { fill: '#fff', stroke: INK, sw: 1.2, rx: 4 }),
       r(150, 106, 460, 26, { fill: WASH }), ln(150, 132, 610, 132, { stroke: FAINT }),
       t(164, 124, 'Written by claude-opus-5', { size: 9, weight: 700, fill: BLUE }),
@@ -284,7 +310,7 @@ const add = (id, name, note, w, h, body, caption) => out.push(
       btn(164, 212, 122, 19, 'Keep — mark reviewed', { fill: BLUE, stroke: BLUE, tf: '#fff', weight: 600, size: 7.5 }),
       btn(294, 212, 74, 19, 'Revert  ⌘Z'), btn(376, 212, 92, 19, 'Show the diff'),
       t(478, 226, 'Next span  ⇥', { size: 7.5, fill: BLUE }),
-      bars(40, 258, 720, 2),
+      prose(40, 262, 720, 2, { from: 5 }),
     ].join(''),
     '**"Show the diff" is the trust control.** A sceptical user clicks it once, sees that only those bytes differ, and never clicks it again. That single interaction is what converts the claim into belief.')
 }
@@ -298,16 +324,16 @@ const add = (id, name, note, w, h, body, caption) => out.push(
       r(1, 1, W - 2, 26, { fill: GREY }), ln(1, 27, W - 1, 27, { stroke: FAINT }),
       t(12, 18, 'specs / auth.md', { size: 8, fill: '#4a5160' }),
       t(W - RAIL - 12, 18, 'Live', { size: 7.5, anchor: 'end', fill: BLUE, weight: 600 }),
-      bars(28, 56, W - RAIL - 60, 3),
+      prose(28, 60, W - RAIL - 60, 3),
       r(24, 96, W - RAIL - 52, 44, { fill: AI, stroke: AIB, rx: 3 }),
       t(34, 112, 'PROPOSED — not written', { size: 7, weight: 700, fill: '#4a2a8a' }),
-      bars(34, 118, W - RAIL - 76, 2, 8, { fill: '#c9b8f0' }),
+      prose(34, 122, W - RAIL - 76, 2, { from: 3, fill: '#5a3a9a' }),
       btn(34, 142, 54, 16, 'Keep', { fill: AIB, stroke: AIB, tf: '#fff', weight: 600, size: 7 }),
       btn(94, 142, 54, 16, 'Discard', { size: 7 }),
       t(158, 154, 'nothing has touched the file yet', { size: 7, fill: '#6b5a9a' }),
-      bars(28, 178, W - RAIL - 60, 2),
-      r(24, 208, W - RAIL - 52, 30, { fill: MACHINE }), bars(34, 218, W - RAIL - 76, 2, 8, { fill: MTEXT }),
-      bars(28, 254, W - RAIL - 60, 4),
+      prose(28, 182, W - RAIL - 60, 2, { from: 5 }),
+      r(24, 208, W - RAIL - 52, 30, { fill: MACHINE }), prose(34, 222, W - RAIL - 76, 2, { from: 2, fill: '#2c4a86' }),
+      prose(28, 258, W - RAIL - 60, 3, { from: 1 }),
       r(W - RAIL, 27, RAIL - 1, H - 28, { fill: PANEL }), ln(W - RAIL, 27, W - RAIL, H - 1, { stroke: FAINT }),
       t(W - RAIL + 14, 50, 'UNREVIEWED IN THIS FILE', { size: 7, weight: 700, fill: LINE }),
       t(W - 16, 52, '4', { size: 13, weight: 700, fill: BLUE, anchor: 'end' }),
