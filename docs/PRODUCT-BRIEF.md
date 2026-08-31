@@ -1217,9 +1217,116 @@ Named now so they are not surprises.
 | **Reverse charge** | **Starts at the first rupee.** Buying Claude API access is importing a service; registration is compelled with no turnover floor |
 | **On call** | Two founders and a team, no rotation. The free tier gets no SLA and we say so publicly |
 
-### 51. Roles, permissions, and sharing
+### 51. The AI layer, and what AIOS actually contributes
 
-::exhibit 47 | Who can do what, and how it is enforced
+We built an orchestration substrate for ourselves over four months — 131 skills, 149 scripts, 69 automated gates, 27 hooks, and 65 days of measured traces. The honest verdict earlier in this document is that **it does not ship as a product**. That is still true. But it is not nothing: it is four months of learning about how to make AI output reliable, and several of its parts become the AI layer inside frontmatter.
+
+**The distinction that matters:** AIOS is a *way of working* we built for one power user with 74 written rules. Frontmatter needs a *product* for someone who has none. What transfers is the mechanism, never the machinery.
+
+::exhibit 47 | What crosses over, and what stays behind
+
+| AIOS part | What it does for us | Does it become product? | The shipped form |
+|---|---|---|---|
+| **Trace ledger** | Records every AI turn: model, tokens, latency, accepted or not, failure mode | **Yes** | The provenance store. Same idea, narrowed to one question: which bytes, by whom |
+| **Complexity gate** | Classifies a task, routes to a cheap or expensive model | **Yes** | Model routing. A frontmatter fill is not a reasoning task and must never hit a frontier model |
+| **Gates** (69 assertions) | Checks that run before anything is trusted | **Yes, later** | Document CI — link integrity, stale sections, unreviewed machine text |
+| **Skills** (131) | Reusable, versioned instructions for recurring work | **Partly** | The five document templates. Not a gallery, not user-authored |
+| **Hooks** (27) | Fire automatically on events | **No** | A user should never author a hook. That is a power-user surface |
+| **Evals + judge** | Scores output quality against a rubric | **No, not yet** | Interesting internally. No user has asked to grade their AI |
+| **Learned rules** | Accumulated corrections that stop repeat mistakes | **Maybe** | A project that remembers its own decisions is a real idea. Not v1 |
+| **Shadow-promote ladder** | Runs a new path in parallel before serving it | **No** | Our own release discipline |
+
+> [!warn] **The honest caveat, restated.** AIOS's own learning loop is not closing: 6,884 routing decisions in one week produced a single feedback label. We may not describe any of this as self-improving, and we should not ship a loop to users that does not yet work for us.
+
+### 52. How the AI actually runs — local first, their key, their machine
+
+This is the architectural answer to three problems at once: our AI budget, their trust, and working without a network.
+
+```mermaid
+flowchart TD
+  A["You ask for something"] --> B{"What kind of task?"}
+  B -- "structural<br/>frontmatter, headings, links" --> C["Local model<br/>on your machine"]
+  B -- "language<br/>rewrite, summarise, explain" --> D{"Whose key?"}
+  D -- "yours" --> E["Direct to your provider<br/>we never see it"]
+  D -- "ours" --> F["Our gateway<br/>metered, hard-capped"]
+  C --> G["Proposed as a byte range"]
+  E --> G
+  F --> G
+  G --> H["You keep it or revert it"]
+  H --> I["Recorded: range, prompt,<br/>model, time"]
+```
+
+**The four rules this topology follows.**
+
+- **Structural work never leaves the machine.** Filling a frontmatter key, fixing a link, generating a heading slug, proposing a table row — these need pattern matching, not reasoning. A small local model or plain code does them, offline, free.
+- **Language work uses their key by default.** Their provider, their spend, their terms. **The request goes from their machine to their provider; it does not pass through us.** That removes a liability we do not want and a cost we cannot carry.
+- **Our hosted option exists and is never the default.** Metered, hard-capped, and priced at cost plus a margin. A user who wants zero setup can have it; a user who wants zero trust in us can avoid it entirely.
+- **No network, still a product.** Everything except language generation works offline: the editor, the engine, provenance, review, revert, refactor, search, git. **The AI is a feature of the product, not its precondition.**
+
+::exhibit 48 | What works with no network and no key
+
+| Capability | Offline? | Why |
+|---|---|---|
+| Editing, all four modes | YES | It is a local file |
+| Provenance display and revert | YES | The record is a sidecar in your repo |
+| Vault-wide refactor | YES | The engine is local code |
+| Search | YES | Local index |
+| Git commit, branch, diff | YES | Git is local |
+| Structural AI — frontmatter, links, slugs | YES | Local model or plain rules |
+| Language AI — rewrite, summarise, draft | NO | Needs a provider |
+| Sync, team view | NO | Needs the network |
+
+### 53. How the AI decides what to do — the routing model
+
+Taken directly from the complexity gate we run on ourselves, simplified to something a user never has to see.
+
+::exhibit 49 | Task class to model
+
+| Task class | Example | Where it runs | Why |
+|---|---|---|---|
+| **Mechanical** | Slugify a heading · fix a broken link target · reorder frontmatter keys | Plain code, no model | It is a transformation, not a judgement |
+| **Structural** | Fill a frontmatter field · propose a table row · suggest a tag | Local small model | Pattern work. Cheap, private, instant |
+| **Language** | Rewrite a paragraph · summarise a section · draft from a template | Their provider, mid-tier model | Real generation, and the user is paying |
+| **Reasoning** | "Is this decision record consistent with the spec?" | Their provider, frontier model, only on request | Expensive and rare. Never automatic |
+
+**Three rules that keep the cost predictable.**
+
+- **Nothing runs in the background.** No ambient passes, no automatic indexing with a model, no "while you were away". Every call is something a person asked for, which makes spend a function of use rather than of time.
+- **Cap the output, not the input.** Our own measurement across 2,333 turns: **output tokens are 75.8% of spend**. Context is nearly free; generation is the cost.
+- **Escalation is explicit.** If a cheap model refuses or produces something the user rejects, we say so and offer the expensive one. We never silently upgrade and bill them for it.
+
+### 54. How the pieces fit together
+
+```mermaid
+flowchart LR
+  subgraph Local["On your machine"]
+    F["Your files<br/>git repo"]
+    E["Splice engine<br/>byte-exact"]
+    P["Provenance sidecar"]
+    M["Small local model"]
+  end
+  subgraph Yours["Your account, not ours"]
+    K["Your AI provider"]
+  end
+  subgraph Ours["Ours — no documents"]
+    G["Gateway, optional"]
+    C["Control plane<br/>identity, teams, billing"]
+  end
+  F <--> E
+  E --> P
+  M --> E
+  K --> E
+  G -.-> E
+  E --> C
+```
+
+**Read the diagram for what is missing from it.** No document ever reaches the box on the right. The control plane knows who you are, what you pay for and who is on your team. It does not know what you wrote, what you asked the AI, or what it said back. That is not a policy we could change later — it is how the thing is built.
+
+**Where AIOS's four months actually paid off.** Not in code we can lift, but in three lessons that shaped this design: route by task class rather than by model preference; measure acceptance rather than accuracy; and never ship a loop you cannot prove is closing. The first two are in the product. The third is why AIOS itself is not.
+
+### 55. Roles, permissions, and sharing
+
+::exhibit 50 | Who can do what, and how it is enforced
 
 | Operation | Our posture | Enforced by |
 |---|---|---|
@@ -1231,7 +1338,7 @@ Named now so they are not surprises.
 
 **The principle underneath:** we never grant access to a repository that GitHub would not grant. We can only ever be *more* restrictive, never less. That means a security question about us becomes a question about GitHub's model, which is a much easier conversation.
 
-### 52. Trust, safety, and the abuse surface
+### 56. Trust, safety, and the abuse surface
 
 | Surface | The risk | What we do |
 |---|---|---|
@@ -1241,11 +1348,11 @@ Named now so they are not surprises.
 | Publishing abuse | If we ever publish, a free indexable page is a spam magnet | Publishing is out of v1. If it returns: paid accounts only, noindex by default, system-assigned slugs |
 | Our own supply chain | A dependency compromise reaching user files | No plugin system at all is the largest single mitigation we have |
 
-### 53. Auth, hosting, caching and the rest of the plumbing
+### 57. Auth, hosting, caching and the rest of the plumbing
 
 The parts nobody asks about until they break.
 
-::exhibit 48 | The operational layers
+::exhibit 51 | The operational layers
 
 | Layer | Decision | The reason, and the trap |
 |---|---|---|
@@ -1261,7 +1368,7 @@ The parts nobody asks about until they break.
 | **Disaster recovery** | R2 has **no object versioning** — recovery must be designed into the key layout | This is a real constraint, discovered by reading their docs rather than assuming |
 | **Error tracking** | Sentry, with document content scrubbed at the SDK before send | **No session replay, ever.** The DOM we would be replaying is the user's private document |
 
-### 54. Incremental parsing, and why it matters to a user
+### 58. Incremental parsing, and why it matters to a user
 
 A technical decision that shows up as something a person feels.
 
@@ -1270,7 +1377,7 @@ A technical decision that shows up as something a person feels.
 - **Why it is not optional:** our provenance spans have to survive edits happening around them. That means knowing precisely which byte ranges moved and by how much, on every keystroke, cheaply.
 - **The user-visible measure:** time to first keystroke on a cold start, and typing latency on a 10,000-word document. We publish both.
 
-### 55. What has to be fixed before anything else
+### 59. What has to be fixed before anything else
 
 These are not features. They are the reasons the product does not currently work.
 
@@ -1284,11 +1391,11 @@ These are not features. They are the reasons the product does not currently work
 
 ## PART VII — The plan
 
-### 56. Before we write any code — two weeks, zero rupees
+### 60. Before we write any code — two weeks, zero rupees
 
 This is the highest-value fortnight available to us, and it is the part I most want you to agree to.
 
-::exhibit 49 | The four tests, and what kills each
+::exhibit 52 | The four tests, and what kills each
 
 | # | Test | What it costs | Kill signal |
 |---|---|---|---|
@@ -1300,7 +1407,7 @@ This is the highest-value fortnight available to us, and it is the part I most w
 - If **1 and 3 both fail**, the provenance thesis is dead and we should say so in week two rather than month six.
 - If **2 succeeds**, we have an audience before we have a product. That has never been true for us before, and it is the cheapest distribution we will ever get.
 
-### 57. MVP-0 — the proof
+### 61. MVP-0 — the proof
 
 **Ten weeks elapsed** at our real availability, not six. The estimate assumes full-time work and we do not have it.
 
@@ -1321,19 +1428,19 @@ This is the highest-value fortnight available to us, and it is the part I most w
 
 **Exit criterion:** ten strangers, their own repositories. **Six of ten say they would keep using it.** Not "like it" — keep it.
 
-### 58. MVP-1 — the first money
+### 62. MVP-1 — the first money
 
 - **Vault-wide refactor.** Rename a tag, a heading, a property key. Every link that will change shows as a reviewable hunk. Refuse when a target is ambiguous. This is the 86-like problem and it is the strongest asked-for capability our engine uniquely enables.
 - **The editor stays free forever.** We charge for teams.
 - **Team provenance** is the first paid line: shared repos, who-wrote-what across a team, per-seat. The model is Obsidian's commercial licence — $50/user/year with no enterprise features at all, which is what a nine-figure-logo B2B business actually looks like in this category.
 - The unglamorous half: billing, a support inbox, terms of service, and a way to tell users about a breaking change. **None of these exist and all are required before the first paid signup.**
 
-### 59. MVP-2 — the moat
+### 63. MVP-2 — the moat
 
 - **Sync, done provably safely.** The #1 loved feature and #1 switching trigger. A competitor's sync duplicates sections of files; ours structurally cannot, and we can demonstrate it. This is also the only price this category has ever proven.
 - **The free live-preview plugin** in Obsidian's store, permanently. 501 likes on the bug it fixes. It is the cheapest audience available to us and it should ship in week two regardless.
 
-### 60. Money
+### 64. Money
 
 | Line | Number |
 |---|---|
@@ -1345,7 +1452,7 @@ This is the highest-value fortnight available to us, and it is the part I most w
 
 > [!test] **The pricing decision, which inverts our original plan.** The editor is free. Teams pay per seat. Sync is a separate paid service later. We charge for the two things this category has proven people pay for, and we give away the thing it has proven they do not.
 
-### 61. The cost model, and how we avoid a surprise bill
+### 65. The cost model, and how we avoid a surprise bill
 
 | Where money goes | At 100 users | At 10,000 users |
 |---|---|---|
@@ -1364,11 +1471,11 @@ This is the highest-value fortnight available to us, and it is the part I most w
 - **Nothing runs in the background.** No ambient AI, no automatic passes over the vault. Every call is something a person asked for, which makes the cost predictable by construction.
 - **Measured, not guessed:** in our own usage data, output tokens are 75.8% of spend across 2,333 measured turns. Context is nearly free; generation is the cost. That tells us where to optimise and it is why we cap output length rather than input.
 
-### 62. Pricing, worked through properly
+### 66. Pricing, worked through properly
 
 Our original ₹299/₹599 was set with evidence from zero humans. Here is what the category actually shows.
 
-::exhibit 50 | What this market charges, opened and dated
+::exhibit 53 | What this market charges, opened and dated
 
 | Product | Editor | Sync | Teams | What that tells us |
 |---|---|---|---|---|
@@ -1386,7 +1493,7 @@ Our original ₹299/₹599 was set with evidence from zero humans. Here is what 
 - **The two proven prices in this category are sync (~$4) and a commercial team licence (~$50/user/year).** Those are the two things we should charge for.
 - **The buyer already spends $20–40/month on AI tooling.** We are not asking for a new budget line; we are asking for a share of one that exists.
 
-::exhibit 51 | What I propose
+::exhibit 54 | What I propose
 
 | Tier | Price | What it is |
 |---|---|---|
@@ -1400,7 +1507,7 @@ Our original ₹299/₹599 was set with evidence from zero humans. Here is what 
 
 > [!test] **The pricing decision in one line: give away the thing the category has proven is free, and charge for the two things it has proven people pay for.** That inverts our original plan and it is better supported by evidence than anything we had.
 
-### 63. Refunds, cancellation, and what happens to your data
+### 67. Refunds, cancellation, and what happens to your data
 
 Boring, and it is in the checkout flow, so it must be written before the first paid signup rather than after the first complaint.
 
@@ -1415,9 +1522,9 @@ Boring, and it is in the checkout flow, so it must be written before the first p
 
 **The one that matters:** downgrading loses you features, never files. A user who stops paying keeps a working editor. That is unusual, it is a consequence of never holding their data, and it should be said out loud in the pricing page.
 
-### 64. What comes in which plan
+### 68. What comes in which plan
 
-::exhibit 52 | The feature-to-tier map
+::exhibit 55 | The feature-to-tier map
 
 | | **Free** | **Team — $8/user/mo** | **Sync — +$4/user/mo** |
 |---|---|---|---|
@@ -1441,13 +1548,13 @@ Boring, and it is in the checkout flow, so it must be written before the first p
 
 > [!warn] **The obvious objection: we are giving away our differentiator.** Yes. Deliberately. Provenance free is what makes anyone try it at all, and a product nobody tries has no team to sell to. The paid thing is not the feature — it is the feature *across people*.
 
-### 65. B2B and D2C, decided rather than described
+### 69. B2B and D2C, decided rather than described
 
 **The counter-intuitive finding that shaped this.** The closest structural analogue to us runs a substantial business selling to companies **with no enterprise features whatsoever.** Obsidian's entire commercial offering is a $50/user/year licence; their own FAQ answers the "do I have to pay for commercial use" question and that is essentially the whole product.
 
 That tells us our B2B strategy is probably not SSO, SCIM, audit exports and a SOC 2 report. It is a commercial licence and a clear answer about where the data lives.
 
-::exhibit 53 | The two motions, honestly
+::exhibit 56 | The two motions, honestly
 
 | | **D2C** | **B2B** |
 |---|---|---|
@@ -1477,13 +1584,13 @@ That tells us our B2B strategy is probably not SSO, SCIM, audit exports and a SO
 
 > [!note] **The recommendation: D2C free to build the audience, B2B paid to build the revenue, and do not build a single enterprise feature until a customer refuses to pay without it.** Obsidian's precedent says that can go a very long way.
 
-### 66. Distribution — our weakest area, stated honestly
+### 70. Distribution — our weakest area, stated honestly
 
 Everything above is a product argument. This is the part where I have least to offer, and I would rather say that than dress it up.
 
 **What we have today:** no email list, no audience, no store presence, no inbound. Every channel we have identified belongs to someone else.
 
-::exhibit 54 | Channels, and who actually owns them
+::exhibit 57 | Channels, and who actually owns them
 
 | Channel | Who owns it | Compounds? | Our honest read |
 |---|---|---|---|
@@ -1498,7 +1605,7 @@ Everything above is a product argument. This is the part where I have least to o
 
 > [!warn] **Say this out loud: a good product does not find its own users.** We have assumed it will. The plugin is the one cheap, ownable move on the table, and it costs about four days.
 
-### 67. Marketing — who, where, and what we say
+### 71. Marketing — who, where, and what we say
 
 We have never written this down and it is our weakest area, so this is a first draft to argue with rather than a plan to execute.
 
@@ -1513,7 +1620,7 @@ We have never written this down and it is our weakest area, so this is a first d
 
 **Where these people actually are**, ranked by how cheaply we can reach them.
 
-::exhibit 55 | Channels, honestly rated
+::exhibit 58 | Channels, honestly rated
 
 | Channel | Size / reach | Cost to us | Do we own it? | Verdict |
 |---|---|---|---|---|
@@ -1529,11 +1636,11 @@ We have never written this down and it is our weakest area, so this is a first d
 
 **What we do not do:** no launch countdown, no waitlist theatre, no "we are building in public" posting that is really just posting. If we have nothing to show, we say nothing.
 
-### 68. Positioning — how we say it
+### 72. Positioning — how we say it
 
 **The rule: lead with the problem, never the mechanism.** "Byte-preserving splice engine" is what we built. "You can see what the AI wrote" is what someone buys.
 
-::exhibit 56 | The message ladder
+::exhibit 59 | The message ladder
 
 | Length | The message |
 |---|---|
@@ -1546,9 +1653,9 @@ We have never written this down and it is our weakest area, so this is a first d
 
 **Objection-led positioning.** Our audience is sceptical of AI tooling, so lead with what we *refuse* to do: no plugins, no code execution, no holding your files, no lock-in. **The refusals are more persuasive than the features** to this buyer.
 
-### 69. Launch — Product Hunt and the rest
+### 73. Launch — Product Hunt and the rest
 
-::exhibit 57 | The launch surfaces, ranked
+::exhibit 60 | The launch surfaces, ranked
 
 | Surface | When | What we need ready | Realistic outcome |
 |---|---|---|---|
@@ -1563,7 +1670,7 @@ We have never written this down and it is our weakest area, so this is a first d
 
 **What we launch with is not the product, it is the demo.** Fifteen seconds: a document with machine spans marked, one key pressed, `git diff` showing nothing else moved. If that clip is not compelling, no launch surface will save it — and if it is, they all work.
 
-### 70. How users hear from us, and how they reach us
+### 74. How users hear from us, and how they reach us
 
 The record found we had **no route to tell a user anything** — not a breaking change, not a price change, not a security incident. That is an operational defect, not a marketing gap.
 
@@ -1583,11 +1690,11 @@ The record found we had **no route to tell a user anything** — not a breaking 
 
 **How they reach us:** one email address, a published response window, and an honest statement that the free tier has no service commitment. One person on call cannot promise more than that, and promising more is how you get a reputation for silence.
 
-### 71. How people actually get it, and keep it updated
+### 75. How people actually get it, and keep it updated
 
 You asked how users install it. This is the part of a desktop product that quietly decides whether anyone uses it.
 
-::exhibit 58 | Distribution, by surface
+::exhibit 61 | Distribution, by surface
 
 | Surface | How they get it | What it costs us |
 |---|---|---|
@@ -1607,7 +1714,7 @@ You asked how users install it. This is the part of a desktop product that quiet
 
 > [!warn] **Two things that will catch us out.** Code-signing certificates now require a physical hardware token and renew on a shorter cycle than they used to — that is a recurring cost and an operational chore, not a one-off. And the auto-updater has to be signed and configured before the first public build; retrofitting it means asking every early user to manually re-download, which is exactly how you lose them.
 
-### 72. How we know what we know
+### 76. How we know what we know
 
 So you can judge the evidence rather than take it on trust.
 
@@ -1629,7 +1736,7 @@ So you can judge the evidence rather than take it on trust.
 
 > [!note] **The most important methodological point.** We ran adversarial rounds specifically permitted to refute our own thesis, and they did — twice. That is the reason to trust the rest of it. A research process that never contradicts its sponsor is marketing.
 
-### 73. What we have not done, and would do next
+### 77. What we have not done, and would do next
 
 Being explicit about the edges of this document.
 
@@ -1643,7 +1750,7 @@ Being explicit about the edges of this document.
 | Sync is designed but unproven | It is MVP-2 and the hardest thing on the list | Deliberately deferred |
 | No security review by anyone outside | We are asserting our own safety | A paid review before the first team customer |
 
-### 74. The words we use, defined
+### 78. The words we use, defined
 
 Because half of these mean different things to different people.
 
@@ -1660,7 +1767,7 @@ Because half of these mean different things to different people.
 | **The gates** | Automated checks over a repo of documents: references resolve, nothing is stale |
 | **Vault** | A folder of markdown the user already had. We never create one |
 
-### 75. What we measure, and what we refuse to measure
+### 79. What we measure, and what we refuse to measure
 
 | We measure | Why |
 |---|---|
@@ -1678,11 +1785,11 @@ Because half of these mean different things to different people.
 | Document content, ever | We never hold documents. That is the promise |
 | Vanity metrics — signups, stars, page views | They move without the business moving |
 
-### 76. The ninety days, week by week
+### 80. The ninety days, week by week
 
 Assumes both of us, part-time on product, with client work continuing to fund everything.
 
-::exhibit 59 | The plan, with an observable outcome every fortnight
+::exhibit 62 | The plan, with an observable outcome every fortnight
 
 | Weeks | What happens | Observable outcome |
 |---|---|---|
@@ -1696,9 +1803,9 @@ Assumes both of us, part-time on product, with client work continuing to fund ev
 | **10–12** | Table stakes: quick-switch, palette, search. Ten strangers try it | 6 of 10 say they would keep it |
 | **13** | Decide MVP-1 scope on what the ten said | Written scope |
 
-### 77. What we decide, and when we stop
+### 81. What we decide, and when we stop
 
-::exhibit 60 | Decisions with owners
+::exhibit 63 | Decisions with owners
 
 | # | Decision | Owner | By |
 |---|---|---|---|
@@ -1708,7 +1815,7 @@ Assumes both of us, part-time on product, with client work continuing to fund ev
 | 4 | The two unrotated access tokens | Sagnik | **Today** |
 | 5 | Do we ship the free plugin regardless of test 1 | Both | Week 2 |
 
-::exhibit 61 | The kill switches, dated
+::exhibit 64 | The kill switches, dated
 
 | Bet | Falsified when | By |
 |---|---|---|
@@ -1719,7 +1826,7 @@ Assumes both of us, part-time on product, with client work continuing to fund ev
 | Anyone pays | 60 days with a working checkout and zero non-founder paid signups | Day 150 |
 | Teams pay | No team converts after 20 qualified conversations | Day 180 |
 
-### 78. The decisions only you can make
+### 82. The decisions only you can make
 
 | # | Decision | Why it is first |
 |---|---|---|
@@ -1731,9 +1838,9 @@ Assumes both of us, part-time on product, with client work continuing to fund ev
 
 > [!risk] **What would make me tell you to stop.** If the two-week tests come back with fewer than 4 of 10 developers calling provenance useful, and nobody who bills for documents has ever been asked for it, then there is no product here — only an engine, a consulting business, and a free plugin that makes people happy. That is not a failure. It is a smaller, truer version of the same work, and it pays better sooner.
 
-### 79. Everything we are betting on, in one place
+### 83. Everything we are betting on, in one place
 
-::exhibit 62 | The bets, and the evidence that would settle each
+::exhibit 65 | The bets, and the evidence that would settle each
 
 | # | The bet | Falsified when | When we know |
 |---|---|---|---|
@@ -1748,7 +1855,7 @@ Assumes both of us, part-time on product, with client work continuing to fund ev
 
 > [!good] **Why I think this is worth doing, stated plainly.** We have built the only editing engine in this category that does not damage files, and the incumbents have publicly admitted they have the defect. We were describing it wrongly — as a promise about bytes rather than as a capability nobody else can offer. Provenance is that capability. It answers the fastest-growing complaint in the market, it reuses ninety percent of what exists, and it cannot be copied by anyone who rewrites whole files. The two weeks of tests cost nothing and will tell us whether that reasoning survives contact with real people. If it does not, we will have lost a fortnight and gained the most valuable thing we could have bought.
 
-### 80. If I am wrong, here is how we will know early
+### 84. If I am wrong, here is how we will know early
 
 The failure mode I most want to avoid is spending ten weeks and learning nothing. Every phase has a signal that arrives before the money runs out.
 
@@ -1767,7 +1874,7 @@ flowchart TD
 
 **Note what the "no" branches are.** None of them is "we wasted two years". Every one lands somewhere useful — a free tool people like, an engine that works, a services business already paying our bills. **That asymmetry is the actual argument for trying.**
 
-### 81. What I actually think
+### 85. What I actually think
 
 - **The engine is the best thing either of us has built.** It is correct in a way the funded competitors are not, and they have admitted the defect in public.
 - **We were selling it wrong.** "We don't corrupt your bytes" is a promise nobody asked for. "You can see which parts the machine wrote, and undo any of them" is the same engine answering the fastest-growing complaint in the market.
