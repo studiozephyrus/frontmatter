@@ -25,7 +25,7 @@ const GLOBAL = [
   ['docs/PRODUCT.md', 90, 97],
   ['docs/THESIS.md', 98, 104],
 ]
-const LOCAL = { 'DEV-PLAN': 'docs/DEV-PLAN.md', REFERENCES: 'docs/REFERENCES.md' }
+const LOCAL = { 'DEV-PLAN': 'docs/DEV-PLAN.md', REFERENCES: 'docs/REFERENCES.md', CRITIQUE: 'docs/CRITIQUE.md' }
 
 // DECIDE.md defines no sections of its own — it only cites. It is checked so that a
 // synthesis written by hand cannot invent a section number, which is exactly the

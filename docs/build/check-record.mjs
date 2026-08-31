@@ -19,6 +19,7 @@ const TREE = [
   ['docs/VERIFICATION.md', 'VERIFY'],
   ['docs/PRODUCT.md', 'PRODUCT'],
   ['docs/THESIS.md', 'THESIS'],
+  ['docs/CRITIQUE.md', 'CRITIQUE'],
   ['docs/DEV-PLAN.md', 'DEV-PLAN'],
   ['docs/REFERENCES.md', 'REFERENCES'],
 ]

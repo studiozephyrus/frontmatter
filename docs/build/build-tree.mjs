@@ -171,6 +171,62 @@ const head = (title, sub, lines) =>
   }
 }
 
+// ------------------------------------------------------------- CRITIQUE, local run
+// Twelve adversarial audits. A LOCAL run (cite as `CRITIQUE §5`) because these are
+// judgements about the record, not more record — folding them into the global run
+// would make the critique look like another claim rather than a review of the claims.
+{
+  const ORDER = [
+    ['c1-premise', 'The premise — is there a product here'],
+    ['c2-market-fit', 'Market fit and positioning'],
+    ['c3-competitive', 'Competitive survival'],
+    ['c4-features', 'The features, one by one'],
+    ['c5-execution', 'Technical feasibility and execution risk'],
+    ['c6-unit-economics', 'The business model and unit economics'],
+    ['c7-d2c', 'The D2C motion'],
+    ['c8-b2b', 'The B2B motion'],
+    ['c9-capacity', 'Founder capacity'],
+    ['c10-kill-case', 'The case against building this at all'],
+    ['c11-what-to-build', 'What the evidence says to build'],
+    ['c12-the-plan', 'The ninety days'],
+  ]
+  const blocks = []
+  let n = 1
+  for (const [id, title] of ORDER) {
+    const b = part(`r26-${id}.md`)
+    if (!b) continue
+    // These return reports without a top heading, but they DO use `## ` internally,
+    // which fragments the assembled PDF (the section splitter keys on `^## `).
+    // Demote every inner H1/H2 to H3, fence-aware so a `## ` inside a code block
+    // — a runbook template, a sample document — is left alone.
+    const demoteInner = (t) => {
+      let fence = null
+      return t.split('\n').map((line) => {
+        const f = /^\s{0,3}(`{3,}|~{3,})/.exec(line)
+        if (f) { fence = !fence ? f[1][0] : (f[1][0] === fence ? null : fence); return line }
+        if (fence) return line
+        return line.replace(/^(#{1,2})(\s)/, '###$2')
+      }).join('\n')
+    }
+    const body = demoteInner(b.replace(/^#{1,3}\s.*\n+/, ''))
+    blocks.push(`## ${n}. ${title}\n\n${body}`)
+    n++
+  }
+  if (blocks.length) {
+    fs.writeFileSync('docs/CRITIQUE.md', head(
+      'CRITIQUE — the case against, argued at full strength',
+      '**Tier 1.** Twelve adversarial audits of the plan, each required to steelman before attacking, ' +
+      'to rank severity FATAL/SEVERE/SERIOUS/MINOR, and to state what evidence would change its mind. ' +
+      '§10 is the prosecution with no rebuttal attached.',
+      ['> Read this BEFORE `PLAN.md`. A plan that has not survived its own critique is a wish.',
+       '',
+       `> ${blocks.length} of 12 audits present.` +
+       (blocks.length < 12 ? ' The rest are still being written.' : '')],
+    ) + blocks.join('\n\n---\n\n') + '\n')
+    built.push(`CRITIQUE.md — ${blocks.length}/12 audits`)
+  }
+}
+
 // --------------------------------------------------------------- THESIS §98–104
 {
   const blocks = ['q1-the-fusion', 'q2-artifact-factory', 'q3-provider-keys',
