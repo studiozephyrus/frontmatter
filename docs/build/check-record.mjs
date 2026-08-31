@@ -18,6 +18,7 @@ const TREE = [
   ['docs/BUSINESS.md', 'BUSINESS'],
   ['docs/VERIFICATION.md', 'VERIFY'],
   ['docs/PRODUCT.md', 'PRODUCT'],
+  ['docs/THESIS.md', 'THESIS'],
   ['docs/DEV-PLAN.md', 'DEV-PLAN'],
   ['docs/REFERENCES.md', 'REFERENCES'],
 ]

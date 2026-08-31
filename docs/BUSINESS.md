@@ -5,7 +5,7 @@ generated_by: docs/build/build-tree.mjs
 
 # BUSINESS — the parts nobody adds up
 
-**Tier 1.** Round 14 swept the record for what thirteen rounds had never asked, and these seven came back. They are not softer than the engineering; a product with no route to tell a user about a breaking change has an operational defect, not a marketing gap.
+**Tier 1.** Round 14 swept the record for what thirteen rounds had never asked, and these seven came back, and §88 adds the war-game that thirteen rounds never ran. They are not softer than the engineering; a product with no route to tell a user about a breaking change has an operational defect, not a marketing gap.
 
 > Every number here obeys PRD §57: re-derive at write time. Every public claim obeys PRD §58.
 
@@ -1086,3 +1086,209 @@ Anti-recommendation: this design deliberately forgoes the incentive that actuall
 Summed at the optimistic end, everything on this table reaches perhaps 350k–500k year-one visitors. The 1.26M figure is not a year-one number and should not be planned as one; it is a 24-to-36-month cumulative figure, and the plan is currently missing at least one channel of a size nobody has yet named. The most likely candidate for that missing channel is developer-tool distribution rather than content: a package or extension that puts the engine in front of some fraction of the 35.78M monthly `gray-matter` installs is the only lever on this page whose ceiling is of the right order of magnitude.
 
 Anti-recommendation to that last claim: developer-tool distribution reaches developers, and developers are the worst-converting audience for a paid editor — they build their own. The 5% conversion median already assumes a developer audience; a channel that skews the mix further toward developers may raise visitors while lowering the blended conversion rate, leaving revenue flat. Model it as visitors × a *lower* conversion rate before committing engineering time to it.
+
+---
+
+## 88. The competitive war-game
+
+### 88.1 What the incumbents actually shipped — every source opened 2026-08-31
+
+| Party | Source opened | HTTP | What actually shipped, last ~12 months | What is *not* on the list |
+|---|---|---|---|---|
+| **Obsidian** | `obsidian.md/roadmap/` · `obsidian.md/pricing` · `obsidian.md/changelog/` | 200 | Roadmap board reads **3 Active · 7 Planned · 46 Launched** `[measured on the fetched page]`. Launched includes Bases (+ Bases API, Map/List/Group views, Bases search), Obsidian CLI, headless Sync client, Notion import, CSV→Markdown import, Keychain, mobile UI refresh `[fetched]` | **Zero** roadmap items naming fidelity, byte-exactness, round-trip, or conflict review. `Multiplayer` sits in **Planned**, not Active `[fetched]` |
+| **Obsidian Sync** | `raw.githubusercontent.com/obsidianmd/obsidian-help/master/en/Obsidian Sync/Troubleshoot Obsidian Sync.md` | 200 | A **Conflict resolution** setting with two modes — *Automatically merge* (default) and *Create conflict file*. Doc commit **2025-11-28**, "Adds conflict resolution changes"; a follow-up **2026-03-26** "Fix conflict file naming pattern (#1057)" `[fetched, GitHub API]` | Their own doc concedes auto-merge "may sometimes create duplicate text or formatting problems. You will need to fix these manually", and names **Google diff-match-patch** as the algorithm `[fetched]` |
+| **Notion** | `notion.com/releases` (`__NEXT_DATA__`) · `notion.com/pricing` · `notion.com/help/export-your-content` | 200 | **10 of the 10** most recent releases, 2026-07-08 → 2026-08-28, are agent/AI/model features — agent edit suggestions, Developer Portal, model selection, Notion Workers, Agents iOS app `[measured]` | Export doc still says **"Callout blocks will be exported as HTML, as there is no Markdown equivalent"** and databases leave as CSV inside a zip `[fetched]`. **Nothing about files on disk** |
+| **GitHub** | `github.blog/changelog/feed/` · `/changelog/2026/08/` · GitHub docs source on `raw.githubusercontent.com` | 200 | Latest 10 changelog entries (2026-08-26 → 2026-08-28): 6 Copilot, 4 governance/issues `[measured]`. `github.dev` doc still marked **public preview**, work "saved in the browser's local storage until you commit it" `[fetched]` | No markdown-editor, wiki, or writing-surface entry surfaced in the 2026 or 2025 changelog index under `markdown`/`editor`/`writing` `[measured]` |
+| **Anthropic** | `docs.claude.com/en/docs/build-with-claude/files` · `/en/release-notes/claude-apps` | 200 | Files API is **upload-by-`file_id`, workspace-scoped storage** — "Uploaded files are accessible to your entire workspace, not scoped to an end user, conversation, or session" `[fetched]`. Help index lists *Create and edit files with Claude*, Skills, Cowork, Claude Design `[fetched]` | The unit is a **stored blob keyed by id**, not a path in a user-owned tree |
+| **OpenAI** | `help.openai.com/…/chatgpt-release-notes` · `openai.com/news/` · `openai.com/index/introducing-canvas/` · `chatgpt.com/release-notes` | **403 · 403 · 403 · 403** | `platform.openai.com/docs/changelog` returned 200 but rendered no parseable dated entries `[measured]` | Canvas removal ~2026-05-28, replaced by in-thread writing blocks, is **`[SS]` — every OpenAI primary source refused with 403.** Do not upgrade it |
+
+**The single most load-bearing thing on this table: Obsidian already shipped a conflict-review escape hatch, and it is free with a $4/month add-on.** `obsidian.md/pricing`, read 2026-08-31: Sync **$4** USD/user/month billed annually ($5 monthly), Publish **$8**/site/month annually ($10 monthly), Catalyst **$25** one-time, Commercial **$50**/user/year `[fetched]`. Notion, same day: Free **$0**, Plus **$10**/member/month, Business **$20**/member/month `[fetched]`.
+
+USD→INR **95.39** on 2026-08-28 `[fetched, api.frankfurter.app]`. So ₹299 = **$3.13** and ₹599 = **$6.28** `[derived: 299 ÷ 95.39; 599 ÷ 95.39]`. **Our entry tier is priced 22% *below* Obsidian Sync** `[derived: (4.00 − 3.13) ÷ 4.00]`. The pricing page cannot claim a category-level price advantage; it is a rounding difference.
+
+---
+
+### 88.2 Scenario A — Obsidian ships byte-exact sync with conflict review
+
+| | |
+|---|---|
+| **Trigger** | A roadmap item named `Multiplayer` moves Planned→Active, **or** a changelog line pairs "Sync" with "merge"/"conflict"/"three-way", **or** the *Create conflict file* mode becomes the default |
+| **Prior work already done** | The hard half. The setting exists since the **2025-11-28** doc commit; a naming-pattern fix landed **2026-03-26** — this is a maintained surface, not an experiment `[fetched]` |
+| **Lead time** | **6–12 months from trigger to parity**, and the trigger may lag the ship. Obsidian went 1.9.x → **1.13.8** in roughly the nine months since that doc commit `[fetched, changelog]` — four minor lines. They ship fast |
+| **What breaks** | Moat #2 at its centre. §31's whole case is that git's three-way merge refuses where diff-match-patch guesses; if Obsidian swaps the algorithm, our conflict story becomes *a better UI on the same idea*. §27 dates moat #2 at 18–36 months — **this scenario is the specific event that collapses it to under 12** |
+| **First 30 days** | (1) Ship the corpus diff publicly against *their new build*, re-running the §19 teardown protocol — the one asset we own that they cannot borrow is the executed measurement. (2) Retire "conflicts you can review" from the pitch; it is now table stakes. (3) Promote the **degradation certificate** (moat #3) to the headline, because it is the claim their architecture still cannot make. (4) Re-run Q1 against the new landscape before spending another point on T0 |
+| **Founder-credible?** | **Yes — because the response is measurement and repositioning, not engineering.** Re-running a teardown against a shipped build is days of work. What is *not* credible is out-shipping them on sync itself: they have a paid sync product, a server fleet, mobile clients on both stores, and an installed base |
+
+---
+
+### 88.3 Scenario B — Notion or Coda makes markdown files on disk the store of record
+
+| | |
+|---|---|
+| **Trigger** | A release note pairing "local" or "folder" with "sync", or a filesystem permission prompt in the desktop app |
+| **Lead time** | **18–36 months, and the honest base rate is that it never happens.** Ten consecutive releases are agent features `[measured]`. Their export still cannot represent a callout in markdown `[fetched]` — the loss is in the *block model*, not the exporter, and reversing it means rewriting the database engine that is the product |
+| **What breaks** | Less than intuition suggests. §3.1 already concedes their view *is* the data. If they moved, the loss would be **positional, not technical**: the sentence "your notes are files you own" stops being a differentiator and becomes a checkbox. Moat #6 (file-native, already marked non-exclusive) goes to zero |
+| **First 30 days** | Do nothing structural. Read their file format and **publish a certification of it** — the moment Notion emits markdown on disk it becomes a *target* for the degradation certificate, and the biggest possible corpus arrives for free. This scenario grows the market we sell into |
+| **Founder-credible?** | **Yes, and it is the least dangerous scenario on this list.** A partial move — files as a *mirror*, not a source of truth — is more likely than a full one and is strictly good for us. Guard against one failure mode: rebuilding the pitch around "unlike Notion" when Notion has changed underneath it |
+
+---
+
+### 88.4 Scenario C — GitHub ships a real editor over repo markdown
+
+| | |
+|---|---|
+| **Trigger** | `github.dev` leaving public preview with a prose mode, or a changelog entry pairing "markdown" with "editor" |
+| **Lead time** | **12–24 months.** They own the substrate, the auth, and the distribution — but `github.dev` has been in **public preview** long enough for the doc to still say so on 2026-08-31 `[fetched]`, and its own doc admits work lives in browser local storage until commit — a code-review affordance, not a writing surface. Their entire recent changelog is Copilot and governance `[measured]` |
+| **What breaks** | **T1's GitHub App is the piece at risk, not the engine.** If GitHub ships a good editor over repo markdown, our GitHub-backed lane loses its reason to exist for developers — who are precisely the segment most likely to believe a fidelity claim. Distribution risk (§50.2, 4×5) fires with it, because GitHub *is* the distribution |
+| **First 30 days** | (1) Verify whether their editor round-trips. Every editor framework in §19 is lossy by construction, and a GitHub prose editor built on ProseMirror or Lexical inherits that — **run the teardown, publish the result within 14 days**. (2) If it *is* lossy, this is a gift: the largest markdown corpus on earth now has a named fidelity problem. (3) If it is byte-exact, retreat from the developer lane to the segments where the vault is not a repo — research, §22 |
+| **Founder-credible?** | **Partly.** The teardown is credible. Competing with GitHub for developer mindshare is not, and any plan that reads "we out-execute GitHub on the repo surface" is fantasy. The credible move is a segment retreat, and it must be pre-decided — it is not a decision to make in week one of a panic |
+
+---
+
+### 88.5 Scenario D — Anthropic or OpenAI ships a filesystem-backed document surface
+
+| | |
+|---|---|
+| **Trigger** | A first-party surface that writes to a **user-owned path** rather than a vendor blob store |
+| **Where they actually are** | Anthropic's Files API is explicitly workspace-scoped storage keyed by `file_id`, with the doc warning that any workspace key can read any workspace file `[fetched]`. That is a blob store, not a filesystem. **Claude Code is the counter-example and it already exists** — it writes real files on a real disk `[inference]` |
+| **Lead time** | **3–9 months. The shortest fuse on this list.** The capability is shipped; only the packaging is missing. OpenAI's direction is unverifiable here — four primary sources returned **403** `[measured]` |
+| **What breaks** | Moat #4 (provenance) first: a first-party surface writes its own attribution and ours becomes redundant metadata. Then §11's AI layer, then the §12 capture loop. **The engine survives** — a model writing markdown produces exactly the constructs our engine certifies |
+| **First 30 days** | (1) Stop building anything a model vendor could ship as a feature; that is the whole of §11 and §12. (2) Reposition as the **verification layer under** their output — §3.3's declared structural hedge, now activated. (3) Ship the certificate as an MCP tool their surface can call, which converts a competitor into a distribution channel |
+| **Founder-credible?** | **Yes — this is the one scenario the plan pre-committed to.** §3.3 already says "if 'delegate, don't edit' wins, the durable asset is the verification layer, not editor chrome." The response is a roadmap deletion, and deletions are the one move a solo founder executes faster than a team. **The failure mode is refusing to make the deletion**, not being unable to |
+
+---
+
+### 88.6 Scenario E — a funded startup ships the same thesis with eight people
+
+| | |
+|---|---|
+| **Trigger** | A launch pairing "byte-exact", "lossless", or "never rewrites your file" with markdown. **No such company was found** — one search returned no named target `[SS]`, so this is a hypothesis, not an observation |
+| **How buildable is our moat?** | Uncomfortably. `yaml` does **202,359,392** downloads/week and preserves comments; `@lezer/markdown` does **4,789,610**; `gray-matter` does **8,940,668** — `yaml` outruns `gray-matter` by **22.63×** `[fetched, api.npmjs.org, week 2026-08-23→08-29; derived: 202,359,392 ÷ 8,940,668]`. **Every dependency our engine needs is free, popular, and maintained.** §27 already concedes the work is "hard but finite and increasingly LLM-assistable" |
+| **Lead time** | **6–9 months to feature parity; 0 months on the claim.** They can *say* byte-exact on day one. §68 exists in this record precisely because saying it and proving it are different |
+| **What breaks** | Moat #2 and #3 simultaneously — and #3 is worse, because §27 says the certificate has **"zero defensibility if the certificate is not independently checkable"**, and a funded team can publish a checkable one faster than we can. Moat #1 (community) is the intended counter and **it does not exist yet** |
+| **First 30 days** | (1) Run their build through the §19 protocol and publish. A funded team ships a claim; we ship a measurement, and eight people do not make a lossy architecture lossless. (2) **Open-source the certificate format immediately** — if commoditisation is coming, own the standard rather than lose the exclusive. (3) Compete on the corpus, not the feature: 8,513 pinned files and an 83% foreign-refusal number are evidence they must reproduce, not copy |
+| **Founder-credible?** | **The measurement response is credible. Everything else is not.** Eight people out-ship one person on surface area, always. The only survivable position is being *narrower and more provably correct*, and that requires the discipline to not chase their feature list — which is the hardest thing on this page to actually do |
+
+---
+
+### 88.7 Scenario F — nobody moves, and the category never forms
+
+**This is the highest-probability scenario on the page and the only one with no opponent to blame.** §50.2 already carries it as a 4×5 risk: *"Byte-fidelity may be a claim no buyer prices."* §66 makes it Q1 — *does anyone pay for fidelity?* — and the record's own verdict is that **"answering Q1 wrong is the only one of the three that cannot be recovered by working harder"** `[fetched, §66 L12704]`.
+
+| | |
+|---|---|
+| **Trigger** | The absence of one. Demo engagement without conversion; a priced page with traffic and no checkouts; 60 days of zero organic signups (§50.2's own early warning) |
+| **Lead time** | **R0 is ~9 weeks and everything downstream assumes yes** `[fetched, §28]`. Every week spent on T0–T3 before Q1 is answered is a week wagered on an untested premise |
+| **The strongest evidence against us, opened today** | Obsidian's fidelity problem is **known, documented by Obsidian itself, and priced at zero**. Forum topic 94732 — "Obsidian Sync incorrectly duplicates sections of files", created 2025-01-12, **105 posts, 4,347 views**, last post 2026-05-26 `[fetched, forum.obsidian.md, read 2026-08-31]`. Four thousand views over nineteen months is a real problem that **did not produce a market**. Obsidian's answer was a free checkbox in a $4/month add-on, and the thread went quiet |
+| **The strongest evidence for us** | That Obsidian *built the checkbox at all*, and then fixed its naming pattern four months later `[fetched]`. Companies do not maintain features nobody uses. But "users want conflict control" is a weaker claim than "users pay a second subscription for conflict control" |
+| **First 30 days** | Exactly what §66 prescribes and nothing else: **a priced landing page carrying the corpus result and a real checkout, run against HN and r/ObsidianMD, before R0 finishes.** Cost: days. Success condition stated in advance, in writing, before the page goes up |
+| **Founder-credible?** | **Yes — it is the cheapest scenario to test and the only one currently untested.** The fantasy is not the response; the fantasy is the belief that finishing R0 first makes the answer more likely to be yes |
+
+---
+
+### 88.8 The moat matrix
+
+SURVIVES = still true and still scarce after the move. ERODES = still true, no longer scarce. GONE = no longer a reason to choose us.
+
+| # | Moat (§27 rank) | A · Obsidian sync | B · Notion files | C · GitHub editor | D · Model vendor | E · Funded rival | F · Nobody moves |
+|---|---|---|---|---|---|---|---|
+| 1 | **Community / ecosystem** | GONE — theirs is built, ours is not | SURVIVES — different audience | ERODES — GitHub *is* the developer community | SURVIVES — orthogonal | ERODES — funding buys presence, not loyalty | **GONE — a community needs a reason to gather** |
+| 2 | **Byte-fidelity engine** | **ERODES** — same guarantee, from a vendor with a sync fleet | SURVIVES — blocks stay lossy | ERODES only if their editor round-trips; **run the teardown before assuming** | SURVIVES — models generate the constructs we certify | **ERODES** — every dependency is free (`yaml` at 202M/wk) | ERODES — a moat nobody values is scenery |
+| 3 | **Degradation certificate** | SURVIVES — architecturally out of their reach | SURVIVES | SURVIVES | SURVIVES — becomes *more* valuable | **GONE unless we open it first** — §27: zero defensibility if not independently checkable | ERODES — correct and unsold |
+| 4 | **Provenance / byte attribution** | ERODES | SURVIVES | ERODES | **GONE** — first-party attribution beats third-party | ERODES | ERODES |
+| 5 | **Brand** | ERODES — "frontmatter" is the substrate's generic name | SURVIVES | ERODES | SURVIVES | ERODES | GONE |
+| 6 | **File-native / no lock-in** | GONE — already theirs | **GONE** | GONE | ERODES | GONE | GONE — never was exclusive |
+| 7 | **Switching cost** | GONE | GONE | GONE | GONE | GONE | GONE — §27 calls it the anti-moat, by design |
+
+**Read the rows, not the cells.** Moat #7 is GONE in all six columns because it was never a moat. Moat #6 is GONE or ERODES in all six. Moat #3 survives five of six and dies only in the scenario where we fail to give it away — **which makes open-sourcing the certificate format the single highest-leverage defensive act available, and it costs nothing but the exclusive we were never going to keep.** Moat #2 — the thing the entire R0 lane is built to produce — **survives outright in only two of six columns.**
+
+Every green cell in row 1 depends on a community that §27 records as not existing. **A moat that only holds while the incumbent is asleep is scheduling, not defensibility**, and rows 2, 4, 5 and 6 are scheduling.
+
+---
+
+### 88.9 The decision tree
+
+```mermaid
+flowchart TD
+  T["Trigger observed"] --> Q1{"Does it break<br/>byte-fidelity?"}
+  Q1 -->|Yes| A["Re-run §19 teardown<br/>on their build · publish ≤14d"]
+  Q1 -->|No| Q2{"Does it break<br/>distribution?"}
+  A --> C["Open-source the certificate<br/>own the standard"]
+  Q2 -->|Yes| B["Retreat to the segment<br/>that pays for refusal"]
+  Q2 -->|No| D["No structural change<br/>certify their format"]
+  C --> Q3{"Q1 test returns<br/>paid checkouts?"}
+  B --> Q3
+  Q3 -->|Yes| E["Keep building.<br/>Narrow, not wider"]
+  Q3 -->|No| F["Wind down to an<br/>open-source engine"]
+```
+
+---
+
+### 88.10 What to instrument before any of this fires
+
+| Signal | Source, checkable weekly | Fires which scenario |
+|---|---|---|
+| `Multiplayer` moves Planned→Active on `obsidian.md/roadmap/` | fetched today at 3 Active / 7 Planned / 46 Launched `[measured]` | A |
+| Obsidian changelog line pairing Sync with merge/conflict/three-way | `obsidian.md/changelog/` | A |
+| Commit touching `en/Obsidian Sync/Troubleshoot Obsidian Sync.md` | GitHub API, last change 2026-05-13 `[fetched]` | A |
+| A Notion release naming "local", "folder" or "disk" | `notion.com/releases` `__NEXT_DATA__` — 10/10 recent are AI `[measured]` | B |
+| `github.dev` doc losing "public preview" | GitHub docs source on `raw.githubusercontent.com` `[fetched]` | C |
+| An Anthropic or OpenAI surface writing a **user-owned path** | Anthropic's Files API is workspace-blob today `[fetched]`; **OpenAI is unobservable by curl — all four sources 403** `[measured]` | D |
+| Any launch pairing "byte-exact"/"lossless" with markdown | none found `[SS]` | E |
+| **Zero paid checkouts on the Q1 page after 60 days** | our own funnel — **does not exist yet** | **F** |
+
+**Seven of the eight signals watch someone else. The eighth is the only one that decides whether the other seven matter, and it is the one not yet instrumented.** Scenarios A through E are recoverable by publishing a measurement or deleting a roadmap lane — both of which one founder can do in under a fortnight. Scenario F is not recoverable at all, it is the most likely, and the test costs days. **Run Q1 before R0 closes.**
+
+### 88.9 Scope — what this is not
+
+§50 is a risk register: named hazards with likelihoods, owners and mitigations. This is the inverse exercise. It assumes the product is already dead in 2028 and reasons backwards to the cause. **Every kill-shot below is excluded from §50, and each row states which §50 entry it is nearest to and why it is a different failure.** The distinction matters because §50's entries are events — a parser refuses, a competitor ships, a founder burns out. The ones here are *rates and orderings*: nothing goes wrong on any given day, and the product dies anyway.
+
+All probabilities in §88.10 are `[inference]` — a judgement, not a measurement. The evidence attached to each is not.
+
+### 88.10 The five kill-shots
+
+| # | Kill-shot | Mechanism | P `[inference]` | Irrev. 1–5 | P×I | Nearest §50 row — and why this is not it |
+|---|---|---|---|---|---|---|
+| **K1** | **The sequencing inversion** | The plan resolves the *certain* question first and the *uncertain* one last | 0.55 | 5 | **2.75** | None. §50 has no schedule-ordering row |
+| **K2** | **The founder-time ceiling, as arithmetic** | Non-engineering hours crowd out the engine lane at a fixed ratio | 0.60 | 4 | **2.40** | §50.3 "founder is the SPOF" is an *availability* risk (bus factor). This is a *throughput ratio* that fires while the founder is fully present |
+| **K3** | **The category never forms** | Enormous substrate, zero demand-capture surface | 0.45 | 5 | **2.25** | §50.2 "byte-fidelity may be a claim no buyer prices" assumes a buyer is *looking*. This is the case where the claim would price fine and nobody ever types the words |
+| **K4** | **Rented distribution, one landlord** | Every channel in §26/§87 is on somebody else's platform, and two of them are the same platform | 0.50 | 3 | **1.50** | §50.2 "no distribution channel" = zero signups. This is the opposite: the channel *works*, then is revoked or decayed |
+| **K5** | **Epistemic single point of failure** | The moat is "we refuse rather than guess"; one falsified public number is uninsurable | 0.25 | 5 | **1.25** | None. §55 is an internal hygiene ledger, not a failure mode |
+
+**K1 — the sequencing inversion.** §28.6 puts R0 at 58 pts / 9 weeks and the first paying non-founder account at M7, gated behind M0–M6 plus MoR plus EU representative: **2027-04-28, or 242 days from 2026-08-29** `[derived — 2 days of Aug + 240 through 28 Apr]`. The question R0 answers ("does the writer preserve bytes?") has a known answer and only labour between here and it. The question deferred 242 days ("will a stranger pay ₹299/mo for that?") has no known answer at all. **A solo founder's scarcest asset is not capital, it is the belief that the thing is worth finishing** — and the plan spends eight months of it before buying a single unit of evidence.
+
+**K2 — the founder-time ceiling.** This one is already measurable and already firing. Over the trailing 28 days in this repo `[measured 2026-08-30]`: file-changes by top directory are `docs/` **223**, `specs/` 19, `test/` 12, **`src/` 10**, `scripts/` 5 — a **22.3:1 documentation-to-engine ratio**, and **18 of the last 21 commits touched zero files under `src/`**. Active-day density is **5 distinct commit-days in 28 = 17.9%** trailing, against **13 in 48 = 27.1%** over the repo's whole life (first commit 2026-07-13, 54 commits) `[measured]`. §28 states that the 1.09-calendar-days-per-point rate has a 25% density baked *inside* it. At 17.9%, R0's 63.2 calendar days become **88.5**, moving 2026-10-31 (Saturday) to **2026-11-26 (Thursday)** `[derived; weekdays verified via date(1)]`. The lethal part is not the 26-day slip. It is that the slip was produced by *writing this document*, which is the most defensible non-engineering activity available.
+
+**K3 — the category never forms.** `gray-matter` did **35,124,859 npm downloads** in the window 2026-07-31→2026-08-29 and `front-matter` did **17,570,026** `[fetched 2026-08-30, https://api.npmjs.org/downloads/point/last-month/gray-matter]`. That is 52.7M monthly pulls against the exact substrate this product is named for — and it is *evidence against*, not for. **A substrate with 52.7M monthly installs has no one shopping for a better one, because the one they have has never visibly failed them.** Nobody searches "byte-preserving markdown editor" or "degradation certificate". There is no procurement category, no comparison grid, no budget line. That makes the funnel in §25.3 — 63,060 cumulative visitors for ₹1L/mo, **1,261,193 for ₹20L/mo** — entirely demand-*creation*, which is the one motion a solo founder cannot fund.
+
+**K4 — rented distribution.** On Hacker News, **235 `Show HN` posts matching "markdown editor" were posted between 2024-08-18 16:53Z and 2026-08-30**; **10 cleared 100 points — a 4.3% base rate** `[fetched 2026-08-30, https://hn.algolia.com/api/v1/search?query=markdown%20editor&tags=show_hn]`. That is ~9.8 launches per month competing for the same slot. **Five of those ten announce "free" or "open-source" in the title itself** — OverType (471), OpenKnowledge (381), Rowboat ×2 (219, 205), Write.md (107), Ephe (143). The channel that works is the channel where the winning entrants are free. Meanwhile §87's owned surfaces are LinkedIn (algorithm, revocable), r/ObsidianMD (moderators who ban promotion), GitHub (stars are not an audience) and SEO (increasingly answered without a click).
+
+**K5 — the epistemic single point of failure.** §55 counts **52 `[SS]` claims** and ranks #1 as a Princeton GEO figure "sitting in the same sentence as a boast that a rival claim is measurably refuted." Ordinary companies survive a wrong statistic. **A company whose entire differentiator is "we refuse rather than guess" does not** — the first commenter who checks one launch number and finds it unopened refutes the product, not the number.
+
+### 88.11 The early-warning system
+
+A warning that fires at month 18 is a post-mortem. Every signal below is readable inside 90 days from 2026-08-30, and four of the five are executable today.
+
+| Signal | Metric | Where measured | Threshold that fires | Action it triggers | First read |
+|---|---|---|---|---|---|
+| **EW-1** (K1) | **Strangers asked for money** — count of non-founder humans shown the live product *and* presented a price | A single spreadsheet column; later `checkout_intent` in the control plane | **0 by day 45**, or **<10 asked by day 90** | Cut a saleable artifact out of R0 — ship `mdmax cert` as a one-time-price CLI **before** R0 closes. Revenue signal moves from month 8 to month 2 | Day 45 |
+| **EW-2** (K2) | **doc:src file-change ratio**, and active-day density | `git log --since="28 days ago" --name-only --pretty="" \| sed 's\|/.*\|\|' \| sort \| uniq -c` and `git log --since="28 days ago" --date=short --pretty=%ad \| sort -u \| wc -l` | Ratio **>3:1** across two consecutive 14-day windows, **or** density **<20%**. *Both are breached today: 22.3:1 and 17.9%* `[measured 2026-08-30]` | Freeze all narrative documents. One planning artifact per milestone, not per week. Buy the first paid hour of help at ticket #10 | **Today** |
+| **EW-3** (K3) | **Headline conversion delta** — email captures per 100 visitors across three landing pages: *byte-fidelity* / *never lose your work* / *Obsidian sync alternative* | Any static host + one analytics event, ≥400 visitors per arm | The byte-fidelity arm converts **<40%** of the best arm | The wedge is named wrong. Rename the product's promise to the winning arm before any launch spend. **This costs one weekend and answers K3 seven months early** | Day 60 |
+| **EW-4** (K4) | **Single-channel concentration** = largest platform's share of 30-day signups; **owned list size** | Referrer field at signup; ESP subscriber count | **>60% from one platform** in any 30-day window, **or** email list **<300 at day 90** | Every published artifact ends in an email capture; the corpus report becomes gated. Stop optimising the rented channel and start converting it | Day 90 |
+| **EW-5** (K5) | **Unsourced numbers in public copy** — count of numerals in shipped marketing without an adjacent read-date and URL | `npm run claims` — a publish gate in the same CI that runs `spec` and `corpus` | **>0. Zero is the only passing value** | Block the deploy. Same idiom as `corpus`: the gate must be red-proofed against a deliberately unsourced string before its first green is trusted | Day 30 |
+
+**EW-2 is already red.** It is the only one of the five that does not need a customer, a landing page or a launch to read, and it has been readable for four weeks.
+
+### 88.12 The pre-mortem — three post-mortems, dated 2028-08
+
+**"The engine was finished and nobody had asked for it."** R0 took nineteen weeks, not nine — NF-4 sat eleven weeks waiting on a one-page Unicode key-equality decision that §28.5 correctly identified as the one unit no agent could start, and that nobody scheduled because it was not code. Trust surface and tenancy landed in April 2027 on a plan that said March. The first paying stranger appeared in month fourteen. By month eighteen there were 31 of them at ₹299, ₹9,269/mo, against a 46-hour-a-month support model that had been labelled an assumption in §25.1 and then quoted as a conclusion twice. The engine did exactly what it promised: refused ≤2 of 7,969 foreign files, zero bytes changed, certificate verifiable by a third party. **It was the most rigorous answer ever produced to a question that had been answerable for free by asking twenty people in October 2026 whether they could name the last time a tool ate their work.** Client retainers resumed in March 2028. The last engine commit is dated 2028-02-11.
+
+**"The document became the product."** Between August 2026 and January 2027 the record grew from 13,440 lines to 41,000. Every round of research was genuinely load-bearing and every one of them was also a way of not shipping. The measured signal was visible on day one and nobody was watching it: 223 documentation file-changes against 10 in `src/` in a single 28-day window, 18 of 21 consecutive commits touching no source at all. The plan's own §28.7 row 6 warned about bursty cadence and named the wrong threshold — *two consecutive zero-commit weeks* — which never fired, because there were commits every week. **They were commits to the plan.** CI, the item §28.3 said to do in the first 48 hours because it "gates the credibility of everything after it," went in on 2027-02-19, seven months late, and its first green was false in exactly the way §50.1 predicted.
+
+**"We won the argument and lost the market."** The Show HN landed 340 points and a top-of-r/ObsidianMD thread, and a comment on hour three asked where the 25–40% GEO figure came from. It came from §55.2 row 1, unopened, and it had shipped into the launch page because the `claims` gate was a line item in a table nobody built. The correction was posted within ninety minutes and was completely honest, and it did not matter: the product's single sentence was *we refuse rather than guess*, and the thread had a screenshot. Eleven thousand visitors, 640 signups, 9 conversions — **1.4%, against the 5% developer median in §25.2 that was itself half the non-developer rate**. Six weeks later the traffic was zero, the email list was 190 people, and the only owned asset was a GitHub repo with 1,900 stars and no way to send them anything.
+
+### 88.13 The one thing that makes everything survivable, and the one that makes everything irrelevant
+
+**Survivable if true: the engine is a saleable product before the editor exists.** If `mdmax` — the byte-preserving splice writer plus the degradation certificate — can be sold on its own as a CLI and a library to people who ship markdown pipelines, then revenue arrives in month two instead of month eight and **every other kill-shot on this list becomes a funded problem instead of a terminal one.** K1 dissolves, because the price signal now precedes the build. K2 gets an hour of paid help. K3 gets answered by invoices rather than by a launch. K4 gets an owned list of developers who already paid once. Nothing else in this section changes the ordering; this does. **It is testable in the 58 points already scheduled — the same units, with a price attached.**
+
+**Irrelevant if false: that anyone has lost work to a markdown tool badly enough to remember it.** Not that the loss is *real* — §68 and the 83% foreign-refusal measurement establish that it is real. That it is **felt and remembered**. Silent frontmatter corruption in a note nobody re-reads is a loss that generates no pain, no search query, no budget and no buyer. **If a competent markdown user cannot, unprompted, name the last time a tool ate their work, then the engine is a correct answer to a question nobody is asking, and every number in §25 through §28 is arithmetic about a market that does not exist.** Twenty conversations. No demo, no pitch, one question, count the unprompted answers. It costs a week and it should happen before the first line of NF-1.

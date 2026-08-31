@@ -16,6 +16,7 @@
 //     BUSINESS.md     §81–88   the gaps round 14 found, plus the war-game
 //     VERIFICATION.md §89      every load-bearing claim, opened
 //     PRODUCT.md      §90–97   the founding-session substrate
+//     THESIS.md       §98–104  what the product actually is, and who for
 //     DEV-PLAN.md  §1–13    LOCAL run — cite as `DEV-PLAN §5`
 //     REFERENCES   §1–7     LOCAL run — cite as `REFERENCES §3`
 //
@@ -167,6 +168,27 @@ const head = (title, sub, lines) =>
        (blocks.length < 8 ? ' The rest are still being written.' : '')],
     ) + blocks.join('\n\n---\n\n') + '\n')
     built.push(`PRODUCT.md — ${blocks.length}/8 sections`)
+  }
+}
+
+// --------------------------------------------------------------- THESIS §98–104
+{
+  const blocks = ['q1-the-fusion', 'q2-artifact-factory', 'q3-provider-keys',
+    'q4-repo-and-folders', 'q5-audience', 'q6-feature-discipline', 'q7-one-page']
+    .map((s) => part(`r20-${s}.md`)).filter(Boolean)
+  if (blocks.length) {
+    fs.writeFileSync('docs/THESIS.md', head(
+      'THESIS — what the product actually is',
+      '**Tier 1. The sharpest statement of the product, and the one to read before arguing about a ' +
+      'feature.** The editor produces the artefacts of product development and hands you a context ' +
+      'pack your own AI can act on. §104 is the commitment in one page; everything before it is why.',
+      ['> **§104.4 is the subsection that earns its keep**: the load-bearing assumptions, ranked, ' +
+       'each with the cheapest test that would falsify it. One week of testing beats a quarter of building.',
+       '',
+       `> ${blocks.length} of 7 sections present.` +
+       (blocks.length < 7 ? ' The rest are still being written.' : '')],
+    ) + blocks.join('\n\n---\n\n') + '\n')
+    built.push(`THESIS.md — ${blocks.length}/7 sections`)
   }
 }
 

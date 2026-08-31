@@ -14,12 +14,23 @@ updated: 2026-08-31
 
 ## If you are here to decide what to build
 
-Read **`docs/PRODUCT.md` §97 first.** It is the operating manual: what is already settled and may
+# → Read `docs/DECIDE.md`. Twenty minutes. Nothing else.
+
+It is the only document written as a synthesis rather than assembled from parts, and it leads with
+the two beliefs the research refuted. Everything below is what it cites.
+
+Then **`docs/PRODUCT.md` §97** It is the operating manual: what is already settled and may
 not be reopened, the open decisions in dependency order, a session agenda, and a copy-pasteable
 brief for handing this whole record to a fresh AI assistant.
 
 | The question on the table | Open |
 |---|---|
+| **What is this product, in one paragraph?** | **`THESIS.md` §104** |
+| What do we generate, and what is the kickoff prompt we hand the user? | `THESIS.md` §99 |
+| Do we run the user's own Claude/OpenAI key, and where does it live? | `THESIS.md` §100 |
+| How do we reach their repo and their folders? | `THESIS.md` §101 |
+| Who is the wedge user we could email ten of this week? | `THESIS.md` §102 |
+| Is this feature allowed to exist? | `THESIS.md` §103, the admission test |
 | What does the AI actually cost us, and what can the free tier have? | `PRODUCT.md` §90 |
 | Offline app, online app, or both — and how does it reach the user's files? | `PRODUCT.md` §91 |
 | What does a user *do* with this to run their own product work? | `PRODUCT.md` §92 |
@@ -34,8 +45,10 @@ brief for handing this whole record to a fresh AI assistant.
 
 | Tier | What | Read it when | Cost |
 |---|---|---|---|
+| **0** | **`docs/DECIDE.md`** | **Deciding anything. The synthesis, and the refutations.** | **~4k tok** |
 | **0** | `AGENTS.md` | Always. Every session, first. | ~2k tok |
 | **0** | `docs/MAP.md` (this file) | Always, with AGENTS.md | ~2k tok |
+| **1** | **`docs/THESIS.md`** | **"What IS this?" — the fusion, the artefact factory, the context pack, who it is for** | **§98–104; §104 is the one page** |
 | **1** | **`docs/PRODUCT.md`** | **"What are we building?" — AI cost, offline vs online, every feature, the MVP line, how to attack it** | **§90–97; start at §97** |
 | **1** | `docs/FRONTMATTER-PRD-v2-2026-08-29.md` | Starting any product work — why, what, for whom | §0–66; read the section, not the file |
 | **1** | `docs/DEV-PLAN.md` | Starting any engineering work — stack, layers, ops | local §1–13 |
@@ -54,7 +67,7 @@ Two numbering runs exist, and mixing them sends a reader to the wrong document.
 
 | Run | Files | Cite as |
 |---|---|---|
-| **Global §0–97** | PRD (§0–66) · `ENGINE.md` (§67–80) · `BUSINESS.md` (§81–88) · `VERIFICATION.md` (§89) · `PRODUCT.md` (§90–97) | a bare `§74` — it resolves to exactly one place |
+| **Global §0–104** | PRD (§0–66) · `ENGINE.md` (§67–80) · `BUSINESS.md` (§81–88) · `VERIFICATION.md` (§89) · `PRODUCT.md` (§90–97) · `THESIS.md` (§98–104) | a bare `§74` — it resolves to exactly one place |
 | **Local** | `DEV-PLAN.md` (§1–13) · `REFERENCES.md` (§1–7) | **always file-qualified**: `DEV-PLAN §5`, `REFERENCES §3` |
 
 The three global-run files were written as one continuous document and split by subject, so
@@ -97,6 +110,8 @@ documentation, and it is deliberate.
 | Argue about a feature | `PRODUCT.md` §94 → §96 | §94 says whether anyone asked for it; §96 is how to attack it |
 | Decide what ships first | `PRODUCT.md` §95 | The cut line is the section, not the feature list |
 | Spend money on inference | `PRODUCT.md` §90 | The free tier has an arithmetic limit, not a policy one |
+| Propose a new feature | `THESIS.md` §103 first | It must name the person who uses it and how often, or it is cut |
+| Explain the product to anyone | `THESIS.md` §104.1 | One paragraph, no adjectives |
 
 ## Canonical — one fact, one home
 
@@ -119,6 +134,11 @@ A fact stated twice will drift. These are the homes; everywhere else cross-refer
 | Feature list, MVP staging, cut lines | `PRODUCT.md` §94–95 |
 | AI unit economics and the credit mechanism | `PRODUCT.md` §90, §93 |
 | Offline/online and local file access | `PRODUCT.md` §91 |
+| What the product IS, in one page | `THESIS.md` §104 |
+| The artefact catalogue and the kickoff prompt | `THESIS.md` §99 |
+| Provider keys, MCP, and the CLI-agent question | `THESIS.md` §100 |
+| GitHub App scopes and the permission ladder | `THESIS.md` §101 |
+| Whether a proposed feature is allowed | `THESIS.md` §103 |
 
 ## Superseded — do not read, do not cite
 

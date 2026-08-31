@@ -30,6 +30,7 @@ const PARTS = [
   { file: 'docs/BUSINESS.md', title: 'The business', identity: true },
   { file: 'docs/VERIFICATION.md', title: 'Verification', identity: true },
   { file: 'docs/PRODUCT.md', title: 'The product decision surface', identity: true },
+  { file: 'docs/THESIS.md', title: 'The thesis', identity: true },
   { file: 'docs/DEV-PLAN.md', title: 'The engineering plan' },
   { file: 'docs/REFERENCES.md', title: 'References' },
 ]

@@ -23,8 +23,15 @@ const GLOBAL = [
   ['docs/BUSINESS.md', 81, 88],
   ['docs/VERIFICATION.md', 89, 89],
   ['docs/PRODUCT.md', 90, 97],
+  ['docs/THESIS.md', 98, 104],
 ]
 const LOCAL = { 'DEV-PLAN': 'docs/DEV-PLAN.md', REFERENCES: 'docs/REFERENCES.md' }
+
+// DECIDE.md defines no sections of its own — it only cites. It is checked so that a
+// synthesis written by hand cannot invent a section number, which is exactly the
+// mistake its first draft made (§105 is "How to build from this", not the editor
+// research). Cite a research report by its id; cite the record by section.
+const CITERS = ['docs/DECIDE.md']
 
 // Fence-aware line reader: example documents inside fences are not our references.
 const lines = (file) => {
@@ -58,7 +65,7 @@ const owner = (n) => (GLOBAL.find(([, lo, hi]) => n >= lo && n <= hi) || [])[0] 
 // Anything immediately before a § that means "this is somebody else's numbering".
 const FOREIGN = /(CommonMark|RFC\s*\d+|YAML|Directive|Regulation|Act|Rule|IT Rules|DPDP|GDPR|Art\.|Article|Schedule|clause|spec|CFR|U\.?S\.?C|USC|SEC|FINRA|Companies Act|Income[- ]tax)\s*(\d+[a-z]*\s*)?$/i
 
-const files = [...GLOBAL.map(([f]) => f), ...Object.values(LOCAL)]
+const files = [...GLOBAL.map(([f]) => f), ...Object.values(LOCAL), ...CITERS.filter((f) => fs.existsSync(f))]
 let checked = 0, foreign = 0
 const BROKEN = [], SUSPECT = []
 

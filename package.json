@@ -30,7 +30,8 @@
     "doc": "node docs/build/assemble-tree.mjs docs/FRONTMATTER-RECORD.md",
     "pdf": "node docs/build/build-final.mjs",
     "refs": "node docs/build/check-refs.mjs",
-    "record": "node docs/build/check-record.mjs"
+    "record": "node docs/build/check-record.mjs",
+    "decide": "node docs/build/build-prd-pdf.mjs docs/DECIDE.md frontmatter-DECIDE 'frontmatter' 'The decision layer'"
   },
   "dependencies": {
     "@ai-sdk/cerebras": "^2.0.54",
