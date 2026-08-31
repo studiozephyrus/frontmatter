@@ -1,311 +1,473 @@
-// Generate the low-fidelity screen wireframes for the product brief.
+// Low-fidelity screen wireframes for the product brief, as inline SVG.
 //
 //   node docs/build/wireframes.mjs > docs/_wireframes.md
 //
-// Inline SVG rather than an image file, for three reasons: it stays in the markdown
-// so the brief has no binary dependency, it renders identically in the PDF and in any
-// markdown viewer, and it is diffable — a change to a screen shows up as a readable
-// line change rather than an opaque blob.
+// Inline SVG rather than image files: no binary dependency, renders the same in the
+// PDF and in any markdown viewer, and a screen change shows as a readable line diff
+// instead of an opaque blob.
 //
-// Deliberately low fidelity. These say what goes where and what talks to what. They
-// do not say what anything looks like; that decision belongs to a design pass with
-// the real system, and pretending otherwise in a plan invites bikeshedding about
-// corner radii instead of argument about structure.
+// Fidelity is deliberately mid — enough to argue about structure and placement, not
+// enough to argue about corner radii. Anatomy, not aesthetics.
 
-const W = 720, H = 400
-const INK = '#14161a', LINE = '#8a93a3', FAINT = '#c9cfda'
-const BLUE = '#1a5cff', WASH = '#f2f6ff', GREY = '#fafbfc', MACHINE = '#e3edff'
+const INK = '#14161a', LINE = '#8a93a3', FAINT = '#c9cfda', HAIR = '#e4e7ec'
+const BLUE = '#1a5cff', WASH = '#f2f6ff', GREY = '#fafbfc', PANEL = '#f4f6fa'
+const MACHINE = '#e3edff', MTEXT = '#a8c4f5'
+const AI = '#efe7fd', AIB = '#7c4dff'
 
-const esc = (s) => String(s).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+// The SVG lands INSIDE a paragraph, so remark treats it as inline HTML and parses
+// inline markdown within it: `**GitHub App**` became `<strong>` inside a <text>
+// element and broke the whole drawing. Every character that can start an inline
+// construct becomes a numeric reference — same glyph, invisible to the parser.
+const esc = (s) => String(s)
+  .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+  .replace(/`/g, '&#96;').replace(/\*/g, '&#42;').replace(/_/g, '&#95;')
+  .replace(/\[/g, '&#91;').replace(/\]/g, '&#93;')
 const t = (x, y, s, o = {}) =>
-  `<text x="${x}" y="${y}" font-family="system-ui,sans-serif" font-size="${o.size || 9}" ` +
-  `fill="${o.fill || INK}" ${o.weight ? `font-weight="${o.weight}"` : ''} ` +
-  `${o.anchor ? `text-anchor="${o.anchor}"` : ''}>${esc(s)}</text>`
+  `<text x="${x}" y="${y}" font-family="${o.mono ? 'ui-monospace,monospace' : 'system-ui,-apple-system,sans-serif'}" ` +
+  `font-size="${o.size || 8.5}" fill="${o.fill || INK}"${o.weight ? ` font-weight="${o.weight}"` : ''}` +
+  `${o.anchor ? ` text-anchor="${o.anchor}"` : ''}>${esc(s)}</text>`
 const r = (x, y, w, h, o = {}) =>
-  `<rect x="${x}" y="${y}" width="${w}" height="${h}" fill="${o.fill || 'none'}" ` +
-  `stroke="${o.stroke || LINE}" stroke-width="${o.sw || 1}" ` +
-  `${o.dash ? `stroke-dasharray="${o.dash}"` : ''} ${o.rx ? `rx="${o.rx}"` : ''}/>`
-/** a run of grey bars standing in for body text */
-const lines = (x, y, w, n, gap = 9, o = {}) =>
+  `<rect x="${x}" y="${y}" width="${w}" height="${h}" fill="${o.fill || 'none'}"` +
+  `${o.stroke ? ` stroke="${o.stroke}" stroke-width="${o.sw || 1}"` : ''}` +
+  `${o.dash ? ` stroke-dasharray="${o.dash}"` : ''}${o.rx ? ` rx="${o.rx}"` : ''}/>`
+const ln = (x1, y1, x2, y2, o = {}) =>
+  `<line x1="${x1}" y1="${y1}" x2="${x2}" y2="${y2}" stroke="${o.stroke || HAIR}" stroke-width="${o.sw || 1}"${o.dash ? ` stroke-dasharray="${o.dash}"` : ''}/>`
+/** grey bars standing in for body text */
+const bars = (x, y, w, n, gap = 8, o = {}) =>
   Array.from({ length: n }, (_, i) =>
-    r(x, y + i * gap, i === n - 1 ? w * 0.62 : w, 3.5, { fill: o.fill || FAINT, stroke: 'none' })).join('')
-const frame = (title, body, note) => `
-<svg viewBox="0 0 ${W} ${H + 26}" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:${W}px;height:auto">
-  ${r(1, 1, W - 2, H, { stroke: INK, sw: 1.5, fill: '#fff' })}
-  ${body}
-  ${t(2, H + 20, note || '', { size: 8.5, fill: '#4a5160' })}
-</svg>`
+    r(x, y + i * gap, i === n - 1 ? w * (o.last || 0.6) : w, 3, { fill: o.fill || HAIR })).join('')
+const btn = (x, y, w, h, label, o = {}) =>
+  r(x, y, w, h, { fill: o.fill || '#fff', stroke: o.stroke || FAINT, rx: 3 }) +
+  t(x + w / 2, y + h / 2 + 3, label, { size: o.size || 7.5, anchor: 'middle', fill: o.tf || INK, weight: o.weight })
 
 const out = []
-const add = (id, name, caption, svg, note) => out.push(
-  `::exhibit ${id} | ${name}\n\n${frame(name, svg, note)}\n\n${caption}\n`)
+const add = (id, name, note, w, h, body, caption) => out.push(
+  `::exhibit ${id} | ${name}\n\n` +
+  `<svg viewBox="0 0 ${w} ${h + 22}" xmlns="http://www.w3.org/2000/svg" style="width:100%;max-width:${w}px;height:auto">` +
+  r(1, 1, w - 2, h, { fill: '#fff', stroke: INK, sw: 1.5, rx: 4 }) + body +
+  t(2, h + 17, note, { size: 7.5, fill: '#4a5160' }) + `</svg>\n\n${caption}\n`)
 
-// ── S1 · first run ──────────────────────────────────────────────────────────
-add('W1', 'S1 · First run — the only screen before you are working',
-  '**One button, no account.** The line about files never leaving the machine is doing real work: it is the objection every privacy-conscious developer raises, answered before they ask.',
-  [
-    r(1, 1, W - 2, 30, { fill: GREY, stroke: LINE }),
-    t(14, 20, 'frontmatter', { weight: 600, size: 11 }),
-    t(W - 14, 20, '— ▫ ✕', { anchor: 'end', fill: LINE }),
-    t(W / 2, 130, 'Open a folder of markdown', { anchor: 'middle', size: 16, weight: 600 }),
-    t(W / 2, 152, 'Point it at a vault, a repo, or any folder. It reads what is already there.', { anchor: 'middle', size: 9.5, fill: '#4a5160' }),
-    r(W / 2 - 90, 176, 180, 32, { fill: BLUE, stroke: BLUE, rx: 3 }),
-    t(W / 2, 196, 'Choose folder', { anchor: 'middle', fill: '#fff', weight: 600, size: 10 }),
-    t(W / 2, 228, 'or connect a GitHub repository', { anchor: 'middle', size: 9, fill: BLUE }),
-    r(W / 2 - 150, 258, 300, 1, { fill: FAINT, stroke: 'none' }),
-    t(W / 2, 282, 'Recent', { anchor: 'middle', size: 8, fill: LINE }),
-    t(W / 2, 300, '~/work/product-docs      ~/notes', { anchor: 'middle', size: 9, fill: '#4a5160' }),
-    t(W / 2, 356, 'Nothing leaves your machine. No account needed.', { anchor: 'middle', size: 8.5, fill: LINE }),
-  ].join(''),
-  'No sign-up, no email field, no onboarding tour. The single change most likely to hurt adoption is a form here.')
-
-// ── S2 · the editor ─────────────────────────────────────────────────────────
-add('W2', 'S2 · The editor — the 95% screen, with the side drawer open',
-  '**The document is the interface.** No toolbar: formatting is markdown, typed. The left drawer collapses to nothing. Each file in the tree carries a thin bar showing how much of it is unreviewed machine text — the only ambient signal in the product.',
-  [
-    // top bar
-    r(1, 1, W - 2, 26, { fill: GREY, stroke: LINE }),
-    t(12, 18, 'product-docs  ›  specs  ›  auth.md', { size: 9, fill: '#4a5160' }),
-    t(W - 120, 18, '● synced', { size: 8.5, fill: '#0d8a4f' }),
-    t(W - 34, 18, '⋯', { size: 12, fill: LINE }),
-    // left drawer
-    r(1, 27, 168, H - 27, { fill: GREY, stroke: LINE }),
-    t(12, 46, 'FILES', { size: 7.5, weight: 600, fill: LINE }),
-    ...[['README.md', 0], ['adr/', 0], ['  0001-sync.md', 32], ['  0002-engine.md', 0],
-        ['specs/', 0], ['  auth.md', 64], ['  billing.md', 12], ['notes/', 0]]
-      .map(([n, pct], i) => {
-        const y = 64 + i * 20
-        const sel = n.includes('auth.md')
-        return (sel ? r(6, y - 11, 158, 18, { fill: WASH, stroke: 'none' }) : '') +
-          t(14, y, n, { size: 8.5, fill: sel ? BLUE : INK, weight: sel ? 600 : null }) +
-          (pct ? r(140, y - 8, 20, 3, { fill: '#dfe3ea', stroke: 'none' }) +
-                 r(140, y - 8, 20 * pct / 100, 3, { fill: BLUE, stroke: 'none' }) : '')
+// ═══ W1 · the launcher ══════════════════════════════════════════════════════
+{
+  const W = 760, H = 430
+  const cards = ['Blank\ndocument', 'Handover', 'Decision\nrecord', 'Spec', 'Changelog']
+  add('W1', 'S0 · The launcher — what you see before a document is open',
+    'Templates are markdown skeletons, not a gallery. Five, and they are the document types the research found actually recur.',
+    W, H, [
+      r(1, 1, W - 2, 34, { fill: GREY }), ln(1, 35, W - 1, 35, { stroke: FAINT }),
+      btn(12, 9, 34, 18, 'fm', { fill: INK, tf: '#fff', weight: 700 }),
+      r(56, 9, W - 190, 18, { fill: '#fff', stroke: FAINT, rx: 9 }),
+      t(66, 22, '⌕  Search every document', { size: 8, fill: LINE }),
+      btn(W - 126, 9, 46, 18, 'Open…'), btn(W - 72, 9, 60, 18, 'New', { fill: BLUE, stroke: BLUE, tf: '#fff', weight: 600 }),
+      t(20, 60, 'START SOMETHING', { size: 7.5, weight: 700, fill: LINE }),
+      ...cards.map((c, i) => {
+        const x = 20 + i * 146, first = i === 0
+        return r(x, 70, 132, 84, { fill: first ? WASH : '#fff', stroke: first ? BLUE : FAINT, rx: 4 }) +
+          c.split('\n').map((s, j) => t(x + 14, 100 + j * 14, s, { size: 9.5, weight: 600, fill: first ? BLUE : INK })).join('') +
+          t(x + 14, 142, first ? 'empty file' : 'markdown skeleton', { size: 7, fill: LINE })
       }),
-    t(12, H - 14, 'unreviewed share ▔▔', { size: 7, fill: LINE }),
-    // document
-    t(196, 56, 'Authentication', { size: 14, weight: 700 }),
-    lines(196, 74, 480, 3),
-    // machine span
-    r(192, 108, 494, 40, { fill: MACHINE, stroke: 'none' }),
-    lines(196, 118, 480, 3, 9, { fill: '#a8c4f5' }),
-    t(688, 122, '◆', { size: 7, fill: BLUE }),
-    lines(196, 162, 480, 2),
-    t(196, 198, 'The GitHub App', { size: 11, weight: 600 }),
-    lines(196, 212, 480, 4),
-    r(192, 258, 380, 34, { fill: MACHINE, stroke: 'none' }),
-    lines(196, 268, 366, 2, 9, { fill: '#a8c4f5' }),
-    lines(196, 304, 480, 3),
-    // status bar
-    r(169, H - 22, W - 170, 21, { fill: GREY, stroke: LINE }),
-    t(180, H - 8, '2,140 words', { size: 8, fill: LINE }),
-    t(300, H - 8, 'Ln 84, Col 12', { size: 8, fill: LINE }),
-    t(W - 16, H - 8, '2 unreviewed', { size: 8, fill: BLUE, anchor: 'end', weight: 600 }),
-  ].join(''),
-  'Tinted spans are machine-written and unreviewed. No borders, no gutter icons — it has to be ignorable while you read.')
-
-// ── S3 · hover ──────────────────────────────────────────────────────────────
-add('W3', 'S3 · The provenance panel — on hover, never uninvited',
-  '**This is the whole product in one interaction.** Everything above it is a text editor; this is the part nothing else can do, because every other tool rewrote the whole file and does not know which bytes were its own.',
-  [
-    lines(40, 40, 620, 2),
-    r(36, 66, 628, 34, { fill: MACHINE, stroke: 'none' }),
-    lines(40, 76, 614, 2, 9, { fill: '#a8c4f5' }),
-    r(120, 108, 400, 128, { fill: '#fff', stroke: INK, sw: 1.2, rx: 3 }),
-    r(120, 108, 400, 26, { fill: WASH, stroke: 'none' }),
-    t(132, 125, 'Written by claude-opus-5', { size: 9.5, weight: 600, fill: BLUE }),
-    t(508, 125, '✕', { size: 9, anchor: 'end', fill: LINE }),
-    t(132, 152, 'Prompt', { size: 7.5, weight: 600, fill: LINE }),
-    t(132, 168, '"Document the token refresh flow and note the', { size: 9 }),
-    t(132, 182, ' 8-hour expiry we settled on."', { size: 9 }),
-    t(132, 206, 'Tuesday 09:14  ·  312 bytes  ·  not reviewed', { size: 8.5, fill: '#4a5160' }),
-    r(132, 214, 118, 20, { fill: BLUE, stroke: BLUE, rx: 2 }),
-    t(191, 228, 'Keep — mark reviewed', { size: 8, fill: '#fff', anchor: 'middle', weight: 600 }),
-    r(260, 214, 90, 20, { fill: '#fff', stroke: LINE, rx: 2 }),
-    t(305, 228, 'Revert  ⌘Z', { size: 8, anchor: 'middle' }),
-    t(370, 228, 'Jump to next  ⇥', { size: 8, fill: BLUE }),
-    lines(40, 260, 620, 3),
-  ].join(''),
-  'Hover only, after a delay, dismissible with Escape. Reverting restores the exact bytes and moves nothing else.')
-
-// ── S4 · review drawer ──────────────────────────────────────────────────────
-add('W4', 'S4 · Review panel — the right drawer',
-  '**For catching up on a document you did not watch being written.** Keyboard-first: `j` and `k` to move, `a` to accept, `r` to revert. The counter going to zero is the entire point of the screen.',
-  [
-    r(1, 1, W - 2, 26, { fill: GREY, stroke: LINE }),
-    t(12, 18, 'specs / auth.md', { size: 9, fill: '#4a5160' }),
-    lines(30, 60, 380, 3),
-    r(26, 100, 388, 30, { fill: MACHINE, stroke: 'none' }),
-    lines(30, 110, 374, 2, 9, { fill: '#a8c4f5' }),
-    lines(30, 146, 380, 4),
-    // drawer
-    r(440, 27, W - 441, H - 27, { fill: GREY, stroke: LINE }),
-    t(456, 50, 'UNREVIEWED', { size: 7.5, weight: 600, fill: LINE }),
-    t(W - 20, 50, '4', { size: 12, weight: 700, fill: BLUE, anchor: 'end' }),
-    ...[0, 1, 2, 3].map((i) => {
-      const y = 70 + i * 74
-      return r(452, y, W - 472, 62, { fill: '#fff', stroke: i === 0 ? BLUE : FAINT, sw: i === 0 ? 1.4 : 1, rx: 2 }) +
-        t(464, y + 18, i === 0 ? '"Document the token refresh…"' : ['"Add the rate-limit note"', '"Clarify scope wording"', '"List the error codes"'][i - 1], { size: 8.5, weight: i === 0 ? 600 : null }) +
-        t(464, y + 34, 'claude-opus-5 · 312 B · Tue 09:14', { size: 7.5, fill: '#4a5160' }) +
-        r(464, y + 42, 52, 14, { fill: i === 0 ? BLUE : '#fff', stroke: i === 0 ? BLUE : LINE, rx: 2 }) +
-        t(490, y + 52, 'Keep', { size: 7.5, anchor: 'middle', fill: i === 0 ? '#fff' : INK }) +
-        r(522, y + 42, 52, 14, { fill: '#fff', stroke: LINE, rx: 2 }) +
-        t(548, y + 52, 'Revert', { size: 7.5, anchor: 'middle' })
-    }),
-    t(456, H - 12, 'j / k  move      a  keep      r  revert', { size: 7.5, fill: LINE }),
-  ].join(''),
-  'The drawer is the only persistent panel in the product, and it can be closed entirely.')
-
-// ── S5/S6 · overlays ────────────────────────────────────────────────────────
-add('W5', 'S5 and S6 · Quick switcher and command palette',
-  '**Table stakes, and their absence is disqualifying.** A reviewer who cannot find a file in two keystrokes stops reviewing before they reach anything we built. The palette shows what a command does *before* you run it, which is how people learn a product without a tour.',
-  [
-    r(20, 20, 330, 250, { fill: GREY, stroke: FAINT, dash: '4 3' }),
-    t(30, 38, 'S5  ⌘P  Quick switch', { size: 8.5, weight: 600, fill: LINE }),
-    r(36, 50, 298, 200, { fill: '#fff', stroke: INK, sw: 1.2, rx: 3 }),
-    r(36, 50, 298, 30, { fill: '#fff', stroke: 'none' }),
-    t(48, 70, 'auth', { size: 10 }), r(48, 74, 26, 1, { fill: BLUE, stroke: 'none' }),
-    r(36, 80, 298, 1, { fill: FAINT, stroke: 'none' }),
-    ...['specs/auth.md', 'adr/0003-auth-scope.md', 'notes/auth-questions.md', 'README.md'].map((f, i) =>
-      (i === 0 ? r(36, 86 + i * 28, 298, 28, { fill: WASH, stroke: 'none' }) : '') +
-      t(48, 104 + i * 28, f, { size: 9, fill: i === 0 ? BLUE : INK, weight: i === 0 ? 600 : null })),
-    r(370, 20, 330, 250, { fill: GREY, stroke: FAINT, dash: '4 3' }),
-    t(380, 38, 'S6  ⌘K  Command palette', { size: 8.5, weight: 600, fill: LINE }),
-    r(386, 50, 298, 200, { fill: '#fff', stroke: INK, sw: 1.2, rx: 3 }),
-    t(398, 70, 'rename', { size: 10 }), r(398, 74, 40, 1, { fill: BLUE, stroke: 'none' }),
-    r(386, 80, 298, 1, { fill: FAINT, stroke: 'none' }),
-    ...[['Rename heading across vault', '⇧⌘R'], ['Rename tag', ''], ['Rename property key', ''], ['Revert all unreviewed', '']]
-      .map(([c, k], i) =>
-        (i === 0 ? r(386, 86 + i * 28, 298, 28, { fill: WASH, stroke: 'none' }) : '') +
-        t(398, 104 + i * 28, c, { size: 9, fill: i === 0 ? BLUE : INK, weight: i === 0 ? 600 : null }) +
-        (k ? t(672, 104 + i * 28, k, { size: 8, fill: LINE, anchor: 'end' }) : '')),
-    t(30, 300, 'Both are overlays on the document. Escape returns you exactly where you were, with nothing lost.', { size: 9, fill: '#4a5160' }),
-  ].join(''),
-  'Neither is a destination. Every overlay hands you back to the document.')
-
-// ── S8 · refactor ───────────────────────────────────────────────────────────
-add('W6', 'S8 · Refactor preview — the engine made visible',
-  '**This is the screen that sells the engine.** Rename something and every file that will change is listed as an accept-or-reject hunk. The refusal box at the bottom is the differentiator: where a competitor guesses, we stop and say why.',
-  [
-    r(1, 1, W - 2, 30, { fill: WASH, stroke: LINE }),
-    t(14, 20, 'Rename heading  "Token refresh"  →  "Refreshing tokens"', { size: 9.5, weight: 600 }),
-    t(W - 14, 20, '11 files · 14 changes', { size: 8.5, fill: BLUE, anchor: 'end' }),
-    ...[['specs/auth.md', 3], ['adr/0003-auth-scope.md', 2], ['README.md', 1], ['notes/auth-questions.md', 4]]
-      .map(([f, n], i) => {
-        const y = 44 + i * 54
-        return r(14, y, W - 28, 46, { fill: '#fff', stroke: FAINT, rx: 2 }) +
-          t(26, y + 17, f, { size: 9, weight: 600 }) +
-          t(150, y + 17, `${n} change${n > 1 ? 's' : ''}`, { size: 8, fill: LINE }) +
-          r(24, y + 24, 420, 3.5, { fill: '#fde0e0', stroke: 'none' }) +
-          r(24, y + 32, 400, 3.5, { fill: '#d9f2e3', stroke: 'none' }) +
-          r(W - 150, y + 12, 56, 18, { fill: BLUE, stroke: BLUE, rx: 2 }) +
-          t(W - 122, y + 25, 'Accept', { size: 8, fill: '#fff', anchor: 'middle' }) +
-          r(W - 86, y + 12, 56, 18, { fill: '#fff', stroke: LINE, rx: 2 }) +
-          t(W - 58, y + 25, 'Skip', { size: 8, anchor: 'middle' })
+      ln(20, 176, W - 20, 176, { stroke: FAINT }),
+      t(20, 196, 'RECENT', { size: 7.5, weight: 700, fill: LINE }),
+      t(W - 20, 196, 'unreviewed first  ▾', { size: 7.5, fill: BLUE, anchor: 'end' }),
+      ...[['auth.md', 'specs', 64], ['0004-sync.md', 'adr', 88], ['pricing.md', 'notes', 31],
+          ['billing.md', 'specs', 12], ['README.md', '', 0], ['0003-scope.md', 'adr', 45],
+          ['onboarding.md', 'notes', 0], ['api.md', 'specs', 22]].map(([f, dir, pct], i) => {
+        const x = 20 + (i % 4) * 182, y = 208 + Math.floor(i / 4) * 92
+        return r(x, y, 168, 78, { fill: '#fff', stroke: FAINT, rx: 4 }) +
+          t(x + 12, y + 20, f, { size: 9, weight: 600 }) +
+          t(x + 12, y + 34, dir ? `${dir}/` : 'root', { size: 7.5, fill: LINE }) +
+          bars(x + 12, y + 44, 144, 2, 7) +
+          r(x + 12, y + 62, 144, 4, { fill: '#eceff4' }) +
+          (pct ? r(x + 12, y + 62, 144 * pct / 100, 4, { fill: pct > 50 ? BLUE : MTEXT }) : '') +
+          t(x + 12, y + 74, pct ? `${pct}% unreviewed` : 'all reviewed', { size: 7, fill: pct ? BLUE : '#0d8a4f' })
       }),
-    r(14, 266, W - 28, 52, { fill: '#fffbf0', stroke: '#b8860b', sw: 1.2, rx: 2 }),
-    t(26, 286, 'Refused — 2 files', { size: 9, weight: 600, fill: '#8a5a06' }),
-    t(26, 302, 'drafts/old-auth.md — the heading appears twice and we cannot tell which one you meant.', { size: 8.5, fill: '#8a5a06' }),
-    r(14, H - 40, 130, 24, { fill: BLUE, stroke: BLUE, rx: 2 }),
-    t(79, H - 24, 'Apply 12 changes', { size: 8.5, fill: '#fff', anchor: 'middle', weight: 600 }),
-    t(160, H - 24, 'Nothing else in any file will change.', { size: 8.5, fill: '#4a5160' }),
-  ].join(''),
-  'Refusing two files and saying why is the product working, not failing.')
+      r(1, H - 26, W - 2, 25, { fill: GREY }), ln(1, H - 26, W - 1, H - 26, { stroke: FAINT }),
+      t(14, H - 10, '3 projects · 128 documents · 7 unreviewed', { size: 7.5, fill: LINE }),
+      t(W - 14, H - 10, '⌘K commands   ⌘P files', { size: 7.5, fill: LINE, anchor: 'end' }),
+    ].join(''),
+    '**The bar at the bottom of every card is the product showing itself before you open anything.** Recent documents sort by unreviewed share, so the thing most likely to need you is first.')
+}
 
-// ── S10 · team dashboard ────────────────────────────────────────────────────
-add('W7', 'S10 · Team view — the only paid screen',
-  '**Provenance for one person is a convenience; provenance across a team is a record.** That is the whole reason this screen is behind the paywall and everything else is free.',
-  [
-    r(1, 1, W - 2, 30, { fill: GREY, stroke: LINE }),
-    t(14, 20, 'product-docs  ·  Team', { size: 10, weight: 600 }),
-    t(W - 14, 20, '4 seats', { size: 8.5, fill: LINE, anchor: 'end' }),
-    ...[['Unreviewed documents', '7'], ['Machine-written, unread', '18%'], ['Reviewed this week', '42']]
-      .map(([l, v], i) => {
-        const x = 14 + i * 232
-        return r(x, 44, 220, 58, { fill: GREY, stroke: FAINT, rx: 2 }) +
-          t(x + 14, 68, v, { size: 17, weight: 700, fill: BLUE }) +
-          t(x + 14, 86, l, { size: 8, fill: '#4a5160' })
+// ═══ W2 · the editor, full anatomy ══════════════════════════════════════════
+{
+  const W = 900, H = 520
+  const TREE = 176, RAIL = 176, MAIN = W - TREE - RAIL
+  const tabs = [['auth.md', 1], ['0004-sync.md', 0], ['pricing.md', 0], ['README.md', 0]]
+  add('W2', 'S2 · The editor — every region named',
+    'Tabs across the top, project tree left, outline and tools right, AI at the bottom of the document rather than in a sidebar.',
+    W, H, [
+      // ── top bar
+      r(1, 1, W - 2, 30, { fill: GREY }), ln(1, 31, W - 1, 31, { stroke: FAINT }),
+      btn(10, 7, 28, 17, 'fm', { fill: INK, tf: '#fff', weight: 700 }),
+      t(46, 19, '⌸  ⟲  ⟳', { size: 9, fill: LINE }),
+      ...tabs.map(([n, on], i) => {
+        const x = 92 + i * 116
+        return r(x, 5, 108, 22, { fill: on ? '#fff' : 'transparent', stroke: on ? FAINT : 'transparent', rx: 3 }) +
+          (on ? r(x, 5, 108, 2, { fill: BLUE }) : '') +
+          t(x + 10, 20, n, { size: 8, weight: on ? 600 : null, fill: on ? INK : '#4a5160' }) +
+          t(x + 98, 20, '×', { size: 8, fill: LINE, anchor: 'end' })
       }),
-    t(14, 128, 'DOCUMENTS', { size: 7.5, weight: 600, fill: LINE }),
-    ...[['specs/auth.md', 'Sagnik', 64, 'not reviewed'], ['specs/billing.md', 'Amit', 12, 'reviewed'],
-        ['adr/0004-sync.md', 'Sagnik', 88, 'not reviewed'], ['README.md', 'Amit', 0, 'reviewed'],
-        ['notes/pricing.md', 'Sagnik', 31, 'partial']]
-      .map(([f, who, pct, st], i) => {
-        const y = 148 + i * 34
-        return r(14, y, W - 28, 28, { fill: '#fff', stroke: FAINT, rx: 2 }) +
-          t(26, y + 18, f, { size: 9 }) +
-          t(200, y + 18, who, { size: 8.5, fill: '#4a5160' }) +
-          r(300, y + 11, 120, 5, { fill: '#eceff4', stroke: 'none' }) +
-          r(300, y + 11, 120 * pct / 100, 5, { fill: pct > 50 ? BLUE : '#a8c4f5', stroke: 'none' }) +
-          t(430, y + 18, `${pct}% machine`, { size: 8, fill: LINE }) +
-          t(W - 26, y + 18, st, { size: 8, anchor: 'end', fill: st === 'reviewed' ? '#0d8a4f' : st === 'partial' ? '#8a5a06' : '#a51c1c' })
+      r(W - 210, 7, 118, 17, { fill: '#fff', stroke: FAINT, rx: 9 }),
+      t(W - 202, 20, '⌕ Search', { size: 7.5, fill: LINE }),
+      btn(W - 84, 7, 30, 17, 'sh'), btn(W - 48, 7, 38, 17, 'Pf'),
+      // ── left tree
+      r(1, 32, TREE, H - 33, { fill: PANEL }), ln(TREE, 32, TREE, H - 1, { stroke: FAINT }),
+      t(12, 50, '‹  TREE', { size: 7.5, weight: 700, fill: LINE }), btn(TREE - 46, 41, 34, 14, 'FP+'),
+      ...(() => {
+        const rows = [['p', 'product-docs'], ['d', 'adr'], ['f', '0003-scope.md'], ['f', '0004-sync.md'],
+          ['d', 'specs'], ['f', 'auth.md', 1], ['f', 'billing.md'], ['d', 'notes'], ['f', 'pricing.md'],
+          ['p', 'engine'], ['d', 'src'], ['f', 'splice.md'], ['p', 'website']]
+        return rows.map(([k, n, sel], i) => {
+          const y = 72 + i * 21
+          const ind = k === 'p' ? 10 : k === 'd' ? 18 : 28
+          return (sel ? r(6, y - 11, TREE - 12, 18, { fill: WASH, rx: 2 }) : '') +
+            (k === 'p' ? r(8, y - 11, TREE - 60, 18, { fill: '#fff', stroke: FAINT, rx: 3 }) : '') +
+            (k === 'f' ? ln(22, y - 11, 22, y + 7, { stroke: FAINT }) : '') +
+            t(ind, y + 2, (k === 'd' ? '▾ ' : '') + n, {
+              size: 8, weight: k === 'p' || sel ? 600 : null, fill: sel ? BLUE : k === 'p' ? INK : '#3a4048' }) +
+            (k === 'p' ? btn(TREE - 46, y - 10, 15, 15, 'f+') + btn(TREE - 28, y - 10, 16, 15, 'F+') : '')
+        }).join('')
+      })(),
+      // ── mode bar
+      r(TREE + 1, 32, MAIN, 28, { fill: '#fff' }), ln(TREE + 1, 60, TREE + MAIN, 60, { stroke: FAINT }),
+      ...['Edit', 'Live', 'Split', 'Read'].map((m, i) => {
+        const x = TREE + 10 + i * 52, on = m === 'Live'
+        return r(x, 39, 48, 16, { fill: on ? BLUE : '#fff', stroke: on ? BLUE : FAINT, rx: 3 }) +
+          t(x + 24, 50, m, { size: 7.5, anchor: 'middle', fill: on ? '#fff' : '#3a4048', weight: on ? 600 : null })
       }),
-    t(14, H - 14, 'Filter:  machine-written and nobody has read it  ·  7 documents', { size: 8.5, fill: BLUE }),
-  ].join(''),
-  'The filter at the bottom is the feature a team lead actually opens this for.')
+      ln(TREE + 224, 38, TREE + 224, 56, { stroke: FAINT }),
+      t(TREE + 236, 50, 'B  I  “  ≡  ⌗  ⌗⌗  ⟨⟩  ⊞  ⛓  ☑', { size: 8.5, fill: '#4a5160' }),
+      btn(TREE + MAIN - 34, 39, 26, 16, '↓'),
+      // ── document, LIVE mode: rendered, editable
+      t(TREE + 24, 92, 'Authentication', { size: 15, weight: 700 }),
+      bars(TREE + 24, 108, MAIN - 60, 3),
+      r(TREE + 20, 140, MAIN - 52, 34, { fill: MACHINE }),
+      bars(TREE + 24, 150, MAIN - 60, 3, 8, { fill: MTEXT }),
+      t(TREE + MAIN - 26, 154, '◆', { size: 7, fill: BLUE }),
+      t(TREE + 24, 196, 'The GitHub App', { size: 11, weight: 700 }),
+      bars(TREE + 24, 208, MAIN - 60, 2),
+      // a rendered table
+      r(TREE + 20, 234, MAIN - 52, 46, { fill: GREY, stroke: HAIR }),
+      ln(TREE + 20, 250, TREE + MAIN - 32, 250, { stroke: FAINT }),
+      ...[0, 1, 2].map((c) => ln(TREE + 20 + (c + 1) * ((MAIN - 52) / 4), 234, TREE + 20 + (c + 1) * ((MAIN - 52) / 4), 280, { stroke: HAIR })),
+      t(TREE + 28, 246, 'scope', { size: 7.5, weight: 600, fill: LINE }),
+      t(TREE + 28, 264, 'contents:read', { size: 7.5 }),
+      // a rendered code block
+      r(TREE + 20, 292, MAIN - 52, 40, { fill: '#f4f6fa', stroke: HAIR }),
+      t(TREE + 28, 306, 'gh api /repos/:owner/:repo', { size: 7.5, mono: true, fill: '#3a4048' }),
+      t(TREE + 28, 320, '  --jq .permissions', { size: 7.5, mono: true, fill: '#3a4048' }),
+      bars(TREE + 24, 346, MAIN - 60, 2),
+      // ── AI strip
+      r(TREE + 14, H - 96, MAIN - 40, 58, { fill: AI, stroke: AIB, rx: 4 }),
+      t(TREE + 28, H - 74, 'Ask, or select text and transform', { size: 8.5, fill: '#4a2a8a', weight: 600 }),
+      r(TREE + 28, H - 66, MAIN - 130, 18, { fill: '#fff', stroke: '#c9b8f0', rx: 9 }),
+      t(TREE + 36, H - 53, 'Document the token refresh flow…', { size: 7.5, fill: LINE }),
+      btn(TREE + MAIN - 92, H - 66, 60, 18, 'Propose', { fill: AIB, stroke: AIB, tf: '#fff', weight: 600 }),
+      t(TREE + 28, H - 26, 'Proposals arrive as marked spans. Nothing is written until you keep it.', { size: 7, fill: '#6b5a9a' }),
+      // ── right rail
+      r(W - RAIL, 32, RAIL - 1, H - 33, { fill: PANEL }), ln(W - RAIL, 32, W - RAIL, H - 1, { stroke: FAINT }),
+      t(W - RAIL + 12, 50, 'OUTLINE', { size: 7.5, weight: 700, fill: LINE }),
+      r(W - RAIL + 8, 58, RAIL - 18, 178, { fill: WASH, stroke: FAINT, rx: 3 }),
+      ...['Authentication', '  The GitHub App', '  Scopes', '  Token refresh', 'Sessions', '  Expiry', 'Open questions']
+        .map((h, i) => t(W - RAIL + 18, 78 + i * 22, h, { size: 7.5, weight: h.startsWith(' ') ? null : 600,
+          fill: i === 3 ? BLUE : '#3a4048' })),
+      ...[['Tags & bookmarks', 0], ['Document history', 0], ['Comments', 2]].map(([l, n], i) =>
+        r(W - RAIL + 8, 248 + i * 26, RAIL - 18, 20, { fill: '#fff', stroke: FAINT, rx: 3 }) +
+        t(W - RAIL + 18, 262 + i * 26, l, { size: 7.5 }) +
+        t(W - 14, 262 + i * 26, n ? `${n}  ›` : '›', { size: 7.5, anchor: 'end', fill: n ? BLUE : LINE })),
+      btn(W - RAIL + 8, 332, 74, 20, 'Add file'), btn(W - RAIL + 88, 332, 80, 20, 'Shortcuts'),
+      r(W - RAIL + 8, 362, RAIL - 18, 26, { fill: AI, stroke: AIB, rx: 3 }),
+      t(W - RAIL + 88, 379, 'AI edit', { size: 9, anchor: 'middle', weight: 700, fill: '#4a2a8a' }),
+      r(W - RAIL + 8, 396, RAIL - 18, 60, { fill: '#fff', stroke: FAINT, rx: 3 }),
+      t(W - RAIL + 18, 412, 'UNREVIEWED', { size: 7, weight: 700, fill: LINE }),
+      t(W - RAIL + 18, 432, '2', { size: 18, weight: 700, fill: BLUE }),
+      t(W - RAIL + 44, 432, 'spans in this file', { size: 7, fill: '#4a5160' }),
+      t(W - RAIL + 18, 448, 'Review them  ›', { size: 7.5, fill: BLUE }),
+      // ── status bar
+      r(TREE + 1, H - 26, W - TREE - RAIL, 25, { fill: GREY }), ln(TREE, H - 26, W - RAIL, H - 26, { stroke: FAINT }),
+      t(TREE + 12, H - 10, '2,140 words · Ln 84, Col 12', { size: 7.5, fill: LINE }),
+      t(W - RAIL - 12, H - 10, 'main ✓ · saved', { size: 7.5, fill: '#0d8a4f', anchor: 'end' }),
+    ].join(''),
+    '**The AI strip sits under the document, not in a sidebar.** A sidebar makes AI a separate place you go; under the document it is a thing you do to what you are looking at. It collapses to one line when idle.')
+}
 
-// ── S9/S11 ──────────────────────────────────────────────────────────────────
-add('W8', 'S9 and S11 · Conflict view, and settings',
-  '**The conflict view is the only modal in the product that blocks the document**, because proceeding without a decision loses work. Settings is one screen with six groups and stays one screen — every toggle is a decision we failed to make.',
-  [
-    r(16, 16, 400, 330, { fill: '#fff', stroke: INK, sw: 1.2, rx: 3 }),
-    r(16, 16, 400, 26, { fill: '#fdf3f3', stroke: 'none' }),
-    t(28, 34, 'S9 · Two versions of specs/auth.md', { size: 9, weight: 600, fill: '#a51c1c' }),
-    t(28, 62, 'This device', { size: 8, weight: 600, fill: LINE }),
-    r(28, 70, 174, 110, { fill: GREY, stroke: FAINT }),
-    lines(36, 84, 158, 3), r(32, 116, 166, 16, { fill: '#fde0e0', stroke: 'none' }), lines(36, 142, 158, 3),
-    t(230, 62, 'Other device', { size: 8, weight: 600, fill: LINE }),
-    r(230, 70, 174, 110, { fill: GREY, stroke: FAINT }),
-    lines(238, 84, 158, 3), r(234, 116, 166, 16, { fill: '#d9f2e3', stroke: 'none' }), lines(238, 142, 158, 3),
-    t(28, 204, 'Result', { size: 8, weight: 600, fill: LINE }),
-    r(28, 212, 376, 76, { fill: '#fff', stroke: BLUE }),
-    lines(36, 226, 360, 5),
-    r(28, 300, 110, 22, { fill: '#fff', stroke: LINE, rx: 2 }), t(83, 315, 'Keep this device', { size: 8, anchor: 'middle' }),
-    r(146, 300, 110, 22, { fill: '#fff', stroke: LINE, rx: 2 }), t(201, 315, 'Keep the other', { size: 8, anchor: 'middle' }),
-    r(264, 300, 140, 22, { fill: BLUE, stroke: BLUE, rx: 2 }), t(334, 315, 'Edit the result', { size: 8, fill: '#fff', anchor: 'middle', weight: 600 }),
-    r(440, 16, 264, 330, { fill: '#fff', stroke: INK, sw: 1.2, rx: 3 }),
-    r(440, 16, 264, 26, { fill: GREY, stroke: 'none' }),
-    t(452, 34, 'S11 · Settings', { size: 9, weight: 600 }),
-    ...['Appearance', 'Keyboard', 'AI provider and key', 'Provenance', 'Git identity', 'About']
-      .map((g, i) => {
-        const y = 62 + i * 46
-        return t(452, y, g, { size: 9, weight: 600 }) +
-          r(452, y + 8, 200, 3, { fill: FAINT, stroke: 'none' }) +
-          (i === 3 ? t(452, y + 26, 'Show machine-written spans   ●━', { size: 8, fill: '#4a5160' }) : '') +
-          (i === 2 ? t(452, y + 26, 'Anthropic  ·  key stored locally', { size: 8, fill: '#4a5160' }) : '')
-      }),
-    t(452, H - 22, 'One screen. No tabs. Six groups.', { size: 8, fill: LINE }),
-  ].join(''),
-  'Everything else in the product is a document with things drawn on it.')
+// ═══ W3 · the four modes ════════════════════════════════════════════════════
+{
+  const W = 900, H = 330, w = (W - 50) / 4
+  const panel = (i, title, sub, inner) => {
+    const x = 12 + i * (w + 8)
+    return r(x, 44, w, H - 60, { fill: '#fff', stroke: i === 1 ? BLUE : FAINT, sw: i === 1 ? 1.4 : 1, rx: 3 }) +
+      r(x, 44, w, 22, { fill: i === 1 ? BLUE : GREY }) +
+      t(x + 10, 59, title, { size: 8.5, weight: 700, fill: i === 1 ? '#fff' : INK }) +
+      t(x + w - 10, 59, sub, { size: 7, anchor: 'end', fill: i === 1 ? '#cfe0ff' : LINE }) + inner(x)
+  }
+  add('W3', 'The four modes — how the same file looks in each',
+    'One file, four projections. Nothing about the bytes on disk changes between them.',
+    W, H, [
+      t(12, 26, 'Edit \\ Live \\ Split \\ Read — the same document, four ways of looking at it', { size: 9.5, weight: 600 }),
+      panel(0, 'Edit', 'raw', (x) => [
+        t(x + 10, 86, '# Authentication', { size: 7.5, mono: true, fill: BLUE }),
+        t(x + 10, 102, '', { size: 7.5 }),
+        t(x + 10, 114, 'We use the **GitHub App**', { size: 7.5, mono: true }),
+        t(x + 10, 128, 'flow, not OAuth.', { size: 7.5, mono: true }),
+        t(x + 10, 152, '## Scopes', { size: 7.5, mono: true, fill: BLUE }),
+        t(x + 10, 170, '| scope | why |', { size: 7.5, mono: true, fill: '#3a4048' }),
+        t(x + 10, 182, '|---|---|', { size: 7.5, mono: true, fill: LINE }),
+        t(x + 10, 194, '| read | tree |', { size: 7.5, mono: true, fill: '#3a4048' }),
+        t(x + 10, 218, '```bash', { size: 7.5, mono: true, fill: LINE }),
+        t(x + 10, 230, 'gh api /repos', { size: 7.5, mono: true, fill: '#3a4048' }),
+        t(x + 10, 242, '```', { size: 7.5, mono: true, fill: LINE }),
+        t(x + 10, 272, 'Every character', { size: 7, fill: LINE }),
+        t(x + 10, 284, 'you typed.', { size: 7, fill: LINE }),
+      ].join('')),
+      panel(1, 'Live', 'default', (x) => [
+        t(x + 10, 88, 'Authentication', { size: 12, weight: 700 }),
+        bars(x + 10, 100, w - 24, 2, 8),
+        r(x + 6, 122, w - 12, 26, { fill: MACHINE }),
+        bars(x + 10, 130, w - 24, 2, 8, { fill: MTEXT }),
+        t(x + 10, 168, 'Scopes', { size: 9.5, weight: 700 }),
+        r(x + 6, 178, w - 12, 34, { fill: GREY, stroke: HAIR }),
+        ln(x + 6, 190, x + w - 6, 190, { stroke: FAINT }),
+        t(x + 12, 187, 'scope', { size: 6.5, weight: 600, fill: LINE }),
+        t(x + 12, 204, 'read', { size: 6.5 }),
+        r(x + 6, 220, w - 12, 26, { fill: '#f4f6fa', stroke: HAIR }),
+        t(x + 12, 236, 'gh api /repos', { size: 6.5, mono: true }),
+        t(x + 10, 272, 'Rendered, and', { size: 7, fill: BLUE }),
+        t(x + 10, 284, 'still editable.', { size: 7, fill: BLUE }),
+      ].join('')),
+      panel(2, 'Split', 'both', (x) => [
+        ln(x + w / 2, 66, x + w / 2, H - 16, { stroke: FAINT, dash: '3 2' }),
+        t(x + 8, 84, '# Authentication', { size: 6, mono: true, fill: BLUE }),
+        t(x + 8, 98, 'We use the', { size: 6, mono: true }),
+        t(x + 8, 110, '**GitHub App**', { size: 6, mono: true }),
+        t(x + 8, 130, '## Scopes', { size: 6, mono: true, fill: BLUE }),
+        t(x + 8, 148, '| scope |', { size: 6, mono: true, fill: '#3a4048' }),
+        t(x + w / 2 + 8, 86, 'Authentication', { size: 8.5, weight: 700 }),
+        bars(x + w / 2 + 8, 96, w / 2 - 18, 2, 7),
+        t(x + w / 2 + 8, 132, 'Scopes', { size: 7.5, weight: 700 }),
+        r(x + w / 2 + 6, 140, w / 2 - 14, 22, { fill: GREY, stroke: HAIR }),
+        t(x + 8, 262, 'Source left,', { size: 7, fill: LINE }),
+        t(x + 8, 274, 'result right,', { size: 7, fill: LINE }),
+        t(x + 8, 286, 'scroll-locked.', { size: 7, fill: LINE }),
+      ].join('')),
+      panel(3, 'Read', 'clean', (x) => [
+        t(x + 12, 92, 'Authentication', { size: 12, weight: 700 }),
+        bars(x + 12, 106, w - 28, 3, 9),
+        t(x + 12, 152, 'Scopes', { size: 9.5, weight: 700 }),
+        bars(x + 12, 164, w - 28, 2, 9),
+        r(x + 8, 190, w - 16, 32, { fill: GREY, stroke: HAIR }),
+        bars(x + 12, 236, w - 28, 3, 9),
+        t(x + 12, 272, 'No cursor, no', { size: 7, fill: LINE }),
+        t(x + 12, 284, 'chrome. Print', { size: 7, fill: LINE }),
+        t(x + 12, 296, 'from here.', { size: 7, fill: LINE }),
+      ].join('')),
+    ].join(''),
+    '**Live is the default and the one that matters.** Edit is for when the markdown itself is the thing you are working on. Split is for learning the syntax or checking a render. Read is for review and printing. Provenance tinting shows in Live, Split and Read — it is information about the document, not about the source.')
+}
 
-// ── the AI edit flow ────────────────────────────────────────────────────────
-add('W9', 'The AI edit, as three frames',
-  '**Read left to right — this is the loop the whole product exists to make safe.** The middle frame is where every other tool has already rewritten your file; we have only proposed a byte range. The third frame is the promise, and it is testable on every release.',
-  [
-    ...[0, 1, 2].map((i) => {
-      const x = 14 + i * 236
-      const titles = ['1 · You ask', '2 · Proposed, not written', '3 · You decide']
-      return r(x, 30, 220, 300, { fill: '#fff', stroke: LINE, rx: 2 }) +
-        r(x, 30, 220, 24, { fill: i === 1 ? WASH : GREY, stroke: 'none' }) +
-        t(x + 12, 46, titles[i], { size: 8.5, weight: 600, fill: i === 1 ? BLUE : INK })
-    }),
-    lines(26, 76, 190, 3),
-    r(22, 110, 200, 40, { fill: GREY, stroke: FAINT, rx: 2 }),
-    t(32, 128, '"Document the token', { size: 8.5 }), t(32, 142, ' refresh flow"', { size: 8.5 }),
-    lines(26, 172, 190, 4),
-    lines(262, 76, 190, 2),
-    r(258, 104, 200, 44, { fill: MACHINE, stroke: BLUE, rx: 2 }),
-    lines(266, 116, 184, 3, 9, { fill: '#a8c4f5' }),
-    t(262, 166, 'nothing written to disk yet', { size: 8, fill: BLUE }),
-    lines(262, 186, 190, 3),
-    lines(498, 76, 190, 2),
-    r(494, 104, 200, 30, { fill: '#f1faf5', stroke: '#0d8a4f', rx: 2 }),
-    lines(502, 114, 184, 2, 9, { fill: '#9ad3b4' }),
-    t(498, 152, 'kept — now ordinary text', { size: 8, fill: '#0d8a4f' }),
-    r(494, 172, 200, 26, { fill: '#fff', stroke: FAINT, rx: 2 }),
-    t(504, 189, '$ git diff  →  1 file, 4 lines', { size: 8, fill: '#4a5160' }),
-    lines(498, 214, 190, 3),
-    t(14, 356, 'At frame 2 a regenerating editor has already rewritten the whole file. We have written nothing.', { size: 9, fill: '#4a5160' }),
-  ].join(''),
-  'The proof is frame 3: git diff shows your change and nothing else. Every release is tested against that.')
+// ═══ W4 · provenance interaction ════════════════════════════════════════════
+{
+  const W = 820, H = 300
+  add('W4', 'S3 · The provenance panel — the interaction nothing else can do',
+    'Hover only, after a delay, dismissible with Escape.',
+    W, H, [
+      bars(40, 40, 720, 2),
+      r(36, 66, 728, 32, { fill: MACHINE }), bars(40, 76, 714, 2, 8, { fill: MTEXT }),
+      r(150, 106, 460, 132, { fill: '#fff', stroke: INK, sw: 1.2, rx: 4 }),
+      r(150, 106, 460, 26, { fill: WASH }), ln(150, 132, 610, 132, { stroke: FAINT }),
+      t(164, 124, 'Written by claude-opus-5', { size: 9, weight: 700, fill: BLUE }),
+      t(596, 124, '✕', { size: 9, anchor: 'end', fill: LINE }),
+      t(164, 152, 'PROMPT', { size: 7, weight: 700, fill: LINE }),
+      t(164, 168, '"Document the token refresh flow and note the 8-hour', { size: 8.5 }),
+      t(164, 182, ' expiry we settled on."', { size: 8.5 }),
+      t(164, 204, 'Tue 09:14  ·  312 bytes  ·  not reviewed  ·  span 4 of 6', { size: 8, fill: '#4a5160' }),
+      btn(164, 212, 122, 19, 'Keep — mark reviewed', { fill: BLUE, stroke: BLUE, tf: '#fff', weight: 600, size: 7.5 }),
+      btn(294, 212, 74, 19, 'Revert  ⌘Z'), btn(376, 212, 92, 19, 'Show the diff'),
+      t(478, 226, 'Next span  ⇥', { size: 7.5, fill: BLUE }),
+      bars(40, 258, 720, 2),
+    ].join(''),
+    '**"Show the diff" is the trust control.** A sceptical user clicks it once, sees that only those bytes differ, and never clicks it again. That single interaction is what converts the claim into belief.')
+}
+
+// ═══ W5 · review drawer + AI proposal ═══════════════════════════════════════
+{
+  const W = 900, H = 380, RAIL = 300
+  add('W5', 'S4 · The review drawer, and an AI proposal arriving',
+    'Left: the document with a proposal in place. Right: everything waiting for you.',
+    W, H, [
+      r(1, 1, W - 2, 26, { fill: GREY }), ln(1, 27, W - 1, 27, { stroke: FAINT }),
+      t(12, 18, 'specs / auth.md', { size: 8, fill: '#4a5160' }),
+      t(W - RAIL - 12, 18, 'Live', { size: 7.5, anchor: 'end', fill: BLUE, weight: 600 }),
+      bars(28, 56, W - RAIL - 60, 3),
+      r(24, 96, W - RAIL - 52, 44, { fill: AI, stroke: AIB, rx: 3 }),
+      t(34, 112, 'PROPOSED — not written', { size: 7, weight: 700, fill: '#4a2a8a' }),
+      bars(34, 118, W - RAIL - 76, 2, 8, { fill: '#c9b8f0' }),
+      btn(34, 142, 54, 16, 'Keep', { fill: AIB, stroke: AIB, tf: '#fff', weight: 600, size: 7 }),
+      btn(94, 142, 54, 16, 'Discard', { size: 7 }),
+      t(158, 154, 'nothing has touched the file yet', { size: 7, fill: '#6b5a9a' }),
+      bars(28, 178, W - RAIL - 60, 2),
+      r(24, 208, W - RAIL - 52, 30, { fill: MACHINE }), bars(34, 218, W - RAIL - 76, 2, 8, { fill: MTEXT }),
+      bars(28, 254, W - RAIL - 60, 4),
+      r(W - RAIL, 27, RAIL - 1, H - 28, { fill: PANEL }), ln(W - RAIL, 27, W - RAIL, H - 1, { stroke: FAINT }),
+      t(W - RAIL + 14, 50, 'UNREVIEWED IN THIS FILE', { size: 7, weight: 700, fill: LINE }),
+      t(W - 16, 52, '4', { size: 13, weight: 700, fill: BLUE, anchor: 'end' }),
+      ...[['"Document the token refresh…"', 1], ['"Add the rate-limit note"', 0],
+          ['"Clarify the scope wording"', 0], ['"List the error codes"', 0]].map(([q, on], i) => {
+        const y = 66 + i * 68
+        return r(W - RAIL + 10, y, RAIL - 26, 58, { fill: '#fff', stroke: on ? BLUE : FAINT, sw: on ? 1.4 : 1, rx: 3 }) +
+          t(W - RAIL + 20, y + 17, q, { size: 8, weight: on ? 600 : null }) +
+          t(W - RAIL + 20, y + 31, 'claude-opus-5 · 312 B · Tue 09:14', { size: 7, fill: '#4a5160' }) +
+          btn(W - RAIL + 20, y + 38, 46, 14, 'Keep', { fill: on ? BLUE : '#fff', stroke: on ? BLUE : FAINT, tf: on ? '#fff' : INK, size: 7 }) +
+          btn(W - RAIL + 72, y + 38, 46, 14, 'Revert', { size: 7 }) +
+          t(W - RAIL + 128, y + 48, 'Go to  ›', { size: 7, fill: BLUE })
+      }),
+      ln(W - RAIL + 10, H - 46, W - 16, H - 46, { stroke: FAINT }),
+      t(W - RAIL + 14, H - 28, 'j / k move    a keep    r revert    ⇧A keep all', { size: 7, fill: LINE }),
+      t(W - RAIL + 14, H - 12, 'Keeping does not change bytes — only the review flag.', { size: 7, fill: '#0d8a4f' }),
+    ].join(''),
+    '**Two states that look similar and are not.** Purple is *proposed* and has not touched the file. Blue is *written but unreviewed* — the bytes are on disk, nobody has read them. Keeping a blue span changes no bytes at all; it only flips a flag.')
+}
+
+// ═══ W6 · refactor ══════════════════════════════════════════════════════════
+{
+  const W = 820, H = 380
+  add('W6', 'S8 · Refactor preview — the engine made visible',
+    'Rename once; every file that would change is a reviewable hunk.',
+    W, H, [
+      r(1, 1, W - 2, 34, { fill: WASH }), ln(1, 35, W - 1, 35, { stroke: FAINT }),
+      t(14, 16, 'RENAME HEADING', { size: 7, weight: 700, fill: LINE }),
+      t(14, 28, '"Token refresh"  →  "Refreshing tokens"', { size: 9.5, weight: 600 }),
+      t(W - 14, 24, '11 files · 14 changes · 2 refused', { size: 8, fill: BLUE, anchor: 'end' }),
+      ...[['specs/auth.md', 3], ['adr/0003-auth-scope.md', 2], ['README.md', 1], ['notes/auth-questions.md', 4]]
+        .map(([f, n], i) => {
+          const y = 46 + i * 56
+          return r(12, y, W - 24, 48, { fill: '#fff', stroke: FAINT, rx: 3 }) +
+            t(24, y + 17, f, { size: 8.5, weight: 600 }) +
+            t(180, y + 17, `${n} change${n > 1 ? 's' : ''}`, { size: 7.5, fill: LINE }) +
+            t(24, y + 32, '−', { size: 8, fill: '#a51c1c' }) + r(34, y + 28, 380, 4, { fill: '#fde0e0' }) +
+            t(24, y + 42, '+', { size: 8, fill: '#0d6b3f' }) + r(34, y + 38, 360, 4, { fill: '#d9f2e3' }) +
+            btn(W - 168, y + 14, 56, 18, 'Accept', { fill: BLUE, stroke: BLUE, tf: '#fff', weight: 600 }) +
+            btn(W - 106, y + 14, 46, 18, 'Skip') + t(W - 50, y + 27, 'View ›', { size: 7.5, fill: BLUE })
+        }),
+      r(12, 274, W - 24, 54, { fill: '#fffbf0', stroke: '#b8860b', sw: 1.2, rx: 3 }),
+      t(24, 292, 'REFUSED — 2 files', { size: 8, weight: 700, fill: '#8a5a06' }),
+      t(24, 308, 'drafts/old-auth.md — the heading appears twice; we cannot tell which one you meant.', { size: 7.5, fill: '#8a5a06' }),
+      t(24, 320, 'archive/2024.md — inside a code fence. Changing it would alter an example.', { size: 7.5, fill: '#8a5a06' }),
+      btn(12, H - 34, 128, 22, 'Apply 12 changes', { fill: BLUE, stroke: BLUE, tf: '#fff', weight: 600, size: 8 }),
+      btn(148, H - 34, 60, 22, 'Cancel'),
+      t(220, H - 19, 'Nothing else in any file will change. Reversible as one commit.', { size: 7.5, fill: '#4a5160' }),
+    ].join(''),
+    '**The amber box is the feature, not the failure.** A competitor silently renames both and you find out later. We stop, name the file, and say exactly why — which is the entire product argument in one panel.')
+}
+
+// ═══ W7 · team ══════════════════════════════════════════════════════════════
+{
+  const W = 820, H = 340
+  add('W7', 'S10 · Team view — the only screen behind the paywall',
+    'One repo, everyone, and what nobody has read.',
+    W, H, [
+      r(1, 1, W - 2, 30, { fill: GREY }), ln(1, 31, W - 1, 31, { stroke: FAINT }),
+      t(14, 20, 'product-docs · Team', { size: 9.5, weight: 700 }),
+      t(W - 14, 20, '4 seats · $8/seat', { size: 8, fill: LINE, anchor: 'end' }),
+      ...[['7', 'documents nobody has reviewed'], ['18%', 'of all text is unread machine output'],
+          ['42', 'spans reviewed this week']].map(([v, l], i) => {
+        const x = 14 + i * 266
+        return r(x, 44, 252, 56, { fill: '#fff', stroke: FAINT, rx: 3 }) +
+          t(x + 14, 72, v, { size: 18, weight: 700, fill: BLUE }) +
+          t(x + 14, 88, l, { size: 7.5, fill: '#4a5160' })
+      }),
+      t(14, 122, 'DOCUMENTS', { size: 7, weight: 700, fill: LINE }),
+      t(W - 14, 122, 'sorted by risk  ▾', { size: 7.5, fill: BLUE, anchor: 'end' }),
+      ...[['adr/0004-sync.md', 'Sagnik', 88, 'nobody'], ['specs/auth.md', 'Sagnik', 64, 'nobody'],
+          ['notes/pricing.md', 'Amit', 31, 'partly'], ['specs/billing.md', 'Amit', 12, 'Sagnik'],
+          ['README.md', 'Amit', 0, 'Sagnik']].map(([f, who, pct, rev], i) => {
+        const y = 134 + i * 32
+        return r(14, y, W - 28, 26, { fill: '#fff', stroke: FAINT, rx: 3 }) +
+          t(26, y + 17, f, { size: 8.5 }) + t(190, y + 17, who, { size: 8, fill: '#4a5160' }) +
+          r(280, y + 10, 130, 5, { fill: '#eceff4' }) +
+          (pct ? r(280, y + 10, 130 * pct / 100, 5, { fill: pct > 50 ? BLUE : MTEXT }) : '') +
+          t(422, y + 17, `${pct}% machine`, { size: 7.5, fill: LINE }) +
+          t(W - 26, y + 17, rev === 'nobody' ? 'unread' : `read by ${rev}`, {
+            size: 7.5, anchor: 'end', fill: rev === 'nobody' ? '#a51c1c' : rev === 'partly' ? '#8a5a06' : '#0d8a4f' })
+      }),
+      r(14, H - 44, W - 28, 30, { fill: WASH, stroke: BLUE, rx: 3 }),
+      t(26, H - 25, 'Machine-written and nobody has read it  —  7 documents, 3 of them decisions', { size: 8, fill: BLUE, weight: 600 }),
+    ].join(''),
+    '**The blue bar is why a team lead opens this screen.** Not the numbers at the top — the filter that says which decisions were written by a machine and never read by a human.')
+}
+
+// ═══ W8 · overlays + settings ═══════════════════════════════════════════════
+{
+  const W = 900, H = 300
+  add('W8', 'S5, S6, S11 · Quick switch, command palette, settings',
+    'Two overlays and one page. Escape always returns you to the document.',
+    W, H, [
+      ...[['⌘P  Quick switch', ['specs/auth.md', 'adr/0003-auth-scope.md', 'notes/auth-questions.md'], 'auth'],
+          ['⌘K  Commands', ['Rename heading across vault', 'Review unreviewed spans', 'Switch to Split'], 'ren']]
+        .map(([title, items, q], i) => {
+          const x = 12 + i * 296
+          return r(x, 34, 282, H - 60, { fill: GREY, stroke: FAINT, dash: '4 3', rx: 3 }) +
+            t(x + 12, 52, title, { size: 8, weight: 700, fill: LINE }) +
+            r(x + 10, 62, 262, 176, { fill: '#fff', stroke: INK, sw: 1.2, rx: 3 }) +
+            t(x + 24, 84, q, { size: 9.5 }) + r(x + 24, 88, 30, 1, { fill: BLUE }) +
+            ln(x + 10, 96, x + 272, 96, { stroke: FAINT }) +
+            items.map((it, j) =>
+              (j === 0 ? r(x + 10, 100 + j * 30, 262, 30, { fill: WASH }) : '') +
+              t(x + 24, 120 + j * 30, it, { size: 8, fill: j === 0 ? BLUE : INK, weight: j === 0 ? 600 : null })).join('')
+        }),
+      r(604, 34, W - 616, H - 60, { fill: '#fff', stroke: INK, sw: 1.2, rx: 3 }),
+      r(604, 34, W - 616, 24, { fill: GREY }), ln(604, 58, W - 12, 58, { stroke: FAINT }),
+      t(616, 50, 'S11 · Settings — one page', { size: 8, weight: 700 }),
+      ...[['Appearance', 'theme, font size'], ['Keyboard', 'keymap, vim mode'],
+          ['AI provider', 'Anthropic · key stored locally'], ['Provenance', 'show spans  ●━'],
+          ['Git identity', 'name, email, signing'], ['About', 'version, licence']]
+        .map(([g, s], i) => {
+          const y = 76 + i * 34
+          return t(616, y, g, { size: 8.5, weight: 600 }) +
+            t(616, y + 12, s, { size: 7, fill: '#4a5160' }) +
+            ln(616, y + 20, W - 24, y + 20, { stroke: HAIR })
+        }),
+    ].join(''),
+    '**Settings is one page with six groups and no tabs.** Every toggle we add is a decision we failed to make, so the page staying short is a design constraint rather than an aspiration.')
+}
+
+// ═══ W9 · the screen map ════════════════════════════════════════════════════
+{
+  const W = 860, H = 420
+  const box = (x, y, w, h, id, label, o = {}) =>
+    r(x, y, w, h, { fill: o.fill || '#fff', stroke: o.stroke || INK, sw: o.sw || 1.2, rx: 4 }) +
+    t(x + 10, y + 17, id, { size: 7.5, weight: 700, fill: o.idf || BLUE }) +
+    t(x + 10, y + 32, label, { size: 8.5, weight: 600, fill: o.tf || INK }) +
+    (o.sub ? t(x + 10, y + 46, o.sub, { size: 7, fill: LINE }) : '')
+  const arrow = (x1, y1, x2, y2, label, o = {}) =>
+    ln(x1, y1, x2, y2, { stroke: o.stroke || LINE, sw: 1.2, dash: o.dash }) +
+    (label ? t((x1 + x2) / 2, (y1 + y2) / 2 - 4, label, { size: 6.5, anchor: 'middle', fill: o.stroke || LINE }) : '')
+  add('W9', 'How the screens connect',
+    'Everything returns to the editor. Escape never loses work.',
+    W, H, [
+      box(20, 30, 150, 56, 'S0', 'Launcher', { sub: 'templates + recent' }),
+      box(340, 170, 180, 70, 'S2', 'The editor', { fill: WASH, stroke: BLUE, sw: 2, sub: 'Edit / Live / Split / Read' }),
+      box(20, 170, 150, 56, 'S1', 'Open a folder', { sub: 'first run only' }),
+      box(20, 300, 150, 56, 'S5 · S6', 'Switch / palette', { sub: '⌘P   ⌘K' }),
+      box(340, 30, 180, 56, 'S3', 'Provenance panel', { sub: 'on hover' }),
+      box(340, 310, 180, 56, 'S7', 'Search', { sub: 'vault-wide' }),
+      box(620, 30, 200, 56, 'S4', 'Review drawer', { sub: 'everything unreviewed' }),
+      box(620, 120, 200, 56, 'S8', 'Refactor preview', { sub: 'rename → hunks' }),
+      box(620, 210, 200, 56, 'S9', 'Conflict', { stroke: '#a51c1c', idf: '#a51c1c', sub: 'the only blocking modal' }),
+      box(620, 300, 200, 56, 'S10', 'Team view', { fill: '#f1faf5', stroke: '#0d8a4f', idf: '#0d8a4f', sub: 'paid' }),
+      arrow(170, 58, 340, 62, 'open'),
+      arrow(170, 198, 340, 200, 'first run'),
+      arrow(170, 320, 340, 224, '⌘P ⌘K'),
+      arrow(430, 170, 430, 86, 'hover'),
+      arrow(430, 240, 430, 310, '⌘⇧F'),
+      arrow(520, 190, 620, 70, 'unreviewed'),
+      arrow(520, 200, 620, 148, 'rename'),
+      arrow(520, 215, 620, 238, 'divergence', { stroke: '#a51c1c' }),
+      arrow(620, 328, 520, 228, 'open a doc', { stroke: '#0d8a4f', dash: '4 3' }),
+      r(20, H - 46, W - 40, 34, { fill: GREY, stroke: FAINT, rx: 3 }),
+      t(32, H - 26, 'Three rules:  everything returns to S2  ·  Escape goes back one step and never loses work  ·  no modal blocks the document except S9', { size: 8, fill: '#3a4048' }),
+    ].join(''),
+    '**S2 is the only destination.** Every other screen is a detour that hands you back to the document — which is why there is no navigation chrome, no breadcrumbs beyond the file path, and no back button.')
+}
 
 console.log(out.join('\n'))
