@@ -299,6 +299,10 @@ if (!fs.existsSync(chrome)) {
 // with stdio ignored and watch the FILE, not the process. --virtual-time-budget gives
 // Mermaid time to lay out every diagram before the print snapshot is taken.
 fs.rmSync(pdfPath, { force: true })
+// Remove any PDF from a previous run: a stale complete file would satisfy the
+// %%EOF check on the first poll and be reported as a fresh success.
+try { fs.unlinkSync(pdfPath) } catch {}
+
 const child = spawn(chrome, [
   '--headless', '--disable-gpu', '--no-sandbox', '--no-pdf-header-footer',
   '--no-first-run', '--disable-crash-reporter',

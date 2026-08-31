@@ -259,6 +259,12 @@ if (!fs.existsSync(chrome)) { console.log('chrome not found — html written'); 
 
 // Chrome writes the PDF then keeps running; watch the FILE and its %%EOF trailer,
 // never the process (LR#74). Chrome also cannot spawn inside the Bash sandbox.
+//
+// REMOVE THE TARGET FIRST. Without this, a complete PDF left by a previous run
+// satisfies the %%EOF check on the first poll, so the builder reports success
+// instantly and hands back the OLD document. An artifact check is only as good as
+// its guarantee that the artifact is fresh.
+try { fs.unlinkSync(pdfPath) } catch {}
 const child = spawn(chrome, ['--headless', '--disable-gpu', '--no-sandbox', '--no-pdf-header-footer',
   '--no-first-run', '--disable-crash-reporter', '--virtual-time-budget=60000',
   '--run-all-compositor-stages-before-draw',

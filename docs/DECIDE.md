@@ -153,10 +153,11 @@ have zero paying users. That is a fact about us, not a market condition.
 That mismatch is the argument against raising, stated in its own terms: thirty years of runway
 bought with seven years of obligation.
 
-**The contradiction you must settle before any of these numbers mean anything:** this document says
-two founders. §53 says *"One person. This is the binding constraint on everything above."* Every
-capacity, calendar and cost figure in the record derives from one or the other. They cannot both
-hold.
+**SETTLED 2026-08-31.** The company has **two founders — Sagnik and Amit — and a team.** §53's
+*"One person. This is the binding constraint"* was written when that was true and is now
+superseded. Every capacity, calendar and cost figure derived from the one-person assumption is
+therefore conservative, not optimistic — but it must be re-derived rather than assumed to scale
+linearly, because two founders is not two of the same founder.
 
 ---
 
@@ -179,7 +180,6 @@ Ordered by what each unblocks, not by how interesting it is.
 
 | # | Question | Why it is first | Unblocks |
 |---|---|---|---|
-| 1 | **One founder or two?** | Every capacity number in the record depends on it | The entire calendar |
 | 2 | **Do we accept the repositioning** — mechanism not pitch, refactor not byte-purity? | MVP-0's demo assumes the old pitch | The demo, the copy, the launch |
 | 3 | **Offline-first desktop, or web?** | Determines file access, the legal surface, and where AI keys live | §91, §100, §101 |
 | 4 | **BYO key or platform key?** | Sets the free tier's arithmetic limit | §90, §93 |
