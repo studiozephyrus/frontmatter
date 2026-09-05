@@ -496,4 +496,58 @@ const add = (id, name, note, w, h, body, caption) => out.push(
     '**S2 is the only destination.** Every other screen is a detour that hands you back to the document — which is why there is no navigation chrome, no breadcrumbs beyond the file path, and no back button.')
 }
 
+// ═══ W10 · generate a site ══════════════════════════════════════════════════
+{
+  const W = 860, H = 400
+  add('W10', 'S12 \u00b7 Generate — a site, a page, or a deck from the folder you already have',
+    'Static output, generated locally. We hand you files; you choose where they live.',
+    W, H, [
+      r(1, 1, W - 2, 32, { fill: GREY }), ln(1, 33, W - 1, 33, { stroke: FAINT }),
+      t(14, 21, 'Generate from  product-docs', { size: 9.5, weight: 700 }),
+      t(W - 14, 21, '128 documents \u00b7 3 projects', { size: 8, fill: LINE, anchor: 'end' }),
+      t(16, 52, 'OUTPUT', { size: 7, weight: 700, fill: LINE }),
+      ...[['Static site', 'the whole folder, tree as navigation', 1],
+          ['Single page', 'one document, one file to send', 0],
+          ['Slide deck', 'H2 becomes a slide', 0],
+          ['One-page brief', 'document plus its frontmatter', 0]].map(([n2, sub, on], i) => {
+        const x = 16 + i * 206
+        return r(x, 60, 194, 62, { fill: on ? WASH : '#fff', stroke: on ? BLUE : FAINT, rx: 4 }) +
+          t(x + 12, 82, n2, { size: 9, weight: 600, fill: on ? BLUE : INK }) +
+          t(x + 12, 98, sub, { size: 7, fill: LINE }) +
+          t(x + 12, 113, on ? 'selected' : '', { size: 7, fill: BLUE })
+      }),
+      t(16, 148, 'WHAT GOES IN', { size: 7, weight: 700, fill: LINE }),
+      r(16, 156, 410, 118, { fill: '#fff', stroke: FAINT, rx: 3 }),
+      ...[['product-docs', 1, 0], ['  adr  (4 files)', 1, 1], ['  specs  (6 files)', 1, 1],
+          ['  notes  (9 files)', 0, 1], ['  drafts  (3 files)', 0, 1]].map(([n2, on, ind], i) => {
+        const y = 176 + i * 21
+        return r(28 + ind * 14, y - 8, 10, 10, { fill: on ? BLUE : '#fff', stroke: on ? BLUE : LINE, rx: 2 }) +
+          (on ? t(30 + ind * 14, y + 1, '\u2713', { size: 7, fill: '#fff' }) : '') +
+          t(46 + ind * 14, y + 1, n2, { size: 8, weight: ind ? null : 600 })
+      }),
+      t(28, 264, '13 of 22 documents \u00b7 drafts excluded by default', { size: 7, fill: LINE }),
+      t(444, 148, 'PREVIEW', { size: 7, weight: 700, fill: LINE }),
+      r(444, 156, W - 460, 118, { fill: '#fff', stroke: FAINT, rx: 3 }),
+      r(444, 156, W - 460, 20, { fill: GREY }), ln(444, 176, W - 16, 176, { stroke: FAINT }),
+      t(456, 170, 'product-docs', { size: 7.5, weight: 700 }),
+      t(W - 26, 170, 'Home   Decisions   Specs', { size: 7, fill: LINE, anchor: 'end' }),
+      r(444, 176, 96, 98, { fill: '#fcfdff' }), ln(540, 176, 540, 274, { stroke: HAIR }),
+      ...['Decisions', '  Sync', '  Engine', 'Specs', '  Auth'].map((n2, i) =>
+        t(454, 194 + i * 16, n2, { size: 6.8, fill: i === 4 ? BLUE : '#3a4048' })),
+      t(552, 198, 'Authentication', { size: 10, weight: 700 }),
+      prose(552, 216, 280, 3, { size: 6.4, lh: 9 }),
+      r(552, 248, 286, 18, { fill: '#f4f6fa', stroke: HAIR }),
+      t(560, 260, 'gh api /repos/:owner/:repo', { size: 6.2, mono: true, fill: '#3a4048' }),
+      r(16, 292, W - 32, 56, { fill: PANEL, stroke: FAINT, rx: 3 }),
+      t(28, 310, 'WHERE IT GOES', { size: 7, weight: 700, fill: LINE }),
+      ...[['A folder on disk', 1], ['GitHub Pages', 0], ['Vercel', 0], ['Netlify', 0]].map(([n2, on], i) =>
+        btn(28 + i * 116, 318, 106, 20, n2, { fill: on ? BLUE : '#fff', stroke: on ? BLUE : FAINT,
+          tf: on ? '#fff' : INK, weight: on ? 600 : null, size: 7.5 })),
+      t(500, 332, 'Your account, your domain. We never host it.', { size: 7.5, fill: '#4a5160' }),
+      btn(16, H - 34, 132, 24, 'Generate', { fill: BLUE, stroke: BLUE, tf: '#fff', weight: 700, size: 8.5 }),
+      t(160, H - 18, 'Runs locally. No network, no model, no upload.', { size: 7.5, fill: '#0d8a4f' }),
+    ].join(''),
+    '**A site is another projection of the same file.** There is no site editor and no theme builder — those would each need their own state, and state is what the architecture forbids. Edits happen in the markdown; the site is regenerated.')
+}
+
 console.log(out.join('\n'))

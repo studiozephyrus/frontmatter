@@ -134,7 +134,15 @@ const diagrams = (h.match(/class="mermaid"/g) || []).length
 
 const words = md.split(/\s+/).filter(Boolean).length
 const stamp = new Date().toISOString().slice(0, 10)
-const FOOT = `A SGNK RESEARCH SYNTHESIS &nbsp;·&nbsp; ${(project || 'FRONTMATTER').toUpperCase()} &nbsp;·&nbsp; ${stamp.toUpperCase()} &nbsp;·&nbsp; INTERNAL`
+/* The masthead/footer label. Defaults to the internal research wording; a
+   PUBLISHED brief overrides both via env so the same renderer serves an internal
+   memo and a document that goes out to strangers:
+     BRIEF_LABEL="Sagnik Mitra"  BRIEF_CLASS="" node build-brief-pdf.mjs ...
+   BRIEF_CLASS='' drops the trailing INTERNAL entirely. */
+const LABEL = process.env.BRIEF_LABEL ?? 'A SGNK RESEARCH SYNTHESIS'
+const CLASSN = process.env.BRIEF_CLASS ?? 'INTERNAL'
+const FOOT = [LABEL, (project || 'FRONTMATTER').toUpperCase(), stamp.toUpperCase(), CLASSN]
+  .filter(Boolean).join(' &nbsp;·&nbsp; ')
 
 const CSS = `
 ${FONTCSS}
@@ -221,7 +229,7 @@ pre{background:#f7f9fc;border:1px solid #eceff4;padding:5pt 7pt;overflow-x:auto;
 const html = `<!doctype html><html><head><meta charset="utf-8"><title>${docTitle}</title><style>${CSS}</style></head>
 <body>
 <div class="mast"><h1 class="mt">${docTitle}${docSub ? `<span class="b">${docSub}</span>` : ''}</h1>
-<div class="mlabel">A SGNK RESEARCH SYNTHESIS<br>${stamp} &nbsp;·&nbsp; INTERNAL</div></div>
+<div class="mlabel">${LABEL}<br>${[stamp, CLASSN].filter(Boolean).join(' &nbsp;·&nbsp; ')}</div></div>
 ${lede ? `<p class="lede">${lede}</p>` : ''}
 ${keyfigs}
 ${h}
