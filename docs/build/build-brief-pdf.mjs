@@ -157,6 +157,7 @@ strong{font-weight:600;color:#000}
 em{font-style:italic}
 a{color:#1a5cff;text-decoration:none}
 hr{border:0;border-top:1px solid #dfe3ea;margin:9pt 0}
+img{display:block;max-width:100%;height:auto;border:1px solid #dfe3ea;margin:2pt 0 8pt;break-inside:avoid}
 
 /* masthead */
 .mast{display:flex;justify-content:space-between;align-items:flex-start;border-bottom:2px solid #14161a;padding-bottom:7pt;margin-bottom:8pt}
