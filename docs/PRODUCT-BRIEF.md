@@ -15,13 +15,15 @@
 
 ### 1. What we build
 
-> [!good] **frontmatter is the editor where your agent's specs and decisions get read, answered and reviewed.** The agent writes `[NEEDS CLARIFICATION: auth method — email, SSO, OAuth?]` into your spec. You open it here, answer it **in place** — one byte range replaced, nothing else in the file moved — and everything the machine wrote stays visibly marked until a person has read it.
+> [!good] **frontmatter is the editor where your agent's specs and decisions get read, reviewed, and finished.** Open a spec the agent wrote. Everything it wrote is visibly marked until a person has read it; one key reverts any of it; and the questions it left open — `[NEEDS CLARIFICATION: auth method — email, SSO, OAuth?]` — are answered **in place**, one byte range replaced, nothing else in the file moved.
+
+**One honest caveat, found while checking this page.** spec-kit's own `/speckit.clarify` is chat-first: it asks the questions in the agent, one at a time, and writes the answers back itself. So answering is not the front door — **reviewing is.** What makes answer-in-place real anyway: **62,976 public files under `specs/` paths carry an unanswered `NEEDS CLARIFICATION` today** (GitHub code search; the phrase is generic and template copies inflate it, so treat it as an upper bound). Questions survive into committed files. Someone has to find and close them, and nothing currently shows where they are.
 
 The proposed pilot was: idea → decisions → generate every file → kickoff prompt → your agent executes. **That flow already ships, free, from GitHub and three others (§2).** What none of them has is a surface: they write markdown and hand it to whatever editor you happen to use, and that editor has no idea an agent wrote it. So we are not the generator. We are where the generated thing lives.
 
 **Why this is the first framing that is actually ours.** Answering a question inside a file without disturbing the rest of it is a byte-range splice — the one thing our engine does and a whole-file rewriter cannot. It aims at slop, the fastest-growing complaint in the market (23.7%, +149% in 20 months) and the only one nobody is working on. And it turns half a million stars of free tooling from a competitor into a channel, which matters because every other channel we have is borrowed.
 
-**The fifteen-second demo.** Run `/speckit.specify` in your agent. Open the spec it wrote, here. Three questions are highlighted; answer one inline. `git diff` shows one line changed. The paragraphs the agent wrote are still tinted, because nobody has read them yet.
+**The fifteen-second demo.** Run `/speckit.specify` in your agent. Open the spec it wrote, here: every paragraph is tinted, because nobody has read it yet. Hover one — who wrote it, when, the prompt. Revert one with a key; `git diff` shows only that. Then the panel on the right lists the two questions the agent left open; answer one inline, and `git diff` shows one line.
 
 ## PART II — The market, in one page
 
