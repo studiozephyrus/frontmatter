@@ -380,18 +380,15 @@ body.shot .proto{display:none}
           <h2>Open questions</h2>
           <p><span class="m1">Should the consent screen ask for one repository at a time, or let the user multi-select? Asking for less converts better but adds a step for teams with many repos.</span></p>
           <div class="card" id="card" style="left:calc(50% + 40px);top:236px">
-            <div class="row"><span class="k">Written by</span><span class="val">claude-sonnet-5 · via Claude Code</span></div>
-            <div class="row"><span class="k">When</span><span class="val">today 14:02 · 2h ago</span></div>
+            <div class="row"><span class="k">Changed</span><span class="val">since you last reviewed · 2h ago</span></div>
             <div class="row"><span class="k">Bytes</span><span class="val">1,184 – 1,412 · 228 bytes</span></div>
-            <div class="row"><span class="k">Prompt</span><span class="val" style="text-align:left;font-family:var(--sans);color:var(--muted)">"explain the token lifetime and what happens on revoke"</span></div>
+            <div class="row"><span class="k">Author</span><span class="val">claude-sonnet-5 · from commit trailer a3f9c2</span></div>
+            <div class="row"><span class="k">Prompt</span><span class="val" style="text-align:left;font-family:var(--sans);color:var(--muted)">not recorded — written outside frontmatter. Kept when the agent writes through MCP</span></div>
             <div class="acts"><button class="primary"><svg class="ic s"><use href="#i-check"/></svg>Mark reviewed</button><button><svg class="ic s"><use href="#i-replay"/></svg>Revert · ⌘⇧Z</button></div>
           </div>
         </div>
-        <div class="aiw">
-          <div class="hd"><svg class="ic"><use href="#i-auto_awesome"/></svg><span class="k">AI · this file</span><span class="sp"></span><span class="note">your key · anthropic · claude-sonnet-5</span><button title="Dismiss"><svg class="ic s"><use href="#i-close"/></svg></button></div>
-          <div class="chips"><span class="chip"><svg class="ic s"><use href="#i-edit"/></svg>Tighten this section</span><span class="chip"><svg class="ic s"><use href="#i-description"/></svg>Summarise file</span><span class="chip"><svg class="ic s"><use href="#i-link"/></svg>Suggest links</span><span class="chip"><svg class="ic s"><use href="#i-find_replace"/></svg>Find stale sections</span><span class="chip"><svg class="ic s"><use href="#i-warning"/></svg>What is unanswered?</span></div>
-          <div class="in"><input value="rewrite 'Open questions' as a decision with two options and a recommendation"><span class="k">⏎ propose</span><button class="go">Propose</button></div>
-          <div class="note">Proposals arrive as marked spans. Nothing is written until you keep it. Nothing else in the file moves.</div>
+        <div class="aiw" style="padding:8px 12px">
+          <div class="hd"><svg class="ic"><use href="#i-auto_awesome"/></svg><span class="k">AI · this file · collapsed</span><span class="sp"></span><span class="note">your key · nothing runs until you ask · ⌘J opens · hide it in Settings</span><button title="Expand"><svg class="ic s"><use href="#i-expand_more"/></svg></button></div>
         </div>
       </div>
       <div class="status"><span class="a">3 unreviewed spans · 64%</span><span>412 words</span><span>ln 14, col 1</span><span class="sp"></span><span class="g">git · clean · main</span><span>LF · UTF-8</span></div>
@@ -399,8 +396,8 @@ body.shot .proto{display:none}
     <aside class="rail r">
       <div class="rsec"><button><svg class="ic"><use href="#i-format_list_bulleted"/></svg>Document outline<span class="sp"></span><svg class="ic s"><use href="#i-expand_more"/></svg></button>
         <div class="rbody"><div class="ol"><a class="on">Authentication<span class="num">1</span></a><a class="d1">Token lifetime<span class="num">2 · 1 unreviewed</span></a><a class="d1">What we never do<span class="num">3 · 1</span></a><a class="d1">Open questions<span class="num">1 · 1</span></a></div></div></div>
-      <div class="rsec"><button><svg class="ic"><use href="#i-sell"/></svg>Tags &amp; bookmarks<span class="sp"></span><svg class="ic s"><use href="#i-chevron_right"/></svg></button>
-        <div class="rbody"><div class="tags"><span class="tag">#auth</span><span class="tag">#github-app</span><span class="tag">#security</span><span class="tag">☆ token lifetime</span></div></div></div>
+      <div class="rsec"><button><svg class="ic"><use href="#i-sell"/></svg>Tags<span class="sp"></span><svg class="ic s"><use href="#i-chevron_right"/></svg></button>
+        <div class="rbody"><div class="tags"><span class="tag">#auth</span><span class="tag">#github-app</span><span class="tag">#security</span></div></div></div>
       <div class="rsec"><button><svg class="ic"><use href="#i-history"/></svg>Document history<span class="sp"></span><svg class="ic s"><use href="#i-chevron_right"/></svg></button>
         <div class="rbody"><div class="hist"><div><span class="num">14:02</span><span><b>agent</b> · 3 spans · 612 bytes</span></div><div><span class="num">yest.</span><span><b>you</b> · edited "What we never do"</span></div><div><span class="num">4d</span><span><b>amit</b> · created from template</span></div></div></div></div>
       <div class="rsec"><button><svg class="ic"><use href="#i-comment"/></svg>Comments<span class="sp"></span><span class="num" style="color:var(--muted);font-size:11px">2</span><svg class="ic s"><use href="#i-chevron_right"/></svg></button></div>
@@ -608,6 +605,7 @@ licence is far lower than on a personal one.</div></div>
     <div class="grp"><div class="k">Appearance</div><div class="body"><div class="field"><label>Theme</label><select><option>System</option><option>Light</option><option>Dark</option></select></div><div class="field"><label>Editor typeface</label><select><option>Google Sans Code</option><option>System monospace</option></select></div></div></div>
     <div class="grp"><div class="k">Keymap</div><div class="body"><div class="field"><select><option>Default</option><option>Vim</option><option>Emacs</option></select></div></div></div>
     <div class="grp"><div class="k">AI provider</div><div class="body">
+      <div class="toggle"><span class="sw"><i></i></span><span><b>Hide all AI features.</b> Removes every AI control from the interface. The review tint stays — it is file state, not AI</span></div>
       <div class="field"><label>Provider</label><select><option>Anthropic</option><option>OpenAI</option><option>Google</option><option>OpenRouter</option><option>None — turn AI off</option></select></div>
       <div class="field"><label>Your API key</label><input type="password" value="sk-ant-api03-••••••••••••••••••••••••••••••••7f2a"><span class="help">Stored in your OS keychain. Requests go from this machine to the provider. <b>They do not pass through us.</b></span></div>
       <div class="field"><label>Model for language work</label><select><option>claude-sonnet-5</option><option>claude-opus-5</option></select><span class="help">Structural work — links, slugs, frontmatter fills — never calls a model.</span></div>
