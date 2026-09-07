@@ -44,6 +44,7 @@
 | **Editors** | **Obsidian** | Free · Sync $4 · Publish $8/site · Commercial $50/yr | AI arrives as plugins: Copilot 1.83M downloads (*"run Claude Code, Codex and OpenCode inside your vault"*), Claudian 2.02M | None records what changed or what was reviewed |
 | | Cursor · Zed | ~$20 · free | Strongest agent editing for code; Zed reviews per hunk | Whole-file rewrite; no markdown vault semantics |
 | **Browser** | Obsidian Web Clipper · Markdown Viewer | **1,000,000 · 500,000** Chrome users | Capture and read markdown in the browser | A channel |
+| **Hosted sites** | mdown.ai · Obsidian Publish | Aimed at non-engineers · $8/site/mo | Markdown → live website, on their servers | The host role we refuse. We export; they host |
 
 **The price column, corrected.** The editor is worth ₹0. The one proven individual price is sync, ~$4. The last version called Obsidian's $50/year commercial licence a second proven price; it *"does not provide any functional benefits within the app"*, became optional on 2025-02-20, and its buyers are 25+ seat organisations. It says nothing about a five-person team.
 
@@ -249,7 +250,58 @@ Every changed span in order, `j k` to move, `a r s` to accept, revert or skip, a
 
 > [!risk] **What would make me say stop.** Fewer than 4 of 10 developers calling review state useful under either framing, and the 20 team conversations returning nothing they are gated on that GitHub does not already sell. Then there is no product here — only an engine, a services business, and a free plugin people like. That is not a failure; it is a smaller, truer version of the same work, and it pays sooner.
 
-### 12. What I think
+## PART VI — The rest, in one page
+
+### 12. The engine — what exists, what is broken, what must be optimised
+
+::exhibit 19 | Built · broken · optimised
+
+| | |
+|---|---|
+| **Built** | 25,407 lines, 1,575 tests. 8,513 real files from strangers' vaults, byte-pinned, zero corruption. `git diff` after an edit shows only the edit — tested every release. Six AI routes, five-provider chain, idea mode |
+| **Broken** | **NF-1** — a column-zero list item in frontmatter refuses 83% of real vaults, 4 days · **NF-3** — a bare-CR fence adds a second frontmatter block, 3 days · **no CI**, and four gates have reported green while blind, 1 day · **engine unwired** — one symbol from one of thirteen files reaches product code, 8 days · **byte budget is an `echo`**, 2 days |
+| **Optimise** | **Incremental parsing** — vendored `@lezer/markdown`, so review spans survive every keystroke cheaply · **the offset map** — bytes to UTF-16, the highest-risk seam; crossing it unmapped corrupts Chinese, Japanese, Korean and Arabic silently · **search** — today the whole vault ships to the client, 77 MB parsed per cold start; move to server full-text, client only for the open file · **refusal and conflict rates** published as metrics with budgets |
+| **Published measures** | Time to first keystroke, cold · typing latency on a 10,000-word document · corpus refusal rate (83% → near zero) · merge conflict rate |
+
+### 13. What we render, and the markdown rules
+
+::exhibit 20 | Custom rendering, and what we never do to a file
+
+| | |
+|---|---|
+| **Modes** | Live · Edit · Split · Read. Nested constructs inside list items render correctly — the 501-like bug, shipped as the free plugin first |
+| **We render** | Callouts `> [!kind]` · Mermaid, rendered not extended · **MADR and Nygard** decision records · **RFC 7322** · **Keep a Changelog 1.1.0** · frontmatter as a properties panel |
+| **We do not pretend** | Runbook and PRD have no standard body. We offer a structure and say so — every "PRD standard" claim on the market is unsourced |
+| **The rule** | We add nothing to markdown that breaks it somewhere else. A file we touch renders on GitHub, in Obsidian, in a plain editor, next year |
+| **How** | Prose annotations as callouts — no closing marker to lose; an unclosed fence swallows the document · tags and links written back in **the shape the file already uses**, never converted · wikilinks and standard links both read · review state and comments in a plain-text sidecar beside the file, readable without us |
+| **What we join** | Read `AGENTS.md` and `CLAUDE.md`, never compete with them · be an MCP server the user's agent connects to · we are a git client, never our own versioning · Obsidian conventions preserved |
+
+### 14. Where we stand
+
+::exhibit 21 | Strengths · weaknesses · opportunities · threats
+
+| | |
+|---|---|
+| **Strengths** | The engine is real and correct where the incumbents admit they are not · 88.6% of a shipping editor exists · six AI routes live · two founders funded by services, not a clock |
+| **Weaknesses** | Zero users, zero interviews · no CI, no BYO key, no structured output · 83% of vaults refused today · every channel is borrowed · the paid tier has no evidence yet · we have published three numbers that failed a second check |
+| **Opportunities** | Tens of thousands of active projects generating specs with nowhere to review them · review *state* is the one thing no incumbent persists · a 501-like bug we can fix in a week · a hide-all-AI switch the incumbents shipped only after backlash |
+| **Threats** | **Anthropic ships persistent review** — plan-as-markdown exists since 2.1.70, diff review is open at 262 reactions · Zed or Cursor add vault semantics in a sprint · Obsidian ships first-party AI editing · attention runs out before revenue |
+
+### 15. Operating rules
+
+::exhibit 22 | The lines we hold
+
+| | |
+|---|---|
+| **D2C / B2B** | Free to build the audience; paid to build revenue. **No enterprise feature until a customer refuses to pay without it** — SSO at ~20 seats when asked, SOC 2 above ~50 or for a regulated buyer, a merchant of record for EU/US procurement |
+| **How users hear from us** | We collect an email **only when an obligation is created** — a payment, an invite, a recovery request — never at first run. Breaking changes: two weeks' notice in product. Price changes: email before the next charge. Every notice lives in a quiet in-product ledger, so "we told you" is verifiable by them |
+| **How they reach us** | One address, a published response window, and the free tier has **no service commitment**, said on the page |
+| **What we refuse to measure** | Session replay, keystroke telemetry, document content — the DOM would be their private document. Usage counts live in a local sidecar they can read |
+| **Mobile** | ~15% of complaints are mobile. Not in v1. When it comes, a reader and reviewer, never a byte-exact editor on a phone keyboard |
+| **Accessibility · non-English** | WCAG 2.2 AA, all-or-nothing — our `body-faint` token fails at 1.984:1 and is fixed in MVP-0. The review tint is never colour alone: the panel and the keyboard carry the same information. CJK: the byte map, a bigram search tokeniser, and a written decision on v1 scope |
+| **Security** | No plugins, no code execution — the largest single mitigation we have. The AI never gets ambient repo access. Refuse a malformed repo rather than repair it. Reverse charge under CGST §24(iii) has no turnover floor |
+
+### 16. What I think
 
 - **The engine is the best thing either of us has built.** Two verification rounds did not touch it.
 - **We were wrong about the pitch three times** — bytes, then authorship, then a generator — and each time the evidence was public and unopened. What survives is narrower: a state nobody keeps, on files everyone now generates, in a surface nobody owns. It is a product only if ten strangers say so in two weeks.
