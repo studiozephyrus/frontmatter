@@ -333,7 +333,7 @@ flowchart TD
 | Weeks | Work | Observable outcome |
 |---|---|---|
 | 0 | Rotate the two access tokens; decide the buyer; write the web byte path and the exit measure; attach the founder test notes for F5/F6 | Written |
-| 1–2 | Ten developers shown the review mock in both framings; plugin shipped; five people who bill for documents asked about approval; three landing pages; 20 team conversations | Kill signals at day 14 |
+| 1–2 | Ten developers shown the review mock in both framings; plugin shipped; five people who bill for documents asked about approval; three landing pages; 20 team conversations; five people shown the S2 screenshot for five seconds and asked what the tint means | Kill signals at day 14 |
 | 3 | Go or no-go | Written decision |
 | 3–4 | CI red run; NF-3, NF-1; content-hash review state prototyped on one spec-kit and one superpowers repo | Tint works on files frontmatter did not write |
 | 5–7 | Review state store and rendering; BYO key; structured output; F5/F6 | Stranger's key, stranger's repo, tinted spans |
@@ -350,9 +350,146 @@ flowchart TD
 | 4 | Web byte path: browser-side fetch with the user's token, or through the server | Week 0 |
 | 5 | The two unrotated access tokens | Today |
 
-## PART V — Reference
+## PART V — Research: interface, attention, retention, upsell, product family, format
 
-### 15. Rendering and markdown rules
+### 15. Editor interfaces, benchmarked against shipped products
+
+**Scope of what was checked.** The competitor teardown so far opened documentation, pricing pages and changelogs. A screen-level benchmark against shipped products through the Mobbin library was attempted on 2026-09-08 and **was not conducted**: every Mobbin call was refused by the session's injection-taint gate (the session had fetched pages carrying prompt-injection content; the gate blocks outbound connectors for the rest of that session, including read-only subagents). Nothing below is attributed to a Mobbin screen. The benchmark is scheduled as a week-0 task in a fresh session, with the query list in Exhibit 22.
+
+::exhibit 21 | What the incumbents' own documentation and trackers establish about interface placement
+
+| Question | Finding, from sources opened this session | Consequence for frontmatter |
+|---|---|---|
+| Is the AI affordance visible at rest? | No incumbent opens an AI panel expanded on load. Google Docs: *"By default, the Gemini bar automatically minimizes to clear your screen."* Notion: invoked by shortcut, space, or highlight, with an AI face on every page and no documented hide. Cursor: Cmd+K and Cmd+I. Zed and Obsidian Copilot: hidden until invoked. The incumbents' norm is a collapsed affordance present on load, not absence | The AI panel is one collapsed line at the bottom of S2; no model call on load |
+| Do users want a global off switch? | Zed shipped `disable_ai` on 2025-07-23 after a 412-reaction issue; VS Code shipped `chat.disableAIFeatures` in 1.104 after a 30-reaction issue; Telegram hid its AI button in 6.7.4 after a 181-reaction, 154-comment issue | A hide-all-AI switch ships in S11 on day one and is named in the positioning |
+| Where does review of agent output happen today? | Claude Code's VS Code extension opens plans as a full markdown document with inline comments (2.1.70, 2026-03-06); VS Code previews range-based feedback on markdown in an experimental agents window; the diff-review UI request is open at 262 reactions | The review panel (S4) is a persistent list, not a per-session diff; the tint is in the document, not in a side view |
+| How do document tools scope AI context? | Five of six incumbents scope by file; Claude Code reduces a directory to *"file listings, not contents"* | S13 treats a folder as a pointer and lists what was read |
+| What do editors ship in a first version? | Zed's launch page carried no AI; Obsidian's first public build had none | The free tier is the editor; AI is a panel, not the product |
+
+::exhibit 22 | The screen benchmark to run in a fresh session (Mobbin, web, limit 6, batches of 2)
+
+| Maps to | Query |
+|---|---|
+| S0 launcher | "empty state for a new workspace with template cards to start from" · flow: "onboarding for a document or notes app that starts with opening or importing existing content" |
+| S2 editor, AI placement | "Notion page with the AI writing assistant open, prompt input and suggestion chips" · "document editor with a collapsible page tree on the left, the document in the centre, and a properties or outline panel on the right" · "Craft document editor showing the sidebar and a page with blocks" |
+| S2 right rail, S13 evidence rail | "Linear issue page with a right-hand properties panel and activity history" |
+| S4 review panel | "code review screen showing a diff with accept and reject controls per change" |
+| S11 settings | "settings page for AI features with an API key input field and a toggle to disable AI" |
+| Pricing and upsell (§18) | section: "pricing section with a free tier and a team tier compared side by side" · "upgrade prompt shown when a user invites a teammate on a free plan" |
+
+Output required from that run: for each screen, the two or three distinct approaches found with a link to each; what every reference agrees on (convention) against where they diverge (a real choice); one borrow and one reject for frontmatter; and a ranked top five of changes to the prototype, each citing the reference that shows the better treatment.
+
+### 16. Attention: what the evidence says about where to put things
+
+No eye-tracking has been run on frontmatter's screens. Two primary sources apply, and one test in the plan closes the gap.
+
+::exhibit 23 | Evidence and the placement rules derived from it
+
+| Source | Finding | Rule for frontmatter |
+|---|---|---|
+| Tang et al., 2024, arXiv 2405.16081. Lab study, 28 developers validating Copilot-generated code, eye tracking plus IDE actions; one group told which code was LLM-generated, one not | *"Without explicit information, developers often fail to identify the LLM origin of the code."* Provenance awareness *"led to improved performance, increased search efforts, more frequent Copilot usage, and higher cognitive workload"* | The tint is justified by measurement: reviewers who know what the machine wrote validate better. The cost is workload, so the tint must be ignorable at rest (no border, no icon) and the detail must be on demand (hover, panel) |
+| Nielsen Norman Group, F-shaped reading pattern | Fixations concentrate at the top and the left; *"include the most important points in the first two paragraphs"* | Every proposal card in S13 opens with its verdict and evidence on the first line. The review counter sits top-left of the panel. The file tree, where the unreviewed bars live, is on the left. The AI affordance is bottom and collapsed, where scanning does not reach until asked for |
+| The five-second screenshot test, weeks 1–2 (§14) | Untested | Five people see the S2 screenshot for five seconds and say what the blue tint means. If they say "highlighted" or "error", the tint is wrong before any build |
+
+**Predicted attention on S2, not measured.** Top bar and left rail first (tabs, tree, the unreviewed bars); the document's first heading and opening lines second; the right rail last. The two things the product most needs seen, the tint and the review counter, are on that path. The thing it least wants to compete for attention, the AI panel, is off it. This is a prediction from the F-pattern, to be replaced by the five-second test.
+
+### 17. Retention strategy
+
+**What is known.** No comparable editor publishes retention. Accounts under $50/month sit in the worst band (top-quartile annual gross retention 60–70%; 23% for AI-native products). Obsidian states it does not measure churn, and frontmatter's architecture is the same: no vendor usage database, so retention is observed only through opt-in, local, user-readable counts (§22, operating rules).
+
+**What the architecture allows.** Files are the user's and exit is free, so retention cannot come from lock-in. It has to come from a reason to return.
+
+::exhibit 24 | Retention levers, each tied to a mechanism already in the plan
+
+| Lever | Mechanism | Why it fits |
+|---|---|---|
+| **The counter** | Every agent run leaves unreviewed spans; the launcher and the tree show the count. Opening frontmatter is how the count goes to zero | The return trigger is created by the user's own agent, daily, without any message from us |
+| **The scan** | Repo docs scan finds stale sections and broken links after code changes | A second reason to return that does not depend on AI use at all |
+| **Answer in place and missing docs** | Open questions and missing `AGENTS.md`/`CHANGELOG` are visible until closed | Small, finishable tasks |
+| **The plugin** | The Obsidian live-preview fix stays installed in a vault the user already opens daily | Re-entry from a surface we do not own but they already use |
+| **First-session design** | Open a folder, edit in thirty seconds, no account; the seven-concept budget | The first week decides retention; nothing is asked before value |
+| **No re-engagement email** | Email is collected only on an obligation, never at first run | Retention is in-product or not at all; this is a constraint, stated |
+| **Measurement** | Opt-in local counts: days-opened, spans reviewed, proposals accepted. The user can read the file | The MVP-0 exit test ("6 of 10 keep it") is observable only this way |
+
+### 18. Upsell and cross-sell
+
+Every paid step is attached to a moment the product can see, and priced against what a comparable already charges for the same gate.
+
+::exhibit 25 | Upsell moments
+
+| Moment the product sees | Offer | Comparable gate | Tier |
+|---|---|---|---|
+| A second person opens the same repo | Shared review state: what each person has read; comments | GitHub Team, $4, sells reviewers and code owners | Pro |
+| A second device | Sync, provably safe | Obsidian Sync, $4–5 | Pro or Max |
+| A repo with document gates wanted in CI | `mdmax cert` and review-state checks as a GitHub Action | Docs-as-code tooling; CI seats | Max |
+| A user pastes a key, then asks for more than their free quota allows | Hosted AI, metered, hard-capped | Every AI product | Add-on, never default |
+| The docs scan returns more proposals than one person will work through | A Zephyrus engagement: docs audit, `AGENTS.md` and spec-driven setup, review process design | The studio's fixed-scope engagements | Services |
+
+**Cross-sell across the family.** The editor is free and is the top of the funnel for everything else. The order is fixed: editor → team → CI → services. Each step uses the same sidecar and the same engine, so the upsell is more of the same thing across more people or more machines, not a different product. The one thing not cross-sold is anything outside the markdown core (§19).
+
+**Rules.** No upgrade prompt before the moment exists. No nag: an offer appears once at the moment and lives afterwards in Settings. Downgrading loses features, never files. Unverified: whether small teams pay for shared review state at all; this is decided by the 20 conversations in weeks 1–2, not by the pricing page.
+
+### 19. The product family, designed from the markdown core
+
+The earlier ecosystem review (R22) asked which existing Zephyrus projects fuse with frontmatter and answered no for almost all of them, because they share a founder and nothing else. This section asks the other question: what family can be built around the one thing frontmatter owns, so that several things sell as one connected offering.
+
+**The coupling is a file format and an engine, not a brand.** Every member reads and writes the same markdown, the same `.frontmatter/review.jsonl` sidecar, and goes through the same splice engine. That is what makes them one product to a buyer.
+
+```mermaid
+flowchart TB
+  CORE["Core: splice engine + review-state sidecar<br/>one format, one library"]
+  CORE --> ED["frontmatter editor<br/>free · web + desktop"]
+  CORE --> TEAM["frontmatter Team<br/>shared review, sync · $4–5"]
+  CORE --> CI["mdmax cert + review gates<br/>GitHub Action · Max"]
+  CORE --> MCP["MCP server<br/>agents write through the engine"]
+  CORE --> EXT["Chrome extension · Obsidian plugin<br/>reading and distribution"]
+  ED --> SVC["Zephyrus services<br/>docs audit, AGENTS.md and spec-driven setup,<br/>review process design · ₹3,00,000 fixed scope"]
+  CI --> SVC
+```
+
+::exhibit 26 | Family members, and what each sells
+
+| Member | What it is | Sold as | Status |
+|---|---|---|---|
+| Editor | The free product | Distribution | MVP-0 |
+| Team | Same sidecar across people and devices | $4–5 per user per month | MVP-1/2 |
+| `mdmax cert` and gates | Renders-the-same certification across consumers, review-state and link checks in CI | Max, per team; the B2B line | MVP-2 |
+| MCP server | The write path for agents; carries prompts into the sidecar | Included; the integration that makes Team valuable | MVP-1 |
+| Chrome extension, Obsidian plugin | Read any `.md` with review state; the live-preview fix | Free; channels | MVP-1, week 2 |
+| Zephyrus services | Setting a team up: docs audit from the scan, `AGENTS.md` and spec-driven workflow, review process, migration from Notion | Fixed-scope engagements; the consultancy's productised entry point | Now, using the scan as the diagnostic |
+| sgnk-md | The same codebase (202 of 228 files identical) | Merged, not sold separately | Parked |
+| HQ, Markex, CareerOS, Brand OS, Advox, and the rest | Different buyers, different formats | Not coupled | Unchanged |
+
+**The consultancy angle, stated plainly.** The repo docs scan is a diagnostic that runs in the free editor and produces a list of things wrong with a team's documentation. Most teams will fix a few and ignore the rest. That list is the brief for a fixed-scope engagement, and the engagement leaves the team on frontmatter Team with CI gates. The product does the selling the studio cannot afford to do by hand. This is the one place where the AI-consultancy business and the product are the same funnel.
+
+### 20. The markdown format: what MDMAX did, what it proves, and what "improvement" means
+
+**Verdict on formats, unchanged.** The MDZ research settled it: no new format. Build a compiler and an editor for the markdown that exists. Every custom syntax degrades on some renderer; frontmatter adds nothing to a file that breaks it elsewhere.
+
+**MDMAX as built** (from the line-level audit in `docs/ENGINE.md`): 3,614 lines across 13 files; 19 construct detectors over UTF-8 byte ranges with a skip mask; a degradation certificate that renders each block through 7 real engines against 15 (product, surface) targets and reports PASS, MUTATE or CORRUPT per cell; the byte-to-UTF-16 offset map; the splice writer. Verified on 8,513 pinned files. The artefact is a JSON sidecar, never written into the `.md` (proven).
+
+::exhibit 27 | What MDMAX proves, and what is still broken
+
+| Proven | Broken, measured |
+|---|---|
+| Byte-range splices leave every other byte identical, on 8,513 real files | The certificate CLI cannot start (`ERR_MODULE_NOT_FOUND`); one symbol of thirteen files reaches product code |
+| The certificate never writes into the document | The consensus reference is wrong: on `~~gone~~` the engines split 3/2/2 and all seven cells report PASS; on task lists the four engines that do not implement GFM outvote the three that render correctly, so the correct ones are marked MUTATE |
+| Callouts survive where fences do not: an unclosed fence swallows the document, a callout has no closer to lose (tested on four engines and GitHub) | `certify` drops the block after frontmatter when no blank line follows it; two fence grammars disagree inside one module |
+| Tags and links can be written back in the file's own shape | `OffsetMap.toU16` returns end-of-document at lengths that are multiples of 512, and reports `ok: true` |
+| 8 of 15 target surfaces are uncertifiable and the code computes that share | 6 of 19 construct detectors carry `provenance: invented`; six false-positive shapes reproduce |
+
+**What "improving markdown" means here.** Not syntax. Four things, all already in the engine's scope:
+
+1. **Certified rendering.** A file passes when the engines that implement the spec defining each construct agree, not when a majority of arbitrary engines does. Replace the modal reference with a declared per-construct expectation named in `targets.ts`. This turns MDMAX into `mdmax cert`: a CI check that a team's docs render the same on GitHub, Obsidian and the consumers they name.
+2. **Byte-safe writes, including frontmatter.** NF-1 through NF-4 are the writer's remaining refusals on real vaults; fixing them is the difference between 17% and near-100% of files the engine will touch.
+3. **One sidecar beside the file.** Review state, comments and provenance live in `.frontmatter/`, plain text, anchored by byte range plus content hash. This is the only thing frontmatter adds, and it is not in the markdown.
+4. **Non-English correctness.** The offset map is the seam; the D1 defect and the CJK tokeniser are the work.
+
+**Fix order for MDMAX** (from the audit): make the CLI run (extensions and the `@/` alias, one day); run the certificate end to end once with real engines; land the four detector and offset tests that fail today; replace the consensus reference; then publish fidelity and refusal rates as one fraction, never fidelity alone.
+
+## PART VI — Reference
+
+### 21. Rendering and markdown rules
 
 | | |
 |---|---|
@@ -363,7 +500,7 @@ flowchart TD
 | Storage | Prose annotations as callouts (no closing marker to lose; an unclosed fence swallows the document). Tags and links written back in the shape the file uses. Review state and comments in the plain-text sidecar |
 | Interop | Read `AGENTS.md` and `CLAUDE.md`, never replace them; MCP server for the user's agent; git as the only versioning; Obsidian conventions preserved |
 
-### 16. Operating rules
+### 22. Operating rules
 
 | | |
 |---|---|
@@ -375,7 +512,7 @@ flowchart TD
 | Accessibility, non-English | WCAG 2.2 AA; the `body-faint` token fails at 1.984:1 and is fixed in MVP-0; the tint is never colour alone. CJK: the byte map, a bigram search tokeniser, a written v1 scope decision |
 | Security | No plugins, no code execution; the AI never gets ambient repo access; malformed repos refused, not repaired; 4 MB and 200,000-line ceilings per file |
 
-### 17. Where the plan stands
+### 23. Where the plan stands
 
 | | |
 |---|---|
