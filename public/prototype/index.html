@@ -683,13 +683,74 @@ licence is far lower than on a personal one.</div></div>
   </div>
 </section>
 
+<!-- ═══ S13 · REPO DOCS · what we read, what we propose ═══════════════ -->
+<section class="screen" id="repodocs">
+  <div class="top">
+    <div class="logo">fm</div>
+    <div class="tabs"><div class="tab on"><svg class="ic s"><use href="#i-find_replace"/></svg>Docs scan · acme-billing<span class="x"><svg class="ic s"><use href="#i-close"/></svg></span></div><div class="tab" style="--tc:var(--t-blue)">auth.md<span class="x"><svg class="ic s"><use href="#i-close"/></svg></span></div></div>
+    <button class="iconbtn"><svg class="ic s"><use href="#i-sync"/></svg>Rescan</button>
+    <button class="iconbtn primary"><svg class="ic s"><use href="#i-check"/></svg>Review 6 proposals</button>
+  </div>
+  <div class="work">
+    <aside class="rail">
+      <div class="railhead"><span class="k">Markdown in this repo · 41 files</span></div>
+      <div class="tree">
+        <div class="node"><svg class="ic s"><use href="#i-description"/></svg>README.md<span class="bar warn" title="stale"><i style="width:100%"></i></span></div>
+        <div class="node"><svg class="ic s"><use href="#i-description"/></svg>AGENTS.md<span class="bar" style="background:none;color:var(--bad);font-family:var(--mono);font-size:9.5px;width:auto">missing</span></div>
+        <div class="node"><svg class="ic s"><use href="#i-description"/></svg>CHANGELOG.md<span class="bar" style="background:none;color:var(--bad);font-family:var(--mono);font-size:9.5px;width:auto">missing</span></div>
+        <div class="node"><svg class="ic s"><use href="#i-folder"/></svg>docs <span class="k" style="margin-left:4px">12</span></div>
+        <div class="node d1"><svg class="ic s"><use href="#i-description"/></svg>api.md<span class="bar" style="background:none;color:var(--bad);font-family:var(--mono);font-size:9.5px;width:auto">3 broken links</span></div>
+        <div class="node d1"><svg class="ic s"><use href="#i-description"/></svg>install.md<span class="bar warn"><i style="width:100%"></i></span></div>
+        <div class="node d1"><svg class="ic s"><use href="#i-description"/></svg>architecture.md</div>
+        <div class="node"><svg class="ic s"><use href="#i-folder"/></svg>specs <span class="k" style="margin-left:4px">9</span></div>
+        <div class="node d1"><svg class="ic s"><use href="#i-description"/></svg>auth.md<span class="bar"><i style="width:64%"></i></span></div>
+        <div class="node d1"><svg class="ic s"><use href="#i-description"/></svg>billing.md<span class="bar"><i style="width:12%"></i></span></div>
+        <div class="node"><svg class="ic s"><use href="#i-folder"/></svg>adr <span class="k" style="margin-left:4px">4</span></div>
+        <div class="node"><svg class="ic s"><use href="#i-folder"/></svg>notes <span class="k" style="margin-left:4px">14</span></div>
+      </div>
+    </aside>
+    <div class="centre">
+      <div class="modes"><span class="k">Proposals · 6</span><div class="fmt"></div><span class="crumb">scanned 41 .md · package.json · git log · <b>0 source files read</b></span></div>
+      <div class="doc" style="padding:16px 0">
+        <div class="page" style="max-width:760px;font-size:13px">
+          <div class="hunk" style="margin:0 0 12px"><div class="hh"><span><b style="color:var(--warn)">STALE</b> · README.md § Install</span><span>package.json changed 2026-08-30 · README last touched 2026-06-12</span></div>
+            <div class="ln del"><span class="g">14</span>npm run dev        # starts on :3000</div>
+            <div class="ln add"><span class="g">14</span>npm run dev        # starts on :3100 (see package.json "dev")</div>
+            <div class="acts"><button class="primary">open as proposal</button><button>dismiss</button><span style="flex:1"></span><span class="k">evidence: scripts.dev in package.json</span></div></div>
+          <div class="hunk" style="margin:0 0 12px"><div class="hh"><span><b style="color:var(--bad)">BROKEN</b> · docs/api.md · 3 links</span><span>link-doctor</span></div>
+            <div class="ln del"><span class="g">22</span>See [[billing-v1]] for retries.</div>
+            <div class="ln add"><span class="g">22</span>See [[billing]] for retries.</div>
+            <div class="acts"><button class="primary">open as proposal</button><button>dismiss</button><span style="flex:1"></span><span class="k">target renamed 2026-08-02</span></div></div>
+          <div class="hunk" style="margin:0 0 12px"><div class="hh"><span><b style="color:var(--bad)">MISSING</b> · AGENTS.md</span><span>from tree + README + specs/</span></div>
+            <div class="ln"><span class="g"> </span>Generate a starter: stack, run commands, where specs live, what never to touch.</div>
+            <div class="acts"><button class="primary">generate · arrives tinted</button><button>skip</button><span style="flex:1"></span><span class="k">your key · claude-sonnet-5</span></div></div>
+          <div class="hunk" style="margin:0 0 12px"><div class="hh"><span><b style="color:var(--accent)">DOCUMENT</b> · from an idea or the repo</span><span>idea mode</span></div>
+            <div class="ln"><span class="g"> </span>PRD · FRD · BRD · product note · spec — from a sentence you type, or from README + specs/.</div>
+            <div class="acts"><button class="primary">generate PRD</button><button>FRD</button><button>BRD</button><span style="flex:1"></span><span class="k">arrives as tinted spans, nothing written until you keep it</span></div></div>
+          <div class="callout"><b>What was read to make these:</b> 41 markdown files, <code>package.json</code>, <code>git log</code> for dates. <b>No source file contents.</b> Everything stays on this machine (desktop) or in your browser (web, fetched with your GitHub token). Nothing is sent to us.</div>
+        </div>
+      </div>
+      <div class="status"><span class="a">6 proposals</span><span>2 stale · 1 broken · 2 missing · 1 offer</span><span class="sp"></span><span class="g">read-only until you accept</span></div>
+    </div>
+    <aside class="rail r">
+      <div class="rsec"><button><svg class="ic"><use href="#i-visibility"/></svg>What we read<span class="sp"></span></button>
+        <div class="rbody"><div class="hist"><div><span class="num">41</span><span>markdown files, full text</span></div><div><span class="num">1</span><span><b>package.json</b> · scripts and deps only</span></div><div><span class="num">log</span><span>git dates per file, no diffs</span></div><div><span class="num">0</span><span>source files. Never, unless you point at one</span></div></div></div></div>
+      <div class="rsec"><button><svg class="ic"><use href="#i-folder"/></svg>Source<span class="sp"></span></button>
+        <div class="rbody" style="font-size:12px">Desktop: local folder <code>~/code/acme-billing</code>. Web: GitHub repo, fetched in your browser with your token. <b>Our server sees no document bytes.</b></div></div>
+      <div class="rsec"><button><svg class="ic"><use href="#i-history"/></svg>When it runs<span class="sp"></span></button>
+        <div class="rbody" style="font-size:12px">Only when you press Rescan. Nothing in the background. Generation uses your key; scanning uses no model at all.</div></div>
+      <div class="rbtn"><button><svg class="ic s"><use href="#i-block"/></svg>Exclude folders</button><button><svg class="ic s"><use href="#i-keyboard"/></svg>Shortcuts</button></div>
+    </aside>
+  </div>
+</section>
+
 <nav class="proto" aria-label="prototype screens">
   <span class="lbl">frontmatter · prototype</span>
-  <button data-go="launcher">launcher</button><button data-go="editor">editor</button><button data-go="review">review</button><button data-go="clarify">answer in place</button><button data-go="split">split</button><button data-go="settings">settings</button><button data-go="refactor">refactor</button><button data-go="generate">generate</button>
+  <button data-go="launcher">launcher</button><button data-go="editor">editor</button><button data-go="review">review</button><button data-go="clarify">answer in place</button><button data-go="split">split</button><button data-go="settings">settings</button><button data-go="refactor">refactor</button><button data-go="repodocs">repo docs</button><button data-go="generate">export</button>
 </nav>
 <script>
 (function(){
-  var ids=['launcher','editor','review','clarify','split','settings','refactor','generate'];
+  var ids=['launcher','editor','review','clarify','split','settings','refactor','repodocs','generate'];
   function show(id){
     if(ids.indexOf(id)<0)id='launcher';
     ids.forEach(function(i){var el=document.getElementById(i);if(el)el.classList.toggle('on',i===id)});
