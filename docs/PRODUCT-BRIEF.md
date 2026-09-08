@@ -1,308 +1,385 @@
 # frontmatter
-## The pilot plan: what we build first, what we cut, and how we sell it
+## Product and technical plan — pilot, pro, max
 
-> Amit, this is the plan for our meeting. I checked it against 157 sources this week and had to correct 60 things, three of them on this very page. So the numbers here were opened, not remembered. Where I was wrong before, I have said so in the same place.
+> Technical documentation, Studio Zephyrus. Market figures re-checked against 157 primary sources on 2026-09-06; browser support, repo-tooling and hosting figures added 2026-09-08. Corrections to earlier versions are marked where they apply. Features are labelled by their evidence: **public evidence**, **founder user test**, or **untested**.
 
 ::keyfigures
-75–85k — public repos hold superpowers specs and plans. 22–30k of them were touched in the last 30 days
-11,072 — public repos hold a spec-kit constitution. About 1,660 touched their specs in 30 days
-0 — of the tools that write those files is an editor
-6 — AI routes already live in our repo, on a five-provider fallback chain
-97 / 53 / 7 — findings confirmed, revised, refuted in the round behind this page
+75–85k — public repos hold superpowers specs and plans; 22–30k touched in the last 30 days
+11,072 — public repos hold a spec-kit constitution; about 1,660 touched their specs in 30 days
+0 — of the tools that write those files is an editor, and none keeps review state
+2 — browsers that can open a local folder without an install: desktop Chrome and Edge
+6 — AI routes already live in the repo, on a five-provider fallback chain
 ::
 
-## PART I — The decision
+## PART I — Product
 
-### 1. What we build
+### 1. Definition
 
-> [!good] **frontmatter is the editor where you see what the agent changed without being asked, and know what nobody has reviewed yet.** Open a spec the agent wrote. Everything changed since a person last read it is tinted. One key reverts any of it. Who wrote it, and the prompt, show up whenever the write carried them. Nothing else in the file moves.
+> [!good] **frontmatter is a markdown editor that shows what an agent changed and what nobody has reviewed yet, on files that stay in the user's own repo.** Every span changed since a person last read it is tinted. One key reverts any span. Author and prompt are shown when the write carried them. The file is edited byte-exactly: only the requested range changes.
 
-**Three things I got wrong on this page last time.**
+**Core loop**
 
-- **"See what the AI wrote" was shipped three years ago, and nobody bought it.** iA Writer 7 has dimmed AI-pasted text since November 2023. The Obsidian request to copy it got 65 likes and went quiet within a month. The port has 208 downloads. The best of twelve VS Code extensions doing the same thing has 366 installs. On Reddit there is one ask for it in 107 matching posts, with 2 points.
-- **What people actually upvote is changes they did not ask for, and output they cannot review.** In Claude Code's own tracker the diff-review request has 262 reactions and "diff" is in 463 of 89,761 issue titles. Requests to *remove* AI authorship marks from commits got 29 and 36. So: show what changed. Do not tint who wrote it.
-- **"Answer in place" is a small spec-kit feature, not the product.** The 62,976 figure I quoted was a template artefact. 49,408 of those files are spec-kit's own checklist line, *"No [NEEDS CLARIFICATION] markers remain."* Real open markers: about 1,500 public files, 2.7% of committed specs. superpowers has no such marker, and `/speckit.clarify` settles most of them in chat anyway.
+```mermaid
+flowchart LR
+  A["Agent or person<br/>writes markdown<br/>(any tool)"] --> B["File in the user's repo"]
+  B --> C["frontmatter opens it<br/>content hash per span"]
+  C --> D{"Changed since<br/>last reviewed?"}
+  D -- yes --> E["Tinted span<br/>author/prompt if known"]
+  D -- no --> F["Plain text"]
+  E --> G["Person reads,<br/>accepts or reverts"]
+  G --> H["Review state written<br/>to sidecar in the repo"]
+  H --> C
+```
 
-**Why the reading surface is still ours.** Claude Code now opens plans as markdown with inline comments. VS Code previews range feedback on markdown. git-ai records who wrote which line, after the fact. Anthropic's models carry signed provenance metadata in the EU. Each of these records a moment. None of them keeps the state: which spans a person has read, kept across sessions, across teammates, across whatever tool wrote the file. That state is a byte-range record sitting next to the file in the user's own repo, and keeping it valid while the file changes is exactly the job our engine does.
+**Not in the product:** no plugins or code execution, no hosting of user content, no vendor database holding document bytes, no project management, no chat sidebar, no mobile editor in v1.
 
-**The demo, fifteen seconds.** Run your agent's spec command. Open the spec here. Every paragraph is tinted, because nobody has read it. Read one, it clears. Revert one, `git diff` shows only that. The panel on the right lists what is still unread, today, next week, or when you open it.
+**Demo, fifteen seconds.** Run the agent's spec command. Open the spec in frontmatter: every paragraph tinted. Read one, it clears. Revert one, `git diff` shows only that line. The panel lists what is still unread.
 
-## PART II — The market
+### 2. Feature specification
 
-### 2. Who already does what, and where each one stops
+Each feature: what it does, how it works, what it needs, when it ships, and whether it works online without an install and offline in the desktop app. Days are engineering estimates for the current team; they assume the engine fixes in §9 land first.
 
-::exhibit 1 | Fetched 2026-09-06, with denominators
+::exhibit 1 | Features, specified
 
-| | Tool | Real reach | What it does | Where it stops |
+| # | Feature | What it does | How it works | Needs | Ships | Web, no install | Desktop, offline | Evidence |
+|---|---|---|---|---|---|---|---|---|
+| F1 | **Editor** | Live, Edit, Split, Read. Tree, tabs, quick-switch, palette, search, properties panel for frontmatter | CodeMirror 6 over the splice engine; every write is a byte-range replacement | Exists. NF-1/NF-3 fixes (7d), engine wiring (8d) | MVP-0 | Yes | Yes | Public: editor is table stakes |
+| F2 | **Review state** | Tints every span changed since a person last read it; one-key revert; review panel with a counter | Per-span content hash in `.frontmatter/review.jsonl` beside the files, in the repo. Spans anchored by byte range + hash, relocated by the splice locator when the file changes | Store 6d, rendering 5d, revert 3d, panel 4d | MVP-0 | Yes | Yes | Public: unrequested-change pain (262 reactions on diff review). **Untested as a product** — the two-week test |
+| F3 | **Attribution** | Author, model, time and prompt on hover | Read from what the write carried: an MCP write (F11), a commit trailer, a git-ai note, signed provenance metadata. Absent when none exists, and the card says so | Reader for trailers/notes 3d | MVP-0 (readers), MVP-1 (MCP) | Yes | Yes | Public: authorship marking alone did not sell (iA Writer 7) |
+| F4 | **Answer in place** | Answers `[NEEDS CLARIFICATION]` and `Q: → A:` markers inline; one line changes | Marker detection + splice into the marker's byte range | 3d | MVP-0 | Yes | Yes | Public: ~1,500 live public files, spec-kit only |
+| F5 | **Idea mode** | Generates a PRD, FRD, BRD, product note or spec from a typed idea or from the repo (README + specs) | Exists: `generate-document`, five prompt kinds, `/api/ai/generate-doc`. Output arrives as tinted spans; nothing written until kept | Structured output in the port 2d; "from repo" input 2d | MVP-0 | Yes, with the user's key | Needs network for the model; offline: no | **Founder user test** (reported). Public: standalone PRD generators have no traction — top repo 57 stars of 512 |
+| F6 | **Decision flow** | Before generating, asks the questions the idea leaves open; answers are written into the frontmatter and shape the document | Structured question list from the LLM port; answers stored as frontmatter keys the generator reads | 4d, after F5's structured output | MVP-0, inside F5 | Yes, with key | No | **Founder user test** (reported). Public: `/speckit.clarify`, Kiro and Claude Code plan mode ship the same step free — the difference is that ours writes into the document and stays reviewable |
+| F7 | **Repo docs scan** | Reads every markdown file in a repo and proposes: stale sections (doc older than the code it cites), broken links, missing standard docs (AGENTS.md, CHANGELOG), and offers to generate them | No model for the scan: git dates per file, `package.json` scripts, link resolution (`link-doctor` exists). Generation reuses F5. Shows exactly what was read | Staleness heuristic 4d, missing-doc templates 2d, S13 UI 4d | MVP-0 | Yes: scan runs in the browser on fetched bytes | Yes: scan needs no network | **Founder direction.** Public: Vale 6,087 stars and markdownlint 6,326 are the incumbents for lint; no incumbent proposes edits with review state. README generators: 11,131 stars, abandoned 2022 |
+| F8 | **File-scoped AI** | Two verbs on the open file: fix or critique this selection; summarise this file. Collapsed by default; a hide-all switch | Bring-your-own key, request from the user's machine to the provider. Proposals arrive as tinted spans | BYO key UI + keychain 3d | MVP-0 | Yes, with key | No | Public: editing supplied text is 10.6% of ChatGPT messages; incumbents hide AI until invoked |
+| F9 | **Vault-wide refactor** | Rename a tag, heading or key across the vault; every hunk reviewable; ambiguity refused | Engine splice across files; refusal on fenced or ambiguous matches | 8d | MVP-1 | Yes | Yes | Public: 86 likes on broken-links-on-rename |
+| F10 | **Shared review state, comments** | What each person has read, across a team; comments anchored to spans | Same sidecar, per-person entries; comments as a sidecar too, never in the file (every in-file syntax renders as garbage on GitHub) | 10d | MVP-1 | Yes | Local only until push | Public: GitHub Team sells reviewers at $4; **untested** whether teams pay for this |
+| F11 | **MCP server** | The user's agent writes through frontmatter, so writes carry the prompt | Local MCP server in the desktop app; agents connect by config | 6d | MVP-1 | No: needs a local process | Yes | **Untested** whether agents route writes through a third-party tool |
+| F12 | **Sync** | Multi-device, provably safe | Git merge, never a CRDT; conflicts surfaced, never guessed | 15d+ | MVP-2 | Yes | Local edits, sync on reconnect | Public: sync is the one proven individual price |
+| F13 | **Export** | Single document or folder to HTML, PDF, copy-as-HTML; decks only if a pilot user asks | Templating, no model | 5d | MVP-2 | Yes | Yes | Public: export beats decks 2:1; sites are wanted hosted, which is refused |
+
+**Founder-validated features.** F5 and F6 were reported as tested with users by the founders. Public evidence for them is weak as standalone tools and does not contradict an in-editor test. They ship in MVP-0 on that basis, inside the review-state loop: generated text arrives tinted and is not written until kept.
+
+### 3. Access model
+
+Two ways to use frontmatter. What each can do is fixed by the browser and the platform, not by the plan.
+
+```mermaid
+flowchart TB
+  U["User"] --> W["Web app, no install"]
+  U --> D["Desktop app, downloaded"]
+  W --> W1["Connect a GitHub repo<br/>bytes fetched in the browser<br/>with the user's token"]
+  W --> W2["Open a local folder<br/>File System Access API<br/>desktop Chrome, Edge only"]
+  W --> W3["Drag files in<br/>read-only session"]
+  D --> D1["Any local folder<br/>full read/write"]
+  D --> D2["Local git, watcher,<br/>local search index"]
+  D --> D3["Local MCP server<br/>for the user's agent"]
+  W1 --> S["Nothing reaches our server<br/>except identity and billing"]
+  W2 --> S
+  D1 --> S
+```
+
+::exhibit 2 | What works where
+
+| Capability | Web, GitHub repo | Web, local folder (Chrome, Edge) | Web, Firefox, Safari, mobile | Desktop app |
 |---|---|---|---|---|
-| **Spec writers** | **obra/superpowers** | **75–85k public repos** with `docs/superpowers/specs` or `/plans`, 22–30k active in 30 days. The marketplace counter says 1,009,371, cached, definition unknown | Brainstorm, design, write the spec, commit it, gate it for review | A terminal tool. Not an editor. No review state |
-| | **github/spec-kit** | **11,072 public repos** with a committed constitution, 82% real. About 1,660 active in 30 days | `/speckit.specify`, `/speckit.clarify` (asks in chat), plan, tasks, implement | Writes markdown, then leaves |
-| | Plan mode in Claude Code, Cursor | Out-scores both named tools on Reddit (1,776 / 1,409 / 1,329 points against 38 or fewer). Cursor's markdown plan editor is praised at 167 | Plans as markdown files | Where those files live on disk is untested |
-| **Review surfaces** | **Claude Code, VS Code extension** | 24.89M installs | **Plans as a full markdown document with inline comments since 2.1.70, March 2026.** This wiped out the third-party plan-review market: 222 installs across three tools | A moment, per session. The diff-review request is still open at 262 reactions |
-| | git-ai, VS Code 1.118 | 61,517 installs; AI co-author trailers on by default | Line-level attribution after the fact, commit trailers | Commit granularity. Nothing persists per span |
-| | SpecKit Companion | 9,367 installs | Keeps review state in a `.spec-context.json` per spec. **Our sidecar idea, already shipped** | Spec-kit only |
-| **Editors** | **Obsidian** | Free. Sync $4. Publish $8 per site. Commercial $50 a year | AI comes as plugins: Copilot 1.83M downloads (*"run Claude Code, Codex and OpenCode inside your vault"*), Claudian 2.02M | None records what changed or what was reviewed |
-| | Cursor, Zed | About $20, free | The strongest agent editing for code. Zed reviews per hunk | Whole-file rewrite. No markdown vault semantics |
-| **Browser** | Obsidian Web Clipper, Markdown Viewer | **1,000,000 and 500,000** Chrome users | Capture and read markdown in the browser | A channel for us |
-| **Hosted sites** | mdown.ai, Obsidian Publish | Aimed at non-engineers; $8 a site a month | Markdown to a live website, on their servers | The host role we refuse. We export, they host |
+| Open and edit files | Yes; writes become commits or PRs | Yes, direct writes with a per-folder permission | Repo connect or drag-in only | Yes |
+| Review state (F2) | Yes; sidecar committed with the files | Yes | Repo connect only | Yes |
+| Repo docs scan (F7) | Yes, on fetched bytes | Yes | Repo connect only | Yes, offline |
+| Idea mode, AI panel (F5, F6, F8) | With the user's key | With key | With key | With key; needs network for the model |
+| MCP server (F11) | No | No | No | Yes |
+| Offline | Cached open files only | Cached | No | Everything except the model |
+| Local git, watcher, index | No | No | No | Yes |
 
-**On price, corrected.** The editor is worth ₹0 in this category. The one thing individuals have proven they pay for is sync, about $4. Last time I called Obsidian's $50 commercial licence a second proven price. It is not. It *"does not provide any functional benefits within the app"*, became optional in February 2025, and its buyers are organisations with 25 or more seats. It says nothing about a five-person team.
+**Browser support, fetched 2026-09-08 (caniuse):** the File System Access API is supported in desktop Chrome and Edge and in none of Firefox, Safari, iOS Safari, Android Chrome or Samsung Internet. **GitHub's REST API supports CORS**, so a repo's bytes can be fetched in the browser with the user's token; the vendor server never sees them.
 
-### 3. What was just AI vocabulary, and what survives
+**What the user downloads.** A Tauri v2 desktop app: macOS `.dmg` (notarised, Apple Developer ID $99/year), Windows `.exe` (code-signed, $150–400/year, hardware token required), Linux AppImage. It contains the editor, the engine, a git client, the MCP server and the search index. It contains no model. Tauri reuses the operating system's webview instead of bundling a browser; the installer size is measured at the first build. The auto-updater must be signed and configured before the first public build. Note: the current `src-tauri` config still carries the sibling app's identity (`productName` sgnk-md, `ai.sgnk.md`) and must be re-identified.
 
-::exhibit 2 | Our own words, checked
+**If the user does not download.** They get F1–F8 in the browser against a GitHub repo, or against a local folder on Chrome and Edge. They do not get MCP, local git, a background watcher, or offline beyond cached files. The web app is the trial; the desktop app is the daily surface. Both are one build with a filesystem adapter, so there is one product to maintain.
 
-| We said | What it turned out to be | Verdict |
+### 4. Architecture
+
+```mermaid
+flowchart LR
+  subgraph Local["User's machine or browser"]
+    F["Files in the repo"]
+    E["Splice engine<br/>byte ranges, refusal"]
+    R[".frontmatter/review.jsonl<br/>sidecar, in the repo"]
+    M["MCP server<br/>(desktop)"]
+  end
+  subgraph Theirs["User's accounts"]
+    G["GitHub<br/>repo, App installation"]
+    K["AI provider<br/>user's key"]
+  end
+  subgraph Ours["Studio Zephyrus"]
+    C["Control plane<br/>identity, teams, billing<br/>zero document bytes"]
+  end
+  F <--> E
+  E --> R
+  M --> E
+  E <--> G
+  E --> K
+  E -. identity only .-> C
+```
+
+**Data path.** Document bytes move between the editor, the engine and the user's git. In the web app they are fetched from GitHub in the browser. The control plane holds identity, team membership, entitlements and billing, and no document bytes. The AI request goes from the user's machine to their provider. Hosted AI, if ever enabled, is metered and hard-capped and never the default.
+
+**Sidecar format.** `.frontmatter/review.jsonl`, one JSON line per span: file path, byte start, byte end, content hash, reviewed-by, reviewed-at, and, when known, author, model, prompt. Plain text, documented, readable without frontmatter. Spans are relocated by the splice locator on every edit; the journal is not the anchor, because git, other editors and agents bypass it. The nearest shipped pattern is SpecKit Companion's `.spec-context.json` (9,367 installs); frontmatter's must be visibly better: per-span, per-person, any tool.
+
+**Cost rules.** Nothing runs in the background; spend follows use. Output tokens are 75.8% of model spend, so output is capped, not input. Infrastructure is about $0 at 100 users and about $390/month at 10,000 because no documents are stored. Support is the real cost at scale, about 90 founder-hours a month at 10,000 users.
+
+## PART II — Market
+
+### 5. Who does what, and where each stops
+
+::exhibit 3 | Fetched 2026-09-06 and 2026-09-08
+
+| | Tool | Reach | What it does | Where it stops |
+|---|---|---|---|---|
+| **Spec writers** | obra/superpowers | 75–85k public repos; 22–30k active in 30 days; marketplace counter 1,009,371 (cached) | Brainstorm, design, write the spec, commit it | Terminal. No editor, no review state |
+| | github/spec-kit | 11,072 public repos; about 1,660 active | `/speckit.specify`, `/speckit.clarify` (in chat), plan, tasks, implement | Writes markdown, then leaves |
+| | Plan mode, Claude Code and Cursor | Out-scores both named tools on Reddit (1,776 / 1,409 / 1,329 points vs 38 or fewer) | Plans as markdown files | Where the files live is untested |
+| **Review surfaces** | Claude Code, VS Code extension | 24.89M installs | Plans as a markdown document with inline comments since 2.1.70 (2026-03-06) | Per session. Diff-review UI open at 262 reactions |
+| | git-ai; VS Code 1.118 | 61,517 installs; AI co-author trailers by default | Line attribution after the fact; commit trailers | Commit granularity, nothing per span |
+| | SpecKit Companion | 9,367 installs | Review state in `.spec-context.json` per spec | Spec-kit only |
+| **Docs tooling** | Vale, markdownlint | 6,087 and 6,326 stars | Prose and markdown lint | Lint only; no proposals, no review state |
+| | readme-md-generator, readme-ai | 11,131 (abandoned 2022), 2,980 | Generate a README | One file, no repo context |
+| | PRD generators | 512 repos on GitHub; the top has 57 stars | Generate a PRD from a prompt | No traction as standalone tools |
+| **Editors** | Obsidian | Free; Sync $4; Publish $8/site; Commercial $50/yr | AI via plugins: Copilot 1.83M downloads, Claudian 2.02M | None records what changed or was reviewed |
+| | Cursor, Zed | ~$20; free | Agent editing for code; Zed reviews per hunk | Whole-file rewrite; no vault semantics |
+| **Browser** | Obsidian Web Clipper, Markdown Viewer | 1,000,000 and 500,000 Chrome users | Capture and read markdown | A distribution channel |
+| **Hosted sites** | mdown.ai, Obsidian Publish | Non-engineers; $8/site/month | Markdown to a hosted website | The host role frontmatter refuses |
+
+**Prices.** The editor is worth ₹0 in this category. The one proven individual price is sync, about $4. Obsidian's $50/year commercial licence confers no functional benefit, became optional in February 2025, and is bought by 25+ seat organisations; it is not evidence of what a five-person team pays.
+
+### 6. Vocabulary audit
+
+::exhibit 4 | Terms from earlier plans, checked
+
+| Term | Finding | Status |
 |---|---|---|
-| "Context packs", "handover generation" | Free now from GitHub and Anthropic. And the "median 2 points" graveyard was the Hacker News baseline all along | Cut |
-| "Decision-flow renders" | A note-taker's plugin at 0.30 of the median, and the wrong buyer | Cut |
-| "Kickoff prompt", "our CDN files" | A copy-paste step worse than a slash command, and a hop that breaks "we never hold your documents" | Cut |
-| "Self-improving AIOS" | One feedback label from 6,884 decisions | Internal only |
-| "Local LLM fallback" | Five cloud free tiers, not local. A constrained small model makes things up rather than refusing, in 10 of 13 models | Defer |
-| "Byte-exactness" as the headline | 4 complaints in 12,556 | Mechanism, never the pitch |
-| "See what the AI wrote" | Shipped by iA Writer in 2023. 208 downloads for the port, 366 for the best extension, one Reddit ask | Cut as the headline. Show the author when a write supplies it |
-| "496,000 stars" as our channel | Stars are attention to a CLI. Real usage is low tens of thousands of active projects a month | Resized, above |
-| "Uncopyable by anything that rewrites files" | False at commit level. Trailers and git-ai do it after the fact | Struck |
-| **What changed since you reviewed, kept as a state** | The pain people upvote. Nobody persists it | **The product, if the two-week test passes** |
-| Answer in place | About 1,500 public files, spec-kit only | A feature |
-| File-scoped AI | Table stakes. Two verbs have real demand | Keep, your own key, collapsed |
+| Context packs, handover generation | Free from GitHub and Anthropic; the "median 2 points" graveyard was the Hacker News baseline | Cut |
+| Decision-flow renders | 0.30 of the median plugin, wrong buyer | Cut |
+| Kickoff prompt, vendor CDN | Worse than a slash command; breaks "no document bytes on our server" | Cut |
+| Self-improving AIOS | One feedback label from 6,884 decisions | Internal tooling only |
+| Local LLM fallback | Five cloud free tiers, not local; constrained small models fabricate in 10 of 13 | Deferred |
+| Byte-exactness as the headline | 4 complaints in 12,556 | Mechanism, not pitch |
+| "See what the AI wrote" | Shipped by iA Writer 7 in 2023; 208 downloads for the Obsidian port; best VS Code extension 366 installs; one Reddit ask | Attribution is shown when available, not the headline |
+| "496,000 stars" as channel size | Stars measure attention to a CLI | Replaced by active-repo counts |
+| "Uncopyable" | Trailers and git-ai attribute at commit level | Struck |
+| "62,976 unanswered markers" | 49,408 were spec-kit's own checklist line | About 1,500 live markers |
 
-## PART III — What we ship
+### 7. Evidence status per feature
 
-### 4. Keep, cut, defer
+::exhibit 5 | What is proven, what is reported, what is untested
 
-::exhibit 3 | Every proposed piece, decided. Nine changed since last time
+| Status | Features | What settles it |
+|---|---|---|
+| **Public evidence** | Editor table stakes (F1), unrequested-change pain (F2 motive), attribution-alone does not sell (F3), marker counts (F4), AI hidden until invoked (F8), sync as a price (F12), export over decks (F13) | Done |
+| **Founder user test, reported** | Idea mode (F5), decision flow (F6), the docs-scan direction (F7) | The founders' test notes, attached to the plan; then the ten-stranger pilot |
+| **Untested** | Review state as a product (F2), teams paying for shared review (F10), agents writing through MCP (F11), the web byte-path decision, the MVP-0 exit measure | Weeks 1–2 tests (§14) |
 
-| # | Proposed | Verdict | Why |
+## PART III — Delivery
+
+### 8. Tiers
+
+::exhibit 6 | MVP-0 pilot, MVP-1 pro, MVP-2 max
+
+| | MVP-0 pilot, free forever | MVP-1 pro, teams | MVP-2 max |
 |---|---|---|---|
-| 1 | The editor: Live, Edit, Split, Read | **Keep** | The free tier. Zed launched with zero AI words on its page. Obsidian's first build had none |
-| 2 | The design system | **Keep** | Replace the sibling project's `globals.css` |
-| 3 | **Review state**: tint since last read, revert, the panel | **Keep. This is the product** | The only thing in Exhibit 1 nobody persists |
-| 4 | Author and prompt on hover | **Reshape** | Shown when the write carried them: an MCP write, a commit trailer, a git-ai note, signed metadata. **At MVP-0 a file the agent wrote with its own tools has no prompt to show.** The state is "changed since you reviewed", and the demo has to say so |
-| 5 | Answer `[NEEDS CLARIFICATION]` in place | **Keep as a feature** | About 1,500 live public files. Cheap. Spec-kit only |
-| 6 | The AI writing section, open on load | **Reshape: collapsed, no model call on load, a "hide all AI" switch from day one** | No incumbent opens a panel at rest. Zed, VS Code and Telegram each shipped a hide switch after 412, 30 and 181-reaction issues. Our own record had already refused ambient AI; the sketch was a step back |
-| 7 | AI verbs in the panel | **Reshape to two** | Editor communities ask for AI in 0.13% of feature titles. Usage data says editing or critiquing text you supplied is 10.6% of all ChatGPT messages, and Notion's #1 and #3. Ship **"fix or critique this selection"**. **"Summarise this file"** provisionally. No translate, tag, outline or explain |
-| 8 | Comments, drawn in the rail | **Reshape: a sidecar in the repo, v1.5** | Every in-file syntax fails on GitHub. `%%` and CriticMarkup print as literal text, `> [!comment]` renders as a plain quote, HTML comments hide but put reviewer bytes inside the artefact. Anchor by byte range plus content hash, moved by the splice locator |
-| 9 | Bookmarks, drawn in the rail | **Cut** | Per-user, per-device state with no measured demand |
-| 10 | Share, drawn in the rail | **Open** | "Permalink plus export" needs no state, but a plain folder has no commit and a private repo has no readable link. And our old record's distribution maths assumed a hosted viewer. Decision 3 |
-| 11 | Generate a site or a deck | **Move to MVP-2, as export** | Marp is 5.9% of the top markdown extension's installs. Decks are 0.7% of Obsidian downloads. Sites from a folder are wanted hosted, which we refuse. Export (HTML, PDF, copy as HTML) beats decks 2 to 1 |
-| 12 | Team tier: who reviewed what, at $8 | **Reshape** | **GitHub Team sells required reviewers and code owners on private repos at $4.** What small teams are actually gated on elsewhere: seats, history retention, shared-vault sync. Repriced in §8 |
-| 13 | Generate all files, kickoff prompt, CDN, local model | **Cut or defer** | Unchanged |
+| Engine | NF-1, NF-3 fixed; CI with a deliberate red run; engine wired behind every write; real byte budget | Vault-wide refactor (F9) | Sync (F12) |
+| Editor | F1, all modes and navigation | Conflict view | Multi-device |
+| Review | F2 review state; F3 attribution from trailers and notes; F4 answer in place | F10 shared state, comments; F3 with prompts via F11 MCP | Version-history retention |
+| Generation | F5 idea mode; F6 decision flow; F7 repo docs scan and missing-doc generation | | F13 export |
+| AI | F8 panel, BYO key, two verbs, hide-all switch; structured output in the port | Hosted AI, metered, capped, off by default | Document gates in CI |
+| Surfaces | Web app (repo, local folder on Chrome/Edge) and desktop app, one build | Chrome extension; MCP server | |
+| Channels | Free Obsidian live-preview plugin, week 2; kill: under 200 installs in 14 days | superpowers and spec-kit docs; plan-mode files | |
+| Absent | Sign-up, billing, sync, mobile, hosting, hosted AI, local model | Mobile, plugins, chat sidebar | Plugins |
+| Exit test | 6 of 10 strangers still using it after two weeks, by the measure written in week 0 | A team pays within 20 conversations | Corpus passes byte-identical after sync |
 
-### 5. The three tiers
+### 9. Technical plan
 
-::exhibit 4 | MVP-0 pilot, MVP-1 pro, MVP-2 max
+**Fix first.** These block everything else.
 
-| | **MVP-0, the pilot.** 10 weeks, free forever | **MVP-1, pro.** Teams | **MVP-2, max** |
+| # | Problem | Effect | Days |
 |---|---|---|---|
-| **Engine** | NF-1 and NF-3 fixed. CI, with one deliberate red run. Engine wired behind every write. A real byte budget | Vault-wide refactor with a reviewable diff, ambiguity refused | **Sync, provably safe.** Git merge, never a CRDT |
-| **Editor** | Four modes. Tree with the unreviewed bar. Tabs, quick-switch, palette, search, properties, tags | Conflict view | Multi-device |
-| **Review state** | Span-level "changed since reviewed" by content hash, in a sidecar in *their* repo. Tint. **One-key revert.** The review panel. Author when a trailer, note or MCP write supplies it | **Shared review state across a repo**: what each person has read. Comments as a sidecar (v1.5) | Version-history retention |
-| **Answer in place** | `[NEEDS CLARIFICATION]` markers, inline | | |
-| **AI** | Collapsed panel, **your own key only**, two verbs. **Hide-all switch.** Idea mode as it ships today. Structured output in the port | **MCP server**, so the agent's writes carry the prompt. Hosted AI metered and hard-capped, never the default | Document gates in CI |
-| **Output** | | | Single-document export: HTML, PDF, copy as HTML. Decks if a pilot user asks |
-| **Channels** | **Free Obsidian plugin, week 2.** Kill signal: under 200 installs in 14 days | Chrome extension: open any `.md` URL here | |
-| **Absent, on purpose** | Sign-up, billing, sync, mobile, hosting, hosted AI, local model, generation | Mobile, plugins, a chat sidebar | Plugins, still |
-| **Exit test** | **6 of 10 strangers keep it after two weeks, measured, not felt (§10)** | A team pays within 20 real conversations | Sync passes the corpus byte-identical |
+| 1 | NF-1: column-zero list item in frontmatter | 83% of real vaults refused | 4 |
+| 2 | NF-3: bare-CR frontmatter fence | A second frontmatter block is added | 3 |
+| 3 | No CI; four gates have reported green while blind | Shipped on trust | 1 |
+| 4 | Engine unwired: one symbol from one of thirteen files reaches product code | Product does not use the engine | 8 |
+| 5 | Byte budget is an `echo` | No correctness gate | 2 |
+| 6 | No bring-your-own key; every AI request bills the operator | Cannot expose AI to a stranger | 3 |
+| 7 | LLM port returns a bare string; JSON is sliced between brackets | No structured output for F5, F6, F7 | 2 |
+| 8 | Web byte path undecided | "Zero document bytes on our server" is unverified for the web app | Decision |
+| 9 | `src-tauri` carries the sibling app's identity | Desktop build ships as sgnk-md | 1 |
 
-**Before any stranger touches it, three things that do not exist today have to.** Bring-your-own-key (settings expose one boolean today, and every request bills us). Structured output in the LLM port (it returns a bare string). And CI (four of our gates have reported green while blind). Also one thing the research exposed: nobody has written down the byte path for the web trial. Does "connect a repo" fetch document bytes in the browser with the user's token, or through our server? "Zero document bytes in our control plane" depends on the answer.
+**Sequence.** Fix-first (24 days) → review state F2 (18 days) → attribution readers F3 and answer in place F4 (6 days) → idea mode with structured output and decision flow F5, F6 (8 days) → repo docs scan F7 (10 days) → AI panel F8 (3 days) → table stakes and polish. About 70 engineering days for MVP-0, or ten weeks at the team's real availability; the earlier 41-day figure assumed full-time work and was 2.5× optimistic.
 
-### 6. How it is built, and the plugin question
+**Resources.** Two founders and the existing team. Infrastructure at pilot scale: free tiers (Vercel, Postgres, R2). Model cost: zero, all AI on the user's key. Certificates: $99/year Apple, $150–400/year Windows plus a hardware token. No new hires for MVP-0. The pilot's ten users bring their own repos and their own agents.
 
-The cheapest shape is the one where we run no model, hold no document, and sit inside the tools the user already pays for.
+**Engine work beyond the fixes.** Vendored `@lezer/markdown` for incremental parsing, so review spans survive every keystroke cheaply. The byte-to-UTF-16 offset map, the highest-risk seam: an unmapped crossing corrupts Chinese, Japanese, Korean and Arabic text silently. Search: the whole vault currently ships to the client, 77 MB parsed per cold start; move to server full-text search in the web app and a local index on desktop. Published measures: time to first keystroke cold, typing latency on a 10,000-word document, corpus refusal rate, merge conflict rate.
 
-::exhibit 5 | The delivery surfaces
+### 10. Screens
 
-| Surface | Role | Cost to us | When |
-|---|---|---|---|
-| **Web app** | The trial. Visit a URL, connect a repo. Byte path to be decided (§5) | About $0 | MVP-0 |
-| **Desktop, Tauri** | The daily surface. Local folders. Works offline for everything except language AI. Same build as the web app | $99 a year for Apple notarisation. Windows signing $150–400 a year, now with a hardware token | MVP-0 |
-| **Review state from content hashes** | Works for files written by any tool, which matters because the toolchains write with the agent's own tools, not ours | About $0 | MVP-0 |
-| **Their agent, over MCP** | The write carries the prompt. This is an assumption: agents own Write and Edit, and the toolchains tell them to write files directly. Whether any agent routes through us is untested | About $0 | MVP-1 |
-| **Bring-your-own-key panel** | Their key, their machine to their provider. Never through us | About $0 | MVP-0 |
-| **Obsidian plugin** | Distribution only | 4 days | Week 2 |
-| **Chrome extension** | Distribution. 1.5M people already read markdown in a browser | About a week | MVP-1 |
-| **Vendor CDN, hosting** | | | **Never** |
+Built from the two hand-drawn layouts. Clickable prototype, public: [frontmatter-prototype-sagnik.vercel.app](https://frontmatter-prototype-sagnik.vercel.app). Same file in the repo at `docs/prototype/frontmatter-prototype.html`. Screens are on the strip at the bottom of the page.
 
-So, do we ask people to install a plugin? No. The plugin is a channel. The product is the web app and the desktop build, and the AI is theirs.
-
-A few rules keep this cheap and honest. Documents never enter our control plane. Nothing runs in the background, so spend follows use, not time. Cap output, not input: output is 75.8% of spend. The byte-to-UTF-16 seam is the riskiest thing we own. And review state and comments anchor to bytes plus a content hash and get moved by the splice locator, never by our own journal, because git, other editors and agents all bypass the journal. SpecKit Companion's `.spec-context.json` is the pattern we have to be visibly better than.
-
-## PART IV — The screens
-
-### 7. As they will actually look
-
-Built from the two hand-drawn layouts, with real content. **Clickable prototype:** [claude.ai/code/artifact/f6baec30-9d0f-4e4f-a231-50f178f0e65e](https://claude.ai/code/artifact/f6baec30-9d0f-4e4f-a231-50f178f0e65e), also in the repo at `docs/prototype/frontmatter-prototype.html`.
-
-::exhibit 6 | S0, the launcher. Blank, four templates, existing edits sorted unreviewed-first
+::exhibit 7 | S0 launcher: blank, four templates, existing edits sorted unreviewed-first
 
 ![S0 launcher](screens/s0-launcher.png)
 
-The bar on every card is the product showing itself before anything is open. Templates are markdown skeletons: spec, decision record, handover, changelog.
-
-::exhibit 7 | S2, the editor. Tree, coloured tabs, four modes, the review tint, the AI panel collapsed
+::exhibit 8 | S2 editor: tree, tabs, four modes, review tint, AI panel collapsed
 
 ![S2 editor](screens/s2-editor.png)
 
-Text changed since you last reviewed it gets a light tint and nothing else. Click a span and you get when it changed, which bytes, the author from the commit trailer, and, to be honest, "prompt not recorded" for a file the agent wrote outside frontmatter. The AI panel is one collapsed line. Nothing runs until you ask, ⌘J opens it, and Settings can hide it completely.
+Changed-since-reviewed spans carry a light tint and nothing else. The hover card shows when it changed, which bytes, the author from the commit trailer, and "prompt not recorded" when the write did not carry one. The AI panel is one collapsed line; nothing runs until asked.
 
-::exhibit 8 | S3, answer in place. A spec-kit feature, kept because it is cheap
+::exhibit 9 | S13 repo docs scan: stale, broken, missing, and what was read to decide
+
+![S13 repo docs](screens/s13-repodocs.png)
+
+Every proposal names its evidence. The right rail lists exactly what was read: 41 markdown files, `package.json` scripts, git dates, zero source files. Scanning uses no model; generation uses the user's key.
+
+::exhibit 10 | S3 answer in place
 
 ![S3 answer in place](screens/s3-clarify.png)
 
-::exhibit 9 | S4, the review panel. Catching up on a file you did not watch being written
+::exhibit 11 | S4 review panel
 
 ![S4 review](screens/s4-review.png)
 
-Every changed span in order. `j` and `k` to move, `a`, `r`, `s` to accept, revert or skip, and a counter that goes to zero. This is the state nobody else keeps.
-
-::exhibit 10 | S2, split. Source and rendered, the same bytes
+::exhibit 12 | S2 split: source and rendered, the same bytes
 
 ![S2 split](screens/s2-split.png)
 
-::exhibit 11 | S11, settings. The hide-all-AI switch, and the key field that does not exist yet
+::exhibit 13 | S11 settings: hide-all-AI switch, the key field that does not exist yet
 
 ![S11 settings](screens/s11-settings.png)
 
-::exhibit 12 | S8, refactor preview (MVP-1). The engine, made visible
+::exhibit 14 | S8 refactor preview, MVP-1
 
 ![S8 refactor](screens/s8-refactor.png)
 
-::exhibit 13 | S12, export (MVP-2). A site or a page from the folder, never hosted by us
+::exhibit 15 | S12 export, MVP-2
 
 ![S12 generate](screens/s12-generate.png)
 
-## PART V — Money, market, plan
+## PART IV — Commercial
 
-### 8. Price, with the churn maths attached
+### 11. Pricing
 
-::exhibit 14 | What we charge, corrected against what teams are actually gated on
+::exhibit 16 | Tiers and prices
 
-| Tier | Price | What it is |
+| Tier | Price | Contents |
 |---|---|---|
-| **Individual** | **Free, forever, no limits** | The editor, review state, revert, answer in place, your own key. This is the distribution |
-| **Pro, team** | **$4–5 per user a month.** Priced against GitHub Team $4, Obsidian Sync $4, HackMD $5, Confluence $6.70 | **Shared-vault sync, version-history retention, shared review state, comments, MCP.** Not "who reviewed what": GitHub sells that at $4 |
-| **Max** | Later, per team | Document gates in CI, retention beyond a year, admin |
-| Hosted AI | Metered, at cost plus a margin | Optional, never the default |
+| Individual | Free, no limits | F1–F8, own key |
+| Pro, team | $4–5 per user per month, priced against GitHub Team $4, Obsidian Sync $4, HackMD $5, Confluence $6.70 | Shared-vault sync, version-history retention, shared review state, comments, MCP. Not "who reviewed what" alone: GitHub sells reviewers at $4 |
+| Max | Per team, later | Document gates in CI, retention beyond a year, admin |
+| Hosted AI | Metered at cost plus margin | Optional, off by default |
 
-The maths, plainly. Our monthly nut is about ₹1.09L, covered by 54–78 consulting hours. Infrastructure is about $0 at 100 users and about $390 a month at 10,000, because we store no documents. Support is the real cost, roughly 90 founder-hours a month at scale. **I withdraw "114 seats at $8".** The feature it priced is GitHub's at $4, and accounts under $50 a month sit in the worst-retaining band there is: top-quartile annual gross retention 60–70% across 2,100 businesses, and 23% for AI-native products. Holding 114 seats would mean replacing 34–46 of them every year, at best. Nobody comparable publishes retention. Obsidian says on record, *"we don't know what suddenly causes someone to churn."* So the team tier is a hypothesis until the 20 conversations in §11 tell us seat counts and what teams are gated on.
+**Retention.** Accounts under $50/month sit in the worst-retaining band: top-quartile annual gross retention 60–70% (ChartMogul, 2,100 businesses), 23% for AI-native products under $50. No comparable editor publishes retention; Obsidian states on record that it does not measure churn. The earlier "114 seats at $8 covers the nut" is withdrawn: the feature was GitHub's at $4 and the band would require replacing 34–46 of 114 seats a year. **The paid tier is a hypothesis until 20 team conversations return seat counts and what teams are gated on.** Monthly nut: about ₹1.09L, covered by 54–78 consulting hours.
 
-> [!test] Give away what the category has proven is free. Charge for what small teams are gated on elsewhere: seats, history, sync. Never for a feature GitHub bundles. Downgrading loses features, never files.
+### 12. Go-to-market
 
-### 9. What grabs users, and how we reach them
+**Headline, three variants tested in weeks 1–2:** *See what the AI wrote* · *See what the agent changed without asking* · *Know what nobody has reviewed yet.* Reddit's top twenty "AI wrote" posts contain no request for authorship marking; the upvoted pain matches the second and third. Proof line under any of them: `git diff` after an edit shows the change and nothing else; tested on 8,513 real files every release.
 
-The message is now three versions, tested in weeks 1–2 instead of one line picked by us: *See what the AI wrote.* **See what the agent changed without asking.** **Know what nobody has reviewed yet.** Reddit's top twenty "AI wrote" posts contain zero asks for authorship; the upvoted pain is the second and third. Under any of them, the proof line: *`git diff` after an edit shows your change and nothing else. Tested on 8,513 real files, every release.*
+**Positioning.** Lead with refusals: no plugins, no code execution, no holding files, no lock-in, and a hide-all-AI switch, which Zed, VS Code and Telegram each shipped only after 412-, 30- and 181-reaction issues.
 
-Lead with what we refuse, because this audience is tired of AI tooling: no plugins, no code execution, no holding your files, no lock-in, and a switch that hides every AI feature, which the incumbents only shipped after a backlash. Never say revolutionary, seamless, AI-native, or byte-preserving in a headline.
+::exhibit 17 | Channels, in order
 
-::exhibit 15 | Channels, resized to real usage, in the order we use them
-
-| When | Channel | Size, measured | What we do |
+| When | Channel | Size | Action |
 |---|---|---|---|
-| **Week 2** | **Free Obsidian plugin**, the live-preview fix | 501 likes, 117 posts, open since 2022. Against it: Obsidian patches live preview monthly, and the nearest plugin-level render fix has 1,454 downloads | Ship it. **Kill signal: under 200 installs in 14 days** |
-| Week 2 on | **superpowers first, spec-kit second, plan-mode files third** | 22–30k, then about 1,660 active public projects a month. Plan-mode size untested | A README line, an MCP entry, "open the spec here" in their docs. A PR to a maintainer is an outbound act, so we ask you first |
-| Now on | Our own writing | | The research behind this document. Nobody has published it |
-| MVP-0 exit | Show HN | Zed's scored 43, Cursor's 9 | After 6 of 10 strangers keep it. One shot |
-| MVP-1 | Chrome extension, Product Hunt | 1.5M browser readers | Backlinks and a spike |
-| MVP-2 | Exported pages with an honest mark | Not a channel until a deploy count exists | Withdrawn from "always" |
+| Week 2 | Free Obsidian plugin, the 501-like live-preview fix | 501 likes, 117 posts, open since 2022; Obsidian patches live preview monthly | Ship; kill under 200 installs in 14 days |
+| Week 2 on | superpowers docs first, spec-kit second, plan-mode files third | 22–30k, then about 1,660 active public projects a month | README line, MCP entry, "open the spec in frontmatter". Maintainer PRs are outbound; approval per PR |
+| Now | Published research | Unpublished so far | The 157-source dataset |
+| MVP-0 exit | Show HN | Zed's scored 43, Cursor's 9 | One shot, after 6 of 10 |
+| MVP-1 | Chrome extension, Product Hunt | 1.5M browser readers | Backlinks, spike |
+| MVP-2 | Exported pages with a mark | No deploy count yet | Not a channel until measured |
 
-How we use the users we get. The ten pilot strangers are the interviews we have never done. Every accept and revert is a preference signal, logged only in a local sidecar they can read, because the same architecture that keeps their documents out of our hands keeps their usage out too. The plugin's installers are the list we do not have.
+**Users as evidence.** The ten pilot strangers are the first interviews. Accept and revert events are logged in a local sidecar the user can read; no vendor usage database.
 
-### 10. Challenges, and what we do about each
+### 13. Risks
 
-::exhibit 16 | Ranked by what would actually stop us. Two rows are new
+::exhibit 18 | Ranked by cost if wrong
 
-| Challenge | What we do |
+| Risk | Response |
 |---|---|
-| **Review state turns out to be nice-to-have** | Two-week test, three headline versions, kill gate: fewer than 4 of 10 call it useful unprompted |
-| **Anthropic ships the review surface.** Plan-as-markdown with comments exists since 2.1.70; the diff-review request is open at 262 reactions | Persistence is what they do not build: across sessions, people and tools. If they build that too, we are a feature, and we should know by week 12 |
-| **The MVP-0 exit test cannot be observed.** Under our own architecture we cannot see who "keeps it". Obsidian cannot either | A written measurement decision before week 10. Opt-in, local sidecar counts they can read. Never a vendor usage database |
-| **Nobody pays for the team tier** | Run the 20 conversations in weeks 1–2, not at MVP-1. Ask what they are gated on and how many seats they are |
-| Zed or Cursor add vault semantics, one sprint | Depth in markdown, and the state they do not keep |
-| Distribution | Three cheap channels, resized to real numbers. The private-repo multiplier is unmeasured; ask the ten strangers |
-| The 83% refusal is a class, not one bug | Falsified if a patched corpus still refuses more than 10 of 7,969, by day 24 |
-| Every AI call bills us | Your own key before any stranger |
-| Client work crowds out product | Capped at 78 hours a month, written down |
-| GST | Reverse charge has no turnover floor. Registration starts with the first API purchase |
+| Review state is a nice-to-have | Two-week test, three headlines; kill under 4 of 10 unprompted |
+| Anthropic ships persistent review; plan-as-markdown exists since 2.1.70, diff review open at 262 reactions | Persistence across sessions, people and tools is what they do not build; re-check at week 12 |
+| No team pays | 20 conversations in weeks 1–2, on seats and gating |
+| MVP-0 exit unmeasurable under the architecture | Written opt-in measurement decision before week 10 |
+| F5/F6 founder tests do not replicate with strangers | Include both in the ten-stranger pilot with a stated measure |
+| Zed or Cursor add vault semantics | Depth in markdown and the state they do not keep |
+| The 83% refusal is a class, not a bug | Patched corpus still refusing over 10 of 7,969 by day 24 falsifies it |
+| Every AI call bills the operator | BYO key before any stranger |
+| Client work crowds out product | Capped at 78 hours a month |
+| GST | Reverse charge under CGST §24(iii) has no turnover floor |
 
-### 11. Ninety days, and the decisions
+### 14. Ninety days and decisions
 
-::exhibit 17 | Something observable every fortnight
+```mermaid
+flowchart TD
+  A["Week 0: tokens rotated,<br/>buyer, byte path, measure"] --> B["Weeks 1-2: four tests,<br/>build nothing"]
+  B --> C{"4 of 10 want<br/>review state?"}
+  C -- no --> X["Stop: free plugin,<br/>services, engine"]
+  C -- yes --> D["Weeks 3-4: CI red run,<br/>NF-3, NF-1, hash prototype"]
+  D --> E["Weeks 5-9: review state,<br/>BYO key, F3-F8"]
+  E --> F["Weeks 10-12:<br/>ten strangers"]
+  F --> G{"6 of 10 keep it?"}
+  G -- no --> H["Re-cut the demo,<br/>retest"]
+  G -- yes --> I["MVP-1"]
+```
 
-| Weeks | What happens | Outcome |
+::exhibit 19 | Fortnightly outcomes
+
+| Weeks | Work | Observable outcome |
 |---|---|---|
-| **0** | Rotate the two access tokens. Decide the buyer. Write the web byte-path and the measurement decision | Done, written down |
-| **1–2** | Four tests, **build nothing**. 10 developers shown the review mock in both framings (who wrote it, versus changed since you reviewed) and asked which toolchain they use. Plugin shipped. 5 people who bill for documents asked about approval and sign-off, not provenance. 3 landing pages, one per headline. 20 team conversations on seats and gating | Kill signals read at day 14 |
-| **3** | Go or no-go | A written decision either way |
-| **3–4** | CI with a deliberate red run. NF-3, then NF-1. Prototype content-hash review state on one spec-kit repo and one superpowers repo | CI fails a broken commit. Refusals fall from 83%. The tint works on files we did not write |
-| **5–7** | Review state store and rendering. Your own key. Structured output | A stranger's key, a stranger's repo, tinted spans |
-| **8–9** | Revert, the review panel, answer in place, engine wired behind every write | The fifteen-second demo from §1 |
-| **10–12** | Table stakes. Ten strangers with their own repos and agents | **6 of 10 keep it, by the measure written in week 0** |
+| 0 | Rotate the two access tokens; decide the buyer; write the web byte path and the exit measure; attach the founder test notes for F5/F6 | Written |
+| 1–2 | Ten developers shown the review mock in both framings; plugin shipped; five people who bill for documents asked about approval; three landing pages; 20 team conversations | Kill signals at day 14 |
+| 3 | Go or no-go | Written decision |
+| 3–4 | CI red run; NF-3, NF-1; content-hash review state prototyped on one spec-kit and one superpowers repo | Tint works on files frontmatter did not write |
+| 5–7 | Review state store and rendering; BYO key; structured output; F5/F6 | Stranger's key, stranger's repo, tinted spans |
+| 8–9 | Revert, panel, answer in place, repo docs scan, engine wired behind every write | The fifteen-second demo |
+| 10–12 | Polish; ten strangers | 6 of 10 by the week-0 measure |
 
-::exhibit 18 | The decisions
+::exhibit 20 | Decisions
 
 | # | Decision | By |
 |---|---|---|
-| 1 | **Accept the change of direction.** Review state is the product, authorship is a detail, answer in place is a feature, the team tier is a hypothesis | **The meeting** |
-| 2 | Which buyer first: the developer (reachable, but AI-native products under $50 keep 23% of revenue a year) or the person who is liable when a document is wrong | Week 1 |
-| 3 | **Share.** A hosted read-only viewer (our old record's assumption, and a hosting obligation) or permalink plus export (stateless, but nothing for a plain folder or a private repo) | Week 2 |
-| 4 | The two unrotated access tokens. An action, not a decision | **Today** |
+| 1 | Review state as the product; attribution as a detail; F5/F6/F7 as MVP-0 features on founder evidence; the team tier as a hypothesis | The meeting |
+| 2 | First buyer: AI-native developer, or the person liable when a document is wrong | Week 1 |
+| 3 | Share: hosted read-only viewer (a hosting obligation) or permalink plus export (no state; nothing for plain folders or private repos) | Week 2 |
+| 4 | Web byte path: browser-side fetch with the user's token, or through the server | Week 0 |
+| 5 | The two unrotated access tokens | Today |
 
-> [!risk] **What would make me say stop.** Fewer than 4 of 10 developers finding review state useful under either framing, and the 20 team conversations turning up nothing they are gated on that GitHub does not already sell. Then there is no product here, only an engine, a services business and a free plugin people like. Not a failure. A smaller, truer version of the same work, and it pays sooner.
+## PART V — Reference
 
-## PART VI — The rest, in one page
-
-### 12. The engine: what exists, what is broken, what needs work
-
-::exhibit 19 | Built, broken, to be optimised
+### 15. Rendering and markdown rules
 
 | | |
 |---|---|
-| **Built** | 25,407 lines, 1,575 tests. 8,513 real files from strangers' vaults, byte-pinned, zero corruption. `git diff` after an edit shows only the edit, tested every release. Six AI routes, a five-provider chain, idea mode |
-| **Broken** | **NF-1**: a column-zero list item in frontmatter refuses 83% of real vaults. 4 days. **NF-3**: a bare-CR fence adds a second frontmatter block. 3 days. **No CI**, and four gates have reported green while blind. 1 day. **Engine unwired**: one symbol from one of thirteen files reaches product code. 8 days. **Byte budget is an `echo`.** 2 days |
-| **Optimise** | **Incremental parsing**, a vendored `@lezer/markdown`, so review spans survive every keystroke cheaply. **The offset map**, bytes to UTF-16, our riskiest seam; crossing it unmapped corrupts Chinese, Japanese, Korean and Arabic text silently. **Search**: today the whole vault ships to the client, 77 MB parsed per cold start; move to server full-text, client only for the open file. **Refusal and conflict rates** published, with budgets |
-| **What we publish** | Time to first keystroke, cold. Typing latency on a 10,000-word document. Corpus refusal rate (83% to near zero). Merge conflict rate |
+| Modes | Live, Edit, Split, Read. Nested constructs in list items render correctly (the 501-like bug, shipped first as the free plugin) |
+| Rendered | Callouts `> [!kind]`; Mermaid, rendered not extended; MADR and Nygard decision records; RFC 7322; Keep a Changelog 1.1.0; frontmatter as a properties panel |
+| Not claimed | Runbooks and PRDs have no standard body; a structure is offered and labelled as such |
+| Rule | Nothing is added to markdown that breaks it elsewhere; a touched file still renders on GitHub, in Obsidian, in a plain editor |
+| Storage | Prose annotations as callouts (no closing marker to lose; an unclosed fence swallows the document). Tags and links written back in the shape the file uses. Review state and comments in the plain-text sidecar |
+| Interop | Read `AGENTS.md` and `CLAUDE.md`, never replace them; MCP server for the user's agent; git as the only versioning; Obsidian conventions preserved |
 
-### 13. What we render, and the markdown rules
-
-::exhibit 20 | Custom rendering, and what we never do to a file
-
-| | |
-|---|---|
-| **Modes** | Live, Edit, Split, Read. Nested constructs inside list items render properly: the 501-like bug, shipped as the free plugin first |
-| **We render** | Callouts `> [!kind]`. Mermaid, rendered, not extended. **MADR and Nygard** decision records. **RFC 7322.** **Keep a Changelog 1.1.0.** Frontmatter as a properties panel |
-| **We do not pretend** | Runbooks and PRDs have no standard body. We offer a structure and say so. Every "PRD standard" claim out there is unsourced |
-| **The rule** | We add nothing to markdown that breaks it somewhere else. A file we touch still renders on GitHub, in Obsidian, in a plain editor, next year |
-| **How** | Prose annotations as callouts, which have no closing marker to lose; an unclosed fence swallows the rest of the document. Tags and links written back in the shape the file already uses, never converted. Wikilinks and normal links both read. Review state and comments in a plain-text sidecar next to the file, readable without us |
-| **What we join** | Read `AGENTS.md` and `CLAUDE.md`, never compete with them. Be an MCP server the user's agent connects to. We are a git client, never our own versioning. Obsidian conventions preserved |
-
-### 14. Where we stand
-
-::exhibit 21 | Strengths, weaknesses, opportunities, threats
+### 16. Operating rules
 
 | | |
 |---|---|
-| **Strengths** | The engine is real and correct where the incumbents admit they are not. 88.6% of a shipping editor exists. Six AI routes live. Two founders funded by services, not a clock |
-| **Weaknesses** | Zero users, zero interviews. No CI, no BYO key, no structured output. 83% of vaults refused today. Every channel is borrowed. No evidence yet for the paid tier. Three published numbers failed a second check |
-| **Opportunities** | Tens of thousands of active projects generating specs with nowhere to review them. Review state is the one thing no incumbent persists. A 501-like bug we can fix in a week. A hide-all-AI switch the incumbents shipped only after backlash |
-| **Threats** | **Anthropic ships persistent review.** Plan-as-markdown exists since 2.1.70 and diff review is open at 262 reactions. Zed or Cursor add vault semantics in a sprint. Obsidian ships first-party AI editing. We run out of attention before revenue |
+| D2C / B2B | Free to build the audience; paid for teams. No enterprise feature until a customer refuses to pay without it: SSO at about 20 seats, SOC 2 above about 50 or for regulated buyers, a merchant of record for EU/US procurement |
+| Communication | Email collected only when an obligation exists (payment, invite, recovery); never at first run. Breaking changes: two weeks' notice in product. Price changes: email before the next charge. All notices kept in an in-product list the user can check |
+| Support | One address, a published response window; the free tier has no service commitment, stated on the page |
+| Not measured | Session replay, keystroke telemetry, document content. Usage counts stay in a local sidecar |
+| Mobile | About 15% of complaints; not in v1; later a reader and reviewer, not an editor |
+| Accessibility, non-English | WCAG 2.2 AA; the `body-faint` token fails at 1.984:1 and is fixed in MVP-0; the tint is never colour alone. CJK: the byte map, a bigram search tokeniser, a written v1 scope decision |
+| Security | No plugins, no code execution; the AI never gets ambient repo access; malformed repos refused, not repaired; 4 MB and 200,000-line ceilings per file |
 
-### 15. Operating rules
-
-::exhibit 22 | The lines we hold
+### 17. Where the plan stands
 
 | | |
 |---|---|
-| **D2C and B2B** | Free to build the audience, paid to build revenue. **No enterprise feature until a customer refuses to pay without it.** SSO at about 20 seats when asked, SOC 2 above about 50 or for a regulated buyer, a merchant of record for EU and US procurement |
-| **How users hear from us** | We collect an email only when there is a reason to: a payment, an invite, a recovery request. Never at first run. Breaking changes get two weeks' notice in the product. Price changes are emailed before the next charge. Every notice also lives in a quiet in-product list, so "we told you" is something they can check |
-| **How they reach us** | One address, a published response window, and the free tier has no service commitment, said plainly on the page |
-| **What we refuse to measure** | Session replay, keystroke telemetry, document content. The DOM would be their private document. Usage counts live in a local sidecar they can read |
-| **Mobile** | About 15% of complaints are mobile. Not in v1. When it comes, a reader and reviewer, never a byte-exact editor on a phone keyboard |
-| **Accessibility, non-English** | WCAG 2.2 AA, all or nothing. Our `body-faint` token fails at 1.984:1 and gets fixed in MVP-0. The tint is never colour alone; the panel and the keyboard carry the same information. CJK: the byte map, a bigram search tokeniser, and a written decision on v1 scope |
-| **Security** | No plugins, no code execution: the biggest single protection we have. The AI never gets ambient repo access. A malformed repo is refused, not repaired. Reverse charge under CGST §24(iii) has no turnover floor |
-
-### 16. What I think
-
-- The engine is the best thing either of us has built. Two rounds of checking did not touch it.
-- We were wrong about the pitch three times: bytes, then authorship, then a generator. Each time the evidence was public and we had not opened it. What survives is narrower. A state nobody keeps, on files everyone now generates, in a place nobody owns. It is a product only if ten strangers say so in two weeks.
-- The open question is not distribution any more. It is whether anyone pays. We have a free product with a channel and no evidence for the paid tier. The twenty conversations settle it, in week one.
+| Strengths | The engine is correct where incumbents admit they are not; 88.6% of a shipping editor exists; six AI routes live; two founders funded by services |
+| Weaknesses | Zero users; no CI, no BYO key, no structured output; 83% of vaults refused today; every channel borrowed; no evidence yet for the paid tier |
+| Opportunities | Tens of thousands of active projects generating specs with nowhere to review them; review state is the one thing no incumbent persists; a 501-like bug fixable in a week; a hide-all-AI switch incumbents shipped only after backlash |
+| Threats | Anthropic shipping persistent review; Zed or Cursor adding vault semantics in a sprint; Obsidian shipping first-party AI editing; attention running out before revenue |
