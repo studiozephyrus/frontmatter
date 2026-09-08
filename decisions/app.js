@@ -58,7 +58,7 @@
   function renderNav() {
     var f = view.filter, groups = cats(), h = '';
     h += '<div class="nsearch"><div class="field">' + icon('search') +
-      '<input id="navsearch" type="search" placeholder="Search 319 decisions" ' +
+      '<input id="navsearch" type="search" placeholder="Search ' + Q.length + ' decisions" ' +
       'value="' + esc(f) + '" aria-label="Search questions"></div></div>';
     h += '<div class="nsec">';
     h += '<button class="navcat' + (view.mode === 'overview' ? ' on' : '') + '" data-ov="1">' +
@@ -117,26 +117,50 @@
   }
 
   /* ── the question ─────────────────────────────────────────────────────── */
+  /* A decision is only useful if the reader can see the thing being decided. The v2
+     shape leads with a diagram, states the context as bullets rather than paragraphs,
+     and gives every option its own gains, costs, system effect and screen effect, so
+     choosing does not mean holding four paragraphs in your head at once. v1 questions
+     — paragraph now/why/problem, options carrying a single impact string — still
+     render, so the corpus can migrate one question at a time. */
+  function bullets(v, cls) {
+    if (!v) return '';
+    var arr = Array.isArray(v) ? v : [v];
+    if (!arr.length) return '';
+    return '<ul class="' + (cls || 'bl') + '">' +
+      arr.map(function (b) { return '<li>' + md(b) + '</li>'; }).join('') + '</ul>';
+  }
+
   function renderQ(q) {
     var idx = Q.indexOf(q), prev = Q[idx - 1], next = Q[idx + 1], pick = state.picks[q.id];
     var wc = q.weight === 'critical' ? 'crit' : q.weight === 'high' ? 'high' : '';
-    var h = '';
     var inCat = Q.filter(function (x) { return x.cat === q.cat; });
     var catIdx = inCat.indexOf(q) + 1;
+    var h = '';
+
     h += '<div class="card-q w-' + esc(q.weight || 'medium') + '">';
     h += '<div class="pos"><span class="eyebrow">Decision ' + (idx + 1) + ' of ' + Q.length + '</span>' +
-      '<span class="dotsep">·</span><span class="eyebrow">' + esc(q.cat) + ' ' + catIdx + '/' + inCat.length + '</span></div>';
+      '<span class="dotsep">\u00b7</span><span class="eyebrow">' + esc(q.cat) + ' ' + catIdx + '/' + inCat.length + '</span></div>';
     h += '<div class="qhead"><span class="pill id">' + esc(q.id) + '</span>' +
-      '<span class="pill">' + esc(q.cat) + (q.sub ? ' · ' + esc(q.sub) : '') + '</span>' +
+      '<span class="pill">' + esc(q.cat) + (q.sub ? ' \u00b7 ' + esc(q.sub) : '') + '</span>' +
       (q.weight && q.weight !== 'medium' ? '<span class="pill ' + wc + '">' + esc(q.weight) + '</span>' : '') +
       (pick ? '<span class="pill done">' + icon('check') + ' answered ' + esc(pick).toUpperCase() + '</span>' : '') + '</div>';
     h += '<h1 class="q">' + md(q.q) + '</h1>';
     if (q.lede) h += '<p class="lede">' + md(q.lede) + '</p>';
 
+    if (q.visual && window.Diagram) h += window.Diagram.render(q.visual);
+
+    if (q.stakes) h += '<div class="stakes">' + icon('warning', 'si') +
+      '<span><b>If this goes the wrong way.</b> ' + md(q.stakes) + '</span></div>';
+
+    var sV = q.state || q.now, pV = q.path || q.why, tV = q.tension || q.problem;
     h += '<div class="ctx">' +
-      '<div class="ctxc"><span class="eyebrow">Where it stands</span><p>' + md(q.now || '—') + '</p></div>' +
-      '<div class="ctxc"><span class="eyebrow">How it got here</span><p>' + md(q.why || '—') + '</p></div>' +
-      '<div class="ctxc tension"><span class="eyebrow">The tension</span><p>' + md(q.problem || '—') + '</p></div></div>';
+      '<div class="ctxc"><span class="eyebrow">Where it stands</span>' +
+      (Array.isArray(sV) ? bullets(sV) : '<p>' + md(sV || '\u2014') + '</p>') + '</div>' +
+      '<div class="ctxc"><span class="eyebrow">How it got here</span>' +
+      (Array.isArray(pV) ? bullets(pV) : '<p>' + md(pV || '\u2014') + '</p>') + '</div>' +
+      '<div class="ctxc tension"><span class="eyebrow">What forces a choice</span>' +
+      (Array.isArray(tV) ? bullets(tV) : '<p>' + md(tV || '\u2014') + '</p>') + '</div></div>';
 
     if (q.evidence && q.evidence.length) {
       h += '<details class="ev"><summary>' + icon('chevron_right', 'caret') + 'Evidence' +
@@ -145,35 +169,60 @@
     }
 
     h += '<div class="optshead"><span class="eyebrow">The options</span>' +
-      '<span class="hint">press <kbd>a</kbd>–<kbd>' +
+      '<span class="hint">press <kbd>a</kbd>\u2013<kbd>' +
       String.fromCharCode(96 + Math.max(1, (q.options || []).length)) + '</kbd> to choose</span></div>';
     h += '<div class="opts" role="radiogroup" aria-label="Options">';
     (q.options || []).forEach(function (o) {
+      var meta = [];
+      if (o.system) meta.push(['System', o.system]);
+      if (o.screens) meta.push(['Screens', o.screens]);
+      if (o.money) meta.push(['Money', o.money]);
       h += '<button class="opt' + (o.k === q.rec ? ' rec' : '') + (pick === o.k ? ' on' : '') +
         '" data-pick="' + esc(o.k) + '" role="radio" aria-checked="' + (pick === o.k) + '">' +
-        '<span class="k">' + esc(o.k) + '</span><span><span class="ol">' + md(o.label) +
-        (o.k === q.rec ? '<span class="rectag">recommended</span>' : '') + '</span>' +
-        '<span class="oi">' + md(o.impact || '') + '</span></span></button>';
+        '<span class="k">' + esc(o.k) + '</span><span class="ob">' +
+        '<span class="ol">' + md(o.label) + (o.k === q.rec ? '<span class="rectag">recommended</span>' : '') + '</span>' +
+        (o.what ? '<span class="ow">' + md(o.what) + '</span>' : '') +
+        (o.impact && !o.gains && !o.costs ? '<span class="oi">' + md(o.impact) + '</span>' : '') +
+        ((o.gains || o.costs) ? '<span class="gc">' +
+          '<span class="gcc gain"><span class="gch">What it buys</span>' + bullets(o.gains, 'bl tight') + '</span>' +
+          '<span class="gcc cost"><span class="gch">What it costs</span>' + bullets(o.costs, 'bl tight') + '</span></span>' : '') +
+        (meta.length ? '<span class="ometa">' + meta.map(function (m) {
+          return '<span class="om"><b>' + m[0] + '</b> ' + md(m[1]) + '</span>';
+        }).join('') + '</span>' : '') +
+        '</span></button>';
     });
     h += '</div>';
 
-    if (q.recCase) h += '<div class="reccase"><div class="rh">' + icon('lightbulb') +
-      'Why ' + esc(String(q.rec).toUpperCase()) + '</div>' + md(q.recCase) + '</div>';
+    if (q.recCase) {
+      h += '<div class="reccase"><div class="rh">' + icon('lightbulb') +
+        'Why ' + esc(String(q.rec).toUpperCase()) + '</div>' +
+        (Array.isArray(q.recCase) ? bullets(q.recCase) : md(q.recCase));
+      if (q.flip) h += '<div class="flip"><b>What would change this answer.</b> ' + md(q.flip) + '</div>';
+      h += '</div>';
+    }
 
-    h += '<textarea class="note" id="note" placeholder="Your note on this decision — saved in this browser">' +
+    if (q.linked && q.linked.length) {
+      var live = q.linked.filter(function (id) { return Q.some(function (x) { return x.id === id; }); });
+      if (live.length) {
+        h += '<div class="linked"><span class="eyebrow">Decide alongside</span><span class="lchips">' +
+          live.map(function (id) {
+            var t = Q.filter(function (x) { return x.id === id; })[0];
+            return '<button class="lchip" data-q="' + esc(id) + '"><b>' + esc(id) + '</b> ' + esc(t.q) + '</button>';
+          }).join('') + '</span></div>';
+      }
+    }
+
+    h += '<textarea class="note" id="note" placeholder="Your note on this decision \u2014 saved in this browser">' +
       esc(state.notes[q.id] || '') + '</textarea>';
     h += '</div>';
 
-    /* Every question UI in the reference set ends with exactly one primary forward
-       action; two equal pager cards left the reader with nothing to press. Once a
-       decision is taken the action fills in, so answering visibly moves you on. */
     h += '<div class="foot">';
     h += prev ? '<button class="pg" data-q="' + esc(prev.id) + '"><span class="pk">' + icon('arrow_back') +
       'Previous</span><span class="pt">' + esc(prev.q) + '</span></button>' : '<span></span>';
     if (next) {
       h += '<button class="go' + (pick ? ' primary' : '') + '" data-q="' + esc(next.id) + '">' +
         '<span class="gt">' + (pick ? 'Next decision' : 'Skip for now') + '</span>' +
-        '<span class="gk">or press <kbd>↵</kbd></span>' + icon('arrow_forward') + '</button>';
+        '<span class="gk">or press <kbd>\u21b5</kbd></span>' + icon('arrow_forward') + '</button>';
     } else {
       h += '<button class="go" data-ov="1"><span class="gt">Back to the overview</span></button>';
     }
@@ -212,10 +261,11 @@
     var ev = Q.reduce(function (n, q) { return n + (q.evidence || []).length; }, 0);
     var h = '<div class="hero"><span class="eyebrow">Studio Zephyrus · frontmatter</span>' +
       '<h1>Decisions pending on frontmatter</h1>' +
-      '<p>' + Q.length + ' decisions drawn from two weeks of research: two verification rounds, a gap ' +
-      'register, and an adversarial round that came back against the plan\'s own headline. Each states ' +
-      'where it stands today, how it got there, the tension that forces a choice, the evidence, and a ' +
-      'recommendation. Answers stay in this browser.</p></div>';
+      '<p>' + Q.length + ' decisions drawn from three weeks of research: two verification rounds, a gap ' +
+      'register, an adversarial round that came back against the plan\'s own headline, and a sweep on ' +
+      '9 September of the nine market seams the corpus had never covered. Several answers changed that ' +
+      'day. Each decision shows the thing being decided, states where it stands, what forces a choice, ' +
+      'the evidence, and what every option buys and costs. Answers stay in this browser.</p></div>';
     h += '<div class="kpis">' +
       '<div class="kpi acc"><div class="kn">Answered</div><div class="kv">' + a + '</div>' +
         '<div class="kn">of ' + Q.length + ' decisions</div></div>' +
