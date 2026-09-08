@@ -378,7 +378,6 @@ table.d td:not(:first-child){font-variant-numeric:tabular-nums}
   .pager{grid-template-columns:1fr}
   .pg.next{text-align:left}.pg.next .pk{justify-content:flex-start}
   .opt{grid-template-columns:28px 1fr;padding:14px 15px;gap:12px}
-  .abar{display:grid}
 }
 .abar{display:none;position:fixed;left:0;right:0;bottom:0;z-index:36;height:var(--actionbar);
   grid-template-columns:44px 1fr 44px;gap:10px;align-items:center;padding:0 13px;
@@ -391,3 +390,58 @@ table.d td:not(:first-child){font-variant-numeric:tabular-nums}
 .abar .abtn:disabled{opacity:.35}
 .abar .apos{text-align:center;font-size:12.5px;color:var(--ink-3);font-variant-numeric:tabular-nums}
 .abar .apos b{display:block;color:var(--ink);font-weight:600;font-size:13px}
+
+
+/* ── position line, primary forward action, area index ─────────────────────
+   Added after a Mobbin reference pass (2026-09-09, 20 screens). Every question
+   UI in that set states the position as text and offers exactly one primary
+   forward action; we had a bar and two equal pager cards. */
+.pos{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.pos .dotsep{color:var(--ink-4)}
+.pcat{display:inline-block;margin-right:10px;padding:2px 8px;border-radius:5px;background:var(--sunk);
+  color:var(--ink-2);font-size:11.5px}
+
+.foot{display:grid;grid-template-columns:1fr auto;gap:12px;margin:28px 0 0;align-items:stretch}
+.go{display:flex;align-items:center;gap:12px;padding:0 20px;min-height:66px;border-radius:11px;
+  border:1px solid var(--line-2);background:var(--card);box-shadow:var(--sh-1);
+  transition:background .15s,border-color .15s,box-shadow .15s,transform .1s;white-space:nowrap}
+.go:hover{border-color:var(--line-3);box-shadow:var(--sh-2)}
+.go:active{transform:translateY(1px)}
+.go .gt{font-family:var(--display);font-weight:600;font-size:15px}
+.go .gk{font-size:11.5px;color:var(--ink-4)}
+.go .gk kbd{font-family:var(--mono);font-size:10.5px;border:1px solid var(--line-2);border-radius:4px;
+  padding:1px 5px}
+.go.primary{background:var(--accent);border-color:var(--accent);color:#fff;box-shadow:var(--sh-2)}
+.go.primary:hover{background:var(--accent-2);border-color:var(--accent-2)}
+.go.primary .gk{color:rgba(255,255,255,.72)}
+.go.primary .gk kbd{border-color:rgba(255,255,255,.4)}
+.go.wide{width:100%;justify-content:space-between;margin-bottom:26px}
+
+.arlist{display:grid;gap:7px;margin:0 0 26px}
+.ar{display:grid;grid-template-columns:auto 1fr auto;gap:13px;align-items:start;text-align:left;
+  background:var(--card);border:1px solid var(--line);border-left:3px solid var(--line-2);
+  border-radius:10px;padding:13px 15px;box-shadow:var(--sh-1);
+  transition:border-color .15s,box-shadow .15s}
+.ar:hover{box-shadow:var(--sh-2);border-color:var(--line-3)}
+.ar.crit{border-left-color:var(--crit)}
+.ar.high{border-left-color:var(--high)}
+.ar.done{border-left-color:var(--good);background:var(--rail)}
+.ar .ai{font-family:var(--mono);font-size:10.5px;color:var(--ink-4);min-width:36px;padding-top:2px}
+.ar .aq{font-size:14px;color:var(--ink);line-height:1.45}
+.ar.done .aq{color:var(--ink-2)}
+.ar .aa{display:flex;align-items:center;gap:6px;margin-top:5px;font-size:12px;color:var(--good)}
+.ar .aw{font-family:var(--mono);font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--ink-4);padding-top:3px}
+
+/* unanswered reads bold, answered recedes (Notion Mail, Plain) */
+.navq.open .qt{font-weight:500;color:var(--ink)}
+.navq.done .qt{color:var(--ink-3)}
+.navq.done .dot{background:var(--good);box-shadow:0 0 0 3px var(--good-soft)}
+
+@media(max-width:900px){
+  .foot{grid-template-columns:1fr}
+  .go{justify-content:space-between;min-height:56px}
+  .pos{flex-wrap:wrap}
+  /* Must stay AFTER the base .abar rule: same specificity, so source order decides. */
+  .abar{display:grid}
+}

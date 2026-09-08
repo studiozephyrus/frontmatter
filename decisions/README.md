@@ -19,11 +19,19 @@ Design carries the tred decisions system forward: one accent (`#1a5cff`), square
 hairline borders, Mosvita for display and Google Sans for text, both embedded so the page
 renders offline. Light and dark follow the system unless the reader chooses.
 
-Layout has three breakpoints — phone (single column, bottom action bar so the decision is
-thumb-reachable), tablet (nav + content), desktop (nav + content + context rail). Verified
-with `scrollWidth == viewport` at 500, 820, 1180 and 1440.
+Layout has three breakpoints. Desktop is nav, content and a context rail. Below 1180 the
+rail drops. Below 900 the nav becomes a drawer behind the menu button and a fixed action bar
+carries prev/next within thumb reach. Measured on the live deployment at 375, 768 and 1440:
+no horizontal scroll at any width, the rail hidden below 1180, the drawer opening on tap,
+and the action bar sitting flush to the viewport bottom.
 
-Keyboard: `j`/`k` move, `a`–`d` pick an option, `/` searches.
+Every question states its own position as text — "Decision 2 of 319 · Product & definition
+2/22" — and offers exactly one primary forward action, which appears as **Next decision**
+once an option is picked and reads **Skip for now** before that. Clicking an area in the nav
+opens an area index of every question in it, grouped open and answered, rather than jumping
+to the first. Both follow a reference pass over twenty shipped question and review UIs.
+
+Keyboard: `j`/`k` move, `a`–`d` pick an option, `↵` advances, `/` searches.
 
 ## What is in it
 

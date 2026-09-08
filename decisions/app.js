@@ -78,7 +78,8 @@
       var open = view.cat === g.cat || f;
       if (open) qs.forEach(function (q) {
         h += '<button class="navq' + (view.id === q.id ? ' on' : '') +
-          (state.picks[q.id] ? ' done' : q.weight === 'critical' ? ' crit' : q.weight === 'high' ? ' high' : '') +
+          (state.picks[q.id] ? ' done' : ' open') +
+          (q.weight === 'critical' ? ' crit' : q.weight === 'high' ? ' high' : '') +
           '" data-q="' + esc(q.id) + '"><span class="dot"></span>' +
           '<span class="qt">' + esc(q.q) + '</span></button>';
       });
@@ -120,7 +121,11 @@
     var idx = Q.indexOf(q), prev = Q[idx - 1], next = Q[idx + 1], pick = state.picks[q.id];
     var wc = q.weight === 'critical' ? 'crit' : q.weight === 'high' ? 'high' : '';
     var h = '';
+    var inCat = Q.filter(function (x) { return x.cat === q.cat; });
+    var catIdx = inCat.indexOf(q) + 1;
     h += '<div class="card-q w-' + esc(q.weight || 'medium') + '">';
+    h += '<div class="pos"><span class="eyebrow">Decision ' + (idx + 1) + ' of ' + Q.length + '</span>' +
+      '<span class="dotsep">·</span><span class="eyebrow">' + esc(q.cat) + ' ' + catIdx + '/' + inCat.length + '</span></div>';
     h += '<div class="qhead"><span class="pill id">' + esc(q.id) + '</span>' +
       '<span class="pill">' + esc(q.cat) + (q.sub ? ' · ' + esc(q.sub) : '') + '</span>' +
       (q.weight && q.weight !== 'medium' ? '<span class="pill ' + wc + '">' + esc(q.weight) + '</span>' : '') +
@@ -159,11 +164,19 @@
       esc(state.notes[q.id] || '') + '</textarea>';
     h += '</div>';
 
-    h += '<div class="pager">';
+    /* Every question UI in the reference set ends with exactly one primary forward
+       action; two equal pager cards left the reader with nothing to press. Once a
+       decision is taken the action fills in, so answering visibly moves you on. */
+    h += '<div class="foot">';
     h += prev ? '<button class="pg" data-q="' + esc(prev.id) + '"><span class="pk">' + icon('arrow_back') +
-      ' Previous</span><span class="pt">' + esc(prev.q) + '</span></button>' : '<span></span>';
-    h += next ? '<button class="pg next" data-q="' + esc(next.id) + '"><span class="pk">Next ' +
-      icon('arrow_forward') + '</span><span class="pt">' + esc(next.q) + '</span></button>' : '<span></span>';
+      'Previous</span><span class="pt">' + esc(prev.q) + '</span></button>' : '<span></span>';
+    if (next) {
+      h += '<button class="go' + (pick ? ' primary' : '') + '" data-q="' + esc(next.id) + '">' +
+        '<span class="gt">' + (pick ? 'Next decision' : 'Skip for now') + '</span>' +
+        '<span class="gk">or press <kbd>↵</kbd></span>' + icon('arrow_forward') + '</button>';
+    } else {
+      h += '<button class="go" data-ov="1"><span class="gt">Back to the overview</span></button>';
+    }
     h += '</div>';
     $('#main').innerHTML = h;
     $('#main').scrollTop = 0;
@@ -241,6 +254,45 @@
       '<div class="rrow"><span>Choose an option</span><b class="mono">a–d</b></div>' +
       '<div class="rrow"><span>Search</span><b class="mono">/</b></div></div>';
     $('#abarPos').innerHTML = '<b>' + a + ' / ' + Q.length + '</b>answered';
+  }
+
+  /* ── one area: every question in it, with its state ──────────────────────
+     Graphite groups its review inbox by state with a count per group, and that
+     reads better at scale than dropping someone into question one of thirty-four. */
+  function renderArea(cat) {
+    var qs = Q.filter(function (x) { return x.cat === cat; });
+    var a = answered(qs), c = crit(qs);
+    var open = qs.filter(function (q) { return !state.picks[q.id]; });
+    var done = qs.filter(function (q) { return state.picks[q.id]; });
+    var row = function (q) {
+      var pickOpt = (q.options || []).filter(function (o) { return o.k === state.picks[q.id]; })[0];
+      return '<button class="ar' + (state.picks[q.id] ? ' done' : '') +
+        (q.weight === 'critical' ? ' crit' : q.weight === 'high' ? ' high' : '') +
+        '" data-q="' + esc(q.id) + '">' +
+        '<span class="ai">' + esc(q.id) + '</span>' +
+        '<span class="aq">' + esc(q.q) +
+        (pickOpt ? '<span class="aa">' + icon('check', 's') + esc(pickOpt.label) + '</span>' : '') + '</span>' +
+        '<span class="aw">' + (state.picks[q.id] ? '' : esc(q.weight || '')) + '</span></button>';
+    };
+    var h = '<div class="hero"><span class="eyebrow">Area ' + (cats().map(function (g) { return g.cat; }).indexOf(cat) + 1) +
+      ' of ' + cats().length + '</span><h1>' + esc(cat) + '</h1>' +
+      '<p>' + qs.length + ' decisions · ' + a + ' answered · ' +
+      (c ? c + ' critical still open' : 'no critical left open') + '.</p></div>';
+    if (open.length) {
+      h += '<button class="go primary wide" data-q="' + esc(open[0].id) + '">' +
+        '<span class="gt">Start with ' + esc(open[0].id) + '</span>' +
+        '<span class="gk">' + esc(open.length) + ' open</span>' + icon('arrow_forward') + '</button>';
+      h += '<h2 class="sech">Open</h2><div class="arlist">' + open.map(row).join('') + '</div>';
+    }
+    if (done.length) {
+      h += '<h2 class="sech">Answered</h2><div class="arlist">' + done.map(row).join('') + '</div>';
+    }
+    $('#main').innerHTML = h; $('#main').scrollTop = 0;
+    $('#aside').innerHTML = '<div class="rsec"><div class="rh">This area</div>' +
+      '<div class="rrow"><span>Decisions</span><b>' + qs.length + '</b></div>' +
+      '<div class="rrow"><span>Answered</span><b>' + a + '</b></div>' +
+      '<div class="rrow"><span>Critical open</span><b style="color:var(--crit)">' + c + '</b></div></div>';
+    $('#abarPos').innerHTML = '<b>' + a + ' / ' + qs.length + '</b>' + esc(cat);
   }
 
   /* ── markdown import — the sidecar ───────────────────────────────────── */
@@ -379,6 +431,8 @@
       if (!q) { view.mode = 'overview'; return go({}); }
       view.cat = q.cat; renderQ(q);
       location.hash = '#' + q.id;
+    } else if (view.mode === 'area') {
+      renderArea(view.cat); location.hash = '#area-' + encodeURIComponent(view.cat);
     } else if (view.mode === 'import') { renderImport(); location.hash = '#import'; }
     else { renderOverview(); location.hash = '#overview'; }
     renderNav(); progress();
@@ -387,8 +441,13 @@
     var a = answered(Q), c = crit(Q), n = Q.length || 1;
     $('#prog').style.width = (a / n) * 100 + '%';
     $('#progCrit').style.width = (c / n) * 100 + '%';
-    $('#progtxt').innerHTML = '<b>' + a + '</b> / ' + Q.length + ' answered' +
-      (c ? ' · <b style="color:var(--crit)">' + c + '</b> critical open' : '');
+    var here = '';
+    if (view.mode === 'q' && view.cat) {
+      var g = Q.filter(function (x) { return x.cat === view.cat; });
+      here = '<span class="pcat">' + esc(view.cat) + ' ' + answered(g) + '/' + g.length + '</span>';
+    }
+    $('#progtxt').innerHTML = here + '<b>' + a + '</b> / ' + Q.length + ' answered' +
+      (c ? ' · <b style="color:var(--crit)">' + c + '</b> critical' : '');
   }
 
   /* ── events ───────────────────────────────────────────────────────────── */
@@ -409,10 +468,7 @@
     }
     if (t.hasAttribute('data-q')) { go({ mode: 'q', id: t.getAttribute('data-q') }); return; }
     if (t.hasAttribute('data-cat')) {
-      var c = t.getAttribute('data-cat');
-      var first = Q.filter(function (x) { return x.cat === c; })[0];
-      view.cat = view.cat === c && view.mode === 'q' ? null : c;
-      if (first) go({ mode: 'q', id: first.id }); else renderNav();
+      go({ mode: 'area', cat: t.getAttribute('data-cat'), id: null });
       return;
     }
     if (t.hasAttribute('data-ov')) { go({ mode: 'overview', id: null }); return; }
@@ -432,6 +488,7 @@
   document.addEventListener('keydown', function (e) {
     if (/^(INPUT|TEXTAREA)$/.test(e.target.tagName) || e.metaKey || e.ctrlKey) return;
     if (e.key === '/') { e.preventDefault(); var s = $('#navsearch'); if (s) { document.body.classList.add('navopen'); s.focus(); } return; }
+    if (e.key === 'Enter' && view.mode === 'q') { e.preventDefault(); step(1); return; }
     if (e.key === 'j') { e.preventDefault(); step(1); return; }
     if (e.key === 'k') { e.preventDefault(); step(-1); return; }
     if (view.mode === 'q' && /^[a-d]$/.test(e.key)) {
@@ -465,12 +522,21 @@
 
   /* ── boot ─────────────────────────────────────────────────────────────── */
   try { var saved = localStorage.getItem('fm-theme'); if (saved) theme(saved); else theme(matchMedia('(prefers-color-scheme:dark)').matches ? 'dark' : 'light'); } catch (e) { theme('light'); }
-  var h = (location.hash || '').replace('#', '');
-  if (h && h !== 'overview' && h !== 'import' && Q.some(function (x) { return x.id === h; })) go({ mode: 'q', id: h });
-  else if (h === 'import') go({ mode: 'import' });
-  else go({ mode: 'overview' });
+  function fromHash() {
+    var h = (location.hash || '').replace(/^#/, '');
+    if (!h || h === 'overview') return { mode: 'overview', id: null };
+    if (h === 'import') return { mode: 'import', id: null };
+    if (h.indexOf('area-') === 0) {
+      var cat = decodeURIComponent(h.slice(5));
+      if (Q.some(function (x) { return x.cat === cat; })) return { mode: 'area', cat: cat, id: null };
+      return { mode: 'overview', id: null };
+    }
+    if (Q.some(function (x) { return x.id === h; })) return { mode: 'q', id: h };
+    return { mode: 'overview', id: null };
+  }
+  go(fromHash());
   window.addEventListener('hashchange', function () {
-    var id = (location.hash || '').replace('#', '');
-    if (id && id !== view.id && Q.some(function (x) { return x.id === id; })) go({ mode: 'q', id: id });
+    var v = fromHash();
+    if (v.mode !== view.mode || v.id !== view.id || (v.mode === 'area' && v.cat !== view.cat)) go(v);
   });
 })();
