@@ -44,3 +44,7 @@ docs/FRONTMATTER-RECORD.md
 docs/*.print.html
 docs/print-test.pdf
 docs/frontmatter-COMPLETE-RECORD-*.md
+
+# Transient fetch and tool output — regenerable, never content.
+cert.err
+scripts/__pycache__/
