@@ -386,7 +386,11 @@
       '<div style="margin-top:12px"><button class="btn primary" id="mdadd">Add to this session</button></div>';
     $('#mdadd').onclick = function () {
       parsed.forEach(function (p) { if (!Q.some(function (x) { return x.id === p.id; })) Q.push(p); });
-      view = { mode: 'q', id: parsed[0].id, cat: 'Imported', filter: '' };
+      // The nav only expands the group whose cat matches view.cat, so naming this
+      // 'Imported' left the imported question's own category collapsed and the row
+      // unreachable. Follow the question.
+      view = { mode: 'q', id: parsed[0].id, cat: parsed[0].cat, filter: '' };
+      location.hash = '#' + parsed[0].id;
       renderNav(); renderQ(parsed[0]);
     };
   }
