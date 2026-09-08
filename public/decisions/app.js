@@ -30,7 +30,9 @@
       .replace(/`([^`]+?)`/g, '<code class="mono">$1</code>')
       .replace(/(^|[^*])\*([^*\n]+?)\*/g, '$1<i>$2</i>');
   };
-  var icon = function (n) { return '<svg class="ic" aria-hidden="true"><use href="#i-' + n + '"/></svg>'; };
+  var icon = function (n, cls) {
+    return '<svg class="ic ' + (cls || '') + '" aria-hidden="true"><use href="#i-' + n + '"/></svg>';
+  };
 
   function cats() {
     var seen = {}, out = [];
@@ -55,27 +57,30 @@
   /* ── nav ──────────────────────────────────────────────────────────────── */
   function renderNav() {
     var f = view.filter, groups = cats(), h = '';
-    h += '<div class="nsearch"><input id="navsearch" type="search" placeholder="Search questions" ' +
-      'value="' + esc(f) + '" aria-label="Search questions"></div>';
+    h += '<div class="nsearch"><div class="field">' + icon('search') +
+      '<input id="navsearch" type="search" placeholder="Search 319 decisions" ' +
+      'value="' + esc(f) + '" aria-label="Search questions"></div></div>';
+    h += '<div class="nsec">';
     h += '<button class="navcat' + (view.mode === 'overview' ? ' on' : '') + '" data-ov="1">' +
-      '<span class="nl">Overview</span><span class="np">' + answered(Q) + '/' + Q.length + '</span><span></span></button>';
+      '<span class="nl">Overview</span><span class="nmeta"><span class="np">' + answered(Q) + '/' + Q.length + '</span></span></button>';
     h += '<button class="navcat' + (view.mode === 'import' ? ' on' : '') + '" data-import="1">' +
-      '<span class="nl">Import markdown</span><span class="np">sidecar</span><span></span></button>';
+      '<span class="nl">Import markdown</span><span class="nmeta"><span class="np">sidecar</span></span></button>';
+    h += '</div>';
     groups.forEach(function (g) {
       var qs = g.qs.filter(function (q) { return match(q, f); });
       if (!qs.length) return;
       var a = answered(g.qs), c = crit(g.qs), pct = g.qs.length ? (a / g.qs.length) * 100 : 0;
-      h += '<button class="navcat" data-cat="' + esc(g.cat) + '">' +
-        '<span class="nl">' + esc(g.cat) + '</span>' +
-        (c ? '<span class="ncrit" title="' + c + ' critical unanswered">' + c + '</span>' : '<span></span>') +
-        '<span class="np">' + a + '/' + g.qs.length + '</span>' +
+      h += '<button class="navcat' + (view.cat === g.cat ? ' on' : '') + '" data-cat="' + esc(g.cat) + '">' +
+        '<span class="nl">' + esc(g.cat) + '</span><span class="nmeta">' +
+        (c ? '<span class="ncrit" title="' + c + ' critical unanswered">' + c + '</span>' : '') +
+        '<span class="np">' + a + '/' + g.qs.length + '</span></span>' +
         '<span class="nbar"><i style="width:' + pct + '%"></i></span></button>';
       var open = view.cat === g.cat || f;
       if (open) qs.forEach(function (q) {
         h += '<button class="navq' + (view.id === q.id ? ' on' : '') +
-          (state.picks[q.id] ? ' done' : '') + (q.weight === 'critical' ? ' crit' : '') +
-          '" data-q="' + esc(q.id) + '"><span class="qid">' + esc(q.id) + '</span>' +
-          '<span class="qt">' + esc(q.q) + '</span><span class="dot"></span></button>';
+          (state.picks[q.id] ? ' done' : q.weight === 'critical' ? ' crit' : q.weight === 'high' ? ' high' : '') +
+          '" data-q="' + esc(q.id) + '"><span class="dot"></span>' +
+          '<span class="qt">' + esc(q.q) + '</span></button>';
       });
     });
     $('#nav').innerHTML = h;
@@ -94,7 +99,7 @@
     } else if (b.type === 'stat' && b.items) {
       h += b.items.map(function (it) {
         return '<div class="statrow"><span>' + md(it[0]) + '</span><b>' + md(it[1] || '') + '</b>' +
-          '<span class="sn">' + md(it[2] || '') + '</span></div>';
+          (it[2] ? '<span class="sn">' + md(it[2]) + '</span>' : '') + '</div>';
       }).join('');
     } else if (b.type === 'bars' && b.data) {
       var max = Math.max.apply(null, b.data.map(function (d) { return Math.abs(Number(d[1])) || 0; })) || 1;
@@ -115,24 +120,28 @@
     var idx = Q.indexOf(q), prev = Q[idx - 1], next = Q[idx + 1], pick = state.picks[q.id];
     var wc = q.weight === 'critical' ? 'crit' : q.weight === 'high' ? 'high' : '';
     var h = '';
-    h += '<div class="qhead"><span class="chip mono">' + esc(q.id) + '</span>' +
-      '<span class="chip">' + esc(q.cat) + (q.sub ? ' · ' + esc(q.sub) : '') + '</span>' +
-      (q.weight ? '<span class="chip ' + wc + '">' + esc(q.weight) + '</span>' : '') +
-      (pick ? '<span class="chip done">answered ' + esc(pick).toUpperCase() + '</span>' : '') + '</div>';
+    h += '<div class="card-q w-' + esc(q.weight || 'medium') + '">';
+    h += '<div class="qhead"><span class="pill id">' + esc(q.id) + '</span>' +
+      '<span class="pill">' + esc(q.cat) + (q.sub ? ' · ' + esc(q.sub) : '') + '</span>' +
+      (q.weight && q.weight !== 'medium' ? '<span class="pill ' + wc + '">' + esc(q.weight) + '</span>' : '') +
+      (pick ? '<span class="pill done">' + icon('check') + ' answered ' + esc(pick).toUpperCase() + '</span>' : '') + '</div>';
     h += '<h1 class="q">' + md(q.q) + '</h1>';
     if (q.lede) h += '<p class="lede">' + md(q.lede) + '</p>';
 
     h += '<div class="ctx">' +
-      '<div class="ctxc"><span class="k">Where it stands</span><p>' + md(q.now || '—') + '</p></div>' +
-      '<div class="ctxc"><span class="k">How it got here</span><p>' + md(q.why || '—') + '</p></div>' +
-      '<div class="ctxc problem"><span class="k">The tension</span><p>' + md(q.problem || '—') + '</p></div></div>';
+      '<div class="ctxc"><span class="eyebrow">Where it stands</span><p>' + md(q.now || '—') + '</p></div>' +
+      '<div class="ctxc"><span class="eyebrow">How it got here</span><p>' + md(q.why || '—') + '</p></div>' +
+      '<div class="ctxc tension"><span class="eyebrow">The tension</span><p>' + md(q.problem || '—') + '</p></div></div>';
 
     if (q.evidence && q.evidence.length) {
-      h += '<details class="ev"><summary>' + icon('bar_chart') + 'Evidence' +
+      h += '<details class="ev"><summary>' + icon('chevron_right', 'caret') + 'Evidence' +
         '<span class="cnt">' + q.evidence.length + ' ' + (q.evidence.length === 1 ? 'exhibit' : 'exhibits') + '</span></summary>' +
         '<div class="evbody">' + q.evidence.map(evBlock).join('') + '</div></details>';
     }
 
+    h += '<div class="optshead"><span class="eyebrow">The options</span>' +
+      '<span class="hint">press <kbd>a</kbd>–<kbd>' +
+      String.fromCharCode(96 + Math.max(1, (q.options || []).length)) + '</kbd> to choose</span></div>';
     h += '<div class="opts" role="radiogroup" aria-label="Options">';
     (q.options || []).forEach(function (o) {
       h += '<button class="opt' + (o.k === q.rec ? ' rec' : '') + (pick === o.k ? ' on' : '') +
@@ -143,16 +152,12 @@
     });
     h += '</div>';
 
-    if (q.recCase) h += '<div class="reccase"><b>Why ' + esc(String(q.rec).toUpperCase()) + '.</b> ' + md(q.recCase) + '</div>';
+    if (q.recCase) h += '<div class="reccase"><div class="rh">' + icon('lightbulb') +
+      'Why ' + esc(String(q.rec).toUpperCase()) + '</div>' + md(q.recCase) + '</div>';
 
-    h += '<textarea class="note" id="note" placeholder="Your note on this decision (saved locally)">' +
+    h += '<textarea class="note" id="note" placeholder="Your note on this decision — saved in this browser">' +
       esc(state.notes[q.id] || '') + '</textarea>';
-
-    if (q.sources && q.sources.length) {
-      h += '<div style="margin-top:14px">' + q.sources.map(function (s) {
-        return '<span class="srcpill">' + esc(s) + '</span>';
-      }).join('') + '</div>';
-    }
+    h += '</div>';
 
     h += '<div class="pager">';
     h += prev ? '<button class="pg" data-q="' + esc(prev.id) + '"><span class="pk">' + icon('arrow_back') +
@@ -165,72 +170,88 @@
 
     /* right rail: where this question came from */
     var rail = '<div class="rsec"><div class="rh">This decision</div>' +
-      '<div class="rlink"><span class="rm">Weight</span>' + esc(q.weight || '—') + '</div>' +
-      '<div class="rlink"><span class="rm">Area</span>' + esc(q.cat) + '</div>' +
-      (q.sub ? '<div class="rlink"><span class="rm">Group</span>' + esc(q.sub) + '</div>' : '') + '</div>';
+      '<div class="rrow"><span>Position</span><b>' + (idx + 1) + ' of ' + Q.length + '</b></div>' +
+      '<div class="rrow"><span>Weight</span><b>' + esc(q.weight || '—') + '</b></div>' +
+      '<div class="rrow"><span>Area</span><b>' + esc(q.cat) + '</b></div>' +
+      (q.sub ? '<div class="rrow"><span>Group</span><b>' + esc(q.sub) + '</b></div>' : '') +
+      '<div class="rrow"><span>Status</span><b style="color:var(--' + (pick ? 'good' : 'ink-3') + ')">' +
+      (pick ? 'answered ' + esc(pick).toUpperCase() : 'open') + '</b></div></div>';
     if (q.sources && q.sources.length) {
-      rail += '<div class="rsec"><div class="rh">Sources</div>' +
-        q.sources.map(function (s) { return '<div class="rlink">' + esc(s) + '</div>'; }).join('') + '</div>';
+      rail += '<div class="rsec"><div class="rh">Where this came from</div>' +
+        q.sources.map(function (s) { return '<span class="src">' + esc(s) + '</span>'; }).join('') + '</div>';
     }
     var same = Q.filter(function (o) { return o.cat === q.cat && o.id !== q.id; }).slice(0, 8);
     if (same.length) {
       rail += '<div class="rsec"><div class="rh">Also in ' + esc(q.cat) + '</div>' +
         same.map(function (o) {
-          return '<button class="rlink" data-q="' + esc(o.id) + '" style="text-align:left;width:100%">' +
+          return '<button class="rlink' + (state.picks[o.id] ? ' done' : '') + '" data-q="' + esc(o.id) + '">' +
             '<span class="rm">' + esc(o.id) + (state.picks[o.id] ? ' · answered' : '') + '</span>' + esc(o.q) + '</button>';
         }).join('') + '</div>';
     }
     $('#aside').innerHTML = rail;
-    $('#abarPos').textContent = (idx + 1) + ' / ' + Q.length;
+    $('#abarPos').innerHTML = '<b>' + esc(q.id) + '</b>' + (idx + 1) + ' of ' + Q.length;
     $('#abarPrev').disabled = !prev; $('#abarNext').disabled = !next;
   }
 
   /* ── overview ─────────────────────────────────────────────────────────── */
   function renderOverview() {
     var groups = cats(), a = answered(Q), c = crit(Q);
-    var h = '<h1 class="q">Decisions pending on frontmatter</h1>' +
-      '<p class="lede">' + Q.length + ' decisions drawn from two weeks of research: two verification rounds, ' +
-      'a gap register and an adversarial round that came back against the plan\'s own headline. ' +
-      'Each one states where it stands, how it got there, the tension, the evidence, and a recommendation. ' +
-      'Answers are saved in this browser only.</p>';
-    h += '<div class="ctx"><div class="ctxc"><span class="k">Answered</span><p>' + a + ' of ' + Q.length + '</p></div>' +
-      '<div class="ctxc"><span class="k">Critical open</span><p>' + c + '</p></div>' +
-      '<div class="ctxc problem"><span class="k">Areas</span><p>' + groups.length + '</p></div></div>';
+    var ev = Q.reduce(function (n, q) { return n + (q.evidence || []).length; }, 0);
+    var h = '<div class="hero"><span class="eyebrow">Studio Zephyrus · frontmatter</span>' +
+      '<h1>Decisions pending on frontmatter</h1>' +
+      '<p>' + Q.length + ' decisions drawn from two weeks of research: two verification rounds, a gap ' +
+      'register, and an adversarial round that came back against the plan\'s own headline. Each states ' +
+      'where it stands today, how it got there, the tension that forces a choice, the evidence, and a ' +
+      'recommendation. Answers stay in this browser.</p></div>';
+    h += '<div class="kpis">' +
+      '<div class="kpi acc"><div class="kn">Answered</div><div class="kv">' + a + '</div>' +
+        '<div class="kn">of ' + Q.length + ' decisions</div></div>' +
+      '<div class="kpi crit"><div class="kn">Critical open</div><div class="kv">' + c + '</div>' +
+        '<div class="kn">decide these first</div></div>' +
+      '<div class="kpi"><div class="kn">Areas</div><div class="kv">' + groups.length + '</div>' +
+        '<div class="kn">grouped for the meeting</div></div>' +
+      '<div class="kpi"><div class="kn">Evidence</div><div class="kv">' + ev + '</div>' +
+        '<div class="kn">exhibits behind them</div></div></div>';
+    h += '<h2 class="sech">By area</h2><p class="secn">Ordered the way the plan reads, not the way they were found.</p>';
     h += '<div class="grid">' + groups.map(function (g) {
       var ga = answered(g.qs), gc = crit(g.qs), pct = g.qs.length ? (ga / g.qs.length) * 100 : 0;
-      return '<button class="card" data-cat="' + esc(g.cat) + '">' +
+      return '<button class="cat" data-cat="' + esc(g.cat) + '">' +
         '<div class="ct">' + esc(g.cat) + '</div>' +
-        '<div class="cs">' + ga + ' of ' + g.qs.length + ' answered' + (gc ? ' · ' + gc + ' critical open' : '') + '</div>' +
+        '<div class="cs"><span>' + ga + ' of ' + g.qs.length + '</span>' +
+        (gc ? '<span class="cc">' + gc + ' critical</span>' : '') + '</div>' +
         '<div class="cbar"><i style="width:' + pct + '%"></i></div></button>';
     }).join('') + '</div>';
-    var openCrit = Q.filter(function (q) { return q.weight === 'critical' && !state.picks[q.id]; }).slice(0, 12);
+    var openCrit = Q.filter(function (q) { return q.weight === 'critical' && !state.picks[q.id]; }).slice(0, 10);
     if (openCrit.length) {
-      h += '<h2 style="font-size:16px;margin:22px 0 8px">Start here — critical and unanswered</h2>';
+      h += '<h2 class="sech">Start here</h2><p class="secn">Critical and unanswered — a wrong answer to any of ' +
+        'these costs the product or the company.</p><div class="qlist">';
       h += openCrit.map(function (q) {
-        return '<button class="card" style="margin-bottom:7px;width:100%" data-q="' + esc(q.id) + '">' +
-          '<div class="cs mono">' + esc(q.id) + ' · ' + esc(q.cat) + '</div>' +
-          '<div class="ct" style="margin-top:3px">' + esc(q.q) + '</div></button>';
-      }).join('');
+        return '<button class="ql" data-q="' + esc(q.id) + '">' +
+          '<span class="qi">' + esc(q.id) + '</span>' +
+          '<span class="qq">' + esc(q.q) + '</span>' +
+          '<span class="qc">' + esc(q.cat) + '</span></button>';
+      }).join('') + '</div>';
     }
     $('#main').innerHTML = h; $('#main').scrollTop = 0;
     $('#aside').innerHTML = '<div class="rsec"><div class="rh">Export</div>' +
-      '<button class="rlink" id="expMd" style="text-align:left;width:100%">Answers as markdown</button>' +
-      '<button class="rlink" id="expJson" style="text-align:left;width:100%">Answers as JSON</button></div>' +
+      '<button class="rlink" id="expMd"><span class="rm">Markdown</span>Decisions taken, and what is still open</button>' +
+      '<button class="rlink" id="expJson"><span class="rm">JSON</span>Raw answers and notes</button></div>' +
       '<div class="rsec"><div class="rh">Keyboard</div>' +
-      '<div class="rlink"><span class="kbd">j</span> <span class="kbd">k</span> next / previous</div>' +
-      '<div class="rlink"><span class="kbd">a</span>–<span class="kbd">d</span> pick an option</div>' +
-      '<div class="rlink"><span class="kbd">/</span> search</div></div>';
-    $('#abarPos').textContent = a + ' / ' + Q.length;
+      '<div class="rrow"><span>Next / previous</span><b class="mono">j k</b></div>' +
+      '<div class="rrow"><span>Choose an option</span><b class="mono">a–d</b></div>' +
+      '<div class="rrow"><span>Search</span><b class="mono">/</b></div></div>';
+    $('#abarPos').innerHTML = '<b>' + a + ' / ' + Q.length + '</b>answered';
   }
 
   /* ── markdown import — the sidecar ───────────────────────────────────── */
   function renderImport() {
     $('#main').innerHTML =
-      '<h1 class="q">Import a decision file</h1>' +
-      '<p class="lede">Paste or drop a markdown file and it becomes decision cards. ' +
+      '<div class="hero"><span class="eyebrow">Sidecar</span><h1>Import a decision file</h1>' +
+      '<p>Paste or drop a markdown file and it becomes decision cards. ' +
       'This is the sidecar in miniature: the file stays the source, the page is a projection of it. ' +
       'Nothing is uploaded — parsing happens in this browser.</p>' +
-      '<div class="drop" id="drop">Drop a <b>.md</b> file here, or paste below</div>' +
+      '</div><div class="drop" id="drop">' + icon('upload') +
+      '<div style="margin-top:8px">Drop a <b>.md</b> file here, or paste below</div></div>' +
       '<textarea class="mdin" id="mdin" style="margin-top:12px" placeholder="' + esc(
         '## Should we ship the VS Code extension first?\n' +
         '- cat: Form factor\n' +
@@ -245,17 +266,21 @@
         '- [x] b. Extension first — meets the buyer where they are\n' +
         '- [ ] c. Both from one core — two shells, one engine\n'
       ) + '"></textarea>' +
-      '<div style="margin-top:12px;display:flex;gap:8px;flex-wrap:wrap">' +
-      '<button class="tbtn primary" id="mdgo">' + icon('add') + 'Render as decisions</button>' +
-      '<button class="tbtn" id="mdsample">Load the example</button></div>' +
+      '<div style="margin-top:14px;display:flex;gap:9px;flex-wrap:wrap">' +
+      '<button class="btn primary" id="mdgo">' + icon('add') + 'Render as decisions</button>' +
+      '<button class="btn" id="mdsample">Load the example</button></div>' +
       '<div id="mdout" style="margin-top:18px"></div>';
-    $('#aside').innerHTML = '<div class="rsec"><div class="rh">Format</div>' +
-      '<div class="rlink"><span class="rm">##</span> the question</div>' +
-      '<div class="rlink"><span class="rm">- key: value</span> cat, sub, weight, id</div>' +
-      '<div class="rlink"><span class="rm">&gt;</span> the lede</div>' +
-      '<div class="rlink"><span class="rm">now: why: problem:</span> context</div>' +
-      '<div class="rlink"><span class="rm">- [ ] a. label — impact</span> an option</div>' +
-      '<div class="rlink"><span class="rm">- [x]</span> marks the recommendation</div></div>';
+    $('#aside').innerHTML = '<div class="rsec"><div class="rh">The format</div>' +
+      '<div class="rrow"><span>The question</span><b class="mono">##</b></div>' +
+      '<div class="rrow"><span>cat, sub, weight, id</span><b class="mono">- key: value</b></div>' +
+      '<div class="rrow"><span>The lede</span><b class="mono">&gt;</b></div>' +
+      '<div class="rrow"><span>Context</span><b class="mono">now: why: problem:</b></div>' +
+      '<div class="rrow"><span>An option</span><b class="mono">- [ ] a. …</b></div>' +
+      '<div class="rrow"><span>The recommendation</span><b class="mono">- [x]</b></div></div>' +
+      '<div class="rsec"><div class="rh">Why this exists</div>' +
+      '<p style="font-size:12.5px;color:var(--ink-2);line-height:1.55;margin:0">' +
+      'The file stays the source; this page is a projection of it. Parsing happens in your browser ' +
+      'and nothing is uploaded.</p></div>';
   }
 
   /* Parse a decision markdown file. Deliberately forgiving: anything it cannot
@@ -303,10 +328,10 @@
     var parsed = parseMd(text);
     var out = $('#mdout');
     if (!parsed.length) { out.innerHTML = '<div class="drop">Nothing to render. A question is a line starting with <b>##</b>.</div>'; return; }
-    out.innerHTML = '<div class="card" style="border-color:var(--accent)"><div class="ct">' + parsed.length +
+    out.innerHTML = '<div class="cat" style="border-color:var(--accent)"><div class="ct">' + parsed.length +
       ' question' + (parsed.length === 1 ? '' : 's') + ' parsed</div><div class="cs">' +
       parsed.map(function (p) { return esc(p.q); }).join(' · ') + '</div></div>' +
-      '<div style="margin-top:10px"><button class="tbtn primary" id="mdadd">Add to this session</button></div>';
+      '<div style="margin-top:12px"><button class="btn primary" id="mdadd">Add to this session</button></div>';
     $('#mdadd').onclick = function () {
       parsed.forEach(function (p) { if (!Q.some(function (x) { return x.id === p.id; })) Q.push(p); });
       view = { mode: 'q', id: parsed[0].id, cat: 'Imported', filter: '' };
@@ -359,9 +384,11 @@
     renderNav(); progress();
   }
   function progress() {
-    var a = answered(Q), pct = Q.length ? (a / Q.length) * 100 : 0;
-    $('#prog').style.width = pct + '%';
-    $('#progtxt').textContent = a + ' / ' + Q.length + ' answered';
+    var a = answered(Q), c = crit(Q), n = Q.length || 1;
+    $('#prog').style.width = (a / n) * 100 + '%';
+    $('#progCrit').style.width = (c / n) * 100 + '%';
+    $('#progtxt').innerHTML = '<b>' + a + '</b> / ' + Q.length + ' answered' +
+      (c ? ' · <b style="color:var(--crit)">' + c + '</b> critical open' : '');
   }
 
   /* ── events ───────────────────────────────────────────────────────────── */
