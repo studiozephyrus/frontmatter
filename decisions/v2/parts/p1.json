@@ -1,0 +1,322 @@
+[
+{
+  "id": "D1",
+  "cat": "Design, UI & attention",
+  "sub": "The tint",
+  "weight": "critical",
+  "q": "Does the review tint stay a colour-only wash at 1.11:1, or does it get a second, non-colour channel?",
+  "lede": "The tint is the only mark this product draws, and as built it is quieter than the divider lines it sits between.",
+  "visual": {
+    "kind": "file",
+    "name": "auth.md — Live mode, left gutter",
+    "lines": [
+      {"t": "  ## Token lifetime", "mark": "", "note": "reviewed"},
+      {"t": "| Refresh tokens expire after 30 days.", "mark": "unreviewed", "note": "wash 1.111:1"},
+      {"t": "| Rotation is silent and unlogged.", "mark": "unreviewed", "note": "same wash"},
+      {"t": "  Sessions end on sign-out.", "mark": "", "note": "reviewed"}
+    ],
+    "note": "The gutter bar is the proposed second channel; the wash inside the text stays as designed.",
+    "caption": "Where a non-colour channel would sit, outside the reading line."
+  },
+  "stakes": "If nobody registers the mark, every review number after it measures a screen the reader never saw.",
+  "state": [
+    "§10 says changed spans carry `a light tint and nothing else` (docs/PRODUCT-BRIEF.md:247).",
+    "The prototype ships `.m1{background:var(--wash);box-shadow:0 0 0 1px var(--wash) inset}`, so the shadow is the fill's own hex (docs/prototype/frontmatter-prototype.html:116).",
+    "Measured from the declared hexes, the wash is 1.111:1 on white, under the 1.24:1 hairline beside it (docs/prototype/frontmatter-prototype.html:13).",
+    "§22 already promises `the tint is never colour alone`, which a wash plus a same-colour shadow does not keep (docs/PRODUCT-BRIEF.md:540)."
+  ],
+  "path": [
+    "§16 read Tang et al. as saying provenance awareness improves validation and raises workload (docs/PRODUCT-BRIEF.md:408).",
+    "The plan answered the workload half by making the mark as quiet as it could be.",
+    "It never asked what quiet costs on the perception side, and no eye-tracking has been run on our screens (docs/PRODUCT-BRIEF.md:402)."
+  ],
+  "tension": [
+    "Quiet enough to ignore at rest and loud enough to be seen are the same dial when colour is the only channel.",
+    "The scheduled test asks what the tint means, so someone who never saw it still produces an answer (docs/PRODUCT-BRIEF.md:411).",
+    "Whether a text wash falls under SC 1.4.11 is contested; a margin mark makes the argument unnecessary."
+  ],
+  "evidence": [
+    {
+      "type": "bars",
+      "title": "How loud each mark is against its own background",
+      "note": "Contrast ratios derived by me from the prototype's declared hexes (docs/prototype/frontmatter-prototype.html:13, :14, :16, :22) using the WCAG 2.x relative-luminance formula. The 3:1 line is the floor the plan's own PRD applies to borders that identify a control (docs/FRONTMATTER-PRD-v2-2026-08-29.md:3357). Whether a text-background wash falls under that rule is contested — the same PRD row says \"do not raise decorative dividers\" — so read the line as the standard the design is being argued against, not a settled verdict.",
+      "data": [["Review tint #eef3ff on white", 1.111], ["AI proposal tint #f4efff on white", 1.127], ["Selected span #dfe8ff on white", 1.226], ["Hairline divider #e4e7ec on white", 1.24], ["Tab identity colour #cfe0ff on white", 1.333], ["Review tint #15213d on dark #0f1115", 1.185]],
+      "unit": ":1 contrast",
+      "threshold": 3,
+      "thresholdLabel": "WCAG 2.2 SC 1.4.11 floor the PRD applies to an identifying boundary"
+    },
+    {
+      "type": "table",
+      "title": "What the plan says about the tint, in three places",
+      "cols": ["Where", "What it says"],
+      "rows": [["§10, docs/PRODUCT-BRIEF.md:247", "\"a light tint and nothing else\""], ["§16, docs/PRODUCT-BRIEF.md:408", "\"ignorable at rest (no border, no icon)\""], ["§22, docs/PRODUCT-BRIEF.md:540", "\"the tint is never colour alone\""]]
+    }
+  ],
+  "options": [
+    {
+      "k": "a",
+      "label": "Ship the colour-only wash and let the five-second test decide",
+      "what": "Nothing changes; the mark stays a background wash with no second channel.",
+      "gains": ["Cheapest; nothing to build, redraw or re-test", "Defensible if a document wash reads as decoration, not as a control boundary"],
+      "costs": ["Someone who missed the tint still answers the meaning question", "§22's colour-alone promise stays false"],
+      "system": "No change.",
+      "screens": "None.",
+      "money": "None."
+    },
+    {
+      "k": "b",
+      "label": "Add one gutter mark at 3:1 and keep the text wash quiet",
+      "what": "A left-margin bar marks the span; the wash inside the text is unchanged.",
+      "gains": ["Keeps §22's promise and ends the SC 1.4.11 argument", "Puts the mark in the left column §16 says is scanned first", "One CodeMirror gutter decoration"],
+      "costs": ["Gutter width is also wanted by line numbers and git marks", "A second element to draw in every mode and both themes"],
+      "system": "One gutter decoration in the review-state layer; no sidecar or engine change.",
+      "screens": "S2, S4, split and Read gain a gutter column.",
+      "money": "None."
+    },
+    {
+      "k": "c",
+      "label": "Raise the wash itself to 3:1",
+      "what": "The tint becomes a visible highlight behind the text.",
+      "gains": ["One token change and impossible to miss"],
+      "costs": ["The document reads as highlighted, the exact failure the test exists to catch", "Rejected by §16's own workload argument"],
+      "system": "One token.",
+      "screens": "Every screen carrying the tint changes character.",
+      "money": "None."
+    },
+    {
+      "k": "d",
+      "label": "Make the channel a setting: wash, wash plus gutter, or gutter only",
+      "what": "The reader picks how the mark is drawn.",
+      "gains": ["Nobody has to be right first time"],
+      "costs": ["Three states to design, test and screenshot", "The promise rests on whichever is default, so the default is still this decision"],
+      "system": "A preference, plus the gutter work anyway.",
+      "screens": "One more control on S11, which the wireframes want short.",
+      "money": "None."
+    }
+  ],
+  "rec": "b",
+  "recCase": [
+    "§22 already commits to never colour alone, and a gutter mark is the cheapest way to keep that promise.",
+    "Tang's workload cost is about attention inside the text; a margin mark sits outside it.",
+    "The gutter also has room for the count, so this and D4 can share one column."
+  ],
+  "flip": "If the rewritten noticing test in D18 finds people spot the wash unprompted at 1.111:1, the gutter mark is decoration.",
+  "linked": ["D2", "D4", "D18", "D21"],
+  "sources": ["docs/PRODUCT-BRIEF.md:247", "docs/PRODUCT-BRIEF.md:402", "docs/PRODUCT-BRIEF.md:408", "docs/PRODUCT-BRIEF.md:411", "docs/PRODUCT-BRIEF.md:540", "docs/prototype/frontmatter-prototype.html:13", "docs/prototype/frontmatter-prototype.html:14", "docs/prototype/frontmatter-prototype.html:116", "docs/FRONTMATTER-PRD-v2-2026-08-29.md:3357"]
+},
+{
+  "id": "D2",
+  "cat": "Design, UI & attention",
+  "sub": "The tint",
+  "weight": "critical",
+  "q": "Do we keep two washes for proposed and unreviewed, or does the bordered highlight already in the codebase become the proposal mark?",
+  "lede": "One tint means the bytes are on your disk, the other means nothing was written, and only hue separates them.",
+  "visual": {
+    "kind": "compare",
+    "labelWidth": 150,
+    "cols": [{"title": "Review tint #eef3ff", "tone": "accent"}, {"title": "Proposal tint #f4efff", "tone": "neutral"}, {"title": "Shipped .cm-ai-suggestion", "tone": "warn"}],
+    "rows": [
+      {"label": "Contrast on white", "cells": ["1.111:1", "1.127:1", "1.280:1"]},
+      {"label": "Border", "cells": ["none", "none", "1px inset, about 1.95:1 on the page"]},
+      {"label": "Corners", "cells": ["square", "square", "3px radius"]},
+      {"label": "Means", "cells": ["written, unreviewed", "proposed, not written", "proposed, not written"]},
+      {"label": "Bytes on disk", "cells": ["yes", "no", "no"]},
+      {"label": "Built today", "cells": ["no", "no", "yes, merged"]}
+    ],
+    "note": "The two planned washes are 4.10 apart on delta-E76, against a just-noticeable difference near 2.3.",
+    "caption": "Three span treatments: two are drawn, one is already shipping."
+  },
+  "stakes": "Confusing the two states means reverting bytes that never changed, or accepting text believing it is already saved.",
+  "state": [
+    "The wireframes are explicit: purple is proposed, blue is written but unreviewed (docs/_wireframes.md:29).",
+    "Both wash hexes are declared on one line and differ by delta-E76 4.10 (docs/prototype/frontmatter-prototype.html:14).",
+    "`.cm-ai-suggestion` is merged with a blue fill, a 1px inset border, 3px corners and a pulse (src/app/globals.css:833, :835, :836, :844).",
+    "The planned tint is unbuilt: no file in `src/` carries review-tint state."
+  ],
+  "path": [
+    "F2 marks what an agent already wrote; F5 and F8 deliver text that has not been written (docs/PRODUCT-BRIEF.md:56, :59).",
+    "Both were given a tinted span because tinting is the product's one visual idiom.",
+    "`.cm-ai-suggestion` arrived with the sibling app's inline accept and reject, before §16's tint rules were written."
+  ],
+  "tension": [
+    "The distinction with a data consequence is carried by the weakest channel available.",
+    "Working code already gives the proposal a border, which is the non-colour channel the distinction needs.",
+    "Keeping it breaks §16's `no border, no icon` rule for one of the two marks (docs/PRODUCT-BRIEF.md:408).",
+    "The pulse runs with `prefers-reduced-motion` absent from the whole stylesheet (docs/FRONTMATTER-PRD-v2-2026-08-29.md:3366)."
+  ],
+  "evidence": [
+    {
+      "type": "stat",
+      "title": "The two tints, measured against each other",
+      "items": [["Light mode, review #eef3ff vs proposal #f4efff", "ΔE76 = 4.10", "derived by me from docs/prototype/frontmatter-prototype.html:14; JND is about 2.3"], ["Dark mode, #15213d vs #22193a", "ΔE76 = 8.85", "derived from docs/prototype/frontmatter-prototype.html:22"], ["Contrast against the page, review vs proposal", "1.111 vs 1.127", "the two are indistinguishable by luminance; only hue separates them"], ["Scheduled tests that show both states", "0", "the five-second test names one screenshot and one tint (docs/PRODUCT-BRIEF.md:352, :411)"]]
+    },
+    {
+      "type": "table",
+      "title": "What each state means for the file",
+      "cols": ["Tint", "State", "Bytes on disk", "What accepting does"],
+      "rows": [["Blue #eef3ff", "written, unreviewed", "yes", "flips a flag, changes zero bytes (docs/_wireframes.md:29)"], ["Purple #f4efff", "proposed", "no", "writes new bytes"]]
+    },
+    {
+      "type": "table",
+      "title": "The shipped highlight against the planned tint",
+      "cols": ["Property", "Shipped .cm-ai-suggestion", "Planned review tint"],
+      "rows": [["Fill", "#0055ff at 16% → #d6e4ff on white (1.280:1); #d2e0fb on the app's #fafafa (1.274:1)", "#eef3ff → 1.111:1 on white; 1.065:1 on #fafafa"], ["Border", "inset 1px at 30% over that fill → ≈#93b6fc, 1.53:1 against the fill and 1.95:1 against the page", "none — \"no border, no icon\""], ["Corners", "3px radius", "square (border-radius:0 in the prototype, :116)"], ["Hue", "blue — for a proposal", "blue means written-and-unreviewed; purple means proposal"], ["Motion", "sgnk-ai-pulse keyframes, unguarded", "none specified"]]
+    },
+    {
+      "type": "stat",
+      "title": "Motion, measured",
+      "items": [["@keyframes blocks in globals.css", "4", "measured"], ["animation: declarations", "3", "measured"], ["prefers-reduced-motion guards", "0", "measured — also flagged at docs/FRONTMATTER-PRD-v2-2026-08-29.md:3366"], ["Files in src/ carrying review-tint state", "0", "the planned tint is unbuilt; the competing treatment is merged"]]
+    }
+  ],
+  "options": [
+    {
+      "k": "a",
+      "label": "Keep both washes as drawn and delete the shipped highlight",
+      "what": "One quiet idiom; the proposal is a purple wash with no border.",
+      "gains": ["One vocabulary, and §16's rules stay enforceable", "Nothing on the page competes with the review tint"],
+      "costs": ["The data-consequence distinction rests on a 4.1 delta-E hue difference", "F8's inline accept and reject has to be redrawn"],
+      "system": "Delete `.cm-ai-suggestion` and its keyframes; build the proposal decoration.",
+      "screens": "S3b and S4 keep their drawn treatment.",
+      "money": "None."
+    },
+    {
+      "k": "b",
+      "label": "Adopt the shipped bordered highlight as the proposal mark, and correct the plan",
+      "what": "Proposals are blue with a border, review state is the quiet wash, and the wireframes' purple goes.",
+      "gains": ["The difference survives greyscale, dark mode and colour-blindness", "Reuses code that works, at close to no build cost"],
+      "costs": ["The `no border` rule then applies to one mark only and must be written down", "Two blue marks of different loudness in one editor"],
+      "system": "Keep the class, wrap the pulse in `prefers-reduced-motion`, rewrite the wireframe note.",
+      "screens": "S3b and S4 redraw the proposal span.",
+      "money": "None."
+    },
+    {
+      "k": "c",
+      "label": "Keep both washes and add a dashed left rule to the proposal",
+      "what": "The purple stays and gains a non-colour mark of its own design.",
+      "gains": ["Keeps the drawn palette and makes the distinction non-hue"],
+      "costs": ["Builds a second treatment when one is already merged", "Adds an element to the surface §16 tried to keep clear"],
+      "system": "One more decoration, plus deleting `.cm-ai-suggestion`.",
+      "screens": "S3b, S4.",
+      "money": "None."
+    },
+    {
+      "k": "d",
+      "label": "Take the proposal out of the document; it lives in the review panel",
+      "what": "Nothing unwritten is ever tinted in the text.",
+      "gains": ["Removes the confusion by removing the second state from the page", "One tint to test and one meaning to teach"],
+      "costs": ["Forfeits proposal-arrives-in-place, which F5 and F8 were designed around", "S3b answer-in-place is redrawn from scratch"],
+      "system": "Proposals render in the panel only.",
+      "screens": "S3b changes shape; S4 grows.",
+      "money": "None."
+    }
+  ],
+  "rec": "b",
+  "recCase": [
+    "A border is the second channel the distinction needs, and it is already merged and working.",
+    "Correcting a wireframe note costs less than rebuilding the same idea in a different colour.",
+    "The motion guard is due either way, since `prefers-reduced-motion` appears zero times in the stylesheet."
+  ],
+  "flip": "If the inline accept and reject flow is being replaced by the review panel, delete the class and take option a.",
+  "linked": ["D1", "D9", "D18", "D21"],
+  "sources": ["docs/_wireframes.md:29", "docs/prototype/frontmatter-prototype.html:14", "docs/prototype/frontmatter-prototype.html:22", "docs/prototype/frontmatter-prototype.html:116", "docs/PRODUCT-BRIEF.md:56", "docs/PRODUCT-BRIEF.md:59", "docs/PRODUCT-BRIEF.md:352", "docs/PRODUCT-BRIEF.md:408", "docs/PRODUCT-BRIEF.md:411", "src/app/globals.css:833", "src/app/globals.css:835", "src/app/globals.css:836", "src/app/globals.css:844", "docs/FRONTMATTER-PRD-v2-2026-08-29.md:3366", "merged: D17"]
+},
+{
+  "id": "D3",
+  "cat": "Design, UI & attention",
+  "sub": "The tint",
+  "weight": "high",
+  "q": "Should the tint be switchable at all, and is it on by default?",
+  "lede": "The settings page ships a toggle that turns off the one thing this product adds to a markdown editor.",
+  "visual": {
+    "kind": "screen",
+    "title": "S11 Settings, as built",
+    "panes": [
+      {
+        "label": "Five toggles on one page",
+        "w": 1,
+        "rows": [
+          {"label": "Hide all AI features", "meta": "evidence-backed", "mark": "keep", "tone": "good"},
+          {"label": "Mark machine-written text until a person reviews it", "meta": "default on", "mark": "removes the product", "tone": "stop"},
+          {"label": "Show the unreviewed bar in the file tree", "meta": "default on", "mark": "chrome", "tone": "warn"},
+          {"label": "Theme, keymap and the rest", "meta": "appearance", "mark": "", "tone": "neutral"}
+        ]
+      }
+    ],
+    "note": "The settings copy already says the tint is file state, not AI.",
+    "caption": "Which switches remove chrome, and which remove the product."
+  },
+  "stakes": "A pilot participant who switches the tint off is counted as a user of a product they are not using.",
+  "state": [
+    "S11 ships `Mark machine-written text until a person reviews it` and a tree-bar toggle, both on (docs/prototype/frontmatter-prototype.html:615, :616).",
+    "The hide-all-AI switch already draws the line: the review tint stays, because it is file state (docs/prototype/frontmatter-prototype.html:608).",
+    "The MVP-0 exit measure counts days opened, spans reviewed and proposals accepted (docs/PRODUCT-BRIEF.md:431)."
+  ],
+  "path": [
+    "The hide-all switch is evidence-backed: Zed, VS Code and Telegram shipped theirs after 412-, 30- and 181-reaction issues (docs/PRODUCT-BRIEF.md:298).",
+    "The tint toggle followed from the settings page's habit of making every visual behaviour optional."
+  ],
+  "tension": [
+    "The wireframes state the rule being broken: every toggle we add is a decision we failed to make (docs/_wireframes.md:47).",
+    "With the tint off, 41 of 43 editor files are byte-identical to the sibling app, so nothing distinct is left (docs/PRODUCT-BRIEF.md:223).",
+    "Removing a control that already works is the kind of change those three reaction counts were about."
+  ],
+  "evidence": [
+    {
+      "type": "stat",
+      "title": "Settings toggles on S11, counted",
+      "items": [["Toggles on the settings page", "5", "counted in docs/prototype/frontmatter-prototype.html at :608, :612, :615, :616, :619"], ["Of those, toggles that disable the product's core signal", "2", ":615 \"Mark machine-written text…\" and :616 \"Show the unreviewed bar in the file tree\""], ["The stated constraint", "\"Every toggle we add is a decision we failed to make\"", "docs/_wireframes.md:47"], ["Editor files byte-identical to the sibling app", "41 of 43", "docs/PRODUCT-BRIEF.md:223 — what is left when the tint is off"], ["What the MVP-0 exit test counts", "\"days-opened, spans reviewed, proposals accepted\"", "docs/PRODUCT-BRIEF.md:431 — all three read zero for a user who switched the tint off"]]
+    }
+  ],
+  "options": [
+    {
+      "k": "a",
+      "label": "Keep both toggles, default on",
+      "what": "Nothing changes; the reader can switch off the tint and the tree bar.",
+      "gains": ["Maximum control, and nobody can call the mark forced"],
+      "costs": ["The exit measure reads zero for a user who switched it off", "Two more states in every test and screenshot"],
+      "system": "No change.",
+      "screens": "None.",
+      "money": "None."
+    },
+    {
+      "k": "b",
+      "label": "Remove the tint toggle; keep the tree-bar toggle",
+      "what": "The tint is not optional; the tree bar stays chrome that can be hidden.",
+      "gains": ["Two fewer states to design, test and support", "The pilot measures one product"],
+      "costs": ["A vocal user can reasonably object to a removed control", "Someone who wants a clean document has only the file itself"],
+      "system": "Delete one preference.",
+      "screens": "S11 loses a row.",
+      "money": "None."
+    },
+    {
+      "k": "c",
+      "label": "Make the tint per-document, stored in frontmatter",
+      "what": "A finished document can be marked as no longer needing marks.",
+      "gains": ["Matches the projection law: the setting lives in the file", "A shipped document reads clean without a global switch"],
+      "costs": ["A new frontmatter key to read, write and refuse on", "SAFE_KEY governs what can be addressed there (src/modules/share/domain/splice-frontmatter.ts:53)"],
+      "system": "One key in the reader and writer, plus a refusal path.",
+      "screens": "The properties panel gains a row.",
+      "money": "None."
+    },
+    {
+      "k": "d",
+      "label": "Replace both with one quiet mode",
+      "what": "A single switch dims every review signal at once.",
+      "gains": ["One decision instead of two, and an answer to reviewer fatigue"],
+      "costs": ["Still ships an off switch for the product", "A dimmed state has to be designed and measured too"],
+      "system": "One preference applied across surfaces.",
+      "screens": "S11 loses a row; every surface gains a dimmed state.",
+      "money": "None."
+    }
+  ],
+  "rec": "b",
+  "recCase": [
+    "The hide-all switch already says the right thing out loud: AI is optional, file state is not.",
+    "A second switch that contradicts it hands the pilot a way to be a non-user without leaving.",
+    "The tree bar is chrome and can stay optional at no cost to the exit measure."
+  ],
+  "flip": "If a pilot participant asks for it unprompted the need is real, and option c is the right shape for it.",
+  "linked": ["D1", "D4"],
+  "sources": ["docs/prototype/frontmatter-prototype.html:608", "docs/prototype/frontmatter-prototype.html:615", "docs/prototype/frontmatter-prototype.html:616", "docs/_wireframes.md:47", "docs/PRODUCT-BRIEF.md:223", "docs/PRODUCT-BRIEF.md:298", "docs/PRODUCT-BRIEF.md:385", "docs/PRODUCT-BRIEF.md:431", "src/modules/share/domain/splice-frontmatter.ts:53"]
+}
+]

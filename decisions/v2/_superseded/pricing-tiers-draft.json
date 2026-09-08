@@ -1,0 +1,1554 @@
+{
+"cat": "Pricing & tiers",
+"questions": [
+
+{
+ "id": "PR1",
+ "cat": "Pricing & tiers",
+ "sub": "Tier contents",
+ "weight": "critical",
+ "q": "What does Pro actually gate on, and how long does the journal have to be kept?",
+ "lede": "The two things v15 put behind the gate have no feature row, and one of them is a command that exits with a module-not-found error.",
+ "visual": {
+   "kind": "compare",
+   "labelWidth": 190,
+   "cols": [
+     {"title": "Retained journal", "tone": "warn"},
+     {"title": "CI gate, mdmax cert", "tone": "warn"},
+     {"title": "Attribution, F3", "tone": "accent"}
+   ],
+   "rows": [
+     {"label": "Feature row with days", "cells": ["None. Line 289 says so itself", "None; 1 day to wire, line 224", "3 days for the readers, line 57"]},
+     {"label": "Runs today", "cells": ["No", "No. ERR_MODULE_NOT_FOUND", "No. Estimated, unbuilt"]},
+     {"label": "In the free tier now", "cells": ["Current state only", "n/a", "Yes, inside F1-F8"]},
+     {"label": "Someone charges for it", "cells": ["Obsidian 1 month to 12 months", "Docs-as-code CI seats, line 443", "Google Workspace Business Standard"]}
+   ],
+   "note": "Google gates span-level authorship and gives the file-level signal away free.",
+   "caption": "Three candidate gates, against whether they exist and whether anyone sells them."
+ },
+ "stakes": "A price published against two objects that have no feature row is a price the build team cannot deliver against.",
+ "state": [
+   "Pro is $4-5 per user per month for a splice journal kept 90 days and review gates that block in CI (docs/PRODUCT-BRIEF.md:288).",
+   "Neither gate exists. The plan's own Max row says no feature row builds retention at all (docs/PRODUCT-BRIEF.md:289), and `mdmax cert` was never wired to a runnable command (docs/PRODUCT-BRIEF.md:224).",
+   "Shared review state and MCP sit inside Pro but are disclaimed as the gate. They carry 16 estimated days between them (docs/PRODUCT-BRIEF.md:288).",
+   "Attribution is free today, inside F1-F8 (docs/PRODUCT-BRIEF.md:287)."
+ ],
+ "path": [
+   "Round 2 found the tiers inverted: Pro held what comparables give away, Max held what they charge for (docs/GAPS-2026-09-08.md:131).",
+   "So enforcement was pulled forward into Pro and retention was named as the paid object, a day before the meeting.",
+   "The same round found Google sells span-level authorship at exactly our intended tier, and the plan had demoted that feature as unsellable (docs/GAPS-2026-09-08.md:139).",
+   "The 90-day number predates the CERT-In work, which now sets a 180-day floor and tells us to delete the 90-day rule (docs/PRODUCT-BRIEF.md:545)."
+ ],
+ "tension": [
+   "Two other rows of the same document still route CI gates to Max (docs/PRODUCT-BRIEF.md:202, docs/PRODUCT-BRIEF.md:443).",
+   "The retention comparable does not fit the offer: Obsidian's ladder is 1 month to 12 months, and we ship one rung at 90 days.",
+   "Retention gets more expensive as a paid object the moment the journal carries prompts, because CERT-In sets a floor we cannot delete below.",
+   "Attribution is the only one of the four claims nobody has shipped, and it is currently given away."
+ ],
+ "options": [
+   {
+     "k": "a",
+     "what": "Retention stays the paid object and becomes a scheduled feature with a day estimate before any price is published.",
+     "label": "Keep retention as the gate, write it as an F-row first",
+     "gains": ["It is the plan's own written instruction, in its own Max row", "Retention is one of only two things the comparables actually charge for"],
+     "costs": ["Adds unestimated work to a schedule already at 58 calendar weeks", "The price cannot be quoted until the estimate exists", "90 days collides with the CERT-In floor, so the number moves again"],
+     "system": "New store: an append-only journal with a retention policy and a deletion job.",
+     "screens": "A history view over the journal, which no screen currently shows.",
+     "money": "No revenue until the F-row lands. Storage cost scales with retention length."
+   },
+   {
+     "k": "b",
+     "what": "Free keeps attribution from commit trailers; Pro gates per-span, prompt-bearing provenance from the MCP write path.",
+     "label": "Gate on attribution, the one claim nobody else shipped",
+     "gains": ["Google sells exactly this at exactly this tier, and gives the file-level half away", "It is the only one of four claims no platform has occupied", "F3 and F11 already carry estimates"],
+     "costs": ["Takes a feature out of a free tier the distribution strategy depends on", "Prompt-bearing writes need F11 MCP, which is 6 days and untested", "Attribution is absent whenever the write carried nothing"],
+     "system": "The split runs through F3's readers: trailers free, MCP-carried prompts paid.",
+     "screens": "The hover card gains a locked state on the paid half.",
+     "money": "No new build beyond F11. Ties the price to a feature with a live paid precedent."
+   },
+   {
+     "k": "c",
+     "what": "Pro is simply the second seat on a repo, with every feature included and nothing withheld.",
+     "label": "Gate on people, not features",
+     "gains": ["Nothing new to build and one sentence to explain", "Matches what the seats are actually for"],
+     "costs": ["Honour-system at best, which is PR2's problem in full", "Gives up the argument that we charge for something specific"],
+     "system": "No change.",
+     "screens": "A seat count in settings. Nothing else.",
+     "money": "Fastest to charge for. Revenue depends entirely on goodwill."
+   },
+   {
+     "k": "d",
+     "what": "No Pro gate is named until the twenty team conversations come back.",
+     "label": "Name no gate until the conversations return",
+     "gains": ["Publishes no price with nothing behind it", "The conversations are already scheduled for weeks 1-2"],
+     "costs": ["Leaves the plan with no revenue line for the whole build", "Every other card on this page stays a hypothesis until then"],
+     "system": "No change.",
+     "screens": "No pricing page.",
+     "money": "None."
+   }
+ ],
+ "rec": "b",
+ "recCase": [
+   "Attribution is the only claim in the plan that no platform occupied in the last nine weeks, and Google already sells it at this exact tier.",
+   "It costs nothing new: F3's readers are estimated and F11 is already inside Pro.",
+   "Retention fails three ways at once. No feature row, a comparable that does not fit the offer, and a 90-day number the CERT-In work has already told us to delete.",
+   "Whatever is chosen, fix the two rows that still send CI gates to Max in the same edit."
+ ],
+ "flip": "If the twenty conversations name shared review state or history rather than provenance as the thing a team would pay for, the gate is (a) or (c).",
+ "linked": ["PR2", "PR3", "PR21", "PR23"],
+ "sources": ["docs/PRODUCT-BRIEF.md:57", "docs/PRODUCT-BRIEF.md:202", "docs/PRODUCT-BRIEF.md:224", "docs/PRODUCT-BRIEF.md:287", "docs/PRODUCT-BRIEF.md:288", "docs/PRODUCT-BRIEF.md:289", "docs/PRODUCT-BRIEF.md:443", "docs/PRODUCT-BRIEF.md:545", "docs/GAPS-2026-09-08.md:131", "docs/GAPS-2026-09-08.md:139", "docs/research/agent-reports-2026-08-29-r8to10/s4-mobile-cross-device.md:63", "merged: PR6"],
+ "_ev": ["PR1", "PR6"]
+},
+
+{
+ "id": "PR2",
+ "cat": "Pricing & tiers",
+ "sub": "Enforcement",
+ "weight": "critical",
+ "q": "Where does the retained journal live, and what happens to it when a team stops paying?",
+ "lede": "The paid object is a plain-text file the free client writes, so either the gate is honour-system or the zero-bytes promise is not true.",
+ "visual": {
+   "kind": "flow",
+   "perRow": 4,
+   "nodes": [
+     {"label": "Payment lapses", "note": "The journal is already on their disk", "tone": "neutral"},
+     {"label": "Client stops appending", "note": "Past history intact and readable", "tone": "good", "edge": "a"},
+     {"label": "Client truncates the file", "note": "Deletes a file the user owns", "tone": "stop", "edge": "b"},
+     {"label": "Server-held, then dropped", "note": "Zero document bytes stops being true", "tone": "warn", "edge": "c"},
+     {"label": "Rule: features, never files", "note": "docs/PRODUCT-BRIEF.md:449", "tone": "accent"}
+   ],
+   "note": "Only one branch leaves every stated promise standing.",
+   "caption": "The three things that can happen to a journal in the customer's own repo."
+ },
+ "stakes": "Either the pricing page describes a gate nobody can enforce, or the architecture line the whole pitch leads with is false.",
+ "state": [
+   "The sidecar is `.frontmatter/review.jsonl`, plain text, beside the documents in the user's repo, readable without frontmatter (docs/PRODUCT-BRIEF.md:135).",
+   "Pro's journal is the same file plus history, with prompts and per-span hashes, kept 90 days (docs/PRODUCT-BRIEF.md:288).",
+   "The control plane holds identity, teams, entitlements and billing, and no document bytes (docs/PRODUCT-BRIEF.md:133).",
+   "The only lapse rule written is one sentence: downgrading loses features, never files (docs/PRODUCT-BRIEF.md:449)."
+ ],
+ "path": [
+   "The sidecar-in-the-repo design came from the refusal to hold documents, which is the strongest positioning line in the plan.",
+   "The retained journal was added as a price gate a day later, and the two were never reconciled.",
+   "BUSINESS.md has a full lapse table, but every hosted item in it was removed from the architecture in v15 (docs/BUSINESS.md:618).",
+   "The proposed week-0 decision is browser-side only, no document byte through a Zephyrus server (docs/WEEK0-DECISIONS-2026-09-08.md:35)."
+ ],
+ "tension": [
+   "If the journal sits in the repo, the free client writes it and nothing is withheld. The gate is an honour system.",
+   "If it sits on our server it carries prompt text and per-span hashes, and the zero-bytes line goes.",
+   "Obsidian ran this experiment: the licence was mandatory for five years and became optional because a local app with no sign-up cannot enforce it (r26-c8:21).",
+   "BUSINESS.md already settled the principle: a product whose thesis is that the file is the only source of truth cannot hold the file hostage (docs/BUSINESS.md:632)."
+ ],
+ "options": [
+   {
+     "k": "a",
+     "what": "The journal stays in the repo; on lapse the client stops appending and everything already written stays.",
+     "label": "Repo, honour-system by design, and lapse only stops new entries",
+     "gains": ["Breaks no promise the plan makes in bold elsewhere", "Nothing to build for the lapse path", "Trivial to explain at checkout"],
+     "costs": ["Pro becomes a licence rather than a lock, the exact shape line 161 dismisses", "Makes plain that Pro buys future retention, not access to the past"],
+     "system": "One entitlement check before appending. No server storage.",
+     "screens": "A pricing-page line: your history stays, we stop adding to it.",
+     "money": "Revenue is voluntary in effect. No storage cost."
+   },
+   {
+     "k": "b",
+     "what": "The journal is held on our server and dropped after a read-only window when payment stops.",
+     "label": "Server-held journal, and rewrite the zero-bytes promise",
+     "gains": ["A real gate with real enforcement", "Matches the lapse table BUSINESS.md already drafted"],
+     "costs": ["Loses the positioning line the plan leads with", "Drags prompt text into DPDP and CERT-In scope, including the 180-day floor", "Adds an intermediary-status question under the IT Act"],
+     "system": "A hosted store, a retention job, and processor agreements.",
+     "screens": "A lapse banner and a read-only history state.",
+     "money": "Storage and compliance cost from the first paying team."
+   },
+   {
+     "k": "c",
+     "what": "The journal stays in the repo but is encrypted to a key held by the control plane.",
+     "label": "Repo, encrypted to a control-plane key",
+     "gains": ["Enforceable, and the bytes never leave the machine"],
+     "costs": ["Breaks readable without frontmatter, which is what makes the sidecar safe to adopt", "A key server is a new failure mode for a file the user owns"],
+     "system": "Key management on top of the sidecar writer.",
+     "screens": "An unlock state nobody has designed.",
+     "money": "Key infrastructure, small but permanent."
+   },
+   {
+     "k": "d",
+     "what": "Retention is dropped as the paid object and something else carries the price.",
+     "label": "Drop retention as the gate entirely",
+     "gains": ["Removes the contradiction at its root", "Follows automatically if PR1 goes to attribution"],
+     "costs": ["Pro is left with the CI gate, which does not run today either"],
+     "system": "No journal store at all.",
+     "screens": "No history view.",
+     "money": "None until another gate is named."
+   }
+ ],
+ "rec": "a",
+ "recCase": [
+   "It is the only option that breaks no promise the plan makes in bold on another page.",
+   "The lapse behaviour falls out of it: stop appending, keep everything, say so at checkout.",
+   "Accept that the price is then a licence, price it that way, and stop calling it a gate.",
+   "Rewrite BUSINESS.md's lapse table to describe the product that exists rather than the hosted one it was written for."
+ ],
+ "flip": "If the twenty conversations show teams will not buy without an enforced entitlement, (b) is the honest answer and the zero-bytes line must be rewritten in the same edit.",
+ "linked": ["PR1", "PR8", "PR21", "PR23"],
+ "sources": ["docs/PRODUCT-BRIEF.md:133", "docs/PRODUCT-BRIEF.md:135", "docs/PRODUCT-BRIEF.md:161", "docs/PRODUCT-BRIEF.md:288", "docs/PRODUCT-BRIEF.md:289", "docs/PRODUCT-BRIEF.md:449", "docs/WEEK0-DECISIONS-2026-09-08.md:35", "docs/BUSINESS.md:618", "docs/BUSINESS.md:632", "docs/research/agent-reports-2026-08-30/r26-c8-b2b.md:21", "docs/research/agent-reports-2026-08-30/r26-c8-b2b.md:39", "merged: PR14"],
+ "_ev": ["PR2", "PR14"]
+},
+
+{
+ "id": "PR3",
+ "cat": "Pricing & tiers",
+ "sub": "Price level",
+ "weight": "critical",
+ "q": "What is the price, and which category is it anchored to - editors, diff tools, or docs platforms?",
+ "lede": "Draftable sells prose comparison alone at $129-261 per user a year. Our band is $48-60, anchored to sync and to a price nobody fetched.",
+ "visual": {
+   "kind": "matrix",
+   "x": ["$30 per user per year", "$300 per user per year"],
+   "y": ["bought by a person", "bought by an organisation"],
+   "points": [
+     {"label": "Obsidian Sync", "x": 0.07, "y": 0.15},
+     {"label": "frontmatter Pro", "x": 0.09, "y": 0.45, "us": true},
+     {"label": "Draftable Business", "x": 0.37, "y": 0.85},
+     {"label": "GitBook, per user", "x": 0.42, "y": 0.8},
+     {"label": "Diffchecker", "x": 0.56, "y": 0.5},
+     {"label": "Draftable Legal", "x": 0.86, "y": 0.95}
+   ],
+   "note": "Draftable and Diffchecker sell comparison alone, with no editor and no review state.",
+   "caption": "Annual price per user against buyer. Every figure from the vendor's own page."
+ },
+ "stakes": "Price against the wrong category and the number is either not worth collecting or not credible, and twenty conversations will only ever test the one we ask about.",
+ "state": [
+   "Pro is $4-5 per user per month with no billing period stated (docs/PRODUCT-BRIEF.md:288), which is $48-60 a year.",
+   "The anchors were GitHub Team $4, Obsidian Sync $4, HackMD $5, Confluence $6.70. Two of those are annual-billed rates and one has no fetched source in 237 research files (docs/GAPS-2026-09-08.md:25).",
+   "The plan says the tier is a hypothesis until twenty team conversations return seat counts (docs/PRODUCT-BRIEF.md:292), and those conversations only carry the low number.",
+   "On the basis that pays the founder for support time, $5 needs 1,018 subscribers to cover the monthly nut (r26-c6:178)."
+ ],
+ "path": [
+   "The band was picked to sit inside the category's published prices rather than derived from cost or from anyone's willingness to pay.",
+   "Earlier plan versions priced in rupees and were corrected after round 25 showed Indian companies selling globally quote dollars.",
+   "The 114-seats-at-$8 claim was withdrawn because the feature was GitHub's at $4 and the retention band would not hold it (docs/PRODUCT-BRIEF.md:292).",
+   "Nothing in the record ever compared us with the tools that sell prose comparison on its own."
+ ],
+ "tension": [
+   "Draftable charges $129 a year for Business and $261 for Legal, per user, for comparison with no editor attached (draftable.com/pricing).",
+   "Diffchecker charges $15 to $40 per user per month for the same narrow job (diffchecker.com/pricing).",
+   "Round 2 named the failure directly: pricing below the category's credibility floor, or charging for what GitHub bundles (docs/GAPS-2026-09-08.md:85).",
+   "$5 a month is the modal consumer price in a 940-comment corpus and sentiment there splits 11 positive against 10 negative (r25-w3:84)."
+ ],
+ "options": [
+   {
+     "k": "a",
+     "what": "$5 per seat monthly with $4 billed annually, matching Obsidian's actual structure rather than half of it.",
+     "label": "$5 monthly, $4 annual, per seat - the editor anchor",
+     "gains": ["Parity with the anchor the plan already chose, in full", "Makes the annual discount an explicit lever the Indian rail needs", "Settles the billing-period question by implication"],
+     "costs": ["Needs 1,018 subscribers on the basis that pays the founder", "Sits at the contested $5 mode, not below it", "Anchors us to editors when the closest functional comparables are diff tools"],
+     "system": "Two SKUs and a proration path.",
+     "screens": "A pricing page with a period toggle.",
+     "money": "$48-60 per seat per year."
+   },
+   {
+     "k": "b",
+     "what": "Price per person who reviews, in the band the prose-comparison tools already occupy.",
+     "label": "$10-20 per editor per month - the diff-tool anchor",
+     "gains": ["Draftable already sells less than this for $129-261 per user a year", "Far fewer subscribers to cover the nut", "Supports a thicker offer instead of a cheaper one"],
+     "costs": ["No markdown editor charges this, so the offer must be a gate rather than an editor", "PR1 says the gate is unbuilt", "Untested with anyone"],
+     "system": "Same billing, different number.",
+     "screens": "The pricing page has to justify the level, not just state it.",
+     "money": "$120-240 per editor per year."
+   },
+   {
+     "k": "c",
+     "what": "One price per repository or per organisation, with no seat accounting at all.",
+     "label": "Flat, per repository or per organisation",
+     "gains": ["No seat accounting and no proration, which suits a product with no enforcement", "Matches how the docs platforms sell a check"],
+     "costs": ["Kills seat expansion permanently; r25-w4:61 calls the flat licence out as disabling the main growth engine", "One number has to fit a two-person team and a fifty-person one"],
+     "system": "No seat model. One entitlement per repo.",
+     "screens": "No invite-and-count flow.",
+     "money": "Predictable per logo, capped per logo."
+   },
+   {
+     "k": "d",
+     "what": "Both the seat price and the editor price go into the twenty conversations, and the price is set afterwards.",
+     "label": "Carry both numbers into the twenty conversations",
+     "gains": ["The conversations are the only pricing instrument that exists and cost nothing to run twice", "A rejection of $5 becomes distinguishable from a rejection of paying at all"],
+     "costs": ["A two-price script is longer and can read as unserious", "The answers are noisier at n=20"],
+     "system": "No change.",
+     "screens": "No pricing page until the answer lands.",
+     "money": "Defers revenue by the length of the conversations, which is two weeks."
+   }
+ ],
+ "rec": "d",
+ "recCase": [
+   "The plan's own position is that the price is a hypothesis until twenty teams are asked, and it is about to ask a question with only one possible answer.",
+   "The cost of learning that the higher band is buyable is one extra sentence per conversation. The cost of not asking is a thousand seats.",
+   "Two edits regardless of the outcome: state the billing period, and strike GitHub Team from the anchor list until someone opens the page and dates it.",
+   "When the price does go on a page, publish the founder-time basis beside the gross one, so nobody reads 229 seats and thinks the nut is covered."
+ ],
+ "flip": "If fewer than five of twenty will engage with the higher number at all, (a) is settled honestly rather than by default.",
+ "linked": ["PR1", "PR11", "PR12", "PR17", "PR23"],
+ "sources": ["docs/PRODUCT-BRIEF.md:288", "docs/PRODUCT-BRIEF.md:292", "docs/PRODUCT-BRIEF.md:352", "docs/GAPS-2026-09-08.md:25", "docs/GAPS-2026-09-08.md:85", "docs/research/agent-reports-2026-08-29-r7/g1-business-model-unit-economics.md:114", "docs/research/agent-reports-2026-08-29-r7/g1-business-model-unit-economics.md:115", "docs/research/agent-reports-2026-08-30/r25-w3-willingness-to-pay.md:77", "docs/research/agent-reports-2026-08-30/r25-w3-willingness-to-pay.md:84", "docs/research/agent-reports-2026-08-30/r25-w4-retention-and-growth.md:61", "docs/research/agent-reports-2026-08-30/r26-c6-unit-economics.md:178", "https://draftable.com/pricing", "https://www.diffchecker.com/pricing/", "https://obsidian.md/pricing", "merged: PR9"],
+ "_ev": ["PR3", "PR9"]
+},
+
+{
+ "id": "PR4",
+ "cat": "Pricing & tiers",
+ "sub": "Time to revenue",
+ "weight": "critical",
+ "q": "Do we ship a checkout before MVP-1, or is the first sale a conversation about eighteen months from now?",
+ "lede": "MVP-0 has no sign-up and no billing, and at the plan's own measured velocity the first chance to be paid is about 81 weeks out.",
+ "visual": {
+   "kind": "timeline",
+   "items": [
+     {"when": "Now", "label": "No sign-up, no billing in MVP-0", "note": "docs/PRODUCT-BRIEF.md:205", "tone": "neutral"},
+     {"when": "Weeks 1-2", "label": "Twenty team conversations", "note": "Opinions, no money, no threshold", "tone": "warn"},
+     {"when": "About 58 weeks", "label": "MVP-0 ships", "note": "70 engineering days at 1.21 a calendar week", "tone": "warn"},
+     {"when": "About 81 weeks", "label": "First point a team can pay", "note": "F9, F10, F11 and folder-to-PDF add 28 days", "tone": "stop"}
+   ],
+   "note": "Every date derives from the density the plan measured on this repo.",
+   "caption": "The gap between the plan's first revenue event and today."
+ },
+ "stakes": "Eighteen months of building against a price nobody has ever been asked to pay is the failure mode the whole plan is meant to avoid.",
+ "state": [
+   "MVP-0's absent row reads sign-up, billing, sync, mobile, hosting, hosted AI, local model (docs/PRODUCT-BRIEF.md:205).",
+   "The MVP-1 exit test is a team paying within twenty conversations, so the first sale is a human conversation by construction (docs/PRODUCT-BRIEF.md:206).",
+   "MVP-0 is about 70 engineering days against a measured 1.21 engineering days per calendar week (docs/PRODUCT-BRIEF.md:227).",
+   "Across 105 reports and 374,866 words the record contains zero instances of customer-discovery or willingness-to-pay work (r26-c7:22)."
+ ],
+ "path": [
+   "MVP-0 was scoped as a ten-stranger pilot with nothing asked of the user before value, which is the right instinct and is stated as a rule.",
+   "The elapsed time was re-derived in v15 and came out far longer than earlier versions assumed.",
+   "The previous ten-week schedule was withdrawn as arithmetically impossible in the same edit (docs/PRODUCT-BRIEF.md:229).",
+   "The corpus wrote a pre-order design with its own kill number and it was never carried into a plan version (r26-c7:122)."
+ ],
+ "tension": [
+   "The services engagement is available now: four a year at ₹3,00,000 is the ₹1L monthly milestone, and one client equals 63,060 visitors of funnel (r23-u4:62).",
+   "Editorially, a collaborative prose editor, closed on 2014-05-30 writing that even if all of its users paid up it would not have been enough.",
+   "That arithmetic is a pre-build question. Running it after 81 weeks of building is running it too late.",
+   "A failed pre-order is public, and a public failure at week 2 is cheaper than a private one at week 81."
+ ],
+ "options": [
+   {
+     "k": "a",
+     "what": "Billing stays out until MVP-1, exactly as the plan is written today.",
+     "label": "Keep billing out until MVP-1",
+     "gains": ["Cleanest pilot and no billing code to maintain", "Nothing asked of a stranger before value"],
+     "costs": ["No money and no price evidence for roughly 81 weeks", "Every pricing card here stays a hypothesis for that whole period"],
+     "system": "No change.",
+     "screens": "No checkout, no account.",
+     "money": "None until MVP-1."
+   },
+   {
+     "k": "b",
+     "what": "A refusal-contract page with a named price, a real checkout, a full refund promise and no feature gate.",
+     "label": "Ship the pre-order page the corpus already specified",
+     "gains": ["One falsifiable demand test in front of the build instead of after it", "The kill number is already written: zero pre-orders from 100 qualified conversations", "Costs a page, not a product"],
+     "costs": ["Needs a payment rail and a refund policy earlier than planned", "A failed pre-order is public", "Takes money for something that does not exist yet"],
+     "system": "A checkout and a refunds path. No product changes.",
+     "screens": "One page: the refusals, the price, the button.",
+     "money": "$49 per pre-order, refundable, and a real answer either way."
+   },
+   {
+     "k": "c",
+     "what": "An optional licence purchase from the pilot: a button and an invoice, with nothing withheld from anyone.",
+     "label": "Optional licence and a supporters wall from day one",
+     "gains": ["Revenue from day one and no engineering, because nothing is enforced", "Composes with PR2's honour-system answer"],
+     "costs": ["Voluntary money on a product with no users may be nothing for years", "Sets the anchor low and hard to move"],
+     "system": "A payment link. No entitlement checks.",
+     "screens": "A supporters page.",
+     "money": "Small, unpredictable, immediate."
+   },
+   {
+     "k": "d",
+     "what": "The product is not priced at all until MVP-1, and the services engagement carries revenue meanwhile.",
+     "label": "Sell the services engagement instead",
+     "gains": ["Revenue this month from clients who already exist", "It is what the funding line already assumes"],
+     "costs": ["The product gets no price evidence at all", "The founder's hours split, and the plan already caps client work at 78 a month"],
+     "system": "No change.",
+     "screens": "None.",
+     "money": "₹2,40,000 to ₹3,00,000 per engagement."
+   }
+ ],
+ "rec": "b",
+ "recCase": [
+   "The corpus made this exact criticism and it was not acted on: the demand test is scheduled after the build, not before it.",
+   "A pre-order page is a page, not a product. It is the only instrument that converts a pricing opinion into a fact inside two weeks.",
+   "Use the price and the kill number already in the record, so the test cannot be re-scored after the answers arrive.",
+   "If the founders will not take money before the product ships, (c) tests nearly the same thing with no obligation attached."
+ ],
+ "flip": "If the twenty conversations produce a signed intent to buy at MVP-1 from more than five teams, the pre-order adds nothing the conversations did not already give.",
+ "linked": ["PR13", "PR16", "PR17", "PR20"],
+ "sources": ["docs/PRODUCT-BRIEF.md:205", "docs/PRODUCT-BRIEF.md:206", "docs/PRODUCT-BRIEF.md:227", "docs/PRODUCT-BRIEF.md:229", "docs/PRODUCT-BRIEF.md:292", "docs/research/agent-reports-2026-08-30/r26-c7-d2c.md:22", "docs/research/agent-reports-2026-08-30/r26-c7-d2c.md:122", "docs/research/agent-reports-2026-08-30/r26-c7-d2c.md:125", "docs/research/agent-reports-2026-08-30/r23-u4-consultation-and-services.md:62", "http://stet.editorially.com/articles/goodbye/"],
+ "_ev": ["PR4"]
+},
+
+{
+ "id": "PR7",
+ "cat": "Pricing & tiers",
+ "sub": "Free tier",
+ "weight": "high",
+ "q": "Does the free tier stay uncapped, and which founder-hour figure do we budget against?",
+ "lede": "The free tier's cost is founder time, and the plan, the unit-economics report and the AI-economics report give three different numbers.",
+ "visual": {
+   "kind": "compare",
+   "labelWidth": 200,
+   "cols": [
+     {"title": "The plan, §4", "tone": "neutral"},
+     {"title": "r26-c6", "tone": "accent"},
+     {"title": "r19-p1", "tone": "warn"}
+   ],
+   "rows": [
+     {"label": "Founder-hours at 10,000 users", "cells": ["About 90 a month", "76.8 a month", "300, cumulative across signups"]},
+     {"label": "Priced in rupees", "cells": ["No", "₹1,30,560 a month at ₹1,700/h", "No"]},
+     {"label": "Against the whole cloud bill", "cells": ["Not stated", "₹25,930 a month", "n/a"]},
+     {"label": "How it is tagged", "cells": ["Stated", "Modelled, derivation shown", "Marked as inference"]}
+   ],
+   "note": "The same population, three answers, and no line converts any of them into rupees in the plan.",
+   "caption": "What the free tier costs, according to three documents in one repo."
+ },
+ "stakes": "A free tier whose real cost is unmeasured is a free tier that can consume the only person building the product.",
+ "state": [
+   "Exhibit 16 row one reads Individual, free, no limits, F1-F8, own key (docs/PRODUCT-BRIEF.md:287).",
+   "The plan budgets support at about 90 founder-hours a month at 10,000 users (docs/PRODUCT-BRIEF.md:137).",
+   "The free tier has no service commitment, stated on the page (docs/PRODUCT-BRIEF.md:537).",
+   "Nine rows below the tier table an upsell moment names a free quota that no-limits says does not exist (docs/PRODUCT-BRIEF.md:444)."
+ ],
+ "path": [
+   "Free-forever is the distribution strategy, and the category evidence supports it: the editor is worth nothing in this market (docs/PRODUCT-BRIEF.md:161).",
+   "Obsidian funds eight people from add-ons on a free app with no sign-up, which is the shape the plan copied.",
+   "Round 26 modelled the same population and got a different founder-hour figure with a shown derivation (r26-c6:62).",
+   "Round 19 estimated a third number for onboarding friction on the bring-your-own-key path and tagged it as inference."
+ ],
+ "tension": [
+   "Founder time is five times the entire infrastructure bill at 10,000 users, and the profit line is worse there than at 100 (r26-c6:62).",
+   "The support coefficient is stated as 0.10 and as 0.30 in the same repo, a threefold spread the report says would move its verdict (r26-c6:50).",
+   "Editorially closed in 2014 saying that even full conversion of its users would not have covered the team.",
+   "The free tier cannot be both no limits and subject to a quota."
+ ],
+ "options": [
+   {
+     "k": "a",
+     "what": "Free stays uncapped, the contradictory quota line goes, and one founder-hour figure is adopted and priced in rupees.",
+     "label": "Keep free uncapped; adopt one number and price it on the page it appears",
+     "gains": ["Keeps the distribution story intact", "Forces three estimates into one number a reader can argue with", "Costs one deletion and one line"],
+     "costs": ["Deflection through docs and precise error text is unbuilt and unestimated", "Commits to absorbing a cost whose input is uncertain threefold"],
+     "system": "No change.",
+     "screens": "Delete the free-quota line from the upsell exhibit.",
+     "money": "₹1,30,560 a month of founder time at 10,000 users, stated rather than implied."
+   },
+   {
+     "k": "b",
+     "what": "Free with a stated soft cap on whatever actually drives support, such as repo size or vault count, never on features.",
+     "label": "Free with a soft cap on the support driver, never on features",
+     "gains": ["Bounds the worst case without crippling the product", "Keeps every feature free"],
+     "costs": ["Any cap makes no limits untrue", "The cap needs a number nobody has measured"],
+     "system": "One counter and one threshold.",
+     "screens": "A cap notice that has to read as generous, not punitive.",
+     "money": "Caps the tail. Costs nothing directly."
+   },
+   {
+     "k": "c",
+     "what": "Free for individuals, with an unenforced commercial-use licence asked for above a named seat count.",
+     "label": "Free for individuals, licence asked for above a seat count",
+     "gains": ["The only B2B motion the corpus says two people can run", "Composes with PR2 and PR8"],
+     "costs": ["Voluntary, so revenue is unpredictable", "Obsidian tried the mandatory version and gave it up"],
+     "system": "No enforcement code by definition.",
+     "screens": "A licence page and a supporters wall.",
+     "money": "Unpredictable, and it is the only measured B2B mechanism in the category."
+   },
+   {
+     "k": "d",
+     "what": "Ship to the ten pilot users, count tickets for sixty days, and decide the cap afterwards.",
+     "label": "Measure the support coefficient before deciding",
+     "gains": ["It is the one input r26-c6 says would change its own verdict", "The pilot is happening anyway"],
+     "costs": ["Ten users will not resolve a threefold spread", "Defers the page copy past the meeting"],
+     "system": "A local, opt-in ticket count.",
+     "screens": "None.",
+     "money": "None."
+   }
+ ],
+ "rec": "a",
+ "recCase": [
+   "The plan and the corpus agree that support, not compute, is the cost structure, and disagree by a factor of four on how much.",
+   "Uncapped is right for a product whose distribution is the free editor, but the number has to be published in rupees and someone has to say what absorbs it.",
+   "r26-c6's ₹1,30,560 is the figure with a shown derivation, so use it and mark the plan's ninety hours as superseded.",
+   "Delete the free-quota line in the same edit; it contradicts the tier table nine rows above it."
+ ],
+ "flip": "If the ten pilot users generate more than the 0.02 tickets per free user per month the model assumes, put a soft cap in before the public launch.",
+ "linked": ["PR8", "PR10", "PR17"],
+ "sources": ["docs/PRODUCT-BRIEF.md:137", "docs/PRODUCT-BRIEF.md:161", "docs/PRODUCT-BRIEF.md:287", "docs/PRODUCT-BRIEF.md:444", "docs/PRODUCT-BRIEF.md:537", "docs/research/agent-reports-2026-08-30/r26-c6-unit-economics.md:50", "docs/research/agent-reports-2026-08-30/r26-c6-unit-economics.md:62", "docs/research/agent-reports-2026-08-30/r19-p1-ai-economics.md:26", "http://stet.editorially.com/articles/goodbye/"],
+ "_ev": ["PR7"]
+},
+
+{
+ "id": "PR8",
+ "cat": "Pricing & tiers",
+ "sub": "Commercial licence",
+ "weight": "high",
+ "q": "Do we ship an optional commercial licence alongside seats, or keep the plan's dismissal of it?",
+ "lede": "Obsidian made the only measured B2B licence in this category optional because it could not enforce it, and kept growing anyway.",
+ "visual": {
+   "kind": "ba",
+   "before": {
+     "title": "Obsidian licence, 2020 to Feb 2025",
+     "lines": [
+       {"t": "Mandatory for commercial use", "mark": "ok"},
+       {"t": "$50 per user per year", "mark": "ok"},
+       {"t": "No functional benefit attached", "mark": "warn"},
+       {"t": "Unenforceable: local app, no sign-up", "mark": "x"}
+     ]
+   },
+   "after": {
+     "title": "From 2025-02-20",
+     "lines": [
+       {"t": "Optional. A supporter payment", "mark": "ok"},
+       {"t": "Over 10,000 organisations, on their own page", "mark": "ok"},
+       {"t": "Money comes from Sync and Publish", "mark": "ok"},
+       {"t": "Eight staff, no investors", "mark": "ok"}
+     ]
+   },
+   "via": "made optional, unenforceable",
+   "note": "The vendor with the largest measured base in the category stopped requiring it and did not shrink.",
+   "caption": "What happened to the only B2B licence anyone in this category has run."
+ },
+ "stakes": "This is the only B2B revenue mechanism in the category anybody has actually measured, and the plan dismisses it in one sentence.",
+ "state": [
+   "The plan dismisses it in a single line: no functional benefit, optional since February 2025, bought by 25-plus seat organisations (docs/PRODUCT-BRIEF.md:161).",
+   "No licence appears anywhere in the tier table (docs/PRODUCT-BRIEF.md:285).",
+   "r26-c6 calls the current pricing the largest recoverable error in the plan and prescribes $50 per user per year at Obsidian's exact unit (r26-c6:220).",
+   "r26-c8 refutes the transfer: the licence was mandatory for five years, so the wall of logos is the residue of that period (r26-c8:21)."
+ ],
+ "path": [
+   "v15 narrowed the buyer to small teams on a working tree with no pull request, so a 25-seat licence was read as the wrong buyer.",
+   "Two reports from the same round reached opposite conclusions and the plan sided with one without saying it was contested.",
+   "The two agents could not reproduce each other's count of the licence wall: 146 named organisations one day, 84 the next (r26-c8:39).",
+   "Obsidian's own page for the change says over 10,000 organisations use it, which makes the wall a poor proxy for anything."
+ ],
+ "tension": [
+   "A licence confers no features, so it costs nothing to ship, and it is the shape PR2's answer turns Pro into anyway.",
+   "The precedent had five mandatory years behind it. We would be starting at the voluntary end with no users.",
+   "Obsidian's founder says on record the money comes from Sync and Publish, not the licence (r26-c8:21).",
+   "Voluntary revenue is unpredictable, and the plan needs a number it can put in a script."
+ ],
+ "options": [
+   {
+     "k": "a",
+     "what": "An optional commercial licence at Obsidian's unit, sold alongside seats, with a supporters wall.",
+     "label": "Ship an optional commercial licence alongside seats",
+     "gains": ["Costs no features: no SSO, no SCIM, no audit log, no SOC 2 behind it", "Composes with PR2, which makes the seat price honour-system regardless", "The only B2B motion two people can run"],
+     "costs": ["Voluntary revenue on a product with no users may earn nothing for years", "The precedent had five mandatory years we will not have"],
+     "system": "A payment link and a name on a page. No entitlement code.",
+     "screens": "A licence page and a supporters wall.",
+     "money": "Unpredictable upside at no build cost."
+   },
+   {
+     "k": "b",
+     "what": "No licence at all; teams buy seats and nothing else is offered.",
+     "label": "No licence; teams buy seats only",
+     "gains": ["One SKU and one story", "Nothing extra to explain at checkout"],
+     "costs": ["Forgoes the only B2B revenue mechanism anyone in the category has measured"],
+     "system": "No change.",
+     "screens": "No change.",
+     "money": "Seat revenue only."
+   },
+   {
+     "k": "c",
+     "what": "The licence replaces seats entirely: the team motion is one licence and one invoice.",
+     "label": "Licence instead of seats",
+     "gains": ["Removes seat accounting, proration and enforcement, which PR2 says cannot work anyway", "One number to quote a procurement team"],
+     "costs": ["Caps revenue per logo and gives up seat expansion permanently", "r25-w4:61 names the flat licence as disabling the main growth engine"],
+     "system": "No seat model at all.",
+     "screens": "No invite-and-count flow.",
+     "money": "Predictable per logo, capped per logo."
+   },
+   {
+     "k": "d",
+     "what": "Re-count the Obsidian licence wall, then decide alongside the twenty conversations.",
+     "label": "Re-count the wall first, decide after the conversations",
+     "gains": ["One hour settles which of two reports is right before a strategy is built on it"],
+     "costs": ["Delays the decision past the meeting", "The wall was never the measure: the vendor's own page says over 10,000 organisations"],
+     "system": "No change.",
+     "screens": "None.",
+     "money": "None."
+   }
+ ],
+ "rec": "a",
+ "recCase": [
+   "The re-count objection has been overtaken. Obsidian's own page for the change names over 10,000 organisations, so a disputed wall of 84 or 146 logos was never the measure.",
+   "What the precedent actually shows is that the licence is not load-bearing revenue for them, and that it costs nothing to offer.",
+   "PR2 turns the Pro price into a licence in effect. Naming one explicitly costs a page and no code.",
+   "Do not build a strategy on it, and do not put it in the revenue model."
+ ],
+ "flip": "If a team in the twenty conversations asks how to pay for commercial use and then asks what it enforces, the honest answer is (b) plus a real entitlement.",
+ "linked": ["PR2", "PR3", "PR7", "PR21"],
+ "sources": ["docs/PRODUCT-BRIEF.md:161", "docs/PRODUCT-BRIEF.md:285", "docs/PRODUCT-BRIEF.md:292", "docs/research/agent-reports-2026-08-30/r26-c6-unit-economics.md:220", "docs/research/agent-reports-2026-08-30/r26-c8-b2b.md:21", "docs/research/agent-reports-2026-08-30/r26-c8-b2b.md:39", "docs/research/agent-reports-2026-08-30/r25-w4-retention-and-growth.md:61", "https://obsidian.md/blog/free-for-work/"],
+ "_ev": ["PR8"]
+},
+
+{
+ "id": "PR10",
+ "cat": "Pricing & tiers",
+ "sub": "Hosted AI",
+ "weight": "high",
+ "q": "What unit does hosted AI meter in, and where is the ceiling in dollars?",
+ "lede": "Hosted AI is priced at cost plus margin over model costs that three reports in the same week disagree about having read.",
+ "visual": {
+   "kind": "flow",
+   "perRow": 3,
+   "nodes": [
+     {"label": "User's own key", "note": "Free, uncapped, the MVP-0 default", "tone": "good"},
+     {"label": "Hosted, cheap lane", "note": "Unmetered up to the daily ceiling", "tone": "accent"},
+     {"label": "Daily dollar breaker", "note": "Server-side, checked before the vendor call", "tone": "accent"},
+     {"label": "Frontier lane", "note": "Metered in actions, shown as a count", "tone": "neutral"},
+     {"label": "Ceiling reached", "note": "Refuse and say so; never bill through", "tone": "stop"}
+   ],
+   "note": "One call a minute for 24 hours is $1,254 a month on the cheap model alone.",
+   "caption": "Where the ceiling has to sit for the abuse case to be bounded at all."
+ },
+ "stakes": "A price with no unit and no cap is not a price, and the abuse case is unbounded until the breaker exists.",
+ "state": [
+   "The tier table's last row reads hosted AI, metered at cost plus margin, optional, off by default (docs/PRODUCT-BRIEF.md:290).",
+   "The word capped appears three times in the plan and no cap number appears anywhere (docs/PRODUCT-BRIEF.md:133, docs/PRODUCT-BRIEF.md:202, docs/PRODUCT-BRIEF.md:444).",
+   "No unit is specified. r19-p4 works through tokens, actions, weighted credits and dollars and recommends actions with a server-side daily dollar breaker (r19-p4:82).",
+   "One UI call a minute for 24 hours is $1,254 a month on the cheap model and $2,507 on the frontier one (r26-c6:124)."
+ ],
+ "path": [
+   "AI is bring-your-own-key in MVP-0 by design, so hosted AI was never specified beyond the phrase.",
+   "It was added to MVP-1 as an optional add-on and inherited the cost-plus-margin wording from an earlier plan.",
+   "r19-p1 attempted all eight vendor pricing pages on 2026-08-31 and got JS shells or 403s on every one, declaring zero fetched prices (r19-p1:26).",
+   "Two other documents cite fetched prices for the same pages in the same week (docs/BUSINESS.md:719)."
+ ],
+ "tension": [
+   "A margin over an input the record cannot agree it read is not a margin.",
+   "The abuse case lives in the lane nobody meters: the cheap surface called on a timer.",
+   "Metering in tokens is honest and illegible; metering in dollars publishes our unit cost and invites comparison with the raw API.",
+   "Describing the cheap lane as free rather than as unmetered up to a ceiling is the difference between a bounded and an unbounded liability."
+ ],
+ "options": [
+   {
+     "k": "a",
+     "what": "Actions as the unit, the cheap surface unmetered up to a server-side daily dollar breaker, only the frontier lane metered.",
+     "label": "Actions, with a server-side daily dollar breaker",
+     "gains": ["Legible to the user and bounded for us", "r19-p4 has already done the design work", "Survives a tokenizer change without repricing"],
+     "costs": ["Needs a proxy, a ledger and a breaker, none of which any exhibit estimates", "Actions have to be defined and then defended"],
+     "system": "A metering proxy, a per-account ledger, and a breaker checked before every vendor call.",
+     "screens": "A usage line in settings and a refusal state when the ceiling is hit.",
+     "money": "Bounded downside per account per day. Margin over a re-dated input."
+   },
+   {
+     "k": "b",
+     "what": "Meter in dollars spent and show a running float.",
+     "label": "Dollars spent, shown as a running float",
+     "gains": ["Impossible to mis-price", "No repricing when a model or tokenizer changes"],
+     "costs": ["Publishes our unit cost", "Invites the user to compare against the raw API and leave"],
+     "system": "A ledger and a breaker. No action taxonomy.",
+     "screens": "A live spend readout.",
+     "money": "Thin margin, fully visible."
+   },
+   {
+     "k": "c",
+     "what": "No hosted AI at any tier; bring-your-own-key stays the only path.",
+     "label": "No hosted AI; bring your own key forever",
+     "gains": ["Zero inference cost and zero abuse surface", "Matches what MVP-0 already ships"],
+     "costs": ["Loses the first run for anyone who has never held an API key", "r19-p1 names that friction as the cost of key-only"],
+     "system": "Nothing to build.",
+     "screens": "The key field, already planned.",
+     "money": "No AI revenue, no AI cost."
+   },
+   {
+     "k": "d",
+     "what": "Keep the cost-plus-margin wording and specify it when MVP-1 arrives.",
+     "label": "Keep the wording, specify at MVP-1",
+     "gains": ["No work now"],
+     "costs": ["Leaves an unbounded liability described as capped", "A price with no unit and no ceiling cannot go on a page"],
+     "system": "No change.",
+     "screens": "No change.",
+     "money": "Unbounded in the worst case."
+   }
+ ],
+ "rec": "a",
+ "recCase": [
+   "Actions plus an unmetered cheap surface is the only shape that stays legible while staying bounded, and the design already exists in the record.",
+   "The wording is load-bearing: unmetered up to a daily ceiling, never free. That one phrase is the whole liability.",
+   "Before any price is published on top of a model cost, one person opens the vendor pages in a browser and re-dates the table.",
+   "The record currently contains both zero fetched prices and two fetched prices for the same pages in the same week."
+ ],
+ "flip": "If the pilot shows nobody without a key ever reaches the AI panel, (c) is cheaper and the whole surface goes away.",
+ "linked": ["PR3", "PR7", "PR21"],
+ "sources": ["docs/PRODUCT-BRIEF.md:133", "docs/PRODUCT-BRIEF.md:202", "docs/PRODUCT-BRIEF.md:290", "docs/PRODUCT-BRIEF.md:444", "docs/BUSINESS.md:719", "docs/research/agent-reports-2026-08-30/r19-p4-credits-and-limits.md:82", "docs/research/agent-reports-2026-08-30/r19-p1-ai-economics.md:26", "docs/research/agent-reports-2026-08-30/r26-c6-unit-economics.md:124"],
+ "_ev": ["PR10"]
+},
+
+{
+ "id": "PR11",
+ "cat": "Pricing & tiers",
+ "sub": "Billing period",
+ "weight": "high",
+ "q": "Do we default to monthly or to annual, and which half of BUSINESS.md do we keep?",
+ "lede": "BUSINESS.md tells us to default to annual on one page and to monthly on another, and the fee gap between them is 466 basis points.",
+ "visual": {
+   "kind": "compare",
+   "labelWidth": 200,
+   "cols": [
+     {"title": "Monthly, ₹299", "tone": "accent"},
+     {"title": "Annual, ₹2,499", "tone": "neutral"}
+   ],
+   "rows": [
+     {"label": "All-in payment cost", "cells": ["9.29% of gross", "4.63% of gross"]},
+     {"label": "Renewal events a year", "cells": ["Twelve", "One"]},
+     {"label": "Retries on a failed debit", "cells": ["One attempt, no ladder", "One attempt, no ladder"]},
+     {"label": "Surprise-charge risk", "cells": ["Low: the amount is small", "High: bank SMS, one attempt, ₹2,499"]},
+     {"label": "UK withdrawal windows", "cells": ["One, at purchase", "A fresh fourteen days each renewal"]}
+   ],
+   "note": "The annual plan is a 466-basis-point fee reduction, not a retention device.",
+   "caption": "What the billing period costs on the rail we actually run on."
+ },
+ "stakes": "A build team reading the two halves of BUSINESS.md will implement whichever it opens first.",
+ "state": [
+   "The plan states a per-user-per-month price and says nothing about billing period (docs/PRODUCT-BRIEF.md:288).",
+   "BUSINESS.md §82.3 says default Indian customers to annual and price it that way (docs/BUSINESS.md:229).",
+   "BUSINESS.md §84.2's drafted pricing page defaults the toggle to monthly and shows the saving in rupees (docs/BUSINESS.md:455).",
+   "All-in cost is 9.29% of gross on a ₹299 monthly charge against 4.63% on a ₹2,499 annual one (docs/BUSINESS.md:723)."
+ ],
+ "path": [
+   "The period was never decided in the plan because the tier table was written as a comparison against list prices, not as a checkout.",
+   "BUSINESS.md reasoned it out twice, in two sections written for different purposes, and neither cites the other.",
+   "The RBI e-mandate work in round 17 established the one-attempt constraint on the Indian rail (docs/BUSINESS.md:203).",
+   "The UK withdrawal finding came later and cuts the other way on annual (docs/BUSINESS.md:543)."
+ ],
+ "tension": [
+   "The fee arithmetic favours annual outright, by 466 basis points on every customer who takes it.",
+   "The rail favours fewer renewal events, because the bank sends a pre-debit notice and there is one attempt with no retry ladder.",
+   "Against both: on a one-attempt rail a surprising ₹2,499 charge is a declined card, not a support ticket.",
+   "In the UK an annual subscription gets a fresh fourteen-day withdrawal window at every renewal."
+ ],
+ "options": [
+   {
+     "k": "a",
+     "what": "Monthly is the default, annual is offered and priced, and the saving is shown as an absolute amount.",
+     "label": "Monthly default, annual offered and priced",
+     "gains": ["Lowest checkout-failure rate on the rail we run on", "No surprise charge on a one-attempt debit", "Churn signal arrives twelve times faster"],
+     "costs": ["Concedes 466 basis points on everyone who does not choose annual", "Twelve chances a year for an involuntary lapse"],
+     "system": "Two SKUs and a proration path.",
+     "screens": "A period toggle above the tier columns, defaulting to monthly.",
+     "money": "9.29% of gross to the rail on the monthly mix."
+   },
+   {
+     "k": "b",
+     "what": "Annual is the default with a monthly option, as §82.3 recommends.",
+     "label": "Annual default, monthly available",
+     "gains": ["Captures the fee saving by default", "Raises cash earlier and cuts involuntary churn"],
+     "costs": ["A surprised customer on a one-attempt rail is a declined card", "The anniversary becomes one high-variance churn event"],
+     "system": "Same two SKUs, different default.",
+     "screens": "Toggle defaults to annual, with the monthly price visible.",
+     "money": "4.63% of gross to the rail. Better cash position."
+   },
+   {
+     "k": "c",
+     "what": "Annual only, one price and one renewal a year.",
+     "label": "Annual only",
+     "gains": ["Simplest ledger and the best fee arithmetic", "One renewal event to design well"],
+     "costs": ["Excludes anyone who will not commit a year to a product with no track record", "That is everyone in the first cohort"],
+     "system": "One SKU.",
+     "screens": "No toggle.",
+     "money": "Best rail economics, smallest addressable set."
+   },
+   {
+     "k": "d",
+     "what": "Monthly only until twenty teams are paying, then revisit.",
+     "label": "Monthly only until twenty teams pay",
+     "gains": ["Nothing to build and the fastest churn signal"],
+     "costs": ["Forgoes the fee saving and the retention benefit for the whole first year"],
+     "system": "One SKU.",
+     "screens": "No toggle.",
+     "money": "9.29% of gross throughout."
+   }
+ ],
+ "rec": "a",
+ "recCase": [
+   "Offering annual captures most of the 466 basis points from the people who want it. Defaulting to it puts a surprise ₹2,499 on a rail that gets one attempt.",
+   "Publish the period in the tier table in the same edit, so the $4-5 band stops being ambiguous.",
+   "BUSINESS.md has to stop saying both. §82.3 and §84.2 contradict each other and a build team will implement whichever it reads first.",
+   "Take this with PR12: currency and period are the same checkout decision."
+ ],
+ "flip": "If the measured annual mix is low enough that the fee saving is going unclaimed, or involuntary monthly churn runs above the corpus floor, switch the default.",
+ "linked": ["PR3", "PR12", "PR13", "PR16"],
+ "sources": ["docs/PRODUCT-BRIEF.md:288", "docs/BUSINESS.md:203", "docs/BUSINESS.md:229", "docs/BUSINESS.md:455", "docs/BUSINESS.md:543", "docs/BUSINESS.md:719", "docs/BUSINESS.md:723"],
+ "_ev": ["PR11"]
+},
+
+{
+ "id": "PR12",
+ "cat": "Pricing & tiers",
+ "sub": "Currency",
+ "weight": "high",
+ "q": "One USD price worldwide, or a published India price and PPP bands?",
+ "lede": "The plan quotes dollars for the price and rupees for the nut, and has no stated geo policy at all.",
+ "visual": {
+   "kind": "compare",
+   "labelWidth": 200,
+   "cols": [
+     {"title": "Obsidian", "tone": "neutral"},
+     {"title": "Craft", "tone": "neutral"},
+     {"title": "frontmatter today", "tone": "accent"}
+   ],
+   "rows": [
+     {"label": "Served to an Indian IP", "cells": ["USD only, no rupee string", "₹526.70 a month", "Not decided"]},
+     {"label": "Geo-prices to India", "cells": ["No", "Yes, upward", "No policy written"]},
+     {"label": "The withdrawn ₹299 against it", "cells": ["Below it", "Well below it", "Withdrawn in v15"]},
+     {"label": "EU signal", "cells": ["n/a", "n/a", "USD and INR only is part of the Art 3(2)(a) argument"]}
+   ],
+   "note": "The two live comparables measured from an Indian IP do opposite things, and both charge more than our band.",
+   "caption": "What Indian buyers are actually charged by the nearest comparables."
+ },
+ "stakes": "A rupee price on a global page reads as domestic-market software, and a screenshot of two prices is an argument we cannot win in public.",
+ "state": [
+   "Pro is quoted in USD (docs/PRODUCT-BRIEF.md:288) and the monthly nut in rupees (docs/PRODUCT-BRIEF.md:292).",
+   "Nothing in the pricing section says whether an Indian or a European buyer sees a different number.",
+   "§22 makes currency part of a legal argument: price in USD and INR only, do not localise into an EU language (docs/PRODUCT-BRIEF.md:550).",
+   "BUSINESS.md permits geographic PPP tiers only when disclosed and uniform within a country (docs/BUSINESS.md:409)."
+ ],
+ "path": [
+   "Earlier versions priced in rupees at ₹299 and ₹599 and were corrected after round 25 showed Indian companies selling globally quote dollars.",
+   "That correction changed the currency and never addressed geo-pricing.",
+   "Round 26 measured both live comparables from an Indian IP and found they do opposite things (r26-c7:24).",
+   "The same round concluded ₹299 sat below Indian willingness to pay rather than being a concession to it."
+ ],
+ "tension": [
+   "Obsidian serves no rupee string at all, so Indians pay the full dollar price for sync and evidently do.",
+   "Craft serves an Indian IP ₹526.70 a month, which is above our proposed band, not below it.",
+   "The same §22 row concedes that Art 3(2)(b) monitoring is a separate trigger and an Art 27 representative is due from the first EU seat.",
+   "That representative costs €420-852 a year, which is 3.6% to 7.2% of annual burn (r26-c8:70)."
+ ],
+ "options": [
+   {
+     "k": "a",
+     "what": "One USD price for everyone, everywhere, with no geographic variation.",
+     "label": "One USD price worldwide, no geo-pricing",
+     "gains": ["One number to publish, defend and change", "No screenshot argument on Hacker News", "The category leader does exactly this"],
+     "costs": ["Indian buyers pay the full dollar price", "Gives up whatever the home market would have converted at a lower number"],
+     "system": "One SKU per period.",
+     "screens": "One pricing page.",
+     "money": "Highest revenue per Indian customer who converts, fewest who do."
+   },
+   {
+     "k": "b",
+     "what": "A USD list price plus a published, disclosed India price.",
+     "label": "USD list plus a published India price",
+     "gains": ["Meets the home market where the founder's network already is", "Disclosed, so it is a policy rather than a test"],
+     "costs": ["A rupee price on a global page reads as domestic-market software", "The corpus says ₹299 undercut Indian willingness to pay rather than meeting it"],
+     "system": "Two price books and one currency decision at checkout.",
+     "screens": "A country selector, and the argument that comes with it.",
+     "money": "Lower per Indian customer, possibly more of them."
+   },
+   {
+     "k": "c",
+     "what": "A USD list price plus published purchasing-power bands for a named set of countries.",
+     "label": "USD list plus published PPP bands",
+     "gains": ["Standard practice and defensible when disclosed and uniform within a country"],
+     "costs": ["A policy, a table and an abuse surface, for a product with no customers", "Every band is a number somebody will argue with"],
+     "system": "A country-to-band table and VPN abuse handling.",
+     "screens": "A banded pricing page.",
+     "money": "More conversions, lower average, more support."
+   },
+   {
+     "k": "d",
+     "what": "Quote USD only until the twenty conversations, then decide.",
+     "label": "USD only until the conversations return",
+     "gains": ["No work now and no wrong answer published"],
+     "costs": ["Leaves the pricing page unfinished if a checkout ships early"],
+     "system": "No change.",
+     "screens": "No pricing page.",
+     "money": "None."
+   }
+ ],
+ "rec": "a",
+ "recCase": [
+   "The one measured fact is that the category leader does not geo-price and Indians pay its full dollar rate anyway.",
+   "The two products that do geo-price to India charge more than our proposed price, not less.",
+   "A single dollar number is also the only version that cannot be screenshotted into an argument.",
+   "It keeps the §22 currency line intact without pretending that line settles the EU question, which it does not."
+ ],
+ "flip": "If more than half of the twenty teams are Indian and name the dollar figure specifically as the objection, publish an India price as disclosed policy, never as a test.",
+ "linked": ["PR3", "PR11", "PR16"],
+ "sources": ["docs/PRODUCT-BRIEF.md:288", "docs/PRODUCT-BRIEF.md:292", "docs/PRODUCT-BRIEF.md:550", "docs/BUSINESS.md:409", "docs/research/agent-reports-2026-08-30/r26-c7-d2c.md:24", "docs/research/agent-reports-2026-08-30/r26-c8-b2b.md:70", "https://obsidian.md/pricing"],
+ "_ev": ["PR12"]
+},
+
+{
+ "id": "PR13",
+ "cat": "Pricing & tiers",
+ "sub": "Refunds and withdrawal",
+ "weight": "medium",
+ "q": "What refund and withdrawal terms ship at checkout?",
+ "lede": "One chargeback costs thirty dollars plus the principal. A refund costs one. The plan has neither policy written.",
+ "visual": {
+   "kind": "compare",
+   "labelWidth": 210,
+   "cols": [
+     {"title": "Refund on request", "tone": "accent"},
+     {"title": "Non-refundable line", "tone": "warn"}
+   ],
+   "rows": [
+     {"label": "Cost at a 2% refund rate", "cells": ["About 2.08% of gross", "Nil"]},
+     {"label": "Per dispute at Dodo", "cells": ["$1 per refund, dispute avoided", "$30 per dispute, plus the principal"]},
+     {"label": "EU fourteen-day right", "cells": ["Subsumed; no waiver flow needed", "Waiver needed, and getting it wrong makes the supply free"]},
+     {"label": "Fits the rest of the plan", "cells": ["Yes; the files are theirs either way", "No; it contradicts every other trust position"]},
+     {"label": "India e-commerce rules 2020", "cells": ["Policy must be displayed", "Policy must be displayed"]}
+   ],
+   "note": "At this price the refund is cheap and the dispute is not.",
+   "caption": "Refund posture, and what it does to the EU withdrawal question."
+ },
+ "stakes": "A waiver flow that is slightly wrong makes the supply free by law, and a missing refund policy turns remorse into a chargeback.",
+ "state": [
+   "The pricing section says nothing about refunds and nothing about withdrawal.",
+   "BUSINESS.md carries a complete drafted policy: full refund of a first payment within 30 days, prorated renewal refunds within 90 days, and a same-day refund offered in place of a chargeback (docs/BUSINESS.md:518, docs/BUSINESS.md:644).",
+   "It also specifies the three artefacts needed for the EU Art 16(m) waiver and then recommends against using them (docs/BUSINESS.md:552).",
+   "Art 14(4)(b) says the consumer bears no cost where any one of the three is missing (docs/BUSINESS.md:542)."
+ ],
+ "path": [
+   "The refund policy was written in round 17 for a product with hosted sync and published pages.",
+   "v15 removed most of that hosted surface and never carried the policy forward.",
+   "No plan version since round 17 has carried a checkout at all, so the withdrawal question never came up again.",
+   "The dispute-fee figures were fetched on 2026-08-30 for both candidate rails (docs/BUSINESS.md:580)."
+ ],
+ "tension": [
+   "The benchmark set is bimodal: Obsidian writes non-refundable and relies on statute; 37signals refunds on request and prorates.",
+   "One dispute costs six to seven and a half months of a seat at this price, before the principal.",
+   "With no free trial there is one withdrawal window per contract, except on UK annual plans where it returns yearly (docs/BUSINESS.md:543).",
+   "The 90-day prorated-renewal clause as drafted has no cap."
+ ],
+ "options": [
+   {
+     "k": "a",
+     "what": "Ship the drafted refund policy, cap the prorated clause, and grant the EU fourteen-day right unconditionally with no waiver checkbox.",
+     "label": "Ship the drafted policy; grant the withdrawal right unconditionally",
+     "gains": ["Removes most of the dispute cost for about 2.08% of gross", "Deletes a whole compliance surface and a checkout step", "Consistent with a product whose files stay on the user's disk"],
+     "costs": ["Generous at a price where generosity is cheap but not free", "Forgoes the revenue a waiver would have retained"],
+     "system": "A refunds path in billing. No consent capture, no durable-medium receipt.",
+     "screens": "A refunds page and one line at checkout.",
+     "money": "About 2.08% of gross at a 2% refund rate."
+   },
+   {
+     "k": "b",
+     "what": "Non-refundable as the published line, with the Art 16(m) waiver taken properly at checkout.",
+     "label": "Non-refundable, with the waiver taken properly",
+     "gains": ["Costs nothing directly and is the category norm for file-first tools", "Maximises revenue retention"],
+     "costs": ["Getting the waiver slightly wrong makes the supply free by law", "Each dispute costs six to seven and a half months of the seat it came from", "Needs storage and replay of exact consent text"],
+     "system": "Consent capture, a timestamped performance-start event, a durable-medium receipt.",
+     "screens": "An unticked checkbox with exact statutory wording.",
+     "money": "Highest retained revenue, highest tail risk."
+   },
+   {
+     "k": "c",
+     "what": "Thirty-day refund on a first charge only, with no renewal proration and no waiver flow.",
+     "label": "Thirty-day first-charge refund only",
+     "gains": ["Covers buyer's remorse at a bounded cost", "Simple to publish and to honour"],
+     "costs": ["Leaves the forgotten-annual-renewal case, which is what actually generates chargebacks"],
+     "system": "A refunds path with a date check.",
+     "screens": "One line at checkout.",
+     "money": "Bounded, smaller than (a)."
+   },
+   {
+     "k": "d",
+     "what": "No published policy until a paying customer exists.",
+     "label": "No published policy until there is a customer",
+     "gains": ["No work now"],
+     "costs": ["India's e-commerce rules require the refund and cancellation policy to be displayed", "So this stops being viable the moment a checkout exists"],
+     "system": "No change.",
+     "screens": "None.",
+     "money": "None, and an obligation the first day a checkout ships."
+   }
+ ],
+ "rec": "a",
+ "recCase": [
+   "The asymmetry decides both halves. A refund at $5 is trivial, a dispute is $30 plus the principal, and a bad waiver makes the supply free.",
+   "The policy is already written and already checked against four fetched benchmark policies. Add a cap to the prorated-renewal clause and publish it.",
+   "With no free trial there is one withdrawal window per contract, so the exposure without a waiver is bounded and small.",
+   "The exception is UK annual plans, where the window returns every year, which is another reason to take this with PR11."
+ ],
+ "flip": "If the measured refund rate goes materially above 2%, the thirty-day window is the dial to turn, not the policy to abandon.",
+ "linked": ["PR4", "PR11", "PR16"],
+ "sources": ["docs/BUSINESS.md:518", "docs/BUSINESS.md:531", "docs/BUSINESS.md:542", "docs/BUSINESS.md:543", "docs/BUSINESS.md:552", "docs/BUSINESS.md:580", "docs/BUSINESS.md:644", "docs/PRODUCT-BRIEF.md:550", "docs/research/agent-reports-2026-08-30/r26-c8-b2b.md:70", "merged: PR15"],
+ "_ev": ["PR13", "PR15"]
+},
+
+{
+ "id": "PR16",
+ "cat": "Pricing & tiers",
+ "sub": "Merchant of record",
+ "weight": "high",
+ "q": "Do we sell through a merchant of record from the first sale, or bill direct and register for tax as it arises?",
+ "lede": "The plan files this under enterprise features to defer, but it is not a feature — it is whose name is on the invoice.",
+ "visual": {
+   "kind": "arch",
+   "layers": [
+     {"label": "Customer", "items": ["Sees an invoice", "Disputes to a card network"], "side": "never sees the difference", "tone": "neutral"},
+     {"label": "Merchant of record", "items": ["Sales-tax registration and remittance", "Invoice issuance", "Card-network relationship", "Dispute paperwork"], "side": "4% + 15¢, +0.5% subscription", "tone": "accent"},
+     {"label": "Studio Zephyrus", "items": ["Data-fiduciary duty, never transferred", "Statutory rights above the refund floor", "The product itself"], "side": "stays ours either way", "tone": "sunk"}
+   ],
+   "note": "Only the middle layer is optional, and it has to be chosen before the first sale.",
+   "caption": "What a merchant of record absorbs, and what stays ours regardless."
+ },
+ "stakes": "The first EU or US sale arrives with a tax obligation, and there is nobody to refuse the feature that would have prevented it.",
+ "state": [
+   "§22 groups a merchant of record with SSO and SOC 2 under no enterprise feature until a customer refuses to pay without it (docs/PRODUCT-BRIEF.md:535).",
+   "BUSINESS.md lists what an MoR absorbs and what stays ours regardless, including the data-fiduciary duty it never holds (docs/BUSINESS.md:576).",
+   "Dodo charges 4% plus 15¢ on Indian cards and UPI, 4% plus 40¢ US domestic, plus 1.5% international and 0.5% for subscriptions (docs/BUSINESS.md:719).",
+   "The fixed-cent component alone is 4.79% of a ₹299 charge at today's rate (docs/BUSINESS.md:723)."
+ ],
+ "path": [
+   "The refusal list was written to keep enterprise cost out of a two-person plan.",
+   "The MoR was grouped with SSO and SOC 2 because all three come up in procurement conversations.",
+   "The fee schedules for both candidate rails were fetched on 2026-08-30 and have not been revisited.",
+   "The plan's own resources section says the team is one person on the commit record (docs/PRODUCT-BRIEF.md:231)."
+ ],
+ "tension": [
+   "SSO and SOC 2 are features a buyer asks for. A merchant of record is a legal identity on every transaction.",
+   "It has to be decided before the first sale, not after the first refusal, so the refusal test cannot apply to it.",
+   "The cut is most expensive precisely at the price we intend to charge, because of the fixed-cent component.",
+   "The alternative puts cross-border VAT and GST registration and dispute paperwork onto one person."
+ ],
+ "options": [
+   {
+     "k": "a",
+     "what": "A merchant of record handles every sale from the first one, in every jurisdiction.",
+     "label": "Merchant of record from the first sale",
+     "gains": ["One counterparty handles global sales tax, invoices and disputes for a known cut", "No jurisdiction arrives as a surprise", "Nothing to build when the first EU seat lands"],
+     "costs": ["4% to 5.5% plus a fixed cent charge that is 4.79% of a small monthly seat", "Expensive precisely at the price we intend to charge", "One more party between us and the customer"],
+     "system": "One integration, one webhook, one reconciliation surface.",
+     "screens": "Their checkout, our page.",
+     "money": "About 9.29% of gross on a monthly seat, 4.63% on an annual one."
+   },
+   {
+     "k": "b",
+     "what": "Bill direct in rupees and dollars, and register for tax in each jurisdiction as it arises.",
+     "label": "Bill direct; register for tax as it arises",
+     "gains": ["Keeps the margin and the direct customer relationship", "No third party in the invoice chain"],
+     "costs": ["Puts cross-border registration and dispute paperwork onto one person", "Every new country is a project", "The first mistake is a tax mistake"],
+     "system": "A billing integration plus tax logic we own.",
+     "screens": "Our own checkout.",
+     "money": "Lower percentage cut, unbounded administrative cost."
+   },
+   {
+     "k": "c",
+     "what": "A merchant of record for sales outside India, direct billing inside it.",
+     "label": "MoR for non-India sales, direct for India",
+     "gains": ["Keeps domestic margin and outsources the hard jurisdictions"],
+     "costs": ["Two checkouts, two ledgers, two reconciliation surfaces for a two-person team"],
+     "system": "Two billing paths and a routing rule.",
+     "screens": "Two checkouts.",
+     "money": "Best blended rate, worst operational cost."
+   },
+   {
+     "k": "d",
+     "what": "Defer the decision until the first EU or US team asks for it.",
+     "label": "Defer until a foreign buyer asks",
+     "gains": ["No work now"],
+     "costs": ["The first EU sale arrives with a VAT obligation and no mechanism", "That is exactly the situation the MoR exists to prevent"],
+     "system": "No change.",
+     "screens": "None.",
+     "money": "Nothing now, an unbounded obligation later."
+   }
+ ],
+ "rec": "a",
+ "recCase": [
+   "At this volume one dispute or one foreign tax registration costs more than the cut.",
+   "The concrete change is to move the MoR out of the no-enterprise-feature-until-refused list, because it is not a feature and there is nobody to refuse it.",
+   "The 15¢ fixed component makes a monthly seat the worst case for this fee schedule, which is a second argument for PR11's annual rung.",
+   "Revisit only when volume makes the percentage cut exceed the cost of running tax and disputes in-house."
+ ],
+ "flip": "If a fetched comparison shows a direct rail plus an outsourced tax service beating the MoR cut at fewer than 200 seats, (b) is cheaper from the start.",
+ "linked": ["PR4", "PR11", "PR12", "PR13"],
+ "sources": ["docs/PRODUCT-BRIEF.md:231", "docs/PRODUCT-BRIEF.md:535", "docs/BUSINESS.md:576", "docs/BUSINESS.md:580", "docs/BUSINESS.md:719", "docs/BUSINESS.md:723"],
+ "_ev": ["PR16"]
+},
+
+{
+ "id": "PR17",
+ "cat": "Pricing & tiers",
+ "sub": "Evidence and kill number",
+ "weight": "high",
+ "q": "How do we get pricing evidence before MVP-1, and what result kills the paid tier?",
+ "lede": "Every other test in the plan carries a kill number. The one that decides whether there is a business does not.",
+ "visual": {
+   "kind": "compare",
+   "labelWidth": 190,
+   "cols": [
+     {"title": "Randomised price test", "tone": "stop"},
+     {"title": "Twenty conversations", "tone": "warn"},
+     {"title": "Paid pre-order", "tone": "accent"}
+   ],
+   "rows": [
+     {"label": "Time to a result", "cells": ["57 months at plausible traffic", "Weeks 1 and 2", "Weeks 1 and 2"]},
+     {"label": "What it returns", "cells": ["An elasticity", "Seat counts and opinions", "Money, or nothing"]},
+     {"label": "Kill number today", "cells": ["None; struck from the plan", "None written", "Zero from 100 qualified"]},
+     {"label": "What it costs", "cells": ["Traffic we do not have", "Hours already budgeted", "A checkout and a refund policy"]},
+     {"label": "Prices it can test", "cells": ["Three", "Whatever is in the script", "One"]}
+   ],
+   "note": "The plan has scheduled the middle column and written the threshold for the right-hand one.",
+   "caption": "Three instruments, and the only one carrying a written kill number."
+ },
+ "stakes": "A test with no threshold cannot fail, and a threshold chosen after the answers arrive is not a threshold.",
+ "state": [
+   "The paid tier is a hypothesis until twenty team conversations return seat counts and what teams are gated on (docs/PRODUCT-BRIEF.md:292), scheduled for weeks 1-2 (docs/PRODUCT-BRIEF.md:352).",
+   "No threshold is written anywhere, while the plan sets kill numbers everywhere else: under 4 of 10 kills review state (docs/PRODUCT-BRIEF.md:321), under 200 installs in 14 days killed the plugin channel (docs/PRODUCT-BRIEF.md:204).",
+   "BUSINESS.md computed that the three-arm price test would take 57 months and must be struck (docs/BUSINESS.md:384).",
+   "Its replacement stack was specified and never carried into a plan version (docs/BUSINESS.md:399)."
+ ],
+ "path": [
+   "An earlier plan said test ₹299 against ₹249 and ₹399, with no sample size, no minimum detectable effect and no stopping rule.",
+   "Round 17 computed what that sentence actually costs and struck it.",
+   "The conversations were added later, when the seat arithmetic was withdrawn, as the thing that would replace it.",
+   "The threshold was never written because the tier itself was still moving."
+ ],
+ "tension": [
+   "What remains open after round 2 is whether anyone pays for review state in any shell; eleven gaps of desk research measured installs and attention, never payment (docs/GAPS-2026-09-08.md:146).",
+   "As scheduled the conversations test only the $4-5 band, so nobody would pay $5 and they would pay more for a gate are indistinguishable outcomes.",
+   "The only affordable randomised measurement is free-signup rate, which answers price anchoring and must not be reported as willingness to pay.",
+   "Twenty conversations return opinions. A pre-order returns money. The plan currently has neither with a threshold."
+ ],
+ "options": [
+   {
+     "k": "a",
+     "what": "Kill at fewer than five of twenty naming a gate they would pay for at a named price, with both prices in the script and the willingness-to-pay questions folded in.",
+     "label": "Kill under 5 of 20 naming a gate at a named price; both prices in the script",
+     "gains": ["Falsifiable, and it tests the axis as well as the level", "One protocol answers the price question and the kill question", "Costs a week of conversations already scheduled"],
+     "costs": ["Twenty is a small sample and the signal is soft", "Opinions, not money", "The interview method over-reports acceptable prices"],
+     "system": "No change.",
+     "screens": "None.",
+     "money": "None spent. The answer arrives in week 2."
+   },
+   {
+     "k": "b",
+     "what": "Kill at fewer than three of twenty giving both a seat count and a budget line.",
+     "label": "Kill under 3 of 20 giving a seat count and a budget line",
+     "gains": ["A harder bar that filters talk from procurement reality"],
+     "costs": ["Three of twenty is a thin thread to hang a tier on", "A 15% hit rate is inside sampling noise at n=20"],
+     "system": "No change.",
+     "screens": "None.",
+     "money": "None."
+   },
+   {
+     "k": "c",
+     "what": "Replace the conversations with a paid pre-order carrying the kill number already written in the record.",
+     "label": "Replace the conversations with a paid pre-order",
+     "gains": ["The only instrument that returns a fact instead of an opinion", "The kill number is already written and dated"],
+     "costs": ["Needs a checkout and a refund policy before the product exists", "A public failure", "Tests one price, not the axis"],
+     "system": "A checkout and a refunds path.",
+     "screens": "One page.",
+     "money": "$49 a pre-order, refundable."
+   },
+   {
+     "k": "d",
+     "what": "Run the free-signup-rate test only, and label it price anchoring rather than willingness to pay.",
+     "label": "Free-signup-rate test only, labelled price anchoring",
+     "gains": ["The one randomised measurement that fits the traffic"],
+     "costs": ["It answers whether the price suppresses signup, not what anyone pays", "2.6 months is most of the pre-launch window"],
+     "system": "Two landing variants and a counter.",
+     "screens": "Two pricing pages.",
+     "money": "None, and no revenue evidence either."
+   }
+ ],
+ "rec": "a",
+ "recCase": [
+   "Write the number before the conversations start. Five of twenty naming a gate at a named price is high enough that a polite yes does not count and low enough that a real niche survives.",
+   "Put both PR3 prices in the script, so a rejection of $5 is distinguishable from a rejection of paying at all.",
+   "Fold the willingness-to-pay questions into the same conversations rather than running a second instrument; one protocol, one owner.",
+   "Label every output honestly: an interview brackets an acceptable band and over-reports, and no number from it may be reported as an elasticity."
+ ],
+ "flip": "If PR4 goes to a pre-order page, (c) supersedes this gate entirely, because one card beats twenty opinions.",
+ "linked": ["PR3", "PR4", "PR7", "PR20"],
+ "sources": ["docs/PRODUCT-BRIEF.md:204", "docs/PRODUCT-BRIEF.md:292", "docs/PRODUCT-BRIEF.md:321", "docs/PRODUCT-BRIEF.md:352", "docs/BUSINESS.md:384", "docs/BUSINESS.md:399", "docs/GAPS-2026-09-08.md:146", "docs/research/agent-reports-2026-08-30/r26-c7-d2c.md:22", "docs/research/agent-reports-2026-08-30/r26-c7-d2c.md:125", "merged: PR18"],
+ "_ev": ["PR17", "PR18"]
+},
+
+{
+ "id": "PR19",
+ "cat": "Pricing & tiers",
+ "sub": "Grandfathering",
+ "weight": "medium",
+ "q": "Do early subscribers keep their price forever, for three years, or only until the next announced change?",
+ "lede": "Break-even sits between what $4 and what $5 buy, so a perpetual price promise may be a perpetual promise to run near cost.",
+ "visual": {
+   "kind": "state",
+   "states": [
+     {"label": "Founding cohort", "meta": "price held, stated at checkout", "tone": "accent", "current": true},
+     {"label": "Continuous", "meta": "price held", "via": "keeps paying", "tone": "good"},
+     {"label": "Lapsed 60 days", "meta": "price forfeit", "via": "lapse", "tone": "warn"},
+     {"label": "Tier changed", "meta": "current price applies", "via": "upgrade", "tone": "neutral"}
+   ],
+   "note": "The drafted policy already names every transition; only the population it covers is open.",
+   "caption": "When a held price is forfeited under the policy BUSINESS.md drafted."
+ },
+ "stakes": "A perpetual promise made at a near-cost price cannot be withdrawn later without breaking it in public.",
+ "state": [
+   "v15 has one line, in §22: price changes, email before the next charge (docs/PRODUCT-BRIEF.md:536).",
+   "BUSINESS.md drafts a full policy: price held while the subscription is continuous, forfeit after a 60-day lapse, forfeit on upgrade (docs/BUSINESS.md:419).",
+   "Its own anti-recommendation says perpetual grandfathering caps blended revenue permanently (docs/BUSINESS.md:426).",
+   "Break-even at the founder's own rate is ₹333.25 a month (r26-c6:45), which sits between what $4 and what $5 buy."
+ ],
+ "path": [
+   "The policy was written alongside the price-testing section, where sticky-by-account pricing made grandfathering a necessary companion rule.",
+   "The price test was then struck, and the grandfathering rule was never revisited on its own terms.",
+   "v15 kept a one-line notice rule and dropped the policy.",
+   "The break-even figure arrived later, in the round 26 unit-economics work."
+ ],
+ "tension": [
+   "The standard alternative, a three-year sunset with 90 days' notice, costs goodwill precisely with the earliest users, who are the ones who talk.",
+   "The input to break-even is itself unsettled: the support coefficient is stated as 0.10 and as 0.30 in the same repo (r26-c6:50).",
+   "A price promise is one of the few reasons to buy early from a product with no track record.",
+   "Two policies published side by side invite the question of why customer 101 pays more."
+ ],
+ "options": [
+   {
+     "k": "a",
+     "what": "The price is held for as long as the subscription is continuous, for everyone, forever.",
+     "label": "Perpetual while the subscription is continuous",
+     "gains": ["Strongest trust signal and easiest to state at checkout", "Already drafted, with every transition named"],
+     "costs": ["Caps blended revenue permanently at a price near break-even", "The break-even input is itself uncertain threefold"],
+     "system": "A price snapshot per account.",
+     "screens": "One line at checkout.",
+     "money": "Locks early revenue at close to cost."
+   },
+   {
+     "k": "b",
+     "what": "Held prices sunset after three years, with ninety days' notice before the change.",
+     "label": "Three-year sunset with ninety days' notice",
+     "gains": ["Standard and defensible", "Lets the price move once the cost base is understood"],
+     "costs": ["Costs goodwill with the earliest cohort, which supplies the word of mouth this product depends on"],
+     "system": "A price snapshot plus an expiry date.",
+     "screens": "A notice in the in-product list.",
+     "money": "Recovers revenue at year three."
+   },
+   {
+     "k": "c",
+     "what": "No grandfathering; announced changes apply to everyone at the next renewal.",
+     "label": "No grandfathering at all",
+     "gains": ["Simplest ledger and no legacy prices to reason about"],
+     "costs": ["Removes a real reason to buy early from a product with no track record"],
+     "system": "No snapshot needed.",
+     "screens": "The notice rule already in §22.",
+     "money": "Full flexibility on price."
+   },
+   {
+     "k": "d",
+     "what": "Perpetual for the first hundred paying accounts, and no grandfathering for everyone after.",
+     "label": "Perpetual for the first hundred, then no grandfathering",
+     "gains": ["Buys the founding cohort's loyalty at a bounded, countable cost", "Leaves the price free to move afterwards"],
+     "costs": ["Two policies to publish and one number to defend", "Invites the question from customer 101"],
+     "system": "A snapshot on the first hundred accounts only.",
+     "screens": "Both policies visible at checkout.",
+     "money": "Caps the concession at a hundred accounts."
+   }
+ ],
+ "rec": "d",
+ "recCase": [
+   "The first hundred customers are worth more as advocates than as revenue, and their price should be a promise.",
+   "Everyone after should sit under a policy that lets the price move, because break-even is close to the launch number and its input is uncertain by a factor of three.",
+   "Publish both at checkout, so nobody discovers the distinction later.",
+   "This only matters once a price exists, so it is downstream of PR3 and PR17."
+ ],
+ "flip": "If the pilot measures the support coefficient at the low end of that threefold spread, (a) becomes affordable and is the better story.",
+ "linked": ["PR3", "PR11", "PR17"],
+ "sources": ["docs/PRODUCT-BRIEF.md:536", "docs/BUSINESS.md:419", "docs/BUSINESS.md:426", "docs/research/agent-reports-2026-08-30/r26-c6-unit-economics.md:45", "docs/research/agent-reports-2026-08-30/r26-c6-unit-economics.md:50"],
+ "_ev": ["PR19"]
+},
+
+{
+ "id": "PR20",
+ "cat": "Pricing & tiers",
+ "sub": "Services line",
+ "weight": "high",
+ "q": "Do we sell the engagement as the first revenue line, at ten days or at eight?",
+ "lede": "The plan funds the build with consulting hours and lists the same engagement as its last upsell, without noticing they are one line.",
+ "visual": {
+   "kind": "compare",
+   "labelWidth": 200,
+   "cols": [
+     {"title": "Ten days, ₹3,00,000", "tone": "warn"},
+     {"title": "Eight days, ₹2,40,000", "tone": "accent"}
+   ],
+   "rows": [
+     {"label": "Sellable this month", "cells": ["Not without the kappa", "Yes"]},
+     {"label": "What days 7-8 sell", "cells": ["Eval discipline: kappa 0.1 against a 0.7 bar, n=9", "Withheld until the kappa is honest"]},
+     {"label": "Four a year", "cells": ["₹12,00,000, exactly the monthly nut", "4 x ₹2,40,000 = ₹9,60,000"]},
+     {"label": "Line item on the rate card", "cells": ["Absent", "Absent"]},
+     {"label": "Against the product funnel", "cells": ["One client equals 63,060 visitors", "Same"]}
+   ],
+   "note": "The engagement and the funding line are the same money, counted once.",
+   "caption": "The first revenue line, priced two ways, against what it can be defended on today."
+ },
+ "stakes": "The one revenue line available this month is priced on a discipline whose own measurement failed its own bar.",
+ "state": [
+   "The engagement appears as the bottom row of the upsell table (docs/PRODUCT-BRIEF.md:445) and in the family diagram at ₹3,00,000 fixed scope (docs/PRODUCT-BRIEF.md:465).",
+   "The funding line is stated separately: the monthly nut of about ₹1.09L, covered by 54-78 consulting hours (docs/PRODUCT-BRIEF.md:292).",
+   "Four engagements a year is ₹12,00,000, which is the same milestone, and one client equals 63,060 visitors of funnel (r23-u4:62).",
+   "The report's own shape withholds days 7-8 until the kappa is honest (r23-u4:105)."
+ ],
+ "path": [
+   "Round 23 designed the engagement; round 22 established that services fund the company.",
+   "v15 kept both and connected them only through the narrative about the docs scan as a diagnostic.",
+   "The kappa was measured once at 0.1 against a bar of 0.7, n=9, and never re-run (r23-u4:10).",
+   "The studio's rate card still has no line item for the engagement."
+ ],
+ "tension": [
+   "The upsell path runs through the docs scan, which is an MVP-0 feature that does not exist for about a year.",
+   "So the upsell has no source, while the same engagement could be sold directly this month.",
+   "Days 7-8 sell an eval discipline whose own measurement is dark, which is the exact self-flattery the audit exists to prevent.",
+   "Founder hours spent on engagements are hours not spent on the 81-week build."
+ ],
+ "options": [
+   {
+     "k": "a",
+     "what": "Sell the ten-day engagement now as the first revenue line, and let the product price wait for MVP-1.",
+     "label": "Sell the ten-day engagement at ₹3,00,000 now",
+     "gains": ["Revenue this month from clients who already exist", "Four a year covers the whole monthly nut"],
+     "costs": ["Days 7-8 sell a discipline whose kappa is 0.1 against a 0.7 bar", "Cannot be quoted from the rate card as it stands", "Forty hours a month away from the build"],
+     "system": "No change.",
+     "screens": "None; the docs scan becomes the diagnostic later.",
+     "money": "₹12,00,000 a year at four engagements."
+   },
+   {
+     "k": "b",
+     "what": "Sell an eight-day version now, with the evals named as a later phase.",
+     "label": "Sell an eight-day version at ₹2,40,000, evals as phase two",
+     "gains": ["Sellable this month with nothing outstanding", "Eighty per cent of the revenue and none of the objection", "It is the shape the report itself proposes"],
+     "costs": ["Leaves the highest-value days on the table until the kappa is honest", "Still forty hours a month away from the build"],
+     "system": "No change.",
+     "screens": "None.",
+     "money": "₹9,60,000 a year at four engagements."
+   },
+   {
+     "k": "c",
+     "what": "Keep it as a downstream upsell from the docs scan only, exactly as the plan has it.",
+     "label": "Keep it as a downstream upsell from the docs scan",
+     "gains": ["Keeps the founder's hours on the build"],
+     "costs": ["The scan that generates the lead does not exist for about a year", "No data exists on conversion from any productised diagnostic"],
+     "system": "No change.",
+     "screens": "The scan's proposal list becomes the brief.",
+     "money": "None for about a year."
+   },
+   {
+     "k": "d",
+     "what": "Do not sell it at all; it competes for the same hours as the product.",
+     "label": "Do not sell it; protect the build",
+     "gains": ["Maximum product velocity"],
+     "costs": ["The plan's own funding line already assumes 54-78 client hours a month", "So this contradicts the budget it appears in"],
+     "system": "No change.",
+     "screens": "None.",
+     "money": "No services revenue, and no funding for the build."
+   }
+ ],
+ "rec": "b",
+ "recCase": [
+   "Eight days at ₹2,40,000 is revenue this month at a scope the record says is defensible today.",
+   "It removes the one honest objection to the ten-day version: charging for a discipline whose own measurement is dark.",
+   "Add the line item to the rate card in the same week, because the engagement cannot be quoted today even if a client asks.",
+   "Move to (a) once the kappa has one dated artefact against a real gold set."
+ ],
+ "flip": "If a client asks for the eval days specifically and will pay for them, re-run the kappa first and then sell (a) — never the reverse order.",
+ "linked": ["PR4", "PR17"],
+ "sources": ["docs/PRODUCT-BRIEF.md:292", "docs/PRODUCT-BRIEF.md:445", "docs/PRODUCT-BRIEF.md:465", "docs/research/agent-reports-2026-08-30/r23-u4-consultation-and-services.md:10", "docs/research/agent-reports-2026-08-30/r23-u4-consultation-and-services.md:62", "docs/research/agent-reports-2026-08-30/r23-u4-consultation-and-services.md:105"],
+ "_ev": ["PR20"]
+},
+
+{
+ "id": "PR21",
+ "cat": "Pricing & tiers",
+ "sub": "Tier ladder",
+ "weight": "high",
+ "q": "Which tier ladder ships, and does Max survive as a third rung?",
+ "lede": "Three committed artefacts name three different ladders, and the most specific one is a rules file that already encodes a billing webhook.",
+ "visual": {
+   "kind": "compare",
+   "labelWidth": 175,
+   "cols": [
+     {"title": "The plan, v15", "tone": "accent"},
+     {"title": "firestore.rules, July", "tone": "warn"},
+     {"title": "BUSINESS.md", "tone": "warn"}
+   ],
+   "rows": [
+     {"label": "Rungs", "cells": ["Individual / Pro / Max / Hosted AI", "free | pro | team", "Free / Pro / Power / Work"]},
+     {"label": "Currency", "cells": ["USD", "None", "INR"]},
+     {"label": "Encodes billing", "cells": ["No", "Yes: priceId, provider, customerId", "No"]},
+     {"label": "Meters usage", "cells": ["No", "Yes: aiTokens, noteCount, bytesUsed", "No"]},
+     {"label": "Holds documents", "cells": ["No", "Yes: content up to 900,000 bytes", "No"]}
+   ],
+   "note": "A build team reading the repo finds the middle column first, because it is the most specific.",
+   "caption": "Three committed artefacts, three ladders, and which one describes a shipped design."
+ },
+ "stakes": "Whichever ladder is chosen, two of the three artefacts are wrong today and one of them is a security rules file.",
+ "state": [
+   "The plan runs Individual, Pro, Max and Hosted AI (docs/PRODUCT-BRIEF.md:285 to docs/PRODUCT-BRIEF.md:290).",
+   "`firestore.rules:22` documents a server-owned plan enum of free, pro or team, with a billing collection and a usage meter (firestore.rules:29, firestore.rules:34).",
+   "BUSINESS.md runs Free, Pro, Power and Work (docs/BUSINESS.md:448).",
+   "Max holds retention beyond a year, admin and SSO when asked (docs/PRODUCT-BRIEF.md:289), while §22 defers SSO until a customer refuses to pay without it (docs/PRODUCT-BRIEF.md:535)."
+ ],
+ "path": [
+   "The rules file dates from July, for a Firebase-backed product that held documents.",
+   "BUSINESS.md was generated on 2026-08-30 from round 17. The plan is 2026-09-08. None supersedes the others in writing.",
+   "Max was the home for sync, export and enterprise items before the round-2 inversion moved enforcement and retention forward.",
+   "Round 2 named the three-file contradiction and said no operating rule can be written until one of them is deleted (docs/GAPS-2026-09-08.md:142)."
+ ],
+ "tension": [
+   "The rules file caps note content at 900,000 bytes, which is the document-holding design decision 7 puts to the meeting (docs/PRODUCT-BRIEF.md:365).",
+   "Max's contents are one feature with no F-row and two the operating rules refuse to build.",
+   "Two other exhibits still send CI gates to Max after v15 moved them to Pro (docs/PRODUCT-BRIEF.md:202, docs/PRODUCT-BRIEF.md:443).",
+   "The upsell table cannot decide whether a second device is a Pro or a Max moment (docs/PRODUCT-BRIEF.md:442)."
+ ],
+ "options": [
+   {
+     "k": "a",
+     "what": "Two tiers only, free and Pro, with Max deleted until a customer refuses to pay without SSO.",
+     "label": "Two tiers: free and Pro. Delete Max until someone asks",
+     "gains": ["Removes three contradictory descriptions and a rung with no buyer", "The reappearance trigger is already written into §22", "One vocabulary to fix everywhere else"],
+     "costs": ["Gives up the anchoring a top tier gives the middle one", "Anything currently parked in Max needs a new home"],
+     "system": "One paid entitlement instead of two.",
+     "screens": "A two-column pricing page.",
+     "money": "Loses whatever a decoy tier is worth, which nobody here has measured."
+   },
+   {
+     "k": "b",
+     "what": "Adopt the code's vocabulary of free, pro and team, and rename Max.",
+     "label": "free / pro / team, matching the code",
+     "gains": ["Least code churn and the names a build team finds first"],
+     "costs": ["Loses Max, which the plan also uses as a product-family label", "Adopts the vocabulary of a file that may be deleted outright"],
+     "system": "The plan changes; the rules file does not.",
+     "screens": "Renamed columns.",
+     "money": "None."
+   },
+   {
+     "k": "c",
+     "what": "Keep three rungs and fix the stale rows that describe Max differently.",
+     "label": "Keep three rungs and fix the stale rows",
+     "gains": ["Cheapest edit and keeps the ladder intact"],
+     "costs": ["Max still holds one feature that does not exist and two the operating rules refuse to build", "The incoherence is renamed rather than removed"],
+     "system": "No change.",
+     "screens": "A three-column pricing page with a hollow third column.",
+     "money": "None."
+   },
+   {
+     "k": "d",
+     "what": "Settle decision 7 first, delete the rules file if the Firebase design does not ship, then make the plan the only source.",
+     "label": "Settle decision 7 first, then the plan is the only source",
+     "gains": ["Removes the contradiction at its root", "Unblocks §22, which round 2 says cannot be written until one file goes"],
+     "costs": ["It is a deletion, so it needs the meeting", "It does not by itself answer how many rungs there are"],
+     "system": "Deletes a committed security rules file.",
+     "screens": "None.",
+     "money": "None."
+   }
+ ],
+ "rec": "a",
+ "recCase": [
+   "A third rung whose contents are one unbuilt feature and two the operating rules refuse to build is not a rung.",
+   "Three rows describing it differently will confuse a reader before they confuse a buyer.",
+   "Do (d) in the same meeting as a prerequisite: do not let a July rules file remain the most specific tier definition in the repository.",
+   "Let Max reappear the first time a team refuses to pay without SSO, which is the trigger §22 already sets."
+ ],
+ "flip": "If PR8 goes to a commercial licence, the third rung comes back as a per-organisation licence, which needs no features and has a measured precedent.",
+ "linked": ["PR1", "PR2", "PR8", "PR23"],
+ "sources": ["docs/PRODUCT-BRIEF.md:202", "docs/PRODUCT-BRIEF.md:285", "docs/PRODUCT-BRIEF.md:289", "docs/PRODUCT-BRIEF.md:290", "docs/PRODUCT-BRIEF.md:365", "docs/PRODUCT-BRIEF.md:442", "docs/PRODUCT-BRIEF.md:443", "docs/PRODUCT-BRIEF.md:535", "docs/BUSINESS.md:448", "firestore.rules:22", "firestore.rules:29", "firestore.rules:34", "firestore.rules:61", "docs/GAPS-2026-09-08.md:142", "merged: PR22"],
+ "_ev": ["PR21", "PR22"]
+},
+
+{
+ "id": "PR23",
+ "cat": "Pricing & tiers",
+ "sub": "Unit of sale",
+ "weight": "high",
+ "q": "Is the CI gate priced per repository or per seat?",
+ "lede": "Every comparable that sells a documentation check prices per site or per project. The plan prices it per person.",
+ "visual": {
+   "kind": "compare",
+   "labelWidth": 200,
+   "cols": [
+     {"title": "Per seat", "tone": "neutral"},
+     {"title": "Per repository", "tone": "accent"}
+   ],
+   "rows": [
+     {"label": "Who buys it", "cells": ["Every reader on the team", "The one person who wants the gate"]},
+     {"label": "What the comparables do", "cells": ["GitBook: $12 per user per month", "Mintlify Pro $450/mo; ReadMe Pro $250/mo"]},
+     {"label": "GitBook charges both", "cells": ["$12 per user per month", "plus $65 per site per month"]},
+     {"label": "Enforceable at all", "cells": ["Honour system, per PR2", "The Action runs or it does not"]},
+     {"label": "Bills readers who never review", "cells": ["Yes", "No"]}
+   ],
+   "note": "The plan calls the gate the B2B line but never says what unit it sells in.",
+   "caption": "The unit an enforcement gate is bought in, against what the comparables charge."
+ },
+ "stakes": "Enforcement is the one paid object with a natural place to check an entitlement, and pricing it per seat wastes that.",
+ "state": [
+   "The upsell table routes the CI gate to Max and names the comparable as docs-as-code tooling and CI seats (docs/PRODUCT-BRIEF.md:443).",
+   "The family table calls `mdmax cert` and gates the B2B line, sold per team (docs/PRODUCT-BRIEF.md:475).",
+   "v15 then pulled the gate into Pro at $4-5 per user per month (docs/PRODUCT-BRIEF.md:288).",
+   "No document names the unit. Per team, per seat and per repo all appear."
+ ],
+ "path": [
+   "The gate started life in Max, where it was priced per team.",
+   "Round 2 moved enforcement forward into Pro because enforcement is what GitHub sells at $4.",
+   "That move carried the object across without carrying its unit across.",
+   "The command itself still does not run: `mdmax cert` was never wired, one day of work (docs/PRODUCT-BRIEF.md:224)."
+ ],
+ "tension": [
+   "A CI check is bought by whoever owns the repository, not by everyone who reads it.",
+   "Mintlify, GitBook and ReadMe all price a documentation product per site or per project, with seats as a second axis or none at all.",
+   "Per seat bills people who never look at a build. Per repo bills the person who wants the build to fail.",
+   "Per repo is also the only unit where an entitlement check has an obvious home, because the Action can ask for one."
+ ],
+ "options": [
+   {
+     "k": "a",
+     "what": "The gate stays inside the per-seat Pro price, exactly as v15 has it.",
+     "label": "Per seat, folded into Pro as written",
+     "gains": ["One SKU and one price to explain", "No new billing object"],
+     "costs": ["Bills readers who never see a CI run", "Wastes the one place an entitlement could be checked", "No comparable in docs tooling prices a check this way"],
+     "system": "No change.",
+     "screens": "No change.",
+     "money": "Revenue scales with readers, not with repos."
+   },
+   {
+     "k": "b",
+     "what": "The gate is sold per repository, separately from seats, with its own price.",
+     "label": "Per repository, sold separately from seats",
+     "gains": ["Matches how every docs-platform comparable sells a check", "The buyer is the repo owner who wants it, not the whole team", "The Action is a natural entitlement checkpoint"],
+     "costs": ["Two paid objects to explain on one page", "Needs a repo-level identity and entitlement, which nothing builds today", "A team with many repos may be worse off"],
+     "system": "A repo-scoped entitlement and an Action that asks for it.",
+     "screens": "A repos list with a per-repo toggle.",
+     "money": "Priced against $250-450 a month comparables rather than $4."
+   },
+   {
+     "k": "c",
+     "what": "One flat organisation price covering any number of repositories.",
+     "label": "Per organisation, flat, any number of repos",
+     "gains": ["One number for a procurement conversation", "No counting of anything"],
+     "costs": ["One number has to fit a two-repo team and a two-hundred-repo one", "Gives up expansion entirely"],
+     "system": "An org-scoped entitlement.",
+     "screens": "One switch per organisation.",
+     "money": "Predictable per logo, capped per logo."
+   },
+   {
+     "k": "d",
+     "what": "Do not price the gate until `mdmax cert` runs end to end once.",
+     "label": "Do not price it until the command runs",
+     "gains": ["Refuses to price something that exits with a module error", "One day of work settles it"],
+     "costs": ["Leaves Pro without the half of its offer that is meant to be enforceable"],
+     "system": "Wire the command; no billing work.",
+     "screens": "None.",
+     "money": "None until it runs."
+   }
+ ],
+ "rec": "b",
+ "recCase": [
+   "The buyer of a build gate is the person who owns the build, and every comparable that sells one charges per site or per project.",
+   "It is also the only paid object in the plan where an entitlement has an obvious place to be checked, which PR2 says nothing else has.",
+   "Pricing it per repo lets the seat price stay low and honest while the gate carries a number the docs platforms already justify.",
+   "Do (d) first regardless: one day to make the command run, before either unit is published."
+ ],
+ "flip": "If the twenty conversations show the same person buys the seats and the gate and wants one invoice, fold it back into (a) and price the seat higher.",
+ "linked": ["PR1", "PR2", "PR3", "PR21"],
+ "sources": ["docs/PRODUCT-BRIEF.md:224", "docs/PRODUCT-BRIEF.md:288", "docs/PRODUCT-BRIEF.md:443", "docs/PRODUCT-BRIEF.md:475", "https://mintlify.com/pricing"],
+ "_ev": []
+}
+
+]
+}

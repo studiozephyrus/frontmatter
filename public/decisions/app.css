@@ -17,7 +17,7 @@
    that is blue. */
 
 :root{
-  --accent:#1a5cff; --accent-2:#4d82ff; --accent-ink:#0b3ec9;
+  --accent:#1a5cff; --accent-2:#4d82ff; --accent-ink:#0b3ec9; --accent-soft:#e9f0ff;
   --wash:#eef3ff; --wash-2:#dbe6ff;
 
   --ground:#f4f6f9;            /* the page */
@@ -45,7 +45,7 @@
 }
 @media (prefers-color-scheme:dark){
   :root:not([data-theme=light]){
-    --accent:#5b8cff; --accent-2:#7ea5ff; --accent-ink:#a9c3ff;
+    --accent:#5b8cff; --accent-2:#7ea5ff; --accent-ink:#a9c3ff; --accent-soft:#111a2e;
     --wash:#14203c; --wash-2:#1b2c52;
     --ground:#080a0e; --card:#121620; --sunk:#0d1118; --rail:#0e1219;
     --ink:#eaeef5; --ink-2:#b3bbc9; --ink-3:#79818f; --ink-4:#5b626e;
@@ -59,7 +59,7 @@
   }
 }
 :root[data-theme=dark]{
-  --accent:#5b8cff; --accent-2:#7ea5ff; --accent-ink:#a9c3ff;
+  --accent:#5b8cff; --accent-2:#7ea5ff; --accent-ink:#a9c3ff; --accent-soft:#111a2e;
   --wash:#14203c; --wash-2:#1b2c52;
   --ground:#080a0e; --card:#121620; --sunk:#0d1118; --rail:#0e1219;
   --ink:#eaeef5; --ink-2:#b3bbc9; --ink-3:#79818f; --ink-4:#5b626e;
@@ -444,4 +444,78 @@ table.d td:not(:first-child){font-variant-numeric:tabular-nums}
   .pos{flex-wrap:wrap}
   /* Must stay AFTER the base .abar rule: same specificity, so source order decides. */
   .abar{display:grid}
+}
+
+
+/* ── v2 decision card ───────────────────────────────────────────────────────
+   Added 2026-09-09. The brief was that a reader should be able to see what is
+   being decided — a screen, a flow, a file — and then read short lines rather
+   than four paragraphs. Every block below exists to serve that: the diagram
+   leads, context is bulleted, and each option carries its own consequences so
+   comparing two options does not mean scrolling between them. */
+
+/* the diagram */
+.dg{margin:0 0 22px;padding:0;background:var(--card);border:1px solid var(--line);
+  border-radius:11px;overflow:hidden;box-shadow:var(--sh-1)}
+.dg svg{display:block;width:100%;height:auto}
+.dg figcaption{padding:9px 15px;border-top:1px solid var(--line);background:var(--sunk);
+  font-size:11.5px;color:var(--ink-3);letter-spacing:.01em}
+
+/* bulleted context — the replacement for the paragraph blocks */
+ul.bl{margin:0;padding:0;list-style:none}
+ul.bl li{position:relative;padding-left:15px;margin:0 0 7px;font-size:13.5px;line-height:1.5;color:var(--ink-2)}
+ul.bl li:last-child{margin-bottom:0}
+ul.bl li::before{content:"";position:absolute;left:2px;top:8px;width:4px;height:4px;
+  border-radius:50%;background:var(--line-3)}
+ul.bl.tight li{font-size:12.5px;margin-bottom:5px;padding-left:13px;line-height:1.45}
+ul.bl.tight li::before{top:7px;width:3px;height:3px}
+.ctxc ul.bl li{font-size:13px}
+
+/* stakes — one line, stated once, above the fold */
+.stakes{display:flex;gap:10px;align-items:flex-start;margin:0 0 20px;padding:12px 15px;
+  border:1px solid var(--high);border-left-width:3px;border-radius:9px;
+  background:var(--high-soft);font-size:13.5px;line-height:1.5;color:var(--ink)}
+.stakes b{color:var(--high);font-weight:700}
+.stakes .si{flex:0 0 auto;width:17px;height:17px;margin-top:1px;color:var(--high)}
+
+/* options, v2 */
+.opt .ob{display:block;min-width:0}
+.opt .ow{display:block;margin-top:5px;font-size:13px;line-height:1.5;color:var(--ink-2)}
+.opt .gc{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:12px;
+  border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--card)}
+.opt .gcc{display:block;padding:10px 12px;min-width:0}
+.opt .gcc.cost{border-left:1px solid var(--line)}
+.opt .gch{display:block;margin-bottom:6px;font-family:var(--mono);font-size:9.5px;
+  letter-spacing:.09em;text-transform:uppercase;color:var(--ink-4)}
+.opt .gcc.gain .gch{color:var(--good)}
+.opt .gcc.cost .gch{color:var(--crit)}
+.opt .ometa{display:flex;flex-wrap:wrap;gap:6px 18px;margin-top:11px;
+  padding-top:10px;border-top:1px dashed var(--line-2)}
+.opt .om{font-size:12px;line-height:1.45;color:var(--ink-3)}
+.opt .om b{font-family:var(--mono);font-size:9.5px;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--ink-4);margin-right:6px}
+.opt.on .gc,.opt.rec .gc{background:var(--card)}
+
+/* the case for the recommendation, and the one thing that would overturn it */
+.reccase ul.bl li{font-size:13.5px}
+.flip{margin-top:12px;padding-top:11px;border-top:1px dashed var(--line-2);
+  font-size:13px;line-height:1.55;color:var(--ink-2)}
+.flip b{color:var(--ink);font-weight:650}
+
+/* decisions that should be taken together */
+.linked{margin-top:22px;padding-top:16px;border-top:1px solid var(--line)}
+.lchips{display:flex;flex-wrap:wrap;gap:8px;margin-top:9px}
+.lchip{display:inline-flex;align-items:baseline;gap:7px;max-width:100%;padding:7px 12px;
+  border:1px solid var(--line-2);border-radius:7px;background:var(--card);
+  font:inherit;font-size:12.5px;color:var(--ink-2);text-align:left;cursor:pointer;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.lchip b{font-family:var(--mono);font-size:11px;color:var(--accent);flex:0 0 auto}
+.lchip:hover{border-color:var(--accent);color:var(--ink)}
+
+@media(max-width:900px){
+  .opt .gc{grid-template-columns:1fr}
+  .opt .gcc.cost{border-left:0;border-top:1px solid var(--line)}
+  .opt .ometa{flex-direction:column;gap:7px}
+  .dg{margin-bottom:18px}
+  .lchip{max-width:100%}
 }

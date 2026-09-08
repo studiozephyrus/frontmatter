@@ -48,3 +48,8 @@ docs/frontmatter-COMPLETE-RECORD-*.md
 # Transient fetch and tool output — regenerable, never content.
 cert.err
 scripts/__pycache__/
+
+# session scratch that should never be committed
+decisions/dg-test.html
+decisions/dg-samples.js
+decisions/v2-preview.html
