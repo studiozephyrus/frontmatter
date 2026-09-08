@@ -1,5 +1,5 @@
 /* frontmatter — decisions.
-   318 questions extracted from two weeks of research by 15 agents, each area then
+   319 questions extracted from two weeks of research by 15 agents, each area then
    audited by a second agent that re-opened every citation. Schema matches the tred
    decisions app. Generated 2026-09-09 — edit the source documents, not this file. */
 
@@ -31795,6 +31795,149 @@ window.QUESTIONS = [
    "docs/PRODUCT-BRIEF.md:354",
    "docs/PRODUCT-BRIEF.md:363",
    "docs/GAPS-2026-09-08.md:83"
+  ]
+ },
+ {
+  "id": "PL4",
+  "cat": "Plan, scope & sequencing",
+  "sub": "Fix-first order",
+  "weight": "high",
+  "q": "Is the fix-first table the build order, or is the twelve-week calendar?",
+  "lede": "They schedule different work in different weeks, and four and a half days appear in neither. A table headed 'these block everything else' has its largest item scheduled five weeks after the work it blocks.",
+  "now": "§9 opens 'Fix first. These block everything else' over twelve rows. §14's Exhibit 19 puts only CI, NF-3 and NF-1 in weeks 3–4 — 8 of the 25.5 days. Engine wiring, the largest row at 8 days, lands in weeks 8–9. The byte budget, the Tauri identity, the cert CLI and the undeclared dependency appear in no week at all.",
+  "why": "The table grew in round 2: row 0 (the fork), row 10 (the cert CLI) and row 11 (entities) were added. The prose sequence and the calendar were not updated with it — the sequence still reads 'Fix-first (24 days)' while the rows now sum to 25.5.",
+  "problem": "Three artefacts in one document give three orders, and the total does not match its own rows. Progress cannot be tracked against a number the table contradicts, and 4.5 days of stated blockers are scheduled nowhere.",
+  "evidence": [
+   {
+    "type": "table",
+    "title": "Fix-first rows against the calendar in Exhibit 19",
+    "cols": [
+     "Row",
+     "Days",
+     "Week in Exhibit 19"
+    ],
+    "rows": [
+     [
+      "3 CI, deliberate red run",
+      "1",
+      "3–4"
+     ],
+     [
+      "2 NF-3",
+      "3",
+      "3–4"
+     ],
+     [
+      "1 NF-1",
+      "4",
+      "3–4"
+     ],
+     [
+      "6 BYO key",
+      "3",
+      "5–7"
+     ],
+     [
+      "7 LLM port structured output",
+      "2",
+      "5–7"
+     ],
+     [
+      "4 Engine unwired",
+      "8",
+      "8–9"
+     ],
+     [
+      "5 Byte budget is an echo",
+      "2",
+      "not scheduled"
+     ],
+     [
+      "9 src-tauri identity",
+      "1",
+      "not scheduled"
+     ],
+     [
+      "10 mdmax cert never runnable",
+      "1",
+      "not scheduled"
+     ],
+     [
+      "11 entities undeclared",
+      "0.5",
+      "not scheduled"
+     ],
+     [
+      "Sum of rows",
+      "25.5",
+      "sequence line still says 24"
+     ]
+    ]
+   },
+   {
+    "type": "stat",
+    "title": "Verified against the code, 2026-09-08",
+    "items": [
+     [
+      "Files in .github/workflows",
+      "0",
+      "the directory does not exist"
+     ],
+     [
+      "package.json budget script",
+      "echo 'No bundle budget configured yet — skipping'",
+      "literal string at package.json:20, 26 scripts total"
+     ],
+     [
+      "cert among the 26 scripts",
+      "absent",
+      "node scripts/mdmax-cert.mjs has no script entry"
+     ],
+     [
+      "Engine symbols reaching product code",
+      "1 of 13 files",
+      "decodeStrict from shape-gate, imported in exactly 2 files"
+     ],
+     [
+      "entities in package.json",
+      "absent from dependencies and devDependencies",
+      "imported at fold.ts:43 and verdict.ts:53"
+     ]
+    ]
+   }
+  ],
+  "options": [
+   {
+    "k": "a",
+    "label": "Make the table the order: all 25.5 days before any feature work",
+    "impact": "Honest to the header. At the measured rate that is 21 calendar weeks before the first feature, and the pilot moves out of the quarter."
+   },
+   {
+    "k": "b",
+    "label": "Keep the calendar and demote the table to a defect list with no ordering claim",
+    "impact": "Removes the contradiction cheaply. Also removes the argument that the engine must be correct before a stranger touches it."
+   },
+   {
+    "k": "c",
+    "label": "Split it: demo-blockers (NF-1, NF-3, CI, engine wiring, byte budget = 18d) in weeks 3–5; ship-blockers (BYO key, structured output, Tauri identity, cert, entities = 7.5d) before the strangers",
+    "impact": "Two named gates instead of one vague header. Forces the 4.5 unscheduled days onto the calendar."
+   },
+   {
+    "k": "d",
+    "label": "Leave the order and correct the total from 24 to 25.5",
+    "impact": "Fixes the arithmetic and none of the sequencing. The 8-day wiring row still lands five weeks after the features it is said to block."
+   }
+  ],
+  "rec": "c",
+  "recCase": "The header is doing two jobs — some rows block the demo working at all, others block handing it to a stranger — and separating them is what makes the order argue for itself. It also forces the four unscheduled rows onto a week, which is how a 4.5-day gap becomes visible before it becomes a surprise. What would change it: if PL1 cuts F5–F8, rows 6 and 7 leave the list entirely and the split is cleaner still.",
+  "sources": [
+   "docs/PRODUCT-BRIEF.md:210",
+   "docs/PRODUCT-BRIEF.md:224",
+   "docs/PRODUCT-BRIEF.md:225",
+   "docs/PRODUCT-BRIEF.md:227",
+   "docs/PRODUCT-BRIEF.md:354",
+   "docs/PRODUCT-BRIEF.md:356",
+   "package.json:20"
   ]
  },
  {

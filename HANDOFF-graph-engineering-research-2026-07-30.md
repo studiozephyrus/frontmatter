@@ -556,13 +556,35 @@ export,editor,vault,share}`.
 | **Communities/centrality stored** (II.E.8) | **§2.3/§2.4** — projections (tier 4) are **never stored**; **§3.7** rank offline, ship flat, agent never sees an edge list. |
 
 ## III.C — What is genuinely NOT already in PLAN.md (candidate-additive, each flagged)
-1. **Editor-side AI-review orchestrator (fan-in-at-barrier + judge-model routing)** — II.E.12. PLAN is
-   the **engine**; §0 says the **editor is a separate track**. So an AI-review UX *may* be new — but
-   **`FRONTMATTER-PRODUCT-PLAN.md`, `FEATURE-GAP-REPORT.md`, and `src/modules/ai*` were NOT read**, so
-   *additivity is `[UNVERIFIED]`*. Do not assume; read those first.
+1. **Editor-side AI-review orchestrator (fan-in-at-barrier + judge-model routing)** — II.E.12.
+   **`[VERIFIED ADDITIVE — 2026-08-04]`.** Checked against `docs/FRONTMATTER-PRODUCT-PLAN.md`,
+   `docs/FEATURE-GAP-REPORT.md`, `docs/mdmap/MAP.md`, the `HANDOFF-mdz-markdown-format-2026-07-29.md`
+   section map, and the **built** `src/modules/ai*` code. The AI that exists or is planned is
+   **authoring + retrieval only**: built = `suggest-links`, `link-doctor`, `refine-text`, `summarize`,
+   `generate-document`, ghost-text (`SgnkAiButton`), and a multi-provider **latency race**
+   (`infrastructure/provider-race.ts` — the only thing called "orchestrator" in code, and it is NOT a
+   review); planned (product plan Pillar 6 / Phase 4) = RAG chat over the vault, pgvector semantic
+   search, resurfacing/dedup, BYO-AI + MCP. **A multi-lens, judge-consolidated note review exists
+   nowhere.** So the orchestrator IS additive. **CAVEAT — it may be off-grain:** the project is
+   deliberately deterministic-first and token-frugal (PLAN **§4** "nothing at 0.62 precision may ever
+   gate CI"; **§3.7** "the agent never sees an edge list — rank offline, ship flat"; mdmap invariant 3
+   "the agent never traverses edges"). A heavy fan-out multi-agent review runs against that ethos and
+   against the video's own cost caveat. **The *aligned* slice is smaller and should be built first:**
+   (a) the **judge-model discipline** — if any LLM review runs in the editor, run it on a STRONG model
+   (the Haiku→Opus lesson); (b) the **"how would a human review this?" verifier-design heuristic** —
+   both slot into PLAN **§4's I-tier (advisory, never gates)** without a full orchestrator. Ship the
+   full fan-in-at-barrier orchestrator only as a premium/optional feature, if at all.
 2. **The three ingested video notes** (Part IV) — real, in the `knowledge` repo, independent of this
    repo.
 3. Nothing else in Part II is safely assumed novel versus PLAN.md.
+
+> **Cross-doc note (found while verifying, 2026-08-04):** the "unfixed bug" claims now span THREE docs
+> — PLAN.md §13, mdmap `MAP.md` invariant 6, and `HANDOFF-mdz-markdown-format` §5.2 — and all reference
+> `graph-data.ts:132` / `search-index.ts` behaviour that commit `58322f7` already fixed (verified
+> III.D). One consolidated doc-staleness cleanup clears all three. Also confirmed: the mdz handoff §3.1
+> records **"Do not build a new markdown format — SETTLED"** and §3.4 flags a **direct competitor —
+> Front Matter CMS (`frontmatter.codes`), a VS Code extension** — both worth carrying into any
+> "new markdown" framing.
 
 ## III.D — Re-verification finding: PLAN.md §13 is stale `[VERIFIED this session]`
 PLAN.md §13 lists "two confirmed bugs in the editor, unfixed":
