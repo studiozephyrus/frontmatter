@@ -29,7 +29,7 @@ VISUAL_KINDS = {'screen', 'flow', 'state', 'compare', 'ba', 'arch', 'timeline',
 # Marketing verbs and LLM cadence. Bounded so "delegate" does not match "delve"
 # and "ecosystems" in a real quoted title is not punished (LR#73 substring family).
 SLOP = [
-    r'\bleverag(e|es|ed|ing)\b', r'\bunlock(s|ed|ing)?\b', r'\bseamless(ly)?\b',
+    r'(?<!-)\bleverag(e|es|ed|ing)\b(?!-)', r'\bunlock(s|ed|ing)?\b', r'\bseamless(ly)?\b',
     r'\brobust\b', r'\bdelve(s|d)?\b', r'\bholistic\b', r'\bstreamlin(e|es|ed|ing)\b',
     r'\bempower(s|ed|ing)?\b', r'\bgame[- ]chang(er|ing)\b', r'\bbest[- ]in[- ]class\b',
     r'\bcutting[- ]edge\b', r'\bstate[- ]of[- ]the[- ]art\b', r'\bparadigm\b',
