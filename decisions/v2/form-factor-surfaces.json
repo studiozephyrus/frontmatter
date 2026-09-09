@@ -10,7 +10,7 @@
       "lede": "Every estimate in the plan prices a standalone shell. No line anywhere prices an extension, and the meeting must choose between them.",
       "visual": {
         "kind": "compare",
-        "labelWidth": 26,
+        "labelWidth": 144,
         "cols": [
           {
             "title": "Standalone shell",
@@ -807,7 +807,7 @@
       "lede": "Neither surface has been tested at the moment the product exists for, and every engine number comes from vaults, not repos.",
       "visual": {
         "kind": "compare",
-        "labelWidth": 30,
+        "labelWidth": 236,
         "cols": [
           {
             "title": "Standalone shell",
@@ -1089,7 +1089,7 @@
       "lede": "If form factor resolves toward VS Code, the name is already owned in that store by an extension alive since 2019.",
       "visual": {
         "kind": "compare",
-        "labelWidth": 26,
+        "labelWidth": 150,
         "cols": [
           {
             "title": "Keep frontmatter",
@@ -1506,7 +1506,7 @@
       "lede": "Every desktop-only promise rests on a Tauri shell that points at the sibling product's website and holds no filesystem permission.",
       "visual": {
         "kind": "compare",
-        "labelWidth": 26,
+        "labelWidth": 157,
         "cols": [
           {
             "title": "Web app today",
@@ -2524,7 +2524,7 @@
       "lede": "The plan names or still references eight surfaces on a commit record showing one author and a rate that puts one surface at 58 weeks.",
       "visual": {
         "kind": "compare",
-        "labelWidth": 28,
+        "labelWidth": 164,
         "cols": [
           {
             "title": "One surface",
