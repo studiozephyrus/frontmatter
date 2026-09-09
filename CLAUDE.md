@@ -97,6 +97,16 @@ fonts, no other icon library.
 This repo lives at `studiozephyrus/frontmatter`, **not** on the personal accounts. Only
 `GH_TOKEN_ZEPHYRUS` can fetch or push it; the general `GH_TOKEN` cannot.
 
+Two Vercel homes, and they are not interchangeable — `AGENTS.md` §6b is authoritative:
+
+| Surface | Vercel team | Token |
+|---|---|---|
+| The app (`frontmatter`) | `zsco` — `team_RSlKvg8AqX8hr5WIuKXlNXGE` | `VERCEL_TOKEN_ZEPHYRUS`, always with `--scope zsco` |
+| The decisions site (`frontmatter-decisions`) | `team_CDEATPKml1m8SIZSJ0DKdEjG` | the bare `VERCEL_TOKEN` |
+
+Never run `gh auth login` or `gh auth setup-git` with the Zephyrus token — both rebind every
+repo on this machine to the wrong identity. Pass it per command instead.
+
 Tokens live in `/Users/sagnikmitra/.config/codex-env/tokens.zsh`. Source it in the same Bash
 invocation as the command that needs it. Never `cat`, `echo` or otherwise print the file or
 any value from it.
