@@ -2785,6 +2785,167 @@
         "src-tauri/tauri.conf.json:3",
         "src-tauri/capabilities/default.json"
       ]
+    },
+    {
+      "id": "FF16",
+      "cat": "Form factor & surfaces",
+      "sub": "Surface",
+      "weight": "critical",
+      "q": "Does editor-first survive the evidence that arrived after it was decided, or does provenance ship as a plugin?",
+      "lede": "The call was made in August; Almanac then died shipping exactly the editor version, and four platforms shipped the other half free.",
+      "visual": {
+        "kind": "ba",
+        "before": {
+          "title": "When the call was made, 2026-08-31",
+          "lines": [
+            {
+              "t": "Critique recommended: plugin, funded by services",
+              "mark": "x"
+            },
+            {
+              "t": "Instruction: editor first",
+              "mark": "ok"
+            },
+            {
+              "t": "Almanac unknown to the corpus",
+              "mark": "?"
+            }
+          ]
+        },
+        "after": {
+          "title": "What is known now, 2026-09-09",
+          "lines": [
+            {
+              "t": "Almanac: full editor + read receipts, $45M, shut",
+              "mark": "x"
+            },
+            {
+              "t": "Four platforms shipped the working-tree half free",
+              "mark": "x"
+            },
+            {
+              "t": "Plugin surface still unoccupied",
+              "mark": "ok"
+            }
+          ]
+        },
+        "via": "nine days of research",
+        "note": "The decision has not been revisited since the evidence changed.",
+        "caption": "What was known then, against what is known now"
+      },
+      "stakes": "Building the shape that just died, on evidence that was not available when the shape was chosen.",
+      "state": [
+        "The plan builds an editor; the critique it overrode recommended a plugin",
+        "Almanac shipped editor plus read receipts on $45M and shut on 2025-01-31",
+        "The corpus never named Almanac once in 1.24M words"
+      ],
+      "path": [
+        "2026-08-31: the instruction was editor first, and the plan was rebuilt around it",
+        "2026-09-09: the nine-seam research found the graveyard and the four free shippers",
+        "The decision has not been re-examined since"
+      ],
+      "tension": [
+        "A standalone editor pays every table-stakes day itself; a plugin inherits them from its host",
+        "But a plugin has no pricing surface of its own, and the category gives editors away",
+        "Absorption is the modal outcome for this category — four of eight died bought, two died unnoticed"
+      ],
+      "evidence": [
+        {
+          "type": "stat",
+          "title": "What changed after the call",
+          "items": [
+            [
+              "Almanac funding before shutdown",
+              "$9M seed + $34M Series A",
+              "HANDOFF-decisions-v2-2026-09-09.md:298"
+            ],
+            [
+              "Almanac shutdown",
+              "2025-01-31",
+              "HANDOFF-decisions-v2-2026-09-09.md:298"
+            ],
+            [
+              "The instruction that set the shape",
+              "'you said editor first, so the plan builds an editor'",
+              "docs/HANDOVER-ANSWERS-2-2026-09-09.md:77"
+            ],
+            [
+              "What the critique recommended instead",
+              "ship provenance as a plugin, fund it with services",
+              "docs/HANDOVER-ANSWERS-2-2026-09-09.md:78"
+            ]
+          ]
+        }
+      ],
+      "options": [
+        {
+          "k": "a",
+          "label": "Hold editor-first",
+          "what": "The plan stands; the new evidence is noted and does not move the shape.",
+          "gains": [
+            "No re-planning; the 90-day sequence survives intact",
+            "Owns the whole surface, so nothing is gated by a host's API"
+          ],
+          "costs": [
+            "It is the shape that has just been shown to die",
+            "Pays every table-stakes day with no host to inherit from"
+          ],
+          "system": "No change.",
+          "screens": "No change.",
+          "money": "No change."
+        },
+        {
+          "k": "b",
+          "label": "Provenance as a plugin, editor later",
+          "what": "Ship the engine and review state inside an existing editor; build the standalone only if it earns it.",
+          "gains": [
+            "Inherits about 6.5 of 17.5 table-stakes days from the host",
+            "Reaches an audience that already exists, which the plan calls the weakest area"
+          ],
+          "costs": [
+            "No pricing surface of its own; the category does not pay for plugins",
+            "The name is taken in that store by an 82,265-install incumbent"
+          ],
+          "system": "Engine must run headless in a host process.",
+          "screens": "Kills the standalone shell; adds a host panel.",
+          "money": "Cuts build cost, and removes the direct-subscription path."
+        },
+        {
+          "k": "c",
+          "label": "One portable core, both surfaces",
+          "what": "The engine is the product; editor and plugin are two thin shells over it.",
+          "gains": [
+            "The engine is already DOM-free and UTF-16 native, so this is close to true today",
+            "Hedges the form-factor question rather than answering it"
+          ],
+          "costs": [
+            "Two shells to maintain at 1.21 engineering days a week",
+            "Hedging costs more than either branch alone"
+          ],
+          "system": "Formalises the port boundary the engine mostly has.",
+          "screens": "Both sets.",
+          "money": "Highest build cost of the three."
+        }
+      ],
+      "rec": "c",
+      "recCase": [
+        "The engine is already portable (DOM-free, UTF-16 native, no framework), so this is the cheapest of the three to reach from here",
+        "It defers a form-factor commitment that the evidence has flipped twice in six weeks",
+        "It is the only option that survives either answer to the headline question"
+      ],
+      "flip": "If the ten-developer test in weeks 1-2 shows people want this inside the editor they already use, b wins outright and c is a hedge nobody needed.",
+      "linked": [
+        "FF1",
+        "P1",
+        "PR1"
+      ],
+      "sources": [
+        "docs/HANDOVER-ANSWERS-2-2026-09-09.md:77",
+        "docs/HANDOVER-ANSWERS-2-2026-09-09.md:78",
+        "docs/HANDOVER-ANSWERS-2-2026-09-09.md:82",
+        "HANDOFF-decisions-v2-2026-09-09.md:298",
+        "docs/PRODUCT-BRIEF.md:365"
+      ]
     }
   ],
   "merged": [
