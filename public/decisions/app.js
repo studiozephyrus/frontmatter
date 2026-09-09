@@ -296,9 +296,11 @@
       }).join('') + '</div>';
     }
     $('#main').innerHTML = h; $('#main').scrollTop = 0;
-    $('#aside').innerHTML = '<div class="rsec"><div class="rh">Export</div>' +
+    $('#aside').innerHTML = '<div class="rsec"><div class="rh">Your answers</div>' +
       '<button class="rlink" id="expMd"><span class="rm">Markdown</span>Decisions taken, and what is still open</button>' +
-      '<button class="rlink" id="expJson"><span class="rm">JSON</span>Raw answers and notes</button></div>' +
+      '<button class="rlink" id="expJson"><span class="rm">JSON</span>Raw answers and notes \u2014 the file that restores them</button>' +
+      '<button class="rlink" id="impJson"><span class="rm">Restore</span>Load a JSON export back in</button>' +
+      '<div class="rnote">Answers live in this browser only. Export after every sitting \u2014 clearing site data loses them.</div></div>' +
       '<div class="rsec"><div class="rh">Keyboard</div>' +
       '<div class="rrow"><span>Next / previous</span><b class="mono">j k</b></div>' +
       '<div class="rrow"><span>Choose an option</span><b class="mono">a–d</b></div>' +
@@ -476,6 +478,56 @@
     setTimeout(function () { URL.revokeObjectURL(a.href); a.remove(); }, 400);
   }
 
+  /* Restore answers from a JSON export.
+     Merges rather than replaces: a restore should never silently discard an answer
+     given in this browser since the export was taken. Where both sides hold a value
+     for the same decision, the file wins and the count of overwrites is reported, so
+     the reader can tell a clean restore from a collision. */
+  function restoreAnswers() {
+    var inp = document.createElement('input');
+    inp.type = 'file';
+    inp.accept = 'application/json,.json';
+    inp.onchange = function () {
+      var f = inp.files && inp.files[0];
+      if (!f) return;
+      var r = new FileReader();
+      r.onload = function () {
+        var data;
+        try { data = JSON.parse(String(r.result)); }
+        catch (e) { alert('That file is not valid JSON.'); return; }
+        if (!data || typeof data !== 'object' || (!data.picks && !data.notes)) {
+          alert('That JSON has no "picks" or "notes", so it is not a decisions export.');
+          return;
+        }
+        var live = {}, i;
+        for (i = 0; i < Q.length; i++) live[Q[i].id] = 1;
+
+        var added = 0, changed = 0, unknown = 0, notes = 0;
+        var picks = data.picks || {};
+        Object.keys(picks).forEach(function (id) {
+          if (!live[id]) { unknown++; return; }
+          if (state.picks[id] === picks[id]) return;
+          if (state.picks[id]) changed++; else added++;
+          state.picks[id] = picks[id];
+        });
+        var nn = data.notes || {};
+        Object.keys(nn).forEach(function (id) {
+          if (!live[id] || !nn[id]) return;
+          if (state.notes[id] !== nn[id]) { state.notes[id] = nn[id]; notes++; }
+        });
+
+        save(); renderNav(); go({ mode: 'overview' });
+        alert('Restored ' + added + ' answer' + (added === 1 ? '' : 's') +
+          (changed ? ', overwrote ' + changed : '') +
+          (notes ? ', ' + notes + ' note' + (notes === 1 ? '' : 's') : '') +
+          (unknown ? '. ' + unknown + ' id' + (unknown === 1 ? '' : 's') +
+            ' in the file no longer exist here and were skipped.' : '.'));
+      };
+      r.readAsText(f);
+    };
+    inp.click();
+  }
+
   /* ── routing ──────────────────────────────────────────────────────────── */
   function go(v) {
     view = Object.assign({}, view, v);
@@ -506,12 +558,13 @@
 
   /* ── events ───────────────────────────────────────────────────────────── */
   document.addEventListener('click', function (e) {
-    var t = e.target.closest('[data-q],[data-cat],[data-ov],[data-import],[data-pick],#expMd,#expJson,#mdgo,#mdsample,#menuBtn,#themeBtn,#abarPrev,#abarNext');
+    var t = e.target.closest('[data-q],[data-cat],[data-ov],[data-import],[data-pick],#expMd,#expJson,#impJson,#mdgo,#mdsample,#menuBtn,#themeBtn,#abarPrev,#abarNext');
     if (!t) return;
     if (t.id === 'menuBtn') { document.body.classList.toggle('navopen'); return; }
     if (t.id === 'themeBtn') { theme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'); return; }
     if (t.id === 'expMd') { exportMd(); return; }
     if (t.id === 'expJson') { download('frontmatter-decisions.json', JSON.stringify(state, null, 2), 'application/json'); return; }
+    if (t.id === 'impJson') { restoreAnswers(); return; }
     if (t.id === 'mdgo') { doImport(); return; }
     if (t.id === 'mdsample') { $('#mdin').value = $('#mdin').placeholder; doImport(); return; }
     if (t.id === 'abarPrev' || t.id === 'abarNext') { step(t.id === 'abarNext' ? 1 : -1); return; }

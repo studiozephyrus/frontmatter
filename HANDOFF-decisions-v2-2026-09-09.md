@@ -416,17 +416,26 @@ python3 scripts/css-cascade-check.py decisions/app.css
 team `zsco` with `VERCEL_TOKEN_ZEPHYRUS` and `--scope zsco`; the decisions site is project
 `frontmatter-decisions` on team `team_CDEATPKml1m8SIZSJ0DKdEjG` with the bare `VERCEL_TOKEN`.
 
-**The deploy script for the decisions site did not survive the session** — it lived in scratch.
-Rewrite it as a static `POST /v13/deployments` shipping `index.html app.css app.js diagram.js
-questions.js fonts.css`, and **verify with `curl -sI`, never `curl -sL`** (a login page returns
-200 after a redirect). Tokens: `source /Users/sagnikmitra/.config/codex-env/tokens.zsh`; never
+**The deploy script is committed** at `decisions/tools/deploy.mjs` — a static
+`POST /v13/deployments` shipping `index.html app.css app.js diagram.js questions.js fonts.css`,
+which polls the deployment's own `readyState` rather than a URL and clears `ssoProtection` if
+Vercel has re-enabled it. Run it as `source <tokens> && node decisions/tools/deploy.mjs`, and
+**verify with `curl -sI`, never `curl -sL`** (a login page returns 200 after a redirect).
+`decisions/tools/screenshot.mjs` shoots the live pages, waiting on the PNG's own trailer rather
+than on the process. Tokens: `source /Users/sagnikmitra/.config/codex-env/tokens.zsh`; never
 print them.
 
 ### 5.6 What has no second copy
 `docs/research/2026-09-09/` (304 KB) is the **only** copy of the research; workflow transcripts
 age out. It is committed, so it is safe — but do not delete it as scratch. It cost roughly 3.2M
 subagent tokens. `decisions/v2/*.json` are likewise the only source for the cards;
-`questions.js` is generated from them.
+`questions.js` is generated from them, and **`decisions/v2/_links.json` is required for that
+build** — it carries the cross-area analysis (43 duplicate sets, 60 edges, 7 orphans). Rebuild
+without `--links decisions/v2/_links.json` and the 60 duplicates silently come back.
+
+The seven orphan cards the linker flagged — nothing links to them and they link to nothing —
+are `D13, L22, MK17, MK21, PR19, R5, R6`. Worth a human glance: an orphan is either genuinely
+standalone or quietly irrelevant.
 
 ### 5.7 Meta-observations that change how you should work
 - **Do not fan out one verify agent per claim.** That burned a session limit. Six `curl` checks
@@ -501,7 +510,16 @@ That has three consequences, and the third is the one that will hurt:
   answer with no recovery path.** 201 decisions is several sittings, so this is a real risk, not
   a theoretical one.
 
-**Therefore: export after every sitting.** It takes one click and it is the only durable copy.
+**Therefore: export after every sitting.** One click, and it is the only durable copy.
+
+**And it can be loaded back.** The rail now carries a **Restore** control beside the two
+exports. It reads a JSON export and **merges** rather than replaces — an answer given in this
+browser since the export was taken is never silently discarded; where both sides hold a value
+the file wins and the count of overwrites is reported. Ids in the file that no longer exist are
+skipped and counted, which is how you will notice that the cross-area dedup removed a card you
+had answered. Verified live: restoring three answers over one existing local answer kept all
+four, rejected an unknown id, and reported *"Restored 2 answers, 1 note. 2 ids in the file no
+longer exist here and were skipped."*
 
 ### How to answer
 
