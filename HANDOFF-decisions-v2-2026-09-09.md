@@ -505,6 +505,13 @@ standalone or quietly irrelevant.
 | Live site driven and asserted | §2 |
 | Validator + full test gate | 0 errors; 1,596 passing, 6 expected fail |
 | Documentation gate | **PASS, exit 0** — the exception in the earlier draft is closed |
+| Untracked files at session start | All nine filed by `dea3781` into `docs/research/sources/` and `test/scratch/`; none lost |
+| Changes outside this repo | One: `~/.sgnk/bin/sgnk-injection-scan.sh`, uncommitted — §5.4 |
+| Other repos with my edits | Only `~/.sgnk` (one file). The large dirty counts in `~/.sgnk` and `~/.claude` are their own runtime state |
+| Repo metadata (PRs, issues) | None exist on `studiozephyrus/frontmatter`, so nothing there to lose |
+| Vercel non-file state | Project `frontmatter-decisions`, `ssoProtection: null` — the site is deliberately public |
+| Session-only workflow scripts | 37 rescued into `docs/workflows/`; they were the only copy |
+| Project memory | 4 files; `MEMORY.md` updated, and the pilot-reshape entry marked partly superseded |
 
 **Exceptions that still hold state:** the two unrotated PATs; the `**unverified**` items in
 §5.8; and the unfixed defects in §5.1, which are recorded but not repaired.
