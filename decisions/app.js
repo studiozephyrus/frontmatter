@@ -166,7 +166,19 @@
       h += '<details class="ev"><summary>' + icon('chevron_right', 'caret') + 'Evidence' +
         '<span class="cnt">' + q.evidence.length + ' ' + (q.evidence.length === 1 ? 'exhibit' : 'exhibits') + '</span></summary>' +
         '<div class="evbody">' + q.evidence.map(evBlock).join('') + '</div></details>';
-    }
+      }
+
+      if (q.dupes && q.dupes.dropped && q.dupes.dropped.length) {
+        /* The cross-area pass matched on the QUESTION and never compared recommendations, so a
+           survivor can carry the minority view: the free-engine probe was asked five times and
+           the four merged cards recommended b, b, b and c against this card's a. Show it. */
+        h += '<details class="ev dupes"><summary>' + icon('chevron_right', 'caret') +
+          'Also asked in other areas<span class="cnt">' + q.dupes.dropped.length +
+          ' merged</span></summary><div class="evbody"><p>Asked in ' +
+          (q.dupes.dropped.length + 1) + ' areas (' + q.dupes.dropped.map(esc).join(', ') +
+          '). They did not all recommend the same option.</p>' +
+          (q.dupes.why ? '<p>' + md(q.dupes.why) + '</p>' : '') + '</div></details>';
+      }
 
     h += '<div class="optshead"><span class="eyebrow">The options</span>' +
       '<span class="hint">press <kbd>a</kbd>\u2013<kbd>' +

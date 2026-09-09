@@ -66,6 +66,7 @@ def main():
 
     # Apply the cross-area pass: drop duplicates, add link edges.
     dropped = set()
+    dupes = {}
     edges = collections.defaultdict(set)
     if a.links:
         L = json.loads(pathlib.Path(a.links).read_text())
@@ -78,6 +79,15 @@ def main():
             for i in dup.get('ids') or []:
                 if i != keep:
                     edges[keep].add(i)
+            # And the survivor carries what was dropped, because the dedup matched on the
+            # QUESTION and never compared recommendations. Measured: the free-engine probe was
+            # asked five times and the four dropped cards recommended b, b, b and c while the
+            # survivor recommends a -- so the reader sees the minority view with no sign that
+            # four other passes disagreed. Surfacing the dropped ids and the linker's own note
+            # is the cheapest honest fix; merging the recommendations would be inventing one.
+            others = [i for i in (dup.get('ids') or []) if i != keep]
+            if keep and others:
+                dupes[keep] = {'dropped': others, 'why': dup.get('why') or ''}
         for e in L.get('link_edges') or []:
             if e.get('from') and e.get('to'):
                 edges[e['from']].add(e['to'])
@@ -95,6 +105,8 @@ def main():
     for q in out:
         got = set(q.get('linked') or []) | edges.get(q['id'], set())
         q['linked'] = sorted(i for i in got if i in live and i != q['id'])[:6]
+        if q['id'] in dupes:
+            q['dupes'] = dupes[q['id']]
 
     stats = collections.Counter(q['cat'] for q in out)
     weights = collections.Counter(q.get('weight') for q in out)
