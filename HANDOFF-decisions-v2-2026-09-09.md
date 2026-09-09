@@ -429,10 +429,20 @@ Verified against a labelled corpus of 15 real injection strings and 12 false-pos
 1,847-row evidence log `injection-hits.jsonl` was **not** touched. Backup at
 `~/.sgnk/backups/injection-taint.log.pre-clear-20260909-031344`.
 
-**What the next account should do:** decide whether to commit that change in `~/.sgnk` or revert
-it from the backup. Leaving a security-gate change uncommitted is its own risk — a reset there
-silently restores the false-positive cascade. I did not commit it, because committing to global
-tooling is the founder's call, not mine.
+**Resolved.** The founder approved committing it. Two things came out of doing so:
+
+- It is committed in `~/.sgnk` as **`205b8a0`**, one path, `bin/sgnk-injection-scan.sh`.
+- **The skill source was still the pre-fix file.** `~/.claude/skills-src/ops-safety/sgnk-cso-trifecta-check/scripts/sgnk-injection-scan.sh`
+  was 7,534 bytes with zero fix markers, against the installed copy's 9,303. **Reinstalling that
+  skill would have silently reverted the fix and brought the whole cascade back.** Both copies
+  are now byte-identical and both pass the corpus. Backup of the pre-sync source at
+  `~/.sgnk/backups/sgnk-injection-scan.sh.skillsrc-pre-sync-*`.
+
+The 27/27 was **re-measured against the live file**, not carried forward from the session that
+wrote it — the false positives that used to hit now miss, and every real injection still hits.
+
+**The general lesson, worth more than this instance:** a fix applied to an installed copy of a
+tool is not applied. Find the source and propagate, or the next install reverts you.
 
 See `docs/12-SECURITY-REVIEW.md` for the full findings, including the `firestore.rules`
 self-assessment.
@@ -506,7 +516,7 @@ standalone or quietly irrelevant.
 | Validator + full test gate | 0 errors; 1,596 passing, 6 expected fail |
 | Documentation gate | **PASS, exit 0** — the exception in the earlier draft is closed |
 | Untracked files at session start | All nine filed by `dea3781` into `docs/research/sources/` and `test/scratch/`; none lost |
-| Changes outside this repo | One: `~/.sgnk/bin/sgnk-injection-scan.sh`, uncommitted — §5.4 |
+| Changes outside this repo | `~/.sgnk/bin/sgnk-injection-scan.sh` — committed as `205b8a0`, and propagated to the skill source that was still pre-fix. §5.4 |
 | Other repos with my edits | Only `~/.sgnk` (one file). The large dirty counts in `~/.sgnk` and `~/.claude` are their own runtime state |
 | Repo metadata (PRs, issues) | None exist on `studiozephyrus/frontmatter`, so nothing there to lose |
 | Vercel non-file state | Project `frontmatter-decisions`, `ssoProtection: null` — the site is deliberately public |
