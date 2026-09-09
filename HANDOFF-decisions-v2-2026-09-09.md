@@ -387,8 +387,24 @@ commits), and **MDZ format verdict** — *"build a compiler and an IDE, not a fo
 **must not be re-litigated**.
 
 ### 5.3 Git state
-**8 unpushed commits** on `engine/plan-and-diagnostics`. **`git fetch` fails with the general
-`GH_TOKEN`** — `studiozephyrus/frontmatter` needs `GH_TOKEN_ZEPHYRUS`. Two worktrees under
+**17 unpushed commits** on `engine/plan-and-diagnostics`, and the branch is **0 behind origin**,
+so it is a clean fast-forward whenever the founder wants it pushed.
+
+**The credentials are already stored and they work.** Verified 2026-09-09 without printing any
+value: `GH_TOKEN_ZEPHYRUS` is set in `/Users/sagnikmitra/.config/codex-env/tokens.zsh`,
+authenticates to `api.github.com/user` as **`studiozephyrus`**, and returns HTTP 200 with
+`push: true` on `studiozephyrus/frontmatter` (private). The repo's own credential helper in
+`.git/config` reads that variable, so once the file is sourced, `git fetch` and `git push` work
+— confirmed by a successful fetch. The general `GH_TOKEN` returns **404** on the same repo,
+which is what an earlier note here mistook for "fetch is broken": it is not, it just needs the
+right token sourced first.
+
+```bash
+source /Users/sagnikmitra/.config/codex-env/tokens.zsh && git push
+```
+
+Never run `gh auth login` or `gh auth setup-git` with that token — both rebind every repo on the
+machine to the wrong identity. Pass it per command: `GH_TOKEN="$GH_TOKEN_ZEPHYRUS" gh <cmd>`. Two worktrees under
 `.claude/worktrees/`, both **0 unique commits**; one has 2 dirty files. Neither holds work worth
 rescuing.
 
@@ -397,7 +413,15 @@ Scanned `docs/research/2026-09-09/`, `decisions/v2/`, `decisions/tools/` and **t
 for token-shaped strings and private-key headers: **clean**. No credential fragment appears here.
 
 **Open, inherited, and only the founder can close it: two GitHub PATs were pasted into an
-earlier chat window and remain UNROTATED.** Flagged again because it survives account switches.
+earlier chat window and remain UNROTATED.**
+
+Be precise about what this is, because two different things get confused. It is **not** a
+storage problem — the tokens are present in `tokens.zsh` and working (see §5.3). It is an
+**exposure** problem: a credential that has appeared in a chat transcript should be treated as
+disclosed, and storing it tidily does not undo that. The fix is rotation at GitHub, then
+updating the value in `tokens.zsh`. Only the founder can do either — rotating a credential and
+writing a token value into a file are both outside what an agent should do, and no agent in
+this session has ever held those values.
 
 ### A change made OUTSIDE this repo, and it is uncommitted
 
@@ -509,7 +533,8 @@ standalone or quietly irrelevant.
 |---|---|
 | Session walk, turn by turn | §1 |
 | Raw workflow output recovered from disk | 310 findings; 5 area files a workflow reported as failed |
-| Live git, stashes, worktrees | §5.3 — clean, 8 unpushed, 0 unique worktree commits |
+| Live git, stashes, worktrees | §5.3 — clean, 17 unpushed, 0 behind, 0 unique worktree commits |
+| Credentials | `GH_TOKEN_ZEPHYRUS` present and verified working; rotation of the exposed PATs still open |
 | Secret scan incl. this document | clean; one inherited open item named |
 | Project memory | §5.2 — three entries, one "do not re-litigate" |
 | Live site driven and asserted | §2 |
@@ -768,7 +793,9 @@ expensive to unpick.
 
 1. **The product looks further along than it is.** Review state does not exist in code; the
    engine is unwired. The decision set is finished; the product is not.
-2. **`git fetch` fails without `GH_TOKEN_ZEPHYRUS`.** 8 commits are unpushed.
+2. **`git` needs `GH_TOKEN_ZEPHYRUS` sourced first**, or it fails with "Repository not found"
+   and the macOS keychain answers with the personal account instead. The token is already in
+   `tokens.zsh` and verified working. 17 commits unpushed, 0 behind origin.
 3. **The decisions-site deploy script is gone** (scratch-only). Rewrite before deploying, and
    verify with `curl -sI`.
 4. **Never `Read` the big docs.** `grep -n` then `sed -n`.
