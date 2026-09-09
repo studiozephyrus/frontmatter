@@ -482,6 +482,84 @@ did not re-run the corpus.** That is where a surprise could still come from.
 
 ---
 
+## 6b. Answering the 201 — read this before you start, it is the receiving account's job
+
+The founder has said he will answer the decisions **on the receiving account**. That makes the
+mechanics below load-bearing rather than incidental.
+
+### Where the answers live, and how they get lost
+
+Answers are written to **`localStorage` on `frontmatter-decisions-sagnik.vercel.app`**, under the
+single key `fm-decisions-v1`, shaped `{picks: {id: "a"}, notes: {id: "text"}}`. Verified live.
+
+That has three consequences, and the third is the one that will hurt:
+
+- They are **per browser and per machine**. Switching Claude accounts does not move them;
+  switching *computers* or *browsers* does lose them.
+- They never reach a server. There is no account, no sync, no backup.
+- **Clearing site data, using a private window, or a browser set to clear on exit destroys every
+  answer with no recovery path.** 201 decisions is several sittings, so this is a real risk, not
+  a theoretical one.
+
+**Therefore: export after every sitting.** It takes one click and it is the only durable copy.
+
+### How to answer
+
+Open the site. Within each area the cards are ordered **critical first**, so stopping early
+still leaves the important ones answered.
+
+- `a`–`d` picks an option · `↵` advances · `j`/`k` move · `/` searches
+- Clicking an area in the left nav opens an **area index** — every question in it, grouped open
+  and answered — so one area per sitting is a workable rhythm. Deep-linkable as
+  `#area-<Area%20name>`.
+- Each card carries a **recommendation** and a `flip` line naming the specific finding that
+  would overturn it. Disagreeing with a recommendation is a normal outcome; the export records
+  it explicitly.
+- The note box under each card is free text and is exported alongside the choice. Use it for
+  "yes, but" — the reasoning is worth more later than the letter.
+
+### Getting the answers back into the repo
+
+From the **Overview**, two exports, both verified working:
+
+| Export | Shape | Use |
+|---|---|---|
+| **Markdown** | Grouped by area: question, the chosen option's full label, `(against the recommendation of X)` where it differs, then the note | Reading, and for the meeting |
+| **JSON** | `{"picks": {"P1": "a", …}, "notes": {"P1": "…"}}` | The machine-readable artifact everything downstream reads |
+
+**Commit the JSON into the repo** as `decisions/answers-<YYYY-MM-DD>.json`. That is what makes
+the answers durable and what the SRS/PRD/BRD/FRD must be generated *from* — not from a
+conversation, and not from memory of what was decided.
+
+A worked example of the markdown output, captured live:
+
+```markdown
+# frontmatter — decisions
+
+Answered 2 of 201.
+
+## Product & definition
+
+### P1 — Does the one-sentence definition still call frontmatter a markdown editor, …?
+**Decision:** Keep "markdown editor" and budget the fork tax as a line item
+(against the recommendation of B)
+
+test note for export
+```
+
+### What answering unlocks, and in what order
+
+Several decisions gate others. The `linked` chips on each card carry those edges (197 of 201
+have at least one), and three groups are worth taking together in one sitting because the answer
+to one sets the others:
+
+1. **The headline** — whether review state stays, narrows to per-span-in-the-repo, or steps
+   aside for authorship marking. Every channel, price, screen and exit test hangs off it.
+2. **Form factor** — standalone editor, VS Code extension, or one portable core behind both.
+3. **Whether the Firebase document-holding design ships** — `firestore.rules` calls itself a
+   prototype in its own comments, and **every legal rule in the plan is a function of this one
+   answer**.
+
 ## 7. What to do next, in order
 
 **1. Reconcile the 63 research-derived decisions against the 201.** The briefing's §6 lists them
@@ -491,12 +569,15 @@ already covered.
 > not deduplicating. Several in that list are research tasks rather than decisions — the
 > briefing marks which — and must not become cards.
 
-**2. Hand the site to the founder to answer.** That is the gate on everything downstream. The
-201 cards are the deliverable; nothing else proceeds until they are answered.
-> **CONTINGENCY:** if the founder finds the set too large to work through, the ordering already
-> helps — critical first within each area — and `#area-<name>` deep links let them take one area
-> per sitting. Do not "helpfully" cut the set to make it shorter; the merging pass already cut
-> 319 → 201 on evidence.
+**2. Answer the 201. The founder is doing this on your account — see §6b for the mechanics.**
+That is the gate on everything downstream. Your job during it is to keep the answers safe: after
+every sitting, export the JSON and commit it as `decisions/answers-<YYYY-MM-DD>.json`.
+> **CONTINGENCY:** the answers live only in `localStorage` on one browser on one machine. If they
+> vanish — cleared site data, a private window, a different computer — they are gone with no
+> recovery path unless a JSON export was committed. Export early, export often, and never assume
+> a sitting will be resumed on the same machine. If the set feels too large, the ordering already
+> helps (critical first within each area, one area per sitting via `#area-<name>`); do not
+> "helpfully" cut it, because the merging pass already cut 319 → 201 on evidence.
 
 **3. Only then, generate the SRS / PRD / BRD / FRD** from the answers, with features mapped to
 subscription tiers and screens.
