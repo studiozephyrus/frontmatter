@@ -21,6 +21,14 @@ const config = [
       "out/**",
       // Static browser assets served as-is — not part of the TS app source
       "public/**",
+      // The decisions site: a standalone, dependency-free static page with its own
+      // browser and Node globals. Same class as public/** — the header above says this
+      // config lints src/, specs/ and root config only, and these trees were simply
+      // never listed. Its own gates are decisions/tools/validate.py and a node --check.
+      "decisions/**",
+      // Standalone Node build and probe scripts, not app source.
+      "docs/build/**",
+      "test/scratch/**",
       // Legacy Obsidian vault — not part of the app
       "**/*.md",
       "md/**",

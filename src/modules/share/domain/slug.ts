@@ -43,6 +43,9 @@ export const SLUG_MIN_LEN = 1;
 export const RESERVED_SLUGS: ReadonlySet<string> = new Set([
   // ─── Currently-routed first segments — DO NOT REMOVE ───────────────
   "api", "auth", "login", "logout", "p",
+  // Static directories served from public/ — added 2026-09-09. Without these a
+  // user could publish a note at /decisions and shadow the directory.
+  "decisions", "prototype",
 
   // ─── Next.js / Vercel framework internals ──────────────────────────
   "_next", "_vercel", "_static", "_error", "_app", "_document",
