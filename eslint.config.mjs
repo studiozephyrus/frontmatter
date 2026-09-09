@@ -28,6 +28,10 @@ const config = [
       "decisions/**",
       // Standalone Node build and probe scripts, not app source.
       "docs/build/**",
+      // Rescued Workflow-tool scripts: they run inside the tool's own runtime, which
+      // supplies agent/parallel/pipeline/phase/log as globals. Kept as history and as
+      // reusable machinery, not as app source — see docs/workflows/README.md.
+      "docs/workflows/**",
       "test/scratch/**",
       // Legacy Obsidian vault — not part of the app
       "**/*.md",
