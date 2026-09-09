@@ -1,491 +1,524 @@
-# HANDOFF — frontmatter decisions site, v2 card rewrite and the 9-seam market research
+# HANDOFF — frontmatter: the decision set, the 9-seam research, and the documentation substrate
 
-**Written 2026-09-09, ~04:20 IST, at a session limit.** Supersedes nothing; sits alongside
-`HANDOFF-mdmax-cert-and-audit-2026-08-03.md` and
-`HANDOFF-graph-engineering-research-2026-07-30.md`, both of which cover different work and
-are still valid on their own subjects.
+**Written 2026-09-09.** This is the **second and complete** version. It supersedes the first
+draft of this same filename, which was written at a session limit with 5 of 15 areas finished
+and over a **failing** documentation gate. Everything it said is either carried forward here or
+corrected here. Do not go looking for the earlier text; git has it at `0788653` if you want it.
+
+Sits alongside `HANDOFF-mdmax-cert-and-audit-2026-08-03.md` and
+`HANDOFF-graph-engineering-research-2026-07-30.md`, which cover different subjects and remain
+valid on their own.
 
 ---
 
-## 0. Severity verdict — read this before anything else
+## 0. Severity verdict — read before anything else
 
-**State: STABLE.** A wrong move here costs time, not work. Everything produced this session
-is committed at `e6f6c8a` on `engine/plan-and-diagnostics`, the working tree is clean, and
-the live site serves the committed bytes. Nothing is half-written to disk.
+**State: STABLE.** Working tree clean, `npm run verify` green (typecheck, lint, 1,596 tests
+passing with 6 expected failures, arch 0), documentation gate **PASS at exit 0**, and the live
+site serves the committed bytes. Nothing is half-written.
 
-**Blast radius if you get it wrong.** Small and recoverable. The only live surface is a
-static Vercel deployment at `https://frontmatter-decisions-sagnik.vercel.app`, which holds no
-user data — answers live in each reader's `localStorage` and never reach a server. There is
-no database, no auth, no billing. The product code (`src/`, `src-tauri/`) was **not touched
-this session at all**.
+**Blast radius if you get it wrong.** Contained. The only live surface is a static Vercel
+deployment holding no user data — answers live in each reader's `localStorage` and never reach
+a server. No database, no auth, no billing on that surface. The Next.js app was touched in
+exactly one commit (`3f230d2`, a proxy fix), and that commit is covered by ten new tests.
 
-**The single most dangerous misconception a skim would produce:** *"the decision set has been
-rewritten."* It has not. **Five of fifteen areas are rewritten (82 of 300 cards). Ten areas
-are still in the old paragraph shape.** The site renders both, deliberately, so it does not
-look broken — which is exactly why a skim will get this wrong. See §4.
+**The single most dangerous misconception a skim would produce:** *"the product is nearly
+built."* It is not. **Review state — the headline feature — does not exist in the code.** A grep
+for `review.jsonl`, `reviewState` or `reviewedAt` across 226 source files returns **zero**. Two
+files outside `src/modules/mdmax` import the engine and both are read paths, so **no write in
+the product goes through the splice engine** that is its entire differentiation. See §5.1.
 
-**Second most dangerous:** the research findings in `docs/research/2026-09-09/` are
-substantially reliable *in substance* and **unreliable in their quotation marks**. Roughly a
-third of the quotes are paraphrases wearing quotation marks. Never paste one onto a slide
-without re-fetching the page. §3.4 is the calibration table.
+**Second most dangerous:** the research in `docs/research/2026-09-09/` is reliable *in
+substance* and **unreliable in its quotation marks**. Roughly one quote in three is a paraphrase
+wearing quotation marks, and one was fabricated outright. Never paste one anywhere without
+re-fetching the page. §4.5 is the calibration table.
 
 ---
 
 ## Read these first
 
-The doc set for this project lives in `docs/` (27 markdown files, 1.24M words). It is large
-and uneven. Open these four, in this order, before touching anything:
+The documentation gate passes as of `9e4d5cf`, so the doc set is now trustworthy — that was not
+true when the first draft of this handover was written.
 
-1. **`docs/PRODUCT-BRIEF.md`** — the current plan, v15, 560 lines. The one document that is
-   short enough to read whole and current enough to trust. §14 lists the seven open founder
-   decisions.
-2. **`docs/research/2026-09-09/BRIEFING.md`** — 4,020 words. What changed on 2026-09-09 and
-   what the fifteen rewrite agents were told. **Read before writing any decision card.**
-3. **`docs/research/2026-09-09/VERIFIED-2026-09-09.md`** — what I personally opened and
-   checked, including two claims I refuted. **This file overrides the research where they
-   disagree.**
-4. **`decisions/v2/CONTRACT.md`** — the card shape, voice rules, merge rules and the ten
-   diagram primitives. **This is the spec the remaining ten areas migrate to.**
+1. **`docs/README.md`** — the index, with the provenance table and the honest "not done in this
+   pass" list.
+2. **`docs/00-EXECUTIVE-SUMMARY.md`** — what this is and what state it is really in.
+3. **`docs/13-TECH-DEBT.md`** — what is owed, sequenced, every item re-verified at `e318ab3`
+   with the command shown beside it. **Read this before believing any schedule.**
+4. **`docs/PRODUCT-BRIEF.md`** — the plan, v15, 560 lines, safe to read whole. §14 lists the
+   seven open founder decisions.
+5. **`docs/research/2026-09-09/BRIEFING.md`** then **`VERIFIED-2026-09-09.md`** — the latter
+   **overrides** the former wherever they disagree.
+6. **`decisions/v2/CONTRACT.md`** — the decision-card spec.
 
-`docs/GAPS-2026-09-08.md` (21 KB) and `docs/DECIDE.md` (13 KB) are small and worth reading.
-Everything else in `docs/` is 130 KB–3 MB; **grep them, never `Read` them.**
+**Never open with Read:** `FRONTMATTER-PRD-v2-2026-08-29.md` (760 KB),
+`FRONTMATTER-RECORD.md` (2.1 MB), `FRONTMATTER-COMPLETE-RECORD-2026-08-30.md` (3.4 MB),
+`ENGINE.md` / `CRITIQUE.md` / `DEV-PLAN.md` (~250 KB each). `grep -n` then `sed -n 'A,Bp'`.
 
 ---
 
 ## 1. Chronological walk
 
-### 1.1 The session opened mid-task, finishing the previous UI work
+### 1.1 Finishing the previous UI work
 
-The prior context ended having applied a Mobbin reference pass to the decisions site. I
-picked up by screenshotting and reading the result, and found the area route was dead: a deep
-link to `#area-<name>` fell through to the overview because the boot handler only knew
-questions, `import` and `overview`. Fixed with one shared `fromHash()` resolver used by both
-boot and `hashchange`.
+Picked up mid-task on the decisions site. Screenshotted and read the result rather than assuming
+it. Then drove the **live deployment** rather than the local file, which is what surfaced
+everything. Three real defects:
 
-Then I drove the **live deployment** rather than the local file, which is what surfaced the
-rest. Three real defects, all fixed:
-
-- **The phone action bar was dead.** Every handler was wired in JS — position label, disabled
-  states, prev/next, updated in all three views — and it never appeared. `.abar{display:none}`
-  was declared *below* the `@media(max-width:900px)` block that set `display:grid`. Same
+- **The phone action bar was dead.** Every handler wired — position label, disabled states,
+  prev/next, updated in all three views — and it never appeared. `.abar{display:none}` was
+  declared *below* the `@media(max-width:900px)` block that set `display:grid`. Same
   specificity, so source order won and the override was dead code.
-- **Area deep links** fell through, as above.
+- **Area deep links** (`#area-<name>`) fell through to the overview; the boot handler only knew
+  questions, `import` and `overview`. Fixed with one shared `fromHash()` resolver.
 - **An imported question was unreachable.** The markdown import parsed, previewed and added a
-  card, but set `view.cat` to the literal `"Imported"` while `renderNav` only expands the
-  group whose `cat` matches. The card rendered with no way back to it.
+  card, but set `view.cat` to the literal `"Imported"` while `renderNav` only expands the group
+  whose `cat` matches. The card rendered with no way back to it.
 
 A fourth apparent defect — a missing primary action — was **my selector reading an unanswered
-question**. The behaviour is correct: *Skip for now* before a choice, *Next decision* after.
-I said so rather than "fixing" it.
+question**. Behaviour is correct: *Skip for now* before a choice, *Next decision* after. Said so
+rather than "fixing" it.
 
-`scripts/css-cascade-check.py` generalises the first one: it walks a stylesheet and reports
-any declaration inside a media query that a later base rule silently overrides. **It reports
-the bug against the pre-fix file and comes back clean against the fixed one**, and finds
-exactly one instance, so there are no siblings.
+`scripts/css-cascade-check.py` generalises the first: it walks a stylesheet and reports any
+declaration inside a media query that a later base rule overrides. **It reports the bug against
+the pre-fix file and comes back clean against the fixed one**, and finds exactly one instance.
 
-Commits: `9e207ec`, `c824ada`.
+Commits `9e207ec`, `c824ada`.
 
-### 1.2 The user's real ask arrived
+### 1.2 The ask
 
-Verbatim, the parts that shaped everything after:
+Verbatim, the parts that shaped everything:
 
-> "go throughout the complete plan of frontmatter again everything is the project and the plan
-> … and then add more questions which are not added"
+> "go throughout the complete plan of frontmatter again … and then add more questions which are
+> not added"
 
 > "every questions that is added, everything should be more screen diagram or flow daigram or
-> visually and mockup created wise explained proeprly, and there syhouldn't be paragraphs
-> rather more shorter and bulleted texts"
+> visually and mockup created wise explained proeprly, and there syhouldn't be paragraphs rather
+> more shorter and bulleted texts"
 
-> "make the questions human and not ai jargon and ai patterns sh9ould be removed"
+> "make the questions human and not ai jargon"
 
 > "if questions can be clubbed or co-connected, then combined them"
 
 > "why a certain option is recommened , in detailed"
 
-> "before doing anything, if you think any segment of this document editing, markdown market
-> and editing , note tak9ng market, you hadn't tapped, go aehad and reserach tyhat"
+> "before doing anything, if you think any segment of this document editing, markdown market and
+> editing , note tak9ng market, you hadn't tapped, go aehad and reserach tyhat"
 
-> "once the answer is done, then generate the complete product plan based on the answers …
-> the complkete SRS and PRD BRD FRD"
+> "once the answer is done, then generate the complete product plan based on the answers … the
+> complkete SRS and PRD BRD FRD"
 
-**The SRS/PRD/BRD/FRD step is explicitly gated on the user answering the decisions first.**
-It is not started and must not be started before that. See §7.
+**The SRS/PRD/BRD/FRD step is gated on the founder answering the decisions. It is not started
+and must not be started before that.** See §7.
 
-### 1.3 Finding the untapped seams, evidentially
+### 1.3 Finding the untapped seams evidentially
 
-Rather than guessing what was uncovered, I scanned the corpus. A 138-product list against
-1.24M words of `docs/`: **104 mentioned, 34 never named**. Then a concept scan across 35
-themes found **nine under twelve mentions**, four of them directly under the product's own
-claim:
+Rather than guessing, scanned the corpus. A 138-product list against 1.24M words of `docs/`:
+**104 mentioned, 34 never named**. Then 35 concepts scanned; **nine under twelve mentions**,
+four of them directly under the product's own claim — prose diff (11), diff granularity (4),
+git-for-writers UX (2), review fatigue (8), and market size (1).
 
-| Seam | Mentions in 1.24M words |
-|---|---|
-| prose diff / document comparison tools | 11 |
-| diff granularity (word/char/semantic) | 4 |
-| versioning UX (git for writers) | 2 |
-| review fatigue / attention | 8 |
-| note-taking market size / TAM | 1 |
-| legal document review | 1 |
-| SBOM-like doc manifest | 8 |
-| templates / snippets market | 8 |
-| voice / dictation | 4 |
+### 1.4 The research, and a cost mistake
 
-### 1.4 The research run — and the cost mistake
+Ten lenses, all completed: **310 findings, 308 from opened primary sources, 63 candidate
+decisions**. Raw at `docs/research/2026-09-09/research-raw.txt` (278 KB).
 
-I launched a ten-lens research workflow. **All ten lenses completed**: 310 findings, 308 from
-opened primary sources, 63 candidate decisions. Raw output is at
-`docs/research/2026-09-09/research-raw.txt` (278 KB).
-
-**Then I made an expensive mistake.** The workflow's verify stage fanned out **one skeptic
-agent per load-bearing claim** — roughly 150 agents at ~100k tokens each. The user saw the
-wall of `verify:` rows and said:
+Then the verify stage fanned out **one skeptic agent per claim — about 150 at ~100k tokens
+each**. The user stopped it:
 
 > "Do we really need this many tests? Just check and update, because my tokens will be
 > exhausted, man."
 
-They were right. I killed it (`TaskStop` on `w02g73nks`). **The lesson to carry forward:
-verify a handful of load-bearing claims yourself with `curl` — it costs almost nothing and it
-is what actually caught the fabrication below. Do not fan out one agent per claim.**
+Correct, and it cost a session limit. Killed via `TaskStop`. **Carry this forward: verify a
+handful of load-bearing claims yourself with `curl`. That is what found the fabrication, for
+almost nothing.**
 
-### 1.5 What I verified myself, and what it changed
+### 1.5 What I verified by hand
 
-Recorded in full in `docs/research/2026-09-09/VERIFIED-2026-09-09.md`.
+Full detail in `docs/research/2026-09-09/VERIFIED-2026-09-09.md`.
 
-**A research agent fabricated documentation quotes.** It claimed
-`code.visualstudio.com/docs/copilot/chat/review-code-edits` says *"The reviewed state clears
-if you or the agent changes the file again"* and *"Markdown files follow the same feedback
-flow."* I opened the live page (redirects to `/docs/agents/run/review-code-edits`, 9,516
-characters, footer dated 9/2/2026). **Zero occurrences** of "as reviewed", "reviewed state",
+**A research agent fabricated documentation quotes.** It claimed VS Code's review docs say
+*"The reviewed state clears if you or the agent changes the file again."* I opened the live page
+(9,516 characters, footer 9/2/2026): **zero** occurrences of "as reviewed", "reviewed state",
 "clears if", "markdown", "locked mode" or "attribution".
 
-**But the GitHub evidence in the same report is real.** I checked all three via
-`api.github.com`:
+**The GitHub evidence in the same report is real** — I checked all three via `api.github.com`:
 
 | Item | Title | Milestone | Dates |
 |---|---|---|---|
-| PR #324218 | "Agents - add review/unreview operation to the multi-file diff editor" | 1.128.0 | created + closed 2026-07-03 |
+| PR #324218 | "Agents - add review/unreview operation to the multi-file diff editor" | 1.128.0 | 2026-07-03 |
 | #326539 | "Test: Markdown editor feedback in the Agents window" | 1.130.0 | 2026-07-19 → 20 |
 | #326540 | "Test: View and edit Markdown in the Agents window" | 1.130.0 | 2026-07-19 → 20 |
 
-So the honest statement is narrower than the report's: **Microsoft built review/unreview and
-markdown agent feedback, gated behind
+**Honest statement:** Microsoft built review/unreview and markdown agent feedback, gated behind
 `workbench.editor.markdownDefaultEditorInAgentsWindow`, in an experimental Agents window, and
-documented none of it.** That is a statement of intent, not a shipped free competitor.
+documented none of it. Intent, not a shipped free competitor.
 
-**I also closed the researcher's own biggest flagged hole: Cursor.** It could not get past
-Cloudflare. I opened `cursor.com/learn/reviewing-testing` (11,414 chars). Cursor's review is
-**Agent Review** ("click Review then Find Issues") plus **Bugbot** on PRs. Searched for "mark
-as reviewed", "viewed", "markdown", "attribution", "per-span", "unreviewed" — **all zero**.
-Cursor's answer to too much agent output is *another agent reviews it*, which is a different
-product and leaves the human-facing ledger unoccupied by the most-cited comparison in the
-space. `cursor.com/review` is behind a sign-in wall; I did not sign in.
+**Closed the researcher's own biggest flagged hole: Cursor.** It was blocked by Cloudflare; I
+opened `cursor.com/learn/reviewing-testing` (11,414 chars). Cursor's review is **Agent Review**
+plus **Bugbot** on PRs. Searched for "mark as reviewed", "viewed", "markdown", "attribution",
+"per-span", "unreviewed" — **all zero**. Cursor's answer to too much agent output is *another
+agent reviews it*: a different product, leaving the human-facing ledger unoccupied by the
+most-cited comparison in the space. `cursor.com/review` is behind a sign-in wall; I did not sign
+in.
 
-### 1.6 The v2 card shape and the diagram vocabulary
+### 1.6 The card shape and the diagram vocabulary
 
-Built before any content generation, so fifteen agents could not invent fifteen shapes.
+Built **before** any generation, so fifteen agents could not invent fifteen shapes.
 
-`decisions/diagram.js` (453 lines) — **ten primitives** rendered as inline SVG: `screen`,
-`flow`, `state`, `compare`, `ba`, `arch`, `timeline`, `matrix`, `file`, `funnel`. Structured
-data in, drawing out. Geometry is computed from the text each box holds, so a longer label
-resizes its box instead of colliding. Colours are CSS variables, so diagrams follow the page
-into dark mode. Inline because these pages must render with no network.
+`decisions/diagram.js` — **ten primitives** as inline SVG: `screen`, `flow`, `state`, `compare`,
+`ba`, `arch`, `timeline`, `matrix`, `file`, `funnel`. Geometry computed from the text each box
+holds, so a longer label resizes rather than collides. Colours are CSS variables, so diagrams
+follow the page into dark mode. Inline, because these pages must render with no network.
 
-Two geometry bugs found by rendering all ten with real content: state transition labels were
-drawn into a 30px gap while needing ~60 (every one landed on the pill beside it), and a
-screen pane's last row sat flush against the card edge. Both fixed.
+Two geometry bugs found by rendering all ten with real content: state transition labels drawn
+into a 30px gap that needed ~60 (every one landed on the pill beside it), and a screen pane's
+last row flush against the card edge.
 
-The card gained: diagram at top, a one-line `stakes`, bulleted `state`/`path`/`tension`
-replacing three paragraphs, and per-option `gains`, `costs`, `system`, `screens`, `money`.
-The recommendation carries `flip` — the specific finding that would overturn it — and
-`linked` chips to decisions that must be taken alongside.
+Card shape: diagram first, one-line `stakes`, bulleted `state`/`path`/`tension` replacing three
+paragraphs, per-option `gains`/`costs`/`system`/`screens`/`money`, `flip` (the finding that
+would overturn the recommendation), and `linked` chips. Commit `ae40093`.
 
-**v1 cards still render.** Paragraph context and single-string option `impact` both fall
-back, so the corpus migrates one area at a time. Commit `ae40093`.
+### 1.7 Generation — two runs
 
-### 1.7 Generation, and the session limit
+First run: **session limit killed 15 of 16 agents.** Five areas survived, rescued from scratch
+before it was lost. Commit `e6f6c8a`.
 
-Fifteen area agents plus one cross-area linker. **The session limit killed 15 of 16.**
+**Important lesson: agents wrote their files before dying.** The workflow reported 1 success;
+**five complete area files were on disk.** Always check the output directory before believing a
+failure count.
 
-Five areas completed and were rescued from the scratch directory before it was lost.
+Second run, after the limit reset: **11/11 agents, zero errors**, including the cross-area
+linker that had died. 261 cards, all fifteen areas. Commit `e318ab3`.
+
+### 1.8 Cross-area deduplication
+
+The linker read all 261 cards and found **43 duplicate sets covering 103 cards**. Dropping 60
+left **201**. The worst: *"does the splice engine ship free as an npm package"* was asked
+**five separate times** across five areas. Market & competition lost 12 of 24 and Plan lost 8 of
+14 — both were largely re-asking decisions owned elsewhere. Engine lost 1 of 28, which is what
+you expect from an area that owns mechanisms rather than commentary.
+
+### 1.9 The documentation gate — the part I got wrong first
+
+The handover skill's STEP 0 gate returned **exit 1**. I proceeded under a named exception and
+wrote the first handover anyway. The user corrected that:
+
+> "we recently made changes to the handover skill to generated detailed skills and documentation
+> … so yeahd check and verify and generate the detailed one if not already done"
+
+They were right and the exception was the wrong call: **a handover written over a failing gate
+reads as authoritative and the receiver has no way to tell.** So:
+
+- **`CLAUDE.md` written.** This repo had none. Claude Code reads `CLAUDE.md` and **not**
+  `AGENTS.md`, so every instruction in its 221-line `AGENTS.md` was invisible in every session
+  until now. 124 lines, imports `AGENTS.md`.
+- **Sixteen core documents generated** by nine agents on disjoint files, each required to read
+  code before writing, plus `13-TECH-DEBT.md` and `docs/README.md` written by hand.
+- **Gate now: PASS, exit 0, STATUS current.**
+
+### 1.10 What the documentation pass found — real defects, three of them mine
+
+The doc agents read `src/` rather than trusting it, and returned defects, not prose. The ones
+that mattered:
+
+- **`npm run verify` was RED at `e318ab3`** — 71 lint errors, **50 in files I had added** under
+  `decisions/`. AGENTS.md §4 makes green lint a precondition of commit. I had broken a rule the
+  repo states plainly.
+- **Every asset under `/decisions/` and `/prototype/` 307'd to `/login`.** `PUBLIC_STATIC_RE`
+  matches a single top-level segment with one of fourteen extensions; neither `.css` nor `.html`
+  is in the list, and every asset there is a nested path. The bare `/decisions` passed only by
+  accident, because it looks like a published note slug. **This is the exact recurring failure
+  AGENTS.md §1 documents, committed by the change that added those directories.**
+- **`decisions` and `prototype` were not in `RESERVED_SLUGS`**, so a user could publish a note
+  at `/decisions` and shadow the directory.
+- **`test/proxy.test.ts` tested only top-level assets**, never a nested one — which is why
+  nothing caught it.
+
+All fixed in `3f230d2`, with ten new tests **red-proofed** per AGENTS.md rule 1: stashed the
+fix, ran them, watched all ten fail, restored.
 
 ---
 
 ## 2. Live numbers, gathered at write time
 
 ```
-HEAD            e6f6c8a  feat(decisions): nine untapped market seams researched…
-branch          engine/plan-and-diagnostics   4 commits ahead of origin, UNPUSHED
+HEAD            3f230d2  fix: every asset under /decisions and /prototype was redirecting…
+branch          engine/plan-and-diagnostics    8 commits ahead of origin, UNPUSHED
 working tree    clean
 stashes         none
-worktrees       2, both with 0 unique commits vs the branch (see §5.2)
+worktrees       2 under .claude/worktrees/, both 0 unique commits vs the branch
+docs gate       PASS (exit 0), STATUS current
+npm run verify  typecheck OK · lint OK · 1,596 passed + 6 expected fail · arch 0
 ```
 
 | Measure | Value |
 |---|---|
-| Cards on the live site | **300** (was 319) |
-| Cards in the v2 shape | **82** |
-| Cards still in v1 shape | **218** |
-| Cards with a diagram | **82** |
-| Critical | 81 |
-| Areas | 15 |
-| Evidence exhibits | 551 |
-| `questions.js` | 1,502 KB |
-| Validator result on the v2 set | **79 cards, 0 errors, 86 warnings** |
+| Decision cards | **201** (from 319: merged within areas, then 60 cross-area duplicates dropped) |
+| Cards with a diagram | **201 — all of them** |
+| Cards linked to at least one other | 197 of 201 |
+| Critical / high / medium | 56 / 104 / 41 |
+| Evidence exhibits | 422 |
+| Diagram kinds in use | compare 76, flow 31, ba 19, screen 16, arch 14, timeline 12, file 11, funnel 10, state 8, matrix 4 |
+| Core documents | 16, all pinned to `e318ab3` |
+| Research | 304 KB, committed |
 
-v2 coverage by area: Product & definition 18 · Form factor & surfaces 11 · Access/offline/
-install 15 · Pricing & tiers 16 · Legal/privacy/data 19 · Design/UI/attention **3 of 22**.
+Cards by area: Engine 27 · Features 21 · Design/UI 17 · Legal 16 · Pricing 16 · Go-to-market 16
+· Access 12 · Market 12 · Form factor 11 · Flow 11 · Business 10 · Product & definition 9 ·
+Name 8 · Research & evidence 8 · Plan 7.
 
-Live and verified by driving the deployment: diagram renders (44 SVG elements on P2), stakes
-band present, 3 bulleted context columns, 4 gains/costs blocks, 4 option meta rows, flip line,
-4 linked chips, `scrollWidth == innerWidth`.
-
-**URL: https://frontmatter-decisions-sagnik.vercel.app**
+**Live: https://frontmatter-decisions-sagnik.vercel.app** — verified by driving it, not by
+assuming: 201 cards, all v2 shape, diagram renders, stakes band, bulleted context, gains/costs,
+option meta, flip line, linked chips, `scrollWidth == innerWidth`.
 
 ---
 
-## 3. The research findings that change the plan
-
-All tagged as the raw file tags them. `[opened]` means a page was actually fetched.
-
-### 3.1 Almanac — the corpse behind the headline
-
-Shipped frontmatter's entire feature sentence — **Read Receipts** ("Ensure your team actually
-reads important knowledge"), Version Control Mode, Layers, Approvals, Doc History diffing,
-scheduled deprecation reviews — all still on `get.almanac.io` `[opened]`. **$9M seed + $34M
-Series A led by Tiger Global, September 2021. 7-figure ARR. 50+ staff. Shut down
-2025-01-31.** `[opened]`
-
-The stated cause is the useful part and it is not the obvious one: **not out-competed**. The
-same team's AI content product (Blaze) grew to "tens of thousands of users in a matter of
-months" and they chose it. **The corpus never named Almanac once in 1.24M words.**
-
-### 3.2 The attention literature is hostile to the current design
-
-- Cisco/SmartBear: no review above 250 lines beat 37 defects/kLOC; above 450 LOC/hour, defect
-  density below average in 87% of cases `[opened]`
-- Google: 3.2 h/week per-developer review budget, 24-line median change `[opened]`
-- Clinical alerting, the mature version: drug-interaction **override rates 55–98% across 34
-  studies** `[opened]`; 86.6% override of 14,612 alerts with 88.3% of typed justifications
-  meaningless `[opened]`
-- The one system that achieved acceptance fired **31 rules in 0.19% of 500,274 sessions** and
-  got 57.5% `[opened]`
-
-**Forces suppression, not enumeration. A percentage-of-repo unreviewed badge is the
-worst-evidenced element in the plan.**
-
-### 3.3 Zed Delta, and the CRDT problem
-
-Private beta 2026-08-12, built on DeltaDB, comments anchored to spans that survive edits. 679
-HN points on launch, 529 on the DeltaDB post, 319 on "Software Is Made Between Commits"
-`[opened]`. The 2026-09-01 post commits publicly to attribution "down to the span" and stakes
-it on **CRDTs** `[opened]`.
-
-**The corpus treats "never a CRDT" as settled.** That position may still be right for prose —
-Zed is solving it for code — but it can no longer be *stated* as settled without a written
-rebuttal that names Zed, because a team with ten years of CRDT work reached the opposite
-conclusion in public.
-
-### 3.4 Calibration — trust the substance, not the quotation marks
-
-I spot-checked five quotes by fetching the page and grepping the exact string:
-
-| Quote | Source | Result |
-|---|---|---|
-| "diff panel that opens beside the conversation" | Claude Code CHANGELOG | **found verbatim**; `2.1.260` also in file |
-| "comments attach to snapshots" | zed.dev/blog/introducing-delta | **found verbatim** |
-| "Agent Edits" / "Uncommitted" | antigravity.google/blog/vcs-and-terminal | **found**, both |
-| "Every edit and conversation is captured between your commits" | zed.dev | **not on the page** |
-| "…your UI gets out of sync with your working directory" | antigravity.google | **not on the page** |
-| "The reviewed state clears if you or the agent changes the file again" | VS Code docs | **not on the page, capability undocumented there** |
-
-**The capabilities are real. About a third of the quotation marks are not.**
-
-### 3.5 Other findings worth knowing
-
-- **Draftable** sells prose diff alone — no editor, no collaboration — at **$129 and
-  $261/user/year into 1,300 law firms**, still Windows-only `[opened]`. Diff quality is a
-  product and professionals pay for it.
-- **The git-for-writers graveyard.** Editorially (shut 2014, *"Even if all of our users paid
-  up, it wouldn't be enough"*), Poetica (→ Condé Nast 2016, software bought, users
-  explicitly not), Penflip (silent death, SEO spam), Draft (503 since April 2023, zero HN
-  comments). **Two of eight died with nobody noticing. Organic discovery is not a plan.**
-- **Absorption is the modal outcome**, not the failure case: four of eight were bought as
-  teams by organisations that already owned a publishing pipeline.
-- **`petergyang/human-review`**: 0 → **1,241 stars, 98 forks in six weeks** from 2026-07-27,
-  free, runs inside Claude Code or Codex `[opened]`. **501 GitHub repos** match "agent diff
-  review" created since 2026-05-01 `[opened]`.
-- **Bike** (outliner) publicly documents that `.txt` cannot hold stable item ids and row links
-  break on close-and-reopen — **frontmatter's SAFE_KEY addressability problem, in production,
-  admitted by a developer who then chose HTML** `[opened]`.
-- **The one claim still unoccupied:** attribution of *which spans an agent wrote*. No platform
-  shipped it. The only implementation found anywhere is a VS Code extension with **88
-  installs**. The corpus demoted this after the iA Writer 7 finding — **that demotion should
-  be reopened.**
-
----
-
-## 4. Phase status — do not round up
+## 3. Phase status — do not round up
 
 | Phase | Status | Evidence |
 |---|---|---|
-| Fix the decisions UI end to end | **DONE, verified live** | 3 defects fixed, 23/24 live checks pass; the 1 fail was my own selector |
-| Research the untapped seams | **DONE** | 10/10 lenses, 310 findings, 308 opened; `research-raw.txt` |
-| Verify the research | **PARTIAL — 6 claims by hand** | `VERIFIED-2026-09-09.md`; the 150-agent fan-out was killed on cost |
-| Build the v2 card shape + diagrams | **DONE** | `diagram.js`, all 10 primitives rendered with real content |
-| Contract + validator + assembler | **DONE** | `decisions/v2/CONTRACT.md`, `decisions/tools/` |
-| Rewrite the 15 areas | **5 of 15 (+1 partial)** | 82 of 300 cards; session limit killed 15 of 16 agents |
-| Cross-area dedup and linking | **NOT STARTED** | the `cross-area-connect` agent died with the rest |
-| Add the 63 research-derived questions | **NOT STARTED** | they are listed in `BRIEFING.md` §6 |
-| Answer the decisions | **NOT STARTED — the user does this** | |
+| Fix the decisions UI end to end | **DONE, verified live** | 3 defects fixed; 23/24 live checks pass, the 1 fail was my own selector |
+| Research the untapped seams | **DONE** | 10/10 lenses, 310 findings, 308 opened |
+| Verify the research | **PARTIAL — 6 claims by hand** | Found 1 fabrication; the 150-agent fan-out was killed on cost |
+| Card shape + diagram vocabulary | **DONE** | 10 primitives, all rendered with real content |
+| Contract, validator, assembler | **DONE** | `decisions/v2/CONTRACT.md`, `decisions/tools/` |
+| Rewrite all 15 areas | **DONE** | 201 cards, every one with a diagram, validator 0 errors |
+| Cross-area dedup and linking | **DONE** | 43 duplicate sets, 60 dropped, 197/201 linked |
+| Add the 63 research-derived questions | **PARTIAL** | Areas added their own; the briefing's list was never reconciled 1:1. §7 item 1 |
+| Documentation substrate | **DONE, gate green** | 16 docs + CLAUDE.md, exit 0 |
+| Answer the decisions | **NOT STARTED — the founder does this** | |
 | SRS / PRD / BRD / FRD | **NOT STARTED — gated on answers** | |
 
-**The user's own bar, verbatim:** *"run this end to end, before evertything is reaserach and
-reasoned andanalyed poprely,. don't give me anything"* — and then *"once the answer is done,
-then generate the complete product plan based on the answers."* **The decision set is not
-finished. Do not declare it done at 5 of 15.**
+---
+
+## 4. Research findings that change the plan
+
+Tagged as the raw file tags them. `[opened]` = a page was actually fetched.
+
+### 4.1 Almanac — the corpse behind the headline
+Shipped frontmatter's entire feature sentence — **Read Receipts** ("Ensure your team actually
+reads important knowledge"), Version Control Mode, Layers, Approvals, Doc History diffing,
+scheduled deprecation reviews — still on `get.almanac.io` `[opened]`. **$9M seed + $34M Series A
+led by Tiger Global, Sept 2021. 7-figure ARR. 50+ staff. Shut down 2025-01-31.** `[opened]`
+Not out-competed: the same team's AI content product grew to "tens of thousands of users in a
+matter of months" and they chose it. **The corpus never named Almanac once in 1.24M words.**
+
+### 4.2 The attention literature is hostile to the design
+Cisco/SmartBear: no review above 250 lines beat 37 defects/kLOC `[opened]`. Google: 3.2 h/week
+review budget, 24-line median change `[opened]`. Clinical alerting: **override rates 55–98%
+across 34 studies** `[opened]`; 86.6% override of 14,612 alerts with 88.3% of justifications
+meaningless `[opened]`. The one system that achieved acceptance fired **31 rules in 0.19% of
+500,274 sessions** for 57.5% `[opened]`. **Forces suppression, not enumeration. A
+percentage-of-repo unreviewed badge is the worst-evidenced element in the plan.**
+
+### 4.3 Zed Delta, and the CRDT problem
+Private beta 2026-08-12, DeltaDB, comments anchored to spans that survive edits. 679 HN points
+on launch `[opened]`. The 2026-09-01 post commits to attribution "down to the span" and stakes
+it on **CRDTs** `[opened]`. The corpus treats "never a CRDT" as settled; it may still be right
+for prose, but it **can no longer be stated as settled without a written rebuttal naming Zed**.
+The Engine area added card E35 for exactly this.
+
+### 4.4 Other findings worth knowing
+- **Draftable** sells prose diff alone — no editor, no collaboration — at **$129 and
+  $261/user/year into 1,300 law firms**, still Windows-only `[opened]`.
+- **The graveyard.** Editorially (2014, *"Even if all of our users paid up, it wouldn't be
+  enough"*), Poetica (→ Condé Nast 2016, software bought, users explicitly not), Penflip (silent
+  death, SEO spam), Draft (503 since April 2023, zero HN comments). **Two of eight died with
+  nobody noticing.** Absorption is the modal outcome: four of eight bought as teams by
+  organisations that already owned a publishing pipeline.
+- **`petergyang/human-review`**: 0 → **1,241 stars in six weeks**, free, runs inside Claude Code
+  `[opened]`. **501 GitHub repos** match "agent diff review" created since 2026-05-01 `[opened]`.
+- **Bike** documents publicly that `.txt` cannot hold stable item ids and row links break on
+  close-and-reopen — **our SAFE_KEY problem, in production, admitted by a developer who then
+  chose HTML** `[opened]`.
+- **The one claim still unoccupied:** attribution of *which spans an agent wrote*. No platform
+  shipped it; the only implementation anywhere is a VS Code extension with **88 installs**. The
+  corpus demoted this on the iA Writer comparison — **that demotion is reopened**, and Features
+  promoted F3 back to critical.
+
+### 4.5 Calibration — trust the substance, not the quotation marks
+
+| Quote | Source | Result |
+|---|---|---|
+| "diff panel that opens beside the conversation" | Claude Code CHANGELOG | **found verbatim** |
+| "comments attach to snapshots" | zed.dev/blog/introducing-delta | **found verbatim** |
+| "Agent Edits" / "Uncommitted" | antigravity.google | **found**, both |
+| "Every edit and conversation is captured between your commits" | zed.dev | **not on the page** |
+| "…your UI gets out of sync with your working directory" | antigravity.google | **not on the page** |
+| "The reviewed state clears if you or the agent changes the file again" | VS Code docs | **not on the page, capability undocumented there** |
 
 ---
 
 ## 5. The sweep
 
-### 5.1 Project memory
-`~/.claude/projects/-Users-sagnikmitra-Desktop-GitHub-frontmatter/memory/` — read
-`MEMORY.md` and all files. Three entries matter: the **pilot reshape** (product direction),
-the **MDMAX cert + audit** entry (names `docs/FRONTMATTER-PRD-v2-2026-08-29.md` as the ONE
-governing doc and lists unpushed fix commits), and the **MDZ format verdict** ("build a
-compiler and an IDE, not a format") which **must not be re-litigated**.
+### 5.1 Defects found this session that are NOT documentation gaps
 
-### 5.2 Git state
-4 unpushed commits on `engine/plan-and-diagnostics`. **`git fetch` fails with the general
+These came out of the doc pass reading real code. **Unfixed unless marked.** Full list in the
+workflow output; these are the ones that change decisions:
+
+| Defect | Evidence |
+|---|---|
+| **Review state does not exist** | `grep -rlE "review\.jsonl\|reviewState\|reviewedAt" src` → **0** of 226 files |
+| **The engine is unwired** | Only 2 files outside `src/modules/mdmax` import it, both read paths — no product write uses the splice engine |
+| **§9 says zero Firestore writes; there is one** | `src/modules/app-shell/presentation/KnowledgeUI.tsx`, and it sits in `presentation`, which the layer rule forbids |
+| **`GITHUB_REPO` defaults to `sagnikmitra/md`** | `src/config/env.ts:86` — the *sibling* product's vault. A deployment omitting the variable reads and writes the wrong repo |
+| **No CI at all** | `.github/workflows` does not exist; six gates run only when a human remembers |
+| **`npm run budget` is an echo** | Exits 0, measures nothing |
+| **`mdmax cert` has never run** | `ERR_MODULE_NOT_FOUND` on an extensionless ESM import; `cert` is in none of the 26 scripts |
+| **`entities` undeclared** | Imported at `src/modules/mdmax/domain/{fold,verdict}.ts`, absent from `package.json`, resolves only from hoisted `node_modules` |
+| **Tauri still ships as the sibling** | `src-tauri/tauri.conf.json` → `identifier: "ai.sgnk.md"` |
+| **No BYO-key surface** | `grep -rl "apiKey" --include="*.tsx" src` → 0 |
+| **No migration for any `sgnk-md-` key** | Renaming the IndexedDB store orphans every uncommitted draft with no recovery path |
+| **`firestore.rules` calls itself a PROTOTYPE** | Lines 7–9: "not yet exercised against the emulator or a live client. Harden before taking paid signups." Designs unauthenticated GET on `shares/{slug}` with a 900 KB snapshot |
+| **Two PRODUCT-BRIEF figures do not reproduce** | F13 export "945 lines across 8 files" measures 875 across 7; §19 "202 of 228 identical" measures 183 identical, 25 diverged, 20 unique |
+| **FIXED** — `/decisions/*` and `/prototype/*` 307'd to `/login` | `3f230d2`, red-proofed with 10 tests |
+| **FIXED** — `npm run verify` red, 71 lint errors | `3f230d2` |
+
+A trap worth recording: `git log -S"setDoc" -- src/` hits the fork commit, but it is a **false
+positive** — the match is `setDoctorOpen`, and `setDoc` is a substring of it. Only `grep -w`
+gives the correct answer of 0. Same substring-versus-boundary class this codebase has been
+bitten by before.
+
+### 5.2 Project memory
+`~/.claude/projects/-Users-sagnikmitra-Desktop-GitHub-frontmatter/memory/`. Read `MEMORY.md`
+and all files. Three matter: **pilot reshape** (product direction), **MDMAX cert + audit**
+(names `docs/FRONTMATTER-PRD-v2-2026-08-29.md` as the one governing doc, lists unpushed fix
+commits), and **MDZ format verdict** — *"build a compiler and an IDE, not a format"* — which
+**must not be re-litigated**.
+
+### 5.3 Git state
+**8 unpushed commits** on `engine/plan-and-diagnostics`. **`git fetch` fails with the general
 `GH_TOKEN`** — `studiozephyrus/frontmatter` needs `GH_TOKEN_ZEPHYRUS`. Two worktrees under
-`.claude/worktrees/`, **both 0 unique commits** vs the branch; `competent-bassi-5da9a1` has 2
-dirty files. Neither holds work worth rescuing.
+`.claude/worktrees/`, both **0 unique commits**; one has 2 dirty files. Neither holds work worth
+rescuing.
 
-### 5.3 Security
-Scanned `docs/research/2026-09-09/`, `decisions/v2/`, `decisions/tools/` for token-shaped
-strings and private-key headers: **clean**. This document contains no credential fragment.
+### 5.4 Security
+Scanned `docs/research/2026-09-09/`, `decisions/v2/`, `decisions/tools/` and **this document**
+for token-shaped strings and private-key headers: **clean**. No credential fragment appears here.
 
-**Open, inherited, and only the user can close it: two GitHub PATs were pasted into an
-earlier chat window and remain UNROTATED.** Not mine to rotate. Flagged again here because it
-survives account switches.
+**Open, inherited, and only the founder can close it: two GitHub PATs were pasted into an
+earlier chat window and remain UNROTATED.** Flagged again because it survives account switches.
 
-### 5.4 Run basics
+See `docs/12-SECURITY-REVIEW.md` for the full findings, including the `firestore.rules`
+self-assessment.
+
+### 5.5 Run basics
 ```bash
 cd ~/Desktop/GitHub/frontmatter
-python3 decisions/tools/validate.py decisions/v2          # 0 errors expected
-python3 decisions/tools/build-v2.py decisions/v2 --dry     # see the assembly plan
-node -e "new Function(require('fs').readFileSync('decisions/app.js','utf8'))"  # parse check
-python3 scripts/css-cascade-check.py decisions/app.css     # dead media-query rules
+npm run verify                                        # the whole gate — green at HEAD
+~/.sgnk/bin/sgnk-docs-gate.sh .                       # must stay exit 0
+python3 decisions/tools/validate.py decisions/v2      # 0 errors
+python3 decisions/tools/build-v2.py decisions/v2 --links <links.json> --dry
+python3 scripts/css-cascade-check.py decisions/app.css
 ```
-Deploy is a static `POST /v13/deployments` to the Vercel project `frontmatter-decisions`
-(team `team_CDEATPKml1m8SIZSJ0DKdEjG`). **The deploy script did not survive the session** —
-it lived in scratch. Rewrite it, ship `index.html app.css app.js diagram.js questions.js
-fonts.css`, and **verify with `curl -sI`, never `curl -sL`** (a login page returns 200 after a
-redirect). Tokens: `source /Users/sagnikmitra/.config/codex-env/tokens.zsh`; never print them.
 
-### 5.5 What has no second copy
-`docs/research/2026-09-09/` (304 KB) is the **only** copy of the research. The workflow
-transcripts under `~/.claude/projects/.../subagents/workflows/` will age out. It is committed,
-so it is safe — but do not delete it as "scratch"; it cost 3.2M subagent tokens.
+**Two Vercel homes, not interchangeable** (`AGENTS.md` §6b): the app is project `frontmatter` on
+team `zsco` with `VERCEL_TOKEN_ZEPHYRUS` and `--scope zsco`; the decisions site is project
+`frontmatter-decisions` on team `team_CDEATPKml1m8SIZSJ0DKdEjG` with the bare `VERCEL_TOKEN`.
 
-### 5.6 Meta-observations that change how you should work
-- **Do not fan out one verify agent per claim.** That is what burned the session. Six `curl`
-  checks by hand found the one real fabrication.
-- **Research agents fabricate quotations at roughly 1 in 3** while getting the substance
-  right. Budget for hand-checking quotes, not findings.
-- **Agents wrote their output files before dying.** Five complete area files survived a
-  workflow that reported 1 success. **Always check the output directory before believing a
-  workflow's failure count.**
-- The `sgnk-docs-gate.sh` FAILs on this repo (missing BACKEND/DEPLOY/SECURITY/TESTING docs).
-  **Pre-existing, not caused by this session.** Named as an accepted exception in §6.
+**The deploy script for the decisions site did not survive the session** — it lived in scratch.
+Rewrite it as a static `POST /v13/deployments` shipping `index.html app.css app.js diagram.js
+questions.js fonts.css`, and **verify with `curl -sI`, never `curl -sL`** (a login page returns
+200 after a redirect). Tokens: `source /Users/sagnikmitra/.config/codex-env/tokens.zsh`; never
+print them.
 
-### 5.7 What was NOT investigated
-- `src/`, `src-tauri/`, `test/` — **not opened this session**. The 11 engine fixes in
-  `PRODUCT-BRIEF.md` §9 are unverified against current code.
-- The 63 research-derived candidate decisions were never deduplicated against the existing 300.
-- The `mdmax cert` and `entities` defects from the August audit — not re-checked.
+### 5.6 What has no second copy
+`docs/research/2026-09-09/` (304 KB) is the **only** copy of the research; workflow transcripts
+age out. It is committed, so it is safe — but do not delete it as scratch. It cost roughly 3.2M
+subagent tokens. `decisions/v2/*.json` are likewise the only source for the cards;
+`questions.js` is generated from them.
+
+### 5.7 Meta-observations that change how you should work
+- **Do not fan out one verify agent per claim.** That burned a session limit. Six `curl` checks
+  by hand found the one real fabrication.
+- **Research agents fabricate quotations at roughly 1 in 3** while getting substance right.
+- **Agents write their files before dying.** A workflow reporting 15 failures had 5 complete
+  files on disk. **Check the output directory before believing a failure count.**
+- **An auditor over-flagging correct vocabulary is a bug in the auditor.** My slop list fired on
+  "highest-leverage defensive act" — ordinary strategy language — and my first fix rewrote it to
+  "highest-use", which was worse than the thing it fixed. Restored the phrase, narrowed the
+  pattern to exempt hyphenated forms.
+- **zsh aborts on an unmatched glob** where bash passes it through. `find`, not `docs/0*.md`.
+
+### 5.8 What was NOT investigated
+- The eleven §9 items were verified where a command could settle them; **NF-1, NF-3 and the
+  41-of-43 fork figure are carried from the plan and marked `**unverified**`** — they need a
+  corpus run and the sibling repo checked out.
+- The 63 research-derived candidate decisions were never reconciled 1:1 against the 201.
+- `src/modules/mdmax` internals were not read.
 - Whether VS Code's reviewed state persists outside the editor. **This is the differentiation
   axis and it is unanswered.**
 
----
-
-## 6. Completeness statement
+### 5.9 Completeness statement
 
 | Avenue | Returned |
 |---|---|
 | Session walk, turn by turn | §1 |
-| Raw workflow output recovered from disk | 310 findings, 5 area files a workflow reported as failed |
-| Live git, stashes, worktrees | §2, §5.2 — clean, 4 unpushed, 0 unique worktree commits |
-| Secret scan of new artifacts + this document | clean; one inherited open item named |
-| Project memory | §5.1 — three entries, one "do not re-litigate" |
-| Live site driven and asserted | 23/24 checks; §2 |
-| Validator run against the produced cards | 79 cards, 0 errors |
-| Docs gate | **FAIL — accepted exception, see below** |
+| Raw workflow output recovered from disk | 310 findings; 5 area files a workflow reported as failed |
+| Live git, stashes, worktrees | §5.3 — clean, 8 unpushed, 0 unique worktree commits |
+| Secret scan incl. this document | clean; one inherited open item named |
+| Project memory | §5.2 — three entries, one "do not re-litigate" |
+| Live site driven and asserted | §2 |
+| Validator + full test gate | 0 errors; 1,596 passing, 6 expected fail |
+| Documentation gate | **PASS, exit 0** — the exception in the earlier draft is closed |
 
-**Exceptions that still hold state:**
-1. **`sgnk-docs-gate.sh` returns FAIL** on this repo for missing product docs (BACKEND,
-   DEPLOY, SECURITY, TESTING, GLOSSARY and others). This is pre-existing and was not caused
-   or worsened by this session; fixing it would have taken hours the session did not have.
-   **Proceeding under an explicitly named exception, as the skill permits.** It should be
-   fixed with `sgnk-spec` before the next handover.
-2. Ten of fifteen decision areas are unrewritten and hold their content only in
-   `decisions/questions.js` in the old shape.
-3. The two unrotated PATs.
+**Exceptions that still hold state:** the two unrotated PATs; the `**unverified**` items in
+§5.8; and the unfixed defects in §5.1, which are recorded but not repaired.
 
-I checked the session, the workflow transcripts, git state, memory, the live deployment and
-the produced artifacts. **I did not read `src/`, and I did not re-verify the August engine
-audit.** That is where a surprise could still come from.
+I walked the session, the workflow transcripts, git state, memory, the live deployment and the
+produced artifacts, and ran the full gate. **I did not read `src/modules/mdmax` internals and
+did not re-run the corpus.** That is where a surprise could still come from.
+
+---
+
+## 6. Do NOT re-litigate
+
+- **The markdown format verdict:** build a compiler and an IDE, not a format.
+- **The render carrier:** `> [!kind]` callout for prose, fence for opaque data.
+- **Sync is git-merge + splice journal + CAS, never a CRDT** — *but* §4.3 means it now needs a
+  written rebuttal naming Zed. Card E35 exists for that.
+- **The four UI defects in §1.1 and the two in §1.10 are fixed and verified.**
+- **The VS Code doc quotes are fabricated.** Do not reinstate them. The GitHub PRs are real.
 
 ---
 
 ## 7. What to do next, in order
 
-**1. Re-run the ten failed areas.** The workflow is saved and cached — completed agents replay
-free:
-```
-Workflow({scriptPath: 'decisions/tools/gen-workflow.js', resumeFromRunId: 'wf_62612956-a7c', args: {...}})
-```
-The `args` blob is in the task notification in this session's transcript, or rebuild it from
-`decisions/v2/_source-index.json`. **The five finished areas will replay from cache; only the
-ten failures re-run.** Point `scratch` at a fresh directory and copy the finished five in
-first, or they will be regenerated needlessly.
-> **CONTINGENCY:** if the resume cache has expired (it is same-session only — and this *is* a
-> new session, so **assume it has**), do not fight it. Run a fresh workflow over only the ten
-> missing areas. Per-area source JSON is regenerated by splitting `decisions/questions.js` on
-> `cat`; the one-liner that did it is in §1.7's approach — read a card's `cat`, group, write
-> one file per area.
+**1. Reconcile the 63 research-derived decisions against the 201.** The briefing's §6 lists them
+grouped by area, deduplicated once. Areas added their own during the rewrite, so many are
+already covered.
+> **CONTINGENCY:** expect 15–30 genuinely new after dedup, not 63. If you are near 63 you are
+> not deduplicating. Several in that list are research tasks rather than decisions — the
+> briefing marks which — and must not become cards.
 
-**2. Run the cross-area linker.** It never ran. Without it there is no cross-area dedup and
-the "Decide alongside" chips only carry within-area links.
-> **CONTINGENCY:** if it proposes aggressive merges, do not apply them blind. `build-v2.py`
-> takes `--links` and drops duplicates; run it with `--dry` first and read the card count
-> before writing.
+**2. Hand the site to the founder to answer.** That is the gate on everything downstream. The
+201 cards are the deliverable; nothing else proceeds until they are answered.
+> **CONTINGENCY:** if the founder finds the set too large to work through, the ordering already
+> helps — critical first within each area — and `#area-<name>` deep links let them take one area
+> per sitting. Do not "helpfully" cut the set to make it shorter; the merging pass already cut
+> 319 → 201 on evidence.
 
-**3. Add the 63 research-derived decisions.** They are in `BRIEFING.md` §6, grouped by area,
-already deduplicated once. Several are research tasks rather than decisions — **the briefing
-marks which** — and those must not become cards.
-> **CONTINGENCY:** the count will not be 63 after dedup against the existing 300. Expect
-> 30–45. If you get near 63, you are not deduplicating.
+**3. Only then, generate the SRS / PRD / BRD / FRD** from the answers, with features mapped to
+subscription tiers and screens.
+> **CONTINGENCY:** the plan's tier table (`PRODUCT-BRIEF.md` §8) and pricing (§11) contain a
+> known contradiction the plan names itself — retention sits in the Max column in one exhibit
+> and under Pro in another, and **no feature row builds retention at all**. Resolve that before
+> writing a tier into an SRS.
 
-**Then:** rebuild with `build-v2.py`, validate, deploy, and only then hand it to the user to
-answer. The SRS/PRD/BRD/FRD is **after** the answers, not before.
+**Separately, and not gated on the founder:** the §5.1 defects. `GITHUB_REPO` defaulting to the
+sibling's vault and the single Firestore write in `presentation` are the two that could bite
+without warning.
 
-### Do NOT re-litigate
-- **The markdown format verdict:** "build a compiler and an IDE, not a format." Settled.
-- **Sync is git-merge + splice journal + CAS, never a CRDT** — *but* §3.3 means this now needs
-  a written rebuttal naming Zed, not silent reassertion.
-- **The `>[!kind]` callout carrier for prose, fence for opaque data.** Settled.
-- **The four defects in §1.1 are fixed and verified live.** Do not re-fix them.
-- **The VS Code doc quotes are fabricated.** Do not reinstate them. The GitHub PRs are real.
+---
 
-### Traps that will mislead you if you skip them
-1. **The site looks finished. It is 5/15 rewritten.** v1 and v2 cards render side by side by
-   design.
-2. **`git fetch` fails without `GH_TOKEN_ZEPHYRUS`.** The general token has no access to
-   `studiozephyrus/frontmatter`. Four commits are unpushed.
-3. **The deploy script is gone** (scratch-only). Rewrite before deploying; verify with
-   `curl -sI`.
-4. **Never `Read` the big docs.** `FRONTMATTER-PRD-v2` is 760 KB, two RECORD files are 2–3 MB.
-   `grep -n` then `sed -n`.
-5. **A workflow reporting 15 failures may still have written 5 good files.** Check the output
-   directory first.
+## 8. Traps that will mislead a cold reader
+
+1. **The product looks further along than it is.** Review state does not exist in code; the
+   engine is unwired. The decision set is finished; the product is not.
+2. **`git fetch` fails without `GH_TOKEN_ZEPHYRUS`.** 8 commits are unpushed.
+3. **The decisions-site deploy script is gone** (scratch-only). Rewrite before deploying, and
+   verify with `curl -sI`.
+4. **Never `Read` the big docs.** `grep -n` then `sed -n`.
+5. **`questions.js` is generated.** Edit `decisions/v2/*.json` and rebuild; a hand edit is lost
+   on the next build.
+6. **A workflow reporting failures may still have written good files.** Check the directory.
