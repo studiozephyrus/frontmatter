@@ -8,8 +8,16 @@
 <meta name="theme-color" content="#f4f6f9" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#080a0e" media="(prefers-color-scheme: dark)">
 <title>frontmatter — decisions</title>
-<link rel="stylesheet" href="fonts.css">
 <link rel="stylesheet" href="app.css">
+<!-- fonts.css is 265 KB of base64-embedded faces. In <head> as a plain
+     stylesheet it BLOCKS FIRST PAINT for its whole download — ~203 KB even
+     brotli'd, which is several seconds on a slow link before anything appears.
+     Loaded as media="print" the browser fetches it without blocking, then
+     onload promotes it to all. Every face already declares font-display:swap,
+     so text paints immediately in the fallback and swaps when the real face
+     lands; nothing is ever invisible. -->
+<link rel="stylesheet" href="fonts.css" media="print" onload="this.media='all';this.onload=null">
+<noscript><link rel="stylesheet" href="fonts.css"></noscript>
 <script>
 /* Set the theme before first paint so neither mode flashes the other. */
 try{var t=localStorage.getItem('fm-theme');if(t)document.documentElement.setAttribute('data-theme',t);}catch(e){}
@@ -54,8 +62,12 @@ try{var t=localStorage.getItem('fm-theme');if(t)document.documentElement.setAttr
   <button class="abtn" id="abarNext" aria-label="Next decision"><svg class="ic"><use href="#i-arrow_forward"/></svg></button>
 </div>
 
-<script src="questions.js"></script>
-<script src="diagram.js"></script>
-<script src="app.js"></script>
+<!-- defer, so the shell paints while questions.js (1.3 MB generated corpus,
+     ~424 KB brotli) is still arriving instead of after it. Deferred scripts
+     still execute in order, which app.js depends on: it reads window.QUESTIONS
+     and the diagram vocabulary at startup. -->
+<script src="questions.js" defer></script>
+<script src="diagram.js" defer></script>
+<script src="app.js" defer></script>
 </body>
 </html>

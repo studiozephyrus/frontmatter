@@ -55,11 +55,76 @@
   };
 
   /* ── nav ──────────────────────────────────────────────────────────────── */
+  /* The nav is the hot path: go() runs on every j/k, every next/prev and every
+     answer, and this used to rebuild all ~200 rows with one innerHTML write —
+     destroying and reparsing the whole subtree, including the search input,
+     which is why typing needed a focus+setSelectionRange restore afterwards.
+
+     Split in two:
+       renderNav()  rebuilds the LIST, and only when its shape actually changes
+                    (filter or open area). The search field lives outside it and
+                    is never destroyed.
+       syncNav()    the common case — the selected id moved, or an answer landed.
+                    Touches classes and counters only. No parsing, no layout of
+                    new nodes, no lost caret. */
+  var navShape = null, searchT = null;
+
+  function navShell() {
+    var n = $('#nav');
+    if (n.firstChild && $('#navsearch')) return;
+    n.innerHTML = '<div class="nsearch"><div class="field">' + icon('search') +
+      '<input id="navsearch" type="search" placeholder="Search ' + Q.length + ' decisions" ' +
+      'value="' + esc(view.filter) + '" aria-label="Search questions"></div></div>' +
+      '<div id="navlist"></div>';
+  }
+
+  function syncNav() {
+    var list = $('#navlist');
+    if (!list) return false;
+    var i, el, els = list.querySelectorAll('.navq');
+    for (i = 0; i < els.length; i++) {
+      el = els[i];
+      var id = el.getAttribute('data-q');
+      el.classList.toggle('on', id === view.id);
+      var done = !!state.picks[id];
+      el.classList.toggle('done', done);
+      el.classList.toggle('open', !done);
+    }
+    els = list.querySelectorAll('.navcat');
+    for (i = 0; i < els.length; i++) {
+      el = els[i];
+      var c = el.getAttribute('data-cat');
+      if (c == null) {
+        el.classList.toggle('on',
+          (el.hasAttribute('data-ov') && view.mode === 'overview') ||
+          (el.hasAttribute('data-import') && view.mode === 'import'));
+        continue;
+      }
+      el.classList.toggle('on', view.cat === c);
+      var g = Q.filter(function (x) { return x.cat === c; });
+      var a = answered(g), cr = crit(g);
+      var np = el.querySelector('.np'); if (np) np.textContent = a + '/' + g.length;
+      var nc = el.querySelector('.ncrit');
+      if (nc) { nc.textContent = cr; nc.style.display = cr ? '' : 'none'; }
+      var bar = el.querySelector('.nbar i');
+      if (bar) bar.style.width = (g.length ? (a / g.length) * 100 : 0) + '%';
+    }
+    var ov = list.querySelector('[data-ov] .np');
+    if (ov) ov.textContent = answered(Q) + '/' + Q.length;
+    return true;
+  }
+
+  /* Cheap when nothing structural moved, full rebuild when it did. */
+  function paintNav() {
+    var shape = (view.filter || '') + '\u0000' + (view.mode === 'q' || view.mode === 'area' ? (view.cat || '') : '\u0000' + view.mode);
+    if (shape === navShape && syncNav()) return;
+    navShape = shape;
+    renderNav();
+  }
+
   function renderNav() {
     var f = view.filter, groups = cats(), h = '';
-    h += '<div class="nsearch"><div class="field">' + icon('search') +
-      '<input id="navsearch" type="search" placeholder="Search ' + Q.length + ' decisions" ' +
-      'value="' + esc(f) + '" aria-label="Search questions"></div></div>';
+    navShell();
     h += '<div class="nsec">';
     h += '<button class="navcat' + (view.mode === 'overview' ? ' on' : '') + '" data-ov="1">' +
       '<span class="nl">Overview</span><span class="nmeta"><span class="np">' + answered(Q) + '/' + Q.length + '</span></span></button>';
@@ -84,7 +149,7 @@
           '<span class="qt">' + esc(q.q) + '</span></button>';
       });
     });
-    $('#nav').innerHTML = h;
+    $('#navlist').innerHTML = h;
   }
 
   /* ── evidence ─────────────────────────────────────────────────────────── */
@@ -455,7 +520,7 @@
       // unreachable. Follow the question.
       view = { mode: 'q', id: parsed[0].id, cat: parsed[0].cat, filter: '' };
       location.hash = '#' + parsed[0].id;
-      renderNav(); renderQ(parsed[0]);
+      navShape = null; renderNav(); renderQ(parsed[0]);
     };
   }
 
@@ -528,7 +593,7 @@
           if (state.notes[id] !== nn[id]) { state.notes[id] = nn[id]; notes++; }
         });
 
-        save(); renderNav(); go({ mode: 'overview' });
+        save(); navShape = null; renderNav(); go({ mode: 'overview' });
         alert('Restored ' + added + ' answer' + (added === 1 ? '' : 's') +
           (changed ? ', overwrote ' + changed : '') +
           (notes ? ', ' + notes + ' note' + (notes === 1 ? '' : 's') : '') +
@@ -553,7 +618,7 @@
       renderArea(view.cat); location.hash = '#area-' + encodeURIComponent(view.cat);
     } else if (view.mode === 'import') { renderImport(); location.hash = '#import'; }
     else { renderOverview(); location.hash = '#overview'; }
-    renderNav(); progress();
+    paintNav(); progress();
   }
   function progress() {
     var a = answered(Q), c = crit(Q), n = Q.length || 1;
@@ -583,7 +648,7 @@
     if (t.hasAttribute('data-pick')) {
       var q = Q.filter(function (x) { return x.id === view.id; })[0];
       if (!q) return;
-      state.picks[q.id] = t.getAttribute('data-pick'); save(); renderQ(q); renderNav(); progress(); return;
+      state.picks[q.id] = t.getAttribute('data-pick'); save(); renderQ(q); paintNav(); progress(); return;
     }
     if (t.hasAttribute('data-q')) { go({ mode: 'q', id: t.getAttribute('data-q') }); return; }
     if (t.hasAttribute('data-cat')) {
@@ -595,7 +660,14 @@
   });
 
   document.addEventListener('input', function (e) {
-    if (e.target.id === 'navsearch') { view.filter = e.target.value; renderNav(); var s = $('#navsearch'); if (s) { s.focus(); s.setSelectionRange(s.value.length, s.value.length); } }
+    if (e.target.id === 'navsearch') {
+      /* Debounced. Typing "vakalatnama" used to run eleven full rebuilds of the
+         whole list; it now runs one, and the input is no longer destroyed so the
+         caret restore that used to be needed here is gone. */
+      view.filter = e.target.value;
+      clearTimeout(searchT);
+      searchT = setTimeout(function () { navShape = null; paintNav(); }, 110);
+    }
     if (e.target.id === 'note' && view.id) { state.notes[view.id] = e.target.value; save(); }
   });
 
@@ -613,7 +685,7 @@
     if (view.mode === 'q' && /^[a-d]$/.test(e.key)) {
       var q = Q.filter(function (x) { return x.id === view.id; })[0];
       if (q && (q.options || []).some(function (o) { return o.k === e.key; })) {
-        state.picks[q.id] = e.key; save(); renderQ(q); renderNav(); progress();
+        state.picks[q.id] = e.key; save(); renderQ(q); paintNav(); progress();
       }
     }
   });

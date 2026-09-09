@@ -8,7 +8,13 @@ if (!TOKEN) { console.error('VERCEL_TOKEN missing'); process.exit(2); }
 const TEAM = 'team_CDEATPKml1m8SIZSJ0DKdEjG';
 const NAME = 'frontmatter-decisions';
 const DIR = '/Users/sagnikmitra/Desktop/GitHub/frontmatter/decisions';
-const SHIP = ['index.html', 'app.css', 'app.js', 'diagram.js', 'questions.js', 'fonts.css'];
+/* vercel.json ships too: it carries the Cache-Control rules. Without it every
+   asset came back `max-age=0, must-revalidate`, so all six revalidated on every
+   visit — six round trips before paint, which on a slow link is most of the wait.
+   fonts.css is immutable (base64 faces that never change); the rest is
+   stale-while-revalidate, so a repeat visit paints from cache instantly and picks
+   up new content in the background. */
+const SHIP = ['index.html', 'app.css', 'app.js', 'diagram.js', 'questions.js', 'fonts.css', 'vercel.json'];
 
 const H = { Authorization: `Bearer ${TOKEN}`, 'Content-Type': 'application/json' };
 const api = (p) => `https://api.vercel.com${p}${p.includes('?') ? '&' : '?'}teamId=${TEAM}`;
