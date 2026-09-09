@@ -610,6 +610,46 @@ without warning.
 
 ---
 
+## 7b. The deliverable after the answers — specified, not just named
+
+Four places above say "SRS/PRD/BRD/FRD". That is a label, not a specification, and a cold agent
+will produce four generic templates from it. Here is what was actually asked for, verbatim:
+
+> "once the answer is done, then generate the complete product plan based on the answers, what
+> all features on what all paymenet and scubscrition level, what all features, screens would be
+> there, the user interaction and the complkete SRS and PRD BRD FRD everything regarding the
+> product that we will review modify and the ifnlzioe anbd actually start byuilding the produict"
+
+Read plainly, that is six things, and the last clause is the acceptance test — **it has to be
+good enough to start building from.**
+
+1. **The feature set**, as decided — not as the plan currently wishes. Every F-row in
+   `PRODUCT-BRIEF.md` §2 either survives an answer, changes shape, or is cut.
+2. **Features mapped to tier** — which are free, which are Pro, which are Max. §8 and §11 of the
+   plan carry a contradiction the plan names itself: retention sits in the Max column in one
+   exhibit and under Pro in another, and **no feature row builds retention at all**. Resolve it
+   before writing a tier into anything.
+3. **Every screen**, enumerated. `PRODUCT-BRIEF.md` §10 has the current set; the answers will
+   add and remove some. The decision cards' `screens` field on each option says exactly what
+   that choice creates or kills — that field exists for this step.
+4. **The user interaction** — the flows, not just the screens. `Flow & interaction` (11 cards)
+   and `Design, UI & attention` (17 cards) are the areas whose answers determine this.
+5. **The four documents**: BRD (why we are building it and for whom), PRD (what it does), FRD
+   (how each function behaves), SRS (the buildable specification). Do not merge them into one;
+   the founder named four because they serve four different readers.
+6. **Reviewable and modifiable** — so structure them so a section can be changed without
+   rewriting the document, and cite the decision id behind every non-obvious choice. A claim in
+   the SRS that traces to `P2` is auditable; the same claim with no citation is not.
+
+**Generate them from `decisions/answers-<date>.json`, not from a conversation.** Each option in
+each card already carries `what`, `gains`, `costs`, `system`, `screens` and `money` — the
+`system` and `screens` fields on the *chosen* option are the raw material for the SRS and the
+screen list respectively, and they were written for that purpose.
+
+**Do not start any of this before the answers exist.** Every one of these six depends on them,
+and a document written ahead of the decisions will be confidently wrong in a way that is
+expensive to unpick.
+
 ## 8. Traps that will mislead a cold reader
 
 1. **The product looks further along than it is.** Review state does not exist in code; the
