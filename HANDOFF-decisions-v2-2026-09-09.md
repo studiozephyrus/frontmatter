@@ -610,6 +610,68 @@ without warning.
 
 ---
 
+## 6c. The UI, the tooling, and the research apparatus — all of it, and where it lives
+
+The founder will keep changing the decision-site interface, so this is not a footnote.
+
+### The interface
+
+**`decisions/README.md` is the reference — read it before touching the UI.** It covers the
+design tokens and the three-block light/dark rule, the four breakpoints and what drops at each,
+the view layer and its two traps, the ten diagram primitives with usage counts, and the four
+commands to run before deploying.
+
+What was built this session, in short:
+
+- **A rebuilt card.** Diagram first, a one-line `stakes`, bulleted context replacing three
+  paragraphs, and per-option `gains` / `costs` / `system` / `screens` / `money`. The
+  recommendation carries `flip` — the finding that would overturn it — and `linked` chips.
+- **`diagram.js`, ten inline-SVG primitives.** Geometry computed from the text each box holds.
+  Colours are CSS variables so a diagram follows the page into dark mode. 201 of 201 cards
+  carry one.
+- **Answer restore**, merging rather than replacing.
+- **An area index** — clicking an area opens every question in it, grouped open and answered.
+- **A phone action bar**, a nav drawer, and a position line stated as text.
+
+Four defects were found and fixed here, and all four are the same lesson — **drive the
+deployment, not the local file**: the phone action bar (dead because a base rule sat below its
+own media query), area deep links falling through, an imported question unreachable from the
+nav, and every asset under `/decisions/` 307-ing to `/login`.
+
+`docs/DECISIONS-UI-REFERENCE-PASS-2026-09-09.md` records the twenty shipped question and review
+interfaces the layout decisions came from, each cited.
+
+### The tooling, all committed
+
+| Path | What it does |
+|---|---|
+| `decisions/tools/validate.py` | Checks cards against `v2/CONTRACT.md`. Must be 0 errors before a build |
+| `decisions/tools/build-v2.py` | Assembles the 15 area files into `questions.js`. **`--links` is required** |
+| `decisions/tools/deploy.mjs` | Static deploy; polls the deployment's own state, clears `ssoProtection` |
+| `decisions/tools/screenshot.mjs` | Shoots the live pages, waiting on the PNG trailer not the process |
+| `decisions/tools/gen-workflow.js` | The area-rewrite workflow — the one you will re-run |
+| `scripts/css-cascade-check.py` | Finds media-query rules a later base rule silently overrides |
+| `decisions/v2/_links.json` | The cross-area analysis. Required by every build |
+
+### The research apparatus
+
+**`docs/workflows/` — 37 workflow scripts, rescued this session from session directories where
+they were the only copy and would have aged out.** Every research round from r3 to r26, the PRD
+builds, the engine research, the war-game, the gap-closing passes, and this session's two.
+`docs/workflows/README.md` indexes them and records the two lessons they cost.
+
+The findings themselves are in `docs/research/2026-09-09/` — `research-raw.txt` (278 KB, all ten
+lenses), `BRIEFING.md` (the digest the rewrite agents read) and `VERIFIED-2026-09-09.md` (what
+was checked by hand; **overrides the briefing**).
+
+### What is still session-only, and will be lost
+
+Nothing load-bearing. The scratch directory holds intermediate artefacts — per-area v1 splits,
+the exemplar card, a diagram test harness — all of which are reproducible from what is
+committed. The transcripts under `~/.claude/projects/.../subagents/` hold each agent's full
+return value and **will age out**; the parts that mattered were extracted into
+`docs/research/2026-09-09/` and `docs/workflows/`.
+
 ## 7b. The deliverable after the answers — specified, not just named
 
 Four places above say "SRS/PRD/BRD/FRD". That is a label, not a specification, and a cold agent
