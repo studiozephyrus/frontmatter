@@ -6,8 +6,8 @@
       "cat": "Research & evidence",
       "sub": "Programme",
       "weight": "critical",
-      "q": "Do we stop the research rounds now and spend the next two weeks on people, or run a third round on the eleven open items first?",
-      "lede": "Every round has changed the headline and none has produced a user; a third costs the two weeks the human tests need.",
+      "q": "Stop the research rounds and run the two weeks of human tests, or run a third round on the eleven open items?",
+      "lede": "Every round has changed the headline. None has produced a user. A third costs the two weeks the tests need.",
       "visual": {
         "kind": "compare",
         "labelWidth": 164,
@@ -61,21 +61,16 @@
         "note": "Round 2 ran 23 agents over 11 gaps and sent the headline itself back to hypothesis.",
         "caption": "What another desk round buys, against what the tests buy."
       },
-      "stakes": "Another round moves the pitch again and the week-3 go/no-go is still decided by nobody who has used the thing.",
+      "stakes": "The week-3 go/no-go stays decided by nobody who has used the thing.",
       "state": [
-        "GAPS §G orders twelve items and says seven need no founder (docs/GAPS-2026-09-08.md:112). Round 2 left eleven open (:146).",
-        "The week-0 row schedules token rotation, the buyer, the web byte path, the exit measure and the founder test notes, and none of the eleven (docs/PRODUCT-BRIEF.md:351).",
-        "`src/` was last touched on 2026-08-10. Of the sixteen commits dated after 2026-08-31, zero touch it."
-      ],
-      "path": [
-        "280 findings before 2026-09-08 across two adversarial rounds; round 2 added 152, of which 75 confirmed, 60 revised, 16 refuted (docs/GAPS-2026-09-08.md:13, :116).",
-        "The direction moved four times in two days on that evidence, and round 2 sent review state itself back to hypothesis (docs/PRODUCT-BRIEF.md:22).",
-        "Engineering days were assigned by inspection with no velocity data, which round 2 also corrected (docs/GAPS-2026-09-08.md:22, :130)."
+        "Round 2 left eleven items open (docs/GAPS-2026-09-08.md:146); seven need no founder (:112).",
+        "Week 0 schedules five other items and none of the eleven (docs/PRODUCT-BRIEF.md:351).",
+        "`src/` untouched since 2026-08-10. Zero of sixteen commits after 2026-08-31 touch it."
       ],
       "tension": [
-        "Two of the eleven gate the build rather than the pitch: whether an anchor survives a foreign write (R2), and whether the forks honour the model APIs (R14).",
-        "The other nine change nothing about whether ten developers want this. Three are founder asks and proceed in parallel either way.",
-        "Stopping the rounds is not stopping the watch. Three of four claims moved in nine weeks: Antigravity 2026-08-24, Notion 2026-08-28, Claude Code v2.1.260 on 2026-09-03. The plan already says re-check monthly (docs/PRODUCT-BRIEF.md:560)."
+        "Two of eleven gate the build: anchor survival (R2), fork model APIs (R14).",
+        "The other nine change nothing about whether ten developers want this.",
+        "Stopping the rounds is not stopping the watch. Three claims moved in nine weeks."
       ],
       "evidence": [
         {
@@ -144,14 +139,13 @@
         {
           "k": "a",
           "label": "Stop the rounds. Run the weeks 1-2 tests next",
-          "what": "The eleven open items stay open through the week-3 go/no-go and no further desk round runs.",
           "gains": [
-            "First human contact in week 1 rather than week 5",
+            "First human contact in week 1, not week 5",
             "Ends a programme that has never stopped early"
           ],
           "costs": [
-            "A fatal anchor result lands after the tests, not before",
-            "The competitive watch stops with the rounds unless named separately"
+            "A fatal anchor result lands after the tests",
+            "The watch stops too, unless named separately"
           ],
           "system": "No change.",
           "screens": "None.",
@@ -160,13 +154,12 @@
         {
           "k": "b",
           "label": "One bounded round 3 on the founder-independent items, capped at two days",
-          "what": "Two more days of desk research on the seven items that need no founder, then the tests regardless.",
           "gains": [
             "Closes the cheap items with a stated end date",
             "Tests still start on day three"
           ],
           "costs": [
-            "The cap has to be enforced against a programme that has never stopped early",
+            "The cap must be enforced against a programme that never stops",
             "Two days of the two weeks"
           ],
           "system": "No change.",
@@ -176,13 +169,12 @@
         {
           "k": "c",
           "label": "Run round 3 unbounded, as rounds 1 and 2 were",
-          "what": "A third adversarial round of the same shape, ending when it ends.",
           "gains": [
-            "The rounds have caught real errors every time, including today's",
+            "Every round has caught real errors",
             "Nothing is committed on an unattacked claim"
           ],
           "costs": [
-            "On the observed rate, another 150-plus findings and another headline change",
+            "On the observed rate: 150-plus findings, another headline change",
             "First human contact still unscheduled"
           ],
           "system": "No change.",
@@ -192,14 +184,14 @@
         {
           "k": "d",
           "label": "Split: two code experiments in week 0, the other nine accepted as risk",
-          "what": "R2 and R14 run in week 0; the remaining nine are signed off as open risk by a named person.",
+          "what": "R2 and R14 run in week 0; nine open risks signed off by a named person.",
           "gains": [
             "Cheapest. Both experiments are one person, one day",
-            "The tests and the gating evidence arrive together"
+            "Tests and gating evidence arrive together"
           ],
           "costs": [
-            "Requires somebody to sign nine open risks, which nobody has done",
-            "The signature is meaningless if it is not written down"
+            "Somebody has to sign nine open risks",
+            "Worthless unless the signature is written down"
           ],
           "system": "No change.",
           "screens": "None.",
@@ -208,11 +200,10 @@
       ],
       "rec": "d",
       "recCase": [
-        "Two of the eleven gate the build: the anchor test (R2) and the fork API test (R14). Both are one person for a day and both change a number the meeting is about to use.",
-        "The other nine change nothing about whether ten developers want this, and three of them are founder asks that run in parallel anyway.",
-        "The watch is separate from the rounds. Keep the monthly competitive re-check the plan already names (docs/PRODUCT-BRIEF.md:560); it is what caught Notion, Antigravity and Claude Code inside nine weeks."
+        "R2 and R14 are one person for one day each, and both move a number the meeting uses.",
+        "Keep the monthly competitive re-check (docs/PRODUCT-BRIEF.md:560). It caught Notion, Antigravity and Claude Code."
       ],
-      "flip": "If the meeting picks the VS Code extension, R14 stops being optional and the split becomes three gating experiments and eight accepted risks.",
+      "flip": "If the meeting picks the VS Code extension, R14 stops being optional and the split becomes three gating experiments.",
       "linked": [
         "R2",
         "R3",
@@ -244,7 +235,7 @@
       "sub": "Open items",
       "weight": "critical",
       "q": "Does the out-of-band write test gate the review-state build, or do we find out while building it?",
-      "lede": "The gap register calls this the only scenario the product exists for, and the plan schedules it a week after the go/no-go.",
+      "lede": "The gap register calls this the only scenario the product exists for. The plan schedules it after the go/no-go.",
       "visual": {
         "kind": "timeline",
         "items": [
@@ -276,20 +267,16 @@
         "note": "The pass condition is already written down; only its position is in question.",
         "caption": "The test of the product's premise sits after the decision it gates."
       },
-      "stakes": "Eighteen engineering days and the headline both rest on an anchor nobody has tested against another process's write.",
+      "stakes": "Eighteen engineering days and the headline rest on an anchor never tested against another process's write.",
       "state": [
-        "F2 anchors spans by byte range plus content hash, relocated by the splice locator, budgeted at 18 days (docs/PRODUCT-BRIEF.md:56).",
-        "Grep for `review.jsonl` or `sidecar` across `src/` returns zero hits in 226 files, measured 2026-09-09.",
-        "The weeks 3-4 row already names the experiment and its pass condition: the tint works on files frontmatter did not write (docs/PRODUCT-BRIEF.md:354)."
-      ],
-      "path": [
-        "Round 2 measured the extension's own write path, 94/94 and 156/156 bytes on VS Code 1.135.0, and never tested a foreign write (docs/GAPS-2026-09-08.md:125).",
-        "The still-open list calls this the only scenario the product exists for (docs/GAPS-2026-09-08.md:146)."
+        "F2 anchors spans by byte range plus content hash, budgeted 18 days (docs/PRODUCT-BRIEF.md:56).",
+        "Grep for `review.jsonl` or `sidecar` across `src/` returns zero hits in 226 files.",
+        "Weeks 3-4 already name the experiment and its pass condition (docs/PRODUCT-BRIEF.md:354)."
       ],
       "tension": [
-        "The test and the fifteen-second demo are the same event (docs/PRODUCT-BRIEF.md:45), so one day buys both.",
-        "Week 3 commits the eighteen days (docs/PRODUCT-BRIEF.md:353); the test runs in weeks 3-4, after it.",
-        "VS Code merged a per-file review/unreview operation on 2026-07-03, milestone 1.128.0, gated in an experimental Agents window. Per-file inside one editor is now built somewhere; per-span across tools is not."
+        "The test and the fifteen-second demo are the same event (docs/PRODUCT-BRIEF.md:45).",
+        "Week 3 commits the eighteen days (:353). The test runs after it.",
+        "VS Code merged per-file review/unreview on 2026-07-03, experimental. Per-span across tools is not built."
       ],
       "evidence": [
         {
@@ -333,30 +320,29 @@
         {
           "k": "a",
           "label": "Gate it: run the test in week 0 on a scratch repo, before the go/no-go",
-          "what": "An agent rewrites a file out of band, and we check whether the stored anchors still land on the right bytes.",
+          "what": "An agent rewrites a file out of band; we check the stored anchors still land.",
           "gains": [
-            "One day, and it invalidates the 18-day budget before it is spent",
+            "One day, and it invalidates the 18-day budget first",
             "The go/no-go is taken with the premise tested"
           ],
           "costs": [
-            "A week-0 day that the plan currently spends on decisions",
+            "A week-0 day the plan spends on decisions",
             "Produces a test artefact, not something to show"
           ],
-          "system": "A throwaway harness over the splice locator; no product code.",
+          "system": "A throwaway harness over the splice locator.",
           "screens": "None.",
           "money": "None."
         },
         {
           "k": "b",
           "label": "Keep it at weeks 3-4 as scheduled",
-          "what": "The experiment stays where the plan puts it, after the go decision and inside the build.",
           "gains": [
             "No change to the week-0 row",
-            "The prototype and the test are one piece of work"
+            "Prototype and test are one piece of work"
           ],
           "costs": [
-            "A failure lands after the two-week tests have been read as a yes",
-            "Eighteen days are committed before the premise is tested"
+            "A failure lands after the tests read as a yes",
+            "Eighteen days committed before the premise is tested"
           ],
           "system": "No change.",
           "screens": "None.",
@@ -365,29 +351,27 @@
         {
           "k": "c",
           "label": "Move it to week 0 and make it the demo",
-          "what": "An agent writes out of band, a person opens the file, the tint is right, and that recording is the demo.",
           "gains": [
-            "Same day's work as option a, and it produces the demo the plan describes",
-            "The pass condition and the pitch become the same sentence"
+            "Same day as option a, and it produces the demo",
+            "Pass condition and pitch become one sentence"
           ],
           "costs": [
-            "A demo built before the tests may fix the framing too early",
-            "A failure is then visible as a failed demo, not a quiet result"
+            "A demo before the tests may fix the framing early",
+            "A failure becomes a visible failed demo"
           ],
-          "system": "Same harness as option a, plus a recorded run on one spec-kit repo.",
-          "screens": "The fifteen-second demo, from S2 as it stands.",
+          "system": "Option a's harness plus a recorded run on one spec-kit repo.",
+          "screens": "The fifteen-second demo, S2 as it stands.",
           "money": "None."
         },
         {
           "k": "d",
           "label": "Skip it; anchoring is ordinary engineering detail",
-          "what": "Treat span relocation as solved practice and discover the behaviour during the build.",
           "gains": [
             "Cheapest now",
-            "The engine's locator is already written and tested on 8,513 files"
+            "The locator is written and tested on 8,513 files"
           ],
           "costs": [
-            "The one scenario the product exists for goes into the pilot untested",
+            "The one scenario the product exists for goes untested",
             "A stranger finds it, on their own repo"
           ],
           "system": "No change.",
@@ -397,11 +381,10 @@
       ],
       "rec": "c",
       "recCase": [
-        "The test and the demo are the same event, so the day buys two things, and the plan has already specified the experiment down to its pass condition.",
-        "If an anchor does not survive an agent rewriting the file, the 18-day budget and the headline are both wrong, and that is worth knowing before week 3.",
-        "Moving it is a scheduling change, not new work: the row at :354 already names one spec-kit and one superpowers repo, which R7 also wants pinned."
+        "The test and the demo are one day's work, and the plan already fixes the pass condition.",
+        "If an anchor dies under an agent rewrite, the 18-day budget and the headline are both wrong."
       ],
-      "flip": "If decision 1 (docs/PRODUCT-BRIEF.md:363) demotes review state to a feature, this drops to ordinary engineering sequencing.",
+      "flip": "If decision 1 demotes review state to a feature, this becomes ordinary engineering sequencing (docs/PRODUCT-BRIEF.md:363).",
       "linked": [
         "R1",
         "R7"
@@ -424,7 +407,7 @@
       "sub": "Recruiting",
       "weight": "critical",
       "q": "Where do the forty people in weeks 1-2 and the ten strangers at week 10 come from?",
-      "lede": "The week-3 go/no-go is a function of forty conversations with no named source, and the word recruit is not in the plan.",
+      "lede": "The week-3 go/no-go is forty conversations with no named source. The word recruit is not in the plan.",
       "visual": {
         "kind": "compare",
         "labelWidth": 236,
@@ -487,21 +470,16 @@
         "note": "The kill signal is under 4 of 10 unprompted, computed over a sample nobody has sourced.",
         "caption": "Three sources for the forty conversations the go/no-go depends on."
       },
-      "stakes": "Under 4 of 10 kills the product (docs/PRODUCT-BRIEF.md:321), and the sample that produces that number has not been sourced.",
+      "stakes": "Under 4 of 10 kills the product (docs/PRODUCT-BRIEF.md:321), and that sample is unsourced.",
       "state": [
-        "Weeks 1-2 schedule ten developers, five people who bill for documents, twenty team conversations and five screenshot tests (docs/PRODUCT-BRIEF.md:352).",
-        "Ten strangers arrive at weeks 10-12 (docs/PRODUCT-BRIEF.md:357). No follower, subscriber or list count is recorded anywhere (docs/CRITIQUE.md:1195).",
-        "The register asks the founders whether sgnk-md has a user list and whether ten may be contacted (docs/GAPS-2026-09-08.md:36). Nobody has asked."
-      ],
-      "path": [
-        "\"Users as evidence. The ten pilot strangers are the first interviews\" was written as a measurement principle, not a recruiting plan (docs/PRODUCT-BRIEF.md:313).",
-        "sgnk-md shares 181 of 226 source files with frontmatter and is listed as parked and merged (docs/PRODUCT-BRIEF.md:223, :479).",
-        "The portfolio calls sgnk-md production, so either its users are reachable and unasked, or the word production is wrong."
+        "Weeks 1-2 schedule ten developers, five document billers, twenty team conversations, five screenshot tests (docs/PRODUCT-BRIEF.md:352).",
+        "Ten strangers at weeks 10-12 (:357). No follower or list count is recorded anywhere.",
+        "The register asks whether sgnk-md has a user list (docs/GAPS-2026-09-08.md:36). Nobody has asked."
       ],
       "tension": [
-        "Show HN posts matching \"markdown editor\" run n=187 at a median of 2 points over twelve months (docs/CRITIQUE.md:1195). There is no audience to post to.",
-        "A warm client is fast and biased, and the record already flags politeness bias in the exit criterion (docs/CRITIQUE.md:138).",
-        "One cold population has self-selected for exactly this problem: petergyang/human-review went from nothing to 1,241 stars in six weeks."
+        "Show HN \"markdown editor\": n=187, median 2 points (docs/CRITIQUE.md:1195). No audience to post to.",
+        "A warm client is fast and biased; the record already flags politeness bias (docs/CRITIQUE.md:138).",
+        "One cold population self-selected: petergyang/human-review, nothing to 1,241 stars in six weeks."
       ],
       "evidence": [
         {
@@ -581,14 +559,13 @@
         {
           "k": "a",
           "label": "The founders' client list, plus sgnk-md's users if that list exists",
-          "what": "Ask the founders this week for both, and draw the weeks 1-2 sample from whoever answers.",
           "gains": [
-            "Starts on Monday at no cost; the record already names the client list as fastest",
-            "One message either finds real users or closes the sgnk-md item"
+            "Starts Monday at no cost",
+            "One message finds real users or closes the sgnk-md item"
           ],
           "costs": [
-            "Warm contacts, so a yes is weaker evidence and must be written up that way",
-            "Biased toward the liable-services buyer, which is decision 2's other option"
+            "Warm contacts, so a yes is weaker evidence",
+            "Biased toward the liable-services buyer"
           ],
           "system": "No change.",
           "screens": "None.",
@@ -597,13 +574,12 @@
         {
           "k": "b",
           "label": "Cold outreach: toolchain threads, the Obsidian forum, human-review issues",
-          "what": "Approach people who already run agents into their own repositories, one thread at a time.",
           "gains": [
             "Unbiased for the developer buyer",
-            "human-review's 1,241 stars in six weeks is a live, self-selected population"
+            "human-review is a live, self-selected population"
           ],
           "costs": [
-            "Slow, and every approach is an outbound act needing approval",
+            "Slow; every approach needs outbound approval",
             "Week 1 slips by however long recruiting takes"
           ],
           "system": "No change.",
@@ -613,14 +589,13 @@
         {
           "k": "c",
           "label": "Pay a recruiting panel for ten developers",
-          "what": "Buy the sample from a panel provider on a screener.",
           "gains": [
             "Predictable timing",
-            "No outbound approval needed per person"
+            "No per-person outbound approval"
           ],
           "costs": [
-            "Costs cash the plan has not budgeted",
-            "A panel developer is not someone with an agent writing into their own repo"
+            "Unbudgeted cash",
+            "A panel developer has no agent writing into their repo"
           ],
           "system": "No change.",
           "screens": "None.",
@@ -629,14 +604,13 @@
         {
           "k": "d",
           "label": "Name no source; start week 1 and take whoever answers",
-          "what": "Run the tests against whatever sample assembles itself.",
           "gains": [
             "No decision to take now",
             "Fastest start"
           ],
           "costs": [
-            "Selects for people who answer strangers, the politeness bias CRITIQUE:138 already flags",
-            "The kill number then describes the sample, not the market"
+            "Selects for people who answer strangers (CRITIQUE:138)",
+            "The kill number describes the sample, not the market"
           ],
           "system": "No change.",
           "screens": "None.",
@@ -645,12 +619,10 @@
       ],
       "rec": "a",
       "recCase": [
-        "The record already names the client list as the fastest source, and the plan already schedules five people who bill for documents. Option a starts on Monday at no cost.",
-        "Ask about sgnk-md in the same message. It is the only route in the register to a person who has used this codebase for real work, and it has survived two rounds unasked.",
-        "Write the bias into the result. These are warm contacts, so their yes counts for less, and the write-up has to say so before the number is quoted.",
-        "Reconcile the two file counts while asking: 181 of 226 at :223 against 202 of 228 at :479 cannot both be right, which is R6's class of defect."
+        "The client list is the record's fastest source. Warm, so write the bias into the result.",
+        "Ask about sgnk-md in the same message. It is the only route to someone who used this codebase."
       ],
-      "flip": "If the founders say sgnk-md's users are note-takers with no agent in the workflow, their answers become background and option b becomes the honest source.",
+      "flip": "If sgnk-md's users are note-takers with no agent in the workflow, option b becomes the honest source.",
       "linked": [
         "R16",
         "R17"
@@ -678,7 +650,7 @@
       "sub": "Method",
       "weight": "high",
       "q": "Does the plan restore the evidence tags, or keep the three-word labels?",
-      "lede": "The document people actually read is the one with no way to tell a fetched number from a recalled one.",
+      "lede": "The document people actually read has no way to tell a fetched number from a recalled one.",
       "visual": {
         "kind": "ba",
         "before": {
@@ -727,20 +699,16 @@
         "note": "Silence has to be defined once at the top, or a bare number means nothing.",
         "caption": "Tag where the errors are, not everywhere, so the marks stay visible."
       },
-      "stakes": "An untagged number in the plan gets quoted as fact, which is how 62,976 was published the first time.",
+      "stakes": "An untagged number gets quoted as fact. That is how 62,976 was published.",
       "state": [
         "The plan labels features public evidence, founder user test or untested (docs/PRODUCT-BRIEF.md:4, :186).",
-        "It carries zero instances of `[fetched]`, `[measured]`, `[derived]`, `[inference]` or `[SS]`, counted with grep -o on 2026-09-09.",
-        "The record carries 2,741 of them, and `docs/PRODUCT.md:1299` makes them mandatory on every claim."
-      ],
-      "path": [
-        "The tag that mattered was `[SS]`, search-summary, which may never be published as fact (docs/PRODUCT.md:1299).",
-        "v15 was written fresh as a founder-facing document and the tags did not come with it."
+        "It carries zero `[fetched]`, `[measured]`, `[derived]`, `[inference]` or `[SS]` tags, grepped 2026-09-09.",
+        "The record carries 2,741, and docs/PRODUCT.md:1299 makes them mandatory on every claim."
       ],
       "tension": [
-        "The error pattern is not random: where the source was a number quoted in prose, the record was wrong about half the time (docs/VERIFICATION.md:165).",
+        "Numbers quoted from prose were wrong about half the time (docs/VERIFICATION.md:165).",
         "Thirteen of twenty-one headline claims needed an edit before publication (docs/VERIFICATION.md:26).",
-        "Today's briefing ran on two marks, opened and inferred. The figure carrying neither, the 18% unreviewed claim, is the one nobody can source."
+        "Today's briefing ran on two marks. The unmarked 18% figure is the unsourceable one."
       ],
       "evidence": [
         {
@@ -830,42 +798,39 @@
         {
           "k": "a",
           "label": "Restore all five tags in the plan",
-          "what": "Every claim in the founder document carries its source class, as the record does.",
           "gains": [
-            "Maximum discipline; no number is ever bare",
-            "One rule, no judgement call about which class is weak"
+            "No number is ever bare",
+            "One rule, no judgement about which class is weak"
           ],
           "costs": [
-            "A fifty-page document dense enough that readers stop seeing the tags",
+            "A fifty-page document dense enough that readers stop seeing tags",
             "Retro-fitting 27 exhibits is a rewrite"
           ],
-          "system": "No change; a writing rule.",
+          "system": "A writing rule.",
           "screens": "None.",
           "money": "None."
         },
         {
           "k": "b",
           "label": "Restore [SS] and [inference] only — mark the weak, leave the strong bare",
-          "what": "Two marks in the plan, and a legend line saying an unmarked number was opened or measured.",
           "gains": [
-            "Puts the mark where the verification pass found the errors",
-            "Costs one legend line and stays readable"
+            "Marks where the verification pass found the errors",
+            "One legend line, and it stays readable"
           ],
           "costs": [
-            "Silence carries meaning, so the legend must be stated or it means nothing",
+            "Silence carries meaning, so the legend must be stated",
             "A missed mark reads as a strong claim"
           ],
-          "system": "No change; a writing rule plus one line of front matter.",
+          "system": "A writing rule plus one legend line of front matter.",
           "screens": "None.",
           "money": "None."
         },
         {
           "k": "c",
           "label": "Keep the labels and add a source column to every exhibit",
-          "what": "Each exhibit grows a column naming where each row came from and when it was read.",
           "gains": [
             "More readable than inline tags",
-            "Puts the source beside the number, where it gets quoted from"
+            "Puts the source beside the number"
           ],
           "costs": [
             "A source column on twenty-seven exhibits is a rewrite",
@@ -878,14 +843,13 @@
         {
           "k": "d",
           "label": "Keep as is; the plan is a summary and the record carries the tags",
-          "what": "Nothing changes; anyone checking a number opens the record.",
           "gains": [
             "Free",
             "The record is genuinely complete"
           ],
           "costs": [
             "Anyone quoting the plan quotes untagged numbers",
-            "Nobody opens a 325-page record to check a number they believe"
+            "Nobody opens a 325-page record to check"
           ],
           "system": "No change.",
           "screens": "None.",
@@ -895,10 +859,9 @@
       "rec": "b",
       "recCase": [
         "Tagging every number makes the plan unreadable, and readers stop seeing marks that are everywhere.",
-        "Tagging the two weak classes puts the mark where the error rate actually is: prose-quoted numbers and reasoning (docs/VERIFICATION.md:165).",
-        "It costs one legend line, and today's briefing is the working demonstration — two marks, and the unmarked figure is the one that fell over."
+        "Two marks put the mark where the error rate is: prose-quoted numbers and reasoning (docs/VERIFICATION.md:165)."
       ],
-      "flip": "If the plan starts going outside the company, restore all five, because an external reader has no record to fall back on.",
+      "flip": "If the plan starts going outside the company, restore all five. An external reader has no record to fall back on.",
       "linked": [
         "R6",
         "R18"
@@ -919,7 +882,7 @@
       "sub": "Method",
       "weight": "high",
       "q": "Do we gate the plan on a checker built from a withdrawals ledger, or keep correcting it by hand?",
-      "lede": "Round 2 applied twenty-two changes and left five decisions stated both ways inside the same file.",
+      "lede": "Round 2 applied twenty-two changes and left five decisions stated both ways inside one file.",
       "visual": {
         "kind": "flow",
         "perRow": 3,
@@ -959,19 +922,15 @@
         "note": "The ledger is the input list the checker consumes; neither works alone.",
         "caption": "How a withdrawn number comes back, and where to stop it."
       },
-      "stakes": "The retention section still sells a channel that was cut, in a document going to a founder meeting.",
+      "stakes": "The retention section still sells a channel that was cut, in a founder-meeting document.",
       "state": [
-        "Exhibit 4 is a ten-row table of retired terms (docs/PRODUCT-BRIEF.md:165). It carries two of the six withdrawn numbers, at :176 and :178.",
-        "`docs/PRODUCT-BRIEF.md` is named by no npm script and checked by nothing; grep for it across `docs/build/` returns zero files.",
-        "The Obsidian plugin is struck at :304 and still live at :204, :352, :428 and :477. The marker count is about 1,400 at :58 and about 1,500 at :178."
-      ],
-      "path": [
-        "v15 applied 22 plan changes from round 2 (docs/GAPS-2026-09-08.md:118), each at the place the reviewer happened to be looking.",
-        "Exhibit 4 was built for retired vocabulary, so numbers withdrawn mid-rewrite went into prose instead (docs/PRODUCT-BRIEF.md:229, :292, :310)."
+        "Exhibit 4 lists ten retired terms (docs/PRODUCT-BRIEF.md:165) and carries two of six withdrawn numbers.",
+        "`docs/PRODUCT-BRIEF.md` is named by no npm script and checked by nothing.",
+        "The Obsidian plugin is struck at :304 and still live at :204, :352, :428, :477."
       ],
       "tension": [
-        "Commit `94edca6` is titled in part \"62,976 public spec files carry an unanswered marker\", and every plan PDF from v10 to v14 is still on disk under `docs/`.",
-        "MAP.md routes any number to the record's §57 and notes twenty went stale (docs/MAP.md:108). Nobody opens a 325-page record to check a number they believe.",
+        "Every plan PDF from v10 to v14 is still on disk under `docs/`, quotable.",
+        "The marker count is about 1,400 at :58 and about 1,500 at :178.",
         "A hand re-read after every round is what produced these five contradictions."
       ],
       "evidence": [
@@ -1064,13 +1023,12 @@
         {
           "k": "a",
           "label": "A withdrawals ledger, and a grep gate that fails the PDF build",
-          "what": "Exhibit 4 grows the four missing rows and becomes the list a checker greps the plan against before it renders.",
           "gains": [
-            "Half a day; it fails at the moment the plan leaves the building",
-            "Six withdrawals in three days is the best evidence the process is honest"
+            "Half a day; fires as the plan leaves the building",
+            "Six withdrawals in three days is an honest process"
           ],
           "costs": [
-            "The list has to be maintained after every round",
+            "The list needs maintaining after every round",
             "A gate that fires falsely trains you to skip it"
           ],
           "system": "A script beside `build-plan-pdf.mjs`, and one npm run.",
@@ -1080,13 +1038,12 @@
         {
           "k": "b",
           "label": "Extend the ledger; keep correcting by hand",
-          "what": "The four missing withdrawals are added to exhibit 4 and the plan is re-read after each round.",
           "gains": [
-            "Free today, and minutes of work",
-            "The withdrawal count becomes visible, which is uncomfortable and correct"
+            "Free today, minutes of work",
+            "The withdrawal count becomes visible"
           ],
           "costs": [
-            "A hand re-read is what produced the five live contradictions",
+            "A hand re-read produced the five live contradictions",
             "Nothing catches the sixth"
           ],
           "system": "No change.",
@@ -1096,14 +1053,13 @@
         {
           "k": "c",
           "label": "Inline [withdrawn] markers wherever an old number might still be quoted",
-          "what": "The mark travels with the number rather than living in a table.",
           "gains": [
             "Catches the number at the point of use",
             "No build step to maintain"
           ],
           "costs": [
-            "Scatters the record and leaves no index to check against",
-            "Cannot mark a number inside a PDF already shipped"
+            "Scatters the record, leaves no index to check against",
+            "Cannot mark a number inside a shipped PDF"
           ],
           "system": "No change.",
           "screens": "None.",
@@ -1112,13 +1068,12 @@
         {
           "k": "d",
           "label": "Generate the plan from the record, as the Tier-1 docs are generated",
-          "what": "One correction in the record propagates into every document that quotes it.",
           "gains": [
-            "Correct in principle; the repo already has the build tree",
-            "Removes the whole class rather than catching instances"
+            "One correction propagates into every document",
+            "Removes the class, not instances"
           ],
           "costs": [
-            "A rewrite of the build tree for a document that changes shape every two days",
+            "A build-tree rewrite for a document that changes shape weekly",
             "The plan's structure is not the record's"
           ],
           "system": "The plan joins the generated docs pipeline.",
@@ -1128,9 +1083,8 @@
       ],
       "rec": "a",
       "recCase": [
-        "The repo already has the precedent: `npm run record` exists to prove the assembled record carries every tree file line for line. A retired-terms check is the same idea one size down.",
-        "The ledger is the checker's input, so building either alone wastes the other. Four rows and half a day covers both.",
-        "Fix the 1,400-against-1,500 disagreement in the same pass, and delete or re-file the superseded plan PDFs so the plan is the only quotable copy."
+        "`npm run record` already proves the assembled record line for line. A retired-terms check is that, one size down.",
+        "The ledger is the checker's input, so four rows and half a day covers both."
       ],
       "flip": "If the plan is rewritten from scratch once more, do option d and stop hand-maintaining it.",
       "linked": [
@@ -1165,7 +1119,7 @@
       "sub": "Corpus",
       "weight": "critical",
       "q": "Do we pin a second corpus of agent-written repositories before the engine fixes, or keep the seven Obsidian vaults?",
-      "lede": "Every engine number in the plan is measured on note-takers, and the pitch is now documents an agent wrote into a repository.",
+      "lede": "Every engine number is measured on note-takers. The pitch is documents an agent wrote into a repository.",
       "visual": {
         "kind": "compare",
         "labelWidth": 164,
@@ -1226,20 +1180,16 @@
         "note": "The weeks 3-4 row already names one spec-kit and one superpowers repo.",
         "caption": "The corpus the engine is measured on, against the one in the pitch."
       },
-      "stakes": "NF-1 is sized at four days against a refusal rate that describes one wiki, not the repositories in the pitch.",
+      "stakes": "NF-1 is sized at four days against a refusal rate that describes one wiki.",
       "state": [
         "`test/corpus/foreign/SOURCES.json` pins seven Obsidian vaults, 8,513 files, 19,047,891 bytes, pinned 2026-08-29.",
-        "The plan states the caveat and does not act on it: the refusal rate is a property of those vaults (docs/PRODUCT-BRIEF.md:514).",
-        "In the vendored corpus: zero files named `spec.md`, zero `specs` directories, two agent-instruction files in 8,513, both in one vault (measured 2026-09-09)."
-      ],
-      "path": [
-        "The corpus was pinned when byte-exactness for note-takers was the product. Four direction changes later it has not moved.",
-        "The weeks 3-4 row already names one spec-kit and one superpowers repo (docs/PRODUCT-BRIEF.md:354), so the clone is scheduled anyway."
+        "The plan states the caveat and does not act on it (docs/PRODUCT-BRIEF.md:514).",
+        "In those 8,513 files: zero `spec.md`, zero `specs` directories, two agent-instruction files."
       ],
       "tension": [
-        "One vault is 77.4% of the file count and two are 88.7%, so the 83% refusal figure mostly describes that wiki (docs/PRODUCT-BRIEF.md:214).",
-        "The population exists and is catalogued: AIDev records 932,791 agent-authored pull requests across 116,211 repositories (arXiv 2602.09185).",
-        "Discarding the vaults loses byte-exactness proven on 8,513 real files, which is the strongest verified asset in the project."
+        "One vault is 77.4% of the file count, so the 83% mostly describes that wiki.",
+        "The population is catalogued: AIDev records 932,791 agent-authored pull requests across 116,211 repositories.",
+        "Discarding the vaults loses byte-exactness proven on 8,513 real files."
       ],
       "evidence": [
         {
@@ -1319,13 +1269,12 @@
         {
           "k": "a",
           "label": "Pin a second corpus of agent-written repos before the engine fixes",
-          "what": "Clone and pin spec-kit, superpowers and similar repositories now, and size NF-1 against them as well.",
           "gains": [
             "Sizes the fixes against the population the pitch names",
             "Every refusal figure gains its denominator"
           ],
           "costs": [
-            "Delays the fixes by however long clone-and-pin takes",
+            "Delays the fixes by the clone-and-pin time",
             "Two corpora to keep pinned and re-run"
           ],
           "system": "A second SOURCES.json and a second gate run in CI.",
@@ -1335,14 +1284,13 @@
         {
           "k": "b",
           "label": "Replace the vault corpus with the agent corpus",
-          "what": "The seven vaults go and the agent repositories become the only regression gate.",
           "gains": [
             "One corpus to maintain, matching the pitch",
             "No stale refusal figures left to quote"
           ],
           "costs": [
-            "Throws away byte-exactness proven on 8,513 real files",
-            "Loses the standing regression gate the engine already passes"
+            "Throws away byte-exactness proven on 8,513 files",
+            "Loses the standing regression gate"
           ],
           "system": "The existing gate is repointed; historical comparisons break.",
           "screens": "None.",
@@ -1351,14 +1299,13 @@
         {
           "k": "c",
           "label": "Keep the vaults as the gate; add the agent corpus at weeks 3-4",
-          "what": "The clone happens on the row that already schedules it, and until then every refusal number is written as a vault number.",
           "gains": [
-            "Costs nothing extra; the weeks 3-4 row names those repos already",
+            "Costs nothing extra; weeks 3-4 name those repos",
             "Keeps the byte-exactness proof intact"
           ],
           "costs": [
             "Refusal figures stay vault-derived through the go/no-go",
-            "NF-1's four days remain sized on the wrong population"
+            "NF-1's four days stay sized on the wrong population"
           ],
           "system": "One extra pinned source at weeks 3-4.",
           "screens": "None.",
@@ -1367,14 +1314,13 @@
         {
           "k": "d",
           "label": "Keep as is; markdown is markdown",
-          "what": "The seven vaults remain the only corpus and the engine numbers keep their current basis.",
           "gains": [
             "No work",
             "The gate is already green and understood"
           ],
           "costs": [
-            "Every fidelity and refusal number describes a population the pitch does not address",
-            "The caveat at :514 stays true and unacted on"
+            "Every fidelity number describes a population the pitch ignores",
+            "The caveat at :514 stays unacted on"
           ],
           "system": "No change.",
           "screens": "None.",
@@ -1383,11 +1329,10 @@
       ],
       "rec": "c",
       "recCase": [
-        "The vault corpus is a good regression gate, and discarding it loses the one thing the engine can prove.",
-        "The weeks 3-4 row already names one spec-kit and one superpowers repo, so pinning them costs the same clone as the anchor test in R2.",
-        "Until then, write every refusal figure as a vault figure. The 83% is a property of seven vaults and mostly of one wiki."
+        "The vault corpus is a good regression gate, and it is the one thing the engine can prove.",
+        "Weeks 3-4 already name a spec-kit and a superpowers repo, so pinning costs R2's clone."
       ],
-      "flip": "If the four-day NF-1 estimate is being defended with the 83% figure, the second corpus has to come first, because the fix may be sized against the wrong files.",
+      "flip": "If the four-day NF-1 estimate is defended with the 83% figure, the second corpus has to come first.",
       "linked": [
         "R2"
       ],
@@ -1405,7 +1350,7 @@
       "sub": "Name",
       "weight": "critical",
       "q": "Do we buy a trademark knock-out search before the meeting decides the name, or decide on the marketplace collision alone?",
-      "lede": "A reported EU word mark nobody has reproduced is the worst state: not a fact you can act on, not an absence you can ignore.",
+      "lede": "A reported EU word mark nobody has reproduced: not a fact you can act on, not an absence you can ignore.",
       "visual": {
         "kind": "timeline",
         "items": [
@@ -1437,20 +1382,16 @@
         "note": "The record's falsifier: a clean knock-out search makes a qualified name beat a coinage.",
         "caption": "Twelve rounds on, the name decision's one input is unbought."
       },
-      "stakes": "Every spend after the name, from domain to logo to store listing to launch copy, is at risk until the mark is cleared.",
+      "stakes": "Every spend after the name, from domain to store listing to launch copy, is at risk until the mark clears.",
       "state": [
-        "Round 2 found the collision worse than recorded: 82,265 installs, alive at v10.12.0 on 2026-08-21, and the `@frontmatter` npm scope belongs to the incumbent (docs/GAPS-2026-09-08.md:132).",
-        "The still-open list carries the FRONTMATTER EU word mark, reported but not reproduced from five blocked registries (docs/GAPS-2026-09-08.md:146).",
-        "The plan's risk table, ten rows at docs/PRODUCT-BRIEF.md:319 onward, does not mention the name at all."
-      ],
-      "path": [
-        "The record framed this as a legal question and stopped. Nothing in it is a trademark clearance, and five registries plus common-law rights are unchecked (docs/FRONTMATTER-RECORD.md:4845).",
-        "Its own rule is that clearance precedes any spend and precedes the choice between a qualified name and a coinage (same line)."
+        "The collision is worse than recorded: 82,265 installs, alive at v10.12.0, `@frontmatter` npm scope taken.",
+        "The FRONTMATTER EU word mark is reported, not reproduced; five registries blocked (docs/GAPS-2026-09-08.md:146).",
+        "The plan's ten-row risk table does not mention the name at all (docs/PRODUCT-BRIEF.md:319)."
       ],
       "tension": [
-        "That choice is exactly what the meeting is about to take, on the only input nobody has.",
-        "The record's rank-2 answer, Frontmatter Studio, was taken on 2026-09-07 while the search went unbought (docs/FRONTMATTER-RECORD.md:4836).",
-        "The record also warns against the middle path, using the bare word while holding qualified handles, as the highest-risk option with extra steps (docs/FRONTMATTER-RECORD.md:4839)."
+        "The record's rule is that clearance precedes any spend (docs/FRONTMATTER-RECORD.md:4845). Nothing satisfies it.",
+        "Its rank-2 answer, Frontmatter Studio, was taken on 2026-09-07 while the search went unbought.",
+        "It calls the middle path, bare word plus qualified handles, the highest-risk option (:4839)."
       ],
       "evidence": [
         {
@@ -1504,14 +1445,13 @@
         {
           "k": "a",
           "label": "Commission a knock-out search on two candidate names now, before the meeting",
-          "what": "An attorney runs a class-overlap search on the two names actually in contention and reports before the name is chosen.",
           "gains": [
-            "Turns \"reported but not reproduced\" into a fact",
-            "Satisfies the record's own rule, written twelve rounds ago"
+            "Turns reported-but-not-reproduced into a fact",
+            "Satisfies the record's own rule, twelve rounds old"
           ],
           "costs": [
             "A fee and a few days",
-            "The answer may kill the preferred name and restart the naming"
+            "The answer may kill the preferred name"
           ],
           "system": "No change.",
           "screens": "None.",
@@ -1520,14 +1460,13 @@
         {
           "k": "b",
           "label": "Decide on the marketplace collision alone and clear the mark later",
-          "what": "The meeting picks a name from handle availability, and clearance follows if it ever becomes urgent.",
           "gains": [
             "Free now, and the meeting is not delayed",
             "The collision data is real and already gathered"
           ],
           "costs": [
-            "Every later spend is at risk, which is what the record warns against",
-            "A rename after launch copy exists costs far more than the search"
+            "Every later spend is at risk",
+            "A rename after launch copy exists costs far more"
           ],
           "system": "No change.",
           "screens": "None.",
@@ -1536,14 +1475,13 @@
         {
           "k": "c",
           "label": "Scope the name: frontmatter on the desktop, another name in the store",
-          "what": "The extension ships under a name that does not collide, and the desktop product keeps the word.",
           "gains": [
-            "Solves the store collision without abandoning the word",
-            "Can be decided in the meeting with what is already known"
+            "Solves the store collision without dropping the word",
+            "Decidable in the meeting on what is known"
           ],
           "costs": [
             "Does nothing about a word mark",
-            "Two names to maintain, explain and market forever"
+            "Two names to maintain and explain forever"
           ],
           "system": "No change.",
           "screens": "Two store listings and two identities.",
@@ -1552,14 +1490,13 @@
         {
           "k": "d",
           "label": "Leave the word; coin a new name",
-          "what": "Drop \"frontmatter\" entirely and pick something with no incumbent.",
           "gains": [
             "Loses nothing built, because there are no users",
-            "Clears both the store and the search interference"
+            "Clears the store and the search interference"
           ],
           "costs": [
-            "Pays the record's own premium for teaching a name nobody knows",
-            "Still needs a knock-out search on the coinage"
+            "Pays the record's premium for teaching an unknown name",
+            "Still needs a knock-out search"
           ],
           "system": "No change.",
           "screens": "Every surface is re-labelled.",
@@ -1568,11 +1505,10 @@
       ],
       "rec": "a",
       "recCase": [
-        "The record wrote the rule twelve rounds ago and nothing since has satisfied it (docs/FRONTMATTER-RECORD.md:4845).",
-        "Its own falsifier says a clean knock-out search makes a qualified name beat a coinage (docs/FRONTMATTER-RECORD.md:4841), so the search decides between options c and d as well.",
-        "It is the cheapest input to a decision the meeting is taking anyway, and the only thing that turns a reported mark into a fact."
+        "The record's own falsifier says a clean search makes a qualified name beat a coinage (:4841).",
+        "Cheapest input to a decision the meeting takes anyway, and the only thing that settles the mark."
       ],
-      "flip": "If the meeting picks the VS Code extension, the 82,265-install collision is disqualifying on its own and the search becomes a question about the replacement name.",
+      "flip": "If the meeting picks the VS Code extension, the 82,265-install collision is disqualifying and the search moves to the replacement.",
       "linked": [
         "R14"
       ],
@@ -1594,7 +1530,7 @@
       "sub": "Measurement",
       "weight": "medium",
       "q": "Do we buy the two competitor benchmarks, screens and speed, before week 3?",
-      "lede": "Ten screen queries are written and unrun; the application has four named measures and no values.",
+      "lede": "Ten screen queries are written and unrun. The application has four named measures and no values.",
       "visual": {
         "kind": "compare",
         "labelWidth": 144,
@@ -1648,20 +1584,16 @@
         "note": "Neither has been run. Exhibit 21 is vendor text, which beats a screenshot of the same behaviour.",
         "caption": "Two unbought measurements, and what each would actually settle."
       },
-      "stakes": "Either the launcher and pricing page get designed with no external reference, or two days go on a marketing number nobody is claiming.",
+      "stakes": "Either the launcher and pricing page get no external reference, or two days go on an unclaimed number.",
       "state": [
-        "§15 says the screen benchmark \"was not conducted\": every Mobbin call was refused by the session's injection-taint gate (docs/PRODUCT-BRIEF.md:375).",
-        "Exhibit 21 answers four of the six screen groups from the incumbents' own documentation (docs/PRODUCT-BRIEF.md:379, :381, :382, :383).",
-        "§9 names four measures to publish and gives a value for none; the vault ships to the client at 77 MB parsed per cold start (docs/PRODUCT-BRIEF.md:233)."
-      ],
-      "path": [
-        "The gate blocks outbound connectors for the rest of a tainted session, so a fresh session clears it (docs/GAPS-2026-09-08.md:39).",
-        "The engine was benchmarked in detail on 2026-08-31; the application around it never was, and nothing has been compared with a competitor (docs/GAPS-2026-09-08.md:43)."
+        "§15 says the screen benchmark was not conducted; the taint gate refused every Mobbin call (docs/PRODUCT-BRIEF.md:375).",
+        "Exhibit 21 answers four of the six screen groups from vendor documentation (:379).",
+        "§9 names four measures to publish and gives a value for none (docs/PRODUCT-BRIEF.md:233)."
       ],
       "tension": [
-        "A vendor's documented behaviour beats a screenshot of it, and exhibit 21 is vendor text. What it cannot answer is the launcher and the pricing page.",
-        "The same engine benchmark found a live quadratic: 41,527.3 ms on 320 KB of `[[`, log-log slope k = 1.98, and `shapeGate` has no product call site.",
-        "None of the three headline variants mentions speed (docs/PRODUCT-BRIEF.md:296), so the Obsidian comparison answers a question nobody is asking yet."
+        "Vendor text beats a screenshot. It cannot answer the launcher or the pricing page.",
+        "The engine benchmark found a quadratic: 41,527.3 ms on 320 KB of `[[`, k=1.98.",
+        "None of the three headline variants mentions speed (docs/PRODUCT-BRIEF.md:296)."
       ],
       "evidence": [
         {
@@ -1761,30 +1693,28 @@
         {
           "k": "a",
           "label": "Buy both in week 0: our four numbers, the Obsidian comparison, all ten queries",
-          "what": "Everything on the measurement list runs before the tests start.",
           "gains": [
-            "Produces a speed number nobody is currently claiming",
+            "Produces a speed number nobody currently claims",
             "No screen is designed without a reference"
           ],
           "costs": [
-            "Two days plus a session, out of a two-week window",
-            "Six of the ten queries re-derive what exhibit 21 already establishes"
+            "Two days plus a session out of two weeks",
+            "Six of the ten queries re-derive exhibit 21"
           ],
-          "system": "A benchmark harness over the application, which does not exist yet.",
-          "screens": "Feeds S0, S4, S11 and the pricing page.",
+          "system": "A benchmark harness over the application, which does not exist.",
+          "screens": "S0, S4, S11 and the pricing page.",
           "money": "None beyond time."
         },
         {
           "k": "b",
           "label": "Our four numbers, plus the four queries exhibit 21 cannot answer",
-          "what": "Measure the app against itself in hours, and run only the launcher, onboarding, pricing and upsell queries.",
           "gains": [
-            "Hours, not days, and aimed where no primary source answers",
-            "Answers whether ten strangers can use the build at all"
+            "Hours, not days, aimed where no primary source answers",
+            "Answers whether ten strangers can use the build"
           ],
           "costs": [
-            "No competitor speed claim available if a headline needs one",
-            "The review panel and settings screens keep only vendor-text references"
+            "No competitor speed claim if a headline needs one",
+            "Review panel and settings keep vendor-text references"
           ],
           "system": "A small app benchmark; no new corpus.",
           "screens": "S0 launcher and the pricing page.",
@@ -1793,13 +1723,12 @@
         {
           "k": "c",
           "label": "Neither: exhibit 21 stands and five real people beat both benchmarks",
-          "what": "Skip both measurements and rely on the five-second screenshot test in weeks 1-2.",
           "gains": [
             "Frees the session and the two days",
             "Real reactions outrank a reference library"
           ],
           "costs": [
-            "The launcher and pricing page are designed with no external reference at all",
+            "Launcher and pricing page get no external reference",
             "No falsifiable performance commitment survives in §9"
           ],
           "system": "The four published measures are dropped.",
@@ -1809,13 +1738,12 @@
         {
           "k": "d",
           "label": "Both, after the two-week tests, so the borrows answer what confused real people",
-          "what": "The benchmarks run once the five-second test has said which screens fail.",
           "gains": [
             "Best-targeted use of both",
             "Avoids buying references for screens that get cut"
           ],
           "costs": [
-            "The screens the test judges are built before the benchmark informs them",
+            "The screens the test judges are built first",
             "Pushes measurement past the go/no-go"
           ],
           "system": "No change now.",
@@ -1825,9 +1753,8 @@
       ],
       "rec": "b",
       "recCase": [
-        "Six of the ten queries ask about conventions exhibit 21 already establishes from the incumbents' own text, and vendor text beats a screenshot of the same behaviour.",
-        "Our own four numbers cost hours and answer whether a stranger can use the thing, which is the week-10 question. The Obsidian comparison costs two days and answers a marketing question nobody is asking.",
-        "Guard the quadratic regardless of who benchmarks. A 41-second regex on a keystroke path is a defect, not a benchmark input."
+        "Six of the ten queries re-derive conventions exhibit 21 already establishes from the incumbents' own text.",
+        "Guard the quadratic regardless. A 41-second regex on a keystroke path is a defect, not a benchmark input."
       ],
       "flip": "If any tested headline claims speed, the Obsidian comparison becomes mandatory before that headline ships.",
       "linked": [
@@ -1856,8 +1783,8 @@
       "cat": "Research & evidence",
       "sub": "Verification",
       "weight": "high",
-      "q": "Do we commission an outside security review before the pilot or before the first team customer, and what does the reviewer get?",
-      "lede": "We assert our own safety, and the one concrete artefact a reviewer would open contradicts the plan in three places.",
+      "q": "Do we commission an outside security review before the pilot or before the first team customer, and on what subject?",
+      "lede": "We assert our own safety, and the one artefact a reviewer would open contradicts the plan in three places.",
       "visual": {
         "kind": "arch",
         "layers": [
@@ -1903,20 +1830,16 @@
         "note": "Zero Firestore document writes exist across 226 source files.",
         "caption": "A committed rules file designs a layer the plan says does not exist."
       },
-      "stakes": "A reviewer handed three artefacts that disagree reports the disagreement, and we pay for a finding the register already made.",
+      "stakes": "A reviewer handed three artefacts that disagree reports the disagreement, which the register already found.",
       "state": [
-        "The plan's security row is a list of refusals: no plugins, no code execution, no ambient repo access, malformed repos refused (docs/PRODUCT-BRIEF.md:551).",
-        "Grep for \"security review\" across the plan returns nothing; the register priced it before the first team customer (docs/GAPS-2026-09-08.md:44).",
-        "`firestore.rules` is 419 lines, bounds `contentSnapshot` at 900,000 bytes (firestore.rules:383), keeps revisions append-only (:361) and grants an unauthenticated read on public shares (:393)."
-      ],
-      "path": [
-        "Round 2 gave the item a subject it did not have: a committed file designing a product this plan says does not exist (docs/GAPS-2026-09-08.md:142, :146).",
-        "It is unbuilt. A word-bounded grep for `setDoc(`, `addDoc(` or `updateDoc(` across 226 source files returns zero, measured 2026-09-09."
+        "The plan's security row is a list of refusals (docs/PRODUCT-BRIEF.md:551). No review is scheduled.",
+        "The register priced a review before the first team customer (docs/GAPS-2026-09-08.md:44).",
+        "`firestore.rules` is 419 lines and grants an unauthenticated read on public shares (:393)."
       ],
       "tension": [
-        "Every legal rule in §22 is a function of the same answer, and it also decides intermediary status under IT Act §2(1)(w) (docs/PRODUCT-BRIEF.md:365, :531).",
-        "The pilot runs on ten strangers' private repositories, which is before any team customer exists.",
-        "WEEK0-DECISIONS:54 already flags the GitHub App installation-token exchange as needing a code review, and that is a real attack surface with real bytes."
+        "It designs a product the plan denies. Zero `setDoc(` calls across 226 source files.",
+        "Decision 7 also settles intermediary status under IT Act §2(1)(w) (docs/PRODUCT-BRIEF.md:365, :531).",
+        "The pilot runs on ten strangers' private repositories, before any team customer exists."
       ],
       "evidence": [
         {
@@ -1965,29 +1888,27 @@
         {
           "k": "a",
           "label": "Settle decision 7, make the repo say one thing, then review",
-          "what": "Delete or rewrite `firestore.rules` to match the answer, then buy the review against a coherent subject.",
           "gains": [
             "The reviewer gets one design instead of three",
             "Costs nothing until the contradiction is resolved"
           ],
           "costs": [
-            "Delays the review past the pilot, which runs on strangers' private repos",
+            "Delays the review past a pilot on private repos",
             "Decision 7 has to happen in the meeting"
           ],
-          "system": "One committed file deleted or rewritten to match the plan.",
+          "system": "One committed file deleted or rewritten to match.",
           "screens": "None, unless sharing survives decision 7.",
           "money": "Review fee, deferred."
         },
         {
           "k": "b",
           "label": "Commission the review now with firestore.rules as the subject",
-          "what": "An outside firm reviews the committed rules file and the finding settles decision 7.",
           "gains": [
-            "Starts immediately with a concrete artefact",
+            "Starts immediately on a concrete artefact",
             "An outside opinion on the riskiest committed file"
           ],
           "costs": [
-            "Pays a firm to repeat what round 2 already found",
+            "Pays a firm to repeat round 2's finding",
             "Delegates a product decision to a security reviewer"
           ],
           "system": "No change.",
@@ -1997,10 +1918,9 @@
         {
           "k": "c",
           "label": "Review the whole surface before the pilot",
-          "what": "Everything shipped or committed is reviewed before ten strangers connect their repositories.",
           "gains": [
-            "Earliest safety, and the pilot is the first real exposure",
-            "Covers the token exchange the week-0 decisions already flag"
+            "Earliest safety; the pilot is the first real exposure",
+            "Covers the token exchange week 0 flags"
           ],
           "costs": [
             "Highest cost, and half the surface is unbuilt",
@@ -2013,13 +1933,12 @@
         {
           "k": "d",
           "label": "No outside review until a customer asks; state that on the page",
-          "what": "Self-assessment stands, published as a position rather than left implicit.",
           "gains": [
             "Free, and honest if it is written down",
-            "Matches the free tier having no service commitment"
+            "Matches a free tier with no service commitment"
           ],
           "costs": [
-            "\"We assert our own safety\" becomes a published claim about a repo that contradicts itself",
+            "Publishes self-assertion about a repo that contradicts itself",
             "A team buyer asks on the first call"
           ],
           "system": "No change.",
@@ -2029,11 +1948,10 @@
       ],
       "rec": "a",
       "recCase": [
-        "A reviewer handed three artefacts that disagree will report the disagreement, and we will have paid for a finding already in the register.",
-        "Settle decision 7, make the repo say one thing, then buy the review. The subject cannot be defined before that answer exists.",
-        "Keep the token exchange separate: WEEK0-DECISIONS:54 already prices it at half a day of code review, and it does not wait for decision 7."
+        "Settle decision 7, make the repo say one thing, then buy the review. The subject cannot exist first.",
+        "Keep the token exchange separate. WEEK0-DECISIONS:54 prices it at half a day and it does not wait."
       ],
-      "flip": "If the pilot's ten strangers connect private repos through the GitHub App token exchange, that exchange is a real attack surface and the review moves ahead of the pilot.",
+      "flip": "If the pilot's strangers connect private repos through the GitHub App token exchange, the review moves ahead of the pilot.",
       "linked": [
         "R3"
       ],
@@ -2056,7 +1974,7 @@
       "sub": "Form factor evidence",
       "weight": "high",
       "q": "Do we test whether Cursor and the other forks honour the model APIs before the form-factor decision?",
-      "lede": "Two of the savings that make the extension route attractive are proven on VS Code itself and nowhere else.",
+      "lede": "Two of the savings that make the extension route attractive are proven on VS Code and nowhere else.",
       "visual": {
         "kind": "compare",
         "labelWidth": 164,
@@ -2110,20 +2028,16 @@
         "note": "Live mode is standalone-only either way: there is no view-zone API.",
         "caption": "The extension route's savings, and the host they were measured on."
       },
-      "stakes": "The meeting decides the form factor on a saving that may apply to part of the population, and reversing it later costs the build sequence.",
+      "stakes": "The meeting decides the form factor on a saving that may cover only part of the population.",
       "state": [
-        "Decision 6 records that an extension can write byte-exactly: 94/94 and 156/156 bytes on VS Code 1.135.0. The host supplies the model picker and MCP registration free (docs/PRODUCT-BRIEF.md:364).",
+        "Decision 6 records byte-exact extension writes on VS Code 1.135.0 (docs/PRODUCT-BRIEF.md:364).",
         "Whether the forks honour those APIs is on the still-open list (docs/GAPS-2026-09-08.md:146).",
-        "The plan carries no install count for Cursor or any fork; its five Cursor mentions are Reddit points, a price band, a Show HN score, a risk row and an exhibit-21 finding."
-      ],
-      "path": [
-        "The harnesses ran against VS Code because round 2's question was whether byte-exact writing was possible at all (docs/GAPS-2026-09-08.md:125).",
-        "No fork was installed and no fork was tested."
+        "The plan carries no install count for Cursor or any fork."
       ],
       "tension": [
-        "Fix #6 is bring-your-own key at three days (docs/PRODUCT-BRIEF.md:219) and F8 carries the key UI. Both are deleted only where the host provides a model picker.",
-        "The size of the affected group is unmeasured, which is itself the finding: the plan quotes VS Code populations and none for the forks (docs/GAPS-2026-09-08.md:48).",
-        "The host is moving in this direction anyway. VS Code merged a review/unreview operation on 2026-07-03 and a markdown feedback editor at milestone 1.130.0, both gated in an experimental window and undocumented."
+        "Fix #6, the key UI, is three days (:219), and only a host model picker deletes it.",
+        "The size of the affected group is unmeasured, which is itself the finding (docs/GAPS-2026-09-08.md:48).",
+        "VS Code merged review/unreview and a markdown feedback editor, both experimental and undocumented."
       ],
       "evidence": [
         {
@@ -2167,14 +2081,13 @@
         {
           "k": "a",
           "label": "Test before the meeting: a stub extension in Cursor calling the model API",
-          "what": "One afternoon installing the forks and calling the two APIs the saving depends on.",
           "gains": [
-            "Moves a number the form-factor decision rests on, before the decision",
-            "Count the fork population in the same sitting"
+            "Moves a number the form-factor decision rests on",
+            "Counts the fork population in the same sitting"
           ],
           "costs": [
             "An afternoon in a week already full of decisions",
-            "A negative result weakens the extension case just before the meeting"
+            "A negative result weakens the extension case"
           ],
           "system": "A throwaway stub extension; no product code.",
           "screens": "None.",
@@ -2183,13 +2096,12 @@
         {
           "k": "b",
           "label": "Decide on the VS Code numbers alone and treat the forks as upside",
-          "what": "The form factor is chosen against the population that is measured, and forks are a bonus if they work.",
           "gains": [
             "Defensible: VS Code is the population with real numbers",
             "No delay"
           ],
           "costs": [
-            "The saving quoted in decision 6 applies to a smaller base than the argument implies",
+            "The saving covers a smaller base than the argument implies",
             "The gap is discovered during the build"
           ],
           "system": "No change.",
@@ -2199,14 +2111,13 @@
         {
           "k": "c",
           "label": "Build the key UI regardless, so the extension works everywhere",
-          "what": "Fix #6 stays in the plan and the host's model picker becomes a nicety rather than a dependency.",
           "gains": [
             "Removes the dependency entirely",
             "One code path across every host"
           ],
           "costs": [
             "Costs the three days back",
-            "The extension case gets weaker by exactly that much"
+            "The extension case gets weaker by that much"
           ],
           "system": "Fix #6 and F8's key UI stay in the sequence.",
           "screens": "S11 keeps the key field.",
@@ -2215,13 +2126,12 @@
         {
           "k": "d",
           "label": "Defer the form factor until the two-week tests say which shell people want",
-          "what": "Ten developers are shown either mock and the decision waits for their answer.",
           "gains": [
             "Decides on demand rather than on savings",
             "Both mocks already exist"
           ],
           "costs": [
-            "Delays a decision that gates the whole build sequence",
+            "Delays a decision that gates the build sequence",
             "Ten people's preference is not a population measurement"
           ],
           "system": "No change until week 3.",
@@ -2231,9 +2141,8 @@
       ],
       "rec": "a",
       "recCase": [
-        "One afternoon changes an input to a decision the meeting is about to take, and reversing that decision afterwards costs far more.",
-        "If the forks do honour the API, decision 6 gets stronger on a measured basis instead of an assumed one.",
-        "Count the fork population in the same sitting. The plan has no number for it at all, which is why the saving cannot currently be sized."
+        "One afternoon moves an input to a decision the meeting takes, and reversing it later costs far more.",
+        "Count the fork population in the same sitting. The plan has no number for it at all."
       ],
       "flip": "If the meeting chooses standalone, the question dies with the option.",
       "linked": [
@@ -2307,20 +2216,16 @@
         "note": "Every price here was opened. Nothing observed occupies the middle band.",
         "caption": "Prices that exist, and the empty band the $4-5 tier sits in."
       },
-      "stakes": "Week 3 commits the build on wanting alone, and forty conversations cannot be re-run to add a question.",
+      "stakes": "Week 3 commits the build on wanting alone, and forty conversations cannot be re-run.",
       "state": [
-        "The week-3 gate asks whether 4 of 10 want review state (docs/PRODUCT-BRIEF.md:337); the kill signal is under 4 of 10 unprompted (:321).",
-        "Twenty team conversations are scheduled on seats and gating (docs/PRODUCT-BRIEF.md:323, :353).",
-        "The paid tier is a hypothesis until those conversations return seat counts (docs/PRODUCT-BRIEF.md:292)."
-      ],
-      "path": [
-        "The register states the shape of the programme in one clause: eleven gaps of desk research measured installs and attention, never payment (docs/GAPS-2026-09-08.md:146).",
-        "Installs and forum likes are what public sources expose. Price is not, so no further desk round can close this."
+        "The week-3 gate asks whether 4 of 10 want review state (docs/PRODUCT-BRIEF.md:337).",
+        "Twenty team conversations are scheduled on seats and gating (:323, :353).",
+        "The paid tier is a hypothesis until those conversations return seat counts (:292)."
       ],
       "tension": [
-        "The $4-5 rung sits in an empty middle. The observed field is barbelled: Obsidian Sync $48/yr and iA Writer $49.99 once at one end, Mintlify Pro $450/mo at the other.",
-        "Draftable sells document comparison at $129 per user per year and Diffchecker at $15 to $40 per user per month. Nothing observed occupies the middle.",
-        "Nobody in this category charges an individual for editing at all (r25-w3 finding 1, fetched 2026-08-31), so the individual price is where the evidence is most hostile."
+        "The $4-5 rung sits in an empty middle. The observed field is barbelled.",
+        "Obsidian Sync $48/yr and iA Writer $49.99 once, against Mintlify Pro $450/mo.",
+        "Nobody in this category charges an individual for editing at all (r25-w3, fetched 2026-08-31)."
       ],
       "evidence": [
         {
@@ -2379,14 +2284,14 @@
         {
           "k": "a",
           "label": "A price question in all forty conversations, testing both ends of the barbell",
-          "what": "Ask what they pay today in this workflow, and price-test an individual one-off and a per-team platform rung rather than $4-5.",
+          "what": "Ask what they pay today, and price-test a one-off and a per-team rung.",
           "gains": [
-            "One sentence per conversation, and the only variable desk research cannot reach",
+            "One sentence per conversation",
             "Tests the two rungs the field actually occupies"
           ],
           "costs": [
             "Self-reported willingness to pay is weak evidence",
-            "Two rungs makes the script longer and the sample thinner per rung"
+            "Two rungs thin the sample per rung"
           ],
           "system": "No change.",
           "screens": "None.",
@@ -2395,23 +2300,21 @@
         {
           "k": "b",
           "label": "A real price and a real checkout on the weeks 1-2 landing pages",
-          "what": "Three landing pages carry a price and a payment step, and we count who reaches it.",
           "gains": [
-            "The strongest signal available, and it is behaviour not opinion",
+            "Behaviour, not opinion",
             "Prices a rung rather than asking about one"
           ],
           "costs": [
-            "A checkout for a product that does not exist costs trust with strangers we need",
+            "A checkout for a non-existent product costs trust",
             "Tests one price per page, not a range"
           ],
-          "system": "A payment page, and a refund path for anyone who pays.",
+          "system": "A payment page and a refund path.",
           "screens": "Three landing pages plus a checkout.",
           "money": "Payment-provider setup, and refunds."
         },
         {
           "k": "c",
           "label": "Keep the tests demand-only; price after MVP-0",
-          "what": "Weeks 1-2 measure wanting, and price is investigated once something exists to price.",
           "gains": [
             "Clean tests with one variable",
             "No trust cost, no fake checkout"
@@ -2427,13 +2330,12 @@
         {
           "k": "d",
           "label": "Ask the twenty team conversations about money; developers on demand only",
-          "what": "Price questions go only to the buyer with a budget.",
           "gains": [
             "Targets the people who can name a seat count",
             "Keeps the developer script short"
           ],
           "costs": [
-            "The individual price stays untested, which is where the evidence is most hostile",
+            "The individual price stays untested",
             "Halves the sample on the only unmeasured variable"
           ],
           "system": "No change.",
@@ -2443,12 +2345,10 @@
       ],
       "rec": "a",
       "recCase": [
-        "The whole programme measured wanting and never measured paying, and the plan says the paid tier stays a hypothesis until the team conversations return seat counts.",
-        "Test the two ends, not the middle. The $4-5 rung has no observed occupant: the field runs from a one-off or ~$48/yr up to a per-site docs platform at $450/mo.",
-        "Option b tests intent better, but a fake checkout is an outbound act with a trust cost against the strangers we need at weeks 10-12.",
-        "Open the Business Standard price in the same pass. One fetch either supports \"at exactly our intended tier\" or removes the phrase."
+        "The programme measured wanting and never paying, and price is what no desk round can reach.",
+        "Test the two ends, not the middle. The $4-5 rung has no observed occupant."
       ],
-      "flip": "If decision 2 (docs/PRODUCT-BRIEF.md:366) picks the liable non-developer, the question becomes what they already pay a person to check documents, which is a different script and a different sample.",
+      "flip": "If decision 2 picks the liable non-developer, the question becomes what they pay a person to check documents.",
       "linked": [
         "R3"
       ],
@@ -2474,7 +2374,7 @@
       "sub": "Evidence class",
       "weight": "high",
       "q": "Do the F5, F6 and F7 founder tests get their notes attached this week, or get relabelled untested?",
-      "lede": "Three features carrying eighteen engineering days in MVP-0 rest on a class of evidence that is one sentence in a chat log.",
+      "lede": "Three features carrying eighteen engineering days rest on evidence that is one sentence in a chat log.",
       "visual": {
         "kind": "ba",
         "before": {
@@ -2523,20 +2423,16 @@
         "note": "The risk table already describes the fallback at PRODUCT-BRIEF:325.",
         "caption": "The strongest label in the plan, or its weakest, decided by one file."
       },
-      "stakes": "Eighteen of about seventy MVP-0 days are committed on an evidence class with no artefact behind it.",
+      "stakes": "Eighteen of about seventy MVP-0 days are committed on an evidence class with no artefact.",
       "state": [
-        "Exhibit 5 gives idea mode, the decision flow and the docs-scan direction a class of their own, settled by the founders' notes then the pilot (docs/PRODUCT-BRIEF.md:187).",
-        "Week 0 schedules attaching the founder test notes for F5 and F6 (docs/PRODUCT-BRIEF.md:351).",
-        "The register rates the class High severity: a founders' statement in chat, with no notes, participants or protocol attached (docs/GAPS-2026-09-08.md:23)."
-      ],
-      "path": [
-        "The features were validated by the founders using them, and the validation was reported in conversation (docs/PRODUCT-BRIEF.md:69).",
-        "F5 and F6 carry 8 days and F7 carries 10, out of about 70 for MVP-0 (docs/PRODUCT-BRIEF.md:227)."
+        "Exhibit 5 gives idea mode, the decision flow and docs-scan their own class (docs/PRODUCT-BRIEF.md:187).",
+        "Week 0 schedules attaching the founder test notes for F5 and F6 (:351).",
+        "The register rates it High: a chat statement with no notes or protocol (docs/GAPS-2026-09-08.md:23)."
       ],
       "tension": [
-        "Public evidence points the other way: standalone PRD generators number 512 repos and the top has 57 stars (docs/PRODUCT-BRIEF.md:155).",
-        "`/speckit.clarify`, Kiro and Claude Code plan mode ship the same step free (docs/PRODUCT-BRIEF.md:60).",
-        "D3 notes these two features point at a buyer who does not run an agent, the opposite of the buyer decision 2 recommends starting with (docs/GAPS-2026-09-08.md:52)."
+        "Standalone PRD generators number 512 repos; the top has 57 stars (docs/PRODUCT-BRIEF.md:155).",
+        "`/speckit.clarify`, Kiro and Claude Code plan mode ship the same step free (:60).",
+        "D3 says these features point at a buyer who runs no agent (docs/GAPS-2026-09-08.md:52)."
       ],
       "evidence": [
         {
@@ -2585,14 +2481,13 @@
         {
           "k": "a",
           "label": "Attach the notes this week: who, when, what they did, what they said",
-          "what": "The founders write up the tests they ran, and the class either gains an artefact or collapses.",
           "gains": [
             "A day of writing decides eighteen engineering days",
-            "The only evidence in the programme from a person using the thing"
+            "The only evidence from a person using it"
           ],
           "costs": [
             "The write-up may show the test was informal",
-            "Founder time in a week already carrying four decisions"
+            "Founder time in a week carrying four decisions"
           ],
           "system": "No change.",
           "screens": "None.",
@@ -2601,14 +2496,13 @@
         {
           "k": "b",
           "label": "Relabel all three untested and move them into the ten-stranger pilot",
-          "what": "The class disappears and F5, F6 and F7 join the untested row.",
           "gains": [
             "Matches what the risk table already anticipates (:325)",
             "No claim rests on an unattachable artefact"
           ],
           "costs": [
-            "Moves 18 days of MVP-0 onto evidence that arrives at week 10",
-            "Discards a real test because it was not written down"
+            "Moves 18 MVP-0 days onto week-10 evidence",
+            "Discards a real test for not being written down"
           ],
           "system": "No change.",
           "screens": "None.",
@@ -2617,14 +2511,13 @@
         {
           "k": "c",
           "label": "Keep the label and attach nothing",
-          "what": "The founders' own test of their own product stands as reported.",
           "gains": [
             "Free",
-            "Nobody's time is spent on a write-up"
+            "Nobody's time goes on a write-up"
           ],
           "costs": [
-            "An evidence class with no artefact, in a document whose method is that every claim opens",
-            "The first reader who asks for it finds nothing"
+            "No artefact behind a class, in a document built on openable claims",
+            "The first reader who asks finds nothing"
           ],
           "system": "No change.",
           "screens": "None.",
@@ -2633,25 +2526,23 @@
         {
           "k": "d",
           "label": "Cut F5 and F6 from MVP-0 and keep F7, which needs no model",
-          "what": "Generation leaves the pilot and the docs scan stays.",
           "gains": [
-            "Removes 8 days and the buyer contradiction in D3",
+            "Removes 8 days and D3's buyer contradiction",
             "F7 needs no model and no key"
           ],
           "costs": [
-            "Removes the two features a real person is reported to have used and liked",
-            "Cuts on the strength of the label, not the feature"
+            "Removes the two features a person reportedly used and liked",
+            "Cuts on the label, not the feature"
           ],
-          "system": "Structured output in the LLM port is no longer on the MVP-0 path.",
-          "screens": "The idea-mode and decision-flow screens leave MVP-0.",
+          "system": "Structured output leaves the MVP-0 path.",
+          "screens": "Idea-mode and decision-flow screens leave MVP-0.",
           "money": "None."
         }
       ],
       "rec": "a",
       "recCase": [
-        "This is one document that either exists or does not, and the answer moves eighteen engineering days inside MVP-0.",
-        "If the notes exist, this is the only evidence in the programme from a person using the thing. It should be the plan's strongest exhibit, not its weakest label.",
-        "If they do not, option b follows automatically and the risk table at :325 already describes the fallback."
+        "One document either exists or does not, and the answer moves eighteen engineering days inside MVP-0.",
+        "If it exists, it is the plan's only evidence from a person using the thing."
       ],
       "flip": "Nothing. No further research substitutes for the founders answering this one.",
       "linked": [
@@ -2675,8 +2566,8 @@
       "cat": "Research & evidence",
       "sub": "Method",
       "weight": "high",
-      "q": "Do we adopt a verbatim-only rule — nothing in quotation marks that has not been re-fetched and string-matched?",
-      "lede": "Today's research got the substance right and invented the wording: about one quotation in three was a paraphrase in quote marks.",
+      "q": "Do we adopt a verbatim-only rule: nothing in quotation marks that has not been re-fetched and string-matched?",
+      "lede": "Today's research got the substance right and invented the wording. About one quotation in three was a paraphrase.",
       "visual": {
         "kind": "flow",
         "perRow": 3,
@@ -2715,49 +2606,43 @@
         "note": "Two quotations attributed to vendor blogs today were on neither page.",
         "caption": "The gate a quotation passes before it reaches a founder meeting."
       },
-      "stakes": "One fabricated quotation read aloud in a room destroys the only thing this plan sells, which is that every claim opens.",
+      "stakes": "One fabricated quotation read aloud destroys the only thing this plan sells: that every claim opens.",
       "state": [
-        "Two quotations attributed to vendor blogs are on neither page. The findings they supported survived; the wording did not.",
-        "Strings attributed to VS Code's review documentation are absent from that page, which does not document the capability at all.",
-        "The plan's method is that every claim points at something openable (docs/PRODUCT.md:1299). A quotation is the one form where a paraphrase is indistinguishable from a fact."
-      ],
-      "path": [
-        "Nine research lenses ran on 2026-09-09 and the fabrications were caught only by opening the page and matching the string.",
-        "The record already carries source-class discipline as tags (docs/PRODUCT.md:1299). It has no rule about quotation marks specifically."
+        "Two quotations attributed to vendor blogs are on neither page. The findings survived.",
+        "Strings attributed to VS Code's review documentation are absent; that page documents no such capability.",
+        "The plan's method is that every claim points at something openable (docs/PRODUCT.md:1299)."
       ],
       "tension": [
-        "The error is invisible at read time. A paraphrase inside quotation marks looks exactly like a quotation, and usually reads better.",
-        "Four verbatim strings survived today's check and are safe to use: \"diff panel that opens beside the conversation\", \"comments attach to snapshots\", \"Agent Edits\", \"Uncommitted\".",
-        "Numbers fail the same way. The 18% unreviewed figure has no source, and six firms size the note-taking market between $1.35B and $15.46B."
+        "A paraphrase inside quotation marks looks exactly like a quotation, and usually reads better.",
+        "Four strings survived today's check, including \"Agent Edits\" and \"Uncommitted\".",
+        "Numbers fail the same way. The 18% unreviewed figure has no source at all."
       ],
       "evidence": [],
       "options": [
         {
           "k": "a",
           "label": "Verbatim-only: re-fetch and string-match every quotation, or the marks come off",
-          "what": "A quotation may appear only where the exact string has been matched against the live source in the same pass.",
           "gains": [
             "Kills the only error class a reader cannot catch",
             "One request per quotation, and nothing else"
           ],
           "costs": [
             "Slows any pass that quotes heavily",
-            "A changed or deleted page forces the sentence to be rewritten"
+            "A changed page forces the sentence to be rewritten"
           ],
-          "system": "A quote-check list in the plan's build, beside R6's retired-terms gate.",
+          "system": "A quote-check list beside R6's retired-terms gate.",
           "screens": "None.",
           "money": "None."
         },
         {
           "k": "b",
           "label": "Drop quotations: state every finding in our own words with the URL beside it",
-          "what": "No quotation marks anywhere in the plan, the deck or the record's user-facing layer.",
           "gains": [
             "Removes the failure entirely",
             "Nothing to re-check later"
           ],
           "costs": [
-            "Loses the force of a vendor stating its own behaviour, which is exhibit 21's whole method",
+            "Loses a vendor stating its own behaviour, exhibit 21's method",
             "Paraphrase invites its own drift"
           ],
           "system": "No change.",
@@ -2767,30 +2652,28 @@
         {
           "k": "c",
           "label": "Mark each quotation with its verification class and let the reader judge",
-          "what": "Quotations carry opened, reported or unverified, as the record's tags do for numbers.",
           "gains": [
             "Consistent with R5's tagging decision",
-            "Keeps quotations that cannot be re-opened, honestly marked"
+            "Keeps un-reopenable quotations, honestly marked"
           ],
           "costs": [
-            "An unverified quotation still gets read aloud without its mark",
+            "An unverified quotation still gets read aloud",
             "Pushes the judgement onto the reader"
           ],
-          "system": "No change; a writing rule.",
+          "system": "A writing rule.",
           "screens": "None.",
           "money": "None."
         },
         {
           "k": "d",
           "label": "Nothing; the tag discipline already covers it",
-          "what": "Source-class tags stay the only rule and quotations are treated like any other claim.",
           "gains": [
             "Free",
             "The record's tags have caught real errors"
           ],
           "costs": [
-            "A tag says where a claim came from, never whether the words are the source's own",
-            "Today's round shows the tags did not catch it"
+            "A tag never says whether the words are the source's own",
+            "Today's round shows the tags missed it"
           ],
           "system": "No change.",
           "screens": "None.",
@@ -2799,11 +2682,10 @@
       ],
       "rec": "a",
       "recCase": [
-        "The failure was not laziness. Every fabricated quotation today had the finding right, which is why nobody caught it by reading.",
-        "It costs one request per quotation. R6 is already building a gate over the plan, so the quote list is another array in the same script.",
-        "Write option b into the rule as the fallback: where a source cannot be re-opened, the sentence loses its quotation marks and keeps its citation."
+        "The failure was not laziness. Every fabricated quotation had the finding right, so reading never caught it.",
+        "One request per quotation, and R6's gate is already being built over the plan."
       ],
-      "flip": "If a source cannot be re-fetched, because it sits behind a login or has been deleted, the rule falls back to option b for that source.",
+      "flip": "If a source cannot be re-fetched, because of a login or a deletion, the rule falls back to option b.",
       "linked": [
         "R5",
         "R6"

@@ -37,25 +37,28 @@ Return an array of objects. Every object has exactly these keys.
   visual:  { kind: "...", ... },    // REQUIRED. See VISUALS.
   stakes:  "…",                     // ONE sentence: what breaks if this goes the wrong way.
 
-  state:   ["…", "…"],              // 2–4 bullets. Where it stands TODAY, with file:line refs.
-  path:    ["…", "…"],              // 2–4 bullets. How it got here.
-  tension: ["…", "…"],              // 2–4 bullets. What actually forces a choice.
+  state:   ["…", "…"],              // 2–3 bullets, ≤14 words each. TRUE TODAY, with file:line refs.
+  tension: ["…", "…"],              // 2–3 bullets, ≤14 words each. What forces a choice.
+  // `path` ("how it got here") was DELETED from every card on 2026-09-10. History is the
+  // least load-bearing thing for someone deciding, and it cost 48 words a card. Do not
+  // reintroduce it; the validator warns if you do.
 
   evidence: [ … ],                  // keep the existing evidence blocks; see EVIDENCE.
 
   options: [{
     k:       "a",                   // a, b, c, d in order
     label:   "…",                   // the choice itself. Max 80 chars. No trailing full stop.
-    what:    "…",                   // ONE sentence: what this literally means in the product.
-    gains:   ["…", "…"],            // 2–3 bullets. Max 90 chars each.
-    costs:   ["…", "…"],            // 2–3 bullets. Max 90 chars each.
+    what:    "…",                   // OPTIONAL. Only where the label is ambiguous alone.
+                                    // Measured 2026-09-10: 77 of 978 options needed it.
+    gains:   ["…", "…"],            // 1–2 bullets, ≤12 words each.
+    costs:   ["…", "…"],            // 1–2 bullets, ≤12 words each.
     system:  "…",                   // ONE line: effect on engine, schema, or build. Or "No change."
     screens: "…",                   // ONE line: what screens this creates, changes or kills.
     money:   "…"                    // ONE line: cost or revenue effect. Or "None."
   }],
 
   rec:     "b",                     // the recommended key
-  recCase: ["…", "…"],              // 2–4 bullets. Why that one.
+  recCase: ["…", "…"],              // exactly 2 bullets, ≤18 words each. Why that one.
   flip:    "…",                     // ONE sentence: the specific finding that would overturn it.
 
   linked:  ["P7", "E4"],            // ids of decisions that must be taken with this one. May be [].
@@ -65,6 +68,13 @@ Return an array of objects. Every object has exactly these keys.
 
 Bullets are strings. No nested objects inside bullets. No markdown headings anywhere. Inline
 `` `code` `` and **bold** are fine and render.
+
+## THE BUDGET — about 250 words of prose a card
+
+Measured 2026-09-10 before the compaction: 264 cards, **157,248 words**, median **591 a card**.
+At 250 wpm that is roughly eight hours of reading before any thinking. A card is a 60–75 second
+read or it does not get read. Keep the numbers and the `file:line` refs; cut the words around
+them. If a bullet carries no fact a reader would act on, delete the bullet.
 
 ## VOICE — this is the part most likely to go wrong
 

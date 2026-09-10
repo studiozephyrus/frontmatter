@@ -1,0 +1,140 @@
+<!doctype html>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>frontmatter — 23 screen iterations</title>
+<link rel="stylesheet" href="fonts.css">
+<style>
+/* md.sgnk.ai theme, read from ~/Desktop/GitHub/md/src/app/globals.css */
+:root{
+  --bg:#fafafa; --panel:#fafafa; --panel-2:rgba(10,10,10,.025);
+  --fg:#18181b; --fg-muted:#6b6b73; --muted:#9b9ba3;
+  --border:rgba(10,10,10,.06); --border-strong:rgba(10,10,10,.10);
+  --accent:#18181b; --accent-fg:#fafafa; --hover:rgba(10,10,10,.04);
+  --link:#0044cc; --danger:#b2625e; --success:#4f8b6b;
+  --r-sm:6px; --r:8px; --r-lg:12px;
+  --tint:rgba(0,68,204,.06); --tint-strong:rgba(0,68,204,.14);
+  --prop:rgba(79,139,107,.10);
+}
+@media(prefers-color-scheme:dark){:root.auto{
+  --bg:#0d0e11; --panel:#141519; --panel-2:rgba(255,255,255,.03);
+  --fg:#e8e8ea; --fg-muted:#9b9ba3; --muted:#6b6b73;
+  --border:rgba(255,255,255,.08); --border-strong:rgba(255,255,255,.14);
+  --accent:#e8e8ea; --accent-fg:#0d0e11; --hover:rgba(255,255,255,.05);
+  --link:#60a5fa; --tint:rgba(96,165,250,.10); --tint-strong:rgba(96,165,250,.20);
+}}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--fg);
+  font-family:'Google Sans','Google Sans Text',-apple-system,system-ui,sans-serif;
+  font-size:14px;line-height:1.55;-webkit-font-smoothing:antialiased}
+a{color:inherit;text-decoration:none}
+.wrap{max-width:1240px;margin:0 auto;padding:40px 24px 80px}
+.top{border-bottom:1px solid var(--border);padding-bottom:20px;margin-bottom:28px}
+h1{font-size:20px;font-weight:600;margin:0 0 6px;letter-spacing:-.01em}
+.sub{color:var(--fg-muted);font-size:13px;max-width:70ch}
+.back{display:inline-block;font-size:12px;color:var(--fg-muted);margin-bottom:16px}
+.back:hover{color:var(--fg)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(330px,1fr));gap:20px}
+.cell{border:1px solid var(--border);border-radius:var(--r-lg);overflow:hidden;background:var(--panel);
+  transition:border-color .12s,transform .12s}
+.cell:hover{border-color:var(--border-strong);transform:translateY(-1px)}
+.shot{height:210px;overflow:hidden;border-bottom:1px solid var(--border);background:var(--panel-2);position:relative}
+.shot>.scale{transform:scale(.46);transform-origin:top left;width:217%;height:217%}
+.meta{padding:12px 14px 14px}
+.tag{font-family:'Google Sans Code',ui-monospace,monospace;font-size:10.5px;color:var(--muted);
+  letter-spacing:.04em;text-transform:uppercase}
+.name{font-size:13.5px;font-weight:600;margin:3px 0 5px}
+.why{font-size:12.5px;color:var(--fg-muted);line-height:1.5}
+.card-ref{display:inline-block;margin-top:8px;font-family:'Google Sans Code',monospace;font-size:11px;
+  color:var(--link);border:1px solid var(--border);border-radius:var(--r-pill,999px);padding:2px 8px}
+/* ── detail view ───────────────────────────────────────────────── */
+.detail{max-width:1100px;margin:0 auto;padding:32px 24px 80px}
+.dhead{margin-bottom:24px}
+.dwhy{background:var(--panel-2);border:1px solid var(--border);border-radius:var(--r);
+  padding:14px 16px;margin:16px 0 24px;font-size:13px;color:var(--fg-muted);max-width:80ch}
+.dwhy b{color:var(--fg);font-weight:600}
+.stage{border:1px solid var(--border-strong);border-radius:var(--r-lg);overflow:auto;background:var(--panel)}
+/* ── the mock chrome ───────────────────────────────────────────── */
+.app{width:1000px;height:600px;display:flex;flex-direction:column;background:var(--panel);font-size:12.5px}
+.bar{height:38px;border-bottom:1px solid var(--border);display:flex;align-items:center;gap:10px;padding:0 12px;flex:0 0 auto}
+.logo{font-weight:600;font-size:13px;letter-spacing:-.01em}
+.tabs{display:flex;gap:2px;margin-left:8px}
+.tab{padding:4px 10px;border-radius:var(--r-sm);color:var(--fg-muted);font-size:12px}
+.tab.on{background:var(--hover);color:var(--fg)}
+.modes{margin-left:auto;display:flex;border:1px solid var(--border);border-radius:var(--r-sm);overflow:hidden}
+.mode{padding:3px 9px;font-size:11.5px;color:var(--fg-muted)}
+.mode.on{background:var(--accent);color:var(--accent-fg)}
+.body{flex:1;display:flex;min-height:0}
+.tree{width:184px;border-right:1px solid var(--border);padding:10px 8px;flex:0 0 auto;overflow:hidden}
+.tr{padding:3px 8px;border-radius:var(--r-sm);color:var(--fg-muted);font-size:12px;white-space:nowrap;overflow:hidden}
+.tr.on{background:var(--hover);color:var(--fg)}
+.tr .dot{display:inline-block;width:5px;height:5px;border-radius:50%;background:var(--link);margin-right:6px;vertical-align:middle}
+.doc{flex:1;padding:22px 30px;overflow:hidden;min-width:0}
+.doc h2{font-size:19px;margin:0 0 12px;font-weight:600;letter-spacing:-.01em}
+.doc p{margin:0 0 11px;color:var(--fg);line-height:1.65;font-size:13px}
+.rail{width:210px;border-left:1px solid var(--border);padding:12px;flex:0 0 auto;font-size:12px;overflow:hidden}
+.rh{font-family:'Google Sans Code',monospace;font-size:10px;text-transform:uppercase;letter-spacing:.05em;
+  color:var(--muted);margin:0 0 8px}
+.tint{background:var(--tint);border-radius:2px}
+.tint-rule{background:var(--tint);border-left:2px solid var(--link);padding-left:5px;margin-left:-7px;border-radius:0 2px 2px 0}
+.tint-ul{border-bottom:1.5px solid var(--link);padding-bottom:1px}
+.prop{background:var(--prop);border-radius:2px}
+.bord{border:1px solid var(--link);border-radius:3px;padding:0 2px}
+.pill{display:inline-block;border:1px solid var(--border);border-radius:999px;padding:1px 8px;font-size:11px;color:var(--fg-muted)}
+.pill.n{background:var(--accent);color:var(--accent-fg);border-color:var(--accent)}
+.cnt-dot{display:inline-block;width:7px;height:7px;border-radius:50%;background:var(--link)}
+.strip{border-top:1px solid var(--border);padding:8px 12px;color:var(--fg-muted);font-size:12px;flex:0 0 auto;display:flex;align-items:center;gap:8px}
+.cursor-pop{position:absolute;background:var(--panel);border:1px solid var(--border-strong);
+  border-radius:var(--r);box-shadow:0 6px 24px rgba(0,0,0,.10);padding:8px 10px;font-size:12px;color:var(--fg-muted)}
+.hovercard{position:absolute;background:var(--panel);border:1px solid var(--border-strong);border-radius:var(--r);
+  box-shadow:0 8px 28px rgba(0,0,0,.12);padding:10px 12px;width:250px;font-size:11.5px;line-height:1.5}
+.hovercard b{font-size:12px}
+.row{display:flex;justify-content:space-between;padding:5px 0;border-bottom:1px solid var(--border);font-size:12px}
+.row:last-child{border:0}
+.big{font-size:30px;font-weight:600;letter-spacing:-.02em}
+.tmpl{border:1px solid var(--border);border-radius:var(--r);padding:14px;font-size:12px;color:var(--fg-muted)}
+.center{display:flex;align-items:center;justify-content:center;height:100%;flex-direction:column;gap:14px}
+</style>
+<div id="root"></div>
+<script src="mockups-data.js"></script>
+<script>
+(function(){
+  var q = new URLSearchParams(location.search).get('m');
+  var root = document.getElementById('root');
+  var esc = function(s){return String(s).replace(/[&<>]/g,function(c){return {'&':'&amp;','<':'&lt;','>':'&gt;'}[c]});};
+
+  if (q) {
+    var m = MOCKUPS.filter(function(x){return x.id===q;})[0];
+    if (!m) { root.innerHTML = '<div class="detail">Unknown iteration.</div>'; return; }
+    document.title = 'frontmatter — ' + m.name;
+    root.innerHTML =
+      '<div class="detail">' +
+        '<a class="back" href="mockups.html">&larr; all 23 iterations</a>' +
+        '<div class="dhead"><div class="tag">' + esc(m.screen) + ' &middot; ' + esc(m.id) + '</div>' +
+        '<h1>' + esc(m.name) + '</h1></div>' +
+        '<div class="dwhy"><b>Why this iteration matters.</b> ' + m.why +
+          (m.card ? ' <br><br><b>Decides:</b> <code>' + esc(m.card) + '</code> — ' + esc(m.cardq) : '') +
+        '</div>' +
+        '<div class="stage">' + m.html + '</div>' +
+      '</div>';
+    return;
+  }
+
+  var cells = MOCKUPS.map(function(m){
+    return '<a class="cell" href="mockups.html?m=' + m.id + '" target="_blank" rel="noopener">' +
+      '<div class="shot"><div class="scale">' + m.html + '</div></div>' +
+      '<div class="meta"><div class="tag">' + esc(m.screen) + '</div>' +
+      '<div class="name">' + esc(m.name) + '</div>' +
+      '<div class="why">' + m.why + '</div>' +
+      (m.card ? '<span class="card-ref">' + esc(m.card) + '</span>' : '') +
+      '</div></a>';
+  }).join('');
+
+  root.innerHTML =
+    '<div class="wrap"><div class="top">' +
+      '<a class="back" href="index.html">&larr; decisions</a>' +
+      '<h1>23 screen iterations</h1>' +
+      '<div class="sub">Every iteration answers a decision that is actually in the set. ' +
+      'Click one to open it full size in a new tab. Theme is md.sgnk.ai&rsquo;s.</div>' +
+    '</div><div class="grid">' + cells + '</div></div>';
+})();
+</script>

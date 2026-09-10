@@ -19,9 +19,11 @@ import collections
 REPO = pathlib.Path('/Users/sagnikmitra/Desktop/GitHub/frontmatter')
 
 REQUIRED = ['id', 'cat', 'sub', 'weight', 'q', 'lede', 'visual', 'stakes',
-            'state', 'path', 'tension', 'options', 'rec', 'recCase', 'sources']
+            'state', 'tension', 'options', 'rec', 'recCase', 'sources']
 OPTIONAL = ['evidence', 'linked', 'flip']
-OPT_REQUIRED = ['k', 'label', 'what', 'gains', 'costs', 'system', 'screens', 'money']
+# `what` is optional: it is kept only where the label is ambiguous without it. The 2026-09-10
+# compaction measured 77 of 978 options needing it; the rest restated their own label.
+OPT_REQUIRED = ['k', 'label', 'gains', 'costs', 'system', 'screens', 'money']
 
 VISUAL_KINDS = {'screen', 'flow', 'state', 'compare', 'ba', 'arch', 'timeline',
                 'matrix', 'file', 'funnel'}
@@ -196,10 +198,16 @@ def check_question(rep, q, corpus_ok):
                 rep.warn(qid, f'{f}: {len(q[f])} chars (limit {LIMITS[f]})')
             check_text(rep, qid, f, q[f])
 
-    check_bullets(rep, qid, 'state', q.get('state'), 2, 5)
-    check_bullets(rep, qid, 'path', q.get('path'), 2, 5)
-    check_bullets(rep, qid, 'tension', q.get('tension'), 2, 5)
-    check_bullets(rep, qid, 'recCase', q.get('recCase'), 2, 5)
+    # Bullet ceilings are the 2026-09-10 compaction's targets, enforced so a regeneration cannot
+    # quietly re-bloat the set. The set measured 157,248 words at a median of 591 a card -- about
+    # eight hours of reading -- before these limits existed.
+    check_bullets(rep, qid, 'state', q.get('state'), 2, 3)
+    check_bullets(rep, qid, 'tension', q.get('tension'), 2, 3)
+    check_bullets(rep, qid, 'recCase', q.get('recCase'), 2, 2)
+    # `path` (how a decision got here) was deleted from every card: history is the least
+    # load-bearing thing for someone deciding. Its return is a regression, not an addition.
+    if q.get('path'):
+        rep.warn(qid, 'path: deleted in the 2026-09-10 compaction; history does not belong on the card')
     check_visual(rep, qid, q.get('visual'))
     check_sources(rep, qid, q.get('sources'), corpus_ok)
 
@@ -225,8 +233,8 @@ def check_question(rep, q, corpus_ok):
                 check_text(rep, qid, f'{w}.{f}', o[f])
         if isinstance(o.get('label'), str) and o['label'].rstrip().endswith('.'):
             rep.warn(qid, f'{w}.label: trailing full stop')
-        check_bullets(rep, qid, f'{w}.gains', o.get('gains'), 1, 4)
-        check_bullets(rep, qid, f'{w}.costs', o.get('costs'), 1, 4)
+        check_bullets(rep, qid, f'{w}.gains', o.get('gains'), 1, 2)
+        check_bullets(rep, qid, f'{w}.costs', o.get('costs'), 1, 2)
 
 
 def main():

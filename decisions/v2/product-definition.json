@@ -7,7 +7,7 @@
       "sub": "Definition",
       "weight": "critical",
       "q": "Does the one-sentence definition still call frontmatter a markdown editor, or does the noun change?",
-      "lede": "The noun names the one part of the codebase we did not write, and every page, demo and price is written against it.",
+      "lede": "The noun names the one part we did not write. Every page, demo and price hangs on it.",
       "visual": {
         "kind": "arch",
         "layers": [
@@ -42,22 +42,14 @@
         "note": "Counts from docs/PRODUCT-BRIEF.md:223 and the fix-first table at :217.",
         "caption": "What the product owns, bottom-up. The noun names the top layer."
       },
-      "stakes": "Pick the wrong noun and every downstream artefact points at a forked shell we do not own and cannot promise quality for.",
+      "stakes": "Wrong noun: every artefact points at a forked shell we do not own.",
       "state": [
-        "docs/PRODUCT-BRIEF.md:20 defines it as \"a markdown editor for repositories whose documents are written by agents\".",
-        "41 of 43 editor and app-shell files are byte-identical to the sibling repo sgnk-md, and none is unique to frontmatter (docs/PRODUCT-BRIEF.md:223).",
-        "`src/modules/mdmax` is the only owned module, and one symbol from one of its thirteen files reaches product code (docs/PRODUCT-BRIEF.md:217).",
-        "Editing itself is now table stakes four times over: a free working-tree diff shipped in Claude Code, Antigravity, Codex and the VS Code Agents window."
-      ],
-      "path": [
-        "The noun was chosen when the shell looked like an asset — \"88.6% of a shipping editor exists\" (docs/PRODUCT-BRIEF.md:557).",
-        "The 2026-09-08 round measured it and found a fork, with 25 of 226 files across `src/` already diverged (docs/PRODUCT-BRIEF.md:223).",
-        "The form factor underneath the noun, standalone or extension, is called the largest unreasoned decision in the plan (docs/GAPS-2026-09-08.md:48)."
+        "41 of 43 editor and app-shell files are byte-identical to sgnk-md (docs/PRODUCT-BRIEF.md:223).",
+        "One symbol from one of 13 owned `mdmax` files reaches product code (docs/PRODUCT-BRIEF.md:217)."
       ],
       "tension": [
-        "The sentence promises editing quality a fork cannot guarantee and omits the engine, which is the only thing we wrote.",
-        "Keeping \"editor\" means paying a divergence tax that no exhibit carries a number for; it is prose at :223 and priced nowhere.",
-        "Changing the noun re-points every screen, price and channel, and \"review layer\" is a category with no search demand."
+        "\"Editor\" promises quality a fork cannot guarantee, and omits the engine we wrote.",
+        "Changing it re-points every screen and price; \"review layer\" has no search demand."
       ],
       "evidence": [
         {
@@ -132,75 +124,66 @@
         {
           "k": "a",
           "label": "Keep \"markdown editor\" and budget the fork tax as a line item",
-          "what": "The sentence stays as written and the divergence between the two repos becomes a costed, tracked item.",
           "gains": [
-            "Familiar noun; the free-editor distribution story survives intact",
-            "Nothing downstream has to be rewritten this week"
+            "Familiar noun; the free-editor funnel survives"
           ],
           "costs": [
-            "Every table-stakes day is a fork tax or an upstream merge, and neither is estimated",
-            "Promises the one thing we did not build"
+            "Unestimated fork tax on every table-stakes feature",
+            "Sells the one part we did not build"
           ],
-          "system": "No change to code; adds a recurring merge obligation against sgnk-md.",
+          "system": "No code change; a recurring merge against sgnk-md.",
           "screens": "None.",
-          "money": "Unpriced engineering time on a shell that is not the product."
+          "money": "Unpriced engineering time on the shell."
         },
         {
           "k": "b",
           "label": "Change the noun to the engine and the state, shipped inside an editor",
-          "what": "\"A review layer for markdown written by agents\" — the editor becomes the shell, not the promise.",
+          "what": "New sentence: \"a review layer for markdown written by agents\".",
           "gains": [
-            "Names the only owned code and stops selling editing quality",
-            "Survives the fork finding and the narrowing in P2 together"
+            "Names the only code we own"
           ],
           "costs": [
-            "An unfamiliar category with no search demand",
-            "Weakens the free-editor funnel argument in the product family"
+            "A category with no search demand",
+            "Weakens the free-editor funnel"
           ],
-          "system": "No engine change; the sidecar becomes the headline object.",
-          "screens": "First-run copy and the landing pages are rewritten.",
+          "system": "Sidecar becomes the headline object.",
+          "screens": "First-run copy and landing pages rewritten.",
           "money": "None directly; slower organic search."
         },
         {
           "k": "c",
           "label": "Merge sgnk-md and frontmatter into one codebase, then write the sentence",
-          "what": "One repo, one name, one shell, and the editor noun becomes honest again.",
           "gains": [
-            "Removes the divergence tax at source",
-            "Makes \"editor\" a claim we can stand behind"
+            "Kills the divergence tax; \"editor\" becomes honest"
           ],
           "costs": [
-            "A merge before any user-facing work, at 1.21 engineering days per week (:227)",
-            "The merge itself has never been estimated"
+            "Unestimated merge at 1.21 engineering days a week (docs/PRODUCT-BRIEF.md:227)"
           ],
-          "system": "One codebase; the Tauri identity fix at fix-first item 9 folds into it.",
-          "screens": "None immediately.",
-          "money": "Unknown weeks before anything is shown to anyone."
+          "system": "One codebase; absorbs the Tauri identity fix (fix-first 9).",
+          "screens": "None yet.",
+          "money": "Unknown weeks before anything ships."
         },
         {
           "k": "d",
           "label": "Defer the noun until the form-factor decision resolves",
-          "what": "No sentence is written until standalone-versus-extension is settled.",
           "gains": [
-            "Avoids writing the same sentence twice",
-            "Form factor genuinely determines the noun"
+            "Form factor genuinely decides the noun"
           ],
           "costs": [
-            "Nothing downstream can be written, and the weeks 1–2 pages need copy now",
+            "Weeks 1–2 pages need copy now",
             "Defers rather than decides"
           ],
           "system": "No change.",
-          "screens": "None built.",
+          "screens": "None.",
           "money": "None."
         }
       ],
       "rec": "b",
       "recCase": [
-        "The sentence should name what we own, and we own the engine and the sidecar, not the shell.",
-        "One symbol from one of thirteen owned files reaches product code today — a gap to close, not an asset to sell (docs/PRODUCT-BRIEF.md:217).",
-        "Option b keeps the editor as the container without making editing the promise, which is the only reading that survives both the fork finding and P2's narrowing."
+        "Name what we own: the engine and the sidecar, not the shell.",
+        "The editor stays the container, not the promise. Survives the fork finding and P2 together."
       ],
-      "flip": "If the merge in option c is genuinely one week, do it first and \"editor\" becomes honest again. Ask what it costs before the room votes.",
+      "flip": "If option c's merge is genuinely one week, do it first and \"editor\" is honest again.",
       "linked": [
         "P2",
         "P18"
@@ -223,7 +206,7 @@
       "sub": "Definition",
       "weight": "critical",
       "q": "Does review state stay the headline, narrow to per-span state kept in the repo, or does something else lead?",
-      "lede": "Three of the four claims became table stakes in nine weeks, and the read-receipt half of this one has a corpse with $45M behind it.",
+      "lede": "Three of four claims became table stakes in nine weeks. The read-receipt half of this one died with $45M behind it.",
       "visual": {
         "kind": "compare",
         "labelWidth": 150,
@@ -278,24 +261,16 @@
         "note": "Almanac totals are from a podcast summary, not the founder's own writing.",
         "caption": "Where each of the four claims stands on 9 September 2026."
       },
-      "stakes": "Lead with a sentence four free tools already satisfy and the first person in the room refutes it by opening their own editor.",
+      "stakes": "Lead with a sentence four free tools satisfy and the room refutes it from their own editor.",
       "state": [
-        "docs/PRODUCT-BRIEF.md:20 leads with review state; line 22 labels it a hypothesis whose test has already gone against it.",
-        "\"See what the agent changed\" is free in four places, the newest being Claude Code v2.1.260, published 2026-09-03.",
-        "VS Code merged a per-file review/unreview operation on 2026-07-03, milestone 1.128.0, gated behind a setting and absent from its public docs.",
-        "What survives is narrow and already written at docs/PRODUCT-BRIEF.md:27: state that persists across people and across tools on a working tree with no pull request."
-      ],
-      "path": [
-        "Review state was synthesised from the refutations of the previous three headlines and was never itself attacked (docs/GAPS-2026-09-08.md:21).",
-        "The 2026-09-08 round attacked it and came back negative with one narrowed survivor (docs/GAPS-2026-09-08.md:124).",
-        "Almanac shipped this whole feature sentence, read receipts and approvals included, raised $45M, and switched off on 2025-01-31.",
-        "Three headline arms were named for the weeks 1–2 test at :296 and none carries a pass mark (merged from P22)."
+        "docs/PRODUCT-BRIEF.md:20 leads with it; :22 says its test already went against it.",
+        "Four tools now show what the agent changed, free; the newest shipped 2026-09-03.",
+        "VS Code merged per-file review/unreview on 2026-07-03 (1.128.0), behind a setting."
       ],
       "tension": [
-        "The general document form is Almanac's and is dead; the narrow form is unclaimed and has never been shown to anyone.",
-        "Thirteen purpose-built markdown-review extensions sum to 1,217 installs, ceiling 400 (docs/PRODUCT-BRIEF.md:24).",
-        "Attribution is the only one of the four claims nobody shipped, and it is the one we cannot deliver until writes carry provenance (docs/PRODUCT-BRIEF.md:65).",
-        "Three arms split a ten-person sample three ways, which decides nothing without a number written in advance."
+        "Almanac shipped the general form, raised $45M and shut down 2025-01-31.",
+        "13 markdown-review extensions total 1,217 installs, ceiling 400 (docs/PRODUCT-BRIEF.md:24).",
+        "Three test arms split ten people three ways, with no pass mark written."
       ],
       "evidence": [
         {
@@ -435,14 +410,12 @@
         {
           "k": "a",
           "label": "Confirm review state as the headline and test it unchanged",
-          "what": "The plan stands and the weeks 1–2 pages carry today's sentence.",
           "gains": [
-            "Every downstream artefact stays usable",
-            "No copy work this week"
+            "Every downstream artefact stays usable"
           ],
           "costs": [
-            "Page one of the plan carries a refutation of itself",
-            "Thirteen shipped products at a 400-install ceiling say the market was tested"
+            "Page one of the plan refutes itself",
+            "13 shipped products, a 400-install ceiling"
           ],
           "system": "No change.",
           "screens": "None.",
@@ -451,60 +424,52 @@
         {
           "k": "b",
           "label": "Narrow it: per-span state kept in the repo, across people, tools and machines",
-          "what": "The claim shrinks to the one shape nothing observed reaches, and the sidecar in the repository is the differentiator.",
           "gains": [
-            "True, checkable, and unoccupied by any incumbent",
-            "Stops the pitch colliding with GitHub Viewed, Google's blue dot and VS Code's marker"
+            "True, checkable, unoccupied by any incumbent",
+            "Stops colliding with GitHub Viewed, Google's blue dot, VS Code's marker"
           ],
           "costs": [
-            "A much smaller statement, invisible without a second person and a second tool",
-            "The pilot's ten strangers may have neither"
+            "Invisible without a second person and tool; pilot strangers may lack both"
           ],
-          "system": "The sidecar must survive an out-of-band write, which is still open (docs/GAPS-2026-09-08.md:146).",
-          "screens": "The review panel becomes a cross-person list, not a per-session diff.",
-          "money": "None today; it is what a team seat would be sold on."
+          "system": "Sidecar must survive out-of-band writes; open (docs/GAPS-2026-09-08.md:146).",
+          "screens": "Review panel becomes a cross-person list.",
+          "money": "None today; the team-seat pitch."
         },
         {
           "k": "c",
           "label": "Lead with attribution — which text the agent wrote",
-          "what": "Authorship of spans becomes the headline and review state the mechanism beneath it.",
           "gains": [
-            "The only one of the four claims nobody has shipped",
-            "Google sells the span-level half today, at our intended tier"
+            "The only claim of the four nobody shipped"
           ],
           "costs": [
-            "We can only show what the write carried; prompts need F11 MCP, MVP-1 and untested (:65)",
-            "Reverses a documented demotion made on consumer evidence"
+            "Prompts need F11 MCP: MVP-1, untested (docs/PRODUCT-BRIEF.md:65)",
+            "Reverses a demotion made on consumer evidence"
           ],
-          "system": "Forces F11 MCP and commit-trailer readers forward from MVP-1.",
-          "screens": "The hover card becomes the primary surface, not a detail.",
-          "money": "Puts a live paid precedent behind the team tier."
+          "system": "Pulls F11 MCP and trailer readers forward from MVP-1.",
+          "screens": "Hover card becomes the primary surface.",
+          "money": "A live paid precedent behind the team tier."
         },
         {
           "k": "d",
           "label": "Demote review state and lead with spec-kit self-certification",
-          "what": "\"Your checklist is green because the agent ticked it\" becomes the entry line.",
           "gains": [
-            "Built on a measured fact: 354 of 355 boxes ticked by the agent (docs/PRODUCT-BRIEF.md:306)",
-            "Needs no feature that is not already planned"
+            "354 of 355 boxes ticked by the agent (docs/PRODUCT-BRIEF.md:306)"
           ],
           "costs": [
-            "Points at one toolchain of 11,072 repos (docs/PRODUCT-BRIEF.md:148)",
-            "Needs a different demo and a different first screen"
+            "One toolchain, 11,072 repos (docs/PRODUCT-BRIEF.md:148)",
+            "A different demo and first screen"
           ],
           "system": "No change.",
-          "screens": "The launcher leads with the scan, not the tint.",
+          "screens": "Launcher leads with the scan, not the tint.",
           "money": "None."
         }
       ],
       "rec": "b",
       "recCase": [
-        "Option b is the only version the 2026-09-08 round left standing, and the plan already writes it that way at :27 and :559.",
-        "Narrowing costs nothing today because nothing is built.",
-        "Per-span, stored in the repository rather than in editor workspace state, is the one shape nothing observed reaches — including VS Code's own marker.",
-        "Whichever sentence leads, write the pass mark before the test runs; the exit measure has one at docs/WEEK0-DECISIONS-2026-09-08.md:22 and the headline test has none."
+        "b is the only form the 2026-09-08 round left standing; the plan already writes it (docs/PRODUCT-BRIEF.md:27).",
+        "Per-span, in the repo, not workspace state: nothing observed reaches it, VS Code included."
       ],
-      "flip": "If fewer than 4 of 10 developers name unreviewed agent edits unprompted, the kill line at docs/PRODUCT-BRIEF.md:321, then c or d becomes the honest lead.",
+      "flip": "If under 4 of 10 developers name unreviewed agent edits unprompted (docs/PRODUCT-BRIEF.md:321), lead with c or d.",
       "linked": [
         "P4",
         "P23",
@@ -539,8 +504,8 @@
       "cat": "Product & definition",
       "sub": "Abandoned headlines",
       "weight": "high",
-      "q": "Does byte-exactness come back into the pitch, stay a silent mechanism, or leave the copy entirely?",
-      "lede": "The only claim a stranger can check in five seconds against their own folder, and no vendor has taught a buyer to want it.",
+      "q": "Does byte-exactness return to the pitch, stay a silent mechanism, or leave the copy entirely?",
+      "lede": "The only claim a stranger can check in five seconds on their own folder. Nobody has taught buyers to want it.",
       "visual": {
         "kind": "ba",
         "before": {
@@ -577,22 +542,16 @@
         "note": "Cursor staff call the left-hand column a known issue they are tracking (docs/DECIDE.md:35).",
         "caption": "Real, invisible on an ordinary file, and below the category's floor."
       },
-      "stakes": "Promote it and the demo needs a file crafted to break a named competitor; drop it and the only checkable claim goes.",
+      "stakes": "Promote it: the demo needs a file built to break a competitor. Drop it: the only checkable claim goes.",
       "state": [
-        "docs/PRODUCT-BRIEF.md:174 rules it \"Mechanism, not pitch\" on 4 complaints in 12,556.",
-        "It survives as a proof line under whichever headline wins: `git diff` after an edit shows the change and nothing else (docs/PRODUCT-BRIEF.md:296).",
-        "Nobody in the thirty-year redlining category sells below word level; Word's own API offers character and word and stops there.",
-        "Word-level prose diff has been free in git since 2006 as `--color-words`."
-      ],
-      "path": [
-        "It was the founding headline (docs/DECIDE.md:59) and was refuted on demand: 1 formatting-caused switch found in eleven years (docs/DECIDE.md:27).",
-        "docs/DECIDE.md:35 confirmed the defect is real and admitted by an incumbent's own staff.",
-        "docs/CRITIQUE.md:382 then priced the demo: the difference is invisible unless the file is adversarial."
+        "Ruled \"Mechanism, not pitch\" on 4 complaints in 12,556 (docs/PRODUCT-BRIEF.md:174).",
+        "Proof line today: `git diff` after an edit shows only the change (docs/PRODUCT-BRIEF.md:296).",
+        "No redlining vendor sells below word level; `--color-words` has done that free since 2006."
       ],
       "tension": [
-        "Demand is 0.03% of the measured complaint base and the defect is real and on the record in a competitor's words.",
-        "Byte granularity is genuinely below the floor the category sells at, so there is no buyer trained to ask for it.",
-        "Publishing any fidelity number drags the 83% refusal rate along with it, by the plan's own rule at :516."
+        "Real defect, admitted by an incumbent's staff (docs/DECIDE.md:35); demand is 0.03%.",
+        "Invisible in a demo unless the file is adversarial (docs/CRITIQUE.md:382).",
+        "Any fidelity number drags the 83% refusal rate with it (docs/PRODUCT-BRIEF.md:516)."
       ],
       "evidence": [
         {
@@ -667,14 +626,11 @@
         {
           "k": "a",
           "label": "Keep it where it is — one proof line under the headline, never the headline",
-          "what": "One sentence under whatever leads, with the corpus caveat attached.",
           "gains": [
-            "Costs nothing and keeps the one five-second checkable claim",
-            "Matches the demand evidence exactly"
+            "Free; matches the demand evidence exactly"
           ],
           "costs": [
-            "A proof line nobody reads does no work",
-            "Leaves the strongest engineering unsold"
+            "A proof line nobody reads does no work"
           ],
           "system": "No change.",
           "screens": "One line on the landing page.",
@@ -683,14 +639,12 @@
         {
           "k": "b",
           "label": "Promote it to a co-headline for the technical audience",
-          "what": "Lead the developer-facing page with corruption, paired with the incumbents' admitted defect.",
           "gains": [
-            "A claim no competitor can make",
-            "The defect is documented in their own words"
+            "A claim no competitor can make, their defect in their words"
           ],
           "costs": [
             "A defect claim about named companies",
-            "Demand for it is 4 complaints in 12,556 (docs/DECIDE.md:27)"
+            "Demand: 4 complaints in 12,556 (docs/DECIDE.md:27)"
           ],
           "system": "No change.",
           "screens": "A second landing page for the technical arm.",
@@ -699,14 +653,12 @@
         {
           "k": "c",
           "label": "Remove it from user-facing copy; keep it as a constraint and a test",
-          "what": "The engine property stays; the sentence goes.",
           "gains": [
-            "Shortens the pitch and drops a claim nobody asks for",
-            "No exposure on a fidelity number"
+            "Shorter pitch, no fidelity number to defend"
           ],
           "costs": [
-            "Loses the only claim a stranger can check against their own folder",
-            "Leaves the demo with nothing verifiable in it"
+            "Loses the only claim a stranger can check",
+            "The demo has nothing verifiable left"
           ],
           "system": "No change; the corpus test stays in CI.",
           "screens": "One line removed.",
@@ -715,27 +667,25 @@
         {
           "k": "d",
           "label": "Keep it, and publish fidelity and refusal rate as one fraction",
-          "what": "The claim is re-scoped to the constructs it is measured on and the refusal rate sits beside it.",
           "gains": [
             "Defensible against the first person who checks",
-            "Already required by the plan's own rule at :516"
+            "Required anyway by docs/PRODUCT-BRIEF.md:516"
           ],
           "costs": [
-            "Publishing an 83% refusal rate next to a fidelity claim (docs/PRODUCT-BRIEF.md:214)",
-            "Both numbers are properties of seven Obsidian vaults (:514)"
+            "An 83% refusal rate beside a fidelity claim (docs/PRODUCT-BRIEF.md:214)",
+            "Both numbers come from seven Obsidian vaults (docs/PRODUCT-BRIEF.md:514)"
           ],
-          "system": "The corpus run has to emit both numbers together.",
+          "system": "The corpus run emits both numbers together.",
           "screens": "A methodology note beside the claim.",
           "money": "None."
         }
       ],
       "rec": "a",
       "recCase": [
-        "The measurement is real, the demand is not, and the plan already put it in the right slot.",
-        "One sentence preserves the only claim a stranger can check against their own folder.",
-        "Option d is not really optional: the moment any fidelity number is published, :516 says the refusal rate goes next to it."
+        "The measurement is real, the demand is not; the plan already put it in the right slot.",
+        "One sentence keeps the only claim a stranger can check on their own folder."
       ],
-      "flip": "If every headline arm fails in weeks 1–2 and corruption is what people react to, option b is the fallback.",
+      "flip": "If every headline arm fails in weeks 1–2 and people react to corruption, b is the fallback.",
       "linked": [
         "P11",
         "P21"
@@ -759,8 +709,8 @@
       "cat": "Product & definition",
       "sub": "Abandoned headlines",
       "weight": "high",
-      "q": "Does authorship marking come back, now that it is the only one of the four claims nobody has shipped?",
-      "lede": "The demotion rested on iA Writer and a 208-download port; nine weeks of absorption took the other three claims and left this one.",
+      "q": "Does authorship marking come back, now it is the only one of the four claims nobody has shipped?",
+      "lede": "The demotion rested on iA Writer and a 208-download port. Nine weeks absorbed the other three claims, not this one.",
       "visual": {
         "kind": "matrix",
         "x": [
@@ -812,22 +762,16 @@
         "note": "Google gates span-level authorship at Business Standard and above; the file-level dot stays free (docs/PRODUCT-BRIEF.md:57).",
         "caption": "Attribution of agent-written spans: unoccupied, and sold once."
       },
-      "stakes": "Leave it free and we give away the one thing a comparable actually charges for; sell it and it is empty whenever the write carried nothing.",
+      "stakes": "Free, we give away what a comparable charges for. Sold, it is empty when the write carried nothing.",
       "state": [
-        "docs/PRODUCT-BRIEF.md:175 records authorship as \"shown when available, not the headline\"; F3 ships in MVP-0 as a hover card only (:57).",
-        "No platform has shipped span attribution of agent writes. The only implementation found anywhere is a VS Code extension with 88 installs.",
-        "iA Writer 8 shipped authorship marking on 2026-06-17 and is now on Windows, but for typed versus pasted text in a personal document.",
-        "Google gates span-level authorship behind Workspace Business Standard and above while the file-level signal stays free (docs/PRODUCT-BRIEF.md:57)."
-      ],
-      "path": [
-        "Authorship was the second headline — \"a markdown editor that knows which bytes a machine wrote\" (docs/BRIEF.md:125).",
-        "It was demoted on consumer non-adoption: a 208-download Obsidian port, a 366-install extension, no Reddit ask (docs/PRODUCT-BRIEF.md:175, :296).",
-        "The 2026-09-08 round reopened it as a team feature and found the Google split (docs/GAPS-2026-09-08.md:139)."
+        "Ruled \"shown when available, not the headline\" (docs/PRODUCT-BRIEF.md:175); F3 is a hover card.",
+        "No platform ships span attribution of agent writes; one extension has 88 installs.",
+        "Google sells span-level authorship from Business Standard; file-level stays free (docs/PRODUCT-BRIEF.md:57)."
       ],
       "tension": [
-        "The demotion was decided on consumer evidence about personal documents, and the new evidence is commercial and about teams.",
-        "Attribution shows only what the write carried; prompts need F11 MCP, which is MVP-1 and marked untested (docs/PRODUCT-BRIEF.md:65).",
-        "It is the only unoccupied claim, and it is the one we are least able to deliver in MVP-0."
+        "Demoted on consumer evidence about personal documents; the new evidence is about teams.",
+        "Prompts need F11 MCP, which is MVP-1 and untested (docs/PRODUCT-BRIEF.md:65).",
+        "The only unoccupied claim is the one MVP-0 can least deliver."
       ],
       "evidence": [
         {
@@ -908,14 +852,11 @@
         {
           "k": "a",
           "label": "Leave F3 as a hover card in the free tier",
-          "what": "Attribution stays a detail shown when the write carried provenance.",
           "gains": [
-            "Consistent with the consumer evidence and needs no decision",
-            "Nothing to build beyond the readers already planned"
+            "Matches the consumer evidence; nothing new to build"
           ],
           "costs": [
-            "Gives away the one thing a comparable sells",
-            "The Pro tier keeps a thin offer"
+            "Gives away the one thing a comparable sells"
           ],
           "system": "No change.",
           "screens": "None.",
@@ -924,46 +865,38 @@
         {
           "k": "b",
           "label": "Mirror Google: file-level signal free, span-level attribution paid",
-          "what": "The team tier buys per-span authorship; the free tier gets a file-level changed marker.",
           "gains": [
-            "A live paid precedent sits behind the price, at our intended tier",
-            "Thickens Pro beyond what GitHub bundles at $4"
+            "A live paid precedent at our intended tier"
           ],
           "costs": [
-            "Empty whenever the write carried nothing, and F11 is MVP-1 and untested",
-            "A gate on a feature we cannot yet fill"
+            "Empty when the write carried nothing; F11 is MVP-1, untested"
           ],
-          "system": "Entitlement check on the attribution reader; F11 moves up in priority.",
-          "screens": "The hover card gains a locked state in the free tier.",
-          "money": "The first defensible line item in the $4–5 tier."
+          "system": "Entitlement check on the attribution reader; F11 moves up.",
+          "screens": "Hover card gains a locked free-tier state.",
+          "money": "First defensible line item in the $4–5 tier."
         },
         {
           "k": "c",
           "label": "Make attribution the headline again, with review state as the mechanism",
-          "what": "The pitch leads with which text the agent wrote, and the sidecar becomes plumbing.",
           "gains": [
-            "The only one of the four claims nobody has shipped",
-            "Names a thing a buyer already pays Google for"
+            "The only claim of the four nobody has shipped"
           ],
           "costs": [
-            "Reverses a demotion that was complemented, not refuted; one precedent is not a market",
-            "We cannot deliver prompts until F11 lands"
+            "One precedent is not a market",
+            "No prompts until F11 lands"
           ],
           "system": "F11 MCP and trailer readers become MVP-0 blockers.",
-          "screens": "The hover card becomes the primary surface.",
-          "money": "Prices the tier on a feature that is empty at first run."
+          "screens": "Hover card becomes the primary surface.",
+          "money": "Prices the tier on a feature empty at first run."
         },
         {
           "k": "d",
           "label": "Decide after the 20 team conversations report what teams are gated on",
-          "what": "The tier table stays a hypothesis until weeks 1–2 return seat counts and gates.",
           "gains": [
-            "Avoids pricing on a single analogy",
-            "The conversations are already scheduled at :352"
+            "No pricing on one analogy; talks already scheduled (docs/PRODUCT-BRIEF.md:352)"
           ],
           "costs": [
-            "The Pro tier stays thin for another cycle",
-            "Two weeks with no answer on the only unoccupied claim"
+            "Two more weeks with Pro thin and no answer"
           ],
           "system": "No change.",
           "screens": "None.",
@@ -972,11 +905,10 @@
       ],
       "rec": "b",
       "recCase": [
-        "Google's split is the closest thing in the corpus to a natural experiment: the file-level signal is free and the span-level signal is sold, at our tier.",
-        "Copying the split costs nothing to decide and makes Pro thicker than \"what GitHub bundles at $4\".",
-        "Option c overreaches: attribution is only as good as what the write carried, and today that is commit trailers and git-ai notes, not prompts."
+        "Google's split is a natural experiment: file-level free, span-level sold, at our tier.",
+        "Costs nothing to decide and makes Pro thicker than what GitHub bundles at $4."
       ],
-      "flip": "If the 20 team conversations say teams will not pay for anything without shared comments, option d wins and the split waits.",
+      "flip": "If the 20 team conversations say nothing sells without shared comments, d wins and the split waits.",
       "linked": [
         "P2",
         "P24"
@@ -999,8 +931,8 @@
       "cat": "Product & definition",
       "sub": "Abandoned headlines",
       "weight": "medium",
-      "q": "Does answer in place stay in MVP-0, or leave the product now that half of it has been cut?",
-      "lede": "It was the third headline; it is now a two-day feature whose Q-to-A half was cut, working on exactly one toolchain.",
+      "q": "Does answer in place stay in MVP-0, or leave the product now that half of it is cut?",
+      "lede": "Once the third headline, now a two-day feature: the Q-to-A half is cut and it serves one toolchain.",
       "visual": {
         "kind": "funnel",
         "steps": [
@@ -1026,21 +958,16 @@
         "note": "docs/PRODUCT-BRIEF.md:178 for the correction, :58 for the file count.",
         "caption": "The population behind F4, before and after the correction."
       },
-      "stakes": "Two days is cheap, but every concept in the first-run surface is charged against a budget that is already over (P15).",
+      "stakes": "Two days is cheap, but every first-run concept draws on a budget already over (P15).",
       "state": [
-        "F4 ships in MVP-0 at 2 days and addresses `[NEEDS CLARIFICATION]` markers only; the Q-to-A half is cut (docs/PRODUCT-BRIEF.md:58).",
-        "3,368 public `spec.md` files carry the marker; a read-every-hit sample of 50 found 42% genuinely live (docs/PRODUCT-BRIEF.md:58).",
-        "The 62,976 figure was wrong: 49,408 were spec-kit's own checklist line, leaving about 1,500 live markers (docs/PRODUCT-BRIEF.md:178)."
-      ],
-      "path": [
-        "Answer in place was briefly the headline, third of four (docs/GAPS-2026-09-08.md:13).",
-        "The population claim was corrected on 2026-09-08 and the feature survived as a small one.",
-        "`specify init` writes 30 files and zero specs, so the marker only appears once someone has run the spec command (docs/GAPS-2026-09-08.md:126)."
+        "F4 ships in MVP-0 at 2 days, `[NEEDS CLARIFICATION]` markers only (docs/PRODUCT-BRIEF.md:58).",
+        "3,368 public `spec.md` files carry the marker; 42% of a 50-file sample are live.",
+        "The 62,976 figure was wrong; about 1,500 live markers remain (docs/PRODUCT-BRIEF.md:178)."
       ],
       "tension": [
-        "It fires only when a spec-kit user opens a spec somewhere other than their agent.",
-        "It is the one MVP-0 feature where the user's action closes something an agent left open, which is the retention mechanism at :427.",
-        "One toolchain of 11,072 repos, about 1,660 of them active (docs/PRODUCT-BRIEF.md:148)."
+        "Fires only when a spec-kit user opens a spec outside their agent.",
+        "The only MVP-0 feature where a person closes what an agent left open.",
+        "One toolchain: 11,072 repos, about 1,660 active (docs/PRODUCT-BRIEF.md:148)."
       ],
       "evidence": [
         {
@@ -1115,30 +1042,24 @@
         {
           "k": "a",
           "label": "Keep F4 in MVP-0 as specified — markers only, two days",
-          "what": "The feature ships as written, inside the review loop.",
           "gains": [
-            "Two days for a small, finishable, visible action",
-            "Feeds the return trigger in the retention argument (:427)"
+            "Feeds the return trigger in the retention argument"
           ],
           "costs": [
-            "One more concept in a first-run surface already over budget",
-            "Fires only for spec-kit users, on about 1,400 files"
+            "One more first-run concept, for about 1,400 files"
           ],
-          "system": "Marker detection plus a splice into the marker's byte range.",
+          "system": "Marker detection plus a splice into its byte range.",
           "screens": "S3 answer in place.",
           "money": "None."
         },
         {
           "k": "b",
           "label": "Move F4 to MVP-1 and ship MVP-0 without it",
-          "what": "The feature is built after the exit test, not before.",
           "gains": [
-            "Two days back and one fewer concept at first run",
-            "Nothing in the headline depends on it"
+            "Two days back, one fewer first-run concept"
           ],
           "costs": [
-            "Loses a concrete demo beat in the spec-kit channel",
-            "Removes the only closable task in the review loop"
+            "Loses the only closable task in the review loop"
           ],
           "system": "No change.",
           "screens": "S3 deferred.",
@@ -1147,14 +1068,11 @@
         {
           "k": "c",
           "label": "Cut it and use the spec-kit self-certification pitch instead",
-          "what": "The channel argument becomes \"your checklist is green because the agent ticked it\", with no feature behind it.",
           "gains": [
-            "354 of 355 boxes ticked is stronger evidence than the marker count (:306)",
-            "Zero engineering days"
+            "354 of 355 agent-ticked boxes is stronger evidence (docs/PRODUCT-BRIEF.md:306)"
           ],
           "costs": [
-            "A pitch with no artefact behind it",
-            "Nothing changes in the product, so there is nothing to show"
+            "A pitch with nothing in the product to show"
           ],
           "system": "No change.",
           "screens": "None.",
@@ -1163,26 +1081,23 @@
         {
           "k": "d",
           "label": "Keep it but generalise the marker set beyond spec-kit first",
-          "what": "Other TODO and open-question conventions are detected as well.",
           "gains": [
-            "Widens the population past one toolchain",
-            "Makes the feature independent of a single vendor"
+            "Widens the population past one vendor"
           ],
           "costs": [
-            "Unmeasured: no other marker convention has been counted",
-            "A guess with a cost attached"
+            "No other marker convention has been counted"
           ],
-          "system": "A marker registry the engine has to maintain.",
+          "system": "A marker registry the engine must maintain.",
           "screens": "S3 gains a source filter.",
           "money": "None."
         }
       ],
       "rec": "a",
       "recCase": [
-        "Two days for a visible, finishable action inside the review loop is cheap, and about 1,400 live files is small but precisely measured.",
-        "The reason to keep it is the mechanism, not the population: it is the only MVP-0 feature where a person closes something an agent left open."
+        "Two days for a visible, finishable action; about 1,400 live files is small but measured.",
+        "Keep it for the mechanism, the return trigger (docs/PRODUCT-BRIEF.md:427), not the population."
       ],
-      "flip": "If P15 lands at four nouns or P18 cuts MVP-0 to fix-first plus review state, F4 is the first thing to move.",
+      "flip": "If P15 lands at four nouns or P18 cuts MVP-0 to fix-first plus review state, F4 moves first.",
       "linked": [
         "P15",
         "P18"
@@ -1203,7 +1118,7 @@
       "sub": "Abandoned headlines",
       "weight": "high",
       "q": "Do idea mode and the decision flow ship in MVP-0, get relabelled untested, or leave the product?",
-      "lede": "Two features ship in the first release on a statement in a chat window, and they serve a buyer the plan's own recommendation contradicts.",
+      "lede": "Two MVP-0 features rest on a statement in a chat window, and serve a buyer the plan contradicts.",
       "visual": {
         "kind": "flow",
         "perRow": 3,
@@ -1241,21 +1156,16 @@
         "note": "The contradiction is stated at docs/GAPS-2026-09-08.md:52 and nowhere in the plan.",
         "caption": "Why the two founder-tested features point away from the chosen buyer."
       },
-      "stakes": "Ship them unlabelled and the plan's only human-tested evidence class is a claim nobody can check.",
+      "stakes": "Unlabelled, the plan's only human-tested evidence class is a claim nobody can check.",
       "state": [
-        "F5 and F6 ship in MVP-0 at 2+2 and 4 days, marked \"Founder user test (reported)\" (docs/PRODUCT-BRIEF.md:59, :60).",
-        "The settling evidence is listed as \"the founders' test notes, attached to the plan\", and they are not attached (docs/PRODUCT-BRIEF.md:187).",
-        "docs/GAPS-2026-09-08.md:23 rates the evidence High severity: a statement in chat, no notes, no participants, no protocol."
-      ],
-      "path": [
-        "The plan's §1 position is that generators are free inside the agent and frontmatter is the reading surface.",
-        "F5 and F6 were admitted anyway on founder testimony (docs/PRODUCT-BRIEF.md:69).",
-        "Public evidence for standalone generation is thin: 512 PRD-generator repos, top one at 57 stars (docs/PRODUCT-BRIEF.md:155)."
+        "F5 and F6: 2+2 and 4 days, evidence \"Founder user test (reported)\" (docs/PRODUCT-BRIEF.md:59).",
+        "The test notes are cited as attached; they are not (docs/PRODUCT-BRIEF.md:187).",
+        "Rated High severity: no notes, no participants, no protocol (docs/GAPS-2026-09-08.md:23)."
       ],
       "tension": [
-        "The reconciliation offered points at a buyer who does not run an agent, contradicting decision 2 (docs/GAPS-2026-09-08.md:52).",
-        "Both features are blocked on the same engine fix — the LLM port returns a bare string (docs/PRODUCT-BRIEF.md:220).",
-        "Eight days is the cheapest thing to cut on a schedule measured at 1.21 engineering days per week."
+        "The offered fix points at a non-agent buyer, contradicting decision 2 (docs/GAPS-2026-09-08.md:52).",
+        "Both are blocked on one fix: the LLM port returns a bare string (docs/PRODUCT-BRIEF.md:220).",
+        "Eight days is the cheapest cut at 1.21 engineering days a week."
       ],
       "evidence": [
         {
@@ -1325,14 +1235,11 @@
         {
           "k": "a",
           "label": "Ship both in MVP-0 and attach the founder test notes this week",
-          "what": "The plan stands and the evidence class becomes checkable.",
           "gains": [
-            "Costs a founder an hour",
-            "Either upgrades the evidence or forces an honest relabel"
+            "An hour upgrades the evidence or forces a relabel"
           ],
           "costs": [
-            "If the notes do not exist, the MVP-0 rationale at :69 collapses",
-            "The buyer contradiction is still unwritten"
+            "No notes and the MVP-0 rationale collapses (docs/PRODUCT-BRIEF.md:69)"
           ],
           "system": "Needs fix-first item 7, structured output, 2 days.",
           "screens": "S12 generate and the decision flow.",
@@ -1341,14 +1248,11 @@
         {
           "k": "b",
           "label": "Relabel both untested and keep them in MVP-0 as bets the pilot measures",
-          "what": "The evidence class changes; the build does not.",
           "gains": [
-            "Honest and free — no engineering change",
-            "The pilot measures them with a stated protocol"
+            "Honest, free, and measured by the pilot"
           ],
           "costs": [
-            "MVP-0 ships two untested features into a surface held at four nouns",
-            "Weakens the case for spending eight days on them"
+            "Two untested features in a surface held at four nouns"
           ],
           "system": "No change.",
           "screens": "None.",
@@ -1357,42 +1261,36 @@
         {
           "k": "c",
           "label": "Move F5 and F6 to MVP-1 and ship MVP-0 as review state only",
-          "what": "Generation leaves the first release entirely.",
           "gains": [
-            "Removes 8 days and the buyer contradiction from MVP-0",
-            "Matches the release to the headline"
+            "Removes 8 days and the buyer contradiction"
           ],
           "costs": [
-            "Loses the two features the founders have actually watched someone use",
-            "The only evidence class in the plan involving a live human"
+            "Drops the only features founders have watched someone use"
           ],
-          "system": "Structured output can be deferred with them.",
+          "system": "Structured output defers with them.",
           "screens": "S12 and the decision flow deferred.",
           "money": "None."
         },
         {
           "k": "d",
           "label": "Keep F5 and F6 and change the buyer to the liable non-developer",
-          "what": "The features match a buyer who needs generation, and the plan says so.",
           "gains": [
-            "Resolves the contradiction in the other direction",
             "Matches the features actually built"
           ],
           "costs": [
-            "Reverses decision 2's recommendation",
-            "Re-points every channel in §12, all of which are developer channels"
+            "Reverses decision 2; every §12 channel is a developer channel"
           ],
           "system": "No change.",
-          "screens": "First-run and onboarding aimed at a non-developer.",
+          "screens": "First-run aimed at a non-developer.",
           "money": "A different price ladder entirely."
         }
       ],
       "rec": "a",
       "recCase": [
-        "The features may well be right; the label is the problem, and an hour settles it.",
-        "Whichever way it goes, the buyer contradiction at docs/GAPS-2026-09-08.md:52 has to be written into the plan — a reader cannot see it from the feature table."
+        "The features may be right; the label is the problem, and an hour settles it.",
+        "Either way, write the buyer contradiction into the plan (docs/GAPS-2026-09-08.md:52)."
       ],
-      "flip": "If the notes do not exist, go straight to option c: eight days is the cheapest cut available at 1.21 engineering days per week.",
+      "flip": "If the notes do not exist, take c: eight days is the cheapest cut available.",
       "linked": [
         "P18",
         "P15"
@@ -1416,7 +1314,7 @@
       "sub": "Boundary",
       "weight": "high",
       "q": "Which refusal list is the public one, and does each refusal carry a published reversal price?",
-      "lede": "Refusals are the positioning, and the plan's list and the record's list are different lists that have never been laid side by side.",
+      "lede": "Refusals are the positioning. The plan's list and the record's list differ and were never compared.",
       "visual": {
         "kind": "compare",
         "labelWidth": 170,
@@ -1479,20 +1377,14 @@
       },
       "stakes": "A refusal announced and then quietly reversed costs more than never announcing it.",
       "state": [
-        "docs/PRODUCT-BRIEF.md:43 states six refusals; docs/PRODUCT-BRIEF.md:298 makes the list the positioning.",
-        "The record's list is seven, each with a written reversal condition (docs/THESIS.md:852–858), and the plan carries none of them.",
-        "Mobile is refused by the plan and admitted by the record with its own budget (docs/THESIS.md:843).",
-        "Two of the plan's own additions are contradicted by artefacts in the tree today (P8)."
-      ],
-      "path": [
-        "Each refusal was decided in its own section, against its own evidence, months apart.",
-        "The record's seven were ratified as the feature-admission rule with numeric reversal prices attached.",
-        "The plan's six-item line was assembled later and independently, keeping three and dropping four (merged from P17)."
+        "The plan lists six refusals and makes them the positioning (docs/PRODUCT-BRIEF.md:43, :298).",
+        "The record lists seven, each with a reversal condition (docs/THESIS.md:852–858).",
+        "Mobile: refused by the plan, budgeted by the record (docs/THESIS.md:843)."
       ],
       "tension": [
-        "Some items are company identity and some are roadmap, and the list presents them as one kind of thing.",
-        "Publishing a reversal price names the number at which a principle is for sale, which a competitor can quote back.",
-        "Not publishing one lets the first hard customer conversation decide the order for us."
+        "Some entries are identity, some roadmap; the list presents them as one kind.",
+        "A published reversal price is a number a competitor can quote back.",
+        "Unpublished, the first hard customer conversation sets the order."
       ],
       "evidence": [
         {
@@ -1670,30 +1562,26 @@
         {
           "k": "a",
           "label": "One reconciled list, with each entry's reversal price published",
-          "what": "The record's seven plus hosting and the vendor database, mobile settled either way, prices shown.",
+          "what": "The record's seven plus hosting and the vendor database; mobile settled.",
           "gains": [
-            "One artefact instead of two that disagree",
-            "Distinguishes principle from roadmap, which is what makes a refusal credible"
+            "One artefact; principle told apart from roadmap"
           ],
           "costs": [
-            "Publicly refusing multiplayer, galleries and dashboards, untested with any buyer",
-            "Cannot be published until P8 settles two of the entries"
+            "Refuses multiplayer, galleries, dashboards publicly, untested with buyers",
+            "Blocked until P8 settles two entries"
           ],
-          "system": "The list becomes the feature-admission gate in one place.",
-          "screens": "A refusals section on the site and in the pitch.",
+          "system": "The list becomes the one feature-admission gate.",
+          "screens": "A refusals section on site and pitch.",
           "money": "None."
         },
         {
           "k": "b",
           "label": "Keep the plan's six as public copy, the record's seven as the internal gate",
-          "what": "Short public line, strict private admission rule.",
           "gains": [
-            "Copy stays short and the gate stays strict",
-            "Nothing new to publish"
+            "Short copy, strict gate, nothing new to publish"
           ],
           "costs": [
-            "Mobile stays a live contradiction between the two documents",
-            "Nobody reading both can tell which governs"
+            "Mobile stays contradicted; nobody can tell which list governs"
           ],
           "system": "No change.",
           "screens": "None.",
@@ -1702,14 +1590,12 @@
         {
           "k": "c",
           "label": "Publish only the three that are identity, and treat the rest as roadmap",
-          "what": "No plugins, no code execution, no project management, no chat sidebar — nothing else is announced.",
+          "what": "No plugins, no code execution, no project management, no chat sidebar.",
           "gains": [
-            "Only refuses what will never be reversed, so it stays credible under pressure",
-            "No published price to be quoted back"
+            "Refuses only what never reverses, so it holds"
           ],
           "costs": [
-            "Loses \"we never hold your files\", the strongest trust claim in the plan",
-            "The architecture argument rests on the item being dropped"
+            "Loses \"we never hold your files\", the strongest trust claim"
           ],
           "system": "No change.",
           "screens": "A shorter positioning line.",
@@ -1718,14 +1604,11 @@
         {
           "k": "d",
           "label": "Stop publishing a refusal list; keep it as the internal admission gate",
-          "what": "Refusals govern what gets built and are never used as copy.",
           "gains": [
-            "No risk of a visible reversal",
-            "The gate keeps working"
+            "No visible reversal risk; the gate keeps working"
           ],
           "costs": [
-            "Gives up the positioning at :298",
-            "That line is the only differentiated copy not resting on an unproven feature"
+            "Loses the only differentiated copy needing no unproven feature (docs/PRODUCT-BRIEF.md:298)"
           ],
           "system": "No change.",
           "screens": "The positioning line goes.",
@@ -1734,11 +1617,10 @@
       ],
       "rec": "a",
       "recCase": [
-        "One list, or the two documents keep diverging — they already disagree about mobile.",
-        "The record did the hard part by attaching a number to every entry; publishing them makes the permanent refusals stronger by contrast.",
-        "\"Nothing reverses it\" reads differently next to \"reversed at 1,000 paying users\", and that contrast is the whole value of the list."
+        "One list, or the two documents keep diverging; they already disagree on mobile.",
+        "Priced reversals make the permanent refusals read stronger by contrast."
       ],
-      "flip": "If the founders will not publicly refuse multiplayer, galleries and dashboards, fall back to c and keep only the three that are identity.",
+      "flip": "If the founders will not publicly refuse multiplayer, galleries and dashboards, fall back to c.",
       "linked": [
         "P8",
         "P10"
@@ -1769,8 +1651,8 @@
       "cat": "Product & definition",
       "sub": "Boundary",
       "weight": "critical",
-      "q": "Do we hold user documents — and if not, what happens to the public route and the Firestore design that say we do?",
-      "lede": "Three committed artefacts disagree about whether we hold documents, one of them is running code, and every legal rule depends on the answer.",
+      "q": "Do we hold user documents, and if not, what happens to the public route and Firestore design that say we do?",
+      "lede": "Three committed artefacts disagree on whether we hold documents. One is running code, and every legal rule depends on it.",
       "visual": {
         "kind": "compare",
         "labelWidth": 175,
@@ -1825,22 +1707,16 @@
         "note": "docs/PRODUCT-BRIEF.md:43 and :133; PRD at :4204 and :4295; the route at src/app/(public)/[slug]/page.tsx:30.",
         "caption": "The same question, answered three ways, one of them by running code."
       },
-      "stakes": "Every rule in the operating-rules section is a function of this answer, and it also decides intermediary status.",
+      "stakes": "Every operating rule is a function of this answer, and it decides intermediary status.",
       "state": [
-        "docs/PRODUCT-BRIEF.md:43 refuses hosting and :133 says the control plane holds no document bytes.",
-        "`src/app/(public)/[slug]/page.tsx` renders any note with a `public_slug` to anonymous visitors, with `robots index: true` at line 30.",
-        "The page reads the repo server-side through one operator token, defaulting to `sagnikmitra/md` (src/config/env.ts:85).",
-        "`firestore.rules` designs 900,000-character note bodies (line 61), a public `contentSnapshot` (line 78) and an unauthenticated read (line 393); zero Firestore writes exist across 226 files (docs/PRODUCT-BRIEF.md:365)."
-      ],
-      "path": [
-        "The share module and the rules file were inherited with the sgnk-md fork and never removed.",
-        "PRD v2 took the opposite position deliberately: ship publishing in v1, narrow surface, 74 founder-hours of apparatus (docs/FRONTMATTER-PRD-v2-2026-08-29.md:4204).",
-        "docs/GAPS-2026-09-08.md:142 states it plainly: no operating rule can be written until one of the three is deleted (merged from P9)."
+        "The plan refuses hosting; no document bytes in the control plane (docs/PRODUCT-BRIEF.md:43, :133).",
+        "`src/app/(public)/[slug]/page.tsx` indexes notes to anonymous visitors (line 30) via one operator token.",
+        "`firestore.rules` designs 900,000-character bodies and unauthenticated reads (lines 61, 393); zero writes exist."
       ],
       "tension": [
-        "The refusal is what makes \"files stay in your repo\" true, and that architecture is the first evidence-backed approach claim (docs/GAPS-2026-09-08.md:83).",
-        "Publishing is also the only shipped way to show a document to someone who is not a user, which is the PRD's reason for wanting it.",
-        "A committed rules file designing public reads of user prose is the first thing an outside security review opens (docs/GAPS-2026-09-08.md:146)."
+        "The refusal makes \"files stay in your repo\" true (docs/GAPS-2026-09-08.md:83).",
+        "Publishing is the only shipped way to show a document to a non-user.",
+        "Public reads of user prose are what a security review opens first (docs/GAPS-2026-09-08.md:146)."
       ],
       "evidence": [
         {
@@ -1987,76 +1863,65 @@
         {
           "k": "a",
           "label": "Delete the public route and strip every content field from the rules",
-          "what": "Firebase keeps identity, teams and billing; the share module and all document fields go.",
+          "what": "Firebase keeps identity, teams and billing; the share module goes.",
           "gains": [
-            "The refusal becomes true in one commit and the operating rules become writable",
-            "Removes a 24-hour acknowledgement duty before it starts"
+            "The refusal is true in one commit; rules become writable"
           ],
           "costs": [
-            "Loses the only shipped way to show a document to a non-user",
-            "Firebase rules need rewriting rather than trimming"
+            "Loses the only shipped way to show a non-user a document"
           ],
-          "system": "Delete the route and the share collection; rewrite firestore.rules as a control plane.",
+          "system": "Delete route and share collection; rules become control-plane only.",
           "screens": "ShareMenu leaves the editor header.",
-          "money": "None; removes a hosting bill that does not exist yet."
+          "money": "None."
         },
         {
           "k": "b",
           "label": "Ship publishing as the PRD specifies, and keep the Firestore store",
-          "what": "Paying accounts, noindex, system slugs, grievance apparatus first, documents held.",
+          "what": "Paying accounts, noindex, system slugs, grievance apparatus first.",
           "gains": [
-            "A demonstration surface and a paid hook",
-            "Abuse economics inverted by the credit card"
+            "A demo surface and a paid hook"
           ],
           "costs": [
-            "74 one-time founder-hours of legal plumbing, and a permanent 24-hour duty (:4208)",
-            "Every trust and legal claim in the operating rules is rewritten"
+            "74 founder-hours of legal plumbing, then a permanent 24-hour duty (docs/FRONTMATTER-PRD-v2-2026-08-29.md:4208)"
           ],
           "system": "Firestore becomes a document store; intermediary status follows.",
-          "screens": "A publish flow, a takedown surface, a grievance page.",
-          "money": "Hosting, storage and a standing on-call obligation."
+          "screens": "Publish flow, takedown surface, grievance page.",
+          "money": "Hosting, storage and standing on-call."
         },
         {
           "k": "c",
           "label": "Keep a permalink that renders a public GitHub URL and holds nothing",
-          "what": "Sharing without the intermediary role: no store, no index, no operator token.",
           "gains": [
-            "The refusal survives with a footnote",
-            "Cheapest path that keeps a share affordance"
+            "Keeps a share affordance; the refusal survives with a footnote"
           ],
           "costs": [
-            "Nothing works for private repos or plain folders",
-            "The operator token still has to go"
+            "Nothing works for private repos or plain folders"
           ],
-          "system": "Replace the route with a `?src=` parameter on the web app.",
-          "screens": "ShareMenu becomes a copy-link action.",
+          "system": "Replace the route with a `?src=` parameter; no operator token.",
+          "screens": "ShareMenu becomes copy-link.",
           "money": "None."
         },
         {
           "k": "d",
           "label": "Leave it and change the copy to admit hosting",
-          "what": "The documents are made to agree with the code rather than the other way round.",
           "gains": [
-            "Cheapest in engineering days",
-            "Three artefacts stop contradicting each other"
+            "Cheapest in days; the three artefacts agree"
           ],
           "costs": [
-            "Gives up the trust claim the architecture argument rests on",
-            "The legal analysis has to be rewritten around intermediary status"
+            "Gives up the trust claim the architecture rests on",
+            "Legal analysis rewritten around intermediary status"
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "None immediately; a compliance bill later."
+          "money": "None now; a compliance bill later."
         }
       ],
       "rec": "a",
       "recCase": [
-        "The refusal is load-bearing: it is what makes \"files stay in your repo\" true, and that is the first evidence-backed approach claim in the register.",
-        "A route that indexes user prose to crawlers through one operator token pointed at the sibling repo is inherited scaffolding, not a feature anyone chose.",
-        "Stripping the content fields rather than deleting the whole rules file keeps Firebase auth working, which is already wired.",
-        "Option b stays available later, deliberately, with the apparatus the PRD costs at 74 hours."
+        "The refusal is load-bearing, and no operating rule is writable until one artefact goes (docs/GAPS-2026-09-08.md:142).",
+        "The route indexes user prose through a token pointed at the sibling repo (src/config/env.ts:85). Nobody chose it."
       ],
-      "flip": "If the founders want publishing as the demonstration surface, take b in full — the 24-hour duty is not optional and part-shipping it is the worst outcome available.",
+      "flip": "If the founders want publishing as the demo surface, take b in full, 24-hour duty included.",
       "linked": [
         "P7",
         "P13"
@@ -2088,8 +1953,8 @@
       "cat": "Product & definition",
       "sub": "Boundary",
       "weight": "high",
-      "q": "Does the plugin ban stay absolute, or does the data-only exception the record ratified go into the product?",
-      "lede": "The ban is the first refusal in the positioning, and the record found it forecloses the only community moat this category has shown.",
+      "q": "Does the plugin ban stay absolute, or does the record's data-only exception go into the product?",
+      "lede": "The ban leads the positioning. The record found it forecloses the only community moat this category has shown.",
       "visual": {
         "kind": "arch",
         "layers": [
@@ -2131,21 +1996,16 @@
         "note": "A sandbox protects the machine and does nothing for byte preservation.",
         "caption": "What a ban on the process protects, and what it does not."
       },
-      "stakes": "Claim a community moat while banning the only mechanism that produces one and the first informed reader stops believing the rest.",
+      "stakes": "Claim a community moat while banning its only mechanism and informed readers stop believing the rest.",
       "state": [
-        "docs/PRODUCT-BRIEF.md:43 refuses plugins and code execution outright, repeated as a security rule at :551.",
-        "docs/BUSINESS.md:906 records a different verdict: the ban stands with one named exception, a data-only, no-code contribution surface.",
-        "docs/BUSINESS.md:846 states there is no example of a durable community moat in this category without third-party code."
-      ],
-      "path": [
-        "The ban was decided on security and support grounds: our boundary is the bytes, not the process (docs/BUSINESS.md:902).",
-        "§86 then priced what the ban costs and found the cost is the category's only proven community mechanism.",
-        "docs/CRITIQUE.md:398 sharpened it: the registry we are excluded from is a competitor's distribution engine, 143,290,675 downloads deep."
+        "Plugins and code execution refused outright, also as a security rule (docs/PRODUCT-BRIEF.md:43, :551).",
+        "The record keeps the ban with one exception: data-only, no-code contributions (docs/BUSINESS.md:906).",
+        "No durable community moat in this category exists without third-party code (docs/BUSINESS.md:846)."
       ],
       "tension": [
-        "A sandbox protects the machine and does nothing for byte preservation, so the ban is correct on its own terms.",
-        "The moat claim stacked on top of it is what fails, and the cheapest fix is to drop the claim rather than the ban.",
-        "A declarative surface acquires conditionals and becomes a language nobody designed or budgeted (docs/BUSINESS.md:914)."
+        "A sandbox protects the machine, not the bytes, so the ban is right.",
+        "What fails is the moat claim on top; dropping it is cheapest.",
+        "A declarative surface grows conditionals and becomes an unbudgeted language (docs/BUSINESS.md:914)."
       ],
       "evidence": [
         {
@@ -2225,14 +2085,11 @@
         {
           "k": "a",
           "label": "Keep the ban absolute and say so in the positioning",
-          "what": "No third-party code, no exception, stated publicly.",
           "gains": [
-            "Simplest to state and defend",
-            "The largest single support deflection available to one person"
+            "Simplest to defend; the biggest support deflection for one person"
           ],
           "costs": [
-            "Forecloses the category's only demonstrated community moat",
-            "The product family then has no third-party contribution surface"
+            "Forecloses the category's only demonstrated community moat"
           ],
           "system": "No change.",
           "screens": "None.",
@@ -2241,30 +2098,25 @@
         {
           "k": "b",
           "label": "Ship the exception: declarative render profiles and out-of-process adapters",
-          "what": "A contribution surface that cannot execute code, conformance-tested by the certificate.",
           "gains": [
-            "Contribution without touching the byte guarantee",
-            "Gives the certificate a job beyond selling"
+            "Contribution without touching the byte guarantee"
           ],
           "costs": [
-            "The record's own warning: a declarative surface becomes a language (:914)",
-            "Unestimated work on a 37-to-58-week schedule"
+            "Becomes a language, per the record's warning (docs/BUSINESS.md:914)",
+            "Unestimated, on a 37-to-58-week schedule"
           ],
-          "system": "A profile format, a conformance runner, and a registry to host them.",
+          "system": "Profile format, conformance runner, and a registry.",
           "screens": "A profiles list in settings.",
-          "money": "None; a support surface with no revenue."
+          "money": "None; support load with no revenue."
         },
         {
           "k": "c",
           "label": "Keep the ban and demote community from moat number one",
-          "what": "The documentation changes, not the product.",
           "gains": [
-            "Resolves it as a writing fix, which the record names as the available one (:916)",
-            "Costs nothing and nothing breaks"
+            "A writing fix; nothing breaks"
           ],
           "costs": [
-            "Gives up a moat claim in every deck with nothing in its place",
-            "Leaves the question of what the moat actually is"
+            "Every deck loses a moat claim with nothing in its place"
           ],
           "system": "No change.",
           "screens": "None.",
@@ -2273,27 +2125,24 @@
         {
           "k": "d",
           "label": "Keep the ban and make the MCP server the sanctioned third-party surface",
-          "what": "Agents and tools integrate without running code in our process.",
           "gains": [
-            "F11 is already planned for MVP-1",
-            "Integration without a sandbox"
+            "F11 is already planned for MVP-1; no sandbox needed"
           ],
           "costs": [
-            "MCP is explicitly untested as a route agents will take (docs/PRODUCT-BRIEF.md:65)",
-            "An integration surface is not a community one"
+            "MCP is untested as an agent route (docs/PRODUCT-BRIEF.md:65)",
+            "Integration is not community"
           ],
-          "system": "F11 gains a published contract and a compatibility promise.",
+          "system": "F11 gains a published contract and compatibility promise.",
           "screens": "An integrations page.",
           "money": "None."
         }
       ],
       "rec": "c",
       "recCase": [
-        "The ban is correct and should not move: the security boundary is the bytes, and a sandbox does not protect bytes.",
-        "What is wrong is the claim stacked on top, and the honest fix is the cheap one the record already identified.",
-        "Option b can follow later with a written stop rule: three constructs of conditionals and it is a language. It is not MVP-0 work."
+        "The ban is correct: our security boundary is the bytes, and sandboxes do not protect bytes.",
+        "Fix the claim, not the ban; the record calls it a documentation fix (docs/BUSINESS.md:916)."
       ],
-      "flip": "docs/BUSINESS.md:922 already sets it: if \"I need X and you won't build it\" crosses 15% of support volume on a rolling quarter, the data-only surface is forced.",
+      "flip": "If \"I need X and you won't build it\" tops 15% of support per quarter, b is forced (docs/BUSINESS.md:922).",
       "linked": [
         "P7"
       ],
@@ -2320,7 +2169,7 @@
       "sub": "Demo",
       "weight": "critical",
       "q": "Which demo do we build, and does it run on a repository the viewer chose?",
-      "lede": "The plan and the critique specify two different demos, and the current one opens a file we generated in a repo we control.",
+      "lede": "The plan and the critique specify different demos. The current one opens a file we generated, in a repo we control.",
       "visual": {
         "kind": "compare",
         "labelWidth": 150,
@@ -2383,22 +2232,16 @@
         "note": "Costs from docs/PRODUCT-BRIEF.md:56; the third demo from docs/CRITIQUE.md:715 and docs/PRODUCT.md:900.",
         "caption": "Three demos, and the only one nobody else can run."
       },
-      "stakes": "A demo that works only on prepared files fails at week 12 for a reason it was designed to hide.",
+      "stakes": "A demo that works only on prepared files fails at week 12, for the reason it hides.",
       "state": [
-        "The plan's demo begins \"Run the agent's spec command\", so the file is generated by the demonstrator (docs/PRODUCT-BRIEF.md:45).",
-        "It is the week 8–9 deliverable and costs 18 days of store, rendering, revert and panel (docs/PRODUCT-BRIEF.md:356, :56).",
-        "docs/CRITIQUE.md:715 proposed the alternative: point it at the prospect's own repo and print what will not survive.",
-        "No rule about demo files exists anywhere in the plan (merged from P12)."
-      ],
-      "path": [
-        "The earlier demo was a rejection — reject a hunk, show the file is byte-identical (docs/DECIDE.md:75).",
-        "That one was refuted because Zed ships per-hunk accept and reject verbatim (docs/CRITIQUE.md:408).",
-        "docs/CRITIQUE.md:386 wrote the falsifier: ten strangers, their own repositories, unstaged, and 6 of 10 must notice a difference unprompted."
+        "The plan's demo starts \"Run the agent's spec command\": we generate the file (docs/PRODUCT-BRIEF.md:45).",
+        "Week 8–9 deliverable, 18 days of store, rendering, revert and panel (docs/PRODUCT-BRIEF.md:356, :56).",
+        "The critique's alternative: open the prospect's repo, print what will not survive (docs/CRITIQUE.md:715)."
       ],
       "tension": [
-        "The differentiation is real and conditional on an adversarial file, so demonstrating it means handing over a file crafted to break a competitor (docs/CRITIQUE.md:382).",
-        "The exit test at :357 uses ten strangers with their own repos, where no prepared files exist.",
-        "The falsifier sits at day 41 and the critique says run it at day 5 with a rough prototype."
+        "The difference shows only on an adversarial file built to break a competitor (docs/CRITIQUE.md:382).",
+        "The exit test uses ten strangers' own repos, with no prepared files (docs/PRODUCT-BRIEF.md:357).",
+        "The falsifier sits at day 41; the critique says run it at day 5."
       ],
       "evidence": [
         {
@@ -2539,30 +2382,26 @@
         {
           "k": "a",
           "label": "Build the fifteen-second tint demo as specified",
-          "what": "Generate a spec, open it, show every paragraph tinted, revert one, show the panel.",
           "gains": [
-            "Shows the headline feature directly",
-            "If P2 confirms review state, this is the only demo that matches the pitch"
+            "Shows the headline directly; the only match if P2 confirms"
           ],
           "costs": [
-            "18 days before there is anything to show",
-            "Runs on a file we generated in a repo we control"
+            "18 days before anything to show",
+            "Our file, our repo"
           ],
-          "system": "Needs the store, rendering, revert and panel complete.",
+          "system": "Needs store, rendering, revert and panel finished.",
           "screens": "S2 tint and S4 review panel.",
           "money": "None."
         },
         {
           "k": "b",
           "label": "Build the repo report first, on the viewer's own folder, and adopt it as a rule",
-          "what": "Open the stranger's repository and print what is stale, broken, missing and what will not render the same.",
+          "what": "Prints what is stale, broken, missing or renders differently.",
           "gains": [
-            "Checkable in five seconds against a folder they already own",
-            "Needs no model and no new capability (docs/PRODUCT.md:900)"
+            "Checkable in five seconds on a folder they own; no model"
           ],
           "costs": [
-            "Demonstrates the scan, not review state, so headline and demo point at different features",
-            "Some repos will show nothing and we have to say so"
+            "Demos the scan, not the headline; some repos show nothing"
           ],
           "system": "Needs NF-1, the splice return shape and the padEnd fix.",
           "screens": "S13 repo docs scan becomes the cold open.",
@@ -2571,30 +2410,25 @@
         {
           "k": "c",
           "label": "Build both: the report as cold open, the tint as the second beat",
-          "what": "The report earns attention and the tint carries the claim.",
           "gains": [
-            "Attention and claim in one sitting",
-            "Covers the case where P2 confirms the headline"
+            "Attention and claim in one sitting"
           ],
           "costs": [
-            "Largest scope, at 1.21 engineering days per calendar week",
-            "No longer fifteen seconds, and the weaker half is remembered"
+            "Largest scope at 1.21 engineering days a week",
+            "No longer fifteen seconds"
           ],
-          "system": "Both paths must be finished.",
-          "screens": "S13 then S2.",
+          "system": "Both paths finished.",
+          "screens": "S13, then S2.",
           "money": "None."
         },
         {
           "k": "d",
           "label": "Build no demo until weeks 1–2 pick the headline; test on mocks",
-          "what": "The S2 screenshot and the three landing pages carry the tests.",
           "gains": [
-            "Avoids building a demo for a headline that may be demoted",
-            "Mock tests are already scheduled at :352"
+            "No demo built for a headline that may fall"
           ],
           "costs": [
-            "Defers a decision rather than making one",
-            "The demo is already a week 8–9 item, so little changes"
+            "Defers the decision; the demo is week 8–9 anyway"
           ],
           "system": "No change.",
           "screens": "Mocks only.",
@@ -2603,12 +2437,10 @@
       ],
       "rec": "b",
       "recCase": [
-        "The one demo nobody else can run opens the prospect's own repository and says something specific and unflattering about it.",
-        "The corpus argued for it twice independently (docs/CRITIQUE.md:715, docs/PRODUCT.md:900) and it needs no new capability.",
-        "Adopting it as a rule changes what gets built, because the product then has to be visible on ordinary files rather than adversarial ones.",
-        "It also aligns the demo with the exit test at :357, where no prepared files exist."
+        "The one demo nobody else can run says something unflattering about the prospect's own repo.",
+        "Argued twice independently (docs/CRITIQUE.md:715, docs/PRODUCT.md:900); needs no new capability and matches the exit test."
       ],
-      "flip": "If P2 confirms review state unchanged, the demo must show the headline and c becomes the requirement rather than the luxury.",
+      "flip": "If P2 confirms review state unchanged, the demo must show it, and c becomes required.",
       "linked": [
         "P2",
         "P19",
@@ -2640,7 +2472,7 @@
       "sub": "Projection law",
       "weight": "critical",
       "q": "Does the projection law survive the review sidecar, and how many stores outside the file are allowed?",
-      "lede": "The founding law says every view owns no state; the headline feature is a store beside the file, and six stores have accumulated.",
+      "lede": "The founding law says views own no state. The headline feature is a store beside the file, and six stores exist.",
       "visual": {
         "kind": "arch",
         "layers": [
@@ -2681,22 +2513,16 @@
         "note": "Introduced at docs/PRODUCT-BRIEF.md:135, :64, :133, docs/WEEK0-DECISIONS-2026-09-08.md:20 and docs/THESIS.md:837.",
         "caption": "Every store outside the document, counted together for the first time."
       },
-      "stakes": "By our own admission gate the headline feature fails the law we also use as the category sentence.",
+      "stakes": "By our own admission gate, the headline feature fails the law we sell as the category sentence.",
       "state": [
-        "The law: every app-like thing is a projection \"owning no state of its own\" (docs/FRONTMATTER-RECORD.md:267).",
-        "The G2 gate fails a feature that \"needs a sidecar, an index, a `.base`-equivalent, or a row in the control plane\" (docs/THESIS.md:820).",
-        "F2 is specified as `.frontmatter/review.jsonl` beside the files (docs/PRODUCT-BRIEF.md:135).",
-        "Six stores now exist across the plan and the tree, each introduced separately and never added up (merged from P14)."
-      ],
-      "path": [
-        "The law was written when the product was an editor with projections, before review state became the headline.",
-        "The record already conceded a sidecar once, for tree sort state (docs/THESIS.md:837).",
-        "Putting the state in the file is ruled out on evidence: every in-file annotation syntax renders as garbage on GitHub (docs/PRODUCT-BRIEF.md:64)."
+        "Every view is a projection \"owning no state of its own\" (docs/FRONTMATTER-RECORD.md:267).",
+        "G2 fails any feature that \"needs a sidecar\" (docs/THESIS.md:820); F2 is `.frontmatter/review.jsonl` (docs/PRODUCT-BRIEF.md:135).",
+        "Six stores exist across plan and tree, each added separately, never totalled."
       ],
       "tension": [
-        "Either the law is amended in writing or the product ships in violation of a law it also sells as a category sentence.",
-        "The differentiator is precisely that the state is in the repository rather than in editor workspace state, so the sidecar is the point, not a lapse.",
-        "Without a stated cap, the seventh store is added the way the first six were."
+        "In-file state is ruled out: annotation syntax renders as garbage on GitHub (docs/PRODUCT-BRIEF.md:64).",
+        "The sidecar is the point: state lives in the repo, not the editor.",
+        "Without a cap, the seventh store arrives like the first six."
       ],
       "evidence": [
         {
@@ -2855,46 +2681,38 @@
         {
           "k": "a",
           "label": "Amend the law and cap the stores at two: one repo directory, one control plane",
-          "what": "Content has one source of truth; exactly one plain-text sidecar directory may hold review state, and one control plane holds the account.",
           "gains": [
-            "The headline feature becomes legal under a named, bounded exception",
-            "States honestly in one sentence what each side holds"
+            "Legalises the headline under a named, bounded exception"
           ],
           "costs": [
-            "The category sentence gains a clause, and the clause is what a competitor quotes back",
+            "The added clause is what a competitor quotes back",
             "Presumes P8 removes the shares store"
           ],
-          "system": "A CI check that no new persistent store is added outside the two.",
+          "system": "A CI check: no persistent store outside the two.",
           "screens": "None.",
           "money": "None."
         },
         {
           "k": "b",
           "label": "Keep the law absolute and put review state in the file",
-          "what": "No sidecar, no exception, no clause.",
           "gains": [
-            "The law stays as written",
-            "Nothing new to explain"
+            "The law stays as written"
           ],
           "costs": [
-            "Ruled out on measured evidence: in-file syntax renders as garbage on GitHub (:64)",
-            "Breaks the still-renders-everywhere rule at :527"
+            "Ruled out: in-file syntax renders as garbage on GitHub (docs/PRODUCT-BRIEF.md:64)"
           ],
-          "system": "An in-file annotation syntax the engine must write and strip.",
+          "system": "An in-file annotation syntax the engine writes and strips.",
           "screens": "None.",
           "money": "None."
         },
         {
           "k": "c",
           "label": "Drop the projection law from the product's language; keep it as engineering",
-          "what": "The contradiction disappears because the law stops being a public claim.",
           "gains": [
-            "Costs no engineering and removes the contradiction entirely",
-            "No clause for a competitor to quote"
+            "No engineering; the contradiction disappears"
           ],
           "costs": [
-            "Loses the category sentence at docs/FRONTMATTER-RECORD.md:297",
-            "Removes the only sentence that puts the product in a category"
+            "Loses the category sentence (docs/FRONTMATTER-RECORD.md:297)"
           ],
           "system": "No change.",
           "screens": "None.",
@@ -2903,14 +2721,11 @@
         {
           "k": "d",
           "label": "Re-run the G2 gate on F2 formally and publish the result either way",
-          "what": "The record's own process is applied to the feature it was written before.",
           "gains": [
-            "Honest, and it is the process designed for this case",
-            "Settles it on the record rather than by assertion"
+            "The record's own process, settled on the record"
           ],
           "costs": [
-            "On the text at :820 F2 fails, which puts the meeting back at Decision 1 with no headline",
-            "Costs a round with no product change"
+            "F2 fails the text at docs/THESIS.md:820, leaving no headline"
           ],
           "system": "No change.",
           "screens": "None.",
@@ -2919,12 +2734,10 @@
       ],
       "rec": "a",
       "recCase": [
-        "The law is worth keeping, because it is the only sentence that puts the product in a category, and the amendment is small and testable.",
-        "One sidecar directory, plain text; deleting it loses review state and no content.",
-        "Two stores is the smallest number that stays true once billing exists, and it turns into a CI check the repo has to build anyway.",
-        "The record already conceded a sidecar once at :837, so this formalises a breach rather than opening one."
+        "The law is the only sentence that puts the product in a category; the amendment is small.",
+        "Two stays true once billing exists; the record already conceded a sidecar (docs/THESIS.md:837)."
       ],
-      "flip": "If the anchor cannot survive an out-of-band write, still open at docs/GAPS-2026-09-08.md:146, the sidecar projects nothing and c is honest.",
+      "flip": "If the anchor cannot survive an out-of-band write (docs/GAPS-2026-09-08.md:146), the sidecar projects nothing and c is honest.",
       "linked": [
         "P8",
         "P2"
@@ -2955,8 +2768,8 @@
       "cat": "Product & definition",
       "sub": "Surface budget",
       "weight": "medium",
-      "q": "Which budget governs — concepts and controls at rest — and what is displaced to fit inside it?",
-      "lede": "The plan cites a seven-concept budget that appears once in the corpus, in the plan itself, and nothing enforces any of the numbers.",
+      "q": "Which concept and control budget governs, and what is displaced to fit inside it?",
+      "lede": "The plan cites a seven-concept budget that appears once in the corpus, in the plan. Nothing enforces any number.",
       "visual": {
         "kind": "compare",
         "labelWidth": 150,
@@ -3011,22 +2824,16 @@
         "note": "docs/FRONTMATTER-RECORD.md:1848 and :1881; docs/THESIS.md:862; docs/PRODUCT-BRIEF.md:429.",
         "caption": "Three budgets in three documents, none of them enforced."
       },
-      "stakes": "A budget nobody can trace and nothing enforces is a mood, and accretion is the stated failure mode.",
+      "stakes": "An untraced, unenforced budget is a mood, and accretion is the stated failure mode.",
       "state": [
-        "docs/PRODUCT-BRIEF.md:429 cites \"the seven-concept budget\"; the string occurs once in the whole corpus, at that line.",
-        "docs/FRONTMATTER-RECORD.md:1848 sets three concepts; docs/THESIS.md:862 raises it to four and pays for the fourth at :864.",
-        "docs/FRONTMATTER-RECORD.md:1881 pins nine controls visible at rest and enumerates them from :1883.",
-        "F1 ships tabs, four modes and a properties panel (docs/PRODUCT-BRIEF.md:55), and the review counter and tree bars are added at :409 (merged from P16)."
-      ],
-      "path": [
-        "The nine were set with a CI DOM assertion attached (docs/FRONTMATTER-RECORD.md:1845).",
-        "THESIS is blunt about the concept number: \"four is a budget we chose, not a number the literature gives\" (docs/THESIS.md:877).",
-        "The v15 feature list was written from market evidence, not from either budget, and the two were never laid side by side."
+        "\"The seven-concept budget\" occurs once in the corpus, at docs/PRODUCT-BRIEF.md:429.",
+        "The record sets three concepts, raised to four (docs/FRONTMATTER-RECORD.md:1848, docs/THESIS.md:862).",
+        "Nine controls at rest (docs/FRONTMATTER-RECORD.md:1881), with a CI DOM assertion (:1845)."
       ],
       "tension": [
-        "The two things the product most needs seen, the tint and the unreviewed counter, have no slots left.",
-        "Raising a budget for our own favourite feature is the exact failure the budget exists to prevent.",
-        "Nothing is enforced: verified 2026-09-09, the repo has no `.github` directory at all."
+        "Tint and counter have no slot left after F1's tabs and modes (docs/PRODUCT-BRIEF.md:55).",
+        "Raising a budget for our favourite feature is the failure it prevents.",
+        "Nothing is enforced: the repo has no `.github` directory (verified 2026-09-09)."
       ],
       "evidence": [
         {
@@ -3193,46 +3000,39 @@
         {
           "k": "a",
           "label": "Four concepts, nine controls, and displace to fit",
-          "what": "Adopt the record's numbers, drop the tab strip and fold Live into the mode control, buying two slots.",
           "gains": [
-            "Both numbers are traceable and already argued",
-            "Displacement is what makes a budget real"
+            "Both numbers traceable; displacement makes the budget real"
           ],
           "costs": [
-            "No tab strip, cushioned only by quick-switch on mod+k (docs/CRITIQUE.md:612)",
-            "Review state, span and sidecar are then not first-session nouns"
+            "No tabs, only quick-switch on mod+k (docs/CRITIQUE.md:612)",
+            "Review state is not a first-session noun"
           ],
-          "system": "Build the DOM assertion first; there is no CI to hang it on.",
-          "screens": "S2 loses the tab strip and one mode.",
+          "system": "Build the DOM assertion first; there is no CI.",
+          "screens": "S2 loses the tab strip; Live folds into modes.",
           "money": "None."
         },
         {
           "k": "b",
           "label": "Raise both numbers and pin them with the assertion",
-          "what": "Five concepts and eleven controls, written down and checked.",
+          "what": "Five concepts, eleven controls.",
           "gains": [
-            "The headline feature can be named on the first-run screen",
-            "Honest and checkable"
+            "The headline can be named on the first-run screen"
           ],
           "costs": [
-            "A counter that moves for our own feature stops being a constraint",
             "Concedes the argument the budget exists to win"
           ],
-          "system": "The DOM assertion is written against the new numbers.",
+          "system": "The DOM assertion pins the new numbers.",
           "screens": "S2 keeps tabs and gains the counter.",
           "money": "None."
         },
         {
           "k": "c",
           "label": "Keep nine for the document surface and give the review panel its own budget",
-          "what": "Two budgets, as mobile was given one at docs/THESIS.md:843.",
           "gains": [
-            "Precedent exists in the record",
-            "The document surface stays clean"
+            "Precedent: mobile has its own budget (docs/THESIS.md:843)"
           ],
           "costs": [
-            "Two budgets are harder to enforce than one",
-            "Unlike mobile, the panel shares a screen with the surface it is exempt from"
+            "Unlike mobile, the panel shares a screen with the surface"
           ],
           "system": "Two DOM assertions, scoped by region.",
           "screens": "The panel grows independently.",
@@ -3241,14 +3041,11 @@
         {
           "k": "d",
           "label": "Delete the counters and review the at-rest screenshot instead",
-          "what": "No numbers; judgement at review time.",
           "gains": [
-            "Stops citing a number with no source, which is the immediate defect",
-            "Nothing false is published"
+            "Stops citing a number with no source"
           ],
           "costs": [
-            "Loses the only enforceable check on surface growth in the corpus",
-            "Accretion is the stated failure mode"
+            "Loses the only enforceable check on surface growth"
           ],
           "system": "No assertion.",
           "screens": "None.",
@@ -3257,12 +3054,10 @@
       ],
       "rec": "a",
       "recCase": [
-        "Four is the only concept number with an argument attached, and THESIS labels it chosen rather than derived, which is the honest form.",
-        "Adopting it forces the useful question: can the tint teach itself without the phrase \"review state\" on the first screen? The five-second test at :411 measures exactly that.",
-        "The \"seven-concept budget\" phrase should be struck this week either way, because a reader who greps for it finds only itself.",
-        "None of this is enforced today, so the first action is building the DOM assertion, not winning the argument."
+        "Four is the only concept number argued for; THESIS calls it chosen, not derived.",
+        "Strike \"seven-concept\" this week either way, then build the DOM assertion first."
       ],
-      "flip": "If the five-second test shows people cannot read the tint without a label, buy the slot explicitly under b and name what it displaced.",
+      "flip": "If the five-second test (docs/PRODUCT-BRIEF.md:411) shows the tint needs a label, buy the slot under b.",
       "linked": [
         "P5",
         "P18"
@@ -3299,7 +3094,7 @@
       "sub": "Scope",
       "weight": "critical",
       "q": "What comes out of MVP-0, now that the measured schedule is 37 to 58 calendar weeks?",
-      "lede": "The schedule was corrected on measured velocity and nothing was cut; the scope and the schedule now describe different products.",
+      "lede": "The schedule was corrected on measured velocity and nothing was cut. Scope and schedule now describe different products.",
       "visual": {
         "kind": "funnel",
         "steps": [
@@ -3325,22 +3120,16 @@
         "note": "70 from docs/PRODUCT-BRIEF.md:227; 42 = 24 fix-first + 18 review state, same line; 8 = 4 + 3 + 1 from :214, :215 and :216.",
         "caption": "Three cuts, at 1.21 to 1.91 engineering days per calendar week."
       },
-      "stakes": "Carry the full scope and the exit test lands somewhere past week 37, by which time three more claims will have been absorbed.",
+      "stakes": "Full scope lands the exit test past week 37, after three more claims are absorbed.",
       "state": [
-        "The sequence is about 70 engineering days; measured density is 1.21 engineering days per calendar week, best-ever 1.91 (docs/PRODUCT-BRIEF.md:227).",
-        "That is 37 calendar weeks at the best rate and 58 at the measured one; the last 30 days here were 0.23 per week (docs/PRODUCT-BRIEF.md:227).",
-        "The ten-week schedule is withdrawn as arithmetically impossible, needing 7.0 engineering days per week (docs/PRODUCT-BRIEF.md:229).",
-        "Nothing was cut when the schedule was corrected, and the exit test still sits at weeks 10–12 (docs/PRODUCT-BRIEF.md:357)."
-      ],
-      "path": [
-        "The estimates were assigned by inspection, with no velocity data behind them (docs/GAPS-2026-09-08.md:130).",
-        "One person appears on the commit record: 80 of 80 commits here, 416 of 416 on the sibling (docs/PRODUCT-BRIEF.md:231).",
-        "Client hours were re-derived downward to 32.0–45.7 a month (docs/CRITIQUE.md:1460), which is the same person's time."
+        "About 70 engineering days at 1.21 per calendar week, best-ever 1.91 (docs/PRODUCT-BRIEF.md:227).",
+        "37 weeks at best rate, 58 at measured; the last 30 days ran 0.23.",
+        "Ten weeks is withdrawn, yet the exit test still sits at weeks 10–12 (docs/PRODUCT-BRIEF.md:357)."
       ],
       "tension": [
-        "Three of the four headline claims became table stakes in nine weeks, so elapsed time is itself a competitive risk.",
-        "Cutting to the headline removes exactly the features whose evidence is weakest or whose home is arguably the consultancy.",
-        "A density commitment is a promise about a person, not about a plan, and the last 30 days measured 0.23."
+        "Three of four claims became table stakes in nine weeks; delay is a risk.",
+        "One person: 80 of 80 commits here, 416 of 416 on the sibling (docs/PRODUCT-BRIEF.md:231).",
+        "Client work takes 32.0–45.7 hours a month of the same person (docs/CRITIQUE.md:1460)."
       ],
       "evidence": [
         {
@@ -3425,30 +3214,25 @@
         {
           "k": "a",
           "label": "Cut MVP-0 to fix-first plus review state and move F3 through F8 to MVP-1",
-          "what": "42 of the 70 days ship; generation, the scan and the AI panel wait.",
           "gains": [
-            "The release matches the headline",
-            "Removes the features with the weakest evidence"
+            "42 of 70 days; drops the weakest-evidence features"
           ],
           "costs": [
-            "No generation, no scan, no AI panel in the first release",
-            "Loses the two features the founders have watched someone use"
+            "No generation, scan or AI panel in release one"
           ],
-          "system": "Structured output and the BYO key move with them.",
+          "system": "Structured output and the BYO key move to MVP-1.",
           "screens": "S12, S13 and S11's key field leave MVP-0.",
-          "money": "None; the free tier is unaffected."
+          "money": "None; free tier unaffected."
         },
         {
           "k": "b",
           "label": "Keep the scope and publish the honest date of 37 to 58 weeks",
-          "what": "Nothing is cut and the plan stops understating elapsed time.",
           "gains": [
-            "The product arrives whole",
-            "The schedule stops being a fiction"
+            "The product arrives whole and the date is true"
           ],
           "costs": [
-            "A date that far out changes whether to build at all against 32–46 client hours a month",
-            "Three more claims will be absorbed by then"
+            "Reopens whether to build at all, against 32–46 client hours a month",
+            "Three more claims absorbed by then"
           ],
           "system": "No change.",
           "screens": "None.",
@@ -3457,30 +3241,24 @@
         {
           "k": "c",
           "label": "Keep the scope and commit to a named density, reported weekly",
-          "what": "A stated number of engineering days per week, reported against actuals every seven days.",
           "gains": [
-            "The plan already asks for this at :229",
-            "The schedule becomes falsifiable on day 7 rather than at week 12"
+            "Falsifiable on day 7; the plan asks for it (docs/PRODUCT-BRIEF.md:229)"
           ],
           "costs": [
-            "A commitment about a person, not a plan",
-            "The last 30 days measured 0.23 against a needed 1.91"
+            "A promise about a person: last 30 days 0.23, not 1.91"
           ],
-          "system": "A weekly count of days touching src/, src-tauri/ or test/.",
+          "system": "Weekly count of days touching src/, src-tauri/ or test/.",
           "screens": "None.",
           "money": "Trades client hours for product hours."
         },
         {
           "k": "d",
           "label": "Cut to NF-1, NF-3 and CI, and put a prototype in front of people in weeks",
-          "what": "8 days buys something testable on a stranger's repo.",
           "gains": [
-            "Unblocks the day-5 falsifier under P11",
-            "Something exists in weeks rather than months"
+            "8 days to something testable; unblocks P11's day-5 falsifier"
           ],
           "costs": [
-            "The engine stays unwired, so the product does not use the engine it is sold on",
-            "Not a release, only a test article"
+            "The engine stays unwired; a test article, not a release"
           ],
           "system": "Fix-first item 4 stays open.",
           "screens": "A prototype, not a product.",
@@ -3489,12 +3267,10 @@
       ],
       "rec": "a",
       "recCase": [
-        "The scope has to match the headline, and after Decision 1 the headline is review state; fix-first plus F2 is the release.",
-        "That is 42 of the 70 days and it removes the features whose evidence is weakest or whose home is the consultancy.",
-        "Adopt option c's weekly density report regardless: it is the only thing that makes the schedule falsifiable on day 7.",
-        "Option d's eight-day prototype should run inside a, not instead of it, because P11's falsifier is worth more than any feature in the other 28 days."
+        "The release must match the headline: fix-first plus F2 is 42 of the 70 days.",
+        "Add c's weekly density report regardless, and run d's prototype inside a for P11."
       ],
-      "flip": "If a second person is real, name them and re-derive the density: every figure at :231 is a one-person rate and is not additive.",
+      "flip": "If a second person is real, re-derive the density: every rate at docs/PRODUCT-BRIEF.md:231 is one person's.",
       "linked": [
         "P5",
         "P6",
@@ -3518,7 +3294,7 @@
       "sub": "Scope",
       "weight": "medium",
       "q": "Is the repo docs scan a product feature or the consultancy's diagnostic, and how much ships in MVP-0?",
-      "lede": "Ten engineering days rest on a founder direction, and the section justifying it makes the scan a sales instrument for a services business.",
+      "lede": "Ten engineering days rest on a founder direction, and its justification makes the scan a services sales tool.",
       "visual": {
         "kind": "screen",
         "title": "S13 repo docs scan",
@@ -3587,21 +3363,16 @@
         "note": "Day splits from docs/PRODUCT-BRIEF.md:61; the evidence rail from :253.",
         "caption": "The cheap deterministic half against the expensive novel half."
       },
-      "stakes": "Ten days on an untested direction, in a release whose measured schedule is already most of a year.",
+      "stakes": "Ten untested days, in a release already scheduled for most of a year.",
       "state": [
-        "F7 ships in MVP-0 at 10 days: staleness 4, missing-doc templates 2, the S13 interface 4 (docs/PRODUCT-BRIEF.md:61).",
-        "docs/PRODUCT-BRIEF.md:482 makes the scan a diagnostic whose output is the brief for a fixed-scope engagement.",
-        "The lint incumbents are free and large: Vale at 6,087 stars and markdownlint at 6,326 (docs/PRODUCT-BRIEF.md:153)."
-      ],
-      "path": [
-        "F7 was added when the plan needed a second reason to return that does not depend on AI use (docs/PRODUCT-BRIEF.md:426).",
-        "§19 then made the scan the funnel for a Zephyrus engagement.",
-        "docs/GAPS-2026-09-08.md:56 calls it a design presented with the confidence of a finding, with no conversion data behind it."
+        "F7: 10 days, staleness 4, templates 2, S13 interface 4 (docs/PRODUCT-BRIEF.md:61).",
+        "The scan's output is the brief for a fixed-scope engagement (docs/PRODUCT-BRIEF.md:482).",
+        "Free lint incumbents: Vale 6,087 stars, markdownlint 6,326 (docs/PRODUCT-BRIEF.md:153)."
       ],
       "tension": [
-        "Both uses are real and neither has been tested with anyone.",
-        "The deterministic half is cheap and reuses code that exists; the novel half is the expensive one.",
-        "It is also the strongest candidate for P11's demo, which argues for shipping some of it early."
+        "No conversion data; a design presented as a finding (docs/GAPS-2026-09-08.md:56).",
+        "The deterministic half is cheap and reuses code; the novel half is expensive.",
+        "It is the strongest candidate for P11's demo."
       ],
       "evidence": [
         {
@@ -3682,46 +3453,37 @@
         {
           "k": "a",
           "label": "Ship F7 in MVP-0 as planned and treat the services funnel as a side effect",
-          "what": "All three parts ship: staleness, missing docs, and the evidence rail.",
           "gains": [
-            "A second return trigger needing no AI and no key",
-            "The strongest cold-open demo candidate"
+            "A second return trigger with no AI or key"
           ],
           "costs": [
-            "10 days on a founder direction with no test behind it",
-            "One more concept against the P15 budget"
+            "10 days on an untested founder direction"
           ],
           "system": "Staleness heuristic, templates, and the S13 surface.",
           "screens": "S13 in full.",
-          "money": "None; it is the consultancy's entry point."
+          "money": "None; the consultancy's entry point."
         },
         {
           "k": "b",
           "label": "Ship broken links and missing standard docs only; defer staleness and the rail",
-          "what": "About two to four days of deterministic scanning, reusing link-doctor.",
           "gains": [
-            "Most of the demo value for a fraction of the days",
-            "Produces the specific unflattering sentence P11 needs"
+            "Most of the demo value for a fraction of the days"
           ],
           "costs": [
-            "Staleness is the part that is actually novel against Vale and markdownlint",
-            "A thinner S13 than the screen shows"
+            "Staleness is the part novel against Vale and markdownlint"
           ],
-          "system": "link-doctor plus two template checks.",
+          "system": "link-doctor plus two template checks, about 2–4 days.",
           "screens": "S13 without the staleness column.",
           "money": "None."
         },
         {
           "k": "c",
           "label": "Move F7 to MVP-1 and run the scan by hand as the consultancy's diagnostic",
-          "what": "No product feature; the studio runs it manually on prospect repos.",
           "gains": [
-            "Tests the services hypothesis for zero engineering days",
-            "Keeps MVP-0 at the headline"
+            "Tests the services bet for zero engineering days"
           ],
           "costs": [
-            "No second return trigger in the free product",
-            "Weakens the retention argument"
+            "No second return trigger in the free product"
           ],
           "system": "No change.",
           "screens": "S13 deferred.",
@@ -3730,14 +3492,11 @@
         {
           "k": "d",
           "label": "Cut F7 entirely; lint is served by free incumbents",
-          "what": "The scan leaves the product.",
           "gains": [
-            "10 days back and one fewer concept",
-            "Two 6,000-star incumbents already do the lint half"
+            "10 days back; two 6,000-star incumbents do the lint half"
           ],
           "costs": [
-            "Gives up the only feature that produces a list about a repo the viewer owns",
-            "Removes P11's recommended demo"
+            "Removes the only list about the viewer's repo, and P11's demo"
           ],
           "system": "No change.",
           "screens": "S13 removed.",
@@ -3746,12 +3505,10 @@
       ],
       "rec": "b",
       "recCase": [
-        "Broken links and missing standard docs are deterministic, cheap, and reuse code that already exists.",
-        "They produce the specific unflattering sentence about the viewer's own folder that P11's demo needs.",
-        "Staleness heuristics and the evidence rail are the expensive, novel and untested half and can wait for MVP-1.",
-        "Run the full scan by hand in parallel: it tests the services hypothesis for free, and there is no conversion data at all."
+        "Broken links and missing docs are deterministic, cheap, reuse link-doctor, and give P11 its sentence.",
+        "Defer staleness and the rail; run the full scan by hand to test services free."
       ],
-      "flip": "If the pilot's ten strangers ask for staleness unprompted, pull the heuristic forward and take option a.",
+      "flip": "If the pilot's ten strangers ask for staleness unprompted, pull it forward and take a.",
       "linked": [
         "P11",
         "P18"
@@ -3772,7 +3529,7 @@
       "sub": "Scope",
       "weight": "medium",
       "q": "Does export stay in MVP-0 as a one-hour verification, and which tier owns it?",
-      "lede": "945 lines of export code are wired into the editor and have never been run, and the plan files the feature in two different tiers.",
+      "lede": "945 lines of export code are wired in and never run, and the plan files it in two tiers.",
       "visual": {
         "kind": "flow",
         "perRow": 4,
@@ -3805,22 +3562,16 @@
         "note": "The server PDF route needs a Vercel Linux chromium binary, which contradicts the row's own offline claim.",
         "caption": "An hour decides whether this is a feature or a liability."
       },
-      "stakes": "An export button that errors in front of a pilot stranger costs more than the feature is worth.",
+      "stakes": "An export that errors in front of a pilot stranger costs more than the feature.",
       "state": [
-        "F13 ships in MVP-0 as \"0d + 1h to verify it runs\" (docs/PRODUCT-BRIEF.md:67).",
-        "The code is 945 lines across 8 files, wired at `src/modules/editor/presentation/EditorPane.tsx:907`, and has never been run (docs/PRODUCT-BRIEF.md:67).",
-        "Exhibit 6 puts F13 export in the MVP-2 max column (docs/PRODUCT-BRIEF.md:201) while the feature row puts the verification in MVP-0.",
-        "Whether it runs is still listed as open after round 2 (docs/GAPS-2026-09-08.md:146)."
-      ],
-      "path": [
-        "The code was inherited from sgnk-md in commit `0c1b427`; round 2 found it rather than building it.",
-        "Decks and sites were cut on Obsidian download ratios, which measure note-takers rather than developers (docs/GAPS-2026-09-08.md:60).",
-        "Folder-to-one-PDF, the only leg with demonstrated demand, is 4 days and unbuilt (docs/PRODUCT-BRIEF.md:67)."
+        "F13: \"0d + 1h to verify it runs\"; 945 lines, never run (docs/PRODUCT-BRIEF.md:67).",
+        "Wired at `src/modules/editor/presentation/EditorPane.tsx:907`; inherited from sgnk-md in `0c1b427`.",
+        "Exhibit 6 puts export in MVP-2 (docs/PRODUCT-BRIEF.md:201); the feature row says MVP-0."
       ],
       "tension": [
-        "The product does not know whether it has an export feature or an export liability, and one hour settles it.",
-        "The record lists no export button among the controls visible at rest (docs/FRONTMATTER-RECORD.md:1893).",
-        "The tier contradiction has to be fixed in the same edit whichever way the hour goes."
+        "Feature or liability is unknown, and one hour settles it.",
+        "No export button among the record's controls at rest (docs/FRONTMATTER-RECORD.md:1893).",
+        "Folder-to-one-PDF, the only leg with demand, is 4 days and unbuilt."
       ],
       "evidence": [
         {
@@ -3890,14 +3641,11 @@
         {
           "k": "a",
           "label": "Spend the hour, verify, and keep it in MVP-0 as it stands",
-          "what": "The menu stays and the feature is declared shipped.",
           "gains": [
-            "An hour buys either a feature or a known defect",
-            "Closes one of the open items at GAPS:146"
+            "An hour buys a feature or a known defect"
           ],
           "costs": [
-            "If it does not run, unplanned work lands in MVP-0",
-            "The tier contradiction is still unresolved"
+            "If it fails, unplanned work lands in MVP-0"
           ],
           "system": "None if it runs.",
           "screens": "ExportMenu stays in the header.",
@@ -3906,30 +3654,24 @@
         {
           "k": "b",
           "label": "Verify, and remove the menu rather than fix it if it does not run cleanly",
-          "what": "The failure branch is decided in advance: delete, do not repair.",
           "gains": [
-            "Keeps MVP-0 small and the at-rest surface honest against P15",
             "Nothing can error in front of a stranger"
           ],
           "costs": [
-            "Throws away possibly working code",
-            "Loses a feature with a 4.8:1 install ratio behind it"
+            "May discard working code with a 4.8:1 install ratio"
           ],
-          "system": "Remove the export route and the menu.",
-          "screens": "ExportMenu leaves the header.",
+          "system": "On failure, remove the export route and menu.",
+          "screens": "ExportMenu leaves the header if it fails.",
           "money": "None."
         },
         {
           "k": "c",
           "label": "Verify, keep, and pull folder-to-one-PDF forward into MVP-0",
-          "what": "The only leg with demonstrated demand ships in the first release.",
           "gains": [
-            "79 reactions on the request, open since 2018",
-            "Answers the one export people ask for"
+            "79 reactions on the request, open since 2018"
           ],
           "costs": [
-            "4 more days on a schedule already at 37 to 58 weeks",
-            "No pilot user has asked for it yet"
+            "4 more days; no pilot user has asked yet"
           ],
           "system": "The folder path must stop filtering to .md only.",
           "screens": "Export gains a folder mode.",
@@ -3938,14 +3680,11 @@
         {
           "k": "d",
           "label": "Remove the menu now and revisit export after the pilot",
-          "what": "The feature leaves before anyone sees it.",
           "gains": [
-            "One fewer control at rest and one fewer thing that can fail",
-            "No hour spent"
+            "One fewer control at rest; no hour spent"
           ],
           "costs": [
-            "Throws away 945 lines without the hour that would tell us",
-            "Decides on nothing"
+            "Discards 945 lines without the hour that would tell us"
           ],
           "system": "Remove the menu.",
           "screens": "ExportMenu removed.",
@@ -3954,11 +3693,10 @@
       ],
       "rec": "b",
       "recCase": [
-        "An hour to find out is obviously worth spending, so the decision that matters is what happens if it fails.",
-        "Removing the menu is the right failure branch: the record lists no export button among the nine controls at rest.",
-        "Whichever branch runs, fix the tier contradiction between :67 and :201 in the same edit."
+        "The hour is obviously worth it; the real decision is the failure branch.",
+        "Delete on failure: no export control is at rest. Fix the tier clash (docs/PRODUCT-BRIEF.md:67, :201) too."
       ],
-      "flip": "If pilot users ask for a folder exported as one document, option c is right and the four days are cheap.",
+      "flip": "If pilot users ask for a folder exported as one document, take c; four days is cheap.",
       "linked": [
         "P15",
         "P18"
@@ -3977,8 +3715,8 @@
       "cat": "Product & definition",
       "sub": "Scope",
       "weight": "high",
-      "q": "Does the Max tier stay priced on `mdmax cert` before the one-day differential test has been run?",
-      "lede": "A tier and the B2B line are priced on a certificate whose own audit says the honest product may be a 200-line linter.",
+      "q": "Does the Max tier stay priced on `mdmax cert` before the one-day differential test runs?",
+      "lede": "A tier and the B2B line are priced on a certificate whose own audit says it may be a 200-line linter.",
       "visual": {
         "kind": "compare",
         "labelWidth": 160,
@@ -4039,22 +3777,16 @@
         "note": "Figures from docs/ENGINE.md:824, :828, :821 and docs/PRODUCT-BRIEF.md:512.",
         "caption": "The test that decides whether a tier has a product behind it."
       },
-      "stakes": "Quote a tier on an apparatus that five regexes reproduce and the first technical buyer finds out before we do.",
+      "stakes": "Price a tier on what five regexes reproduce and the first technical buyer finds out first.",
       "state": [
-        "docs/PRODUCT-BRIEF.md:475 sells `mdmax cert` and gates as the Max tier and the B2B line.",
-        "Kill condition (4) fires at 99.8% and three constructs cover 93.8% of attributions (docs/ENGINE.md:828, :824).",
-        "DESTROY, the only verdict class whose name survives contact with a customer, occurs zero times in 10,176 blocks (docs/ENGINE.md:821).",
-        "The CLI cannot start: `cert` is not one of package.json's 26 scripts and the script exits with ERR_MODULE_NOT_FOUND (docs/PRODUCT-BRIEF.md:224)."
-      ],
-      "path": [
-        "The certificate is the deepest thing built: 3,614 lines, 19 detectors, 7 engines against 15 targets.",
-        "docs/ENGINE.md:899 wrote the argument against it and named the test that settles it, on 2026-08-31.",
-        "Eight days later the test is still unrun while the tier table already quotes the certificate."
+        "`mdmax cert` is sold as the Max tier and B2B line (docs/PRODUCT-BRIEF.md:475).",
+        "Three constructs cover 93.8% of attributions; DESTROY: 0 of 10,176 blocks (docs/ENGINE.md:824, :821).",
+        "The CLI cannot start: `cert` is not an npm script; ERR_MODULE_NOT_FOUND (docs/PRODUCT-BRIEF.md:224)."
       ],
       "tension": [
-        "Eight of fifteen target surfaces are uncertifiable declarations and 6 of 19 detectors carry `provenance: invented` (docs/PRODUCT-BRIEF.md:502).",
-        "The apparatus may be right and the product claim wrong at the same time, which is what the differential separates.",
-        "A certificate nobody can execute is not evidence of anything."
+        "Kill condition (4) fires at 99.8% (docs/ENGINE.md:828).",
+        "8 of 15 targets are uncertifiable; 6 of 19 detectors are `provenance: invented` (docs/PRODUCT-BRIEF.md:502).",
+        "The test was specified 2026-08-31 (docs/ENGINE.md:899) and is still unrun."
       ],
       "evidence": [
         {
@@ -4134,30 +3866,24 @@
         {
           "k": "a",
           "label": "Run the five-regex differential before Max is priced on the certificate",
-          "what": "Build the linter, run both over the same 800 files, and price the tier on the residual.",
           "gains": [
-            "Settles whether the tier has a product behind it before anyone is quoted",
-            "One day, already specified"
+            "Settles the tier before anyone is quoted; one day"
           ],
           "costs": [
-            "A delay to the tier table",
             "A real chance the answer is no"
           ],
-          "system": "The CLI has to run first, which is one day either way.",
+          "system": "CLI must run first; both over the same 800 files.",
           "screens": "None.",
           "money": "Decides whether the B2B line exists."
         },
         {
           "k": "b",
           "label": "Keep the certificate in Max as planned and fix the CLI first",
-          "what": "The tier stands; the runnable command is the only work.",
           "gains": [
-            "Preserves the deepest asset and the B2B line",
-            "The CLI must be fixed regardless"
+            "Keeps the deepest asset; the CLI needs fixing anyway"
           ],
           "costs": [
-            "Prices a tier on an apparatus its own audit says five regexes reproduce",
-            "Leaves the strongest counter-argument unanswered"
+            "Prices a tier its own audit says five regexes reproduce"
           ],
           "system": "Fix extensions and the @/ alias, one day.",
           "screens": "None.",
@@ -4166,30 +3892,24 @@
         {
           "k": "c",
           "label": "Reposition the certificate as a maintenance service, not a technology",
-          "what": "About one engineer-week per quarter to re-derive the rules when an engine ships a breaking release (docs/ENGINE.md:901).",
           "gains": [
-            "Honest about what the apparatus is",
-            "A service the studio can actually deliver"
+            "Honest, and deliverable by the studio"
           ],
           "costs": [
-            "A much smaller claim than \"the B2B line\"",
-            "A services line on a plan trying to be a product"
+            "Far smaller than the B2B line; a services line, not a product"
           ],
-          "system": "A quarterly corpus re-run.",
+          "system": "Quarterly corpus re-run, about one engineer-week (docs/ENGINE.md:901).",
           "screens": "None.",
           "money": "Recurring services revenue, not licence revenue."
         },
         {
           "k": "d",
           "label": "Drop the certificate from the tier table; ship the five-rule linter in CI",
-          "what": "The cheap, defensible artefact becomes the product and the apparatus stays internal.",
           "gains": [
-            "Shippable in days rather than weeks",
-            "Defensible on the corpus data as it stands"
+            "Ships in days; defensible on current corpus data"
           ],
           "costs": [
-            "Abandons the most differentiated engineering as a product claim",
-            "On a test that has not yet been run"
+            "Abandons the deepest engineering on a test not yet run"
           ],
           "system": "A five-rule linter and a GitHub Action.",
           "screens": "A CI status surface.",
@@ -4198,11 +3918,10 @@
       ],
       "rec": "a",
       "recCase": [
-        "A one-day test that decides whether a whole tier has a product behind it is the highest-value day available.",
-        "It was specified on 2026-08-31 and has not been run, while the certificate is already quoted in the tier table and the family table.",
-        "The CLI must run first regardless: `cert` is not one of the 26 npm scripts."
+        "One day decides whether a whole tier has a product behind it.",
+        "The certificate is already quoted in two tables, and nobody can execute it."
       ],
-      "flip": "If the residual is real and reproducible on files the regexes miss, option b is right and the certificate keeps the tier.",
+      "flip": "If the residual is real on files the regexes miss, b is right and the certificate keeps Max.",
       "linked": [
         "P18"
       ],
@@ -4228,7 +3947,7 @@
       "sub": "Pitch",
       "weight": "high",
       "q": "Do we name Almanac and Zed Delta in the pitch, or wait to be asked?",
-      "lede": "One raised $45M selling this feature sentence and switched off; the other is in beta with the same thesis and the opposite architecture.",
+      "lede": "One raised $45M selling this feature sentence and switched off. The other is in beta with our thesis and the opposite architecture.",
       "visual": {
         "kind": "timeline",
         "items": [
@@ -4272,22 +3991,16 @@
         "note": "Almanac's read receipts, version control mode and approvals are still on its live marketing site.",
         "caption": "The dead precedent and the live one, in the order they happened."
       },
-      "stakes": "Get raised on either of these by someone else in the room and the pitch spends its credibility defending rather than explaining.",
+      "stakes": "If someone else raises either, the pitch spends its credibility defending, not explaining.",
       "state": [
-        "Almanac shipped read receipts, version control mode, layers, approvals and doc history diffing, all still on its live marketing site.",
-        "It raised $9M seed plus a $34M Series A led by Tiger Global in September 2021, and shut down on 2025-01-31 citing capacity.",
-        "Zed Delta entered private beta on 2026-08-12 with 679 HN points, and on 2026-09-01 committed publicly to attribution down to the span, on CRDTs.",
-        "The corpus settled sync as git merge and never a CRDT (docs/PRODUCT-BRIEF.md:66), and the rebuttal naming Zed is unwritten."
-      ],
-      "path": [
-        "Two weeks of competitive research missed both: Almanac appears nowhere in the plan and Delta was found on 2026-09-09.",
-        "Kortex died the same way, folded into another product, so this is a pattern rather than one company's bad luck.",
-        "The plan already names Anthropic as a threat at :560 and treats naming competitors as normal."
+        "Almanac shipped read receipts, approvals and diffing; raised $9M plus $34M; shut 2025-01-31.",
+        "Zed Delta: private beta 2026-08-12, 679 HN points; committed to CRDT span attribution 2026-09-01.",
+        "Our sync is git merge, never a CRDT (docs/PRODUCT-BRIEF.md:66); the Zed rebuttal is unwritten."
       ],
       "tension": [
-        "Almanac is a dead precedent we control the framing of; Delta is a live competitor and naming it advertises it.",
-        "Almanac's stated cause was capacity rather than demand, which is a usable answer but rests on a company's own exit post.",
-        "A team with ten years of CRDT work reached the opposite sync conclusion in public, so silence reads as not having noticed."
+        "Almanac is a dead precedent we can frame; naming Delta advertises it.",
+        "Almanac cited capacity, not demand, but that rests on its own exit post.",
+        "Ten years of CRDT work reached the opposite conclusion publicly; silence reads as unaware."
       ],
       "evidence": [
         {
@@ -4331,30 +4044,26 @@
         {
           "k": "a",
           "label": "Name both first, unprompted, with dates and stated causes",
-          "what": "A slide that says what happened to the last people who sold this, and who is building it now.",
           "gains": [
-            "Removes the objection before it is raised, and we choose the framing",
-            "Forces the CRDT rebuttal to be written, which is owed anyway"
+            "We choose the framing; forces the owed CRDT rebuttal"
           ],
           "costs": [
-            "Puts a $45M failure on our own slide",
-            "Tells a room that has not heard of Delta to go and look"
+            "A $45M failure on our own slide",
+            "Sends a room to look at Delta"
           ],
           "system": "None.",
-          "screens": "One slide in the pitch and a paragraph on the site.",
+          "screens": "One pitch slide and a site paragraph.",
           "money": "None."
         },
         {
           "k": "b",
           "label": "Name neither; answer only if asked",
-          "what": "The pitch stays about the product and the graveyard stays off it.",
           "gains": [
-            "Shortest pitch, no free advertising for a live competitor",
-            "Nothing to defend unprompted"
+            "Shortest pitch; no free advertising for Delta"
           ],
           "costs": [
-            "Anyone who knows the space raises Almanac and we answer improvised",
-            "Silence about Delta reads as not having looked"
+            "Almanac gets raised and we improvise",
+            "Silence on Delta reads as not having looked"
           ],
           "system": "None.",
           "screens": "None.",
@@ -4363,14 +4072,11 @@
         {
           "k": "c",
           "label": "Name Almanac as the category's history and stay quiet on Delta",
-          "what": "The dead precedent is used and the live one is kept for one-to-one conversations.",
           "gains": [
-            "Uses the argument we control without advertising a competitor",
-            "Almanac's stated cause is capacity, which is answerable"
+            "Uses the argument we control; answerable on capacity"
           ],
           "costs": [
-            "A partial answer that collapses the moment Delta is mentioned",
-            "Two versions of the pitch to keep straight"
+            "Collapses when Delta is mentioned; two pitch versions"
           ],
           "system": "None.",
           "screens": "One slide.",
@@ -4379,14 +4085,12 @@
         {
           "k": "d",
           "label": "Name Delta as the competitor and treat Almanac as prehistory",
-          "what": "The pitch positions against the live product and the CRDT choice, and mentions Almanac in passing.",
           "gains": [
-            "Positions against the thing a technical room will actually raise",
-            "Makes the sync position a differentiator rather than a footnote"
+            "Positions against what a technical room will raise"
           ],
           "costs": [
-            "Ignores the strongest cautionary evidence we have",
-            "The rebuttal has to be right, against a team with ten years of CRDT work"
+            "Ignores our strongest cautionary evidence",
+            "The rebuttal must beat ten years of CRDT work"
           ],
           "system": "The sync position needs a written technical rebuttal.",
           "screens": "One slide plus an engineering note.",
@@ -4395,12 +4099,10 @@
       ],
       "rec": "a",
       "recCase": [
-        "Both will be raised by anyone who knows the space, and the framing is worth more than the silence.",
-        "Almanac's stated cause was capacity, not demand, which is the one answer that survives the question honestly.",
-        "Delta's public commitment to span attribution forces the CRDT rebuttal into writing, which the corpus owes anyway.",
-        "Say plainly which claim died with Almanac: the general-document read receipt, not the agent-scoped one."
+        "Anyone who knows the space raises both; owning the framing beats silence.",
+        "Say which claim died with Almanac: the general-document read receipt, not the agent-scoped one."
       ],
-      "flip": "If the founders will not put a $45M failure on a slide, take c and keep Delta for one-to-one conversations, with the rebuttal written either way.",
+      "flip": "If the founders will not put a $45M failure on a slide, take c; write the rebuttal regardless.",
       "linked": [
         "P2",
         "P24"
@@ -4422,7 +4124,7 @@
       "sub": "Definition",
       "weight": "high",
       "q": "Is the claim that review catches defects, or that it tells you what changed?",
-      "lede": "The plan never says which job the review surface does, and the two promises have different evidence and different failure modes.",
+      "lede": "The plan never says which job the review surface does. The two promises have different evidence and failure modes.",
       "visual": {
         "kind": "compare",
         "labelWidth": 160,
@@ -4476,22 +4178,16 @@
         "note": "Microsoft's 14% is from ICSE 2013; the override range is 34 drug-interaction studies. Both are transferred from other domains.",
         "caption": "Two jobs, one surface, and only one of them is defensible."
       },
-      "stakes": "Promise defect-catching and the first missed error is our fault; promise orientation and the surface has to earn attention every day.",
+      "stakes": "Promise defects and the first miss is our fault. Promise orientation and it must earn attention daily.",
       "state": [
-        "docs/PRODUCT-BRIEF.md:20 promises that every span changed since a person last read it is tinted, and never says what the reading is for.",
-        "The one measured argument in the plan is orientation: reviewers told which code was machine-written validated better, at higher workload (docs/PRODUCT-BRIEF.md:409 area, §16).",
-        "In the review literature defects were 78 of 570 comments, fourth of nine categories.",
-        "No evidence exists anywhere about reviewing AI-written prose; every finding is transferred from code review, clinical alerting or fact-checking."
-      ],
-      "path": [
-        "The claim moved from bytes to authorship to answering markers to review state in two days (docs/GAPS-2026-09-08.md:13).",
-        "Each move changed the sentence and none of them stated the job the person is doing when they read a tinted span.",
-        "The retention argument at :427 assumes a count going to zero, which is an orientation job, not a defect job."
+        "Changed spans are tinted (docs/PRODUCT-BRIEF.md:20); what the reading is for is never said.",
+        "Reviewers told which code was machine-written validated better, at higher workload (docs/PRODUCT-BRIEF.md:409 area).",
+        "No evidence on reviewing AI-written prose; all is transferred from code, clinical and fact-checking."
       ],
       "tension": [
-        "A defect claim is falsifiable by one missed error and is the claim every code-review tool that died was making.",
-        "An orientation claim is honest and weak: it competes with a free diff panel that four tools already open automatically.",
-        "The two jobs imply different surfaces — a ranked findings list against an exhaustible change list."
+        "Defects were 78 of 570 review comments, fourth of nine categories.",
+        "One missed error falsifies a defect claim; dead review tools made that claim.",
+        "Orientation competes with a free diff panel four tools open automatically."
       ],
       "evidence": [
         {
@@ -4535,62 +4231,50 @@
         {
           "k": "a",
           "label": "Claim defect detection: the tool finds what the agent got wrong",
-          "what": "The surface ranks findings and the promise is that errors surface.",
           "gains": [
-            "The strongest promise available and the easiest to sell",
-            "Matches what a liable buyer says they want"
+            "Strongest promise; what a liable buyer says they want"
           ],
           "costs": [
-            "Falsified by one missed defect",
-            "Every product that made this claim in code review is dead or discontinued"
+            "Falsified by one missed defect"
           ],
-          "system": "Needs a judgement layer the engine does not have.",
+          "system": "Needs a judgement layer the engine lacks.",
           "screens": "A ranked findings list replaces the change list.",
-          "money": "Justifies a higher price and a support obligation."
+          "money": "Higher price, plus a support obligation."
         },
         {
           "k": "b",
           "label": "Claim orientation: you can see what changed and who wrote it",
-          "what": "The surface is a ledger, and the promise is visibility rather than judgement.",
           "gains": [
-            "The one thing measured: knowing the origin improved validation",
-            "Nothing to be falsified by a missed error"
+            "The one measured job; no missed error falsifies it"
           ],
           "costs": [
-            "Weaker than a buyer wants to hear",
-            "Competes with a free diff panel four tools now open automatically"
+            "Weaker than a buyer wants to hear"
           ],
           "system": "No judgement layer; the sidecar is enough.",
           "screens": "An exhaustible change list and the tint.",
-          "money": "Prices like a utility, not like a guarantee."
+          "money": "Prices like a utility, not a guarantee."
         },
         {
           "k": "c",
           "label": "Claim the record: a durable ledger for whoever is answerable",
-          "what": "The promise is that the reading is recorded, not that it was any good.",
           "gains": [
-            "Matches the regulated buyer's actual need and the sidecar's actual shape",
-            "Survives every attention finding, because it does not require attention"
+            "Fits the regulated buyer; needs no attention to work"
           ],
           "costs": [
-            "A compliance sale, and no regulation opened requires per-span review",
-            "Nobody buys a record for themselves"
+            "No regulation opened requires per-span review"
           ],
-          "system": "Retention of the sidecar becomes a feature, which no F-row builds today.",
+          "system": "Sidecar retention becomes a feature no F-row builds.",
           "screens": "An export of who read what, when.",
-          "money": "Team tier only; no individual buys this."
+          "money": "Team tier only."
         },
         {
           "k": "d",
           "label": "Claim no job; show the state and let people decide what it is for",
-          "what": "The product presents review state and makes no promise about outcomes.",
           "gains": [
-            "Nothing to be wrong about",
-            "Keeps every buyer's interpretation open"
+            "Nothing to be wrong about"
           ],
           "costs": [
-            "A pitch with no verb does not survive one meeting",
-            "Leaves the demo without a point"
+            "A pitch with no verb dies in one meeting"
           ],
           "system": "No change.",
           "screens": "None.",
@@ -4599,12 +4283,10 @@
       ],
       "rec": "b",
       "recCase": [
-        "Orientation is the only job with a measurement behind it, and it is the one the plan's own attention section already argues for.",
-        "A defect claim is what four dead review products made, and one missed error refutes it in front of the person who found it.",
-        "Option c is the honest team-tier framing and should sit under b, not replace it — nobody buys a record for themselves.",
-        "Saying the job out loud also settles what the surface is: an exhaustible list, not a ranked set of findings."
+        "Orientation is the only job with a measurement behind it.",
+        "Put c under b as the team framing; nobody buys a record for themselves."
       ],
-      "flip": "If the five people who bill for documents say they need errors caught rather than changes shown, c becomes the sale and b becomes the free tier.",
+      "flip": "If the five who bill for documents need errors caught, c becomes the sale and b the free tier.",
       "linked": [
         "P2",
         "P11",
@@ -4626,8 +4308,8 @@
       "cat": "Product & definition",
       "sub": "Scope",
       "weight": "critical",
-      "q": "Does the AIOS fusion — a compiler that drives Framer and heals its own code — belong in frontmatter, or is it a separate product?",
-      "lede": "The largest thing dictated in six weeks sits in no plan, no card and no feature row, and keeps resurfacing.",
+      "q": "Does the AIOS fusion (a compiler that drives Framer and heals its own code) belong in frontmatter, or is it a separate product?",
+      "lede": "The largest idea dictated in six weeks sits in no plan, card or feature row, and keeps resurfacing.",
       "visual": {
         "kind": "arch",
         "layers": [
@@ -4662,21 +4344,16 @@
         "note": "Bottom two layers exist only in a transcript.",
         "caption": "What the plan scopes, against what was asked for"
       },
-      "stakes": "Left unplaced, it returns at every planning round and is dropped each time; folded in unscoped, it doubles the build.",
+      "stakes": "Unplaced, it returns every planning round. Folded in unscoped, it doubles the build.",
       "state": [
-        "Not in `docs/PRODUCT-BRIEF.md`, not a feature row, not previously a card",
-        "Recovered verbatim only in `docs/HANDOVER-ANSWERS-2-2026-09-09.md:593`",
-        "Raised at least three times across six weeks and dropped each time"
-      ],
-      "path": [
-        "Described as fusing AIOS, frontmatter and the markdown base into 'a new generation of MDX'",
-        "Named two concrete mechanisms: a compiler driving Framer from YAML tokens, and semantic self-healing code",
-        "The settled verdict is 'build a compiler and an IDE, not a format' — which is arguably this, not against it"
+        "Absent from `docs/PRODUCT-BRIEF.md` and every feature row; recovered only at `docs/HANDOVER-ANSWERS-2-2026-09-09.md:593`.",
+        "Two mechanisms named: a compiler driving Framer from YAML tokens; semantic self-healing code.",
+        "Raised at least three times in six weeks, dropped each time."
       ],
       "tension": [
-        "A compiler that renders live components is a different product from a markdown editor with review state",
-        "But the settled verdict already commits to building a compiler, so this is a question of scope, not of direction",
-        "Every week it stays unplaced it costs a planning round"
+        "Rendering live components is a different product from a review-state editor.",
+        "The settled verdict already says build a compiler, so this is scope, not direction.",
+        "Each week unplaced costs a planning round."
       ],
       "evidence": [
         {
@@ -4705,14 +4382,12 @@
         {
           "k": "a",
           "label": "Separate product, named and parked",
-          "what": "AIOS keeps the compiler vision; frontmatter stays the editor and engine.",
           "gains": [
-            "Keeps the 90-day plan buildable at the measured 1.21 engineering days a week",
-            "Stops the idea resurfacing, because it has an owner"
+            "Keeps the 90-day plan buildable at 1.21 engineering days a week",
+            "An owner stops it resurfacing"
           ],
           "costs": [
-            "The most ambitious idea in the corpus waits",
-            "Two products to fund from one consulting income"
+            "The most ambitious idea waits; two products, one consulting income"
           ],
           "system": "No change to frontmatter.",
           "screens": "None.",
@@ -4721,30 +4396,26 @@
         {
           "k": "b",
           "label": "One product, compiler in v2",
-          "what": "frontmatter ships editor plus engine now, and the compiler becomes the v2 headline.",
           "gains": [
             "One brand, one codebase, one audience",
             "The engine already is a compiler front end"
           ],
           "costs": [
-            "v2 scope is unbounded until the Framer and healing loops are specified",
-            "Risks v1 being designed to accommodate a v2 nobody has scoped"
+            "v2 unbounded until Framer and healing loops are specified"
           ],
           "system": "Engine gains a token pass and a render target.",
           "screens": "Adds a live-preview surface.",
-          "money": "Raises the v2 build cost materially."
+          "money": "Raises v2 build cost materially."
         },
         {
           "k": "c",
           "label": "Fold only the token pass into v1",
-          "what": "YAML tokens compile to CSS variables inside the document; no Framer, no healing.",
+          "what": "YAML tokens compile to CSS variables; no Framer, no healing.",
           "gains": [
-            "Smallest slice that makes the vision visible",
-            "Sits inside the existing fence-and-frontmatter grammar"
+            "Smallest slice that makes the vision visible"
           ],
           "costs": [
-            "A partial answer that may satisfy nobody",
-            "Still needs a render surface to be worth anything"
+            "May satisfy nobody; still needs a render surface"
           ],
           "system": "One new pass over frontmatter values.",
           "screens": "Adds an inline preview to the editor.",
@@ -4753,11 +4424,10 @@
       ],
       "rec": "a",
       "recCase": [
-        "The 90-day plan already carries 41.5 days of debt before the headline feature starts",
-        "Nothing here is decidable until the headline and form factor are, and both are open",
-        "Parking it with a name is what stops it resurfacing — dropping it silently is what has failed three times"
+        "The 90-day plan carries 41.5 days of debt before the headline starts.",
+        "Nothing is decidable until headline and form factor are; a named owner stops the resurfacing."
       ],
-      "flip": "If the compiler is what a buyer actually wants, the editor is the side project and this ordering is backwards.",
+      "flip": "If the compiler is what a buyer actually wants, the editor is the side project.",
       "linked": [
         "P1",
         "P2",

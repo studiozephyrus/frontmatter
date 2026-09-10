@@ -14,7 +14,10 @@ const DIR = '/Users/sagnikmitra/Desktop/GitHub/frontmatter/decisions';
    fonts.css is immutable (base64 faces that never change); the rest is
    stale-while-revalidate, so a repeat visit paints from cache instantly and picks
    up new content in the background. */
-const SHIP = ['index.html', 'app.css', 'app.js', 'diagram.js', 'questions.js', 'fonts.css', 'vercel.json'];
+const SHIP = ['index.html', 'app.css', 'app.js', 'diagram.js', 'questions.js', 'fonts.css', 'vercel.json',
+  // The 23 screen iterations. mockups-data.js is loaded by BOTH index.html (for the per-card
+  // strip) and mockups.html (for the gallery), so omitting either leaves a card linking nowhere.
+  'mockups.html', 'mockups-data.js'];
 
 const H = { Authorization: `Bearer ${TOKEN}`, 'Content-Type': 'application/json' };
 const api = (p) => `https://api.vercel.com${p}${p.includes('?') ? '&' : '?'}teamId=${TEAM}`;

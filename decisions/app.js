@@ -218,19 +218,41 @@
     if (q.stakes) h += '<div class="stakes">' + icon('warning', 'si') +
       '<span><b>If this goes the wrong way.</b> ' + md(q.stakes) + '</span></div>';
 
-    var sV = q.state || q.now, pV = q.path || q.why, tV = q.tension || q.problem;
-    h += '<div class="ctx">' +
-      '<div class="ctxc"><span class="eyebrow">Where it stands</span>' +
-      (Array.isArray(sV) ? bullets(sV) : '<p>' + md(sV || '\u2014') + '</p>') + '</div>' +
-      '<div class="ctxc"><span class="eyebrow">How it got here</span>' +
-      (Array.isArray(pV) ? bullets(pV) : '<p>' + md(pV || '\u2014') + '</p>') + '</div>' +
-      '<div class="ctxc tension"><span class="eyebrow">What forces a choice</span>' +
-      (Array.isArray(tV) ? bullets(tV) : '<p>' + md(tV || '\u2014') + '</p>') + '</div></div>';
+      /* `path` was deleted from every card in the 2026-09-10 compaction, so this renders only the
+         blocks that carry something. An empty "How it got here" column would show an em dash on
+         all 264 cards and waste a third of the row. `.ctx` is auto-fit, so it rebalances itself. */
+      var sV = q.state || q.now, pV = q.path || q.why, tV = q.tension || q.problem;
+      var has = function (v) { return Array.isArray(v) ? v.length > 0 : !!(v && String(v).trim()); };
+      var col = function (label, v, cls) {
+        return '<div class="ctxc' + (cls ? ' ' + cls : '') + '"><span class="eyebrow">' + label +
+          '</span>' + (Array.isArray(v) ? bullets(v) : '<p>' + md(v) + '</p>') + '</div>';
+      };
+      var cols = [];
+      if (has(sV)) cols.push(col('Where it stands', sV));
+      if (has(pV)) cols.push(col('How it got here', pV));
+      if (has(tV)) cols.push(col('What forces a choice', tV, 'tension'));
+      if (cols.length) h += '<div class="ctx">' + cols.join('') + '</div>';
 
     if (q.evidence && q.evidence.length) {
       h += '<details class="ev"><summary>' + icon('chevron_right', 'caret') + 'Evidence' +
         '<span class="cnt">' + q.evidence.length + ' ' + (q.evidence.length === 1 ? 'exhibit' : 'exhibits') + '</span></summary>' +
         '<div class="evbody">' + q.evidence.map(evBlock).join('') + '</div></details>';
+      }
+
+      /* Screen iterations bound to this decision. Each one is a real alternative for the
+         surface the card decides, not decoration -- clicking opens it full size in a new tab. */
+      if (window.MOCKUPS) {
+        var mine = window.MOCKUPS.filter(function (m) { return m.card === q.id; });
+        if (mine.length) {
+          h += '<div class="ev mocks"><div class="mockhead">' +
+            mine.length + ' screen ' + (mine.length === 1 ? 'iteration' : 'iterations') +
+            ' for this decision</div><div class="mockrow">' +
+            mine.map(function (m) {
+              return '<a class="mock" href="mockups.html?m=' + esc(m.id) + '" target="_blank" rel="noopener">' +
+                '<span class="mt">' + esc(m.screen) + '</span>' +
+                '<span class="mn">' + esc(m.name) + '</span></a>';
+            }).join('') + '</div></div>';
+        }
       }
 
       if (q.dupes && q.dupes.dropped && q.dupes.dropped.length) {
@@ -342,7 +364,8 @@
       'register, an adversarial round that came back against the plan\'s own headline, and a sweep on ' +
       '9 September of the nine market seams the corpus had never covered. Several answers changed that ' +
       'day. Each decision shows the thing being decided, states where it stands, what forces a choice, ' +
-      'the evidence, and what every option buys and costs. Answers stay in this browser.</p></div>';
+      'the evidence, and what every option buys and costs. Answers stay in this browser. ' +
+      '<a class="gallerylink" href="mockups.html" target="_blank" rel="noopener">See the 23 screen iterations</a></p></div>';
     h += '<div class="kpis">' +
       '<div class="kpi acc"><div class="kn">Answered</div><div class="kv">' + a + '</div>' +
         '<div class="kn">of ' + Q.length + ' decisions</div></div>' +
