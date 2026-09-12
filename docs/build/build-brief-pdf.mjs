@@ -133,7 +133,9 @@ h = h.replace(/<pre><code class="language-mermaid">([\s\S]*?)<\/code><\/pre>/g,
 const diagrams = (h.match(/class="mermaid"/g) || []).length
 
 const words = md.split(/\s+/).filter(Boolean).length
-const stamp = new Date().toISOString().slice(0, 10)
+/* toISOString() is UTC, so a document built in the IST evening stamps YESTERDAY.
+   BRIEF_DATE pins it to the date the document is actually published. */
+const stamp = process.env.BRIEF_DATE || new Date().toISOString().slice(0, 10)
 /* The masthead/footer label. Defaults to the internal research wording; a
    PUBLISHED brief overrides both via env so the same renderer serves an internal
    memo and a document that goes out to strangers:
