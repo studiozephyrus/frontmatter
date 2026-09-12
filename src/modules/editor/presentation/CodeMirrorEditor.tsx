@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
-import { EditorState, Compartment } from "@codemirror/state";
+import { EditorState, Compartment, Transaction } from "@codemirror/state";
 import {
   EditorView,
   keymap,
@@ -274,6 +274,48 @@ export function CodeMirrorEditor({ path, initialContent, baseSha, completionData
     const onFocusIn = () => setActiveView(view, path);
     view.dom.addEventListener("focusin", onFocusIn);
 
+    // Read back from the store. Property-panel edits, AI applies, and
+    // history restores all write contentByPath[path] from OUTSIDE this
+    // view (see EditorPane's handleEdit) — without this, the live doc never
+    // learns about them, and the next keystroke's updateListener below pushes
+    // this view's stale doc back into the store, silently reverting the edit
+    // (and persisting the reverted text as the draft). See PLAN.md §0 / §6.1.
+    //
+    // Diffs the common prefix/suffix instead of replacing the whole doc —
+    // a full replace collapses the cursor to the edit boundary even when the
+    // user is typing somewhere untouched (e.g. the body, while the sync only
+    // touched the frontmatter).
+    //
+    // No feedback loop: this view's OWN updateListener writes the same
+    // content back into the store synchronously inside this dispatch, so by
+    // the time this subscriber is notified again, `next === cur` already
+    // holds and it returns without dispatching a second time.
+    const storeUnsub = useEditorStore.subscribe((state, prevState) => {
+      const next = state.contentByPath[path];
+      if (next === undefined || next === prevState.contentByPath[path]) return;
+      const cur = view.state.doc.toString();
+      if (next === cur) return;
+      const max = Math.min(cur.length, next.length);
+      let start = 0;
+      while (start < max && cur.charCodeAt(start) === next.charCodeAt(start)) start++;
+      let curEnd = cur.length;
+      let nextEnd = next.length;
+      while (
+        curEnd > start &&
+        nextEnd > start &&
+        cur.charCodeAt(curEnd - 1) === next.charCodeAt(nextEnd - 1)
+      ) {
+        curEnd--;
+        nextEnd--;
+      }
+      view.dispatch({
+        changes: { from: start, to: curEnd, insert: next.slice(start, nextEnd) },
+        // Keep the user's own undo stack about their own keystrokes, not
+        // about a panel edit that happened to land while this pane had focus.
+        annotations: Transaction.addToHistory.of(false),
+      });
+    });
+
     // Live-reconfigure compartments when settings change.
     const unsub = useEditorSettings.subscribe((s) => {
       view.dispatch({
@@ -376,6 +418,7 @@ export function CodeMirrorEditor({ path, initialContent, baseSha, completionData
 
     return () => {
       unsub();
+      storeUnsub();
       view.dom.removeEventListener("focusin", onFocusIn);
       container.removeEventListener("paste", onPaste);
       container.removeEventListener("drop", onDrop);

@@ -111,6 +111,17 @@ describe("buildGraph", () => {
     expect(links).toHaveLength(0);
   });
 
+  it("reports an unresolved outbound link instead of silently dropping it", () => {
+    const notes: NoteMeta[] = [
+      makeNote({ path: "Alpha.md", outbound: ["NonExistent"] }),
+    ];
+    const { links, unresolved } = buildGraph(notes);
+    expect(links).toHaveLength(0);
+    expect(unresolved).toEqual([
+      { source: "Alpha.md", target: "NonExistent", reason: "no-such-note" },
+    ]);
+  });
+
   it("drops links to excluded notes", () => {
     const notes: NoteMeta[] = [
       makeNote({ path: "Alpha.md", outbound: ["Beta"] }),
@@ -118,6 +129,43 @@ describe("buildGraph", () => {
     ];
     const { links } = buildGraph(notes);
     expect(links).toHaveLength(0);
+  });
+
+  it("reports a link to an excluded note with its own reason", () => {
+    const notes: NoteMeta[] = [
+      makeNote({ path: "Alpha.md", outbound: ["Beta"] }),
+      makeNote({ path: "Beta.md", excludeFromGraph: true }),
+    ];
+    const { unresolved } = buildGraph(notes);
+    expect(unresolved).toEqual([
+      { source: "Alpha.md", target: "Beta", reason: "target-excluded" },
+    ]);
+  });
+
+  it("deduplicates repeated unresolved links", () => {
+    const notes: NoteMeta[] = [
+      makeNote({ path: "Alpha.md", outbound: ["Ghost", "Ghost"] }),
+    ];
+    const { unresolved } = buildGraph(notes);
+    expect(unresolved).toHaveLength(1);
+  });
+
+  it("reports nothing unresolved when every link resolves", () => {
+    const notes: NoteMeta[] = [
+      makeNote({ path: "Alpha.md", outbound: ["Beta"] }),
+      makeNote({ path: "Beta.md" }),
+    ];
+    const { unresolved } = buildGraph(notes);
+    expect(unresolved).toEqual([]);
+  });
+
+  it("does not report a self-link as unresolved", () => {
+    const notes: NoteMeta[] = [
+      makeNote({ path: "Alpha.md", outbound: ["Alpha"] }),
+    ];
+    const { links, unresolved } = buildGraph(notes);
+    expect(links).toHaveLength(0);
+    expect(unresolved).toEqual([]);
   });
 
   it("deduplicates links", () => {

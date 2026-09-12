@@ -1,0 +1,4506 @@
+{
+ "cat": "Design, UI & attention",
+ "questions": [
+  {
+   "id": "D1",
+   "cat": "Design, UI & attention",
+   "sub": "The tint",
+   "weight": "critical",
+   "q": "Does the review tint stay a colour-only wash at 1.11:1, or does it get a second, non-colour channel?",
+   "lede": "The tint is the only mark this product draws, and as built it is quieter than the divider lines it sits between.",
+   "visual": {
+    "kind": "file",
+    "name": "auth.md — Live mode, left gutter",
+    "lines": [
+     {
+      "t": "  ## Token lifetime",
+      "mark": "",
+      "note": "reviewed"
+     },
+     {
+      "t": "| Refresh tokens expire after 30 days.",
+      "mark": "unreviewed",
+      "note": "wash 1.111:1"
+     },
+     {
+      "t": "| Rotation is silent and unlogged.",
+      "mark": "unreviewed",
+      "note": "same wash"
+     },
+     {
+      "t": "  Sessions end on sign-out.",
+      "mark": "",
+      "note": "reviewed"
+     }
+    ],
+    "note": "The gutter bar is the proposed second channel; the wash inside the text stays as designed.",
+    "caption": "Where a non-colour channel would sit, outside the reading line."
+   },
+   "stakes": "If nobody registers the mark, every review number after it measures a screen the reader never saw.",
+   "state": [
+    "§10 says changed spans carry `a light tint and nothing else` (docs/PRODUCT-BRIEF.md:247).",
+    "The prototype ships `.m1{background:var(--wash);box-shadow:0 0 0 1px var(--wash) inset}`, so the shadow is the fill's own hex (docs/prototype/frontmatter-prototype.html:116).",
+    "Measured from the declared hexes, the wash is 1.111:1 on white, under the 1.24:1 hairline beside it (docs/prototype/frontmatter-prototype.html:13).",
+    "§22 already promises `the tint is never colour alone`, which a wash plus a same-colour shadow does not keep (docs/PRODUCT-BRIEF.md:540)."
+   ],
+   "path": [
+    "§16 read Tang et al. as saying provenance awareness improves validation and raises workload (docs/PRODUCT-BRIEF.md:408).",
+    "The plan answered the workload half by making the mark as quiet as it could be.",
+    "It never asked what quiet costs on the perception side, and no eye-tracking has been run on our screens (docs/PRODUCT-BRIEF.md:402)."
+   ],
+   "tension": [
+    "Quiet enough to ignore at rest and loud enough to be seen are the same dial when colour is the only channel.",
+    "The scheduled test asks what the tint means, so someone who never saw it still produces an answer (docs/PRODUCT-BRIEF.md:411).",
+    "Whether a text wash falls under SC 1.4.11 is contested; a margin mark makes the argument unnecessary."
+   ],
+   "evidence": [
+    {
+     "type": "bars",
+     "title": "How loud each mark is against its own background",
+     "note": "Contrast ratios derived by me from the prototype's declared hexes (docs/prototype/frontmatter-prototype.html:13, :14, :16, :22) using the WCAG 2.x relative-luminance formula. The 3:1 line is the floor the plan's own PRD applies to borders that identify a control (docs/FRONTMATTER-PRD-v2-2026-08-29.md:3357). Whether a text-background wash falls under that rule is contested — the same PRD row says \"do not raise decorative dividers\" — so read the line as the standard the design is being argued against, not a settled verdict.",
+     "data": [
+      [
+       "Review tint #eef3ff on white",
+       1.111
+      ],
+      [
+       "AI proposal tint #f4efff on white",
+       1.127
+      ],
+      [
+       "Selected span #dfe8ff on white",
+       1.226
+      ],
+      [
+       "Hairline divider #e4e7ec on white",
+       1.24
+      ],
+      [
+       "Tab identity colour #cfe0ff on white",
+       1.333
+      ],
+      [
+       "Review tint #15213d on dark #0f1115",
+       1.185
+      ]
+     ],
+     "unit": ":1 contrast",
+     "threshold": 3,
+     "thresholdLabel": "WCAG 2.2 SC 1.4.11 floor the PRD applies to an identifying boundary"
+    },
+    {
+     "type": "table",
+     "title": "What the plan says about the tint, in three places",
+     "cols": [
+      "Where",
+      "What it says"
+     ],
+     "rows": [
+      [
+       "§10, docs/PRODUCT-BRIEF.md:247",
+       "\"a light tint and nothing else\""
+      ],
+      [
+       "§16, docs/PRODUCT-BRIEF.md:408",
+       "\"ignorable at rest (no border, no icon)\""
+      ],
+      [
+       "§22, docs/PRODUCT-BRIEF.md:540",
+       "\"the tint is never colour alone\""
+      ]
+     ]
+    }
+   ],
+   "options": [
+    {
+     "k": "a",
+     "label": "Ship the colour-only wash and let the five-second test decide",
+     "what": "Nothing changes; the mark stays a background wash with no second channel.",
+     "gains": [
+      "Cheapest; nothing to build, redraw or re-test",
+      "Defensible if a document wash reads as decoration, not as a control boundary"
+     ],
+     "costs": [
+      "Someone who missed the tint still answers the meaning question",
+      "§22's colour-alone promise stays false"
+     ],
+     "system": "No change.",
+     "screens": "None.",
+     "money": "None."
+    },
+    {
+     "k": "b",
+     "label": "Add one gutter mark at 3:1 and keep the text wash quiet",
+     "what": "A left-margin bar marks the span; the wash inside the text is unchanged.",
+     "gains": [
+      "Keeps §22's promise and ends the SC 1.4.11 argument",
+      "Puts the mark in the left column §16 says is scanned first",
+      "One CodeMirror gutter decoration"
+     ],
+     "costs": [
+      "Gutter width is also wanted by line numbers and git marks",
+      "A second element to draw in every mode and both themes"
+     ],
+     "system": "One gutter decoration in the review-state layer; no sidecar or engine change.",
+     "screens": "S2, S4, split and Read gain a gutter column.",
+     "money": "None."
+    },
+    {
+     "k": "c",
+     "label": "Raise the wash itself to 3:1",
+     "what": "The tint becomes a visible highlight behind the text.",
+     "gains": [
+      "One token change and impossible to miss"
+     ],
+     "costs": [
+      "The document reads as highlighted, the exact failure the test exists to catch",
+      "Rejected by §16's own workload argument"
+     ],
+     "system": "One token.",
+     "screens": "Every screen carrying the tint changes character.",
+     "money": "None."
+    },
+    {
+     "k": "d",
+     "label": "Make the channel a setting: wash, wash plus gutter, or gutter only",
+     "what": "The reader picks how the mark is drawn.",
+     "gains": [
+      "Nobody has to be right first time"
+     ],
+     "costs": [
+      "Three states to design, test and screenshot",
+      "The promise rests on whichever is default, so the default is still this decision"
+     ],
+     "system": "A preference, plus the gutter work anyway.",
+     "screens": "One more control on S11, which the wireframes want short.",
+     "money": "None."
+    }
+   ],
+   "rec": "b",
+   "recCase": [
+    "§22 already commits to never colour alone, and a gutter mark is the cheapest way to keep that promise.",
+    "Tang's workload cost is about attention inside the text; a margin mark sits outside it.",
+    "The gutter also has room for the count, so this and D4 can share one column."
+   ],
+   "flip": "If the rewritten noticing test in D18 finds people spot the wash unprompted at 1.111:1, the gutter mark is decoration.",
+   "linked": [
+    "D2",
+    "D4",
+    "D18",
+    "D21"
+   ],
+   "sources": [
+    "docs/PRODUCT-BRIEF.md:247",
+    "docs/PRODUCT-BRIEF.md:402",
+    "docs/PRODUCT-BRIEF.md:408",
+    "docs/PRODUCT-BRIEF.md:411",
+    "docs/PRODUCT-BRIEF.md:540",
+    "docs/prototype/frontmatter-prototype.html:13",
+    "docs/prototype/frontmatter-prototype.html:14",
+    "docs/prototype/frontmatter-prototype.html:116",
+    "docs/FRONTMATTER-PRD-v2-2026-08-29.md:3357"
+   ]
+  },
+  {
+   "id": "D2",
+   "cat": "Design, UI & attention",
+   "sub": "The tint",
+   "weight": "critical",
+   "q": "Do we keep two washes for proposed and unreviewed, or does the bordered highlight already in the codebase become the proposal mark?",
+   "lede": "One tint means the bytes are on your disk, the other means nothing was written, and only hue separates them.",
+   "visual": {
+    "kind": "compare",
+    "labelWidth": 150,
+    "cols": [
+     {
+      "title": "Review tint #eef3ff",
+      "tone": "accent"
+     },
+     {
+      "title": "Proposal tint #f4efff",
+      "tone": "neutral"
+     },
+     {
+      "title": "Shipped .cm-ai-suggestion",
+      "tone": "warn"
+     }
+    ],
+    "rows": [
+     {
+      "label": "Contrast on white",
+      "cells": [
+       "1.111:1",
+       "1.127:1",
+       "1.280:1"
+      ]
+     },
+     {
+      "label": "Border",
+      "cells": [
+       "none",
+       "none",
+       "1px inset, about 1.95:1 on the page"
+      ]
+     },
+     {
+      "label": "Corners",
+      "cells": [
+       "square",
+       "square",
+       "3px radius"
+      ]
+     },
+     {
+      "label": "Means",
+      "cells": [
+       "written, unreviewed",
+       "proposed, not written",
+       "proposed, not written"
+      ]
+     },
+     {
+      "label": "Bytes on disk",
+      "cells": [
+       "yes",
+       "no",
+       "no"
+      ]
+     },
+     {
+      "label": "Built today",
+      "cells": [
+       "no",
+       "no",
+       "yes, merged"
+      ]
+     }
+    ],
+    "note": "The two planned washes are 4.10 apart on delta-E76, against a just-noticeable difference near 2.3.",
+    "caption": "Three span treatments: two are drawn, one is already shipping."
+   },
+   "stakes": "Confusing the two states means reverting bytes that never changed, or accepting text believing it is already saved.",
+   "state": [
+    "The wireframes are explicit: purple is proposed, blue is written but unreviewed (docs/_wireframes.md:29).",
+    "Both wash hexes are declared on one line and differ by delta-E76 4.10 (docs/prototype/frontmatter-prototype.html:14).",
+    "`.cm-ai-suggestion` is merged with a blue fill, a 1px inset border, 3px corners and a pulse (src/app/globals.css:833, :835, :836, :844).",
+    "The planned tint is unbuilt: no file in `src/` carries review-tint state."
+   ],
+   "path": [
+    "F2 marks what an agent already wrote; F5 and F8 deliver text that has not been written (docs/PRODUCT-BRIEF.md:56, :59).",
+    "Both were given a tinted span because tinting is the product's one visual idiom.",
+    "`.cm-ai-suggestion` arrived with the sibling app's inline accept and reject, before §16's tint rules were written."
+   ],
+   "tension": [
+    "The distinction with a data consequence is carried by the weakest channel available.",
+    "Working code already gives the proposal a border, which is the non-colour channel the distinction needs.",
+    "Keeping it breaks §16's `no border, no icon` rule for one of the two marks (docs/PRODUCT-BRIEF.md:408).",
+    "The pulse runs with `prefers-reduced-motion` absent from the whole stylesheet (docs/FRONTMATTER-PRD-v2-2026-08-29.md:3366)."
+   ],
+   "evidence": [
+    {
+     "type": "stat",
+     "title": "The two tints, measured against each other",
+     "items": [
+      [
+       "Light mode, review #eef3ff vs proposal #f4efff",
+       "ΔE76 = 4.10",
+       "derived by me from docs/prototype/frontmatter-prototype.html:14; JND is about 2.3"
+      ],
+      [
+       "Dark mode, #15213d vs #22193a",
+       "ΔE76 = 8.85",
+       "derived from docs/prototype/frontmatter-prototype.html:22"
+      ],
+      [
+       "Contrast against the page, review vs proposal",
+       "1.111 vs 1.127",
+       "the two are indistinguishable by luminance; only hue separates them"
+      ],
+      [
+       "Scheduled tests that show both states",
+       "0",
+       "the five-second test names one screenshot and one tint (docs/PRODUCT-BRIEF.md:352, :411)"
+      ]
+     ]
+    },
+    {
+     "type": "table",
+     "title": "What each state means for the file",
+     "cols": [
+      "Tint",
+      "State",
+      "Bytes on disk",
+      "What accepting does"
+     ],
+     "rows": [
+      [
+       "Blue #eef3ff",
+       "written, unreviewed",
+       "yes",
+       "flips a flag, changes zero bytes (docs/_wireframes.md:29)"
+      ],
+      [
+       "Purple #f4efff",
+       "proposed",
+       "no",
+       "writes new bytes"
+      ]
+     ]
+    },
+    {
+     "type": "table",
+     "title": "The shipped highlight against the planned tint",
+     "cols": [
+      "Property",
+      "Shipped .cm-ai-suggestion",
+      "Planned review tint"
+     ],
+     "rows": [
+      [
+       "Fill",
+       "#0055ff at 16% → #d6e4ff on white (1.280:1); #d2e0fb on the app's #fafafa (1.274:1)",
+       "#eef3ff → 1.111:1 on white; 1.065:1 on #fafafa"
+      ],
+      [
+       "Border",
+       "inset 1px at 30% over that fill → ≈#93b6fc, 1.53:1 against the fill and 1.95:1 against the page",
+       "none — \"no border, no icon\""
+      ],
+      [
+       "Corners",
+       "3px radius",
+       "square (border-radius:0 in the prototype, :116)"
+      ],
+      [
+       "Hue",
+       "blue — for a proposal",
+       "blue means written-and-unreviewed; purple means proposal"
+      ],
+      [
+       "Motion",
+       "sgnk-ai-pulse keyframes, unguarded",
+       "none specified"
+      ]
+     ]
+    },
+    {
+     "type": "stat",
+     "title": "Motion, measured",
+     "items": [
+      [
+       "@keyframes blocks in globals.css",
+       "4",
+       "measured"
+      ],
+      [
+       "animation: declarations",
+       "3",
+       "measured"
+      ],
+      [
+       "prefers-reduced-motion guards",
+       "0",
+       "measured — also flagged at docs/FRONTMATTER-PRD-v2-2026-08-29.md:3366"
+      ],
+      [
+       "Files in src/ carrying review-tint state",
+       "0",
+       "the planned tint is unbuilt; the competing treatment is merged"
+      ]
+     ]
+    }
+   ],
+   "options": [
+    {
+     "k": "a",
+     "label": "Keep both washes as drawn and delete the shipped highlight",
+     "what": "One quiet idiom; the proposal is a purple wash with no border.",
+     "gains": [
+      "One vocabulary, and §16's rules stay enforceable",
+      "Nothing on the page competes with the review tint"
+     ],
+     "costs": [
+      "The data-consequence distinction rests on a 4.1 delta-E hue difference",
+      "F8's inline accept and reject has to be redrawn"
+     ],
+     "system": "Delete `.cm-ai-suggestion` and its keyframes; build the proposal decoration.",
+     "screens": "S3b and S4 keep their drawn treatment.",
+     "money": "None."
+    },
+    {
+     "k": "b",
+     "label": "Adopt the shipped bordered highlight as the proposal mark, and correct the plan",
+     "what": "Proposals are blue with a border, review state is the quiet wash, and the wireframes' purple goes.",
+     "gains": [
+      "The difference survives greyscale, dark mode and colour-blindness",
+      "Reuses code that works, at close to no build cost"
+     ],
+     "costs": [
+      "The `no border` rule then applies to one mark only and must be written down",
+      "Two blue marks of different loudness in one editor"
+     ],
+     "system": "Keep the class, wrap the pulse in `prefers-reduced-motion`, rewrite the wireframe note.",
+     "screens": "S3b and S4 redraw the proposal span.",
+     "money": "None."
+    },
+    {
+     "k": "c",
+     "label": "Keep both washes and add a dashed left rule to the proposal",
+     "what": "The purple stays and gains a non-colour mark of its own design.",
+     "gains": [
+      "Keeps the drawn palette and makes the distinction non-hue"
+     ],
+     "costs": [
+      "Builds a second treatment when one is already merged",
+      "Adds an element to the surface §16 tried to keep clear"
+     ],
+     "system": "One more decoration, plus deleting `.cm-ai-suggestion`.",
+     "screens": "S3b, S4.",
+     "money": "None."
+    },
+    {
+     "k": "d",
+     "label": "Take the proposal out of the document; it lives in the review panel",
+     "what": "Nothing unwritten is ever tinted in the text.",
+     "gains": [
+      "Removes the confusion by removing the second state from the page",
+      "One tint to test and one meaning to teach"
+     ],
+     "costs": [
+      "Forfeits proposal-arrives-in-place, which F5 and F8 were designed around",
+      "S3b answer-in-place is redrawn from scratch"
+     ],
+     "system": "Proposals render in the panel only.",
+     "screens": "S3b changes shape; S4 grows.",
+     "money": "None."
+    }
+   ],
+   "rec": "b",
+   "recCase": [
+    "A border is the second channel the distinction needs, and it is already merged and working.",
+    "Correcting a wireframe note costs less than rebuilding the same idea in a different colour.",
+    "The motion guard is due either way, since `prefers-reduced-motion` appears zero times in the stylesheet."
+   ],
+   "flip": "If the inline accept and reject flow is being replaced by the review panel, delete the class and take option a.",
+   "linked": [
+    "D1",
+    "D9",
+    "D18",
+    "D21"
+   ],
+   "sources": [
+    "docs/_wireframes.md:29",
+    "docs/prototype/frontmatter-prototype.html:14",
+    "docs/prototype/frontmatter-prototype.html:22",
+    "docs/prototype/frontmatter-prototype.html:116",
+    "docs/PRODUCT-BRIEF.md:56",
+    "docs/PRODUCT-BRIEF.md:59",
+    "docs/PRODUCT-BRIEF.md:352",
+    "docs/PRODUCT-BRIEF.md:408",
+    "docs/PRODUCT-BRIEF.md:411",
+    "src/app/globals.css:833",
+    "src/app/globals.css:835",
+    "src/app/globals.css:836",
+    "src/app/globals.css:844",
+    "docs/FRONTMATTER-PRD-v2-2026-08-29.md:3366",
+    "merged: D17"
+   ]
+  },
+  {
+   "id": "D3",
+   "cat": "Design, UI & attention",
+   "sub": "The tint",
+   "weight": "high",
+   "q": "Should the tint be switchable at all, and is it on by default?",
+   "lede": "The settings page ships a toggle that turns off the one thing this product adds to a markdown editor.",
+   "visual": {
+    "kind": "screen",
+    "title": "S11 Settings, as built",
+    "panes": [
+     {
+      "label": "Five toggles on one page",
+      "w": 1,
+      "rows": [
+       {
+        "label": "Hide all AI features",
+        "meta": "evidence-backed",
+        "mark": "keep",
+        "tone": "good"
+       },
+       {
+        "label": "Mark machine-written text until a person reviews it",
+        "meta": "default on",
+        "mark": "removes the product",
+        "tone": "stop"
+       },
+       {
+        "label": "Show the unreviewed bar in the file tree",
+        "meta": "default on",
+        "mark": "chrome",
+        "tone": "warn"
+       },
+       {
+        "label": "Theme, keymap and the rest",
+        "meta": "appearance",
+        "mark": "",
+        "tone": "neutral"
+       }
+      ]
+     }
+    ],
+    "note": "The settings copy already says the tint is file state, not AI.",
+    "caption": "Which switches remove chrome, and which remove the product."
+   },
+   "stakes": "A pilot participant who switches the tint off is counted as a user of a product they are not using.",
+   "state": [
+    "S11 ships `Mark machine-written text until a person reviews it` and a tree-bar toggle, both on (docs/prototype/frontmatter-prototype.html:615, :616).",
+    "The hide-all-AI switch already draws the line: the review tint stays, because it is file state (docs/prototype/frontmatter-prototype.html:608).",
+    "The MVP-0 exit measure counts days opened, spans reviewed and proposals accepted (docs/PRODUCT-BRIEF.md:431)."
+   ],
+   "path": [
+    "The hide-all switch is evidence-backed: Zed, VS Code and Telegram shipped theirs after 412-, 30- and 181-reaction issues (docs/PRODUCT-BRIEF.md:298).",
+    "The tint toggle followed from the settings page's habit of making every visual behaviour optional."
+   ],
+   "tension": [
+    "The wireframes state the rule being broken: every toggle we add is a decision we failed to make (docs/_wireframes.md:47).",
+    "With the tint off, 41 of 43 editor files are byte-identical to the sibling app, so nothing distinct is left (docs/PRODUCT-BRIEF.md:223).",
+    "Removing a control that already works is the kind of change those three reaction counts were about."
+   ],
+   "evidence": [
+    {
+     "type": "stat",
+     "title": "Settings toggles on S11, counted",
+     "items": [
+      [
+       "Toggles on the settings page",
+       "5",
+       "counted in docs/prototype/frontmatter-prototype.html at :608, :612, :615, :616, :619"
+      ],
+      [
+       "Of those, toggles that disable the product's core signal",
+       "2",
+       ":615 \"Mark machine-written text…\" and :616 \"Show the unreviewed bar in the file tree\""
+      ],
+      [
+       "The stated constraint",
+       "\"Every toggle we add is a decision we failed to make\"",
+       "docs/_wireframes.md:47"
+      ],
+      [
+       "Editor files byte-identical to the sibling app",
+       "41 of 43",
+       "docs/PRODUCT-BRIEF.md:223 — what is left when the tint is off"
+      ],
+      [
+       "What the MVP-0 exit test counts",
+       "\"days-opened, spans reviewed, proposals accepted\"",
+       "docs/PRODUCT-BRIEF.md:431 — all three read zero for a user who switched the tint off"
+      ]
+     ]
+    }
+   ],
+   "options": [
+    {
+     "k": "a",
+     "label": "Keep both toggles, default on",
+     "what": "Nothing changes; the reader can switch off the tint and the tree bar.",
+     "gains": [
+      "Maximum control, and nobody can call the mark forced"
+     ],
+     "costs": [
+      "The exit measure reads zero for a user who switched it off",
+      "Two more states in every test and screenshot"
+     ],
+     "system": "No change.",
+     "screens": "None.",
+     "money": "None."
+    },
+    {
+     "k": "b",
+     "label": "Remove the tint toggle; keep the tree-bar toggle",
+     "what": "The tint is not optional; the tree bar stays chrome that can be hidden.",
+     "gains": [
+      "Two fewer states to design, test and support",
+      "The pilot measures one product"
+     ],
+     "costs": [
+      "A vocal user can reasonably object to a removed control",
+      "Someone who wants a clean document has only the file itself"
+     ],
+     "system": "Delete one preference.",
+     "screens": "S11 loses a row.",
+     "money": "None."
+    },
+    {
+     "k": "c",
+     "label": "Make the tint per-document, stored in frontmatter",
+     "what": "A finished document can be marked as no longer needing marks.",
+     "gains": [
+      "Matches the projection law: the setting lives in the file",
+      "A shipped document reads clean without a global switch"
+     ],
+     "costs": [
+      "A new frontmatter key to read, write and refuse on",
+      "SAFE_KEY governs what can be addressed there (splice-frontmatter.ts:53)"
+     ],
+     "system": "One key in the reader and writer, plus a refusal path.",
+     "screens": "The properties panel gains a row.",
+     "money": "None."
+    },
+    {
+     "k": "d",
+     "label": "Replace both with one quiet mode",
+     "what": "A single switch dims every review signal at once.",
+     "gains": [
+      "One decision instead of two, and an answer to reviewer fatigue"
+     ],
+     "costs": [
+      "Still ships an off switch for the product",
+      "A dimmed state has to be designed and measured too"
+     ],
+     "system": "One preference applied across surfaces.",
+     "screens": "S11 loses a row; every surface gains a dimmed state.",
+     "money": "None."
+    }
+   ],
+   "rec": "b",
+   "recCase": [
+    "The hide-all switch already says the right thing out loud: AI is optional, file state is not.",
+    "A second switch that contradicts it hands the pilot a way to be a non-user without leaving.",
+    "The tree bar is chrome and can stay optional at no cost to the exit measure."
+   ],
+   "flip": "If a pilot participant asks for it unprompted the need is real, and option c is the right shape for it.",
+   "linked": [
+    "D1",
+    "D4"
+   ],
+   "sources": [
+    "docs/prototype/frontmatter-prototype.html:608",
+    "docs/prototype/frontmatter-prototype.html:615",
+    "docs/prototype/frontmatter-prototype.html:616",
+    "docs/_wireframes.md:47",
+    "docs/PRODUCT-BRIEF.md:223",
+    "docs/PRODUCT-BRIEF.md:298",
+    "docs/PRODUCT-BRIEF.md:385",
+    "docs/PRODUCT-BRIEF.md:431",
+    "src/modules/share/domain/splice-frontmatter.ts:53"
+   ]
+  },
+  {
+   "id": "D4",
+   "cat": "Design, UI & attention",
+   "sub": "Attention",
+   "weight": "high",
+   "q": "How many surfaces carry the unreviewed count, and where does the total sit?",
+   "lede": "S2 states one fact in five places, and the total sits in the two regions §16 itself predicts are read last.",
+   "visual": {
+    "kind": "screen",
+    "title": "S2 — every surface stating the same fact",
+    "panes": [
+     {
+      "label": "Top bar and left rail, read first",
+      "w": 1,
+      "rows": [
+       {
+        "label": "Dot on the active tab",
+        "meta": "6px, title=unreviewed",
+        "mark": "cut",
+        "tone": "warn"
+       },
+       {
+        "label": "Per-file bars in the tree",
+        "meta": "§17's return trigger",
+        "mark": "keep",
+        "tone": "good"
+       },
+       {
+        "label": "No total anywhere in this zone",
+        "meta": "",
+        "mark": "gap",
+        "tone": "stop"
+       }
+      ]
+     },
+     {
+      "label": "Document, read second",
+      "w": 1,
+      "rows": [
+       {
+        "label": "The tint",
+        "meta": "1.111:1 on white",
+        "mark": "keep",
+        "tone": "accent"
+       }
+      ]
+     },
+     {
+      "label": "Right rail and status bar, read last",
+      "w": 1,
+      "rows": [
+       {
+        "label": "Drawer counter, 3 unreviewed",
+        "meta": "S4 :458",
+        "mark": "move",
+        "tone": "warn"
+       },
+       {
+        "label": "Status bar, 3 unreviewed spans · 64%",
+        "meta": ":394",
+        "mark": "move",
+        "tone": "warn"
+       },
+       {
+        "label": "Per-heading counts in the outline",
+        "meta": ":398",
+        "mark": "cut",
+        "tone": "warn"
+       }
+      ]
+     }
+    ],
+    "note": "Amber does three jobs: a lot unreviewed, an open question, a STALE verdict.",
+    "caption": "Five surfaces for one fact, with the total in the last-read column."
+   },
+   "stakes": "Repeating the count on every surface teaches the reader to stop seeing all of them, and the tint is on the same list.",
+   "state": [
+    "S2 carries the count five times: tab dot (docs/prototype/frontmatter-prototype.html:329), tree bars (:346, :351), outline counts (:398), status bar (:394), and the tint.",
+    "Both totals sit in the last-read zone: the status bar (:394) and the S4 drawer (:458). §16 never mentions a status bar (docs/PRODUCT-BRIEF.md:413).",
+    "The tree bar turns amber at no stated threshold, and the same file at 88% is amber on S2 (:351) and plain on S0 (:305).",
+    "Amber also marks an open question (:495) and a STALE verdict (:716)."
+   ],
+   "path": [
+    "Each surface had a local reason: the tree bar is §17's return trigger (docs/PRODUCT-BRIEF.md:425); the status bar came with the sibling editor.",
+    "§16 puts the counter top-left of the panel, then predicts the right rail is read last, and the built screen satisfies both (docs/PRODUCT-BRIEF.md:409, :413).",
+    "Nobody counted the surfaces together."
+   ],
+   "tension": [
+    "§16 justifies the tint by requiring it to be ignorable at rest; five simultaneous indicators of one fact is the opposite (docs/PRODUCT-BRIEF.md:408).",
+    "Clinical alerting is the mature form of a repeated count: 55–98% override across 34 studies, and 86.6% of 14,612 alerts overridden.",
+    "The one alerting system that earned 57.5% acceptance fired 31 rules in 0.19% of 500,274 sessions. Scarcity, not coverage.",
+    "Claude Code v2.1.260 opens its own diff panel beside the conversation, so a second count competes with a surface already free."
+   ],
+   "evidence": [
+    {
+     "type": "table",
+     "title": "§16's predicted reading order against where the counter actually is",
+     "cols": [
+      "Region",
+      "§16's predicted order",
+      "Carries the counter?"
+     ],
+     "rows": [
+      [
+       "Top bar (tabs)",
+       "first",
+       "no — only a 6px dot on the active tab, `title=\"unreviewed\"` (:329)"
+      ],
+      [
+       "Left rail (tree)",
+       "first",
+       "no — per-file percentage bars, no total (:346–:353)"
+      ],
+      [
+       "Document body",
+       "second",
+       "the tint itself"
+      ],
+      [
+       "Right rail",
+       "last",
+       "yes — the S4 drawer counter (:458)"
+      ],
+      [
+       "Bottom status bar",
+       "not mentioned in §16",
+       "yes — \"3 unreviewed spans · 64%\" (:394)"
+      ]
+     ]
+    },
+    {
+     "type": "stat",
+     "title": "How well sourced the placement rule is",
+     "items": [
+      [
+       "Evidence rows in §16's exhibit 23",
+       "3 plus one scheduled test",
+       "Tang et al. (:408), NN/g F-pattern (:409), Obsidian forum (:410); the five-second test (:411) is untested"
+      ],
+      [
+       "Of those, rows that bear on where things go",
+       "2",
+       "Tang and NN/g; the Obsidian row is about demand, not placement"
+      ],
+      [
+       "Of those two, carrying a URL or a fetch date",
+       "1",
+       "the Tang arXiv id at :408; the NN/g F-pattern row at :409 carries neither, while other NN/g citations in the corpus do (e.g. docs/REFERENCES.md:274, with URL and [fetched])"
+      ],
+      [
+       "Eye-tracking runs on our own screens",
+       "0",
+       "§16 opening line, docs/PRODUCT-BRIEF.md:402"
+      ],
+      [
+       "Gap register's grade for §16",
+       "Medium",
+       "\"Two sources, one of them a lab study on code, not prose. No measurement on our screens\" — docs/GAPS-2026-09-08.md:26"
+      ]
+     ]
+    },
+    {
+     "type": "stat",
+     "title": "Surfaces carrying unreviewed state, counted on the prototype",
+     "items": [
+      [
+       "On S2",
+       "5",
+       "tab dot :329, tree bars :346–:353, outline counts :398, status-bar total :394, the tint"
+      ],
+      [
+       "On S4",
+       "5",
+       "tab dot :415, tree bars :426–:431, status-bar total :455, drawer counter :458, the tint — the outline is replaced by the drawer"
+      ],
+      [
+       "On S0 launcher",
+       "3",
+       "per-card bar :304–:311, per-card \"NN% unreviewed\" label, footer \"7 unreviewed\" :315"
+      ],
+      [
+       "Amber threshold, stated in the plan",
+       "none",
+       "and it is applied inconsistently: 88% is amber on S2 (:351) and not amber on S0 (:305), for the same file"
+      ],
+      [
+       "Distinct meanings carried by `--warn` amber",
+       "3",
+       "a lot unreviewed (:351), open questions (:495, :514), STALE verdict (:716)"
+      ]
+     ]
+    },
+    {
+     "type": "table",
+     "title": "The colours doing semantic work across the prototype",
+     "cols": [
+      "Colour",
+      "Meaning",
+      "Where"
+     ],
+     "rows": [
+      [
+       "Accent blue #1a5cff",
+       "unreviewed share, and every primary control, and every link",
+       "tree bars (:87), buttons, links (:37)"
+      ],
+      [
+       "Wash blue #eef3ff",
+       "this span is unreviewed",
+       "the tint (:116)"
+      ],
+      [
+       "Tab blue #cfe0ff",
+       "nothing — decorative tab identity, one of four",
+       "`--t-blue` (:16), tab underline"
+      ],
+      [
+       "Amber #b7791f",
+       "a lot unreviewed, and open questions, and STALE",
+       "tree bar over threshold (:88, :351); S3b questions (:495, :514); S13 verdict (:716)"
+      ]
+     ]
+    }
+   ],
+   "options": [
+    {
+     "k": "a",
+     "label": "Leave all five surfaces and both totals where they are",
+     "what": "Nothing changes; the count stays repeated and the totals stay in the last-read zone.",
+     "gains": [
+      "No work, and no screenshot has to be redrawn"
+     ],
+     "costs": [
+      "The retention story rests on a number in the coldest region of the screen",
+      "Amber keeps three meanings and a threshold that fires two ways"
+     ],
+     "system": "No change.",
+     "screens": "None.",
+     "money": "None."
+    },
+    {
+     "k": "b",
+     "label": "Cut to three: the tint, the tree bars, and one total above the tree",
+     "what": "The outline count and the tab dot go; the total moves to the head of the left rail.",
+     "gains": [
+      "The total sits above the bars it summarises, in the early-read zone",
+      "Two surfaces with no stated job disappear",
+      "One bar colour, so amber is freed for one meaning"
+     ],
+     "costs": [
+      "A reviewer inside a long document loses the per-heading count",
+      "The number disappears when the tree is collapsed"
+     ],
+     "system": "No engine or sidecar change; a rail header and two deletions.",
+     "screens": "S2 and S4 lose the outline count and the tab dot; the left rail gains a header.",
+     "money": "None."
+    },
+    {
+     "k": "c",
+     "label": "Cut to two: the tint and one total, tree bars included in the cut",
+     "what": "Only the document and one number carry review state.",
+     "gains": [
+      "The quietest possible surface, and the smallest thing to test"
+     ],
+     "costs": [
+      "Removes §17's return trigger, which is the bar visible before a file is opened",
+      "Nothing tells you which file to open"
+     ],
+     "system": "Deletions only.",
+     "screens": "S0 and the tree lose their bars.",
+     "money": "None."
+    },
+    {
+     "k": "d",
+     "label": "Keep five, but give amber one meaning and a stated threshold",
+     "what": "The surfaces stay; the colour rules are written down and applied consistently.",
+     "gains": [
+      "Fixes the provable inconsistency without cutting anything"
+     ],
+     "costs": [
+      "Five surfaces for one fact remain",
+      "Still forces a choice about which of amber's three jobs survives"
+     ],
+     "system": "A token rule and one threshold constant.",
+     "screens": "Every screen carrying amber is re-checked.",
+     "money": "None."
+    }
+   ],
+   "rec": "b",
+   "recCase": [
+    "The tree bar earns its place because §17 makes it the reason the app is opened; the outline count and the tab dot appear in no exhibit.",
+    "Moving the total above the bars makes it a summary, not a fifth surface, and puts it where both halves of §16 agree scanning starts.",
+    "One bar colour removes a threshold applied two ways for the same file and frees amber for one job."
+   ],
+   "flip": "If the rewritten test in D18 finds people read the status bar first in a document tool, the total stays there and the rule is written down.",
+   "linked": [
+    "D1",
+    "D3",
+    "D18",
+    "D23",
+    "D24"
+   ],
+   "sources": [
+    "docs/GAPS-2026-09-08.md:26",
+    "docs/PRODUCT-BRIEF.md:408",
+    "docs/PRODUCT-BRIEF.md:409",
+    "docs/PRODUCT-BRIEF.md:413",
+    "docs/PRODUCT-BRIEF.md:425",
+    "docs/prototype/frontmatter-prototype.html:305",
+    "docs/prototype/frontmatter-prototype.html:329",
+    "docs/prototype/frontmatter-prototype.html:346",
+    "docs/prototype/frontmatter-prototype.html:351",
+    "docs/prototype/frontmatter-prototype.html:394",
+    "docs/prototype/frontmatter-prototype.html:398",
+    "docs/prototype/frontmatter-prototype.html:455",
+    "docs/prototype/frontmatter-prototype.html:458",
+    "docs/prototype/frontmatter-prototype.html:495",
+    "docs/prototype/frontmatter-prototype.html:716",
+    "docs/prototype/frontmatter-prototype.html:88",
+    "https://pubmed.ncbi.nlm.nih.gov/34450669/",
+    "https://pubmed.ncbi.nlm.nih.gov/35673040/",
+    "https://pubmed.ncbi.nlm.nih.gov/38658357/",
+    "https://raw.githubusercontent.com/anthropics/claude-code/main/CHANGELOG.md",
+    "merged: D5"
+   ]
+  },
+  {
+   "id": "D23",
+   "cat": "Design, UI & attention",
+   "sub": "Attention",
+   "weight": "high",
+   "q": "Does any surface ever state a share of a repository as unreviewed?",
+   "lede": "The percentage badge is the element with the least evidence behind it and the most published evidence against it.",
+   "visual": {
+    "kind": "funnel",
+    "steps": [
+     {
+      "label": "Alerts shown to clinicians",
+      "n": 14612,
+      "unit": "alerts",
+      "tone": "neutral"
+     },
+     {
+      "label": "Overridden",
+      "n": 12659,
+      "unit": "alerts",
+      "tone": "stop"
+     }
+    ],
+    "note": "86.6% overridden; 88.3% of the typed justifications carried no meaning.",
+    "caption": "The mature version of an always-on badge, measured."
+   },
+   "stakes": "A number nobody can act on in one sitting trains dismissal, and the tint rides on the same habit.",
+   "state": [
+    "S0 states a share three times: a bar per card, a percentage label per card, and `7 unreviewed` in the footer (docs/prototype/frontmatter-prototype.html:304, :305, :315).",
+    "S2 and S4 add one to the status bar: `3 unreviewed spans · 64%` and `· 88%` (:394, :455).",
+    "§17 makes that count the daily return trigger (docs/PRODUCT-BRIEF.md:425); S11 lets you switch the tree bar off (:616).",
+    "No source in the plan produces a repository-level share. The 18% figure circulating today has no method behind it and is unverified."
+   ],
+   "path": [
+    "The bar came from the retention argument: the user's own agent creates the count, so opening the app is how it clears.",
+    "The launcher repeated it per card so folders could be sorted unreviewed-first (docs/prototype/frontmatter-prototype.html:304).",
+    "Nobody asked what the number is for once it is larger than one sitting."
+   ],
+   "tension": [
+    "Almanac shipped read receipts on $45M and switched off on 2025-01-31, so the general-document form of this surface has a corpse behind it.",
+    "This repo alone holds 4,446,724 markdown words. At 240 wpm any double-digit share is weeks of reading, which is a debt, not a task.",
+    "Google measured a 3.2 hour weekly review budget against a 24-line median change: the unit people act on is small and specific.",
+    "A share is the one number that cannot be finished, and §17 asks the reader to return to it daily."
+   ],
+   "evidence": [],
+   "options": [
+    {
+     "k": "a",
+     "label": "Keep every share and count as built",
+     "what": "Launcher cards, tree bars and both status bars keep their percentages.",
+     "gains": [
+      "Demonstrates well: the launcher reads as a queue at a glance"
+     ],
+     "costs": [
+      "A repository share is unactionable, and unactionable warnings are overridden",
+      "Sets the pilot's first impression on the least-evidenced element"
+     ],
+     "system": "No change.",
+     "screens": "None.",
+     "money": "None."
+    },
+    {
+     "k": "b",
+     "label": "Counts only; no percentage anywhere",
+     "what": "Every surface states a number of spans and never a share.",
+     "gains": [
+      "A count of spans is a thing that can reach zero",
+      "Removes the figure with no method behind it"
+     ],
+     "costs": [
+      "A count without a denominator is hard to compare across files",
+      "Loses the sorted-by-worst launcher order"
+     ],
+     "system": "Drop the share from the projection.",
+     "screens": "S0 cards, S2 and S4 status bars.",
+     "money": "None."
+    },
+    {
+     "k": "c",
+     "label": "A share inside an open file only; the tree keeps a bar with no number",
+     "what": "Folders and repositories state nothing numeric; the open file may.",
+     "gains": [
+      "The file is the unit a person can finish in a sitting",
+      "Keeps the return trigger without publishing a debt figure",
+      "Nothing on screen makes a claim the corpus cannot support"
+     ],
+     "costs": [
+      "The launcher loses its at-a-glance ranking",
+      "Two rules to explain: why a file has a number and a folder does not"
+     ],
+     "system": "The share is computed per open file only.",
+     "screens": "S0 cards lose their labels; the tree bar keeps its fill.",
+     "money": "None."
+    },
+    {
+     "k": "d",
+     "label": "Nothing outside an open review session, tree bars included",
+     "what": "Review state is invisible until you ask for it.",
+     "gains": [
+      "The strongest answer to the override evidence: no standing badge at all"
+     ],
+     "costs": [
+      "Deletes §17's only mechanical reason to return",
+      "Nothing tells a returning user that an agent has written since"
+     ],
+     "system": "Review state renders only in a session.",
+     "screens": "S0 and the tree lose every mark.",
+     "money": "None."
+    }
+   ],
+   "rec": "c",
+   "recCase": [
+    "A file is finishable in a sitting; a repository is not, and the override literature is about warnings nobody can clear.",
+    "The tree bar survives as a fill without a number, so §17's return trigger is kept and the unsupported figure is not published.",
+    "It costs nothing today, because no percentage is computed anywhere in `src/` yet."
+   ],
+   "flip": "If a pilot participant reads a folder share and then opens that folder because of it, the figure is a task and a stays.",
+   "linked": [
+    "D3",
+    "D4",
+    "D24"
+   ],
+   "sources": [
+    "docs/prototype/frontmatter-prototype.html:304",
+    "docs/prototype/frontmatter-prototype.html:305",
+    "docs/prototype/frontmatter-prototype.html:315",
+    "docs/prototype/frontmatter-prototype.html:394",
+    "docs/prototype/frontmatter-prototype.html:455",
+    "docs/prototype/frontmatter-prototype.html:616",
+    "docs/PRODUCT-BRIEF.md:425",
+    "https://pubmed.ncbi.nlm.nih.gov/38658357/",
+    "https://get.almanac.io/go-forward",
+    "https://sback.it/publications/icse2018seip.pdf",
+    "https://pubmed.ncbi.nlm.nih.gov/34516216/"
+   ]
+  },
+  {
+   "id": "D24",
+   "cat": "Design, UI & attention",
+   "sub": "Attention",
+   "weight": "high",
+   "q": "Does a review sitting enumerate everything that changed, or suppress down to an exception list?",
+   "lede": "The panel as drawn lists every changed span; every mature version of this surface suppresses instead.",
+   "visual": {
+    "kind": "screen",
+    "title": "S4 review panel — two fill rules",
+    "panes": [
+     {
+      "label": "Enumerate, as drawn",
+      "w": 1,
+      "rows": [
+       {
+        "label": "3 unreviewed in this file",
+        "meta": ":458",
+        "mark": "",
+        "tone": "neutral"
+       },
+       {
+        "label": "Every changed span, in file order",
+        "meta": "no cap",
+        "mark": "",
+        "tone": "warn"
+       },
+       {
+        "label": "Ends when the list ends",
+        "meta": "",
+        "mark": "",
+        "tone": "warn"
+       }
+      ]
+     },
+     {
+      "label": "Suppress, exception-first",
+      "w": 1,
+      "rows": [
+       {
+        "label": "Only spans matching a stated rule",
+        "meta": "e.g. changed outside your last prompt",
+        "mark": "",
+        "tone": "accent"
+       },
+       {
+        "label": "Everything else, one line, on demand",
+        "meta": "",
+        "mark": "",
+        "tone": "accent"
+       },
+       {
+        "label": "Ends when the rules stop firing",
+        "meta": "",
+        "mark": "",
+        "tone": "accent"
+       }
+      ]
+     },
+     {
+      "label": "What has been measured elsewhere",
+      "w": 1,
+      "rows": [
+       {
+        "label": "No review above 250 lines",
+        "meta": "Cisco",
+        "mark": "",
+        "tone": "sunk"
+       },
+       {
+        "label": "60 minutes, then defect-finding falls",
+        "meta": "Cisco",
+        "mark": "",
+        "tone": "sunk"
+       },
+       {
+        "label": "31 rules, 0.19% of sessions, 57.5% accepted",
+        "meta": "Heidelberg",
+        "mark": "",
+        "tone": "sunk"
+       }
+      ]
+     }
+    ],
+    "note": "MHRA already permits audit trails to be reviewed by exception rather than as a list.",
+    "caption": "Two ways to fill one panel, and the measured ceiling on both."
+   },
+   "stakes": "A panel that always has more in it is a panel people stop opening, and the counter on the tree goes with it.",
+   "state": [
+    "S4 opens with a count and every unreviewed span in the file (docs/prototype/frontmatter-prototype.html:458).",
+    "§16's only rule for the panel is that the counter sits top-left; nothing states what fills it or what caps it (docs/PRODUCT-BRIEF.md:409).",
+    "The MVP-0 exit measure counts spans reviewed, so a longer list reads as a better product (docs/PRODUCT-BRIEF.md:431).",
+    "The plan defines no sitting, no budget, and no rule for what is worth surfacing."
+   ],
+   "path": [
+    "The panel was drawn as the persistent alternative to a per-session diff (docs/PRODUCT-BRIEF.md:381).",
+    "Persistence made completeness the obvious fill rule: everything changed, still listed.",
+    "The workload argument §16 makes for the tint was never applied to the panel (docs/PRODUCT-BRIEF.md:408)."
+   ],
+   "tension": [
+    "Cisco measured no review above 250 lines, and below-average defect density in 87% of sessions faster than 450 lines an hour.",
+    "Their figures are defects per kLOC of source; mapping them onto markdown spans is an analogy, not a measured equivalence.",
+    "The alerting system that earned 57.5% acceptance fired in 0.19% of 500,274 sessions; the ones that fire on everything are overridden 55–98% of the time.",
+    "An exception rule has to be stated and defended, and we have no measurement of which changes matter."
+   ],
+   "evidence": [],
+   "options": [
+    {
+     "k": "a",
+     "label": "Enumerate everything, as drawn",
+     "what": "The panel lists every unreviewed span until the list is empty.",
+     "gains": [
+      "Nothing is hidden, which is the easiest promise to keep",
+      "No rule to defend and nothing to tune"
+     ],
+     "costs": [
+      "The list is unbounded on the repos the product targets",
+      "Completeness is the property every overridden alerting system had"
+     ],
+     "system": "No change.",
+     "screens": "None.",
+     "money": "None."
+    },
+    {
+     "k": "b",
+     "label": "Exception-first: a stated rule decides what surfaces, the rest is one line",
+     "what": "Spans matching a written rule are listed; everything else collapses behind a count.",
+     "gains": [
+      "Matches the only alerting design measured to earn acceptance",
+      "Gives the panel an end, so a sitting can finish",
+      "MHRA already permits exception reporting for the regulated case"
+     ],
+     "costs": [
+      "The rule has to be stated, defended and got right with no data yet",
+      "Anything suppressed is something we chose not to show"
+     ],
+     "system": "A fill rule over the sidecar; the store is unchanged.",
+     "screens": "S4 gains a rule line and a collapsed remainder.",
+     "money": "None."
+    },
+    {
+     "k": "c",
+     "label": "Cap the sitting: a stated number of spans, then stop",
+     "what": "The panel offers a fixed batch and refuses to grow.",
+     "gains": [
+      "Bounded with no judgement about which spans matter",
+      "One number to tune against the pilot"
+     ],
+     "costs": [
+      "An arbitrary cap will cut across a document mid-argument",
+      "Says nothing about which spans are worth the budget"
+     ],
+     "system": "A cap constant in the panel.",
+     "screens": "S4 gains a batch boundary.",
+     "money": "None."
+    },
+    {
+     "k": "d",
+     "label": "Enumerate, but log dismissal rate and cut categories that cross a threshold",
+     "what": "Everything is listed and the panel learns what nobody reads.",
+     "gains": [
+      "Turns the fill rule into a measurement instead of a guess",
+      "Tricorder ran this exact scheme on analyser categories"
+     ],
+     "costs": [
+      "Needs logging the architecture keeps local and opt-in",
+      "The pilot is ten people, which will not fill a rate"
+     ],
+     "system": "Per-span dismissal counts in the local sidecar.",
+     "screens": "S4 unchanged; S11 gains a disclosure.",
+     "money": "None."
+    }
+   ],
+   "rec": "b",
+   "recCase": [
+    "Every measured version of this surface that people kept using suppressed; every one that enumerated was overridden.",
+    "An exception rule is the only way the panel can be finished, and finishing is what §17 needs to happen daily.",
+    "The rule can start crude, as changed since your last prompt and outside the file you asked for, then tighten on the pilot."
+   ],
+   "flip": "If the pilot's repos produce fewer spans a day than one sitting clears, enumeration costs nothing and a stands.",
+   "linked": [
+    "D4",
+    "D18",
+    "D23"
+   ],
+   "sources": [
+    "docs/prototype/frontmatter-prototype.html:458",
+    "docs/PRODUCT-BRIEF.md:381",
+    "docs/PRODUCT-BRIEF.md:408",
+    "docs/PRODUCT-BRIEF.md:409",
+    "docs/PRODUCT-BRIEF.md:431",
+    "https://static1.smartbear.co/support/media/resources/cc/book/code-review-cisco-case-study.pdf",
+    "https://pubmed.ncbi.nlm.nih.gov/34450669/",
+    "https://pubmed.ncbi.nlm.nih.gov/35673040/",
+    "https://assets.publishing.service.gov.uk/media/5aa2b9ede5274a3e391e37f3/MHRA_GxP_data_integrity_guide_March_edited_Final.pdf",
+    "https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/43322.pdf"
+   ]
+  },
+  {
+   "id": "D6",
+   "cat": "Design, UI & attention",
+   "sub": "Hover card",
+   "weight": "high",
+   "q": "Do we ship the attribution hover card in MVP-0, when neither MVP-0 source can fill it on the tree the product is defined by?",
+   "lede": "Attribution is now the one claim of ours nobody has shipped, and both readers that land in MVP-0 need a commit that has not happened.",
+   "visual": {
+    "kind": "screen",
+    "title": "Hover card on an uncommitted working tree",
+    "panes": [
+     {
+      "label": "Four rows, as drawn (:383–:386)",
+      "w": 1,
+      "rows": [
+       {
+        "label": "Changed — since you last reviewed, 2h ago",
+        "meta": "sidecar hash",
+        "mark": "fills",
+        "tone": "good"
+       },
+       {
+        "label": "Bytes — the span's range",
+        "meta": "splice engine",
+        "mark": "fills",
+        "tone": "good"
+       },
+       {
+        "label": "Author — claude-sonnet-5, trailer a3f9c2",
+        "meta": "needs a commit",
+        "mark": "empty",
+        "tone": "stop"
+       },
+       {
+        "label": "Prompt — not recorded",
+        "meta": "needs MCP, MVP-1",
+        "mark": "empty",
+        "tone": "stop"
+       }
+      ]
+     }
+    ],
+    "note": "The prototype mocks the card on a committed span, so the empty case never appears.",
+    "caption": "Which rows can be filled in the window the tint marks."
+   },
+   "stakes": "The only claim nobody else occupies gets its first demonstration as two rows reading `not recorded`.",
+   "state": [
+    "F3 ships trailer and note readers in MVP-0 and MCP in MVP-1; the card has four rows (docs/PRODUCT-BRIEF.md:57; docs/prototype/frontmatter-prototype.html:383, :385, :386).",
+    "§1 defines the container as a working tree with no pull request, where no trailer and no note exist yet (docs/PRODUCT-BRIEF.md:20).",
+    "MCP is the only source carrying a prompt, and its own row records the assumption as untested (docs/PRODUCT-BRIEF.md:65).",
+    "The readers cost 3 days against a measured 1.21 engineering days a week (docs/PRODUCT-BRIEF.md:57, :227)."
+   ],
+   "path": [
+    "F3 was kept because Google sells span-level authorship at Workspace Business Standard and above (docs/PRODUCT-BRIEF.md:57).",
+    "The earlier demotion of authorship marking rested on iA Writer's consumer failure, and that reasoning is now weaker than it was.",
+    "Trailers and notes were scoped first because they are cheap to parse."
+   ],
+   "tension": [
+    "Today's research puts attribution as the only one of our four claims no platform has shipped, so the demotion should be reopened.",
+    "Zed Delta went into private beta on 2026-08-12 and commits publicly to attribution down to the span.",
+    "The one shipped implementation found is a VS Code extension with 88 installs, which is either the opening or the size of it.",
+    "Three days of readers that return nothing on our own defined container is the wrong three days either way."
+   ],
+   "evidence": [
+    {
+     "type": "table",
+     "title": "What each hover-card row can be filled from, and when",
+     "cols": [
+      "Row",
+      "Source",
+      "Available on an uncommitted working tree?",
+      "Ships"
+     ],
+     "rows": [
+      [
+       "Changed",
+       "sidecar hash comparison",
+       "yes",
+       "MVP-0"
+      ],
+      [
+       "Bytes",
+       "splice engine",
+       "yes",
+       "MVP-0"
+      ],
+      [
+       "Author (carries the model name too)",
+       "commit trailer or git-ai note; MCP",
+       "no — needs a commit",
+       "MVP-0 readers / MVP-1 MCP"
+      ],
+      [
+       "Prompt",
+       "MCP write only",
+       "no",
+       "MVP-1, and marked untested (docs/PRODUCT-BRIEF.md:65)"
+      ]
+     ]
+    },
+    {
+     "type": "stat",
+     "title": "The gap between the card and the container",
+     "items": [
+      [
+       "The product's stated container",
+       "\"a working tree that has no pull request\"",
+       "docs/PRODUCT-BRIEF.md:20"
+      ],
+      [
+       "MVP-0 attribution readers",
+       "commit trailer, git-ai note",
+       "both post-commit only, docs/PRODUCT-BRIEF.md:57"
+      ],
+      [
+       "Estimated cost of those readers",
+       "3 engineering days",
+       "docs/PRODUCT-BRIEF.md:57"
+      ],
+      [
+       "Measured engineering days available per calendar week",
+       "1.21",
+       "docs/PRODUCT-BRIEF.md:227"
+      ],
+      [
+       "Sidecar filename in the plan vs the prototype",
+       "review.jsonl vs provenance.jsonl",
+       "docs/PRODUCT-BRIEF.md:56 against docs/prototype/frontmatter-prototype.html:617 — two names for one file, unreconciled"
+      ]
+     ]
+    }
+   ],
+   "options": [
+    {
+     "k": "a",
+     "label": "Ship the card as designed, blank rows and all",
+     "what": "Four rows, two of which read `not recorded` on an uncommitted tree.",
+     "gains": [
+      "Honest, and it says why the row is empty"
+     ],
+     "costs": [
+      "Advertises an absence on the claim we most need to land",
+      "Three days for rows that fill only after a commit"
+     ],
+     "system": "Trailer and note readers as planned.",
+     "screens": "None.",
+     "money": "None."
+    },
+    {
+     "k": "b",
+     "label": "Two rows now; add author and prompt only when a source exists",
+     "what": "The card shows when it changed and which bytes, and grows when a write carries more.",
+     "gains": [
+      "The card is always full and never advertises an absence",
+      "Saves most of the three days for the engine work"
+     ],
+     "costs": [
+      "Gives up the Google-precedent story until MVP-1",
+      "A two-row card invites the question of why it is a card"
+     ],
+     "system": "Card renders from the sidecar only.",
+     "screens": "The hover card loses two rows.",
+     "money": "None."
+    },
+    {
+     "k": "c",
+     "label": "Bind the author row to the file's last commit and label it as file-level",
+     "what": "Something shows on a committed repo, without claiming span precision.",
+     "gains": [
+      "Fills the row on any repo with history"
+     ],
+     "costs": [
+      "Invites reading a file-level fact as a span-level one, the confusion F3 exists to remove"
+     ],
+     "system": "Git log per file instead of per span.",
+     "screens": "The row changes label.",
+     "money": "None."
+    },
+    {
+     "k": "d",
+     "label": "Cut the post-commit readers and pull the MCP write path into MVP-0",
+     "what": "Attribution means something the first time it appears, because the write carried it.",
+     "gains": [
+      "The only path that fills author and prompt inside the window the tint marks",
+      "Puts the unoccupied claim on a real source"
+     ],
+     "costs": [
+      "6 days, desktop only, and the plan records the routing assumption as untested",
+      "Nothing to show in the web app, which is the trial"
+     ],
+     "system": "MCP server moves into MVP-0; trailer readers drop out.",
+     "screens": "The card is unchanged but full.",
+     "money": "None."
+    }
+   ],
+   "rec": "b",
+   "recCase": [
+    "The two rows that always work are the two that prove the engine, and they are the rows the fifteen-second demo needs.",
+    "Adding rows only when they have content means the card never advertises an absence in front of a stranger.",
+    "Settle the sidecar's name in the same pass: the plan says review.jsonl and the prototype says provenance.jsonl (docs/PRODUCT-BRIEF.md:56; docs/prototype/frontmatter-prototype.html:617)."
+   ],
+   "flip": "If the meeting confirms attribution as the surviving claim, the card is not the question — the source is, and d is the only option that supplies one.",
+   "linked": [
+    "D1",
+    "D24"
+   ],
+   "sources": [
+    "docs/PRODUCT-BRIEF.md:20",
+    "docs/PRODUCT-BRIEF.md:227",
+    "docs/PRODUCT-BRIEF.md:247",
+    "docs/PRODUCT-BRIEF.md:56",
+    "docs/PRODUCT-BRIEF.md:57",
+    "docs/PRODUCT-BRIEF.md:65",
+    "docs/prototype/frontmatter-prototype.html:385",
+    "docs/prototype/frontmatter-prototype.html:617",
+    "https://marketplace.visualstudio.com/items?itemName=dfarkash.claude-edits-scm",
+    "https://zed.dev/blog/agentic-xanadu"
+   ]
+  },
+  {
+   "id": "D7",
+   "cat": "Design, UI & attention",
+   "sub": "AI placement",
+   "weight": "high",
+   "q": "Does the AI prompt summon at the cursor, or stay as the docked strip under the document?",
+   "lede": "Our own screen report says every shipped product puts the prompt at the cursor; the prototype ships a docked strip and a second button.",
+   "visual": {
+    "kind": "screen",
+    "title": "S2 — where the AI prompt can be asked for",
+    "panes": [
+     {
+      "label": "Under the document",
+      "w": 1,
+      "rows": [
+       {
+        "label": "AI · this file · collapsed · ⌘J opens",
+        "meta": ":391",
+        "mark": "prompt",
+        "tone": "warn"
+       },
+       {
+        "label": "Carries the your-key reassurance copy",
+        "meta": "nothing runs until you ask",
+        "mark": "",
+        "tone": "neutral"
+       }
+      ]
+     },
+     {
+      "label": "Right rail, bottom",
+      "w": 1,
+      "rows": [
+       {
+        "label": "AI edit · ⌘J",
+        "meta": ":405",
+        "mark": "prompt",
+        "tone": "warn"
+       },
+       {
+        "label": "No review tab for pending AI hunks",
+        "meta": "what the report asked for",
+        "mark": "missing",
+        "tone": "stop"
+       }
+      ]
+     },
+     {
+      "label": "At the cursor",
+      "w": 1,
+      "rows": [
+       {
+        "label": "Nothing",
+        "meta": "where every named incumbent puts it",
+        "mark": "",
+        "tone": "stop"
+       }
+      ]
+     }
+    ],
+    "note": "Both existing affordances are bound to the same shortcut.",
+    "caption": "Two entry points to one feature, and neither is at the cursor."
+   },
+   "stakes": "Two AI affordances on a screen whose stated design goal is that AI does not compete for attention.",
+   "state": [
+    "S2 ships a collapsed strip under the document (docs/prototype/frontmatter-prototype.html:391) and an `AI edit · ⌘J` button in the rail (:405).",
+    "The wireframes defend the strip: a sidebar makes AI a place you go, under the document it is a thing you do (docs/_wireframes.md:11).",
+    "The screens report asked for the opposite — prompt at the selection, rail keeps a review tab (docs/research/agent-reports-2026-08-28/c6-screens.md:22).",
+    "§15's evidence row describes the incumbent norm as one collapsed affordance present on load (docs/PRODUCT-BRIEF.md:381)."
+   ],
+   "path": [
+    "The docked strip came from the founder mockup.",
+    "The report's reconciliation was recorded and never applied; what shipped in the rail is a prompt button, not the review tab it asked for.",
+    "So the plan disagrees with its own report and no argument is on the record."
+   ],
+   "tension": [
+    "This is the one screen-placement question in the plan where a report gave a clear answer with named comparables.",
+    "The strip is also where the `your key · nothing runs until you ask` copy lives, so deleting it moves the trust line.",
+    "Discoverability is the real argument for the strip: without it a first-run user must know ⌘J or select text.",
+    "If the form factor goes to a VS Code extension, the host decides this and the question dissolves (docs/GAPS-2026-09-08.md:48)."
+   ],
+   "evidence": [
+    {
+     "type": "table",
+     "title": "Three positions on where the AI prompt goes, all in the corpus",
+     "cols": [
+      "Source",
+      "Position",
+      "Reason given"
+     ],
+     "rows": [
+      [
+       "c6-screens.md:22, 2026-08-28",
+       "prompt at the cursor; rail keeps a review tab",
+       "every shipped convention; a docked prompt \"reads as bolted-on\""
+      ],
+      [
+       "_wireframes.md:11",
+       "docked strip under the document",
+       "\"a thing you do to what you are looking at\""
+      ],
+      [
+       "prototype S2 (:391, :405)",
+       "both — docked strip and a rail prompt button, both ⌘J",
+       "not stated"
+      ]
+     ]
+    },
+    {
+     "type": "stat",
+     "title": "What the incumbent evidence actually establishes",
+     "items": [
+      [
+       "Incumbents opening an AI panel expanded on load",
+       "0 of 5 named",
+       "Google Docs, Notion, Cursor, Zed, Obsidian Copilot — docs/PRODUCT-BRIEF.md:381"
+      ],
+      [
+       "Google Docs' stated behaviour",
+       "\"By default, the Gemini bar automatically minimizes to clear your screen.\"",
+       "docs/PRODUCT-BRIEF.md:381"
+      ],
+      [
+       "AI affordances on our S2 today",
+       "2",
+       "the strip (:391) and the rail button (:405), both bound to ⌘J"
+      ],
+      [
+       "Reaction counts behind the hide-all-AI switch",
+       "412 (Zed), 30 (VS Code), 181 (Telegram)",
+       "docs/PRODUCT-BRIEF.md:298, :382"
+      ]
+     ]
+    }
+   ],
+   "options": [
+    {
+     "k": "a",
+     "label": "At the cursor only; the rail button becomes the review surface for pending hunks",
+     "what": "The docked strip goes; the prompt appears at the selection.",
+     "gains": [
+      "Matches every product the buyer already uses",
+      "Frees the space under the document and leaves one entry point",
+      "Turns the rail element into the review surface the report asked for"
+     ],
+     "costs": [
+      "A first-run user has to discover ⌘J or a selection",
+      "The trust copy needs a new home"
+     ],
+     "system": "One deletion and one relocation.",
+     "screens": "S2 loses the strip; the rail gains a hunk list.",
+     "money": "None."
+    },
+    {
+     "k": "b",
+     "label": "Docked strip only; delete the rail button",
+     "what": "One affordance, in the founder's position.",
+     "gains": [
+      "Keeps the discoverability the strip was built for",
+      "One entry point, one shortcut"
+     ],
+     "costs": [
+      "Ships against the only screen-level convention evidence we have"
+     ],
+     "system": "One deletion.",
+     "screens": "The rail loses a button.",
+     "money": "None."
+    },
+    {
+     "k": "c",
+     "label": "Keep both",
+     "what": "Nothing changes.",
+     "gains": [
+      "No work"
+     ],
+     "costs": [
+      "Two doors to one feature on the screen we most want quiet",
+      "No decision is recorded, so it recurs"
+     ],
+     "system": "No change.",
+     "screens": "None.",
+     "money": "None."
+    },
+    {
+     "k": "d",
+     "label": "At the cursor, with the strip shown on first run and dismissed after first use",
+     "what": "The strip becomes onboarding rather than furniture.",
+     "gains": [
+      "Discoverability without a permanent surface"
+     ],
+     "costs": [
+      "One more state to build, explain and screenshot",
+      "A dismissed-forever element is hard to find again"
+     ],
+     "system": "A first-run flag.",
+     "screens": "S2 gains a first-run variant.",
+     "money": "None."
+    }
+   ],
+   "rec": "a",
+   "recCase": [
+    "The researched answer costs one deletion and one relocation, and the prototype went the other way with no reason recorded.",
+    "It also gives the rail the job the report wanted it to have, which is review rather than a second prompt.",
+    "One entry point is what §15's own evidence row describes as the incumbent norm."
+   ],
+   "flip": "If the ten-developer walkthrough shows people never find ⌘J, discoverability is the real problem and d is the fix, not the strip.",
+   "linked": [
+    "D3",
+    "D20"
+   ],
+   "sources": [
+    "docs/research/agent-reports-2026-08-28/c6-screens.md:22",
+    "docs/_wireframes.md:11",
+    "docs/prototype/frontmatter-prototype.html:391",
+    "docs/prototype/frontmatter-prototype.html:405",
+    "docs/PRODUCT-BRIEF.md:381",
+    "docs/PRODUCT-BRIEF.md:298",
+    "docs/GAPS-2026-09-08.md:48"
+   ]
+  },
+  {
+   "id": "D8",
+   "cat": "Design, UI & attention",
+   "sub": "Editor scope",
+   "weight": "critical",
+   "q": "Do we ship four editor modes for MVP-0, or cut to three?",
+   "lede": "Four modes is the largest surface that exists only because editors ship the editor first, at 1.21 engineering days a week.",
+   "visual": {
+    "kind": "compare",
+    "labelWidth": 170,
+    "cols": [
+     {
+      "title": "Ship four",
+      "tone": "neutral"
+     },
+     {
+      "title": "Three, cut Split",
+      "tone": "accent"
+     },
+     {
+      "title": "Two, Live and Read",
+      "tone": "neutral"
+     }
+    ],
+    "rows": [
+     {
+      "label": "Modes that render the tint",
+      "cells": [
+       "3 of 4 — Edit does not",
+       "2 of 3 — Edit does not",
+       "2 of 2"
+      ]
+     },
+     {
+      "label": "Raw source available",
+      "cells": [
+       "yes",
+       "yes",
+       "no"
+      ]
+     },
+     {
+      "label": "Dedicated screens to keep",
+      "cells": [
+       "S2 and the split screen (:530)",
+       "S2",
+       "S2"
+      ]
+     },
+     {
+      "label": "Stated purpose that is not review",
+      "cells": [
+       "2 of 4 — Edit and Split",
+       "1 of 3 — Edit",
+       "0"
+      ]
+     },
+     {
+      "label": "What the developer buyer misses",
+      "cells": [
+       "nothing",
+       "a side-by-side render",
+       "the source view; reads as a toy"
+      ]
+     }
+    ],
+    "note": "Purposes quoted from docs/_wireframes.md:17; F1 costs the modes as inherited, not as new build.",
+    "caption": "What each cut keeps, and what it costs the buyer."
+   },
+   "stakes": "Table-stakes surface is the cost the audits called larger than the novel-feature gap, and it is being paid before the novel feature exists.",
+   "state": [
+    "F1 ships Live, Edit, Split and Read, costed as `Exists. NF-1/NF-3 fixes (7d), engine wiring (8d)` (docs/PRODUCT-BRIEF.md:55); §21 repeats the four (:524).",
+    "The prototype ships a four-button control on S2 (docs/prototype/frontmatter-prototype.html:361) and a dedicated split screen (:530).",
+    "Edit does not render the tint at all, by the wireframes' own rule (docs/_wireframes.md:17).",
+    "About 70 engineering days at a measured 1.21 a week is 58 calendar weeks (docs/PRODUCT-BRIEF.md:227)."
+   ],
+   "path": [
+    "The earlier master plan specified three states; the screens report reconciled to four on the founder mockup as a superset (docs/research/agent-reports-2026-08-28/c6-screens.md:21).",
+    "That was a superset argument, not a cost argument.",
+    "The ten-week schedule that made the cost look small was withdrawn as arithmetically impossible (docs/PRODUCT-BRIEF.md:229)."
+   ],
+   "tension": [
+    "The gap register records the audits calling the standalone editor's table-stakes cost larger than the novel-feature gap (docs/GAPS-2026-09-08.md:48).",
+    "Two of the four modes have a stated purpose that is not review (docs/_wireframes.md:17).",
+    "F1 costs the modes as inherited, but 25 files across `src/` have already diverged from the sibling (docs/PRODUCT-BRIEF.md:223).",
+    "Four platforms now ship an agent-diff pane free, so mode count is not what a buyer is choosing between."
+   ],
+   "evidence": [
+    {
+     "type": "stat",
+     "title": "The schedule the mode count is spent against",
+     "items": [
+      [
+       "Engineering days for MVP-0",
+       "about 70",
+       "docs/PRODUCT-BRIEF.md:227"
+      ],
+      [
+       "Measured engineering days per calendar week, 2026-07-13 to 2026-09-08",
+       "1.21",
+       "10 of 58 calendar days touched src/, src-tauri/ or test/ — docs/PRODUCT-BRIEF.md:227"
+      ],
+      [
+       "Sibling repo's best-ever rate",
+       "1.91/week",
+       "docs/PRODUCT-BRIEF.md:227"
+      ],
+      [
+       "Last 30 days on this repo",
+       "0.23/week",
+       "docs/PRODUCT-BRIEF.md:227"
+      ],
+      [
+       "Calendar weeks implied at 1.21",
+       "58",
+       "docs/PRODUCT-BRIEF.md:227"
+      ],
+      [
+       "What F1's own estimate covers",
+       "\"Exists. NF-1/NF-3 fixes (7d), engine wiring (8d)\"",
+       "docs/PRODUCT-BRIEF.md:55 — the modes are costed as inherited, not as new build"
+      ]
+     ]
+    },
+    {
+     "type": "table",
+     "title": "What each mode is for, and whether the tint shows there",
+     "cols": [
+      "Mode",
+      "Stated purpose (docs/_wireframes.md:17)",
+      "Tint renders?"
+     ],
+     "rows": [
+      [
+       "Live (default)",
+       "\"the default and the one that matters\"",
+       "yes"
+      ],
+      [
+       "Edit",
+       "\"when the markdown itself is the thing you are working on\"",
+       "no"
+      ],
+      [
+       "Split",
+       "\"for learning the syntax or checking a render\"",
+       "yes, in the rendered pane"
+      ],
+      [
+       "Read",
+       "\"for review and printing\"",
+       "yes"
+      ]
+     ]
+    }
+   ],
+   "options": [
+    {
+     "k": "a",
+     "label": "Ship all four",
+     "what": "Full table stakes on day one.",
+     "gains": [
+      "Nothing a developer expects is missing",
+      "The widest surface to keep working as the engine lands"
+     ],
+     "costs": [
+      "Four modes across two themes is the test matrix on a 58-week schedule",
+      "Two of them are not where the tint does its work"
+     ],
+     "system": "No change.",
+     "screens": "None.",
+     "money": "None."
+    },
+    {
+     "k": "b",
+     "label": "Ship two for MVP-0 — Live and Read — and add Edit and Split in MVP-1",
+     "what": "Only the modes that render the tint ship first.",
+     "gains": [
+      "Both remaining modes carry the product's one claim end to end",
+      "Smallest surface to build and test"
+     ],
+     "costs": [
+      "A markdown editor with no raw-source mode reads as incomplete to the developer buyer"
+     ],
+     "system": "Two modes wired.",
+     "screens": "The mode control loses two buttons; the split screen goes.",
+     "money": "None."
+    },
+    {
+     "k": "c",
+     "label": "Ship three — Live, Edit, Read — and cut Split",
+     "what": "Raw source stays; the side-by-side render goes.",
+     "gains": [
+      "Keeps what the developer buyer looks for first",
+      "Cuts the mode with the weakest stated job and its own screen",
+      "Roughly the original three-state design"
+     ],
+     "costs": [
+      "The saving is small if the modes really are inherited untouched",
+      "Split is the one place the same bytes are shown twice"
+     ],
+     "system": "One mode and one screen removed.",
+     "screens": "The split screen goes.",
+     "money": "None."
+    },
+    {
+     "k": "d",
+     "label": "Ship all four and budget zero days, as F1 already implies",
+     "what": "Modes are treated as fixed inherited code.",
+     "gains": [
+      "Consistent with F1's own Needs column",
+      "Makes the assumption explicit instead of leaving it inferred"
+     ],
+     "costs": [
+      "Assumes the tint and the splice engine land under them for free",
+      "25 diverged files say the fork is not free"
+     ],
+     "system": "No change; the estimate is restated.",
+     "screens": "None.",
+     "money": "None."
+    }
+   ],
+   "rec": "c",
+   "recCase": [
+    "Edit is the mode a developer looks for first, and its absence reads as a toy; Split has the weakest stated job and costs a whole screen.",
+    "Cutting one mode is a small saving, and it is the cheapest place to start applying the schedule finding rather than only reporting it.",
+    "The buyer's own editor now ships an agent-diff pane free, so the argument for breadth here is weaker than it was a month ago."
+   ],
+   "flip": "If the fork audit shows all four modes work untouched by the tint work, d is the honest answer and the estimate should say zero out loud.",
+   "linked": [
+    "D9",
+    "D11",
+    "D20"
+   ],
+   "sources": [
+    "docs/PRODUCT-BRIEF.md:55",
+    "docs/PRODUCT-BRIEF.md:223",
+    "docs/PRODUCT-BRIEF.md:227",
+    "docs/PRODUCT-BRIEF.md:229",
+    "docs/PRODUCT-BRIEF.md:524",
+    "docs/_wireframes.md:17",
+    "docs/research/agent-reports-2026-08-28/c6-screens.md:21",
+    "docs/GAPS-2026-09-08.md:48",
+    "docs/prototype/frontmatter-prototype.html:361",
+    "docs/prototype/frontmatter-prototype.html:530"
+   ]
+  },
+  {
+   "id": "D9",
+   "cat": "Design, UI & attention",
+   "sub": "Editor scope",
+   "weight": "medium",
+   "q": "Click a tinted span in Live mode and both the mark and the actions break. Which half do we fix?",
+   "lede": "The editable unit is a whole top-level block, and the editor that opens on click carries no tint at all.",
+   "visual": {
+    "kind": "file",
+    "name": "spec.md — clicking a tinted word inside a list",
+    "lines": [
+     {
+      "t": "## Acceptance criteria",
+      "mark": "",
+      "note": "reviewed"
+     },
+     {
+      "t": "- The token refreshes silently.",
+      "mark": "unreviewed",
+      "note": "tinted"
+     },
+     {
+      "t": "  - Rotation is not logged.",
+      "mark": "unreviewed",
+      "note": "tinted"
+     },
+     {
+      "t": "- Sessions end on sign-out.",
+      "mark": "",
+      "note": "reviewed"
+     }
+    ],
+    "note": "splitIntoSegments iterates tree.children only, so the whole list is one editable unit; the inline editor it opens carries no decoration.",
+    "caption": "Where the mark and the byte range stop agreeing."
+   },
+   "stakes": "The revert-one-span demo works on a paragraph and degrades on a list item, which is what spec files are mostly made of.",
+   "state": [
+    "`splitIntoSegments` iterates `tree.children` only, so every editable segment is a top-level block (src/modules/editor/presentation/live/block-split.ts:45, :48).",
+    "Clicking a block swaps it into a raw CodeMirror instance that carries no review decoration (src/modules/editor/presentation/live/InlineBlockEditor.tsx:64).",
+    "The wireframes rule the tint out of Edit mode as information about the document, not the source (docs/_wireframes.md:17).",
+    "No file in `src/` carries review-tint state yet; F2 costs the rendering at 5 days (docs/PRODUCT-BRIEF.md:56)."
+   ],
+   "path": [
+    "The splitter guarantees `reassemble(splitIntoSegments(src)) === src`, and top-level tiling is the simplest way to prove it (block-split.ts:16).",
+    "It arrived from the sibling codebase with the rest of the editor (docs/PRODUCT-BRIEF.md:223).",
+    "The rendered-views-only tint rule was written before anyone clicked a tinted span."
+   ],
+   "tension": [
+    "§21 claims nested constructs render correctly; rendering does, editing granularity does not (docs/PRODUCT-BRIEF.md:524).",
+    "Nobody in the redlining category sells below word level, so byte granularity already sits under the floor any buyer was taught to want.",
+    "The splice engine is byte-range native, so the review actions never needed the block splitter — only click-to-edit does.",
+    "Nothing is announced either way: `EditorView.announce` has zero call sites (docs/FRONTMATTER-PRD-v2-2026-08-29.md:3395)."
+   ],
+   "evidence": [
+    {
+     "type": "stat",
+     "title": "The split, as implemented",
+     "items": [
+      [
+       "Nodes iterated",
+       "tree.children only",
+       "src/modules/editor/presentation/live/block-split.ts:48"
+      ],
+      [
+       "Editable unit",
+       "one top-level markdown block",
+       "heading, paragraph, list, fenced code, blockquote, table, frontmatter"
+      ],
+      [
+       "Lines in the splitter",
+       "93",
+       "the property it guarantees is loss-less reassembly, not fine granularity"
+      ],
+      [
+       "Obsidian's equivalent limitation",
+       "\"The Live Preview tree is depth-1 by construction\"",
+       "docs/GAPS-2026-09-08.md:127, in a row that grades the plugin channel \"Not viable\""
+      ],
+      [
+       "Measurement of how often review spans sit inside nested constructs",
+       "unmeasured",
+       "no report in the corpus counts this"
+      ]
+     ]
+    },
+    {
+     "type": "table",
+     "title": "Where the tint renders, against where byte-level truth is most visible",
+     "cols": [
+      "Surface",
+      "Tint renders?",
+      "Shows raw bytes?"
+     ],
+     "rows": [
+      [
+       "Live (rendered)",
+       "yes",
+       "no"
+      ],
+      [
+       "Live, block open for editing",
+       "no",
+       "yes"
+      ],
+      [
+       "Edit (raw source)",
+       "no",
+       "yes"
+      ],
+      [
+       "Split",
+       "yes, in the rendered pane",
+       "yes, in the source pane"
+      ],
+      [
+       "Read",
+       "yes",
+       "no"
+      ]
+     ]
+    },
+    {
+     "type": "stat",
+     "title": "What is built today",
+     "items": [
+      [
+       "Files in src/ carrying review-tint state",
+       "0",
+       "measured: no file matches unreviewed / reviewTint / reviewState"
+      ],
+      [
+       "Estimated cost of review-state rendering",
+       "5 engineering days",
+       "F2 row, docs/PRODUCT-BRIEF.md:56"
+      ],
+      [
+       "CodeMirror version installed",
+       "@codemirror/view ^6.43.0",
+       "package.json:47 — decorations are native"
+      ],
+      [
+       "EditorView.announce call sites in src/",
+       "0",
+       "measured; also recorded at docs/FRONTMATTER-PRD-v2-2026-08-29.md:3395"
+      ]
+     ]
+    }
+   ],
+   "options": [
+    {
+     "k": "a",
+     "label": "Keep block granularity and the rendered-views-only rule, and document both",
+     "what": "Nothing changes; the limits are written down.",
+     "gains": [
+      "Zero build, and the loss-less property is untouched"
+     ],
+     "costs": [
+      "The mark disappears under the cursor in the default mode",
+      "Revert lands on a block that may be forty lines"
+     ],
+     "system": "No change.",
+     "screens": "None.",
+     "money": "None."
+    },
+    {
+     "k": "b",
+     "label": "Actions on byte ranges, and carry the tint into the inline block editor",
+     "what": "Mark-reviewed and revert work on the span; the decoration follows the click.",
+     "gains": [
+      "Uses the engine's native unit and leaves the splitter's proof alone",
+      "Fixes the case a user meets by accident, in the default mode",
+      "One decoration set reused in two places"
+     ],
+     "costs": [
+      "A forty-line block still opens as raw source",
+      "Two behaviours to explain: the tint follows you here and not into Edit"
+     ],
+     "system": "Review actions bind to byte ranges; the decoration set is shared.",
+     "screens": "S2 Live keeps the tint while editing.",
+     "money": "None."
+    },
+    {
+     "k": "c",
+     "label": "Extend the splitter one level: list items and blockquote children",
+     "what": "The editable unit gets finer where specs actually need it.",
+     "gains": [
+      "Covers the two constructs spec files are made of"
+     ],
+     "costs": [
+      "The loss-less reassembly property has to be re-proved at the new granularity",
+      "That property is the file's whole reason for existing"
+     ],
+     "system": "Splitter change plus a corpus re-proof.",
+     "screens": "None.",
+     "money": "None."
+    },
+    {
+     "k": "d",
+     "label": "Render the tint everywhere, Edit mode included, as one decoration set",
+     "what": "The mark never disappears, in any mode.",
+     "gains": [
+      "One implementation, used three times",
+      "Puts the mark in the view where byte-level truth is most visible"
+     ],
+     "costs": [
+      "Adds the source view to the contrast and test matrix",
+      "A wash behind monospace source is a different legibility problem"
+     ],
+     "system": "One decoration set across all modes.",
+     "screens": "Edit and the inline editor gain the tint.",
+     "money": "None."
+    }
+   ],
+   "rec": "b",
+   "recCase": [
+    "The disappearing mark is a defect rather than a scope choice: it happens in the default mode, to a user who did not choose it.",
+    "Binding the actions to byte ranges costs nothing new, because the engine already works that way.",
+    "Edit staying plain is a position someone can argue for; a mark that vanishes under the cursor is not."
+   ],
+   "flip": "If the weeks 3–4 hash prototype shows most spans are whole paragraphs, a is enough and c is wasted work.",
+   "linked": [
+    "D1",
+    "D8",
+    "D12"
+   ],
+   "sources": [
+    "docs/FRONTMATTER-PRD-v2-2026-08-29.md:3395",
+    "docs/GAPS-2026-09-08.md:127",
+    "docs/PRODUCT-BRIEF.md:352",
+    "docs/PRODUCT-BRIEF.md:354",
+    "docs/PRODUCT-BRIEF.md:524",
+    "docs/PRODUCT-BRIEF.md:56",
+    "docs/_wireframes.md:17",
+    "merged: D10",
+    "src/modules/editor/presentation/live/InlineBlockEditor.tsx:64",
+    "src/modules/editor/presentation/live/block-split.ts:16",
+    "src/modules/editor/presentation/live/block-split.ts:45"
+   ]
+  },
+  {
+   "id": "D11",
+   "cat": "Design, UI & attention",
+   "sub": "Design system",
+   "weight": "high",
+   "q": "Do we reconcile the shipped stylesheet to the canonical system before the pilot, or ship the sibling project's?",
+   "lede": "The application's stylesheet is a copy of another product's and says so in its own header comment.",
+   "visual": {
+    "kind": "compare",
+    "labelWidth": 150,
+    "cols": [
+     {
+      "title": "Canonical system",
+      "tone": "accent"
+     },
+     {
+      "title": "Prototype the pilot sees",
+      "tone": "neutral"
+     },
+     {
+      "title": "Shipped app",
+      "tone": "stop"
+     }
+    ],
+    "rows": [
+     {
+      "label": "Accent",
+      "cells": [
+       "#1a5cff",
+       "#1a5cff",
+       "#18181b (globals.css:34)"
+      ]
+     },
+     {
+      "label": "Corners",
+      "cells": [
+       "square",
+       "square, border-radius:0",
+       "6 / 8 / 12px (:56)"
+      ]
+     },
+     {
+      "label": "Icons",
+      "cells": [
+       "inline SVG",
+       "inline SVG, 110 uses",
+       "Material Symbols web font (:2)"
+      ]
+     },
+     {
+      "label": "Self-description",
+      "cells": [
+       "frontmatter",
+       "frontmatter",
+       "\"sgnk-md design system\" (:12)"
+      ]
+     },
+     {
+      "label": "On the record as a defect",
+      "cells": [
+       "—",
+       "—",
+       "three times since 2026-08-29, fixed zero"
+      ]
+     }
+    ],
+    "note": "The tint's meaning is carried by the accent, so the two palettes disagree about the product's one signal.",
+    "caption": "Three visual systems; the pilot sees one and installs another."
+   },
+   "stakes": "Every visual reaction the pilot gives is about a palette we do not intend to ship.",
+   "state": [
+    "`src/app/globals.css:12` reads `sgnk-md design system — Linear-style modern SaaS`; it ships `--accent: #18181b` (:34) and rounded corners (:56).",
+    "The prototype uses the canonical `--accent:#1a5cff` and `border-radius:0` on the tint (docs/prototype/frontmatter-prototype.html:14, :116).",
+    "PRD v1 recorded the divergence, PRD v2 repeated it, PRODUCT.md called it free to fix (docs/FRONTMATTER-PRD-2026-08-29.md:815, :817; docs/PRODUCT.md:997).",
+    "The current plan does not mention globals.css, the design system, icons or corners at all."
+   ],
+   "path": [
+    "The editor was cloned from the sibling app and the stylesheet came with it (docs/PRODUCT-BRIEF.md:223).",
+    "The defect was recorded three times in two PRDs and fixed zero times.",
+    "It then dropped out of the plan entirely in the move to v15."
+   ],
+   "tension": [
+    "The five-second test would be run on a palette the product does not ship, which makes its result unattributable.",
+    "The two stylesheets disagree on the colour that carries the tint's meaning, not only on taste.",
+    "PRODUCT.md's own verdict is that this is free to fix and embarrassing to charge money in front of (docs/PRODUCT.md:997).",
+    "If the form factor goes to a VS Code extension, the host supplies the theme and most of this file stops mattering (docs/GAPS-2026-09-08.md:48)."
+   ],
+   "evidence": [
+    {
+     "type": "table",
+     "title": "Three descriptions of the same product's visual system",
+     "cols": [
+      "Where",
+      "Accent",
+      "Corners",
+      "Status"
+     ],
+     "rows": [
+      [
+       "Canonical system (quoted at docs/FRONTMATTER-PRD-2026-08-29.md:819)",
+       "#1a5cff",
+       "square, three rounding exceptions",
+       "the intended system"
+      ],
+      [
+       "Clickable prototype (docs/prototype/frontmatter-prototype.html:14, :116)",
+       "#1a5cff",
+       "square (`border-radius:0` on the tint)",
+       "what the pilot is shown"
+      ],
+      [
+       "Shipped app (src/app/globals.css:12, :34, :56)",
+       "#18181b",
+       "6 / 8 / 12px",
+       "what the pilot would install"
+      ]
+     ]
+    },
+    {
+     "type": "stat",
+     "title": "How long the divergence has been on the record",
+     "items": [
+      [
+       "First recorded",
+       "PRD v1 §16.3, 2026-08-29",
+       "docs/FRONTMATTER-PRD-2026-08-29.md:815, :817"
+      ],
+      [
+       "Recorded again",
+       "PRD v2 §7.4 and PRODUCT.md",
+       "docs/FRONTMATTER-PRD-v2-2026-08-29.md:430, docs/PRODUCT.md:997"
+      ],
+      [
+       "PRODUCT.md's own verdict",
+       "\"Free to fix, embarrassing to charge money in front of\"",
+       "docs/PRODUCT.md:997"
+      ],
+      [
+       "Mentions in the current plan (v15)",
+       "0",
+       "no occurrence of globals.css, design system, icons or corners in docs/PRODUCT-BRIEF.md"
+      ],
+      [
+       "Fork state the plan does report",
+       "181 of 226 src/ files identical, 25 already diverged; 41 of 43 editor files identical",
+       "docs/PRODUCT-BRIEF.md:223 — note the plan's own two figures leave 20 files unaccounted for"
+      ]
+     ]
+    }
+   ],
+   "options": [
+    {
+     "k": "a",
+     "label": "Reconcile the tokens before the pilot: accent, corners, failing contrast",
+     "what": "One stylesheet pass, so the pilot sees and installs the same product.",
+     "gains": [
+      "A single-file edit that PRODUCT.md already calls free to fix",
+      "The five-second test then runs on the real palette",
+      "Can be done in the same pass as D12's contrast work"
+     ],
+     "costs": [
+      "Any component that assumed the near-black accent needs a look",
+      "One review pass to check the chrome still reads"
+     ],
+     "system": "Token edits in one file.",
+     "screens": "Every screen changes colour and corner radius.",
+     "money": "None."
+    },
+    {
+     "k": "b",
+     "label": "Ship the sibling's stylesheet and reconcile after the pilot",
+     "what": "Nothing changes now.",
+     "gains": [
+      "Zero work before the pilot"
+     ],
+     "costs": [
+      "Any visual feedback from the pilot has to be discarded",
+      "The header comment naming another product ships"
+     ],
+     "system": "No change.",
+     "screens": "None.",
+     "money": "None."
+    },
+    {
+     "k": "c",
+     "label": "Adopt the sibling's stylesheet as canonical and retire the other one",
+     "what": "One system, honestly chosen; the prototype is redrawn instead of the app.",
+     "gains": [
+      "Ends the divergence in the direction with the least code to change"
+     ],
+     "costs": [
+      "Gives up the blue that carries the tint's meaning on every surface",
+      "The prototype and every screenshot are redrawn"
+     ],
+     "system": "No code change; the design system document is rewritten.",
+     "screens": "The prototype is redrawn.",
+     "money": "None."
+    },
+    {
+     "k": "d",
+     "label": "Reconcile only the tokens the tint depends on",
+     "what": "Accent and wash move; corners and the rest stay.",
+     "gains": [
+      "Smallest change that makes the tested and shipped screens agree on the one signal"
+     ],
+     "costs": [
+      "The app still looks like the sibling everywhere else",
+      "A second pass is still owed"
+     ],
+     "system": "Two token edits.",
+     "screens": "The tint and every accent control.",
+     "money": "None."
+    }
+   ],
+   "rec": "a",
+   "recCase": [
+    "It is one file's edit, on the record since 2026-08-29 and missing from the current plan, so doing it costs about what re-recording it costs.",
+    "Doing it before weeks 1–2 means the five-second test and the developer walkthrough run on the real palette.",
+    "It shares a pass with D12's contrast fixes and D13's icon work."
+   ],
+   "flip": "If the form factor goes to a VS Code extension, the host supplies the theme and only the tint tokens matter — so decide the form factor first if it is imminent.",
+   "linked": [
+    "D1",
+    "D12",
+    "D13",
+    "D21"
+   ],
+   "sources": [
+    "src/app/globals.css:12",
+    "src/app/globals.css:34",
+    "src/app/globals.css:56",
+    "docs/FRONTMATTER-PRD-2026-08-29.md:815",
+    "docs/FRONTMATTER-PRD-2026-08-29.md:819",
+    "docs/FRONTMATTER-PRD-v2-2026-08-29.md:430",
+    "docs/PRODUCT.md:997",
+    "docs/prototype/frontmatter-prototype.html:14",
+    "docs/PRODUCT-BRIEF.md:223",
+    "docs/GAPS-2026-09-08.md:48",
+    "src/app/globals.css:2"
+   ]
+  },
+  {
+   "id": "D12",
+   "cat": "Design, UI & attention",
+   "sub": "Accessibility",
+   "weight": "high",
+   "q": "Do the failing contrast tokens get fixed and gated in CI before the pilot, or after?",
+   "lede": "Six shipped tokens fail AA today, one of them on live error text, in a product whose operating rules promise WCAG 2.2 AA.",
+   "visual": {
+    "kind": "ba",
+    "before": {
+     "title": "Shipped tokens on --bg #fafafa",
+     "lines": [
+      {
+       "t": "--muted #9b9ba3 — 2.64:1",
+       "mark": "fail"
+      },
+      {
+       "t": "--danger #b2625e — 4.19:1, live alert text",
+       "mark": "fail"
+      },
+      {
+       "t": "--success #4f8b6b — 3.84:1",
+       "mark": "fail"
+      },
+      {
+       "t": "--ring focus — 2.14:1",
+       "mark": "fail"
+      },
+      {
+       "t": "§22 names body-faint, which is not in the build",
+       "mark": "fail"
+      }
+     ]
+    },
+    "after": {
+     "title": "After one pass and the gate",
+     "lines": [
+      {
+       "t": "Every text token at or above 4.5:1",
+       "mark": "pass"
+      },
+      {
+       "t": "Every focus ring at or above 3:1",
+       "mark": "pass"
+      },
+      {
+       "t": "§22 rewritten to name shipped tokens",
+       "mark": "pass"
+      },
+      {
+       "t": "~30-line arithmetic check, blocking in CI",
+       "mark": "pass"
+      }
+     ]
+    },
+    "via": "about half a day",
+    "note": "The gate is arithmetic over globals.css, so it cannot flake (docs/FRONTMATTER-PRD-v2-2026-08-29.md:3404).",
+    "caption": "What fails today, and what one pass plus a gate would fix."
+   },
+   "stakes": "A procurement conversation reads §22, and §22 currently promises a standard the build does not meet.",
+   "state": [
+    "§22 promises WCAG 2.2 AA and names `body-faint`, a token that is not in the shipped set at all (docs/PRODUCT-BRIEF.md:540; docs/FRONTMATTER-PRD-2026-08-29.md:819).",
+    "Six shipped tokens fail against `--bg #fafafa` (src/app/globals.css:25; docs/FRONTMATTER-PRD-v2-2026-08-29.md:3370, :3374).",
+    "`--danger` is used for `role=\"alert\"` error text at 12px, so SC 1.4.3 fails in production now (docs/FRONTMATTER-PRD-v2-2026-08-29.md:3383).",
+    "The CI gate exists on paper, about thirty lines, blocking and zero-flake, and is not built (docs/FRONTMATTER-PRD-v2-2026-08-29.md:3404)."
+   ],
+   "path": [
+    "PRD v1 quoted `body-faint` at 2.14:1 from the canonical system.",
+    "The r12 agent recomputed it and then found the larger problem: that hex is not in the app, and the shipped palette fails worse and is live (:3370).",
+    "The plan carried the corrected number forward and the wrong token with it."
+   ],
+   "tension": [
+    "§22 makes two AA-adjacent promises and keeps neither: the token it names is absent, and the tint is colour alone (see D1).",
+    "Raising `--muted` and `--ring` changes a lot of chrome at once, so the fix wants one deliberate review pass.",
+    "Both competitors treated this as table stakes in six weeks: Notion shipped high contrast on 2026-07-30, Obsidian system text scaling in 1.14.x.",
+    "Fixing without the gate means the next stylesheet edit puts it back."
+   ],
+   "evidence": [
+    {
+     "type": "table",
+     "title": "Shipped tokens against the WCAG floors, on --bg #fafafa",
+     "cols": [
+      "Token",
+      "Value",
+      "Ratio",
+      "AA text 4.5",
+      "Non-text 3.0"
+     ],
+     "rows": [
+      [
+       "--fg",
+       "#18181b",
+       "16.97:1",
+       "PASS",
+       "PASS"
+      ],
+      [
+       "--fg-muted",
+       "#6b6b73",
+       "5.06:1",
+       "PASS",
+       "PASS"
+      ],
+      [
+       "--muted",
+       "#9b9ba3",
+       "2.64:1",
+       "FAIL",
+       "FAIL"
+      ],
+      [
+       "--danger",
+       "#b2625e",
+       "4.19:1",
+       "FAIL — used on live 12px role=\"alert\" text",
+       "PASS"
+      ],
+      [
+       "--success",
+       "#4f8b6b",
+       "3.84:1",
+       "FAIL",
+       "PASS"
+      ],
+      [
+       "--border",
+       "rgba(10,10,10,.06) → #ececec",
+       "1.13:1",
+       "n/a",
+       "FAIL"
+      ],
+      [
+       "--ring (focus)",
+       "rgba(91,33,182,.40) → #baa3df",
+       "2.14:1",
+       "n/a",
+       "FAIL"
+      ],
+      [
+       "dark --muted",
+       "rgba(237,237,237,.40) → #6e6e6e on #1a1a1a",
+       "3.41:1",
+       "FAIL",
+       "PASS"
+      ]
+     ]
+    },
+    {
+     "type": "stat",
+     "title": "The prototype has its own failures, separate from the app's",
+     "items": [
+      [
+       "--faint #9aa3b2 on white",
+       "2.544:1",
+       "derived by me from docs/prototype/frontmatter-prototype.html:13; `var(--faint)` used 6 times, including the launcher footer line"
+      ],
+      [
+       "--warn #b7791f on white",
+       "3.641:1",
+       "derived from :14; `var(--warn)` used 6 times, including the S13 STALE verdict label"
+      ],
+      [
+       "--good #0d8a4f on white",
+       "4.407:1",
+       "derived from :14; just under the 4.5 floor; `var(--good)` used 7 times"
+      ],
+      [
+       "dark --faint #6b7480 on #0f1115",
+       "3.991:1",
+       "derived from docs/prototype/frontmatter-prototype.html:22"
+      ],
+      [
+       "prefers-reduced-motion in globals.css",
+       "0 occurrences, against 4 @keyframes and 3 animation declarations",
+       "measured in src/app/globals.css; also recorded at docs/FRONTMATTER-PRD-v2-2026-08-29.md:3366"
+      ]
+     ]
+    }
+   ],
+   "options": [
+    {
+     "k": "a",
+     "label": "Fix the tokens now and add the contrast gate to CI as blocking",
+     "what": "One arithmetic pass over both palettes, plus a thirty-line check.",
+     "gains": [
+      "Makes §22 true instead of aspirational, for about half a day",
+      "An arithmetic gate never flakes, so this class cannot come back",
+      "The pilot screenshots are then the ones that ship"
+     ],
+     "costs": [
+      "Raising --muted and --ring changes the look of a lot of chrome at once"
+     ],
+     "system": "Token edits plus one CI check.",
+     "screens": "Chrome across every screen.",
+     "money": "None."
+    },
+    {
+     "k": "b",
+     "label": "Fix --danger only, which is a live production failure, and defer the rest",
+     "what": "The one failure a user meets today is removed.",
+     "gains": [
+      "An hour of work removes a live SC 1.4.3 failure"
+     ],
+     "costs": [
+      "Leaves the focus ring at 2.14:1, which every keyboard user meets on every screen"
+     ],
+     "system": "One token.",
+     "screens": "Error text.",
+     "money": "None."
+    },
+    {
+     "k": "c",
+     "label": "Change §22 to say what is true and schedule the fix for MVP-1",
+     "what": "The promise is restated as a target with the failures named.",
+     "gains": [
+      "Honest, and costs nothing now"
+     ],
+     "costs": [
+      "Any B2B or procurement conversation reads that sentence",
+      "PRODUCT.md already calls the divergence embarrassing to charge money in front of"
+     ],
+     "system": "No change.",
+     "screens": "None.",
+     "money": "None."
+    },
+    {
+     "k": "d",
+     "label": "Fix the tokens now and defer the CI gate",
+     "what": "Correct today, ungated tomorrow.",
+     "gains": [
+      "The visible failures go away immediately"
+     ],
+     "costs": [
+      "It regresses on the next stylesheet edit, which is the whole reason for a gate"
+     ],
+     "system": "Token edits only.",
+     "screens": "Chrome.",
+     "money": "None."
+    }
+   ],
+   "rec": "a",
+   "recCase": [
+    "The fix is arithmetic on one file and the gate is thirty lines that cannot flake, so this is the cheapest promise in the plan to make true.",
+    "Correct §22 in the same edit; it currently names a token that is not in the build.",
+    "It shares a pass with D11's reconciliation, so doing both at once costs one review rather than two."
+   ],
+   "flip": "If D11 goes to option c and the sibling palette becomes canonical, do both edits in one pass rather than twice.",
+   "linked": [
+    "D1",
+    "D11",
+    "D21"
+   ],
+   "sources": [
+    "docs/PRODUCT-BRIEF.md:540",
+    "src/app/globals.css:25",
+    "src/app/globals.css:31",
+    "docs/FRONTMATTER-PRD-v2-2026-08-29.md:3370",
+    "docs/FRONTMATTER-PRD-v2-2026-08-29.md:3374",
+    "docs/FRONTMATTER-PRD-v2-2026-08-29.md:3383",
+    "docs/FRONTMATTER-PRD-v2-2026-08-29.md:3404",
+    "docs/FRONTMATTER-PRD-2026-08-29.md:819",
+    "docs/PRODUCT.md:997"
+   ]
+  },
+  {
+   "id": "D13",
+   "cat": "Design, UI & attention",
+   "sub": "Accessibility",
+   "weight": "high",
+   "q": "Do icons and export fonts stop depending on Google's CDN, or ship as they are?",
+   "lede": "When the icon font does not arrive, 28 controls display the words `check_circle` and `close`; exports call Google on the reader's machine.",
+   "visual": {
+    "kind": "screen",
+    "title": "The same toolbar, font present and font absent",
+    "panes": [
+     {
+      "label": "Font present",
+      "w": 1,
+      "rows": [
+       {
+        "label": "Icon, icon, icon",
+        "meta": "ligatures resolve",
+        "mark": "",
+        "tone": "good"
+       },
+       {
+        "label": "28 call sites across 20 files",
+        "meta": "GoogleIcon.tsx:63",
+        "mark": "",
+        "tone": "neutral"
+       }
+      ]
+     },
+     {
+      "label": "Font absent",
+      "w": 1,
+      "rows": [
+       {
+        "label": "check_circle",
+        "meta": "ligature text",
+        "mark": "",
+        "tone": "stop"
+       },
+       {
+        "label": "close",
+        "meta": "ligature text",
+        "mark": "",
+        "tone": "stop"
+       },
+       {
+        "label": "download",
+        "meta": "ligature text",
+        "mark": "",
+        "tone": "stop"
+       }
+      ]
+     },
+     {
+      "label": "Where that happens",
+      "w": 1,
+      "rows": [
+       {
+        "label": "Desktop app offline",
+        "meta": "advertised at :99",
+        "mark": "",
+        "tone": "stop"
+       },
+       {
+        "label": "Exported HTML on a reader's machine",
+        "meta": "F13, :67",
+        "mark": "",
+        "tone": "stop"
+       },
+       {
+        "label": "Strict CSP or a blocked font host",
+        "meta": "not considered",
+        "mark": "",
+        "tone": "warn"
+       }
+      ]
+     }
+    ],
+    "note": "No font-display and no preload anywhere in the stylesheet or the layout.",
+    "caption": "One failure mode, and the three places the plan already promises."
+   },
+   "stakes": "The offline case the product advertises is the case where the interface prints the names of its own icons.",
+   "state": [
+    "`globals.css:2` imports `material-symbols/rounded.css` and `GoogleIcon` renders the name as ligature text (src/shared/presentation/GoogleIcon.tsx:60, :63).",
+    "The export template emits two preconnects and a Google Fonts stylesheet link, on both export paths (src/modules/export/presentation/print-css.ts:27, :29; export-doc.ts:97; pdf-doc.ts:131).",
+    "PRD v1 already banned the web font in favour of inline SVG (docs/FRONTMATTER-PRD-2026-08-29.md:817); the prototype uses inline symbols.",
+    "F13 export is MVP-0, already built and never run, with an hour budgeted to verify it (docs/PRODUCT-BRIEF.md:67)."
+   ],
+   "path": [
+    "Both came from the sibling clone; the icon component keeps the sibling's shape on purpose.",
+    "A CDN font link is the normal way to make exported HTML look right, and nobody re-read it against the offline claim.",
+    "The current plan mentions neither icons nor fonts."
+   ],
+   "tension": [
+    "The desktop app advertises offline for everything except the model, and both defects fire exactly there (docs/PRODUCT-BRIEF.md:99).",
+    "An export is the artefact most likely to leave the buying organisation, and every reader's request reaches a third party.",
+    "F13's one-hour verification budget is already allocated, which is the window in which this is cheap.",
+    "Whether the fonts' licence permits embedding in a redistributed file has not been checked, and it decides half of this on its own."
+   ],
+   "evidence": [
+    {
+     "type": "stat",
+     "title": "Icon delivery, as built",
+     "items": [
+      [
+       "Delivery method in the shipped app",
+       "Material Symbols web font, ligature text",
+       "src/app/globals.css:2, src/shared/presentation/GoogleIcon.tsx:60 and :63"
+      ],
+      [
+       "JSX call sites",
+       "28 across 20 files",
+       "measured across src/"
+      ],
+      [
+       "Inline <svg> elements in src/",
+       "4",
+       "measured"
+      ],
+      [
+       "font-display declarations",
+       "0",
+       "measured in src/app/globals.css and src/app/layout.tsx"
+      ],
+      [
+       "preload hints for the icon font",
+       "0",
+       "measured in the same two files"
+      ],
+      [
+       "Delivery method in the prototype the pilot sees",
+       "inline SVG symbols, 110 <use href=\"#i-…\"> references",
+       "docs/prototype/frontmatter-prototype.html"
+      ]
+     ]
+    },
+    {
+     "type": "table",
+     "title": "When the font is absent, and what shows",
+     "cols": [
+      "Scenario",
+      "In the plan?",
+      "What the user sees"
+     ],
+     "rows": [
+      [
+       "Desktop app offline",
+       "yes — \"Everything except the model\" works offline (docs/PRODUCT-BRIEF.md:99)",
+       "the icon name as text"
+      ],
+      [
+       "Exported HTML opened on a reader's machine",
+       "yes — F13 export (docs/PRODUCT-BRIEF.md:67)",
+       "the icon name as text"
+      ],
+      [
+       "Web app, slow first load",
+       "yes — the web app is the trial",
+       "the icon name, then icons"
+      ],
+      [
+       "Strict CSP or a blocked font host",
+       "not considered in the plan",
+       "the icon name as text"
+      ]
+     ]
+    },
+    {
+     "type": "table",
+     "title": "What the export template does against what the plan promises",
+     "cols": [
+      "Plan statement",
+      "Where",
+      "What the export does"
+     ],
+     "rows": [
+      [
+       "Desktop works offline for \"Everything except the model\"",
+       "docs/PRODUCT-BRIEF.md:99, exhibit 2",
+       "exported HTML needs a network for its fonts"
+      ],
+      [
+       "\"No document byte ever passes through a Zephyrus server\" (proposed)",
+       "docs/WEEK0-DECISIONS-2026-09-08.md:35",
+       "still true — but a third party sees each reader's request"
+      ],
+      [
+       "F13 already built and never run",
+       "docs/PRODUCT-BRIEF.md:67",
+       "the template has not been reviewed against either claim"
+      ]
+     ]
+    },
+    {
+     "type": "stat",
+     "title": "The export path, measured",
+     "items": [
+      [
+       "External font requests per exported document",
+       "1 stylesheet plus the font files it pulls",
+       "src/modules/export/presentation/print-css.ts:29"
+      ],
+      [
+       "Preconnect hints to third parties",
+       "2",
+       "fonts.googleapis.com and fonts.gstatic.com, print-css.ts:27–:28"
+      ],
+      [
+       "Export paths that include them",
+       "2 of 2",
+       "export-doc.ts:97 and pdf-doc.ts:131"
+      ],
+      [
+       "Export code, written and never executed",
+       "945 lines across 8 files",
+       "docs/PRODUCT-BRIEF.md:67"
+      ],
+      [
+       "Verification budget in the plan",
+       "0d + 1h to verify it runs",
+       "docs/PRODUCT-BRIEF.md:67"
+      ]
+     ]
+    }
+   ],
+   "options": [
+    {
+     "k": "a",
+     "label": "Inline SVG for the 28 call sites, and embed the export fonts as base64",
+     "what": "Neither the app nor an exported file needs a network for its typography.",
+     "gains": [
+      "The failure mode disappears and the app matches the screenshots",
+      "No third party sees a reader of an exported document",
+      "The prototype has already drawn the sprite"
+     ],
+     "costs": [
+      "28 mechanical edits plus a sprite, and a few hundred kilobytes per export",
+      "Needs the licence check before embedding"
+     ],
+     "system": "Icon component rewritten; export template inlines the faces.",
+     "screens": "None visually, if the sprite matches.",
+     "money": "None."
+    },
+    {
+     "k": "b",
+     "label": "Keep the web font with font-display and a preload; use a system stack in exports",
+     "what": "Mitigate in the app, drop the fonts from the export.",
+     "gains": [
+      "Much cheaper, and the export gains no network call and no licence question"
+     ],
+     "costs": [
+      "font-display only hides the text during its block period; the offline case still fails",
+      "The exported document stops looking like the product"
+     ],
+     "system": "Two stylesheet edits.",
+     "screens": "Exported documents change typeface.",
+     "money": "None."
+    },
+    {
+     "k": "c",
+     "label": "Change nothing",
+     "what": "The font and the CDN link ship as they are.",
+     "gains": [
+      "No work"
+     ],
+     "costs": [
+      "The product ships a defect that fires first in the case it advertises"
+     ],
+     "system": "No change.",
+     "screens": "None.",
+     "money": "None."
+    },
+    {
+     "k": "d",
+     "label": "Do only the surfaces other people see: the demo icons and the export template",
+     "what": "The demo path and the export are fixed; the rest stays on the font.",
+     "gains": [
+      "Protects the two surfaces a stranger looks at, at a fraction of the work"
+     ],
+     "costs": [
+      "Two delivery mechanisms in one codebase, which is how the current state happened"
+     ],
+     "system": "Partial migration.",
+     "screens": "Demo path and exports.",
+     "money": "None."
+    }
+   ],
+   "rec": "a",
+   "recCase": [
+    "It is 28 mechanical edits against a defect recorded in PRD v1 that fires in the exact scenario the product advertises.",
+    "The prototype has already drawn the sprite, so the assets exist.",
+    "Embedding keeps the export looking like the product and removes a third party from a file a user may send to a client."
+   ],
+   "flip": "If the fonts' licence does not permit embedding in a redistributed file, the export half is forced to a system stack — check the licence before the meeting.",
+   "linked": [
+    "D11",
+    "D12"
+   ],
+   "sources": [
+    "docs/FRONTMATTER-PRD-2026-08-29.md:817",
+    "docs/PRODUCT-BRIEF.md:67",
+    "docs/PRODUCT-BRIEF.md:99",
+    "docs/WEEK0-DECISIONS-2026-09-08.md:35",
+    "merged: D14",
+    "src/app/globals.css:2",
+    "src/modules/export/presentation/export-doc.ts:97",
+    "src/modules/export/presentation/pdf-doc.ts:131",
+    "src/modules/export/presentation/print-css.ts:27",
+    "src/modules/export/presentation/print-css.ts:29",
+    "src/shared/presentation/GoogleIcon.tsx:60",
+    "src/shared/presentation/GoogleIcon.tsx:63"
+   ]
+  },
+  {
+   "id": "D15",
+   "cat": "Design, UI & attention",
+   "sub": "Accessibility",
+   "weight": "high",
+   "q": "Does Tab indent in the editor, or move focus?",
+   "lede": "The PRD records this binding as absent and says keep it that way; it is bound in four places across two files.",
+   "visual": {
+    "kind": "flow",
+    "perRow": 4,
+    "nodes": [
+     {
+      "label": "Keyboard user tabs into the editor",
+      "tone": "neutral"
+     },
+     {
+      "label": "indentWithTab inserts an indent",
+      "note": "bound in 2 files, 4 lines",
+      "tone": "warn",
+      "edge": "Tab"
+     },
+     {
+      "label": "Focus never leaves",
+      "note": "SC 2.1.2, Level A",
+      "tone": "stop",
+      "edge": "Tab again"
+     },
+     {
+      "label": "No hint, nothing announced",
+      "note": "EditorView.announce: 0 call sites",
+      "tone": "stop"
+     }
+    ],
+    "note": "The PRD's own row forbids fixing a trap by documenting the escape key in a help modal.",
+    "caption": "The Level A failure the corpus records as already avoided."
+   },
+   "stakes": "A keyboard user who reaches the editor cannot leave it, and the plan believes this was never introduced.",
+   "state": [
+    "`indentWithTab` is imported and bound in the main editor (src/modules/editor/presentation/CodeMirrorEditor.tsx:18, :233) and the inline block editor (live/InlineBlockEditor.tsx:13, :64).",
+    "The PRD states it appears zero times in `src/` and marks that measured (docs/FRONTMATTER-PRD-v2-2026-08-29.md:3358).",
+    "SC 2.1.1 and 2.1.2 are Level A, the strictest tier in the whole accessibility set.",
+    "`EditorView.announce` has zero call sites, so no escape route can be announced (docs/FRONTMATTER-PRD-v2-2026-08-29.md:3395)."
+   ],
+   "path": [
+    "Tab-to-indent is the default expectation for a code-shaped surface and came with the cloned editor (docs/PRODUCT-BRIEF.md:223).",
+    "The accessibility section then wrote the opposite as a measured fact and built a recommendation on it.",
+    "That is the false-green class this codebase's own rules exist to catch, so the PRD line has to be corrected either way."
+   ],
+   "tension": [
+    "Removing Tab-to-indent will be noticed by exactly the developer buyer §14's buyer decision is choosing.",
+    "The PRD's own anti-recommendation says 2.1.2 needs discoverability at the point of the trap, not a help modal.",
+    "An escape hint has to be announced as well as shown, and the announce plumbing has zero call sites.",
+    "Whichever way it goes, the measurement that said zero when the answer is four must be corrected."
+   ],
+   "evidence": [
+    {
+     "type": "table",
+     "title": "The claim against the code",
+     "cols": [
+      "Source",
+      "Statement"
+     ],
+     "rows": [
+      [
+       "docs/FRONTMATTER-PRD-v2-2026-08-29.md:3358, §35.2",
+       "\"`indentWithTab` appears 0 times in `src/`\" [measured] — keep it that way"
+      ],
+      [
+       "src/modules/editor/presentation/CodeMirrorEditor.tsx:18, :233",
+       "imported and bound in the main editor keymap"
+      ],
+      [
+       "src/modules/editor/presentation/live/InlineBlockEditor.tsx:13, :64",
+       "imported and bound in the inline block editor"
+      ]
+     ]
+    },
+    {
+     "type": "stat",
+     "title": "What the criterion requires",
+     "items": [
+      [
+       "SC 2.1.1 Keyboard, SC 2.1.2 No Keyboard Trap",
+       "Level A",
+       "docs/FRONTMATTER-PRD-v2-2026-08-29.md:3358"
+      ],
+      [
+       "Occurrences claimed in the PRD",
+       "0",
+       "measured wrongly"
+      ],
+      [
+       "Occurrences in the code today",
+       "4 lines across 2 files",
+       "measured by me"
+      ],
+      [
+       "PRD's stated anti-recommendation",
+       "do not \"fix\" a trap by documenting the escape key in a help modal",
+       "same row — 2.1.2 requires discoverability at the point of trap"
+      ],
+      [
+       "EditorView.announce call sites in src/",
+       "0",
+       "so no escape route can be announced to a screen reader today"
+      ]
+     ]
+    }
+   ],
+   "options": [
+    {
+     "k": "a",
+     "label": "Remove indentWithTab from both keymaps; Tab moves focus",
+     "what": "Two edits, and the trap is gone.",
+     "gains": [
+      "Clears a Level A failure outright",
+      "No new UI, nothing to announce"
+     ],
+     "costs": [
+      "Writers who Tab to indent a list lose a common habit",
+      "Enter-continuation of lists covers only part of it"
+     ],
+     "system": "Two keymap edits.",
+     "screens": "None.",
+     "money": "None."
+    },
+    {
+     "k": "b",
+     "label": "Keep Tab-to-indent and add Escape-then-Tab with a visible hint on focus",
+     "what": "The conventional CodeMirror escape, shown at the trap.",
+     "gains": [
+      "Keeps the editing behaviour a developer expects",
+      "Satisfies 2.1.2 if the hint is genuinely at the point of the trap"
+     ],
+     "costs": [
+      "Only clears the criterion if it is right, and a screen-reader user needs it announced",
+      "Needs the announce plumbing that has zero call sites today"
+     ],
+     "system": "A keymap addition plus the first announce call sites.",
+     "screens": "A hint on editor focus.",
+     "money": "None."
+    },
+    {
+     "k": "c",
+     "label": "Keep it in the main editor only; remove it from the inline block editor",
+     "what": "Halves the exposure.",
+     "gains": [
+      "Keeps the habit where a developer chose to be, removes it where a click put them"
+     ],
+     "costs": [
+      "The main editor is still a trap, so the Level A failure remains"
+     ],
+     "system": "One keymap edit.",
+     "screens": "None.",
+     "money": "None."
+    },
+    {
+     "k": "d",
+     "label": "Make it a setting under Keymap",
+     "what": "The reader picks, alongside the existing keymap options.",
+     "gains": [
+      "S11 already has a Keymap group, so it fits (docs/prototype/frontmatter-prototype.html:606)"
+     ],
+     "costs": [
+      "The default is still this decision, and a default that traps keyboard users is the failure"
+     ],
+     "system": "One preference.",
+     "screens": "S11 gains a row.",
+     "money": "None."
+    }
+   ],
+   "rec": "b",
+   "recCase": [
+    "Escape-then-Tab is the conventional CodeMirror answer and keeps the habit the developer buyer expects.",
+    "It only clears 2.1.2 if the hint sits at the trap and is announced, so budget the first announce call sites with it.",
+    "Correct the PRD line in the same commit: a measurement that says zero when the answer is four is a false green."
+   ],
+   "flip": "If the announce work does not land with it, b does not clear the criterion and a is the only honest option.",
+   "linked": [
+    "D9",
+    "D12"
+   ],
+   "sources": [
+    "src/modules/editor/presentation/CodeMirrorEditor.tsx:18",
+    "src/modules/editor/presentation/CodeMirrorEditor.tsx:233",
+    "src/modules/editor/presentation/live/InlineBlockEditor.tsx:64",
+    "docs/FRONTMATTER-PRD-v2-2026-08-29.md:3358",
+    "docs/FRONTMATTER-PRD-v2-2026-08-29.md:3395",
+    "src/modules/editor/presentation/live/InlineBlockEditor.tsx:13",
+    "docs/prototype/frontmatter-prototype.html:606"
+   ]
+  },
+  {
+   "id": "D16",
+   "cat": "Design, UI & attention",
+   "sub": "Refusal UX",
+   "weight": "high",
+   "q": "Do refusals become visible before the pilot, when today a refusal and a successful no-op look identical?",
+   "lede": "The positioning line is lead with refusals, and the one refusal path a pilot user can reach is silent.",
+   "visual": {
+    "kind": "flow",
+    "perRow": 4,
+    "nodes": [
+     {
+      "label": "You type an invalid frontmatter key",
+      "tone": "neutral"
+     },
+     {
+      "label": "SAFE_KEY fails, splice returns src",
+      "note": "splice-frontmatter.ts:124",
+      "tone": "warn",
+      "edge": "refuse"
+     },
+     {
+      "label": "emit() sees next === content",
+      "note": "PropertiesPanel.tsx:89",
+      "tone": "warn",
+      "edge": "drop"
+     },
+     {
+      "label": "Nothing happens, no reason given",
+      "note": "identical to a successful no-op",
+      "tone": "stop"
+     }
+    ],
+    "note": "The panel's own comment names the gap; 19 typed failure codes exist on the engine side and none reaches a screen.",
+    "caption": "The one refusal a pilot user meets, as shipped."
+   },
+   "stakes": "The founding principle is demonstrated to strangers as an edit that silently vanishes.",
+   "state": [
+    "The frontmatter splice functions return a bare string, with 20 `return src` sites between them (src/modules/share/domain/splice-frontmatter.ts:124; docs/research/agent-reports-2026-08-29-r12/k3-error-refusal-ux.md:21).",
+    "The panel drops an unchanged result: `if (!onEdit || next === content) return;` (src/modules/preview/presentation/PropertiesPanel.tsx:89).",
+    "Its own comment says the silence is right for the writer and wrong for a person who just typed a name (:125).",
+    "S8, where the refusal UI is designed, is marked MVP-1 in the prototype (docs/prototype/frontmatter-prototype.html:624)."
+   ],
+   "path": [
+    "The splice functions were written for the writer, where returning the source unchanged is correct.",
+    "The refusal UI was designed for S8 and scheduled for MVP-1.",
+    "The r12 report concluded the work is to give splice the return shape mdmax already has, not to write better copy (k3-error-refusal-ux.md:26)."
+   ],
+   "tension": [
+    "§12 makes refusals the positioning and §22 repeats it, and neither is true of the shipped path (docs/PRODUCT-BRIEF.md:298, :551).",
+    "The wireframes make a refusal the whole product argument in one panel (docs/_wireframes.md:35).",
+    "The vocabulary exists on one half of the product: 19 typed failure codes on the engine side, none of them reachable by a screen.",
+    "Re-checking the rule in the panel instead of the domain leaves two copies that can drift."
+   ],
+   "evidence": [
+    {
+     "type": "stat",
+     "title": "The refusal surface, measured in the code",
+     "items": [
+      [
+       "`return src` sites in splice-frontmatter.ts",
+       "20",
+       "docs/research/agent-reports-2026-08-29-r12/k3-error-refusal-ux.md:21, and grep over the file returns the same 20; every one is indistinguishable from success"
+      ],
+      [
+       "Return type",
+       "bare string",
+       "no reason code, no discriminated union, nothing a UI can read"
+      ],
+      [
+       "Where the result is dropped",
+       "`if (!onEdit || next === content) return;`",
+       "src/modules/preview/presentation/PropertiesPanel.tsx:89"
+      ],
+      [
+       "Typed failure codes already emitted by mdmax",
+       "19",
+       "k3:25 — 32 distinct uppercase symbols minus 13 verdict classes; e.g. BUDGET_BYTES, INVALID_UTF8, OFFSET_OUT_OF_RANGE, SHAPE_REFUSED"
+      ],
+      [
+       "SAFE_KEY, precisely",
+       "one definition, re-checked in 5 UI places",
+       "defined at splice-frontmatter.ts:53, imported at PropertiesPanel.tsx:23, re-tested at :105, :129, :199, :201, :218 — a duplicated check, not a duplicated rule; k3:24's \"two definitions\" overstates it"
+      ]
+     ]
+    },
+    {
+     "type": "table",
+     "title": "Where refusal is promised against where it is implemented",
+     "cols": [
+      "Promise",
+      "Where",
+      "Implemented?"
+     ],
+     "rows": [
+      [
+       "\"Lead with refusals\" as positioning",
+       "docs/PRODUCT-BRIEF.md:298",
+       "not on the frontmatter path"
+      ],
+      [
+       "\"The amber box is the feature, not the failure\"",
+       "docs/_wireframes.md:35",
+       "S8 is MVP-1 and unbuilt (prototype :624 labels it MVP-1)"
+      ],
+      [
+       "\"malformed repos refused, not repaired\"",
+       "docs/PRODUCT-BRIEF.md:551",
+       "engine yes, UI no"
+      ],
+      [
+       "19 typed failure codes",
+       "mdmax domain",
+       "yes, and none reaches a screen"
+      ]
+     ]
+    }
+   ],
+   "options": [
+    {
+     "k": "a",
+     "label": "Return a result type with a reason code from splice, and render it",
+     "what": "Every refusal carries a reason the UI can show.",
+     "gains": [
+      "Makes the founding principle visible on the path a pilot user touches",
+      "Lets the five UI pre-checks collapse into one place"
+     ],
+     "costs": [
+      "Touches 20 return sites and every caller",
+      "Larger than the pilot window allows at 1.21 engineering days a week"
+     ],
+     "system": "Discriminated return across the splice module.",
+     "screens": "The properties panel gains a message line.",
+     "money": "None."
+    },
+    {
+     "k": "b",
+     "label": "Leave the domain alone; the panel re-checks the rule and shows its own message",
+     "what": "The UI predicts the refusal instead of receiving it.",
+     "gains": [
+      "Fast, and the panel already re-checks SAFE_KEY in five places"
+     ],
+     "costs": [
+      "Keeps the rule in two layers, which is the drift class this codebase keeps being bitten by"
+     ],
+     "system": "Panel-side validation only.",
+     "screens": "A message line.",
+     "money": "None."
+    },
+    {
+     "k": "c",
+     "label": "Do nothing until S8 is built in MVP-1",
+     "what": "Refusal UI waits for the screen it was designed on.",
+     "gains": [
+      "No work now"
+     ],
+     "costs": [
+      "The pilot meets silent refusals on the feature the positioning is built on"
+     ],
+     "system": "No change.",
+     "screens": "None.",
+     "money": "None."
+    },
+    {
+     "k": "d",
+     "label": "Reason codes from the two frontmatter functions, with a line under the field",
+     "what": "The path a pilot user reaches is fixed; the rest of the splice surface waits.",
+     "gains": [
+      "A fraction of a's work and it covers the only refusal in MVP-0",
+      "Proves the return shape before it is applied everywhere"
+     ],
+     "costs": [
+      "Two return shapes in one module until a is done"
+     ],
+     "system": "Two functions change signature; callers updated.",
+     "screens": "The properties panel gains a message line.",
+     "money": "None."
+    }
+   ],
+   "rec": "d",
+   "recCase": [
+    "The positioning claim needs to be true somewhere a pilot user can see it, and the properties panel is the only place they meet a refusal in MVP-0.",
+    "Two functions is a contained change; the rest can convert when S8 is built.",
+    "It also settles the return shape, so a later conversion is mechanical."
+   ],
+   "flip": "If the properties panel is not on the fifteen-second demo path, this belongs with S8 in MVP-1 — check the demo script before deciding.",
+   "linked": [
+    "D6",
+    "D22"
+   ],
+   "sources": [
+    "src/modules/share/domain/splice-frontmatter.ts:53",
+    "src/modules/share/domain/splice-frontmatter.ts:124",
+    "src/modules/preview/presentation/PropertiesPanel.tsx:89",
+    "src/modules/preview/presentation/PropertiesPanel.tsx:125",
+    "docs/research/agent-reports-2026-08-29-r12/k3-error-refusal-ux.md:21",
+    "docs/research/agent-reports-2026-08-29-r12/k3-error-refusal-ux.md:26",
+    "docs/PRODUCT-BRIEF.md:298",
+    "docs/PRODUCT-BRIEF.md:551",
+    "docs/_wireframes.md:35",
+    "docs/prototype/frontmatter-prototype.html:624"
+   ]
+  },
+  {
+   "id": "D18",
+   "cat": "Design, UI & attention",
+   "sub": "Testing",
+   "weight": "high",
+   "q": "What does the five-second test measure, at what sample size, and what result stops the build?",
+   "lede": "The one test that could settle every tint question is five people, one question, and no pass line.",
+   "visual": {
+    "kind": "compare",
+    "labelWidth": 170,
+    "cols": [
+     {
+      "title": "As specified",
+      "tone": "neutral"
+     },
+     {
+      "title": "As proposed",
+      "tone": "accent"
+     }
+    ],
+    "rows": [
+     {
+      "label": "Participants",
+      "cells": [
+       "5",
+       "15"
+      ]
+     },
+     {
+      "label": "First question",
+      "cells": [
+       "what does the tint mean?",
+       "did you notice anything marked?"
+      ]
+     },
+     {
+      "label": "Tints shown",
+      "cells": [
+       "1",
+       "2 — written and proposed"
+      ]
+     },
+     {
+      "label": "Pass line",
+      "cells": [
+       "none; two failing words named",
+       "10 of 15 notice unprompted, 2 or fewer read it as an error"
+      ]
+     },
+     {
+      "label": "Build days gated on the result",
+      "cells": [
+       "0",
+       "review-state rendering waits"
+      ]
+     },
+     {
+      "label": "Decisions it can answer",
+      "cells": [
+       "none, since it cannot fail",
+       "D1, D2, D4, D23"
+      ]
+     }
+    ],
+    "note": "Asking what the tint means presupposes it was seen, so a participant who missed it still produces an answer.",
+    "caption": "The test as written cannot fail; the test as proposed can."
+   },
+   "stakes": "The gate that decides whether MVP-0's headline feature is visible is a phrase, not a measure.",
+   "state": [
+    "§14 and §16 specify five people, one screenshot, and the question what the tint means (docs/PRODUCT-BRIEF.md:352, :411).",
+    "Only two failing answers are named; there is no pass line and no protocol.",
+    "No build day depends on the result: review-state rendering is in weeks 5–7 either way (docs/PRODUCT-BRIEF.md:355).",
+    "The gap register grades §16 Medium: two sources, one a lab study on code, no measurement on our screens (docs/GAPS-2026-09-08.md:26)."
+   ],
+   "path": [
+    "The test was written as a cheap way to falsify the tint before building it.",
+    "Five sits beside ten developers, five people who bill for documents and 20 team conversations in the same row (docs/PRODUCT-BRIEF.md:352).",
+    "Nobody wrote the criterion that would make it a gate rather than an anecdote."
+   ],
+   "tension": [
+    "Comprehension is the wrong measure. The transferable literature is about dismissal: 55–98% override, and 86.6% in a 14,612-alert audit.",
+    "Those figures come from clinical alerting and code review; no evidence exists on reviewing AI-written prose, so every transfer is an analogy.",
+    "Five participants cannot separate a marginal design from a bad one, so a 3-of-5 result says nothing.",
+    "The row promises a kill signal at day 14, and a test with no pass line cannot produce one."
+   ],
+   "evidence": [
+    {
+     "type": "table",
+     "title": "What the test asks, against what the tint decisions need to know",
+     "cols": [
+      "Question the design needs answered",
+      "Asked by the test as specified?"
+     ],
+     "rows": [
+      [
+       "Did you notice anything marked on this page?",
+       "no — the question presupposes the tint was seen (D1)"
+      ],
+      [
+       "What do you think the mark means?",
+       "yes"
+      ],
+      [
+       "Can you tell these two marks apart?",
+       "no — only one tint is shown (D2)"
+      ],
+      [
+       "Where did you look first?",
+       "no — this is what would test §16's F-pattern prediction (D4, D5)"
+      ],
+      [
+       "What is the pass line?",
+       "not stated — only two failing answers are named"
+      ]
+     ]
+    },
+    {
+     "type": "stat",
+     "title": "The test as scheduled",
+     "items": [
+      [
+       "Participants",
+       "5",
+       "docs/PRODUCT-BRIEF.md:352"
+      ],
+      [
+       "Stated pass criterion",
+       "none",
+       "only \"highlighted\" and \"error\" named as failures, docs/PRODUCT-BRIEF.md:411"
+      ],
+      [
+       "Observable outcome the row promises",
+       "\"Kill signals at day 14\"",
+       "docs/PRODUCT-BRIEF.md:352"
+      ],
+      [
+       "Build days gated on the result",
+       "0",
+       "review-state store and rendering are in weeks 5–7 regardless, docs/PRODUCT-BRIEF.md:355"
+      ],
+      [
+       "Gap register severity for §16",
+       "Medium",
+       "docs/GAPS-2026-09-08.md:26"
+      ]
+     ]
+    }
+   ],
+   "options": [
+    {
+     "k": "a",
+     "label": "Run it as written: five people, one screenshot, one question",
+     "what": "An hour, and the tint work proceeds either way.",
+     "gains": [
+      "Cheapest, and it may still surface the word `error`"
+     ],
+     "costs": [
+      "Produces an anecdote that cannot fail",
+      "Answers a question that presupposes the mark was seen"
+     ],
+     "system": "No change.",
+     "screens": "None.",
+     "money": "About an hour."
+    },
+    {
+     "k": "b",
+     "label": "Rewrite it: n=15, noticing first, both tints, a stated pass line",
+     "what": "Three questions in order, with a criterion written before the run.",
+     "gains": [
+      "Produces numbers that can kill the design",
+      "Feeds D1, D2, D4 and D23 from one recruitment",
+      "Still unmoderated and still about a day"
+     ],
+     "costs": [
+      "Recruiting 15 in the same fortnight as the other tests is the real cost",
+      "Somebody has to own the pass line before the data arrives"
+     ],
+     "system": "No change.",
+     "screens": "Two screenshots instead of one.",
+     "money": "Recruitment for 15."
+    },
+    {
+     "k": "c",
+     "label": "Keep n=5 but make it a noticing test with a 4-of-5 line",
+     "what": "The cheapest change that makes the test falsifiable.",
+     "gains": [
+      "Falsifiable for the same hour"
+     ],
+     "costs": [
+      "n=5 still cannot separate a marginal design from a bad one"
+     ],
+     "system": "No change.",
+     "screens": "None.",
+     "money": "About an hour."
+    },
+    {
+     "k": "d",
+     "label": "Drop it and decide the tint on the contrast floors alone",
+     "what": "Arithmetic replaces five opinions.",
+     "gains": [
+      "Removes a week-2 item and grounds the decision in numbers we already have"
+     ],
+     "costs": [
+      "Loses the only chance to learn that people read blue-on-white as an error"
+     ],
+     "system": "No change.",
+     "screens": "None.",
+     "money": "None."
+    }
+   ],
+   "rec": "b",
+   "recCase": [
+    "Four decisions on this list are answered by the same fifteen-minute screenshot exercise, so the marginal cost of doing it properly is ten more participants.",
+    "Noticing is the measure that matters, because the failure the literature documents is dismissal, not misreading.",
+    "A test with no pass line cannot produce the kill signal at day 14 that the same row promises."
+   ],
+   "flip": "If the ten-developer walkthrough in the same fortnight can carry these questions, fold it in and run one recruitment rather than two.",
+   "linked": [
+    "D1",
+    "D2",
+    "D4",
+    "D23"
+   ],
+   "sources": [
+    "docs/PRODUCT-BRIEF.md:352",
+    "docs/PRODUCT-BRIEF.md:355",
+    "docs/PRODUCT-BRIEF.md:411",
+    "docs/PRODUCT-BRIEF.md:413",
+    "docs/GAPS-2026-09-08.md:26",
+    "https://pubmed.ncbi.nlm.nih.gov/35673040/",
+    "https://pubmed.ncbi.nlm.nih.gov/38658357/"
+   ]
+  },
+  {
+   "id": "D20",
+   "cat": "Design, UI & attention",
+   "sub": "Prototype scope",
+   "weight": "medium",
+   "q": "What does the prototype owe before the pilot — the three undrawn screens, a benchmark against shipped products, or neither?",
+   "lede": "Nine screens exist, three that carry claims do not, and no screen has ever been held against a shipped product.",
+   "visual": {
+    "kind": "screen",
+    "title": "Prototype coverage before the pilot",
+    "panes": [
+     {
+      "label": "Drawn — 9",
+      "w": 1,
+      "rows": [
+       {
+        "label": "S0, S2, S4, S3b, S2c",
+        "meta": "MVP-0",
+        "mark": "",
+        "tone": "good"
+       },
+       {
+        "label": "S11 settings, S13 repo docs",
+        "meta": "MVP-0",
+        "mark": "",
+        "tone": "good"
+       },
+       {
+        "label": "S8 refactor, S12 generate",
+        "meta": "MVP-1 and MVP-2",
+        "mark": "",
+        "tone": "sunk"
+       }
+      ]
+     },
+     {
+      "label": "Undrawn — 3",
+      "w": 1,
+      "rows": [
+       {
+        "label": "S1 open a folder, first run",
+        "meta": "§17's retention lever",
+        "mark": "",
+        "tone": "stop"
+       },
+       {
+        "label": "S9 conflict, the only blocking modal",
+        "meta": "the sync doctrine",
+        "mark": "",
+        "tone": "stop"
+       },
+       {
+        "label": "S10 team view, behind the paywall",
+        "meta": "the whole paid tier",
+        "mark": "",
+        "tone": "stop"
+       }
+      ]
+     },
+     {
+      "label": "Never compared",
+      "w": 1,
+      "rows": [
+       {
+        "label": "Ten screen queries, written 2026-08-28",
+        "meta": "refused twice by the taint gate",
+        "mark": "",
+        "tone": "warn"
+       },
+       {
+        "label": "Screens seen outside this session",
+        "meta": "0",
+        "mark": "",
+        "tone": "stop"
+       }
+      ]
+     }
+    ],
+    "note": "Every placement decision so far was made from written conventions rather than from interfaces.",
+    "caption": "What the pilot sees, and what nothing was compared with."
+   },
+   "stakes": "The screens that decide first-week retention, data safety and the entire paid tier are the three nobody has drawn.",
+   "state": [
+    "The prototype holds nine screens, of which S8 is MVP-1 and S12 is MVP-2 (docs/prototype/frontmatter-prototype.html:281, :624, :660).",
+    "The wireframes' map names three more: first run, conflict, and team view (docs/_wireframes.md:51, :37).",
+    "The screen benchmark was attempted twice and refused by a session-scoped taint gate; the ten queries are written (docs/PRODUCT-BRIEF.md:375, :387).",
+    "The gap register costs it at one fresh session with no founder time, item 11 of 12 (docs/GAPS-2026-09-08.md:39, :109, :112)."
+   ],
+   "path": [
+    "The prototype was built to demonstrate the review loop, so the review-path screens were drawn first.",
+    "S1, S9 and S10 each belong to a part of the product that is pre-review, exceptional, or paid.",
+    "The benchmark was deferred twice while nine screens were drawn (docs/research/agent-reports-2026-08-28/c6-screens.md:12)."
+   ],
+   "tension": [
+    "§17 stakes retention on a first-session screen that has never been drawn (docs/PRODUCT-BRIEF.md:429).",
+    "S9 is the product's only blocking modal and the visible face of the sync doctrine; shipping it undesigned is the worst moment to improvise.",
+    "S10 is the whole of Pro, which the gap register already grades High (docs/GAPS-2026-09-08.md:25).",
+    "Four platforms shipped an agent-review pane in the last six weeks, so there is now something concrete to compare against."
+   ],
+   "evidence": [
+    {
+     "type": "table",
+     "title": "The three undrawn screens and what each carries",
+     "cols": [
+      "Screen",
+      "Stated role",
+      "What depends on it"
+     ],
+     "rows": [
+      [
+       "S1 open a folder",
+       "\"first run only\" (docs/_wireframes.md:51)",
+       "§17's first-session retention lever: edit in thirty seconds, no account (docs/PRODUCT-BRIEF.md:429)"
+      ],
+      [
+       "S9 conflict",
+       "\"the only blocking modal\" (docs/_wireframes.md:51)",
+       "the sync doctrine — git merge, never a CRDT, divergence surfaced not guessed"
+      ],
+      [
+       "S10 team view",
+       "\"the only screen behind the paywall\" (docs/_wireframes.md:37)",
+       "the entire paid tier, graded High in docs/GAPS-2026-09-08.md:25"
+      ]
+     ]
+    },
+    {
+     "type": "stat",
+     "title": "Prototype coverage",
+     "items": [
+      [
+       "Screens in the clickable prototype",
+       "9",
+       "section markers at docs/prototype/frontmatter-prototype.html:281–:686"
+      ],
+      [
+       "Screens named in the wireframes",
+       "13, S0 through S12",
+       "docs/_wireframes.md; the map at :51 covers S0–S10, and S13 appears only in the plan and the prototype"
+      ],
+      [
+       "Of the nine, screens after MVP-0",
+       "2",
+       "S8 is marked MVP-1 (:624), S12 is marked MVP-2 (:660)"
+      ],
+      [
+       "People outside the authoring session who have seen any of them",
+       "0",
+       "docs/GAPS-2026-09-08.md:27"
+      ]
+     ]
+    },
+    {
+     "type": "table",
+     "title": "The ten queries already written, and which decisions they would settle",
+     "cols": [
+      "Maps to",
+      "Decision it would inform"
+     ],
+     "rows": [
+      [
+       "S0 launcher, 2 queries",
+       "the empty state and first-run shape (D20)"
+      ],
+      [
+       "S2 editor, AI placement, 3 queries",
+       "D7 — prompt at the cursor or docked"
+      ],
+      [
+       "S2 right rail and S13 evidence rail, 1 query",
+       "D4, D5 — where the counter lives, how many surfaces"
+      ],
+      [
+       "S4 review panel, 1 query",
+       "the accept/reject grammar"
+      ],
+      [
+       "S11 settings, 1 query",
+       "D3 — which toggles are conventional"
+      ],
+      [
+       "Pricing and upsell, 2 queries",
+       "outside this area"
+      ]
+     ]
+    },
+    {
+     "type": "stat",
+     "title": "Cost and standing",
+     "items": [
+      [
+       "Cost to run",
+       "one fresh session",
+       "docs/GAPS-2026-09-08.md:39"
+      ],
+      [
+       "Rounds on which it was attempted and refused",
+       "at least 2",
+       "2026-08-28 (c6-screens.md:12, h1-design-patterns.md:2) and 2026-09-08 (docs/PRODUCT-BRIEF.md:375)"
+      ],
+      [
+       "Screens drawn without it",
+       "9",
+       "docs/GAPS-2026-09-08.md:27 — \"seen by nobody outside this session\""
+      ],
+      [
+       "Position in the ordered list of what makes the plan solid",
+       "item 11 of 12",
+       "docs/GAPS-2026-09-08.md:109"
+      ],
+      [
+       "Founder involvement required",
+       "none",
+       "one of seven founder-independent items, docs/GAPS-2026-09-08.md:112"
+      ]
+     ]
+    }
+   ],
+   "options": [
+    {
+     "k": "a",
+     "label": "Draw S1 only, before the pilot",
+     "what": "The first-run screen every participant meets gets designed.",
+     "gains": [
+      "Covers the retention claim with the least evidence behind it",
+      "One screen, on a schedule that cannot afford three"
+     ],
+     "costs": [
+      "The conflict modal ships undesigned into the user's worst moment",
+      "Nothing is compared against a shipped product"
+     ],
+     "system": "None.",
+     "screens": "S1 added.",
+     "money": "None."
+    },
+    {
+     "k": "b",
+     "label": "Run the benchmark in a fresh session, then draw S1",
+     "what": "Comparables first, then the one missing screen everyone reaches.",
+     "gains": [
+      "Every placement question gets a reference from a shipped product",
+      "One session, no founder time, and the queries are already written",
+      "The screens then tested are the revised ones"
+     ],
+     "costs": [
+      "Delays the prototype revision by about a day",
+      "Comparables are conventions, not evidence about our own users"
+     ],
+     "system": "None.",
+     "screens": "S1 added; the nine revised against references.",
+     "money": "None."
+    },
+    {
+     "k": "c",
+     "label": "Draw all three undrawn screens and skip the benchmark",
+     "what": "Complete visual coverage of every claim the plan makes.",
+     "gains": [
+      "Nothing the plan promises is missing from the pilot"
+     ],
+     "costs": [
+      "Three screens to build and keep consistent at 1.21 engineering days a week",
+      "The nine go into the pilot compared against no interface at all"
+     ],
+     "system": "None.",
+     "screens": "S1, S9, S10 added.",
+     "money": "None."
+    },
+    {
+     "k": "d",
+     "label": "Neither; test on the nine that exist",
+     "what": "The pilot sees the prototype as it stands.",
+     "gains": [
+      "No delay at all"
+     ],
+     "costs": [
+      "The retention, sync and paid-tier claims have no visual",
+      "§15's scope caveat becomes permanent"
+     ],
+     "system": "None.",
+     "screens": "None.",
+     "money": "None."
+    }
+   ],
+   "rec": "b",
+   "recCase": [
+    "The benchmark costs one session, needs no founder, and is the only input that answers a placement question from something other than reasoning.",
+    "S1 is the one undrawn screen every pilot participant is guaranteed to reach, and it carries the retention claim.",
+    "Running the benchmark first means the screenshots the five-second test uses are the revised ones."
+   ],
+   "flip": "If the Pro tier enters the twenty team conversations in weeks 1–2, S10 becomes the artefact those conversations need and is drawn first.",
+   "linked": [
+    "D4",
+    "D7",
+    "D18",
+    "D21"
+   ],
+   "sources": [
+    "docs/GAPS-2026-09-08.md:109",
+    "docs/GAPS-2026-09-08.md:25",
+    "docs/GAPS-2026-09-08.md:27",
+    "docs/GAPS-2026-09-08.md:39",
+    "docs/PRODUCT-BRIEF.md:375",
+    "docs/PRODUCT-BRIEF.md:387",
+    "docs/PRODUCT-BRIEF.md:429",
+    "docs/_wireframes.md:37",
+    "docs/_wireframes.md:51",
+    "docs/prototype/frontmatter-prototype.html:281",
+    "docs/prototype/frontmatter-prototype.html:624",
+    "docs/research/agent-reports-2026-08-28/c6-screens.md:12",
+    "merged: D19"
+   ]
+  },
+  {
+   "id": "D21",
+   "cat": "Design, UI & attention",
+   "sub": "Dark mode",
+   "weight": "medium",
+   "q": "Does dark mode ship at the pilot, given the tint is quieter there and nothing in it has been reviewed?",
+   "lede": "Two themes doubles every visual decision on this list, and the review tint is 1.185:1 in the one nobody has looked at.",
+   "visual": {
+    "kind": "compare",
+    "labelWidth": 170,
+    "cols": [
+     {
+      "title": "Light",
+      "tone": "neutral"
+     },
+     {
+      "title": "Dark",
+      "tone": "warn"
+     }
+    ],
+    "rows": [
+     {
+      "label": "Review tint against the page",
+      "cells": [
+       "1.111:1",
+       "1.185:1"
+      ]
+     },
+     {
+      "label": "Review tint against proposal tint",
+      "cells": [
+       "ΔE76 4.10",
+       "ΔE76 8.85"
+      ]
+     },
+     {
+      "label": "Prototype --faint secondary text",
+      "cells": [
+       "2.544:1 FAIL",
+       "3.991:1 FAIL"
+      ]
+     },
+     {
+      "label": "Shipped app --muted",
+      "cells": [
+       "2.64:1 FAIL",
+       "3.41:1 FAIL"
+      ]
+     },
+     {
+      "label": "Screenshots reviewed by anyone",
+      "cells": [
+       "9",
+       "0"
+      ]
+     }
+    ],
+    "note": "Ratios derived from the prototype's and the app's declared hexes; §16 names no theme anywhere.",
+    "caption": "The same decisions, measured in the theme nobody has looked at."
+   },
+   "stakes": "Shipping two themes without saying which was tested means no visual feedback from the pilot can be attributed to either.",
+   "state": [
+    "The shipped stylesheet carries a full dark palette and a `prefers-color-scheme` fallback (src/app/globals.css:89, :129); the prototype adds a `data-theme` override (docs/prototype/frontmatter-prototype.html:22, :28).",
+    "S11's first control is Theme: System, Light, Dark (docs/prototype/frontmatter-prototype.html:605).",
+    "The five-second test names one screenshot and no theme (docs/PRODUCT-BRIEF.md:411).",
+    "The canonical system is described as a single accent on white (docs/FRONTMATTER-PRD-2026-08-29.md:819)."
+   ],
+   "path": [
+    "Both themes came with the cloned sibling app; nobody chose to ship dark mode, it was already there.",
+    "The prototype mirrored it so the screenshots would look complete.",
+    "No exhibit, screenshot or test has ever named a dark render."
+   ],
+   "tension": [
+    "Every question on this list has a second answer in dark, and none of them has been checked.",
+    "A developer audience looks for dark mode within a minute, and removing a control that works is its own regression.",
+    "The dark palette carries its own AA failures, so D12's pass has to cover it either way.",
+    "Adding dark renders is close to free, because the prototype already has the toggle (docs/prototype/frontmatter-prototype.html:28)."
+   ],
+   "evidence": [
+    {
+     "type": "table",
+     "title": "The same decisions, measured in both themes",
+     "cols": [
+      "Measure",
+      "Light",
+      "Dark"
+     ],
+     "rows": [
+      [
+       "Review tint against the page",
+       "1.111:1",
+       "1.185:1"
+      ],
+      [
+       "Review tint vs proposal tint",
+       "ΔE76 4.10",
+       "ΔE76 8.85"
+      ],
+      [
+       "Prototype --faint secondary text",
+       "2.544:1 FAIL",
+       "3.991:1 FAIL"
+      ],
+      [
+       "Prototype hairline divider",
+       "1.240:1",
+       "1.312:1"
+      ],
+      [
+       "Shipped app --muted",
+       "2.64:1 FAIL",
+       "3.41:1 FAIL"
+      ]
+     ]
+    },
+    {
+     "type": "stat",
+     "title": "What has been reviewed in dark",
+     "items": [
+      [
+       "Screenshots specified for the five-second test",
+       "1",
+       "docs/PRODUCT-BRIEF.md:411 — no theme named"
+      ],
+      [
+       "Themes named anywhere in §16",
+       "0",
+       "docs/PRODUCT-BRIEF.md:400–:413"
+      ],
+      [
+       "Exhibits or files in docs/ that name a dark render",
+       "0",
+       "the nine prototype PNGs in docs/screens/ carry no theme in their names or captions"
+      ],
+      [
+       "Contrast failures in the dark palettes",
+       "at least 2",
+       "prototype --faint 3.991:1 and shipped --muted 3.41:1; derived by me"
+      ]
+     ]
+    }
+   ],
+   "options": [
+    {
+     "k": "a",
+     "label": "Ship both and fix the dark contrast failures alongside the light ones",
+     "what": "Two themes, one arithmetic pass over both palettes.",
+     "gains": [
+      "Meets the developer expectation and clears both palettes at once"
+     ],
+     "costs": [
+      "Doubles the test matrix for a design nobody has reviewed in that theme"
+     ],
+     "system": "Token edits in both palettes.",
+     "screens": "All, in dark.",
+     "money": "None."
+    },
+    {
+     "k": "b",
+     "label": "Ship light only for the pilot; keep the dark tokens unreachable",
+     "what": "One theme to test, one set of screenshots, one answer per question.",
+     "gains": [
+      "Every result is attributable to one design"
+     ],
+     "costs": [
+      "A developer audience notices within a minute and some will say so",
+      "Removing a control that already works reads as a regression"
+     ],
+     "system": "The theme control is hidden.",
+     "screens": "S11 loses a control.",
+     "money": "None."
+    },
+    {
+     "k": "c",
+     "label": "Ship both, and run the five-second test in dark because it is the harder case",
+     "what": "Test the weaker design and let the light case follow.",
+     "gains": [
+      "Measures the case most likely to fail"
+     ],
+     "costs": [
+      "Answers one theme's questions while the launch screenshots are in the other"
+     ],
+     "system": "No change.",
+     "screens": "None.",
+     "money": "None."
+    },
+    {
+     "k": "d",
+     "label": "Ship both and add dark renders of the nine screens to the prototype",
+     "what": "The untested theme gets looked at by the same people.",
+     "gains": [
+      "Close to free: the prototype already has a data-theme toggle",
+      "Turns an unreviewed surface into a reviewed one without cutting anything"
+     ],
+     "costs": [
+      "A review is not a measurement, so it does not settle the contrast question",
+      "Nine more images to keep in step"
+     ],
+     "system": "No change.",
+     "screens": "Nine dark renders.",
+     "money": "None."
+    }
+   ],
+   "rec": "d",
+   "recCase": [
+    "Cutting dark mode from a developer tool costs more goodwill than it saves work, and the tokens are already written.",
+    "What is missing is that nobody has looked at them, and looking is the cheap part.",
+    "The contrast failures in the dark palette are fixed by D12's pass whichever option wins."
+   ],
+   "flip": "If the extended test in D18 finds the dark tint unnoticed, b is the honest answer and the control comes off until the design is fixed.",
+   "linked": [
+    "D1",
+    "D2",
+    "D12",
+    "D18"
+   ],
+   "sources": [
+    "src/app/globals.css:89",
+    "src/app/globals.css:129",
+    "docs/prototype/frontmatter-prototype.html:22",
+    "docs/prototype/frontmatter-prototype.html:28",
+    "docs/PRODUCT-BRIEF.md:411",
+    "docs/FRONTMATTER-PRD-2026-08-29.md:819",
+    "docs/prototype/frontmatter-prototype.html:605",
+    "src/app/globals.css:31"
+   ]
+  },
+  {
+   "id": "D22",
+   "cat": "Design, UI & attention",
+   "sub": "Reader adaptation",
+   "weight": "medium",
+   "q": "What is v1's stated scope for CJK, RTL, text scaling and high contrast, and does the plan say it on the page?",
+   "lede": "The plan owes one written scope line; both competitors shipped three of these four inside six weeks.",
+   "visual": {
+    "kind": "compare",
+    "labelWidth": 170,
+    "cols": [
+     {
+      "title": "Settled in the record",
+      "tone": "neutral"
+     },
+     {
+      "title": "In the plan",
+      "tone": "warn"
+     },
+     {
+      "title": "Shipped elsewhere",
+      "tone": "sunk"
+     }
+    ],
+    "rows": [
+     {
+      "label": "Byte-to-UTF-16 map",
+      "cells": [
+       "the highest-risk seam",
+       "named as engine work (:233)",
+       "—"
+      ]
+     },
+     {
+      "label": "CJK search",
+      "cells": [
+       "character bigrams",
+       "one clause (:540)",
+       "—"
+      ]
+     },
+     {
+      "label": "RTL content",
+      "cells": [
+       "dir=auto on both panes (:4057)",
+       "not mentioned",
+       "Obsidian 1.14.x"
+      ]
+     },
+     {
+      "label": "RTL chrome mirroring",
+      "cells": [
+       "out for v1 (:4062)",
+       "not mentioned",
+       "—"
+      ]
+     },
+     {
+      "label": "System text scaling",
+      "cells": [
+       "not covered",
+       "not mentioned",
+       "Obsidian 1.14.x"
+      ]
+     },
+     {
+      "label": "High contrast",
+      "cells": [
+       "not covered",
+       "not mentioned",
+       "Notion, 2026-07-30"
+      ]
+     }
+    ],
+    "note": "Record references are docs/FRONTMATTER-RECORD.md; plan references are docs/PRODUCT-BRIEF.md.",
+    "caption": "What was settled, what the page carries, what shipped elsewhere."
+   },
+   "stakes": "An unsupported non-English user does not get a refusal, they get a silently damaged file.",
+   "state": [
+    "§22 owes `a written v1 scope decision` and carries one clause of what §43 settled (docs/PRODUCT-BRIEF.md:540).",
+    "§9 calls the byte-to-UTF-16 map the highest-risk seam, corrupting Chinese, Japanese, Korean and Arabic text silently (docs/PRODUCT-BRIEF.md:233).",
+    "The record settled RTL as a layout problem, with `dir=\"auto\"` on both panes and chrome mirroring out for v1 (docs/FRONTMATTER-RECORD.md:4057, :4062, :4064).",
+    "The gap register says to state it out of the pilot; nobody Chinese, Japanese or Korean has been asked (docs/GAPS-2026-09-08.md:42)."
+   ],
+   "path": [
+    "§43 settled the engineering: bigrams for search, direction attributes on both panes, no chrome mirroring, no UI localisation (docs/FRONTMATTER-RECORD.md:4088).",
+    "The plan carried one clause of it and none of the reasoning.",
+    "`A written v1 scope decision` has been outstanding since v14, which makes it a task standing in for a decision."
+   ],
+   "tension": [
+    "The failure mode is asymmetric: unsupported and unstated means corruption, not refusal, which contradicts the whole refusal posture.",
+    "Obsidian shipped RTL and system text scaling in 1.14.x and Notion shipped high contrast on 2026-07-30, so these read as table stakes now.",
+    "The record's rule is that the editor and the preview share a base direction, ship both or neither, and the plan says which for neither.",
+    "Every UI string is English and the record says do not translate for v1, so scope has to be stated in two halves."
+   ],
+   "evidence": [
+    {
+     "type": "table",
+     "title": "What the record settled, and what the plan carries",
+     "cols": [
+      "Decision",
+      "In the record (§43)",
+      "In the plan"
+     ],
+     "rows": [
+      [
+       "Search tokenisation",
+       "character bigrams, not Intl.Segmenter — a segmenter mismatch gives silent zero-recall (§43.5)",
+       "one clause: \"a bigram search tokeniser\" (:540)"
+      ],
+      [
+       "RTL content",
+       "dir=\"auto\" on both panes plus perLineTextDirection; ship both or neither (:4057, :4058, :4064)",
+       "not mentioned"
+      ],
+      [
+       "RTL chrome mirroring",
+       "explicitly out for v1 — \"weeks, not days\" (:4062)",
+       "not mentioned"
+      ],
+      [
+       "UI localisation",
+       "do not do it for v1; no reviewers for ar/ja/zh copy (:4088)",
+       "not mentioned"
+      ],
+      [
+       "Byte-to-UTF-16 map",
+       "the highest-risk seam; silent corruption if unmapped",
+       "named as engine work at :233, no scope statement"
+      ]
+     ]
+    },
+    {
+     "type": "stat",
+     "title": "Standing of the decision",
+     "items": [
+      [
+       "Status",
+       "outstanding since v14",
+       "docs/PRODUCT-BRIEF.md:540 lists it as owed"
+      ],
+      [
+       "Non-English users consulted",
+       "0",
+       "docs/GAPS-2026-09-08.md:42"
+      ],
+      [
+       "Gap register's recommendation",
+       "\"Out of the pilot; state it\"",
+       "docs/GAPS-2026-09-08.md:42"
+      ],
+      [
+       "Failure mode if unsupported and unstated",
+       "silent corruption, not refusal",
+       "docs/PRODUCT-BRIEF.md:233"
+      ]
+     ]
+    }
+   ],
+   "options": [
+    {
+     "k": "a",
+     "label": "State it out of scope: Latin-script content only, on the page and in the app",
+     "what": "One paragraph, and non-Latin files are marked unsupported.",
+     "gains": [
+      "Honest, free, and it closes the owed decision today"
+     ],
+     "costs": [
+      "A visible narrowing against the plan's own thesis that markdown belongs to everyone",
+      "Discards RTL work the record shows is nearly free"
+     ],
+     "system": "No change.",
+     "screens": "A line in Settings and on the page.",
+     "money": "None."
+    },
+    {
+     "k": "b",
+     "label": "Support CJK and RTL content plus text scaling; the interface stays English",
+     "what": "Byte map, bigram index, direction on both panes, and system text size respected.",
+     "gains": [
+      "Matches what §43 already settled and what the engine is being built for",
+      "The byte map is on the MVP-0 list regardless, so the margin is small",
+      "Text scaling and high contrast are now expected of any editor"
+     ],
+     "costs": [
+      "Commits the byte map to MVP-0, which is a schedule claim",
+      "Adds two more states to the contrast and screenshot work"
+     ],
+     "system": "Direction attributes, bigram index, the both-panes rule.",
+     "screens": "Editor and preview gain a shared base direction.",
+     "money": "None."
+    },
+    {
+     "k": "c",
+     "label": "Refuse non-Latin files until the byte map is verified",
+     "what": "The safest posture under a byte-exactness thesis.",
+     "gains": [
+      "Refuse rather than corrupt, the same rule as malformed repos refused"
+     ],
+     "costs": [
+      "Refusing a file because of its language will be read badly",
+      "Turns a scope gap into a visible rejection"
+     ],
+     "system": "A refusal path on non-Latin content.",
+     "screens": "A refusal panel.",
+     "money": "None."
+    },
+    {
+     "k": "d",
+     "label": "Leave it open and decide after the pilot",
+     "what": "The owed line stays owed.",
+     "gains": [
+      "Nothing to write now"
+     ],
+     "costs": [
+      "Two plan versions old already",
+      "The corruption risk ships with no statement beside it"
+     ],
+     "system": "No change.",
+     "screens": "None.",
+     "money": "None."
+    }
+   ],
+   "rec": "b",
+   "recCase": [
+    "Most of b is already being paid for: the byte map is MVP-0 engine work and the search decision is made.",
+    "What is missing is one paragraph in §22 and one rule that the editor and preview share a base direction.",
+    "Text scaling and high contrast now sit alongside RTL as things both competitors shipped in six weeks."
+   ],
+   "flip": "If the byte map slips out of MVP-0, c is the only honest position — corrupting a Chinese document silently is worse than refusing to open it.",
+   "linked": [
+    "D12",
+    "D16"
+   ],
+   "sources": [
+    "docs/PRODUCT-BRIEF.md:233",
+    "docs/PRODUCT-BRIEF.md:540",
+    "docs/GAPS-2026-09-08.md:42",
+    "docs/FRONTMATTER-RECORD.md:4053",
+    "docs/FRONTMATTER-RECORD.md:4057",
+    "docs/FRONTMATTER-RECORD.md:4062",
+    "docs/FRONTMATTER-RECORD.md:4064",
+    "docs/FRONTMATTER-RECORD.md:4088",
+    "docs/FRONTMATTER-RECORD.md:4064"
+   ]
+  }
+ ]
+}

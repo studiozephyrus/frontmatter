@@ -76,6 +76,15 @@ export function isPublicPath(pathname: string): boolean {
     // Any top-level static asset by extension (favicons, OG images, brand SVGs,
     // PWA manifest, service worker, sitemap, robots, theme-init, etc.).
     PUBLIC_STATIC_RE.test(pathname) ||
+    // Static directories served straight out of public/. Their assets are NESTED
+    // paths (/decisions/app.css), and PUBLIC_STATIC_RE only matches a single
+    // top-level segment with one of fourteen extensions — neither .css nor .html
+    // is in that list — so every one of them 307s to /login without this.
+    // Both names are in RESERVED_SLUGS so a note cannot shadow them.
+    pathname === "/decisions" ||
+    pathname.startsWith("/decisions/") ||
+    pathname === "/prototype" ||
+    pathname.startsWith("/prototype/") ||
     // Next metadata routes that don't end in a static extension yet still need
     // to be public for crawlers / image consumers.
     pathname === "/opengraph-image" ||

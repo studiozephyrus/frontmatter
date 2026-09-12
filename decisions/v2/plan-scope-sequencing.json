@@ -1,0 +1,1906 @@
+{
+  "cat": "Plan, scope & sequencing",
+  "questions": [
+    {
+      "id": "PL1",
+      "cat": "Plan, scope & sequencing",
+      "sub": "MVP-0 contents",
+      "weight": "critical",
+      "q": "Does MVP-0 keep the generation and AI block, and is that settled before or after the form factor?",
+      "lede": "Twenty-one of the sixty-nine sequenced days sit on founder-reported evidence, and six vanish if the form factor goes to VS Code.",
+      "visual": {
+        "kind": "compare",
+        "labelWidth": 200,
+        "cols": [
+          { "title": "Ship F1–F8", "tone": "warn" },
+          { "title": "Keep the scan only", "tone": "accent" },
+          { "title": "Cut the block", "tone": "neutral" }
+        ],
+        "rows": [
+          { "label": "Sequenced days", "cells": ["69", "56", "48"] },
+          { "label": "Needs a user key", "cells": ["Yes, F5, F6, F8", "No", "No"] },
+          { "label": "Needs fix-first rows 6 and 7", "cells": ["Yes, 5 days", "No", "No"] },
+          { "label": "Deleted if decision 6 picks VS Code", "cells": ["6 days", "0 days", "0 days"] },
+          { "label": "Evidence class", "cells": ["Founder test, no notes", "Founder direction", "Public evidence only"] },
+          { "label": "Keeps the services diagnostic", "cells": ["Yes", "Yes", "No"] }
+        ],
+        "note": "Days from the §9 sequence: F5 and F6 8d, F7 10d, F8 3d, fix-first rows 6 and 7 5d.",
+        "caption": "What the generation block costs, and what deletes it."
+      },
+      "stakes": "Twenty-one days and the pilot's whole surface ride on a founder test with no notes, and on a form factor nobody has picked.",
+      "state": [
+        "Exhibit 6 puts F5, F6, F7 and F8 in MVP-0 (`docs/PRODUCT-BRIEF.md:201`); the §9 sequence prices them at 21 of 69 days (`docs/PRODUCT-BRIEF.md:227`).",
+        "Fix-first row 6, bring-your-own key at 3 days, and row 7, structured output at 2 days, exist to serve that block (`docs/PRODUCT-BRIEF.md:219`).",
+        "Decision 6 says VS Code supplies the model picker free, deleting row 6 and F8's key UI, and it carries no date (`docs/PRODUCT-BRIEF.md:364`).",
+        "All six AI routes bill the operator today; five providers resolve from environment keys (`src/modules/ai/infrastructure/gateway-client.ts:34`)."
+      ],
+      "path": [
+        "MVP-0 was six rows in `docs/DECIDE.md:80`, where generation appears nowhere and no hosted anything is explicit (`docs/DECIDE.md:89`).",
+        "F5 and F6 were argued back in on a founder user test reported in chat, F7 on founder direction (`docs/PRODUCT-BRIEF.md:187`).",
+        "Round 2 then measured that an extension writes byte-exactly, 94 of 94 and 156 of 156 bytes (`docs/GAPS-2026-09-08.md:125`), which reopened the shell."
+      ],
+      "tension": [
+        "The gap register says the founder test has no notes, no participants and no protocol (`docs/GAPS-2026-09-08.md:23`).",
+        "D3 says F5 and F6 point at the non-developer while the rest of the plan is built for the developer (`docs/GAPS-2026-09-08.md:52`).",
+        "Six of the twenty-one days are deleted by one answer to decision 6, and that answer is due after week 5 (`docs/PRODUCT-BRIEF.md:355`).",
+        "F7 is the only one of the four that needs no model and no key (`docs/PRODUCT-BRIEF.md:61`)."
+      ],
+      "evidence": [
+        {
+          "type": "table",
+          "title": "MVP-0, then and now",
+          "cols": ["MVP-0 in DECIDE §3.1 (38 pts ≈ 41 days)", "MVP-0 in the plan §8 and §9 (2026-09-08)"],
+          "rows": [
+            ["NF-3 bare-CR fence (4 pts)", "F1 editor + NF-1/NF-3 + engine wiring"],
+            ["NF-1 + NF-2 zero-indent (6 pts)", "F2 review state (18d)"],
+            ["CI with a deliberate red run (2 pts)", "F3 attribution readers (3d)"],
+            ["Real byte budget (2 pts)", "F4 answer in place (2d)"],
+            ["Seams 2+3, one splice behind every write (8 pts)", "F5 idea mode + F6 decision flow (8d)"],
+            ["land() + per-hunk accept/reject (16 pts)", "F7 repo docs scan (10d)"],
+            ["Absent: sign-up, hosted anything, billing, sync, publishing", "F8 AI panel + BYO key (3d) — 69 sequenced days, about 70 with polish"]
+          ]
+        },
+        {
+          "type": "stat",
+          "title": "What the added block costs and rests on",
+          "items": [
+            ["Generation and AI days in MVP-0 (F5,F6,F7,F8)", "21", "plan §9 sequence line"],
+            ["Share of the sequenced build", "30%", "21 ÷ 69, the sequence's own rows"],
+            ["Evidence class, F5 and F6", "founder user test, reported", "Exhibit 1"],
+            ["Evidence class, F7", "founder direction", "Exhibit 1 — Exhibit 5 lumps all three as tested"],
+            ["Test notes attached to the plan", "none", "gap register §B row 3"]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Fix-first and feature days against decision 6",
+          "cols": ["Item", "Days", "If decision 6 goes to VS Code"],
+          "rows": [
+            ["Row 6 — no bring-your-own key", "3", "deleted; the host supplies the model picker"],
+            ["F8 — AI panel and key UI", "3", "deleted; the host supplies it"],
+            ["Row 9 — src-tauri identity", "1", "moot if no desktop app ships"],
+            ["Row 4 — engine unwired", "8", "the wiring target changes, the work does not"],
+            ["Row 7 — structured output in the LLM port", "2", "still needed if F5/F6/F7 stay"]
+          ]
+        },
+        {
+          "type": "stat",
+          "title": "Where AI billing stands today",
+          "items": [
+            ["Live AI routes in the app", "6", "generate-doc, refine, summarize, complete, suggest-links, link-doctor"],
+            ["Keys they use", "operator environment keys only", "five providers at gateway-client.ts:34–50, quality-ordered fallback"],
+            ["Bring-your-own-key surface in src/", "none", "no user key field, no keychain"],
+            ["Plan's own rule", "BYO key before any stranger", "§13 risk row"],
+            ["Extension byte-exactness, measured", "94/94 and 156/156", "two harnesses, VS Code 1.135.0"]
+          ]
+        }
+      ],
+      "options": [
+        {
+          "k": "a",
+          "label": "Ship F1–F8 as written, 69 sequenced days plus polish",
+          "what": "MVP-0 keeps its widest surface, and the demo shows generation before the review loop has been confirmed as wanted.",
+          "gains": ["The pilot exercises every claim at once", "F5 and F6 keep the founders' own test inside the build"],
+          "costs": ["30% of the build rests on evidence with no notes attached", "Six of those days are deleted if decision 6 picks VS Code"],
+          "system": "Fix-first rows 6 and 7 stay on the critical path, five days.",
+          "screens": "Keeps S13, the AI panel in S2 and the key field in S11.",
+          "money": "Every AI call stays on the operator's key until row 6 lands."
+        },
+        {
+          "k": "b",
+          "label": "Cut F5, F6 and F8 out of MVP-0; keep F7's scan with no model",
+          "what": "MVP-0 ships the review loop, the fix-first list and the docs scan, and nothing that needs a provider key.",
+          "gains": ["56 sequenced days, or 51 once fix-first rows 6 and 7 drop", "Keeps the diagnostic §19 sells the engagement on"],
+          "costs": ["Drops the two features the founders tested themselves", "F7's missing-doc generation defers with F5"],
+          "system": "Rows 6 and 7 leave the critical path; the LLM port stays as it is.",
+          "screens": "S13 stays; the AI panel and the key field leave MVP-0.",
+          "money": "No key handling to build, so no AI spend risk in the pilot."
+        },
+        {
+          "k": "c",
+          "label": "Answer decision 6 at the meeting first, then decide the block on that answer",
+          "what": "The form factor is settled in the room, and the six deletable days are spent or cut with the answer known.",
+          "gains": ["Costs an hour against six days of possibly wasted build", "The byte-exactness question that blocked it is measured"],
+          "costs": ["Forces a form-factor call without the Mobbin benchmark", "Leaves the block undecided if the meeting cannot reach it"],
+          "system": "No change until the answer lands.",
+          "screens": "None until decided.",
+          "money": "None."
+        },
+        {
+          "k": "d",
+          "label": "Keep all four, conditional on the F5/F6 test notes being attached this week",
+          "what": "The scope argument becomes a document request, and the cut happens anyway if the notes do not exist.",
+          "gains": ["Settles an evidence question the gap register has open", "No scope is lost if the test was real"],
+          "costs": ["Two more weeks before the cut, if it comes", "Founders must produce notes nobody has seen"],
+          "system": "No change this week.",
+          "screens": "No change.",
+          "money": "None."
+        }
+      ],
+      "rec": "b",
+      "recCase": [
+        "F7 needs no model, no key and no structured output, so it costs its ten days and adds no dependency (`docs/PRODUCT-BRIEF.md:61`).",
+        "F5, F6 and F8 each sit behind fix-first rows 6 and 7 and behind a buyer decision 2 has not made (`docs/PRODUCT-BRIEF.md:366`).",
+        "Cutting them removes six of the days decision 6 would delete, so the meeting stops being a deadline for the build.",
+        "The pilot then tests the one claim the adversarial round left standing (`docs/GAPS-2026-09-08.md:124`)."
+      ],
+      "flip": "Test notes with participants, a protocol and a measure would move this to option d, and F5 and F6 stay.",
+      "linked": ["PL2", "PL3", "PL16"],
+      "sources": [
+        "docs/PRODUCT-BRIEF.md:59",
+        "docs/PRODUCT-BRIEF.md:61",
+        "docs/PRODUCT-BRIEF.md:187",
+        "docs/PRODUCT-BRIEF.md:201",
+        "docs/PRODUCT-BRIEF.md:219",
+        "docs/PRODUCT-BRIEF.md:220",
+        "docs/PRODUCT-BRIEF.md:227",
+        "docs/PRODUCT-BRIEF.md:355",
+        "docs/PRODUCT-BRIEF.md:364",
+        "docs/PRODUCT-BRIEF.md:366",
+        "docs/DECIDE.md:80",
+        "docs/DECIDE.md:89",
+        "docs/PRODUCT.md:951",
+        "docs/PRODUCT.md:961",
+        "docs/GAPS-2026-09-08.md:23",
+        "docs/GAPS-2026-09-08.md:52",
+        "docs/GAPS-2026-09-08.md:124",
+        "docs/GAPS-2026-09-08.md:125",
+        "src/modules/ai/infrastructure/gateway-client.ts:34",
+        "src/modules/ai/infrastructure/gateway-client.ts:50",
+        "merged: PL13"
+      ]
+    },
+    {
+      "id": "PL2",
+      "cat": "Plan, scope & sequencing",
+      "sub": "Schedule",
+      "weight": "critical",
+      "q": "Which number does the plan publish as its schedule — twelve calendar weeks, or the measured 1.21 engineering days a week that makes the same scope 58 weeks?",
+      "lede": "One document carries both; they differ by a factor of five, and four competitors shipped the same surface in nine weeks.",
+      "visual": {
+        "kind": "timeline",
+        "items": [
+          { "when": "2026-07-03", "label": "VS Code merges review/unreview", "note": "PR #324218, milestone 1.128.0", "tone": "warn" },
+          { "when": "2026-08-24", "label": "Antigravity ships Agent Edits pane", "note": "working-tree diff, free", "tone": "warn" },
+          { "when": "2026-08-28", "label": "Notion ships per-change approval", "note": "agent edits, per change", "tone": "warn" },
+          { "when": "2026-09-03", "label": "Claude Code v2.1.260 diff panel", "note": "opens beside the conversation", "tone": "warn" },
+          { "when": "2026-09-08", "label": "Our rate measured at 1.21 days a week", "note": "10 of 58 calendar days touched src/", "tone": "neutral" },
+          { "when": "Week 12", "label": "Twelve weeks buys 14.5 days", "note": "the fix-first list alone is 25.5", "tone": "stop" },
+          { "when": "Week 58", "label": "MVP-0 at the measured rate", "note": "37 weeks at the best rate ever seen", "tone": "stop" }
+        ],
+        "note": "Competitor dates from the research briefing, all opened; rates from §9.",
+        "caption": "Nine weeks of shipping from the field, against a 58-week build."
+      },
+      "stakes": "A date nothing in the plan can meet turns every gate, kill line and pilot week into a number nobody will enforce.",
+      "state": [
+        "§9 measures 1.21 engineering days a calendar week here, and prices the same scope at 37 weeks best case and 58 measured (`docs/PRODUCT-BRIEF.md:227`).",
+        "Exhibit 19 still puts ten strangers in weeks 10–12 (`docs/PRODUCT-BRIEF.md:357`).",
+        "Twelve weeks at the measured rate buys 14.5 engineering days, less than the 25.5-day fix-first list (`docs/PRODUCT-BRIEF.md:210`)."
+      ],
+      "path": [
+        "The ten weeks was withdrawn in round 2 as impossible: 70 days in 10 weeks is 7.0 a week, seven days a week (`docs/PRODUCT-BRIEF.md:229`).",
+        "The velocity paragraph was rewritten. The calendar under it was not (`docs/GAPS-2026-09-08.md:130`).",
+        "The gap register had already rated the day estimates unmethodical (`docs/GAPS-2026-09-08.md:22`)."
+      ],
+      "tension": [
+        "Cutting does not rescue it: at the best-ever 1.91 a week, twelve weeks buys 22.9 days, still under the fix-first list.",
+        "Four competitors shipped working-tree agent diffs between 2026-07-03 and 2026-09-03, so the window is not static.",
+        "A plan with no date drifts, and `src/` here has not changed in 29 days.",
+        "CRITIQUE puts the failure mode at initiation rather than estimation (`docs/CRITIQUE.md:793`)."
+      ],
+      "evidence": [
+        {
+          "type": "bars",
+          "title": "Engineering days per calendar week",
+          "note": "Re-measured here 2026-09-08 by git log: 10 distinct calendar days between 2026-07-13 and 2026-09-08 touched src/, src-tauri/ or test/, over a 58-day window = 1.21/week. Sibling best is the md repo's best-ever regime, per §9.",
+          "data": [["Last 30 days here", 0.23], ["Measured, whole project", 1.21], ["Sibling md, best ever", 1.91], ["Needed for 12 weeks", 5.83], ["Old withdrawn plan", 7]],
+          "unit": "eng days / week",
+          "threshold": 1.21,
+          "thresholdLabel": "measured rate"
+        },
+        {
+          "type": "stat",
+          "title": "What twelve weeks actually buys",
+          "items": [
+            ["Engineering days in 12 weeks at 1.21", "14.5", "12 × 1.21"],
+            ["Engineering days in 12 weeks at 1.91", "22.9", "12 × 1.91, the best rate ever seen"],
+            ["Fix-first list alone", "25.5 days", "§9 table, rows summed"],
+            ["Full MVP-0 at 1.21/week", "58 weeks", "70 ÷ 1.21, plan's own figure"],
+            ["Full MVP-0 at 1.91/week", "37 weeks", "70 ÷ 1.91, plan's own figure"],
+            ["Independent estimate multiple on the earlier 41 days", "1.6× central, 2.8×, 3.2× worst", "CRITIQUE.md:791"]
+          ]
+        }
+      ],
+      "options": [
+        {
+          "k": "a",
+          "label": "Keep twelve weeks and commit in writing to 5.8 engineering days a week",
+          "what": "The plan keeps its dates and the founder commits to a rate 4.8 times the one measured here.",
+          "gains": ["Every existing gate date survives untouched", "Simple to state and simple to check"],
+          "costs": ["Nothing in the capacity model supports 5.8 days a week", "The last 30 days ran at 0.23 days a week"],
+          "system": "No change.",
+          "screens": "No change.",
+          "money": "Honest only if client hours drop to near zero, which the nut does not allow."
+        },
+        {
+          "k": "b",
+          "label": "Keep the scope and publish 37–58 weeks",
+          "what": "The scope stands and the plan states a pilot 37 to 58 weeks out.",
+          "gains": ["Truthful, and it can be checked against the commit log", "Forces the scope conversation immediately"],
+          "costs": ["The pilot lands in 2027 and dated kill lines lose meaning", "Nobody can be held to a date that far out"],
+          "system": "No change.",
+          "screens": "No change.",
+          "money": "Consulting must cover the nut for a year, not a quarter."
+        },
+        {
+          "k": "c",
+          "label": "Re-cut MVP-0 to what 1.91 a week delivers in twelve weeks: 22.9 days",
+          "what": "MVP-0 shrinks to what the best rate ever observed buys inside the current calendar.",
+          "gains": ["Keeps a twelve-week frame", "Forces a hard cut now rather than a slip later"],
+          "costs": ["22.9 days is under the 25.5-day fix-first list", "No pilot is left to put in front of ten strangers"],
+          "system": "The cut lands below the engine floor rather than above it.",
+          "screens": "No feature screens ship.",
+          "money": "None."
+        },
+        {
+          "k": "d",
+          "label": "Publish engineering days and a weekly rate; re-forecast the date at week 4",
+          "what": "The plan reports days achieved every Friday, and sets the pilot date at week 4 from four weeks of measurement.",
+          "gains": ["Falsifiable on day 7 rather than at week 12", "Produces a real date from real data at week 4"],
+          "costs": ["No external commitment for four weeks", "A plan with no date is easy to let drift"],
+          "system": "§9 already prescribes the weekly report; Exhibit 19's calendar goes.",
+          "screens": "None.",
+          "money": "None."
+        }
+      ],
+      "rec": "d",
+      "recCase": [
+        "A schedule needing 4.8 times the observed rate is not a schedule, and §9 already prescribes the report it contradicts (`docs/PRODUCT-BRIEF.md:227`).",
+        "Option c cannot produce a twelve-week MVP-0 at all, because 22.9 days is below the fix-first list.",
+        "The week-4 re-forecast is the missing piece: it turns a weekly number into a date somebody can be held to.",
+        "Against a field that shipped four competing panes in nine weeks, a measured date beats a guessed one."
+      ],
+      "flip": "A named second engineer with their own commit record makes 1.21 obsolete, and the density must then be re-derived rather than doubled.",
+      "linked": ["PL3", "PL14", "PL18"],
+      "sources": [
+        "docs/PRODUCT-BRIEF.md:210",
+        "docs/PRODUCT-BRIEF.md:227",
+        "docs/PRODUCT-BRIEF.md:229",
+        "docs/PRODUCT-BRIEF.md:357",
+        "docs/GAPS-2026-09-08.md:22",
+        "docs/GAPS-2026-09-08.md:130",
+        "docs/CRITIQUE.md:779",
+        "docs/CRITIQUE.md:791",
+        "docs/CRITIQUE.md:793"
+      ]
+    },
+    {
+      "id": "PL3",
+      "cat": "Plan, scope & sequencing",
+      "sub": "Fix-first",
+      "weight": "high",
+      "q": "When does the fix-first list run, and in what order — the table's, the calendar's, or a split into demo-blockers and ship-blockers?",
+      "lede": "A table headed \"these block everything else\" schedules its largest row five weeks after the work it blocks.",
+      "visual": {
+        "kind": "compare",
+        "labelWidth": 200,
+        "cols": [
+          { "title": "Table order", "tone": "neutral" },
+          { "title": "Exhibit 19", "tone": "warn" },
+          { "title": "Two named gates", "tone": "accent" }
+        ],
+        "rows": [
+          { "label": "NF-1, 4 days", "cells": ["First", "Weeks 3–4", "Weeks 3–5, demo-blocker"] },
+          { "label": "Engine wiring, 8 days", "cells": ["Fourth", "Weeks 8–9", "Weeks 3–5, demo-blocker"] },
+          { "label": "Byte budget, cert, entities, Tauri id", "cells": ["In the list", "In no week", "Before the strangers"] },
+          { "label": "Decision-independent rows", "cells": ["11.5 days", "Not distinguished", "Start now, in parallel"] },
+          { "label": "First feature week", "cells": ["After 25.5 days", "Week 5", "Week 5"] },
+          { "label": "Stated total", "cells": ["25.5", "24, in the sequence line", "25.5"] }
+        ],
+        "note": "Rows and days from the §9 fix-first table; weeks from Exhibit 19.",
+        "caption": "Three artefacts in one document give three orders."
+      },
+      "stakes": "Twenty-nine days of no code have already passed, and the plan's own day-24 falsifier cannot run until NF-1 lands.",
+      "state": [
+        "§9 opens \"Fix first. These block everything else\" over twelve rows (`docs/PRODUCT-BRIEF.md:210`).",
+        "Exhibit 19 puts CI, NF-3 and NF-1 in weeks 3–4 and engine wiring in weeks 8–9 (`docs/PRODUCT-BRIEF.md:354`).",
+        "The sequence line still reads \"Fix-first (24 days)\" while the rows sum to 25.5 (`docs/PRODUCT-BRIEF.md:227`).",
+        "Weeks 1–2 read \"build nothing\" (`docs/PRODUCT-BRIEF.md:336`), and `src/` last changed 29 days ago."
+      ],
+      "path": [
+        "Build-nothing-first was earned: three headlines were refuted by desk research before any code was written.",
+        "The table grew in round 2 with rows 0, 10 and 11, and neither the prose sequence nor the calendar followed (`docs/PRODUCT-BRIEF.md:223`).",
+        "Round 2 then attacked the fourth headline and it came back negative too (`docs/GAPS-2026-09-08.md:124`)."
+      ],
+      "tension": [
+        "Six rows depend on no open decision: NF-1, NF-3, CI, the byte budget, the cert CLI and the undeclared dependency.",
+        "Those six are 11.5 days, which is 9.5 calendar weeks at the measured rate.",
+        "Up to six days of the rest are deleted by one answer to decision 6 (`docs/PRODUCT-BRIEF.md:364`).",
+        "The 83% refusal falsifier is dated day 24 and needs NF-1 first (`docs/PRODUCT-BRIEF.md:327`)."
+      ],
+      "evidence": [
+        {
+          "type": "table",
+          "title": "Fix-first rows against the open decisions",
+          "cols": ["Row", "Days", "Depends on decision 1, 6 or 7?"],
+          "rows": [
+            ["1 NF-1 column-zero list item", "4", "No — engine, correct in any shell"],
+            ["2 NF-3 bare-CR fence", "3", "No"],
+            ["3 No CI", "1", "No"],
+            ["5 Byte budget is an echo", "2", "No"],
+            ["10 mdmax cert never runnable", "1", "No"],
+            ["11 entities undeclared dependency", "0.5", "No"],
+            ["4 Engine unwired (one symbol of thirteen files)", "8", "Yes — wiring target depends on the shell (decision 6)"],
+            ["6 No bring-your-own key", "3", "Yes — deleted if VS Code (decision 6)"],
+            ["7 LLM port returns a bare string", "2", "Yes — only needed if F5/F6/F7 stay (PL1)"],
+            ["9 src-tauri carries the sibling's identity", "1", "Yes — moot if no desktop app"],
+            ["0 The shell is a fork · 8 Web byte path", "decision", "Yes"]
+          ]
+        },
+        {
+          "type": "stat",
+          "title": "Measured on this repo, 2026-09-08",
+          "items": [
+            ["Documentation file-changes, last 14 days", "396", "git log --since='14 days ago' --name-only -- docs"],
+            ["src/ file-changes, last 14 days", "0", "same command against src"],
+            ["Days since src/ last changed", "29", "last src commit cc1d451, 2026-08-10"],
+            ["Days since any engineering commit", "8", "last test commit 484f579, 2026-08-31"],
+            ["Decision-independent fix-first work", "11.5 days", "rows 1,2,3,5,10,11"],
+            ["That work at the measured rate", "9.5 calendar weeks", "11.5 ÷ 1.21"]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Fix-first rows against the calendar in Exhibit 19",
+          "cols": ["Row", "Days", "Week in Exhibit 19"],
+          "rows": [
+            ["3 CI, deliberate red run", "1", "3–4"],
+            ["2 NF-3", "3", "3–4"],
+            ["1 NF-1", "4", "3–4"],
+            ["6 BYO key", "3", "5–7"],
+            ["7 LLM port structured output", "2", "5–7"],
+            ["4 Engine unwired", "8", "8–9"],
+            ["5 Byte budget is an echo", "2", "not scheduled"],
+            ["9 src-tauri identity", "1", "not scheduled"],
+            ["10 mdmax cert never runnable", "1", "not scheduled"],
+            ["11 entities undeclared", "0.5", "not scheduled"],
+            ["Sum of rows", "25.5", "sequence line still says 24"]
+          ]
+        },
+        {
+          "type": "stat",
+          "title": "Verified against the code, 2026-09-08",
+          "items": [
+            ["Files in .github/workflows", "0", "the directory does not exist"],
+            ["package.json budget script", "echo 'No bundle budget configured yet — skipping'", "literal string at package.json:20, 26 scripts total"],
+            ["cert among the 26 scripts", "absent", "node scripts/mdmax-cert.mjs has no script entry"],
+            ["Engine symbols reaching product code", "1 of 13 files", "decodeStrict from shape-gate, imported in exactly 2 files"],
+            ["entities in package.json", "absent from dependencies and devDependencies", "imported at fold.ts:43 and verdict.ts:53"]
+          ]
+        }
+      ],
+      "options": [
+        {
+          "k": "a",
+          "label": "Build nothing until week 3 and keep the calendar as written",
+          "what": "No code until the week-3 go/no-go, exactly as Exhibit 19 has it.",
+          "gains": ["Keeps the discipline that refuted three headlines", "One job at a time for the founder"],
+          "costs": ["Extends a 29-day code freeze to 43", "The day-24 refusal falsifier cannot run"],
+          "system": "No change.",
+          "screens": "None.",
+          "money": "None."
+        },
+        {
+          "k": "b",
+          "label": "Start the six decision-independent rows now, in parallel with the tests",
+          "what": "The six rows that are correct under every open decision start immediately, alongside the human tests.",
+          "gains": ["Engine hygiene lands whatever the meeting decides", "Answers the refusal falsifier on its own deadline"],
+          "costs": ["Splits the founder's attention across two jobs", "Weeks 1–2 are already over-committed"],
+          "system": "NF-1, NF-3, CI, the byte budget, the cert CLI and the entities dependency all land.",
+          "screens": "None.",
+          "money": "None."
+        },
+        {
+          "k": "c",
+          "label": "Start the six now; split the rest into demo-blockers and ship-blockers",
+          "what": "The remaining rows are separated into what blocks the demo working and what blocks handing it to a stranger.",
+          "gains": ["Two named gates instead of one vague header", "Forces the 4.5 unscheduled days onto a week"],
+          "costs": ["The same attention split as option b", "Needs Exhibit 19 rewritten in the same edit"],
+          "system": "Demo-blockers 18 days, ship-blockers 7.5 days, from the §9 rows.",
+          "screens": "None.",
+          "money": "None."
+        },
+        {
+          "k": "d",
+          "label": "Keep the calendar and demote the table to a defect list with no ordering claim",
+          "what": "The calendar stands and the table stops claiming to be an order.",
+          "gains": ["Removes the contradiction in one edit", "No new work this fortnight"],
+          "costs": ["Removes the argument that the engine must be right first", "The 8-day wiring row still lands after what it blocks"],
+          "system": "No change to the code.",
+          "screens": "None.",
+          "money": "None."
+        }
+      ],
+      "rec": "c",
+      "recCase": [
+        "Those six rows are true under every answer: an engine refusing 83% of real vaults is wrong in an app, an extension and a package alike (`docs/PRODUCT-BRIEF.md:214`).",
+        "The split makes the header argue for itself, because some rows block the demo and others block the handover.",
+        "It forces the byte budget, the cert CLI, the entities dependency and the Tauri identity onto a week.",
+        "If PL1 cuts the AI block, rows 6 and 7 leave the list and the split gets cleaner."
+      ],
+      "flip": "If the meeting concludes the engine is being abandoned for a different substrate, option a is right, and no option on the table does that.",
+      "linked": ["PL1", "PL2", "PL11"],
+      "sources": [
+        "docs/PRODUCT-BRIEF.md:210",
+        "docs/PRODUCT-BRIEF.md:212",
+        "docs/PRODUCT-BRIEF.md:214",
+        "docs/PRODUCT-BRIEF.md:223",
+        "docs/PRODUCT-BRIEF.md:224",
+        "docs/PRODUCT-BRIEF.md:225",
+        "docs/PRODUCT-BRIEF.md:227",
+        "docs/PRODUCT-BRIEF.md:327",
+        "docs/PRODUCT-BRIEF.md:336",
+        "docs/PRODUCT-BRIEF.md:354",
+        "docs/PRODUCT-BRIEF.md:356",
+        "docs/PRODUCT-BRIEF.md:364",
+        "docs/GAPS-2026-09-08.md:83",
+        "docs/GAPS-2026-09-08.md:124",
+        "package.json:20",
+        "merged: PL4"
+      ]
+    },
+    {
+      "id": "PL5",
+      "cat": "Plan, scope & sequencing",
+      "sub": "Exit test",
+      "weight": "critical",
+      "q": "What does \"the pilot passed\" mean, and how is it observed?",
+      "lede": "Three live documents set three different bars, and the proposed instrument is a request this workspace measured returning nothing.",
+      "visual": {
+        "kind": "compare",
+        "labelWidth": 180,
+        "cols": [
+          { "title": "6 of 10 still using", "tone": "neutral" },
+          { "title": "3 ask unprompted", "tone": "neutral" },
+          { "title": "3 name it, 2 at day 30", "tone": "accent" }
+        ],
+        "rows": [
+          { "label": "Measures", "cells": ["Retention only", "Demand only", "Demand and retention"] },
+          { "label": "Passable by being polite", "cells": ["Partly", "No", "No"] },
+          { "label": "Observed how", "cells": ["Local file, pasted", "Session transcript", "Transcript plus day-30 counts"] },
+          { "label": "Needs the paste to work", "cells": ["Yes", "No", "For one half"] },
+          { "label": "Where it is written", "cells": ["Exhibit 6", "PRODUCT §95.2", "the record's own rewrite"] }
+        ],
+        "note": "Each bar carries the instrument it needs; the two cannot be chosen separately.",
+        "caption": "Three bars, and what each one can actually be read from."
+      },
+      "stakes": "The one gate allowed to stop the product is softer than the bar it replaced, and not measurable under the architecture.",
+      "state": [
+        "Exhibit 6's exit test reads \"6 of 10 strangers still using it after two weeks\" (`docs/PRODUCT-BRIEF.md:206`).",
+        "The week-0 draft puts counts in `.frontmatter/usage.jsonl` and reaches us only if a stranger pastes it (`docs/WEEK0-DECISIONS-2026-09-08.md:21`).",
+        "The gap register rates the whole thing unobservable until the measurement decision exists (`docs/GAPS-2026-09-08.md:28`).",
+        "Zero interviews have been run across the whole programme (`docs/GAPS-2026-09-08.md:35`)."
+      ],
+      "path": [
+        "PRODUCT §95.2 set it at six of ten running it plus three asking unprompted (`docs/PRODUCT.md:965`).",
+        "The record then attacked its own bar: six of ten measures politeness (`docs/FRONTMATTER-RECORD.md:12321`).",
+        "The current plan kept the six-of-ten half and dropped the unprompted clause.",
+        "The plan forbids a vendor usage database, so only a local opt-in design is compatible (`docs/PRODUCT-BRIEF.md:313`)."
+      ],
+      "tension": [
+        "Asking for a paste is the shape of ask that measured 7 fills in 694 opportunities on this workspace.",
+        "The marginal fill rate across three measurements was zero, not one percent (`docs/research/agent-reports-2026-08-29-r11/r5-measurement-plan.md:14`).",
+        "A silent pilot reads as a failed one, and a false negative is the expensive direction.",
+        "Ten booked calls is under three hours of talking, and it collects the why counting cannot give."
+      ],
+      "evidence": [
+        {
+          "type": "table",
+          "title": "Three bars, three documents, all current",
+          "cols": ["Bar", "Source", "What it measures"],
+          "rows": [
+            ["6 of 10 still using after two weeks", "plan Exhibit 6", "Retention. Observable only via the week-0 measurement decision"],
+            ["6 of 10 run it once, and 3 ask unprompted", "PRODUCT §95.2 (DECIDE §3.1 carries only the six-of-ten half)", "Trial plus unprompted pull. The unprompted clause was dropped"],
+            ["3 of 10 name the review-cost problem before it is named, and 2 still using on day 30", "the record's own rewrite, RECORD:12352", "Demand plus retention. The bar written after attacking the other two"],
+            ["40 people, 40% 'very disappointed' and 5 of 40 naming whole-file rewrites, by 2026-12-31", "record, Ellis wording, RECORD:12517", "Product-market fit at n=40. Needs four times the recruitment"]
+          ]
+        },
+        {
+          "type": "stat",
+          "title": "Where the current bar stands",
+          "items": [
+            ["Interviews run across the whole programme", "0", "gap register §C row 1"],
+            ["Strangers in the pilot", "10", "plan Exhibit 19, weeks 10–12"],
+            ["Measurement decision status", "drafted, not accepted", "WEEK0-DECISIONS §1"],
+            ["Draft's own definition of 'keeps it'", "opened on 6 of the last 10 working days, plus one review action in week two", "WEEK0-DECISIONS §1, exit measure row"],
+            ["Rated by the gap register", "unobservable under the architecture", "gap register §B row 8"]
+          ]
+        },
+        {
+          "type": "stat",
+          "title": "What voluntary reporting measured on this workspace",
+          "note": "The 7 of 694 row is tagged [brief] in the source, supplied not re-measured; the 1 of 99 replication and the machine-row counts are tagged [measured] on that machine.",
+          "items": [
+            ["Explicit feedback field, fills", "7 of 694", "1.0086%"],
+            ["Marginal fill rate across three measurements", "0", "numerator frozen while the denominator grew"],
+            ["Machine-written rows in the same period", "42,514", "gate-tier 21,707 + turn-meta 15,786 + traces 5,021"],
+            ["Ratio, machine to human", "6,073 : 1", "42,514 ÷ 7"],
+            ["Preference-log routing_path filled", "1 of 99", "1.01%, the same number independently"]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "What each method can and cannot tell you",
+          "cols": ["Method", "Gives you", "Does not give you"],
+          "rows": [
+            ["Local file, pasted on request", "Exact day counts, if they paste", "Anything from the ones who do not reply"],
+            ["Local file plus a booked day-14 call", "The counts read together, plus why", "Ten calls of founder time"],
+            ["Opt-in upload toggle", "Continuous data for those who opt in", "Compliance with the no-vendor-database rule at scale, without a notice-and-consent path"],
+            ["Interview only", "Why someone stopped", "A number anyone can audit later"]
+          ]
+        }
+      ],
+      "options": [
+        {
+          "k": "a",
+          "label": "Six of ten still using after two weeks, local file pasted on request",
+          "what": "The current wording stands, and the counts arrive if a stranger chooses to paste the file.",
+          "gains": ["Cheapest to build", "Measures the right half, which is retention"],
+          "costs": ["The paste is the method this workspace measured at effectively zero", "Nothing in it catches a stranger being polite"],
+          "system": "`.frontmatter/usage.jsonl` and nothing else.",
+          "screens": "No new screen; a settings line explaining the file.",
+          "money": "None."
+        },
+        {
+          "k": "b",
+          "label": "Six of ten run it once, three ask unprompted; read from the session",
+          "what": "The bar returns to PRODUCT §95.2 and is read from what happens in the session itself.",
+          "gains": ["Restores the demand clause", "Observable with no file and no paste"],
+          "costs": ["Says nothing about whether anyone comes back", "Ten sessions must be noted consistently"],
+          "system": "No sidecar work needed for the gate.",
+          "screens": "None.",
+          "money": "None."
+        },
+        {
+          "k": "c",
+          "label": "Three of ten name the problem unprompted, two still using at day 30, booked call",
+          "what": "Both halves are required, the unprompted clause is read from the session, and the day-30 count is read together on a call.",
+          "gains": ["Neither half is passable by a friendly stranger", "Both halves are cheap to observe"],
+          "costs": ["Ten calls of founder time, booked at recruitment", "The day-30 clause extends the pilot by two weeks"],
+          "system": "The usage file stays; the call is scheduling, not engineering.",
+          "screens": "None beyond the settings line.",
+          "money": "None."
+        },
+        {
+          "k": "d",
+          "label": "Ellis survey, forty people, 40% very disappointed, by year end",
+          "what": "A forty-person survey replaces the ten-stranger gate.",
+          "gains": ["The strongest signal available", "A published, comparable method"],
+          "costs": ["Recruiting forty strangers from zero interviews is a different project", "Nothing is decided until year end"],
+          "system": "None.",
+          "screens": "None.",
+          "money": "Recruitment cost, unbudgeted."
+        }
+      ],
+      "rec": "c",
+      "recCase": [
+        "It is the only bar written after somebody attacked the other two (`docs/FRONTMATTER-RECORD.md:12352`).",
+        "Both halves are observable: the unprompted clause in the session, the day-30 clause in the local counts.",
+        "Booking the call when the stranger is recruited turns a 1% ask into an appointment.",
+        "It collects the one thing the draft admits counting cannot give, which is why someone stopped (`docs/WEEK0-DECISIONS-2026-09-08.md:27`)."
+      ],
+      "flip": "If strangers will not take a call, the opt-in upload toggle is the fallback and the usable n drops to whoever opts in.",
+      "linked": ["PL7", "PL17"],
+      "sources": [
+        "docs/PRODUCT-BRIEF.md:206",
+        "docs/PRODUCT-BRIEF.md:313",
+        "docs/PRODUCT-BRIEF.md:357",
+        "docs/PRODUCT-BRIEF.md:417",
+        "docs/DECIDE.md:92",
+        "docs/PRODUCT.md:965",
+        "docs/FRONTMATTER-RECORD.md:12321",
+        "docs/FRONTMATTER-RECORD.md:12352",
+        "docs/FRONTMATTER-RECORD.md:12517",
+        "docs/GAPS-2026-09-08.md:28",
+        "docs/GAPS-2026-09-08.md:35",
+        "docs/WEEK0-DECISIONS-2026-09-08.md:20",
+        "docs/WEEK0-DECISIONS-2026-09-08.md:21",
+        "docs/WEEK0-DECISIONS-2026-09-08.md:22",
+        "docs/WEEK0-DECISIONS-2026-09-08.md:27",
+        "docs/research/agent-reports-2026-08-29-r11/r5-measurement-plan.md:9",
+        "docs/research/agent-reports-2026-08-29-r11/r5-measurement-plan.md:14",
+        "docs/research/agent-reports-2026-08-29-r11/r5-measurement-plan.md:17",
+        "merged: PL6"
+      ]
+    },
+    {
+      "id": "PL7",
+      "cat": "Plan, scope & sequencing",
+      "sub": "Weeks 1–2",
+      "weight": "high",
+      "q": "What runs in weeks 1–2 — forty free contacts as written, or fewer tests and one that charges a card?",
+      "lede": "After two adversarial rounds nothing has tested whether anyone pays, and the fortnight is already booked at four contacts a day.",
+      "visual": {
+        "kind": "timeline",
+        "items": [
+          { "when": "Week 0", "label": "Buyer, byte path and exit measure written", "note": "Exhibit 19, week 0", "tone": "neutral" },
+          { "when": "Weeks 1–2", "label": "Forty contacts and three landing pages", "note": "four a day from a standing start", "tone": "warn" },
+          { "when": "Day 14", "label": "Kill signals read", "note": "under 4 of 10 stops the build", "tone": "stop" },
+          { "when": "Week 3", "label": "Go or no-go", "note": "needs only the developer sessions", "tone": "accent" },
+          { "when": "Weeks 1–4", "label": "Team conversations and the priced arm", "note": "the Pro price gates MVP-1, not week 3", "tone": "accent" }
+        ],
+        "note": "Weeks and contents from Exhibit 19; the priced arm from the record's Gate 1.",
+        "caption": "Which tests the week-3 gate needs, and which can run longer."
+      },
+      "stakes": "The commercial thesis stays untested into the build, which is where being wrong about it becomes expensive.",
+      "state": [
+        "Weeks 1–2 require ten developer sessions, five billers, twenty team conversations and five screenshot viewings (`docs/PRODUCT-BRIEF.md:352`).",
+        "No checkout, no price and no card appear anywhere in the fortnight.",
+        "The same fortnight is labelled \"build nothing\" while it builds three landing pages and a cut plugin (`docs/PRODUCT-BRIEF.md:336`).",
+        "The gap register still lists whether anyone pays as open after eleven gaps of desk research (`docs/GAPS-2026-09-08.md:146`)."
+      ],
+      "path": [
+        "Each test was added by a different round to close a different gap, and nobody summed them.",
+        "An earlier ninety-day plan made a priced test the first gate: $19 refundable, a real card (`docs/FRONTMATTER-RECORD.md:14169`).",
+        "Gate 1 was twelve paid pre-orders on 1,200 visitors, and it was allowed to kill the product (`docs/FRONTMATTER-RECORD.md:14198`)."
+      ],
+      "tension": [
+        "Zero interviews have been run, and the answer to zero is forty in ten working days (`docs/GAPS-2026-09-08.md:35`).",
+        "Only the developer sessions and the screenshot test gate the week-3 decision; the team conversations gate MVP-1.",
+        "Almanac raised $45M on this feature sentence and shut down on 2025-01-31, so attention is not payment.",
+        "A pre-order arm needs a checkout and 1,200 visitors that no budget line covers."
+      ],
+      "evidence": [
+        {
+          "type": "table",
+          "title": "What the scheduled tests can and cannot falsify",
+          "cols": ["Test", "Falsifies", "Does not falsify"],
+          "rows": [
+            ["Ten developers shown the mock, both framings", "That the problem is recognised", "That anyone would buy the answer"],
+            ["Five people who bill for documents", "That approval is a felt cost", "Price, seat count, or who signs"],
+            ["Three landing pages", "Which headline reads best", "Whether any headline converts to money"],
+            ["Twenty team conversations", "What teams say they are gated on", "What a team does when asked for a card"],
+            ["Five-second screenshot test", "Whether the tint reads as a tint", "Anything commercial"]
+          ]
+        },
+        {
+          "type": "stat",
+          "title": "The priced test that was designed and then dropped",
+          "items": [
+            ["Gate 1 threshold", "12 paid pre-orders", "record's 90-day plan, RECORD:14193"],
+            ["Traffic required", "1,200 visitors, 400 per arm", "≥1.00% capture"],
+            ["Price point", "$19, fully refundable on request", "real card charged, RECORD:14169"],
+            ["Paid ads ceiling", "₹20,000", "₹16.67 per click at 1,200"],
+            ["What Gate 1 was allowed to kill", "the entire product", "stated in the plan's own words, RECORD:14198"],
+            ["Payment evidence gathered to date", "none", "gap register, still open"]
+          ]
+        },
+        {
+          "type": "stat",
+          "title": "The fortnight, counted",
+          "items": [
+            ["Developers shown the mock", "10", "decision 1"],
+            ["People who bill for documents", "5", "decision 2"],
+            ["Team conversations", "20", "the Pro price"],
+            ["Five-second screenshot viewings", "5", "whether the tint reads"],
+            ["Total contacts", "40", "4 per working day"],
+            ["Builds inside 'build nothing'", "3 landing pages, plus a plugin that no longer exists", "Exhibit 19, weeks 1–2"],
+            ["Interviews run to date", "0", "across the whole programme"]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "What each test gates, and when that gate is actually needed",
+          "cols": ["Test", "Gates", "Needed by"],
+          "rows": [
+            ["Ten developer sessions", "the week-3 go/no-go", "week 3"],
+            ["Five-second screenshot", "whether the tint design is wrong before building", "week 3"],
+            ["Five billers", "decision 2, first buyer", "week 1, per Exhibit 20"],
+            ["Twenty team conversations", "the Pro price and MVP-1's offer", "MVP-1, months later"]
+          ]
+        }
+      ],
+      "options": [
+        {
+          "k": "a",
+          "label": "Run all four tests as written, forty contacts in two weeks, free",
+          "what": "Every scheduled test runs in the ten working days, and price is left to the team conversations.",
+          "gains": ["Every question closes at once if recruitment holds", "No checkout to build"],
+          "costs": ["If recruitment slips, the week-3 gate runs on partial data", "Nothing in the fortnight can falsify the price"],
+          "system": "None.",
+          "screens": "Three landing pages.",
+          "money": "No revenue signal at all."
+        },
+        {
+          "k": "b",
+          "label": "Sequence: developers and the screenshot test first, teams over four weeks",
+          "what": "The two tests the week-3 gate needs run on time, and the twenty team conversations get four weeks.",
+          "gains": ["The go/no-go happens on time on the questions it needs", "A realistic window for the price question"],
+          "costs": ["PL15's answer arrives later", "Still no test that can return a refusal to pay"],
+          "system": "None.",
+          "screens": "Three landing pages.",
+          "money": "None."
+        },
+        {
+          "k": "c",
+          "label": "Sequence as in (b) and add a refundable pre-order arm to the landing pages",
+          "what": "The tests are sequenced and one landing-page arm charges a real, refundable card at a stated price.",
+          "gains": ["The only test on the table that can return a hard no", "Numbers for it already exist in the record"],
+          "costs": ["Needs a checkout and 1,200 visitors nobody has budgeted", "Sells an artefact decision 6 may change"],
+          "system": "A checkout and a refund path, neither in MVP-0's scope.",
+          "screens": "A pricing and checkout page outside the product.",
+          "money": "₹20,000 ad ceiling in the record's version; refunds on request."
+        },
+        {
+          "k": "d",
+          "label": "Keep all four at lower n; ask teams for signed intent at a stated price",
+          "what": "Contact counts drop and teams are asked to sign an intent instead of paying.",
+          "gains": ["Twenty-one contacts is deliverable", "No checkout and no refunds"],
+          "costs": ["Every 'x of 10' threshold in §13 has to be restated", "Signed intent has no measured conversion here"],
+          "system": "None.",
+          "screens": "Three landing pages.",
+          "money": "None."
+        }
+      ],
+      "rec": "c",
+      "recCase": [
+        "It is the only test that can return a no, and it exists with numbers attached (`docs/FRONTMATTER-RECORD.md:14177`).",
+        "Sequencing is what makes room for it: only two of the four tests gate the week-3 decision.",
+        "Two rounds have proved that installs and attention do not predict purchase (`docs/GAPS-2026-09-08.md:146`).",
+        "A card returns a decision; twenty conversations return opinions."
+      ],
+      "flip": "If decision 6 sends the form factor to a VS Code extension, the pre-order page sells a different artefact and the arms must be rewritten first.",
+      "linked": ["PL5", "PL14", "PL15", "PL17"],
+      "sources": [
+        "docs/PRODUCT-BRIEF.md:336",
+        "docs/PRODUCT-BRIEF.md:352",
+        "docs/PRODUCT-BRIEF.md:366",
+        "docs/FRONTMATTER-RECORD.md:14169",
+        "docs/FRONTMATTER-RECORD.md:14177",
+        "docs/FRONTMATTER-RECORD.md:14193",
+        "docs/FRONTMATTER-RECORD.md:14198",
+        "docs/GAPS-2026-09-08.md:35",
+        "docs/GAPS-2026-09-08.md:146",
+        "merged: PL9"
+      ]
+    },
+    {
+      "id": "PL8",
+      "cat": "Plan, scope & sequencing",
+      "sub": "Channels",
+      "weight": "high",
+      "q": "The plugin was cut in §12 and still stands in six other places, including the stop branch. Is it out everywhere, or does the additive version ship?",
+      "lede": "The plan's failure path tells you to fall back on an asset the plan has already deleted.",
+      "visual": {
+        "kind": "ba",
+        "before": {
+          "title": "The plan today",
+          "lines": [
+            { "t": "§12: plugin CUT, the parse is unreachable", "mark": "stop" },
+            { "t": "Exhibit 6: plugin is MVP-0's channel", "mark": "warn" },
+            { "t": "Exhibit 19: 'plugin shipped', weeks 1–2", "mark": "warn" },
+            { "t": "§17: one of seven retention levers", "mark": "warn" },
+            { "t": "§19 diagram and Exhibit 26 both carry it", "mark": "warn" },
+            { "t": "Stop branch: 'free plugin, services, engine'", "mark": "stop" }
+          ]
+        },
+        "after": {
+          "title": "After seven edits",
+          "lines": [
+            { "t": "§12 unchanged: cut, with the finding", "mark": "good" },
+            { "t": "Exhibit 6 channel row: superpowers only", "mark": "good" },
+            { "t": "Exhibit 19 weeks 1–2: tests only", "mark": "good" },
+            { "t": "§17: six retention levers", "mark": "good" },
+            { "t": "§19 and Exhibit 26: no plugin, no extension", "mark": "good" },
+            { "t": "Stop branch: services and engine", "mark": "good" }
+          ]
+        },
+        "via": "seven edits",
+        "note": "Six places still name a channel §12 cut in round 2.",
+        "caption": "Where the cut landed, and where it did not."
+      },
+      "stakes": "A stop branch naming a deleted asset is only read on the day the news is bad.",
+      "state": [
+        "§12 marks the plugin CUT: the Live Preview tree is depth-1 by construction (`docs/PRODUCT-BRIEF.md:304`).",
+        "Exhibit 6 still lists it as MVP-0's channel with a 200-install kill line (`docs/PRODUCT-BRIEF.md:204`).",
+        "Exhibit 19 still says \"plugin shipped\" in weeks 1–2 (`docs/PRODUCT-BRIEF.md:352`), and §17 counts it as a retention lever (`docs/PRODUCT-BRIEF.md:428`).",
+        "The no-go branch reads \"Stop: free plugin, services, engine\" (`docs/PRODUCT-BRIEF.md:338`)."
+      ],
+      "path": [
+        "The cut came from round 2's G6 spike, which found the parse unreachable (`docs/GAPS-2026-09-08.md:127`).",
+        "§12 was rewritten with the finding; the six references downstream were not.",
+        "The Chrome extension was cut in the same round and still appears in the family diagram (`docs/PRODUCT-BRIEF.md:464`)."
+      ],
+      "tension": [
+        "The two plugins that do change nested behaviour write U+200C into user files, which a byte-exact product cannot ship.",
+        "The closest measured analogue landed 115 installs in fourteen days against the plan's own 200 kill line.",
+        "In Obsidian, agent-writing plugins total 2.04M cumulative downloads against 6,961 for the only review-shaped plugin.",
+        "§12 proposes an additive plugin in its own words, and it carries no day estimate and no kill number."
+      ],
+      "evidence": [
+        {
+          "type": "table",
+          "title": "Where the cut plugin still lives in the plan",
+          "cols": ["Section", "What it still says", "Status after the cut"],
+          "rows": [
+            ["§12 Exhibit 17", "CUT — parse unreachable, 115-install analogue", "the finding"],
+            ["§8 Exhibit 6, Channels row", "Free Obsidian plugin, week 2; kill under 200 installs", "stale"],
+            ["§14 Exhibit 19, weeks 1–2", "plugin shipped", "stale, and it is also building during 'build nothing'"],
+            ["§17 Exhibit 24, retention", "stays installed in a vault the user opens daily", "stale — one of seven retention levers"],
+            ["§19 family diagram", "Chrome extension · Obsidian plugin — reading and distribution", "stale twice: both channels are cut"],
+            ["§19 Exhibit 26", "Chrome extension, Obsidian plugin · Free; channels · MVP-1, week 2", "stale twice"],
+            ["§14 flow, no-go branch", "Stop: free plugin, services, engine", "stale — the fallback does not exist"]
+          ]
+        },
+        {
+          "type": "stat",
+          "title": "The measured basis for the cut",
+          "items": [
+            ["Obsidian Live Preview tree depth", "1, by construction", "verified twice, independently"],
+            ["Installs by the closest analogue in 14 days", "115", "against the plan's own 200 kill line"],
+            ["What the two nested-behaviour plugins write", "U+200C into user files", "incompatible with a byte-exact product"],
+            ["Obsidian live-preview changelog lines, 2025", "9 across 5 of 12 months", "refutes 'patched monthly'"]
+          ]
+        }
+      ],
+      "options": [
+        {
+          "k": "a",
+          "label": "Delete the plugin everywhere and rewrite the no-go branch as services and engine",
+          "what": "Seven edits remove the plugin from every exhibit, and the failure path names only what exists.",
+          "gains": ["The document stops contradicting itself", "The stop branch becomes narrower and true"],
+          "costs": ["Loses the only named week-2 retention lever", "§17 drops from seven levers to six"],
+          "system": "No code.",
+          "screens": "None.",
+          "money": "None."
+        },
+        {
+          "k": "b",
+          "label": "Ship the additive plugin §12 proposes: a CodeMirror layer over the sidecar",
+          "what": "Review state is painted over the sidecar's byte ranges, which needs no containment in the parse tree.",
+          "gains": ["Restores a channel on a mechanism that is reachable", "Reuses the sidecar already being built"],
+          "costs": ["No day estimate and no kill number exist for it", "The 200-install line would be quoted at a different artefact"],
+          "system": "A second rendering target for the sidecar.",
+          "screens": "A plugin surface inside Obsidian, unspecified.",
+          "money": "None; a free channel."
+        },
+        {
+          "k": "c",
+          "label": "Keep it as a retention lever only; drop it as a channel and from the stop branch",
+          "what": "The plugin stays in §17 and leaves every other exhibit.",
+          "gains": ["Fewer edits than a full delete", "Keeps the re-entry story"],
+          "costs": ["A lever nobody is scheduled to build is not a lever", "The contradiction survives in one place"],
+          "system": "No code.",
+          "screens": "None.",
+          "money": "None."
+        },
+        {
+          "k": "d",
+          "label": "Delete it; the `?src=` web-app parameter becomes the week-2 channel",
+          "what": "The plugin goes, and the web app gains a parameter that opens any raw markdown URL.",
+          "gains": ["Costs hours and needs no store listing", "`raw.githubusercontent.com` already sends the CORS header"],
+          "costs": ["It is a reading surface, not a fix anyone voted for", "Replaces a channel with a feature"],
+          "system": "One route parameter in the web app.",
+          "screens": "A read-only view opened from a URL.",
+          "money": "None."
+        }
+      ],
+      "rec": "a",
+      "recCase": [
+        "A failure path that names a deleted asset is the most dangerous stale line in the document.",
+        "Seven edits make the plan consistent and cost nothing (`docs/PRODUCT-BRIEF.md:204`, `docs/PRODUCT-BRIEF.md:338`).",
+        "The Obsidian shelf argues the same way: the review-shaped plugin sits at 6,961 downloads against 2.04M for agent writing.",
+        "Option b may not be reinstated as a channel until it carries a day estimate and its own kill number."
+      ],
+      "flip": "A one-day spike that prices the additive CodeMirror plugin and sets its kill number moves this to option b.",
+      "linked": ["PL10", "PL17"],
+      "sources": [
+        "docs/PRODUCT-BRIEF.md:204",
+        "docs/PRODUCT-BRIEF.md:304",
+        "docs/PRODUCT-BRIEF.md:338",
+        "docs/PRODUCT-BRIEF.md:352",
+        "docs/PRODUCT-BRIEF.md:428",
+        "docs/PRODUCT-BRIEF.md:464",
+        "docs/PRODUCT-BRIEF.md:477",
+        "docs/GAPS-2026-09-08.md:127",
+        "docs/GAPS-2026-09-08.md:134"
+      ]
+    },
+    {
+      "id": "PL10",
+      "cat": "Plan, scope & sequencing",
+      "sub": "Kill conditions",
+      "weight": "high",
+      "q": "Which kill set is live — the market conditions in the current plan, or the seven dated switches in the record, including the one tripped right now?",
+      "lede": "Not one condition in the current plan can ever fire on the founder.",
+      "visual": {
+        "kind": "compare",
+        "labelWidth": 180,
+        "cols": [
+          { "title": "§13's four", "tone": "neutral" },
+          { "title": "KS5 to KS7", "tone": "accent" }
+        ],
+        "rows": [
+          { "label": "Fires on", "cells": ["The market or the engine", "The founder's own capacity"] },
+          { "label": "Checked how", "cells": ["Interviews and corpus runs", "Two git commands, no judgment"] },
+          { "label": "Reading today", "cells": ["Not yet started", "KS5 at 396 to 0 over 14 days"] },
+          { "label": "Named action", "cells": ["Stop, or re-cut and retest", "Freeze writing 14 days; cancel the month"] },
+          { "label": "Attached to a live asset", "cells": ["One is attached to a cut plugin", "Yes"] }
+        ],
+        "note": "KS5 re-run here with the two commands the switch itself names.",
+        "caption": "Which kill set can fire on the person doing the work."
+      },
+      "stakes": "A kill switch nobody executes trains everyone to discount the rest of them.",
+      "state": [
+        "§13 carries four numeric conditions, all about the market or the engine (`docs/PRODUCT-BRIEF.md:321`, `docs/PRODUCT-BRIEF.md:327`).",
+        "A fifth, the plugin's 200-install line, sits in Exhibit 6 and is attached to a channel §12 has cut (`docs/PRODUCT-BRIEF.md:204`).",
+        "KS5 to KS7 each carry a date, a condition and a named action, and none was carried into the plan (`docs/FRONTMATTER-RECORD.md:14295`).",
+        "KS5 reads 396 documentation file-changes against zero in `src/` over the last fourteen days."
+      ],
+      "path": [
+        "The record's ninety-day plan wrote KS1 to KS7 on 2026-08-31.",
+        "The plan was rewritten and the three capacity switches were not carried across.",
+        "KS5 was already tripped on the day it was written, at 29.2 to 1, and has stayed tripped."
+      ],
+      "tension": [
+        "KS5's action is a fourteen-day writing freeze, which is roughly what the last fortnight produced in code anyway.",
+        "Starting the clock today would freeze the week-0 measurement and byte-path pages PL5 depends on.",
+        "CRITIQUE names initiation, not estimation, as this project's failure mode (`docs/CRITIQUE.md:793`).",
+        "KS1 assumes a priced test, so adopting the whole set forces PL7's hand."
+      ],
+      "evidence": [
+        {
+          "type": "bars",
+          "title": "KS5, measured on this repo 2026-09-08",
+          "note": "KS5 fires above 3:1 for two consecutive weeks. Re-run here with the two commands the switch itself names: git log --since='14 days ago' --name-only --pretty=format: -- docs, and the same for src.",
+          "data": [["docs/ file-changes, 14 days", 396], ["src/ file-changes, 14 days", 0], ["KS5 trip line", 3]],
+          "unit": "file changes",
+          "threshold": 3,
+          "thresholdLabel": "3:1 trip line"
+        },
+        {
+          "type": "table",
+          "title": "The two kill sets",
+          "cols": ["ID", "Condition", "Can it fire on the founder?"],
+          "rows": [
+            ["§13 row 1", "under 4 of 10 want review state", "No — fires on the market"],
+            ["§13 row 7", "patched corpus still refusing >10 of 7,969 by day 24", "No — fires on the engine"],
+            ["§8 Exhibit 6", "plugin under 200 installs in 14 days", "No — and the plugin is cut (PL8)"],
+            ["KS5", "docs:src file-changes >3:1 for two weeks → freeze writing 14 days", "Yes — reading 396:0 today"],
+            ["KS6", "logged product hours under 300 of 430 budgeted → drop client work or drop the product", "Yes"],
+            ["KS7", "a client month demands >60 client hours → the product month is cancelled in writing", "Yes"]
+          ]
+        }
+      ],
+      "options": [
+        {
+          "k": "a",
+          "label": "Keep §13's conditions and treat the record's seven as superseded",
+          "what": "The plan's four market conditions stand alone and the record's switches lapse.",
+          "gains": ["Simplest, and no new bookkeeping", "No risk of a freeze at a bad moment"],
+          "costs": ["Nothing can fire on the founder", "One condition is attached to a channel that no longer exists"],
+          "system": "None.",
+          "screens": "None.",
+          "money": "None."
+        },
+        {
+          "k": "b",
+          "label": "Adopt KS5, KS6 and KS7 alongside §13's four, KS5's clock from a named Monday",
+          "what": "Three capacity switches join the plan, and KS5's two-week clock starts once the week-0 pages are written.",
+          "gains": ["The only conditions that can fire on the person doing the work", "KS5 is checkable with two commands"],
+          "costs": ["A fourteen-day writing freeze at a moment nobody chooses", "The start date must be named or it will drift"],
+          "system": "None; a weekly check.",
+          "screens": "None.",
+          "money": "KS7 cancels a product month when client hours pass sixty."
+        },
+        {
+          "k": "c",
+          "label": "Adopt the whole KS1 to KS7 set with new dates",
+          "what": "All seven switches return, including the paid and distribution gates.",
+          "gains": ["A complete set with dates and actions", "Forces the commercial gates back into the quarter"],
+          "costs": ["KS1 assumes a priced test PL7 has not chosen", "Every date needs re-deriving against PL2"],
+          "system": "None.",
+          "screens": "None.",
+          "money": "Ties the plan to a paid gate."
+        },
+        {
+          "k": "d",
+          "label": "Keep §13's four and replace the cut plugin line with a live channel condition",
+          "what": "Only the dead plugin row is replaced, with a condition on a channel that exists.",
+          "gains": ["Fixes the one row attached to nothing", "A minimal edit"],
+          "costs": ["Still nothing measures the founder against the plan", "Leaves the capacity failure mode unwatched"],
+          "system": "None.",
+          "screens": "None.",
+          "money": "None."
+        }
+      ],
+      "rec": "b",
+      "recCase": [
+        "§13's conditions all fire on the market; the three capacity switches are the only ones that fire on the founder.",
+        "KS5 is checkable with two commands and no judgment, and it is reading its most extreme possible value.",
+        "Starting the clock after the week-0 pages avoids freezing the work PL5 and the byte path depend on.",
+        "The record's own note says KS5 matters most and will be rationalised away (`docs/FRONTMATTER-RECORD.md:14299`)."
+      ],
+      "flip": "If the founders decide the two-week tests are themselves the work, KS5's window must exclude that fortnight in writing, with an end date.",
+      "linked": ["PL2", "PL3", "PL18"],
+      "sources": [
+        "docs/PRODUCT-BRIEF.md:204",
+        "docs/PRODUCT-BRIEF.md:321",
+        "docs/PRODUCT-BRIEF.md:327",
+        "docs/PRODUCT-BRIEF.md:328",
+        "docs/PRODUCT-BRIEF.md:329",
+        "docs/FRONTMATTER-RECORD.md:14295",
+        "docs/FRONTMATTER-RECORD.md:14296",
+        "docs/FRONTMATTER-RECORD.md:14297",
+        "docs/FRONTMATTER-RECORD.md:14299",
+        "docs/CRITIQUE.md:793"
+      ]
+    },
+    {
+      "id": "PL11",
+      "cat": "Plan, scope & sequencing",
+      "sub": "Fork tax",
+      "weight": "critical",
+      "q": "The editor shell is the sibling product's, byte for byte. Do we merge, vendor or fork and own, and what is the day number for table stakes?",
+      "lede": "The sequence ends in a line with no estimate, and that line is where the whole cost of owning a forked editor lives.",
+      "visual": {
+        "kind": "arch",
+        "layers": [
+          { "label": "Splice engine", "items": ["13 files, 3,614 lines", "Unique to this repo"], "side": "ours", "tone": "accent" },
+          { "label": "Editor and app-shell", "items": ["41 of 43 byte-identical to sgnk-md", "0 files unique to frontmatter"], "side": "inherited", "tone": "sunk" },
+          { "label": "Auth and client container", "items": ["5 Firebase files, 1 container", "1 legacy splicer"], "side": "ours", "tone": "warn" },
+          { "label": "Table stakes and polish", "items": ["No day estimate anywhere in the plan"], "side": "unbudgeted", "tone": "stop" }
+        ],
+        "note": "Measured by cmp, file by file, against the sibling clone on 2026-09-08.",
+        "caption": "What this repo owns, and what it inherits."
+      },
+      "stakes": "Every table-stakes day is a fork tax or an upstream merge, and no exhibit carries the number.",
+      "state": [
+        "§9 row 0 says the shell is a fork and its Days cell reads \"Decision: merge, vendor, or fork-and-own\" (`docs/PRODUCT-BRIEF.md:223`).",
+        "The sequence ends at table stakes and polish with no number, inside a total of about 70 days (`docs/PRODUCT-BRIEF.md:227`).",
+        "41 of 43 files in `src/modules/editor` and `src/modules/app-shell` are byte-identical to the sibling, and none is unique here.",
+        "Across `src/`, 181 of 226 files are identical, 25 have diverged and 20 are unique, 13 of them the engine."
+      ],
+      "path": [
+        "Round 2 measured it and listed it among the five findings that change the most (`docs/GAPS-2026-09-08.md:141`).",
+        "It entered the fix-first table as row 0 with no cost, because the cost depends on the answer.",
+        "The family exhibit still calls the sibling merged, not sold separately, at 202 of 228 files (`docs/PRODUCT-BRIEF.md:479`)."
+      ],
+      "tension": [
+        "Beyond the engine this repo owns seven files: five Firebase auth, one client container, one legacy splicer.",
+        "Two files in the shared modules have already diverged, so a merge cost is being paid quietly.",
+        "If decision 6 sends the form factor to an extension, most of the 43 files stop being needed (`docs/PRODUCT-BRIEF.md:364`).",
+        "The seventy-day total cannot be quoted again until this line carries a number."
+      ],
+      "evidence": [
+        {
+          "type": "stat",
+          "title": "Independently re-measured against the sibling repo, 2026-09-08",
+          "note": "Measured with cmp -s file by file over .ts and .tsx sources against /Users/sagnikmitra/Desktop/GitHub/md. The plan's separate '202 of 228' figure counts all file types and is not the same denominator.",
+          "items": [
+            ["editor + app-shell files byte-identical to md", "41 of 43", "cmp -s, file by file"],
+            ["Diverged in those two modules", "2", "already paying a merge cost"],
+            ["Unique to frontmatter in those two modules", "0", "nothing here is ours"],
+            ["All src/ .ts and .tsx: identical / diverged / unique", "181 / 25 / 20", "of 226 files"],
+            ["Of the 20 unique files, the engine", "13", "src/modules/mdmax, 3,614 lines"],
+            ["Non-engine files this repo owns alone", "7", "5 Firebase auth, 1 client container, 1 legacy splicer"],
+            ["Days budgeted for 'table stakes and polish'", "none stated", "§9 sequence line"]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "The three answers and what each costs",
+          "cols": ["Answer", "Divergence cost", "What it forecloses"],
+          "rows": [
+            ["Merge — one repo, frontmatter as a mode", "goes to zero", "the two products stop being separable, ever"],
+            ["Vendor — pin the shell as a versioned internal package", "a version bump per upstream fix", "nothing; survives either answer to decision 6"],
+            ["Fork and own — declare the 25 diverged files the start", "full table-stakes budget, unestimated", "nothing, but the number must be written first"],
+            ["Drop the shell — if decision 6 goes to an extension", "most of the 43 files stop being needed", "the free-editor distribution story and the Obsidian audience"]
+          ]
+        }
+      ],
+      "options": [
+        {
+          "k": "a",
+          "label": "Merge: one repo, frontmatter is a mode of the sibling",
+          "what": "The two products share one codebase and one release.",
+          "gains": ["Divergence cost goes to zero immediately", "One shell to keep at table stakes"],
+          "costs": ["The two products can never ship on different schedules", "One buyer's needs start bending the other's"],
+          "system": "One repo, one build, two entry points.",
+          "screens": "The sibling's screens become ours.",
+          "money": "Cheapest to maintain and hardest to sell separately."
+        },
+        {
+          "k": "b",
+          "label": "Vendor: pin the shell as a versioned internal package",
+          "what": "The shared editor and app-shell become a pinned dependency, and upstream fixes are taken deliberately.",
+          "gains": ["The tax becomes a version bump with a changelog", "Survives either answer to decision 6"],
+          "costs": ["Setup cost and a periodic merge decision", "Does not by itself produce the missing day estimate"],
+          "system": "A package boundary between the shell and this app.",
+          "screens": "No change.",
+          "money": "None directly."
+        },
+        {
+          "k": "c",
+          "label": "Fork and own: budget the table-stakes days explicitly",
+          "what": "The 25 diverged files become the starting point and the polish line gets a real number.",
+          "gains": ["Honest, and the total becomes quotable again", "Full freedom over the shell"],
+          "costs": ["The most expensive of the three answers", "The number must be written before §9 can be quoted"],
+          "system": "No shared dependency; every upstream fix is manual.",
+          "screens": "No change.",
+          "money": "An unestimated block of engineering days."
+        },
+        {
+          "k": "d",
+          "label": "Defer until decision 6",
+          "what": "Nothing is decided about the shell until the form factor is.",
+          "gains": ["Avoids paying for a shell that may be abandoned", "No work now"],
+          "costs": ["The seventy-day total stays unquotable", "Divergence keeps growing while it waits"],
+          "system": "None.",
+          "screens": "None.",
+          "money": "None."
+        }
+      ],
+      "rec": "b",
+      "recCase": [
+        "Vendoring makes the cost visible without committing to pay it twice.",
+        "It turns an unbudgeted polish line into a version bump somebody can audit.",
+        "It survives decision 6 in both directions, because a vendored shell is still there if the extension wins.",
+        "It does not remove the need for the day number, which must be written into §9 either way."
+      ],
+      "flip": "If decision 6 abandons the standalone editor outright, option d is right and the 43 files are archived rather than maintained.",
+      "linked": ["PL2", "PL12"],
+      "sources": [
+        "docs/PRODUCT-BRIEF.md:223",
+        "docs/PRODUCT-BRIEF.md:227",
+        "docs/PRODUCT-BRIEF.md:364",
+        "docs/PRODUCT-BRIEF.md:479",
+        "docs/GAPS-2026-09-08.md:141",
+        "src/modules/editor",
+        "src/modules/app-shell",
+        "src/modules/mdmax"
+      ]
+    },
+    {
+      "id": "PL12",
+      "cat": "Plan, scope & sequencing",
+      "sub": "First run",
+      "weight": "high",
+      "q": "MVP-0 says there is no sign-up. The app shows a login screen before it shows a file. Which one changes?",
+      "lede": "The only non-engine work this repo owns is the thing MVP-0 says must not exist.",
+      "visual": {
+        "kind": "flow",
+        "nodes": [
+          { "label": "User opens frontmatter", "note": "no actor, no file yet", "tone": "neutral" },
+          { "label": "LoginScreen", "note": "layout.tsx:12, before any file", "tone": "stop", "edge": "today" },
+          { "label": "Open a local folder", "note": "needs no identity at all", "tone": "accent", "edge": "proposed" },
+          { "label": "Drag files in", "note": "read-only session", "tone": "accent" },
+          { "label": "Connect a GitHub repo", "note": "needs the user's token", "tone": "warn" },
+          { "label": "Sign in", "note": "only on the repo path", "tone": "warn" }
+        ],
+        "perRow": 3,
+        "note": "Paths from Exhibit 2; the login gate from the shipped code.",
+        "caption": "What each first-run path physically needs."
+      },
+      "stakes": "Removing the gate deletes shipped work; keeping it breaks the thirty-second first run the retention argument rests on.",
+      "state": [
+        "Exhibit 6 lists sign-up in MVP-0's Absent row (`docs/PRODUCT-BRIEF.md:205`).",
+        "§17 makes the first session open a folder and edit in thirty seconds, no account (`docs/PRODUCT-BRIEF.md:429`).",
+        "The vault layout returns a login screen whenever there is no signed-in actor (`src/app/(vault)/layout.tsx:12`).",
+        "`firestore.rules` is 419 committed lines with `allow delete: if false` and 900,000-byte note bodies (`firestore.rules:221`)."
+      ],
+      "path": [
+        "The Firebase auth stack predates the no-account position.",
+        "It is five of the seven non-engine files this repo owns that the sibling does not.",
+        "Decision 7 asks whether that design ships at all, and it is unbuilt today (`docs/PRODUCT-BRIEF.md:365`)."
+      ],
+      "tension": [
+        "A local folder needs no identity; a GitHub repo needs a token. The gate matches neither.",
+        "Zero Firestore document writes exist across 226 source files, so the design is paper today.",
+        "Round 2 found three committed files contradicting each other on whether we hold documents (`docs/GAPS-2026-09-08.md:142`).",
+        "No operating rule can be written until one of the three is deleted."
+      ],
+      "evidence": [
+        {
+          "type": "stat",
+          "title": "Verified in the code, 2026-09-08",
+          "items": [
+            ["Vault layout without an actor", "returns <LoginScreen />", "src/app/(vault)/layout.tsx:12-13"],
+            ["Non-engine files unique to this repo", "7", "5 are the Firebase auth stack"],
+            ["firestore.rules", "419 lines, committed", "note bodies bounded at 900,000 bytes"],
+            ["Revision history in those rules", "allow delete: if false", "append-only, with public content snapshots"],
+            ["Firestore document writes across 226 source files", "0", "the only Firestore code is an unused accessor"],
+            ["What Exhibit 6 says MVP-0 has", "no sign-up", "and §17 says no account"]
+          ]
+        }
+      ],
+      "options": [
+        {
+          "k": "a",
+          "label": "Remove the gate for MVP-0 and keep the auth code behind a flag",
+          "what": "The login screen stops being the first thing anyone sees, and the code stays in the tree.",
+          "gains": ["Restores the thirty-second first run", "Nothing is deleted"],
+          "costs": ["Shelves the only non-engine work this repo owns", "Leaves decision 7 answered on paper only"],
+          "system": "A flag around the vault layout.",
+          "screens": "The S0 launcher becomes the first screen.",
+          "money": "None."
+        },
+        {
+          "k": "b",
+          "label": "Keep sign-in and change §8 and §17 to admit an account is required",
+          "what": "The plan matches the code and the free tier begins with an account.",
+          "gains": ["Honest about what ships today", "No code to change"],
+          "costs": ["Loses the no-account first run retention depends on", "Asking before value is the category's known failure"],
+          "system": "None.",
+          "screens": "LoginScreen stays first.",
+          "money": "None."
+        },
+        {
+          "k": "c",
+          "label": "Optional: local folder and drag-in with no account; a repo requires one",
+          "what": "Identity is asked for only on the path that physically needs a token.",
+          "gains": ["Matches what each path actually needs", "Preserves the thirty-second first run"],
+          "costs": ["Two first-run paths to design, test and document", "The auth stack stays half-used until decision 7"],
+          "system": "The vault layout branches on the storage adapter, not on the actor.",
+          "screens": "S0 gains a no-account path; sign-in moves into the repo connect flow.",
+          "money": "None."
+        },
+        {
+          "k": "d",
+          "label": "Defer until decision 7 says whether the Firebase design ships",
+          "what": "Nothing changes until the document-holding question is answered.",
+          "gains": ["Avoids deleting work that may be needed", "One decision instead of two"],
+          "costs": ["MVP-0's first screen stays undecided as the pilot nears", "Every legal rule waits on it too"],
+          "system": "None.",
+          "screens": "None.",
+          "money": "None."
+        }
+      ],
+      "rec": "c",
+      "recCase": [
+        "It is the only answer that matches physics rather than preference.",
+        "It preserves the first run §17's whole retention argument rests on (`docs/PRODUCT-BRIEF.md:429`).",
+        "It deletes no auth work, which decision 7 may still want.",
+        "It can be built without waiting for decision 7, because it branches on storage rather than identity."
+      ],
+      "flip": "If decision 7 removes Firebase entirely, option a is right and the login screen goes with it.",
+      "linked": ["PL11"],
+      "sources": [
+        "docs/PRODUCT-BRIEF.md:205",
+        "docs/PRODUCT-BRIEF.md:365",
+        "docs/PRODUCT-BRIEF.md:429",
+        "docs/GAPS-2026-09-08.md:142",
+        "src/app/(vault)/layout.tsx:12",
+        "firestore.rules:221",
+        "firestore.rules:318",
+        "firestore.rules:361"
+      ]
+    },
+    {
+      "id": "PL14",
+      "cat": "Plan, scope & sequencing",
+      "sub": "Cheaper test",
+      "weight": "critical",
+      "q": "Before the build, do we spend one week shipping the engine as a free package and MCP server with a pre-registered install kill number?",
+      "lede": "The record's own recommended experiment costs one week against a 58-week build, and it appears nowhere in the plan.",
+      "visual": {
+        "kind": "timeline",
+        "items": [
+          { "when": "2026-07-27", "label": "human-review created, free and MIT", "note": "1,241 stars in six weeks", "tone": "warn" },
+          { "when": "This month", "label": "Engine ships MIT: npm, MCP, plugin", "note": "one week, no gatekeeper", "tone": "accent" },
+          { "when": "Day 30", "label": "Install kill number reads", "note": "under 100 installs stops it", "tone": "accent" },
+          { "when": "Week 12", "label": "Twelve weeks buys 14.5 days", "note": "still no pilot", "tone": "neutral" },
+          { "when": "Week 58", "label": "MVP-0 at the measured rate", "note": "the first install count on the other path", "tone": "stop" }
+        ],
+        "note": "Star count from the research briefing, opened; week figures from §9.",
+        "caption": "When each route returns its first real number."
+      },
+      "stakes": "Twelve weeks of build could be spent before anyone learns whether the mechanism is wanted at any price.",
+      "state": [
+        "The plan contains no MIT line and no open-source line; `npm` appears once, as a download count arguing against Djot (`docs/PRODUCT-BRIEF.md:486`).",
+        "The engine is 13 files and 3,614 lines, and is the only part of `src/` that exists nowhere else.",
+        "One engine symbol reaches product code today, imported in two files.",
+        "The record recommended shipping it as an MCP server, plugin and npm package under MIT, in a week (`docs/FRONTMATTER-RECORD.md:12346`)."
+      ],
+      "path": [
+        "The record priced the same distribution `dealfluence/adeu` used for .docx, MIT, 149 stars (`docs/FRONTMATTER-RECORD.md:12216`).",
+        "Its asset audit rates the engine a library, not a moat (`docs/FRONTMATTER-RECORD.md:12307`).",
+        "Two of three channels were cut in round 2, leaving one that needs a maintainer's consent (`docs/GAPS-2026-09-08.md:58`)."
+      ],
+      "tension": [
+        "Every test in the fortnight measures what people say about a mock; none measures whether anyone installs anything.",
+        "Free work is where the motion is: human-review reached 1,241 stars in six weeks from a 2026-07-27 start.",
+        "501 repos match \"agent diff review\" created since 2026-05-01, so the shelf is filling without us.",
+        "One week of building lands in a fortnight PL7 already shows is over-subscribed."
+      ],
+      "evidence": [
+        {
+          "type": "table",
+          "title": "Two ways to find out, priced",
+          "cols": ["", "Twelve-week build", "One-week MIT release"],
+          "rows": [
+            ["Cost", "about 70 engineering days", "about 1 week"],
+            ["Elapsed at the measured 1.21 days/week", "58 weeks", "1 week"],
+            ["What it can falsify", "whether ten strangers keep an editor", "whether anyone installs the mechanism at all"],
+            ["Kill number", "6 of 10 keep it", "under 100 installs in 30 days"],
+            ["Channel needed", "superpowers maintainer's consent, not requested", "npm, MCP registry, plugin manifest — no gatekeeper"],
+            ["Also answers", "nothing else", "which substrate people ask for, and who installs"]
+          ]
+        },
+        {
+          "type": "stat",
+          "title": "What the engine is, measured",
+          "items": [
+            ["Engine files unique to this repo", "13 of 13", "absent from the sibling repo entirely"],
+            ["Engine size", "3,614 lines", "src/modules/mdmax"],
+            ["Engine symbols reaching product code today", "1", "decodeStrict, imported in 2 files"],
+            ["Same architecture, shipped MIT elsewhere", "dealfluence/adeu, 149 stars", "for .docx, 8 months earlier"],
+            ["Defensibility rating in the record's own audit", "No — a library, not a moat", "RECORD:12307"],
+            ["MIT or open-source mentions in the current plan", "0", "grep over docs/PRODUCT-BRIEF.md"]
+          ]
+        }
+      ],
+      "options": [
+        {
+          "k": "a",
+          "label": "No: giving the engine away removes the reason to buy",
+          "what": "The engine stays private and the only evidence route is the twelve-week build.",
+          "gains": ["Nothing is given away", "No week spent outside the plan"],
+          "costs": ["Protects an asset the project's own audit calls a library", "A competitor shipped the same architecture MIT already"],
+          "system": "None.",
+          "screens": "None.",
+          "money": "No install evidence at any point."
+        },
+        {
+          "k": "b",
+          "label": "Ship it MIT this month with the 100-install kill pre-registered",
+          "what": "The splice engine goes out as an npm package, an MCP server and a plugin, and the count is read at day 30.",
+          "gains": ["One week for the only install evidence available", "A failure saves twelve weeks of build"],
+          "costs": ["Adds a build week to an over-subscribed fortnight", "Gives away the one thing this repo owns alone"],
+          "system": "A package boundary, a published manifest and an MCP entry point.",
+          "screens": "None in the product.",
+          "money": "No revenue; the channel needs no gatekeeper."
+        },
+        {
+          "k": "c",
+          "label": "Ship it source-available rather than MIT",
+          "what": "The same distribution, without a fork right.",
+          "gains": ["Keeps the licence lever", "The same install counter"],
+          "costs": ["Loses most of the traction MIT buys in plugin registries", "A licence conversation before every install"],
+          "system": "The same as option b.",
+          "screens": "None.",
+          "money": "None."
+        },
+        {
+          "k": "d",
+          "label": "Ship only the MCP server, not the library",
+          "what": "The agent write path goes out and the library stays in.",
+          "gains": ["The smallest surface to publish", "Tests the write path directly"],
+          "costs": ["Install counts will be far smaller", "The 100 threshold has to be re-derived"],
+          "system": "An MCP entry point only.",
+          "screens": "None.",
+          "money": "None."
+        }
+      ],
+      "rec": "b",
+      "recCase": [
+        "One week against fifty-eight, and it is the only experiment here that returns installs rather than opinions.",
+        "The gap register names payment and installs as the evidence class still missing (`docs/GAPS-2026-09-08.md:146`).",
+        "The asset it risks is already rated a library, and was cloned MIT eight months ago.",
+        "A count on the free shelf is cheap to read and needs nobody's permission."
+      ],
+      "flip": "If decision 6 sends the form factor to a VS Code extension, the store listing is itself the install test and only one of the two should run.",
+      "linked": ["PL2", "PL7", "PL17"],
+      "sources": [
+        "docs/PRODUCT-BRIEF.md:305",
+        "docs/PRODUCT-BRIEF.md:486",
+        "docs/FRONTMATTER-RECORD.md:12216",
+        "docs/FRONTMATTER-RECORD.md:12307",
+        "docs/FRONTMATTER-RECORD.md:12346",
+        "docs/GAPS-2026-09-08.md:58",
+        "docs/GAPS-2026-09-08.md:146",
+        "src/modules/mdmax"
+      ]
+    },
+    {
+      "id": "PL15",
+      "cat": "Plan, scope & sequencing",
+      "sub": "MVP-1 contents",
+      "weight": "high",
+      "q": "Pro is priced on retention that no feature row builds. Does retention become a built feature before the price is published, or does the price wait?",
+      "lede": "The plan states the contradiction in its own words and quotes the price two lines above it.",
+      "visual": {
+        "kind": "state",
+        "states": [
+          { "label": "Priced, unbuilt", "meta": "$4–5, no F-row", "tone": "warn", "current": true },
+          { "label": "Asked", "meta": "20 team conversations", "via": "ask", "tone": "accent" },
+          { "label": "Gate named", "meta": "what teams are gated on", "via": "returns", "tone": "accent" },
+          { "label": "Priced on it", "meta": "an F-row with days", "via": "build", "tone": "good" }
+        ],
+        "note": "The order §11 prescribes in its own retention paragraph, and then skips.",
+        "caption": "The order the plan prescribes and then skips."
+      },
+      "stakes": "A published price with no feature behind it is the one claim a team can check in five minutes.",
+      "state": [
+        "§11 prices Pro at $4–5 per user per month on a retained splice journal and CI gates (`docs/PRODUCT-BRIEF.md:288`).",
+        "The Max row says in its own text that no feature row builds retention at all (`docs/PRODUCT-BRIEF.md:289`).",
+        "The sidecar is one JSON line per span with reviewed-by and reviewed-at, which is current state (`docs/PRODUCT-BRIEF.md:135`).",
+        "MVP-1's rows are F9, F10 and F11; none is retention and none carries a retention estimate (`docs/PRODUCT-BRIEF.md:200`)."
+      ],
+      "path": [
+        "Round 2 found the tiers inverted: Pro held what comparables give away (`docs/GAPS-2026-09-08.md:131`).",
+        "Enforcement was pulled forward into Pro, and retention came with it as a pitch rather than as work.",
+        "The plan calls the paid tier a hypothesis until twenty team conversations return (`docs/PRODUCT-BRIEF.md:292`)."
+      ],
+      "tension": [
+        "`mdmax cert` cannot start today, so the second thing Pro sells is also unbuilt (`docs/PRODUCT-BRIEF.md:224`).",
+        "GitHub Team sells the comparable at $4 (`docs/PRODUCT-BRIEF.md:441`).",
+        "The research briefing finds no observed middle rung: the field runs from Obsidian Sync at $48 a year to Mintlify at $450 a month.",
+        "Zero of the twenty team conversations have happened."
+      ],
+      "evidence": [
+        {
+          "type": "table",
+          "title": "What Pro sells against what is built",
+          "cols": ["Sold in §11", "Built in any F-row", "Where it actually lives"],
+          "rows": [
+            ["Retained splice journal, 90 days", "No", "no feature row; sidecar is current state (§4)"],
+            ["Review gates that block in CI", "No", "mdmax cert cannot start today (fix-first row 10)"],
+            ["Shared review state", "F10, MVP-1, 10 days", "included, not the gate"],
+            ["Comments", "F10, MVP-1", "included"],
+            ["MCP server", "F11, MVP-1, 6 days", "included"]
+          ]
+        },
+        {
+          "type": "stat",
+          "title": "The price and what stands behind it",
+          "items": [
+            ["Pro price", "$4–5 per user per month", "§11 Exhibit 16"],
+            ["What GitHub Team charges for the comparable", "$4", "sells reviewers and code owners, §18 Exhibit 25"],
+            ["Teams interviewed on seats and gating", "0 of 20", "weeks 1–2, not started"],
+            ["Plan's own status for the tier", "a hypothesis", "§11 retention paragraph"],
+            ["Retention days estimated anywhere", "none", "no F-row exists"]
+          ]
+        }
+      ],
+      "options": [
+        {
+          "k": "a",
+          "label": "Add a retention F-row to MVP-1 with a day estimate before the price is published",
+          "what": "History gets designed on a sidecar that has none, and the price gets something behind it.",
+          "gains": ["Makes the published price honest", "Forces the number into §9"],
+          "costs": ["Lengthens MVP-1 by an unknown amount", "Builds against a guess about what teams pay for"],
+          "system": "The sidecar gains history, which it is not designed for.",
+          "screens": "A history view that does not exist yet.",
+          "money": "Engineering days before any revenue."
+        },
+        {
+          "k": "b",
+          "label": "Price Pro on shared review state and enforcement only",
+          "what": "The retained journal leaves the pitch and Pro sells what MVP-1 actually builds.",
+          "gains": ["Ships what exists", "A shorter pitch with fewer claims"],
+          "costs": ["Leaves Pro selling what GitHub Team bundles at the same $4", "The refutation round 2 already made"],
+          "system": "None.",
+          "screens": "None.",
+          "money": "A weaker tier at the same price."
+        },
+        {
+          "k": "c",
+          "label": "Move retention back to Max and find a different Pro gate",
+          "what": "The exhibit conflict resolves in the other direction and Pro needs a new answer.",
+          "gains": ["Resolves the conflict between two exhibits", "Keeps retention as a real Max feature"],
+          "costs": ["Pro is thin again", "No candidate gate is named"],
+          "system": "None.",
+          "screens": "None.",
+          "money": "None."
+        },
+        {
+          "k": "d",
+          "label": "Do not price Pro until the team conversations return what teams are gated on",
+          "what": "The pricing page stays blank until twenty conversations say what a team will pay to unblock.",
+          "gains": ["Costs nothing and orders the work correctly", "Tells you which of a, b or c to do"],
+          "costs": ["No revenue line for weeks, longer if the conversations run over four", "A blank page invites a guess later"],
+          "system": "None.",
+          "screens": "The pricing page ships without a Pro figure.",
+          "money": "No revenue line in the meantime."
+        }
+      ],
+      "rec": "d",
+      "recCase": [
+        "The plan already says the tier is a hypothesis until those conversations happen (`docs/PRODUCT-BRIEF.md:292`).",
+        "Options a and c spend engineering days against a guess about a buyer nobody has met.",
+        "The briefing found no observed middle rung, so the conversations must test the indie and the platform prices, not $4–5.",
+        "Asking first costs nothing and decides the other three options."
+      ],
+      "flip": "If the conversations name retention as the gate, option a is right, with the day number written into §9 before the price appears anywhere.",
+      "linked": ["PL7", "PL17"],
+      "sources": [
+        "docs/PRODUCT-BRIEF.md:135",
+        "docs/PRODUCT-BRIEF.md:200",
+        "docs/PRODUCT-BRIEF.md:224",
+        "docs/PRODUCT-BRIEF.md:288",
+        "docs/PRODUCT-BRIEF.md:289",
+        "docs/PRODUCT-BRIEF.md:292",
+        "docs/PRODUCT-BRIEF.md:441",
+        "docs/GAPS-2026-09-08.md:54",
+        "docs/GAPS-2026-09-08.md:131"
+      ]
+    },
+    {
+      "id": "PL16",
+      "cat": "Plan, scope & sequencing",
+      "sub": "Export",
+      "weight": "medium",
+      "q": "Export is built and has never been run. Does F13 stay an MVP-0 row, and what happens if only half of it works?",
+      "lede": "The row promises offline export through a server-side binary, and nobody has pressed the button.",
+      "visual": {
+        "kind": "flow",
+        "nodes": [
+          { "label": "Press the button", "note": "one hour, week 0", "tone": "accent" },
+          { "label": "Client half: HTML, Word, md", "note": "646 lines across 5 files", "tone": "neutral" },
+          { "label": "Server half: the PDF route", "note": "needs a Linux chromium binary", "tone": "warn" },
+          { "label": "Both work", "note": "row stands, offline claim holds", "tone": "good", "edge": "then" },
+          { "label": "Only the client half", "note": "ship it, correct the offline claim", "tone": "accent", "edge": "then" },
+          { "label": "Nothing runs", "note": "F13 leaves MVP-0", "tone": "stop", "edge": "then" }
+        ],
+        "perRow": 3,
+        "note": "Line counts measured on this repo, 2026-09-08.",
+        "caption": "The three answers the hour can return, and what each triggers."
+      },
+      "stakes": "A row claiming offline export through a server binary is a claim a stranger can disprove in one click.",
+      "state": [
+        "F13 is marked MVP-0 at 0 days plus an hour to verify, and flags the chromium contradiction itself (`docs/PRODUCT-BRIEF.md:67`).",
+        "`src/modules/export` is 646 lines across 5 files, plus 229 lines in two API routes.",
+        "`ExportMenu` is mounted in the editor (`src/modules/editor/presentation/EditorPane.tsx:907`).",
+        "The gap register still lists whether the export code runs as open after two rounds (`docs/GAPS-2026-09-08.md:146`)."
+      ],
+      "path": [
+        "The code was inherited from the sibling in commit `0c1b427` and wired into the editor.",
+        "Round 2 found it already existed, so the plan added a verification row rather than a build row.",
+        "Folder-to-one-PDF, the only leg with counted demand, sits in MVP-1 at four days (`docs/PRODUCT-BRIEF.md:67`)."
+      ],
+      "tension": [
+        "The client half needs no network; the server half needs a Vercel Linux chromium binary.",
+        "Exhibit 2's offline column is wrong for PDF either way (`docs/PRODUCT-BRIEF.md:99`).",
+        "Export is not on the review-state path, so it competes with the loop for pilot attention.",
+        "Copy-as-HTML has zero occurrences in `src/` and is claimed nowhere as built."
+      ],
+      "evidence": [
+        {
+          "type": "stat",
+          "title": "What exists, measured 2026-09-08",
+          "items": [
+            ["src/modules/export", "646 lines, 5 files", "index, ExportMenu, export-doc, pdf-doc, print-css"],
+            ["API routes", "229 lines, 2 files", "api/export/pdf/[...path] 190, api/export/vault 39"],
+            ["Wired into the editor", "yes", "ExportMenu mounted at EditorPane.tsx:907"],
+            ["Total, measured here", "875 lines across 7 files", "the plan's own count is 945 across 8, including the wiring"],
+            ["Times run", "never", "gap register, still open after two rounds"],
+            ["Stated cost to verify", "0 days + 1 hour", "F13 row"]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Export demand, as the plan has it",
+          "cols": ["Claim", "Number"],
+          "rows": [
+            ["Export beats decks on VS Code installs", "4,107,590 vs 851,533 — 4.8:1"],
+            ["Folder-to-one-PDF, the only leg with demonstrated demand", "docusaurus#969, 79 reactions, open since 2018"],
+            ["Folder-to-one-PDF cost", "4 days, MVP-1"],
+            ["Copy-as-HTML", "0 occurrences in src/ — not built, confirmed here"]
+          ]
+        }
+      ],
+      "options": [
+        {
+          "k": "a",
+          "label": "Verify in week 0, record the result, decide later",
+          "what": "The hour is spent and the consequence is left open.",
+          "gains": ["Closes a two-round-old item cheaply", "No premature cut"],
+          "costs": ["Leaves the split answer undecided at the moment it arises", "The wrong claim stays in the plan meanwhile"],
+          "system": "None.",
+          "screens": "None.",
+          "money": "None."
+        },
+        {
+          "k": "b",
+          "label": "Move F13 out of MVP-0 now, before verifying",
+          "what": "Export leaves the pilot scope and the hour is spent later or never.",
+          "gains": ["One fewer row in MVP-0", "Export is not on the review-state path"],
+          "costs": ["Leaves working code nobody has checked in the build", "Drops a feature the plan still claims"],
+          "system": "None.",
+          "screens": "The export menu stays mounted but unclaimed.",
+          "money": "None."
+        },
+        {
+          "k": "c",
+          "label": "Verify, and pre-commit to client-side export if only the server half fails",
+          "what": "The branch is chosen before the answer arrives, so the correction lands in the same edit as the finding.",
+          "gains": ["Ships what works and fixes a false claim", "No third round with the same item open"],
+          "costs": ["Costs an edit to Exhibit 1 and Exhibit 2", "Commits to a branch before seeing the result"],
+          "system": "The server PDF route is disabled or marked online-only.",
+          "screens": "The export menu loses PDF in the desktop offline case.",
+          "money": "None."
+        },
+        {
+          "k": "d",
+          "label": "Leave it unverified and stop claiming it until someone asks",
+          "what": "The row leaves the plan and the code stays where it is.",
+          "gains": ["Honest about the evidence", "No work at all"],
+          "costs": ["Loses a shipped feature from the pitch for no reason", "The code rots unchecked"],
+          "system": "None.",
+          "screens": "None.",
+          "money": "None."
+        }
+      ],
+      "rec": "c",
+      "recCase": [
+        "The hour is a task; the decision is what the split answer triggers.",
+        "Pre-committing means the correction happens in the same edit as the finding, not in a third gap register.",
+        "Folder-to-one-PDF, the only export leg with counted demand, stays in MVP-1 at four days either way (`docs/PRODUCT-BRIEF.md:67`)."
+      ],
+      "flip": "If the verification shows nothing runs at all, option b is right and the row leaves MVP-0 with the estimate corrected.",
+      "linked": ["PL1"],
+      "sources": [
+        "docs/PRODUCT-BRIEF.md:67",
+        "docs/PRODUCT-BRIEF.md:99",
+        "docs/GAPS-2026-09-08.md:146",
+        "src/modules/export",
+        "src/app/api/export/pdf/[...path]/route.ts",
+        "src/modules/editor/presentation/EditorPane.tsx:907"
+      ]
+    },
+    {
+      "id": "PL17",
+      "cat": "Plan, scope & sequencing",
+      "sub": "Ninety days",
+      "weight": "high",
+      "q": "Does the quarter end with ten strangers using a pilot, or with a launch on a bar written in advance?",
+      "lede": "As written the quarter produces no distribution and no revenue event, and its one channel needs permission nobody has asked for.",
+      "visual": {
+        "kind": "timeline",
+        "items": [
+          { "when": "2026-08-12", "label": "Zed Delta launch: 679 HN points", "note": "the visible bar in this category now", "tone": "stop" },
+          { "when": "Week 2", "label": "superpowers README line", "note": "outbound; maintainer not approached", "tone": "warn" },
+          { "when": "Weeks 10–12", "label": "Polish; ten strangers", "note": "the quarter's only outcome", "tone": "neutral" },
+          { "when": "After the exit", "label": "Show HN, one shot", "note": "outside the quarter, per §12", "tone": "warn" },
+          { "when": "Record's week 12", "label": "Gate 3: 30 paid, or 50 for two", "note": "the ending the plan dropped", "tone": "accent" }
+        ],
+        "note": "HN points from the research briefing, opened; weeks from Exhibit 19 and the record.",
+        "caption": "What the quarter ends with, against what it used to."
+      },
+      "stakes": "Ninety days can end with the only thing it can be wrong about being whether ten people liked something.",
+      "state": [
+        "Exhibit 19 ends at weeks 10–12, polish and ten strangers (`docs/PRODUCT-BRIEF.md:357`).",
+        "§12 puts Show HN at MVP-0 exit, one shot, after six of ten (`docs/PRODUCT-BRIEF.md:309`).",
+        "The one scheduled channel is a README line in superpowers, week 2 (`docs/PRODUCT-BRIEF.md:305`).",
+        "No approach has been made and the answer may be no (`docs/GAPS-2026-09-08.md:58`)."
+      ],
+      "path": [
+        "An earlier ninety-day plan ended with a launch across five surfaces in week 10 (`docs/FRONTMATTER-RECORD.md:14217`).",
+        "Gate 3 was thirty paid purchases for one founder, or fifty for two (`docs/FRONTMATTER-RECORD.md:14226`).",
+        "Round 2 cut the Chrome extension and the Obsidian plugin, leaving one channel (`docs/GAPS-2026-09-08.md:134`)."
+      ],
+      "tension": [
+        "Show HN is one shot by the plan's own reckoning, and a pilot-grade build is a poor thing to spend it on.",
+        "A launch bar chosen after the pilot result is a bar chosen under relief.",
+        "Zed Delta cleared 679 HN points on launch, so the floor should be written against something real.",
+        "The quarter has no revenue event, so PL7's priced arm is the only commercial evidence available inside it."
+      ],
+      "evidence": [
+        {
+          "type": "table",
+          "title": "Two ninety-day endings",
+          "cols": ["Week", "Current plan (Exhibit 19)", "Record's 90-day plan"],
+          "rows": [
+            ["1–2", "four tests, build nothing", "landing pages, checkout wired, ten stranger sessions, rename probe"],
+            ["3", "go or no-go", "GATE 1: 12 paid pre-orders on 1,200 visitors, or stop"],
+            ["8–9", "revert, panel, answer in place, scan, engine wired", "GATE 2: plugin live and 25 installs in 14 days; first non-founder paid purchase"],
+            ["10–12", "polish; ten strangers; 6 of 10 by the week-0 measure", "launch across five surfaces; GATE 3 at 30 paid (one founder) or 50 (two)"],
+            ["End state", "a pilot result", "a launch, a price, and a number"]
+          ]
+        },
+        {
+          "type": "stat",
+          "title": "What the quarter currently commits to",
+          "items": [
+            ["Distribution events scheduled", "1", "superpowers README line, week 2"],
+            ["Maintainer approached about it", "no", "gap register D6"],
+            ["Channels cut in round 2", "2", "Obsidian plugin, Chrome extension"],
+            ["Revenue events scheduled", "0", "§14 Exhibit 19"],
+            ["Show HN, per §12", "after the exit test", "one shot, outside the quarter"],
+            ["Monthly nut", "about ₹1.09L", "covered by 54–78 consulting hours, §11"]
+          ]
+        }
+      ],
+      "options": [
+        {
+          "k": "a",
+          "label": "End at the pilot as written; launch is a separate quarter",
+          "what": "The quarter tests whether the product works, and nothing else.",
+          "gains": ["Focused, and it matches the build capacity", "No channel spent on an unfinished build"],
+          "costs": ["No distribution evidence in ninety days", "The one channel still depends on an unasked permission"],
+          "system": "None.",
+          "screens": "None.",
+          "money": "No revenue this quarter."
+        },
+        {
+          "k": "b",
+          "label": "Add a week 13: Show HN and one community post, with a stated floor",
+          "what": "The quarter ends with a public number instead of a private one.",
+          "gains": ["Puts a distribution number inside the quarter", "Forces a floor to be written in advance"],
+          "costs": ["Spends a one-shot channel on a pilot-grade build", "Adds a week to a schedule PL2 says cannot hold"],
+          "system": "None.",
+          "screens": "A public landing page.",
+          "money": "None."
+        },
+        {
+          "k": "c",
+          "label": "Add a payment event: the first paid team seat inside the ninety days",
+          "what": "The quarter cannot end without money changing hands.",
+          "gains": ["The strongest possible ending", "Forces the commercial question early"],
+          "costs": ["Billing, terms and a merchant path are outside MVP-0", "Largely redundant if PL7 puts a priced arm in week 2"],
+          "system": "Billing and entitlements, none of it in MVP-0's scope.",
+          "screens": "Checkout and account screens.",
+          "money": "Merchant fees and a compliance surface."
+        },
+        {
+          "k": "d",
+          "label": "End at the pilot; pre-register the launch date and floor, and ask the maintainer",
+          "what": "The ending stays the pilot, and the launch bar is written before anyone knows the result.",
+          "gains": ["Costs nothing and removes a bar chosen under relief", "Turns one uncertain channel into an answered question"],
+          "costs": ["No revenue evidence this quarter", "A pre-registered date can still slip with the schedule"],
+          "system": "None.",
+          "screens": "None.",
+          "money": "None."
+        }
+      ],
+      "rec": "d",
+      "recCase": [
+        "Show HN is one shot, and a bar written after the result is not a bar.",
+        "Asking the maintainer this week is the difference between one scheduled channel and none (`docs/GAPS-2026-09-08.md:58`).",
+        "Writing the date and the floor costs nothing and can be done in the same edit as the plan.",
+        "Zed Delta's 679 points give the floor something real to be written against."
+      ],
+      "flip": "If PL7 puts a priced arm in weeks 1–2, the quarter already carries commercial evidence and option c stops being necessary.",
+      "linked": ["PL7", "PL8", "PL14"],
+      "sources": [
+        "docs/PRODUCT-BRIEF.md:292",
+        "docs/PRODUCT-BRIEF.md:305",
+        "docs/PRODUCT-BRIEF.md:309",
+        "docs/PRODUCT-BRIEF.md:357",
+        "docs/FRONTMATTER-RECORD.md:14208",
+        "docs/FRONTMATTER-RECORD.md:14217",
+        "docs/FRONTMATTER-RECORD.md:14219",
+        "docs/FRONTMATTER-RECORD.md:14226",
+        "docs/GAPS-2026-09-08.md:58",
+        "docs/GAPS-2026-09-08.md:134"
+      ]
+    },
+    {
+      "id": "PL18",
+      "cat": "Plan, scope & sequencing",
+      "sub": "Capacity",
+      "weight": "critical",
+      "q": "Is this a one-person build or a two-person build, and which number do the estimates use?",
+      "lede": "Every density figure in the plan is a one-person rate that is not additive, and §23 still says two founders.",
+      "visual": {
+        "kind": "compare",
+        "labelWidth": 180,
+        "cols": [
+          { "title": "What the log says", "tone": "stop" },
+          { "title": "What the plan says", "tone": "warn" }
+        ],
+        "rows": [
+          { "label": "Commits, this repo", "cells": ["80 of 80, one author", "two founders funded by services"] },
+          { "label": "Commits, sibling repo", "cells": ["416 of 416, one author", "not mentioned"] },
+          { "label": "Engineering rate", "cells": ["1.21 days a calendar week", "twelve weeks to a pilot"] },
+          { "label": "Is the rate additive", "cells": ["No, stated in §9", "Assumed"] },
+          { "label": "Flagged since", "cells": ["2026-08-31, still open", "—"] }
+        ],
+        "note": "Commit counts and the flag date from §9; the strengths line from §23.",
+        "caption": "The contradiction §9 names and no exhibit resolves."
+      },
+      "stakes": "Every date, kill line and day estimate in this area is void until the headcount is settled.",
+      "state": [
+        "§9 states one person on the evidence: 80 of 80 commits here, 416 of 416 on the sibling (`docs/PRODUCT-BRIEF.md:231`).",
+        "The same paragraph says every density figure is a one-person rate and is not additive.",
+        "§23 still lists two founders funded by services among the strengths (`docs/PRODUCT-BRIEF.md:557`).",
+        "Round 2 lists one person or two among the founder decisions it produced (`docs/GAPS-2026-09-08.md:150`)."
+      ],
+      "path": [
+        "`BRIEF.md` flagged the contradiction on 2026-08-31 and it is still open (`docs/PRODUCT-BRIEF.md:231`).",
+        "The 41-day estimate was already found 1.6× to 3.2× optimistic on a one-person basis (`docs/CRITIQUE.md:791`).",
+        "Round 2's velocity measurement was taken from this repo's commits alone (`docs/GAPS-2026-09-08.md:130`)."
+      ],
+      "tension": [
+        "If there is a second person, 1.21 is obsolete and cannot simply be doubled.",
+        "If there is not, the client-hours cap and the monthly nut belong to one person's week (`docs/PRODUCT-BRIEF.md:329`).",
+        "KS6 measures logged product hours against a 430-hour budget that assumes a headcount (`docs/FRONTMATTER-RECORD.md:14296`).",
+        "Gate 3 carried two thresholds, thirty paid for one founder and fifty for two (`docs/FRONTMATTER-RECORD.md:14226`)."
+      ],
+      "evidence": [],
+      "options": [
+        {
+          "k": "a",
+          "label": "Record one person and re-cut every estimate, date and cap as a one-person rate",
+          "what": "The plan states one builder, and every number in it derives from that one commit record.",
+          "gains": ["Every figure in §9 becomes internally consistent", "The scope conversation happens against real capacity"],
+          "costs": ["The pilot moves well out of the quarter", "§23's strengths line has to be rewritten"],
+          "system": "No code.",
+          "screens": "None.",
+          "money": "One person's client hours must cover the nut alone."
+        },
+        {
+          "k": "b",
+          "label": "Name the second person and re-derive density from their own commit record",
+          "what": "The second founder is named with a surface they own, and a second rate is measured before any date is quoted.",
+          "gains": ["Turns an assumption into a measurement", "Splits the fix-first list across two owners"],
+          "costs": ["Needs a commit record that does not exist here yet", "Nothing can be published until it does"],
+          "system": "Two owners across the engine and the shell.",
+          "screens": "None.",
+          "money": "Two people's client hours, and two people's opportunity cost."
+        },
+        {
+          "k": "c",
+          "label": "Contract a second engineer for the fix-first list only, paid from consulting",
+          "what": "The 25.5-day fix-first list is bought rather than built, and the founder keeps the product work.",
+          "gains": ["Buys back the decision-independent 11.5 days", "A bounded scope with a clear finish"],
+          "costs": ["Contracting time is founder time too", "Onboarding a stranger to an unwired engine"],
+          "system": "The engine work is handed over, which needs the CI row first.",
+          "screens": "None.",
+          "money": "A direct cost against the monthly nut."
+        },
+        {
+          "k": "d",
+          "label": "Leave it as written: two founders in the prose, one author in the log",
+          "what": "Nothing changes and the contradiction stays open.",
+          "gains": ["No decision to make today", "No rewriting"],
+          "costs": ["Every date rests on an unresolved headcount", "The flag has been open since 2026-08-31"],
+          "system": "None.",
+          "screens": "None.",
+          "money": "None."
+        }
+      ],
+      "rec": "a",
+      "recCase": [
+        "The commit record is the only evidence either way, and it says one person twice over (`docs/PRODUCT-BRIEF.md:231`).",
+        "§9 already forbids adding the rates together, so a second person cannot be assumed into the schedule.",
+        "Recording one makes PL2's day-and-rate publication honest rather than optimistic.",
+        "It also fixes §23's strengths line, which contradicts §9 inside the same document."
+      ],
+      "flip": "A commit record for the second founder, in this repo or the sibling, moves this to option b, and the density must be re-derived from it.",
+      "linked": ["PL2", "PL3", "PL10"],
+      "sources": [
+        "docs/PRODUCT-BRIEF.md:227",
+        "docs/PRODUCT-BRIEF.md:231",
+        "docs/PRODUCT-BRIEF.md:329",
+        "docs/PRODUCT-BRIEF.md:557",
+        "docs/CRITIQUE.md:791",
+        "docs/GAPS-2026-09-08.md:130",
+        "docs/GAPS-2026-09-08.md:150",
+        "docs/FRONTMATTER-RECORD.md:14226",
+        "docs/FRONTMATTER-RECORD.md:14296"
+      ]
+    }
+  ]
+}

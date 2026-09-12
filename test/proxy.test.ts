@@ -75,3 +75,37 @@ describe("isPublicPath — the proxy auth gate", () => {
     expect(isPublicPath("/api/vault/snapshot")).toBe(false);
   });
 });
+
+/* Added 2026-09-09. public/decisions/ and public/prototype/ were committed as static
+   directories and every asset inside them 307'd to /login: PUBLIC_STATIC_RE matches a
+   single top-level segment with one of fourteen extensions, and a nested path with a
+   .css or .html suffix is neither. The existing suite tested only TOP-LEVEL assets, so
+   nothing caught it — which is the point of these cases. */
+describe("isPublicPath — nested static directories", () => {
+  it.each([
+    "/decisions",
+    "/decisions/",
+    "/decisions/index.html",
+    "/decisions/app.css",
+    "/decisions/app.js",
+    "/decisions/diagram.js",
+    "/decisions/questions.js",
+    "/decisions/fonts.css",
+    "/prototype",
+    "/prototype/index.html",
+  ])("serves %s without an auth redirect", (p) =>
+    expect(isPublicPath(p)).toBe(true),
+  );
+
+  it("does not make an arbitrary nested path public", () => {
+    expect(isPublicPath("/vault/secret.md")).toBe(false);
+    expect(isPublicPath("/decisionsomething/app.css")).toBe(false);
+  });
+});
+
+describe("reserved slugs cover the static directories", () => {
+  it.each(["/decisions", "/prototype"])(
+    "%s cannot be claimed as a published note slug",
+    (p) => expect(isPublicSlugPath(p)).toBe(false),
+  );
+});

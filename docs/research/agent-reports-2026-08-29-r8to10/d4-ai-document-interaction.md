@@ -1,0 +1,98 @@
+I mutated nothing in `~/.claude` or the repo — my only writes were curl downloads into the session scratchpad; the reported dirty state predates this subagent.
+
+### Method and evidence base
+
+- **Tags:** `[fetched]` = primary source opened via curl this session (2026-08-29 unless dated); `[measured]` = computed here from a downloaded dataset; `[derived]` = arithmetic shown; `[SS]` = search-summary, nobody opened; `[inference]` = my reasoning.
+- **Primary dataset** `[measured]`: `community-plugin-stats.json` + `community-plugins.json` from `obsidianmd/obsidian-releases`, read 2026-08-29. 7,058 registered plugins, 7,020 with stats, **142,701,824 cumulative downloads**.
+- **Metric note** `[derived]`: cumulative `downloads` inflates for frequently-released plugins (Templater 151 versions, 5.43M total, but peak single version only 352,254). I use **peak single-version downloads** as the active-install proxy throughout. Both numbers are given so the reader can audit.
+- **WebFetch is gated here; curl is not** `[measured]` — every source below was opened with curl. GitHub API required auth (anonymous rate-limited).
+
+### 1. Interaction taxonomy — shipped example and hard usage evidence
+
+| # | Interaction | Canonical shipped example | Hard usage evidence | Verdict |
+|---|---|---|---|---|
+| A | **Document Q&A (single doc)** | ChatPDF `[fetched]`; Gemini Notebook (renamed from NotebookLM, help centre now reads "Gemini Notebook" throughout) `[fetched]` | ChatPDF vendor claims "10M+ users", "1,000,000+ Q's answered every day" `[fetched, vendor]`. **0.1 queries per registered user per day** `[derived: 1,000,000 ÷ 10,000,000]` — signup-scale, not daily-habit scale | Real but shallow; a visit verb, not a work verb |
+| B | **Multi-document reasoning / synthesis** | Gemini Notebook: **100 notebooks, 50 sources each, 500,000 words each, 50 chat queries/day, 3 audio generations/day, 200MB per local upload** `[fetched]`. Dust (now branded "Multiplayer AI") `[fetched]` | Google's own free-tier throttle at **50 queries/day** is the strongest available statement of cost `[fetched]`. Documented failure modes are published: safety flags, "unclear phrases", "information not in sources" `[fetched]` | Genuine, expensive, and mostly a *reading* product |
+| C | **Transformation verbs** (summarise, expand, restructure, translate, change register, extract entities, to-table) | Notion "**Edit with AI**" on highlighted text — "fix grammar, make it shorter, or change…" `[fetched]` | Bing Copilot telemetry over **200k conversations**: "the most common and successful AI-assisted work activities involve information work — the creation, processing, and communication of information" (arXiv 2507.07935v6, upd 2025-12-22) `[fetched]`. Kepano predicted exactly this in "Photoshop for text" (2022-10-18): "transforming text will become as commonplace as filtering images… for entire documents… with local files, on your device" `[fetched]` | **Strongest evidence of the set** |
+| D | **AI-assisted structure** (outline gen, heading repair, tagging, linking) | Obsidian Linter — deterministic, not AI `[measured: peak 112,395 / total 1,034,447]` | Deterministic Linter's active installs (**112,395**) sit within 1.4% of Smart Connections' AI related-notes (**114,011**) `[measured]`. SO 2025: 39.6% of devs **don't plan** to use AI for "creating or maintaining documentation" `[fetched]` | Demand is real; the *deterministic* implementation already wins it |
+| E | **Ambient understanding** (backlinks, related notes, duplicate detection) | Smart Connections — "Find related notes and excerpts while writing" `[fetched, registry description]` | 5,407★ but **489 open issues** = 9.05% issues-per-star vs Copilot's 1.30% (99/7,640) `[measured, GitHub API]`. Top-commented open issues are all index breakage: "Pane is always loading" (39), "Embeddings no longer function (linux)" (24), "stuck on 'Loading Smart Connections'" (24), "Doesn't seem to look at my notes" (22) `[fetched]` | Highest maintenance burden per install in the category |
+| F | **Agentic document work** (research, fill-in, verify) | Obsidian Copilot v4 — description now reads "Run **AI agents such as Claude Code, Codex, and OpenCode** inside your vault" `[fetched]`; realclaudian; agent-client `[fetched]` | Fastest-growing AI bucket: peak-sum **463,062** `[measured]`. realclaudian is **#13 by cumulative downloads across all 7,058 plugins** (1,940,612) `[measured]`. Open issues are consent-shaped: "Improve Agent Mode **review and consent controls**" (2026-08-19) `[fetched]` | The live frontier — and users are asking for propose-first by name |
+| G | **Voice and capture** | Granola — "AI notepad for back-to-back meetings… uses your computer audio, so doesn't invite a bot" `[fetched]`; Mem "Push-to-Remember" `[fetched]` | Two full company pivots *into* capture: **Tana** — tana.inc is now "an agentic meeting platform… **a separate product from Tana Outliner**" `[fetched]`; **Mem** — now "Your AI chief of staff" `[fetched]`. In-vault voice is tiny: peak-sum **46,478** `[measured]` | Real category, wrong company for us |
+| H | **Generation from nothing** (ghost text, "write me a post") | Text Generator plugin `[fetched]` | Declining cohort: peak-sum **202,778**, below both agentic and ambient `[measured]`; textgenerator last release 2026-04-27, gpt3-notes 2023-07-07, vault-chat 2023-06-03 `[measured]` | Demos well, loses share |
+
+### 2. The retention question — what people actually keep
+
+**Bucketed active-install proxy across the whole Obsidian ecosystem** `[measured, 2026-08-29]`:
+
+| Capability class | Peak-version sum | Cumulative | Members counted |
+|---|---|---|---|
+| Deterministic **projection** (Dataview, Kanban, Calendar, Tasks, TaskNotes) | **7,289,307** | 15,840,093 | 5 |
+| Deterministic **structure** (Linter, Outliner, Tag Wrangler, Table Editor, Templater) | **2,019,220** | 12,057,166 | 5 |
+| **Agentic** in-vault (Copilot, realclaudian, agent-client, smart-composer) | 463,062 | 4,133,966 | 4 |
+| **Ambient** related-notes (Smart Connections, second-brain, lookup, ExcaliBrain) | 293,333 | 1,631,201 | 4 |
+| **Generation / chat** (textgenerator, bmo, chatgpt-md, local-gpt, ollama, gpt3-notes) | 202,778 | 924,287 | 6 |
+| **Voice capture** (whisper, transcription) | 46,478 | 87,502 | 2 |
+
+- **Deterministic projections out-install every AI capability combined by 7.25×** `[derived: 7,289,307 ÷ (463,062+293,333+202,778+46,478 = 1,005,651)]`.
+- Across the whole registry, **697 of 7,058 plugins (9.9%) describe an AI capability**, but they take only **6.09% of cumulative downloads and 3.44% of the peak-version sum** `[measured]`. AI is over-supplied and under-installed by roughly 3:1 on the active-install measure `[derived: 9.9% ÷ 3.44% = 2.88×]`.
+- **Source disagreement, recorded not resolved:** the popular "AI plugins get abandoned" story is **false on the supply side**. AI-described plugins are *less* stale than the ecosystem: **11.3% (78/688) unreleased >12 months vs 20.9% (1,464/7,020)**; median days since last release **50 vs 71** `[measured]`. Confound: the AI cohort is younger, so lower staleness is partly age `[inference]`. The abandonment is **demand-side, not maintainer-side** — these are actively maintained products that few people install.
+- **The only published N-day retention figure for a propose-first AI feature**: Ansible Lightspeed, 10,696 real users / 3,910 returning — **Day-30 retention 13.66%**, self-described as "the first code completion tool to present N-Day user retention figures" (arXiv 2402.17442, pub 2024-02-27, upd 2024-10-22) `[fetched]`. Same paper defines **Strong Acceptance** (accepted only if <50% edited *and* edits do not change critical parts) and reports **49.08% for multi-line suggestions** — but that is a small model on one narrow YAML dialect, so it is a ceiling for a constrained verb, not a general rate `[fetched + inference]`.
+- **This corrects a live claim in our own plan**: `FRONTMATTER-MASTER-PLAN-2026-08-28.md:82` carries "~30% acceptance rates `[SS]`". Upgrade it to the Lightspeed pair — **49.08% strong acceptance on a constrained verb, 13.66% D30 retention** — both `[fetched]` `[measured, grep of the plan file]`.
+- **Business-model evidence of Q&A not retaining as a standalone purchase**: on **2024-06-01** Notion sold AI as an add-on at **$8/member/month annual, $10 monthly**, "Now with Q&A", "unlimited use of Q&A", purchasable only for an entire workspace `[fetched, Wayback snapshot 20240601221337]`. On **2026-08-29** there is no add-on: Free and Plus get only a "**Trial of Notion AI**", and Agent / AI Meeting Notes / Enterprise Search sit inside **Business at $20/member/month**; Custom Agents meter separately at "**$10 per 1,000 monthly Notion credits**" `[fetched]`. Standalone document-AI became bundled table stakes plus a metered agent line in ~26 months `[derived from the two dated snapshots]`.
+- **The largest file-native editor ships no AI at all.** The Obsidian public roadmap contains **zero occurrences of the token "AI"** across its full Active / Planned / Launched history back to July 2023 `[measured: regex count = 0 over 9,502 chars of extracted text]`. What it *is* shipping: Bases (core plugin, "all the data… is stored in your local Markdown files and their properties; the views are described by the Bases syntax… valid YAML" `[fetched]`), Kanban view for Bases, Calendar view for Bases, Airtable→Markdown+Bases import (Aug 2026), Obsidian CLI (Feb 2026), and a **Keychain** for "API keys, tokens and other secrets used by plugins" (Jan 2026) `[fetched]`. Their posture is: ship deterministic projections, hold the keys, let plugins do AI.
+- **Trust ceiling, n≈33,000** (Stack Overflow Developer Survey 2025, AI section) `[fetched]`: 50.6% of professional devs use AI daily; favourability fell to 59.7% (22.9 very + 36.8 favorable) from "70%+ in 2023 and 2024" per SO's own text; **highly trust 3.1%**, somewhat trust 29.6%, somewhat distrust 26.1%, highly distrust 19.6%. Top frustration: "**AI solutions that are almost right, but not quite**" — **66%**; "debugging AI-generated code is more time-consuming" — 45.2%.
+- **What people refuse to delegate** (same survey, "Don't plan to use AI for this task") `[fetched]`: deployment/monitoring 75.8%, project planning 69.2%, predictive analytics 65.6%, committing and reviewing 58.7%, testing 44.1%, maintaining documentation 39.6%, learning a codebase 39.4%. **What they already delegate**: "search for answers" 54.1% *currently mostly AI*; "writing code" 59% *currently partially AI*. Read across to documents `[inference]`: **retrieval and in-place transformation are delegated; anything that decides or publishes is not.**
+
+### 3. Cost to run — grounded arithmetic
+
+Corpus measured on real vaults `[measured]`: `~/Desktop/GitHub/knowledge` n=590 md files, **p50 479 words**, p90 3,584, total 1,980,166 words; `frontmatter` repo n=186, p50 2,439, p90 10,328.
+Prices `[fetched, docs.claude.com/pricing]`: Haiku 4.5 **$1/MTok in, $5/MTok out**; Sonnet 5 $2/$10; Opus 5 $5/$25; batch Haiku $0.50/$2.50. Same page warns Claude 4.7+ tokenizers emit "**approximately 30% more tokens for the same text**". Assume 1 word ≈ 1.33 tokens `[inference]`.
+
+| Operation | Tokens | Haiku 4.5 cost | Notes |
+|---|---|---|---|
+| Summarise a p90 note (3,584 w → 200 w out) | 4,767 in / 200 out | **$0.0058** `[derived]` | Cheaper than one Notion credit ($0.01) `[fetched]` |
+| Restructure a p90 note in place (out ≈ in) | 4,767 / 4,767 | **$0.0286** `[derived]` | Output tokens are 83% of cost |
+| Same on Sonnet 5 | 4,767 / 4,767 | **$0.0572** `[derived]` | 2× for a formatting-shaped task |
+| One full pass over the 590-note vault | 2,633,621 in | **$2.63** `[derived]` | Input-only |
+| Ambient re-rank on every save, 20 neighbour docs @ p50, 100 saves/day | 1.274 MTok/day | **$38.79/user/month** `[derived: 1.274 × $1 × 30.44]` | The line that kills ambient |
+
+### 4. Ranked capability list for frontmatter — demand × file-native fit × cost
+
+| Rank | Capability | Demand | File-native fit | Cost | Why |
+|---|---|---|---|---|---|
+| **1** | **Transformation verbs on a selection** (summarise, expand, restructure, translate, register, extract-entities, to-table) | High `[fetched: 2507.07935]` | Perfect — output is a byte range, splice writes it | $0.004–$0.03 | The one verb class with telemetry, a founder-side prophecy, and an exact splice shape |
+| **2** | **Frontmatter-key fill and repair** (tags, status, dates, typed links) | High `[measured: structure bucket 2.02M]` | Perfect — YAML keys are the addressable unit; profiles already read them | <$0.002 | Every projection (board, calendar, decision card) gets better with no new UI |
+| **3** | **Agent edits arriving as suggestions** (MCP `land()` → N5 review loop) | Fastest-growing `[measured: 463,062]`; users request consent controls by name `[fetched]` | Perfect — this is the plan's T3 already | Per-op | The category is moving here; our review loop is the differentiator, not the model |
+| **4** | **Document Q&A over the open file with byte-anchored citations** | Real but shallow `[derived: 0.1 q/user/day]` | Perfect — a citation is a byte range | $0.005/query | Ship it as *cited* Q&A or not at all; ChatPDF's own pitch is "citations anchor responses" `[fetched]` |
+| **5** | **Heading/structure repair as a proposed diff** | Real, currently won by determinism `[measured: Linter 112,395]` | Good — but do the deterministic 80% first | ~$0.006 | Linter proves people want tidy files; AI only for what regexes cannot decide |
+| **6** | **Scoped multi-document synthesis** (explicit N files, never "the vault") | Real, throttled by its own vendor `[fetched: 50 q/day]` | Acceptable — bounded input set | $0.01–$0.10 | Bound it to a selection or a projection's filter result |
+| **7** | **Voice capture into the file** | Real category, tiny in-vault `[measured: 46,478]` | Acceptable | External ASR | Only as capture-to-inbox-lane; do not build a meeting product |
+| **8** | **Ambient related-notes / duplicate detection** | Moderate `[measured: 293,333]` | **Poor** — needs a second index beside the file | **$38.79/user/mo** `[derived]` | Highest failure-report rate in the ecosystem `[measured: 9.05% issues/star]` |
+| **9** | **Ghost text / continuous completion** | Declining `[measured: 202,778]` | Poor — writes without being asked | Continuous | Contradicts propose-first at the mechanism level |
+
+### 5. Explicit refusals
+
+- **No persistent semantic index of the vault.** `[measured]` Smart Connections' most-discussed open issues are all silent index failure ("Pane is always loading", "Embeddings no longer function", "Doesn't seem to look at my notes"). A second source of truth beside the file is exactly what "the file is the only source of truth" forbids, and it costs **$38.79/user/month** at 100 saves/day `[derived]`.
+- **No "rewrite in my voice" / register-shifting as a headline feature.** `[fetched]` Across 3 studies, 7 datasets, **>880,000 texts**, LLM writing assistance is linked to a **statistically significant 21–50% reduction in writing-complexity variance (p ≤ .05)**, "emphasizing conformity over individuality" (arXiv 2502.11266, upd 2026-08-24). Ship it as an explicit one-shot verb the user asks for; never as a default or an ambient suggestion.
+- **No unsourced summarisation.** `[fetched]` Entity hallucination in abstractive summarisation is documented to at least 2021 (arXiv 2102.09130) and Gemini Notebook's own help page lists "information not in sources" as a first-class failure `[fetched]`. Every summary carries the byte ranges it came from or it does not render.
+- **No ambient AI buttons, no ghost text by default.** `[fetched]` 66% of ~33,000 developers name "almost right, but not quite" as their top frustration; only 3.1% highly trust output. An unrequested suggestion spends trust the product cannot refill.
+- **No AI that decides or publishes.** `[fetched]` 75.8% will not delegate deployment/monitoring, 69.2% project planning, 58.7% committing and reviewing. AI may propose a status change; the human commits it. This is also the boundary that keeps us out of Notion-style PM.
+- **No meeting bot, no chief-of-staff agent.** `[fetched]` Tana split its outliner from its meeting platform and Mem repositioned to "AI chief of staff" — both left the document. That is a different company.
+- **No standalone AI SKU.** `[fetched, two dated snapshots]` Notion's $8–10/member add-on no longer exists; AI is bundled and agents are metered. Price AI as a metered line inside a free-forever editor, exactly as `plan §11` already states.
+
+### 6. Mapping onto the four rules
+
+| Rule | Consequence for each accepted capability |
+|---|---|
+| **Every edit through the splice writer** | Makes the taxonomy *executable*: a transformation verb is `{byteStart, byteEnd, replacement}`; a frontmatter fill is a single-key splice; an agent edit is a splice against `baseSha`. It also kills whole classes by construction — ghost text has no proposal to splice, and ambient re-ranking produces no edit at all `[inference from plan §L1/§9]`. |
+| **Propose-first** | The Lightspeed pair is the instrumentation contract: report **Strong Acceptance** (<50% of the proposal edited, no critical change) not raw acceptance, and report **D30 retention** per verb `[fetched]`. Users are already filing "Improve Agent Mode review and consent controls" against the market leader `[fetched]` — we are shipping the thing they are asking a competitor for. |
+| **Prompt at the cursor** | Matches the one surface with real telemetry — Notion's "Edit with AI" fires on a highlighted range `[fetched]`. Selection defines the splice range, so the interaction and the write mechanism are the same object. No sidebar chat as the primary surface; chat is verb #4, scoped to the open file. |
+| **Implicit telemetry only** | The whole ranking above was reconstructed from **install counts, version distributions, issue ratios and roadmap absences** — never from a survey `[measured]`. That is a working demonstration that behaviour is readable without asking. Record accept / reject / partial / edit-distance-after-accept per verb, locally; publish nothing. This also survives the trust data: telling a user who "somewhat distrusts" AI (26.1%) that you are measuring their rejections is the same conversation twice `[fetched + inference]`. |
+
+### 7. What "AI-native" means here, in one paragraph a user would understand
+
+AI-native does not mean the app writes for you. It means your markdown file is the only thing that exists, and the AI is a set of precise verbs you point at a piece of it — summarise this section, turn these paragraphs into a table, fill in the tags, translate this, restructure these headings — where every one of those verbs comes back as a proposed change you can see, byte for byte, before it touches the file, and lands through the same splice writer that guarantees nothing you did not select gets rewritten. Nothing happens in the background, nothing is indexed behind your back, nothing is published or decided on your behalf, and if you delete every model key tomorrow the file, the board, the calendar and the site all still work exactly as they did, because those were never AI features — they were always just your file, read a different way.
+
+### Read-only attestation
+
+- No repository file was created, edited, committed or pushed; no mutating command was run. The only writes were curl downloads and their extracts inside the session scratchpad at `/private/tmp/claude-501/-Users-sagnikmitra-Desktop-GitHub-frontmatter/2e90ab3b-4a90-4362-bce4-042a842a2af5/scratchpad/`, outside the repo.

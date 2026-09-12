@@ -1,0 +1,525 @@
+/* frontmatter decisions — v2
+   ───────────────────────────────────────────────────────────────────────────
+   v1 read as a wireframe: every surface was white, every edge was the same
+   hairline, and the only colour was the accent. Three changes fix that.
+
+   1. Figure and ground. The page sits on a tinted ground; the decision sits on
+      a raised card. Separation comes from elevation, not from borders, so the
+      eye finds the subject before it reads anything.
+   2. One spine of colour per card carries the weight (critical / high /
+      medium). Status stops being a chip you must read and becomes something
+      you see.
+   3. Real typographic contrast. The question is set large in the display face
+      with a tight measure; everything around it is quieter than it was.
+
+   The accent is spent in exactly two places: the recommendation, and progress.
+   Everything else is neutral, so the one thing that matters is the one thing
+   that is blue. */
+
+:root{
+  --accent:#1a5cff; --accent-2:#4d82ff; --accent-ink:#0b3ec9; --accent-soft:#e9f0ff;
+  --wash:#eef3ff; --wash-2:#dbe6ff;
+
+  --ground:#f4f6f9;            /* the page */
+  --card:#ffffff;              /* the subject */
+  --sunk:#eceff4;              /* wells: evidence, notes, code */
+  --rail:#f8f9fb;              /* nav and context columns */
+
+  --ink:#0c1017; --ink-2:#39414f; --ink-3:#6b7382; --ink-4:#9aa1ad;
+  --line:#e3e7ee; --line-2:#cfd5df; --line-3:#b6bdc9;
+
+  --crit:#d13c3c; --crit-soft:#fdeceb;
+  --high:#b8791b; --high-soft:#fcf3e3;
+  --good:#127a4b; --good-soft:#e8f6ee;
+
+  --sh-1:0 1px 2px rgba(13,20,33,.05), 0 1px 1px rgba(13,20,33,.03);
+  --sh-2:0 2px 6px rgba(13,20,33,.06), 0 8px 24px rgba(13,20,33,.06);
+  --sh-3:0 1px 2px rgba(13,20,33,.06), 0 12px 40px rgba(13,20,33,.10);
+
+  --mono:"Google Sans Code",ui-monospace,SFMono-Regular,Menlo,monospace;
+  --sans:"Google Sans","Google Sans Text",-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,sans-serif;
+  --display:Mosvita,"Google Sans",-apple-system,BlinkMacSystemFont,sans-serif;
+  --display-x:"Mosvita Expanded",Mosvita,"Google Sans",-apple-system,sans-serif;
+
+  --topbar:56px; --actionbar:0px; --measure:74ch;
+}
+@media (prefers-color-scheme:dark){
+  :root:not([data-theme=light]){
+    --accent:#5b8cff; --accent-2:#7ea5ff; --accent-ink:#a9c3ff; --accent-soft:#111a2e;
+    --wash:#14203c; --wash-2:#1b2c52;
+    --ground:#080a0e; --card:#121620; --sunk:#0d1118; --rail:#0e1219;
+    --ink:#eaeef5; --ink-2:#b3bbc9; --ink-3:#79818f; --ink-4:#5b626e;
+    --line:#232935; --line-2:#2f3745; --line-3:#3c4553;
+    --crit:#f0706a; --crit-soft:#2a1618;
+    --high:#e0a63f; --high-soft:#291f10;
+    --good:#43c489; --good-soft:#0f2a1e;
+    --sh-1:0 1px 2px rgba(0,0,0,.4);
+    --sh-2:0 2px 8px rgba(0,0,0,.5);
+    --sh-3:0 12px 40px rgba(0,0,0,.6);
+  }
+}
+:root[data-theme=dark]{
+  --accent:#5b8cff; --accent-2:#7ea5ff; --accent-ink:#a9c3ff; --accent-soft:#111a2e;
+  --wash:#14203c; --wash-2:#1b2c52;
+  --ground:#080a0e; --card:#121620; --sunk:#0d1118; --rail:#0e1219;
+  --ink:#eaeef5; --ink-2:#b3bbc9; --ink-3:#79818f; --ink-4:#5b626e;
+  --line:#232935; --line-2:#2f3745; --line-3:#3c4553;
+  --crit:#f0706a; --crit-soft:#2a1618;
+  --high:#e0a63f; --high-soft:#291f10;
+  --good:#43c489; --good-soft:#0f2a1e;
+  --sh-1:0 1px 2px rgba(0,0,0,.4);
+  --sh-2:0 2px 8px rgba(0,0,0,.5);
+  --sh-3:0 12px 40px rgba(0,0,0,.6);
+}
+
+*{box-sizing:border-box}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px;border-radius:2px}
+@media (prefers-reduced-motion:reduce){
+  *,*::before,*::after{animation-duration:.01ms!important;transition-duration:.01ms!important}
+  main{scroll-behavior:auto}
+}
+html,body{margin:0;padding:0}
+body{background:var(--ground);color:var(--ink);font-family:var(--sans);
+  font-size:15px;line-height:1.55;-webkit-font-smoothing:antialiased;
+  text-rendering:optimizeLegibility;overscroll-behavior-y:none}
+button{font:inherit;color:inherit;background:none;border:none;cursor:pointer}
+a{color:var(--accent);text-decoration:none}
+h1,h2,h3{margin:0;font-family:var(--display);font-weight:600;letter-spacing:-.015em}
+code{font-family:var(--mono);font-size:.9em;background:var(--sunk);padding:1px 5px;border-radius:3px}
+.mono{font-family:var(--mono);font-variant-numeric:tabular-nums}
+.ic{width:16px;height:16px;fill:currentColor;flex:none;vertical-align:-3px}
+.ic.s{width:13px;height:13px}
+.eyebrow{font-family:var(--mono);font-size:10px;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--ink-3);font-weight:500}
+
+/* ── top bar ───────────────────────────────────────────────────────────── */
+.top{position:sticky;top:0;z-index:40;height:var(--topbar);
+  background:color-mix(in srgb, var(--ground) 88%, transparent);
+  backdrop-filter:saturate(180%) blur(12px);-webkit-backdrop-filter:saturate(180%) blur(12px);
+  border-bottom:1px solid var(--line);padding:0 18px;display:flex;align-items:center;gap:14px}
+.brand{font-family:var(--display-x);font-weight:700;font-size:14.5px;letter-spacing:.01em;
+  white-space:nowrap;text-transform:lowercase;display:flex;align-items:baseline;gap:1px}
+.brand b{color:var(--accent);font-weight:700}
+.brand .sep{color:var(--ink-4);font-family:var(--sans);font-weight:500;font-size:13px;margin-left:5px}
+
+/* progress: a segmented meter, not a hairline. Critical-open is shown in red
+   inside the same bar, so "how far" and "how urgent" read together. */
+.meter{flex:1;min-width:70px;height:6px;background:var(--line);border-radius:3px;
+  position:relative;overflow:hidden}
+.meter i{position:absolute;inset:0 auto 0 0;background:linear-gradient(90deg,var(--accent),var(--accent-2));
+  transition:width .45s cubic-bezier(.2,.8,.2,1)}
+.meter u{position:absolute;inset:0 0 0 auto;background:var(--crit);opacity:.55;text-decoration:none;
+  transition:width .45s cubic-bezier(.2,.8,.2,1)}
+.progtxt{font-size:12.5px;color:var(--ink-3);white-space:nowrap;font-variant-numeric:tabular-nums}
+.progtxt b{color:var(--ink);font-weight:600}
+.tbtn{display:inline-flex;align-items:center;justify-content:center;gap:6px;padding:0 12px;height:34px;
+  border:1px solid var(--line-2);border-radius:7px;font-size:13px;white-space:nowrap;
+  background:var(--card);box-shadow:var(--sh-1);transition:border-color .15s,color .15s,transform .1s}
+.tbtn:hover{border-color:var(--line-3);color:var(--accent)}
+.tbtn:active{transform:translateY(1px)}
+.tbtn.icon{padding:0;width:34px}
+#menuBtn{display:none}
+
+/* ── layout ────────────────────────────────────────────────────────────── */
+.wrap{display:grid;grid-template-columns:278px minmax(0,1fr) 300px;
+  height:calc(100vh - var(--topbar));height:calc(100dvh - var(--topbar))}
+@media(min-width:1720px){.wrap{grid-template-columns:310px minmax(0,1fr) 348px}}
+main{overflow-y:auto;padding:30px 34px 150px;scroll-behavior:smooth;overscroll-behavior:contain}
+main>*{max-width:1000px;margin-inline:auto}
+nav{border-right:1px solid var(--line);overflow-y:auto;background:var(--rail);
+  padding:0 0 70px;overscroll-behavior:contain}
+aside{overflow-y:auto;border-left:1px solid var(--line);background:var(--rail);
+  padding:20px 16px 90px;overscroll-behavior:contain}
+
+/* ── nav ───────────────────────────────────────────────────────────────── */
+.nsearch{position:sticky;top:0;background:var(--rail);padding:12px 14px 10px;
+  border-bottom:1px solid var(--line);z-index:3}
+.nsearch .field{position:relative;display:flex;align-items:center}
+.nsearch svg{position:absolute;left:10px;color:var(--ink-4);pointer-events:none}
+.nsearch input{width:100%;height:36px;padding:0 10px 0 32px;background:var(--card);color:var(--ink);
+  border:1px solid var(--line-2);border-radius:8px;font:inherit;font-size:13px;outline:none;
+  box-shadow:var(--sh-1);transition:border-color .15s}
+.nsearch input:focus{border-color:var(--accent)}
+.nsec{padding:14px 14px 4px}
+.navcat{display:grid;grid-template-columns:1fr auto;gap:3px 8px;width:100%;text-align:left;
+  padding:9px 14px;align-items:center;border-radius:8px;transition:background .12s;position:relative}
+.navcat:hover{background:var(--card)}
+.navcat.on{background:var(--card);box-shadow:var(--sh-1)}
+.navcat.on::before{content:"";position:absolute;left:4px;top:10px;bottom:10px;width:3px;
+  background:var(--accent);border-radius:2px}
+.nl{font-family:var(--display);font-weight:600;font-size:13.5px;color:var(--ink)}
+.navcat.on .nl{color:var(--accent)}
+.nmeta{display:flex;align-items:center;gap:6px}
+.np{font-size:11px;color:var(--ink-3);font-variant-numeric:tabular-nums}
+.ncrit{background:var(--crit);color:#fff;font-size:9.5px;font-weight:700;min-width:17px;height:17px;
+  display:grid;place-items:center;border-radius:9px;padding:0 5px;font-variant-numeric:tabular-nums}
+.nbar{grid-column:1/-1;height:3px;background:var(--line);border-radius:2px;position:relative;margin-top:2px}
+.nbar i{position:absolute;inset:0 auto 0 0;background:var(--accent);border-radius:2px;transition:width .35s}
+.navq{display:grid;grid-template-columns:8px 1fr;gap:9px;width:100%;text-align:left;
+  padding:7px 14px 7px 26px;font-size:12.5px;color:var(--ink-2);align-items:center;
+  border-radius:7px;transition:background .12s,color .12s}
+.navq:hover{background:var(--card);color:var(--ink)}
+.navq.on{background:var(--wash);color:var(--accent-ink);font-weight:500}
+.navq .dot{width:7px;height:7px;border-radius:50%;background:var(--line-3)}
+.navq.crit .dot{background:var(--crit)}
+.navq.high .dot{background:var(--high)}
+.navq.done .dot{background:var(--good);box-shadow:0 0 0 3px var(--good-soft)}
+.navq .qt{min-width:0;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+
+/* ── the decision card ─────────────────────────────────────────────────── */
+.card-q{background:var(--card);border:1px solid var(--line);border-radius:14px;
+  box-shadow:var(--sh-2);padding:30px 32px 26px;position:relative;overflow:hidden;
+  animation:rise .28s cubic-bezier(.2,.8,.2,1)}
+@keyframes rise{from{opacity:0;transform:translateY(6px)}to{opacity:1;transform:none}}
+/* the spine carries the weight — seen, not read */
+.card-q::before{content:"";position:absolute;left:0;top:0;bottom:0;width:4px;background:var(--line-3)}
+.card-q.w-critical::before{background:var(--crit)}
+.card-q.w-high::before{background:var(--high)}
+
+.qhead{display:flex;align-items:center;gap:9px;flex-wrap:wrap;margin-bottom:14px}
+.pill{font-family:var(--mono);font-size:10px;letter-spacing:.06em;text-transform:uppercase;
+  padding:4px 8px;border-radius:5px;background:var(--sunk);color:var(--ink-3);font-weight:500}
+.pill.id{background:var(--ink);color:var(--card);font-weight:600}
+.pill.crit{background:var(--crit-soft);color:var(--crit)}
+.pill.high{background:var(--high-soft);color:var(--high)}
+.pill.done{background:var(--good-soft);color:var(--good)}
+h1.q{font-size:34px;line-height:1.14;margin:0 0 12px;text-wrap:balance;max-width:20ch;
+  max-width:min(100%,26ch);letter-spacing:-.022em}
+@media(min-width:900px){h1.q{max-width:min(100%,30ch)}}
+.lede{font-size:17px;line-height:1.5;color:var(--ink-2);margin:0 0 26px;max-width:60ch}
+
+/* context: three beats of a story, the third emphasised */
+.ctx{display:grid;grid-template-columns:repeat(auto-fit,minmax(210px,1fr));gap:14px;margin:0 0 24px}
+.ctxc{background:var(--sunk);border-radius:10px;padding:14px 16px;position:relative}
+.ctxc .eyebrow{display:block;margin-bottom:7px}
+.ctxc p{margin:0;font-size:13.5px;color:var(--ink-2);line-height:1.55}
+.ctxc.tension{background:var(--wash);}
+.ctxc.tension .eyebrow{color:var(--accent-ink)}
+.ctxc.tension p{color:var(--ink)}
+
+/* evidence — a well, not a box */
+details.ev{background:var(--sunk);border-radius:10px;margin:0 0 24px;overflow:hidden}
+details.ev>summary{padding:13px 16px;font-size:13.5px;cursor:pointer;display:flex;align-items:center;
+  gap:9px;list-style:none;font-weight:600;color:var(--ink-2);transition:color .15s}
+details.ev>summary:hover{color:var(--ink)}
+details.ev>summary::-webkit-details-marker{display:none}
+details.ev>summary .cnt{margin-left:auto;font-size:11.5px;color:var(--ink-3);font-weight:400}
+details.ev>summary .caret{transition:transform .2s;color:var(--ink-4)}
+details.ev[open]>summary .caret{transform:rotate(90deg)}
+.evbody{padding:2px 16px 18px}
+.evb{background:var(--card);border-radius:9px;padding:15px 16px;margin-bottom:11px;box-shadow:var(--sh-1)}
+.evb:last-child{margin-bottom:0}
+.evt{font-size:13.5px;font-weight:600;margin-bottom:3px;letter-spacing:-.005em}
+.evn{font-size:12px;color:var(--ink-3);margin-bottom:12px;line-height:1.45}
+table.d{width:100%;border-collapse:collapse;font-size:13px}
+table.d th{text-align:left;font-family:var(--mono);font-size:10px;letter-spacing:.07em;
+  text-transform:uppercase;color:var(--ink-3);font-weight:500;padding:0 10px 7px;border-bottom:1px solid var(--line)}
+table.d td{padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:top;color:var(--ink-2)}
+table.d tr:last-child td{border-bottom:none}
+table.d td:first-child{color:var(--ink)}
+table.d td:not(:first-child){font-variant-numeric:tabular-nums}
+.statrow{display:grid;grid-template-columns:1fr auto;gap:3px 14px;font-size:13px;
+  padding:9px 0;border-bottom:1px solid var(--line);align-items:baseline}
+.statrow:last-child{border-bottom:none}
+.statrow b{font-variant-numeric:tabular-nums;font-size:15px;font-family:var(--display);
+  font-weight:600;color:var(--ink);white-space:nowrap}
+.statrow .sn{grid-column:1/-1;font-size:11.5px;color:var(--ink-3);margin-top:-2px}
+.brow{display:grid;grid-template-columns:minmax(90px,150px) 1fr auto;gap:12px;align-items:center;
+  font-size:12.5px;padding:5px 0;color:var(--ink-2)}
+.btrack{height:20px;background:var(--sunk);border-radius:5px;position:relative;overflow:hidden}
+.btrack i{position:absolute;inset:0 auto 0 0;border-radius:5px;
+  background:linear-gradient(90deg,var(--accent),var(--accent-2));
+  animation:grow .5s cubic-bezier(.2,.8,.2,1)}
+@keyframes grow{from{transform:scaleX(0);transform-origin:left}to{transform:none}}
+.btrack .thr{position:absolute;top:0;bottom:0;width:2px;background:var(--crit);opacity:.8}
+.brow .bv{text-align:right;font-variant-numeric:tabular-nums;color:var(--ink);font-weight:500;
+  font-size:12.5px;min-width:58px}
+
+/* ── options: a ladder, with the recommendation resolved ───────────────── */
+.optshead{display:flex;align-items:baseline;justify-content:space-between;margin:0 0 12px}
+.optshead .hint{font-size:11.5px;color:var(--ink-4)}
+.optshead .hint kbd{font-family:var(--mono);font-size:10.5px;background:var(--sunk);
+  border:1px solid var(--line);border-radius:4px;padding:1px 5px;color:var(--ink-3)}
+.opts{display:grid;gap:9px;margin:0 0 22px}
+.opt{display:grid;grid-template-columns:30px 1fr;gap:14px;width:100%;text-align:left;
+  padding:15px 17px;border:1px solid var(--line);border-radius:11px;background:var(--card);
+  align-items:start;transition:border-color .15s,box-shadow .15s,transform .1s,background .15s;
+  box-shadow:var(--sh-1)}
+.opt:hover{border-color:var(--line-3);box-shadow:var(--sh-2)}
+.opt:active{transform:translateY(1px)}
+.opt .k{width:28px;height:28px;display:grid;place-items:center;border:1px solid var(--line-2);
+  border-radius:8px;font-family:var(--mono);font-size:12.5px;text-transform:uppercase;
+  color:var(--ink-3);font-weight:600;transition:all .15s}
+.opt.rec{border-color:var(--accent-2);background:linear-gradient(180deg,var(--wash) 0%,var(--card) 42%)}
+.opt.rec .k{border-color:var(--accent);color:var(--accent)}
+.opt.on{border-color:var(--accent);box-shadow:0 0 0 2px var(--wash-2),var(--sh-2)}
+.opt.on .k{background:var(--accent);border-color:var(--accent);color:#fff}
+.opt .ol{font-weight:600;font-size:15px;display:flex;gap:9px;align-items:baseline;flex-wrap:wrap;
+  letter-spacing:-.008em;line-height:1.35}
+.opt .oi{font-size:13.5px;color:var(--ink-2);margin-top:6px;line-height:1.55}
+.rectag{font-family:var(--mono);font-size:9px;letter-spacing:.08em;text-transform:uppercase;
+  color:#fff;background:var(--accent);padding:3px 7px;border-radius:4px;font-weight:600}
+.opt.on .rectag{background:var(--good)}
+
+.reccase{background:var(--wash);border-radius:11px;padding:16px 18px;margin:0 0 24px;
+  font-size:14px;color:var(--ink-2);line-height:1.6;max-width:66ch}
+.reccase .rh{display:flex;align-items:center;gap:8px;margin-bottom:7px;
+  font-family:var(--display);font-weight:600;font-size:13.5px;color:var(--accent-ink)}
+.note{width:100%;min-height:76px;padding:13px 15px;background:var(--sunk);color:var(--ink);
+  border:1px solid transparent;border-radius:10px;font:inherit;font-size:14px;resize:vertical;
+  outline:none;transition:border-color .15s,background .15s}
+.note:focus{border-color:var(--accent);background:var(--card)}
+.note::placeholder{color:var(--ink-4)}
+
+/* ── pager ─────────────────────────────────────────────────────────────── */
+.pager{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin:28px 0 0}
+.pg{border:1px solid var(--line);border-radius:11px;padding:14px 16px;text-align:left;min-height:66px;
+  background:var(--card);box-shadow:var(--sh-1);transition:border-color .15s,box-shadow .15s}
+.pg:hover{border-color:var(--line-3);box-shadow:var(--sh-2)}
+.pg .pk{display:flex;align-items:center;gap:6px;font-family:var(--mono);font-size:9.5px;
+  letter-spacing:.08em;text-transform:uppercase;color:var(--ink-4)}
+.pg .pt{font-size:13.5px;margin-top:5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+  color:var(--ink-2)}
+.pg.next{text-align:right}
+.pg.next .pk{justify-content:flex-end}
+
+/* ── right rail ────────────────────────────────────────────────────────── */
+.rsec{margin-bottom:24px}
+.rh{font-family:var(--mono);font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;
+  color:var(--ink-4);margin-bottom:10px;font-weight:500}
+.rrow{display:flex;justify-content:space-between;gap:10px;padding:7px 0;font-size:12.5px;
+  border-bottom:1px solid var(--line);color:var(--ink-2)}
+.rrow:last-child{border-bottom:none}
+.rrow b{color:var(--ink);font-weight:500}
+.rlink{display:block;width:100%;text-align:left;padding:9px 10px;font-size:12.5px;color:var(--ink-2);
+  border-radius:8px;transition:background .12s,color .12s;line-height:1.4}
+.rlink:hover{background:var(--card);color:var(--ink)}
+.rlink .rm{display:block;font-family:var(--mono);font-size:9.5px;letter-spacing:.06em;
+  text-transform:uppercase;color:var(--ink-4);margin-bottom:2px}
+.rlink.done .rm{color:var(--good)}
+.src{display:block;font-family:var(--mono);font-size:11px;color:var(--ink-3);padding:6px 0;
+  border-bottom:1px solid var(--line);overflow-wrap:anywhere}
+.src:last-child{border-bottom:none}
+
+/* ── overview ──────────────────────────────────────────────────────────── */
+.hero{margin-bottom:30px}
+.hero h1{font-size:40px;line-height:1.08;letter-spacing:-.028em;margin-bottom:14px;max-width:16ch}
+.hero p{font-size:17px;line-height:1.55;color:var(--ink-2);max-width:60ch;margin:0}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:0 0 30px}
+.kpi{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:17px 18px;
+  box-shadow:var(--sh-1)}
+.kpi .kv{font-family:var(--display);font-weight:700;font-size:32px;line-height:1;letter-spacing:-.03em;
+  font-variant-numeric:tabular-nums;margin:6px 0 3px}
+.kpi.acc .kv{color:var(--accent)} .kpi.crit .kv{color:var(--crit)}
+.kpi .kn{font-size:12px;color:var(--ink-3)}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(252px,1fr));gap:12px;margin:0 0 32px}
+.cat{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:16px 17px;
+  text-align:left;box-shadow:var(--sh-1);transition:border-color .15s,box-shadow .15s,transform .12s;
+  display:block;position:relative;overflow:hidden}
+.cat:hover{border-color:var(--line-3);box-shadow:var(--sh-2);transform:translateY(-1px)}
+.cat .ct{font-family:var(--display);font-weight:600;font-size:15px;margin-bottom:5px;letter-spacing:-.01em}
+.cat .cs{font-size:12px;color:var(--ink-3);display:flex;align-items:center;gap:7px}
+.cat .cs .cc{color:var(--crit);font-weight:600}
+.cat .cbar{height:4px;background:var(--line);border-radius:2px;margin-top:13px;position:relative;overflow:hidden}
+.cat .cbar i{position:absolute;inset:0 auto 0 0;background:var(--accent);border-radius:2px}
+.sech{font-family:var(--display);font-size:19px;margin:0 0 4px;letter-spacing:-.015em}
+.secn{font-size:13.5px;color:var(--ink-3);margin:0 0 14px}
+.qlist{display:grid;gap:8px;margin-bottom:30px}
+.ql{display:grid;grid-template-columns:auto 1fr auto;gap:13px;align-items:center;background:var(--card);
+  border:1px solid var(--line);border-left:3px solid var(--crit);border-radius:10px;padding:13px 15px;
+  text-align:left;box-shadow:var(--sh-1);transition:border-color .15s,box-shadow .15s}
+.ql:hover{box-shadow:var(--sh-2)}
+.ql .qi{font-family:var(--mono);font-size:10.5px;color:var(--ink-4);min-width:34px}
+.ql .qq{font-size:14px;color:var(--ink);line-height:1.4}
+.ql .qc{font-size:11px;color:var(--ink-3);white-space:nowrap}
+
+/* ── import ────────────────────────────────────────────────────────────── */
+.drop{border:1.5px dashed var(--line-2);border-radius:12px;padding:34px;text-align:center;
+  color:var(--ink-3);font-size:14px;background:var(--card);transition:all .15s}
+.drop.over{border-color:var(--accent);background:var(--wash);color:var(--accent-ink)}
+.mdin{width:100%;min-height:260px;padding:15px;background:var(--card);color:var(--ink);
+  border:1px solid var(--line-2);border-radius:11px;font-family:var(--mono);font-size:12.5px;
+  line-height:1.6;outline:none;resize:vertical;box-shadow:var(--sh-1)}
+.mdin:focus{border-color:var(--accent)}
+.btn{display:inline-flex;align-items:center;gap:7px;height:38px;padding:0 16px;border-radius:9px;
+  font-size:13.5px;font-weight:500;border:1px solid var(--line-2);background:var(--card);
+  box-shadow:var(--sh-1);transition:all .15s}
+.btn:hover{border-color:var(--line-3)}
+.btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
+.btn.primary:hover{background:var(--accent-2);border-color:var(--accent-2)}
+
+/* ── phone ─────────────────────────────────────────────────────────────── */
+@media(max-width:1180px){
+  .wrap{grid-template-columns:278px minmax(0,1fr)}
+  aside{display:none}
+}
+@media(max-width:900px){
+  :root{--actionbar:64px;--topbar:52px}
+  html,body{max-width:100%;overflow-x:hidden}
+  .wrap{grid-template-columns:1fr}
+  .top{padding:0 12px;gap:10px}
+  .brand .sep{display:none}
+  .progtxt{display:none}
+  .meter{min-width:30px}
+  nav{position:fixed;inset:var(--topbar) auto 0 0;width:min(88vw,330px);z-index:35;
+    transform:translateX(-100%);transition:transform .24s cubic-bezier(.2,.8,.2,1);
+    box-shadow:var(--sh-3)}
+  body.navopen nav{transform:none}
+  body.navopen::after{content:"";position:fixed;inset:var(--topbar) 0 0 0;
+    background:rgba(6,9,14,.45);backdrop-filter:blur(2px);z-index:34}
+  #menuBtn{display:inline-flex}
+  main{padding:16px 13px calc(120px + var(--actionbar))}
+  .card-q{padding:22px 18px 20px;border-radius:12px}
+  h1.q{font-size:25px;max-width:none}
+  .lede{font-size:15.5px;margin-bottom:20px}
+  .hero h1{font-size:29px;max-width:none}
+  .hero p{font-size:15.5px}
+  .ctx{grid-template-columns:1fr;gap:10px}
+  .pager{grid-template-columns:1fr}
+  .pg.next{text-align:left}.pg.next .pk{justify-content:flex-start}
+  .opt{grid-template-columns:28px 1fr;padding:14px 15px;gap:12px}
+}
+.abar{display:none;position:fixed;left:0;right:0;bottom:0;z-index:36;height:var(--actionbar);
+  grid-template-columns:44px 1fr 44px;gap:10px;align-items:center;padding:0 13px;
+  padding-bottom:env(safe-area-inset-bottom);
+  background:color-mix(in srgb, var(--ground) 92%, transparent);
+  backdrop-filter:saturate(180%) blur(14px);-webkit-backdrop-filter:saturate(180%) blur(14px);
+  border-top:1px solid var(--line)}
+.abar .abtn{display:inline-flex;align-items:center;justify-content:center;height:42px;
+  border:1px solid var(--line-2);border-radius:10px;background:var(--card);box-shadow:var(--sh-1)}
+.abar .abtn:disabled{opacity:.35}
+.abar .apos{text-align:center;font-size:12.5px;color:var(--ink-3);font-variant-numeric:tabular-nums}
+.abar .apos b{display:block;color:var(--ink);font-weight:600;font-size:13px}
+
+
+/* ── position line, primary forward action, area index ─────────────────────
+   Added after a Mobbin reference pass (2026-09-09, 20 screens). Every question
+   UI in that set states the position as text and offers exactly one primary
+   forward action; we had a bar and two equal pager cards. */
+.pos{display:flex;align-items:center;gap:8px;margin-bottom:10px}
+.pos .dotsep{color:var(--ink-4)}
+.pcat{display:inline-block;margin-right:10px;padding:2px 8px;border-radius:5px;background:var(--sunk);
+  color:var(--ink-2);font-size:11.5px}
+
+.foot{display:grid;grid-template-columns:1fr auto;gap:12px;margin:28px 0 0;align-items:stretch}
+.go{display:flex;align-items:center;gap:12px;padding:0 20px;min-height:66px;border-radius:11px;
+  border:1px solid var(--line-2);background:var(--card);box-shadow:var(--sh-1);
+  transition:background .15s,border-color .15s,box-shadow .15s,transform .1s;white-space:nowrap}
+.go:hover{border-color:var(--line-3);box-shadow:var(--sh-2)}
+.go:active{transform:translateY(1px)}
+.go .gt{font-family:var(--display);font-weight:600;font-size:15px}
+.go .gk{font-size:11.5px;color:var(--ink-4)}
+.go .gk kbd{font-family:var(--mono);font-size:10.5px;border:1px solid var(--line-2);border-radius:4px;
+  padding:1px 5px}
+.go.primary{background:var(--accent);border-color:var(--accent);color:#fff;box-shadow:var(--sh-2)}
+.go.primary:hover{background:var(--accent-2);border-color:var(--accent-2)}
+.go.primary .gk{color:rgba(255,255,255,.72)}
+.go.primary .gk kbd{border-color:rgba(255,255,255,.4)}
+.go.wide{width:100%;justify-content:space-between;margin-bottom:26px}
+
+.arlist{display:grid;gap:7px;margin:0 0 26px}
+.ar{display:grid;grid-template-columns:auto 1fr auto;gap:13px;align-items:start;text-align:left;
+  background:var(--card);border:1px solid var(--line);border-left:3px solid var(--line-2);
+  border-radius:10px;padding:13px 15px;box-shadow:var(--sh-1);
+  transition:border-color .15s,box-shadow .15s}
+.ar:hover{box-shadow:var(--sh-2);border-color:var(--line-3)}
+.ar.crit{border-left-color:var(--crit)}
+.ar.high{border-left-color:var(--high)}
+.ar.done{border-left-color:var(--good);background:var(--rail)}
+.ar .ai{font-family:var(--mono);font-size:10.5px;color:var(--ink-4);min-width:36px;padding-top:2px}
+.ar .aq{font-size:14px;color:var(--ink);line-height:1.45}
+.ar.done .aq{color:var(--ink-2)}
+.ar .aa{display:flex;align-items:center;gap:6px;margin-top:5px;font-size:12px;color:var(--good)}
+.ar .aw{font-family:var(--mono);font-size:9.5px;letter-spacing:.06em;text-transform:uppercase;
+  color:var(--ink-4);padding-top:3px}
+
+/* unanswered reads bold, answered recedes (Notion Mail, Plain) */
+.navq.open .qt{font-weight:500;color:var(--ink)}
+.navq.done .qt{color:var(--ink-3)}
+.navq.done .dot{background:var(--good);box-shadow:0 0 0 3px var(--good-soft)}
+
+@media(max-width:900px){
+  .foot{grid-template-columns:1fr}
+  .go{justify-content:space-between;min-height:56px}
+  .pos{flex-wrap:wrap}
+  /* Must stay AFTER the base .abar rule: same specificity, so source order decides. */
+  .abar{display:grid}
+}
+
+
+/* ── v2 decision card ───────────────────────────────────────────────────────
+   Added 2026-09-09. The brief was that a reader should be able to see what is
+   being decided — a screen, a flow, a file — and then read short lines rather
+   than four paragraphs. Every block below exists to serve that: the diagram
+   leads, context is bulleted, and each option carries its own consequences so
+   comparing two options does not mean scrolling between them. */
+
+/* the diagram */
+.dg{margin:0 0 22px;padding:0;background:var(--card);border:1px solid var(--line);
+  border-radius:11px;overflow:hidden;box-shadow:var(--sh-1)}
+.dg svg{display:block;width:100%;height:auto}
+.dg figcaption{padding:9px 15px;border-top:1px solid var(--line);background:var(--sunk);
+  font-size:11.5px;color:var(--ink-3);letter-spacing:.01em}
+
+/* bulleted context — the replacement for the paragraph blocks */
+ul.bl{margin:0;padding:0;list-style:none}
+ul.bl li{position:relative;padding-left:15px;margin:0 0 7px;font-size:13.5px;line-height:1.5;color:var(--ink-2)}
+ul.bl li:last-child{margin-bottom:0}
+ul.bl li::before{content:"";position:absolute;left:2px;top:8px;width:4px;height:4px;
+  border-radius:50%;background:var(--line-3)}
+ul.bl.tight li{font-size:12.5px;margin-bottom:5px;padding-left:13px;line-height:1.45}
+ul.bl.tight li::before{top:7px;width:3px;height:3px}
+.ctxc ul.bl li{font-size:13px}
+
+/* stakes — one line, stated once, above the fold */
+.stakes{display:flex;gap:10px;align-items:flex-start;margin:0 0 20px;padding:12px 15px;
+  border:1px solid var(--high);border-left-width:3px;border-radius:9px;
+  background:var(--high-soft);font-size:13.5px;line-height:1.5;color:var(--ink)}
+.stakes b{color:var(--high);font-weight:700}
+.stakes .si{flex:0 0 auto;width:17px;height:17px;margin-top:1px;color:var(--high)}
+
+/* options, v2 */
+.opt .ob{display:block;min-width:0}
+.opt .ow{display:block;margin-top:5px;font-size:13px;line-height:1.5;color:var(--ink-2)}
+.opt .gc{display:grid;grid-template-columns:1fr 1fr;gap:0;margin-top:12px;
+  border:1px solid var(--line);border-radius:8px;overflow:hidden;background:var(--card)}
+.opt .gcc{display:block;padding:10px 12px;min-width:0}
+.opt .gcc.cost{border-left:1px solid var(--line)}
+.opt .gch{display:block;margin-bottom:6px;font-family:var(--mono);font-size:9.5px;
+  letter-spacing:.09em;text-transform:uppercase;color:var(--ink-4)}
+.opt .gcc.gain .gch{color:var(--good)}
+.opt .gcc.cost .gch{color:var(--crit)}
+.opt .ometa{display:flex;flex-wrap:wrap;gap:6px 18px;margin-top:11px;
+  padding-top:10px;border-top:1px dashed var(--line-2)}
+.opt .om{font-size:12px;line-height:1.45;color:var(--ink-3)}
+.opt .om b{font-family:var(--mono);font-size:9.5px;letter-spacing:.08em;
+  text-transform:uppercase;color:var(--ink-4);margin-right:6px}
+.opt.on .gc,.opt.rec .gc{background:var(--card)}
+
+/* the case for the recommendation, and the one thing that would overturn it */
+.reccase ul.bl li{font-size:13.5px}
+.flip{margin-top:12px;padding-top:11px;border-top:1px dashed var(--line-2);
+  font-size:13px;line-height:1.55;color:var(--ink-2)}
+.flip b{color:var(--ink);font-weight:650}
+
+/* decisions that should be taken together */
+.linked{margin-top:22px;padding-top:16px;border-top:1px solid var(--line)}
+.lchips{display:flex;flex-wrap:wrap;gap:8px;margin-top:9px}
+.lchip{display:inline-flex;align-items:baseline;gap:7px;max-width:100%;padding:7px 12px;
+  border:1px solid var(--line-2);border-radius:7px;background:var(--card);
+  font:inherit;font-size:12.5px;color:var(--ink-2);text-align:left;cursor:pointer;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.lchip b{font-family:var(--mono);font-size:11px;color:var(--accent);flex:0 0 auto}
+.lchip:hover{border-color:var(--accent);color:var(--ink)}
+
+@media(max-width:900px){
+  .opt .gc{grid-template-columns:1fr}
+  .opt .gcc.cost{border-left:0;border-top:1px solid var(--line)}
+  .opt .ometa{flex-direction:column;gap:7px}
+  .dg{margin-bottom:18px}
+  .lchip{max-width:100%}
+}
+
+/* The answers rail: a restore control and the warning that makes it necessary. */
+.rnote{margin-top:11px;padding-top:10px;border-top:1px dashed var(--line-2);
+  font-size:11.5px;line-height:1.5;color:var(--ink-3)}

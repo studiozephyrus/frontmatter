@@ -14,11 +14,25 @@ const config = [
   // ── 1. Files to ignore ────────────────────────────────────────────────────
   {
     ignores: [
+      ".scratch-*.mjs",
+      ".claude/**",
       "node_modules/**",
       ".next/**",
       "out/**",
       // Static browser assets served as-is — not part of the TS app source
       "public/**",
+      // The decisions site: a standalone, dependency-free static page with its own
+      // browser and Node globals. Same class as public/** — the header above says this
+      // config lints src/, specs/ and root config only, and these trees were simply
+      // never listed. Its own gates are decisions/tools/validate.py and a node --check.
+      "decisions/**",
+      // Standalone Node build and probe scripts, not app source.
+      "docs/build/**",
+      // Rescued Workflow-tool scripts: they run inside the tool's own runtime, which
+      // supplies agent/parallel/pipeline/phase/log as globals. Kept as history and as
+      // reusable machinery, not as app source — see docs/workflows/README.md.
+      "docs/workflows/**",
+      "test/scratch/**",
       // Legacy Obsidian vault — not part of the app
       "**/*.md",
       "md/**",
@@ -39,9 +53,12 @@ const config = [
   // They are not part of the Next.js bundle, so the browser-strict
   // `no-undef` defaults don't apply.
   {
-    files: ["specs/**/*.mjs", "scripts/**/*.{mjs,js}"],
+    files: ["specs/**/*.mjs", "scripts/**/*.{mjs,js}", "docs/**/build/**/*.{mjs,js}"],
     languageOptions: {
       globals: {
+          // page.evaluate() callbacks run in a browser context
+          document: "readonly",
+          window: "readonly",
         console: "readonly",
         process: "readonly",
         Buffer: "readonly",

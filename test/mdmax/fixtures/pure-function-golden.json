@@ -1,0 +1,807 @@
+{
+ "_comment": "Golden inputs for normalize/1 and slug/1. APPEND-ONLY: removing or editing a case moves the digest and is indistinguishable from a regression in the functions themselves. Add new cases at the end only.",
+ "generator": "scripts/gen-golden-cases.py",
+ "count": 200,
+ "cases": [
+  {
+   "category": "ascii",
+   "input": "Hello World"
+  },
+  {
+   "category": "ascii",
+   "input": "Introduction"
+  },
+  {
+   "category": "ascii",
+   "input": "API Reference"
+  },
+  {
+   "category": "ascii",
+   "input": "Getting Started"
+  },
+  {
+   "category": "ascii",
+   "input": "FAQ"
+  },
+  {
+   "category": "ascii",
+   "input": "Step 1"
+  },
+  {
+   "category": "ascii",
+   "input": "Step 2: Setup"
+  },
+  {
+   "category": "ascii",
+   "input": "3. Environments"
+  },
+  {
+   "category": "ascii",
+   "input": "the end."
+  },
+  {
+   "category": "ascii",
+   "input": "A"
+  },
+  {
+   "category": "punctuation",
+   "input": "Personas & Use Cases"
+  },
+  {
+   "category": "punctuation",
+   "input": "Roles & Permissions"
+  },
+  {
+   "category": "punctuation",
+   "input": "Plans & Quotas"
+  },
+  {
+   "category": "punctuation",
+   "input": "Q&A"
+  },
+  {
+   "category": "punctuation",
+   "input": "What's New?"
+  },
+  {
+   "category": "punctuation",
+   "input": "Don't Panic!"
+  },
+  {
+   "category": "punctuation",
+   "input": "C++ vs Rust"
+  },
+  {
+   "category": "punctuation",
+   "input": "Node.js / Deno"
+  },
+  {
+   "category": "punctuation",
+   "input": "50% off"
+  },
+  {
+   "category": "punctuation",
+   "input": "foo(bar)"
+  },
+  {
+   "category": "punctuation",
+   "input": "[bracketed]"
+  },
+  {
+   "category": "punctuation",
+   "input": "{braced}"
+  },
+  {
+   "category": "punctuation",
+   "input": "<html>"
+  },
+  {
+   "category": "punctuation",
+   "input": "a,b,c"
+  },
+  {
+   "category": "punctuation",
+   "input": "semi;colon"
+  },
+  {
+   "category": "punctuation",
+   "input": "back\\slash"
+  },
+  {
+   "category": "punctuation",
+   "input": "pipe|char"
+  },
+  {
+   "category": "punctuation",
+   "input": "star*"
+  },
+  {
+   "category": "punctuation",
+   "input": "plus+"
+  },
+  {
+   "category": "punctuation",
+   "input": "equals="
+  },
+  {
+   "category": "punctuation",
+   "input": "tilde~"
+  },
+  {
+   "category": "punctuation",
+   "input": "caret^"
+  },
+  {
+   "category": "punctuation",
+   "input": "at@sign"
+  },
+  {
+   "category": "punctuation",
+   "input": "hash#tag"
+  },
+  {
+   "category": "punctuation",
+   "input": "dollar$"
+  },
+  {
+   "category": "punctuation",
+   "input": "percent%"
+  },
+  {
+   "category": "punctuation",
+   "input": "quote\"d"
+  },
+  {
+   "category": "punctuation",
+   "input": "apos'trophe"
+  },
+  {
+   "category": "whitespace",
+   "input": "  leading"
+  },
+  {
+   "category": "whitespace",
+   "input": "trailing  "
+  },
+  {
+   "category": "whitespace",
+   "input": "  both  "
+  },
+  {
+   "category": "whitespace",
+   "input": "multiple   spaces"
+  },
+  {
+   "category": "whitespace",
+   "input": "tab\there"
+  },
+  {
+   "category": "whitespace",
+   "input": "new\nline"
+  },
+  {
+   "category": "whitespace",
+   "input": "carriage\r\nreturn"
+  },
+  {
+   "category": "whitespace",
+   "input": "non\u00a0breaking"
+  },
+  {
+   "category": "whitespace",
+   "input": "zero\u200bwidth"
+  },
+  {
+   "category": "whitespace",
+   "input": "ideographic\u3000space"
+  },
+  {
+   "category": "whitespace",
+   "input": "vertical\u000btab"
+  },
+  {
+   "category": "whitespace",
+   "input": "form\ffeed"
+  },
+  {
+   "category": "whitespace",
+   "input": "en\u2000quad"
+  },
+  {
+   "category": "whitespace",
+   "input": "em\u2001quad"
+  },
+  {
+   "category": "whitespace",
+   "input": "thin\u2009space"
+  },
+  {
+   "category": "whitespace",
+   "input": "narrow\u202fnbsp"
+  },
+  {
+   "category": "whitespace",
+   "input": "bom\ufeffhere"
+  },
+  {
+   "category": "whitespace",
+   "input": ""
+  },
+  {
+   "category": "whitespace",
+   "input": " "
+  },
+  {
+   "category": "whitespace",
+   "input": "   "
+  },
+  {
+   "category": "unicode",
+   "input": "Caf\u00e9"
+  },
+  {
+   "category": "unicode",
+   "input": "Cafe\u0301"
+  },
+  {
+   "category": "unicode",
+   "input": "\u00c5NGSTR\u00d6M"
+  },
+  {
+   "category": "unicode",
+   "input": "A\u030angstro\u0308m"
+  },
+  {
+   "category": "unicode",
+   "input": "na\u00efve"
+  },
+  {
+   "category": "unicode",
+   "input": "\ufb01le"
+  },
+  {
+   "category": "unicode",
+   "input": "\u216b roman"
+  },
+  {
+   "category": "unicode",
+   "input": "\uff46\uff55\uff4c\uff4c"
+  },
+  {
+   "category": "unicode",
+   "input": "\u00df sharp"
+  },
+  {
+   "category": "unicode",
+   "input": "SS sharp"
+  },
+  {
+   "category": "unicode",
+   "input": "\u01c6 digraph"
+  },
+  {
+   "category": "unicode",
+   "input": "\u2126 ohm"
+  },
+  {
+   "category": "unicode",
+   "input": "\u03a9 greek"
+  },
+  {
+   "category": "unicode",
+   "input": "\u00b5 micro"
+  },
+  {
+   "category": "unicode",
+   "input": "\u03bc greek"
+  },
+  {
+   "category": "non-bmp",
+   "input": "Emoji \ud83d\ude00 heading"
+  },
+  {
+   "category": "non-bmp",
+   "input": "Family \ud83d\udc68\u200d\ud83d\udc69\u200d\ud83d\udc67\u200d\ud83d\udc66 here"
+  },
+  {
+   "category": "non-bmp",
+   "input": "Flag \ud83c\uddee\ud83c\uddf3 India"
+  },
+  {
+   "category": "non-bmp",
+   "input": "Skin \ud83d\udc4d\ud83c\udffd tone"
+  },
+  {
+   "category": "non-bmp",
+   "input": "Math \ud835\udd4f double"
+  },
+  {
+   "category": "non-bmp",
+   "input": "Ancient \ud800\udf00 italic"
+  },
+  {
+   "category": "non-bmp",
+   "input": "Music \ud834\udd1e clef"
+  },
+  {
+   "category": "non-bmp",
+   "input": "Rocket \ud83d\ude80"
+  },
+  {
+   "category": "non-bmp",
+   "input": "\ud83c\udf89"
+  },
+  {
+   "category": "non-bmp",
+   "input": "\ud83d\ude00\ud83d\ude00\ud83d\ude00"
+  },
+  {
+   "category": "non-bmp",
+   "input": "Mixed \ud83d\ude00 text \ud83d\ude80 more"
+  },
+  {
+   "category": "scripts",
+   "input": "\u65e5\u672c\u8a9e\u306e\u898b\u51fa\u3057"
+  },
+  {
+   "category": "scripts",
+   "input": "\u4e2d\u6587\u6807\u9898"
+  },
+  {
+   "category": "scripts",
+   "input": "\ud55c\uad6d\uc5b4 \uc81c\ubaa9"
+  },
+  {
+   "category": "scripts",
+   "input": "\u0627\u0644\u0639\u0631\u0628\u064a\u0629 \u0639\u0646\u0648\u0627\u0646"
+  },
+  {
+   "category": "scripts",
+   "input": "\u05e2\u05d1\u05e8\u05d9\u05ea \u05db\u05d5\u05ea\u05e8\u05ea"
+  },
+  {
+   "category": "scripts",
+   "input": "\u0939\u093f\u0928\u094d\u0926\u0940 \u0936\u0940\u0930\u094d\u0937\u0915"
+  },
+  {
+   "category": "scripts",
+   "input": "\u09ac\u09be\u0982\u09b2\u09be \u09b6\u09bf\u09b0\u09cb\u09a8\u09be\u09ae"
+  },
+  {
+   "category": "scripts",
+   "input": "\u0e44\u0e17\u0e22 \u0e2b\u0e31\u0e27\u0e02\u0e49\u0e2d"
+  },
+  {
+   "category": "scripts",
+   "input": "\u0395\u03bb\u03bb\u03b7\u03bd\u03b9\u03ba\u03ac"
+  },
+  {
+   "category": "scripts",
+   "input": "\u0420\u0443\u0441\u0441\u043a\u0438\u0439"
+  },
+  {
+   "category": "combining",
+   "input": "e\u0301\u0302\u0303 stacked"
+  },
+  {
+   "category": "combining",
+   "input": "a\u0300\u0301\u0302\u0303\u0304"
+  },
+  {
+   "category": "combining",
+   "input": "ba\u0301sic"
+  },
+  {
+   "category": "combining",
+   "input": "\u0915\u094d\u0937 ksha"
+  },
+  {
+   "category": "combining",
+   "input": "o\u0323\u0308 two marks"
+  },
+  {
+   "category": "edge",
+   "input": "---"
+  },
+  {
+   "category": "edge",
+   "input": "###"
+  },
+  {
+   "category": "edge",
+   "input": "# #"
+  },
+  {
+   "category": "edge",
+   "input": "-"
+  },
+  {
+   "category": "edge",
+   "input": "--"
+  },
+  {
+   "category": "edge",
+   "input": "---dashes---"
+  },
+  {
+   "category": "edge",
+   "input": "-leading-dash"
+  },
+  {
+   "category": "edge",
+   "input": "trailing-dash-"
+  },
+  {
+   "category": "edge",
+   "input": "a--b"
+  },
+  {
+   "category": "edge",
+   "input": "a---b"
+  },
+  {
+   "category": "edge",
+   "input": "a - b"
+  },
+  {
+   "category": "edge",
+   "input": "a-b"
+  },
+  {
+   "category": "edge",
+   "input": "1-2-3"
+  },
+  {
+   "category": "edge",
+   "input": "..."
+  },
+  {
+   "category": "edge",
+   "input": "!!!"
+  },
+  {
+   "category": "edge",
+   "input": "???"
+  },
+  {
+   "category": "edge",
+   "input": "___"
+  },
+  {
+   "category": "edge",
+   "input": "*"
+  },
+  {
+   "category": "edge",
+   "input": "0"
+  },
+  {
+   "category": "edge",
+   "input": "00"
+  },
+  {
+   "category": "edge",
+   "input": "007"
+  },
+  {
+   "category": "edge",
+   "input": "-1"
+  },
+  {
+   "category": "edge",
+   "input": "1.5"
+  },
+  {
+   "category": "edge",
+   "input": "1e10"
+  },
+  {
+   "category": "edge",
+   "input": "xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"
+  },
+  {
+   "category": "edge",
+   "input": "word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word word "
+  },
+  {
+   "category": "edge",
+   "input": "\u00dcn\u00efc\u00f6d\u00e9 \u00dcn\u00efc\u00f6d\u00e9 \u00dcn\u00efc\u00f6d\u00e9 \u00dcn\u00efc\u00f6d\u00e9 \u00dcn\u00efc\u00f6d\u00e9 \u00dcn\u00efc\u00f6d\u00e9 \u00dcn\u00efc\u00f6d\u00e9 \u00dcn\u00efc\u00f6d\u00e9 \u00dcn\u00efc\u00f6d\u00e9 \u00dcn\u00efc\u00f6d\u00e9 \u00dcn\u00efc\u00f6d\u00e9 \u00dcn\u00efc\u00f6d\u00e9 \u00dcn\u00efc\u00f6d\u00e9 \u00dcn\u00efc\u00f6d\u00e9 \u00dcn\u00efc\u00f6d\u00e9 \u00dcn\u00efc\u00f6d\u00e9 \u00dcn\u00efc\u00f6d\u00e9 \u00dcn\u00efc\u00f6d\u00e9 \u00dcn\u00efc\u00f6d\u00e9 \u00dcn\u00efc\u00f6d\u00e9 \u00dcn\u00efc\u00f6d\u00e9 \u00dcn\u00efc\u00f6d\u00e9 \u00dcn\u00efc\u00f6d\u00e9 \u00dcn\u00efc\u00f6d\u00e9 \u00dcn\u00efc\u00f6d\u00e9 \u00dcn\u00efc\u00f6d\u00e9 \u00dcn\u00efc\u00f6d\u00e9 \u00dcn\u00efc\u00f6d\u00e9 \u00dcn\u00efc\u00f6d\u00e9 \u00dcn\u00efc\u00f6d\u00e9 "
+  },
+  {
+   "category": "inline-md",
+   "input": "**bold heading**"
+  },
+  {
+   "category": "inline-md",
+   "input": "*italic*"
+  },
+  {
+   "category": "inline-md",
+   "input": "`code`"
+  },
+  {
+   "category": "inline-md",
+   "input": "[link](url)"
+  },
+  {
+   "category": "inline-md",
+   "input": "![img](src)"
+  },
+  {
+   "category": "inline-md",
+   "input": "<em>tag</em>"
+  },
+  {
+   "category": "inline-md",
+   "input": "<!-- comment -->"
+  },
+  {
+   "category": "inline-md",
+   "input": "~~strike~~"
+  },
+  {
+   "category": "inline-md",
+   "input": "> quote"
+  },
+  {
+   "category": "inline-md",
+   "input": "| table |"
+  },
+  {
+   "category": "dedup",
+   "input": "Duplicate"
+  },
+  {
+   "category": "dedup",
+   "input": "Duplicate"
+  },
+  {
+   "category": "dedup",
+   "input": "Duplicate"
+  },
+  {
+   "category": "dedup",
+   "input": "dup"
+  },
+  {
+   "category": "dedup",
+   "input": "DUP"
+  },
+  {
+   "category": "dedup",
+   "input": "Dup"
+  },
+  {
+   "category": "generated",
+   "input": "Generated Heading 0 \u2014 with em dash & symbols (0)"
+  },
+  {
+   "category": "generated",
+   "input": "Generated Heading 1 \u2014 with em dash & symbols (1)"
+  },
+  {
+   "category": "generated",
+   "input": "Generated Heading 2 \u2014 with em dash & symbols (2)"
+  },
+  {
+   "category": "generated",
+   "input": "Generated Heading 3 \u2014 with em dash & symbols (3)"
+  },
+  {
+   "category": "generated",
+   "input": "Generated Heading 4 \u2014 with em dash & symbols (4)"
+  },
+  {
+   "category": "generated",
+   "input": "Generated Heading 5 \u2014 with em dash & symbols (5)"
+  },
+  {
+   "category": "generated",
+   "input": "Generated Heading 6 \u2014 with em dash & symbols (6)"
+  },
+  {
+   "category": "generated",
+   "input": "Generated Heading 7 \u2014 with em dash & symbols (0)"
+  },
+  {
+   "category": "generated",
+   "input": "Generated Heading 8 \u2014 with em dash & symbols (1)"
+  },
+  {
+   "category": "generated",
+   "input": "Generated Heading 9 \u2014 with em dash & symbols (2)"
+  },
+  {
+   "category": "generated",
+   "input": "Generated Heading 10 \u2014 with em dash & symbols (3)"
+  },
+  {
+   "category": "generated",
+   "input": "Generated Heading 11 \u2014 with em dash & symbols (4)"
+  },
+  {
+   "category": "generated",
+   "input": "Generated Heading 12 \u2014 with em dash & symbols (5)"
+  },
+  {
+   "category": "generated",
+   "input": "Generated Heading 13 \u2014 with em dash & symbols (6)"
+  },
+  {
+   "category": "generated",
+   "input": "Generated Heading 14 \u2014 with em dash & symbols (0)"
+  },
+  {
+   "category": "generated",
+   "input": "Generated Heading 15 \u2014 with em dash & symbols (1)"
+  },
+  {
+   "category": "generated",
+   "input": "Generated Heading 16 \u2014 with em dash & symbols (2)"
+  },
+  {
+   "category": "generated",
+   "input": "Generated Heading 17 \u2014 with em dash & symbols (3)"
+  },
+  {
+   "category": "generated",
+   "input": "Generated Heading 18 \u2014 with em dash & symbols (4)"
+  },
+  {
+   "category": "generated",
+   "input": "Generated Heading 19 \u2014 with em dash & symbols (5)"
+  },
+  {
+   "category": "generated",
+   "input": "Generated Heading 20 \u2014 with em dash & symbols (6)"
+  },
+  {
+   "category": "generated",
+   "input": "Generated Heading 21 \u2014 with em dash & symbols (0)"
+  },
+  {
+   "category": "generated",
+   "input": "Generated Heading 22 \u2014 with em dash & symbols (1)"
+  },
+  {
+   "category": "generated",
+   "input": "Generated Heading 23 \u2014 with em dash & symbols (2)"
+  },
+  {
+   "category": "generated",
+   "input": "Generated Heading 24 \u2014 with em dash & symbols (3)"
+  },
+  {
+   "category": "generated",
+   "input": "Generated Heading 25 \u2014 with em dash & symbols (4)"
+  },
+  {
+   "category": "generated",
+   "input": "Generated Heading 26 \u2014 with em dash & symbols (5)"
+  },
+  {
+   "category": "generated",
+   "input": "Generated Heading 27 \u2014 with em dash & symbols (6)"
+  },
+  {
+   "category": "generated",
+   "input": "Generated Heading 28 \u2014 with em dash & symbols (0)"
+  },
+  {
+   "category": "generated",
+   "input": "Generated Heading 29 \u2014 with em dash & symbols (1)"
+  },
+  {
+   "category": "generated",
+   "input": "Generated Heading 30 \u2014 with em dash & symbols (2)"
+  },
+  {
+   "category": "generated",
+   "input": "Generated Heading 31 \u2014 with em dash & symbols (3)"
+  },
+  {
+   "category": "generated",
+   "input": "Generated Heading 32 \u2014 with em dash & symbols (4)"
+  },
+  {
+   "category": "generated",
+   "input": "Generated Heading 33 \u2014 with em dash & symbols (5)"
+  },
+  {
+   "category": "generated",
+   "input": "Generated Heading 34 \u2014 with em dash & symbols (6)"
+  },
+  {
+   "category": "generated",
+   "input": "Generated Heading 35 \u2014 with em dash & symbols (0)"
+  },
+  {
+   "category": "generated",
+   "input": "Generated Heading 36 \u2014 with em dash & symbols (1)"
+  },
+  {
+   "category": "generated",
+   "input": "Generated Heading 37 \u2014 with em dash & symbols (2)"
+  },
+  {
+   "category": "generated",
+   "input": "Generated Heading 38 \u2014 with em dash & symbols (3)"
+  },
+  {
+   "category": "generated",
+   "input": "Generated Heading 39 \u2014 with em dash & symbols (4)"
+  },
+  {
+   "category": "generated",
+   "input": "Generated Heading 40 \u2014 with em dash & symbols (5)"
+  },
+  {
+   "category": "generated",
+   "input": "Generated Heading 41 \u2014 with em dash & symbols (6)"
+  },
+  {
+   "category": "generated",
+   "input": "Generated Heading 42 \u2014 with em dash & symbols (0)"
+  },
+  {
+   "category": "generated",
+   "input": "Generated Heading 43 \u2014 with em dash & symbols (1)"
+  },
+  {
+   "category": "generated",
+   "input": "Generated Heading 44 \u2014 with em dash & symbols (2)"
+  },
+  {
+   "category": "generated",
+   "input": "Generated Heading 45 \u2014 with em dash & symbols (3)"
+  },
+  {
+   "category": "generated",
+   "input": "Generated Heading 46 \u2014 with em dash & symbols (4)"
+  },
+  {
+   "category": "generated",
+   "input": "Generated Heading 47 \u2014 with em dash & symbols (5)"
+  },
+  {
+   "category": "generated",
+   "input": "Generated Heading 48 \u2014 with em dash & symbols (6)"
+  },
+  {
+   "category": "generated",
+   "input": "Generated Heading 49 \u2014 with em dash & symbols (0)"
+  },
+  {
+   "category": "generated",
+   "input": "Generated Heading 50 \u2014 with em dash & symbols (1)"
+  },
+  {
+   "category": "generated",
+   "input": "Generated Heading 51 \u2014 with em dash & symbols (2)"
+  },
+  {
+   "category": "generated",
+   "input": "Generated Heading 52 \u2014 with em dash & symbols (3)"
+  },
+  {
+   "category": "generated",
+   "input": "Generated Heading 53 \u2014 with em dash & symbols (4)"
+  },
+  {
+   "category": "generated",
+   "input": "Generated Heading 54 \u2014 with em dash & symbols (5)"
+  },
+  {
+   "category": "generated",
+   "input": "Generated Heading 55 \u2014 with em dash & symbols (6)"
+  },
+  {
+   "category": "generated",
+   "input": "Generated Heading 56 \u2014 with em dash & symbols (0)"
+  },
+  {
+   "category": "generated",
+   "input": "Generated Heading 57 \u2014 with em dash & symbols (1)"
+  }
+ ]
+}

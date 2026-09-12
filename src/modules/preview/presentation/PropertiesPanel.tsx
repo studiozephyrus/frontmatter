@@ -18,8 +18,12 @@
 import { memo, useMemo, useState } from "react";
 import { GoogleIcon } from "@/shared/presentation/GoogleIcon";
 import {
+  spliceFrontmatterValue,
+  spliceFrontmatterKey,
+  SAFE_KEY,
+} from "@/modules/share/domain/splice-frontmatter";
+import {
   parseFrontmatter,
-  stringifyFrontmatterDoc,
   isSimpleValue,
   type FrontmatterValue,
 } from "./frontmatter";
@@ -72,17 +76,23 @@ export const PropertiesPanel = memo(function PropertiesPanel({ content, onEdit }
     );
   }
 
-  // All mutations go through the live YAML Document so comments / quoting /
-  // key order survive the edit (object-rebuild dropped them).
-  function commit() {
-    if (!parsed || !onEdit) return;
-    onEdit(stringifyFrontmatterDoc(parsed.doc, parsed.body));
+  // Every mutation is a BYTE-RANGE SPLICE against the original source. Re-emitting the block
+  // from the parsed Document — which this panel used to do — rewrites bytes the user authored:
+  // measured over corpus_id sha256:3a010b16, re-emission left only 114 of 907 files
+  // byte-identical after a no-op edit, and a key RENAME altered 100% of them. Splicing leaves
+  // 907 of 907 untouched. See scripts/fm-properties-audit.mjs and PLAN.md §0.
+  //
+  // A splice that cannot be performed safely returns the source unchanged. The panel therefore
+  // checks whether anything moved and stays silent when nothing did, rather than writing a
+  // rewritten file the user did not ask for.
+  function emit(next: string) {
+    if (!onEdit || next === content) return;
+    onEdit(next);
   }
 
   function setValue(key: string, text: string) {
     if (!parsed) return;
-    parsed.doc.set(key, textToValue(text, parsed.data[key]));
-    commit();
+    emit(spliceFrontmatterValue(content, key, textToValue(text, parsed.data[key])));
   }
 
   function renameKey(oldKey: string, nextKey: string) {
@@ -90,16 +100,15 @@ export const PropertiesPanel = memo(function PropertiesPanel({ content, onEdit }
     if (!parsed || trimmed === oldKey || trimmed === "") return;
     // Refuse to rename onto an existing key — would silently merge/drop a value.
     if (Object.prototype.hasOwnProperty.call(parsed.data, trimmed)) return;
-    const v = parsed.doc.get(oldKey);
-    parsed.doc.set(trimmed, v);
-    parsed.doc.delete(oldKey);
-    commit();
+    // Same address-space limit as addProperty. The writer refuses these anyway; checking here
+    // keeps the two paths honest about the same rule.
+    if (!SAFE_KEY.test(trimmed)) return;
+    emit(spliceFrontmatterKey(content, oldKey, trimmed));
   }
 
   function removeKey(key: string) {
     if (!parsed) return;
-    parsed.doc.delete(key);
-    commit();
+    emit(spliceFrontmatterValue(content, key, null));
   }
 
   function addProperty() {
@@ -109,8 +118,16 @@ export const PropertiesPanel = memo(function PropertiesPanel({ content, onEdit }
       setNewKey("");
       return;
     }
-    parsed.doc.set(k, "");
-    commit();
+    // The writer can only address `[A-Za-z0-9_.$-]`. Ask it for anything else and it refuses
+    // (correctly — before it refused, a key it could not FIND was appended again on every
+    // edit, and three edits to `título` left a document YAML would no longer load).
+    //
+    // A refusal reaches `emit` as an unchanged string and is dropped silently, which is right
+    // for the writer and wrong for a person who just typed a name. So validate here and keep
+    // the field OPEN with their text still in it — the add visibly did not happen, instead of
+    // the input clearing and closing as though it had.
+    if (!SAFE_KEY.test(k)) return;
+    emit(spliceFrontmatterValue(content, k, ""));
     setAdding(false);
     setNewKey("");
   }
@@ -179,6 +196,12 @@ export const PropertiesPanel = memo(function PropertiesPanel({ content, onEdit }
             autoFocus
             placeholder="property name"
             value={newKey}
+            aria-invalid={newKey.trim() !== "" && !SAFE_KEY.test(newKey.trim())}
+            title={
+              newKey.trim() !== "" && !SAFE_KEY.test(newKey.trim())
+                ? "Use letters, digits, and _ . $ - only"
+                : undefined
+            }
             onChange={(e) => setNewKey(e.target.value)}
             onKeyDown={(e) => {
               if (e.key === "Enter") addProperty();
@@ -189,7 +212,12 @@ export const PropertiesPanel = memo(function PropertiesPanel({ content, onEdit }
             }}
             style={{ height: 26, flex: 1 }}
           />
-          <button className="sgnk-btn" style={{ height: 26 }} onClick={addProperty}>
+          <button
+            className="sgnk-btn"
+            style={{ height: 26 }}
+            disabled={newKey.trim() !== "" && !SAFE_KEY.test(newKey.trim())}
+            onClick={addProperty}
+          >
             Add
           </button>
         </div>

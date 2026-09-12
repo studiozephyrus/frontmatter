@@ -1,0 +1,68 @@
+{
+  "corpus": "foreign-vaults",
+  "purpose": "Third-party Obsidian vaults used as the standing fidelity gate for the splice writer.",
+  "pinned_on": "2026-08-29",
+  "note": "Content is NOT vendored into git. Clone each remote at its pinned commit and verify against MANIFEST.sha256. A mismatch means upstream moved - that is a finding, not a failure to paper over.",
+  "totals": {
+    "files": 8513,
+    "bytes": 19047891
+  },
+  "vaults": [
+    {
+      "name": "CyanVoxel_Obsidian-Vault-Template",
+      "remote": "https://github.com/CyanVoxel/Obsidian-Vault-Template",
+      "commit": "9277193c6b5bc53f5e020fa2e947eda0be767dcf",
+      "committed_at": "2024-04-13T11:06:54-07:00",
+      "md_files": 19,
+      "md_bytes": 31690
+    },
+    {
+      "name": "community-archive_obsidian-hub",
+      "remote": "https://github.com/community-archive/obsidian-hub",
+      "commit": "b11036f9a4db77917a4f07804541cceffc96cc66",
+      "committed_at": "2026-06-02T09:06:46+01:00",
+      "md_files": 6586,
+      "md_bytes": 14772305
+    },
+    {
+      "name": "erazlogo_obsidian-history-vault",
+      "remote": "https://github.com/erazlogo/obsidian-history-vault",
+      "commit": "a3d22d0a9ecf5592db40ef3a6a53b356553a4295",
+      "committed_at": "2023-05-27T14:21:59-04:00",
+      "md_files": 40,
+      "md_bytes": 30997
+    },
+    {
+      "name": "kepano_kepano-obsidian",
+      "remote": "https://github.com/kepano/kepano-obsidian",
+      "commit": "473697347a0eaac790a6596229c741b3915f3b77",
+      "committed_at": "2026-01-08T16:01:50-08:00",
+      "md_files": 103,
+      "md_bytes": 35993
+    },
+    {
+      "name": "oldwinter__knowledge-garden",
+      "remote": "https://github.com/oldwinter/knowledge-garden",
+      "commit": "2ad252e3820b775040d726298ea9b05821e86783",
+      "committed_at": "2025-09-05T22:02:47+08:00",
+      "md_files": 961,
+      "md_bytes": 2578432
+    },
+    {
+      "name": "quanru_obsidian-example-lifeos",
+      "remote": "https://github.com/quanru/obsidian-example-lifeos",
+      "commit": "80fb5649d6081e37b661ae3b6d4d77943921915a",
+      "committed_at": "2026-04-14T09:45:55+08:00",
+      "md_files": 540,
+      "md_bytes": 1215109
+    },
+    {
+      "name": "s-blu_obsidian_dataview_example_vault",
+      "remote": "https://github.com/s-blu/obsidian_dataview_example_vault",
+      "commit": "dfc8022fcc9923a0e8755362a0b0943b34203970",
+      "committed_at": "2025-07-11T21:17:44+02:00",
+      "md_files": 264,
+      "md_bytes": 383365
+    }
+  ]
+}

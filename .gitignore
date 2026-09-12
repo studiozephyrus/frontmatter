@@ -35,3 +35,21 @@ graphify-out/
 
 # NOTE: .sgnk/ is intentionally NOT gitignored — snapshots travel with the repo
 # so other Claude accounts can /sgnk-recall the resume KEY card.
+
+# Derived documents. The tree under docs/ is the source; these are projections of it,
+# rebuilt by `npm run doc` and `npm run pdf`. Committing them means the repo carries two
+# copies of the same words that can disagree — which is the exact failure the product
+# exists to prevent, so we do not do it to ourselves.
+docs/FRONTMATTER-RECORD.md
+docs/*.print.html
+docs/print-test.pdf
+docs/frontmatter-COMPLETE-RECORD-*.md
+
+# Transient fetch and tool output — regenerable, never content.
+cert.err
+scripts/__pycache__/
+
+# session scratch that should never be committed
+decisions/dg-test.html
+decisions/dg-samples.js
+decisions/v2-preview.html

@@ -1,0 +1,2977 @@
+{
+  "cat": "Form factor & surfaces",
+  "questions": [
+    {
+      "id": "FF1",
+      "cat": "Form factor & surfaces",
+      "sub": "Core choice",
+      "weight": "critical",
+      "q": "Do we ship a standalone editor, a VS Code extension, or one core behind both, and which ships first?",
+      "lede": "Every estimate in the plan prices a standalone shell. No line anywhere prices an extension, and the meeting must choose between them.",
+      "visual": {
+        "kind": "compare",
+        "labelWidth": 26,
+        "cols": [
+          {
+            "title": "Standalone shell",
+            "tone": "neutral"
+          },
+          {
+            "title": "VS Code extension",
+            "tone": "accent"
+          },
+          {
+            "title": "One core, both",
+            "tone": "neutral"
+          }
+        ],
+        "rows": [
+          {
+            "label": "Population in reach",
+            "cells": [
+              "Show HN median 3 points across 386 launches",
+              "24.89M Claude Code installs in that store",
+              "Both, in sequence"
+            ]
+          },
+          {
+            "label": "Review niche there",
+            "cells": [
+              "Not applicable",
+              "13 extensions, 1,217 installs, ceiling 400",
+              "Same 400 ceiling"
+            ]
+          },
+          {
+            "label": "Live mode",
+            "cells": [
+              "Yes",
+              "No view-zone API, so no",
+              "Two diverging feature sets"
+            ]
+          },
+          {
+            "label": "Table stakes",
+            "cells": [
+              "14.5 to 20.5 days, unbudgeted",
+              "Host supplies about 6.5 of 17.5 days",
+              "Paid once, on the shell"
+            ]
+          },
+          {
+            "label": "The name",
+            "cells": [
+              "Free",
+              "Owned by an 82,265-install incumbent",
+              "Two names to explain"
+            ]
+          },
+          {
+            "label": "Elapsed to MVP-0",
+            "cells": [
+              "57.9 weeks at 1.21 days a week",
+              "No estimate exists",
+              "No estimate exists"
+            ]
+          }
+        ],
+        "note": "Rows read from the plan and re-measured 2026-09-09.",
+        "caption": "Three surfaces, and the row nobody has costed"
+      },
+      "stakes": "Choosing the shell commits about 58 calendar weeks before a stranger has been asked anything.",
+      "state": [
+        "Decision 6 offers three options and carries an estimate for none of them (docs/PRODUCT-BRIEF.md:364).",
+        "All thirteen features and all eleven fixes budget the standalone shell only (docs/PRODUCT-BRIEF.md:55, :214).",
+        "The engine is 3,614 lines with no DOM, and one symbol of thirteen files reaches product code (docs/PRODUCT-BRIEF.md:217, :223).",
+        "Round 2 measured a byte-exact write from an extension twice, at 94/94 and 156/156 bytes (docs/GAPS-2026-09-08.md:125)."
+      ],
+      "path": [
+        "The gap register called this the largest unreasoned decision in the plan on 2026-09-08 (docs/GAPS-2026-09-08.md:48).",
+        "Round 2 measured the mechanics and left the choice to the founders (docs/GAPS-2026-09-08.md:125).",
+        "Microsoft merged a review/unreview operation into the Agents window on 2026-07-03, milestone 1.128.0, and documented none of it (api.github.com, PR 324218)."
+      ],
+      "tension": [
+        "The host reaches three orders of magnitude more people and has now built the per-file half of our marker itself.",
+        "Free working-tree diff of agent changes shipped in four places between 2026-08-24 and 2026-09-03: Antigravity, Notion, Codex and Claude Code v2.1.260.",
+        "Only the engine is ours. 41 of 43 editor files are byte-identical to the sibling repo (docs/GAPS-2026-09-08.md:141).",
+        "What nobody has shipped is review state stored in the repository, per span, surviving a machine change."
+      ],
+      "evidence": [
+        {
+          "type": "stat",
+          "title": "What round 2 actually measured",
+          "items": [
+            [
+              "Extension byte-exact write, harness 1",
+              "94 / 94 bytes",
+              "VS Code 1.135.0 — PRODUCT-BRIEF.md:364"
+            ],
+            [
+              "Extension byte-exact write, harness 2",
+              "156 / 156 bytes",
+              "independent second harness — GAPS:125"
+            ],
+            [
+              "Engine that would port",
+              "3,614 lines, 13 files, no DOM",
+              "re-verified in src/modules/mdmax, 2026-09-09"
+            ],
+            [
+              "Engine symbols reaching product code today",
+              "1 symbol from 1 of 13 files",
+              "decodeStrict, exactly 2 import sites — re-verified"
+            ],
+            [
+              "Extension engineering estimate in the plan",
+              "none",
+              "no line in Exhibit 1 or §9"
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Population against niche",
+          "cols": [
+            "Surface",
+            "Installs",
+            "Source"
+          ],
+          "rows": [
+            [
+              "Copilot Chat",
+              "78.06M",
+              "GAPS-2026-09-08.md:48"
+            ],
+            [
+              "Claude Code VS Code extension",
+              "24.89M",
+              "GAPS:48; PRODUCT-BRIEF.md:150"
+            ],
+            [
+              "markdown-all-in-one (10.6x co-recommendation lift with Copilot)",
+              "14.45M",
+              "GAPS:48"
+            ],
+            [
+              "git-ai",
+              "61,517",
+              "PRODUCT-BRIEF.md:151"
+            ],
+            [
+              "SpecKit Companion (nearest sidecar pattern)",
+              "9,367",
+              "PRODUCT-BRIEF.md:152"
+            ],
+            [
+              "All 13 markdown-review extensions, combined",
+              "1,217",
+              "PRODUCT-BRIEF.md:9, :24"
+            ],
+            [
+              "Best of those 13 — the ceiling",
+              "400",
+              "PRODUCT-BRIEF.md:24"
+            ],
+            [
+              "mddiff, our own sentence, shipped 2026-06-03",
+              "74",
+              "PRODUCT-BRIEF.md:24"
+            ]
+          ]
+        }
+      ],
+      "options": [
+        {
+          "k": "a",
+          "label": "Standalone editor only, as the plan is written",
+          "what": "Build the four-mode shell, pay the table-stakes bill, ship nothing inside another editor.",
+          "gains": [
+            "Keeps Live mode, the free-editor story and the Obsidian audience",
+            "One codebase, one set of estimates, no host to depend on"
+          ],
+          "costs": [
+            "57.9 calendar weeks to MVP-0 at the measured 1.21 days a week",
+            "Pays table stakes on a shell that is 41 of 43 files someone else's code",
+            "Show HN median is 3 points across 386 markdown-editor launches"
+          ],
+          "system": "No change. The fix list and the sequence stand as written.",
+          "screens": "All nine prototype screens survive unchanged.",
+          "money": "Two certificates a year: $99 Apple, $150-400 Windows."
+        },
+        {
+          "k": "b",
+          "label": "VS Code extension only",
+          "what": "Ship review state and attribution as an extension and stop building the shell.",
+          "gains": [
+            "Meets the population that already runs the agents",
+            "The host supplies about 6.5 of the 17.5 table-stakes days free"
+          ],
+          "costs": [
+            "No view-zone API, so Live mode cannot exist",
+            "A niche of 13 extensions totalling 1,217 installs, ceiling 400",
+            "The name is owned there by an 82,265-install incumbent"
+          ],
+          "system": "Engine ports unchanged. The shell and all Tauri work are abandoned.",
+          "screens": "S0, the S2 mode tabs and S11 die. S4 becomes a host view.",
+          "money": "No certificates, no web hosting, no store fee."
+        },
+        {
+          "k": "c",
+          "label": "One core, extension first, standalone shell second",
+          "what": "Extract the engine as the product, ship the thin extension, keep the shell for later.",
+          "gains": [
+            "Puts the tint in front of a real population inside the test window",
+            "Keeps the shell open as an option without paying for it yet"
+          ],
+          "costs": [
+            "Two shells to maintain later, at 1.21 engineering days a week",
+            "The extension still has no estimate anywhere in the plan"
+          ],
+          "system": "Engine becomes a package with two hosts and one sidecar format.",
+          "screens": "S2 and S4 ship twice, in two idioms, from one spec.",
+          "money": "Extension cost unknown. Nobody has priced it."
+        },
+        {
+          "k": "d",
+          "label": "One core, standalone first, extension at MVP-1",
+          "what": "Keep the current build order and add the extension after the pilot exits.",
+          "gains": [
+            "No re-planning today; every estimate in the plan stays valid",
+            "Lets the pilot run on the surface that already partly exists"
+          ],
+          "costs": [
+            "Defers the population question by 57.9 calendar weeks",
+            "By then the host may have documented what it merged in July"
+          ],
+          "system": "No change.",
+          "screens": "No change.",
+          "money": "None."
+        }
+      ],
+      "rec": "c",
+      "recCase": [
+        "Only the engine is ours: 3,614 lines, no DOM, portable by measurement rather than by hope (docs/PRODUCT-BRIEF.md:223).",
+        "The shell is not an asset. 41 of 43 editor files are byte-identical to sgnk-md (docs/GAPS-2026-09-08.md:141).",
+        "Building it first spends 57.9 calendar weeks before anyone outside the session has been asked anything (docs/PRODUCT-BRIEF.md:227).",
+        "Take it with FF12, because the package route may be cheaper still, and with FF14, which binds both."
+      ],
+      "flip": "If the contention test in FF4 loses a byte inside the host, the extension is out and (d) is the answer.",
+      "linked": [
+        "FF3",
+        "FF4",
+        "FF11",
+        "FF12",
+        "FF14"
+      ],
+      "sources": [
+        "docs/PRODUCT-BRIEF.md:364",
+        "docs/PRODUCT-BRIEF.md:9",
+        "docs/PRODUCT-BRIEF.md:24",
+        "docs/PRODUCT-BRIEF.md:55",
+        "docs/PRODUCT-BRIEF.md:214",
+        "docs/PRODUCT-BRIEF.md:217",
+        "docs/PRODUCT-BRIEF.md:223",
+        "docs/PRODUCT-BRIEF.md:227",
+        "docs/GAPS-2026-09-08.md:48",
+        "docs/GAPS-2026-09-08.md:125",
+        "docs/GAPS-2026-09-08.md:141",
+        "docs/CRITIQUE.md:441",
+        "src/modules/mdmax",
+        "https://api.github.com/repos/microsoft/vscode/pulls/324218"
+      ]
+    },
+    {
+      "id": "FF2",
+      "cat": "Form factor & surfaces",
+      "sub": "The rendering bet",
+      "weight": "high",
+      "q": "Do we chase rendering fidelity, meaning Live mode in MVP-0 and an Obsidian surface, or cut both?",
+      "lede": "The only demand signal with a vote behind it points at a feature the cheap surface cannot host, through a channel already cut.",
+      "visual": {
+        "kind": "flow",
+        "perRow": 4,
+        "nodes": [
+          {
+            "label": "501 likes, 117 posts",
+            "note": "Obsidian's nested-construct render bug",
+            "tone": "neutral"
+          },
+          {
+            "label": "Fix needs live preview",
+            "note": "nested constructs inside list items",
+            "tone": "neutral",
+            "edge": "needs"
+          },
+          {
+            "label": "Obsidian plugin is cut",
+            "note": "the Live Preview tree is depth-1",
+            "tone": "stop",
+            "edge": "so"
+          },
+          {
+            "label": "Only route left is Live mode",
+            "note": "inside our own shell",
+            "tone": "warn",
+            "edge": "then"
+          },
+          {
+            "label": "No view-zone API in VS Code",
+            "note": "Live is standalone-only",
+            "tone": "stop",
+            "edge": "but"
+          },
+          {
+            "label": "Standalone shell has to go first",
+            "note": "57.9 weeks at 1.21 days a week",
+            "tone": "stop",
+            "edge": "so"
+          },
+          {
+            "label": "Or cut Live and Obsidian",
+            "note": "one feature set on either surface",
+            "tone": "accent",
+            "edge": "or"
+          }
+        ],
+        "note": "Every step was measured. Only the last is a choice.",
+        "caption": "How one forum vote forces the most expensive surface"
+      },
+      "stakes": "Keeping Live forces the standalone shell first and forecloses the cheaper surface.",
+      "state": [
+        "F1 lists Live, Edit, Split and Read as MVP-0 (docs/PRODUCT-BRIEF.md:55).",
+        "Decision 6 records there is no view-zone API, so Live is standalone-only (docs/PRODUCT-BRIEF.md:364).",
+        "The Obsidian plugin is cut at Exhibit 17 and still referenced in six places (docs/PRODUCT-BRIEF.md:304, :204, :338, :428, :464, :477).",
+        "§21 still promises the 501-like fix ships first as the free plugin (docs/PRODUCT-BRIEF.md:524)."
+      ],
+      "path": [
+        "Live preview and the plugin arrived together with the Obsidian bet.",
+        "Round 2 killed the plugin on three grounds, including a depth-1 parse tree (docs/GAPS-2026-09-08.md:127).",
+        "The nearest measured analogue landed 115 installs in fourteen days against our own 200 kill line (docs/PRODUCT-BRIEF.md:304)."
+      ],
+      "tension": [
+        "In the only population with a vote, rendering fidelity beats review state 501 to 0 (docs/PRODUCT-BRIEF.md:25).",
+        "What that population wants is what a plugin cannot deliver, and what a plugin can deliver scored zero in three years.",
+        "Obsidian shipped the neighbouring nested-in-list fix twice in 2026, which shrinks the window further (docs/PRODUCT-BRIEF.md:304).",
+        "Obsidian core shipped no AI, agent, diff or review feature across its last twenty releases, so the shelf beside us is empty too."
+      ],
+      "evidence": [
+        {
+          "type": "stat",
+          "title": "The vote, and the window",
+          "items": [
+            [
+              "Obsidian forum, nested-construct rendering bug",
+              "501 likes, 117 posts, 18,331 views",
+              "PRODUCT-BRIEF.md:25"
+            ],
+            [
+              "Obsidian forum, closest review-state request",
+              "0 likes, 251 views, 1 post in three years",
+              "PRODUCT-BRIEF.md:25, :410"
+            ],
+            [
+              "Obsidian releases 2025-26 mentioning live preview",
+              "51 hits across 142 releases",
+              "CRITIQUE.md:362 (M13)"
+            ],
+            [
+              "Obsidian shipped the neighbouring nested-in-list fix",
+              "twice in 2026",
+              "PRODUCT-BRIEF.md:304"
+            ],
+            [
+              "View-zone API in VS Code",
+              "none — Live is standalone-only",
+              "PRODUCT-BRIEF.md:364"
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Where the cut plugin still lives in the same document",
+          "cols": [
+            "Location",
+            "Line",
+            "What it still says"
+          ],
+          "rows": [
+            [
+              "Exhibit 17, the cut",
+              "304",
+              "CUT — the parse is unreachable, 115 installs against a 200 kill line"
+            ],
+            [
+              "Exhibit 6, MVP-0 channels",
+              "204",
+              "\"Free Obsidian live-preview plugin, week 2; kill: under 200 installs in 14 days\""
+            ],
+            [
+              "§14 ninety-day flowchart, the no-go branch",
+              "338",
+              "\"Stop: free plugin, services, engine\""
+            ],
+            [
+              "Exhibit 24, retention lever",
+              "428",
+              "\"The plugin ... stays installed in a vault the user already opens daily\""
+            ],
+            [
+              "§19 family diagram",
+              "464",
+              "\"Chrome extension · Obsidian plugin\""
+            ],
+            [
+              "Exhibit 26, family members",
+              "477",
+              "\"Free; channels — MVP-1, week 2\""
+            ],
+            [
+              "§21 rendering rules",
+              "524",
+              "the 501-like fix \"shipped first as the free plugin\""
+            ]
+          ]
+        },
+        {
+          "type": "stat",
+          "title": "What that population votes for",
+          "items": [
+            [
+              "Nested-construct rendering bug",
+              "501 likes",
+              "the thing a plugin cannot fix — PRODUCT-BRIEF.md:25"
+            ],
+            [
+              "Closest review-state request",
+              "0 likes, 1 post in three years",
+              "the thing a plugin could ship — PRODUCT-BRIEF.md:25"
+            ],
+            [
+              "Closest measured analogue, first 14 days",
+              "115 installs",
+              "against our own 200-install kill line — PRODUCT-BRIEF.md:304"
+            ],
+            [
+              "Extensions and plugins already sitting in this niche",
+              "13 VS Code, 7 Obsidian, none above 1,540 downloads",
+              "PRODUCT-BRIEF.md:559"
+            ]
+          ]
+        }
+      ],
+      "options": [
+        {
+          "k": "a",
+          "label": "Keep Live in MVP-0 and ship the additive Obsidian review-state plugin",
+          "what": "Chase the rendering audience on both surfaces, with the 200-install kill line intact.",
+          "gains": [
+            "Keeps the only feature in the corpus with a 501-vote demand signal",
+            "Reuses the CodeMirror work either shell needs anyway"
+          ],
+          "costs": [
+            "Forces the standalone shell first, at 57.9 calendar weeks",
+            "The plugin ships the feature that population scored 0 likes on"
+          ],
+          "system": "A live-preview renderer plus a CodeMirror decoration layer over the sidecar.",
+          "screens": "S2 keeps all four mode tabs. A plugin settings pane is added.",
+          "money": "None. Both surfaces are free."
+        },
+        {
+          "k": "b",
+          "label": "Cut Live from MVP-0, cut Obsidian, delete the six stale references",
+          "what": "Ship Edit, Split and Read, and say nothing about Obsidian anywhere in the plan.",
+          "gains": [
+            "Both surfaces can carry one feature set, so the extension stays viable",
+            "Removes six contradictions from a twenty-three-section document"
+          ],
+          "costs": [
+            "Drops the only feature with a measured demand signal",
+            "Loses the Exhibit 24 retention lever and the flowchart's fallback branch"
+          ],
+          "system": "No live-preview renderer, no CodeMirror plugin build.",
+          "screens": "S2 loses the Live tab. The family diagram loses a box.",
+          "money": "None."
+        },
+        {
+          "k": "c",
+          "label": "Keep Live in the standalone shell only; no Obsidian surface",
+          "what": "Live returns if the shell wins FF1; the extension ships tint, revert and panel.",
+          "gains": [
+            "Preserves both audiences without promising a third-party surface",
+            "Lets FF1 decide rather than pre-empting it"
+          ],
+          "costs": [
+            "Two divergent feature sets to document, test and support",
+            "Still forces the shell if the rendering audience is the buyer"
+          ],
+          "system": "One engine, two renderers, one sidecar.",
+          "screens": "S2 differs between surfaces, which the prototype does not show.",
+          "money": "None."
+        },
+        {
+          "k": "d",
+          "label": "Hold until the five-second screenshot test in weeks 1-2",
+          "what": "Show five people the S2 screenshot and decide after they answer.",
+          "gains": [
+            "Cheap and honest, and it is already scheduled for weeks 1-2",
+            "Costs nothing, and the five people are already scheduled"
+          ],
+          "costs": [
+            "Blocks the form factor for two weeks",
+            "The test measures the tint, not Live mode"
+          ],
+          "system": "No change.",
+          "screens": "No change.",
+          "money": "None."
+        }
+      ],
+      "rec": "b",
+      "recCase": [
+        "The 501 likes are Obsidian users complaining about Obsidian, and the plugin that would have met them there is cut (docs/GAPS-2026-09-08.md:127).",
+        "Reaching them now needs them to install a second editor, which is the hardest ask in this plan.",
+        "Live is the most expensive mode to get right and the one that closes the cheaper surface (docs/PRODUCT-BRIEF.md:364).",
+        "Delete the six references in the same edit, line 338 first, because it makes the cut plugin the fallback if the product test fails."
+      ],
+      "flip": "If the ten pilot strangers turn out to be Obsidian users, Live is the product and the extension is dead.",
+      "linked": [
+        "FF1",
+        "FF14"
+      ],
+      "sources": [
+        "merged: FF6",
+        "docs/PRODUCT-BRIEF.md:25",
+        "docs/PRODUCT-BRIEF.md:55",
+        "docs/PRODUCT-BRIEF.md:204",
+        "docs/PRODUCT-BRIEF.md:304",
+        "docs/PRODUCT-BRIEF.md:338",
+        "docs/PRODUCT-BRIEF.md:364",
+        "docs/PRODUCT-BRIEF.md:410",
+        "docs/PRODUCT-BRIEF.md:428",
+        "docs/PRODUCT-BRIEF.md:464",
+        "docs/PRODUCT-BRIEF.md:477",
+        "docs/PRODUCT-BRIEF.md:524",
+        "docs/PRODUCT-BRIEF.md:559",
+        "docs/GAPS-2026-09-08.md:127",
+        "docs/CRITIQUE.md:362"
+      ]
+    },
+    {
+      "id": "FF3",
+      "cat": "Form factor & surfaces",
+      "sub": "The fork",
+      "weight": "critical",
+      "q": "The editor shell is a fork of sgnk-md. Do we merge back into it, freeze it, hard-fork it, or delete it?",
+      "lede": "The same fork appears once as a strength and once as a liability in one document, and nobody has resolved which it is.",
+      "visual": {
+        "kind": "arch",
+        "layers": [
+          {
+            "label": "Splice engine, src/modules/mdmax",
+            "items": [
+              "3,614 lines",
+              "13 files, no DOM",
+              "1 symbol reaches product code"
+            ],
+            "side": "ours",
+            "tone": "accent"
+          },
+          {
+            "label": "Editor and app shell",
+            "items": [
+              "41 of 43 files byte-identical",
+              "0 unique to frontmatter"
+            ],
+            "side": "forked",
+            "tone": "sunk"
+          },
+          {
+            "label": "The rest of src/",
+            "items": [
+              "202 identical, 25 diverged",
+              "20 unique, 13 of them the engine"
+            ],
+            "side": "forked",
+            "tone": "sunk"
+          },
+          {
+            "label": "src-tauri desktop shell",
+            "items": [
+              "productName sgnk-md",
+              "identifier ai.sgnk.md"
+            ],
+            "side": "sibling's",
+            "tone": "stop"
+          }
+        ],
+        "note": "Re-measured 2026-09-09 against the sibling repo.",
+        "caption": "What this product owns, by layer: 14.2% of 25,407 lines"
+      },
+      "stakes": "Every table-stakes day the plan does not budget is a fork tax paid twice or an upstream merge nobody scheduled.",
+      "state": [
+        "§9 fix #0 calls the shell a fork, not an asset, and attaches no engineering days (docs/PRODUCT-BRIEF.md:223).",
+        "§23 lists the same fact as a strength: 88.6% of a shipping editor exists (docs/PRODUCT-BRIEF.md:557).",
+        "The plan states the whole-repo count two ways: 181 of 226 at line 223, 202 of 228 at line 479.",
+        "src-tauri still carries the sibling's identity in the committed config (src-tauri/tauri.conf.json:3, :5)."
+      ],
+      "path": [
+        "Round 2 found it. It is finding 4 of the five that changed most (docs/GAPS-2026-09-08.md:141).",
+        "It had never appeared in any earlier plan.",
+        "Nobody has asked whether sgnk-md has users (docs/GAPS-2026-09-08.md:105)."
+      ],
+      "tension": [
+        "Merging needs an answer about sgnk-md's users that nobody has requested.",
+        "Hard-forking commits 14.5 to 20.5 table-stakes days the measured rate cannot pay (docs/PRODUCT-BRIEF.md:227).",
+        "Deleting the shell is correct only if FF1 resolves to a host surface.",
+        "The divergence has not moved since the plan was written. The extra file counted today is a .DS_Store."
+      ],
+      "evidence": [
+        {
+          "type": "table",
+          "title": "Re-measured 2026-09-09 against the sibling repo at ~/Desktop/GitHub/md",
+          "cols": [
+            "Scope",
+            "Byte-identical",
+            "Diverged",
+            "Unique to frontmatter"
+          ],
+          "rows": [
+            [
+              "src/modules/editor + src/modules/app-shell (all files)",
+              "41",
+              "2",
+              "0"
+            ],
+            [
+              "src/ — all files, including non-code",
+              "202",
+              "26 (one is .DS_Store)",
+              "20"
+            ],
+            [
+              "src/ — .ts, .tsx, .css only",
+              "183",
+              "25",
+              "20"
+            ],
+            [
+              "Of those 20 unique files",
+              "—",
+              "—",
+              "13 engine, 5 Firebase auth, 1 DI container, 1 splice-frontmatter"
+            ],
+            [
+              "The plan says, at line 223",
+              "181 of 226",
+              "25",
+              "0 in editor + app-shell"
+            ],
+            [
+              "The plan also says, at line 479",
+              "202 of 228",
+              "—",
+              "—"
+            ]
+          ],
+          "note": "The 41-of-43 editor figure reproduces exactly. The whole-repo figure does not: line 223 and line 479 disagree with each other and both disagree with measurement. On like-for-like code files the divergence count is still 25, not 26 — the extra file is a macOS .DS_Store artifact, so nothing has actually drifted since the plan was written."
+        },
+        {
+          "type": "stat",
+          "title": "What is actually owned",
+          "items": [
+            [
+              "Total source, .ts and .tsx",
+              "25,407 lines",
+              "re-measured 2026-09-09; matches CRITIQUE.md:52"
+            ],
+            [
+              "Engine",
+              "3,614 lines = 14.2%",
+              "re-measured, 13 files"
+            ],
+            [
+              "Everything else",
+              "21,793 lines",
+              "CRITIQUE.md:52 calls it an Obsidian clone"
+            ],
+            [
+              "Engine reaching product code",
+              "1 symbol, 2 import sites",
+              "decodeStrict from shape-gate.ts"
+            ],
+            [
+              "src-tauri identity",
+              "productName sgnk-md, id ai.sgnk.md",
+              "src-tauri/tauri.conf.json:3, :5"
+            ]
+          ]
+        }
+      ],
+      "options": [
+        {
+          "k": "a",
+          "label": "Merge back: one codebase, frontmatter as a mode of sgnk-md",
+          "what": "Stop maintaining two trees and ship frontmatter as a mode inside the sibling product.",
+          "gains": [
+            "Ends the divergence tax outright",
+            "Inherits whatever user base sgnk-md already has"
+          ],
+          "costs": [
+            "Needs to know whether sgnk-md has users, which nobody has asked",
+            "Two products then share one release and one name"
+          ],
+          "system": "One tree, one build, a feature flag where they differ.",
+          "screens": "The launcher becomes a mode switch inside sgnk-md.",
+          "money": "One set of certificates instead of two."
+        },
+        {
+          "k": "b",
+          "label": "Freeze the shell: new work goes to the engine and one surface",
+          "what": "No further investment in the forked shell; the engine and one surface get every day.",
+          "gains": [
+            "Stops paying the tax without needing a migration",
+            "Requires no answer we do not already have"
+          ],
+          "costs": [
+            "The shell stays at its current quality",
+            "Every table-stakes gap in the eight-item list stays open"
+          ],
+          "system": "No upstream tracking. Engine work continues.",
+          "screens": "No new screens. Existing ones stop improving.",
+          "money": "None."
+        },
+        {
+          "k": "c",
+          "label": "Hard-fork and own it: stop tracking the sibling, budget the table stakes",
+          "what": "Declare the shell ours and put the table-stakes days into the plan.",
+          "gains": [
+            "Honest about what maintaining an editor costs",
+            "Removes the ambiguity in fix #0"
+          ],
+          "costs": [
+            "14.5 to 20.5 engineering days of table stakes before any novel feature",
+            "The measured rate of 1.21 days a week cannot pay that"
+          ],
+          "system": "The shell becomes a first-class codebase with its own tests.",
+          "screens": "Table editing, paste-to-markdown and a keymap editor arrive.",
+          "money": "Roughly four months of the measured rate spent on parity."
+        },
+        {
+          "k": "d",
+          "label": "Delete the shell; ship the engine inside someone else's shell",
+          "what": "Keep the 14.2% that is ours and let a host supply the editor.",
+          "gains": [
+            "Keeps only what is genuinely this product's",
+            "Matches the FF1 extension route and the FF12 package route"
+          ],
+          "costs": [
+            "Loses 21,793 lines and the free-editor story",
+            "Live mode and the four-mode promise go with it"
+          ],
+          "system": "Engine becomes a package. No shell to build or sign.",
+          "screens": "S0, S2 and S11 are retired.",
+          "money": "No certificates, no web hosting."
+        }
+      ],
+      "rec": "b",
+      "recCase": [
+        "Freezing is the only option that needs no answer we do not have today.",
+        "Merging needs to know whether sgnk-md has users, and nobody has asked (docs/GAPS-2026-09-08.md:105).",
+        "Hard-forking commits 14.5 to 20.5 table-stakes days the measured 1.21 days a week cannot pay (docs/PRODUCT-BRIEF.md:227).",
+        "Fix the two conflicting whole-repo counts in the same edit, so the meeting is not shown two numbers for one fact."
+      ],
+      "flip": "If sgnk-md has ten reachable users, merging is the best deal in the plan and (a) wins.",
+      "linked": [
+        "FF1",
+        "FF8",
+        "FF14"
+      ],
+      "sources": [
+        "docs/PRODUCT-BRIEF.md:223",
+        "docs/PRODUCT-BRIEF.md:227",
+        "docs/PRODUCT-BRIEF.md:479",
+        "docs/PRODUCT-BRIEF.md:557",
+        "docs/GAPS-2026-09-08.md:105",
+        "docs/GAPS-2026-09-08.md:141",
+        "docs/CRITIQUE.md:52",
+        "src-tauri/tauri.conf.json:3",
+        "src-tauri/tauri.conf.json:5",
+        "docs/research/agent-reports-2026-08-30/r24-v1-table-stakes.md:87"
+      ]
+    },
+    {
+      "id": "FF4",
+      "cat": "Form factor & surfaces",
+      "sub": "Gates before the choice",
+      "weight": "high",
+      "q": "Which measurements must land before the surface is chosen, and with what pre-registered kill lines?",
+      "lede": "Neither surface has been tested at the moment the product exists for, and every engine number comes from vaults, not repos.",
+      "visual": {
+        "kind": "compare",
+        "labelWidth": 30,
+        "cols": [
+          {
+            "title": "Standalone shell",
+            "tone": "neutral"
+          },
+          {
+            "title": "VS Code extension",
+            "tone": "neutral"
+          }
+        ],
+        "rows": [
+          {
+            "label": "Quiet write, nobody typing",
+            "cells": [
+              "0 throws across 1,354 blocks that proceeded",
+              "94/94 and 156/156 bytes, two harnesses"
+            ]
+          },
+          {
+            "label": "Agent writes while a human types",
+            "cells": [
+              "unmeasured",
+              "unmeasured, named as a data-loss path"
+            ]
+          },
+          {
+            "label": "Anchor after an out-of-band write",
+            "cells": [
+              "unmeasured",
+              "unmeasured"
+            ]
+          },
+          {
+            "label": "Host save on a dirty buffer",
+            "cells": [
+              "not applicable",
+              "rewrites the file"
+            ]
+          },
+          {
+            "label": "Refusal rate on Obsidian vaults",
+            "cells": [
+              "83.01% of 7,969 blocks",
+              "same engine, same number"
+            ]
+          },
+          {
+            "label": "Refusal rate on repo markdown",
+            "cells": [
+              "unmeasured",
+              "unmeasured"
+            ]
+          }
+        ],
+        "note": "Cells read 2026-09-09 from the plan and the round-2 harnesses.",
+        "caption": "Six scenarios, two surfaces, five cells nobody has filled"
+      },
+      "stakes": "Choosing a surface on evidence that excludes the founding scenario means finding out after the shell is built.",
+      "state": [
+        "Decision 6 records an untested data-loss path on the extension's raw-write bypass (docs/PRODUCT-BRIEF.md:364).",
+        "Round 2's still-open list carries the contended write and the out-of-band anchor (docs/GAPS-2026-09-08.md:146).",
+        "SOURCES.json is seven Obsidian vaults, and one wiki is 77% of the 8,513 files (docs/PRODUCT-BRIEF.md:514).",
+        "NF-1 is four days and the first item in the whole fix list (docs/PRODUCT-BRIEF.md:214)."
+      ],
+      "path": [
+        "The round-2 harnesses proved byte-exactness in a quiet editor and stopped there (docs/GAPS-2026-09-08.md:125).",
+        "The corpus was pinned on 2026-08-29, when Obsidian was the channel.",
+        "The buyer moved to the repo developer across four direction changes and the corpus did not move with it."
+      ],
+      "tension": [
+        "The 83.01% refusal is 6,613 blocks from one cause: a hyphen item at column zero, an Obsidian tag habit (docs/ENGINE.md:146, :51).",
+        "If the buyer is the repo developer, NF-1's four days may repair a defect that buyer never hits.",
+        "Each test defers decision 6, and three deferrals are already queued in front of it.",
+        "A verifier written after the fact certified the quiet case while the loud one went unmeasured."
+      ],
+      "evidence": [
+        {
+          "type": "table",
+          "title": "What has been tested, per surface",
+          "cols": [
+            "Scenario",
+            "Standalone shell",
+            "VS Code extension",
+            "Status"
+          ],
+          "rows": [
+            [
+              "Quiet write, no human in the buffer",
+              "0 throws, 0 corruptions across the 1,354 frontmatter blocks that proceeded of 7,969 (ENGINE.md:146)",
+              "94/94 and 156/156 bytes",
+              "measured"
+            ],
+            [
+              "Agent writes while a human is typing",
+              "unmeasured",
+              "unmeasured — named as a data-loss path",
+              "GAPS:146"
+            ],
+            [
+              "Review anchor survives an out-of-band write",
+              "unmeasured",
+              "unmeasured",
+              "GAPS:146"
+            ],
+            [
+              "Host save pipeline on a dirty buffer",
+              "not applicable",
+              "rewrites the file",
+              "PRODUCT-BRIEF.md:364"
+            ]
+          ]
+        },
+        {
+          "type": "bars",
+          "title": "Corpus composition, test/corpus/foreign/SOURCES.json, read 2026-09-09",
+          "note": "Seven Obsidian vaults, 8,513 markdown files, pinned 2026-08-29. Zero repo-shaped sources: no spec-kit specs, no docs/ folders, no agent-written specs. File counts reproduce exactly against the manifest.",
+          "unit": "markdown files",
+          "data": [
+            [
+              "community-archive/obsidian-hub",
+              6586
+            ],
+            [
+              "oldwinter/knowledge-garden",
+              961
+            ],
+            [
+              "quanru/obsidian-example-lifeos",
+              540
+            ],
+            [
+              "s-blu/obsidian_dataview_example_vault",
+              264
+            ],
+            [
+              "kepano/kepano-obsidian",
+              103
+            ],
+            [
+              "erazlogo/obsidian-history-vault",
+              40
+            ],
+            [
+              "CyanVoxel/Obsidian-Vault-Template",
+              19
+            ]
+          ]
+        },
+        {
+          "type": "stat",
+          "title": "What that corpus produced",
+          "items": [
+            [
+              "Splice writer refusals",
+              "6,615 of 7,969 frontmatter blocks = 83.01%",
+              "ENGINE.md:146"
+            ],
+            [
+              "Of those, one cause",
+              "6,613 — a `-` item at column zero",
+              "ENGINE.md:146, :51"
+            ],
+            [
+              "NF-1 budget, first item in the fix list",
+              "4 engineering days",
+              "PRODUCT-BRIEF.md:214"
+            ],
+            [
+              "Unaddressable top-level keys (NF-4)",
+              "2,447 of 29,288 across 937 of 7,969 files",
+              "ENGINE.md:213 — includes CJK keys from the same vaults"
+            ],
+            [
+              "Refusal rate on repo-shaped markdown",
+              "unmeasured",
+              "no repo source is pinned"
+            ]
+          ]
+        }
+      ],
+      "options": [
+        {
+          "k": "a",
+          "label": "Decide the form factor at the meeting; run neither test",
+          "what": "Take decision 6 on the evidence already in the plan and start building.",
+          "gains": [
+            "Keeps the schedule and unblocks every downstream decision today",
+            "Removes three deferrals sitting in front of decision 6"
+          ],
+          "costs": [
+            "Chooses a surface on evidence that excludes the founding scenario",
+            "Risks spending the first four days on a defect the chosen buyer never hits"
+          ],
+          "system": "No change.",
+          "screens": "No change.",
+          "money": "None."
+        },
+        {
+          "k": "b",
+          "label": "Run the contention test only, with a one-byte kill written first",
+          "what": "Test an agent writing while a human types, on both surfaces, and nothing else.",
+          "gains": [
+            "Covers the only scenario the product exists for",
+            "Cheapest of the gating options"
+          ],
+          "costs": [
+            "Leaves the engine's headline number measured on the wrong audience",
+            "The spike is unestimated, because no extension work has been estimated"
+          ],
+          "system": "A contended-write harness for both surfaces.",
+          "screens": "None.",
+          "money": "None."
+        },
+        {
+          "k": "c",
+          "label": "Run both: contention test and a repo-shaped corpus, kills written first",
+          "what": "Gate decision 6 on two measurements with kill lines agreed before either runs.",
+          "gains": [
+            "Answers whether the surface is safe and whether NF-1 is aimed at the right buyer",
+            "Converts two opinions into gates before they can be argued away"
+          ],
+          "costs": [
+            "Delays decision 6 by the length of two spikes",
+            "Assembling and pinning a new corpus is real work, not one command"
+          ],
+          "system": "A contended-write harness plus a second pinned corpus in test/corpus.",
+          "screens": "None.",
+          "money": "None."
+        },
+        {
+          "k": "d",
+          "label": "Run both, but decide the surface anyway; results feed build order",
+          "what": "Take decision 6 now and let the measurements change what gets built first.",
+          "gains": [
+            "Keeps momentum and still produces the evidence",
+            "The kill lines can still be written, just not enforced"
+          ],
+          "costs": [
+            "Risks discovering the losing surface after the shell is built",
+            "A result that arrives after the choice tends to be re-argued"
+          ],
+          "system": "Same two harnesses, no gate.",
+          "screens": "None.",
+          "money": "None."
+        }
+      ],
+      "rec": "c",
+      "recCase": [
+        "The whole claim is that bytes survive when a machine writes into a document a person is reading, and that case is untested on both surfaces (docs/GAPS-2026-09-08.md:146).",
+        "The corpus question is among the cheapest on the list and it gates the most expensive one (docs/PRODUCT-BRIEF.md:514).",
+        "One repo-corpus run says whether NF-1, four days and first in the plan, matters to the chosen buyer (docs/PRODUCT-BRIEF.md:214).",
+        "Write both kill lines before either test runs, so the answer cannot be re-argued once it is inconvenient."
+      ],
+      "flip": "If the two spikes together cost more than a week, run the contention test alone and record the corpus as unmeasured in the meeting notes.",
+      "linked": [
+        "FF1",
+        "FF11"
+      ],
+      "sources": [
+        "merged: FF10",
+        "docs/PRODUCT-BRIEF.md:214",
+        "docs/PRODUCT-BRIEF.md:216",
+        "docs/PRODUCT-BRIEF.md:364",
+        "docs/PRODUCT-BRIEF.md:514",
+        "docs/GAPS-2026-09-08.md:125",
+        "docs/GAPS-2026-09-08.md:146",
+        "docs/ENGINE.md:51",
+        "docs/ENGINE.md:146",
+        "docs/ENGINE.md:213",
+        "test/corpus/foreign/SOURCES.json"
+      ]
+    },
+    {
+      "id": "FF5",
+      "cat": "Form factor & surfaces",
+      "sub": "Name and store",
+      "weight": "high",
+      "q": "Does the marketplace name collision veto the extension, or does the extension ship under the engine's name?",
+      "lede": "If form factor resolves toward VS Code, the name is already owned in that store by an extension alive since 2019.",
+      "visual": {
+        "kind": "compare",
+        "labelWidth": 26,
+        "cols": [
+          {
+            "title": "Keep frontmatter",
+            "tone": "neutral"
+          },
+          {
+            "title": "mdmax in the store",
+            "tone": "accent"
+          },
+          {
+            "title": "Rename the product",
+            "tone": "neutral"
+          }
+        ],
+        "rows": [
+          {
+            "label": "VS Code store name",
+            "cells": [
+              "Second to an 82,265-install incumbent",
+              "Free",
+              "Free"
+            ]
+          },
+          {
+            "label": "npm name",
+            "cells": [
+              "Taken; @frontmatter is theirs",
+              "mdmax is free, HTTP 404",
+              "Depends on the new name"
+            ]
+          },
+          {
+            "label": "Cost in conversation",
+            "cells": [
+              "\"Not the VS Code one\", forever",
+              "Two names to explain",
+              "One name, once"
+            ]
+          },
+          {
+            "label": "What it unblocks",
+            "cells": [
+              "Nothing",
+              "FF12's package surface",
+              "Every surface, later"
+            ]
+          },
+          {
+            "label": "What it costs",
+            "cells": [
+              "A permanent qualifier",
+              "A two-name story",
+              "Every internal reference"
+            ]
+          }
+        ],
+        "note": "Store and npm states read from the record, 2026-08-29 to 2026-09-07.",
+        "caption": "Three name strategies against the store, npm and the conversation"
+      },
+      "stakes": "Ship into the store under a taken name and every search result belongs to someone else.",
+      "state": [
+        "The collision appears at the key figures and inside decision 6, with no resolution proposed (docs/PRODUCT-BRIEF.md:13, :364).",
+        "Round 2 found it worse than recorded: 82,265 installs, alive at v10.12.0 on 2026-08-21 (docs/GAPS-2026-09-08.md:132).",
+        "\"Frontmatter Studio\" was taken on 2026-09-07, and the @frontmatter npm scope is the incumbent's (docs/GAPS-2026-09-08.md:132).",
+        "npm `mdmax` and `frontmatter-cert` are both free, at HTTP 404 (docs/FRONTMATTER-RECORD.md:1403)."
+      ],
+      "path": [
+        "The record flagged 80,605 installs on 2026-08-29 and the plan did not mention it until v15 (docs/FRONTMATTER-RECORD.md:4799).",
+        "The gap register called the name untreated (docs/GAPS-2026-09-08.md:50).",
+        "The record already priced the tax: not the VS Code one, in every conversation (docs/FRONTMATTER-RECORD.md:5632)."
+      ],
+      "tension": [
+        "The collision taxes the package surface as well as the store, so it constrains FF12, not only FF1.",
+        "A rename is one decision now and a hundred edits later.",
+        "The FRONTMATTER EU word mark was reported but never reproduced across five blocked registries (docs/GAPS-2026-09-08.md:146).",
+        "The record itself says the naming decision and the positioning decision are one decision (docs/FRONTMATTER-RECORD.md:5632)."
+      ],
+      "evidence": [
+        {
+          "type": "stat",
+          "title": "The incumbent, and what names are left",
+          "items": [
+            [
+              "Front Matter CMS, VS Code installs",
+              "82,265",
+              "GAPS:132, alive at v10.12.0 on 2026-08-21"
+            ],
+            [
+              "Same, read nine days earlier",
+              "80,605",
+              "RECORD:4799, read 2026-08-29"
+            ],
+            [
+              "npm `frontmatter`",
+              "taken (HTTP 200) — a dead 2022 0.0.3 YAML parser",
+              "RECORD:1403, :4827"
+            ],
+            [
+              "npm `@frontmatter` scope",
+              "the incumbent's",
+              "GAPS:132"
+            ],
+            [
+              "npm `mdmax`",
+              "free (HTTP 404)",
+              "RECORD:1403"
+            ],
+            [
+              "npm `frontmatter-cert`",
+              "free (HTTP 404)",
+              "RECORD:1403"
+            ],
+            [
+              "\"Frontmatter Studio\"",
+              "taken 2026-09-07",
+              "GAPS:132"
+            ],
+            [
+              "gray-matter, the generic-name substrate",
+              "about 35.8M downloads a month (derived: 8,352,860 weekly x 4.28)",
+              "RECORD:9297, read 2026-08-30; CRITIQUE.md:1728 gives 35,124,859 for 2026-08-31 — same order, different day"
+            ]
+          ]
+        }
+      ],
+      "options": [
+        {
+          "k": "a",
+          "label": "Rename the whole product before any store listing",
+          "what": "Pick one free name and use it on the app, the store, npm and the site.",
+          "gains": [
+            "Removes the tax on every surface at once",
+            "One decision, taken before anything is published"
+          ],
+          "costs": [
+            "Discards whatever recognition the name has built across the record",
+            "Every internal document and repo reference changes"
+          ],
+          "system": "Package name, repo name and bundle identifier all change.",
+          "screens": "Every screen's title bar and the launcher wordmark.",
+          "money": "A domain, and the time to re-check five registries."
+        },
+        {
+          "k": "b",
+          "label": "Ship the extension as mdmax; keep frontmatter for the app",
+          "what": "The engine's name goes to the store and npm; the app keeps the product name.",
+          "gains": [
+            "Uses the one name that is free on npm and in the store",
+            "Describes what the extension is, which is the engine"
+          ],
+          "costs": [
+            "A two-name story to explain in every conversation",
+            "Search splits between two words"
+          ],
+          "system": "Package published as mdmax; the app keeps its identifier.",
+          "screens": "The extension's marketplace page carries a different wordmark.",
+          "money": "None."
+        },
+        {
+          "k": "c",
+          "label": "Keep the name everywhere and pay the tax",
+          "what": "Ship as frontmatter in the store and accept second place in search.",
+          "gains": [
+            "One brand across every surface and every document",
+            "No rework in the record, the repo or the prototype"
+          ],
+          "costs": [
+            "A permanent qualifier against an 82,265-install incumbent",
+            "Seven years of search history belongs to them"
+          ],
+          "system": "No change.",
+          "screens": "No change.",
+          "money": "Paid in acquisition, not in cash."
+        },
+        {
+          "k": "d",
+          "label": "Stay out of the marketplace; the collision becomes a search problem",
+          "what": "No store listing at all, so the collision only affects web search.",
+          "gains": [
+            "Sidesteps the store collision entirely",
+            "Leaves the name open until a surface is actually chosen"
+          ],
+          "costs": [
+            "Forecloses the option FF1 exists to weigh",
+            "Leaves the npm collision unsolved for FF12"
+          ],
+          "system": "No extension build.",
+          "screens": "None.",
+          "money": "None."
+        }
+      ],
+      "rec": "b",
+      "recCase": [
+        "The engine is what would ship into the store, it is already called mdmax, and mdmax is free on npm where frontmatter is not (docs/FRONTMATTER-RECORD.md:1403).",
+        "That makes the two-name story a description rather than an apology.",
+        "It unblocks FF12, which needs a free npm name and has only this one.",
+        "The EU word mark is still unreproduced, so the legal half of this is unsettled either way (docs/GAPS-2026-09-08.md:146)."
+      ],
+      "flip": "If the founders want one brand on every surface, this becomes a rename and the answer is (a), decided before the first listing.",
+      "linked": [
+        "FF1",
+        "FF11",
+        "FF12"
+      ],
+      "sources": [
+        "docs/PRODUCT-BRIEF.md:13",
+        "docs/PRODUCT-BRIEF.md:364",
+        "docs/GAPS-2026-09-08.md:50",
+        "docs/GAPS-2026-09-08.md:132",
+        "docs/GAPS-2026-09-08.md:146",
+        "docs/FRONTMATTER-RECORD.md:1403",
+        "docs/FRONTMATTER-RECORD.md:4799",
+        "docs/FRONTMATTER-RECORD.md:4827",
+        "docs/FRONTMATTER-RECORD.md:5632",
+        "docs/FRONTMATTER-RECORD.md:9297",
+        "docs/CRITIQUE.md:1728"
+      ]
+    },
+    {
+      "id": "FF7",
+      "cat": "Form factor & surfaces",
+      "sub": "Browser",
+      "weight": "medium",
+      "q": "Does the `?src=` URL parameter ship in MVP-0, and do the three stale Chrome-extension references get deleted?",
+      "lede": "The cheapest surface in the plan costs hours, sits behind a surface already cut, and appears in no tier and no sequence.",
+      "visual": {
+        "kind": "flow",
+        "perRow": 3,
+        "nodes": [
+          {
+            "label": "A public .md URL",
+            "note": "raw.githubusercontent.com",
+            "tone": "neutral"
+          },
+          {
+            "label": "access-control-allow-origin: *",
+            "note": "no extension needed to read it",
+            "tone": "good",
+            "edge": "sends"
+          },
+          {
+            "label": "?src=<raw url>",
+            "note": "one parameter on the web app",
+            "tone": "accent",
+            "edge": "so"
+          },
+          {
+            "label": "Rendered, with review state",
+            "note": "the reader installs nothing",
+            "tone": "accent",
+            "edge": "gives"
+          },
+          {
+            "label": "Chrome extension",
+            "note": "store listing, Manifest V3, already cut",
+            "tone": "stop",
+            "edge": "instead of"
+          }
+        ],
+        "note": "The CORS header is what killed the extension.",
+        "caption": "The cut surface, and the parameter that replaces it in hours"
+      },
+      "stakes": "Leaving the only hours-long distribution surface unscheduled is a choice nobody made deliberately.",
+      "state": [
+        "Exhibit 17 cuts the Chrome extension and names `?src=` as the replacement (docs/PRODUCT-BRIEF.md:310).",
+        "Exhibit 6 still lists the Chrome extension as an MVP-1 surface (docs/PRODUCT-BRIEF.md:203).",
+        "So do the family diagram and Exhibit 26 (docs/PRODUCT-BRIEF.md:464, :477).",
+        "`?src=` appears once in the whole document, in no tier and no sequence (docs/PRODUCT-BRIEF.md:310)."
+      ],
+      "path": [
+        "Round 2 killed the extension on the CORS header alone (docs/GAPS-2026-09-08.md:134).",
+        "The 1.5M reader figure summed a 500,000-user reader with a 1,000,000-user clipper (docs/PRODUCT-BRIEF.md:310).",
+        "The real reading population is about 647,000, and its leader has not shipped a store build in over two years (docs/PRODUCT-BRIEF.md:310)."
+      ],
+      "tension": [
+        "Three places promise a surface one place killed.",
+        "The replacement is the only surface measured in hours, and it has no owner and no tier.",
+        "If FF8 goes desktop-primary, `?src=` becomes a viewer feature rather than a channel."
+      ],
+      "evidence": [
+        {
+          "type": "stat",
+          "title": "The cut, and what replaces it",
+          "items": [
+            [
+              "Claimed browser reader population",
+              "1.5M",
+              "refuted — two products summed, one a clipper"
+            ],
+            [
+              "Real reading population",
+              "about 647,000",
+              "PRODUCT-BRIEF.md:310"
+            ],
+            [
+              "Market leader's last store build",
+              "over two years ago",
+              "PRODUCT-BRIEF.md:310"
+            ],
+            [
+              "raw.githubusercontent.com CORS header",
+              "access-control-allow-origin: *",
+              "no extension needed — PRODUCT-BRIEF.md:310"
+            ],
+            [
+              "Cost of the `?src=` replacement",
+              "hours",
+              "PRODUCT-BRIEF.md:310"
+            ],
+            [
+              "Times `?src=` appears in the plan",
+              "1 (line 310 only)",
+              "verified 2026-09-09"
+            ],
+            [
+              "Places the cut extension still appears",
+              "3 (lines 203, 464, 477)",
+              "verified 2026-09-09"
+            ]
+          ]
+        }
+      ],
+      "options": [
+        {
+          "k": "a",
+          "label": "Ship `?src=` in MVP-0 and delete the Chrome extension from all three places",
+          "what": "One URL parameter in the pilot, and a plan that says one thing about the browser.",
+          "gains": [
+            "Gives the web app a shareable entry point before the first Show HN",
+            "Costs hours, needs no store listing and no Manifest V3"
+          ],
+          "costs": [
+            "Adds a surface to a plan FF14 says is already over-committed",
+            "Read-only until a repo is connected"
+          ],
+          "system": "A query parameter and a fetch path in the web app.",
+          "screens": "A read-only variant of S2, with no tree and no tabs.",
+          "money": "None."
+        },
+        {
+          "k": "b",
+          "label": "Ship `?src=` at MVP-1, as Exhibit 17 implies",
+          "what": "Keep the current sequence and add the parameter after the pilot.",
+          "gains": [
+            "Nothing changes in the ninety-day sequence",
+            "The parameter still ships, so the surface is not lost"
+          ],
+          "costs": [
+            "Leaves the cheapest surface out of the window where the ten strangers are watching",
+            "Three stale references stay in a document going to a founder meeting"
+          ],
+          "system": "Deferred.",
+          "screens": "Deferred.",
+          "money": "None."
+        },
+        {
+          "k": "c",
+          "label": "Reinstate the Chrome extension",
+          "what": "Build and list a Manifest V3 extension that opens .md URLs in frontmatter.",
+          "gains": [
+            "A store listing is a channel with its own search surface",
+            "It could show review state on a file the reader does not own"
+          ],
+          "costs": [
+            "Requires overturning two measured findings",
+            "Targets about 647,000 readers whose leader has not shipped in two years"
+          ],
+          "system": "A Manifest V3 build and a store review cycle.",
+          "screens": "An extension popup nobody has designed.",
+          "money": "A one-off store registration fee."
+        },
+        {
+          "k": "d",
+          "label": "No browser-link surface at all",
+          "what": "Neither the extension nor the parameter; the web app opens repos and folders only.",
+          "gains": [
+            "Simplest to maintain and to document",
+            "One fewer surface on a plan FF14 says is already over-committed"
+          ],
+          "costs": [
+            "Removes the only way a person who has installed nothing can see the product",
+            "Contradicts Exhibit 17, which already named the replacement"
+          ],
+          "system": "No change.",
+          "screens": "None.",
+          "money": "None."
+        }
+      ],
+      "rec": "a",
+      "recCase": [
+        "It costs hours, needs no store, and is the only path by which someone who has installed nothing sees the product (docs/PRODUCT-BRIEF.md:310).",
+        "The three stale references cost nothing to delete and are the difference between a plan that reads as decided and one that reads as unedited.",
+        "Delete them in the same edit as FF2's six, so the surface list is corrected once."
+      ],
+      "flip": "If FF8 resolves to desktop-primary, `?src=` is a viewer feature rather than a channel and its priority drops.",
+      "linked": [
+        "FF8",
+        "FF14"
+      ],
+      "sources": [
+        "docs/PRODUCT-BRIEF.md:203",
+        "docs/PRODUCT-BRIEF.md:310",
+        "docs/PRODUCT-BRIEF.md:464",
+        "docs/PRODUCT-BRIEF.md:477",
+        "docs/GAPS-2026-09-08.md:134"
+      ]
+    },
+    {
+      "id": "FF8",
+      "cat": "Form factor & surfaces",
+      "sub": "Web vs desktop",
+      "weight": "critical",
+      "q": "The desktop app described in the plan does not exist. Do we build it, ship web-only, or make it the paid tier?",
+      "lede": "Every desktop-only promise rests on a Tauri shell that points at the sibling product's website and holds no filesystem permission.",
+      "visual": {
+        "kind": "compare",
+        "labelWidth": 26,
+        "cols": [
+          {
+            "title": "Web app today",
+            "tone": "accent"
+          },
+          {
+            "title": "Desktop shell today",
+            "tone": "stop"
+          },
+          {
+            "title": "Desktop as promised",
+            "tone": "neutral"
+          }
+        ],
+        "rows": [
+          {
+            "label": "Open a local file",
+            "cells": [
+              "Chrome and Edge, per folder",
+              "No fs permission at all",
+              "Any folder, full read and write"
+            ]
+          },
+          {
+            "label": "MCP server (F11)",
+            "cells": [
+              "No",
+              "No",
+              "Yes, a local process"
+            ]
+          },
+          {
+            "label": "Offline",
+            "cells": [
+              "Cached open files",
+              "Nothing; it loads a remote URL",
+              "Everything except the model"
+            ]
+          },
+          {
+            "label": "Signing",
+            "cells": [
+              "Not applicable",
+              "signingIdentity null; dmg and app",
+              "Notarised dmg, signed exe, AppImage"
+            ]
+          },
+          {
+            "label": "Identity",
+            "cells": [
+              "frontmatter",
+              "productName sgnk-md, id ai.sgnk.md",
+              "frontmatter"
+            ]
+          },
+          {
+            "label": "Cost to close the gap",
+            "cells": [
+              "Built",
+              "Plan budgets 1 day",
+              "Measured at 4 to 8 weeks"
+            ]
+          }
+        ],
+        "note": "Right column is Exhibit 2. Middle column is the committed config, read 2026-09-09.",
+        "caption": "What the plan promises on desktop against what is committed"
+      },
+      "stakes": "Four to eight weeks of shell work buys the ten pilot strangers nothing they would notice.",
+      "state": [
+        "§3 describes a Tauri app containing the editor, engine, git client, MCP server and search index (docs/PRODUCT-BRIEF.md:104).",
+        "§9 fix #9 budgets one day for the whole problem (docs/PRODUCT-BRIEF.md:222).",
+        "The committed window url, devUrl and frontendDist all point at the sibling product's site (src-tauri/tauri.conf.json:3).",
+        "The capability set contains no fs permission of any kind (src-tauri/capabilities/default.json)."
+      ],
+      "path": [
+        "The offline-or-online research measured the shell on 2026-08-31 and called it a chrome-less browser in an app icon (docs/research/agent-reports-2026-08-30/r19-p2-offline-or-online.md:11).",
+        "It priced the real build at four to eight weeks (docs/research/agent-reports-2026-08-30/r19-p2-offline-or-online.md:18).",
+        "That finding never reached the plan."
+      ],
+      "tension": [
+        "Exhibit 2's whole desktop column is promised on a shell that cannot open a file (docs/PRODUCT-BRIEF.md:92).",
+        "The File System Access API exists only in desktop Chrome and Edge, so web-only refuses about one in five desktop visitors (docs/PRODUCT-BRIEF.md:102).",
+        "MCP needs a local process, so pulling F11 into MVP-0 makes the desktop app mandatory (docs/PRODUCT-BRIEF.md:65).",
+        "At 1.21 engineering days a week, four to eight weeks of shell work is most of a quarter (docs/PRODUCT-BRIEF.md:227)."
+      ],
+      "evidence": [
+        {
+          "type": "table",
+          "title": "src-tauri/tauri.conf.json and capabilities/default.json, read 2026-09-09",
+          "cols": [
+            "What the plan says",
+            "What the committed config says"
+          ],
+          "rows": [
+            [
+              "Contains the editor, engine, git client, MCP server, search index (line 104)",
+              "window url, devUrl and frontendDist all = https://md.sgnk.ai — the sibling product's website"
+            ],
+            [
+              "Full local read/write; offline everything except the model (Exhibit 2)",
+              "zero fs permissions. The set is: core, event, window, webview, shell, os, process, clipboard read/write, dialog"
+            ],
+            [
+              ".dmg notarised, Windows .exe code-signed, Linux AppImage (line 104)",
+              "targets: [dmg, app]; signingIdentity: null; entitlements: null"
+            ],
+            [
+              "Product identity re-labelled in 1 day (fix #9)",
+              "productName sgnk-md, identifier ai.sgnk.md — against a measured 4-8 weeks to go from remote wrapper to real (r19-p2 §91.2, option B)"
+            ]
+          ]
+        },
+        {
+          "type": "stat",
+          "title": "What each route costs and forecloses",
+          "items": [
+            [
+              "File System Access API support",
+              "desktop Chrome and Edge only",
+              "none of Firefox, Safari, iOS, Android — PRODUCT-BRIEF.md:102, caniuse 2026-09-08"
+            ],
+            [
+              "Users refused on a non-Chromium browser",
+              "about 1 in 5 desktop visitors",
+              "r19-p2 §91.3, explicitly tagged [derived], not measured"
+            ],
+            [
+              "Desktop certificates",
+              "$99/yr Apple; $150-400/yr Windows plus a hardware token",
+              "PRODUCT-BRIEF.md:104, :231"
+            ],
+            [
+              "Real Tauri build",
+              "4-8 weeks",
+              "r19-p2 §91.2"
+            ],
+            [
+              "Measured engineering rate",
+              "1.21 days per calendar week",
+              "PRODUCT-BRIEF.md:227, independently reproduced"
+            ]
+          ]
+        }
+      ],
+      "options": [
+        {
+          "k": "a",
+          "label": "Build the real Tauri app now",
+          "what": "Bundle the frontend, declare scoped fs, shell out to git, run the engine locally.",
+          "gains": [
+            "Delivers MCP, local git, the watcher and true offline",
+            "The strongest legal posture, since bytes never transit"
+          ],
+          "costs": [
+            "Four to eight weeks of shell work before any stranger sees the product",
+            "Two certificates, an update server and a per-OS bug matrix"
+          ],
+          "system": "Scoped fs capability, bundled frontend, local git and index.",
+          "screens": "No new screens. Exhibit 2's desktop column becomes true.",
+          "money": "$99/yr Apple plus $150-400/yr Windows and a hardware token."
+        },
+        {
+          "k": "b",
+          "label": "Ship web-only for MVP-0 and rewrite Exhibit 2 to describe what exists",
+          "what": "The pilot runs in the browser against a GitHub repo or a Chrome and Edge folder.",
+          "gains": [
+            "The pilot runs on what is already built",
+            "No certificates, no installer, no update channel"
+          ],
+          "costs": [
+            "Loses MCP, local git, the watcher and offline beyond cached files",
+            "Refuses about one in five desktop visitors on Firefox and Safari"
+          ],
+          "system": "No Tauri work. The filesystem adapter stays browser-only.",
+          "screens": "Exhibit 2's desktop column is deleted, not deferred.",
+          "money": "None."
+        },
+        {
+          "k": "c",
+          "label": "Web-only free; the desktop app becomes the paid tier",
+          "what": "Charge for the installed app and its local capabilities rather than for seats.",
+          "gains": [
+            "Gives the paid tier a concrete offer instead of a thin one",
+            "Puts the desktop work behind a signal that someone will pay"
+          ],
+          "costs": [
+            "Prices a product that has not been built",
+            "The four to eight weeks arrive before the first rupee"
+          ],
+          "system": "Entitlement check in the desktop build.",
+          "screens": "An upgrade path in S11.",
+          "money": "A price on an unbuilt artefact."
+        },
+        {
+          "k": "d",
+          "label": "Desktop primary, web as a read-only viewer",
+          "what": "The installed app is the product; the browser shows documents and nothing more.",
+          "gains": [
+            "Best offline and legal posture in the record",
+            "Documents never transit, so the legal surface shrinks"
+          ],
+          "costs": [
+            "An install cliff in front of a funnel that needs roughly 1.26M cumulative visitors",
+            "Every desktop cost arrives first and all at once"
+          ],
+          "system": "Two builds with sharply different capability sets.",
+          "screens": "The web app loses editing, so most screens become read-only.",
+          "money": "Certificates plus an update server, before revenue."
+        }
+      ],
+      "rec": "b",
+      "recCase": [
+        "The exit test is ten strangers in twelve weeks, and shell work buys those ten nothing they would notice (docs/PRODUCT-BRIEF.md:227).",
+        "The web app already delivers F1 through F8 against a repo or a local folder on Chrome and Edge (docs/PRODUCT-BRIEF.md:92).",
+        "Exhibit 2's desktop column is currently a specification of a product rather than a description of one (docs/PRODUCT-BRIEF.md:104).",
+        "Fix #9's one day is against a measured four to eight weeks, so correct the estimate in the same edit."
+      ],
+      "flip": "If MCP is pulled into MVP-0 the desktop app becomes mandatory, so decide F11's tier in the same sitting.",
+      "linked": [
+        "FF3",
+        "FF7",
+        "FF9",
+        "FF14"
+      ],
+      "sources": [
+        "docs/PRODUCT-BRIEF.md:65",
+        "docs/PRODUCT-BRIEF.md:92",
+        "docs/PRODUCT-BRIEF.md:102",
+        "docs/PRODUCT-BRIEF.md:104",
+        "docs/PRODUCT-BRIEF.md:222",
+        "docs/PRODUCT-BRIEF.md:227",
+        "docs/PRODUCT-BRIEF.md:231",
+        "src-tauri/tauri.conf.json:3",
+        "src-tauri/capabilities/default.json",
+        "docs/research/agent-reports-2026-08-30/r19-p2-offline-or-online.md:11",
+        "docs/research/agent-reports-2026-08-30/r19-p2-offline-or-online.md:18",
+        "docs/research/agent-reports-2026-08-30/r19-p2-offline-or-online.md:67",
+        "docs/research/agent-reports-2026-08-30/r19-p2-offline-or-online.md:78"
+      ]
+    },
+    {
+      "id": "FF9",
+      "cat": "Form factor & surfaces",
+      "sub": "Mobile",
+      "weight": "medium",
+      "q": "Is mobile a stated permanent non-goal, a read-only reviewer at MVP-1, or left undecided?",
+      "lede": "The plan cuts mobile from every tier while its own critique classes it Must-be and ranks it the top churn risk.",
+      "visual": {
+        "kind": "screen",
+        "title": "A read-only mobile reviewer, if it ships",
+        "panes": [
+          {
+            "label": "Unreviewed",
+            "w": 38,
+            "rows": [
+              {
+                "label": "specs/auth.md, 4 spans",
+                "meta": "agent, 2h ago",
+                "mark": "4",
+                "tone": "warn"
+              },
+              {
+                "label": "docs/AGENTS.md, 1 span",
+                "meta": "agent, today",
+                "mark": "1",
+                "tone": "warn"
+              },
+              {
+                "label": "README.md",
+                "meta": "clear",
+                "mark": "",
+                "tone": "good"
+              }
+            ]
+          },
+          {
+            "label": "Span",
+            "w": 62,
+            "rows": [
+              {
+                "label": "Tinted paragraph, rendered read-only",
+                "meta": "hash matched",
+                "tone": "accent"
+              },
+              {
+                "label": "Mark read",
+                "meta": "one tap",
+                "tone": "good"
+              },
+              {
+                "label": "Revert",
+                "meta": "not offered on mobile",
+                "tone": "sunk"
+              },
+              {
+                "label": "Attribution: prompt not recorded",
+                "meta": "from the commit trailer",
+                "tone": "neutral"
+              }
+            ]
+          }
+        ],
+        "note": "Reading and marking only. No editing, no revert, no file tree.",
+        "caption": "What a mobile reviewer would contain, and what it refuses"
+      },
+      "stakes": "If review state is the product, the reviewer is the person most often away from a laptop.",
+      "state": [
+        "§22 says mobile is about 15% of complaints, not in v1, later a reader and reviewer (docs/PRODUCT-BRIEF.md:539).",
+        "Exhibit 6 lists mobile in the Absent row for both MVP-0 and MVP-1 (docs/PRODUCT-BRIEF.md:205).",
+        "Exhibit 2 gives mobile browsers repo connect only (docs/PRODUCT-BRIEF.md:92).",
+        "The three statements do not agree with each other."
+      ],
+      "path": [
+        "The critique classed it Kano Must-be on the ground that every product opened has a first-class mobile story (docs/CRITIQUE.md:203).",
+        "It also ranked it the number one churn-risk gap, present but cut from every stage (docs/CRITIQUE.md:680).",
+        "The record's own counter-analysis is tagged inference, not measurement (docs/FRONTMATTER-RECORD.md:2067)."
+      ],
+      "tension": [
+        "The web app already renders documents in a mobile browser, so a read-only reviewer is scope rather than a new build.",
+        "FF14 says surface count is the binding constraint, and this adds one.",
+        "The record's counter-evidence, the 1/32 and 7:1 ratios, is inference and cannot settle it (docs/FRONTMATTER-RECORD.md:2067)."
+      ],
+      "evidence": [
+        {
+          "type": "stat",
+          "title": "Two sources pulling opposite ways",
+          "items": [
+            [
+              "Kano class",
+              "MUST-BE",
+              "CRITIQUE.md:203"
+            ],
+            [
+              "Ranked churn risk",
+              "#1 gap, cut from every stage",
+              "CRITIQUE.md:680; RECORD:10836"
+            ],
+            [
+              "The record's own verdict on sequencing",
+              "\"an MVP-2 item that will feel like an MVP-1 item\"",
+              "RECORD:10836"
+            ],
+            [
+              "Tiers mobile appears in",
+              "0 of 3",
+              "PRODUCT-BRIEF.md:205"
+            ],
+            [
+              "Markdown-native mobile vs the OS notes app",
+              "about 1/32 the size — tagged [inference] in the record, not measured",
+              "RECORD:2067"
+            ],
+            [
+              "Capture-shaped vs authoring-shaped markdown apps",
+              "about 7:1 — same [inference] tag",
+              "RECORD:2067"
+            ],
+            [
+              "Named mobile complaint in that thread",
+              "\"Make Obsidian Sync work in background (on Mobile)\", 124 posts",
+              "RECORD:2067"
+            ]
+          ]
+        }
+      ],
+      "options": [
+        {
+          "k": "a",
+          "label": "State mobile as a permanent non-goal, on the page",
+          "what": "Write it down as a refusal alongside plugins, hosting and code execution.",
+          "gains": [
+            "Honest, cheap, and it makes the plan say one thing",
+            "Removes a Must-be from the churn list by declaring it out of scope"
+          ],
+          "costs": [
+            "Accepts a Must-be absence in a category where every competitor has a mobile story",
+            "The reviewer job is the one most likely to happen away from a desk"
+          ],
+          "system": "No change.",
+          "screens": "None. The mobile row leaves Exhibit 2.",
+          "money": "None."
+        },
+        {
+          "k": "b",
+          "label": "Non-goal for MVP-0; a read-only mobile reviewer at MVP-1",
+          "what": "Mobile shows unreviewed spans and lets a person mark them read. No editing.",
+          "gains": [
+            "Matches the product's own logic: the reviewer is mobile, the author is not",
+            "The web app already renders, so this is scope rather than a new build"
+          ],
+          "costs": [
+            "Adds a surface to a plan whose binding constraint is surface count",
+            "Marking read on a phone is the weakest form of review"
+          ],
+          "system": "Responsive layout plus a mobile write path for review.jsonl.",
+          "screens": "One new narrow-viewport screen; S4 collapses to a list.",
+          "money": "None."
+        },
+        {
+          "k": "c",
+          "label": "Leave it undecided",
+          "what": "Keep the current wording across §22, Exhibit 2 and Exhibit 6.",
+          "gains": [
+            "Nothing is committed today",
+            "Nothing is foreclosed while the pilot runs"
+          ],
+          "costs": [
+            "The plan keeps saying three different things about one surface",
+            "A Must-be gap stays unranked and unowned"
+          ],
+          "system": "No change.",
+          "screens": "No change.",
+          "money": "None."
+        },
+        {
+          "k": "d",
+          "label": "Mobile-first review, desktop-first editing",
+          "what": "Reviewing is designed for the phone and editing is designed for the desk.",
+          "gains": [
+            "The strongest expression of the review-state thesis",
+            "Reviewing on a phone is the behaviour the counter exists to trigger"
+          ],
+          "costs": [
+            "Doubles the surface count before anyone has been asked whether they want review state",
+            "Two design systems on 1.21 engineering days a week"
+          ],
+          "system": "Two layouts and two interaction models over one sidecar.",
+          "screens": "A full mobile screen set alongside the desktop nine.",
+          "money": "None."
+        }
+      ],
+      "rec": "b",
+      "recCase": [
+        "Reviewing is the one job here that genuinely happens away from a laptop.",
+        "The web app already renders in a mobile browser, so this is a scope decision rather than a build (docs/PRODUCT-BRIEF.md:92).",
+        "Saying non-goal for MVP-0 and naming MVP-1 turns three inconsistent sentences into one commitment.",
+        "The counter-evidence is weaker than it looks: the 1/32 and 7:1 ratios are tagged inference (docs/FRONTMATTER-RECORD.md:2067)."
+      ],
+      "flip": "If the twenty team conversations say reviewers review at their desks, mobile drops to (a) and the plan is simpler for it.",
+      "linked": [
+        "FF8",
+        "FF14"
+      ],
+      "sources": [
+        "docs/PRODUCT-BRIEF.md:92",
+        "docs/PRODUCT-BRIEF.md:205",
+        "docs/PRODUCT-BRIEF.md:539",
+        "docs/CRITIQUE.md:203",
+        "docs/CRITIQUE.md:680",
+        "docs/FRONTMATTER-RECORD.md:2067",
+        "docs/FRONTMATTER-RECORD.md:10836"
+      ]
+    },
+    {
+      "id": "FF11",
+      "cat": "Form factor & surfaces",
+      "sub": "Extension scope",
+      "weight": "high",
+      "q": "If an extension ships, what is inside it, where is it published, and does it carry its own key?",
+      "lede": "Decision 6 names an extension without saying what is in it, and the answer moves the cost by an order of magnitude.",
+      "visual": {
+        "kind": "screen",
+        "title": "The extension inside VS Code",
+        "panes": [
+          {
+            "label": "Host supplies",
+            "w": 32,
+            "rows": [
+              {
+                "label": "Explorer, palette, keymap, outline",
+                "meta": "free",
+                "tone": "sunk"
+              },
+              {
+                "label": "Model picker and MCP registration",
+                "meta": "unverified on forks",
+                "tone": "warn"
+              },
+              {
+                "label": "Multi-file diff, review and unreview",
+                "meta": "merged 2026-07-03",
+                "tone": "warn"
+              }
+            ]
+          },
+          {
+            "label": "Thin version adds",
+            "w": 38,
+            "rows": [
+              {
+                "label": "Tint per span, read from the sidecar",
+                "meta": "our claim",
+                "tone": "accent"
+              },
+              {
+                "label": "One-key revert",
+                "meta": "byte range",
+                "tone": "accent"
+              },
+              {
+                "label": "Review panel, state kept in the repo",
+                "meta": "the differentiator",
+                "tone": "accent"
+              }
+            ]
+          },
+          {
+            "label": "Only if thick",
+            "w": 30,
+            "rows": [
+              {
+                "label": "Idea mode and decision flow",
+                "meta": "F5, F6",
+                "tone": "neutral"
+              },
+              {
+                "label": "Repo docs scan",
+                "meta": "F7",
+                "tone": "neutral"
+              },
+              {
+                "label": "Table editing",
+                "meta": "5-8 d, host gives none",
+                "tone": "stop"
+              }
+            ]
+          }
+        ],
+        "note": "The host now ships a per-file reviewed marker of its own, gated and undocumented.",
+        "caption": "What the host gives, what thin adds, what only thick adds"
+      },
+      "stakes": "A thick extension is a second product with no estimate, built by one person at 1.21 days a week.",
+      "state": [
+        "Decision 6 says only VS Code extension, with no scope, no feature list and no estimate (docs/PRODUCT-BRIEF.md:364).",
+        "It claims the host's model picker deletes fix #6, three days of BYO-key work (docs/PRODUCT-BRIEF.md:219, :364).",
+        "Whether Cursor and other forks honour the VS Code model APIs is still open (docs/GAPS-2026-09-08.md:146).",
+        "No store is named anywhere in the plan; open-vsx.org appears once, as a probed host."
+      ],
+      "path": [
+        "The extension was measured as a mechanism in round 2 and never scoped as a product (docs/GAPS-2026-09-08.md:125).",
+        "Stack Overflow 2025 puts VS Code at 75.9% and Cursor at 17.9% of IDE usage (docs/CRITIQUE.md:363).",
+        "Microsoft merged a per-file review and unreview operation into the Agents window on 2026-07-03, milestone 1.128.0 (api.github.com, PR 324218)."
+      ],
+      "tension": [
+        "Thin tests the one surviving claim and lands in a niche whose measured ceiling is 400 installs (docs/PRODUCT-BRIEF.md:24).",
+        "The host now ships the per-file version of that marker, behind a setting and absent from its public docs.",
+        "What the host has not shipped is state stored in the repository, per span, surviving a machine change.",
+        "Three days of BYO-key work is deleted on an assumption never tested on a single fork."
+      ],
+      "evidence": [
+        {
+          "type": "table",
+          "title": "IDE usage, Stack Overflow 2025 (n=49k+, CRITIQUE.md:363 and :431)",
+          "cols": [
+            "Editor",
+            "Usage",
+            "Store it pulls from"
+          ],
+          "rows": [
+            [
+              "VS Code",
+              "75.9%",
+              "Microsoft Marketplace"
+            ],
+            [
+              "Cursor",
+              "17.9%",
+              "not established in our record"
+            ],
+            [
+              "Sublime Text",
+              "10.5%",
+              "not a VS Code host"
+            ],
+            [
+              "Claude Code",
+              "9.7%",
+              "runs inside a host"
+            ],
+            [
+              "Zed",
+              "7.3%",
+              "not a VS Code host"
+            ]
+          ]
+        },
+        {
+          "type": "stat",
+          "title": "What rides on the unverified claim",
+          "items": [
+            [
+              "Extensions in the Microsoft Marketplace",
+              "135,646",
+              "RECORD:9176, read 2026-08-30"
+            ],
+            [
+              "BYO key, fix #6",
+              "3 engineering days — \"deleted\" by the host model picker",
+              "PRODUCT-BRIEF.md:219, :364"
+            ],
+            [
+              "Model-picker support on Cursor and other forks",
+              "unmeasured",
+              "GAPS:146"
+            ],
+            [
+              "Which registry the forks serve extensions from",
+              "not established in the corpus",
+              "only open-vsx.org as a probed host, COMPLETE-RECORD:20787"
+            ],
+            [
+              "Consequence if absent",
+              "no AI on about a quarter of the host population, or fix #6 comes back",
+              "derived from the two rows above"
+            ]
+          ]
+        },
+        {
+          "type": "table",
+          "title": "Table-stakes gaps in the standalone shell, and whether the host supplies them (r24-v1, eight ranked gaps)",
+          "cols": [
+            "Gap",
+            "Cost",
+            "Host supplies it?"
+          ],
+          "rows": [
+            [
+              "Heading hotkeys, link, list/quote/task toggles, move line",
+              "0.5 d",
+              "Yes (markdown-all-in-one, 14.45M installs)"
+            ],
+            [
+              "Outline hotkey and fuzzy heading jump",
+              "0.5 d",
+              "Yes"
+            ],
+            [
+              "Command palette that indexes everything",
+              "1-2 d",
+              "Yes"
+            ],
+            [
+              "Quick-switcher deltas",
+              "0.5 d",
+              "Yes"
+            ],
+            [
+              "HTML paste to markdown",
+              "2-3 d",
+              "Partly"
+            ],
+            [
+              "Table editing: Tab nav, add/remove row and column, alignment",
+              "5-8 d",
+              "No"
+            ],
+            [
+              "Splice-backed table writes",
+              "+2 d",
+              "No"
+            ],
+            [
+              "Customisable keymap",
+              "3-4 d",
+              "Yes"
+            ]
+          ],
+          "note": "Sums to 14.5-20.5 days; mid-point 17.5. The five host-supplied rows are about 6.5 of those days at their mid-points."
+        },
+        {
+          "type": "stat",
+          "title": "The niche the thin version enters",
+          "items": [
+            [
+              "All 13 markdown-review extensions combined",
+              "1,217 installs",
+              "PRODUCT-BRIEF.md:9, :24"
+            ],
+            [
+              "Ceiling of the best one",
+              "400 installs",
+              "PRODUCT-BRIEF.md:24"
+            ],
+            [
+              "mddiff, our sentence shipped 2026-06-03",
+              "74 installs in three months",
+              "PRODUCT-BRIEF.md:24"
+            ],
+            [
+              "Nearest sidecar pattern, SpecKit Companion",
+              "9,367 installs",
+              "PRODUCT-BRIEF.md:152"
+            ],
+            [
+              "git-ai, commit-level attribution",
+              "61,517 installs",
+              "PRODUCT-BRIEF.md:151"
+            ]
+          ]
+        }
+      ],
+      "options": [
+        {
+          "k": "a",
+          "label": "Thin, on the host model picker, Microsoft Marketplace only",
+          "what": "Tint, revert and panel over the sidecar; the host supplies the AI; one listing.",
+          "gains": [
+            "Cheapest instrument for the one claim that survived round 1",
+            "Keeps fix #6's three days deleted"
+          ],
+          "costs": [
+            "No AI on forks that do not honour the model API",
+            "Gives up roughly a quarter of the measured IDE population"
+          ],
+          "system": "No key UI, no keychain, no second registry.",
+          "screens": "S11's key field never ships in the extension.",
+          "money": "Saves 3 engineering days if the assumption holds."
+        },
+        {
+          "k": "b",
+          "label": "Thin first, own key, both stores, widening line written before publishing",
+          "what": "Same scope, plus a BYO-key fallback, published to Open VSX as well.",
+          "gains": [
+            "AI works on every host, using the key work the shell needs anyway",
+            "A pre-registered line decides widening instead of an argument"
+          ],
+          "costs": [
+            "Costs the three days decision 6 claimed to save",
+            "A second listing on a registry we have not confirmed the forks use"
+          ],
+          "system": "BYO key and keychain shared between extension and shell.",
+          "screens": "S11's key field ships on both surfaces.",
+          "money": "3 engineering days, never wasted."
+        },
+        {
+          "k": "c",
+          "label": "Thick: F1 through F8 inside the host",
+          "what": "Rebuild the product as an extension, including generation and the docs scan.",
+          "gains": [
+            "Competes above the 400-install niche, where git-ai sits at 61,517",
+            "Answers the table-stakes gap and the review claim on one surface"
+          ],
+          "costs": [
+            "A second product with no estimate anywhere in the plan",
+            "The host supplies none of the 5-8 days of table editing"
+          ],
+          "system": "Every feature ported to the host's APIs.",
+          "screens": "All nine screens rebuilt in the host idiom.",
+          "money": "Unpriced."
+        },
+        {
+          "k": "d",
+          "label": "No extension",
+          "what": "Standalone only, so the question does not arise.",
+          "gains": [
+            "One surface to maintain at 1.21 engineering days a week",
+            "No store listing, no host API to depend on, no name collision"
+          ],
+          "costs": [
+            "Removes the only measured route to the population that has the problem",
+            "Leaves decision 6 with two live options instead of three"
+          ],
+          "system": "No change.",
+          "screens": "No change.",
+          "money": "None."
+        }
+      ],
+      "rec": "b",
+      "recCase": [
+        "The saving being protected is three days; the risk is AI silently failing for a quarter of the hosts (docs/CRITIQUE.md:363).",
+        "The key work is the same work the standalone shell needs, so it is never wasted (docs/PRODUCT-BRIEF.md:219).",
+        "Thin is right on the evidence: SpecKit Companion at 9,367 and git-ai at 61,517 are both single-purpose (docs/PRODUCT-BRIEF.md:151, :152).",
+        "Set the widening line honestly. mddiff took three months to reach 74 installs (docs/PRODUCT-BRIEF.md:24)."
+      ],
+      "flip": "If the fork test shows the model API is honoured, drop the fallback from the extension and keep it in the app.",
+      "linked": [
+        "FF1",
+        "FF5",
+        "FF12"
+      ],
+      "sources": [
+        "merged: FF13",
+        "docs/PRODUCT-BRIEF.md:9",
+        "docs/PRODUCT-BRIEF.md:24",
+        "docs/PRODUCT-BRIEF.md:151",
+        "docs/PRODUCT-BRIEF.md:152",
+        "docs/PRODUCT-BRIEF.md:219",
+        "docs/PRODUCT-BRIEF.md:364",
+        "docs/GAPS-2026-09-08.md:125",
+        "docs/GAPS-2026-09-08.md:146",
+        "docs/CRITIQUE.md:363",
+        "docs/CRITIQUE.md:431",
+        "docs/FRONTMATTER-RECORD.md:9176",
+        "docs/FRONTMATTER-COMPLETE-RECORD-2026-08-30.md:20787",
+        "docs/research/agent-reports-2026-08-30/r24-v1-table-stakes.md:87",
+        "https://api.github.com/repos/microsoft/vscode/pulls/324218"
+      ]
+    },
+    {
+      "id": "FF12",
+      "cat": "Form factor & surfaces",
+      "sub": "Package and CLI",
+      "weight": "high",
+      "q": "Do we add a fourth option to decision 6, the engine as an npm package, MCP server and agent plugin, and run it first?",
+      "lede": "The repo's own critique recommends a form factor decision 6 does not list, prices it at a week, and pre-registers its kill number.",
+      "visual": {
+        "kind": "flow",
+        "perRow": 3,
+        "nodes": [
+          {
+            "label": "Splice engine, 3,614 lines",
+            "note": "14.2% of source, the only thing owned",
+            "tone": "accent"
+          },
+          {
+            "label": "npm package",
+            "note": "mdmax is free; frontmatter is not",
+            "tone": "accent",
+            "edge": "ship as"
+          },
+          {
+            "label": "MCP server",
+            "note": "agents write through the engine",
+            "tone": "accent",
+            "edge": "and"
+          },
+          {
+            "label": "Agent plugin",
+            "note": "runs inside Claude Code or Codex",
+            "tone": "accent",
+            "edge": "and"
+          },
+          {
+            "label": "Thirty days of installs",
+            "note": "about one week of work to get here",
+            "tone": "neutral",
+            "edge": "then"
+          },
+          {
+            "label": "Under 100 installs, stop",
+            "note": "kill number written before the run",
+            "tone": "stop",
+            "edge": "if"
+          }
+        ],
+        "note": "The critique's own recommendation, absent from decision 6.",
+        "caption": "One week and one number, before 58 weeks go into a shell"
+      },
+      "stakes": "Committing 58 weeks to a shell without running the one-week instrument that could have predicted the outcome.",
+      "state": [
+        "Decision 6 offers exactly three options and no package route (docs/PRODUCT-BRIEF.md:364).",
+        "The family diagram lists mdmax cert as a Max-tier GitHub Action (docs/PRODUCT-BRIEF.md:462).",
+        "§9 fix #10 records that the cert CLI exits 1 with ERR_MODULE_NOT_FOUND and is not among the 26 scripts (docs/PRODUCT-BRIEF.md:224).",
+        "The critique recommends the package route outright, at about one week (docs/CRITIQUE.md:163)."
+      ],
+      "path": [
+        "The record lists npm, VS Code and CLI as the genuinely unexplored option (docs/FRONTMATTER-RECORD.md:9439).",
+        "Neither the record nor the critique reached decision 6.",
+        "A free markdown agent-review skill for Claude Code and Codex, petergyang/human-review, went from 0 to 1,241 stars and 98 forks in six weeks after 2026-07-27 (api.github.com)."
+      ],
+      "tension": [
+        "The corpus's strongest recommendation is missing from the decision the founders are being asked to make.",
+        "The shape is already shipping: dealfluence/adeu is MIT, 149 stars, and converged on the same refuse-on-ambiguity engine for .docx (docs/CRITIQUE.md:1700).",
+        "The nearest free comparator reached 1,241 stars in six weeks, which sizes the attention and says nothing about payment.",
+        "Giving the engine away MIT forecloses selling it, and an independent team already shipped the mechanism MIT."
+      ],
+      "evidence": [
+        {
+          "type": "stat",
+          "title": "The unlisted fourth option",
+          "items": [
+            [
+              "Engine share of the codebase",
+              "3,614 of 25,407 lines = 14.2%",
+              "re-measured 2026-09-09"
+            ],
+            [
+              "Cost of the package + MCP + plugin route",
+              "about one week, against a 240-day plan",
+              "CRITIQUE.md:163"
+            ],
+            [
+              "Pre-registered kill number",
+              "fewer than 100 installs in 30 days",
+              "CRITIQUE.md:163"
+            ],
+            [
+              "Information yield, per the critique",
+              "\"higher than rounds 21-25 combined\"",
+              "CRITIQUE.md:163"
+            ],
+            [
+              "gray-matter, the substrate",
+              "about 35.8M npm downloads a month",
+              "RECORD:9297, read 2026-08-30"
+            ],
+            [
+              "npm name `mdmax`",
+              "free (HTTP 404)",
+              "RECORD:1403"
+            ],
+            [
+              "Competitor already shipping this shape",
+              "dealfluence/adeu, MIT, 149 stars, pushed 2026-08-30",
+              "CRITIQUE.md:33, :1700 — for .docx"
+            ],
+            [
+              "`mdmax cert` today",
+              "exits 1, ERR_MODULE_NOT_FOUND; not among the 26 scripts",
+              "PRODUCT-BRIEF.md:224, re-verified"
+            ]
+          ]
+        }
+      ],
+      "options": [
+        {
+          "k": "a",
+          "label": "Add it as a fourth option and run it first, with the 100-install kill",
+          "what": "Publish the engine as an MIT package, an MCP server and an agent plugin.",
+          "gains": [
+            "One week buys an installs number before 58 weeks go into any shell",
+            "The one channel whose ceiling matches the funnel's requirement"
+          ],
+          "costs": [
+            "Gives the engine away, which forecloses selling it as a library",
+            "A free comparator already holds the attention this would compete for"
+          ],
+          "system": "Engine extracted, CLI fixed, MCP server built.",
+          "screens": "None. This surface has no screens.",
+          "money": "None in, about one week out."
+        },
+        {
+          "k": "b",
+          "label": "Fix the CLI only, one day, and keep it internal",
+          "what": "Make mdmax cert runnable and leave it as a Max-tier gate.",
+          "gains": [
+            "Makes the certificate real and closes fix #10",
+            "Closes fix #10, broken for 37 days after the commit that claimed it landed"
+          ],
+          "costs": [
+            "Produces no external signal and no installs",
+            "Leaves the fourth option unmodelled"
+          ],
+          "system": "Extensions and the alias fixed; cert added to package.json.",
+          "screens": "None.",
+          "money": "None."
+        },
+        {
+          "k": "c",
+          "label": "Leave the package surface unmodelled, as the plan has it",
+          "what": "Decision 6 keeps three options and the engine stays internal.",
+          "gains": [
+            "Keeps the meeting to three choices",
+            "No licence decision, and the engine is not given away"
+          ],
+          "costs": [
+            "Leaves the cheapest instrument in the plan unrun",
+            "The record's own strongest recommendation stays untested"
+          ],
+          "system": "No change.",
+          "screens": "None.",
+          "money": "None."
+        },
+        {
+          "k": "d",
+          "label": "Ship the package after MVP-0 exits",
+          "what": "Sequence it behind the ten-stranger test.",
+          "gains": [
+            "No new work before the pilot",
+            "The pilot keeps every engineering day between now and the exit test"
+          ],
+          "costs": [
+            "If the pilot fails, the instrument that could have predicted it was never run",
+            "An MIT competitor is already in this shape and moving"
+          ],
+          "system": "Deferred.",
+          "screens": "None.",
+          "money": "None."
+        }
+      ],
+      "rec": "a",
+      "recCase": [
+        "A one-week test with a written kill number, run before a 58-week build, is the best information trade in the plan (docs/CRITIQUE.md:163).",
+        "The critique reached that conclusion independently, and it never reached decision 6 (docs/FRONTMATTER-RECORD.md:9439).",
+        "The exclusivity being protected is thin. An independent team already shipped the same refuse-on-ambiguity mechanism MIT (docs/CRITIQUE.md:1700).",
+        "Run the five-regex linter comparison before pricing Max on the certificate (docs/ENGINE.md:899)."
+      ],
+      "flip": "If the founders intend to sell the engine as a licensed library, run it source-available instead and keep the same kill number.",
+      "linked": [
+        "FF1",
+        "FF5",
+        "FF11",
+        "FF14"
+      ],
+      "sources": [
+        "docs/PRODUCT-BRIEF.md:224",
+        "docs/PRODUCT-BRIEF.md:364",
+        "docs/PRODUCT-BRIEF.md:462",
+        "docs/CRITIQUE.md:33",
+        "docs/CRITIQUE.md:163",
+        "docs/CRITIQUE.md:1700",
+        "docs/ENGINE.md:899",
+        "docs/FRONTMATTER-RECORD.md:1403",
+        "docs/FRONTMATTER-RECORD.md:9297",
+        "docs/FRONTMATTER-RECORD.md:9439",
+        "https://api.github.com/repos/petergyang/human-review"
+      ]
+    },
+    {
+      "id": "FF14",
+      "cat": "Form factor & surfaces",
+      "sub": "Capacity",
+      "weight": "critical",
+      "q": "How many surfaces is one person allowed at 1.21 engineering days a week, and which are deleted today?",
+      "lede": "The plan names or still references eight surfaces on a commit record showing one author and a rate that puts one surface at 58 weeks.",
+      "visual": {
+        "kind": "compare",
+        "labelWidth": 28,
+        "cols": [
+          {
+            "title": "One surface",
+            "tone": "accent"
+          },
+          {
+            "title": "Two surfaces",
+            "tone": "neutral"
+          },
+          {
+            "title": "Keep all eight",
+            "tone": "stop"
+          }
+        ],
+        "rows": [
+          {
+            "label": "Elapsed to MVP-0",
+            "cells": [
+              "57.9 weeks at 1.21 days a week",
+              "No second estimate exists",
+              "No estimate exists"
+            ]
+          },
+          {
+            "label": "Surfaces deleted today",
+            "cells": [
+              "Seven",
+              "Six",
+              "None"
+            ]
+          },
+          {
+            "label": "Stale references fixed",
+            "cells": [
+              "Nine, in one edit",
+              "Nine, in one edit",
+              "Nine left standing"
+            ]
+          },
+          {
+            "label": "Channels retained",
+            "cells": [
+              "None from the surface list",
+              "One",
+              "All of them"
+            ]
+          },
+          {
+            "label": "What decides it",
+            "cells": [
+              "FF1, in the same sitting",
+              "FF1 plus a second choice",
+              "Nothing"
+            ]
+          }
+        ],
+        "note": "Rate measured over 2026-07-13 to 2026-09-08 and reproduced 2026-09-09.",
+        "caption": "Surface count against a measured 1.21 engineering days a week"
+      },
+      "stakes": "Nothing in the plan says how many surfaces one person may have, and that number binds every other decision here.",
+      "state": [
+        "§9 measures 10 of 58 calendar days touching src, src-tauri or test, which is 1.21 engineering days a week (docs/PRODUCT-BRIEF.md:227).",
+        "MVP-0 is about 70 engineering days, so 57.9 calendar weeks at that rate (docs/PRODUCT-BRIEF.md:227).",
+        "The resources note records one author on every commit, open since 2026-08-31 (docs/PRODUCT-BRIEF.md:231).",
+        "Two surfaces are cut and still appear in nine places (docs/PRODUCT-BRIEF.md:304, :310)."
+      ],
+      "path": [
+        "Round 2 measured the velocity and withdrew both the ten-week schedule and the 2.5x correction (docs/GAPS-2026-09-08.md:130).",
+        "The surface list was never re-cut against the new rate.",
+        "Free working-tree agent diffs shipped in four products between 2026-08-24 and 2026-09-03, so the window is not static."
+      ],
+      "tension": [
+        "Two cut surfaces, one undecided, one that does not exist in the code, and one needing a local process nobody has built.",
+        "Surface count is the binding constraint and the one variable the plan never budgets.",
+        "The 0.23 per week figure is computed on a narrower path set than the headline it sits beside, which makes the collapse look worse.",
+        "If a second person is real, every density figure has to be re-derived before the sequence is quoted again."
+      ],
+      "evidence": [
+        {
+          "type": "table",
+          "title": "Surfaces named or still referenced in the v15 plan",
+          "cols": [
+            "Surface",
+            "Stated status",
+            "Where"
+          ],
+          "rows": [
+            [
+              "Web app",
+              "MVP-0",
+              "Exhibit 6, line 203"
+            ],
+            [
+              "Desktop app (Tauri)",
+              "MVP-0 — but the shell points at md.sgnk.ai with zero fs permissions",
+              "line 104; src-tauri/tauri.conf.json"
+            ],
+            [
+              "VS Code extension",
+              "undecided",
+              "decision 6, line 364"
+            ],
+            [
+              "Obsidian plugin",
+              "CUT — still referenced in 6 places",
+              "lines 204, 338, 428, 464, 477, 524 (cut at 304)"
+            ],
+            [
+              "Chrome extension",
+              "CUT — still referenced in 3 places",
+              "lines 203, 464, 477 (cut at 310)"
+            ],
+            [
+              "MCP server",
+              "MVP-1; needs a local process",
+              "F11, line 65"
+            ],
+            [
+              "mdmax cert GitHub Action",
+              "Max tier; the CLI exits 1 today",
+              "lines 224, 462"
+            ],
+            [
+              "?src= URL parameter",
+              "named once, in no tier or sequence",
+              "line 310"
+            ]
+          ]
+        },
+        {
+          "type": "stat",
+          "title": "The rate that binds all of it — independently reproduced 2026-09-09",
+          "items": [
+            [
+              "Measured engineering days per calendar week",
+              "1.21",
+              "10 of 58 calendar days on src + src-tauri + test — reproduces exactly"
+            ],
+            [
+              "Best rate ever observed on the sibling repo",
+              "1.91 per week",
+              "PRODUCT-BRIEF.md:227"
+            ],
+            [
+              "Last 30 days, same path basis as the headline",
+              "3 of 30 days = 0.70 per week",
+              "re-measured. The plan's \"0.23/week\" is src/ alone — a different denominator from its own headline, which makes the collapse look 3x worse than like-for-like"
+            ],
+            [
+              "MVP-0 estimate, one surface",
+              "about 70 engineering days",
+              "PRODUCT-BRIEF.md:227"
+            ],
+            [
+              "Elapsed at the measured rate",
+              "57.9 calendar weeks",
+              "70 / 1.21, recomputed"
+            ],
+            [
+              "Authors on the commit record",
+              "1 — now 82 of 82 on this repo (the plan says 80 of 80; two commits have landed since)",
+              "re-measured 2026-09-09"
+            ]
+          ]
+        }
+      ],
+      "options": [
+        {
+          "k": "a",
+          "label": "One surface for MVP-0, named today; every other surface deleted from the plan",
+          "what": "Pick the surface in the same sitting as FF1 and remove the rest from the document.",
+          "gains": [
+            "Makes the plan match the measured rate",
+            "Removes maintenance commitments nobody decided to make"
+          ],
+          "costs": [
+            "Removes the free-plugin and browser channels from the pilot",
+            "Forces FF1, FF2 and FF7 to be answered in one sitting"
+          ],
+          "system": "One build target, one release path.",
+          "screens": "One screen set; the family diagram loses three boxes.",
+          "money": "Fewer certificates and no store fees."
+        },
+        {
+          "k": "b",
+          "label": "Two surfaces: the web app plus one host surface",
+          "what": "Keep the trial in the browser and add one extension or plugin as a channel.",
+          "gains": [
+            "Keeps a trial and a distribution channel",
+            "Matches the FF1 one-core recommendation"
+          ],
+          "costs": [
+            "Roughly doubles maintenance against a rate that needs 58 weeks for one",
+            "No estimate exists for the second surface"
+          ],
+          "system": "One engine, two hosts, one sidecar format.",
+          "screens": "Two screen idioms to keep in step.",
+          "money": "One store listing."
+        },
+        {
+          "k": "c",
+          "label": "Keep the current list and accept the elapsed time",
+          "what": "Change nothing in the surface list or the sequence.",
+          "gains": [
+            "No re-planning today",
+            "The nine stale references can be fixed later, in isolation"
+          ],
+          "costs": [
+            "The plan's own arithmetic puts MVP-0 in late 2027",
+            "Nine stale references stay in a document going to a founder meeting"
+          ],
+          "system": "No change.",
+          "screens": "No change.",
+          "money": "None."
+        },
+        {
+          "k": "d",
+          "label": "Resolve the second founder first; choose the surface count after",
+          "what": "Answer whether the team is one person or two, then re-derive the rate.",
+          "gains": [
+            "The only option that changes the rate rather than the scope",
+            "Answers a contradiction the plan has carried since 2026-08-31"
+          ],
+          "costs": [
+            "Blocks every other form-factor decision until the answer exists",
+            "The contradiction has been open since 2026-08-31"
+          ],
+          "system": "No change.",
+          "screens": "No change.",
+          "money": "None."
+        }
+      ],
+      "rec": "a",
+      "recCase": [
+        "The rate was measured and reproduces: 10 of 58 days, 1.21 a week, 70 days is 57.9 calendar weeks (docs/PRODUCT-BRIEF.md:227).",
+        "Two of the eight surfaces are cut and still carry commitments in nine places (docs/PRODUCT-BRIEF.md:304, :310).",
+        "Name one surface, delete the rest in the same edit, and let the deletions be visible.",
+        "Fix the 0.23 figure while you are there. It uses a narrower path set than the headline beside it."
+      ],
+      "flip": "If a second person is real and named, re-derive the rate before quoting any sequence, because the density figures are not additive.",
+      "linked": [
+        "FF1",
+        "FF2",
+        "FF7",
+        "FF8",
+        "FF12"
+      ],
+      "sources": [
+        "docs/PRODUCT-BRIEF.md:65",
+        "docs/PRODUCT-BRIEF.md:203",
+        "docs/PRODUCT-BRIEF.md:227",
+        "docs/PRODUCT-BRIEF.md:231",
+        "docs/PRODUCT-BRIEF.md:304",
+        "docs/PRODUCT-BRIEF.md:310",
+        "docs/PRODUCT-BRIEF.md:364",
+        "docs/PRODUCT-BRIEF.md:462",
+        "docs/GAPS-2026-09-08.md:130",
+        "src-tauri/tauri.conf.json:3",
+        "src-tauri/capabilities/default.json"
+      ]
+    },
+    {
+      "id": "FF16",
+      "cat": "Form factor & surfaces",
+      "sub": "Surface",
+      "weight": "critical",
+      "q": "Does editor-first survive the evidence that arrived after it was decided, or does provenance ship as a plugin?",
+      "lede": "The call was made in August; Almanac then died shipping exactly the editor version, and four platforms shipped the other half free.",
+      "visual": {
+        "kind": "ba",
+        "before": {
+          "title": "When the call was made, 2026-08-31",
+          "lines": [
+            {
+              "t": "Critique recommended: plugin, funded by services",
+              "mark": "x"
+            },
+            {
+              "t": "Instruction: editor first",
+              "mark": "ok"
+            },
+            {
+              "t": "Almanac unknown to the corpus",
+              "mark": "?"
+            }
+          ]
+        },
+        "after": {
+          "title": "What is known now, 2026-09-09",
+          "lines": [
+            {
+              "t": "Almanac: full editor + read receipts, $45M, shut",
+              "mark": "x"
+            },
+            {
+              "t": "Four platforms shipped the working-tree half free",
+              "mark": "x"
+            },
+            {
+              "t": "Plugin surface still unoccupied",
+              "mark": "ok"
+            }
+          ]
+        },
+        "via": "nine days of research",
+        "note": "The decision has not been revisited since the evidence changed.",
+        "caption": "What was known then, against what is known now"
+      },
+      "stakes": "Building the shape that just died, on evidence that was not available when the shape was chosen.",
+      "state": [
+        "The plan builds an editor; the critique it overrode recommended a plugin",
+        "Almanac shipped editor plus read receipts on $45M and shut on 2025-01-31",
+        "The corpus never named Almanac once in 1.24M words"
+      ],
+      "path": [
+        "2026-08-31: the instruction was editor first, and the plan was rebuilt around it",
+        "2026-09-09: the nine-seam research found the graveyard and the four free shippers",
+        "The decision has not been re-examined since"
+      ],
+      "tension": [
+        "A standalone editor pays every table-stakes day itself; a plugin inherits them from its host",
+        "But a plugin has no pricing surface of its own, and the category gives editors away",
+        "Absorption is the modal outcome for this category — four of eight died bought, two died unnoticed"
+      ],
+      "evidence": [
+        {
+          "type": "stat",
+          "title": "What changed after the call",
+          "items": [
+            [
+              "Almanac funding before shutdown",
+              "$9M seed + $34M Series A",
+              "HANDOFF-decisions-v2-2026-09-09.md:298"
+            ],
+            [
+              "Almanac shutdown",
+              "2025-01-31",
+              "HANDOFF-decisions-v2-2026-09-09.md:298"
+            ],
+            [
+              "The instruction that set the shape",
+              "'you said editor first, so the plan builds an editor'",
+              "docs/HANDOVER-ANSWERS-2-2026-09-09.md:77"
+            ],
+            [
+              "What the critique recommended instead",
+              "ship provenance as a plugin, fund it with services",
+              "docs/HANDOVER-ANSWERS-2-2026-09-09.md:78"
+            ]
+          ]
+        }
+      ],
+      "options": [
+        {
+          "k": "a",
+          "label": "Hold editor-first",
+          "what": "The plan stands; the new evidence is noted and does not move the shape.",
+          "gains": [
+            "No re-planning; the 90-day sequence survives intact",
+            "Owns the whole surface, so nothing is gated by a host's API"
+          ],
+          "costs": [
+            "It is the shape that has just been shown to die",
+            "Pays every table-stakes day with no host to inherit from"
+          ],
+          "system": "No change.",
+          "screens": "No change.",
+          "money": "No change."
+        },
+        {
+          "k": "b",
+          "label": "Provenance as a plugin, editor later",
+          "what": "Ship the engine and review state inside an existing editor; build the standalone only if it earns it.",
+          "gains": [
+            "Inherits about 6.5 of 17.5 table-stakes days from the host",
+            "Reaches an audience that already exists, which the plan calls the weakest area"
+          ],
+          "costs": [
+            "No pricing surface of its own; the category does not pay for plugins",
+            "The name is taken in that store by an 82,265-install incumbent"
+          ],
+          "system": "Engine must run headless in a host process.",
+          "screens": "Kills the standalone shell; adds a host panel.",
+          "money": "Cuts build cost, and removes the direct-subscription path."
+        },
+        {
+          "k": "c",
+          "label": "One portable core, both surfaces",
+          "what": "The engine is the product; editor and plugin are two thin shells over it.",
+          "gains": [
+            "The engine is already DOM-free and UTF-16 native, so this is close to true today",
+            "Hedges the form-factor question rather than answering it"
+          ],
+          "costs": [
+            "Two shells to maintain at 1.21 engineering days a week",
+            "Hedging costs more than either branch alone"
+          ],
+          "system": "Formalises the port boundary the engine mostly has.",
+          "screens": "Both sets.",
+          "money": "Highest build cost of the three."
+        }
+      ],
+      "rec": "c",
+      "recCase": [
+        "The engine is already portable (DOM-free, UTF-16 native, no framework), so this is the cheapest of the three to reach from here",
+        "It defers a form-factor commitment that the evidence has flipped twice in six weeks",
+        "It is the only option that survives either answer to the headline question"
+      ],
+      "flip": "If the ten-developer test in weeks 1-2 shows people want this inside the editor they already use, b wins outright and c is a hedge nobody needed.",
+      "linked": [
+        "FF1",
+        "P1",
+        "PR1"
+      ],
+      "sources": [
+        "docs/HANDOVER-ANSWERS-2-2026-09-09.md:77",
+        "docs/HANDOVER-ANSWERS-2-2026-09-09.md:78",
+        "docs/HANDOVER-ANSWERS-2-2026-09-09.md:82",
+        "HANDOFF-decisions-v2-2026-09-09.md:298",
+        "docs/PRODUCT-BRIEF.md:365"
+      ]
+    }
+  ],
+  "merged": [
+    {
+      "kept": "FF2",
+      "absorbed": [
+        "FF6"
+      ],
+      "why": "one bet in two expressions: Live mode and the Obsidian surface both chase the same 501-like rendering audience, and answering one forces the other"
+    },
+    {
+      "kept": "FF4",
+      "absorbed": [
+        "FF10"
+      ],
+      "why": "both are gate-the-decision-on-a-measurement questions with the same option shape, and FF4's own text told the meeting to sequence them together"
+    },
+    {
+      "kept": "FF11",
+      "absorbed": [
+        "FF13"
+      ],
+      "why": "extension scope, store list and whether it carries a key are one option set: what is inside the extension"
+    }
+  ],
+  "dropped": [],
+  "added": [],
+  "notes": "14 to 11 cards, a 21% reduction. Facts changed by the briefing: FF1 and FF11 no longer read the VS Code review niche as empty, because Microsoft merged a per-file review/unreview operation into the Agents window on 2026-07-03 (PR 324218, milestone 1.128.0) and documented none of it; the differentiator moves to state stored in the repository, per span, across machines. FF1 and FF14 now carry the four free working-tree agent diffs shipped between 2026-08-24 and 2026-09-03. FF12 gains petergyang/human-review at 1,241 stars in six weeks as the nearest free comparator for the package and plugin route. I did not repeat the refuted VS Code docs claims from briefing §5. Every file:line citation was checked with sed before it was written; the four non-file citations are api.github.com URLs from the briefing's usable table."
+}
