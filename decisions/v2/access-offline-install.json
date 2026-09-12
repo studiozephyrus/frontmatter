@@ -7,7 +7,7 @@
       "sub": "Web byte path",
       "weight": "critical",
       "q": "On the web, does the browser read the repository, or does our server hand the bytes on?",
-      "lede": "Zero document bytes in our control plane is the claim a rival cannot copy. The code breaks it.",
+      "lede": "The plan says no document byte touches our servers. As of now, our server parses the whole repository.",
       "visual": {
         "kind": "compare",
         "labelWidth": 210,
@@ -67,17 +67,17 @@
             ]
           }
         ],
-        "note": "F7 reads every markdown file by definition, so the first column breaks on an MVP-0 feature.",
+        "note": "The repo docs scan reads every markdown file by definition, so the first column breaks on a pilot feature.",
         "caption": "Three read shapes against GitHub's rate limit and the byte claim."
       },
-      "stakes": "Lose this and the web app is a hosted editor competing with free ones.",
+      "stakes": "Without it, the web app is one more hosted editor competing with free ones.",
       "state": [
-        "Week-0 draft: no document byte passes a Zephyrus server (docs/WEEK0-DECISIONS-2026-09-08.md:35).",
-        "The code does the opposite: operator token (client.ts:30), zipball (client.ts:78), server-parsed."
+        "The 8 September decisions draft makes the same promise.",
+        "The code reads with our own GitHub token, downloads the zipball and parses it on our server."
       ],
       "tension": [
-        "5,000 requests an hour, 5,832 markdown files: per-file cannot finish (r20-q4:38).",
-        "No test shows a browser follows the zipball redirect (docs/WEEK0-DECISIONS-2026-09-08.md:54)."
+        "At 5,000 requests an hour, a 5,832-file vault cannot be read file by file.",
+        "No test shows a browser can follow GitHub's zipball redirect."
       ],
       "evidence": [
         {
@@ -161,10 +161,10 @@
             "No byte reaches us while you open files"
           ],
           "costs": [
-            "5,833 calls exceeds the 5,000/hr floor"
+            "5,833 calls, over the 5,000 an hour limit"
           ],
-          "system": "A per-file adapter behind the port.",
-          "screens": "A ceiling notice on the repo picker.",
+          "system": "A per-file reader in the browser.",
+          "screens": "A vault-size limit on the repo picker.",
           "money": "None."
         },
         {
@@ -178,7 +178,7 @@
             "88.1 MB of markdown in a tab",
             "The zipball redirect is untested from a browser"
           ],
-          "system": "Unzip in a worker; drop the snapshot.",
+          "system": "Unzip in a worker; drop the server snapshot.",
           "screens": "A loading state on first connect.",
           "money": "Function time drops."
         },
@@ -205,16 +205,16 @@
             "The web app stops being a finishable trial"
           ],
           "system": "Delete the GitHub client from the web.",
-          "screens": "Drag-in is the only entry.",
+          "screens": "Drag-and-drop only.",
           "money": "None."
         }
       ],
       "rec": "b",
       "recCase": [
-        "One tarball call is the only whole-vault read inside GitHub's floor that spares our server.",
-        "F7 reads every file, so per-file breaks on an MVP-0 feature. Spike the redirect."
+        "One tarball call is the only whole-vault read within the limit that spares our server.",
+        "The pilot's repo docs scan reads every file, so per-file reading fails. Test the redirect first."
       ],
-      "flip": "The spike shows a browser cannot follow the zipball redirect, or 88 MB kills a tab.",
+      "flip": "A test shows a browser cannot follow the zipball redirect, or 88 MB crashes a tab.",
       "linked": [
         "AC3",
         "AC14",
@@ -243,8 +243,8 @@
       "cat": "Access, offline & install",
       "sub": "Scope and schedule",
       "weight": "critical",
-      "q": "Do we price the access layer into the schedule, or cut MVP-0 to one surface?",
-      "lede": "The 69-day sequence has no days for opening a file, and no exhibit names the pilot's surface.",
+      "q": "Do we schedule the file-access work, or cut the pilot to one surface?",
+      "lede": "The 69-day sequence has no days for opening a file, and nothing names the pilot's surface.",
       "visual": {
         "kind": "ba",
         "before": {
@@ -293,15 +293,15 @@
         "note": "Cutting a surface is the only lever that shortens anything at this rate.",
         "caption": "What the schedule counts, and what it costs to make it true."
       },
-      "stakes": "The gap surfaces in week 10, when the pilot needs a surface and has none.",
+      "stakes": "The gap appears in week 10, when the pilot needs a surface and has none.",
       "state": [
-        "The sequence is 24+18+6+8+10+3 = 69 days (docs/PRODUCT-BRIEF.md:227).",
-        "Access gets one day for the Tauri rename, nothing for the byte path (docs/PRODUCT-BRIEF.md:221).",
-        "The pilot is weeks 10 to 12, ten strangers, unnamed surface (docs/PRODUCT-BRIEF.md:341)."
+        "The sequence is 24+18+6+8+10+3 = 69 days.",
+        "Access gets one day, to rename the desktop app, and none for how the web reads a repo.",
+        "The pilot, MVP-0 in the options, is weeks 10 to 12 with ten strangers."
       ],
       "tension": [
         "At 1.21 engineering days a week, 70 days is 58 calendar weeks.",
-        "Nothing in src/ builds a picker, installation, fs plugin or updater."
+        "No code builds a repo picker, App install, desktop file access or updater."
       ],
       "evidence": [
         {
@@ -454,38 +454,38 @@
           "k": "a",
           "label": "Add the access days and restate the schedule",
           "gains": [
-            "Falsifiable on day 7, not week 10"
+            "Testable on day 7, not week 10"
           ],
           "costs": [
             "20 to 40 days: 16 to 33 calendar weeks"
           ],
           "system": "Same build, later date.",
           "screens": "None.",
-          "money": "No new spend, longer runway."
+          "money": "No new spend, later pilot."
         },
         {
           "k": "b",
-          "label": "MVP-0 is the web app against a GitHub repo, and all ten strangers get that",
+          "label": "The pilot is the web app against a GitHub repo, and all ten strangers get that",
           "gains": [
             "No certificate, notarisation, signing key or OS matrix",
-            "Removes install variables from the retention test"
+            "No install problems in the retention test"
           ],
           "costs": [
             "Loses anyone with no GitHub repo",
             "The offline claim cannot be tested at all"
           ],
-          "system": "The GitHub App and the byte path.",
+          "system": "The GitHub App and browser-side repo reading.",
           "screens": "A repo picker and consent screen.",
           "money": "Free tiers, no certificates."
         },
         {
           "k": "c",
-          "label": "MVP-0 is a signed desktop build, and all ten get that",
+          "label": "The pilot is a signed desktop build, and all ten get that",
           "gains": [
             "Tests local files and offline as designed"
           ],
           "costs": [
-            "Needs AC8's 4-to-8-week rebuild first"
+            "Needs a 4-to-8-week rebuild first"
           ],
           "system": "Bundled frontend, scoped filesystem, signing.",
           "screens": "A download and first-launch flow.",
@@ -493,7 +493,7 @@
         },
         {
           "k": "d",
-          "label": "MVP-0 is an unsigned desktop build, given to ten people we warn in person",
+          "label": "The pilot is an unsigned desktop build, given to ten people we warn in person",
           "gains": [
             "Tests offline with no certificate"
           ],
@@ -507,10 +507,10 @@
       ],
       "rec": "b",
       "recCase": [
-        "At 1.21 engineering days a week, cutting a surface is the only lever.",
-        "Web-against-a-repo needs no certificate, key or OS matrix. Hand AC17 the consequence."
+        "At 1.21 engineering days a week, only cutting a surface shortens the schedule.",
+        "A web pilot on a repo needs no certificate, key or OS matrix. The usage-file decision then follows it."
       ],
-      "flip": "The ten candidates keep documents in plain folders, not repos, so (b) reaches nobody.",
+      "flip": "The ten candidates use plain folders, not repos, so (b) reaches nobody.",
       "linked": [
         "AC1",
         "AC4",
@@ -543,7 +543,7 @@
       "sub": "GitHub access",
       "weight": "critical",
       "q": "Does the GitHub App launch with three permissions, or four with `pull_requests: write`?",
-      "lede": "Every repository read uses one operator token against one allowlisted login, and the replacement can never widen quietly.",
+      "lede": "As of now, every repo read uses our own token. Whatever replaces it cannot quietly widen its permissions later.",
       "visual": {
         "kind": "flow",
         "perRow": 3,
@@ -587,15 +587,15 @@
         "note": "Any organisation permission replaces the first node with an org owner and a ticket.",
         "caption": "Why the launch permission list cannot be widened quietly."
       },
-      "stakes": "One permission too many needs an org owner; too few means re-consenting everyone.",
+      "stakes": "One permission too many needs an organisation owner; too few means everyone consents again.",
       "state": [
-        "Every repository call carries one operator token (src/config/env.ts:85, client.ts:30).",
-        "Sign-in is gated on a single login, defaulting to `sagnikmitra` (src/config/env.ts:47).",
-        "No installation code in `src/`, so a stranger pilot cannot run."
+        "Every repository call carries one operator token, a shared token that belongs to us.",
+        "Sign-in is limited to a single GitHub login, `sagnikmitra` by default.",
+        "No installation code exists yet, so a pilot with strangers cannot run."
       ],
       "tension": [
-        "Changing permissions re-prompts every owner; unapproved installs keep the old set (r20-q4:37).",
-        "Zero organisation permissions lets a repo admin install alone (r20-q7:46)."
+        "Changing permissions re-prompts every owner, and unapproved installs keep the old set.",
+        "With no organisation permissions, a repo admin can install it alone."
       ],
       "evidence": [
         {
@@ -681,9 +681,9 @@
           ],
           "costs": [
             "No PR with a title and body",
-            "Adding it later means a re-consent campaign"
+            "Adding it later means everyone consents again"
           ],
-          "system": "Branch and hand off, not a PR.",
+          "system": "Push a branch, not a PR.",
           "screens": "A compare link after a save.",
           "money": "None."
         },
@@ -696,7 +696,7 @@
           "costs": [
             "A fourth consent line when trust is lowest"
           ],
-          "system": "A PR builder rendering the splices.",
+          "system": "A PR builder from saved edits.",
           "screens": "A review-and-open-PR step.",
           "money": "None."
         },
@@ -729,8 +729,8 @@
       ],
       "rec": "a",
       "recCase": [
-        "Zero organisation permissions is a distribution decision as much as a security one.",
-        "Branch and hand off buys review before merge. Delete `GITHUB_REPO_TOKEN` regardless."
+        "No organisation permission matters for distribution as much as for security.",
+        "A pushed branch with a compare link still gets review before merge. Delete `GITHUB_REPO_TOKEN` either way."
       ],
       "flip": "The buyer is the team, not the solo developer, so take `pull_requests: write` at launch.",
       "linked": [
@@ -755,7 +755,7 @@
       "cat": "Access, offline & install",
       "sub": "Browser lanes",
       "weight": "high",
-      "q": "Do we ship the File System Access path on the web, when two accepted rounds cut it?",
+      "q": "Do we ship the File System Access API on the web, when two earlier rounds cut it?",
       "lede": "The plan reversed a research decision without noting it, and the deciding number is free to measure.",
       "visual": {
         "kind": "flow",
@@ -794,14 +794,14 @@
         "note": "Chrome Android is unreconciled between two sources and should not be built on.",
         "caption": "The fork a visitor with a plain folder hits, by browser."
       },
-      "stakes": "Ship it and some share of desktop visitors meets a refusal, from a product selling refusals.",
+      "stakes": "Ship it and some share of desktop visitors meet an unsupported-browser refusal on arrival.",
       "state": [
-        "The plan ships it, on desktop Chrome and Edge only (docs/PRODUCT-BRIEF.md:102).",
-        "No `showDirectoryPicker` code exists in `src/`."
+        "The plan ships it, on desktop Chrome and Edge only.",
+        "No folder-picker code (`showDirectoryPicker`) exists yet."
       ],
       "tension": [
-        "The refusal rate is unmeasured; the only figure is a derived assumption.",
-        "Chrome Android disputed: BCD says 132, caniuse says no (s4-mobile-cross-device.md:202)."
+        "Nobody has measured the refusal rate; the only figure is an assumption.",
+        "Chrome on Android is disputed: MDN data says 132, caniuse says no."
       ],
       "evidence": [
         {
@@ -892,7 +892,7 @@
           "costs": [
             "Two weeks the schedule has no room for"
           ],
-          "system": "An adapter behind the filesystem port.",
+          "system": "A local-folder adapter for the editor.",
           "screens": "A folder picker and support line.",
           "money": "None."
         },
@@ -901,11 +901,11 @@
           "label": "Cut it: the desktop build owns plain folders, the web build owns GitHub",
           "gains": [
             "What both earlier rounds recommended",
-            "No adapter, browser matrix or Android row"
+            "No adapter, browser matrix or Android question"
           ],
           "costs": [
             "A download at the moment of peak intent",
-            "A conversion cliff with no distribution to absorb it"
+            "Lost sign-ups there, with no distribution to absorb it"
           ],
           "system": "One fewer adapter to maintain.",
           "screens": "A download prompt instead.",
@@ -918,7 +918,7 @@
             "Turns an assumed refusal rate into data"
           ],
           "costs": [
-            "Free only if MVP-0 is web-against-a-repo anyway"
+            "Free only if the pilot is web-on-a-repo anyway"
           ],
           "system": "No change.",
           "screens": "None.",
@@ -931,7 +931,7 @@
             "No visible refusal on any browser"
           ],
           "costs": [
-            "Review state silently fails for those users"
+            "Review state, what you have read, silently fails for them"
           ],
           "system": "A read-only session adapter as well.",
           "screens": "A drag target that cannot save.",
@@ -940,8 +940,8 @@
       ],
       "rec": "b",
       "recCase": [
-        "Two prior rounds cut this lane on unchanged facts, and AC2 leaves no days.",
-        "Run (c) regardless. The deciding number is in no research report."
+        "Two earlier rounds cut this on the same facts, and the schedule has no room.",
+        "Run (c) anyway. The deciding number is in no research report."
       ],
       "flip": "A measured Chromium share well above 80%, plus candidates keeping documents in plain folders.",
       "linked": [
@@ -1030,14 +1030,14 @@
         "note": "The plan's 150 USD Windows floor is below every quote in this corpus.",
         "caption": "What each platform mix costs in year one, at measured prices."
       },
-      "stakes": "One person cannot debug a SmartScreen climb on a machine they do not own.",
+      "stakes": "One person cannot debug Windows SmartScreen reputation on a machine they do not own.",
       "state": [
-        "Plan promises a notarised .dmg, an .exe at 150-400 USD, an AppImage (docs/PRODUCT-BRIEF.md:104).",
-        "`bundle.targets` is dmg and app; package.json carries no Windows or Linux."
+        "The plan promises a notarised .dmg, a signed .exe at 150-400 USD a year, and an AppImage.",
+        "The build targets are dmg and app only, and package.json has no Windows or Linux target."
       ],
       "tension": [
-        "Cheapest measured certificate is 219 USD a year, so 150 is wrong (k9:17).",
-        "Azure Trusted Signing is 119.88 USD a year, no dongle, unverified (k9:79)."
+        "The cheapest measured certificate is 219 USD a year, so 150 is wrong.",
+        "Azure Trusted Signing is 119.88 USD a year, no hardware token, unverified."
       ],
       "evidence": [
         {
@@ -1192,7 +1192,7 @@
             "Every Windows visitor bounces, uncounted",
             "Contradicts what the plan promises"
           ],
-          "system": "Keep `bundle.targets` as it is.",
+          "system": "Keep the build targets unchanged.",
           "screens": "A download page saying macOS only.",
           "money": "99 USD/year plus 193 USD CI."
         },
@@ -1216,7 +1216,7 @@
             "No eligibility question to resolve first"
           ],
           "costs": [
-            "219 USD a year, plus a token nobody plugs in"
+            "219 USD a year, and a USB token CI cannot use"
           ],
           "system": "Token-bound signing, which CI cannot automate.",
           "screens": "A second button, SmartScreen warning.",
@@ -1238,10 +1238,10 @@
       ],
       "rec": "a",
       "recCase": [
-        "One person can debug notarisation on the Mac here, not a SmartScreen climb.",
-        "macOS is 89.3% of per-release CI cost (k9:137). Correct the plan's Windows line."
+        "One person can debug notarisation on the Mac we have, but not SmartScreen reputation.",
+        "macOS is 89.3% of per-release CI cost. Correct the plan's Windows price too."
       ],
-      "flip": "The OS mix comes back Windows-first, the case the research says inverts the order (k9:137).",
+      "flip": "The OS mix comes back Windows-first, which the research says reverses the order.",
       "linked": [
         "AC2",
         "AC4",
@@ -1272,7 +1272,7 @@
       "sub": "Desktop shell",
       "weight": "critical",
       "q": "Do we rebuild the Tauri shell as a bundled local app before signing, or keep it internal?",
-      "lede": "The desktop app cannot open a local file, and signing it would attest to a swappable shell.",
+      "lede": "The desktop app cannot open a local file, and signing it would vouch for a swappable website.",
       "visual": {
         "kind": "ba",
         "before": {
@@ -1329,15 +1329,15 @@
         "note": "The research calls signing the current configuration security theatre.",
         "caption": "What signing would attest to today, against what it should attest to."
       },
-      "stakes": "Signing the shell as configured certifies a payload any web deploy can replace.",
+      "stakes": "Signing the shell as it stands certifies code any web deploy can replace.",
       "state": [
-        "`tauri.conf.json` points frontendDist, devUrl and the window at https://md.sgnk.ai, CSP null.",
-        "`Cargo.toml` has shell, os, process and dialog plugins; no filesystem, no updater.",
-        "`capabilities/default.json` grants no filesystem permission, so it opens nothing."
+        "The desktop config loads the app from https://md.sgnk.ai, with no content security policy.",
+        "The app has shell, os, process and dialog plugins; no filesystem, no updater.",
+        "Its permissions grant no file access, so it opens nothing."
       ],
       "tension": [
-        "The remote origin is a second unsigned update channel (k9:113).",
-        "The rebuild is a 4-to-8-week item AC2 has no days for."
+        "The remote site is a second, unsigned update channel.",
+        "The rebuild is a 4-to-8-week item the schedule has no days for."
       ],
       "evidence": [
         {
@@ -1421,7 +1421,7 @@
             "The only version worth shipping"
           ],
           "costs": [
-            "A one-day rename row keeps it invisible"
+            "The schedule shows only a one-day rename"
           ],
           "system": "Bundled assets, `tauri-plugin-fs`, a real CSP.",
           "screens": "A folder picker and real offline.",
@@ -1450,7 +1450,7 @@
             "A download link exists"
           ],
           "costs": [
-            "Attests to a payload a web deploy can change"
+            "Vouches for code any web deploy can change"
           ],
           "system": "No shell change, only the pipeline.",
           "screens": "A download page for something broken.",
@@ -1458,9 +1458,9 @@
         },
         {
           "k": "d",
-          "label": "Drop the desktop build from MVP-0 entirely",
+          "label": "Drop the desktop build from the pilot entirely",
           "gains": [
-            "Consistent with a web-first MVP-0"
+            "Consistent with a web-first pilot"
           ],
           "costs": [
             "Removes offline and local folders this year"
@@ -1472,10 +1472,10 @@
       ],
       "rec": "b",
       "recCase": [
-        "Rule out (c) permanently. Signing a URL wrapper certifies the last deploy.",
+        "Rule out (c) for good. Signing a URL wrapper certifies only the last web deploy.",
         "(b) costs nothing and keeps the option open while the schedule is decided."
       ],
-      "flip": "AC2 sends the pilot to a desktop build, so (a) moves to now.",
+      "flip": "The schedule puts the pilot on a desktop build, so (a) starts now.",
       "linked": [
         "AC2",
         "AC6",
@@ -1526,12 +1526,12 @@
             "note": "ships in bundle metadata"
           },
           {
-            "t": "sw.js:13  const CACHE = \"sgnk-md-v2\"",
+            "t": "sw.js  const CACHE = \"sgnk-md-v2\"",
             "mark": "live",
             "note": "the web app carries it too"
           },
           {
-            "t": "sw.js:70  \"md.sgnk.ai is unreachable\"",
+            "t": "sw.js  \"md.sgnk.ai is unreachable\"",
             "mark": "live",
             "note": "user-visible on the web today"
           }
@@ -1541,11 +1541,11 @@
       },
       "stakes": "Changing it after a signed release means a new App ID, profile and updater identity.",
       "state": [
-        "productName is `sgnk-md` and identifier `ai.sgnk.md` in `src-tauri/tauri.conf.json`.",
-        "The service worker caches `sgnk-md-v2` and names md.sgnk.ai to users (public/sw.js:70)."
+        "The desktop app is still named `sgnk-md`, identifier `ai.sgnk.md`: the sibling product's identity.",
+        "The service worker caches `sgnk-md-v2` and shows md.sgnk.ai to users."
       ],
       "tension": [
-        "The name is contested: Front Matter holds 82,265 installs (docs/GAPS-2026-09-08.md:132).",
+        "The name is contested: the VS Code extension Front Matter CMS has 82,265 installs.",
         "Every day it stays, a signed build may ship as sgnk-md."
       ],
       "evidence": [
@@ -1642,7 +1642,7 @@
           "costs": [
             "A small indirection between bundle and brand"
           ],
-          "system": "New identifier; display name a variable.",
+          "system": "New identifier; display name set separately.",
           "screens": "Window title and About panel.",
           "money": "None."
         },
@@ -1666,7 +1666,7 @@
             "No work at all"
           ],
           "costs": [
-            "An install of one collides with the other"
+            "Installing one app collides with the other"
           ],
           "system": "No change.",
           "screens": "None.",
@@ -1700,7 +1700,7 @@
       "cat": "Access, offline & install",
       "sub": "Updates",
       "weight": "high",
-      "q": "Does the desktop app ship an auto-updater, and is the endpoint a Worker or a static file?",
+      "q": "Does the desktop app ship an auto-updater, and is the endpoint a Cloudflare Worker or a static file?",
       "lede": "The signing key is unrecoverable, one person holds it, and the endpoint decides whether a release can be undone.",
       "visual": {
         "kind": "state",
@@ -1735,12 +1735,12 @@
       },
       "stakes": "Lose the key and every installed user can never be updated again.",
       "state": [
-        "The plan requires a signed updater before the first public build (docs/PRODUCT-BRIEF.md:104).",
+        "The plan requires a signed updater before the first public build.",
         "Nothing is built: `tauri-plugin-updater` is absent and no endpoint is named."
       ],
       "tension": [
-        "Verification cannot be disabled; a lost key strands the base permanently (k9:93).",
-        "A static manifest cannot roll back; the comparator is compiled in (k9:99)."
+        "Signature checks cannot be switched off, so a lost key strands every user.",
+        "A static manifest cannot roll back: the app refuses any lower version."
       ],
       "evidence": [
         {
@@ -1896,19 +1896,19 @@
             "Reads as the prudent middle"
           ],
           "costs": [
-            "The comparator is compiled in, so later reaches nobody"
+            "The no-downgrade rule is compiled in, so the later switch reaches nobody"
           ],
           "system": "Same as (c), plus a missing migration.",
           "screens": "Same as (c).",
-          "money": "Free, and worthless."
+          "money": "Free."
         }
       ],
       "rec": "a",
       "recCase": [
-        "The downside is not a bad release. It is a permanently unreachable base.",
-        "A version check that opens the download page carries no key."
+        "The real risk is losing the key, not a bad release.",
+        "A version check that opens the download page needs no signing key."
       ],
-      "flip": "The base grows past manual re-download, or a second person holds the key.",
+      "flip": "The user base outgrows manual re-downloads, or a second person holds the key.",
       "linked": [
         "AC6",
         "AC8"
@@ -1933,14 +1933,14 @@
       "cat": "Access, offline & install",
       "sub": "Offline",
       "weight": "high",
-      "q": "Do we build real offline reading for the web app, or say online-only and fix the exhibit?",
+      "q": "Do we build real offline reading for the web app, or say online-only and fix the plan's table?",
       "lede": "The plan publishes an offline capability the code does not have, in the table a buyer reads.",
       "visual": {
         "kind": "compare",
         "labelWidth": 220,
         "cols": [
           {
-            "title": "Exhibit 2 claims",
+            "title": "The plan's table claims",
             "tone": "warn"
           },
           {
@@ -1983,12 +1983,12 @@
       },
       "stakes": "A buyer picks a surface on a row wrong in two of four columns.",
       "state": [
-        "Exhibit 2 claims cached open files on both web lanes (docs/PRODUCT-BRIEF.md:99).",
-        "`public/sw.js` treats navigations as network-only (:63) and never intercepts `/api/` (:52)."
+        "The plan's 'What works where' table, its second exhibit, claims cached open files in both web columns.",
+        "The service worker treats page loads as network-only and never intercepts `/api/`."
       ],
       "tension": [
-        "An earlier round refused this middle ground in writing (r20-q7:48).",
-        "IndexedDB eviction is LRU, so the store is never the record (s4:222)."
+        "An earlier round refused a half-working offline mode in writing.",
+        "IndexedDB evicts least-recently-used data, so the store is never the record."
       ],
       "evidence": [
         {
@@ -2072,7 +2072,7 @@
             "Makes the published claim true"
           ],
           "costs": [
-            "Days AC2 shows the plan does not have"
+            "Days the schedule does not have"
           ],
           "system": "An IndexedDB cache with pins and eviction.",
           "screens": "A per-file offline toggle.",
@@ -2080,9 +2080,9 @@
         },
         {
           "k": "b",
-          "label": "State that the web build is online-only, and correct Exhibit 2",
+          "label": "State that the web build is online-only, and correct the plan's platform table",
           "gains": [
-            "Costs an edit",
+            "Costs one edit",
             "Makes offline a real reason to download"
           ],
           "costs": [
@@ -2102,13 +2102,13 @@
           "costs": [
             "The user still cannot read anything"
           ],
-          "system": "Edit `public/sw.js`.",
+          "system": "Edit the service worker.",
           "screens": "The offline page.",
           "money": "None."
         },
         {
           "k": "d",
-          "label": "Leave the exhibit as written and revisit after the pilot",
+          "label": "Leave the table as written and revisit after the pilot",
           "gains": [
             "No work"
           ],
@@ -2122,10 +2122,10 @@
       ],
       "rec": "b",
       "recCase": [
-        "Correct the exhibit. It is the table a stranger reads to choose a surface.",
-        "Do (c) in the same pass: the offline page ships naming the sibling's domain."
+        "Correct the table, because it is what a stranger reads to choose a surface.",
+        "Do (c) alongside it: the offline page still names the sibling product's md.sgnk.ai."
       ],
-      "flip": "The pilot names offline reading as why people stop using the web app.",
+      "flip": "The pilot finds offline reading is why people stop using the web app.",
       "linked": [
         "AC2",
         "AC4",
@@ -2150,7 +2150,7 @@
       "sub": "Keys and AI",
       "weight": "high",
       "q": "Where does the user's AI key live on the web, and does a local model ship?",
-      "lede": "The plan's web answer is an OS keychain the browser lacks, and its local-model deferral cites only drafts.",
+      "lede": "The plan's web answer is an OS keychain, which browsers lack, and its local-model deferral cites only drafts.",
       "visual": {
         "kind": "compare",
         "labelWidth": 190,
@@ -2213,14 +2213,14 @@
         "note": "A local model is the only thing that would change the third row, and it is deferred.",
         "caption": "Key custody by surface, with the failure mode each carries."
       },
-      "stakes": "Persist a key in the browser and one renderer flaw reads a credential to someone else's spend.",
+      "stakes": "Store a key in the browser and one renderer flaw lets someone spend on the user's provider account.",
       "state": [
-        "Exhibit 1 budgets BYO key and keychain at three days, web yes (docs/PRODUCT-BRIEF.md:62).",
-        "No web custody is specified, and the local model is deferred (docs/PRODUCT-BRIEF.md:173)."
+        "The plan's feature table gives bring-your-own-key and keychain three days, marked as working on the web.",
+        "It never says where the web keeps the key, and defers the local model."
       ],
       "tension": [
-        "The provider round refuses browser persistence: we render untrusted markdown (r20-q3:30).",
-        "The 10-of-13 fabrication figure appears in no report or source."
+        "The provider-keys research refuses browser storage, because we render untrusted markdown.",
+        "The deferral's 10-of-13 figure for small-model fabrication is in no report or source."
       ],
       "evidence": [
         {
@@ -2337,8 +2337,8 @@
           "k": "a",
           "label": "Session memory on the web, OS keychain on desktop, no local model",
           "gains": [
-            "Blast radius is one tab lifetime",
-            "Nothing is at rest in the browser"
+            "Exposure ends with the tab",
+            "Nothing is stored in the browser"
           ],
           "costs": [
             "Retyping the key on every reload",
@@ -2378,10 +2378,10 @@
           "k": "d",
           "label": "Bundle a small local model so desktop AI needs no key and no network",
           "gains": [
-            "Closes the one gap every architecture leaves"
+            "Closes the offline-AI gap every design leaves"
           ],
           "costs": [
-            "A product selling refusal cannot ship a guesser"
+            "Small models fabricate, which breaks the refuse-not-guess promise"
           ],
           "system": "A bundled runtime and weights.",
           "screens": "A model picker with a local option.",
@@ -2390,10 +2390,10 @@
       ],
       "rec": "a",
       "recCase": [
-        "Session memory is the only web option bounded by a tab lifetime.",
-        "Never our server: a breach runs up your provider bill. Cite docs/engine/PLAN.md:1210 instead."
+        "Session memory is the only web option whose exposure ends with the tab.",
+        "Never our server: a breach runs up your provider bill. Cite the engine plan's decoding figures instead."
       ],
-      "flip": "BYO-key setup completion below 40% among people who click connect a model (r20-q3:144).",
+      "flip": "Under 40% of people who click \"connect a model\" finish key setup.",
       "linked": [
         "AC1",
         "AC2",
@@ -2468,12 +2468,12 @@
       },
       "stakes": "A security reviewer finds a route contradicting the published architecture, and that reads worse than the feature.",
       "state": [
-        "`api/export/pdf/[...path]/route.ts:60` fetches the file and renders it with headless Chromium.",
-        "A browser PDF path already ships one line above it (ExportMenu.tsx:159)."
+        "The server PDF route fetches the whole file and renders it with headless Chromium.",
+        "A browser PDF option already ships one line above it in the export menu."
       ],
       "tension": [
-        "Every statement of the differentiator gains a clause, and clauses get quoted back.",
-        "Folder-to-one-PDF is the only export with demonstrated demand (docs/PRODUCT-BRIEF.md:67)."
+        "Every statement of the claim gains an exception, and competitors will quote it back.",
+        "Folder-to-one-PDF is the only export with demonstrated demand."
       ],
       "evidence": [
         {
@@ -2554,14 +2554,14 @@
           "k": "a",
           "label": "Delete the server PDF route and keep the browser print item",
           "gains": [
-            "The claim becomes true with no asterisk",
+            "The claim becomes true with no exception",
             "No CDN fetches while rendering a document"
           ],
           "costs": [
             "No server-controlled page setup",
             "Output depends on the browser's print dialogue"
           ],
-          "system": "Delete `src/app/api/export/pdf/`.",
+          "system": "Delete the server PDF route.",
           "screens": "The export menu goes five to four.",
           "money": "Removes a Chromium cold start."
         },
@@ -2573,7 +2573,7 @@
             "Keeps the better PDF output"
           ],
           "costs": [
-            "The clause is quotable by anyone selling against us"
+            "Any competitor can quote the exception"
           ],
           "system": "No code change, one architecture edit.",
           "screens": "None.",
@@ -2608,10 +2608,10 @@
       ],
       "rec": "a",
       "recCase": [
-        "One export format is not worth an asterisk on the whole claim.",
+        "One export format is not worth an exception on the whole claim.",
         "The replacement already ships above it, and the route can never run on desktop."
       ],
-      "flip": "Folder-to-one-PDF ships, so a server renderer is unavoidable and the clause goes in first.",
+      "flip": "Folder-to-one-PDF ships, so a server renderer is unavoidable and the exception is added first.",
       "linked": [
         "AC1",
         "AC15"
@@ -2698,14 +2698,14 @@
         "note": "The snapshot overrun is a measured defect under every column.",
         "caption": "Where the index lives, and what each choice costs."
       },
-      "stakes": "A server index is the byte-path violation at larger scale and higher frequency than any export.",
+      "stakes": "A server index sends document text to us on every search, a bigger breach of the no-bytes claim than any export.",
       "state": [
-        "The plan says move to server full-text search (docs/PRODUCT-BRIEF.md:233).",
-        "The week-0 draft says the opposite and orders the edit (docs/WEEK0-DECISIONS-2026-09-08.md:44)."
+        "The plan says to move the web app to server full-text search.",
+        "The 8 September decisions draft says the opposite and asks for that line to change."
       ],
       "tension": [
-        "The client index inherits the cold start; 77.5 MB does not shrink (r11 c2:19).",
-        "The snapshot is 16.4x the Vercel body cap, either way (r11 c2:24)."
+        "A client index still loads the vault on first open, and 77.5 MB does not shrink.",
+        "The server's whole-vault snapshot is 16.4x Vercel's body size cap either way."
       ],
       "evidence": [
         {
@@ -2786,7 +2786,7 @@
           "k": "a",
           "label": "Client-side lazy index over the open vault, and make the edit the draft asks for",
           "gains": [
-            "Consistent with the byte-path decision",
+            "Consistent with the no-bytes claim",
             "No index tier to operate"
           ],
           "costs": [
@@ -2804,7 +2804,7 @@
             "Best search quality, and it fixes CJK recall"
           ],
           "costs": [
-            "Breaks the byte-path claim on every search"
+            "Breaks the no-bytes claim on every search"
           ],
           "system": "An index tier, and a rewritten claim.",
           "screens": "None visible.",
@@ -2832,15 +2832,15 @@
           "costs": [
             "Leaves two documents contradicting each other"
           ],
-          "system": "Serve tree metadata; fetch bodies on demand.",
+          "system": "Serve the file tree; fetch contents on demand.",
           "screens": "None.",
           "money": "Cuts function time immediately."
         }
       ],
       "rec": "a",
       "recCase": [
-        "The byte path decides this, not search quality. A server index is the larger violation.",
-        "Make the edit the week-0 draft asks for, and do (d) alongside it."
+        "The no-bytes claim decides this, not search quality.",
+        "Make the edit the draft asks for, and do (d) alongside it."
       ],
       "flip": "Client-side lazy indexing is measured and cannot hold a real vault, so search goes desktop-only.",
       "linked": [
@@ -2928,14 +2928,14 @@
         "note": "The gate is 6 of 10, and the draft's own fallback already concedes the self-report.",
         "caption": "The exit measure against the four access paths."
       },
-      "stakes": "The gate is 6 of 10, and on three of four paths that file cannot exist.",
+      "stakes": "The pass mark reads this file, which cannot exist on three of four paths.",
       "state": [
-        "The draft puts it in `.frontmatter/usage.jsonl`, a line a day (docs/WEEK0-DECISIONS-2026-09-08.md:20).",
-        "The gate is 6 of the last 10 working days (:22)."
+        "The 8 September draft puts it in `.frontmatter/usage.jsonl`, a line a day.",
+        "The pass mark is use on 6 of the last 10 working days."
       ],
       "tension": [
-        "On web-GitHub this is a daily commit into a stranger's repository.",
-        "On drag-in and Firefox nothing persists, so it cannot exist."
+        "Via GitHub on the web, it is a daily commit to a stranger's repo.",
+        "With drag-and-drop or Firefox nothing persists, so it cannot exist."
       ],
       "evidence": [
         {
@@ -3006,12 +3006,12 @@
           "k": "a",
           "label": "Keep it in the repo, batched to one commit a week",
           "gains": [
-            "Preserves the ownership argument"
+            "The user owns the file"
           ],
           "costs": [
-            "Still cannot exist on drag-in or Firefox"
+            "Still impossible with drag-and-drop or Firefox"
           ],
-          "system": "A weekly flush through the GitHub client.",
+          "system": "A weekly commit through the GitHub client.",
           "screens": "None.",
           "money": "None."
         },
@@ -3054,15 +3054,15 @@
           ],
           "system": "An endpoint and a consent record.",
           "screens": "A consent toggle in settings.",
-          "money": "It changes the compliance surface."
+          "money": "It brings in data-protection obligations."
         }
       ],
       "rec": "b",
       "recCase": [
-        "The measure must work on whatever surface AC2 chooses. Only per-surface storage does.",
+        "The measure must work on any pilot surface, and only per-surface storage does.",
         "Keep the draft's settled parts: counts only, pasted once on day 14."
       ],
-      "flip": "AC2 sends the pilot to a signed desktop build, so the repo file works.",
+      "flip": "The pilot moves to a signed desktop build, where the repo file works.",
       "linked": [
         "AC2",
         "AC4",
@@ -3083,7 +3083,7 @@
       "sub": "Desktop platforms",
       "weight": "medium",
       "q": "Do we commit to direct download only and rule out the Mac App Store, or design for it?",
-      "lede": "The store's sandbox forbids the one thing the product does, and the door is held open in architecture.",
+      "lede": "The Mac App Store's sandbox blocks the folder access the product needs, and nothing rules the store out.",
       "visual": {
         "kind": "compare",
         "labelWidth": 210,
@@ -3146,13 +3146,13 @@
         "note": "The bookmark mechanics are marked not opened in the source, so treat the specifics as unverified.",
         "caption": "What the store's sandbox costs the file-access design."
       },
-      "stakes": "Deciding late is expensive: bookmarks are an architecture choice, not a build flag.",
+      "stakes": "Deciding late is expensive: bookmarks change the file-access design, not a build setting.",
       "state": [
-        "The plan names no stores, only a .dmg, .exe and AppImage (docs/PRODUCT-BRIEF.md:104).",
-        "App Sandbox is mandatory and grants a container, not the home folder (k9:135)."
+        "The plan names no stores, only a .dmg, .exe and AppImage.",
+        "The store requires App Sandbox, which gives the app a container, not the home folder."
       ],
       "tension": [
-        "Holding a folder open across launches routes everything through persisted bookmarks.",
+        "Holding a folder open across launches routes every access through saved bookmarks.",
         "No evidence shows store discovery matters for this category."
       ],
       "evidence": [
@@ -3216,7 +3216,7 @@
             "Bookmarks are cheaper designed in than retrofitted"
           ],
           "costs": [
-            "More surface in the part that must not be wrong"
+            "More code in the part that must not be wrong"
           ],
           "system": "A bookmark store in the file layer.",
           "screens": "None visible.",
@@ -3229,7 +3229,7 @@
             "Store discovery and Apple-handled payments"
           ],
           "costs": [
-            "The sandbox lands on our load-bearing seam"
+            "The sandbox restricts our core: file access"
           ],
           "system": "A store config, universal build, bookmarks.",
           "screens": "A store listing and folder grant.",
@@ -3251,7 +3251,7 @@
       ],
       "rec": "a",
       "recCase": [
-        "The sandbox constrains the one mechanism the product exists to perform.",
+        "The sandbox restricts file access, the one thing the product does.",
         "No evidence shows store discovery matters here, so the constraint buys nothing measurable."
       ],
       "flip": "A buyer segment that can only install from a store, such as a managed fleet.",
@@ -3274,7 +3274,7 @@
       "sub": "Web byte path",
       "weight": "high",
       "q": "On the web against a GitHub repo, is review state written per action, batched, or to a branch?",
-      "lede": "The headline artefact is a file in the user's repository, and every review action is a repository write.",
+      "lede": "Review state, what you have read, is a file in your repo, so every review action is a write.",
       "visual": {
         "kind": "flow",
         "perRow": 3,
@@ -3297,7 +3297,7 @@
             "edge": "or"
           },
           {
-            "label": "A sidecar branch",
+            "label": "A separate branch",
             "note": "invisible to git log on main",
             "tone": "neutral",
             "edge": "or"
@@ -3312,14 +3312,14 @@
         "note": "On desktop this is one file write. On the web it is a git operation each time.",
         "caption": "Four ways one cleared span reaches the repository."
       },
-      "stakes": "Review state not written back is not durable across machines, the only surviving form of the claim.",
+      "stakes": "Review state not written back does not carry across machines, the one claim still standing.",
       "state": [
-        "Exhibit 2 says web review state is a sidecar committed with the files (docs/PRODUCT-BRIEF.md:95).",
+        "The plan says the web app commits the review file alongside the documents.",
         "Nothing specifies when that file is written, or by what git operation."
       ],
       "tension": [
-        "Marks come far faster than edits, so per-action commits break the history.",
-        "Writes count against the same 5,000/hr floor as reads (r20-q4:38)."
+        "Review marks come far faster than edits, so one commit per mark floods the history.",
+        "Writes count against the same 5,000 an hour GitHub limit as reads."
       ],
       "evidence": [],
       "options": [
@@ -3332,7 +3332,7 @@
           "costs": [
             "Their history fills with commits they did not make"
           ],
-          "system": "A write per interaction through the client.",
+          "system": "A commit per interaction through the client.",
           "screens": "None, until they read git log.",
           "money": "None."
         },
@@ -3347,20 +3347,20 @@
             "A killed tab loses that session's marks",
             "Two machines can disagree for a whole session"
           ],
-          "system": "A flush scheduler and an unload path.",
+          "system": "A write timer and a tab-close handler.",
           "screens": "A saved indicator in the panel.",
           "money": "None."
         },
         {
           "k": "c",
-          "label": "Write to a sidecar branch, never to the working branch",
+          "label": "Write to a separate branch, never to the working branch",
           "gains": [
             "The user's branch history is untouched"
           ],
           "costs": [
             "A fresh clone without the branch shows nothing"
           ],
-          "system": "A second ref and a merge policy.",
+          "system": "A review-file branch and a merge policy.",
           "screens": "None, unless a conflict surfaces.",
           "money": "None."
         },

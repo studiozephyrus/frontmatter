@@ -6,8 +6,8 @@
       "cat": "Market & competition",
       "sub": "Headline",
       "weight": "critical",
-      "q": "Does review state stay the headline, narrow to the per-span repository form, or step aside for authorship marking?",
-      "lede": "Four platforms shipped the working-tree half free in nine weeks. The other half's general form has a $45M corpse.",
+      "q": "Does review state stay the headline, narrow to per-span review stored in the repository, or step aside for authorship marking?",
+      "lede": "Four platforms shipped a free view of what the agent just changed, in nine weeks. Almanac sold read tracking, raised $45M and shut down.",
       "visual": {
         "kind": "compare",
         "labelWidth": 190,
@@ -54,7 +54,7 @@
             "label": "Cost to adopt today",
             "cells": [
               "Zero",
-              "Zero: F2 is unbuilt",
+              "Zero: review state is unbuilt",
               "A fifth headline in a fortnight"
             ]
           },
@@ -72,14 +72,14 @@
       },
       "stakes": "Every channel, price, screen and exit test hangs off this one sentence.",
       "state": [
-        "`docs/PRODUCT-BRIEF.md:20` leads with review state; the callout below says it failed (`:22-27`).",
-        "Exhibit 20 decision 1 sends it to the meeting (`docs/PRODUCT-BRIEF.md:363`).",
-        "0 matches for `review.jsonl` or `reviewedAt` in 226 files. Nothing sunk."
+        "The plan leads with review state, the record of which changed spans a person has read. The callout under it says it failed.",
+        "The plan's decision list puts it first, for the founder meeting.",
+        "The code has 0 matches for `review.jsonl` or `reviewedAt` in 226 files, so no work is sunk."
       ],
       "tension": [
-        "\"See what the agent changed\" dies when anyone opens their editor.",
-        "\"Know what nobody has read\" was Almanac's. It raised $45M and died.",
-        "What survives is narrower: per span, in the repository, agent writes only."
+        "\"See what the agent changed\" is now free inside the editors people already use.",
+        "\"Know what nobody has read\" was Almanac's pitch. Almanac raised $45M and shut down.",
+        "What is left is narrower: per span, in the repository, for agent writes only."
       ],
       "evidence": [
         {
@@ -168,13 +168,13 @@
             "No longer one short sentence",
             "Shown to nobody"
           ],
-          "system": "Sidecar per span, in the repo.",
+          "system": "One review-file entry per span, kept in the repo.",
           "screens": "Review panel goes span-first.",
           "money": "None today."
         },
         {
           "k": "c",
-          "label": "Lead with authorship marking — which text the agent wrote",
+          "label": "Lead with authorship marking: which text the agent wrote",
           "gains": [
             "The only unoccupied claim of the four"
           ],
@@ -182,8 +182,8 @@
             "A fifth headline in a fortnight",
             "Consumer evidence unchanged"
           ],
-          "system": "Needs F3's untested MVP-1 write path.",
-          "screens": "Hover card leads, not the tint.",
+          "system": "Needs attribution's untested write path, from the build after the pilot.",
+          "screens": "The hover card leads, not the highlight.",
           "money": "Puts the priced comparable behind the paywall."
         },
         {
@@ -194,7 +194,7 @@
           ],
           "costs": [
             "A fifth pivot, zero code written",
-            "A fortnight at 1.21 days a week"
+            "A fortnight, at 1.21 engineering days a week"
           ],
           "system": "No change.",
           "screens": "No change.",
@@ -203,8 +203,8 @@
       ],
       "rec": "b",
       "recCase": [
-        "Only option b survives the 2026-09-08 evidence, and F2 is unbuilt so it costs nothing.",
-        "Narrowing names the graveyard first, and four free platform panels do not answer it."
+        "Only option b survives the 2026-09-08 evidence, and review state is unbuilt, so narrowing it costs nothing.",
+        "The narrow form names Almanac first, and none of the four free platform panels covers it."
       ],
       "flip": "If fewer than four of ten developers can name a second reader of an uncommitted change, take c.",
       "linked": [
@@ -280,14 +280,14 @@
       },
       "stakes": "The shell decides the name, the channel, the table-stakes bill and whether Live mode exists.",
       "state": [
-        "The plan builds a standalone editor (`docs/PRODUCT-BRIEF.md:55`) plus a Tauri app (`:104`).",
-        "Exhibit 20 decision 6 sends the choice to the meeting (`docs/PRODUCT-BRIEF.md:364`).",
-        "41 of 43 editor files are byte-identical to sgnk-md (`docs/PRODUCT-BRIEF.md:223`)."
+        "The plan builds a standalone web editor plus a Tauri desktop app.",
+        "The plan's decision list sends the choice to the founder meeting.",
+        "41 of 43 editor files are byte-identical to the sibling app, sgnk-md."
       ],
       "tension": [
         "Both VS Code features are gated to an experimental window, documented nowhere.",
-        "Standalone pays a fork tax. The extension forfeits Live mode: no view-zone API.",
-        "The store name belongs to an 82,265-install incumbent; the niche tops at 400."
+        "Standalone carries a fork to maintain. The extension loses Live mode, because extensions get no view-zone API.",
+        "An 82,265-install extension already owns the name, and this niche tops out at 400."
       ],
       "evidence": [
         {
@@ -366,12 +366,12 @@
             "Live mode survives"
           ],
           "costs": [
-            "Fork tax on 41 files we did not write",
+            "Upkeep on 41 forked files we did not write",
             "The worst measured channel in the corpus"
           ],
           "system": "No change.",
           "screens": "All nine screens stay.",
-          "money": "Two certificates, $99 and $150-400 yearly."
+          "money": "Two signing certificates, $99 and $150-400 a year."
         },
         {
           "k": "b",
@@ -384,7 +384,7 @@
             "Name taken; Microsoft is building the marker"
           ],
           "system": "An adapter over the engine.",
-          "screens": "S0, S2 Live and S11's key field go.",
+          "screens": "The launcher, Live mode and the settings key field go.",
           "money": "No signing certificates."
         },
         {
@@ -419,7 +419,7 @@
       "rec": "c",
       "recCase": [
         "The engine is already the portable unit, so option c costs an API boundary, not a rewrite.",
-        "The extension is the cheapest test, and it deletes two of eleven fix-first items."
+        "The extension is the cheapest test, and it removes two of the eleven fixes the plan lists first."
       ],
       "flip": "If the raw-write bypass loses data when an agent writes while a person types, option a is forced.",
       "linked": [
@@ -487,13 +487,13 @@
       },
       "stakes": "A rename after launch costs the domain, the listing, the repo and every document.",
       "state": [
-        "`package.json`, the repo, docs and prototype all use it (`docs/PRODUCT-BRIEF.md:13`).",
-        "The build plan says hold qualified handles, not ship the bare name (`docs/FRONTMATTER-BUILD-PLAN-2026-08-29.md:168`).",
-        "A FRONTMATTER EU word mark was reported, not reproduced (`docs/GAPS-2026-09-08.md:146`)."
+        "`package.json`, the repo, the docs and the prototype all use the name.",
+        "The earlier build plan said to hold qualified handles, not ship the bare name.",
+        "A FRONTMATTER word mark in the EU was reported but not reproduced."
       ],
       "tension": [
         "The name is the generic substrate term. `gray-matter` pulls 35.8M npm downloads monthly.",
-        "\"Frontmatter Studio\" went on 2026-09-07; the `@frontmatter` scope is theirs.",
+        "\"Frontmatter Studio\" was taken on 2026-09-07, and the `@frontmatter` npm scope is theirs.",
         "Nothing here is trademark clearance. That search has not been run."
       ],
       "evidence": [
@@ -587,7 +587,7 @@
         },
         {
           "k": "b",
-          "label": "Qualify it — a distinctive house mark, frontmatter kept as the feature word",
+          "label": "Qualify it: a distinctive house mark, frontmatter kept as the feature word",
           "gains": [
             "Keeps the research vocabulary"
           ],
@@ -652,8 +652,8 @@
       "cat": "Market & competition",
       "sub": "Buyer",
       "weight": "critical",
-      "q": "Which buyer does the first version serve, and does F5/F6 stay in MVP-0 while that is settled?",
-      "lede": "Two MVP-0 features were validated on a buyer who runs no agent, and a third segment sits unread.",
+      "q": "Which buyer does the first version serve, and do idea mode and decision flow stay in the pilot while that is settled?",
+      "lede": "Two pilot features were validated on a buyer who runs no agent, and a third segment sits unread.",
       "visual": {
         "kind": "matrix",
         "x": [
@@ -697,19 +697,19 @@
             "y": 0.75
           }
         ],
-        "note": "Persona ranking from CRITIQUE.md:233-242; the Obsidian segment from docs/research/frontmatter-segment-strategy.md.",
+        "note": "Persona ranking from the critique document, lines 233-242; the Obsidian segment from the segment-strategy research.",
         "caption": "Everyone with pain and a budget is out of reach inside 90 days"
       },
-      "stakes": "Choosing wrong costs the first version, not a sprint. MVP-0 scope is committed in week 3.",
+      "stakes": "Choosing wrong costs the first version, not a sprint. The pilot's scope is committed in week 3.",
       "state": [
-        "Exhibit 20 decision 2 puts the choice in week 1 (`docs/PRODUCT-BRIEF.md:366`).",
-        "F5 and F6 ship on founder tests with no notes attached (`docs/GAPS-2026-09-08.md:23`).",
-        "`docs/research/frontmatter-segment-strategy.md` ranks Obsidian power users first and is cited nowhere."
+        "The plan's decision list puts this choice in week 1.",
+        "Idea mode and decision flow ship on founder tests with no notes attached.",
+        "A segment-strategy research note ranks Obsidian power users first, and nothing cites it."
       ],
       "tension": [
         "The segments in real pain sit outside the product: SOC 2, or `.docx`.",
         "The developer has `git diff` and appeared 0 times in 355 high-intent comments.",
-        "The Obsidian segment voted 0 likes for review state, 501 for a rendering bug."
+        "The Obsidian segment gave 0 likes to review state, tracking which edits you have read, and 501 to a rendering bug."
       ],
       "evidence": [
         {
@@ -824,21 +824,21 @@
       "options": [
         {
           "k": "a",
-          "label": "AI-native developer first; move F5 and F6 to MVP-1",
+          "label": "AI-native developer first; idea mode and decision flow to the build after the pilot",
           "gains": [
-            "Consistent with the channels and the sidecar"
+            "Consistent with the channels and the review file"
           ],
           "costs": [
             "Discards the only two user-tested features",
-            "Leaves MVP-0 on untested review state"
+            "Leaves the pilot on untested review state"
           ],
-          "system": "F5 and F6 slip a tier.",
-          "screens": "Template cards and decision flow leave MVP-0.",
+          "system": "Idea mode and decision flow slip a tier.",
+          "screens": "Template cards and decision flow leave the pilot.",
           "money": "None."
         },
         {
           "k": "b",
-          "label": "The liable person first; keep F5 and F6 in MVP-0",
+          "label": "The liable person first; keep idea mode and decision flow in the pilot",
           "gains": [
             "A segment with a budget line"
           ],
@@ -861,12 +861,12 @@
             "Free-first, so acquisition not revenue"
           ],
           "system": "A vault-shaped web path.",
-          "screens": "S0 becomes vault-first.",
+          "screens": "The launcher opens vault-first.",
           "money": "A $2-6 band, below every planned price."
         },
         {
           "k": "d",
-          "label": "Pre-register the rule: F5 and F6 stay, and the 20 conversations decide",
+          "label": "Pre-register the rule: idea mode and decision flow stay; the 20 conversations decide",
           "gains": [
             "The only waiting that cannot be rationalised later"
           ],
@@ -881,8 +881,8 @@
       ],
       "rec": "d",
       "recCase": [
-        "Weeks 1-2 are reserved and the falsifier exists: 20 conversations, five unprompted mentions.",
-        "Deciding now decides on a persona set whose only measured instance is the founder's machine."
+        "Weeks 1-2 are reserved for 20 conversations, and the pass mark is already set: five unprompted mentions.",
+        "Deciding now means choosing between personas whose only measured instance is the founder's own machine."
       ],
       "flip": "If fewer than five of twenty name whole-file rewrites unprompted, option b is forced.",
       "linked": [
@@ -909,7 +909,7 @@
       "cat": "Market & competition",
       "sub": "Channels",
       "weight": "high",
-      "q": "How do we open the two toolchain channels, and do we approach the maintainers before week 2?",
+      "q": "How do we open the superpowers and spec-kit channels, and do we approach their maintainers before week 2?",
       "lede": "Both channels depend on strangers accepting a pull request that advertises a third-party editor. Nobody has asked.",
       "visual": {
         "kind": "flow",
@@ -948,12 +948,12 @@
       },
       "stakes": "A no from either maintainer leaves the go-to-market with no named channel.",
       "state": [
-        "Exhibit 17 makes superpowers the week-2 channel, alone (`docs/PRODUCT-BRIEF.md:305`).",
-        "Spec-kit is second: the checklist is green because the agent ticked it (`docs/PRODUCT-BRIEF.md:306`).",
+        "The plan's channel list makes superpowers the only week-2 channel.",
+        "Spec-kit comes second, pitched as: your checklist is green because the agent ticked it.",
         "The Obsidian plugin and Chrome extension were cut, so these two remain."
       ],
       "tension": [
-        "The self-certification line beats our headline and names a defect GitHub ships.",
+        "That self-certification line beats our headline, and it names a defect in GitHub's own template.",
         "Publishing cold loses the README line. Telling them first lets them fix it.",
         "Only superpowers' architectural path writes a document, and that fraction is unmeasured."
       ],
@@ -1076,10 +1076,10 @@
           "k": "b",
           "label": "Ask both maintainers in week 0, then publish regardless of the answer",
           "gains": [
-            "Two messages, and either answer changes Exhibit 17"
+            "Two messages, and either answer changes the channel list"
           ],
           "costs": [
-            "Hands spec-kit the chance to fix step 8c",
+            "Gives spec-kit the chance to fix the step where the agent ticks the list",
             "Telegraphs the position to two maintainers"
           ],
           "system": "No change.",
@@ -1111,7 +1111,7 @@
             "Forfeits both README lines",
             "Leaves no named channel we control"
           ],
-          "system": "The MCP server moves before MVP-1.",
+          "system": "The MCP server moves up, ahead of the build after the pilot.",
           "screens": "None.",
           "money": "None."
         }
@@ -1119,7 +1119,7 @@
       "rec": "b",
       "recCase": [
         "354 of 355 boxes ticked by the agent is repeatable, and it names GitHub's own template.",
-        "Asking costs two messages and belongs in week 0. A no leaves nothing named."
+        "Asking costs two messages and belongs in week 0, since a no leaves the plan with no named channel."
       ],
       "flip": "If the architectural path is a small minority of superpowers sessions, neither channel is worth the approach.",
       "linked": [
@@ -1146,35 +1146,35 @@
       "cat": "Market & competition",
       "sub": "Channels",
       "weight": "high",
-      "q": "Two channels were cut on measured evidence and six places still ship them — what replaces each?",
-      "lede": "The Obsidian plugin and the Chrome extension are marked CUT in one exhibit and load-bearing in five.",
+      "q": "Two channels were cut on measured evidence, and six places in the plan still ship them. What replaces each?",
+      "lede": "The Obsidian plugin and the Chrome extension are marked CUT in the channel list and still relied on in five other places.",
       "visual": {
         "kind": "ba",
         "before": {
-          "title": "Plan v15 as published",
+          "title": "The current plan as published",
           "lines": [
             {
-              "t": "Exhibit 17: Obsidian plugin CUT",
+              "t": "Channel list: Obsidian plugin CUT",
               "mark": "x"
             },
             {
-              "t": "Exhibit 6: plugin is the week-2 channel",
+              "t": "Tier table: plugin is the week-2 channel",
               "mark": "!"
             },
             {
-              "t": "Exhibit 19: \"plugin shipped\" in weeks 1-2",
+              "t": "Ninety days: \"plugin shipped\" in weeks 1-2",
               "mark": "!"
             },
             {
-              "t": "Exhibit 24: plugin is a retention lever",
+              "t": "Retention table: plugin is a retention lever",
               "mark": "!"
             },
             {
-              "t": "Exhibit 26: plugin and Chrome extension ship",
+              "t": "Product family: plugin and Chrome extension ship",
               "mark": "!"
             },
             {
-              "t": "§21: the nested fix ships first as the plugin",
+              "t": "Rendering: nested fix ships first as the plugin",
               "mark": "!"
             }
           ]
@@ -1191,7 +1191,7 @@
               "mark": "+"
             },
             {
-              "t": "Chrome extension deleted from Exhibit 26",
+              "t": "Chrome extension deleted from the product family",
               "mark": "x"
             },
             {
@@ -1201,19 +1201,19 @@
           ]
         },
         "via": "one edit",
-        "note": "All six locations verified in the v15 file.",
+        "note": "All six locations verified in the current plan.",
         "caption": "Both cuts are correct; the document has not caught up with either"
       },
       "stakes": "A plan that cuts a channel on one page and schedules it on four is not trusted.",
       "state": [
-        "Exhibit 17 cuts the plugin (`docs/PRODUCT-BRIEF.md:304`) and the Chrome extension (`:310`).",
-        "The plugin still ships at `:204`, `:352`, `:428`, `:477` and `:524`.",
-        "Exhibit 26 still lists the Chrome extension at MVP-1 (`docs/PRODUCT-BRIEF.md:477`)."
+        "The plan's channel list cuts both the Obsidian plugin and the Chrome extension.",
+        "The plugin still ships in five other sections: tiers, the ninety days, retention, the product family and rendering.",
+        "The product-family table still lists the Chrome extension in the build after the pilot."
       ],
       "tension": [
-        "Obsidian's Live Preview tree is depth-1 by construction, verified twice (`docs/GAPS-2026-09-08.md:127`).",
-        "The two plugins that do fix nesting write `U+200C` into user files.",
-        "A `?src=` link is a demo, not a channel, until the next action is written."
+        "Obsidian's Live Preview syntax tree is one level deep by design, verified twice.",
+        "The two plugins that do fix nesting write an invisible `U+200C` character into user files.",
+        "A `?src=` link that opens a public file in the web app is a demo, not a channel, until its next step is written."
       ],
       "evidence": [
         {
@@ -1327,7 +1327,7 @@
           ],
           "costs": [
             "Retention loses a lever, the family its channel",
-            "MVP-0 has no channel before superpowers"
+            "The pilot has no channel before superpowers"
           ],
           "system": "No change.",
           "screens": "None.",
@@ -1337,14 +1337,14 @@
           "k": "b",
           "label": "Ship the additive Obsidian extension and a `?src=` link with a stated job",
           "gains": [
-            "No containment; reuses the sidecar anyway"
+            "Needs no nesting information, and reuses the review file"
           ],
           "costs": [
             "A different product in that vault, never sized",
             "That audience voted 0 for review state"
           ],
-          "system": "A CodeMirror decoration over the sidecar.",
-          "screens": "Adds a read view, kills the plugin screens.",
+          "system": "A CodeMirror decoration drawn from the review file.",
+          "screens": "Adds a read view and drops the plugin screens.",
           "money": "None."
         },
         {
@@ -1369,17 +1369,17 @@
           ],
           "costs": [
             "The spike returned negative twice",
-            "A day cannot change the depth-1 finding"
+            "A day cannot change the one-level-deep finding"
           ],
           "system": "No change.",
           "screens": "No change.",
-          "money": "A day of the 1.21 available."
+          "money": "A day of the 1.21 engineering days a week."
         }
       ],
       "rec": "b",
       "recCase": [
-        "Both cuts are correct: depth-1 verified twice, and the CORS header removes the extension.",
-        "The additive route needs no containment and rides the F2 sidecar, so it is near free."
+        "Both cuts are correct. The flat tree is verified twice, and GitHub's open CORS header makes the extension unnecessary.",
+        "The additive route needs no nesting information and reads the existing review file, so it costs almost nothing."
       ],
       "flip": "If the additive extension cannot anchor spans in Obsidian either, option a is honest.",
       "linked": [
@@ -1444,14 +1444,14 @@
       },
       "stakes": "Deleting the plugin class removes the largest support deflection and the only community moat available.",
       "state": [
-        "No plugins or code execution leads what is not in the product (`docs/PRODUCT-BRIEF.md:43`).",
-        "`docs/BUSINESS.md:791` records it: community is moat #1 and foreclosed.",
-        "The MCP server ships at MVP-1, so an out-of-process boundary exists (`docs/PRODUCT-BRIEF.md:65`)."
+        "\"No plugins or code execution\" heads the plan's list of what is not in the product.",
+        "The business plan records the clash: community is its first-ranked moat, and the ban forecloses it.",
+        "The MCP server ships in the build after the pilot, so an out-of-process boundary will exist."
       ],
       "tension": [
-        "No text editor has held a community moat without third-party code (`docs/BUSINESS.md:846`).",
+        "No text editor has held a community moat without third-party code.",
         "Plugins are 7,076 of 31,048 tagged Obsidian topics, at 2.78x support load.",
-        "Obsidian runs 7,425 plugins on eight staff. Counterexample and warning at once."
+        "Obsidian runs 7,425 plugins on eight staff, which makes it a counterexample and a warning at once."
       ],
       "evidence": [
         {
@@ -1552,7 +1552,7 @@
             "Not the in-process extensibility communities run on",
             "Reads as a smaller promise than it is"
           ],
-          "system": "A documented API and a stable sidecar schema.",
+          "system": "A documented API and a stable format for the review file.",
           "screens": "A settings page for connected servers.",
           "money": "Support rises with the API, not a marketplace."
         },
@@ -1572,7 +1572,7 @@
         },
         {
           "k": "d",
-          "label": "Plan a real plugin API after MVP-1",
+          "label": "Plan a real plugin API to follow the build after the pilot",
           "gains": [
             "Keeps every future open"
           ],
@@ -1588,9 +1588,9 @@
       "rec": "b",
       "recCase": [
         "Option b keeps every promise the positioning makes and still gives other people something to build.",
-        "The MCP server is already at MVP-1, so the cost is documentation, not architecture."
+        "The MCP server is already planned for the build after the pilot, so the cost is documentation, not architecture."
       ],
-      "flip": "If the published certificate spec draws zero third-party runs, strike community from the moat list.",
+      "flip": "If the published rendering-certificate spec draws zero third-party runs, strike community from the moat list.",
       "linked": [
         "MK22",
         "MK25"
@@ -1681,9 +1681,9 @@
       },
       "stakes": "The price level and what sits behind the paywall are one decision, both already published.",
       "state": [
-        "Exhibit 16 sets Pro at $4-5 and Exhibit 25 anchors it to GitHub Team (`docs/PRODUCT-BRIEF.md:288`).",
-        "Exhibit 16 includes shared review state; Exhibit 25 makes it the first upsell.",
-        "Whether teams pay for it at all is listed unverified (`docs/PRODUCT-BRIEF.md:449`)."
+        "The plan's tier table sets Pro at $4-5, and its upsell table anchors that to GitHub Team.",
+        "Pro includes shared review state, meaning who on a team has read what, and the upsell table makes it the first upsell.",
+        "Whether teams pay for it at all is listed as unverified."
       ],
       "tension": [
         "Brevilabs charges $7.99-14.99 monthly for AI in a free editor, 1,783,652 downloads.",
@@ -1817,7 +1817,7 @@
             "Below every observed rung but the indie one",
             "The free tier then holds the differentiator"
           ],
-          "system": "Retention must become a feature row first.",
+          "system": "Version-history retention must first become a planned feature.",
           "screens": "The upgrade attaches to the journal.",
           "money": "Puts us in the 23% retention band."
         },
@@ -1902,8 +1902,8 @@
       "cat": "Market & competition",
       "sub": "Competitors",
       "weight": "high",
-      "q": "Do we ship the splice engine free and open, and is that release the launch rather than the product?",
-      "lede": "An independent team shipped the same refuse-rather-than-guess engine MIT, and half the 100-point Show HN posts say free.",
+      "q": "Do we ship the write engine free and open, and is that release the launch rather than the product?",
+      "lede": "An independent team, adeu, shipped the same refuse-rather-than-guess engine under MIT, and half the 100-point Show HN posts say free.",
       "visual": {
         "kind": "flow",
         "nodes": [
@@ -1940,16 +1940,16 @@
         "note": "Free OSS in this exact shape does move: human-review went 0 to 1,241 stars in six weeks.",
         "caption": "One artefact, one launch slot, and the pattern that actually scores"
       },
-      "stakes": "The launch happens once, and giving away the engine cannot be undone.",
+      "stakes": "The launch happens once. Giving away the editor's write engine, which changes only the bytes you edited and never rewrites the whole file, cannot be undone.",
       "state": [
-        "`adeu` appears zero times in Exhibit 3 (`docs/PRODUCT-BRIEF.md:145-160`).",
-        "Exhibit 17 puts Show HN at the MVP-0 exit, sized by two points (`docs/PRODUCT-BRIEF.md:309`).",
-        "The war-game calls giving the certificate away the best defensive act available (`docs/BUSINESS.md:1168`)."
+        "adeu appears zero times in the plan's market table.",
+        "The channel list puts Show HN at the end of the pilot, sized on just two past launches.",
+        "The business plan's war-game calls giving the certificate away the best defensive act available."
       ],
       "tension": [
         "A table omitting the only team known to have built this is found in ten minutes.",
         "The engine is the only asset a stranger can run with no account.",
-        "Two unreconciled Show HN medians exist, n=609 and n=386. Fix before quoting."
+        "Two unreconciled Show HN medians exist, n=609 and n=386, so fix that before quoting either."
       ],
       "evidence": [
         {
@@ -2055,7 +2055,7 @@
       "options": [
         {
           "k": "a",
-          "label": "Add the adeu row to Exhibit 3 and change nothing else",
+          "label": "Add the adeu row to the market table and change nothing else",
           "gains": [
             "Removes an omission a reviewer will find"
           ],
@@ -2097,7 +2097,7 @@
         },
         {
           "k": "d",
-          "label": "Leave Exhibit 3 as it is, because adeu is on a different substrate",
+          "label": "Leave the market table as it is, because adeu is on a different substrate",
           "gains": [
             "No edit"
           ],
@@ -2134,7 +2134,8 @@
         "docs/BUSINESS.md:1203",
         "docs/BUSINESS.md:1264",
         "https://api.github.com/repos/petergyang/human-review",
-        "merged: MK20"
+        "merged: MK20",
+        "docs/PRODUCT-BRIEF.md:145"
       ]
     },
     {
@@ -2160,7 +2161,7 @@
             "tone": "warn"
           },
           {
-            "label": "mddiff — our exact sentence, June 2026",
+            "label": "mddiff: our exact sentence, June 2026",
             "n": 74,
             "unit": "installs",
             "tone": "stop"
@@ -2171,9 +2172,9 @@
       },
       "stakes": "The difference between a market ceiling and thirteen bad listings decides how much weight this bears.",
       "state": [
-        "Key figures lead with 1,217 installs across 13 extensions, ceiling 400 (`docs/PRODUCT-BRIEF.md:9`).",
-        "§23 reads the same number as a niche that is real and available (`:559`).",
-        "Drift does this job at 893 downloads and is absent (`docs/CRITIQUE.md:355`)."
+        "The plan's key figures lead with 1,217 installs across 13 extensions, with a ceiling of 400.",
+        "The plan's closing section reads the same number as a niche that is real and available.",
+        "Drift does this job at 893 downloads and is missing from the count."
       ],
       "tension": [
         "One number drives two opposite conclusions inside one document.",
@@ -2322,7 +2323,7 @@
           ],
           "costs": [
             "It may return that they are good and unwanted",
-            "Half a day at 1.21 days a week"
+            "Half a day, at 1.21 engineering days a week"
           ],
           "system": "No change.",
           "screens": "None.",
@@ -2359,7 +2360,7 @@
       "rec": "b",
       "recCase": [
         "Nobody in this corpus has opened any of the twenty, and one half-day covers both stores.",
-        "The gap between the market's answer and twenty bad listings is a direction versus a dead end."
+        "Twenty bad listings would leave the direction open, while a real ceiling would close it."
       ],
       "flip": "If the leading extensions are well-made, well-listed and still under 400, the ceiling is real.",
       "linked": [
@@ -2427,16 +2428,16 @@
         "note": "The VS Code work is gated to an experimental Agents window and the live docs page documents neither feature.",
         "caption": "Nine weeks of absorption; the plan watches one vendor"
       },
-      "stakes": "The war-game gives this the shortest fuse, three to nine months, and no written response.",
+      "stakes": "The business plan's war-game gives this the shortest warning, three to nine months, and the plan has no written response.",
       "state": [
-        "Exhibit 18 says re-check at week 12 (`:322`); §23 says monthly (`docs/PRODUCT-BRIEF.md:560`).",
+        "The risk table says re-check at week 12, and the plan's closing section says monthly.",
         "The response in both is one sentence: persistence across sessions, people and tools.",
-        "The war-game's pre-committed response sits at `docs/BUSINESS.md:1156`, outside the plan."
+        "The war-game's pre-committed response sits in the business plan, outside the product plan."
       ],
       "tension": [
         "The named trigger has partly fired: a first-party surface writing to a user path.",
         "Re-checking one changelog is wrong when four shipped, one of them Microsoft.",
-        "The war-game's own failure mode is refusing the deletion when it fires."
+        "The war-game names its own failure mode: refusing to delete features when the trigger fires."
       ],
       "evidence": [
         {
@@ -2516,7 +2517,7 @@
           ],
           "costs": [
             "Commits us in advance to deleting features",
-            "Recurring work at 1.21 days a week"
+            "Recurring work at 1.21 engineering days a week"
           ],
           "system": "Constrains the roadmap.",
           "screens": "None.",
@@ -2538,7 +2539,7 @@
         },
         {
           "k": "c",
-          "label": "Week 12 only, as Exhibit 18 says",
+          "label": "Week 12 only, as the risk table says",
           "gains": [
             "Least effort"
           ],
@@ -2557,10 +2558,10 @@
             "Removes the dependency on four roadmaps"
           ],
           "costs": [
-            "Shrinks MVP-0 to the least-evidenced part",
+            "Shrinks the pilot to the least-evidenced part",
             "Nothing to demo a free panel lacks"
           ],
-          "system": "F2's diff view becomes a read of the host's.",
+          "system": "Review state's diff view becomes a read of the host editor's diff.",
           "screens": "The panel keeps the counter, loses the diff.",
           "money": "None."
         }
@@ -2568,9 +2569,9 @@
       "rec": "a",
       "recCase": [
         "Monthly matches a fuse measured at three to nine months and reconciles two cadences.",
-        "A deletion decided in advance is the one move a small team executes faster."
+        "If the deletion is decided in advance, a small team can make it faster than a platform can ship."
       ],
-      "flip": "If MK1 settles on the cross-person, in-repo clause, option d and option a converge.",
+      "flip": "If the headline decision settles on the cross-person, in-repo form, options d and a converge.",
       "linked": [
         "MK1",
         "MK17",
@@ -2595,14 +2596,14 @@
       "cat": "Market & competition",
       "sub": "Incumbents",
       "weight": "high",
-      "q": "Does attribution get promoted back, now that it is the only claim of the four nothing occupies?",
+      "q": "Does attribution get promoted back, now that it is the only one of the four claims no platform has shipped?",
       "lede": "Authorship marking was demoted on consumer evidence. It is the one thing no platform shipped and Google sells.",
       "visual": {
         "kind": "screen",
         "title": "Attribution, split where Google splits it",
         "panes": [
           {
-            "label": "Free — commit granularity",
+            "label": "Free: commit granularity",
             "w": 50,
             "rows": [
               {
@@ -2626,7 +2627,7 @@
             ]
           },
           {
-            "label": "Pro — span level, across a team",
+            "label": "Pro: span level, across a team",
             "w": 50,
             "rows": [
               {
@@ -2637,7 +2638,7 @@
               },
               {
                 "label": "Model and prompt on hover",
-                "meta": "MVP-1",
+                "meta": "the build after the pilot",
                 "mark": "→",
                 "tone": "accent"
               },
@@ -2655,14 +2656,14 @@
       },
       "stakes": "If span-level authorship is the only live paid precedent at our tier, leaving it free wastes it.",
       "state": [
-        "F3 shows author, model, time and prompt on hover, in MVP-0 (`docs/PRODUCT-BRIEF.md:57`).",
-        "Exhibit 4 cut \"See what the AI wrote\" on consumer evidence (`docs/PRODUCT-BRIEF.md:175`).",
-        "The Google finding sits in F3's evidence column and nowhere in pricing."
+        "Attribution (F3 in the plan) shows author, model, time and prompt on hover, in the pilot.",
+        "The plan's vocabulary audit cut \"See what the AI wrote\" on consumer evidence.",
+        "The Google finding sits in attribution's evidence column and nowhere in pricing."
       ],
       "tension": [
         "The demotion rested on iA Writer marking pasted text in a personal document.",
-        "Span attribution depends on the untested MVP-1 write path.",
-        "Commit trailers and git-ai already attribute at commit level (`docs/PRODUCT-BRIEF.md:177`)."
+        "Span attribution depends on the untested agent write path in the build after the pilot.",
+        "Commit trailers and git-ai already attribute at commit level."
       ],
       "evidence": [
         {
@@ -2736,7 +2737,7 @@
       "options": [
         {
           "k": "a",
-          "label": "Keep F3 free and unchanged",
+          "label": "Keep attribution free and unchanged",
           "gains": [
             "Consistent with the consumer evidence"
           ],
@@ -2758,7 +2759,7 @@
             "The paid half needs the untested write path",
             "May have no source most of the time"
           ],
-          "system": "The sidecar separates commit- from write-derived.",
+          "system": "The review file separates commit-derived from write-derived authorship.",
           "screens": "A locked hover state on the free tier.",
           "money": "Moves the priced comparable behind the paywall."
         },
@@ -2772,22 +2773,22 @@
             "A fifth headline in a fortnight",
             "Consumer evidence against it is unchanged"
           ],
-          "system": "F3's write path moves to MVP-0.",
+          "system": "Attribution's write path moves into the pilot.",
           "screens": "The hover card becomes primary.",
           "money": "Same as option b."
         },
         {
           "k": "d",
-          "label": "Cut F3 until a source exists that carries prompts",
+          "label": "Cut attribution until a source exists that carries prompts",
           "gains": [
             "Stops a card that says \"prompt not recorded\""
           ],
           "costs": [
-            "Removes the card S2 is built around",
+            "Removes the card the editor screen is built around",
             "Gives up the only unoccupied claim"
           ],
-          "system": "F3 leaves MVP-0.",
-          "screens": "S2 loses its hover card.",
+          "system": "Attribution leaves the pilot.",
+          "screens": "The editor screen loses its hover card.",
           "money": "None."
         }
       ],
@@ -2851,14 +2852,14 @@
       },
       "stakes": "This decides whether frontmatter is a product funded by services or a company.",
       "state": [
-        "The nut is about ₹1.09 lakh a month, 54-78 consulting hours (`docs/PRODUCT-BRIEF.md:292`).",
+        "Monthly running costs are about ₹1.09 lakh, covered by 54-78 consulting hours.",
         "The plan states no target customer count anywhere.",
-        "The central case of 405 payers clears the nut with ₹46,400 spare (`docs/CRITIQUE.md:292`)."
+        "The central case of 405 payers covers those costs with ₹46,400 spare."
       ],
       "tension": [
         "Spontaneous concern is 0.032%, so a 2% switch rate is 62 times the signal.",
-        "At 4% monthly churn the stock asymptotes at 804 payers forever (`docs/CRITIQUE.md:295`).",
-        "Six firms publish note-taking sizes disagreeing 8.2x for one year. Quote none."
+        "At 4% monthly churn the paying base levels off at 804 and stays there.",
+        "Six firms publish note-taking market sizes that disagree 8.2x for one year, so quote none."
       ],
       "evidence": [
         {
@@ -2934,19 +2935,19 @@
           "k": "a",
           "label": "Accept the small shape: a few hundred customers, funded by services",
           "gains": [
-            "Arithmetically clears the nut with room"
+            "Covers the monthly running cost with room"
           ],
           "costs": [
-            "The ₹20 lakh figure and the 1.26M funnel go",
+            "The ₹20 lakh a month goal and the 1.26M-visitor funnel go",
             "Forecloses any outside funding conversation"
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "Caps the business near the nut."
+          "money": "Caps the business near its running cost."
         },
         {
           "k": "b",
-          "label": "Change the denominator — sell to teams at a seat price",
+          "label": "Change the denominator: sell to teams at a seat price",
           "gains": [
             "27,778 seats at $30 reaches the goal"
           ],
@@ -2974,7 +2975,7 @@
         },
         {
           "k": "d",
-          "label": "Reject the gating assumption — the population is anyone with markdown in a repo",
+          "label": "Reject the gating assumption: the population is anyone with markdown in a repo",
           "gains": [
             "Every number rises if it is true"
           ],
@@ -2990,7 +2991,7 @@
       "rec": "a",
       "recCase": [
         "Two independent routes agreeing within 0.5% is the strongest quantitative result here.",
-        "The central case clears the nut, so the question is what to stop claiming."
+        "The central case covers running costs, so the question is what to stop claiming."
       ],
       "flip": "A measured public-to-private ratio at 20x or above, with a 20% switch rate, makes option b the plan.",
       "linked": [
@@ -3054,14 +3055,14 @@
       },
       "stakes": "Without a discipline the table decays silently and the next correction happens in a meeting.",
       "state": [
-        "Exhibit 3 is dated at table level; no row carries a read date (`docs/PRODUCT-BRIEF.md:143`).",
-        "Exhibit 18 is ten one-line risks. The war-game is not carried in (`docs/BUSINESS.md:1092`).",
-        "The eight-signal instrumentation table is nowhere in the plan (`docs/BUSINESS.md:1229`)."
+        "The market table carries one date for the whole table, and no row has its own read date.",
+        "The risk table is ten one-line risks, and the business plan's war-game is not carried into it.",
+        "The war-game's table of eight early-warning signals is nowhere in the plan."
       ],
       "tension": [
-        "Scenario F, the category never forms, is most likely and is omitted.",
+        "The war-game rates \"the category never forms\" as most likely, and the plan omits it.",
         "Seven of eight signals watch someone else. The eighth does not exist.",
-        "A cadence nobody keeps is worse than none. It implies absent freshness."
+        "A cadence nobody keeps is worse than none, because readers assume the rows are fresh."
       ],
       "evidence": [
         {
@@ -3171,12 +3172,12 @@
       "options": [
         {
           "k": "a",
-          "label": "Monthly re-read of Exhibit 3, a fetch date on every row, plus the eight signals",
+          "label": "Monthly re-read of the market table, fetch date on every row, plus the eight signals",
           "gains": [
             "Turns a snapshot into a series"
           ],
           "costs": [
-            "Recurring work at 1.21 days a week",
+            "Recurring work at 1.21 engineering days a week",
             "A missed cadence reads as freshness"
           ],
           "system": "No change.",
@@ -3199,7 +3200,7 @@
         },
         {
           "k": "c",
-          "label": "Re-run the six scenarios against review state and replace Exhibit 18",
+          "label": "Re-run the six scenarios against review state and replace the risk table",
           "gains": [
             "Tests the scenarios against the current thesis"
           ],
@@ -3213,7 +3214,7 @@
         },
         {
           "k": "d",
-          "label": "Retire the war-game and treat Exhibit 18 as the whole register",
+          "label": "Retire the war-game and treat the risk table as the whole register",
           "gains": [
             "No ambiguity about which document governs"
           ],
@@ -3228,7 +3229,7 @@
       ],
       "rec": "b",
       "recCase": [
-        "A one-person team cannot hold a monthly sweep, and a missed cadence implies false freshness.",
+        "A one-person team cannot keep up a monthly sweep, and a missed one makes stale rows look fresh.",
         "A fetch date on every figure gives the same protection for one edit."
       ],
       "flip": "If a second person joins, option a is affordable; if the shell is an extension, option c.",
@@ -3286,15 +3287,15 @@
         "note": "Zero Firestore document writes exist across 226 source files, so the decision is free today.",
         "caption": "The two share shapes, and the obligation only one of them creates"
       },
-      "stakes": "Every legal rule in §22 follows from this, and hosting confers intermediary status.",
+      "stakes": "Hosting makes us a legal intermediary, and every legal rule in the plan's operating rules follows from that choice.",
       "state": [
-        "Exhibit 3 refuses the host role (`:159`); Exhibit 20 decision 3 offers a viewer (`docs/PRODUCT-BRIEF.md:367`).",
-        "`firestore.rules` is committed and designs unauthenticated public reads (`docs/PRODUCT-BRIEF.md:365`).",
+        "The market table refuses the host role, but the plan's decision list offers a hosted viewer.",
+        "The committed `firestore.rules` file designs for unauthenticated public reads.",
         "Verified unbuilt today: zero Firestore document writes across 226 source files."
       ],
       "tension": [
-        "A hosted read-only viewer is a hosting obligation and confers intermediary status.",
-        "PRD v2 says the 24-hour acknowledgement duty cannot be descoped.",
+        "A hosted read-only viewer is a hosting obligation, and it makes us a legal intermediary.",
+        "The PRD says the 24-hour acknowledgement duty cannot be descoped.",
         "The alternative does nothing for private repos or plain folders."
       ],
       "evidence": [
@@ -3367,7 +3368,7 @@
             "No sharing for private repos or plain folders",
             "No link a non-technical reviewer can open"
           ],
-          "system": "`firestore.rules` goes and §22 can be written.",
+          "system": "`firestore.rules` goes, and the operating rules can be written.",
           "screens": "No viewer; export gains a share affordance.",
           "money": "No storage or moderation cost."
         },
@@ -3393,7 +3394,7 @@
           ],
           "costs": [
             "Leaves the three files contradicting",
-            "That state is what blocks §22"
+            "That contradiction is what blocks the operating rules"
           ],
           "system": "Nothing deleted, nothing decided.",
           "screens": "None yet.",
@@ -3479,14 +3480,14 @@
       },
       "stakes": "Publishing teaches every reader that a better markdown exists and that we declined it.",
       "state": [
-        "§20 names Djot and settles it: no new format, on adoption (`docs/PRODUCT-BRIEF.md:486`).",
-        "The smart-punctuation objection was tested on 2026-09-08 and fails (`:490`).",
+        "The plan's markdown-format section names Djot and settles it on adoption: no new format.",
+        "The smart-punctuation objection was tested on 2026-09-08 and fails.",
         "Nothing in the go-to-market says whether any of it is public."
       ],
       "tension": [
         "Djot's diagnosis lands on us: seventeen emphasis rules, five of them pure tie-breakers.",
         "Djot pulls 4,984 npm downloads against `marked`'s 275,363,833.",
-        "The sharper claim is the refusal, and none is declared today (`docs/PRODUCT-BRIEF.md:510`)."
+        "The sharper claim is the refusal to guess, and the engine declares no refusal today."
       ],
       "evidence": [
         {
@@ -3613,7 +3614,7 @@
       ],
       "rec": "b",
       "recCase": [
-        "The section exists so the answer is ready in a room. That is its whole job.",
+        "The section exists so the answer is ready when someone raises Djot in a meeting.",
         "Option c is the better public claim but waits until the refusals are declared."
       ],
       "flip": "If a reviewer raises Djot unprompted in more than one of the twenty conversations, publish.",
@@ -3634,7 +3635,7 @@
       "cat": "Market & competition",
       "sub": "B2B",
       "weight": "high",
-      "q": "Do we price Max on the rendering certificate before it has ever run end to end?",
+      "q": "Do we price Max on the rendering certificate before it has run even once?",
       "lede": "The B2B line rests on a certificate its own engine document calls a 200-line linter, whose CLI exits 1.",
       "visual": {
         "kind": "compare",
@@ -3688,7 +3689,7 @@
           {
             "label": "Has it run end to end",
             "cells": [
-              "No — the CLI exits 1",
+              "No, the CLI exits 1",
               "Not built"
             ]
           }
@@ -3698,14 +3699,14 @@
       },
       "stakes": "Pricing a tier on an artefact that never executed repeats an error already withdrawn once.",
       "state": [
-        "Exhibit 26 makes `mdmax cert` and review gates the Max tier (`docs/PRODUCT-BRIEF.md:475`).",
-        "§20 says measure it before Max is priced (`docs/PRODUCT-BRIEF.md:512`).",
-        "`node scripts/mdmax-cert.mjs` exits 1, and `cert` is not among 26 scripts (`docs/PRODUCT-BRIEF.md:224`)."
+        "The product-family table makes the certificate and review gates the Max tier.",
+        "The plan's markdown-format section says to measure it before Max is priced.",
+        "`node scripts/mdmax-cert.mjs` exits 1, and `cert` is not among the 26 npm scripts."
       ],
       "tension": [
-        "The kill condition fires at 99.8% over the pinned corpus (`docs/ENGINE.md:899`).",
+        "The engine document's own kill condition fires, at 99.8% over the pinned corpus.",
         "DESTROY, the only verdict a customer understands, occurs zero times in 10,176 blocks.",
-        "The war-game says giving the certificate away is the best defensive act available."
+        "The business plan's war-game says giving the certificate away is the best defensive act available."
       ],
       "evidence": [
         {
@@ -3765,7 +3766,7 @@
           ],
           "costs": [
             "May destroy the only differentiated B2B story",
-            "A day at 1.21 days a week"
+            "A day, at 1.21 engineering days a week"
           ],
           "system": "A 200-line linter exists either way.",
           "screens": "None.",
@@ -3780,7 +3781,7 @@
           "costs": [
             "A day before the real question is asked"
           ],
-          "system": "Fix #10 in the technical plan.",
+          "system": "Already on the technical plan's fix list.",
           "screens": "None.",
           "money": "None."
         },
@@ -3839,7 +3840,7 @@
       "sub": "Positioning",
       "weight": "medium",
       "q": "Which shelf does the buyer file this under, and do we accept the price on that shelf?",
-      "lede": "The buyer does not invent a category, and on the shelf the plan sits on the price is zero.",
+      "lede": "Buyers file a product under a category they already know, and on the shelf this plan sits on, the price is zero.",
       "visual": {
         "kind": "matrix",
         "x": [
@@ -3883,14 +3884,14 @@
             "us": true
           }
         ],
-        "note": "Shelves and owners from CRITIQUE.md:252-260; the redlining prices from draftable.com/pricing.",
+        "note": "Shelves and owners from the critique document, lines 252-260; the redlining prices from draftable.com/pricing.",
         "caption": "Where the buyer files it now, against where the job actually sits"
       },
       "stakes": "Filing under markdown editor means $0, and the team tier carries the whole business.",
       "state": [
-        "The positioning leads with refusals: no plugins, no hosting, no lock-in (`docs/PRODUCT-BRIEF.md:298`).",
-        "The market table is organised by what tools do, not what a buyer searches (`:145-160`).",
-        "Exhibit 3's price note states the editor is worth ₹0 (`:161`)."
+        "The positioning leads with refusals: no plugins, no hosting, no lock-in.",
+        "The market table is organised by what tools do, not by what a buyer searches for.",
+        "The market table's own price note says the editor is worth ₹0."
       ],
       "tension": [
         "Leading with refusals reads as a markdown editor with fewer features.",
@@ -4057,7 +4058,7 @@
       "cat": "Market & competition",
       "sub": "Roadmap",
       "weight": "high",
-      "q": "Does the safe merge move earlier than MVP-2, given sync is the only proven paid price?",
+      "q": "Does the safe merge move earlier than the third build, given sync is the only proven paid price?",
       "lede": "The plan names sync as the one thing individuals demonstrably pay for and schedules it last.",
       "visual": {
         "kind": "compare",
@@ -4096,15 +4097,15 @@
           {
             "label": "Where the plan puts it",
             "cells": [
-              "MVP-2, 15+ days",
-              "MVP-1 Pro",
-              "MVP-1 Pro"
+              "The third build, 15+ days",
+              "The build after the pilot, Pro",
+              "The build after the pilot, Pro"
             ]
           },
           {
             "label": "Does a feature row build it",
             "cells": [
-              "F12",
+              "Yes, the sync row",
               "No row builds retention",
               "No row"
             ]
@@ -4123,12 +4124,12 @@
       },
       "stakes": "The first paid tier rests entirely on things nobody has been measured paying for.",
       "state": [
-        "F12 sync ships at MVP-2, 15 or more days out (`docs/PRODUCT-BRIEF.md:66`).",
-        "Exhibit 3's price note says the one proven individual price is sync (`:161`).",
-        "No feature row builds retention, which is what Pro gates (`:289`)."
+        "Sync is scheduled for the third build, at 15 or more days of work.",
+        "The market table's price note says sync is the one proven individual price.",
+        "No planned feature builds version-history retention, which is what Pro gates."
       ],
       "tension": [
-        "Sync is #1 loved, #3 hated and the #1 switching trigger (`docs/DECIDE.md:107`).",
+        "Sync is #1 loved, #3 hated and the #1 switching trigger.",
         "Obsidian's own documentation concedes auto-merge may duplicate text, via diff-match-patch.",
         "Out-shipping Obsidian on sync is not credible: server fleet, mobile, installed base."
       ],
@@ -4214,9 +4215,9 @@
       "options": [
         {
           "k": "a",
-          "label": "Keep sync at MVP-2 as planned",
+          "label": "Keep sync in the third build as planned",
           "gains": [
-            "Keeps MVP-0 and MVP-1 shippable at the measured rate"
+            "Keeps the pilot and the build after it shippable at the measured rate"
           ],
           "costs": [
             "The first paid tier has no proven price",
@@ -4228,7 +4229,7 @@
         },
         {
           "k": "b",
-          "label": "Move the merge, not the transport, into MVP-1",
+          "label": "Move the merge, not the transport, into the build after the pilot",
           "what": "Provably safe conflict resolution over whatever sync the user already runs.",
           "gains": [
             "Sells the part we are uniquely qualified to build"
@@ -4237,18 +4238,18 @@
             "A second product surface for one person",
             "Obsidian shipped an escape hatch 12.5 months ago"
           ],
-          "system": "The splice engine becomes the merge resolver.",
+          "system": "The editor's write engine, which changes only the bytes you edited and never rewrites the whole file, becomes the merge resolver.",
           "screens": "A conflict view with no design yet.",
           "money": "Puts a $4 comparable behind the first tier."
         },
         {
           "k": "c",
-          "label": "Move full sync to MVP-1",
+          "label": "Move full sync to the build after the pilot",
           "gains": [
             "Puts the only proven individual price in the first tier"
           ],
           "costs": [
-            "The war-game calls it not founder-credible",
+            "The business plan's war-game calls it not credible for this founder",
             "A server fleet, mobile clients, an installed base"
           ],
           "system": "Servers, conflict handling, mobile.",
@@ -4265,17 +4266,17 @@
             "Forfeits the one demonstrated price",
             "git is not sync for a non-developer"
           ],
-          "system": "F12 is deleted.",
+          "system": "The sync feature is deleted.",
           "screens": "None.",
           "money": "None."
         }
       ],
       "rec": "b",
       "recCase": [
-        "Refusing a CRDT transport was correct and is not the same as refusing the merge.",
-        "The merge is where our engine is the literal fix, against a defect Obsidian documents."
+        "Ruling out real-time merge of everyone's edits (a CRDT) as the transport was correct, and it is not the same as refusing the merge.",
+        "The merge is where the write engine directly fixes a defect that Obsidian documents."
       ],
-      "flip": "If the twenty conversations name enforcement in CI rather than device conflicts, sync stays at MVP-2.",
+      "flip": "If the twenty conversations name enforcement in CI rather than device conflicts, sync stays in the third build.",
       "linked": [
         "MK10",
         "MK28"
@@ -4354,10 +4355,10 @@
         "note": "Their 2020 Show HN, \"GitHub for Docs\", scored 6 points and drew no comments.",
         "caption": "Our feature sentence, funded to $45M, switched off"
       },
-      "stakes": "The read-receipt half has a well-funded corpse, and anyone who knows the space raises it first.",
+      "stakes": "Almanac already failed at the read-receipt half with $45M, and anyone who knows the space will raise it first.",
       "state": [
-        "The headline is review state across people and tools, which is Almanac's Read Receipts.",
-        "`Almanac` appears zero times in `docs/PRODUCT-BRIEF.md` and zero times in the market table.",
+        "The headline is review state across people and tools, knowing who has read which change. That is Almanac's Read Receipts.",
+        "Almanac appears zero times in the product plan, market table included.",
         "Their farewell page states the cause as capacity, not demand."
       ],
       "tension": [
@@ -4456,15 +4457,15 @@
             "The stated cause is capacity, uncontradicted",
             "A fifth pivot on a single data point"
           ],
-          "system": "F2 leaves the plan.",
+          "system": "Review state leaves the plan.",
           "screens": "The whole review surface.",
           "money": "None."
         }
       ],
       "rec": "a",
       "recCase": [
-        "The blind spot is the problem. Two adversarial rounds missed a $45M precedent.",
-        "Naming it first is also the cheapest way to force the narrowing MK1 needs."
+        "Two adversarial rounds missed a $45M precedent, and that blind spot is the bigger problem.",
+        "Naming it first is also the cheapest way to force the narrowing the headline decision needs."
       ],
       "flip": "If a former Almanac customer or employee says demand was the real cause, option d is on the table.",
       "linked": [
@@ -4486,8 +4487,8 @@
       "cat": "Market & competition",
       "sub": "Competitors",
       "weight": "high",
-      "q": "Does Zed Delta enter the competitive set, and does its CRDT bet reopen our own \"never a CRDT\"?",
-      "lede": "A team with ten years of CRDT work reached the opposite conclusion in public and shipped a beta.",
+      "q": "Does Zed Delta enter the competitive set, and does its bet on real-time merge of everyone's edits reopen our rule against it?",
+      "lede": "A team with ten years of work on real-time merge (CRDTs) reached the opposite conclusion in public and shipped a beta.",
       "visual": {
         "kind": "compare",
         "labelWidth": 180,
@@ -4506,7 +4507,7 @@
             "label": "Where the state lives",
             "cells": [
               "DeltaDB, its own store",
-              "A JSONL sidecar inside your repo"
+              "A separate JSONL file inside your repo"
             ]
           },
           {
@@ -4550,14 +4551,14 @@
       },
       "stakes": "Our sync architecture is settled on a claim a credible team has publicly contradicted.",
       "state": [
-        "The plan settles sync as git merge plus splice journal plus CAS (`docs/PRODUCT-BRIEF.md:66`).",
-        "Zed appears only as a free per-hunk reviewer; Delta is absent (`:157`).",
-        "Scenario E is a funded rival at 6 to 9 months to parity (`docs/BUSINESS.md:1111-1185`)."
+        "The plan settles sync as git merge, a journal of every byte-range edit, and writes that only land if nobody changed the file first.",
+        "Zed appears in the market table only as a free per-hunk reviewer, and Delta is absent.",
+        "The business plan's war-game already has a funded rival reaching parity in 6 to 9 months."
       ],
       "tension": [
-        "Our position rests on CRDT interleaving and was never written against a named opponent.",
+        "Our position rests on how real-time merge interleaves edits, and it was never argued against a named opponent.",
         "Delta stores state in its own database. We store it in the repository.",
-        "Their span anchoring survives edits by construction. Ours survives by relocation."
+        "Their span anchors survive edits by how the data is built. Ours have to be relocated after each edit."
       ],
       "evidence": [
         {
@@ -4605,7 +4606,7 @@
             "States the differentiation axis plainly"
           ],
           "costs": [
-            "Arguing with ten years of CRDT experience",
+            "Arguing with ten years of real-time merge experience",
             "We argue from a design nobody has run"
           ],
           "system": "Relocation guarantees stated as testable claims.",
@@ -4634,9 +4635,9 @@
           ],
           "costs": [
             "The interleaving argument stands until refuted",
-            "Re-litigating at 1.21 days a week"
+            "Re-litigating at 1.21 engineering days a week"
           ],
-          "system": "Changes the sidecar, merge and journal.",
+          "system": "Changes the review file, the merge and the journal.",
           "screens": "None yet.",
           "money": "None."
         },
@@ -4657,7 +4658,7 @@
       ],
       "rec": "a",
       "recCase": [
-        "Delta shares our thesis and has shipped a beta, so omitting it repeats the adeu omission.",
+        "Delta shares our thesis and has shipped a beta, so leaving it out repeats the mistake of omitting adeu.",
         "Keep the architecture. Write the rebuttal against a named opponent so it stops reading as preference."
       ],
       "flip": "If Delta's span anchoring survives an out-of-band write and ours does not, option c is forced.",
@@ -4673,7 +4674,8 @@
         "docs/GAPS-2026-09-08.md:146",
         "docs/CRITIQUE.md:363",
         "https://zed.dev/blog/agentic-xanadu",
-        "https://hn.algolia.com/api/v1/search?query=Zed%20Delta&tags=story"
+        "https://hn.algolia.com/api/v1/search?query=Zed%20Delta&tags=story",
+        "docs/BUSINESS.md:1111-1185"
       ]
     },
     {
@@ -4681,7 +4683,7 @@
       "cat": "Market & competition",
       "sub": "Precedent",
       "weight": "high",
-      "q": "Five products with this feature set are dead — do we publish why this one differs, or leave the graveyard unnamed?",
+      "q": "Five products with this feature set are dead. Do we publish why this one differs, or leave them unnamed?",
       "lede": "The category has a repeated failure mode, and in three of the five cases the survivors named it.",
       "visual": {
         "kind": "timeline",
@@ -4720,16 +4722,16 @@
         "note": "Codebrag, SpaceCode and Swimm sit alongside Upsource; Draft and Penflip are dead with the cause unverified.",
         "caption": "Every product that sold this shape, and the date it stopped"
       },
-      "stakes": "A plan that does not name its own graveyard is refuted by anyone with five years here.",
+      "stakes": "A plan that does not name the dead products in its own category is refuted by anyone with five years in it.",
       "state": [
-        "The plan carries no dead-product section, and scenario F never reaches the risk table.",
-        "Scenario F, the category never forms, is most likely and has no trigger (`docs/BUSINESS.md:1092`).",
+        "The plan has no section on dead products, and its risk table leaves out the category never forming.",
+        "The business plan's war-game rates scenario F, where the category never forms, as most likely, with no trigger.",
         "The 2026-09-09 sweep opened five shutdowns with dates and three stated causes."
       ],
       "tension": [
         "Money, acquisition, category drift and capacity are four different failures.",
         "Upsource's stated cause bites: standalone review tools lose to review inside the tool.",
-        "That reading argues for the extension and against the standalone editor, which is MK2."
+        "That reading argues for the VS Code extension and against the standalone editor, which is the form-factor decision."
       ],
       "evidence": [
         {
@@ -4835,7 +4837,7 @@
       "rec": "a",
       "recCase": [
         "The five names are the strongest evidence for scenario F, the war-game's most likely outcome.",
-        "Quote each cause exactly and mark Draft and Penflip cause-unverified."
+        "Quote each cause exactly, and mark Draft and Penflip as cause unverified."
       ],
       "flip": "If the twenty conversations show teams buying a standalone review surface, this becomes a footnote.",
       "linked": [
@@ -4922,12 +4924,12 @@
       },
       "stakes": "The legal vertical is where diff has a budget line, on a substrate we refused.",
       "state": [
-        "The market table has no redlining row at all (`docs/PRODUCT-BRIEF.md:145-160`).",
-        "The segment with the most measured pain writes `.docx`, where an MIT rival ships (`docs/CRITIQUE.md:307`).",
-        "The positioning and the engine are both markdown-only (`docs/PRODUCT-BRIEF.md:298`)."
+        "The market table has no redlining row at all.",
+        "The segment with the most measured pain writes `.docx`, where an MIT rival ships.",
+        "The positioning and the engine are both markdown-only."
       ],
       "tension": [
-        "Byte-exact splicing sits under the category floor. No trained buyer wants it.",
+        "Byte-exact editing is finer than anything this category sells, and no trained buyer asks for it.",
         "The prices are the highest in the corpus and the buyer already searches.",
         "Atrium raised $75.5M selling into law firms and shut down on 2020-03-03."
       ],
@@ -5045,7 +5047,8 @@
         "https://draftable.com/pricing",
         "https://www.diffchecker.com/pricing/",
         "https://www.litera.com/our-story",
-        "https://techcrunch.com/2020/03/03/atrium-shuts-down/"
+        "https://techcrunch.com/2020/03/03/atrium-shuts-down/",
+        "docs/PRODUCT-BRIEF.md:145"
       ]
     },
     {
@@ -5067,7 +5070,7 @@
           {
             "label": "Reviewed",
             "meta": "per span",
-            "via": "our sidecar",
+            "via": "separate file",
             "tone": "accent"
           },
           {
@@ -5089,9 +5092,9 @@
       },
       "stakes": "Claiming a regulatory requirement that does not exist loses this buyer fastest.",
       "state": [
-        "The buyer decision offers only the developer or the liable person (`docs/PRODUCT-BRIEF.md:366`).",
-        "The compliance writer needs SOC 2 and nine to eighteen months (`docs/CRITIQUE.md:233`).",
-        "§22 names GST, IT Rules and DPDP, and no quality regime (`docs/PRODUCT-BRIEF.md:535-551`)."
+        "The buyer decision offers only the developer or the liable person.",
+        "The compliance writer needs SOC 2 and nine to eighteen months.",
+        "The plan's operating rules name GST, the IT Rules and DPDP, and no quality regime."
       ],
       "tension": [
         "MHRA permits audit trails reviewed by exception rather than in full.",
@@ -5153,10 +5156,10 @@
             "Costs little today and keeps the door open"
           ],
           "costs": [
-            "Designing for a buyer we never talk to caused F5/F6",
+            "Designing for a buyer we never talk to is what produced idea mode and decision flow",
             "No revenue from it this year"
           ],
-          "system": "The sidecar must never obscure a previous record.",
+          "system": "The review file must never obscure a previous record.",
           "screens": "None yet.",
           "money": "None."
         },
@@ -5206,7 +5209,8 @@
         "docs/GAPS-2026-09-08.md:41",
         "docs/CRITIQUE.md:233",
         "https://www.ecfr.gov/api/versioner/v1/full/2026-01-01/title-21.xml?part=11",
-        "https://www.ema.europa.eu/en/documents/scientific-guideline/reflection-paper-use-artificial-intelligence-ai-medicinal-product-lifecycle_en.pdf"
+        "https://www.ema.europa.eu/en/documents/scientific-guideline/reflection-paper-use-artificial-intelligence-ai-medicinal-product-lifecycle_en.pdf",
+        "docs/PRODUCT-BRIEF.md:535"
       ]
     }
   ]

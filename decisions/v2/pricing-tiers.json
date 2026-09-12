@@ -7,7 +7,7 @@
       "sub": "Tier contents",
       "weight": "critical",
       "q": "What does Pro gate on, and how long must the journal be kept?",
-      "lede": "Both things v15 puts behind the gate have no feature row. One exits with a module error.",
+      "lede": "Neither thing behind the Pro gate is in the feature list. One exits with a module error.",
       "visual": {
         "kind": "compare",
         "labelWidth": 190,
@@ -21,7 +21,7 @@
             "tone": "warn"
           },
           {
-            "title": "Attribution, F3",
+            "title": "Attribution",
             "tone": "accent"
           }
         ],
@@ -29,9 +29,9 @@
           {
             "label": "Feature row with days",
             "cells": [
-              "None. Line 289 says so itself",
-              "None; 1 day to wire, line 224",
-              "3 days for the readers, line 57"
+              "None. The plan says so itself",
+              "None; 1 day to wire",
+              "3 days for the readers"
             ]
           },
           {
@@ -47,31 +47,31 @@
             "cells": [
               "Current state only",
               "n/a",
-              "Yes, inside F1-F8"
+              "Yes, one of the eight free features"
             ]
           },
           {
             "label": "Someone charges for it",
             "cells": [
               "Obsidian 1 month to 12 months",
-              "Docs-as-code CI seats, line 443",
+              "Docs-as-code CI seats",
               "Google Workspace Business Standard"
             ]
           }
         ],
         "note": "Google gates span-level authorship and gives the file-level signal away free.",
-        "caption": "Three candidate gates, against whether they exist and whether anyone sells them."
+        "caption": "Three candidate gates, against whether they exist and anyone sells them."
       },
-      "stakes": "A price published against objects with no feature row cannot be built against.",
+      "stakes": "Nobody can build against a price for things no planned feature builds.",
       "state": [
-        "Pro is $4–5 per user: 90-day journal, CI gates (docs/PRODUCT-BRIEF.md:288).",
-        "Neither exists. No feature row builds retention; `mdmax cert` unwired (docs/PRODUCT-BRIEF.md:224).",
-        "Attribution is free today, inside F1–F8 (docs/PRODUCT-BRIEF.md:287)."
+        "Pro is $4–5 per user: 90-day edit journal, CI gates.",
+        "Neither exists: no feature-list row builds retention; the CI check `mdmax cert` is unwired.",
+        "Attribution is free today, a free-tier feature."
       ],
       "tension": [
         "Attribution is the only one of four claims nobody shipped. It is free.",
-        "90 days collides with the CERT-In 180-day floor (docs/PRODUCT-BRIEF.md:545).",
-        "Two rows still route CI gates to Max (docs/PRODUCT-BRIEF.md:202, docs/PRODUCT-BRIEF.md:443)."
+        "90 days collides with the CERT-In 180-day log floor.",
+        "Two rows still route CI gates to Max."
       ],
       "evidence": [
         {
@@ -217,7 +217,7 @@
       "options": [
         {
           "k": "a",
-          "label": "Keep retention as the gate, write it as an F-row first",
+          "label": "Keep retention as the gate, write it as a feature row first",
           "gains": [
             "The plan's own Max row instructs it",
             "Comparables do charge for retention"
@@ -228,7 +228,7 @@
           ],
           "system": "Append-only journal, retention policy, deletion job.",
           "screens": "A history view. No screen shows one.",
-          "money": "No revenue until the F-row lands."
+          "money": "No revenue until that row lands."
         },
         {
           "k": "b",
@@ -236,15 +236,15 @@
           "label": "Gate on attribution, the one claim nobody else shipped",
           "gains": [
             "Google sells exactly this at exactly this tier",
-            "F3 and F11 already carry estimates"
+            "Attribution readers and MCP server already carry estimates"
           ],
           "costs": [
             "Takes a feature out of the free tier",
-            "Needs F11 MCP: six days, untested"
+            "Needs MCP: six days, untested"
           ],
-          "system": "The split runs through F3's readers.",
+          "system": "The split runs through the attribution readers.",
           "screens": "Hover card gains a locked state.",
-          "money": "No new build beyond F11."
+          "money": "No build beyond the MCP server."
         },
         {
           "k": "c",
@@ -254,7 +254,7 @@
             "Nothing to build, one sentence to explain"
           ],
           "costs": [
-            "Honour-system, which is PR2's problem in full"
+            "Honour system, the same problem as the journal"
           ],
           "system": "No change.",
           "screens": "A seat count in settings.",
@@ -277,9 +277,9 @@
       "rec": "b",
       "recCase": [
         "Google sells span-level authorship at exactly this tier. Nobody occupied it in nine weeks.",
-        "Costs no new build: F3's readers are estimated, F11 is already inside Pro."
+        "No new build: attribution readers are estimated, MCP is already in Pro."
       ],
-      "flip": "If the conversations name shared review state rather than provenance as the paid thing, take (a) or (c).",
+      "flip": "If the conversations name shared review state (who read what), not provenance, as the paid thing, take (a) or (c).",
       "linked": [
         "PR2",
         "PR3",
@@ -298,7 +298,8 @@
         "docs/GAPS-2026-09-08.md:131",
         "docs/GAPS-2026-09-08.md:139",
         "docs/research/agent-reports-2026-08-29-r8to10/s4-mobile-cross-device.md:63",
-        "merged: PR6"
+        "merged: PR6",
+        "docs/PRODUCT-BRIEF.md:65"
       ]
     },
     {
@@ -307,7 +308,7 @@
       "sub": "Enforcement",
       "weight": "critical",
       "q": "Where does the retained journal live, and what happens when a team stops paying?",
-      "lede": "The paid object is a plain-text file the free client writes. Honour-system, or the zero-bytes promise is false.",
+      "lede": "The paid object is a plain-text file the free client writes. Honour system, or the zero-bytes promise is false.",
       "visual": {
         "kind": "flow",
         "perRow": 4,
@@ -337,7 +338,7 @@
           },
           {
             "label": "Rule: features, never files",
-            "note": "docs/PRODUCT-BRIEF.md:449",
+            "note": "The plan's upsell rules",
             "tone": "accent"
           }
         ],
@@ -346,14 +347,14 @@
       },
       "stakes": "Either the pricing page describes an unenforceable gate, or the architecture line the pitch leads with is false.",
       "state": [
-        "`.frontmatter/review.jsonl` is plain text in the user's repo (docs/PRODUCT-BRIEF.md:135).",
-        "Pro is the same file plus history and prompts, kept 90 days (docs/PRODUCT-BRIEF.md:288).",
-        "The control plane holds identity and billing, no document bytes (docs/PRODUCT-BRIEF.md:133)."
+        "The review file, `.frontmatter/review.jsonl`, is plain text in your repo.",
+        "Pro is the same file plus history and prompts, kept 90 days.",
+        "Our control plane holds identity and billing, and no document bytes."
       ],
       "tension": [
         "In the repo, the free client writes it. Nothing is withheld.",
-        "On our server it carries prompts and hashes, and zero-bytes goes.",
-        "Obsidian made its licence optional because a local app cannot enforce one (r26-c8:21)."
+        "On our server it carries prompts and hashes, breaking the zero-bytes promise.",
+        "Obsidian made its licence optional because a local app cannot enforce one."
       ],
       "evidence": [
         {
@@ -501,10 +502,10 @@
             "Enforceable, and bytes never leave the machine"
           ],
           "costs": [
-            "Breaks readable-without-frontmatter, which makes the sidecar safe to adopt"
+            "Breaks readable-without-frontmatter, which makes the review file safe to adopt"
           ],
-          "system": "Key management on top of the sidecar writer.",
-          "screens": "An opens state nobody has designed.",
+          "system": "Key management on top of the review-file writer.",
+          "screens": "An encrypted-file state nobody has designed.",
           "money": "Key infrastructure, small but permanent."
         },
         {
@@ -526,7 +527,7 @@
         "The only option that breaks no promise the plan makes in bold elsewhere.",
         "Lapse falls out of it: stop appending, keep everything, say so at checkout."
       ],
-      "flip": "If teams will not buy without an enforced entitlement, (b) is honest and zero-bytes must be rewritten.",
+      "flip": "If teams will not buy without an enforced entitlement, (b) is honest and the zero-bytes promise is rewritten.",
       "linked": [
         "PR1",
         "PR8",
@@ -599,13 +600,13 @@
           }
         ],
         "note": "Draftable and Diffchecker sell comparison alone, with no editor and no review state.",
-        "caption": "Annual price per user against buyer. Every figure from the vendor's own page."
+        "caption": "Annual price per user against buyer. Every figure from the vendor's page."
       },
       "stakes": "Price against the wrong category and the number is either uncollectable or not credible.",
       "state": [
-        "Pro is $4–5 per user per month, period unstated: $48–60 a year (docs/PRODUCT-BRIEF.md:288).",
-        "Two anchors are annual-billed rates; GitHub Team $4 has no fetched source (docs/GAPS-2026-09-08.md:25).",
-        "$5 needs 1,018 subscribers to cover the monthly nut on the founder-time basis (r26-c6:178)."
+        "Pro is $4–5 per user per month, period unstated: $48–60 a year.",
+        "Two anchors are annual-billed rates; GitHub Team $4 has no fetched source.",
+        "$5 needs 1,018 subscribers to cover monthly costs, counting founder time."
       ],
       "tension": [
         "Draftable charges $129–261 per user a year for comparison with no editor.",
@@ -763,7 +764,7 @@
             "Makes the annual discount an explicit lever"
           ],
           "costs": [
-            "Needs 1,018 subscribers on the founder-time basis",
+            "Needs 1,018 subscribers once founder time is costed",
             "Anchors to editors, not to diff tools"
           ],
           "system": "Two SKUs and a proration path.",
@@ -778,7 +779,7 @@
           ],
           "costs": [
             "No markdown editor charges this",
-            "PR1 says the gate is unbuilt"
+            "The Pro gate is unbuilt"
           ],
           "system": "Same billing, different number.",
           "screens": "The page must justify the level.",
@@ -791,7 +792,7 @@
             "No seat accounting and no proration"
           ],
           "costs": [
-            "Kills seat expansion, the main growth engine (r25-w4:61)"
+            "Kills seat expansion, the main growth engine"
           ],
           "system": "No seat model. One entitlement per repo.",
           "screens": "No invite-and-count flow.",
@@ -806,7 +807,7 @@
           ],
           "costs": [
             "A two-price script can read as unserious",
-            "Noisier answers at n=20"
+            "Noisier answers with only twenty"
           ],
           "system": "No change.",
           "screens": "No pricing page until the answer lands.",
@@ -849,15 +850,15 @@
       "cat": "Pricing & tiers",
       "sub": "Time to revenue",
       "weight": "critical",
-      "q": "Do we ship a checkout before MVP-1, or is the first sale eighteen months away?",
-      "lede": "MVP-0 has no sign-up and no billing. At the plan's measured velocity, first revenue is 81 weeks out.",
+      "q": "Do we ship a checkout before the build after the pilot, or wait eighteen months to sell?",
+      "lede": "The pilot has no sign-up or billing. At the plan's measured pace, first revenue is 81 weeks out.",
       "visual": {
         "kind": "timeline",
         "items": [
           {
             "when": "Now",
-            "label": "No sign-up, no billing in MVP-0",
-            "note": "docs/PRODUCT-BRIEF.md:205",
+            "label": "No sign-up, no billing in the pilot",
+            "note": "The plan's tier table",
             "tone": "neutral"
           },
           {
@@ -868,28 +869,28 @@
           },
           {
             "when": "About 58 weeks",
-            "label": "MVP-0 ships",
+            "label": "The pilot ships",
             "note": "70 engineering days at 1.21 a calendar week",
             "tone": "warn"
           },
           {
             "when": "About 81 weeks",
             "label": "First point a team can pay",
-            "note": "F9, F10, F11 and folder-to-PDF add 28 days",
+            "note": "Vault-wide refactor, shared review state and comments, the MCP server and folder-to-PDF add 28 days",
             "tone": "stop"
           }
         ],
         "note": "Every date derives from the density the plan measured on this repo.",
         "caption": "The gap between the plan's first revenue event and today."
       },
-      "stakes": "Eighteen months building against a price nobody was ever asked to pay is the failure mode.",
+      "stakes": "We could spend eighteen months building against a price nobody was ever asked to pay.",
       "state": [
-        "MVP-0 ships no sign-up, billing, sync, hosting or hosted AI (docs/PRODUCT-BRIEF.md:205).",
-        "MVP-0 is 70 engineering days at a measured 1.21 per calendar week (docs/PRODUCT-BRIEF.md:227).",
-        "105 reports, 374,866 words, zero willingness-to-pay work (r26-c7:22)."
+        "The pilot ships no sign-up, billing, sync, hosting or hosted AI.",
+        "The pilot is 70 engineering days at a measured 1.21 a calendar week.",
+        "105 reports, 374,866 words, zero willingness-to-pay work."
       ],
       "tension": [
-        "The services engagement is available now: four a year is the ₹1L milestone (r23-u4:62).",
+        "The services engagement is available now: four a year hit the ₹1L monthly milestone.",
         "Failing publicly at week 2 costs less than failing privately at week 81.",
         "Editorially closed in 2014 saying full conversion still would not have been enough."
       ],
@@ -956,7 +957,7 @@
       "options": [
         {
           "k": "a",
-          "label": "Keep billing out until MVP-1",
+          "label": "Keep billing out until the build after the pilot",
           "gains": [
             "Cleanest pilot, no billing code to maintain"
           ],
@@ -965,15 +966,15 @@
           ],
           "system": "No change.",
           "screens": "No checkout, no account.",
-          "money": "None until MVP-1."
+          "money": "None until then."
         },
         {
           "k": "b",
-          "what": "A refusal-contract page: named price, real checkout, full refund, no feature gate.",
+          "what": "A refusals page: named price, real checkout, full refund, no feature gate.",
           "label": "Ship the pre-order page the corpus already specified",
           "gains": [
             "One falsifiable demand test before the build",
-            "Kill number already written: zero from 100 conversations"
+            "Kill number already written: zero pre-orders from 100 conversations"
           ],
           "costs": [
             "Needs a payment rail and refund policy early",
@@ -1005,7 +1006,7 @@
           ],
           "costs": [
             "The product gets no price evidence at all",
-            "Founder hours split; client work capped at 78 monthly"
+            "Founder hours split; client work capped at 78 hours monthly"
           ],
           "system": "No change.",
           "screens": "None.",
@@ -1014,10 +1015,10 @@
       ],
       "rec": "b",
       "recCase": [
-        "The corpus made this criticism and nothing changed: the demand test sits after the build.",
-        "A pre-order page is a page. It turns a pricing opinion into a fact in two weeks."
+        "Our research made this criticism and nothing changed: the demand test sits after the build.",
+        "It is one page, and it turns a pricing opinion into a fact in two weeks."
       ],
-      "flip": "If more than five teams sign an intent to buy at MVP-1, the pre-order adds nothing.",
+      "flip": "If over five teams sign an intent to buy by the build after the pilot, the pre-order adds nothing.",
       "linked": [
         "PR13",
         "PR16",
@@ -1049,15 +1050,15 @@
         "labelWidth": 200,
         "cols": [
           {
-            "title": "The plan, §4",
+            "title": "The plan's cost rules",
             "tone": "neutral"
           },
           {
-            "title": "r26-c6",
+            "title": "Unit-economics report",
             "tone": "accent"
           },
           {
-            "title": "r19-p1",
+            "title": "AI-economics report",
             "tone": "warn"
           }
         ],
@@ -1100,13 +1101,13 @@
       },
       "stakes": "A free tier whose cost is unmeasured can consume the only person building the product.",
       "state": [
-        "Exhibit 16 row one: Individual, free, no limits, F1–F8, own key (docs/PRODUCT-BRIEF.md:287).",
-        "The plan budgets 90 founder-hours a month at 10,000 users (docs/PRODUCT-BRIEF.md:137).",
-        "An upsell nine rows below names a free quota that no-limits denies (docs/PRODUCT-BRIEF.md:444)."
+        "Tier table, row one: Individual, free, no limits, eight pilot features, own key.",
+        "The plan budgets 90 founder-hours a month at 10,000 users.",
+        "The plan's upsell table names a free AI quota, which \"no limits\" rules out."
       ],
       "tension": [
-        "Founder time is five times the whole infrastructure bill at 10,000 users (r26-c6:62).",
-        "The support coefficient is stated as 0.10 and as 0.30 in one repo (r26-c6:50).",
+        "Founder time costs five times the whole infrastructure bill at 10,000 users.",
+        "The support coefficient, tickets per paying user monthly, is stated as 0.10 and 0.30.",
         "The tier cannot be both no-limits and subject to a quota."
       ],
       "evidence": [
@@ -1203,11 +1204,11 @@
             "Forces three estimates into one arguable number"
           ],
           "costs": [
-            "Docs deflection is unbuilt and unestimated",
+            "Ticket-deflecting docs are unbuilt, unestimated",
             "Commits to a cost uncertain threefold"
           ],
           "system": "No change.",
-          "screens": "Delete the free-quota line from the upsell exhibit.",
+          "screens": "Delete the free-quota line from the upsell table.",
           "money": "₹1,30,560 a month of founder time at 10,000 users."
         },
         {
@@ -1242,7 +1243,7 @@
           "k": "d",
           "label": "Measure the support coefficient before deciding",
           "gains": [
-            "The one input r26-c6 says would change its verdict"
+            "The one input the report says would change its verdict"
           ],
           "costs": [
             "Ten users cannot resolve a threefold spread",
@@ -1256,7 +1257,7 @@
       "rec": "a",
       "recCase": [
         "Support, not compute, is the cost structure, and the two figures differ fourfold.",
-        "Use r26-c6's ₹1,30,560, the figure with a shown derivation, and delete the quota line."
+        "Use the ₹1,30,560 figure, the only one with working shown, and delete the quota line."
       ],
       "flip": "If the ten pilot users exceed 0.02 tickets each a month, add a soft cap before launch.",
       "linked": [
@@ -1331,15 +1332,15 @@
         "note": "The vendor with the largest measured base in the category stopped requiring it and did not shrink.",
         "caption": "What happened to the only B2B licence anyone in this category has run."
       },
-      "stakes": "The only B2B mechanism anybody has measured, dismissed in one line.",
+      "stakes": "The plan dismisses the only measured B2B mechanism in one line.",
       "state": [
-        "One line dismisses it: no functional benefit, optional since February 2025 (docs/PRODUCT-BRIEF.md:161).",
-        "No licence appears in the tier table (docs/PRODUCT-BRIEF.md:285).",
-        "r26-c6 prescribes $50 per user per year at Obsidian's unit (r26-c6:220)."
+        "One plan line dismisses it: no functional benefit, optional since February 2025.",
+        "No licence appears in the tier table.",
+        "The unit-economics report prescribes $50 per user per year, Obsidian's unit."
       ],
       "tension": [
         "A licence confers no features, so it costs nothing to ship.",
-        "The precedent had five mandatory years. We start at the voluntary end (r26-c8:21).",
+        "The precedent had five mandatory years. We start at the voluntary end.",
         "Obsidian's founder says the money comes from Sync and Publish, not the licence."
       ],
       "evidence": [
@@ -1446,7 +1447,7 @@
             "One number to quote a procurement team"
           ],
           "costs": [
-            "Gives up seat expansion, the main growth engine (r25-w4:61)"
+            "Gives up seat expansion, the main growth engine"
           ],
           "system": "No seat model at all.",
           "screens": "No invite-and-count flow.",
@@ -1460,7 +1461,7 @@
           ],
           "costs": [
             "Delays past the meeting",
-            "The wall was never the measure: 10,000 organisations"
+            "The logo wall was never the measure: 10,000 organisations"
           ],
           "system": "No change.",
           "screens": "None.",
@@ -1470,7 +1471,7 @@
       "rec": "a",
       "recCase": [
         "The wall-count objection is moot: Obsidian's own page names over 10,000 organisations.",
-        "PR2 makes the Pro price a licence anyway. Naming one costs a page and no code."
+        "An honour-system Pro is a licence anyway. Naming one costs a page and no code."
       ],
       "flip": "If a team asks how to pay for commercial use, then asks what it enforces, take (b).",
       "linked": [
@@ -1503,7 +1504,7 @@
         "nodes": [
           {
             "label": "User's own key",
-            "note": "Free, uncapped, the MVP-0 default",
+            "note": "Free, uncapped, the pilot default",
             "tone": "good"
           },
           {
@@ -1530,15 +1531,15 @@
         "note": "One call a minute for 24 hours is $1,254 a month on the cheap model alone.",
         "caption": "Where the ceiling has to sit for the abuse case to be bounded at all."
       },
-      "stakes": "A price with no unit and no cap is not a price, and abuse is unbounded until the breaker exists.",
+      "stakes": "With no unit and no cap there is no price, and abuse is unbounded until a spending breaker exists.",
       "state": [
-        "The table reads hosted AI, cost plus margin, off by default (docs/PRODUCT-BRIEF.md:290).",
-        "Capped appears three times in the plan; no cap number appears anywhere.",
-        "One UI call a minute for 24 hours is $1,254–2,507 a month (r26-c6:124)."
+        "The tier table reads: hosted AI, cost plus margin, off by default.",
+        "\"Capped\" appears three times in the plan; no cap number appears anywhere.",
+        "One UI call a minute for 24 hours costs $1,254–2,507 a month."
       ],
       "tension": [
-        "A margin over an input the record cannot agree it read is not a margin.",
-        "The abuse case is the cheap surface called on a timer.",
+        "We cannot set a margin over model prices our reports disagree about.",
+        "The abuse case is a cheap call on a timer.",
         "Dollars metering publishes our unit cost and invites comparison with the raw API."
       ],
       "evidence": [
@@ -1610,11 +1611,11 @@
           "k": "a",
           "label": "Actions, with a server-side daily dollar breaker",
           "gains": [
-            "r19-p4 has done the design work",
-            "Survives a tokenizer change without repricing"
+            "A report already did the design work",
+            "Survives a tokeniser change without repricing"
           ],
           "costs": [
-            "Proxy, ledger and breaker: no exhibit estimates them",
+            "Proxy, ledger and breaker: none are estimated",
             "Actions must be defined and then defended"
           ],
           "system": "Metering proxy, per-account ledger, breaker before every call.",
@@ -1650,7 +1651,7 @@
         },
         {
           "k": "d",
-          "label": "Keep the wording, specify at MVP-1",
+          "label": "Keep the wording, specify in the build after the pilot",
           "gains": [
             "No work now"
           ],
@@ -1659,13 +1660,14 @@
           ],
           "system": "No change.",
           "screens": "No change.",
-          "money": "Unbounded in the worst case."
+          "money": "Unbounded in the worst case.",
+          "what": "Set it in the build after the pilot."
         }
       ],
       "rec": "a",
       "recCase": [
-        "Actions plus an unmetered cheap surface is the only shape both legible and bounded (r19-p4:82).",
-        "The wording is the liability: unmetered up to a daily ceiling, never free."
+        "Actions, with cheap calls left unmetered, is the only shape both easy to understand and bounded.",
+        "The wording is the risk: say unmetered up to a daily ceiling, never free."
       ],
       "flip": "If nobody without a key ever reaches the AI panel in the pilot, (c) is cheaper.",
       "linked": [
@@ -1689,8 +1691,8 @@
       "cat": "Pricing & tiers",
       "sub": "Billing period",
       "weight": "high",
-      "q": "Do we default to monthly or annual, and which half of BUSINESS.md survives?",
-      "lede": "BUSINESS.md says default to annual on one page and monthly on another. The gap is 466 basis points.",
+      "q": "Do we default to monthly or annual, and which business-plan page survives?",
+      "lede": "The business plan defaults to annual on one page and monthly on another: a 466-basis-point gap.",
       "visual": {
         "kind": "compare",
         "labelWidth": 200,
@@ -1746,9 +1748,9 @@
       },
       "stakes": "A build team reading the two halves will implement whichever it opens first.",
       "state": [
-        "The plan states a per-user-per-month price and no billing period (docs/PRODUCT-BRIEF.md:288).",
-        "§82.3 defaults Indians to annual (docs/BUSINESS.md:229); §84.2's page defaults to monthly (docs/BUSINESS.md:455).",
-        "All-in cost is 9.29% of gross monthly against 4.63% annual (docs/BUSINESS.md:723)."
+        "The plan states a per-user-per-month price and no billing period.",
+        "One section defaults Indians to annual; its pricing page, to monthly.",
+        "All-in cost is 9.29% of gross monthly against 4.63% annual."
       ],
       "tension": [
         "The fee arithmetic favours annual by 466 basis points on every customer.",
@@ -1890,7 +1892,7 @@
       "rec": "a",
       "recCase": [
         "Offering annual captures most of the 466 points. Defaulting to it risks a one-attempt decline.",
-        "Publish the period in the tier table, and make BUSINESS.md stop saying both."
+        "Publish the period in the tier table and make the business plan pick one."
       ],
       "flip": "If the annual mix is low enough that the fee saving goes unclaimed, switch the default.",
       "linked": [
@@ -1914,8 +1916,8 @@
       "cat": "Pricing & tiers",
       "sub": "Currency",
       "weight": "high",
-      "q": "One USD price worldwide, or a published India price and PPP bands?",
-      "lede": "The plan quotes dollars for the price and rupees for the nut, with no geo policy.",
+      "q": "One USD price worldwide, or a published India price and country-adjusted (PPP) bands?",
+      "lede": "The plan quotes dollars for the price and rupees for costs, with no geo policy.",
       "visual": {
         "kind": "compare",
         "labelWidth": 200,
@@ -1955,7 +1957,7 @@
             "cells": [
               "Below it",
               "Well below it",
-              "Withdrawn in v15"
+              "Withdrawn in the current plan"
             ]
           },
           {
@@ -1963,7 +1965,7 @@
             "cells": [
               "n/a",
               "n/a",
-              "USD and INR only is part of the Art 3(2)(a) argument"
+              "USD and INR only is part of the GDPR Art 3(2)(a) argument"
             ]
           }
         ],
@@ -1972,14 +1974,14 @@
       },
       "stakes": "A rupee price on a global page reads as domestic software, and two prices screenshot badly.",
       "state": [
-        "Pro is quoted in USD (docs/PRODUCT-BRIEF.md:288), the nut in rupees (docs/PRODUCT-BRIEF.md:292).",
+        "Pro is quoted in USD, the monthly costs in rupees.",
         "Nothing says whether an Indian or European buyer sees a different number.",
-        "§22 says price in USD and INR only, do not localise (docs/PRODUCT-BRIEF.md:550)."
+        "The operating rules: price in USD and INR only, do not localise."
       ],
       "tension": [
         "Obsidian serves no rupee string; Indians pay the full dollar price.",
         "Craft serves an Indian IP ₹526.70 a month, above our band, not below.",
-        "An Art 27 EU representative costs €420–852 a year, 3.6–7.2% of burn (r26-c8:70)."
+        "A GDPR Article 27 EU representative costs €420–852 a year, 3.6–7.2% of annual burn."
       ],
       "evidence": [
         {
@@ -2191,8 +2193,8 @@
       "stakes": "A slightly wrong waiver makes the supply free by law, and no policy turns remorse into a chargeback.",
       "state": [
         "The pricing section says nothing about refunds or withdrawal.",
-        "BUSINESS.md drafts the full policy: 30-day first payment, 90-day prorated renewal (docs/BUSINESS.md:518).",
-        "It specifies the three Art 16(m) waiver artefacts, then advises against them (docs/BUSINESS.md:552)."
+        "The business plan drafts the full policy: 30-day first payment, 90-day prorated renewal.",
+        "It specifies the three EU waiver artefacts, then advises against them."
       ],
       "tension": [
         "Benchmarks are bimodal: Obsidian writes non-refundable, 37signals refunds on request.",
@@ -2380,7 +2382,7 @@
       "rec": "a",
       "recCase": [
         "The asymmetry decides it: a $5 refund is trivial, a dispute is $30 plus principal.",
-        "The policy is written and checked against four fetched benchmarks. Cap the prorated clause, publish."
+        "The policy is written and checked against four fetched benchmarks. Cap the prorated clause and publish."
       ],
       "flip": "If the measured refund rate goes above 2%, turn the thirty-day window, not the policy.",
       "linked": [
@@ -2407,7 +2409,7 @@
       "sub": "Merchant of record",
       "weight": "high",
       "q": "Do we sell through a merchant of record, or bill direct and register for tax?",
-      "lede": "Deferred as an enterprise feature. It is not a feature. It is whose name is on the invoice.",
+      "lede": "The plan defers it as an enterprise feature, but it decides whose name is on the invoice.",
       "visual": {
         "kind": "arch",
         "layers": [
@@ -2445,15 +2447,15 @@
         "note": "Only the middle layer is optional, and it has to be chosen before the first sale.",
         "caption": "What a merchant of record absorbs, and what stays ours regardless."
       },
-      "stakes": "The first EU or US sale arrives with a tax obligation and nobody to refuse the feature.",
+      "stakes": "The first EU or US sale brings a tax obligation before any buyer could ask for this.",
       "state": [
-        "§22 groups it with SSO and SOC 2, deferred until refused (docs/PRODUCT-BRIEF.md:535).",
-        "Dodo charges 4% plus 15¢ on Indian cards, plus 1.5% international (docs/BUSINESS.md:719).",
-        "The fixed-cent component alone is 4.79% of a ₹299 charge (docs/BUSINESS.md:723)."
+        "It is deferred with SSO and SOC 2 until a buyer refuses without it.",
+        "Dodo charges 4% plus 15¢ on Indian cards, plus 1.5% international.",
+        "The fixed 15¢ alone is 4.79% of a ₹299 charge."
       ],
       "tension": [
         "SSO is a feature a buyer asks for. This is a legal identity.",
-        "It must be decided before the first sale, so the refusal test cannot apply.",
+        "It must be settled before the first sale, so waiting for a refusal fails.",
         "The cut is worst precisely at the price we intend to charge."
       ],
       "evidence": [
@@ -2547,7 +2549,7 @@
         },
         {
           "k": "c",
-          "label": "MoR for non-India sales, direct for India",
+          "label": "Merchant of record for non-India sales, direct for India",
           "gains": [
             "Keeps domestic margin, outsources hard jurisdictions"
           ],
@@ -2575,9 +2577,9 @@
       "rec": "a",
       "recCase": [
         "At this volume one dispute or one foreign registration costs more than the cut.",
-        "Move it out of the deferred-until-refused list. There is nobody to refuse it."
+        "Take it off the deferred list. Nobody can refuse it before the first sale."
       ],
-      "flip": "If a direct rail plus outsourced tax beats the MoR cut below 200 seats, (b) is cheaper.",
+      "flip": "If billing direct plus outsourced tax filing beats the merchant-of-record cut below 200 seats, (b) is cheaper.",
       "linked": [
         "PR4",
         "PR11",
@@ -2598,7 +2600,7 @@
       "cat": "Pricing & tiers",
       "sub": "Evidence and kill number",
       "weight": "high",
-      "q": "How do we get pricing evidence before MVP-1, and what kills the paid tier?",
+      "q": "How do we get pricing evidence before the build after the pilot, and what kills the paid tier?",
       "lede": "Every other test in the plan carries a kill number. The one that decides the business does not.",
       "visual": {
         "kind": "compare",
@@ -2662,14 +2664,14 @@
         "note": "The plan has scheduled the middle column and written the threshold for the right-hand one.",
         "caption": "Three instruments, and the only one carrying a written kill number."
       },
-      "stakes": "A test with no threshold cannot fail, and a threshold chosen afterwards is not a threshold.",
+      "stakes": "Without a threshold written in advance the test cannot fail, and one chosen afterwards proves nothing.",
       "state": [
-        "The paid tier is a hypothesis until twenty conversations return seat counts (docs/PRODUCT-BRIEF.md:292).",
-        "No threshold is written, while under 4 of 10 kills review state (docs/PRODUCT-BRIEF.md:321).",
-        "The three-arm price test would take 57 months and was struck (docs/BUSINESS.md:384)."
+        "The paid tier stays a hypothesis until twenty conversations return seat counts.",
+        "No threshold is written, while under 4 of 10 kills review state (who has read what).",
+        "The three-price randomised test would take 57 months and was struck."
       ],
       "tension": [
-        "Eleven gaps of desk research measured installs and attention, never payment (docs/GAPS-2026-09-08.md:146).",
+        "Desk research on eleven gaps measured installs and attention, never payment.",
         "As scheduled the conversations test only $4–5, so two rejections look identical.",
         "Twenty conversations return opinions. A pre-order returns money."
       ],
@@ -2810,7 +2812,7 @@
           "label": "Kill under 5 of 20 naming a gate at a named price; both prices in the script",
           "gains": [
             "Falsifiable, and it tests the axis as well",
-            "One protocol answers price and kill together"
+            "One script answers price and kill together"
           ],
           "costs": [
             "Twenty is small and the signal is soft",
@@ -2828,7 +2830,7 @@
           ],
           "costs": [
             "Three of twenty is a thin thread",
-            "A 15% hit rate is inside noise at n=20"
+            "A 15% hit rate is noise with twenty people"
           ],
           "system": "No change.",
           "screens": "None.",
@@ -2867,9 +2869,9 @@
       "rec": "a",
       "recCase": [
         "Five of twenty is high enough that a polite yes fails, low enough a niche survives.",
-        "Put both PR3 prices in the script, and fold willingness-to-pay into the same protocol."
+        "Put both candidate prices in the script, and fold willingness-to-pay into the same conversations."
       ],
-      "flip": "If PR4 goes to a pre-order page, (c) supersedes this gate: one card beats twenty opinions.",
+      "flip": "If we ship the pre-order page, (c) replaces this gate.",
       "linked": [
         "PR3",
         "PR4",
@@ -2929,13 +2931,13 @@
       },
       "stakes": "A perpetual promise made at a near-cost price cannot be withdrawn without breaking it publicly.",
       "state": [
-        "v15 has one line: price changes, email before the next charge (docs/PRODUCT-BRIEF.md:536).",
-        "BUSINESS.md drafts a full policy and then argues against it (docs/BUSINESS.md:419, docs/BUSINESS.md:426).",
-        "Break-even at the founder's own rate is ₹333.25 a month (r26-c6:45)."
+        "The plan has one line: price changes, email before the next charge.",
+        "The business plan drafts a full policy and then argues against it.",
+        "Break-even at the founder's own rate is ₹333.25 a month."
       ],
       "tension": [
         "A three-year sunset costs goodwill with the earliest users, who talk.",
-        "The break-even input is unsettled: coefficient 0.10 and 0.30 in one repo (r26-c6:50).",
+        "The break-even input is unsettled: support tickets are 0.10 and 0.30 in one repo.",
         "Two policies side by side invite the question from customer 101."
       ],
       "evidence": [
@@ -3039,7 +3041,7 @@
             "Removes a real reason to buy early"
           ],
           "system": "No snapshot needed.",
-          "screens": "The §22 notice rule, already written.",
+          "screens": "The price-change email rule, already written.",
           "money": "Full flexibility on price."
         },
         {
@@ -3059,10 +3061,10 @@
       ],
       "rec": "d",
       "recCase": [
-        "The first hundred are worth more as advocates than as revenue. Their price is a promise.",
+        "The first hundred matter more as advocates than as revenue, so their price can be a promise.",
         "Everyone after sits under a policy that can move, because break-even is close."
       ],
-      "flip": "If the pilot measures the support coefficient at the low end, (a) becomes affordable and reads better.",
+      "flip": "If the pilot measures support tickets at the low end, (a) becomes affordable and reads better.",
       "linked": [
         "PR3",
         "PR11",
@@ -3081,7 +3083,7 @@
       "cat": "Pricing & tiers",
       "sub": "Services line",
       "weight": "high",
-      "q": "Do we sell the engagement as the first revenue line, at ten days or eight?",
+      "q": "Do we sell the services engagement as the first revenue line, at ten days or eight?",
       "lede": "The plan funds the build with consulting hours and lists the same engagement as its last upsell.",
       "visual": {
         "kind": "compare",
@@ -3134,17 +3136,17 @@
           }
         ],
         "note": "The engagement and the funding line are the same money, counted once.",
-        "caption": "The first revenue line, priced two ways, against what it can be defended on today."
+        "caption": "The first revenue line, priced two ways, against what is defensible today."
       },
       "stakes": "The one revenue line available this month is priced on a discipline whose own measurement failed.",
       "state": [
-        "The engagement sits in the upsell table (docs/PRODUCT-BRIEF.md:445) at ₹3,00,000 fixed scope (docs/PRODUCT-BRIEF.md:465).",
-        "The ₹1.09L monthly nut is covered by 54–78 consulting hours (docs/PRODUCT-BRIEF.md:292).",
-        "The kappa was measured once at 0.1 against a 0.7 bar, n=9 (r23-u4:10)."
+        "The engagement sits in the upsell table at ₹3,00,000 fixed scope.",
+        "The ₹1.09L monthly costs are covered by 54–78 consulting hours.",
+        "Its eval kappa was measured once: 0.1 against a 0.7 bar, on nine samples."
       ],
       "tension": [
-        "The upsell runs through the docs scan, an MVP-0 feature about a year away.",
-        "Days 7–8 sell an eval discipline whose own measurement is dark.",
+        "The upsell runs through the docs scan, a pilot feature about a year away.",
+        "Days 7–8 sell an eval discipline whose own measurement failed.",
         "Engagement hours are hours not spent on the 81-week build."
       ],
       "evidence": [
@@ -3222,7 +3224,7 @@
           "label": "Sell the ten-day engagement at ₹3,00,000 now",
           "gains": [
             "Revenue this month from clients who exist",
-            "Four a year covers the whole nut"
+            "Four a year cover all monthly costs"
           ],
           "costs": [
             "Days 7–8 sell a kappa of 0.1",
@@ -3277,8 +3279,8 @@
       ],
       "rec": "b",
       "recCase": [
-        "Eight days at ₹2,40,000 is revenue this month at a scope the record defends.",
-        "It removes the one honest objection, and the report proposes that shape itself (r23-u4:105)."
+        "Eight days at ₹2,40,000 is revenue this month at a scope our research defends.",
+        "It removes the one honest objection, and the services report proposes that shape itself."
       ],
       "flip": "If a client will pay for the eval days specifically, re-run the kappa first, then sell (a).",
       "linked": [
@@ -3306,7 +3308,7 @@
         "labelWidth": 175,
         "cols": [
           {
-            "title": "The plan, v15",
+            "title": "The current plan",
             "tone": "accent"
           },
           {
@@ -3361,18 +3363,18 @@
           }
         ],
         "note": "A build team reading the repo finds the middle column first, because it is the most specific.",
-        "caption": "Three committed artefacts, three ladders, and which one describes a shipped design."
+        "caption": "Three committed files, three ladders: which describes a shipped design?"
       },
       "stakes": "Whichever ladder is chosen, two of three artefacts are wrong, and one is a security rules file.",
       "state": [
-        "The plan runs Individual, Pro, Max, Hosted AI (docs/PRODUCT-BRIEF.md:285).",
-        "`firestore.rules:22` documents a server-owned enum of free, pro, team (firestore.rules:29).",
-        "BUSINESS.md runs Free, Pro, Power and Work (docs/BUSINESS.md:448)."
+        "The plan runs Individual, Pro, Max, Hosted AI.",
+        "The Firestore rules file defines a server-owned enum: free, pro, team.",
+        "The business plan runs Free, Pro, Power and Work."
       ],
       "tension": [
-        "Max holds retention, admin and SSO (docs/PRODUCT-BRIEF.md:289); §22 defers SSO until refused.",
-        "The rules file caps note content at 900,000 bytes, which decision 7 is about.",
-        "Two exhibits still send CI gates to Max (docs/PRODUCT-BRIEF.md:202, docs/PRODUCT-BRIEF.md:443)."
+        "Max holds retention, admin and SSO; SSO is deferred until asked.",
+        "The rules file caps note content at 900,000 bytes, an undecided design.",
+        "Two plan tables still send CI gates to Max."
       ],
       "evidence": [
         {
@@ -3533,10 +3535,10 @@
         },
         {
           "k": "d",
-          "label": "Settle decision 7 first, then the plan is the only source",
+          "label": "Settle whether Firebase holds documents first, then the plan is the only source",
           "gains": [
             "Removes the contradiction at its root",
-            "Unblocks §22, which round 2 says is blocked"
+            "Unblocks the operating rules, which research found blocked"
           ],
           "costs": [
             "A deletion, so it needs the meeting",
@@ -3544,20 +3546,22 @@
           ],
           "system": "Deletes a committed security rules file.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Decide first whether the Firebase document store ships."
         }
       ],
       "rec": "a",
       "recCase": [
-        "A rung holding one unbuilt feature and two the rules refuse to build is not a rung.",
-        "§22 already sets the reappearance trigger: the first team that refuses to pay without SSO."
+        "Max holds one unbuilt feature and two deferred until asked, so it has nothing to sell.",
+        "The operating rules already set Max's return: the first team refusing to pay without SSO."
       ],
-      "flip": "If PR8 goes to a commercial licence, the third rung returns as a per-organisation licence.",
+      "flip": "If we adopt a commercial licence, the third rung returns as a per-organisation licence.",
       "linked": [
         "PR1",
         "PR2",
         "PR8",
-        "PR23"
+        "PR23",
+        "B16"
       ],
       "sources": [
         "docs/PRODUCT-BRIEF.md:202",
@@ -3622,7 +3626,7 @@
           {
             "label": "Enforceable at all",
             "cells": [
-              "Honour system, per PR2",
+              "Honour system, per the journal decision",
               "The Action runs or it does not"
             ]
           },
@@ -3635,18 +3639,18 @@
           }
         ],
         "note": "The plan calls the gate the B2B line but never says what unit it sells in.",
-        "caption": "The unit an enforcement gate is bought in, against what the comparables charge."
+        "caption": "The unit a CI gate is bought in, against what the comparables charge."
       },
-      "stakes": "Enforcement is the one paid object with a natural entitlement checkpoint, and per-seat wastes it.",
+      "stakes": "Enforcement is the one paid thing with a natural payment checkpoint, and per-seat wastes it.",
       "state": [
-        "The upsell table routes the gate to Max, comparing CI seats (docs/PRODUCT-BRIEF.md:443).",
-        "The family table sells `mdmax cert` per team (docs/PRODUCT-BRIEF.md:475).",
-        "v15 pulled it into Pro per user (docs/PRODUCT-BRIEF.md:288). No document names the unit."
+        "The upsell table routes the gate to Max, comparing CI seats.",
+        "The family table sells the CI check, `mdmax cert`, per team.",
+        "The plan pulled it into Pro per user. No document names the unit."
       ],
       "tension": [
         "A CI check is bought by the repo owner, not by everyone reading.",
         "Mintlify, GitBook and ReadMe all price per site or per project.",
-        "Per repo is the only unit where the Action can ask for an entitlement."
+        "Only per repo can the GitHub Action check payment."
       ],
       "evidence": [],
       "options": [
@@ -3675,7 +3679,7 @@
             "Two paid objects on one page",
             "Needs repo-level identity, which nothing builds today"
           ],
-          "system": "A repo-scoped entitlement the Action asks for.",
+          "system": "A repo-scoped entitlement the GitHub Action checks.",
           "screens": "A repos list with a per-repo toggle.",
           "money": "Priced against $250–450 monthly comparables."
         },
@@ -3749,7 +3753,7 @@
           {
             "label": "What Obsidian does",
             "cells": [
-              "—",
+              "n/a",
               "Free editor, $4 sync"
             ]
           },
@@ -3757,14 +3761,14 @@
             "label": "What the plan does",
             "cells": [
               "Pro tier at $4–5 a seat",
-              "—"
+              "n/a"
             ]
           },
           {
             "label": "His stated numbers",
             "cells": [
               "free / ₹299 / ₹699 a month",
-              "—"
+              "n/a"
             ]
           },
           {
@@ -3778,16 +3782,16 @@
         "note": "Two different shapes, not two numbers.",
         "caption": "Where the money is asked for"
       },
-      "stakes": "Pricing the one thing this category has never paid for, while giving away what it does.",
+      "stakes": "We would price what this category never paid for, and give away what it does.",
       "state": [
-        "The plan prices a team tier at $4–5 per user per month (docs/PRODUCT-BRIEF.md:288).",
-        "His own stated numbers are free / ₹299 / ₹699 per user per month.",
+        "The plan prices a team tier at $4–5 per user per month.",
+        "The founder's own stated numbers are free / ₹299 / ₹699 per user per month.",
         "No message records him accepting the per-seat dollar figure."
       ],
       "tension": [
         "₹699 is about $7.90, above every India AI anchor.",
         "$4–5 is a team price benchmarked on GitHub; ₹299 is consumer.",
-        "The plan names its own retention contradiction: Max in one exhibit, Pro in another."
+        "The plan names its own retention contradiction: Max in one table, Pro in another."
       ],
       "evidence": [
         {
@@ -3824,7 +3828,7 @@
             "No record of the founder accepting it",
             "Prices a team product before any team conversation"
           ],
-          "system": "Needs the retained journal; no feature row builds it.",
+          "system": "Needs the retained journal, which no planned feature builds.",
           "screens": "Adds billing and seat management.",
           "money": "Requires seats to exist to earn anything."
         },
@@ -3855,7 +3859,7 @@
             "Earns nothing from the solo user who exists today",
             "Shared state is the most expensive thing to build"
           ],
-          "system": "Requires the sidecar to sync. Not built.",
+          "system": "Requires review-file sync. Not built.",
           "screens": "Adds account and sharing surfaces.",
           "money": "Slowest to first revenue, largest ceiling."
         }

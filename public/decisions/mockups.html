@@ -1,7 +1,7 @@
 <!doctype html>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width,initial-scale=1">
-<title>frontmatter — 23 screen iterations</title>
+<title>frontmatter, 23 screen iterations</title>
 <link rel="stylesheet" href="fonts.css">
 <style>
 /* md.sgnk.ai theme, read from ~/Desktop/GitHub/md/src/app/globals.css */
@@ -105,14 +105,14 @@ h1{font-size:20px;font-weight:600;margin:0 0 6px;letter-spacing:-.01em}
   if (q) {
     var m = MOCKUPS.filter(function(x){return x.id===q;})[0];
     if (!m) { root.innerHTML = '<div class="detail">Unknown iteration.</div>'; return; }
-    document.title = 'frontmatter — ' + m.name;
+    document.title = 'frontmatter: ' + m.name;
     root.innerHTML =
       '<div class="detail">' +
         '<a class="back" href="mockups.html">&larr; all 23 iterations</a>' +
         '<div class="dhead"><div class="tag">' + esc(m.screen) + ' &middot; ' + esc(m.id) + '</div>' +
         '<h1>' + esc(m.name) + '</h1></div>' +
         '<div class="dwhy"><b>Why this iteration matters.</b> ' + m.why +
-          (m.card ? ' <br><br><b>Decides:</b> <code>' + esc(m.card) + '</code> — ' + esc(m.cardq) : '') +
+          (m.card ? ' <br><br><b>Decides:</b> <code>' + esc(m.card) + '</code>. ' + esc(m.cardq) : '') +
         '</div>' +
         '<div class="stage">' + m.html + '</div>' +
       '</div>';

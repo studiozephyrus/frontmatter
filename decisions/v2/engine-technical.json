@@ -44,13 +44,13 @@
       },
       "stakes": "Publish, share and every property edit fail silently on the vaults our corpus is made of.",
       "state": [
-        "One branch at src/modules/share/domain/splice-frontmatter.ts:197 refuses any line neither indented nor a comment.",
-        "6,615 of 7,969 frontmatter files refuse a single `set` — 83.01% (docs/ENGINE.md:487).",
-        "`yaml@2.9.0` is already a dependency (package.json:81); nothing imports its CST layer (docs/ENGINE.md:320)."
+        "One branch refuses any line neither indented nor a comment, so lists starting at the left edge fail.",
+        "6,615 of 7,969 frontmatter files refuse a single property edit, which is 83.01%.",
+        "`yaml@2.9.0` is already a dependency, and nothing imports its CST layer."
       ],
       "tension": [
-        "Patch is a day. Structural fix is 2.0 founder-weeks, marked inference not measurement (docs/ENGINE.md:622).",
-        "`CST.stringify` round-trips the refused shape byte-identically, but YAML-library mutation is anti-recommended (docs/ENGINE.md:650).",
+        "Patch is a day. Structural fix is 2.0 founder-weeks, an inference, not a measurement.",
+        "`CST.stringify` round-trips the refused shape byte-identically, but the engine audit advises against YAML-library edits.",
         "No residual is agreed as the trigger, so it gets argued under deadline."
       ],
       "evidence": [
@@ -207,10 +207,10 @@
           "k": "b",
           "label": "Patch the branch, ship, accept whatever residual it leaves",
           "gains": [
-            "Front door opens this week"
+            "Most vaults become editable this week"
           ],
           "costs": [
-            "The spec's exit condition becomes decorative, reopening mid-MVP unagreed"
+            "The spec's exit condition means nothing, and it reopens mid-build"
           ],
           "system": "One branch in the block scanner.",
           "screens": "None.",
@@ -237,8 +237,8 @@
             "One rewrite instead of two"
           ],
           "costs": [
-            "Two founder-weeks before the front door opens",
-            "On an estimate ENGINE marks as inference"
+            "Two founder-weeks before most vaults become editable",
+            "On an estimate the audit marks as inference"
           ],
           "system": "Replaces the block scanner outright.",
           "screens": "None.",
@@ -247,7 +247,7 @@
       ],
       "rec": "c",
       "recCase": [
-        "Patch is the availability fix and cheap; the structural fix is unmeasured and belongs behind a number.",
+        "The patch is cheap and restores availability; the unmeasured structural fix should wait for a number.",
         "CST is the only structural route already measured and already paid for as a dependency."
       ],
       "flip": "A patched writer still refusing more than 10 of 7,969 makes the structural fix mandatory.",
@@ -278,7 +278,7 @@
       "cat": "Engine & technical",
       "sub": "Write path",
       "weight": "critical",
-      "q": "Does the splice writer get a discriminated-union return before any other engine work, or does the bare string ship again?",
+      "q": "Does the frontmatter writer get a discriminated-union return before any other engine work, or does the bare string ship again?",
       "lede": "A refusal and a successful no-op are the same value, so the product hands out a share link that cannot resolve.",
       "visual": {
         "kind": "flow",
@@ -317,14 +317,14 @@
       },
       "stakes": "A stranger gets a URL that cannot work, from a product that claims it refuses rather than guesses.",
       "state": [
-        "`spliceFrontmatterValue` returns the unmodified input on refusal, at 20 sites (docs/CRITIQUE.md:556).",
-        "src/modules/share/infrastructure/share-writer.ts:25 computes `next` and commits it with no check.",
-        "The properties panel drops the refusal at `next === content` (src/modules/preview/presentation/PropertiesPanel.tsx:95)."
+        "The frontmatter writer returns its input unchanged on refusal, at 20 sites.",
+        "The share writer computes `next` and commits it with no check.",
+        "The properties panel sees `next === content` and silently drops the refusal."
       ],
       "tension": [
-        "Cheapest fix on the engine list, and not in MVP-0's 38 points.",
-        "Fixing NF-1 first lowers refusals; the dead-link path stays live meanwhile.",
-        "You cannot tell whether NF-1 worked while success and refusal share a value."
+        "Cheapest engine fix, and not in the pilot's 38 points.",
+        "Fixing the bug where a list starting at the left edge makes the editor refuse the file cuts refusals; dead links stay live.",
+        "You cannot tell whether it worked while success and refusal share a value."
       ],
       "evidence": [
         {
@@ -401,7 +401,7 @@
         },
         {
           "k": "b",
-          "label": "Union return now, before NF-1",
+          "label": "Union return now, before fixing the left-edge list bug",
           "what": "`{ ok: true, text } | { ok: false, reason, at, hint }`, both callers branching on `ok`.",
           "gains": [
             "Kills the dead-link path today and makes later refusals renderable"
@@ -415,7 +415,7 @@
         },
         {
           "k": "c",
-          "label": "Fix NF-1 and NF-3 first, then the union",
+          "label": "Fix the left-edge list bug and the old line-ending bug first, then the union",
           "gains": [
             "Fewer refusals to render when the union lands"
           ],
@@ -442,10 +442,10 @@
       ],
       "rec": "b",
       "recCase": [
-        "It makes every other engine fix observable, and it is the cheapest one.",
+        "It makes every other engine fix observable, and it costs least.",
         "It is the only defect that hands a user a wrong artefact rather than doing nothing."
       ],
-      "flip": "Cutting the share path from MVP-0 entirely, which makes option c sufficient for the pilot.",
+      "flip": "Cutting the share path out of the pilot entirely, which makes option c sufficient.",
       "linked": [
         "E1",
         "E3",
@@ -467,8 +467,8 @@
       "cat": "Engine & technical",
       "sub": "Write path",
       "weight": "high",
-      "q": "Do we replace SAFE_KEY with the addressability predicate, or keep an ASCII allowlist that cannot address 942 files?",
-      "lede": "The key grammar excludes a space, the shape two of the corpus's largest vaults use for their commonest keys.",
+      "q": "Do we make every key the writer can locate writable, or keep an ASCII allowlist that cannot address 942 files?",
+      "lede": "Frontmatter keys with spaces, like `date created`, cannot be edited yet; two of our largest vaults use them most.",
       "visual": {
         "kind": "compare",
         "labelWidth": 190,
@@ -533,14 +533,14 @@
       },
       "stakes": "Two vaults in our own corpus stay read-only, and CJK keys cannot be written at all.",
       "state": [
-        "`SAFE_KEY = /^[A-Za-z0-9_.$-]+$/` at src/modules/share/domain/splice-frontmatter.ts:53, copied at five panel sites.",
-        "942 files carry an unaddressable key — 11.8% of frontmatter files (docs/ENGINE.md:1093).",
-        "§75 measures the replacement: 936 files become writable, 6 stay refused (docs/ENGINE.md:1115)."
+        "The key rule is `SAFE_KEY = /^[A-Za-z0-9_.$-]+$/`, copied at five properties-panel sites.",
+        "942 files, 11.8% of those with frontmatter, carry a key that rule cannot address.",
+        "The engine audit measured the replacement: 936 files become writable, 6 stay refused."
       ],
       "tension": [
         "The honest boundary is what the locator can find, not which characters are safe.",
         "Codepoint equality with NFC on the request is a commitment, not a detail.",
-        "0 corpus keys are quoted on disk, so the quoting cases are theoretical (docs/ENGINE.md:1094)."
+        "0 corpus keys are quoted on disk, so the quoting cases are theoretical."
       ],
       "evidence": [
         {
@@ -629,7 +629,7 @@
             "Cheapest possible change"
           ],
           "costs": [
-            "Splices into a sequence item on 5 corpus files: corruption, not refusal"
+            "Writes into a list item on 5 corpus files: corruption, not refusal"
           ],
           "system": "One regex.",
           "screens": "None.",
@@ -650,7 +650,7 @@
         },
         {
           "k": "c",
-          "label": "Adopt the §75.5 predicate, one definition, both modules",
+          "label": "Adopt the engine doc's key predicate, one definition, both modules",
           "gains": [
             "936 of 942 files become writable, measured",
             "One definition of the rule, not two"
@@ -664,9 +664,9 @@
         },
         {
           "k": "d",
-          "label": "Keep SAFE_KEY and refuse those keys with a named message",
+          "label": "Keep the ASCII allowlist and refuse those keys with a named message",
           "gains": [
-            "Honest, and cheap once E2's union lands"
+            "Honest, and cheap once refusals are reported"
           ],
           "costs": [
             "11.8% of frontmatter files stay unwritable; two vaults read-only"
@@ -678,14 +678,15 @@
       ],
       "rec": "c",
       "recCase": [
-        "Designed, measured against the corpus, and it carries the test that must fail first (docs/ENGINE.md:1250).",
+        "Designed, measured against the corpus, and it carries a test that must fail on today's code first.",
         "Costs about what option b costs and adds no corruption path."
       ],
       "flip": "A real vault with case-duplicate or non-NFC keys, which forces the equality rule to be decided first.",
       "linked": [
         "E1",
         "E33",
-        "E36"
+        "E36",
+        "E2"
       ],
       "sources": [
         "src/modules/share/domain/splice-frontmatter.ts:53",
@@ -740,13 +741,13 @@
       },
       "stakes": "The first person who tests the byte claim on a commented key finds the counter-example in five seconds.",
       "state": [
-        "`spliceFrontmatterValue` on `share: old  # keep me` drops the comment (docs/ENGINE.md:59).",
+        "Setting a value on `share: old  # keep me` drops the comment.",
         "The sibling `spliceFrontmatterKey` promises in its own doc comment that the comment survives.",
-        "CRITIQUE grades it SEVERE; it is not in MVP-0's 38 points (docs/CRITIQUE.md:757)."
+        "The critique grades it severe; it is not in the pilot's 38 points."
       ],
       "tension": [
-        "Positioning, the demo and DECIDE's description all rest on this sentence (docs/DECIDE.md:60).",
-        "The fix is confined to the value emitter; its red proof is two lines."
+        "Positioning, the demo and the decision summary all rest on this sentence.",
+        "The fix is confined to the value emitter; its failing-first test is two lines."
       ],
       "evidence": [
         {
@@ -870,7 +871,7 @@
       "rec": "c",
       "recCase": [
         "Everything in the pitch is downstream of one sentence, and this makes it false with no setup.",
-        "The red proof must be shown failing against today's emitter before its pass means anything."
+        "The test must be shown failing against today's emitter before its pass means anything."
       ],
       "flip": "Nothing short of dropping the byte claim from the positioning.",
       "linked": [
@@ -955,13 +956,13 @@
       },
       "stakes": "Two tiers are priced on an apparatus that may reduce to five regexes.",
       "state": [
-        "Pro and Max both sell `mdmax cert` at $4–5 per user monthly (docs/PRODUCT-BRIEF.md:288).",
-        "Kill condition 4 fires at 99.8%; three constructs cover 93.8% of attributions (docs/ENGINE.md:899).",
-        "`__unattributed__` is 392 of 845 attributions, so the condition is unreadable (docs/ENGINE.md:540)."
+        "Pro and Max both sell the certificate, `mdmax cert`, at $4–5 per user monthly.",
+        "The kill condition for \"it is a rule set\" fires at 99.8%; three constructs cover 93.8% of attributions.",
+        "392 of 845 attributions are blocks no detector claimed, so the condition is unreadable."
       ],
       "tension": [
         "Sharpening the detectors is a precondition for reading the kill condition; two founder-weeks.",
-        "Dropping unattributed blocks makes the condition fire by construction, so it is anti-recommended."
+        "Dropping unclaimed blocks makes the condition fire by construction, so it is advised against."
       ],
       "evidence": [
         {
@@ -1192,7 +1193,7 @@
       "cat": "Engine & technical",
       "sub": "Certificate",
       "weight": "critical",
-      "q": "Do we replace the modal-consensus reference with declared per-construct expectations, keep modal, or stop reporting MUTATE?",
+      "q": "Should the certificate judge each construct against the spec that defines it, keep majority vote, or stop reporting MUTATE?",
       "lede": "The certificate reports PASS when the engines disagree most, and marks spec-correct engines corrupt when they are outvoted.",
       "visual": {
         "kind": "compare",
@@ -1232,7 +1233,7 @@
             "label": "Task lists in the vault run",
             "cells": [
               "172 of 484 attributions",
-              "—",
+              "",
               "not a corner case"
             ]
           }
@@ -1242,7 +1243,7 @@
       },
       "stakes": "Every published number and every priced gate inherits a verdict inverted at both ends.",
       "state": [
-        "A reference is set only on a strict majority with no tie (src/modules/mdmax/application/certify.ts:256).",
+        "Today a reference is set only when a strict majority of engines agree, with no tie.",
         "With no reference `classify` never reaches MUTATE, so every cell reports PASS."
       ],
       "tension": [
@@ -1372,10 +1373,10 @@
       ],
       "rec": "d",
       "recCase": [
-        "A PASS firing precisely where the engines disagree most is not weaker, it is inverted.",
-        "Delete `void oracle` in the same commit: a settable option that changes nothing is a trap."
+        "PASS fires where the engines disagree most, which inverts the verdict rather than weakening it.",
+        "Delete `void oracle` in the same commit, since a settable option that changes nothing misleads."
       ],
-      "flip": "E6's bake-off showing the apparatus reduces to a rule set, at which point the reference stops mattering.",
+      "flip": "The regex bake-off showing the apparatus reduces to a rule set, when the reference stops mattering.",
       "linked": [
         "E6",
         "E9"
@@ -1443,14 +1444,14 @@
       },
       "stakes": "A verdict whose meaning can change without the stamp moving is not auditable, and it is what we would sell.",
       "state": [
-        "103 files: 338 ms on six engines, 14,020 ms on seven (docs/ENGINE.md:542).",
-        "`entities` and `marked` are in neither `dependencies` nor `devDependencies` (docs/ENGINE.md:229).",
-        "No Gemfile, no Gemfile.lock, no .ruby-version: gem versions come from the machine (docs/ENGINE.md:231)."
+        "103 files: 338 ms on six engines, 14,020 ms on seven.",
+        "`entities` and `marked` are in neither `dependencies` nor `devDependencies`.",
+        "No Gemfile, no Gemfile.lock, no .ruby-version: gem versions come from the machine."
       ],
       "tension": [
         "Interactive surfaces need single-digit milliseconds; the published artefact needs the GitHub Pages row.",
         "Under `npm ci --omit=dev` the production domain layer loses its import entirely.",
-        "ENGINE gives three whole-corpus cost figures, so the nightly cannot be sized."
+        "The engine audit gives three whole-corpus cost figures, so the nightly cannot be sized."
       ],
       "evidence": [
         {
@@ -1662,8 +1663,8 @@
       "cat": "Engine & technical",
       "sub": "Certificate",
       "weight": "high",
-      "q": "Which certificate surface reaches an outsider first — MCP tool, public web checker, GitHub Action, or none until the bake-off?",
-      "lede": "The certificate is a wedge only if a stranger can run it, and every candidate surface imports a dead CLI.",
+      "q": "Which certificate surface reaches an outsider first: MCP tool, public web checker, GitHub Action, or none until the bake-off?",
+      "lede": "The certificate only draws people in if a stranger can run it, and every candidate surface imports a broken CLI.",
       "visual": {
         "kind": "compare",
         "labelWidth": 170,
@@ -1728,13 +1729,13 @@
       },
       "stakes": "Build the wrong surface first and we spend a week reaching a claim the bake-off may retire.",
       "state": [
-        "No certificate surface exists; the engine doc ranks and prices five (docs/ENGINE.md:836).",
-        "94.25% of real files carry a BROKEN block, so an Action starts red (docs/ENGINE.md:820).",
-        "A badge is anti-recommended: a verdict depends on target set and bench id (docs/ENGINE.md:905)."
+        "No certificate surface exists; the engine audit ranks and prices five.",
+        "94.25% of real files carry a BROKEN block, so an Action starts red.",
+        "The audit advises against a badge: a verdict depends on target set and bench id."
       ],
       "tension": [
-        "The best top-of-funnel artefact also publishes our renderer as the loudest row (docs/ENGINE.md:830).",
-        "Publishing dates the eight declared rows, the only forcing function `DECLARED_LAST_VERIFIED` has.",
+        "The best top-of-funnel artefact also shows our renderer as the loudest offender.",
+        "Publishing would force the eight declared, unmeasured rows to carry current dates, as nothing else does.",
         "Every surface here is downstream of one day of CLI work."
       ],
       "evidence": [
@@ -1886,8 +1887,8 @@
       ],
       "rec": "d",
       "recCase": [
-        "Cheapest, no rendering, and its consumer can act on a verdict before the bytes are written.",
-        "Sequence whichever surface goes first behind E6, so no channel is built for an untested claim."
+        "Cheapest, no rendering, and the agent using it can act on a verdict before writing.",
+        "Put whichever surface goes first behind the bake-off, so no channel is built for an untested claim."
       ],
       "flip": "A pilot buyer who does not run agents, which moves the web checker ahead of the MCP tool.",
       "linked": [
@@ -1919,7 +1920,7 @@
       "cat": "Engine & technical",
       "sub": "Wiring",
       "weight": "high",
-      "q": "Is making `mdmax cert` runnable, and running the fold over the whole corpus, the first engine commit?",
+      "q": "Is making `mdmax cert` runnable and running it over the whole corpus the first engine commit?",
       "lede": "The certificate is the only thing that can execute twelve of thirteen engine files, and it has never executed them.",
       "visual": {
         "kind": "flow",
@@ -1954,12 +1955,12 @@
       "stakes": "Every engine number feeding the other decisions comes from a hook nobody has committed.",
       "state": [
         "`node scripts/mdmax-cert.mjs` fails with `ERR_MODULE_NOT_FOUND`; `cert` is not among the 26 scripts.",
-        "`mdmax-cert.mjs:195` pads before comparing, so every verdict prints red (docs/ENGINE.md:1004).",
-        "`mdmax/fold@1` has run four times, never over all 8,513 files (docs/ENGINE.md:819)."
+        "The CLI pads each verdict before comparing it to `PASS`, so every verdict prints red.",
+        "The certificate's comparison step, `mdmax/fold@1`, has run four times, never over all 8,513 files."
       ],
       "tension": [
-        "The plan lists this tenth at one day, behind nine items (docs/PRODUCT-BRIEF.md:224).",
-        "The full JS-only fold costs 34.9 seconds, so the real cost is wiring.",
+        "The plan lists this tenth, at one day, behind nine other items.",
+        "The full JS-only run takes 34.9 seconds, so the real cost is wiring.",
         "Four samples give 24.35%, 25.26%, 33.45% and 18.74%, with no principled way to pick."
       ],
       "evidence": [
@@ -2089,7 +2090,7 @@
           "k": "a",
           "label": "Register the resolve hook, add a `cert` script, fix padEnd, run the full fold",
           "gains": [
-            "Unblocks the bake-off, the dataset and the MCP tool",
+            "Unblocks the regex bake-off, the dataset and the MCP tool",
             "Replaces four disagreeing numbers with one carrying a corpus id"
           ],
           "costs": [
@@ -2101,8 +2102,8 @@
         },
         {
           "k": "b",
-          "label": "After NF-1 and NF-3",
-          "what": "Keep fix order by user impact; wire the CLI in week two.",
+          "label": "After fixing the left-edge list bug and the old line-ending bug",
+          "what": "Fix the left-edge list and line-ending bugs first; wire the CLI in week two.",
           "gains": [
             "User-visible refusals fall first"
           ],
@@ -2120,7 +2121,7 @@
             "Removes a broken entry point"
           ],
           "costs": [
-            "Gives up third-party reproducibility, and every E9 surface with it"
+            "Gives up third-party reproducibility, and every public surface with it"
           ],
           "system": "Deletes the script.",
           "screens": "None.",
@@ -2143,7 +2144,7 @@
       "rec": "a",
       "recCase": [
         "One day makes twelve unreachable files runnable, and today every verdict prints red including passes.",
-        "Both the audit and the certificate section rank it first; everything else imports this path."
+        "Two sections of the engine audit rank it first; everything else imports this path."
       ],
       "flip": "Cutting the certificate from the product entirely, which makes option c the honest cleanup.",
       "linked": [
@@ -2166,6 +2167,7 @@
         "docs/ENGINE.md:228",
         "docs/PRODUCT-BRIEF.md:224",
         "package.json:8",
+        "mdmax-cert.mjs:195",
         "merged: E34"
       ]
     },
@@ -2174,8 +2176,8 @@
       "cat": "Engine & technical",
       "sub": "Enforcement",
       "weight": "critical",
-      "q": "Does a CI workflow land in week one before NF-1, and which benches are required on every push?",
-      "lede": "There is no continuous verification at all, so every engine fix on the roadmap is riskier than it needs to be.",
+      "q": "Does CI land in week one, ahead of the fix for files the editor refuses over a flush-left list, and which benchmarks run per push?",
+      "lede": "With no continuous verification, every engine fix on the roadmap is riskier than it needs to be.",
       "visual": {
         "kind": "compare",
         "labelWidth": 180,
@@ -2198,32 +2200,32 @@
             "label": "Unit tests and typecheck",
             "cells": [
               "yes",
-              "—",
-              "—"
+              "",
+              ""
             ]
           },
           {
             "label": "Corpus byte pin",
             "cells": [
               "yes, and not in `verify` today",
-              "—",
-              "—"
+              "",
+              ""
             ]
           },
           {
             "label": "Splice oracle over 7,969 files",
             "cells": [
               "yes, as a band not an equality",
-              "—",
-              "—"
+              "",
+              ""
             ]
           },
           {
             "label": "Quadratic canary",
             "cells": [
-              "yes, red on purpose until E17",
-              "—",
-              "—"
+              "yes, red on purpose until the wikilink regex fix",
+              "",
+              ""
             ]
           },
           {
@@ -2231,7 +2233,7 @@
             "cells": [
               "no",
               "yes",
-              "—"
+              ""
             ]
           },
           {
@@ -2248,12 +2250,12 @@
       },
       "stakes": "Nothing stops a regression landing, in a repo where four gates have reported green while blind.",
       "state": [
-        "There is no `.github` directory; `npm run verify` skips `corpus` (package.json:19).",
-        "ENGINE ranks CI first of nine at half a founder-week; CRITIQUE agrees (docs/ENGINE.md:732)."
+        "There is no `.github` directory, and `npm run verify` skips the corpus check.",
+        "The engine audit ranks CI first of nine at half a founder-week; the critique agrees."
       ],
       "tension": [
-        "Writing all eight benches costs more than the CI file, which multiplies everything else.",
-        "An equality-pinned refusal count goes red when a corpus file is added (docs/ENGINE.md:660).",
+        "The eight benches cost more than the CI file, which multiplies everything else.",
+        "An equality-pinned refusal count goes red when a corpus file is added.",
         "A gate never observed failing is not evidence, so the red run matters more."
       ],
       "evidence": [
@@ -2393,7 +2395,7 @@
             "Lands this week, with no bench authoring on the critical path"
           ],
           "costs": [
-            "The splice oracle and quadratic canary move off the merge path"
+            "The write-path oracle and quadratic canary move off the merge path"
           ],
           "system": "Workflow plus two checks.",
           "screens": "None.",
@@ -2415,7 +2417,7 @@
         {
           "k": "c",
           "label": "CI first with a deliberate red run, and the five-per-push split as written",
-          "what": "Workflows file, then the §70.6 split: five benches per push, two nightly, one weekly.",
+          "what": "Workflows file, then the audit's split: five benches per push, two nightly, one weekly.",
           "gains": [
             "Every subsequent fix lands with evidence",
             "The red run answers this repo's history of blind gates"
@@ -2443,10 +2445,10 @@
       ],
       "rec": "c",
       "recCase": [
-        "Two independent reviews put this first, for the same reason and at roughly the same price.",
+        "Two independent reviews rank this first, for the same reason at roughly the same price.",
         "Four gates here have reported green while scanning nothing."
       ],
-      "flip": "Bench authoring pushing CI past week one, in which case ship the reduced per-push set first.",
+      "flip": "If bench authoring pushes CI past week one, ship the reduced per-push set first.",
       "linked": [
         "E1",
         "E17",
@@ -2476,7 +2478,7 @@
       "cat": "Engine & technical",
       "sub": "Enforcement",
       "weight": "medium",
-      "q": "Do we replace the byte budget's `echo` with a real bundler budget, or delete the script?",
+      "q": "Do we replace the size-budget script, which today only runs `echo`, with a real bundler budget, or delete it?",
       "lede": "A product that wants to sell document gates in CI ships a size gate that is a print statement.",
       "visual": {
         "kind": "ba",
@@ -2510,16 +2512,16 @@
         "note": "The proposed ceilings rest on a 15–18 KB estimate the engine doc says must be replaced by a real number first.",
         "caption": "Two placeholders: a script that prints, a ceiling that was guessed"
       },
-      "stakes": "The packaging story says the splice core drops into another host, and nothing has measured it.",
+      "stakes": "The packaging plan says the engine core drops into another host, and nothing has measured its size.",
       "state": [
-        "`\"budget\": \"echo …\"` at package.json:20, and `verify` does not call it (package.json:19).",
-        "ENGINE proposes 20 KB gzip for the core, 45 KB with the certificate (docs/ENGINE.md:2243).",
-        "Those ceilings rest on a strip count of 57,318 bytes, not a bundle (docs/ENGINE.md:2127)."
+        "The `budget` npm script is an `echo`, and `verify` does not call it.",
+        "The engine audit proposes 20 KB gzipped for the core, 45 KB with the certificate.",
+        "Those ceilings rest on a count of 57,318 stripped source bytes, not a real bundle."
       ],
       "tension": [
         "A gate failing on day one for unactionable reasons trains people to ignore it.",
-        "A gate that always passes is the same disease from the other end.",
-        "The size number is load-bearing for E24's packaging argument either way."
+        "A gate that always passes is equally useless.",
+        "The packaging decision needs the size number either way."
       ],
       "evidence": [
         {
@@ -2570,7 +2572,7 @@
           "label": "Real bundler, report the number, set the ceiling after two weeks of readings",
           "gains": [
             "Same work, no false red",
-            "Gives E24 a real number to argue from"
+            "Gives the packaging decision a real number"
           ],
           "costs": [
             "No enforcement for two weeks"
@@ -2586,7 +2588,7 @@
             "A working gate this week"
           ],
           "costs": [
-            "A strip count is the basis; the first run may be red"
+            "The ceilings rest on stripped source bytes; the first run may be red"
           ],
           "system": "Bundler in the verify chain.",
           "screens": "None.",
@@ -2621,7 +2623,7 @@
       ],
       "rec": "a",
       "recCase": [
-        "The measurement is worth having and the ceiling is not worth guessing.",
+        "We need the size number either way, and a ceiling set before real readings would be a guess.",
         "Land it with the CI file, not as separate work."
       ],
       "flip": "Deciding never to publish the engine as a package, which makes deleting the script the honest answer.",
@@ -2699,15 +2701,15 @@
         "note": "Both failures are silent: one carries `ok: true`, the other is a plausible number in an error message.",
         "caption": "Two defects reproduced at HEAD, both reporting success"
       },
-      "stakes": "Per-hunk accept reads byte anchors back, so a lying conversion becomes a wrong byte range in the flagship.",
+      "stakes": "Per-hunk accept reads byte anchors back, so a wrong conversion becomes a wrong byte range in the main review feature.",
       "state": [
-        "The checkpoint table's last slot is never assigned (src/modules/mdmax/domain/offsets.ts:127).",
-        "At lengths that are exact multiples of 512 every probe returns end-of-document (docs/ENGINE.md:41).",
-        "`decodeStrict` bisects on a predicate that is not monotone on multi-byte input (docs/ENGINE.md:47)."
+        "The offset map's checkpoint table never assigns its last slot.",
+        "At lengths that are exact multiples of 512 every probe returns end-of-document.",
+        "The UTF-8 checker `decodeStrict` binary-searches on a condition that is not monotone on multi-byte input."
       ],
       "tension": [
         "`toByte` is unaffected, so nothing reaches a user from the offset defect today.",
-        "A test probing only low offsets at 512, 1024 and 1536 passes unfixed (docs/ENGINE.md:1863).",
+        "A test probing only low offsets at 512, 1024 and 1536 passes on the unfixed code.",
         "The column impact is minor; a binary search over an unsorted property shipped green."
       ],
       "evidence": [
@@ -2863,7 +2865,7 @@
             "The offset test must walk every offset, not sample three lengths"
           ],
           "system": "Two domain files.",
-          "screens": "The ingress refusal can carry a correct location.",
+          "screens": "The refusal shown when a file is read in can carry a correct location.",
           "money": "None."
         },
         {
@@ -2899,7 +2901,7 @@
             "No work now"
           ],
           "costs": [
-            "Ships the flagship on a conversion that can return end-of-document"
+            "Ships the review feature on a conversion that can return end-of-document"
           ],
           "system": "No change.",
           "screens": "None.",
@@ -2936,7 +2938,7 @@
       "cat": "Engine & technical",
       "sub": "Correctness",
       "weight": "high",
-      "q": "Do we rewrite `safeInsert`, delete it, or ship review state without a placement gate?",
+      "q": "Do we rewrite `safeInsert`, delete it, or ship the review flow without a placement gate?",
       "lede": "The gate meant to stop a write changing what a document means refuses the safe case and permits the unsafe one.",
       "visual": {
         "kind": "compare",
@@ -2991,14 +2993,14 @@
         "note": "The pre-check ORs over a two-line lookback and treats a bare `---` as a setext underline.",
         "caption": "The placement gate, measured both ways"
       },
-      "stakes": "Per-hunk accept and reject is priced at 16 points and its write gate refuses the flagship's primary case.",
+      "stakes": "Per-hunk accept and reject is priced at 16 points, and its write gate refuses its primary case.",
       "state": [
         "`placement.ts` has zero callers anywhere in `src/`.",
-        "Both refusals and both permissions reproduce today (docs/ENGINE.md:45).",
-        "CRITIQUE grades it SEVERE the moment `land()` ships (docs/CRITIQUE.md:760)."
+        "Both wrong refusals and both wrong permissions reproduce today.",
+        "The critique grades it severe once `land()`, which applies accepted changes, ships."
       ],
       "tension": [
-        "Both defects are small and both have reproducible red proofs available today.",
+        "Both defects are small, and both have failing tests available today.",
         "The right shape, per-span-kind permitted deltas, belongs to the body-span decision: three founder-weeks."
       ],
       "evidence": [
@@ -3081,7 +3083,7 @@
           "label": "Rewrite both defects now, before `land()` is designed",
           "what": "Fix the setext lookback and add the skip-region check for fences and code spans.",
           "gains": [
-            "Makes the gate usable for the flagship",
+            "Makes the gate usable for per-hunk accept",
             "Keeps it decoupled from the body-span decision"
           ],
           "costs": [
@@ -3098,7 +3100,7 @@
             "The architecturally right shape, one design instead of two"
           ],
           "costs": [
-            "Makes the flagship wait on a three-founder-week High-risk item"
+            "Makes per-hunk accept wait on a three-founder-week high-risk item"
           ],
           "system": "Placement becomes part of the span contract.",
           "screens": "None.",
@@ -3133,10 +3135,10 @@
       ],
       "rec": "a",
       "recCase": [
-        "Both defects are small with red proofs, and the gate stands between a hunk and a changed meaning.",
+        "Both defects are small with failing tests, and the gate stands between a hunk and a changed meaning.",
         "Fixing now keeps it decoupled from the body-span decision, which is bigger and less certain."
       ],
-      "flip": "Per-hunk accept and reject slipping out of MVP-0, which makes leaving it unwired defensible if written down.",
+      "flip": "Per-hunk accept and reject leaving the pilot, which makes leaving it unwired defensible if written down.",
       "linked": [
         "E21",
         "E22",
@@ -3157,7 +3159,7 @@
       "cat": "Engine & technical",
       "sub": "Correctness",
       "weight": "critical",
-      "q": "Do we wire the shape gate at ingress and replace the quadratic wikilink regex, or accept a 41-second parse?",
+      "q": "Do we wire the size guard in where files are read, and replace the quadratic wikilink regex, or accept a 41-second parse?",
       "lede": "The guard the performance story rests on has never been called, and the regex it bounds runs on every vault open.",
       "visual": {
         "kind": "flow",
@@ -3196,9 +3198,9 @@
       },
       "stakes": "A single hostile file blocks the app on the path every user takes, and the fix is written and measured.",
       "state": [
-        "`shapeGate`, `MAX_BYTES`, `MAX_LINES` and `BUDGET_MS` have zero product call sites (docs/ENGINE.md:49).",
-        "`WIKILINK_RE` is live at src/modules/vault/infrastructure/markdown-parser.ts:12 and copied in the preview.",
-        "The gate measures 16 ms on a 4 MB string (docs/ENGINE.md:344)."
+        "The size guard `shapeGate` and its byte, line and time limits have zero product call sites.",
+        "The quadratic `WIKILINK_RE` runs in the vault parser and is copied in the preview.",
+        "The guard measures 16 ms on a 4 MB string."
       ],
       "tension": [
         "JavaScript has no atomic groups, so the linear scanner is simpler and faster.",
@@ -3313,7 +3315,7 @@
           "label": "Wire `shapeGate` at both ingress sites, replace the regex with a scanner",
           "gains": [
             "Bounds the hostile case at O(limit)",
-            "Gives three unreachable refusal variants a producer"
+            "Three refusal types nothing could trigger get a real trigger"
           ],
           "costs": [
             "Two ingress sites change, and refusal copy needs rendering"
@@ -3352,7 +3354,7 @@
       "cat": "Engine & technical",
       "sub": "Measurement",
       "weight": "critical",
-      "q": "What must be true before any engine number is published — a second population, the two remaining gates, or nothing?",
+      "q": "What must be true before any engine number is published: a second population, the two remaining gates, or nothing?",
       "lede": "Every engine number is measured on seven Obsidian vaults, one wiki is 77% of the files, and the buyer is absent.",
       "visual": {
         "kind": "compare",
@@ -3379,7 +3381,7 @@
             "label": "Ratio between the two populations",
             "cells": [
               "3.24× on the same code",
-              "—"
+              ""
             ]
           },
           {
@@ -3407,15 +3409,15 @@
         "note": "The population moved the headline number by 3.24× with the code untouched.",
         "caption": "What the pinned corpus is answering, against what the plan is asking"
       },
-      "stakes": "Three headline numbers have already been withdrawn here, and the next is measured on an audience the route abandons.",
+      "stakes": "Three headline numbers have already been withdrawn here, and the next is measured on an audience the plan has dropped.",
       "state": [
-        "`SOURCES.json` pins 7 vaults, 8,513 files; one wiki contributes 6,586.",
-        "The record forbids publishing a fidelity or coverage percentage until four gates land (docs/ENGINE.md:207).",
-        "Gates 1 and 2 are done, though §68.5 still calls them ghosts (docs/ENGINE.md:211)."
+        "The corpus pins 7 vaults, 8,513 files; one wiki contributes 6,586.",
+        "The engine audit forbids publishing a fidelity or coverage percentage until four gates land.",
+        "Gates 1 and 2 are done, though an audit table still lists them as missing."
       ],
       "tension": [
         "The corpus has zero BOM, CRLF, bare-CR and unterminated-frontmatter files.",
-        "A fidelity percentage without the refusal rate is the shape of the three withdrawals."
+        "A fidelity percentage without the refusal rate is how the three withdrawals happened."
       ],
       "evidence": [
         {
@@ -3608,13 +3610,13 @@
         {
           "k": "c",
           "label": "Second population and the two remaining gates, then publish as one fraction",
-          "what": "Pin agent-written repos and READMEs, land NF-4's residual assertion and the corpus sweep.",
+          "what": "Pin agent-written repos and READMEs, then land the residual test for keys with spaces and the corpus sweep.",
           "gains": [
             "The number becomes about the buyer",
             "Keeps the existing 8,513-file byte gate"
           ],
           "costs": [
-            "Delays the first public number by days; §68.5's rows need correcting"
+            "Delays the first public number by days; an audit table needs correcting"
           ],
           "system": "A second pinned corpus and two tests.",
           "screens": "None.",
@@ -3637,7 +3639,7 @@
       "rec": "c",
       "recCase": [
         "The corpus answers a question about Obsidian users while the plan asks about developers running agents.",
-        "The same code moved 3.24× when the population changed, so the population is the finding."
+        "The same code moved 3.24× when the population changed, so the population decides the number."
       ],
       "flip": "The pilot buyer turning out to be the Obsidian user, in which case the corpus is already right.",
       "linked": [
@@ -3710,11 +3712,11 @@
         "note": "Lezer offsets are UTF-16 code units, the same unit mdast reports, so adopting it buys nothing against the byte contract.",
         "caption": "Which layer owns parsing, and what the boundary refuses"
       },
-      "stakes": "A stale editor offset reaching the splice writes correct-looking bytes at the wrong place, on every save.",
+      "stakes": "A stale editor offset reaching the writer puts correct-looking bytes in the wrong place, on every save.",
       "state": [
-        "The plan says lezer is vendored so review spans survive every keystroke (docs/PRODUCT-BRIEF.md:233).",
-        "ENGINE §79.1 says keep remark and make the boundary one-way and typed (docs/ENGINE.md:1927).",
-        "Lezer reads a frontmatter block as a rule plus a setext heading (docs/ENGINE.md:2007)."
+        "The plan says lezer is vendored so review spans survive every keystroke.",
+        "The engine audit says keep remark and make the boundary one-way and typed.",
+        "Lezer reads a frontmatter block as a rule plus a setext heading."
       ],
       "tension": [
         "The engine has no keystroke loop: its work is cold, once, per document.",
@@ -3813,7 +3815,7 @@
           "k": "b",
           "label": "Keep remark; add the typed tree boundary and the import lint rule",
           "gains": [
-            "A stale editor offset reaching the splice becomes unrepresentable",
+            "A stale editor offset cannot reach the writer",
             "Both documents stop contradicting each other"
           ],
           "costs": [
@@ -3879,8 +3881,8 @@
       "cat": "Engine & technical",
       "sub": "Scope",
       "weight": "high",
-      "q": "Do we commit to body-span splicing in the MVP, or is the render lane read-only until a profile needs it?",
-      "lede": "The splice contract covers one region of the file, so every rendered view that lets you edit has nowhere to write.",
+      "q": "Do we commit to writing inside the document body in the MVP, or keep rendered views read-only until one needs it?",
+      "lede": "The write contract covers only frontmatter, so every rendered view that lets you edit has nowhere to write.",
       "visual": {
         "kind": "file",
         "name": "spec.md",
@@ -3922,16 +3924,16 @@
         "note": "Leaf, delimited spans are safe to address first; the ambiguous prose case is the expensive half.",
         "caption": "What the writer can address, and what it cannot"
       },
-      "stakes": "With no body locator every render profile is a viewer rather than an editor.",
+      "stakes": "With no body locator, every rendered view is a viewer rather than an editor.",
       "state": [
-        "`spliceFrontmatterValue` addresses a top-level key inside frontmatter. There is no body locator.",
-        "ENGINE prices the body-span contract at 3.0 founder-weeks, High risk (docs/ENGINE.md:624).",
-        "Five product write-backs have no path at all today (docs/ENGINE.md:1270)."
+        "The writer addresses only top-level frontmatter keys. There is no body locator.",
+        "The engine audit prices body writing at 3.0 founder-weeks, rated high risk.",
+        "Five product write-backs have no path at all today."
       ],
       "tension": [
         "Checkbox toggle, kanban status, calendar drag, accepted hunk and section restore all need it.",
         "An unclosed fence swallows the document, and every save here is a publishable commit.",
-        "A body span boundary can be legitimately ambiguous (docs/ENGINE.md:677)."
+        "A body span boundary can be legitimately ambiguous."
       ],
       "evidence": [
         {
@@ -4010,13 +4012,13 @@
       "options": [
         {
           "k": "a",
-          "label": "Leaf, delimited spans only in MVP-1 — task marker, fenced block, callout body",
+          "label": "Leaf, delimited spans only, after the pilot: task marker, fenced block, callout body",
           "gains": [
-            "Delivers the checkbox toggle and the callout carrier",
+            "Delivers checkbox toggles and editable `> [!kind]` callouts",
             "Defers the genuinely ambiguous case"
           ],
           "costs": [
-            "Render profiles stay partly read-only; two contracts until the general case"
+            "Rendered views stay partly read-only; two contracts until the general case"
           ],
           "system": "A span enum with three kinds, a locator per kind.",
           "screens": "Checkbox toggles and callout edits write back.",
@@ -4032,7 +4034,7 @@
             "Three founder-weeks of the highest-risk work, with no CI underneath"
           ],
           "system": "Full body locator.",
-          "screens": "Every render profile becomes editable.",
+          "screens": "Every rendered view becomes editable.",
           "money": "None."
         },
         {
@@ -4042,7 +4044,7 @@
             "Smallest commitment, proving the model where duplicates are worst"
           ],
           "costs": [
-            "Leaves the callout carrier, which the render design depends on, unwritable"
+            "Leaves `> [!kind]` callouts, which the render design depends on, unwritable"
           ],
           "system": "One locator.",
           "screens": "Checkbox toggles only.",
@@ -4055,7 +4057,7 @@
             "No ambiguous boundary to defend"
           ],
           "costs": [
-            "Every render becomes a viewer, which the projection law forbids"
+            "Every rendered view becomes a viewer, which the projection law forbids"
           ],
           "system": "No change.",
           "screens": "Rendered views lose edit affordances.",
@@ -4064,7 +4066,7 @@
       ],
       "rec": "a",
       "recCase": [
-        "Atomicity picks the order: a task marker cannot disturb indentation, tags or a trailing comment.",
+        "Smallest spans first: a task marker cannot disturb indentation, tags or a trailing comment.",
         "Leaf spans prove the address model on real traffic before the prose case is attempted."
       ],
       "flip": "A corpus replay showing path-plus-ordinal resolving below 99.5%, collapsing the model back to content plus refusal.",
@@ -4089,8 +4091,8 @@
       "cat": "Engine & technical",
       "sub": "Scope",
       "weight": "high",
-      "q": "Do review anchors carry the structural triple, or a content hash alone?",
-      "lede": "Review state is the product, and the published re-anchoring number describes a pointer nobody has written yet.",
+      "q": "Do review anchors carry their position in the document's structure, or a content hash alone?",
+      "lede": "Review state, which spans a person has read, is the product, and its re-anchoring figure describes code nobody has written.",
       "visual": {
         "kind": "compare",
         "labelWidth": 190,
@@ -4146,9 +4148,9 @@
       },
       "stakes": "A false positive replaces bytes the user never pointed at, in the feature the product is named for.",
       "state": [
-        "§68.1 classifies the 99.627% re-anchoring claim ASPIRATIONAL: no anchor store exists (docs/ENGINE.md:124).",
-        "A task line's text is unique within its file for 67.4% of items (docs/ENGINE.md:1291).",
-        "Anchors resolve into the wrong file 35.1% of the time without scope checking (docs/ENGINE.md:1516)."
+        "The engine audit classifies the published 99.627% re-anchoring claim as aspirational: no anchor store exists.",
+        "A task line's text is unique within its file for 67.4% of items.",
+        "Anchors resolve into the wrong file 35.1% of the time without scope checking."
       ],
       "tension": [
         "Eight fields to persist and version makes every threshold change a migration.",
@@ -4265,9 +4267,9 @@
         {
           "k": "d",
           "label": "Full record: hash, multiplicity, ordinal, docId, quote, context, heading path",
-          "what": "The §77 anchor as specified, with scope checked before any content is examined.",
+          "what": "The anchor the engine audit specifies, with scope checked before any content is examined.",
           "gains": [
-            "Zero false positives in the exact lane at 98.65% resolve",
+            "Zero false positives on exact-hash matches, at 98.65% resolved",
             "Survives rename and reorder"
           ],
           "costs": [
@@ -4280,10 +4282,10 @@
       ],
       "rec": "d",
       "recCase": [
-        "One integer field converts an 8.8× worse false-positive rate into zero errors in the undetectable lane.",
+        "One integer field turns an 8.8× worse false-positive rate into zero errors on exact-hash matches.",
         "Publish both harnesses under one manifest with the mutation mix stated, rather than arguing them."
       ],
-      "flip": "A harness reproducing the mutation mix with zero exact-lane false positives and no multiplicity field.",
+      "flip": "A harness matching the mutation mix with no exact-hash false positives and no multiplicity field.",
       "linked": [
         "E21",
         "E36",
@@ -4305,7 +4307,7 @@
       "cat": "Engine & technical",
       "sub": "Testing",
       "weight": "medium",
-      "q": "Do we adopt fast-check and the twelve properties, adopt four of them, or widen the corpus instead?",
+      "q": "Do we adopt fast-check and all twelve specified property tests, only four of them, or widen the corpus instead?",
       "lede": "Three of the four defects this engine has shipped live in corpus rows with a count of zero.",
       "visual": {
         "kind": "compare",
@@ -4370,11 +4372,11 @@
       "stakes": "Two open byte-destructive defects have no instrument that can see them.",
       "state": [
         "No property tests exist; `npm run corpus` hashes files and is not in `verify`.",
-        "ENGINE §78 specifies twelve properties across four files on fast-check 4.9.0 (docs/ENGINE.md:1730).",
-        "The corpus has zero BOM, CRLF, bare-CR and unterminated-frontmatter files (docs/ENGINE.md:1746)."
+        "The engine audit specifies twelve properties across four files on fast-check 4.9.0.",
+        "The corpus has zero BOM, CRLF, bare-CR and unterminated-frontmatter files."
       ],
       "tension": [
-        "Twelve properties plus four generator files is real time at 1.21 engineering days weekly.",
+        "Twelve properties plus four generator files is real time at 1.21 engineering days a week.",
         "Four catch every shipped defect; eight guard surfaces that do not exist yet."
       ],
       "evidence": [
@@ -4468,7 +4470,7 @@
         },
         {
           "k": "b",
-          "label": "Widen the corpus instead — add BOM, CRLF and bare-CR files",
+          "label": "Widen the corpus instead: add BOM, CRLF and bare-CR files",
           "gains": [
             "Cheaper and familiar; keeps one instrument"
           ],
@@ -4502,7 +4504,7 @@
           ],
           "costs": [
             "Four generator files is the real cost, not the 7 seconds",
-            "Eight guard code that does not exist"
+            "Eight of them guard code that does not exist"
           ],
           "system": "New dev dependency and four test files.",
           "screens": "None.",
@@ -4514,7 +4516,7 @@
         "The four that would have caught every shipped defect are worth authoring; the other eight guard nothing.",
         "Store regressions as literal counterexamples: a seed stops testing anything once the generator changes."
       ],
-      "flip": "The body-span and anchor work landing, which makes the construct and fold properties concrete.",
+      "flip": "Body writing and review anchors landing, which makes the construct and fold properties concrete.",
       "linked": [
         "E12",
         "E15",
@@ -4538,7 +4540,7 @@
       "cat": "Engine & technical",
       "sub": "Distribution",
       "weight": "medium",
-      "q": "If we publish the engine, what shape and what licence — and does the name survive?",
+      "q": "If we publish the engine, what shape and what licence, and does the name survive?",
       "lede": "The package name is free, the product name is taken in two registries, and the repo has no licence file.",
       "visual": {
         "kind": "arch",
@@ -4579,7 +4581,7 @@
             "items": [
               "Apache-2.0 with a NOTICE"
             ],
-            "side": "§6 withholds trademark rights",
+            "side": "withholds trademark rights",
             "tone": "good"
           }
         ],
@@ -4588,14 +4590,14 @@
       },
       "stakes": "Publishing the wrong shape freezes an API and a name we would then have to break.",
       "state": [
-        "`mdmax` returns 404 on npm and `frontmatter` returns 200 (docs/ENGINE.md:2128).",
-        "There is no LICENSE file in the repo (docs/ENGINE.md:2131).",
-        "The VS Code incumbent has 82,265 installs and holds the `@frontmatter` scope (docs/GAPS-2026-09-08.md:132)."
+        "`mdmax` returns 404 on npm and `frontmatter` returns 200.",
+        "There is no LICENSE file in the repo.",
+        "The VS Code incumbent has 82,265 installs and holds the `@frontmatter` scope."
       ],
       "tension": [
-        "A single package pulls `entities` and a subprocess into a splice-only consumer's graph.",
+        "A single package pulls `entities` and a subprocess into every writer-only consumer's graph.",
         "Three packages fragment the version vector for no gain.",
-        "Apache-2.0 §6 withholds trademark rights; MIT leaves that to trademark law."
+        "Apache-2.0 section 6 withholds trademark rights; MIT leaves that to trademark law."
       ],
       "evidence": [
         {
@@ -4656,7 +4658,7 @@
           "label": "Two packages, Apache-2.0 with a NOTICE, ship under `mdmax`",
           "what": "A browser-safe core with a `mdmax/cert` subpath, and `mdmax-cli` for bin, bench and ruby.",
           "gains": [
-            "A splice-only consumer pulls neither `entities` nor a subprocess",
+            "A writer-only consumer pulls neither `entities` nor a subprocess",
             "`mdmax` is free in the registry we would ship to"
           ],
           "costs": [
@@ -4733,7 +4735,7 @@
       "cat": "Engine & technical",
       "sub": "Boundary",
       "weight": "medium",
-      "q": "Do we cut the engine to a 31-symbol barrel, move the splice writer inside it, and enforce the boundary mechanically?",
+      "q": "Do we cut the engine to a 31-symbol barrel, move the frontmatter writer inside it, and enforce the boundary mechanically?",
       "lede": "There is no API, there is a folder other folders reach into, and the engine's central function lives outside it.",
       "visual": {
         "kind": "compare",
@@ -4790,9 +4792,9 @@
       },
       "stakes": "A purity violation discovered after publication is a breaking change rather than a refactor.",
       "state": [
-        "88 export declarations across 13 files, no index.ts, one external deep-importer (docs/ENGINE.md:2121).",
-        "`splice-frontmatter.ts` lives in `share/domain`; the properties panel imports it across a boundary (docs/ENGINE.md:575).",
-        "All three arch gates permit mdmax importing vault (docs/ENGINE.md:548)."
+        "88 export declarations across 13 files, no index.ts, one outside module deep-importing it.",
+        "The frontmatter writer lives in `share/domain`, and the properties panel imports it across a boundary.",
+        "All three architecture gates allow the engine to import the vault module."
       ],
       "tension": [
         "`infrastructure/bench.ts` imports `node:child_process`, so one barrel export reaches the client bundle.",
@@ -4957,7 +4959,7 @@
         {
           "k": "d",
           "label": "Barrel, the three moves, and the transitive purity harness in `verify`",
-          "what": "An enumerated index.ts, the splice writer moved inside, an `engine` element type, a harness with a denominator guard.",
+          "what": "An enumerated index.ts, the writer moved inside, an `engine` element type, a harness with a denominator guard.",
           "gains": [
             "One public surface instead of a folder",
             "Catches the transitive leak a lint rule cannot see"
@@ -4972,8 +4974,8 @@
       ],
       "rec": "d",
       "recCase": [
-        "An enumerated barrel is the difference between an API and a folder.",
-        "The denominator guard is not decoration: a gate here reported a clean pass scanning zero files."
+        "An enumerated barrel exposes 31 chosen symbols instead of all 88.",
+        "The denominator guard matters: a gate here reported a clean pass scanning zero files."
       ],
       "flip": "Deciding the engine is never lifted out of this repo, which makes the barrel and lint rule enough.",
       "linked": [
@@ -5002,7 +5004,7 @@
       "cat": "Engine & technical",
       "sub": "Refusals",
       "weight": "high",
-      "q": "Do we declare non-locality a refusal condition, or keep splicing near reference-link definitions?",
+      "q": "Do we refuse edits whose effect reaches beyond the changed bytes, or keep writing near reference-link definitions?",
       "lede": "There are edits where every byte in the changed range is correct and prose elsewhere changes meaning anyway.",
       "visual": {
         "kind": "file",
@@ -5036,14 +5038,14 @@
       },
       "stakes": "The engine keeps a silent failure of exactly the kind it exists to eliminate.",
       "state": [
-        "The plan states the class and states that nothing implements it (docs/PRODUCT-BRIEF.md:510).",
-        "The class also covers HTML block condition 7 and setext underlines (docs/PRODUCT-BRIEF.md:488).",
-        "The corpus has 15 setext headings across 11 of 8,513 files (docs/ENGINE.md:1388)."
+        "The plan names this class of edit and says nothing implements it.",
+        "The class also covers HTML block condition 7 and setext underlines.",
+        "The corpus has 15 setext headings across 11 of 8,513 files."
       ],
       "tension": [
         "Nothing measures how often the shape occurs, so the availability cost is unknown.",
-        "Stacking an unmeasured refusal rate on 83% is where careful becomes unusable.",
-        "Auto-normalising the ambiguous case is anti-recommended outright (docs/FRONTMATTER-PRD-v2-2026-08-29.md:5829)."
+        "An unmeasured refusal rate on top of today's 83% could make the editor unusable.",
+        "The PRD advises against auto-normalising the ambiguous case outright."
       ],
       "evidence": [
         {
@@ -5190,7 +5192,7 @@
       "cat": "Engine & technical",
       "sub": "Strategy",
       "weight": "critical",
-      "q": "Do we ship the splice engine as a free library inside somebody else's distribution to test demand, and when?",
+      "q": "Do we ship the write engine as a free library inside somebody else's distribution to test demand, and when?",
       "lede": "Another team shipped a refuse-on-ambiguity engine for `.docx`, MIT, as a plugin. It is the cheapest experiment here.",
       "visual": {
         "kind": "compare",
@@ -5201,7 +5203,7 @@
             "tone": "warn"
           },
           {
-            "title": "Ship after NF-1 and NF-4",
+            "title": "Ship after the left-edge list and spaced-key fixes",
             "tone": "accent"
           }
         ],
@@ -5245,11 +5247,11 @@
         "note": "Widening acceptance later is cheap precisely because nobody depends on a refusal.",
         "caption": "The same experiment, two orders"
       },
-      "stakes": "The engine is the only part unique to the product, and demand otherwise arrives 37 to 58 weeks out.",
+      "stakes": "The editor's write engine, which changes only the bytes you edited and never rewrites the whole file, is the product's only unique part.",
       "state": [
-        "The engine is 3,614 of 25,407 lines, reaching product code through one symbol (docs/CRITIQUE.md:52).",
-        "CRITIQUE recommends shipping an MCP server, plugin and npm package in a week (docs/CRITIQUE.md:163).",
-        "ENGINE anti-recommends publishing until the zero-indent refusal and SAFE_KEY are fixed (docs/ENGINE.md:2251)."
+        "The engine is 3,614 of 25,407 lines, reaching product code through one symbol.",
+        "The critique recommends an MCP server, plugin and npm package within a week.",
+        "The engine audit advises against publishing until left-edge lists and keys with spaces work."
       ],
       "tension": [
         "Publishing a writer that refuses most real folders buys a reputation for not working.",
@@ -5338,7 +5340,7 @@
             "Tests payment, which nothing has"
           ],
           "costs": [
-            "Needs the CLI and the bake-off, and has a smaller funnel"
+            "Needs the CLI and the regex bake-off, and has a smaller funnel"
           ],
           "system": "Licensing and a bin package.",
           "screens": "A purchase page.",
@@ -5373,7 +5375,7 @@
         },
         {
           "k": "d",
-          "label": "Ship it free after NF-1 and NF-4 land",
+          "label": "Ship it free after the left-edge list bug and the spaced-key bug are fixed",
           "gains": [
             "Answers the demand question with the right engine",
             "Widening acceptance later is cheap; narrowing is not"
@@ -5389,7 +5391,7 @@
       "rec": "d",
       "recCase": [
         "A public engine that refuses most folders answers the demand question with the wrong engine.",
-        "NF-1 and NF-4 are days, so the delay is small against a named reputation risk."
+        "Both fixes take days, so the delay is small against a named reputation risk."
       ],
       "flip": "If the real constraint is initiation, at 1.21 engineering days per week a forcing function may win.",
       "linked": [
@@ -5460,15 +5462,15 @@
         "note": "There is no value of this number at which both defences survive, and nobody can currently read it.",
         "caption": "The refusal-rate pincer, per activated user per 30 days"
       },
-      "stakes": "The engine is a conviction with no way to be wrong, in a programme that has withdrawn three claims.",
+      "stakes": "Without a dated test the engine cannot be shown wrong, and this programme has already withdrawn three claims.",
       "state": [
-        "§74.6: the product works today with the engine almost entirely disconnected (docs/ENGINE.md:1023).",
-        "Five falsifiers are listed with thresholds and none has a date (docs/ENGINE.md:1025).",
-        "Foreign-vault open rate has a 99.9% threshold and sits at 17% today (docs/ENGINE.md:1030)."
+        "The engine audit's own finding: the product works today with the engine almost entirely disconnected.",
+        "Five falsifiers are listed with thresholds and none has a date.",
+        "The foreign-vault open rate, the Z metric, needs 99.9% and sits at 17% today."
       ],
       "tension": [
         "Instrumenting depends on the measurement decision; counts live in a local readable file.",
-        "CRITIQUE's 40-person survey by 2026-12-31 is the record's only dated line (docs/CRITIQUE.md:330)."
+        "The critique's 40-person survey by 2026-12-31 is the only dated falsifier on record."
       ],
       "evidence": [
         {
@@ -5564,23 +5566,23 @@
           "label": "Adopt the falsifier table with dates, and instrument `cert_refusal` in the pilot",
           "gains": [
             "Makes the engine falsifiable on its own terms",
-            "The pincer becomes a reading rather than an argument"
+            "The refusal count becomes a reading rather than an argument"
           ],
           "costs": [
             "Depends on the measurement decision, and adds a local counter"
           ],
-          "system": "A refusal counter in the local usage sidecar.",
+          "system": "A refusal counter in the local usage file.",
           "screens": "None; the count lives in a readable file.",
           "money": "None."
         },
         {
           "k": "c",
-          "label": "Adopt the Z metric alone",
+          "label": "Adopt the foreign-vault open rate alone",
           "gains": [
             "One number, already measured at 17%, tied to the fixes"
           ],
           "costs": [
-            "Says nothing about value, and cannot fire the pincer"
+            "Says nothing about value, and cannot read the refusal count"
           ],
           "system": "A corpus assertion.",
           "screens": "None.",
@@ -5604,7 +5606,7 @@
       "rec": "b",
       "recCase": [
         "The falsifiers are written and measured against; what is missing is dates and one instrument.",
-        "The pincer is why to instrument: one number decides differentiator or churn risk."
+        "Under 1 in 20 users hitting a refusal means theatre; over 1 in 5 means churn risk."
       ],
       "flip": "A measurement decision landing on self-reporting, which makes `cert_refusal` uninstrumentable.",
       "linked": [
@@ -5628,7 +5630,7 @@
       "sub": "Scope",
       "weight": "high",
       "q": "Is non-English correctness in scope for the pilot, or declared out?",
-      "lede": "The plan calls the byte-to-UTF-16 seam the highest-risk part of the engine, and that vault cannot be written.",
+      "lede": "The plan calls the byte-to-UTF-16 offset map the engine's highest-risk part, and our Chinese vault cannot be written.",
       "visual": {
         "kind": "compare",
         "labelWidth": 190,
@@ -5647,27 +5649,27 @@
             "label": "Astral characters",
             "cells": [
               "round-trip correctly",
-              "—"
+              ""
             ]
           },
           {
             "label": "Surrogate splits",
             "cells": [
               "refused, not rounded",
-              "—"
+              ""
             ]
           },
           {
             "label": "A CJK key such as `分类`",
             "cells": [
-              "—",
+              "",
               "SAFE_KEY cannot address it"
             ]
           },
           {
             "label": "Documents whose length is a multiple of 512",
             "cells": [
-              "—",
+              "",
               "wrong offset with `ok: true`"
             ]
           },
@@ -5675,18 +5677,18 @@
             "label": "Files with a non-BMP character in a key",
             "cells": [
               "20, 0.25%",
-              "—"
+              ""
             ]
           }
         ],
         "note": "The arithmetic is in good shape; the two things that make non-English writing work are the key predicate and the offset fix.",
         "caption": "Which half of the non-English story is actually broken"
       },
-      "stakes": "A written scope decision is cheap now; a discovered one is a defect report from that population.",
+      "stakes": "Writing the scope down now is cheap. Left undecided, it comes back as a defect report from Chinese, Japanese and Korean users.",
       "state": [
-        "The plan names the offset map the highest-risk seam; unmapped crossings corrupt CJK (docs/PRODUCT-BRIEF.md:233).",
-        "The gap register records that nobody Chinese, Japanese or Korean has been asked (docs/GAPS-2026-09-08.md:42).",
-        "20 corpus files carry a non-BMP character inside a key (docs/ENGINE.md:1100)."
+        "The plan says any byte-to-UTF-16 crossing that skips the offset map corrupts CJK text.",
+        "The gap register records that nobody Chinese, Japanese or Korean has been asked.",
+        "20 corpus files carry a non-BMP character inside a key."
       ],
       "tension": [
         "The two fixes that make non-English writing work are already on the list.",
@@ -5790,7 +5792,7 @@
           "costs": [
             "Ties the pilot to two fixes, and CJK search stays poor"
           ],
-          "system": "E3 and E15, no new work.",
+          "system": "The key-rule and offset-map fixes, no new work.",
           "screens": "None.",
           "money": "None."
         },
@@ -5844,9 +5846,9 @@
     {
       "id": "E35",
       "cat": "Engine & technical",
-      "sub": "Sidecar",
+      "sub": "The review file",
       "weight": "high",
-      "q": "Does Zed Delta's CRDT bet reopen \"never a CRDT\", and do we answer them by name?",
+      "q": "Does Zed Delta's bet on CRDTs, real-time merge of everyone's edits, reopen \"never a CRDT\", and do we answer them by name?",
       "lede": "A team with ten years of CRDT work reached the opposite conclusion in public. Our position is one table row.",
       "visual": {
         "kind": "compare",
@@ -5898,39 +5900,39 @@
             ]
           }
         ],
-        "note": "Our objection is about document bytes, where interleaving produces byte-identical garbage. It has never been argued for the sidecar.",
+        "note": "Our objection is about document bytes, where interleaving produces byte-identical garbage. It was never argued for the review file.",
         "caption": "Same thesis, opposite architecture"
       },
       "stakes": "The competitive set now holds a purpose-built rival, and our answer to their architecture is unwritten.",
       "state": [
-        "\"A CRDT\" sits in the not-this table with one sentence of reasoning (docs/ENGINE.md:759).",
-        "The plan states it in the F12 sync row and nowhere else (docs/PRODUCT-BRIEF.md:66).",
-        "Delta's 2026-09-01 post stakes attribution down to the span on CRDTs [research 2026-09-09]."
+        "The engine audit's list of things we will not build gives CRDTs one sentence of reasoning.",
+        "The plan states it only in its sync feature row.",
+        "Delta's 2026-09-01 post stakes span-level attribution on CRDTs."
       ],
       "tension": [
         "The argument is being had in public and we are not in it.",
-        "The sidecar is append-only JSONL, where the ban's reasoning does not obviously reach."
+        "The review file is append-only JSONL, where the ban's reasoning does not obviously reach."
       ],
       "evidence": [],
       "options": [
         {
           "k": "a",
-          "label": "Reopen it for the sidecar only",
+          "label": "Reopen it for the review file only",
           "gains": [
-            "Removes sidecar merge conflicts; convergence on append-only is cheap"
+            "Removes review-file merge conflicts; convergence on append-only is cheap"
           ],
           "costs": [
-            "A binary sidecar breaks the readable-plain-text promise"
+            "A binary review file breaks the plain-text promise"
           ],
-          "system": "A new sidecar format and a library.",
+          "system": "A new review-file format and a library.",
           "screens": "None.",
           "money": "None."
         },
         {
           "k": "b",
-          "label": "Keep the ban for prose, rebut Zed by name, decide the sidecar separately",
+          "label": "Keep the ban for prose, rebut Zed by name, decide the review file separately",
           "gains": [
-            "Answers the objection before a room does, at writing cost"
+            "Answers the objection before anyone raises it, at writing cost"
           ],
           "costs": [
             "Puts us on record against a team that may ship first"
@@ -5968,8 +5970,8 @@
       ],
       "rec": "b",
       "recCase": [
-        "The ban is about prose interleaving and sound there; it was never argued for an append-only record.",
-        "Naming Delta is cheaper than being asked about it in a room."
+        "The ban is about prose edits interleaving and holds there; nobody argued it for an append-only record.",
+        "Naming Delta in writing costs less than being asked about them unprepared."
       ],
       "flip": "A demonstration that Delta's span anchors survive an out-of-band write our locator cannot follow.",
       "linked": [
@@ -5987,9 +5989,9 @@
     {
       "id": "E36",
       "cat": "Engine & technical",
-      "sub": "Sidecar",
+      "sub": "The review file",
       "weight": "high",
-      "q": "Where does document identity live — a key written into the file's own frontmatter, or a sidecar keyed by path?",
+      "q": "Where does document identity live: in a key written into the file's own frontmatter, or in the review file, keyed by path?",
       "lede": "A rename done in a terminal never fires our hook, and plain text cannot hold a stable item id.",
       "visual": {
         "kind": "file",
@@ -6006,7 +6008,7 @@
           {
             "t": "fm_id: 8f2c4a1e",
             "mark": "accent",
-            "note": "option a: one key we write into the user's file"
+            "note": "option c: one key we write into the user's file"
           },
           {
             "t": "tags:",
@@ -6022,16 +6024,16 @@
           }
         ],
         "note": "Renders as an ordinary property everywhere. It is still a byte we added to a document nobody asked us to change.",
-        "caption": "Option a in bytes, against a promise to add nothing to the file"
+        "caption": "Option c in bytes, against a promise to add nothing to the file"
       },
       "stakes": "A rename performed outside the app orphans every review record for that document.",
       "state": [
-        "§77.6 settles that anchors carry `docId`, and `docId` is not the path (docs/ENGINE.md:1626).",
-        "`mv`, a git checkout and an Obsidian move never fire a rename hook (docs/ENGINE.md:1632).",
-        "The sidecar as specified in the plan is keyed by file path (docs/PRODUCT-BRIEF.md:135)."
+        "The engine audit settles that anchors carry a `docId`, and that `docId` is not the path.",
+        "`mv`, a git checkout and an Obsidian move never fire a rename hook.",
+        "The plan keys the review file, a separate file kept next to the documents, by file path."
       ],
       "tension": [
-        "The plan's own rule: add nothing to markdown that breaks it elsewhere (docs/PRODUCT-BRIEF.md:527).",
+        "The plan's own rule: add nothing to markdown that breaks it elsewhere.",
         "A YAML key breaks nothing and is still a byte we wrote unasked."
       ],
       "evidence": [],
@@ -6067,19 +6069,19 @@
           "label": "Write one `fm_id` key into the document's frontmatter, once, on first review",
           "gains": [
             "Survives `mv`, a checkout and an Obsidian move",
-            "The sidecar stops depending on the path"
+            "The review file stops depending on the path"
           ],
           "costs": [
             "We write a byte nobody asked for",
-            "Blocked on the write path until E1 and E3 land"
+            "Waits on the list-refusal and key-rule fixes to land"
           ],
-          "system": "A first-review write through the splice writer.",
+          "system": "A first-review write through the frontmatter writer.",
           "screens": "The properties panel shows a key we own.",
           "money": "None."
         },
         {
           "k": "d",
-          "label": "Sidecar keyed by path, with a rename hook",
+          "label": "Review file keyed by path, with a rename hook",
           "gains": [
             "Nothing written into the user's file; simplest to implement"
           ],
@@ -6093,7 +6095,7 @@
       ],
       "rec": "c",
       "recCase": [
-        "The only option that survives all three out-of-band operations the engine doc names.",
+        "It is the only option that survives all three outside operations the engine audit names.",
         "Write it on first review, never on open, so a read-only pass modifies nothing."
       ],
       "flip": "A corpus replay showing path plus content-address resolving above 99.5% across rename-and-edit pairs.",
@@ -6116,10 +6118,10 @@
     {
       "id": "E37",
       "cat": "Engine & technical",
-      "sub": "Sidecar",
+      "sub": "The review file",
       "weight": "high",
-      "q": "What wins when the sidecar and the document disagree, and how does `review.jsonl` merge across branches?",
-      "lede": "Two people review on two branches, and on a fresh clone git has no driver for our sidecar.",
+      "q": "What wins when `review.jsonl` and the document disagree, and how does it merge across branches?",
+      "lede": "Two people review on two branches, and on a fresh clone git has no driver for our review file.",
       "visual": {
         "kind": "flow",
         "nodes": [
@@ -6158,13 +6160,13 @@
         ],
         "perRow": 3,
         "note": "A custom merge driver needs config a clone does not carry, so it silently falls back to a conflict.",
-        "caption": "The two paths a merged sidecar can take"
+        "caption": "The two paths a merged review file can take"
       },
-      "stakes": "The sidecar is the product's state; a conflicted or pruned one loses the record of what was read.",
+      "stakes": "The review file holds review state; a conflicted or pruned one loses the record of what was read.",
       "state": [
-        "The sidecar is one JSON line per span, plain text, in the repo (docs/PRODUCT-BRIEF.md:135).",
+        "The review file is one JSON line per span, plain text, in the repo.",
         "No `.gitattributes` is shipped and no merge behaviour is written down anywhere.",
-        "The projection law makes the document authoritative, so the sidecar can only be stale."
+        "The projection law makes the document authoritative, so the review file can only be stale."
       ],
       "tension": [
         "Union merge keeps every line and makes duplicates the reader's problem.",
@@ -6230,7 +6232,7 @@
       "rec": "a",
       "recCase": [
         "Union is the only merge that works on a fresh clone with nothing installed.",
-        "Retain and mark is forced by the product: a moved span is the event we show."
+        "Retaining and marking orphans is forced: a moved span is the event we show."
       ],
       "flip": "A pilot repo where two people review the same span at the same hash with different verdicts.",
       "linked": [

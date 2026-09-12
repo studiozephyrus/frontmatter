@@ -7,16 +7,16 @@
       "sub": "Keyboard",
       "weight": "high",
       "q": "Which keyboard model ships for review: single letters, modifiers, or letters scoped to the drawer?",
-      "lede": "Three incompatible key maps sit in the corpus, none in the code, and single letters carry a level-A duty.",
+      "lede": "Three written key maps disagree, the code has none, and single letters raise a WCAG level-A issue.",
       "visual": {
         "kind": "compare",
         "labelWidth": 118,
         "cols": [
           {
-            "title": "r21-s6 walk-and-act"
+            "title": "Round 21 map: walk-and-act"
           },
           {
-            "title": "r24-v4 Tab and y/n"
+            "title": "Round 24 map: Tab and y/n"
           },
           {
             "title": "Prototype drawer",
@@ -68,14 +68,14 @@
         "note": "r means reject in one map and revert in another. Those are opposite acts on one span.",
         "caption": "Three maps for one decision, none of them in the code."
       },
-      "stakes": "`r` means reject in one map and revert in another. Opposite acts, same span.",
+      "stakes": "The key `r` means reject in one map and revert in another, which are opposite acts on one span.",
       "state": [
-        "Code types hotkeys as `mod+k | mod+p | mod+g` (`src/modules/app-shell/presentation/use-hotkey.ts:5`); no review key exists.",
-        "The plan says one key reverts any span (`docs/PRODUCT-BRIEF.md:20`) and never names it."
+        "The code's hotkey type allows only `mod+k`, `mod+p` and `mod+g`, and no review key exists.",
+        "The plan says one key reverts any span, and never names it."
       ],
       "tension": [
-        "Single letters are fastest, and WCAG SC 2.1.4 flags them at level A (`k4-accessibility.md:106`).",
-        "A remap screen costs 3-4 days (`r24-v1-table-stakes.md:36`) and no exhibit carries it."
+        "Single letters are fastest, and WCAG SC 2.1.4 flags them at level A.",
+        "A remap screen costs 3-4 days, and no screen in the plan draws one."
       ],
       "evidence": [
         {
@@ -161,14 +161,14 @@
       "options": [
         {
           "k": "a",
-          "label": "Single letters everywhere, with a remap screen in MVP-0",
+          "label": "Single letters everywhere, with a remap screen in the pilot",
           "gains": [
             "Fastest map, and matches the drawer as drawn"
           ],
           "costs": [
-            "Adds a 3-4 day remap UI no exhibit carries"
+            "Adds a 3-4 day remap screen the plan never draws"
           ],
-          "system": "A keymap store and rebinding surface.",
+          "system": "A stored keymap and a rebinding screen.",
           "screens": "Adds a Settings hotkeys screen.",
           "money": "None."
         },
@@ -192,7 +192,7 @@
             "Single-letter speed, no remap screen, one meaning for `r`"
           ],
           "costs": [
-            "New focus rule; keys die outside the drawer"
+            "New focus rule; keys do nothing outside the drawer"
           ],
           "system": "One focus rule around the drawer.",
           "screens": "The drawer becomes a focus container.",
@@ -200,7 +200,7 @@
         },
         {
           "k": "d",
-          "label": "No review keyboard in MVP-0 — buttons only",
+          "label": "No review keyboard in the pilot, buttons only",
           "gains": [
             "Removes a decision, costs nothing, no accessibility exposure"
           ],
@@ -214,8 +214,8 @@
       ],
       "rec": "c",
       "recCase": [
-        "Focus scoping buys single-letter speed and modifier compliance for one rule.",
-        "k4 records that the criterion allows active-focus-only shortcuts, so no remap screen."
+        "One focus rule gives single-letter speed and modifier-level compliance.",
+        "The accessibility research reads the criterion as allowing focus-only shortcuts, so no remap screen is needed."
       ],
       "flip": "If review acts run from the document body, focus scoping cannot apply and only modifiers comply.",
       "linked": [
@@ -241,7 +241,7 @@
       "cat": "Flow & interaction",
       "sub": "Interaction floor",
       "weight": "high",
-      "q": "Do the table-stakes interaction days go into MVP-0, and does Cmd-K become insert-link?",
+      "q": "Do the table-stakes interaction days go into the pilot, and does Cmd-K become insert-link?",
       "lede": "The sequence spends 69 of about 70 engineering days before reaching the line reading table stakes and polish.",
       "visual": {
         "kind": "compare",
@@ -268,7 +268,7 @@
             ]
           },
           {
-            "label": "MVP-0 total",
+            "label": "Pilot total",
             "cells": [
               "about 87",
               "about 73",
@@ -308,16 +308,16 @@
             ]
           }
         ],
-        "note": "Day counts are r24-v1's, stated as days for two founders against a one-author commit record.",
+        "note": "Day counts are from a round 24 report, stated as days for two founders against a one-author commit record.",
         "caption": "What each amount of floor buys, and what it costs in weeks."
       },
-      "stakes": "The exit test is six of ten strangers keeping it. One who cannot bold a heading never judges.",
+      "stakes": "The exit test is six of ten strangers keeping it, so one who cannot bold a heading is lost.",
       "state": [
-        "The measured floor is eight items, 13-21 days, none scheduled (`docs/CRITIQUE.md:602`).",
-        "`insertLink` is mouse-only (`src/modules/editor/presentation/toolbar-transforms.ts:234`); Cmd-K opens the note switcher (`src/modules/app-shell/presentation/KnowledgeUI.tsx:56`)."
+        "The measured floor is eight items, 13-21 days, none scheduled.",
+        "Insert-link is mouse-only, and Cmd-K opens the note switcher."
       ],
       "tension": [
-        "Typora, Bear, iA Writer, Obsidian and VS Code all bind Cmd-K to insert-link (`docs/CRITIQUE.md:614`).",
+        "Typora, Bear, iA Writer, Obsidian and VS Code all bind Cmd-K to insert-link.",
         "At 1.21 engineering days a calendar week, 17.5 more days is fourteen weeks."
       ],
       "evidence": [
@@ -519,14 +519,14 @@
       "options": [
         {
           "k": "a",
-          "label": "The whole floor into MVP-0, bindings moved to markdown convention",
+          "label": "The whole floor into the pilot, bindings moved to markdown convention",
           "gains": [
             "The pilot judges the review idea, not the editor"
           ],
           "costs": [
-            "MVP-0 goes from 70 to 87 days, fourteen more weeks"
+            "The pilot goes from 70 to 87 days, fourteen more weeks"
           ],
-          "system": "Table editing needs splice-backed writes.",
+          "system": "Table editing needs the editor's write engine, which changes only the bytes you edited and never rewrites the whole file.",
           "screens": "Hotkeys screen, table toolbar, palette.",
           "money": "The delay is the cost."
         },
@@ -540,7 +540,7 @@
           "costs": [
             "Leaves out table editing and HTML paste, both disqualifying"
           ],
-          "system": "A keymap table over existing transforms.",
+          "system": "A keymap table over existing toolbar actions.",
           "screens": "The palette gains a hotkey column.",
           "money": "None."
         },
@@ -551,7 +551,7 @@
             "Fastest to the exit test, on real feedback"
           ],
           "costs": [
-            "A pasted URL opens a file switcher"
+            "Cmd-K on a pasted URL opens the file switcher"
           ],
           "system": "No change.",
           "screens": "No change.",
@@ -559,7 +559,7 @@
         },
         {
           "k": "d",
-          "label": "Resolve the form factor first — an extension inherits floor and keymap",
+          "label": "Resolve the form factor first: an extension inherits floor and keymap",
           "gains": [
             "Deletes the floor, the keymap and bring-your-own-key at once"
           ],
@@ -574,12 +574,13 @@
       "rec": "b",
       "recCase": [
         "Three days buys the floor a reviewer meets in the first two minutes.",
-        "Cmd-K to insert-link is the cheapest credibility going: the function exists, bound to nothing."
+        "Cmd-K to insert-link is the cheapest fix: the function exists, bound to nothing."
       ],
-      "flip": "If decision 6 resolves toward a VS Code extension, the host owns floor and keymap, and (d) wins.",
+      "flip": "If the form-factor decision goes to a VS Code extension, the host owns floor and keymap, and (d) wins.",
       "linked": [
         "FL2",
-        "FL12"
+        "FL12",
+        "FF1"
       ],
       "sources": [
         "docs/PRODUCT-BRIEF.md:227",
@@ -603,7 +604,7 @@
       "sub": "Review fatigue",
       "weight": "critical",
       "q": "Do we run the 40-hunk head-to-head against `git add -p` in weeks 1-2?",
-      "lede": "The record holds a costed argument that review interaction is theatre on any change big enough to need it.",
+      "lede": "The critique holds a costed argument that review interaction is theatre on any change big enough to need it.",
       "visual": {
         "kind": "compare",
         "labelWidth": 126,
@@ -665,11 +666,11 @@
       },
       "stakes": "Eighteen days of review-state build rest on an interaction that may collapse to accept-all.",
       "state": [
-        "Weeks 1-2 lists six items and the 40-hunk comparison is not among them (`docs/PRODUCT-BRIEF.md:352`).",
-        "Review state is 18 days: store 6, rendering 5, revert 3, panel 4 (`docs/PRODUCT-BRIEF.md:56`)."
+        "Weeks 1-2 lists six items and the 40-hunk comparison is not among them.",
+        "Review state (what changed since you last read it) is 18 days: store 6, rendering 5, revert 3, panel 4."
       ],
       "tension": [
-        "Review to generation runs 17-25x on a 40-hunk change (`docs/CRITIQUE.md:637`).",
+        "Review takes 17-25x as long as generation on a 40-hunk change.",
         "Cisco found no useful review above 250 lines. That is source code, not prose."
       ],
       "evidence": [
@@ -749,7 +750,7 @@
           ],
           "system": "A mock and a terminal.",
           "screens": "One mock walking 40 hunks.",
-          "money": "Ten conversations beyond the 35."
+          "money": "Ten conversations beyond the 35 planned."
         },
         {
           "k": "b",
@@ -766,7 +767,7 @@
         },
         {
           "k": "c",
-          "label": "Change the unit so the comparison does not apply — file or section, not hunk",
+          "label": "Change the unit so the comparison does not apply: file or section, not hunk",
           "gains": [
             "Sidesteps the ratio; matches the free incumbent"
           ],
@@ -779,24 +780,24 @@
         },
         {
           "k": "d",
-          "label": "Accept the ratio and design for skim — file level by default, hunks on demand",
+          "label": "Accept the ratio and design for skim: file level by default, hunks on demand",
           "gains": [
             "Honest about how a large change is read"
           ],
           "costs": [
             "Two units everywhere, and it pre-empts the counter"
           ],
-          "system": "Store per span, projection coarser.",
+          "system": "Stored per span, shown per file.",
           "screens": "Adds a level switch to the panel.",
           "money": "None."
         }
       ],
       "rec": "a",
       "recCase": [
-        "Cheapest way to refute 18 days of build, and the thresholds are written.",
+        "The cheapest way to refute 18 days of build, and the thresholds are written.",
         "It also decides the review unit, which four decisions here inherit."
       ],
-      "flip": "If the mock test returns under 4 of 10 asks for review state, the week-3 kill fires first.",
+      "flip": "If under 4 of 10 ask for review state after the mock, the plan stops at week 3.",
       "linked": [
         "FL5",
         "FL6",
@@ -820,8 +821,8 @@
       "cat": "Flow & interaction",
       "sub": "Bulk actions",
       "weight": "high",
-      "q": "Does a one-click Mark all read ship in MVP-0, and what may it clear?",
-      "lede": "The prototype draws two bulk-clear buttons, and the same corpus names a bulk clear as what makes review theatre.",
+      "q": "Does a one-click Mark all read ship in the pilot, and what may it clear?",
+      "lede": "The prototype draws two bulk-clear buttons, and the critique names a bulk clear as what makes review theatre.",
       "visual": {
         "kind": "ba",
         "before": {
@@ -857,7 +858,7 @@
               "mark": "stop"
             },
             {
-              "t": "the sidecar cannot tell",
+              "t": "the separate file cannot tell",
               "mark": "stop"
             }
           ]
@@ -868,12 +869,12 @@
       },
       "stakes": "A button that zeroes the counter without reading removes the reason to return and the evidence.",
       "state": [
-        "The prototype ships Mark all read (`docs/prototype/frontmatter-prototype.html:523`) and accept all in file (`:648`).",
-        "F2 specifies tint, one-key revert and a counter, and no bulk action (`docs/PRODUCT-BRIEF.md:56`)."
+        "The prototype has Mark all read and accept all in file.",
+        "The review state spec lists the highlight, one-key revert and a counter, and no bulk action."
       ],
       "tension": [
-        "Opening frontmatter is how the count reaches zero (`docs/PRODUCT-BRIEF.md:425`); bulk clear removes that trigger.",
-        "The week-2 gate is one review action, which a bulk clear satisfies (`docs/WEEK0-DECISIONS-2026-09-08.md:22`)."
+        "Opening frontmatter is how the count reaches zero, and a bulk clear removes that trigger.",
+        "The pilot's week-2 gate is one review action, which a bulk clear satisfies."
       ],
       "evidence": [
         {
@@ -936,7 +937,7 @@
       "options": [
         {
           "k": "a",
-          "label": "No bulk clear in MVP-0",
+          "label": "No bulk clear in the pilot",
           "gains": [
             "The counter means one thing; the pilot measures truly"
           ],
@@ -949,14 +950,14 @@
         },
         {
           "k": "b",
-          "label": "Ship Mark all read, recorded in the sidecar as a bulk clear",
+          "label": "Ship Mark all read, recorded in the separate file as a bulk clear",
           "gains": [
             "An escape exists and bulk clears stay separable"
           ],
           "costs": [
             "A clicker still clears the counter"
           ],
-          "system": "The sidecar grows an action kind.",
+          "system": "The review file grows an action kind.",
           "screens": "Keeps the button, adds copy.",
           "money": "None."
         },
@@ -990,7 +991,7 @@
       "rec": "b",
       "recCase": [
         "A backlog with no escape loses a returning user, so one must exist.",
-        "The honest version costs one field, and the sidecar needs an action kind anyway."
+        "The honest version costs one field, and the review file needs an action kind anyway."
       ],
       "flip": "If pilot counts show bulk clears dominating individual clears, the interaction has failed and the unit changes.",
       "linked": [
@@ -1006,7 +1007,8 @@
         "docs/PRODUCT-BRIEF.md:425",
         "docs/PRODUCT-BRIEF.md:135",
         "docs/WEEK0-DECISIONS-2026-09-08.md:22",
-        "https://pubmed.ncbi.nlm.nih.gov/38658357/"
+        "https://pubmed.ncbi.nlm.nih.gov/38658357/",
+        "docs/PRODUCT-BRIEF.md:56"
       ]
     },
     {
@@ -1018,7 +1020,7 @@
       "lede": "The plan and the PRD take opposite positions on the badge, and the prototype shows four numbers for one document.",
       "visual": {
         "kind": "screen",
-        "title": "S3 clarify, one document",
+        "title": "Answer-in-place screen, one document",
         "panes": [
           {
             "label": "Body and breadcrumb",
@@ -1030,7 +1032,7 @@
                 "tone": "warn"
               },
               {
-                "label": "6 tinted spans in the body",
+                "label": "6 highlighted spans in the body",
                 "meta": "prototype:503-510",
                 "tone": "neutral"
               }
@@ -1079,12 +1081,12 @@
       },
       "stakes": "The counter is the launcher sort key, the tree bar, the panel headline and the exit measure.",
       "state": [
-        "The plan makes it retention lever one (`docs/PRODUCT-BRIEF.md:425`); PRD v2 bans red-dot counts (`docs/FRONTMATTER-PRD-v2-2026-08-29.md:1783`).",
-        "Five surfaces carry the count, including a dot on the editor tab (`docs/prototype/frontmatter-prototype.html:329`)."
+        "The plan makes it retention lever one, and PRD v2 bans red-dot counts.",
+        "Five surfaces carry the count, including a dot on the editor tab."
       ],
       "tension": [
         "A bar reading as progress implies bytes: a one-word span is not a section.",
-        "Anthropic's extension already ships an unread dot and a tab badge (`docs/PRODUCT-BRIEF.md:560`)."
+        "Anthropic's VS Code extension already ships an unread dot and a tab badge."
       ],
       "evidence": [
         {
@@ -1284,13 +1286,13 @@
           "costs": [
             "Loses the per-span claim where a buyer compares"
           ],
-          "system": "A per-file rollup over the sidecar.",
+          "system": "A per-file rollup over the review file.",
           "screens": "Launcher and tree change, not the panel.",
           "money": "None."
         },
         {
           "k": "d",
-          "label": "No persistent count — the panel lists what is unread when opened",
+          "label": "No persistent count: the panel lists what is unread when opened",
           "gains": [
             "Honours the ban outright, cleanest against the controls budget"
           ],
@@ -1305,7 +1307,7 @@
       "rec": "a",
       "recCase": [
         "Spans are the only unit that costs nothing and cannot drift from the store.",
-        "The 18.5 ban is scoped to discovery (`docs/FRONTMATTER-PRD-v2-2026-08-29.md:2029`), so a plain number is inside it."
+        "The PRD's badge ban is scoped to discovery, so a plain number is inside it."
       ],
       "flip": "If the 40-hunk test moves the review unit to files or sections, the counter follows and (c) wins.",
       "linked": [
@@ -1332,7 +1334,7 @@
       "cat": "Flow & interaction",
       "sub": "Refusal",
       "weight": "critical",
-      "q": "Do we build the typed refusal return and adopt the placement ladder before F2?",
+      "q": "Do we build the typed refusal return and adopt the placement ladder before review state?",
       "lede": "A refusal and a successful no-op return the same bytes at twenty call sites. Nothing can tell them apart.",
       "visual": {
         "kind": "flow",
@@ -1361,7 +1363,7 @@
           },
           {
             "label": "UI compares bytes",
-            "note": "PropertiesPanel.tsx:89, next === content",
+            "note": "the properties panel checks next === content",
             "tone": "neutral"
           },
           {
@@ -1374,13 +1376,13 @@
       },
       "stakes": "Refuse rather than guess is the founding claim, and the product cannot show it happening.",
       "state": [
-        "`splice-frontmatter.ts` returns a bare `string` (`:122`) and `grep -c 'return src'` gives 20.",
-        "The UI drops the outcome: `if (!onEdit || next === content) return;` (`src/modules/preview/presentation/PropertiesPanel.tsx:89`).",
-        "The union is not on MVP-0's fix-first list (`docs/PRODUCT-BRIEF.md:214`)."
+        "The editor's write engine, which changes only the bytes you edited and never rewrites the whole file, returns a bare string at 20 sites.",
+        "The UI drops the outcome: `if (!onEdit || next === content) return;`.",
+        "A typed success-or-refusal union is not on the pilot's fix-first list."
       ],
       "tension": [
-        "`SAFE_KEY` is exported so the UI duplicates the engine's refusal rule (`splice-frontmatter.ts:50`).",
-        "323 issue threads across seven repos complain about being refused (`docs/CRITIQUE.md:658`)."
+        "The engine exports its rule for which keys are safe to edit, so the UI copies it.",
+        "323 issue threads across seven repos complain about being refused."
       ],
       "evidence": [
         {
@@ -1557,7 +1559,7 @@
         {
           "k": "a",
           "label": "Build the union first, then adopt the ladder as specified",
-          "what": "Typed return before F2; refusals inline, a strip on capability change, never modal.",
+          "what": "Typed return first; refusals inline, a strip on capability change, never modal.",
           "gains": [
             "Every later surface gets a renderable refusal"
           ],
@@ -1565,12 +1567,12 @@
             "20 call sites and the UI reader, uncosted"
           ],
           "system": "The write path's return shape changes.",
-          "screens": "Adds a refusal to an MVP-0 screen.",
+          "screens": "Adds a refusal to a pilot screen.",
           "money": "None."
         },
         {
           "k": "b",
-          "label": "Build the union before F2, decide placement after the first refusals are seen",
+          "label": "Build the union before review state, decide placement after first refusals are seen",
           "gains": [
             "The expensive half lands early"
           ],
@@ -1585,7 +1587,7 @@
           "k": "c",
           "label": "Keep the bare string and duplicate the rule in the UI, as today",
           "gains": [
-            "Zero engineering, and F2 starts sooner"
+            "Zero engineering, and review state starts sooner"
           ],
           "costs": [
             "The founding claim is demonstrable only in the CLI"
@@ -1603,14 +1605,14 @@
           "costs": [
             "Candidate generation is a guess, against the engine's rule"
           ],
-          "system": "Adds a candidate ranker to the locator.",
+          "system": "Adds a candidate ranker to the range locator.",
           "screens": "The refusal becomes a picker.",
           "money": "None."
         }
       ],
       "rec": "a",
       "recCase": [
-        "Two reports name the union the item every later surface depends on (`r21-s7-flow-design.md:170`).",
+        "Two reports name the union as the item every later surface depends on.",
         "The ladder exists and one rung is drawn, so the work is naming the rule."
       ],
       "flip": "If the pilot ships no AI verbs and no frontmatter writes, only read-path refusals remain and (b) holds.",
@@ -1637,10 +1639,10 @@
     {
       "id": "FL10",
       "cat": "Flow & interaction",
-      "sub": "The tint",
+      "sub": "The highlight",
       "weight": "high",
-      "q": "Is the tint colour alone, or does it carry a second cue?",
-      "lede": "The plan says three things about the same pixel, and the tint as drawn sits at 1.111:1 against the page.",
+      "q": "Is the highlight colour alone, or does it carry a second cue?",
+      "lede": "The plan says three things about the same pixel, and the highlight as drawn sits at 1.111:1 against the page.",
       "visual": {
         "kind": "ba",
         "before": {
@@ -1680,7 +1682,7 @@
               "mark": "good"
             },
             {
-              "t": "section 16's no-border wording must change",
+              "t": "the plan's no-border wording must change",
               "mark": "warn"
             }
           ]
@@ -1691,13 +1693,13 @@
       },
       "stakes": "This is the pixel the five-second test is about, and it breaks the plan's own rule.",
       "state": [
-        "Section 10 says light tint only (`docs/PRODUCT-BRIEF.md:247`); section 16 forbids border and icon (`:408`).",
-        "Section 22 says never colour alone (`:540`), as does the design record (`docs/REFERENCES.md:319`).",
-        "The prototype draws a wash plus a same-colour inset ring (`docs/prototype/frontmatter-prototype.html:116`)."
+        "The plan's screens section says light highlight only, and its attention section forbids border and icon.",
+        "Its operating rules say never colour alone, as does the design record.",
+        "The prototype draws a wash plus a same-colour inset ring."
       ],
       "tension": [
-        "Every non-colour cue is a border, icon, underline or pattern. Section 16 forbids all.",
-        "Three tokens already fail the AA floor at 2.64:1, 4.19:1 and 3.84:1 (`k4-accessibility.md:98`)."
+        "Every non-colour cue is a border, icon, underline or pattern, and the attention section forbids all.",
+        "Three colour tokens already fail the AA floor at 2.64:1, 4.19:1 and 3.84:1."
       ],
       "evidence": [
         {
@@ -1784,12 +1786,12 @@
         },
         {
           "k": "b",
-          "label": "Tint plus a one-pixel left rule on the span, no icon",
+          "label": "Highlight plus a one-pixel left rule on the span, no icon",
           "gains": [
             "Smallest second cue, and it survives greyscale"
           ],
           "costs": [
-            "It is a border, so section 16 must be amended"
+            "It is a border, so the attention section must be amended"
           ],
           "system": "No change.",
           "screens": "One rule on the span decoration.",
@@ -1797,7 +1799,7 @@
         },
         {
           "k": "c",
-          "label": "Tint at rest, second cue on demand from the panel and the outline",
+          "label": "Highlight at rest, second cue on demand from the panel and the outline",
           "gains": [
             "Both surfaces are built anyway; the body stays quiet"
           ],
@@ -1810,7 +1812,7 @@
         },
         {
           "k": "d",
-          "label": "No tint in the body — state lives in the panel, the outline and the tree",
+          "label": "No highlight in the body: state lives in the panel, the outline and the tree",
           "gains": [
             "Removes the contradiction and the contrast question"
           ],
@@ -1818,14 +1820,14 @@
             "Removes the fifteen-second demo, the one visible idea"
           ],
           "system": "No change.",
-          "screens": "Deletes the tint; the panel remains.",
+          "screens": "Deletes the highlight; the panel remains.",
           "money": "The demo is re-cut first."
         }
       ],
       "rec": "b",
       "recCase": [
-        "A hairline rule is the least ink that satisfies section 22, and it survives greyscale.",
-        "The prototype already rules refusals that way (`docs/prototype/frontmatter-prototype.html:256`), so the vocabulary is consistent."
+        "A hairline rule is the smallest addition that meets the never-colour-alone rule, and it survives greyscale.",
+        "The prototype already marks refusals with a left rule, so the visual language stays consistent."
       ],
       "flip": "If a ruled span reads as error where a plain wash reads as changed, (c) is the fallback.",
       "linked": [
@@ -1848,18 +1850,18 @@
       "cat": "Flow & interaction",
       "sub": "Kill lines",
       "weight": "high",
-      "q": "Which review numbers stop the build: the five-second tint test, and a dismissal rate?",
-      "lede": "Every other week 1-2 test carries a number that stops the build. The core-signal test carries none.",
+      "q": "Which review numbers stop the build: the five-second highlight test, and a dismissal rate?",
+      "lede": "Every other week 1-2 test has a number that stops the build. The highlight test has none.",
       "visual": {
         "kind": "flow",
         "perRow": 3,
         "nodes": [
           {
-            "label": "Five people, S2 screenshot, 5 s",
+            "label": "Five people, editor screenshot, 5 s",
             "tone": "neutral"
           },
           {
-            "label": "They name the tint",
+            "label": "They name the highlight",
             "note": "changed, provenance, highlighted, error",
             "tone": "neutral"
           },
@@ -1888,14 +1890,14 @@
         "note": "Tricorder puts an analyser on probation at a 10% not-useful rate; nothing here is instrumented at all.",
         "caption": "The one test with no line, and the line proposed for it."
       },
-      "stakes": "A test with no threshold gets argued with. That is how three refuted headlines survived.",
+      "stakes": "A test with no threshold gets argued with, which is how three refuted headlines survived.",
       "state": [
-        "Weeks 1-2 shows five people the S2 screenshot for five seconds (`docs/PRODUCT-BRIEF.md:352`).",
-        "Section 16 names the failure words, with no count and no consequence (`docs/PRODUCT-BRIEF.md:411`)."
+        "Weeks 1-2 shows five people the editor screenshot for five seconds.",
+        "The plan names the failing answers, with no count and no consequence."
       ],
       "tension": [
         "Ten people matches every other arm and the exit test; five does not.",
-        "Tricorder puts an analyser on probation at 10% not-useful, having observed about 5%."
+        "Google's Tricorder puts an analyser on probation at 10% not-useful, having observed about 5%."
       ],
       "evidence": [
         {
@@ -1969,10 +1971,10 @@
       "options": [
         {
           "k": "a",
-          "label": "Both get a line: 6 of 10 on the tint test, and a live dismissal rate",
+          "label": "Both get a line: 6 of 10 on the highlight test, and a live dismissal rate",
           "what": "A span class ignored past a stated rate stops being surfaced.",
           "gains": [
-            "The signal is checked before build and after ship"
+            "The signal is checked before build and after launch"
           ],
           "costs": [
             "Five more conversations, and a local dismissal counter"
@@ -1983,12 +1985,12 @@
         },
         {
           "k": "b",
-          "label": "The tint test only, widened to ten people at 6 of 10",
+          "label": "The highlight test only, widened to ten people at 6 of 10",
           "gains": [
             "Comparable with the other arms, and cheap to act on"
           ],
           "costs": [
-            "Nothing catches the signal decaying after ship"
+            "Nothing catches the signal decaying after launch"
           ],
           "system": "No change.",
           "screens": "No change.",
@@ -2009,7 +2011,7 @@
         },
         {
           "k": "d",
-          "label": "Both advisory — signals that feed the design, not gates",
+          "label": "Both advisory: signals that feed the design, not gates",
           "gains": [
             "Schedule certainty, and no number to defend"
           ],
@@ -2024,7 +2026,7 @@
       "rec": "a",
       "recCase": [
         "Ten and 6-of-10 match the plan's sampling, so the result sits beside the other arms.",
-        "The dismissal rate is the only thing that catches the signal decaying after ship."
+        "The dismissal rate is the only thing that catches the signal decaying after launch."
       ],
       "flip": "If the mock test returns under 4 of 10, the product stops at week 3 first.",
       "linked": [
@@ -2055,7 +2057,7 @@
         "nodes": [
           {
             "label": "Launch",
-            "note": "no folder, no sidecar, nothing scanned",
+            "note": "no folder, no separate file, nothing scanned",
             "tone": "neutral"
           },
           {
@@ -2091,15 +2093,15 @@
         "note": "Review state needs no frontmatter write, so a write-path refusal need not block a read.",
         "caption": "The first thirty seconds, which no screen has drawn."
       },
-      "stakes": "The first thirty seconds is the worst number, and the state a stranger meets is undrawn.",
+      "stakes": "The first thirty seconds carry the worst number, 17% of vaults opening cleanly against a 99.9% target, and that screen is undrawn.",
       "state": [
-        "The launcher leads with templates (`docs/prototype/frontmatter-prototype.html:291`); Open folder is a small toolbar button (`:286`).",
-        "PRD and flow research both put Open an existing folder first (`docs/FRONTMATTER-PRD-v2-2026-08-29.md:1763`, `r21-s7-flow-design.md:37`).",
-        "NF-1 is four days, NF-3 three (`docs/PRODUCT-BRIEF.md:214`, `:215`); Z is 17% against 99.9%."
+        "The launcher leads with templates; Open folder is a small toolbar button.",
+        "PRD and flow research both put Open an existing folder first.",
+        "Two engine bugs cost 7 days: a list at the left edge makes the editor refuse the file, and an old-style line ending adds a second frontmatter block."
       ],
       "tension": [
         "Review state needs no frontmatter write, so a write refusal should not block reading.",
-        "The flow research says ship no flow until NF-1 and NF-3 land (`r21-s7-flow-design.md:169`)."
+        "The flow research says ship no flow until both engine bugs land."
       ],
       "evidence": [
         {
@@ -2248,7 +2250,7 @@
           "label": "Folder primary, sandbox second, and split the read path from the write path",
           "what": "A write-path refusal never blocks reading; the sandbox is disposable real files.",
           "gains": [
-            "Turns most of the 83% into a write-tier footnote"
+            "Most of the 83% then affects only writing"
           ],
           "costs": [
             "A sandbox to maintain, and an unestimated read/write seam"
@@ -2259,7 +2261,7 @@
         },
         {
           "k": "b",
-          "label": "Gate: no stranger until NF-1 and NF-3 land",
+          "label": "Gate: no stranger until the left-edge list bug and the old line-ending bug are fixed",
           "gains": [
             "The first impression is the product working"
           ],
@@ -2272,7 +2274,7 @@
         },
         {
           "k": "c",
-          "label": "Ship as drawn — templates first, with a guarantee-shaped status line",
+          "label": "Ship as drawn: templates first, with a guarantee-shaped status line",
           "gains": [
             "Demonstrates refuse-rather-than-guess at once, at no cost"
           ],
@@ -2299,10 +2301,10 @@
       ],
       "rec": "a",
       "recCase": [
-        "MVP-0's loop is read, tint, revert, and a revert writes bytes the file already had.",
-        "Splitting the paths turns the worst number into a footnote for the tier shipping first."
+        "The pilot's loop is read, highlight, revert, and a revert writes bytes the file already had.",
+        "Splitting the paths makes the worst number minor for the tier that ships first."
       ],
-      "flip": "If the read and write split costs more than the seven days NF-1 and NF-3 cost, gate instead.",
+      "flip": "If the read and write split costs more than the seven days both fixes cost, gate instead.",
       "linked": [
         "FL8",
         "FL14",
@@ -2351,22 +2353,22 @@
           {
             "label": "Everything unreviewed",
             "cells": [
-              "Every paragraph tinted, as intended",
-              "Every paragraph tinted, the stated failure"
+              "Every paragraph highlighted, as intended",
+              "Every paragraph highlighted, the stated failure"
             ]
           },
           {
             "label": "Baseline at first open",
             "cells": [
-              "Nothing tinted until the agent writes",
-              "Nothing tinted, counter reads zero"
+              "Nothing highlighted until the agent writes",
+              "Nothing highlighted, counter reads zero"
             ]
           },
           {
             "label": "Baseline at the last commit",
             "cells": [
-              "The fresh spec is tinted",
-              "Only uncommitted work is tinted"
+              "The fresh spec is highlighted",
+              "Only uncommitted work is highlighted"
             ]
           },
           {
@@ -2394,14 +2396,14 @@
         "note": "The anchor question is still open after two adversarial rounds, and both other rows depend on it.",
         "caption": "Three cold-start rules against the two scenarios that matter."
       },
-      "stakes": "Either a stranger's first document is entirely tinted, the stated failure, or the counter reads zero.",
+      "stakes": "Either a stranger's first document is entirely highlighted, the stated failure, or the counter reads zero.",
       "state": [
-        "The demo is every paragraph tinted on a spec the agent just wrote (`docs/PRODUCT-BRIEF.md:45`).",
-        "The sidecar is created on first use; no cold-start rule is stated (`docs/PRODUCT-BRIEF.md:135`)."
+        "The demo is every paragraph highlighted on a spec the agent just wrote.",
+        "The review file is created on first use; no rule says what counts as already read."
       ],
       "tension": [
         "The only natural baseline is the working tree, which needs git, which is desktop-only.",
-        "Whether the anchor survives an out-of-band write is still open (`docs/GAPS-2026-09-08.md:146`)."
+        "Whether the review anchor, byte range plus hash, survives another tool's write is still open."
       ],
       "evidence": [
         {
@@ -2546,13 +2548,13 @@
           "label": "Baseline at the last commit; pilot on desktop",
           "what": "Anything uncommitted at first open is unreviewed.",
           "gains": [
-            "Uses the container the product claims as differentiator"
+            "Uses the working tree, which the product claims as its differentiator"
           ],
           "costs": [
             "Puts Tauri, notarisation and identity on the critical path"
           ],
           "system": "Reads git; degrades without it.",
-          "screens": "The tint's meaning changes on first open.",
+          "screens": "The highlight's meaning changes on first open.",
           "money": "Certificates before week 10."
         },
         {
@@ -2562,7 +2564,7 @@
             "Honest, and no git dependency, so surfaces match"
           ],
           "costs": [
-            "A stranger's first document is fully tinted, the stated failure"
+            "A stranger's first document is fully highlighted, the stated failure"
           ],
           "system": "Simplest rule; no git read.",
           "screens": "First open looks highlighted.",
@@ -2598,9 +2600,9 @@
       "rec": "d",
       "recCase": [
         "Baseline and surface are both downstream of a mechanism that has never been run.",
-        "Weeks 3-4 already open spec-kit and superpowers repos, so the test is one line (`docs/PRODUCT-BRIEF.md:354`)."
+        "Weeks 3-4 already open spec-kit and superpowers repos, so the test is one line."
       ],
-      "flip": "If the anchor does not survive another tool's write, the sidecar design changes and this question is replaced.",
+      "flip": "If the anchor does not survive another tool's write, the review file design changes and this question is replaced.",
       "linked": [
         "FL12",
         "FL16",
@@ -2624,7 +2626,7 @@
       "cat": "Flow & interaction",
       "sub": "Two people",
       "weight": "high",
-      "q": "Is the review sidecar one shared file or one per person, and what does a teammate see?",
+      "q": "Is the review file one shared file or one per person, and what does a teammate see?",
       "lede": "Shared review state is what the paid tier sells; two reviewers appending to one JSONL is a git conflict.",
       "visual": {
         "kind": "flow",
@@ -2663,17 +2665,17 @@
           }
         ],
         "note": "Union merge is banned for documents here, because it produced a file with two title keys and exit 0.",
-        "caption": "Where the shared sidecar conflicts, and where it cannot."
+        "caption": "Where one shared file conflicts, and where it cannot."
       },
       "stakes": "The feature the paid tier depends on puts a merge conflict on a machine-written file.",
       "state": [
-        "`.frontmatter/review.jsonl` is one line per span carrying reviewed-by, committed with the files (`docs/PRODUCT-BRIEF.md:135`).",
-        "F10 adds per-person entries to that same file at MVP-1, 10 days (`docs/PRODUCT-BRIEF.md:64`).",
-        "No merge rule for the sidecar appears anywhere in the plan."
+        "`.frontmatter/review.jsonl` is one line per span carrying reviewed-by, committed with the files.",
+        "Team review adds per-person entries to that file in the build after the pilot, costed at 10 days.",
+        "No merge rule for this file appears anywhere in the plan."
       ],
       "tension": [
-        "Union merge is banned here: it produced two `title:` keys and exit 0 (`r21-s7-flow-design.md:130`).",
-        "Handoff is 18 of 2,540 Reddit posts and 81 of 88,109 issues (`r21-s7-flow-design.md:11`)."
+        "Git's union merge is banned here: it produced two `title:` keys and exit 0.",
+        "Handoff is 18 of 2,540 Reddit posts and 81 of 88,109 Claude Code issues."
       ],
       "evidence": [
         {
@@ -2789,7 +2791,7 @@
             "Consistent with refuse rather than guess, no driver"
           ],
           "costs": [
-            "A merge conflict on a machine-written file, at MVP-1"
+            "A merge conflict on a machine-written file, after the pilot"
           ],
           "system": "No change.",
           "screens": "The conflict view must handle JSONL.",
@@ -2797,22 +2799,22 @@
         },
         {
           "k": "d",
-          "label": "Defer — MVP-0 is single-person, decide when F10 is built",
+          "label": "Defer: the pilot is one-person, decide when shared review state and comments exist",
           "gains": [
             "No cost now, and decided with a real team"
           ],
           "costs": [
-            "The format is written in MVP-0; changing it rewrites readers"
+            "The format is written in the pilot; changing it rewrites readers"
           ],
           "system": "No change now, a migration later.",
           "screens": "No change.",
-          "money": "The Max CI gate reads this."
+          "money": "The Max tier's CI check reads this."
         }
       ],
       "rec": "a",
       "recCase": [
         "The split costs nothing today and removes a class of conflict from the paid feature.",
-        "Decide in MVP-0: the format is written now, and a later change rewrites every reader."
+        "Decide in the pilot: the format is written now, and a later change rewrites every reader."
       ],
       "flip": "If the 20 team conversations say teams want one file to diff as a unit, (b) is the ask.",
       "linked": [
@@ -2836,7 +2838,7 @@
       "sub": "Lifecycle",
       "weight": "critical",
       "q": "Does a span have a seen state between changed and reviewed, or only the two?",
-      "lede": "The sidecar records reviewed-by and reviewed-at and nothing else, so scrolling past a span and judging it are one event.",
+      "lede": "The review file records reviewed-by and reviewed-at and nothing else, so scrolling past a span and judging it are one event.",
       "visual": {
         "kind": "state",
         "states": [
@@ -2865,24 +2867,24 @@
             "tone": "good"
           }
         ],
-        "note": "Only Untouched and Reviewed exist in the sidecar today. Seen is the state the store cannot express.",
+        "note": "Only Untouched and Reviewed exist in the separate file today. Seen is the state the store cannot express.",
         "caption": "The review lifecycle, and the missing middle."
       },
       "stakes": "Without a seen state the bulk-clear gate, the exit measure and any dismissal rate read one boolean.",
       "state": [
-        "Sidecar line: path, byte range, hash, reviewed-by, reviewed-at. One state, no kind (`docs/PRODUCT-BRIEF.md:135`).",
-        "The drawer offers accept, revert and skip; the spec names none (`docs/prototype/frontmatter-prototype.html:459`).",
-        "The demo clears on reading (`docs/PRODUCT-BRIEF.md:45`); the exit measure counts acts (`docs/WEEK0-DECISIONS-2026-09-08.md:19`)."
+        "Each review-file line holds path, byte range, hash, reviewed-by, reviewed-at: one state, no action kind.",
+        "The drawer offers accept, revert and skip; the spec names none.",
+        "The demo clears on reading; the exit measure counts acts."
       ],
       "tension": [
         "A gated bulk clear needs viewport tracking, which is a seen state renamed.",
-        "Clinical alerting is one boolean at scale: 12,659 of 14,612 overridden, 88.3% meaningless."
+        "Clinical alerting is one boolean at scale: 12,659 of 14,612 alerts overridden, 88.3% of typed reasons meaningless."
       ],
       "evidence": [],
       "options": [
         {
           "k": "a",
-          "label": "Three states, and the sidecar records which act cleared a span",
+          "label": "Three states, and the separate file records which act cleared a span",
           "what": "Changed, seen and reviewed, with an action kind: scrolled, accepted, reverted, skipped, bulk.",
           "gains": [
             "The exit measure can tell a reader from a clicker"
@@ -2891,7 +2893,7 @@
             "One field, one transition, and viewport tracking the code lacks"
           ],
           "system": "An action kind and a seen transition.",
-          "screens": "Two tint treatments rather than one.",
+          "screens": "Two highlight treatments rather than one.",
           "money": "None."
         },
         {
@@ -2922,12 +2924,12 @@
         },
         {
           "k": "d",
-          "label": "Two states now, with an action-kind field reserved in the sidecar",
+          "label": "Two states now, with an action-kind field reserved in the separate file",
           "gains": [
             "No behaviour to build; readers do not break later"
           ],
           "costs": [
-            "Every MVP-0 measurement is taken on the boolean"
+            "Every pilot measurement is taken on the boolean"
           ],
           "system": "A field nothing writes yet.",
           "screens": "No change.",
@@ -2937,7 +2939,7 @@
       "rec": "a",
       "recCase": [
         "Three states settle the demo and exit-measure disagreement: fade at seen, clear at reviewed.",
-        "The sidecar needs an action kind anyway, so only the seen transition is new."
+        "The review file needs an action kind anyway, so only the seen transition is new."
       ],
       "flip": "If pilot counts show seen and reviewed within a few per cent, the extra state buys nothing.",
       "linked": [
@@ -2989,12 +2991,12 @@
       },
       "stakes": "The plan's panel is an exhaustible list, and the measured systems that keep acceptance fire rarely.",
       "state": [
-        "F2 ships a review panel with a counter; the tree carries unreviewed bars (`docs/PRODUCT-BRIEF.md:56`).",
-        "The panel is a persistent list rather than a per-session diff (`docs/PRODUCT-BRIEF.md:383`)."
+        "Review state ships a panel with a counter; the tree carries unreviewed bars.",
+        "The panel is a persistent list rather than a per-session diff."
       ],
       "tension": [
         "The one clinical system that earned acceptance fired in 0.19% of 500,274 sessions.",
-        "Suppression means ranking, and the projection law says state must derive from the file."
+        "Suppression means ranking, and the product's core rule says every view derives from the file."
       ],
       "evidence": [],
       "options": [
@@ -3054,7 +3056,7 @@
       "rec": "a",
       "recCase": [
         "Systems that keep acceptance fire rarely; systems that enumerate are overridden 55-98%.",
-        "A deterministic filter holds the projection law, and the full list hides nothing."
+        "A deterministic filter keeps that core rule, and the full list hides nothing."
       ],
       "flip": "If the 40-hunk test shows strangers finishing an exhaustive list without accept-all, (b) stands.",
       "linked": [
@@ -3106,7 +3108,7 @@
             ]
           },
           {
-            "label": "The sidecar records",
+            "label": "What gets recorded",
             "cells": [
               "who and when",
               "who, when and why",
@@ -3143,19 +3145,19 @@
       },
       "stakes": "A reason field on the common act is what made 88.3% of clinical justifications meaningless.",
       "state": [
-        "The sidecar records reviewed-by and reviewed-at, and no reason (`docs/PRODUCT-BRIEF.md:135`).",
-        "The drawer offers accept, revert and skip with no text field (`docs/prototype/frontmatter-prototype.html:459`)."
+        "The review file records reviewed-by and reviewed-at, and no reason.",
+        "The drawer offers accept, revert and skip with no text field."
       ],
       "tension": [
-        "Of 14,612 overridden clinical alerts, 88.3% of typed justifications were meaningless.",
+        "Of 14,612 clinical alerts, 12,659 were overridden and 88.3% of typed justifications were meaningless.",
         "No regulation opened requires a reason, or per-span review at all.",
-        "MHRA permits an audit trail reviewed by exception rather than as a full list."
+        "The UK regulator MHRA permits an audit trail reviewed by exception rather than as a full list."
       ],
       "evidence": [],
       "options": [
         {
           "k": "a",
-          "label": "No reason anywhere — one keystroke clears a span",
+          "label": "No reason anywhere: one keystroke clears a span",
           "gains": [
             "The fastest act, which the fatigue evidence favours"
           ],
@@ -3181,7 +3183,7 @@
         },
         {
           "k": "c",
-          "label": "A reason on every act, stored in the sidecar",
+          "label": "A reason on every act, stored in the separate file",
           "gains": [
             "The strongest record for an answerable buyer"
           ],
@@ -3194,7 +3196,7 @@
         },
         {
           "k": "d",
-          "label": "No reason in MVP-0; add the field when a compliance buyer asks",
+          "label": "No reason in the pilot; add the field when a compliance buyer asks",
           "gains": [
             "No design work now; a real requirement shapes it"
           ],

@@ -61,19 +61,19 @@
           ]
         },
         "via": "strike the assumption",
-        "note": "Commit record: 80 of 80 here and 416 of 416 on the sibling, one author (PRODUCT-BRIEF.md:231).",
+        "note": "Commit record: 80 of 80 here and 416 of 416 on the sibling, one author (the current plan).",
         "caption": "Every downstream figure, re-derived at one founder"
       },
       "stakes": "Nothing can be quoted until this settles: each number moves 41 to 70 per cent.",
       "state": [
-        "One author: 80 of 80 commits here, 416 of 416 on md (docs/PRODUCT-BRIEF.md:231).",
-        "The decision layer says two founders and a team (docs/DECIDE.md:156).",
-        "No signed agreement in the repo; the critique's date was 2026-09-07."
+        "One author made 80 of 80 commits here and 416 of 416 on the sibling md repo.",
+        "The decisions document says two founders and a team.",
+        "No signed agreement exists in the repo; the critique's deadline for one was 2026-09-07."
       ],
       "tension": [
-        "The nut moves 70 per cent, default-alive 41 (docs/CRITIQUE.md:1460).",
+        "The nut moves 70 per cent, default-alive 41.",
         "The two-founder case is the expensive one: a second draw from day one.",
-        "A document does not create capacity. A signature with hours would."
+        "Documents naming a second founder add no hours; a signed agreement with hours would."
       ],
       "evidence": [
         {
@@ -198,7 +198,7 @@
       "rec": "a",
       "recCase": [
         "The only measurement available says one person, twice, across 498 commits.",
-        "Striking it costs an afternoon. Leaving it costs every number downstream."
+        "Striking it takes an afternoon, and leaving it skews every number downstream."
       ],
       "flip": "A signed agreement naming hours a week, at which point re-derive rather than assume linear scaling.",
       "linked": [
@@ -286,23 +286,23 @@
           {
             "label": "Precedent in the record",
             "cells": [
-              "—",
+              "none",
               "Obsidian: 8 staff, no investors",
               "Dendron: no fit for a venture-backed business"
             ]
           }
         ],
-        "note": "Hours at the measured client-lane ceiling of 40 a month in one contiguous week (r23-u4:60).",
+        "note": "Hours at the measured client-lane ceiling of 40 a month in one contiguous week (the services research).",
         "caption": "Three ways to pay for the build, and what each costs in time"
       },
       "stakes": "Pick wrong and the build stops four months, or the company takes a seven-year obligation.",
       "state": [
-        "The plan caps client work at 78 hours a month (docs/PRODUCT-BRIEF.md:292).",
-        "The 90-day calendar schedules no client hours at all (docs/PRODUCT-BRIEF.md:351).",
-        "The refusal to raise lives only in the decision layer (docs/DECIDE.md:150)."
+        "The plan caps client work at 78 hours a month.",
+        "The 90-day calendar schedules no client hours at all.",
+        "The refusal to raise lives only in the decisions document."
       ],
       "tension": [
-        "78 hours is 1.95× the measured ceiling of 40 (r23-u4:60).",
+        "78 hours is 1.95× the measured ceiling of 40 hours.",
         "₹4 crore is 367 months of runway against a seven-year fund.",
         "Burn without services is ₹4,700–9,300 a month, so runway is not the constraint."
       ],
@@ -466,7 +466,7 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "₹1L a month at unworked hours."
+          "money": "₹1L a month from hours that cannot be worked."
         },
         {
           "k": "c",
@@ -474,7 +474,7 @@
           "what": "₹3,00,000 a quarter at 30 hours a month, plus a twelve-month no on funding with a named trigger.",
           "gains": [
             "₹1,00,000 a month is 1.56× the one-founder nut, inside the ceiling.",
-            "One client is worth 63,060 visitors of funnel (r23-u4:62)."
+            "One client is worth 63,060 funnel visitors."
           ],
           "costs": [
             "Never produces the lump that buys a year of calm.",
@@ -491,7 +491,7 @@
             "₹4 crore is 367 months of the two-founder nut."
           ],
           "costs": [
-            "A seven-year obligation against a founder wall at 1,239 paying users."
+            "A seven-year obligation, while support fills the founder's month at 1,239 paying users."
           ],
           "system": "No change.",
           "screens": "None.",
@@ -501,9 +501,9 @@
       "rec": "c",
       "recCase": [
         "Corrected for the ceiling, (a) and (c) buy the same money; only (c) leaves the build running.",
-        "Send the proposals in week 0 either way. The closes are the measurement."
+        "Either way, send the proposals in week 0 and treat the closes as the measurement."
       ],
-      "flip": "Three unsolicited inbound teams asking for multi-editor access, the record's own trigger (docs/CRITIQUE.md:1075).",
+      "flip": "Three unsolicited inbound teams asking for multi-editor access, the critique's own trigger.",
       "linked": [
         "B1",
         "B3",
@@ -537,7 +537,7 @@
       "sub": "Schedule",
       "weight": "critical",
       "q": "Do we re-cut the 90-day calendar to the measured 1.21 engineering days a week, or commit to a density with a weekly count?",
-      "lede": "Section 9 computes 37 to 58 weeks for MVP-0. Section 14 prints twelve weeks, four pages later.",
+      "lede": "The plan computes 37 to 58 weeks for the pilot, then prints a twelve-week calendar four pages later.",
       "visual": {
         "kind": "flow",
         "perRow": 3,
@@ -578,18 +578,18 @@
             "dashed": true
           }
         ],
-        "note": "MVP-0 is about 70 engineering days. Twelve weeks at 1.21 a week buys 14.5.",
+        "note": "The pilot is about 70 engineering days. Twelve weeks at 1.21 a week buys 14.5.",
         "caption": "Making the schedule falsifiable on day 28 instead of day 84"
       },
-      "stakes": "A calendar that contradicts its own arithmetic gets executed, and the refutation arrives with the quarter spent.",
+      "stakes": "A calendar that contradicts its own arithmetic gets followed until the quarter is spent.",
       "state": [
-        "10 of 58 days touched source: 1.21 engineering days a week (docs/PRODUCT-BRIEF.md:227).",
-        "Exhibit 19 runs weeks 0 to 12 (docs/PRODUCT-BRIEF.md:349).",
-        "Section 9 asks for a weekly count and names no counter (docs/PRODUCT-BRIEF.md:229)."
+        "10 of 58 days touched source code: 1.21 engineering days a week.",
+        "The 90-day calendar runs weeks 0 to 12.",
+        "The plan asks for a weekly count and names no counter."
       ],
       "tension": [
         "Twelve weeks at 1.21 buys 14.5 engineering days against about 70 needed.",
-        "The measured window is one of writing documents, so it may be allocation.",
+        "The measured window was spent writing documents, so it may be allocation.",
         "The 3-to-1 ratio is unarguable but fires against the plan's non-code weeks."
       ],
       "evidence": [
@@ -721,7 +721,7 @@
       "options": [
         {
           "k": "a",
-          "label": "Re-cut Exhibit 19 to the measured rate: 58 weeks at 1.21, or 37 at 1.91",
+          "label": "Re-cut the 90-day calendar to the measured rate: 58 weeks at 1.21, or 37 at 1.91",
           "gains": [
             "Honest, and nobody executes against a schedule already refuted."
           ],
@@ -729,7 +729,7 @@
             "Puts first strangers in mid-2027, and tests nothing about allocation."
           ],
           "system": "No change.",
-          "screens": "Exhibit 19 rewritten.",
+          "screens": "The 90-day calendar rewritten.",
           "money": "None."
         },
         {
@@ -750,14 +750,14 @@
         },
         {
           "k": "c",
-          "label": "Cut MVP-0 to what 1.21 a week delivers in twelve weeks, about 15 days",
+          "label": "Cut the pilot to what 1.21 a week delivers in twelve weeks, about 15 days",
           "gains": [
             "Fits without fiction and keeps the twelve-week horizon."
           ],
           "costs": [
-            "15 days misses the 24-day fix-first block; review state would not ship."
+            "15 days misses the 24 days of first engine fixes; review state (tracking what you read) would not ship."
           ],
-          "system": "Fix-first truncated; F2 leaves MVP-0.",
+          "system": "Engine fixes cut short; review state leaves the pilot.",
           "screens": "The pilot demo changes shape.",
           "money": "None."
         },
@@ -859,14 +859,14 @@
       },
       "stakes": "Anchor wrong and twenty conversations, the only pricing evidence this quarter, answer the wrong question.",
       "state": [
-        "v15 prices teams at $4–5 a user, from GitHub's $4 (docs/PRODUCT-BRIEF.md:288).",
-        "v15 has no rupee price; BUSINESS.md mentions ₹299/₹599/₹3,999 thirty-three times.",
-        "Six operating artefacts are specified against the withdrawn list (docs/BUSINESS.md:518)."
+        "The current plan, v15, prices teams at $4–5 a user, from GitHub's $4.",
+        "It has no rupee price; BUSINESS.md mentions ₹299/₹599/₹3,999 thirty-three times.",
+        "Six operating artefacts are specified against the withdrawn list."
       ],
       "tension": [
-        "GitHub bundles per-file Viewed free at every tier, so $4 anchors to a giveaway.",
-        "The field is a barbell: $50-a-year indie licences, $450-a-month docs platforms.",
-        "No evidence at any price that a team pays for shared review state."
+        "GitHub's per-file Viewed checkbox is free at every tier, so $4 anchors to a giveaway.",
+        "Field prices sit at two ends: $50-a-year indie licences, $450-a-month docs platforms.",
+        "No evidence at any price that a team pays for shared review state (who has read what)."
       ],
       "evidence": [
         {
@@ -1017,7 +1017,7 @@
       "options": [
         {
           "k": "a",
-          "label": "$4–5 per user per month, as v15 states, and mark BUSINESS.md historical",
+          "label": "$4–5 per user per month, as the current plan states, and mark BUSINESS.md historical",
           "gains": [
             "One governing list, which every downstream artefact needs."
           ],
@@ -1035,7 +1035,7 @@
             "The only measured B2B price in this category."
           ],
           "costs": [
-            "One attempt makes a failed renewal terminal; Obsidian made it optional."
+            "One payment attempt makes a failed renewal final; Obsidian made its licence optional."
           ],
           "system": "Annual billing; dunning for one attempt.",
           "screens": "Pricing page; renewal notice.",
@@ -1045,7 +1045,7 @@
           "k": "c",
           "label": "$30 per editor per month, and let the conversations negotiate down",
           "gains": [
-            "8.6 five-seat teams cover the two-founder nut (docs/CRITIQUE.md:1031).",
+            "8.6 five-seat teams cover the two-founder nut.",
             "A refusal at $30 maps the ceiling; $4 cannot."
           ],
           "costs": [
@@ -1099,7 +1099,8 @@
         "docs/BUSINESS.md:451",
         "docs/BUSINESS.md:518",
         "docs/BUSINESS.md:680",
-        "docs/GAPS-2026-09-08.md:131"
+        "docs/GAPS-2026-09-08.md:131",
+        "docs/CRITIQUE.md:1031"
       ]
     },
     {
@@ -1107,7 +1108,7 @@
       "cat": "Business & operations",
       "sub": "Support",
       "weight": "critical",
-      "q": "Do we instrument the ten-stranger pilot to measure the support coefficient, or price with a 3× error bar on the largest cost?",
+      "q": "Do we instrument the ten-stranger pilot to measure support messages per paying user, or price with a 3× error bar on the largest cost?",
       "lede": "Support is the cost structure of this business, and the number driving it is written two ways.",
       "visual": {
         "kind": "compare",
@@ -1130,9 +1131,9 @@
           {
             "label": "Where it is written",
             "cells": [
-              "PRD §21.1",
-              "BUSINESS.md:771",
-              "r6's measured ticket mix"
+              "the PRD",
+              "BUSINESS.md",
+              "the support research's measured ticket mix"
             ]
           },
           {
@@ -1168,17 +1169,17 @@
             ]
           }
         ],
-        "note": "The 20.72-minute mean comes from the Obsidian forum tag histogram, weighted; 1.73× the flat 12 (r6:68).",
+        "note": "The 20.72-minute mean comes from the Obsidian forum tag histogram, weighted; 1.73× the flat 12.",
         "caption": "One coefficient, three readings, none taken from a real user"
       },
-      "stakes": "Every price, hire trigger and the founder wall come from a number nobody has measured.",
+      "stakes": "Every price, the hire trigger and the founder's support ceiling come from an unmeasured number.",
       "state": [
-        "The plan states 90 founder-hours at 10,000 users, no denominator (docs/PRODUCT-BRIEF.md:137).",
+        "The plan states 90 founder-hours at 10,000 users, no denominator.",
         "BUSINESS.md uses 0.3 tickets per paying user at 12 minutes; the PRD uses 0.10.",
         "The pilot asks the ten strangers nothing about needing help."
       ],
       "tension": [
-        "At 0.30 the founder wall arrives at 1,239 paying users (docs/BUSINESS.md:781).",
+        "At 0.30 support fills the founder's whole month at 1,239 paying users.",
         "At 0.10 an individual subscription flips from below cost to above it.",
         "Ten users give no interval, but they separate two numbers differing 3×."
       ],
@@ -1264,7 +1265,7 @@
           "label": "Ship the six deflection changes first, then measure",
           "what": "Key validator, device-flow auth, never refuse an import, visible conflict state, self-serve billing and local history land first.",
           "gains": [
-            "Moves the hire trigger 5.83× and removes long-handle classes."
+            "Moves the hire trigger 5.83× and removes slow-to-handle tickets."
           ],
           "costs": [
             "Real engineering days at 1.21 a week, optimising an unmeasured number."
@@ -1302,8 +1303,8 @@
       ],
       "rec": "a",
       "recCase": [
-        "The largest cost in the model, and counting messages costs a spreadsheet.",
-        "The category gives no help: no vendor publishes a per-user contact rate (r6:12)."
+        "It is the largest cost in the model, and counting messages needs a spreadsheet.",
+        "The category gives no help: no vendor publishes a per-user contact rate."
       ],
       "flip": "Fewer than about five messages across the fortnight, at which point the sample is unreadable.",
       "linked": [
@@ -1330,7 +1331,7 @@
       "sub": "Support",
       "weight": "high",
       "q": "What does the free tier get: no commitment, a public forum, or a response window, and does the pilot get an exception?",
-      "lede": "The free tier is the whole funnel and, at scale, the largest consumer of the resource that cannot be bought.",
+      "lede": "The free tier is the whole funnel and, at scale, the largest consumer of founder time, which cannot be bought.",
       "visual": {
         "kind": "screen",
         "title": "What the page promises",
@@ -1353,7 +1354,7 @@
               },
               {
                 "label": "Every feature, no caps",
-                "meta": "F1–F8, own key",
+                "meta": "all pilot features, own key",
                 "mark": "✓",
                 "tone": "good"
               },
@@ -1384,17 +1385,17 @@
             ]
           }
         ],
-        "note": "Free users generate four of every seven tickets in the model (BUSINESS.md:787).",
+        "note": "Free users generate four of every seven tickets in the model (BUSINESS.md).",
         "caption": "Bounding the time, not the product"
       },
-      "stakes": "Promise too much and one person owes every free user an answer. Promise nothing and the pilot measures the gap.",
+      "stakes": "Promise too much and one person owes every free user an answer; promise nothing and pilot users go quiet unanswered.",
       "state": [
-        "The operating rules give an address, a window, and no commitment on free (docs/PRODUCT-BRIEF.md:537).",
-        "The individual tier is free with no limits at MVP-0 (docs/PRODUCT-BRIEF.md:287).",
-        "All ten pilot users are free users; MVP-0 has no billing (docs/PRODUCT-BRIEF.md:205)."
+        "The operating rules give an address, a window, and no commitment on free.",
+        "The individual tier is free with no limits in the pilot.",
+        "All ten pilot users are free users; the pilot has no billing."
       ],
       "tension": [
-        "A median free user costs ₹7.87 a month, 86 per cent founder time (docs/CRITIQUE.md:966).",
+        "A median free user costs ₹7.87 a month, 86 per cent founder time.",
         "India to US Pacific is 12.5 hours, so a sub-24-hour response is impossible solo.",
         "A stranger who goes quiet unanswered is indistinguishable from one who left."
       ],
@@ -1586,10 +1587,10 @@
       ],
       "rec": "c",
       "recCase": [
-        "The cost that scales is time, not features, so bound the time and leave the product.",
-        "For the fortnight support is the instrument; an unanswered stranger wastes two weeks."
+        "Only founder time grows with users, so limit support time and leave features alone.",
+        "In the two-week pilot support is how we learn, and an unanswered stranger wastes it."
       ],
-      "flip": "If the first hundred users show heavy vaults driving import and data-loss tickets, (d) becomes a lever.",
+      "flip": "If the first hundred users show heavy vaults driving import and data-loss tickets, (d) becomes worth using.",
       "linked": [
         "B6",
         "B10"
@@ -1606,7 +1607,8 @@
         "docs/CRITIQUE.md:968",
         "docs/research/agent-reports-2026-08-29-r11/r6-support-deflection.md:89",
         "docs/research/agent-reports-2026-08-29-r11/r6-support-deflection.md:120",
-        "docs/research/agent-reports-2026-08-29-r11/r6-support-deflection.md:163"
+        "docs/research/agent-reports-2026-08-29-r11/r6-support-deflection.md:163",
+        "docs/CRITIQUE.md:966"
       ]
     },
     {
@@ -1614,8 +1616,8 @@
       "cat": "Business & operations",
       "sub": "Communication",
       "weight": "high",
-      "q": "How do we reach a user we hold no address for: a ledger in the sidecar, a vault folder, or an email field at first run?",
-      "lede": "A breach notice, a price change and a failed renewal all terminate at the same dead end.",
+      "q": "How do we reach a user we hold no address for: a ledger in our `.frontmatter/` folder, a vault folder, or an email field at first run?",
+      "lede": "With no address, a breach notice, a price change and a failed renewal all have nowhere to go.",
       "visual": {
         "kind": "file",
         "name": "the user's repository, after frontmatter",
@@ -1623,12 +1625,12 @@
           {
             "t": ".frontmatter/review.jsonl",
             "mark": "keep",
-            "note": "the sidecar, already agreed"
+            "note": "the separate file, already agreed"
           },
           {
             "t": ".frontmatter/usage.jsonl",
             "mark": "keep",
-            "note": "opt-in counts, B10"
+            "note": "opt-in counts, the usage-file decision"
           },
           {
             "t": ".frontmatter/notices/2026-09-15-price.md",
@@ -1638,7 +1640,7 @@
           {
             "t": "Notices/2026-09-15-price.md",
             "mark": "stop",
-            "note": "BUSINESS.md:121; breaks the one-sidecar rule"
+            "note": "as BUSINESS.md specifies; breaks the one-separate-file rule"
           },
           {
             "t": "README.md",
@@ -1646,14 +1648,14 @@
             "note": "untouched"
           }
         ],
-        "note": "PRODUCT-BRIEF.md:508: the sidecar is the only thing frontmatter adds, and it is not in the markdown.",
+        "note": "The current plan: the separate file is the only thing frontmatter adds, and it is not in the markdown.",
         "caption": "Where a required notice can live without a second vendor folder"
       },
-      "stakes": "A notice class with no channel is a duty we cannot discharge. A vault folder breaks the byte-exact promise.",
+      "stakes": "Some notices are legal duties we cannot meet without a channel, and a vault folder breaks the byte-exact promise.",
       "state": [
-        "BUSINESS.md writes obligatory messages into the vault under `Notices/` (docs/BUSINESS.md:121).",
-        "The operating rules keep notices in an in-product list (docs/PRODUCT-BRIEF.md:536).",
-        "First run collects nothing; email comes only on an obligation (docs/BUSINESS.md:48)."
+        "BUSINESS.md writes obligatory messages into the vault under `Notices/`.",
+        "The operating rules keep notices in an in-product list.",
+        "First run collects nothing; email comes only on an obligation."
       ],
       "tension": [
         "A folder at vault root appears in git status, every diff and on GitHub.",
@@ -1791,14 +1793,14 @@
           "k": "a",
           "label": "Ledger in `.frontmatter/notices/`, no-email rule held, consent page for the ten",
           "gains": [
-            "One vendor directory, and the notice keeps the file-is-the-record property.",
+            "One vendor directory, and the notice is a plain file in the repo.",
             "The day-14 ask becomes a commitment rather than a hope."
           ],
           "costs": [
             "Still lands in the user's git history.",
             "Does not solve the breach dead end at scale."
           ],
-          "system": "A notices writer inside the existing sidecar.",
+          "system": "A notices writer inside the existing `.frontmatter/` folder.",
           "screens": "A status-line affordance; a notices list.",
           "money": "None."
         },
@@ -1806,7 +1808,7 @@
           "k": "b",
           "label": "`Notices/` at vault root, as BUSINESS.md specifies",
           "gains": [
-            "Most visible to a user who never opens the sidecar."
+            "Most visible to a user who never opens `.frontmatter/`."
           ],
           "costs": [
             "Vendor files at the top of someone's repository, against our own rule."
@@ -1844,10 +1846,10 @@
       ],
       "rec": "a",
       "recCase": [
-        "One vendor directory is the rule already committed to, and notices inside it keep every property.",
-        "The pilot is a study with ten named participants, so consent is the instrument."
+        "We already committed to one vendor directory, and notices inside it break none of our rules.",
+        "The pilot is a study with ten named participants, so a consent page secures the day-14 ask."
       ],
-      "flip": "The standing dead end for breach and price-change notices needs (c), due before the first charge.",
+      "flip": "Breach and price-change notices still have no channel under (a), so (c) is due before the first charge.",
       "linked": [
         "B10",
         "B14"
@@ -1876,7 +1878,7 @@
       "sub": "Measurement",
       "weight": "high",
       "q": "Do we adopt the drafted local usage file as the exit measure, and interview every stranger whether or not they share it?",
-      "lede": "The headline exit test, six of ten strangers keep it, is unobservable unless designed in first.",
+      "lede": "The pilot passes if six of ten strangers keep it, which we cannot observe unless the measure is designed in first.",
       "visual": {
         "kind": "state",
         "states": [
@@ -1906,17 +1908,17 @@
             "tone": "warn"
           }
         ],
-        "note": "Counts only: days opened, documents opened, spans reviewed, proposals accepted (WEEK0-DECISIONS-2026-09-08.md:19).",
+        "note": "Counts only: days opened, documents opened, spans reviewed, proposals accepted (the week-0 drafts).",
         "caption": "The only measurement path the operating rules allow"
       },
       "stakes": "Without it the week-12 go/no-go rests on recall, against a measured 1.0 per cent response rate.",
       "state": [
-        "The draft puts counts in `.frontmatter/usage.jsonl`, editable and deletable (WEEK0-DECISIONS-2026-09-08.md:20).",
-        "The gate is 6 of the last 10 working days plus one review action.",
-        "The gap register lists the measure as flagged and undecided (docs/GAPS-2026-09-08.md:28)."
+        "The draft puts counts in `.frontmatter/usage.jsonl`, editable and deletable.",
+        "The test is 6 of the last 10 working days used, plus one review action.",
+        "The gaps list marks the measure as flagged and undecided."
       ],
       "tension": [
-        "A local file reaches us only if volunteered; one decline moves the gate.",
+        "A local file reaches us only if volunteered; one decline moves the result.",
         "The interview gives the reason no count supplies, and costs ten conversations.",
         "An opt-in upload keyed to an account makes the line personal data."
       ],
@@ -1994,7 +1996,7 @@
           "costs": [
             "Anyone who declines is uncounted, and it says nothing about why."
           ],
-          "system": "A daily counts writer in the sidecar.",
+          "system": "A daily counts writer in `.frontmatter/`.",
           "screens": "A settings line naming the file.",
           "money": "None."
         },
@@ -2070,7 +2072,7 @@
       "sub": "Codebase",
       "weight": "high",
       "q": "Merge, vendor, or fork-and-own the sgnk-md editor shell, and what does the answer cost in days?",
-      "lede": "Two rows in the fix-first table say Decision instead of a day count. The other has a date.",
+      "lede": "Two rows in the plan's first-fixes table say Decision instead of a day count; only the web byte path has a date.",
       "visual": {
         "kind": "compare",
         "labelWidth": 190,
@@ -2126,11 +2128,11 @@
             "cells": [
               "no",
               "no",
-              "yes, which B16 may delete"
+              "yes, which the Firebase decision may delete"
             ]
           },
           {
-            "label": "Pairs with row 9, re-identify src-tauri",
+            "label": "Pairs with re-identifying src-tauri",
             "cells": [
               "yes, same pass",
               "no",
@@ -2141,11 +2143,11 @@
         "note": "41 of 43 editor files are byte-identical to the sibling and zero are unique to frontmatter.",
         "caption": "Three ways to stop paying for the same shell twice"
       },
-      "stakes": "At 1.21 engineering days a week, a divergence tax no exhibit carries is not a rounding error.",
+      "stakes": "At 1.21 engineering days a week, an unbudgeted fork cost is not a rounding error.",
       "state": [
-        "41 of 43 editor and app-shell files are byte-identical to the sibling (docs/PRODUCT-BRIEF.md:223).",
+        "41 of 43 editor and app-shell files are byte-identical to the sibling md repo.",
         "25 files have already diverged; `src/modules/mdmax` is all this product owns.",
-        "The row says Decision and is absent from Exhibit 20 (docs/PRODUCT-BRIEF.md:363)."
+        "The row says Decision but is missing from the plan's open decisions."
       ],
       "tension": [
         "Every table-stakes day is either a fork tax or an upstream merge, neither budgeted.",
@@ -2254,7 +2256,7 @@
           "label": "Fork-and-own: absorb the shell, keep md parked, re-identify `src-tauri`",
           "gains": [
             "One codebase, one owner, no merge cost again.",
-            "Pairs with row 9's one-day re-identification."
+            "Pairs with the one-day `src-tauri` identity fix."
           ],
           "costs": [
             "Anything sgnk-md fixes has to be fixed twice.",
@@ -2262,7 +2264,7 @@
           ],
           "system": "One repository; src-tauri re-identified.",
           "screens": "None.",
-          "money": "About one day, already budgeted as row 9."
+          "money": "About one day, already budgeted as a first fix."
         },
         {
           "k": "b",
@@ -2284,9 +2286,9 @@
             "Keeps whatever users sgnk-md has, who are the only real ones."
           ],
           "costs": [
-            "Inherits the Firebase wiring B16 may be about to delete."
+            "Inherits the Firebase wiring the Firebase decision may delete."
           ],
-          "system": "Repository rename; Firebase to resolve with B16.",
+          "system": "Repository rename; Firebase resolved with the Firebase decision.",
           "screens": "None.",
           "money": "Unquantified until sgnk-md's user list is known."
         },
@@ -2306,8 +2308,8 @@
       ],
       "rec": "a",
       "recCase": [
-        "The decision layer already parked md and recorded that zero files exist only there.",
-        "Fork-and-own lands the src-tauri re-identification and the cleanup in one pass."
+        "The decisions document already parked md and recorded that zero files exist only there.",
+        "Fork-and-own re-identifies `src-tauri` and does the cleanup in one pass."
       ],
       "flip": "If sgnk-md has real users, (c) is the right shape; abandoning the only real users is a bad trade.",
       "linked": [
@@ -2358,19 +2360,19 @@
             "tone": "good"
           }
         ],
-        "note": "Everything on the channel table reaches perhaps 350k–500k year-one visitors (BUSINESS.md:1086). Marketing posts ever shipped: 2.",
+        "note": "Everything on the channel table reaches perhaps 350k–500k year-one visitors (BUSINESS.md). Marketing posts ever shipped: 2.",
         "caption": "The milestone against the only threshold that changes anything"
       },
-      "stakes": "A target nobody can reach makes every honest report read as failure.",
+      "stakes": "If the target cannot be reached, every honest report will read as failure.",
       "state": [
-        "The requirement is about 1,260,000 cumulative visitors (docs/BUSINESS.md:941).",
-        "The same work sums the channels at 350k to 500k year one (docs/BUSINESS.md:1086).",
-        "v15 carries neither figure. Marketing posts ever shipped: 2 (docs/BUSINESS.md:940)."
+        "The requirement is about 1,260,000 cumulative visitors.",
+        "The same work sums the channels at 350k to 500k year one.",
+        "The current plan carries neither figure; marketing posts ever shipped: 2."
       ],
       "tension": [
         "Default-alive at one founder is 294 paying users, about 100,428 cumulative visitors.",
-        "Published-page organic is about zero by choice, under noindex (docs/BUSINESS.md:1080).",
-        "Holding the stock costs about 89,000 visitors a month at 6 per cent churn."
+        "Search traffic to published pages is about zero by choice, under noindex.",
+        "Holding ₹20 lakh at 6 per cent monthly churn takes about 89,000 visitors a month."
       ],
       "evidence": [
         {
@@ -2473,7 +2475,7 @@
           "k": "c",
           "label": "Size the developer-tool distribution channel before publishing any target",
           "gains": [
-            "The only candidate whose ceiling is the right order (docs/BUSINESS.md:1084)."
+            "The only candidate whose ceiling is the right order of magnitude."
           ],
           "costs": [
             "Reaches developers, the worst-converting audience, and may lower the blended rate."
@@ -2498,7 +2500,7 @@
       ],
       "rec": "a",
       "recCase": [
-        "A target nobody can reach guarantees that every honest report reads as failure.",
+        "No channel mix reaches it, so every honest report would read as failure.",
         "Default-alive is 4,185 visitors a month, and hitting it means the founder is paid."
       ],
       "flip": "If the developer-tool channel is sized and comes back large, ₹20 lakh becomes arguable.",
@@ -2529,7 +2531,7 @@
       "sub": "Compliance ops",
       "weight": "high",
       "q": "Which statutory work happens before the pilot: the CERT-In filing and runbook, the grievance officer, a GST opinion, or none?",
-      "lede": "The obligations that bind today have no size floor, no owner and no artefact. One runs on six hours.",
+      "lede": "The legal duties binding today have no size floor, no owner and nothing written; one has a six-hour clock.",
       "visual": {
         "kind": "timeline",
         "items": [
@@ -2553,30 +2555,30 @@
           },
           {
             "when": "2026-11-13",
-            "label": "DPDP §6(9) and §27(1)(d)",
+            "label": "DPDP sections 6(9) and 27(1)(d)",
             "note": "first substantive tranche",
             "tone": "neutral"
           },
           {
             "when": "2027-05-13",
-            "label": "DPDP §§3–17 and the penalty chapter",
+            "label": "DPDP sections 3 to 17 and the penalty chapter",
             "note": "247 days out from the plan's date",
             "tone": "neutral"
           }
         ],
-        "note": "The register had this backwards until round 2; the live regime is the IT Act and the SPDI Rules (GAPS-2026-09-08.md:129).",
+        "note": "The register had this backwards until round 2; the live regime is the IT Act and the SPDI Rules.",
         "caption": "What binds now, against what the plan was written against"
       },
       "stakes": "A missed statutory clock is a violation rather than a delay, and it attaches to the pilot.",
       "state": [
-        "The six-hour CERT-In duty is named; the Annexure II filing is missing (docs/PRODUCT-BRIEF.md:543).",
+        "The six-hour CERT-In duty is named; the Annexure II point-of-contact filing is missing.",
         "A grievance officer is due now under SPDI Rule 5(9), and none is published.",
-        "None of it appears in the week-0 list (docs/PRODUCT-BRIEF.md:351)."
+        "None of it appears in the week-0 list."
       ],
       "tension": [
-        "CGST §24(iii) has no turnover floor; the other row says the vendor charges GST.",
+        "CGST section 24(iii) has no turnover floor; another reading says the vendor charges GST.",
         "The company already buys foreign services, so whichever reading holds is operative.",
-        "A CA answers the tax question in an hour. No document here can."
+        "A chartered accountant answers the tax question in an hour; no document here can."
       ],
       "evidence": [
         {
@@ -2714,11 +2716,11 @@
           "label": "Do the whole pack in week 0: file, runbook, grievance officer, CA opinion",
           "gains": [
             "Converts the live criminal-adjacent exposure into a filed form.",
-            "The CA retainer is already in the budget (docs/BUSINESS.md:678)."
+            "The CA retainer is already in the budget."
           ],
           "costs": [
             "Hours from a schedule already short of engineering days.",
-            "The runbook needs revising once B16 settles the surface."
+            "The runbook needs revising once the Firebase decision lands."
           ],
           "system": "No change.",
           "screens": "A grievance and privacy page.",
@@ -2744,7 +2746,7 @@
             "Defers all of it, at zero cost today."
           ],
           "costs": [
-            "The directions bind with no size floor, so the pilot is covered."
+            "The CERT-In directions have no size floor, so they already bind the pilot."
           ],
           "system": "No change.",
           "screens": "None.",
@@ -2752,12 +2754,12 @@
         },
         {
           "k": "d",
-          "label": "Wait for B16, since the answer changes what data we hold",
+          "label": "Wait for the Firebase decision, since the answer changes what data we hold",
           "gains": [
             "Avoids writing the runbook twice."
           ],
           "costs": [
-            "B16 has no date, and the filing does not depend on it."
+            "The Firebase decision has no date, and the filing does not depend on it."
           ],
           "system": "No change.",
           "screens": "None.",
@@ -2767,9 +2769,9 @@
       "rec": "a",
       "recCase": [
         "The filing is a form and the runbook a page, and both get more urgent.",
-        "The grievance officer appears on the site, not in code, so no engineering day."
+        "The grievance officer appears on the site, not in code, so it costs no engineering day."
       ],
-      "flip": "If B16 lands within days, write the runbook after it, but file the point of contact first.",
+      "flip": "If the Firebase decision lands within days, write the runbook after it, but file the point of contact first.",
       "linked": [
         "B8",
         "B16",
@@ -2819,7 +2821,7 @@
             "note": "append-only revision history"
           },
           {
-            "t": "// Deliberate unauthenticated read —",
+            "t": "// Deliberate unauthenticated read",
             "mark": "stop",
             "note": "line 390, verbatim"
           },
@@ -2829,7 +2831,7 @@
             "note": "the file's own comment"
           },
           {
-            "t": "PRODUCT-BRIEF.md:43: no vendor database",
+            "t": "The current plan: no vendor database",
             "mark": "keep",
             "note": "the prose says the opposite"
           }
@@ -2837,7 +2839,7 @@
         "note": "Zero Firestore writes across the source tree today; the file is a statement about the product regardless.",
         "caption": "What the committed rules say, against what the plan says"
       },
-      "stakes": "No operating rule can be written while three files disagree, and holding documents confers intermediary status.",
+      "stakes": "No operating rule can be written until this settles, and holding documents confers intermediary status.",
       "state": [
         "`firestore.rules` designs 900 KB note bodies, append-only revisions and unauthenticated public reads.",
         "PRD v2 says we hold user documents and ships publishing at 74 founder-hours.",
@@ -2845,8 +2847,8 @@
       ],
       "tension": [
         "A committed rules file permitting unauthenticated content reads is readable by anyone.",
-        "Holding documents confers intermediary status under IT Act §2(1)(w), a different regime.",
-        "Deleting a file takes five minutes. Deciding a feature does not."
+        "Holding documents confers intermediary status under IT Act section 2(1)(w), a different regime.",
+        "Deleting the file takes five minutes; the publishing decision takes longer."
       ],
       "evidence": [
         {
@@ -2912,7 +2914,7 @@
           "k": "a",
           "label": "Delete `firestore.rules` and the publishing plan. Zero document bytes in code",
           "gains": [
-            "Section 22's operating rules become writable immediately."
+            "The plan's operating rules become writable immediately."
           ],
           "costs": [
             "Forfeits publishing and pre-judges a question with its own week-2 slot."
@@ -2928,7 +2930,7 @@
             "Publishing is a real feature with a real buyer."
           ],
           "costs": [
-            "Permanent on-call and takedowns, and section 22 is rewritten first."
+            "Permanent on-call and takedowns, and the operating rules rewritten first."
           ],
           "system": "Hosting, takedowns, retention, an abuse path.",
           "screens": "Publish, viewer, takedown.",
@@ -2949,13 +2951,13 @@
         },
         {
           "k": "d",
-          "label": "Delete the rules file now; decide publishing separately after decision 3",
+          "label": "Delete the rules file now; decide publishing separately after the sharing decision",
           "gains": [
             "Unblocks the operating rules in five minutes.",
             "Leaves the sharing question genuinely open."
           ],
           "costs": [
-            "A re-derivation is needed if publishing is later chosen.",
+            "Needs re-deriving if publishing is later chosen.",
             "The PRD still plans publishing and needs correcting."
           ],
           "system": "Rules file deleted; no behaviour changes.",
@@ -2966,7 +2968,7 @@
       "rec": "d",
       "recCase": [
         "The contradiction blocks the operating rules, and deleting a file resolves it.",
-        "Publishing already has a week-2 slot as decision 3, so nothing is lost."
+        "Publishing already has a week-2 slot, decision 3 on sharing, so nothing is lost."
       ],
       "flip": "If publishing ships in v1, which the PRD still plans at 74 founder-hours, (b) is honest.",
       "linked": [
@@ -2992,7 +2994,7 @@
       "sub": "Channels",
       "weight": "high",
       "q": "Do we ask the superpowers and spec-kit maintainers in week 0, or plan the week-2 channel assuming they will say yes?",
-      "lede": "Two channels were cut in round 2, and the one left needs a consent nobody has requested.",
+      "lede": "Two channels were cut in the second research round, and the one left needs a consent nobody has requested.",
       "visual": {
         "kind": "flow",
         "perRow": 3,
@@ -3030,19 +3032,19 @@
             "tone": "warn"
           }
         ],
-        "note": "Approaches made to either maintainer so far: zero (GAPS-2026-09-08.md:58).",
+        "note": "Approaches made to either maintainer so far: zero (the gap register).",
         "caption": "Asking in week 0 costs an hour and prices the assumption"
       },
       "stakes": "The only remaining launch channel depends on an event with no owner, no date and unknown odds.",
       "state": [
-        "superpowers is week 2, first and alone; the PR is outbound (docs/PRODUCT-BRIEF.md:305).",
-        "spec-kit is second, reframed around agent self-certification (docs/PRODUCT-BRIEF.md:306).",
-        "Approaches made to either maintainer: zero (docs/GAPS-2026-09-08.md:58)."
+        "superpowers is week 2, first and alone; we would open the PR.",
+        "spec-kit is second, reframed around agent self-certification.",
+        "Approaches made to either maintainer: zero."
       ],
       "tension": [
         "superpowers reaches 22–30 thousand repos active in 30 days; spec-kit about 1,660.",
         "The spec-kit pitch is strong: 354 of 355 checklist boxes ticked by the agent.",
-        "A message costs an hour. Three months around an unasked question costs a quarter."
+        "A message costs an hour; planning three months around an unasked question risks the quarter."
       ],
       "evidence": [
         {
@@ -3151,7 +3153,7 @@
           "k": "c",
           "label": "Take the channel to the git-backed CMS shelf instead",
           "gains": [
-            "Right audience, and the review-shaped hole is on their own page."
+            "Right audience, and their own page shows the gap where review goes."
           ],
           "costs": [
             "That audience expects this free, and it still needs someone's consent."
@@ -3242,17 +3244,17 @@
             "tone": "warn"
           }
         ],
-        "note": "Figures for a 21-day absence at default-alive (r26-c9-capacity.md:149-156).",
+        "note": "Figures for a 21-day absence at default-alive (the capacity research).",
         "caption": "Four layers, one person, no cover on any of them"
       },
       "stakes": "An absence hits the funding, the calendar, the support promise and the statutory clock at once.",
       "state": [
-        "The risk register lists ten risks; founder unavailability is not one (docs/PRODUCT-BRIEF.md:319).",
-        "The operating rules name no second responder (docs/PRODUCT-BRIEF.md:533).",
+        "The risk register lists ten risks; founder unavailability is not one.",
+        "The operating rules name no second responder.",
         "The capacity research proposed the drill and it has never been scheduled."
       ],
       "tension": [
-        "Indian card mandates get one attempt, so a failed renewal is terminal (docs/BUSINESS.md:140).",
+        "Indian card mandates get one attempt, so a failed renewal is terminal.",
         "Before the pilot almost nothing runs, so a drill would test very little.",
         "Five working days is a real cost against a schedule that has few."
       ],
@@ -3366,7 +3368,7 @@
             "An afternoon, and it captures the obvious items."
           ],
           "costs": [
-            "A runbook nobody has executed is documentation of intent."
+            "Nobody has run it, so it records intent, not tested steps."
           ],
           "system": "No change.",
           "screens": "None.",
@@ -3376,7 +3378,7 @@
           "k": "d",
           "label": "Accept it. One founder, no drill, no runbook",
           "gains": [
-            "Free until it is not, and five days stay in the schedule."
+            "Free until an absence happens, and five days stay in the schedule."
           ],
           "costs": [
             "Every compliance clock runs on, and the retainer SLA has no cover."
@@ -3388,10 +3390,10 @@
       ],
       "rec": "b",
       "recCase": [
-        "The last moment when a five-day outage is a test rather than an incident.",
-        "Write down what broke. That list is a better runbook than imagination."
+        "Before the first paying user, a five-day outage is still a test, not an incident.",
+        "Write down what broke, and use that list as the runbook instead of guesses."
       ],
-      "flip": "If B1 resolves to two people, the drill still runs but its result changes meaning.",
+      "flip": "If the founder count resolves to two people, the drill still runs but its result changes meaning.",
       "linked": [
         "B1",
         "B14"
@@ -3416,7 +3418,7 @@
       "sub": "Endgame",
       "weight": "high",
       "q": "What are we building toward: an independent business we keep, or a team and a codebase somebody buys?",
-      "lede": "Absorption is the modal outcome in this graveyard, and the plan says nothing about the ending it wants.",
+      "lede": "Acquisition is the most common ending among the dead products studied, and the plan never names the ending it wants.",
       "visual": {
         "kind": "timeline",
         "items": [
@@ -3456,27 +3458,27 @@
       },
       "stakes": "The ending decides the price, the ownership, the not-building list and whether the format is open.",
       "state": [
-        "The plan has no exit section; the analysis stops at the market (docs/PRODUCT-BRIEF.md:557).",
-        "The decision layer refuses a raise: 367 months against a seven-year horizon (docs/DECIDE.md:150).",
-        "The family section already sells services around the product (docs/PRODUCT-BRIEF.md:482)."
+        "The plan has no exit section; the analysis stops at the market.",
+        "The decisions document refuses a raise: 367 months against a seven-year horizon.",
+        "The product-family section already sells services around the product."
       ],
       "tension": [
         "An acquirer with a publishing pipeline wants the engine and team, not users.",
-        "Building to be bought argues for a closed sidecar; building to keep, the opposite.",
+        "Building to be bought argues for a closed review file format; building to keep, the opposite.",
         "Obsidian is the counter-case: 8 staff, no investors, licence made optional."
       ],
       "evidence": [],
       "options": [
         {
           "k": "a",
-          "label": "Independent, permanently. Write it down, with the sidecar format published",
+          "label": "Independent, permanently. Write it down, with the separate-file format published",
           "gains": [
             "Matches the architecture already chosen: exit is free."
           ],
           "costs": [
-            "Forfeits the modal outcome, and an open sidecar is the sellable asset."
+            "Rules out acquisition, the most common ending, and opens the format a buyer would want."
           ],
-          "system": "The sidecar schema is published and versioned.",
+          "system": "The review file schema is published and versioned.",
           "screens": "A format page in the docs.",
           "money": "No acquisition premium, ever."
         },
@@ -3489,7 +3491,7 @@
           "costs": [
             "Four of eight dead products were bought and the software went too."
           ],
-          "system": "Proprietary sidecar; no open format.",
+          "system": "Proprietary review file; no open format.",
           "screens": "None.",
           "money": "One-time, unpredictable, and it ends the product."
         },
@@ -3504,7 +3506,7 @@
             "A written number can leak or age badly.",
             "Decided without ever having met an acquirer."
           ],
-          "system": "Sidecar published; nothing else changes.",
+          "system": "Review file format published; nothing else changes.",
           "screens": "A format page.",
           "money": "None today."
         },

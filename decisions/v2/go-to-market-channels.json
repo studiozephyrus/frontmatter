@@ -7,7 +7,7 @@
       "sub": "Headline",
       "weight": "high",
       "q": "Do the weeks 1–2 headline tests run three arms, two, or one?",
-      "lede": "The fortnight is the only gate before the build, and the plan gives two answers.",
+      "lede": "The two-week test is the only gate before building, and the plan gives two answers.",
       "visual": {
         "kind": "compare",
         "labelWidth": 150,
@@ -62,11 +62,11 @@
         "note": "Arm 1 was demoted two rounds ago and is still in the test.",
         "caption": "Three arms over ten people is three reads each, which is not a signal."
       },
-      "stakes": "Three arms over ten people make the day-14 kill signal unattributable to any headline.",
+      "stakes": "With ten people across three arms, a day-14 kill cannot be traced to one headline.",
       "state": [
-        "§12 names three variants (docs/PRODUCT-BRIEF.md:296); Exhibit 19 says two framings (docs/PRODUCT-BRIEF.md:352).",
-        "The gap register also says three arms (docs/GAPS-2026-09-08.md:110).",
-        "Arm 1 is carried as demoted, not deleted (docs/PRODUCT-BRIEF.md:175)."
+        "The go-to-market section names three headlines; the week-by-week schedule says two framings.",
+        "The gap register also says three arms.",
+        "Arm 1, what the AI wrote, is carried as demoted, not deleted."
       ],
       "tension": [
         "Arm 2 now ships free in Claude Code, Antigravity, Codex and VS Code.",
@@ -140,9 +140,9 @@
       "options": [
         {
           "k": "a",
-          "label": "Test all three arms as §12 and the gap register list them",
+          "label": "Test all three arms as the plan and the gap register list them",
           "gains": [
-            "Keeps the plan internally consistent with §12"
+            "Matches the go-to-market section as written"
           ],
           "costs": [
             "No arm reaches a readable signal",
@@ -174,11 +174,11 @@
             "Five reads per arm"
           ],
           "costs": [
-            "Contradicts the demotion recorded in Exhibit 4",
+            "Contradicts the plan's recorded demotion of authorship",
             "Authorship has no measured pull outside teams"
           ],
           "system": "No change.",
-          "screens": "Two landing pages; the tint card shows an author.",
+          "screens": "Two landing pages; the highlighted-text card shows an author.",
           "money": "None."
         },
         {
@@ -198,10 +198,10 @@
       ],
       "rec": "c",
       "recCase": [
-        "Arm 2 shipped free in four editors this quarter, so testing it measures reading, not wanting.",
-        "Span-level authorship is the only one of the four claims nothing opened occupies."
+        "Arm 2 shipped free in four editors this quarter, so testing it cannot show demand for us.",
+        "Span-level authorship is the only one of four claims no checked product has shipped."
       ],
-      "flip": "If a platform ships span-level authorship marking before week 2, arm 1 joins arm 2.",
+      "flip": "If a platform ships span-level authorship marking before week 2, arm 1 is dropped too.",
       "linked": [
         "G13",
         "G14"
@@ -219,8 +219,8 @@
       "cat": "Go-to-market & channels",
       "sub": "Obsidian",
       "weight": "high",
-      "q": "Does any Obsidian surface ship, and do the four exhibits that still promise one get deleted?",
-      "lede": "The plugin was week 2's channel in every earlier plan; four exhibits still carry it.",
+      "q": "Does any Obsidian surface ship, and do the four mentions still promising one get deleted?",
+      "lede": "The plugin was week 2's channel in every earlier plan, and the current plan still mentions it four times.",
       "visual": {
         "kind": "compare",
         "labelWidth": 170,
@@ -267,14 +267,14 @@
         "note": "Both columns were measured in the same forum on the same day.",
         "caption": "Demand sits on the surface we cannot build. The one we can has none."
       },
-      "stakes": "Cutting it removes MVP-0's only channel and one retention lever, with no replacement for either.",
+      "stakes": "Cutting it removes the pilot's only channel and a retention lever, replacing neither.",
       "state": [
-        "§12 cuts the plugin: Live Preview's tree is depth-1 by construction (docs/PRODUCT-BRIEF.md:304).",
-        "Exhibit 6 still lists it as MVP-0's channel, 200-install kill line (docs/PRODUCT-BRIEF.md:204).",
-        "Exhibits 19, 24 and 26 still carry it (docs/PRODUCT-BRIEF.md:352, :428, :464)."
+        "The plan cuts the plugin: Obsidian's Live Preview syntax tree is one level deep, by construction.",
+        "The tiers table still lists it as the pilot's channel, killed under 200 installs.",
+        "The weekly schedule, the retention table and the product-family section still carry it."
       ],
       "tension": [
-        "Every engine claim is measured on seven Obsidian vaults (docs/PRODUCT-BRIEF.md:514).",
+        "Every engine claim is measured on seven Obsidian vaults.",
         "Obsidian core shipped nothing on AI, agents, diffs or review in twenty releases.",
         "Agent-writing plugins there hold roughly forty times the review-shaped plugin's downloads."
       ],
@@ -418,25 +418,25 @@
           ],
           "costs": [
             "Week 2 loses its only non-outbound action",
-            "The corpus population stops being a market"
+            "Our engine's test population stops being a market"
           ],
           "system": "No change.",
-          "screens": "Removes it from the §19 diagram.",
+          "screens": "Removes it from the product-family diagram.",
           "money": "None."
         },
         {
           "k": "b",
           "label": "Ship the additive review-state CodeMirror extension in week 2",
           "gains": [
-            "Buildable, because it needs no containment",
-            "Keeps a foothold in the corpus vaults"
+            "Buildable, because it needs no nesting data",
+            "Keeps a foothold in the test-vault population"
           ],
           "costs": [
-            "Puts the 0-like feature before the 501-like audience",
+            "Ships the 0-likes feature, not the 501-likes fix",
             "Adds build days to a build-nothing fortnight"
           ],
           "system": "CodeMirror extension over `.frontmatter/review.jsonl`; no re-parse.",
-          "screens": "A tint layer inside Obsidian.",
+          "screens": "A highlight layer inside Obsidian.",
           "money": "None. Free plugin."
         },
         {
@@ -447,7 +447,7 @@
           ],
           "costs": [
             "Depends on DOM classes Obsidian has already deleted once",
-            "Working precedents write U+200C into user files"
+            "Both working plugins write U+200C into user files"
           ],
           "system": "A rendering hack outside the engine.",
           "screens": "None of ours.",
@@ -470,7 +470,7 @@
       "rec": "a",
       "recCase": [
         "The parse was verified unreachable twice, independently, so (c) is not available at any price.",
-        "Leaving four mentions in guarantees somebody builds the cut thing from Exhibit 6 next month."
+        "If four mentions stay, someone builds the cut plugin from the tiers table next month."
       ],
       "flip": "If an Obsidian user asks for review state unprompted, the additive extension is the cheapest reach available.",
       "linked": [
@@ -498,7 +498,7 @@
       "cat": "Go-to-market & channels",
       "sub": "Launch events",
       "weight": "medium",
-      "q": "Do we spend the one Show HN shot at the MVP-0 exit, and does Product Hunt stay?",
+      "q": "Do we spend our one Show HN shot when the pilot ends, and does Product Hunt stay?",
       "lede": "Show HN is the only launch event left, sized with two figures found nowhere else.",
       "visual": {
         "kind": "funnel",
@@ -522,17 +522,17 @@
             "tone": "stop"
           }
         ],
-        "note": "docs/CRITIQUE.md:1195. Every spike decays to zero in 96 hours.",
+        "note": "Every spike decays to zero in 96 hours.",
         "caption": "What one Show HN in this category is worth, over twelve months."
       },
       "stakes": "One shot on the wrong title buys a 96-hour spike and nothing that lasts.",
       "state": [
-        "§12 puts Show HN at the MVP-0 exit, sized \"Zed 43, Cursor 9\" (docs/PRODUCT-BRIEF.md:309).",
+        "The plan puts Show HN at the pilot's end, sized by Zed's score of 43 and Cursor's 9.",
         "Those two figures appear nowhere else in the docs tree.",
-        "§12 keeps Product Hunt at MVP-1; the record excludes it (docs/THESIS.md:752)."
+        "Product Hunt stays for the build after the pilot; the thesis document excludes it."
       ],
       "tension": [
-        "31% of posts clearing 50 points carry free, open source or self-host (docs/CRITIQUE.md:1728).",
+        "31% of posts clearing 50 points carry free, open source or self-host.",
         "Our individual tier is free forever with no signup, so that title is true.",
         "A free title invites the free-alternatives thread, against seven maintained $0 editors."
       ],
@@ -653,13 +653,13 @@
       "options": [
         {
           "k": "a",
-          "label": "One shot at the MVP-0 exit, titled on the refusals",
+          "label": "One shot at the pilot exit, titled on the refusals",
           "gains": [
             "Differentiated against everything else in the list"
           ],
           "costs": [
             "Refusals are abstract to a stranger scrolling",
-            "Two of the five are currently disprovable"
+            "Two of the five refusals are disprovable today"
           ],
           "system": "No change.",
           "screens": "A launch page built on the refusal list.",
@@ -667,7 +667,7 @@
         },
         {
           "k": "b",
-          "label": "One shot at the MVP-0 exit, titled on free; cut Product Hunt",
+          "label": "One shot at the pilot exit, titled on free; cut Product Hunt",
           "gains": [
             "Matches the only measured predictor of 50 points",
             "Honest: the tier is free, no signup"
@@ -714,7 +714,7 @@
         "Free is the one title feature measurably correlated with clearing 50 points in this category.",
         "Product Hunt has no evidence either way, and the one document treating it as a decision excluded it."
       ],
-      "flip": "If the twenty conversations name a paying buyer who avoids Hacker News, spend the shot on a case study.",
+      "flip": "If the twenty team conversations name a paying buyer who avoids Hacker News, spend the shot on a case study.",
       "linked": [
         "G13",
         "G22"
@@ -785,13 +785,13 @@
       },
       "stakes": "The plan's first channel depends on a stranger's yes and on a server nobody has written.",
       "state": [
-        "§12's week-2 action is a README line, an MCP entry and a PR (docs/PRODUCT-BRIEF.md:305).",
+        "The plan's week-2 action is a README line, an MCP entry and a pull request.",
         "Checked 2026-09-09: no MCP dependency, no script, zero MCP references in src/.",
-        "No approach made to either maintainer; open after round 2 (docs/GAPS-2026-09-08.md:146)."
+        "Nobody has approached either maintainer; still open after research round two."
       ],
       "tension": [
         "superpowers halts, names a repo path, and asks a human to review a file.",
-        "spec-kit's pitch is a critique of its own default artefact. Awkward first contact.",
+        "Our pitch to spec-kit criticises spec-kit's own default artefact, which makes first contact awkward.",
         "A rejected pull request is public and permanent; an issue is neither."
       ],
       "evidence": [
@@ -907,7 +907,7 @@
             "Adds build days to a build-nothing fortnight",
             "A rejection is public in two repos"
           ],
-          "system": "A local MCP server, scheduled for MVP-1.",
+          "system": "A local MCP server, due in the build after the pilot.",
           "screens": "A config entry in the user's agent.",
           "money": "Six engineering days at 1.21 days a week."
         },
@@ -941,7 +941,7 @@
         },
         {
           "k": "d",
-          "label": "Move the whole toolchain channel to MVP-1, where the MCP server lives",
+          "label": "Move the toolchain channel to the build after the pilot, where the MCP server lives",
           "gains": [
             "Consistent with what is actually built"
           ],
@@ -983,7 +983,7 @@
       "cat": "Go-to-market & channels",
       "sub": "Toolchains",
       "weight": "high",
-      "q": "Do we publish the agent-self-certification measurement by name, and at what sample size?",
+      "q": "Do we publish, by name, the finding that spec-kit's agent ticks its own checklist, and at what sample size?",
       "lede": "The sharpest sentence the research produced is a public claim about somebody else's artefact, from twenty files.",
       "visual": {
         "kind": "ba",
@@ -1019,7 +1019,7 @@
               "mark": "good"
             },
             {
-              "t": "Meets §58's own standard",
+              "t": "Meets our own rule for public claims",
               "mark": "good"
             },
             {
@@ -1033,14 +1033,14 @@
       },
       "stakes": "A refuted marketing number refutes a product whose one differentiator is refusing rather than guessing.",
       "state": [
-        "§12 reframes spec-kit as \"green because the agent ticked it\" (docs/PRODUCT-BRIEF.md:306).",
-        "Population 49,664; 20 files sampled; 19 checked; 354 of 355 boxes ticked (docs/PRODUCT-BRIEF.md:306).",
-        "§58 permits numbers that are measured and re-derivable by anyone (docs/FRONTMATTER-RECORD.md:5022)."
+        "The plan pitches spec-kit as \"your checklist is green because the agent ticked it.\"",
+        "Population 49,664 files; 20 sampled; 19 fully ticked; 354 of 355 boxes ticked.",
+        "Our public-claims rule permits numbers anyone can measure and re-derive."
       ],
       "tension": [
         "99.7% from twenty files publishes only with its sample size in the sentence.",
         "The target maintainer is the one we would also ask for a README line.",
-        "Three of our own numbers were withdrawn after failing a control (docs/GAPS-2026-09-08.md:13)."
+        "Three of our own numbers were withdrawn after failing a control."
       ],
       "evidence": [
         {
@@ -1124,7 +1124,7 @@
           "k": "b",
           "label": "Re-measure at n of 200 or more before publishing anything",
           "gains": [
-            "Meets §58's re-derivable standard"
+            "Meets our public-claims standard"
           ],
           "costs": [
             "Delays the spec-kit channel by a day",
@@ -1165,8 +1165,8 @@
       ],
       "rec": "b",
       "recCase": [
-        "One day buys the difference between a claim and a measurement, on the line most likely re-run.",
-        "A product whose pitch is refusing rather than guessing cannot ship a guessed denominator."
+        "One more day turns a claim into a measurement, on the number most likely re-run.",
+        "Our pitch is refusing rather than guessing, so we cannot publish a guessed denominator."
       ],
       "flip": "If a larger sample returns under 90%, the sentence goes and spec-kit needs a different pitch.",
       "linked": [
@@ -1187,7 +1187,7 @@
       "sub": "Owned surfaces",
       "weight": "medium",
       "q": "Do we publish the research, which slice, and at what rate?",
-      "lede": "The only channel needing nobody's permission, and its measured shipping supply is two posts ever.",
+      "lede": "The only channel needing nobody's permission has shipped two posts ever.",
       "visual": {
         "kind": "compare",
         "labelWidth": 150,
@@ -1223,7 +1223,7 @@
             ]
           },
           {
-            "label": "What §58 permits",
+            "label": "What we may publish",
             "cells": [
               "Yes, as a defect report, never as coverage",
               "Only re-derived figures",
@@ -1244,14 +1244,14 @@
       },
       "stakes": "A cadence a solo founder cannot hold fails publicly: a burst, then months of silence.",
       "state": [
-        "§12 lists published research as available now, unpublished (docs/PRODUCT-BRIEF.md:308).",
+        "The plan lists published research as available now; none is published yet.",
         "Counted 2026-09-09: 235 report files, about 823,000 words under docs/research.",
-        "Two marketing posts have shipped; one carries a defect since 2026-08-10 (r17-h7:7)."
+        "Two marketing posts have shipped, and one has carried a defect since 2026-08-10."
       ],
       "tension": [
-        "Engine findings cost about 90 minutes; the build already produces them (r17-h7:28).",
-        "Content's year-one contribution is 20k–60k visitors, back-loaded to months 9–18 (r17-h7:144).",
-        "The biweekly cadence commits six to eight hours a fortnight fix-first also wants."
+        "Engine findings cost about 90 minutes; the build already produces them.",
+        "Content's year-one contribution is 20k–60k visitors, back-loaded to months 9–18.",
+        "A post every fortnight takes six to eight hours the first round of engine fixes also needs."
       ],
       "evidence": [
         {
@@ -1407,7 +1407,7 @@
           ],
           "costs": [
             "Loses three months on a channel needing nine to eighteen",
-            "Nobody outside sees the corpus"
+            "Nobody outside sees the 235 research reports"
           ],
           "system": "No change.",
           "screens": "None.",
@@ -1486,13 +1486,13 @@
       },
       "stakes": "We would launch on a refusal a reader disproves by opening the repository.",
       "state": [
-        "§1, §5 and §12 say we hold no user files (docs/PRODUCT-BRIEF.md:43, :159).",
-        "A live unauthenticated route renders a user's document, index and follow true (src/app/(public)/[slug]/page.tsx:30).",
-        "The written policy is the opposite: noindex except on opt-in (r17-h7:104)."
+        "Three sections of the plan say we hold no user files.",
+        "A live route with no login renders a user's document, set to index and follow.",
+        "The written policy is the opposite: noindex unless the user opts in."
       ],
       "tension": [
-        "The route reads the file at request time. A 60-second CDN copy qualifies that.",
-        "firestore.rules designs a stored 900 KB snapshot with unauthenticated reads (firestore.rules:390). Unbuilt.",
+        "The route reads the file at request time, though a CDN keeps a 60-second copy.",
+        "Our Firestore rules design a stored 900 KB snapshot anyone can read without login. It is unbuilt.",
         "SPDI Rules 2011 require consent before collection, and share has no consent step."
       ],
       "evidence": [
@@ -1766,23 +1766,23 @@
             "label": "Who decided it",
             "cells": [
               "Nobody. It arrived with the feature",
-              "§12 defers it as unmeasurable"
+              "The plan defers it as unmeasurable"
             ]
           }
         ],
         "note": "The research objects to a backlink on a user's own page. Only one column is that.",
         "caption": "One mark ships unreviewed; the other is deferred as immeasurable."
       },
-      "stakes": "An unreviewed footer on our surface sits beside a deferred decision about somebody else's.",
+      "stakes": "A footer nobody decided on already ships on our hosted pages, while the export mark is deferred.",
       "state": [
-        "§12 puts marked exports at MVP-2, \"not a channel until measured\" (docs/PRODUCT-BRIEF.md:311).",
-        "The hosted note already carries a \"Hosted on frontmatter.in\" footer (src/modules/share/presentation/PublicNoteView.tsx:30).",
+        "The plan defers marked exports to a later build, as not a channel until measured.",
+        "The hosted note already carries a \"Hosted on frontmatter.in\" footer.",
         "Checked 2026-09-09: the 945-line export module carries no mark."
       ],
       "tension": [
         "The research objects to links on a user's domain, which does not exist yet.",
-        "The third objection bites: the footer is markup with no representative in the file.",
-        "The export cut used Obsidian download ratios, a note-taker denominator (docs/GAPS-2026-09-08.md:60)."
+        "Its third objection applies here: the footer is markup that is not in the file.",
+        "The export cut used Obsidian download ratios, which count note-takers."
       ],
       "evidence": [
         {
@@ -1849,8 +1849,8 @@
             "Cleanest against the file-is-truth position"
           ],
           "costs": [
-            "Forfeits the loop entirely",
-            "The §12 row should then be deleted"
+            "Forfeits the growth loop entirely",
+            "The exported-pages row in the channel table should then go"
           ],
           "system": "Remove the footer from PublicNoteView.",
           "screens": "The public note loses its footer.",
@@ -1860,7 +1860,7 @@
           "k": "b",
           "label": "Keep the footer, add a linked mark on exported pages, add an opt-out",
           "gains": [
-            "Keeps the loop with an escape hatch",
+            "Keeps the growth loop, with an opt-out",
             "Both surfaces finally say the same thing"
           ],
           "costs": [
@@ -1890,7 +1890,7 @@
           "k": "d",
           "label": "Keep both marks and add a deploy counter so the channel is measurable",
           "gains": [
-            "Makes the §12 row falsifiable"
+            "Makes the exported-pages channel row falsifiable"
           ],
           "costs": [
             "Counts an event on a user's page, which telemetry forbids",
@@ -1906,7 +1906,7 @@
         "The research's objection is about somebody else's domain, and only the export half is that.",
         "An unlinked wordmark cannot form the link scheme it warns about."
       ],
-      "flip": "If a custom-domain deploy path ships, an exported mark lands on somebody else's domain and the objections bite.",
+      "flip": "If a custom-domain deploy path ships, an exported mark lands on somebody else's domain and the objections apply.",
       "linked": [
         "G10"
       ],
@@ -1916,7 +1916,8 @@
         "docs/research/agent-reports-2026-08-30/r17-h7-content-seo-distribution.md:111",
         "docs/research/agent-reports-2026-08-30/r17-h7-content-seo-distribution.md:113",
         "docs/GAPS-2026-09-08.md:60",
-        "docs/GAPS-2026-09-08.md:133"
+        "docs/GAPS-2026-09-08.md:133",
+        "src/modules/share/presentation/PublicNoteView.tsx:30"
       ]
     },
     {
@@ -1925,7 +1926,7 @@
       "sub": "Positioning",
       "weight": "critical",
       "q": "Do we call it a markdown editor in public?",
-      "lede": "Page one of the plan opens with the exact phrase the corpus spent a round learning not to say.",
+      "lede": "Page one of the plan opens with the exact phrase an earlier research round learned not to say.",
       "visual": {
         "kind": "matrix",
         "x": [
@@ -1979,12 +1980,12 @@
       },
       "stakes": "The phrase drops the launch into a thread whose price floor is $0 and actively maintained.",
       "state": [
-        "§1 opens \"frontmatter is a markdown editor for repositories…\" (docs/PRODUCT-BRIEF.md:20).",
-        "The record's rule is \"Never say markdown editor\" (docs/FRONTMATTER-RECORD.md:2533).",
-        "Seven free self-hosted editors hold 21,501–76,040 stars, all pushed within a day (docs/FRONTMATTER-RECORD.md:5588)."
+        "The plan opens with \"frontmatter is a markdown editor for repositories…\"",
+        "The research record's rule is \"Never say markdown editor.\"",
+        "Seven free self-hosted editors hold 21,501–76,040 stars, all pushed within a day."
       ],
       "tension": [
-        "The phrase is precise internally and hostile externally.",
+        "The phrase describes the product accurately, but in public it invites free alternatives.",
         "A new category noun costs a teaching sentence in every founder conversation.",
         "Search, directories and comparison pages index a noun, not a sentence."
       ],
@@ -2127,7 +2128,7 @@
         "The internal sentence is the clearest description a builder has, and losing it costs the plan.",
         "The public cost is measured: that name turns a Show HN into a free-alternatives thread."
       ],
-      "flip": "If the twenty conversations show buyers searching for a markdown editor, the noun is a channel.",
+      "flip": "If the twenty team conversations show buyers searching for a markdown editor, the noun is a channel.",
       "linked": [
         "G4",
         "G14",
@@ -2147,7 +2148,7 @@
       "sub": "Positioning",
       "weight": "high",
       "q": "Which refusals may we actually state in public?",
-      "lede": "The positioning leads with five refusals; the repository contradicts one and the record argues against another.",
+      "lede": "The positioning leads with five refusals; the repository contradicts one and the research record argues against another.",
       "visual": {
         "kind": "compare",
         "labelWidth": 160,
@@ -2203,9 +2204,9 @@
       },
       "stakes": "A refusal-led pitch fails the moment one refusal is disproved, and one already is.",
       "state": [
-        "§12 leads with five refusals, including no holding files and no lock-in (docs/PRODUCT-BRIEF.md:298).",
-        "\"No holding files\" is contradicted by src/app/(public)/[slug]/page.tsx:30 and firestore.rules:390.",
-        "The record calls near-zero switching cost the anti-moat (docs/FRONTMATTER-RECORD.md:2552)."
+        "The plan leads with five refusals, including no holding files and no lock-in.",
+        "\"No holding files\" is contradicted by a live public route and by our Firestore rules.",
+        "The research record calls near-zero switching cost the anti-moat."
       ],
       "tension": [
         "Three of the five stand unqualified, and they are the least striking three.",
@@ -2300,7 +2301,7 @@
           ],
           "costs": [
             "Gates the launch on deleting a shipped feature",
-            "Pre-empts G10 rather than answering it"
+            "Pre-empts the public-page decision rather than answering it"
           ],
           "system": "Deletes the public route and the firestore snapshot design.",
           "screens": "Share becomes a permalink.",
@@ -2337,10 +2338,10 @@
       ],
       "rec": "a",
       "recCase": [
-        "A refusal a reader disproves in a minute costs more than the striking sentence gains.",
-        "The off-switch has 412, 30 and 181 reactions behind it, the strongest of the five."
+        "A reader can disprove the hosting refusal in a minute, which costs more than the line gains.",
+        "The hide-all-AI switch has 412, 30 and 181 reactions behind it, the strongest of the five."
       ],
-      "flip": "If G10 deletes the snapshot design, \"we render, we do not store\" becomes a fourth publishable refusal.",
+      "flip": "If the public-page decision drops the snapshot design, \"we render, we do not store\" becomes a fourth publishable refusal.",
       "linked": [
         "G10",
         "G13"
@@ -2385,17 +2386,17 @@
             "tone": "neutral"
           }
         ],
-        "note": "No measured loop produces the top figure at n=0 (r25-w4:92).",
+        "note": "No measured loop produces the top figure at n=0.",
         "caption": "What a loop would owe, against zero measured loops."
       },
-      "stakes": "The exit test, the price hypothesis and the fortnight rest on humans this programme lacks.",
+      "stakes": "The pilot's exit test, the price hypothesis and the two-week test all rest on people we have not found.",
       "state": [
-        "§9's ten users bring their own repos and agents; no source named (docs/PRODUCT-BRIEF.md:231).",
-        "§11 makes the paid tier a hypothesis until twenty team conversations (docs/PRODUCT-BRIEF.md:292).",
-        "The code-search instrument exists on paper and has never been run (docs/THESIS.md:747)."
+        "The plan's ten pilot users bring their own repos and agents; no source is named.",
+        "The pricing section keeps the paid tier a hypothesis until twenty team conversations.",
+        "The code-search query that would find them is written down and has never been run."
       ],
       "tension": [
-        "Zero customer interviews across 105 reports and 374,866 words (docs/CRITIQUE.md:1102).",
+        "No customer interviews exist across 105 reports and 374,866 words.",
         "Cold booking twenty conversations in a fortnight is optimistic at 1.21 days a week.",
         "A warm no is indistinguishable from politeness, so the ten must be strangers."
       ],
@@ -2542,14 +2543,14 @@
         },
         {
           "k": "d",
-          "label": "Defer the twenty conversations until after MVP-0",
+          "label": "Defer the twenty conversations until after the pilot",
           "gains": [
             "Removes a fortnight of load from a one-person team",
             "The ten still run on schedule"
           ],
           "costs": [
             "The build proceeds with the revenue hypothesis untested",
-            "§11 already calls that the open question"
+            "The pricing section already calls that the open question"
           ],
           "system": "No change.",
           "screens": "None.",
@@ -2630,9 +2631,9 @@
       },
       "stakes": "Demand claims are inferred from public complaints, while a live user list may sit nearby.",
       "state": [
-        "The gap register lists sgnk-md's users as untapped and founder-gated (docs/GAPS-2026-09-08.md:36).",
-        "202 of 228 files are shared with frontmatter (docs/PRODUCT-BRIEF.md:479).",
-        "Interviews conducted across the whole programme: zero (docs/GAPS-2026-09-08.md:35)."
+        "The gap register lists sgnk-md's users as untapped and waiting on a founder decision.",
+        "202 of sgnk-md's 228 files are shared with frontmatter.",
+        "The whole programme has conducted zero interviews so far."
       ],
       "tension": [
         "They are note-takers, so they cannot settle the agent-review question.",
@@ -2767,7 +2768,7 @@
         "nodes": [
           {
             "label": "Team runs the free docs scan",
-            "note": "F7: ten engineering days, unbuilt",
+            "note": "ten engineering days, unbuilt",
             "tone": "warn"
           },
           {
@@ -2776,7 +2777,7 @@
           },
           {
             "label": "That list is the brief",
-            "note": "the §18 upsell moment",
+            "note": "an upsell moment in the plan",
             "tone": "accent"
           },
           {
@@ -2785,18 +2786,18 @@
             "tone": "stop"
           }
         ],
-        "note": "F7 sits behind 24 days of fix-first, at 1.21 engineering days a calendar week.",
+        "note": "The repo docs scan sits behind 24 days of fix-first, at 1.21 engineering days a calendar week.",
         "caption": "The one bridge between studio and product, both ends unbuilt."
       },
-      "stakes": "The diagnostic meant to generate the leads is months away, and the nut is monthly.",
+      "stakes": "The lead-generating scan is months away, and the ₹1.09L running cost is monthly.",
       "state": [
-        "§19 makes the docs scan the diagnostic for a ₹3,00,000 engagement (docs/PRODUCT-BRIEF.md:465).",
-        "§19 calls it the one place consultancy and product are the same funnel (docs/PRODUCT-BRIEF.md:482).",
-        "The gap register calls it a design presented as a finding (docs/GAPS-2026-09-08.md:56)."
+        "The product-family section makes the docs scan the diagnostic for a ₹3,00,000 engagement.",
+        "It calls this the one place consultancy and product are the same funnel.",
+        "The gap register calls it a design presented as a finding."
       ],
       "tension": [
-        "F7 sits ten engineering days behind twenty-four days of fix-first (docs/PRODUCT-BRIEF.md:227).",
-        "At 1.21 days a week the scan is months away, against a ₹1.09L nut.",
+        "The docs scan sits ten engineering days behind the 24-day first round of engine fixes.",
+        "At 1.21 days a week the scan is months off, against ₹1.09L monthly costs.",
         "A hand-run scan consumes the same hours the build needs."
       ],
       "evidence": [
@@ -2851,7 +2852,7 @@
           ],
           "system": "No change. The scan is done by hand.",
           "screens": "None. A written report.",
-          "money": "₹3,00,000 an engagement against a ₹1.09L nut."
+          "money": "₹3,00,000 an engagement, against ₹1.09L monthly costs."
         },
         {
           "k": "b",
@@ -2861,7 +2862,7 @@
           ],
           "costs": [
             "Postpones the only revenue instrument in the plan",
-            "The nut is met from ordinary client work"
+            "Monthly running costs are met from ordinary client work"
           ],
           "system": "No change.",
           "screens": "None.",
@@ -2890,7 +2891,7 @@
           ],
           "costs": [
             "Gives up the one place product and studio connect",
-            "§19's diagram loses its bottom half"
+            "The product-family diagram loses its bottom half"
           ],
           "system": "No change.",
           "screens": "None.",
@@ -2899,7 +2900,7 @@
       ],
       "rec": "a",
       "recCase": [
-        "The conversion claim is testable by hand today and untestable at all until F7 ships.",
+        "The conversion claim is testable by hand today and untestable until the scan ships.",
         "It is the only item in this area that produces cash rather than spending it."
       ],
       "flip": "If two hand-run scans in a month produce no engagement conversation, the funnel is a design.",
@@ -2921,7 +2922,7 @@
       "sub": "Owned surfaces",
       "weight": "high",
       "q": "Do we build the public frontmatter validator?",
-      "lede": "The only channel whose ceiling matches the substrate, and it is in no version of the plan.",
+      "lede": "Its ceiling matches how widely YAML frontmatter is parsed, and no plan includes it.",
       "visual": {
         "kind": "ba",
         "before": {
@@ -2932,7 +2933,7 @@
               "mark": "stop"
             },
             {
-              "t": "NF-1: a column-zero list item in frontmatter",
+              "t": "The left-edge list bug in frontmatter",
               "mark": "warn"
             },
             {
@@ -2940,13 +2941,13 @@
               "mark": "stop"
             },
             {
-              "t": "§58 forbids publishing that as coverage anyway",
+              "t": "We may not publish that as coverage anyway",
               "mark": "warn"
             }
           ]
         },
         "after": {
-          "title": "Built after NF-1 and NF-3",
+          "title": "Built after the list and line-ending fixes",
           "lines": [
             {
               "t": "Seven of the twenty-four fix-first days",
@@ -2969,16 +2970,16 @@
         "via": "7 days",
         "caption": "The build order matters more here than the build."
       },
-      "stakes": "The only lever in the corpus sized against a 35-million-download-a-month substrate.",
+      "stakes": "Skipping it loses the only lever sized to gray-matter's 35M monthly downloads.",
       "state": [
-        "The channel table does not mention it (docs/PRODUCT-BRIEF.md:300).",
-        "The research names it the one asymmetric move, 30k–150k year-one visitors (r17-h7:72, :145).",
-        "The engine refuses 83% of real vaults on the NF-1 defect today (docs/PRODUCT-BRIEF.md:214)."
+        "The channel table does not mention it.",
+        "The research calls it the one asymmetric move: 30k–150k year-one visitors.",
+        "The bug where a list starting at the left edge makes the editor refuse the file hits 83% of real vaults."
       ],
       "tension": [
         "It must never send document content to a server, visibly, in the network tab.",
-        "A validator built today shows a refusal rate §58 forbids publishing as coverage.",
-        "Fix-first is twenty-four engineering days away at 1.21 days a calendar week."
+        "Built today, it shows a refusal rate our public-claims rule forbids calling coverage.",
+        "The first round of engine fixes is 24 engineering days, at 1.21 days a week."
       ],
       "evidence": [
         {
@@ -3048,31 +3049,31 @@
       "options": [
         {
           "k": "a",
-          "label": "Build it after NF-1 and NF-3 land",
+          "label": "Build it after the left-edge list bug and the old line-ending bug are fixed",
+          "what": "Also waits on the bug where an old-style line ending makes the editor add a second frontmatter block instead of editing the first.",
           "gains": [
-            "The validator shows the engine at its best",
+            "Shows the engine at its best",
             "The search intent does not expire"
           ],
           "costs": [
-            "The channel starts three to six months later",
-            "Fix-first is twenty-four days away"
+            "The channel starts three to six months later"
           ],
-          "system": "NF-1 and NF-3 first, then a client-side engine build.",
+          "system": "The two fixes, then a client-side engine build.",
           "screens": "One page: paste, verdict, the byte that broke it.",
-          "money": "Seven engineering days already in the plan."
+          "money": "Seven engineering days, already planned."
         },
         {
           "k": "b",
           "label": "Build it now; the refusal is the point",
           "gains": [
-            "Fastest route to a channel that compounds",
+            "Fastest route to a compounding channel",
             "Refusing honestly is the product's own claim"
           ],
           "costs": [
             "A visitor's first sight is our defect rate",
-            "Competes with fix-first for the same days"
+            "Competes with the engine fixes for days"
           ],
-          "system": "A client-side build of the engine as it stands.",
+          "system": "A client-side engine build, as it stands.",
           "screens": "Same page, worse verdicts.",
           "money": "The page, ahead of the fixes."
         },
@@ -3095,23 +3096,23 @@
           "label": "Ship it as a CLI or npm package instead of a page",
           "gains": [
             "Reaches developers where they already are",
-            "No hosting and no page to maintain"
+            "No hosting, no page to maintain"
           ],
           "costs": [
             "Forfeits the search intent, the page's whole reason",
-            "A public package is an unbudgeted support commitment"
+            "A public package means unbudgeted support"
           ],
-          "system": "A published package with its own release process.",
+          "system": "A published package with its own releases.",
           "screens": "None.",
-          "money": "Maintenance of a public package."
+          "money": "Public package upkeep."
         }
       ],
       "rec": "a",
       "recCase": [
-        "NF-1 and NF-3 are already the first two rows of fix-first, so sequencing costs nothing.",
-        "A page whose first impression is our own defect rate is worse than no page."
+        "Both bugs (a) waits on are the first two engine fixes, so sequencing costs nothing.",
+        "A page that opens on our own defect rate is worse than no page."
       ],
-      "flip": "If NF-1 and NF-3 slip past a quarter, a validator naming the refused byte still beats no page.",
+      "flip": "If the fixes slip a quarter, a validator naming the refused byte still beats no page.",
       "linked": [
         "G9",
         "G22"
@@ -3124,7 +3125,8 @@
         "docs/research/agent-reports-2026-08-30/r17-h7-content-seo-distribution.md:9",
         "docs/research/agent-reports-2026-08-30/r17-h7-content-seo-distribution.md:69",
         "docs/research/agent-reports-2026-08-30/r17-h7-content-seo-distribution.md:72",
-        "docs/research/agent-reports-2026-08-30/r17-h7-content-seo-distribution.md:145"
+        "docs/research/agent-reports-2026-08-30/r17-h7-content-seo-distribution.md:145",
+        "docs/PRODUCT-BRIEF.md:300"
       ]
     },
     {
@@ -3198,14 +3200,14 @@
       },
       "stakes": "The channel and the name are one decision, and the plan treats them as two.",
       "state": [
-        "Decision 6: an extension writes byte-exactly, 94/94 and 156/156 bytes (docs/PRODUCT-BRIEF.md:364).",
-        "The name is taken there by an 82,265-install incumbent; @frontmatter npm too (docs/GAPS-2026-09-08.md:132).",
-        "Thirteen markdown-review extensions sum to 1,217 installs, ceiling 400 (docs/PRODUCT-BRIEF.md:24)."
+        "The form-factor decision measured an extension writing byte-exactly, 94/94 and 156/156 bytes.",
+        "An 82,265-install incumbent holds the name in that store, and the @frontmatter npm scope too.",
+        "Thirteen markdown-review extensions total 1,217 installs, and none passes 400."
       ],
       "tension": [
         "The store holds the buyer by an order of magnitude over every other surface.",
-        "The host's save pipeline rewrites dirty buffers, and the raw-write bypass is untested.",
-        "Renaming costs every surface plus a trademark check, EU word mark unresolved."
+        "VS Code's save pipeline rewrites dirty buffers, and the raw-write bypass is untested.",
+        "Renaming costs every surface and a trademark check; the EU word mark is unresolved."
       ],
       "evidence": [
         {
@@ -3308,7 +3310,7 @@
           ],
           "costs": [
             "Concedes the largest measurable population",
-            "Keeps paying the fork tax on a standalone shell"
+            "Keeps paying to maintain the shell forked from sgnk-md"
           ],
           "system": "No change.",
           "screens": "None.",
@@ -3338,7 +3340,8 @@
       "flip": "If the raw-write data-loss path proves real, the extension is unshippable and the name loses urgency.",
       "linked": [
         "G13",
-        "G22"
+        "G22",
+        "FF1"
       ],
       "sources": [
         "docs/PRODUCT-BRIEF.md:364",
@@ -3356,12 +3359,12 @@
       "sub": "Allocation",
       "weight": "critical",
       "q": "Which single channel gets the founder's launch hours in the first quarter?",
-      "lede": "Eight channels, two cut and three of them requests to strangers, at a measured one day a week.",
+      "lede": "Eight channels, two cut and three of them requests to strangers, share a measured one day a week.",
       "visual": {
         "kind": "funnel",
         "steps": [
           {
-            "label": "Channel rows in §12",
+            "label": "Channel rows in the plan's table",
             "n": 8,
             "unit": "rows",
             "tone": "neutral"
@@ -3379,14 +3382,14 @@
             "tone": "accent"
           }
         ],
-        "note": "The one unblocked row is published research. §23 calls every channel borrowed.",
+        "note": "The one unblocked row is published research. The plan itself calls every channel borrowed.",
         "caption": "Eight channels, one that nothing blocks."
       },
       "stakes": "At 1.21 days a week the plan cannot run seven channels, and none produces the first cohort.",
       "state": [
-        "§12's table has eight rows (docs/PRODUCT-BRIEF.md:300); §23 calls every channel borrowed (:558).",
+        "The channel table has eight rows; the plan's summary calls every channel borrowed.",
         "No section allocates founder time to any channel.",
-        "Measured capacity is 1.21 days a week, 0.23 over thirty days (docs/PRODUCT-BRIEF.md:227)."
+        "Measured capacity is 1.21 days a week; 0.23 over the last thirty days."
       ],
       "tension": [
         "Hand recruitment is the only unborrowed channel and the only one producing research.",
@@ -3518,7 +3521,7 @@
           ],
           "costs": [
             "Nothing to show for three quarters",
-            "The validator is gated on fix-first"
+            "The validator waits on the first round of engine fixes"
           ],
           "system": "The validator needs a client-side engine build.",
           "screens": "A research index and a validator page.",
@@ -3542,8 +3545,8 @@
       ],
       "rec": "a",
       "recCase": [
-        "No loop delivers 22,222 visitors at n=0, and none of them has been measured.",
-        "Only conversations answer whether anyone pays, the one thing eleven gaps never touched."
+        "The first 100 paying customers need 22,222 visitors, and no measured loop delivers that.",
+        "Only conversations answer whether anyone pays, which the eleven listed gaps never touched."
       ],
       "flip": "If the superpowers maintainer says yes in week 2, a channel reaching 22–30k repos outranks recruitment.",
       "linked": [
@@ -3567,7 +3570,7 @@
       "sub": "Loops",
       "weight": "medium",
       "q": "Do we ship the invite-only referral, or keep referral banned?",
-      "lede": "Referral sits in a banned list beside streaks and XP, banned by adjacency rather than argument.",
+      "lede": "Referral sits on a banned list beside streaks and XP, with no written argument.",
       "visual": {
         "kind": "flow",
         "perRow": 4,
@@ -3588,7 +3591,7 @@
           },
           {
             "label": "Shared review state",
-            "note": "F10, MVP-1",
+            "note": "in the build after the pilot",
             "tone": "warn"
           }
         ],
@@ -3597,14 +3600,13 @@
       },
       "stakes": "Shipping it early points the invitee at the public route this plan may delete.",
       "state": [
-        "Referral appears nowhere in the channel table or the upsell section (docs/PRODUCT-BRIEF.md:300, :437).",
-        "The research allows one form: a workspace invite giving the inviter nothing (r17-h7:132).",
-        "The team surface to invite into is F10, at MVP-1 (docs/PRODUCT-BRIEF.md:200)."
+        "Referral appears nowhere in the channel table or the upsell section.",
+        "The research allows one form: a workspace invite giving the inviter nothing.",
+        "The team surface to invite people into arrives in the build after the pilot."
       ],
       "tension": [
-        "The research expects our version to underperform two-sided rewards substantially (r17-h7:138).",
-        "There is nothing to invite anyone into until MVP-1.",
-        "The landing surface would be the public route G10 is deciding."
+        "The research expects our version to underperform two-sided rewards substantially.",
+        "The invitee would land on the public route, whose fate is undecided."
       ],
       "evidence": [
         {
@@ -3682,7 +3684,7 @@
       "options": [
         {
           "k": "a",
-          "label": "Ship the invite form at MVP-1, when shared review state exists",
+          "label": "Ship the invite form in the build after the pilot, when shared review state exists",
           "gains": [
             "Consistent with the product's stated positions",
             "Lands on a surface that exists by then"
@@ -3711,16 +3713,16 @@
         },
         {
           "k": "c",
-          "label": "Ship it at MVP-0 as a document share link",
+          "label": "Ship it in the pilot as a document share link",
           "gains": [
             "Something to measure this quarter",
             "The share link already exists"
           ],
           "costs": [
-            "Collides directly with G10's hosting decision",
+            "Collides with the open public-page hosting decision",
             "The landing surface may not survive it"
           ],
-          "system": "Depends on the public route surviving G10.",
+          "system": "Depends on the public route surviving that decision.",
           "screens": "A share dialogue.",
           "money": "None."
         },
@@ -3728,7 +3730,7 @@
           "k": "d",
           "label": "Decide after the twenty team conversations",
           "gains": [
-            "MVP-1 is the earliest build point anyway",
+            "The build after the pilot is the earliest point anyway",
             "The answer arrives before anything is built"
           ],
           "costs": [
@@ -3742,10 +3744,10 @@
       ],
       "rec": "a",
       "recCase": [
-        "MVP-1 is the first point at which there is anything to invite somebody into.",
+        "The build after the pilot is the first point with anything to invite somebody into.",
         "The banned list exists to keep out inviter rewards; this invite has none."
       ],
-      "flip": "If the twenty conversations describe the invite as how work starts, it belongs in MVP-0.",
+      "flip": "If the twenty team conversations describe the invite as how work starts, it belongs in the pilot.",
       "linked": [
         "G10",
         "G15"
@@ -3757,7 +3759,8 @@
         "docs/research/agent-reports-2026-08-30/r17-h7-content-seo-distribution.md:130",
         "docs/research/agent-reports-2026-08-30/r17-h7-content-seo-distribution.md:132",
         "docs/research/agent-reports-2026-08-30/r17-h7-content-seo-distribution.md:134",
-        "docs/research/agent-reports-2026-08-30/r17-h7-content-seo-distribution.md:138"
+        "docs/research/agent-reports-2026-08-30/r17-h7-content-seo-distribution.md:138",
+        "docs/PRODUCT-BRIEF.md:300"
       ]
     },
     {
@@ -3826,18 +3829,18 @@
             ]
           }
         ],
-        "note": "Exhibit 3 says the file location is untested; §12 demotes the channel on that location.",
+        "note": "One table in the plan calls the file location untested; another demotes the channel on it.",
         "caption": "The largest attention pool, demoted on a detail nobody has checked."
       },
       "stakes": "We walk away from the biggest audience on an unverified detail that costs an hour.",
       "state": [
-        "§12 demotes plan mode to at most a plansDirectory onboarding step (docs/PRODUCT-BRIEF.md:307).",
-        "Exhibit 3: plan mode out-scores both named tools; the file location is untested (docs/PRODUCT-BRIEF.md:149).",
-        "The gap register priced the check at one hour (docs/GAPS-2026-09-08.md:40)."
+        "The plan demotes plan mode to, at most, a `plansDirectory` onboarding step.",
+        "The competitor table shows plan mode out-scoring both named tools; its file location is untested.",
+        "The gap register priced the check at one hour."
       ],
       "tension": [
         "Plan mode writes outside the repository and deletes after thirty days.",
-        "A thirty-day deletion means the anchor outlives the document it anchors to.",
+        "A thirty-day deletion means our review record outlives the document it points to.",
         "Two sections of the same plan disagree about the same channel."
       ],
       "evidence": [
@@ -3951,7 +3954,7 @@
           "k": "d",
           "label": "Treat plan mode as a recruitment channel rather than a product channel",
           "gains": [
-            "Uses the biggest pool for what the fortnight needs",
+            "Uses the biggest pool for what the two-week test needs",
             "No product claim to defend yet"
           ],
           "costs": [
@@ -3966,7 +3969,7 @@
       "rec": "c",
       "recCase": [
         "Two sections of the same document disagree, and one hour resolves which is right.",
-        "The attention gap is two orders of magnitude, worth an hour at any reading."
+        "The attention gap is two orders of magnitude, which is worth an hour to check."
       ],
       "flip": "If plansDirectory cannot point inside a repository, the demotion stands and the row should say so.",
       "linked": [
@@ -4017,9 +4020,9 @@
       },
       "stakes": "An unfalsifiable channel row sits in the table until somebody builds it for no stated reason.",
       "state": [
-        "§12 cuts the Chrome extension, replacing it with a ?src= parameter costing hours (docs/PRODUCT-BRIEF.md:310).",
+        "The plan cuts the Chrome extension, replacing it with a ?src= parameter costing hours.",
         "Checked 2026-09-09: no such parameter exists anywhere in src/app.",
-        "The gap register flagged that the extension's value was never stated (docs/GAPS-2026-09-08.md:62)."
+        "The gap register flagged that the extension's value was never stated."
       ],
       "tension": [
         "GitHub already renders markdown and ships rich diff and per-file Viewed state free.",
@@ -4092,11 +4095,11 @@
             "First surface GitHub does not already cover"
           ],
           "costs": [
-            "No longer hours: the sidecar must anchor outside the repo",
+            "No longer hours: the review file must anchor outside the repo",
             "That problem is unsolved"
           ],
-          "system": "The sidecar needs an anchor outside the user's repository.",
-          "screens": "The editor with tint on a foreign file.",
+          "system": "The review file needs an anchor outside the user's repository.",
+          "screens": "The editor highlighting text in someone else's file.",
           "money": "Unscheduled engineering days."
         },
         {
@@ -4107,7 +4110,7 @@
             "No hours on a surface with no stated value"
           ],
           "costs": [
-            "§12 keeps a replacement nobody will build",
+            "The channel table keeps a replacement nobody will build",
             "The landing pages have nothing clickable"
           ],
           "system": "No change.",
@@ -4122,7 +4125,7 @@
             "Same hours, claims nothing"
           ],
           "costs": [
-            "§12 must relabel the row or the claim returns",
+            "The channel table must relabel the row or the claim returns",
             "Still shows a surface GitHub covers"
           ],
           "system": "A query parameter, read-only.",
@@ -4152,7 +4155,7 @@
       "sub": "Allocation",
       "weight": "high",
       "q": "Do we write down that organic discovery contributes nothing in year one?",
-      "lede": "Two of the eight dead products in the graveyard died with nobody noticing. One had raised $45M.",
+      "lede": "Two of the eight dead products we studied died with nobody noticing, and one had raised $45M.",
       "visual": {
         "kind": "timeline",
         "items": [
@@ -4192,13 +4195,13 @@
       },
       "stakes": "If the plan assumes any organic discovery, every channel number is optimistic by that amount.",
       "state": [
-        "No section states what organic discovery contributes; published-page organic is about zero (r17-h7:147).",
-        "Organic search is back-loaded to months 9–18 and cannot carry a launch (r17-h7:144).",
-        "The whole table, summed optimistically, reaches 350k–500k year-one visitors (r17-h7:153)."
+        "No section states what organic discovery contributes; published-page organic is about zero.",
+        "Organic search is back-loaded to months 9–18 and cannot carry a launch.",
+        "The whole table, summed optimistically, reaches 350k–500k year-one visitors."
       ],
       "tension": [
         "Free artefacts do get attention: human-review went to 1,241 stars in six weeks.",
-        "Attention is not payment, and that repository says nothing about paying.",
+        "Stars measure attention, and that repository says nothing about paying.",
         "1.4% of recent Show HN posts reach 100 points, and decay in 96 hours."
       ],
       "evidence": [],
@@ -4211,7 +4214,7 @@
             "Costs a paragraph"
           ],
           "costs": [
-            "Reads as pessimism to anyone who has not seen the graveyard",
+            "Reads as pessimism to anyone who has not seen the dead products",
             "Nothing compounding is being built"
           ],
           "system": "No change.",
@@ -4236,7 +4239,7 @@
           "k": "c",
           "label": "Budget for organic on the research's own numbers, back-loaded to months 9 to 18",
           "gains": [
-            "Uses the research rather than a graveyard anecdote",
+            "Uses the research rather than an anecdote about dead products",
             "Gives content hours a stated return"
           ],
           "costs": [
@@ -4265,7 +4268,7 @@
       ],
       "rec": "a",
       "recCase": [
-        "The two graveyard products nobody noticed had no channel written down either.",
+        "The two dead products nobody noticed had no channel written down either.",
         "Writing the zero down is what makes every other number in the table checkable."
       ],
       "flip": "If a free artefact of ours draws a thousand stars in six weeks, the statement needs a carve-out.",
@@ -4346,14 +4349,14 @@
         "note": "Developers deploy from repositories at scale: 443,392 root CNAME files.",
         "caption": "The right audience with the right hole, trained to expect it free."
       },
-      "stakes": "The most reachable adjacent audience found, and the one least likely to pay.",
+      "stakes": "It is the most reachable adjacent audience we found, and the least likely to pay.",
       "state": [
-        "The channel table names no adjacent audience beyond the two toolchains (docs/PRODUCT-BRIEF.md:300).",
-        "443,392 root CNAME files and 113,536 astro configs (docs/GAPS-2026-09-08.md:60).",
+        "The channel table names no adjacent audience beyond the two toolchains.",
+        "Developers deploy from repos at scale: 443,392 root CNAME files, 113,536 Astro configs.",
         "Pages CMS is MIT, 3,976 stars, no paid tier, inline comments \"Soon\"."
       ],
       "tension": [
-        "They already keep documents in a repository, so the sidecar needs no explaining.",
+        "They already keep documents in a repository, so the review file needs no explaining.",
         "No paid tier anywhere in view, so they are trained to expect this free.",
         "Outreach hours here compete with the two toolchain maintainers in week 2."
       ],
@@ -4393,7 +4396,7 @@
           "k": "c",
           "label": "Use it as a recruitment pool for the ten strangers, not as a channel",
           "gains": [
-            "The fortnight needs named humans more than a channel",
+            "The two-week test needs people more than a channel",
             "No permission and no build"
           ],
           "costs": [
@@ -4422,7 +4425,7 @@
       ],
       "rec": "c",
       "recCase": [
-        "The fortnight needs named humans, and these already keep documents in a repository.",
+        "The two-week test needs named people, and these already keep documents in repositories.",
         "It costs no permission, no build and no channel hours."
       ],
       "flip": "If a Pages CMS user in the pilot says they would pay, the audience is a channel.",

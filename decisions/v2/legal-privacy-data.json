@@ -7,7 +7,7 @@
       "sub": "Data holding",
       "weight": "critical",
       "q": "Do we delete the Firebase document-holding design, or adopt it and take the fiduciary and intermediary duty?",
-      "lede": "Three committed files give three answers, and every legal rule in §22 follows from this one.",
+      "lede": "Three committed files give three answers, and every legal rule in the plan follows from this one.",
       "_ev": [
         "L1"
       ],
@@ -49,8 +49,8 @@
             "label": "Ceiling on content",
             "cells": [
               "none, no content held",
-              "₹250 crore, DPDP §8(5)",
-              "₹250 crore, DPDP §8(5)"
+              "₹250 crore, DPDP section 8(5)",
+              "₹250 crore, DPDP section 8(5)"
             ]
           },
           {
@@ -83,13 +83,13 @@
       },
       "stakes": "Adopting puts document content under a ₹250 crore ceiling and makes us an intermediary before the first user.",
       "state": [
-        "`firestore.rules:318` caps bodies at 900,000 chars, `:361` makes revisions undeletable, `:393` allows anonymous reads.",
-        "`docs/FRONTMATTER-PRD-v2-2026-08-29.md:4295` says we hold documents; `docs/PRODUCT-BRIEF.md:133` says we hold no bytes.",
-        "Nothing writes to Firestore, and `firestore.rules:7` calls itself a prototype."
+        "Firestore rules cap bodies at 900,000 chars, make revisions undeletable and allow anonymous reads.",
+        "The old PRD says we hold documents; the plan says we hold no bytes.",
+        "Nothing writes to Firestore; its rules call themselves a prototype."
       ],
       "tension": [
-        "Holding bytes confers intermediary status under IT Act §2(1)(w): 74 founder-hours (`docs/FRONTMATTER-PRD-v2-2026-08-29.md:4194`).",
-        "The claim a rival cannot copy is that documents never reach us (`docs/FRONTMATTER-RECORD.md:10104`)."
+        "Holding bytes makes us an intermediary under IT Act section 2(1)(w), which costs 74 founder-hours.",
+        "The claim a rival cannot copy is that documents never reach us."
       ],
       "options": [
         {
@@ -107,15 +107,15 @@
         },
         {
           "k": "b",
-          "label": "Delete `firestore.rules` and write zero document bytes into §22 as a constraint",
+          "label": "Delete `firestore.rules`; make zero document bytes one of the plan's operating rules",
           "gains": [
             "Legal surface collapses to identity and billing",
             "Zero Firestore writes exist, so no engineering cost"
           ],
           "costs": [
-            "Forecloses hosted publishing, server search and decision 3's viewer"
+            "Forecloses hosted publishing, server search and a hosted viewer"
           ],
-          "system": "Firestore schema removed; §22 gains a constraint.",
+          "system": "Firestore schema removed; no-bytes rule written down.",
           "screens": "Kills the hosted-viewer screen.",
           "money": "None."
         },
@@ -126,7 +126,7 @@
             "Hosted sync, server search and publishing become possible"
           ],
           "costs": [
-            "Document content falls under §8(5), ceiling ₹250 crore",
+            "Document content falls under DPDP section 8(5), ceiling ₹250 crore",
             "Intermediary status and 74 founder-hours before the first stranger"
           ],
           "system": "Firestore becomes the store of record.",
@@ -146,19 +146,21 @@
           ],
           "system": "One rule deleted; the duties remain.",
           "screens": "Hosted viewer stays behind sign-in.",
-          "money": "Storage plus L10 paperwork."
+          "money": "Storage plus processor agreements."
         }
       ],
       "rec": "b",
       "recCase": [
         "Nothing writes to Firestore across 226 source files, so deleting the design costs no engineering.",
-        "The cost model and the strongest marketing claim both rest on holding no bytes (`docs/PRODUCT-BRIEF.md:133`)."
+        "The cost model and the strongest marketing claim both rest on holding no bytes."
       ],
-      "flip": "If decision 3 lands on a hosted viewer, (c) is the honest minimum and ₹250 crore must be budgeted.",
+      "flip": "If sharing lands on a hosted viewer, (c) is the honest minimum and ₹250 crore must be budgeted.",
       "linked": [
         "L2",
         "L6",
-        "L16"
+        "L16",
+        "L10",
+        "MK18"
       ],
       "sources": [
         "firestore.rules:7",
@@ -174,7 +176,8 @@
         "docs/GAPS-2026-09-08.md:142",
         "docs/FRONTMATTER-RECORD.md:9056",
         "docs/FRONTMATTER-RECORD.md:10100",
-        "docs/FRONTMATTER-RECORD.md:10104"
+        "docs/FRONTMATTER-RECORD.md:10104",
+        "docs/PRODUCT-BRIEF.md:531"
       ]
     },
     {
@@ -193,7 +196,7 @@
           "title": "Shipped today",
           "lines": [
             {
-              "t": "POST /api/commit — 10 MB per file, 500 files",
+              "t": "POST /api/commit: 10 MB per file, 500 files",
               "mark": "stop"
             },
             {
@@ -201,7 +204,7 @@
               "mark": "stop"
             },
             {
-              "t": "POST /api/ai/refine — 200,000 characters",
+              "t": "POST /api/ai/refine: 200,000 characters",
               "mark": "stop"
             },
             {
@@ -226,7 +229,7 @@
               "mark": "warn"
             },
             {
-              "t": "The §4 claim becomes true",
+              "t": "The plan's data-path claim becomes true",
               "mark": "good"
             }
           ]
@@ -237,18 +240,18 @@
       },
       "stakes": "Leave it and the plan's headline architecture claim is false in the first file a buyer opens.",
       "state": [
-        "`src/app/api/commit/route.ts:27` takes 10 MB per file, and 25 of 26 routes act server-side.",
-        "`docs/WEEK0-DECISIONS-2026-09-08.md:35` proposes browser-side only. Nothing implements it.",
-        "`docs/PRODUCT-BRIEF.md:171` cut a vendor CDN for this rule; both export renderers still load jsdelivr."
+        "Our commit route takes 10 MB per file; 25 of 26 routes run server-side.",
+        "A browser-only path is proposed; nothing implements it.",
+        "A vendor CDN was cut for this rule; both export renderers still load jsdelivr."
       ],
       "tension": [
-        "`api.github.com` supports CORS, so browser read and write work (`docs/WEEK0-DECISIONS-2026-09-08.md:33`).",
-        "On Hobby and trial-Pro plans Vercel may use content to train (`docs/FRONTMATTER-RECORD.md:4158`)."
+        "`api.github.com` supports CORS, so browser read and write work.",
+        "On Hobby and trial-Pro plans Vercel may train its AI on content."
       ],
       "options": [
         {
           "k": "a",
-          "label": "Keep both: server path for the web trial, browser-only on desktop, and say which is which",
+          "label": "Keep both: server path for the web trial, browser-only on desktop, labelled",
           "gains": [
             "Truthful and cheap, and keeps the zero-install trial"
           ],
@@ -267,7 +270,7 @@
           ],
           "costs": [
             "Loses the sentence a server-side rival cannot say",
-            "Pulls in fiduciary duty and every obligation in L10"
+            "Pulls in fiduciary duty and every processor agreement"
           ],
           "system": "No change.",
           "screens": "A disclosure line.",
@@ -289,7 +292,7 @@
         },
         {
           "k": "d",
-          "label": "Rewrite the web app to the browser-only path before the first stranger; keep the claim",
+          "label": "Rewrite the web app to browser-only before the first stranger; keep the claim",
           "gains": [
             "The claim becomes true and stays the differentiator",
             "Removes the Vercel training clause from the argument"
@@ -334,7 +337,7 @@
       "cat": "Legal, privacy & data",
       "sub": "Live exposure",
       "weight": "critical",
-      "q": "Do we treat every legal clock in §22 as already running, or as starting at the pilot?",
+      "q": "Do we treat every legal clock as already running, or as starting at the pilot?",
       "lede": "sgnk-md is the same codebase and is listed as production. If it has users, the clocks started.",
       "_ev": [
         "L3"
@@ -364,23 +367,23 @@
           },
           {
             "label": "No: the pilot is the trigger",
-            "note": "every §22 deadline stands",
+            "note": "every deadline in the plan's operating rules stands",
             "tone": "good"
           }
         ],
         "perRow": 3,
-        "note": "GitHub sign-in is allowlisted at auth-options.ts:80; Google sign-in is not",
+        "note": "GitHub sign-in is allowlisted at auth-options.ts line 80; Google sign-in is not",
         "caption": "One unanswered question re-dates four other decisions"
       },
       "stakes": "If yes, the published policy, the consent step and the named officer were all due months ago.",
       "state": [
-        "`docs/DECIDE.md:168`: 202 of 228 source files byte-identical with sgnk-md, none unique to it.",
-        "`docs/GAPS-2026-09-08.md:36` records the portfolio listing sgnk-md as production, and asks for a user list.",
-        "`docs/PRODUCT-BRIEF.md:558` says zero users. Both statements cannot be true."
+        "202 of 228 source files are byte-identical with sgnk-md, none unique to it.",
+        "The portfolio lists sgnk-md as production; the gap register asks for its user list.",
+        "The plan says zero users. Both cannot be true."
       ],
       "tension": [
-        "The sign-in allowlist is evidence about HEAD, not the July deployment (`src/modules/auth/infrastructure/auth-options.ts:80`).",
-        "Google sign-in is not allowlisted and takes email at first run (`src/modules/auth/infrastructure/firebase-auth-gateway.ts:30`)."
+        "The sign-in allowlist is evidence about today's code, not the July deployment.",
+        "Google sign-in is not allowlisted and takes email at first run."
       ],
       "options": [
         {
@@ -400,13 +403,13 @@
         },
         {
           "k": "b",
-          "label": "Assume live: file the point of contact, publish the policy and the grievance page this week",
+          "label": "Assume live: file the contact, publish the policy and grievance page this week",
           "gains": [
             "No downside if the assumption is wrong"
           ],
           "costs": [
             "About a day of work brought forward",
-            "A policy written before L1 and L2 may need rewriting"
+            "A policy written before the Firebase and byte-path decisions may need rewriting"
           ],
           "system": "No change.",
           "screens": "Adds /privacy, /terms, /grievance.",
@@ -429,10 +432,10 @@
           "k": "d",
           "label": "Assume dormant because the GitHub allowlist gates sign-in",
           "gains": [
-            "Every §22 deadline stands as written"
+            "Every legal deadline stands as written"
           ],
           "costs": [
-            "Rests on one code path in the current HEAD",
+            "Rests on one code path, as of now",
             "Says nothing about Google sign-in, which is ungated"
           ],
           "system": "No change.",
@@ -442,14 +445,16 @@
       ],
       "rec": "a",
       "recCase": [
-        "The cheapest question on the list, and it re-dates L4, L7 and L17.",
+        "It is the cheapest question, and it moves the breach, policy and retention deadlines.",
         "It needs a founder, not research: is there a user list, and may ten of them be contacted."
       ],
       "flip": "A deployment log showing non-founder sign-ins makes (b) mandatory rather than prudent.",
       "linked": [
         "L4",
         "L7",
-        "L17"
+        "L17",
+        "L1",
+        "L2"
       ],
       "sources": [
         "docs/DECIDE.md:168",
@@ -459,7 +464,8 @@
         "docs/GAPS-2026-09-08.md:146",
         "docs/PRODUCT-BRIEF.md:558",
         "src/modules/auth/infrastructure/auth-options.ts:80",
-        "src/modules/auth/infrastructure/firebase-auth-gateway.ts:30"
+        "src/modules/auth/infrastructure/firebase-auth-gateway.ts:30",
+        "docs/PRODUCT-BRIEF.md:531"
       ]
     },
     {
@@ -468,7 +474,7 @@
       "sub": "Breach response",
       "weight": "critical",
       "q": "Who answers the six-hour clock, and do we file the CERT-In point of contact now?",
-      "lede": "A six-hour clock with no size floor, one person at 1.21 engineering days a week, no filed contact.",
+      "lede": "The six-hour clock has no size floor, and one person covers it at 1.21 engineering days a week.",
       "_ev": [
         "L4",
         "L5"
@@ -537,18 +543,18 @@
       },
       "stakes": "A reportable incident with no filed contact, no runbook and no logs is what a buyer finds first.",
       "state": [
-        "`docs/PRODUCT-BRIEF.md:543` states the clock and records the Annexure II filing as missing.",
-        "One person: 1.21 engineering days a week, 80 of 80 commits (`docs/PRODUCT-BRIEF.md:11`, `:12`).",
+        "The Annexure II point-of-contact filing is recorded as missing everywhere.",
+        "One person made 80 of 80 commits.",
         "No runbook, roster or pager, and `package.json` carries no Sentry, PostHog or logging."
       ],
       "tension": [
         "The clock starts on noticing, so detection gates everything, and there is no detection.",
-        "IT Act §70B(7) carries one year or ₹1 lakh; §70B(8) needs an officer's complaint."
+        "IT Act section 70B(7) carries one year or ₹1 lakh; 70B(8) needs an officer's complaint."
       ],
       "options": [
         {
           "k": "a",
-          "label": "File nothing and rely on §70B(8) needing a CERT-In officer's complaint",
+          "label": "File nothing and rely on section 70B(8) needing a CERT-In officer's complaint",
           "gains": [
             "Costs nothing"
           ],
@@ -579,13 +585,13 @@
           "what": "No server-side documents, publishing or hosted AI, so a breach exposes identity and billing only.",
           "gains": [
             "Cuts the reportable surface to its smallest set",
-            "Costs nothing extra: L1 and L2 point here"
+            "Costs nothing extra: the Firebase and byte-path decisions point here"
           ],
           "costs": [
             "Forecloses the web trial and hosted publishing",
             "Removes the likely trigger, not the duty"
           ],
-          "system": "Same change as L1 and L2.",
+          "system": "Same change as the Firebase and byte-path decisions.",
           "screens": "Removes share and hosted-AI surfaces.",
           "money": "Forfeits any hosted tier."
         },
@@ -597,7 +603,7 @@
           ],
           "costs": [
             "A second holder of production credentials",
-            "Expands access revocation at `docs/BUSINESS.md:767`"
+            "Widens the access-revocation runbook"
           ],
           "system": "Credential issue and revocation runbook.",
           "screens": "None.",
@@ -606,8 +612,8 @@
       ],
       "rec": "c",
       "recCase": [
-        "The only durable answer to a clock you cannot staff is a smaller surface.",
-        "Filing is an hour and appears in three of four options, so the real choice is the surface."
+        "One person cannot staff a six-hour clock, so the lasting answer is holding less.",
+        "Filing is an hour and is in three of four options, so the choice is what we hold."
       ],
       "flip": "A paying team requiring hosted sync reopens the surface, and the team tier price has to carry it.",
       "linked": [
@@ -634,7 +640,7 @@
       "cat": "Legal, privacy & data",
       "sub": "Publishing",
       "weight": "critical",
-      "q": "Do we close publishing to founder-only, and adopt noindex and system slugs as a standing rule?",
+      "q": "Do we close publishing to founder-only, and adopt noindex and system-assigned slugs as a standing rule?",
       "lede": "A crawlable public page with user-chosen slugs makes us an intermediary, and none of the apparatus exists.",
       "_ev": [
         "L6",
@@ -712,13 +718,13 @@
       },
       "stakes": "Open it as configured and we take a permanent 24-hour grievance clock and conditions we cannot meet.",
       "state": [
-        "`src/app/(public)/[slug]/page.tsx:30` sets index true, and `src/app/robots.ts:18` allows crawlers at `/`.",
-        "`src/modules/share/domain/slug.ts:4` lets users choose slugs; `src/app/api/share/route.ts:25` gates on sign-in alone.",
-        "Outbound links get `noopener noreferrer`, not `nofollow ugc` (`src/modules/preview/presentation/markdown/html-policy.ts:214`)."
+        "Public pages set index true, and robots.ts allows crawlers at `/`.",
+        "Users choose slugs, and any signed-in user can publish.",
+        "Outbound links get `noopener noreferrer`, not `nofollow ugc`."
       ],
       "tension": [
-        "§79 safe harbour is conditional, and losing it makes the founder a co-defendant.",
-        "74 founder-hours is seven and a half weeks, and §14's plan never schedules it."
+        "Section 79 safe harbour is conditional; losing it makes the founder a co-defendant.",
+        "74 founder-hours is seven and a half weeks, and the plan never schedules it."
       ],
       "options": [
         {
@@ -728,7 +734,7 @@
             "Removes the exposure permanently"
           ],
           "costs": [
-            "Forecloses decision 3's hosted viewer, which is still open",
+            "Forecloses the hosted viewer, which is still undecided",
             "Throws away code that mostly works"
           ],
           "system": "Share module removed; slug list retired.",
@@ -774,21 +780,22 @@
           "costs": [
             "Loses whatever distribution a public page brings"
           ],
-          "system": "One route gate, plus a §21 rule.",
+          "system": "One route gate, plus a rendering rule.",
           "screens": "Public note page unreachable.",
           "money": "None."
         }
       ],
       "rec": "d",
       "recCase": [
-        "Publishing is not on the MVP-0 critical path; §14's twelve-week plan never schedules it.",
-        "It is the one feature that turns a tool into an intermediary with a permanent clock."
+        "Publishing is not on the pilot's critical path, and the twelve-week plan omits it.",
+        "It is the one feature that makes us an intermediary on a permanent 24-hour clock."
       ],
-      "flip": "If decision 3 makes the hosted viewer what Pro sells, the 74 hours enter the schedule first.",
+      "flip": "If the hosted viewer becomes what Pro sells, the 74 hours enter the schedule first.",
       "linked": [
         "L1",
         "L7",
-        "L16"
+        "L16",
+        "MK18"
       ],
       "sources": [
         "src/app/(public)/[slug]/page.tsx:30",
@@ -810,7 +817,9 @@
         "docs/FRONTMATTER-RECORD.md:9392",
         "docs/FRONTMATTER-RECORD.md:9403",
         "docs/BUSINESS.md:1046",
-        "merged: L9"
+        "merged: L9",
+        "docs/PRODUCT-BRIEF.md:332",
+        "docs/PRODUCT-BRIEF.md:520"
       ]
     },
     {
@@ -894,18 +903,18 @@
       },
       "stakes": "Ten strangers enter an app that takes an email at first run with no notice and no page.",
       "state": [
-        "`docs/PRODUCT-BRIEF.md:542` lists as due now: policy, consent, grievance officer within a month, transfer gate.",
-        "`docs/PRODUCT-BRIEF.md:548` adds the ninety-day ceiling from 2027-05-13 and §13(3)'s mandatory first stop.",
+        "Due now: policy, consent, a grievance officer within a month, a transfer gate.",
+        "From 2027-05-13 the ceiling is ninety days, and DPDP section 13(3) makes us the mandatory first stop.",
         "No officer is named anywhere; `privacy` and `terms` are reserved slugs with no route."
       ],
       "tension": [
-        "L6 sets it: closed owes one month, open owes 24 hours and 15 days.",
-        "A published window is a promise, and missing your own is the worse failure."
+        "Publishing sets it: closed owes one month, open owes 24 hours and 15 days.",
+        "We are bound by any window we publish, and missing our own is worse."
       ],
       "options": [
         {
           "k": "a",
-          "label": "A written notice by hand to each of the ten, full pages at MVP-1",
+          "label": "A written notice by hand to each of the ten, full pages in the build after the pilot",
           "gains": [
             "Proportionate to ten known participants, and cheap"
           ],
@@ -925,7 +934,7 @@
           ],
           "costs": [
             "A self-drafted policy may say something we later correct",
-            "It needs revisiting the day L6 changes"
+            "It needs revisiting the day publishing opens"
           ],
           "system": "Three static routes and a monitored address.",
           "screens": "/privacy, /terms, /grievance, linked from sign-in.",
@@ -935,7 +944,7 @@
           "k": "c",
           "label": "Publish the tightest window from day one: 24-hour ack, 15-day resolution",
           "gains": [
-            "Simplest to explain, and no revisiting when L6 changes"
+            "Simplest to explain, and no revisiting if publishing opens"
           ],
           "costs": [
             "Binds one person to a daily acknowledgement duty",
@@ -962,9 +971,9 @@
       "rec": "b",
       "recCase": [
         "Twelve hours of writing is under a week of measured capacity, and it removes a live breach.",
-        "Publish the window that binds and no tighter, because a published window is a promise."
+        "Publish the window the law sets and no tighter, because we are bound by it."
       ],
-      "flip": "If L1 goes to holding document content, the policy is a much harder document and counsel should draft it.",
+      "flip": "If we hold document content, the policy is a much harder document and counsel should draft it.",
       "linked": [
         "L1",
         "L6",
@@ -1032,18 +1041,18 @@
           }
         ],
         "perRow": 3,
-        "note": "Providers listed at gateway-client.ts:34; the CDN at pdf-doc.ts:132 and export-doc.ts:98",
+        "note": "Providers listed at gateway-client.ts line 34; the CDN at pdf-doc.ts line 132 and export-doc.ts line 98",
         "caption": "Where a stranger's document goes on the path as shipped"
       },
       "stakes": "An undisclosed sub-processor chain under both regimes, invisible in the product, with the operator paying.",
       "state": [
-        "`src/modules/ai/infrastructure/gateway-client.ts:34` builds a provider list from five API-key environment variables.",
-        "`src/app/api/ai/refine/route.ts:35` takes 200,000 characters per call, and no bring-your-own key exists.",
-        "`docs/PRODUCT-BRIEF.md:549` names three vendors; the code has eight parties and no agreement."
+        "The AI gateway picks providers from five API-key environment variables.",
+        "A call can carry 200,000 characters, and no bring-your-own key exists.",
+        "The plan names three vendors; the code has eight parties and no agreement."
       ],
       "tension": [
         "SPDI Rule 7 names password and payment details, the two we have not papered.",
-        "`docs/PRODUCT-BRIEF.md:171` cut a CDN for the no-bytes rule; export renderers still load jsdelivr."
+        "A CDN was cut for the no-bytes rule; export renderers still load jsdelivr."
       ],
       "options": [
         {
@@ -1068,7 +1077,7 @@
             "Removes the operator's AI bill"
           ],
           "costs": [
-            "Loses the first-run AI demo that F5 and F6 rested on"
+            "Loses the first-run demo of idea mode and the decision flow"
           ],
           "system": "Six routes moved client-side; CDN vendored.",
           "screens": "A key field in settings.",
@@ -1076,7 +1085,7 @@
         },
         {
           "k": "c",
-          "label": "Keep the server path, pin one named provider, sign the standard DPAs, publish the list",
+          "label": "Keep the server path, pin one provider, sign standard DPAs, publish the list",
           "gains": [
             "Keeps the zero-configuration demo; one relationship, not five"
           ],
@@ -1105,10 +1114,10 @@
       ],
       "rec": "b",
       "recCase": [
-        "Bring-your-own key is already the plan's position, triggered before any stranger (`docs/PRODUCT-BRIEF.md:328`).",
+        "Bring-your-own key is already the plan's position, due before any stranger.",
         "It collapses five sub-processor relationships and the operator's AI bill in one change."
       ],
-      "flip": "If the pilot needs a zero-configuration AI demo to test F5 and F6, the provider must be named.",
+      "flip": "If the pilot needs a zero-configuration demo of idea mode and decision flow, the provider must be named.",
       "linked": [
         "L1",
         "L2",
@@ -1139,7 +1148,7 @@
       "sub": "EU",
       "weight": "high",
       "q": "Do we geo-exclude the EU for the pilot, or accept EU users and budget an Art 27 representative?",
-      "lede": "GDPR Art 3(2)(a) catches a free tool, and §22 concedes the targeting posture addresses that limb only.",
+      "lede": "GDPR Art 3(2)(a) catches a free tool, and the plan admits its targeting posture covers only that.",
       "_ev": [
         "L12"
       ],
@@ -1198,7 +1207,7 @@
             "cells": [
               "nobody needs to",
               "nobody needs to",
-              "no measure exists, see L18"
+              "no measure exists, see the measurement decision"
             ]
           }
         ],
@@ -1207,13 +1216,13 @@
       },
       "stakes": "If any of the ten pilot strangers is in the EU, a representative is due before the test.",
       "state": [
-        "`docs/PRODUCT-BRIEF.md:550`: an Art 27 representative and Art 30 record from the first EU seat.",
-        "The same row names our rotating install ID as the Recital 24 monitoring pattern.",
-        "The one-founder band is €39–€160 a month, not €200–500 (`docs/research/agent-reports-2026-08-30/r18-v2-compliance-legal.md:29`)."
+        "An Art 27 representative and Art 30 record are due from the first EU seat.",
+        "The plan names our rotating install ID as the Recital 24 monitoring pattern.",
+        "A representative for a one-founder company costs €39–€160 a month, not €200–500."
       ],
       "tension": [
         "The Art 27(2)(a) occasional-processing escape fails for a subscription editor with sync.",
-        "DSA Art 13 bites only for an intermediary service, so it follows L6."
+        "DSA Art 13 bites only for an intermediary service, so it follows publishing."
       ],
       "options": [
         {
@@ -1223,7 +1232,7 @@
             "Matches spend to the obligation, with €39 as the floor"
           ],
           "costs": [
-            "Requires detecting the first EU seat, which L18 cannot do"
+            "Requires detecting the first EU seat, which our telemetry cannot do"
           ],
           "system": "Needs a signup-country signal we lack.",
           "screens": "None until the trigger.",
@@ -1296,10 +1305,10 @@
     {
       "id": "L13",
       "cat": "Legal, privacy & data",
-      "sub": "Sidecar",
+      "sub": "The review file",
       "weight": "high",
-      "q": "Does the review sidecar carry a person's real identity into the user's repository, or a pseudonymous id?",
-      "lede": "The one file the product exists to write is the one place nobody asked what personal data it carries.",
+      "q": "Does the review file carry a person's real identity into the user's repository, or a pseudonymous id?",
+      "lede": "The review file is the product's main output, and nobody has asked what personal data it carries.",
       "_ev": [
         "L13"
       ],
@@ -1339,30 +1348,30 @@
         "note": "Fields from PRODUCT-BRIEF line 135; the file is committed beside the documents",
         "caption": "The one file the product writes, and what of it is personal data"
       },
-      "stakes": "An erasure request against a sidecar in a repository we do not control has no answer.",
+      "stakes": "An erasure request against a review file in a repository we do not control has no answer.",
       "state": [
-        "`docs/PRODUCT-BRIEF.md:135`: one JSON line per span carrying reviewed-by, reviewed-at, author, model and prompt.",
-        "It is committed alongside the documents, by the same path (`docs/WEEK0-DECISIONS-2026-09-08.md:43`).",
+        "`.frontmatter/review.jsonl` holds one JSON line per span: reviewed-by, reviewed-at, author, model and prompt.",
+        "It is committed alongside the documents, by the same path.",
         "`reviewed-by` appears once in the whole plan and never in a legal section."
       ],
       "tension": [
         "A public repo publishes identity and timestamps; a private one shares them with cloners.",
-        "DPDP §12(3) and GDPR Art 17 give erasure, and we control none of it.",
-        "The prompt field is the user's own instruction text and may contain anything."
+        "DPDP section 12(3) and GDPR Art 17 give erasure, and we control none of it.",
+        "The prompt field is the user's own instruction and may contain anything."
       ],
       "options": [
         {
           "k": "a",
-          "label": "Keep the sidecar out of the repo, machine-local and synced separately",
+          "label": "Keep the separate file out of the repo, machine-local and synced separately",
           "gains": [
             "Removes the exposure entirely"
           ],
           "costs": [
-            "Destroys the central claim: review state has to travel"
+            "Destroys the central claim: review state (who has read what) must travel"
           ],
           "system": "A separate store and a sync path.",
           "screens": "No shared review state.",
-          "money": "Sync infrastructure, deferred to MVP-2."
+          "money": "Sync infrastructure, two builds after the pilot."
         },
         {
           "k": "b",
@@ -1438,7 +1447,7 @@
       "visual": {
         "kind": "ba",
         "before": {
-          "title": "What §22 prices",
+          "title": "What the plan's operating rules price",
           "lines": [
             {
               "t": "R2, IN jurisdiction, object-lock",
@@ -1477,13 +1486,13 @@
       },
       "stakes": "A breach investigation with no log slice has no evidence, and the 180 days is a floor.",
       "state": [
-        "`docs/PRODUCT-BRIEF.md:544` states 180 days inside Indian jurisdiction, priced as R2 with object-lock.",
+        "The plan states 180 days in Indian jurisdiction, priced as R2 with object-lock.",
         "We run Vercel plus Firebase, no region pinned, and `package.json` has no logging dependency.",
-        "`docs/FRONTMATTER-PRD-v2-2026-08-29.md:3689` specifies timestamp, request id, opaque user id, verb, no bytes."
+        "The PRD specifies timestamp, request id, opaque user id, verb, no bytes."
       ],
       "tension": [
         "This is not a residency problem but an absence: there are no logs.",
-        "`docs/PRODUCT-BRIEF.md:545` makes 180 days a floor, plus one-year access logs from 2027-05-13."
+        "180 days is a floor, and one-year access logs follow from 2027-05-13."
       ],
       "options": [
         {
@@ -1515,7 +1524,7 @@
         },
         {
           "k": "c",
-          "label": "Correct §22 to name the real stack and defer the store to MVP-1",
+          "label": "Fix the plan to name the real stack and defer the store to the build after the pilot",
           "gains": [
             "Honest and free; stops a wrong price being quoted"
           ],
@@ -1539,19 +1548,20 @@
           ],
           "system": "A write-only store and request-id middleware.",
           "screens": "None.",
-          "money": "Small storage; one vendor under L10."
+          "money": "Small storage; one more processor agreement."
         }
       ],
       "rec": "d",
       "recCase": [
         "Five opaque append-only fields, and the one artefact a breach response cannot reconstruct afterwards.",
-        "The priced design is R2 on Cloudflare and the running stack is not, so §22 is wrong."
+        "The price assumes R2 on Cloudflare, which is not our stack, so the plan is wrong."
       ],
-      "flip": "If L1 and L2 close the server surface entirely, no logs plus a written statement is defensible.",
+      "flip": "If we hold nothing server-side, no logs plus a written statement is defensible.",
       "linked": [
         "L1",
         "L2",
-        "L4"
+        "L4",
+        "L10"
       ],
       "sources": [
         "docs/PRODUCT-BRIEF.md:544",
@@ -1559,7 +1569,8 @@
         "docs/FRONTMATTER-PRD-v2-2026-08-29.md:3689",
         "docs/FRONTMATTER-RECORD.md:4122",
         "vercel.json",
-        "package.json"
+        "package.json",
+        "docs/PRODUCT-BRIEF.md:531"
       ]
     },
     {
@@ -1611,13 +1622,13 @@
       },
       "stakes": "A rebrand after the domain, the logo and the launch copy are paid for costs many times today's price.",
       "state": [
-        "`docs/PRODUCT-BRIEF.md:13` records 82,265 installs of the extension that already owns the name.",
-        "`docs/FRONTMATTER-PRD-v2-2026-08-29.md:4845`: USPTO, EUIPO, IP India and WIPO are all unchecked.",
-        "Frontmatter Studio was taken 2026-09-07; the `@frontmatter` npm scope is the incumbent's (`docs/GAPS-2026-09-08.md:132`)."
+        "The extension that already owns the name has 82,265 installs.",
+        "USPTO, EUIPO, IP India and WIPO are all unchecked.",
+        "Frontmatter Studio was taken on 2026-09-07; the `@frontmatter` npm scope is the incumbent's."
       ],
       "tension": [
         "The reported EU word mark was never reproduced; five registries blocked it.",
-        "The named falsifier is an attorney's knock-out on class overlap (`docs/FRONTMATTER-PRD-v2-2026-08-29.md:4841`)."
+        "The deciding test is an attorney's knock-out search on class overlap."
       ],
       "options": [
         {
@@ -1649,9 +1660,9 @@
         },
         {
           "k": "c",
-          "label": "Commission an attorney's knock-out search on the final two candidates before any spend",
+          "label": "Have an attorney run a knock-out search on the final two names before any spend",
           "gains": [
-            "The step the plan's own falsifier prescribes",
+            "The deciding test the PRD itself names",
             "Turns an unverified report into a decision"
           ],
           "costs": [
@@ -1733,30 +1744,30 @@
           }
         ],
         "perRow": 4,
-        "note": "Binding at next.config.ts:48; the report-only policy at proxy.ts:112 and :117",
+        "note": "Binding at next.config.ts line 48; the report-only policy at proxy.ts lines 112 and 117",
         "caption": "The defect two files revealed, with no outside review bought"
       },
       "stakes": "The people who wrote the code judge whether it is safe, and the first buyer asks for the artefact.",
       "state": [
-        "`docs/GAPS-2026-09-08.md:44` lists an outside review as untapped, triggered at the first team customer.",
-        "`firestore.rules:7` labels itself a prototype and says harden before taking paid signups.",
-        "`next.config.ts:48` binds the enforced CSP to `/p/:slug*`, now a redirect, so `src/proxy.ts:112` only reports."
+        "An outside review is listed as untapped, triggered at the first team customer.",
+        "Firestore rules call themselves a prototype, to be hardened before paid signups.",
+        "The enforced CSP binds to `/p/:slug*`, now a redirect, so public pages are report-only."
       ],
       "tension": [
-        "`src/proxy.ts:117` permits `unsafe-eval` in the policy that applies to untrusted content.",
+        "The policy that applies to untrusted content permits `unsafe-eval`.",
         "Both files' comments describe the old arrangement, which is how the defect survived."
       ],
       "options": [
         {
           "k": "a",
-          "label": "Buy a scoped external review of the shipped code and the Firestore design before the pilot",
+          "label": "Buy a scoped external review of the shipped code and Firestore design pre-pilot",
           "gains": [
             "Finds the class of defect two files revealed in one pass",
             "Produces the artefact the first B2B buyer asks for"
           ],
           "costs": [
             "A fee and a week, before any revenue",
-            "Reviews a server surface L1 and L2 may delete"
+            "Reviews server code the Firebase and byte-path decisions may delete"
           ],
           "system": "No change until findings land.",
           "screens": "None.",
@@ -1791,7 +1802,7 @@
         },
         {
           "k": "d",
-          "label": "Take L1 and L2 first, then buy a scoped review of a much smaller product",
+          "label": "Settle Firestore and the server path first, then buy a scoped review of what is left",
           "gains": [
             "The smallest subject is the cheapest real review"
           ],
@@ -1799,17 +1810,17 @@
             "Pushes the review past the pilot",
             "Depends on two other decisions going the same way"
           ],
-          "system": "Follows L1 and L2; no new work.",
+          "system": "Follows the Firebase and byte-path decisions; no new work.",
           "screens": "None.",
           "money": "A smaller fee, later."
         }
       ],
       "rec": "d",
       "recCase": [
-        "The cheapest real review has the smallest subject, and L1 and L2 point there.",
+        "The cheapest real review has the smallest subject, and the Firebase and byte-path decisions point there.",
         "Fix the CSP binding this week regardless: two lines, and untrusted content is report-only."
       ],
-      "flip": "If L1 holds documents server-side, the review moves ahead of the pilot and stops being optional.",
+      "flip": "If we hold documents server-side, the review moves ahead of the pilot and stops being optional.",
       "linked": [
         "L1",
         "L2",
@@ -1875,13 +1886,13 @@
       },
       "stakes": "A policy saying we delete what you delete is false on publication, and the user finds out late.",
       "state": [
-        "`docs/PRODUCT-BRIEF.md:545` sets the floors and instructs that the record's 90-day rule be deleted.",
-        "That rule is still at `docs/FRONTMATTER-RECORD.md:4508`, so someone will quote it.",
-        "`docs/PRODUCT-BRIEF.md:546` kills the inactivity-erasure timer: the Third Schedule thresholds do not reach us."
+        "The plan sets the floors and says to delete the record's 90-day rule.",
+        "It is still in the record, so someone will quote it.",
+        "The inactivity-erasure timer is dropped; the Third Schedule thresholds do not reach us."
       ],
       "tension": [
         "The floors binding today are CERT-In's and the IT Rules', not DPDP's.",
-        "A books-of-account floor also applies and its period is unverified (`docs/FRONTMATTER-RECORD.md:3064`)."
+        "A books-of-account floor also applies and its period is unverified."
       ],
       "options": [
         {
@@ -1915,7 +1926,7 @@
           "k": "c",
           "label": "Publish a retention table naming the floors and what survives an account closure",
           "gains": [
-            "Written once and used twice: policy page and internal schedule",
+            "One document serves the policy page and the internal schedule",
             "The artefact a rights request is answered from"
           ],
           "costs": [
@@ -1932,24 +1943,25 @@
             "The shortest honest policy available"
           ],
           "costs": [
-            "Only reachable if L1, L2 and L14 all close the surface",
+            "Only reachable if we hold no documents and no logs",
             "CERT-In's floor and the billing records still apply"
           ],
-          "system": "Follows L1, L2 and L14.",
+          "system": "Follows the Firebase, byte-path and log decisions.",
           "screens": "A very short retention section.",
           "money": "None."
         }
       ],
       "rec": "c",
       "recCase": [
-        "A retention table doubles as the internal schedule, so it is written once and used twice.",
+        "A retention table doubles as the internal schedule, so it is written once.",
         "Delete the superseded 90-day rule in the same edit, before someone quotes it in six months."
       ],
-      "flip": "If L1, L2 and L14 all close the server surface, the table gets shorter and the claim stronger.",
+      "flip": "If we hold no documents and no logs, the table gets shorter and the claim stronger.",
       "linked": [
         "L1",
         "L7",
-        "L14"
+        "L14",
+        "L2"
       ],
       "sources": [
         "docs/PRODUCT-BRIEF.md:545",
@@ -1966,7 +1978,7 @@
       "sub": "Telemetry",
       "weight": "medium",
       "q": "Do we ship the local usage file, a rotating install id, or an account-keyed opt-in upload?",
-      "lede": "The plan's own EU row calls a persistent rotating install id the Art 3(2)(b) monitoring pattern.",
+      "lede": "The plan's own EU rule calls a persistent rotating install id GDPR's Art 3(2)(b) monitoring pattern.",
       "_ev": [
         "L18"
       ],
@@ -2001,14 +2013,14 @@
             "cells": [
               "none",
               "ePrivacy carve-out, contested",
-              "DPDP §4(1)(a) consent"
+              "DPDP section 4(1)(a) consent"
             ]
           },
           {
             "label": "Art 3(2)(b) risk",
             "cells": [
               "nothing to attach to",
-              "the pattern §22 names",
+              "the pattern the plan's operating rules name",
               "monitoring, but consented"
             ]
           },
@@ -2032,15 +2044,15 @@
         "note": "Designs from WEEK0 lines 19 and 24, and RECORD line 4513",
         "caption": "Three measurement designs, and the legal basis each one needs"
       },
-      "stakes": "The MVP-0 exit gate, six of ten strangers, is unobservable unless the measure is designed before week 10.",
+      "stakes": "The pilot's exit gate, six of ten strangers, is unobservable unless the measure is designed before week 10.",
       "state": [
-        "`docs/WEEK0-DECISIONS-2026-09-08.md:19` proposes `.frontmatter/usage.jsonl`: counts only, no content, no file names.",
-        "`docs/PRODUCT-BRIEF.md:550` flags the rotating ID, and `:538` keeps usage counts in a local sidecar.",
+        "`.frontmatter/usage.jsonl` is proposed: counts only, no content, no file names.",
+        "The plan flags the rotating ID, and keeps usage counts in a local file.",
         "`package.json` has no PostHog, Plausible or Sentry, so this is an open choice."
       ],
       "tension": [
         "The two designs differ: one collects nothing, the other stores an identifier.",
-        "India has no legitimate-interests limb, so keyed telemetry needs §4(1)(a) consent."
+        "India has no legitimate-interests limb, so keyed telemetry needs section 4(1)(a) consent."
       ],
       "options": [
         {
@@ -2052,7 +2064,7 @@
           ],
           "costs": [
             "Puts an identifier on terminal equipment on a contested basis",
-            "Matches the Art 3(2)(b) pattern §22 flags"
+            "Matches the Art 3(2)(b) pattern the plan flags"
           ],
           "system": "A salt store, a rotation timer, an endpoint.",
           "screens": "A first-run toggle, before any value.",
@@ -2083,7 +2095,7 @@
             "Ten data points, collected by hand",
             "No signal at all after the pilot"
           ],
-          "system": "A daily line writer in the sidecar directory.",
+          "system": "A daily line writer in the `.frontmatter` directory.",
           "screens": "A settings row naming the file.",
           "money": "None."
         },
@@ -2104,7 +2116,7 @@
       "rec": "c",
       "recCase": [
         "For ten people the local file is enough, and it alone keeps the product's claim intact.",
-        "With no identifier and no upload, L12's Art 3(2)(b) argument has nothing to attach to."
+        "With no identifier and no upload, the Art 3(2)(b) argument has nothing to attach to."
       ],
       "flip": "At scale hand-collection stops working, and consent-based opt-in becomes the design, not a rotating id.",
       "linked": [
@@ -2149,7 +2161,7 @@
           },
           {
             "label": "Reverse charge applies",
-            "note": "CGST §24(iii)",
+            "note": "CGST section 24(iii)",
             "tone": "warn"
           },
           {
@@ -2164,20 +2176,20 @@
       },
       "stakes": "A known obligation accrues interest and penalty, and surfaces during diligence rather than on our timetable.",
       "state": [
-        "`docs/DECIDE.md:213` states it as a fact about us, not a hypothetical.",
-        "`docs/PRODUCT-BRIEF.md:330` carries it as a risk with a one-line response and no owner.",
+        "Our decision memo states it as fact, not a hypothetical.",
+        "The plan's risk list carries it with a one-line response and no owner.",
         "Whether registration has happened is not stated in any document, either way."
       ],
       "tension": [
-        "`src/modules/ai/infrastructure/gateway-client.ts:34` reads five foreign suppliers' keys, and hosting is foreign too.",
-        "The export-of-services and LUT positions are inference-only (`docs/BUSINESS.md:698`)."
+        "The code reads five foreign suppliers' keys, and hosting is foreign too.",
+        "The export-of-services and LUT positions are inference-only."
       ],
       "options": [
         {
           "k": "a",
           "label": "Stop buying foreign AI services on the company account until registration is settled",
           "gains": [
-            "Removes the trigger immediately, and points where L10 points"
+            "Removes the trigger immediately, and matches the processor decision"
           ],
           "costs": [
             "Conflicts with running server-side AI at all",
@@ -2206,7 +2218,7 @@
           "label": "Ask a CA to confirm the position and the exposure to date, then act",
           "gains": [
             "Settles a factual question about our own filings",
-            "Covers the inference-only items at BUSINESS:698"
+            "Covers the inference-only tax items too"
           ],
           "costs": [
             "A short delay, and one fee"
@@ -2232,7 +2244,7 @@
       "rec": "c",
       "recCase": [
         "A factual question about our own filings that nobody has answered, and it should not be guessed.",
-        "One consultation settles it with the export and LUT positions at `docs/BUSINESS.md:698`."
+        "One consultation settles it along with the export and LUT positions."
       ],
       "flip": "If the CA confirms registration is already due, stopping the foreign purchases follows immediately.",
       "linked": [
@@ -2295,8 +2307,8 @@
       "stakes": "A certificate strategy that gains value from third-party verification currently forbids third parties from running it.",
       "state": [
         "No `LICENSE` or `NOTICE` file, no `license` field, and `package.json` declares `private: true`.",
-        "`docs/FRONTMATTER-PRD-v2-2026-08-29.md:4636` calls all rights reserved the worst position for a spec.",
-        "The split is set out at `:4640`, `:4641`, `:4645` and again at `docs/ENGINE.md:2237`."
+        "The PRD calls all rights reserved the worst position for a spec.",
+        "The PRD sets out the split, and the engine document repeats it."
       ],
       "tension": [
         "202 of 228 files are shared with sgnk-md, and the sibling's declaration is unchecked.",
@@ -2362,7 +2374,7 @@
       ],
       "rec": "a",
       "recCase": [
-        "The reasoning is written down twice; what is missing is the file.",
+        "The reasoning is written down twice, but nobody added the file.",
         "Apache-2.0's trademark reservation lets the engine be verified without letting a fork issue certificates."
       ],
       "flip": "If the engine will not be extracted this quarter, written intent to open it later is more honest.",
@@ -2408,12 +2420,12 @@
             "tone": "stop"
           },
           {
-            "label": "PRODUCT-BRIEF v15: 843(E), 13 Nov",
+            "label": "The current plan: 843(E), 13 Nov",
             "note": "a third number appears",
             "tone": "stop"
           },
           {
-            "label": "Every deadline in §22",
+            "label": "Every deadline in the plan's operating rules",
             "note": "all of them derive from this date",
             "tone": "stop"
           }
@@ -2422,14 +2434,14 @@
         "note": "The instruction to open the Gazette or drop the number is at PRD v2 line 5982",
         "caption": "One unopened source, four citations, every legal deadline downstream"
       },
-      "stakes": "A visible inconsistency in the documents shown to counsel, on the date that fixes every §22 deadline.",
+      "stakes": "A visible inconsistency in the documents shown to counsel, on the date that fixes every legal deadline.",
       "state": [
-        "`docs/PRODUCT-BRIEF.md:541` cites G.S.R. 843(E); `docs/BUSINESS.md:26` and `docs/FRONTMATTER-RECORD.md:8357` cite 846(E).",
-        "`docs/FRONTMATTER-PRD-v2-2026-08-29.md:4516` dates it 14 November 2025 and derives commencement a day later.",
-        "`docs/FRONTMATTER-PRD-v2-2026-08-29.md:5982` already recorded the instruction: open the Gazette or drop the number."
+        "The plan cites G.S.R. 843(E); two other documents cite 846(E).",
+        "A fourth dates it 14 November 2025 and derives commencement a day later.",
+        "The instruction was already recorded: open the Gazette or drop the number."
       ],
       "tension": [
-        "62% of load-bearing claims needed correction once a primary source was opened (`docs/DECIDE.md:212`).",
+        "62% of load-bearing claims needed correction once a primary source was opened.",
         "13 versus 14 November shifts the eighteen-month tranche, and the 247-day headline with it."
       ],
       "options": [
@@ -2463,7 +2475,7 @@
         {
           "k": "c",
           "label": "Adopt the rule but keep unverified details behind an explicit marker",
-          "what": "The number stays behind an [SS] marker that travels with every copy.",
+          "what": "The number stays behind the `[SS]` search-summary marker, which travels with every copy.",
           "gains": [
             "Preserves the lead for a later verification pass"
           ],
@@ -2493,7 +2505,7 @@
       ],
       "rec": "d",
       "recCase": [
-        "The rule outlives the number, because it generalises to every unverified claim in the corpus.",
+        "The rule matters more than the number, because it covers every unverified claim we cite.",
         "The correction rate says there are many, and the gazette number is the test case."
       ],
       "flip": "If unverified leads are worth preserving, keep the marker, but only under a rule that it travels.",
@@ -2507,7 +2519,8 @@
         "docs/FRONTMATTER-RECORD.md:8357",
         "docs/FRONTMATTER-PRD-v2-2026-08-29.md:4516",
         "docs/FRONTMATTER-PRD-v2-2026-08-29.md:5982",
-        "docs/DECIDE.md:212"
+        "docs/DECIDE.md:212",
+        "docs/PRODUCT-BRIEF.md:531"
       ]
     },
     {
@@ -2516,7 +2529,7 @@
       "sub": "Children",
       "weight": "medium",
       "q": "Do we state 18-plus in the terms, build an age gate, or write down why the question is out of scope?",
-      "lede": "DPDP §9 carries a ₹200 crore ceiling, the plan never mentions children, and the code has no age field.",
+      "lede": "DPDP section 9 carries a ₹200 crore ceiling, the plan never mentions children, and the code has no age field.",
       "_ev": [
         "L22"
       ],
@@ -2555,7 +2568,7 @@
             ]
           },
           {
-            "label": "§9(3) monitoring ban",
+            "label": "Section 9(3) monitoring ban",
             "cells": [
               "satisfied, nothing is tracked",
               "satisfied",
@@ -2576,14 +2589,14 @@
       },
       "stakes": "The current position is silence, the only one of the three that cannot be explained to anyone.",
       "state": [
-        "`docs/FRONTMATTER-RECORD.md:4507` quotes §9(3): no tracking or behavioural monitoring of children.",
-        "`docs/FRONTMATTER-RECORD.md:4517` gives the ceiling: ₹200 crore for the §9 obligations.",
-        "No age field, date of birth or terms acceptance in `src/`; §22 is silent."
+        "Section 9(3) bans tracking or behavioural monitoring of children.",
+        "The ceiling for the section 9 obligations is ₹200 crore.",
+        "No age field, date of birth or terms acceptance in `src/`; the plan is silent."
       ],
       "tension": [
         "A markdown editor for repositories has few children, but nobody wrote that assumption down.",
         "The obligation does not scale with the number of children affected.",
-        "§9 commences 2027-05-13, so the clause is cheap now and awkward later."
+        "Section 9 commences 2027-05-13, so the clause is cheap now and awkward later."
       ],
       "options": [
         {
@@ -2604,8 +2617,8 @@
           "k": "b",
           "label": "State 18-plus in the terms and do no behavioural monitoring of anyone",
           "gains": [
-            "One sentence makes §9(3) trivially satisfied",
-            "Pairs with L18's no-telemetry answer at no cost"
+            "One sentence trivially satisfies section 9(3)",
+            "Pairs with the no-telemetry answer at no cost"
           ],
           "costs": [
             "A clause nobody reads is weak evidence"
@@ -2644,7 +2657,7 @@
       ],
       "rec": "b",
       "recCase": [
-        "One sentence, and the substantive prohibition is already satisfied by an architecture that monitors nobody.",
+        "It is one sentence, and an architecture that monitors nobody already meets the ban.",
         "The only one of the three that can be explained to a buyer or regulator."
       ],
       "flip": "If publishing ever aims at note-takers rather than developers, the audience assumption must be re-argued.",
@@ -2656,7 +2669,8 @@
         "docs/FRONTMATTER-RECORD.md:4507",
         "docs/FRONTMATTER-RECORD.md:4517",
         "docs/PRODUCT-BRIEF.md:538",
-        "docs/PRODUCT-BRIEF.md:541"
+        "docs/PRODUCT-BRIEF.md:541",
+        "docs/PRODUCT-BRIEF.md:531"
       ]
     },
     {
@@ -2722,9 +2736,9 @@
       },
       "stakes": "One implied mandate a compliance buyer can refute kills the credibility of every other claim.",
       "state": [
-        "The round opened 21 CFR 11.10(e), the MHRA GxP guide and the EMA paper.",
+        "The 2026-09-09 round opened 21 CFR 11.10(e), the MHRA GxP guide and the EMA paper.",
         "None mandates per-span review: pharma approves whole documents, aviation dates each page.",
-        "`docs/PRODUCT-BRIEF.md:541` already carries the discipline: claim neither compliance nor exposure early."
+        "The plan already says: claim neither compliance nor exposure early."
       ],
       "tension": [
         "MHRA permits exception reporting, which supports the design and undercuts an enumerate-everything pitch.",

@@ -4,13 +4,13 @@
     {
       "id": "D1",
       "cat": "Design, UI & attention",
-      "sub": "The tint",
+      "sub": "The highlight",
       "weight": "critical",
-      "q": "Does the review tint stay colour-only at 1.11:1, or gain a non-colour channel?",
+      "q": "Does the review highlight stay colour-only at 1.11:1, or gain a non-colour channel?",
       "lede": "The only mark this product draws is quieter than the dividers beside it.",
       "visual": {
         "kind": "file",
-        "name": "auth.md — Live mode, left gutter",
+        "name": "auth.md, Live mode, left gutter",
         "lines": [
           {
             "t": "  ## Token lifetime",
@@ -38,13 +38,13 @@
       },
       "stakes": "If nobody registers the mark, every review number measures an unseen screen.",
       "state": [
-        "§10: changed spans carry a light tint, nothing else (docs/PRODUCT-BRIEF.md:247).",
-        "The wash is 1.111:1 on white, under the 1.24:1 hairline (docs/prototype/frontmatter-prototype.html:13).",
-        "§22 promises never colour alone; the inset shadow is the fill's hex (docs/PRODUCT-BRIEF.md:540)."
+        "As drawn, changed spans carry a light highlight and nothing else.",
+        "The highlight is a wash at 1.111:1 on white, under the 1.24:1 hairline.",
+        "The plan promises never colour alone, yet the inset shadow reuses the fill's hex."
       ],
       "tension": [
-        "Ignorable at rest and reliably seen are one dial when colour is alone.",
-        "Whether a text wash falls under SC 1.4.11 is contested; a gutter ends that."
+        "With colour alone, easy to ignore also means easy to miss.",
+        "Whether a text wash falls under WCAG 1.4.11 is contested; a gutter ends that."
       ],
       "evidence": [
         {
@@ -109,10 +109,10 @@
           "k": "a",
           "label": "Ship the colour-only wash and let the five-second test decide",
           "gains": [
-            "Cheapest. Nothing to build or re-test"
+            "Cheapest: nothing to build or re-test"
           ],
           "costs": [
-            "§22's colour-alone promise stays false"
+            "The never-colour-alone promise stays false"
           ],
           "system": "No change.",
           "screens": "None.",
@@ -122,14 +122,14 @@
           "k": "b",
           "label": "Add one gutter mark at 3:1 and keep the text wash quiet",
           "gains": [
-            "Keeps §22's promise, ends the 1.4.11 argument",
-            "Sits in the column §16 says is scanned first"
+            "Keeps the never-colour-alone promise, ends the 1.4.11 argument",
+            "Sits at the left, where people scan first"
           ],
           "costs": [
-            "Gutter width is also wanted by line numbers"
+            "Line numbers want the same gutter width"
           ],
           "system": "One gutter decoration.",
-          "screens": "S2, S4, split, Read.",
+          "screens": "Editor, review panel, Split, Read.",
           "money": "None."
         },
         {
@@ -139,10 +139,10 @@
             "One token, impossible to miss"
           ],
           "costs": [
-            "The document then reads as highlighted"
+            "The document then looks marked up"
           ],
           "system": "One token.",
-          "screens": "Every tinted screen.",
+          "screens": "Every highlighted screen.",
           "money": "None."
         },
         {
@@ -155,16 +155,16 @@
             "The default is still this decision"
           ],
           "system": "A preference plus the gutter work.",
-          "screens": "One control on S11.",
+          "screens": "One control in Settings.",
           "money": "None."
         }
       ],
       "rec": "b",
       "recCase": [
-        "§22 already commits to never colour alone; a gutter mark keeps it cheapest.",
-        "Tang's workload cost is attention inside the text. A margin sits outside."
+        "The plan already promises never colour alone; a gutter mark is the cheapest way to keep it.",
+        "The Tang eye-tracking study's cost was attention inside the text; a margin sits outside."
       ],
-      "flip": "If D18 finds people spot the wash unprompted, the gutter mark is decoration.",
+      "flip": "If the five-second test shows people spot the wash unprompted, the gutter is decoration.",
       "linked": [
         "D2",
         "D4",
@@ -180,26 +180,27 @@
         "docs/prototype/frontmatter-prototype.html:13",
         "docs/prototype/frontmatter-prototype.html:14",
         "docs/prototype/frontmatter-prototype.html:116",
-        "docs/FRONTMATTER-PRD-v2-2026-08-29.md:3357"
+        "docs/FRONTMATTER-PRD-v2-2026-08-29.md:3357",
+        "docs/PRODUCT-BRIEF.md:409"
       ]
     },
     {
       "id": "D2",
       "cat": "Design, UI & attention",
-      "sub": "The tint",
+      "sub": "The highlight",
       "weight": "critical",
       "q": "Two washes for proposed and unreviewed, or does the shipped border mark proposals?",
-      "lede": "One tint means bytes are on disk, the other means nothing was written.",
+      "lede": "One wash means bytes are on disk, the other means nothing was written.",
       "visual": {
         "kind": "compare",
         "labelWidth": 150,
         "cols": [
           {
-            "title": "Review tint #eef3ff",
+            "title": "Review highlight #eef3ff",
             "tone": "accent"
           },
           {
-            "title": "Proposal tint #f4efff",
+            "title": "Proposal highlight #f4efff",
             "tone": "neutral"
           },
           {
@@ -262,13 +263,13 @@
       },
       "stakes": "Confusing them means reverting unchanged bytes, or trusting text never written.",
       "state": [
-        "Wireframes: purple is proposed, blue is written but unreviewed (docs/_wireframes.md:29).",
-        "The two wash hexes differ by delta-E76 4.10 (docs/prototype/frontmatter-prototype.html:14).",
-        "`.cm-ai-suggestion` is merged: blue fill, inset border, pulse (src/app/globals.css:833)."
+        "In the wireframes, purple is proposed; blue is written but unreviewed.",
+        "The two wash colours differ by 4.10 in delta-E76.",
+        "The shipped `.cm-ai-suggestion` class draws a blue fill, inset border and pulse."
       ],
       "tension": [
         "The distinction with a data consequence rides on the weakest channel.",
-        "Keeping the border breaks §16's no border, no icon rule (docs/PRODUCT-BRIEF.md:408)."
+        "Keeping the border breaks the plan's no-border, no-icon rule."
       ],
       "evidence": [
         {
@@ -389,13 +390,13 @@
           "k": "a",
           "label": "Keep both washes as drawn and delete the shipped highlight",
           "gains": [
-            "One vocabulary, §16's rules stay enforceable"
+            "One vocabulary; the attention rules stay enforceable"
           ],
           "costs": [
             "The distinction rests on a 4.1 delta-E"
           ],
           "system": "Delete the class, build the decoration.",
-          "screens": "S3b, S4 unchanged.",
+          "screens": "Answer-in-place screen and review panel unchanged.",
           "money": "None."
         },
         {
@@ -409,7 +410,7 @@
             "The no-border rule then covers one mark"
           ],
           "system": "Keep the class, guard the pulse.",
-          "screens": "S3b and S4 redraw the span.",
+          "screens": "Answer-in-place screen and review panel redraw the span.",
           "money": "None."
         },
         {
@@ -422,20 +423,20 @@
             "Builds a second treatment when one exists"
           ],
           "system": "One decoration, plus a deletion.",
-          "screens": "S3b, S4.",
+          "screens": "Answer-in-place screen and review panel.",
           "money": "None."
         },
         {
           "k": "d",
           "label": "Take the proposal out of the document; it lives in the review panel",
           "gains": [
-            "One tint to test, one meaning to teach"
+            "One wash to test, one meaning to teach"
           ],
           "costs": [
-            "Forfeits proposal-in-place, which F5 and F8 assumed"
+            "Forfeits proposal-in-place, which idea mode and file-scoped AI assumed"
           ],
           "system": "Proposals render in the panel.",
-          "screens": "S3b changes shape.",
+          "screens": "Answer-in-place screen changes shape.",
           "money": "None."
         }
       ],
@@ -466,19 +467,20 @@
         "src/app/globals.css:836",
         "src/app/globals.css:844",
         "docs/FRONTMATTER-PRD-v2-2026-08-29.md:3366",
-        "merged: D17"
+        "merged: D17",
+        "docs/PRODUCT-BRIEF.md:62"
       ]
     },
     {
       "id": "D3",
       "cat": "Design, UI & attention",
-      "sub": "The tint",
+      "sub": "The highlight",
       "weight": "high",
-      "q": "Should the tint be switchable at all, and is it on by default?",
+      "q": "Should the review highlight be switchable at all, and is it on by default?",
       "lede": "Settings ships a toggle that turns off the one thing this product adds.",
       "visual": {
         "kind": "screen",
-        "title": "S11 Settings, as built",
+        "title": "Settings, as built",
         "panes": [
           {
             "label": "Five toggles on one page",
@@ -511,18 +513,18 @@
             ]
           }
         ],
-        "note": "The settings copy already says the tint is file state, not AI.",
+        "note": "The settings copy already says the highlight is file state, not AI.",
         "caption": "Which switches remove chrome, and which remove the product."
       },
-      "stakes": "A participant who switches the tint off is counted as its user.",
+      "stakes": "A participant who switches the highlight off is still counted as its user.",
       "state": [
-        "S11 ships a tint toggle and a tree-bar toggle, both on (docs/prototype/frontmatter-prototype.html:615).",
-        "The hide-all-AI switch keeps the tint, because it is file state (:608).",
-        "The exit measure counts days opened, spans reviewed, proposals accepted (docs/PRODUCT-BRIEF.md:431)."
+        "Settings ships a highlight toggle and a file-tree-bar toggle, both on.",
+        "The hide-all-AI switch keeps the highlight, because it is file state, not AI.",
+        "The pilot's exit measure counts days opened, spans reviewed and proposals accepted."
       ],
       "tension": [
-        "Wireframes: every toggle we add is a decision we failed to make (docs/_wireframes.md:47).",
-        "With the tint off, 41 of 43 editor files match the sibling (docs/PRODUCT-BRIEF.md:223)."
+        "The wireframes say every toggle we add is a decision we failed to make.",
+        "With the highlight off, 41 of 43 editor files are byte-identical to sgnk-md."
       ],
       "evidence": [
         {
@@ -573,7 +575,7 @@
         },
         {
           "k": "b",
-          "label": "Remove the tint toggle; keep the tree-bar toggle",
+          "label": "Remove the highlight toggle; keep the tree-bar toggle",
           "gains": [
             "Two fewer states to design and test",
             "The pilot measures one product"
@@ -582,14 +584,14 @@
             "A vocal user can object to a removed control"
           ],
           "system": "Delete one preference.",
-          "screens": "S11 loses a row.",
+          "screens": "Settings loses a row.",
           "money": "None."
         },
         {
           "k": "c",
-          "label": "Make the tint per-document, stored in frontmatter",
+          "label": "Make the highlight per-document, stored in frontmatter",
           "gains": [
-            "Matches the projection law: settings live in the file"
+            "Settings live in the file, the only source of truth"
           ],
           "costs": [
             "A new key to read, write and refuse on"
@@ -615,8 +617,8 @@
       ],
       "rec": "b",
       "recCase": [
-        "The hide-all switch already says it: AI is optional, file state is not.",
-        "A second switch contradicting it lets a participant be a non-user."
+        "The hide-all-AI switch already draws the line: AI is optional, file state is not.",
+        "A second switch contradicting it lets a participant use the pilot without the highlight."
       ],
       "flip": "If a participant asks for it unprompted, the need is real and c fits.",
       "linked": [
@@ -641,10 +643,10 @@
       "sub": "Attention",
       "weight": "high",
       "q": "How many surfaces carry the unreviewed count, and where does the total sit?",
-      "lede": "S2 states one fact in five places, and both totals sit where reading stops.",
+      "lede": "The editor states one fact in five places, and both totals sit where reading stops.",
       "visual": {
         "kind": "screen",
-        "title": "S2 — every surface stating the same fact",
+        "title": "Editor: every surface stating the same fact",
         "panes": [
           {
             "label": "Top bar and left rail, read first",
@@ -658,7 +660,7 @@
               },
               {
                 "label": "Per-file bars in the tree",
-                "meta": "§17's return trigger",
+                "meta": "return trigger",
                 "mark": "keep",
                 "tone": "good"
               },
@@ -675,7 +677,7 @@
             "w": 1,
             "rows": [
               {
-                "label": "The tint",
+                "label": "The highlight",
                 "meta": "1.111:1 on white",
                 "mark": "keep",
                 "tone": "accent"
@@ -688,19 +690,19 @@
             "rows": [
               {
                 "label": "Drawer counter, 3 unreviewed",
-                "meta": "S4 :458",
+                "meta": "",
                 "mark": "move",
                 "tone": "warn"
               },
               {
                 "label": "Status bar, 3 unreviewed spans · 64%",
-                "meta": ":394",
+                "meta": "",
                 "mark": "move",
                 "tone": "warn"
               },
               {
                 "label": "Per-heading counts in the outline",
-                "meta": ":398",
+                "meta": "",
                 "mark": "cut",
                 "tone": "warn"
               }
@@ -710,13 +712,13 @@
         "note": "Amber does three jobs: a lot unreviewed, an open question, a STALE verdict.",
         "caption": "Five surfaces for one fact, with the total in the last-read column."
       },
-      "stakes": "Repeating a count everywhere teaches the reader to stop seeing all of them.",
+      "stakes": "Repeating a count everywhere teaches the reader to stop seeing it.",
       "state": [
-        "S2 states the count five times; §16 never mentions a status bar (docs/PRODUCT-BRIEF.md:413).",
+        "The editor states the count five times; the plan's attention rules never mention a status bar.",
         "Amber has three meanings and no threshold; one file reads amber and plain."
       ],
       "tension": [
-        "§16 justifies the tint by requiring it ignorable at rest (docs/PRODUCT-BRIEF.md:408).",
+        "The attention rules accept the highlight only if it is ignorable at rest.",
         "Clinical alerting overrides 55–98% across 34 studies; 86.6% of 14,612 alerts."
       ],
       "evidence": [
@@ -858,7 +860,7 @@
             "No work, and no screenshot redrawn"
           ],
           "costs": [
-            "Retention rests on a number in the coldest region"
+            "Retention rests on a number where people look last"
           ],
           "system": "No change.",
           "screens": "None.",
@@ -866,7 +868,7 @@
         },
         {
           "k": "b",
-          "label": "Cut to three: the tint, the tree bars, and one total above the tree",
+          "label": "Cut to three: the highlight, the tree bars, and one total above the tree",
           "gains": [
             "The total sits above the bars it summarises",
             "One bar colour, so amber is freed"
@@ -875,20 +877,20 @@
             "A reviewer loses the per-heading count"
           ],
           "system": "A rail header, two deletions.",
-          "screens": "S2 and S4 lose two surfaces.",
+          "screens": "Editor and review panel lose two surfaces.",
           "money": "None."
         },
         {
           "k": "c",
-          "label": "Cut to two: the tint and one total, tree bars included in the cut",
+          "label": "Cut to two: the highlight and one total, tree bars included in the cut",
           "gains": [
             "The quietest surface, and the smallest to test"
           ],
           "costs": [
-            "Removes §17's return trigger, the bar seen before opening"
+            "Removes the retention trigger, the bar seen before opening"
           ],
           "system": "Deletions only.",
-          "screens": "S0 and the tree lose bars.",
+          "screens": "Launcher and tree lose bars.",
           "money": "None."
         },
         {
@@ -907,10 +909,10 @@
       ],
       "rec": "b",
       "recCase": [
-        "The tree bar is §17's reason to open the app; the tab dot is nowhere.",
+        "The tree bar is the retention plan's reason to open the app, not the tab dot.",
         "A total above the bars is a summary, not a fifth surface."
       ],
-      "flip": "If D18 finds people read the status bar first, the total stays there.",
+      "flip": "If the five-second test shows the status bar is read first, the total stays.",
       "linked": [
         "D1",
         "D3",
@@ -968,10 +970,10 @@
         "note": "86.6% overridden; 88.3% of the typed justifications carried no meaning.",
         "caption": "The mature version of an always-on badge, measured."
       },
-      "stakes": "A number nobody can clear in one sitting trains dismissal, and the tint follows.",
+      "stakes": "A number nobody can clear in one sitting trains dismissal, and the highlight follows.",
       "state": [
-        "S0 states a share three times, S2 and S4 once (docs/prototype/frontmatter-prototype.html:304).",
-        "§17 makes that count the daily return trigger (docs/PRODUCT-BRIEF.md:425).",
+        "The launcher states a share three times; the editor and review panel once each.",
+        "The retention plan makes that count the daily return trigger.",
         "No source produces a repository share. The circulating 18% figure is unverified."
       ],
       "tension": [
@@ -1002,8 +1004,8 @@
           "costs": [
             "No denominator, so files cannot be compared"
           ],
-          "system": "Drop the share from the projection.",
-          "screens": "S0 cards and both status bars.",
+          "system": "Stop computing the share.",
+          "screens": "Launcher cards and both status bars.",
           "money": "None."
         },
         {
@@ -1017,7 +1019,7 @@
             "The launcher loses its at-a-glance ranking"
           ],
           "system": "The share is per open file.",
-          "screens": "S0 cards lose their labels.",
+          "screens": "Launcher cards lose their labels.",
           "money": "None."
         },
         {
@@ -1027,17 +1029,17 @@
             "The strongest answer to the override evidence"
           ],
           "costs": [
-            "Deletes §17's only mechanical reason to return"
+            "Deletes the only mechanical reason to return"
           ],
-          "system": "Review state renders in a session.",
-          "screens": "S0 and the tree lose marks.",
+          "system": "Unreviewed marks render only in a session.",
+          "screens": "Launcher and tree lose marks.",
           "money": "None."
         }
       ],
       "rec": "c",
       "recCase": [
         "A file is finishable in a sitting; a repository is not.",
-        "The tree bar survives as a fill without a number, keeping §17's trigger."
+        "The tree bar survives as a fill without a number, keeping the retention trigger."
       ],
       "flip": "If a participant reads a folder share and opens that folder, a stays.",
       "linked": [
@@ -1068,7 +1070,7 @@
       "lede": "The panel as drawn lists every changed span. Every mature version suppresses.",
       "visual": {
         "kind": "screen",
-        "title": "S4 review panel — two fill rules",
+        "title": "Review panel: two fill rules",
         "panes": [
           {
             "label": "Enumerate, as drawn",
@@ -1076,7 +1078,7 @@
             "rows": [
               {
                 "label": "3 unreviewed in this file",
-                "meta": ":458",
+                "meta": "",
                 "mark": "",
                 "tone": "neutral"
               },
@@ -1148,8 +1150,8 @@
       },
       "stakes": "A panel that always has more in it is one people stop opening.",
       "state": [
-        "S4 opens with every unreviewed span in the file (docs/prototype/frontmatter-prototype.html:458).",
-        "§16's only panel rule is the counter's position; nothing caps it (docs/PRODUCT-BRIEF.md:409)."
+        "The review panel opens with every unreviewed span in the file.",
+        "The plan's only panel rule is where the counter sits; nothing caps the list."
       ],
       "tension": [
         "Cisco measured no review above 250 lines; under 450 lines hourly, defect density fell.",
@@ -1180,8 +1182,8 @@
           "costs": [
             "Anything suppressed is something we chose to hide"
           ],
-          "system": "A fill rule over the sidecar.",
-          "screens": "S4 gains a rule line.",
+          "system": "A display rule over the review file.",
+          "screens": "Review panel gains a rule line.",
           "money": "None."
         },
         {
@@ -1194,20 +1196,20 @@
             "An arbitrary cap cuts a document mid-argument"
           ],
           "system": "A cap constant in the panel.",
-          "screens": "S4 gains a batch boundary.",
+          "screens": "Review panel gains a batch boundary.",
           "money": "None."
         },
         {
           "k": "d",
           "label": "Enumerate, but log dismissal rate and cut categories that cross a threshold",
           "gains": [
-            "Turns the fill rule into a measurement"
+            "Turns the display rule into a measurement"
           ],
           "costs": [
-            "The pilot is ten people; no rate fills"
+            "Ten pilot users cannot fill a rate"
           ],
-          "system": "Dismissal counts in the sidecar.",
-          "screens": "S11 gains a disclosure.",
+          "system": "Dismissal counts in the review file.",
+          "screens": "Settings gains a disclosure.",
           "money": "None."
         }
       ],
@@ -1240,37 +1242,37 @@
       "cat": "Design, UI & attention",
       "sub": "Hover card",
       "weight": "high",
-      "q": "Do we ship the attribution hover card in MVP-0, when no MVP-0 source fills it?",
+      "q": "Does the attribution hover card ship in the pilot, when no pilot source fills it?",
       "lede": "Attribution is the one claim nobody has shipped, and both readers need a commit.",
       "visual": {
         "kind": "screen",
         "title": "Hover card on an uncommitted working tree",
         "panes": [
           {
-            "label": "Four rows, as drawn (:383–:386)",
+            "label": "Four rows, as drawn",
             "w": 1,
             "rows": [
               {
-                "label": "Changed — since you last reviewed, 2h ago",
-                "meta": "sidecar hash",
+                "label": "Changed: since you last reviewed, 2h ago",
+                "meta": "hash in a separate file",
                 "mark": "fills",
                 "tone": "good"
               },
               {
-                "label": "Bytes — the span's range",
+                "label": "Bytes: the span's range",
                 "meta": "splice engine",
                 "mark": "fills",
                 "tone": "good"
               },
               {
-                "label": "Author — claude-sonnet-5, trailer a3f9c2",
+                "label": "Author: claude-sonnet-5, trailer a3f9c2",
                 "meta": "needs a commit",
                 "mark": "empty",
                 "tone": "stop"
               },
               {
-                "label": "Prompt — not recorded",
-                "meta": "needs MCP, MVP-1",
+                "label": "Prompt: not recorded",
+                "meta": "needs MCP, the build after the pilot",
                 "mark": "empty",
                 "tone": "stop"
               }
@@ -1278,15 +1280,15 @@
           }
         ],
         "note": "The prototype mocks the card on a committed span, so the empty case never appears.",
-        "caption": "Which rows can be filled in the window the tint marks."
+        "caption": "Which rows can be filled in the window the highlight marks."
       },
       "stakes": "The only unoccupied claim debuts as two rows reading `not recorded`.",
       "state": [
-        "F3 ships trailer and note readers in MVP-0, MCP in MVP-1 (docs/PRODUCT-BRIEF.md:57).",
-        "§1's container is a working tree with no commit, so neither exists (docs/PRODUCT-BRIEF.md:20)."
+        "Attribution ships trailer and note readers in the pilot, MCP in the build after.",
+        "The product targets a working tree with no commit, so neither source exists."
       ],
       "tension": [
-        "Today's research puts attribution as the only one of four claims nobody shipped.",
+        "Recent research puts attribution as the only one of four claims nobody shipped.",
         "Zed Delta entered private beta on 2026-08-12, committing publicly to span attribution."
       ],
       "evidence": [
@@ -1380,9 +1382,9 @@
             "Saves most of three days for engine work"
           ],
           "costs": [
-            "Gives up the Google-precedent story until MVP-1"
+            "Delays the Google paid-authorship precedent until after the pilot"
           ],
-          "system": "Card renders from the sidecar.",
+          "system": "Card renders from the review file.",
           "screens": "The card loses two rows.",
           "money": "None."
         },
@@ -1401,14 +1403,14 @@
         },
         {
           "k": "d",
-          "label": "Cut the post-commit readers and pull the MCP write path into MVP-0",
+          "label": "Cut the post-commit readers and pull the MCP write path into the pilot",
           "gains": [
             "The only path that fills author and prompt at write"
           ],
           "costs": [
-            "6 days, desktop only, routing assumption untested"
+            "6 days, desktop only, agent routing untested"
           ],
-          "system": "MCP into MVP-0; readers drop.",
+          "system": "MCP into the pilot; readers drop.",
           "screens": "The card is unchanged, but full.",
           "money": "None."
         }
@@ -1441,11 +1443,11 @@
       "cat": "Design, UI & attention",
       "sub": "AI placement",
       "weight": "high",
-      "q": "Does the AI prompt summon at the cursor, or stay a docked strip?",
+      "q": "Does the AI prompt open at the cursor, or stay a docked strip?",
       "lede": "Our screen report says every shipped product prompts at the cursor. We dock a strip.",
       "visual": {
         "kind": "screen",
-        "title": "S2 — where the AI prompt can be asked for",
+        "title": "Editor: where the AI prompt can be asked for",
         "panes": [
           {
             "label": "Under the document",
@@ -1453,7 +1455,7 @@
             "rows": [
               {
                 "label": "AI · this file · collapsed · ⌘J opens",
-                "meta": ":391",
+                "meta": "",
                 "mark": "prompt",
                 "tone": "warn"
               },
@@ -1471,7 +1473,7 @@
             "rows": [
               {
                 "label": "AI edit · ⌘J",
-                "meta": ":405",
+                "meta": "",
                 "mark": "prompt",
                 "tone": "warn"
               },
@@ -1499,15 +1501,15 @@
         "note": "Both existing affordances are bound to the same shortcut.",
         "caption": "Two entry points to one feature, and neither is at the cursor."
       },
-      "stakes": "Two AI affordances on a screen whose stated goal is that AI not compete.",
+      "stakes": "Two AI entry points on a screen whose stated goal is that AI does not compete.",
       "state": [
-        "S2 ships a docked strip and a separate rail button (docs/prototype/frontmatter-prototype.html:391, :405).",
-        "Wireframes defend it: a sidebar makes AI a place you go (docs/_wireframes.md:11).",
-        "The screens report asked the opposite: prompt at the selection (docs/research/agent-reports-2026-08-28/c6-screens.md:22)."
+        "The editor screen ships a docked strip and a separate rail button.",
+        "The wireframes defend it: a sidebar makes AI a place you go.",
+        "The screens research report asked the opposite: prompt at the selection."
       ],
       "tension": [
         "This is the one placement question where a report gave a clear answer.",
-        "A VS Code extension form factor hands this to the host (docs/GAPS-2026-09-08.md:48)."
+        "As a VS Code extension, the host would decide this for us."
       ],
       "evidence": [
         {
@@ -1575,7 +1577,7 @@
             "A first-run user must discover ⌘J"
           ],
           "system": "One deletion, one relocation.",
-          "screens": "S2 loses the strip.",
+          "screens": "The editor loses the strip.",
           "money": "None."
         },
         {
@@ -1598,7 +1600,7 @@
             "No work"
           ],
           "costs": [
-            "Two doors to one feature on the quietest screen"
+            "Two entry points to one feature on the quietest screen"
           ],
           "system": "No change.",
           "screens": "None.",
@@ -1614,7 +1616,7 @@
             "A dismissed-forever element is hard to find again"
           ],
           "system": "A first-run flag.",
-          "screens": "S2 gains a first-run variant.",
+          "screens": "The editor gains a first-run variant.",
           "money": "None."
         }
       ],
@@ -1643,8 +1645,8 @@
       "cat": "Design, UI & attention",
       "sub": "Editor scope",
       "weight": "critical",
-      "q": "Do we ship four editor modes for MVP-0, or cut to three?",
-      "lede": "Four modes is the largest surface that exists only because editors ship editors.",
+      "q": "Does the pilot ship four editor modes, or three?",
+      "lede": "Four modes is the largest surface, built only because every editor has them.",
       "visual": {
         "kind": "compare",
         "labelWidth": 170,
@@ -1664,10 +1666,10 @@
         ],
         "rows": [
           {
-            "label": "Modes that render the tint",
+            "label": "Modes showing the highlight",
             "cells": [
-              "3 of 4 — Edit does not",
-              "2 of 3 — Edit does not",
+              "3 of 4, Edit does not",
+              "2 of 3, Edit does not",
               "2 of 2"
             ]
           },
@@ -1682,16 +1684,16 @@
           {
             "label": "Dedicated screens to keep",
             "cells": [
-              "S2 and the split screen (:530)",
-              "S2",
-              "S2"
+              "the editor and the split screen",
+              "the editor",
+              "the editor"
             ]
           },
           {
             "label": "Stated purpose that is not review",
             "cells": [
-              "2 of 4 — Edit and Split",
-              "1 of 3 — Edit",
+              "2 of 4: Edit and Split",
+              "1 of 3: Edit",
               "0"
             ]
           },
@@ -1704,17 +1706,17 @@
             ]
           }
         ],
-        "note": "Purposes quoted from docs/_wireframes.md:17; F1 costs the modes as inherited, not as new build.",
+        "note": "Purposes quoted from the wireframes doc; the editor's estimate costs the modes as inherited, not as new build.",
         "caption": "What each cut keeps, and what it costs the buyer."
       },
       "stakes": "Table-stakes surface is paid for before the novel feature exists, at 1.21 days weekly.",
       "state": [
-        "F1 ships Live, Edit, Split and Read: 7d fixes, 8d wiring (docs/PRODUCT-BRIEF.md:55).",
-        "Edit does not render the tint at all, by the wireframes' rule (docs/_wireframes.md:17)."
+        "The editor ships Live, Edit, Split and Read: 7 days of engine fixes, 8 of wiring.",
+        "Edit mode does not show the highlight at all, by the wireframes' rule."
       ],
       "tension": [
-        "Audits called table-stakes cost larger than the novel-feature gap (docs/GAPS-2026-09-08.md:48).",
-        "Four platforms now ship an agent-diff pane free; mode count is not the choice."
+        "Audits called the table-stakes cost larger than the gap in the new feature.",
+        "Four platforms now ship an agent-diff pane free, so nobody chooses on mode count."
       ],
       "evidence": [
         {
@@ -1801,9 +1803,9 @@
         },
         {
           "k": "b",
-          "label": "Ship two for MVP-0 — Live and Read — and add Edit and Split in MVP-1",
+          "label": "Ship two for the pilot (Live and Read) and add Edit and Split in the build after it",
           "gains": [
-            "Both remaining modes carry the claim end to end"
+            "Both remaining modes show the review highlight"
           ],
           "costs": [
             "No raw-source mode reads as incomplete"
@@ -1814,7 +1816,7 @@
         },
         {
           "k": "c",
-          "label": "Ship three — Live, Edit, Read — and cut Split",
+          "label": "Ship three (Live, Edit, Read) and cut Split",
           "gains": [
             "Keeps what the developer buyer looks for first",
             "Cuts the weakest-job mode and its screen"
@@ -1828,12 +1830,12 @@
         },
         {
           "k": "d",
-          "label": "Ship all four and budget zero days, as F1 already implies",
+          "label": "Ship all four and budget zero days, as the editor's estimate already implies",
           "gains": [
-            "Makes the assumption explicit instead of inferred"
+            "Makes the editor estimate's assumption explicit"
           ],
           "costs": [
-            "25 diverged files say the fork is not free"
+            "25 files diverged from sgnk-md; the fork is not free"
           ],
           "system": "No change; the estimate is restated.",
           "screens": "None.",
@@ -1843,9 +1845,9 @@
       "rec": "c",
       "recCase": [
         "Edit is what a developer looks for first; Split has the weakest job.",
-        "Cutting one mode is the cheapest place to start applying the schedule finding."
+        "Cutting one mode is the cheapest first answer to the 58-week schedule."
       ],
-      "flip": "If the fork audit shows all four modes survive the tint work untouched, d is honest.",
+      "flip": "If auditing the sgnk-md fork shows all four modes survive the highlight work untouched, d is honest.",
       "linked": [
         "D9",
         "D11",
@@ -1869,11 +1871,11 @@
       "cat": "Design, UI & attention",
       "sub": "Editor scope",
       "weight": "medium",
-      "q": "Clicking a tinted span in Live mode breaks the mark and the actions. Fix which half?",
-      "lede": "The editable unit is a whole top-level block, and the editor that opens is untinted.",
+      "q": "Clicking a highlighted span in Live mode breaks the mark and the actions. Fix which half?",
+      "lede": "The editable unit is a whole top-level block, and the block editor drops the highlight.",
       "visual": {
         "kind": "file",
-        "name": "spec.md — clicking a tinted word inside a list",
+        "name": "spec.md: clicking a highlighted word inside a list",
         "lines": [
           {
             "t": "## Acceptance criteria",
@@ -1883,12 +1885,12 @@
           {
             "t": "- The token refreshes silently.",
             "mark": "unreviewed",
-            "note": "tinted"
+            "note": "highlighted"
           },
           {
             "t": "  - Rotation is not logged.",
             "mark": "unreviewed",
-            "note": "tinted"
+            "note": "highlighted"
           },
           {
             "t": "- Sessions end on sign-out.",
@@ -1901,12 +1903,12 @@
       },
       "stakes": "The revert-one-span demo works on a paragraph and degrades on a list item.",
       "state": [
-        "`splitIntoSegments` iterates `tree.children` only, so every segment is top-level (live/block-split.ts:45).",
-        "Clicking swaps in a raw CodeMirror instance with no review decoration (live/InlineBlockEditor.tsx:64)."
+        "`splitIntoSegments` reads only `tree.children`, so every segment is top-level.",
+        "Clicking swaps in a raw CodeMirror instance with no review decoration."
       ],
       "tension": [
-        "§21 claims nested constructs render correctly; editing granularity does not follow (docs/PRODUCT-BRIEF.md:524).",
-        "The splice engine is byte-range native, so review actions never needed the splitter."
+        "The plan says nested constructs render correctly; editing stays per top-level block.",
+        "The editor's write engine changes only the bytes you edited and never rewrites the whole file, so review actions never needed the splitter."
       ],
       "evidence": [
         {
@@ -2008,7 +2010,7 @@
           "k": "a",
           "label": "Keep block granularity and the rendered-views-only rule, and document both",
           "gains": [
-            "Zero build, and the loss-less property is untouched"
+            "Zero build, and loss-less reassembly stays proven"
           ],
           "costs": [
             "The mark vanishes under the cursor, in the default mode"
@@ -2019,16 +2021,16 @@
         },
         {
           "k": "b",
-          "label": "Actions on byte ranges, and carry the tint into the inline block editor",
+          "label": "Actions on byte ranges, and carry the highlight into the inline block editor",
           "gains": [
-            "Uses the engine's unit, leaving the splitter's proof alone",
-            "Fixes the case a user meets by accident"
+            "Uses the write engine's unit, leaving the splitter's proof alone",
+            "Fixes the case users hit by accident"
           ],
           "costs": [
             "A forty-line block still opens as raw source"
           ],
           "system": "Actions bind to byte ranges.",
-          "screens": "Live keeps the tint while editing.",
+          "screens": "Live keeps the highlight while editing.",
           "money": "None."
         },
         {
@@ -2046,24 +2048,24 @@
         },
         {
           "k": "d",
-          "label": "Render the tint everywhere, Edit mode included, as one decoration set",
+          "label": "Render the highlight everywhere, Edit mode included, as one decoration set",
           "gains": [
             "One implementation, used three times"
           ],
           "costs": [
-            "A wash behind monospace is a different legibility problem"
+            "A highlight behind monospace is a different legibility problem"
           ],
           "system": "One decoration set across modes.",
-          "screens": "Edit gains the tint.",
+          "screens": "Edit gains the highlight.",
           "money": "None."
         }
       ],
       "rec": "b",
       "recCase": [
         "A mark that vanishes under the cursor in the default mode is a defect.",
-        "Byte-range actions cost nothing new; the engine already works that way."
+        "Byte-range actions cost nothing new; the write engine works that way."
       ],
-      "flip": "If the hash prototype shows most spans are whole paragraphs, a is enough.",
+      "flip": "If the content-hash prototype shows most spans are whole paragraphs, a is enough.",
       "linked": [
         "D1",
         "D8",
@@ -2088,8 +2090,8 @@
       "cat": "Design, UI & attention",
       "sub": "Design system",
       "weight": "high",
-      "q": "Do we reconcile the stylesheet to the canonical system before the pilot, or after?",
-      "lede": "The application's stylesheet is a copy of another product's, and says so.",
+      "q": "Do we bring the stylesheet in line with our design system before the pilot, or after?",
+      "lede": "The app's stylesheet is a copy of sgnk-md's, and its header says so.",
       "visual": {
         "kind": "compare",
         "labelWidth": 150,
@@ -2113,7 +2115,7 @@
             "cells": [
               "#1a5cff",
               "#1a5cff",
-              "#18181b (globals.css:34)"
+              "#18181b"
             ]
           },
           {
@@ -2121,7 +2123,7 @@
             "cells": [
               "square",
               "square, border-radius:0",
-              "6 / 8 / 12px (:56)"
+              "6 / 8 / 12px"
             ]
           },
           {
@@ -2129,7 +2131,7 @@
             "cells": [
               "inline SVG",
               "inline SVG, 110 uses",
-              "Material Symbols web font (:2)"
+              "Material Symbols web font"
             ]
           },
           {
@@ -2137,30 +2139,30 @@
             "cells": [
               "frontmatter",
               "frontmatter",
-              "\"sgnk-md design system\" (:12)"
+              "\"sgnk-md design system\""
             ]
           },
           {
             "label": "On the record as a defect",
             "cells": [
-              "—",
-              "—",
+              "no",
+              "no",
               "three times since 2026-08-29, fixed zero"
             ]
           }
         ],
-        "note": "The tint's meaning is carried by the accent, so the two palettes disagree about the product's one signal.",
+        "note": "The highlight's meaning is carried by the accent, so the two palettes disagree about the product's one signal.",
         "caption": "Three visual systems; the pilot sees one and installs another."
       },
       "stakes": "Every visual reaction the pilot gives is about a palette we do not ship.",
       "state": [
-        "`globals.css:12` reads `sgnk-md design system`, ships `--accent: #18181b` and rounded corners.",
-        "The prototype uses `--accent:#1a5cff` and square corners (docs/prototype/frontmatter-prototype.html:14, :116).",
-        "Both PRDs recorded the divergence; PRODUCT.md calls it free to fix (docs/PRODUCT.md:997)."
+        "The stylesheet's header reads `sgnk-md design system`; it ships `--accent: #18181b` and rounded corners.",
+        "The prototype uses `--accent:#1a5cff` and square corners.",
+        "Both PRDs recorded the divergence; the product document calls it free to fix."
       ],
       "tension": [
         "The five-second test would run on a palette the product does not ship.",
-        "The two stylesheets disagree on the colour that carries the tint's meaning."
+        "The two stylesheets disagree on the colour that carries the highlight's meaning."
       ],
       "evidence": [
         {
@@ -2230,8 +2232,8 @@
           "k": "a",
           "label": "Reconcile the tokens before the pilot: accent, corners, failing contrast",
           "gains": [
-            "A single-file edit PRODUCT.md calls free",
-            "Shares one pass with D12's contrast work"
+            "A one-file edit the product document calls free",
+            "Shares one pass with the contrast-token fix"
           ],
           "costs": [
             "Components assuming the near-black accent need a look"
@@ -2260,7 +2262,7 @@
             "Ends the divergence with the least code to change"
           ],
           "costs": [
-            "Gives up the blue that carries the tint's meaning"
+            "Gives up the blue that carries the highlight's meaning"
           ],
           "system": "The design document is rewritten.",
           "screens": "The prototype is redrawn.",
@@ -2268,24 +2270,24 @@
         },
         {
           "k": "d",
-          "label": "Reconcile only the tokens the tint depends on",
+          "label": "Reconcile only the tokens the highlight depends on",
           "gains": [
             "Smallest change that makes tested and shipped screens agree"
           ],
           "costs": [
-            "The app still looks like the sibling elsewhere"
+            "The app still looks like sgnk-md elsewhere"
           ],
           "system": "Two token edits.",
-          "screens": "The tint and accent controls.",
+          "screens": "The highlight and accent controls.",
           "money": "None."
         }
       ],
       "rec": "a",
       "recCase": [
         "One file's edit, on the record since 2026-08-29 and absent from the current plan.",
-        "Doing it first means the test and the walkthrough run on the real palette."
+        "Doing it first means the five-second test and the walkthrough run on the real palette."
       ],
-      "flip": "If the form factor goes to a VS Code extension, only the tint tokens matter.",
+      "flip": "If we ship as a VS Code extension instead, only the highlight tokens matter.",
       "linked": [
         "D1",
         "D12",
@@ -2303,7 +2305,8 @@
         "docs/prototype/frontmatter-prototype.html:14",
         "docs/PRODUCT-BRIEF.md:223",
         "docs/GAPS-2026-09-08.md:48",
-        "src/app/globals.css:2"
+        "src/app/globals.css:2",
+        "docs/prototype/frontmatter-prototype.html:116"
       ]
     },
     {
@@ -2312,30 +2315,30 @@
       "sub": "Accessibility",
       "weight": "high",
       "q": "Do the failing contrast tokens get fixed and gated in CI before the pilot?",
-      "lede": "Six shipped tokens fail AA today, one on live error text, in a product promising AA.",
+      "lede": "Six shipped tokens fail WCAG AA today, one on live error text, in a product promising AA.",
       "visual": {
         "kind": "ba",
         "before": {
           "title": "Shipped tokens on --bg #fafafa",
           "lines": [
             {
-              "t": "--muted #9b9ba3 — 2.64:1",
+              "t": "--muted #9b9ba3 at 2.64:1",
               "mark": "fail"
             },
             {
-              "t": "--danger #b2625e — 4.19:1, live alert text",
+              "t": "--danger #b2625e at 4.19:1, live alert text",
               "mark": "fail"
             },
             {
-              "t": "--success #4f8b6b — 3.84:1",
+              "t": "--success #4f8b6b at 3.84:1",
               "mark": "fail"
             },
             {
-              "t": "--ring focus — 2.14:1",
+              "t": "--ring focus at 2.14:1",
               "mark": "fail"
             },
             {
-              "t": "§22 names body-faint, which is not in the build",
+              "t": "The plan names body-faint, not in the build",
               "mark": "fail"
             }
           ]
@@ -2352,7 +2355,7 @@
               "mark": "pass"
             },
             {
-              "t": "§22 rewritten to name shipped tokens",
+              "t": "Plan rewritten to name shipped tokens",
               "mark": "pass"
             },
             {
@@ -2362,17 +2365,17 @@
           ]
         },
         "via": "about half a day",
-        "note": "The gate is arithmetic over globals.css, so it cannot flake (docs/FRONTMATTER-PRD-v2-2026-08-29.md:3404).",
+        "note": "The gate is arithmetic over globals.css, so it cannot flake.",
         "caption": "What fails today, and what one pass plus a gate would fix."
       },
-      "stakes": "A procurement conversation reads §22, which promises a standard the build misses.",
+      "stakes": "A procurement conversation reads the plan's AA promise, which the build misses.",
       "state": [
-        "§22 promises AA and names `body-faint`, a token not in the build (docs/PRODUCT-BRIEF.md:540).",
-        "Six shipped tokens fail against `--bg #fafafa` (src/app/globals.css:25).",
-        "`--danger` carries role=\"alert\" text at 12px, so SC 1.4.3 fails now."
+        "The plan promises AA and names `body-faint`, a token not in the build.",
+        "Six shipped tokens fail against `--bg #fafafa`.",
+        "`--danger` carries role=\"alert\" text at 12px, so WCAG 1.4.3 fails now."
       ],
       "tension": [
-        "The gate is specified at about thirty lines, blocking and zero-flake, and unbuilt.",
+        "The CI gate is specified at about thirty lines, blocking and zero-flake, and unbuilt.",
         "Notion shipped high contrast on 2026-07-30; Obsidian shipped text scaling in 1.14.x."
       ],
       "evidence": [
@@ -2482,7 +2485,7 @@
           "k": "a",
           "label": "Fix the tokens now and add the contrast gate to CI as blocking",
           "gains": [
-            "Makes §22 true for half a day's work",
+            "Makes the plan's AA promise true for half a day's work",
             "An arithmetic gate never flakes, so this cannot return"
           ],
           "costs": [
@@ -2496,7 +2499,7 @@
           "k": "b",
           "label": "Fix --danger only, which is a live production failure, and defer the rest",
           "gains": [
-            "An hour removes a live SC 1.4.3 failure"
+            "An hour removes a live WCAG 1.4.3 failure"
           ],
           "costs": [
             "Leaves the focus ring at 2.14:1 everywhere"
@@ -2507,7 +2510,7 @@
         },
         {
           "k": "c",
-          "label": "Change §22 to say what is true and schedule the fix for MVP-1",
+          "label": "Correct the plan's accessibility rule; fix the tokens in the build after the pilot",
           "gains": [
             "Honest, and costs nothing now"
           ],
@@ -2535,9 +2538,9 @@
       "rec": "a",
       "recCase": [
         "The fix is arithmetic on one file and a gate that cannot flake.",
-        "Correct §22 in the same edit; it names a token not in the build."
+        "Correct the plan's accessibility line in the same edit; it names a token not in the build."
       ],
-      "flip": "If D11 takes option c and the sibling palette becomes canonical, do both edits once.",
+      "flip": "If the stylesheet decision adopts sgnk-md's palette as canonical, do both edits once.",
       "linked": [
         "D1",
         "D11",
@@ -2578,7 +2581,7 @@
               },
               {
                 "label": "28 call sites across 20 files",
-                "meta": "GoogleIcon.tsx:63",
+                "meta": "GoogleIcon.tsx",
                 "mark": "",
                 "tone": "neutral"
               }
@@ -2614,13 +2617,13 @@
             "rows": [
               {
                 "label": "Desktop app offline",
-                "meta": "advertised at :99",
+                "meta": "advertised",
                 "mark": "",
                 "tone": "stop"
               },
               {
                 "label": "Exported HTML on a reader's machine",
-                "meta": "F13, :67",
+                "meta": "export",
                 "mark": "",
                 "tone": "stop"
               },
@@ -2638,11 +2641,11 @@
       },
       "stakes": "The offline case we advertise is where the interface prints its icon names.",
       "state": [
-        "`globals.css:2` imports the icon font and `GoogleIcon` renders ligature text (GoogleIcon.tsx:60).",
-        "Both export paths emit preconnects and a Google Fonts link (export/presentation/print-css.ts:27)."
+        "The stylesheet imports the icon font, and `GoogleIcon` renders its ligature text.",
+        "Both export paths emit preconnects and a Google Fonts link."
       ],
       "tension": [
-        "The desktop app advertises offline except the model; both defects fire there (docs/PRODUCT-BRIEF.md:99).",
+        "The desktop app advertises everything offline except the model; both defects fire there.",
         "An export leaves the organisation, so every reader's request reaches a third party."
       ],
       "evidence": [
@@ -2828,7 +2831,7 @@
       ],
       "rec": "a",
       "recCase": [
-        "28 mechanical edits against a PRD v1 defect that fires where we advertise.",
+        "28 mechanical edits fix a defect the first PRD recorded, and it fires where we advertise.",
         "The prototype has already drawn the sprite, so the assets exist."
       ],
       "flip": "If the licence forbids embedding in a redistributed file, the export needs a system stack.",
@@ -2889,9 +2892,9 @@
       },
       "stakes": "A keyboard user who reaches the editor cannot leave it, and the plan says otherwise.",
       "state": [
-        "`indentWithTab` is bound in the main editor and the inline one (CodeMirrorEditor.tsx:233).",
-        "The PRD says zero occurrences in `src/`, and marks that measured (docs/FRONTMATTER-PRD-v2-2026-08-29.md:3358).",
-        "SC 2.1.1 and 2.1.2 are Level A, the strictest tier."
+        "`indentWithTab` is bound in the main editor and the inline block editor.",
+        "The PRD says zero occurrences in `src/`, and marks that as measured.",
+        "WCAG 2.1.1 and 2.1.2 are Level A, the minimum conformance level."
       ],
       "tension": [
         "2.1.2 needs discoverability at the trap, not a help modal.",
@@ -2974,7 +2977,7 @@
             "Satisfies 2.1.2 if the hint sits at the trap"
           ],
           "costs": [
-            "Needs announce plumbing with zero call sites"
+            "Needs screen-reader announcements; the code makes none"
           ],
           "system": "A keymap edit plus announce calls.",
           "screens": "A hint on editor focus.",
@@ -2997,13 +3000,13 @@
           "k": "d",
           "label": "Make it a setting under Keymap",
           "gains": [
-            "S11 already has a Keymap group (docs/prototype/frontmatter-prototype.html:606)"
+            "Settings already has a Keymap group"
           ],
           "costs": [
             "The default is still this decision, and it traps"
           ],
           "system": "One preference.",
-          "screens": "S11 gains a row.",
+          "screens": "Settings gains a row.",
           "money": "None."
         }
       ],
@@ -3044,13 +3047,13 @@
           },
           {
             "label": "SAFE_KEY fails, splice returns src",
-            "note": "splice-frontmatter.ts:124",
+            "note": "splice-frontmatter.ts",
             "tone": "warn",
             "edge": "refuse"
           },
           {
             "label": "emit() sees next === content",
-            "note": "PropertiesPanel.tsx:89",
+            "note": "PropertiesPanel.tsx",
             "tone": "warn",
             "edge": "drop"
           },
@@ -3063,13 +3066,13 @@
         "note": "The panel's own comment names the gap; 19 typed failure codes exist on the engine side and none reaches a screen.",
         "caption": "The one refusal a pilot user meets, as shipped."
       },
-      "stakes": "The founding principle is demonstrated to strangers as an edit that silently vanishes.",
+      "stakes": "Refuse-rather-than-guess is shown to strangers as an edit that silently vanishes.",
       "state": [
-        "Frontmatter splice returns a bare string, with 20 `return src` sites (domain/splice-frontmatter.ts:124).",
-        "The panel drops an unchanged result: `if (!onEdit || next === content) return;` (PropertiesPanel.tsx:89)."
+        "`spliceFrontmatterValue` and `spliceFrontmatterKey` return a bare string, refusing at 20 `return src` sites.",
+        "The properties panel silently drops a result equal to its input (`next === content`)."
       ],
       "tension": [
-        "§12 and §22 make refusals the positioning; neither is true of the shipped path.",
+        "The go-to-market plan and operating rules lead with refusals; the shipped path shows none.",
         "19 typed failure codes exist on the engine side, none reachable by a screen."
       ],
       "evidence": [
@@ -3141,7 +3144,7 @@
           "k": "a",
           "label": "Return a result type with a reason code from splice, and render it",
           "gains": [
-            "Makes the founding principle visible where users touch it"
+            "Makes refuse-rather-than-guess visible where people touch it"
           ],
           "costs": [
             "Touches 20 return sites and every caller"
@@ -3154,10 +3157,10 @@
           "k": "b",
           "label": "Leave the domain alone; the panel re-checks the rule and shows its own message",
           "gains": [
-            "Fast; the panel already re-checks SAFE_KEY five times"
+            "Fast; the panel already checks for uneditable keys five times"
           ],
           "costs": [
-            "Keeps the rule in two layers, the drift class here"
+            "Keeps the rule in two layers, a known drift risk"
           ],
           "system": "Panel-side validation only.",
           "screens": "A message line.",
@@ -3165,9 +3168,9 @@
         },
         {
           "k": "c",
-          "label": "Do nothing until S8 is built in MVP-1",
+          "label": "Do nothing until the refactor preview ships in the build after the pilot",
           "gains": [
-            "No work now"
+            "No work until the refactor preview is built"
           ],
           "costs": [
             "The pilot meets silent refusals on the positioning feature"
@@ -3180,7 +3183,7 @@
           "k": "d",
           "label": "Reason codes from the two frontmatter functions, with a line under the field",
           "gains": [
-            "A fraction of a's work, covering the only MVP-0 refusal",
+            "A fraction of a's work, covering the pilot's only refusal",
             "Proves the return shape before applying it everywhere"
           ],
           "costs": [
@@ -3196,7 +3199,7 @@
         "The properties panel is the only place a pilot user meets a refusal.",
         "Two functions is contained, and it settles the return shape for later."
       ],
-      "flip": "If the properties panel is off the fifteen-second demo path, this belongs in MVP-1.",
+      "flip": "If the properties panel is off the fifteen-second demo path, this moves after the pilot.",
       "linked": [
         "D6",
         "D22"
@@ -3220,7 +3223,7 @@
       "sub": "Testing",
       "weight": "high",
       "q": "What does the five-second test measure, at what sample size, and what stops the build?",
-      "lede": "The one test that could settle every tint question is five people, no pass line.",
+      "lede": "The one test that could settle every highlight question is five people, no pass line.",
       "visual": {
         "kind": "compare",
         "labelWidth": 170,
@@ -3245,15 +3248,15 @@
           {
             "label": "First question",
             "cells": [
-              "what does the tint mean?",
+              "what does the highlight mean?",
               "did you notice anything marked?"
             ]
           },
           {
-            "label": "Tints shown",
+            "label": "Highlights shown",
             "cells": [
               "1",
-              "2 — written and proposed"
+              "2: written and proposed"
             ]
           },
           {
@@ -3274,18 +3277,18 @@
             "label": "Decisions it can answer",
             "cells": [
               "none, since it cannot fail",
-              "D1, D2, D4, D23"
+              "non-colour channel, proposal mark, count surfaces, repo share"
             ]
           }
         ],
-        "note": "Asking what the tint means presupposes it was seen, so a participant who missed it still produces an answer.",
+        "note": "Asking what the highlight means presupposes it was seen, so a participant who missed it still produces an answer.",
         "caption": "The test as written cannot fail; the test as proposed can."
       },
       "stakes": "The gate deciding whether the headline feature is visible is a phrase, not a measure.",
       "state": [
-        "§14 and §16 specify five people, one screenshot, one question (docs/PRODUCT-BRIEF.md:411).",
-        "Only two failing answers are named. No pass line, no protocol.",
-        "No build day depends on it; rendering is weeks 5–7 regardless (docs/PRODUCT-BRIEF.md:355)."
+        "The plan specifies five people, one editor screenshot, five seconds, one question.",
+        "Only two failing answers are named, and there is no pass line or protocol.",
+        "No build day depends on it; rendering is weeks 5–7 either way."
       ],
       "tension": [
         "Comprehension is the wrong measure. The literature is about dismissal: 55–98% override.",
@@ -3370,10 +3373,10 @@
         },
         {
           "k": "b",
-          "label": "Rewrite it: n=15, noticing first, both tints, a stated pass line",
+          "label": "Rewrite it: n=15, noticing first, both highlights, a stated pass line",
           "gains": [
             "Produces numbers that can kill the design",
-            "Feeds D1, D2, D4 and D23 from one recruitment"
+            "Feeds four highlight decisions from one recruitment"
           ],
           "costs": [
             "Recruiting 15 in the same fortnight is the cost"
@@ -3397,7 +3400,7 @@
         },
         {
           "k": "d",
-          "label": "Drop it and decide the tint on the contrast floors alone",
+          "label": "Drop it and decide the highlight on the contrast floors alone",
           "gains": [
             "Grounds the decision in numbers we hold"
           ],
@@ -3411,7 +3414,7 @@
       ],
       "rec": "b",
       "recCase": [
-        "Four decisions here are answered by one exercise; the margin is ten participants.",
+        "One exercise answers four decisions here, for ten more participants.",
         "A test with no pass line cannot produce the day-14 kill signal promised."
       ],
       "flip": "If the ten-developer walkthrough can carry these questions, recruit once, not twice.",
@@ -3443,47 +3446,47 @@
         "title": "Prototype coverage before the pilot",
         "panes": [
           {
-            "label": "Drawn — 9",
+            "label": "Drawn: 9",
             "w": 1,
             "rows": [
               {
-                "label": "S0, S2, S4, S3b, S2c",
-                "meta": "MVP-0",
+                "label": "Launcher, editor, review drawer, two variants",
+                "meta": "pilot",
                 "mark": "",
                 "tone": "good"
               },
               {
-                "label": "S11 settings, S13 repo docs",
-                "meta": "MVP-0",
+                "label": "Settings, repo docs scan",
+                "meta": "pilot",
                 "mark": "",
                 "tone": "good"
               },
               {
-                "label": "S8 refactor, S12 generate",
-                "meta": "MVP-1 and MVP-2",
+                "label": "Refactor preview, generate",
+                "meta": "after the pilot",
                 "mark": "",
                 "tone": "sunk"
               }
             ]
           },
           {
-            "label": "Undrawn — 3",
+            "label": "Undrawn: 3",
             "w": 1,
             "rows": [
               {
-                "label": "S1 open a folder, first run",
-                "meta": "§17's retention lever",
+                "label": "Open a folder, first run",
+                "meta": "retention lever",
                 "mark": "",
                 "tone": "stop"
               },
               {
-                "label": "S9 conflict, the only blocking modal",
-                "meta": "the sync doctrine",
+                "label": "Conflict, the only blocking pop-up",
+                "meta": "the sync rule",
                 "mark": "",
                 "tone": "stop"
               },
               {
-                "label": "S10 team view, behind the paywall",
+                "label": "Team view, behind the paywall",
                 "meta": "the whole paid tier",
                 "mark": "",
                 "tone": "stop"
@@ -3496,7 +3499,7 @@
             "rows": [
               {
                 "label": "Ten screen queries, written 2026-08-28",
-                "meta": "refused twice by the taint gate",
+                "meta": "blocked twice by a security check",
                 "mark": "",
                 "tone": "warn"
               },
@@ -3514,12 +3517,12 @@
       },
       "stakes": "The screens deciding retention, data safety and the paid tier are the undrawn three.",
       "state": [
-        "Nine screens exist; S8 is MVP-1 and S12 MVP-2 (docs/prototype/frontmatter-prototype.html:281).",
-        "The wireframes name three more: first run, conflict, team view (docs/_wireframes.md:51).",
-        "The benchmark was refused twice by a taint gate; its queries exist (docs/PRODUCT-BRIEF.md:387)."
+        "Nine screens exist; refactor preview comes in the build after the pilot, generate a build later.",
+        "The wireframes name three more: first run, conflict and team view.",
+        "A prompt-injection safety block refused the benchmark twice; its queries are written."
       ],
       "tension": [
-        "§17 stakes retention on a first-session screen nobody has drawn (docs/PRODUCT-BRIEF.md:429).",
+        "The retention plan rests on a first-session screen nobody has drawn.",
         "Four platforms shipped an agent-review pane in six weeks, so comparables exist."
       ],
       "evidence": [
@@ -3644,7 +3647,7 @@
       "options": [
         {
           "k": "a",
-          "label": "Draw S1 only, before the pilot",
+          "label": "Draw the first-run screen only, before the pilot",
           "gains": [
             "Covers the retention claim with least evidence"
           ],
@@ -3652,12 +3655,12 @@
             "The conflict modal ships undesigned into the worst moment"
           ],
           "system": "None.",
-          "screens": "S1 added.",
+          "screens": "First-run screen added.",
           "money": "None."
         },
         {
           "k": "b",
-          "label": "Run the benchmark in a fresh session, then draw S1",
+          "label": "Run the benchmark in a fresh session, then draw the first-run screen",
           "gains": [
             "Every placement question gets a shipped reference",
             "One session, no founder time, queries written"
@@ -3666,7 +3669,7 @@
             "Comparables are conventions, not evidence about our users"
           ],
           "system": "None.",
-          "screens": "S1 added; the nine revised.",
+          "screens": "First-run screen added; the nine revised.",
           "money": "None."
         },
         {
@@ -3679,7 +3682,7 @@
             "Three screens to keep consistent at 1.21 days a week"
           ],
           "system": "None.",
-          "screens": "S1, S9, S10 added.",
+          "screens": "First run, conflict, team view added.",
           "money": "None."
         },
         {
@@ -3699,9 +3702,9 @@
       "rec": "b",
       "recCase": [
         "The benchmark costs one session, no founder time, and answers placement from evidence.",
-        "S1 is the one undrawn screen every participant reaches, and it carries retention."
+        "Every participant reaches the undrawn first-run screen, and it carries retention."
       ],
-      "flip": "If Pro enters the twenty team conversations in weeks 1–2, S10 is drawn first.",
+      "flip": "If the paid tier comes up in the twenty team conversations in weeks 1–2, draw the team view first.",
       "linked": [
         "D4",
         "D7",
@@ -3729,8 +3732,8 @@
       "cat": "Design, UI & attention",
       "sub": "Dark mode",
       "weight": "medium",
-      "q": "Does dark mode ship at the pilot, given the tint is quieter and unreviewed there?",
-      "lede": "Two themes doubles every visual decision here, and the tint is 1.185:1 in the untested one.",
+      "q": "Does dark mode ship in the pilot, given the highlight is fainter and unreviewed there?",
+      "lede": "Two themes doubles every visual decision here, and the highlight is 1.185:1 in the untested one.",
       "visual": {
         "kind": "compare",
         "labelWidth": 170,
@@ -3746,14 +3749,14 @@
         ],
         "rows": [
           {
-            "label": "Review tint against the page",
+            "label": "Review highlight on the page",
             "cells": [
               "1.111:1",
               "1.185:1"
             ]
           },
           {
-            "label": "Review tint against proposal tint",
+            "label": "Review vs proposal highlight",
             "cells": [
               "ΔE76 4.10",
               "ΔE76 8.85"
@@ -3781,17 +3784,17 @@
             ]
           }
         ],
-        "note": "Ratios derived from the prototype's and the app's declared hexes; §16 names no theme anywhere.",
+        "note": "Ratios derived from the prototype's and the app's declared hexes; the plan's attention section names no theme.",
         "caption": "The same decisions, measured in the theme nobody has looked at."
       },
       "stakes": "Two themes with no stated test theme makes every visual reaction unattributable.",
       "state": [
-        "The stylesheet carries a full dark palette and a `prefers-color-scheme` fallback (src/app/globals.css:89).",
-        "S11's first control is Theme: System, Light, Dark (docs/prototype/frontmatter-prototype.html:605)."
+        "The stylesheet carries a full dark palette and a `prefers-color-scheme` fallback.",
+        "The first control in Settings is Theme: System, Light, Dark."
       ],
       "tension": [
         "Every question on this list has a second answer in dark, unchecked.",
-        "The dark palette has its own AA failures, so D12's pass covers it anyway."
+        "The dark palette has its own AA failures, so the contrast fix covers it anyway."
       ],
       "evidence": [
         {
@@ -3881,7 +3884,7 @@
             "Removing a working control reads as a regression"
           ],
           "system": "The theme control is hidden.",
-          "screens": "S11 loses a control.",
+          "screens": "Settings loses a control.",
           "money": "None."
         },
         {
@@ -3917,7 +3920,7 @@
         "Cutting dark mode from a developer tool costs more goodwill than it saves.",
         "The tokens are already written; what is missing is that nobody looked."
       ],
-      "flip": "If D18's extended test finds the dark tint unnoticed, b is honest.",
+      "flip": "If the extended five-second test finds the dark highlight unnoticed, b is honest.",
       "linked": [
         "D1",
         "D2",
@@ -3941,7 +3944,7 @@
       "sub": "Reader adaptation",
       "weight": "medium",
       "q": "What is v1's scope for CJK, RTL, text scaling and high contrast, and where is it stated?",
-      "lede": "The plan owes one written scope line. Both competitors shipped three of these four.",
+      "lede": "The plan owes one written scope line. Obsidian and Notion shipped three of these four.",
       "visual": {
         "kind": "compare",
         "labelWidth": 170,
@@ -3964,22 +3967,22 @@
             "label": "Byte-to-UTF-16 map",
             "cells": [
               "the highest-risk seam",
-              "named as engine work (:233)",
-              "—"
+              "named as engine work",
+              "none noted"
             ]
           },
           {
             "label": "CJK search",
             "cells": [
               "character bigrams",
-              "one clause (:540)",
-              "—"
+              "one clause",
+              "none noted"
             ]
           },
           {
             "label": "RTL content",
             "cells": [
-              "dir=auto on both panes (:4057)",
+              "dir=auto on both panes",
               "not mentioned",
               "Obsidian 1.14.x"
             ]
@@ -3987,9 +3990,9 @@
           {
             "label": "RTL chrome mirroring",
             "cells": [
-              "out for v1 (:4062)",
+              "out for v1",
               "not mentioned",
-              "—"
+              "none noted"
             ]
           },
           {
@@ -4009,17 +4012,17 @@
             ]
           }
         ],
-        "note": "Record references are docs/FRONTMATTER-RECORD.md; plan references are docs/PRODUCT-BRIEF.md.",
+        "note": "The record is the project's full record; the plan is the current product brief.",
         "caption": "What was settled, what the page carries, what shipped elsewhere."
       },
       "stakes": "An unsupported non-English user gets no refusal, but a silently damaged file.",
       "state": [
-        "§22 owes a written v1 scope decision (docs/PRODUCT-BRIEF.md:540).",
-        "§9 calls the byte-to-UTF-16 map the highest-risk seam, corrupting CJK silently (docs/PRODUCT-BRIEF.md:233).",
-        "The record settled RTL as layout: `dir=\"auto\"` on both panes (docs/FRONTMATTER-RECORD.md:4057)."
+        "The plan's operating rules owe a written v1 scope decision.",
+        "The technical plan calls the byte-to-UTF-16 map the highest-risk seam, corrupting CJK silently.",
+        "The record settled RTL as layout: `dir=\"auto\"` on both panes."
       ],
       "tension": [
-        "Unsupported and unstated means corruption, not refusal, against the refusal posture.",
+        "Unsupported and unstated means corruption, not refusal, which breaks refuse-rather-than-guess.",
         "Obsidian shipped RTL and text scaling in 1.14.x; Notion high contrast 2026-07-30."
       ],
       "evidence": [
@@ -4104,11 +4107,11 @@
           "k": "b",
           "label": "Support CJK and RTL content plus text scaling; the interface stays English",
           "gains": [
-            "Matches what §43 settled and what the engine targets",
-            "The byte map is on the MVP-0 list regardless"
+            "Matches the PRD's internationalisation section and the engine's target",
+            "The byte map is on the pilot list regardless"
           ],
           "costs": [
-            "Commits the byte map to MVP-0, a schedule claim"
+            "Commits the byte map to the pilot, a schedule claim"
           ],
           "system": "Direction attributes, a bigram index.",
           "screens": "Editor and preview share direction.",
@@ -4143,10 +4146,10 @@
       ],
       "rec": "b",
       "recCase": [
-        "Most of b is already paid for: the byte map is MVP-0 engine work.",
-        "What is missing is one paragraph in §22 and a shared-direction rule."
+        "Most of b is already paid for: the byte map is pilot engine work.",
+        "Only one paragraph in the operating rules and a shared-direction rule are missing."
       ],
-      "flip": "If the byte map slips out of MVP-0, c is the only honest position.",
+      "flip": "If the byte map slips out of the pilot, c is the only honest position.",
       "linked": [
         "D12",
         "D16"
@@ -4160,7 +4163,8 @@
         "docs/FRONTMATTER-RECORD.md:4062",
         "docs/FRONTMATTER-RECORD.md:4064",
         "docs/FRONTMATTER-RECORD.md:4088",
-        "docs/FRONTMATTER-RECORD.md:4064"
+        "docs/FRONTMATTER-RECORD.md:4064",
+        "docs/FRONTMATTER-RECORD.md:3994"
       ]
     }
   ]

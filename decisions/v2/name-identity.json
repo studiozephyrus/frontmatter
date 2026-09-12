@@ -7,7 +7,7 @@
       "sub": "The word",
       "weight": "critical",
       "q": "Do we keep the word \"frontmatter\", qualify it, or leave it?",
-      "lede": "The name is taken in the store our buyer lives in, and every week-1 asset spends it.",
+      "lede": "The name is taken in the VS Code store our buyer uses, and every week-1 asset spends it.",
       "visual": {
         "kind": "compare",
         "labelWidth": 200,
@@ -67,7 +67,7 @@
             ]
           },
           {
-            "label": "What §52.3 calls it",
+            "label": "What the naming section says",
             "cells": [
               "Highest risk, extra steps",
               "Rank 1 and 2",
@@ -78,16 +78,16 @@
         "note": "\"Frontmatter Studio\" was registered by somebody else on 2026-09-07.",
         "caption": "The three routes, on the axes the naming reports actually measured"
       },
-      "stakes": "Ship bare and we take the full confusion and clearance exposure of a live 2019 senior user, for nothing.",
+      "stakes": "Ship bare and we carry all the confusion and trademark risk of a live 2019 extension, for nothing.",
       "state": [
-        "v15 uses the word bare; its keyfigure leads with 82,265 installs (docs/PRODUCT-BRIEF.md:13).",
-        "Incumbent alive: v10.12.0 on 2026-08-21, and the `@frontmatter` npm scope is his (docs/GAPS-2026-09-08.md:132).",
-        "No channel in the plan is search (docs/PRODUCT-BRIEF.md:305-310). Exhibit 20 omits the name (:359-369)."
+        "The plan uses the word bare and quotes Front Matter CMS's 82,265 installs up front.",
+        "That extension is alive: v10.12.0 shipped 2026-08-21, and it owns the `@frontmatter` npm scope.",
+        "The plan has no search channel, and its seven founder decisions omit the name."
       ],
       "tension": [
-        "The escape route is gone. \"Frontmatter Studio\" was registered by somebody else on 2026-09-07.",
-        "What remains is rank 1, which §52.3 itself calls highest-risk (22-segments-disclosure-naming.md:219, :223).",
-        "The SEO half of the case buys a channel we do not use."
+        "The best spoken qualifier is gone: somebody registered \"Frontmatter Studio\" on 2026-09-07.",
+        "What remains, the bare name on a qualified handle, is what the naming report itself calls highest-risk.",
+        "The SEO argument serves a channel we do not use."
       ],
       "evidence": [
         {
@@ -240,7 +240,7 @@
           "k": "a",
           "label": "Keep \"Frontmatter\" bare",
           "gains": [
-            "No teaching cost; the word is the thesis in one token"
+            "No teaching cost; the word already names what we edit"
           ],
           "costs": [
             "The one configuration all three naming reports argue against"
@@ -272,7 +272,7 @@
           ],
           "costs": [
             "One sentence of category teaching in every asset",
-            "`stetmark` shipped 2026-08-05 on the same metaphor; re-run the 404 probe"
+            "`stetmark` shipped 2026-08-05 on the same metaphor; re-check npm and GitHub"
           ],
           "system": "Rename two published packages and 169 src strings.",
           "screens": "Every wordmark, the launcher, the desktop title.",
@@ -280,14 +280,14 @@
         },
         {
           "k": "d",
-          "label": "Flip the hierarchy — MDMAX becomes the brand",
+          "label": "Flip the hierarchy: MDMAX becomes the brand",
           "gains": [
             "No new clearance: npm `mdmax` was 404 on 2026-08-30",
-            "Answers N4's mark question in the same move"
+            "Also settles the two-names question"
           ],
           "costs": [
-            "\"md\" reads as a medical degree to non-developers (r4-naming-candidates.md:69)",
-            "The corpus rates it a library name, not a product"
+            "\"md\" reads as a medical degree to non-developers",
+            "The research rates it a library name, not a product"
           ],
           "system": "One package name survives; product strings change.",
           "screens": "Wordmark everywhere.",
@@ -296,10 +296,10 @@
       ],
       "rec": "c",
       "recCase": [
-        "Both documented same-market precedents ended in a rename: Firefox twice while small, Riot.im after launch (e6-naming-risk.md:110-111).",
-        "Obsidian's senior sat in another market. Ours is in the same store, and renaming costs 169 strings today."
+        "Both documented same-market precedents ended in a rename: Firefox twice while small, Riot.im after launch.",
+        "Obsidian's namesakes were in other markets; ours is in the same store, and renaming costs 169 strings today."
       ],
-      "flip": "A clean attorney knock-out plus an available qualifier; §52.3's falsifier says a taught name then costs more (22-segments-disclosure-naming.md:225).",
+      "flip": "If an attorney's knock-out is clean and a qualifier is free, the naming report says a coined name costs more.",
       "linked": [
         "N2",
         "N3",
@@ -332,7 +332,12 @@
         "docs/research/agent-reports-2026-08-29-r11/r4-naming-candidates.md:112",
         "docs/research/agent-reports-2026-08-29-r11/r4-naming-candidates.md:117",
         "docs/research/agent-reports-2026-08-30/r14-g1-final-gap-sweep.md:14",
-        "docs/FRONTMATTER-COMPLETE-RECORD-2026-08-30.md:6386"
+        "docs/FRONTMATTER-COMPLETE-RECORD-2026-08-30.md:6386",
+        "docs/research/agent-reports-2026-08-29-r11/r4-naming-candidates.md:69",
+        "docs/research/agent-reports-2026-08-28/e6-naming-risk.md:106",
+        "docs/research/agent-reports-2026-08-28/e6-naming-risk.md:113",
+        "docs/PRODUCT-BRIEF.md:305",
+        "docs/research/agent-reports-2026-08-28/e6-naming-risk.md:110"
       ]
     },
     {
@@ -341,7 +346,7 @@
       "sub": "Timing and order",
       "weight": "critical",
       "q": "When does the name freeze, and is it decided before or after the form factor?",
-      "lede": "The name is spent one asset at a time, and decision 6 is scoring a cost a rename would erase.",
+      "lede": "The name is spent one asset at a time, and the form-factor decision scores a cost a rename would erase.",
       "visual": {
         "kind": "state",
         "states": [
@@ -361,27 +366,27 @@
           {
             "label": "Installed",
             "meta": "a signed build on a stranger's machine",
-            "via": "MVP-0",
+            "via": "the pilot",
             "tone": "warn"
           },
           {
             "label": "Breaking",
             "meta": "a customer CNAME to pages.frontmatter.app",
-            "via": "MVP-1",
+            "via": "after pilot",
             "tone": "stop"
           }
         ],
         "note": "Only the last two are strings somebody other than us is holding.",
         "caption": "What a rename costs at each step, and where it stops being an edit"
       },
-      "stakes": "Past the third state a rename migrates preferences, keychains and an update channel on other people's machines.",
+      "stakes": "After the first install, a rename migrates preferences, keychains and an update channel on other people's machines.",
       "state": [
-        "A public prototype carries the name; weeks 1-2 add three landing pages (docs/PRODUCT-BRIEF.md:237, :352).",
-        "One string is declared permanent in writing: the API error-type URIs (docs/DEV-PLAN.md:627).",
-        "Rename tripwires: none. Decision 6 counts the collision against the extension (docs/PRODUCT-BRIEF.md:364)."
+        "A public prototype carries the name; weeks 1-2 add three landing pages.",
+        "One string is declared permanent in writing: the API error-type URIs.",
+        "No rename tripwires exist; the form-factor decision counts the name against the VS Code extension."
       ],
       "tension": [
-        "The ordering is circular: decision 6 counts the name; the name waits for it.",
+        "It is circular: the form-factor decision counts the name, and the name waits for it.",
         "Rename cost is not flat; the plan treats the name as an agenda item.",
         "Three further strings are widely assumed permanent and the plan asserts it nowhere."
       ],
@@ -526,14 +531,14 @@
           "k": "a",
           "label": "Freeze the name this week, before the landing pages go up",
           "gains": [
-            "Ends the circularity, so decision 6 scores honestly",
+            "Ends the circle, so the form-factor decision scores honestly",
             "Nothing is spent under a name we later abandon"
           ],
           "costs": [
-            "Forces N1 before N3's register searches have run",
-            "Decides the worst-evidenced question in the file in one sitting"
+            "Forces the name choice before the register searches run",
+            "Decides the worst-evidenced question in this area in one sitting"
           ],
-          "system": "Every DEV-PLAN and src-tauri string settles this week.",
+          "system": "Build-plan and desktop-config strings all settle this week.",
           "screens": "Wordmark on all nine prototype screens.",
           "money": "Domains and handles bought once."
         },
@@ -555,11 +560,11 @@
         },
         {
           "k": "c",
-          "label": "Write §52's tripwire list, rename when one fires, no date",
+          "label": "Write the naming section's tripwire list, rename when one fires, no date",
           "what": "Counsel clean, no objection, listings accepted, handles secured; any one firing triggers the rename.",
           "gains": [
             "Keeps the option open while facts are still arriving",
-            "The list is already drafted (COMPLETE-RECORD-2026-08-30.md:12541)"
+            "The list is already drafted"
           ],
           "costs": [
             "A name gets spent by accident when nobody watches",
@@ -573,7 +578,7 @@
           "k": "d",
           "label": "Form factor first; the name inherits whatever the surface requires",
           "gains": [
-            "Follows the ordering already written down (docs/GAPS-2026-09-08.md:100-101)"
+            "Follows the ordering already written down"
           ],
           "costs": [
             "Scores the extension with a cost that may not exist",
@@ -587,7 +592,7 @@
       "rec": "b",
       "recCase": [
         "Before the first install a rename is search-and-replace: 169 occurrences, 44 of 248 files, measured 2026-09-09.",
-        "What cannot be undone is a string somebody else holds: a notarised app, a customer CNAME (docs/DEV-PLAN.md:1683)."
+        "What cannot be undone is a string somebody else holds: a notarised app, a customer CNAME."
       ],
       "flip": "If the weeks-1-2 landing pages are meant to generate press and backlinks rather than recruit ten people, freeze this week.",
       "linked": [
@@ -615,7 +620,8 @@
         "docs/FRONTMATTER-MASTER-PLAN-2026-08-28.md:182",
         "docs/FRONTMATTER-COMPLETE-RECORD-2026-08-30.md:12541",
         "docs/research/agent-reports-2026-08-28/e6-naming-risk.md:110-111",
-        "docs/research/agent-reports-2026-08-28/e6-naming-risk.md:130"
+        "docs/research/agent-reports-2026-08-28/e6-naming-risk.md:130",
+        "docs/GAPS-2026-09-08.md:100-101"
       ]
     },
     {
@@ -667,14 +673,14 @@
       },
       "stakes": "Choosing between a qualified word and a coinage without clearance risks paying for the rename twice.",
       "state": [
-        "§52.4 lists TESS, EUIPO, IP India, WIPO and every domain UNCHECKED (22-segments-disclosure-naming.md:229).",
-        "The reported FRONTMATTER EU word mark was never reproduced; five registries were blocked (docs/GAPS-2026-09-08.md:146).",
-        "US registrability is doubtful: a §2(e)(1) descriptiveness refusal, tagged inference not counsel (e6-naming-risk.md:86)."
+        "The naming report lists TESS, EUIPO, IP India, WIPO and every domain unchecked.",
+        "Nobody reproduced the reported FRONTMATTER EU word mark; five registries were blocked.",
+        "US registration is doubtful: the word may be refused as descriptive, an inference, not counsel."
       ],
       "tension": [
         "The blocker was the network, not the budget. Five registries were unreachable.",
         "So \"not cleared\" is a tooling fact being carried as a cost decision.",
-        "If the word is too descriptive to register, we cannot defend it either (e6-naming-risk.md:86)."
+        "If the word is too descriptive to register, we cannot defend it either."
       ],
       "evidence": [
         {
@@ -720,15 +726,15 @@
           "label": "Pay an attorney for a knock-out search now, on two names",
           "gains": [
             "The only thing that actually settles the question",
-            "Unblocks N1, N2 and N6 in one step"
+            "Unblocks the naming, freeze and identifier decisions at once"
           ],
           "costs": [
             "Spends before any demand signal, on a name we may drop",
-            "No price in the corpus to budget against"
+            "No price in the research to budget against"
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "Unbudgeted; the corpus has no figure."
+          "money": "Unbudgeted; the research has no figure."
         },
         {
           "k": "b",
@@ -749,11 +755,11 @@
           "k": "c",
           "label": "Skip clearance; rely on descriptiveness and no enforcement posture",
           "gains": [
-            "The incumbent shows no mark symbol and no enforcement (e6-naming-risk.md:89)"
+            "The incumbent shows no mark symbol and no enforcement"
           ],
           "costs": [
             "The evidence we have is that nobody could open a register",
-            "Implies we cannot register anything either, the Riot.im trigger"
+            "Implies we cannot register either, which forced Riot.im's rename"
           ],
           "system": "No change.",
           "screens": "None.",
@@ -777,14 +783,16 @@
       ],
       "rec": "b",
       "recCase": [
-        "A network allowlist stopped the corpus, not money, and one blocked registry holds the only reported mark.",
+        "A network allowlist stopped the research, not money, and one blocked registry holds the only reported mark.",
         "An hour on an open connection produces that record or kills it. Buy counsel on what survives."
       ],
       "flip": "A live mark in an overlapping class turns this from a cost question into an attorney engagement the same day.",
       "linked": [
         "N1",
         "N4",
-        "N9"
+        "N9",
+        "N2",
+        "N6"
       ],
       "sources": [
         "docs/GAPS-2026-09-08.md:146",
@@ -833,7 +841,7 @@
               "mdmax cert",
               "7 engines, 15 targets"
             ],
-            "side": "the published claim Apache-2.0 §6 protects",
+            "side": "the published claim Apache's trademark clause protects",
             "tone": "neutral"
           },
           {
@@ -841,7 +849,7 @@
             "items": [
               "the editor"
             ],
-            "side": "the name under review in N1",
+            "side": "the name under review in the keep, qualify or coin decision",
             "tone": "warn"
           }
         ],
@@ -850,14 +858,14 @@
       },
       "stakes": "Without a defensible engine mark, a fork can issue rendering certificates under a name we cannot contest.",
       "state": [
-        "Two packages already ship: `mdmax` and `mdmax-cli`, from one repo (docs/ENGINE.md:2231).",
-        "`mdmax` was 404 on npm on 2026-08-30; `frontmatter` returned 200 (docs/ENGINE.md:2235).",
-        "Apache-2.0 was chosen for one reason: §6 withholds trademark rights from a fork (docs/ENGINE.md:2237)."
+        "Two packages already ship: `mdmax` and `mdmax-cli`, from one repo.",
+        "`mdmax` was 404 on npm on 2026-08-30; `frontmatter` returned 200.",
+        "Apache-2.0 was chosen for one reason: it withholds trademark rights from a fork."
       ],
       "tension": [
-        "MDMAX has had no more clearance than the product name (22-segments-disclosure-naming.md:229).",
+        "MDMAX has had no more clearance than the product name.",
         "Two names double the teaching, and the one carrying legal weight is never spoken.",
-        "The certificate is under a falsifier: DESTROY occurs zero times in 10,176 blocks (docs/PRODUCT-BRIEF.md:512)."
+        "The certificate may not survive: its one customer-facing verdict, DESTROY, occurs zero times in 10,176 blocks."
       ],
       "evidence": [
         {
@@ -931,7 +939,7 @@
         },
         {
           "k": "b",
-          "label": "Collapse to one name — the product's name is also the engine's",
+          "label": "Collapse to one name: the product's name is also the engine's",
           "gains": [
             "One mark, one story, one clearance search"
           ],
@@ -947,12 +955,12 @@
           "k": "c",
           "label": "Flip: MDMAX is the product, \"frontmatter\" stays the descriptive word",
           "gains": [
-            "Answers N1 with a name already in inventory",
-            "The legally cleanest option r7 found (e6-naming-risk.md:9)"
+            "Settles the name with one we already own",
+            "The legally cleanest option in the research"
           ],
           "costs": [
-            "\"md\" reads as a medical degree to non-developers (r4-naming-candidates.md:69)",
-            "The corpus rates it a library name, not a product"
+            "\"md\" reads as a medical degree to non-developers",
+            "The research rates it a library name, not a product"
           ],
           "system": "The engine keeps its packages; product strings change.",
           "screens": "Wordmark everywhere.",
@@ -966,7 +974,7 @@
           ],
           "costs": [
             "Concedes the certificate mark entirely",
-            "Contradicts a licence decision already written down (docs/ENGINE.md:2237)"
+            "Contradicts a licence decision already written down"
           ],
           "system": "Republish under a scope; every import path changes.",
           "screens": "None.",
@@ -975,10 +983,10 @@
       ],
       "rec": "a",
       "recCase": [
-        "The certificate claims things about seven rendering engines, and the licence works only if a mark exists (docs/ENGINE.md:2237).",
-        "It costs nothing extra: the packages exist. Add MDMAX to N3's shortlist rather than assuming clean."
+        "The certificate claims things about seven rendering engines, and the licence works only if a mark exists.",
+        "It costs nothing extra: the packages exist. Add MDMAX to the attorney's shortlist rather than assuming it is clean."
       ],
-      "flip": "Cut the certificate and the second name loses its job. The test costs a day and is specified (docs/PRODUCT-BRIEF.md:512).",
+      "flip": "Cut the certificate and the second name is not needed. The deciding test costs a day and is specified.",
       "linked": [
         "N1",
         "N3"
@@ -1002,7 +1010,7 @@
       "sub": "Who decides",
       "weight": "high",
       "q": "Does the name need a second founder's signature, or does the commit author decide and register to the entity?",
-      "lede": "The name is a founder decision while the founder count sits two days past its own deadline.",
+      "lede": "The name is a founder decision, and the founder-count question is past its own 2026-09-07 deadline.",
       "visual": {
         "kind": "ba",
         "before": {
@@ -1053,14 +1061,14 @@
       },
       "stakes": "A mark and a domain held personally do not fit a two-founder story later without an assignment.",
       "state": [
-        "One author on all 80 commits here and all 416 on the sibling (docs/PRODUCT-BRIEF.md:231).",
-        "§53: \"One person. This is the binding constraint on everything above\" (docs/FRONTMATTER-RECORD.md:4854).",
-        "The gap register lists the name among four items needing the founders (docs/GAPS-2026-09-08.md:112)."
+        "One author on all 80 commits here and all 416 on sgnk-md.",
+        "The project record says: \"One person. This is the binding constraint on everything above.\"",
+        "The gap list puts the name among four items needing the founders."
       ],
       "tension": [
         "Waiting on an overdue signature blocks the domain, the identifier and the clearance search.",
         "An assignment is cheaper before there is a mark than after.",
-        "Only one of these two questions has to be answered this week."
+        "Only the registrant, not the equity split, has to be settled this week."
       ],
       "evidence": [
         {
@@ -1123,8 +1131,8 @@
             "No decision a second founder could object to"
           ],
           "costs": [
-            "Blocks four downstream decisions on a signature two days overdue",
-            "Asked for since 2026-08-31 (docs/BRIEF.md:115)"
+            "Blocks four downstream decisions on a signature overdue since 2026-09-07",
+            "Asked for since 2026-08-31"
           ],
           "system": "No change.",
           "screens": "None.",
@@ -1134,10 +1142,10 @@
           "k": "c",
           "label": "Decide the name now, record it as reversible until the agreement exists",
           "gains": [
-            "Progress on N1 without foreclosing the founder question"
+            "Progress on the name without foreclosing the founder question"
           ],
           "costs": [
-            "Contradicts N2: a freeze exists so the name stops being reversible",
+            "Contradicts the freeze, which exists so the name stops being reversible",
             "A reversible name gets spent anyway"
           ],
           "system": "No change.",
@@ -1162,7 +1170,7 @@
       ],
       "rec": "a",
       "recCase": [
-        "One author on 496 of 496 commits; the record's own audit found no second name (docs/FRONTMATTER-RECORD.md:13652).",
+        "One author on 496 of 496 commits; the project record's own audit found no second name.",
         "Registering to the entity makes the founder count irrelevant: the company owns the mark whatever the split."
       ],
       "flip": "A signed agreement naming a person with a start date and an hours commitment; registering to the entity still stands.",
@@ -1188,7 +1196,7 @@
       "sub": "The permanent strings",
       "weight": "high",
       "q": "Do the bundle identifier and the permanent URIs carry the name, or a string that survives a rename?",
-      "lede": "The pilot's app identifies itself as another product, and the one permanent URI space points at an unchecked domain.",
+      "lede": "The pilot's app calls itself another product, and the one permanent URI space sits on an unchecked domain.",
       "visual": {
         "kind": "compare",
         "labelWidth": 200,
@@ -1213,7 +1221,7 @@
           {
             "label": "API error-type URIs",
             "cells": [
-              "\"stable forever — changing one is breaking\"",
+              "Declared stable forever; changing one is a breaking change",
               "Never moves, whatever the brand becomes"
             ]
           },
@@ -1244,13 +1252,13 @@
       },
       "stakes": "Bind the brand into the identifier or the error URIs and a rename becomes a migration on other machines.",
       "state": [
-        "`src-tauri` still ships the sibling: productName `sgnk-md`, identifier `ai.sgnk.md`, frontendDist `md.sgnk.ai` (:3, :5, :9).",
-        "DEV-PLAN carries `frontmatter.app` on 17 lines and `frontmatter.dev` on 6, measured 2026-09-09.",
-        "§52.2 records every domain UNCHECKED: no registrar or RDAP host was reachable (22-segments-disclosure-naming.md:194)."
+        "The desktop config still names the app `sgnk-md`, with identifier `ai.sgnk.md` and frontend `md.sgnk.ai`.",
+        "The build plan carries `frontmatter.app` on 17 lines and `frontmatter.dev` on 6, measured 2026-09-09.",
+        "The naming report records every domain unchecked: no domain lookup was reachable."
       ],
       "tension": [
         "The bundle identifier keys preferences, keychain entries and the signed update channel.",
-        "The one string declared permanent points at a domain nobody has checked (docs/DEV-PLAN.md:627).",
+        "The one string declared permanent points at a domain nobody has checked.",
         "The marketing name and the identifier do not have to be the same string."
       ],
       "evidence": [
@@ -1398,25 +1406,25 @@
         {
           "k": "a",
           "label": "Bind everything to the product name now",
-          "what": "The identifier, both domains and the App name carry whatever N1 decides.",
+          "what": "The identifier, both domains and the App name carry the chosen name.",
           "gains": [
             "Clean and conventional; one string to remember",
-            "Every DEV-PLAN reference becomes true at once"
+            "Every build-plan reference becomes true at once"
           ],
           "costs": [
-            "Forces N1 before N3's register searches have run",
+            "Forces the name choice before the register searches run",
             "A later rename migrates an installed app and customer DNS"
           ],
-          "system": "src-tauri, 23 DEV-PLAN domain lines and the App manifest.",
+          "system": "Desktop config, 23 build-plan domain lines and the App manifest.",
           "screens": "Desktop window title, About panel, error pages.",
-          "money": "Two domains for a name N1 may replace."
+          "money": "Two domains for a name we may replace."
         },
         {
           "k": "b",
           "label": "Name-free identifier, and the permanent URIs on a domain we hold regardless",
           "gains": [
             "Separates what cannot change from what most likely will",
-            "Can be set before the first signed build, without N1"
+            "Can be set before the first signed build, without the name"
           ],
           "costs": [
             "One convention decision, and it looks odd in a crash report",
@@ -1437,18 +1445,18 @@
             "A notarised build carries that identity into the update channel"
           ],
           "system": "No change.",
-          "screens": "The desktop app keeps the sibling's title.",
+          "screens": "The desktop app keeps sgnk-md's title.",
           "money": "None now."
         },
         {
           "k": "d",
-          "label": "Buy both domains today and collapse DEV-PLAN's 23 lines onto one",
+          "label": "Buy both domains today and collapse the dev plan's 23 lines onto one",
           "gains": [
             "Removes the unchecked assumption immediately",
             "Ends the disagreement about which domain is home"
           ],
           "costs": [
-            "Spends on two domains for a name N1 may replace",
+            "Spends on two domains for a name we may replace",
             "Still leaves the permanent URIs on the brand"
           ],
           "system": "An hour of editing across 23 lines.",
@@ -1459,13 +1467,14 @@
       "rec": "b",
       "recCase": [
         "Making the identifier match the marketing name is what turns a naming decision into a migration.",
-        "One line fixes the string the plan itself calls breaking; the publishing wildcard is second (docs/DEV-PLAN.md:627, :1683)."
+        "One line fixes the string the plan itself calls breaking; the publishing wildcard is second."
       ],
-      "flip": "If N2 freezes the name this week, the identifier and the brand can be one string and (a) is simpler.",
+      "flip": "If the name freezes this week, the identifier and the brand can be one string and binding everything is simpler.",
       "linked": [
         "N1",
         "N2",
-        "N5"
+        "N5",
+        "N3"
       ],
       "sources": [
         "merged: N7",
@@ -1499,7 +1508,7 @@
       "sub": "The incumbent",
       "weight": "high",
       "q": "Do we contact the incumbent's author before deciding the name, and when?",
-      "lede": "He has publicly asked for company collaboration, the email has sat on our open list since 2026-08-28, unsent.",
+      "lede": "Elio Struyf has publicly asked for company collaboration, and emailing him has been an open item since 2026-08-28.",
       "visual": {
         "kind": "timeline",
         "items": [
@@ -1523,8 +1532,8 @@
           },
           {
             "when": "2026-08-28",
-            "label": "Detente email logged as F6",
-            "note": "master plan open item",
+            "label": "Detente email logged as an open item",
+            "note": "in the master plan",
             "tone": "warn"
           },
           {
@@ -1539,14 +1548,14 @@
       },
       "stakes": "An email cannot be unsent, and if a mark exists it changes what that email means.",
       "state": [
-        "No approach made. His README carries a \"2026 Open Source Priorities Update\" (e6-naming-risk.md:52).",
-        "Open source is not sustainable income; major changes need \"a company commitment\" (:52).",
-        "The plan's rule is explicit: \"A maintainer PR is outbound; approval first\" (docs/PRODUCT-BRIEF.md:305)."
+        "Nobody has approached him. His README carries a \"2026 Open Source Priorities Update\".",
+        "It says open source is not sustainable income, and major changes need \"a company commitment\".",
+        "The plan's rule is explicit: \"A maintainer PR is outbound; approval first\"."
       ],
       "tension": [
-        "Contacting creates a dated record that we knew before shipping, which passing-off wants.",
-        "Not contacting leaves a 2019 senior user holding three store listings unmanaged (e6-naming-risk.md:87).",
-        "Today's sweep makes him nearer: git-backed markdown CMS is the distribution shelf being weighed."
+        "Contacting creates dated proof we knew before shipping, which a passing-off claim needs.",
+        "Not contacting leaves a 2019 extension with three store listings unmanaged.",
+        "The 2026-09-09 research brings him closer: git-backed markdown CMS is a distribution channel being weighed."
       ],
       "evidence": [
         {
@@ -1610,7 +1619,7 @@
             "Uses an invitation open since his 2026 update"
           ],
           "costs": [
-            "Commits us to the name before N1 and N3 are answered",
+            "Commits us to the name before it is chosen or cleared",
             "A recurring cost with no revenue behind it"
           ],
           "system": "No change.",
@@ -1624,8 +1633,8 @@
             "No dated admission of prior knowledge"
           ],
           "costs": [
-            "Leaves a live senior user unmanaged in that store",
-            "Forfeits a door that has been open a year"
+            "Leaves a live name clash in that store unmanaged",
+            "Forfeits an invitation open since his 2026 update"
           ],
           "system": "No change.",
           "screens": "None.",
@@ -1640,7 +1649,7 @@
           ],
           "costs": [
             "One more week of a live collision unmanaged",
-            "Depends on N3 actually being done"
+            "Depends on the registers being read"
           ],
           "system": "No change.",
           "screens": "None.",
@@ -1649,10 +1658,10 @@
       ],
       "rec": "d",
       "recCase": [
-        "The read that confusion, not litigation, binds is tagged inference from searches that opened no register (e6-naming-risk.md:84, :89).",
-        "One EU mark is reported and unreproduced. N3's searches cost an hour, so the delay is one week."
+        "The view that confusion, not litigation, is the real risk is inference from searches that opened no register.",
+        "One EU mark is reported and unreproduced. Checking registers takes an hour, so the delay is one week."
       ],
-      "flip": "A clean clearance makes (b) attractive: he is asking for exactly the collaboration that would settle this permanently.",
+      "flip": "A clean clearance makes sponsorship attractive: he is asking for exactly the collaboration that would settle this permanently.",
       "linked": [
         "N1",
         "N3"
@@ -1668,7 +1677,8 @@
         "docs/research/agent-reports-2026-08-28/e6-naming-risk.md:84",
         "docs/research/agent-reports-2026-08-28/e6-naming-risk.md:87",
         "docs/research/agent-reports-2026-08-28/e6-naming-risk.md:89",
-        "docs/research/agent-reports-2026-08-29-r7/x4-external-frontier-importer-naming.md:141"
+        "docs/research/agent-reports-2026-08-29-r7/x4-external-frontier-importer-naming.md:141",
+        "docs/research/2026-09-09/BRIEFING.md:291"
       ]
     },
     {
@@ -1711,13 +1721,13 @@
       },
       "stakes": "The name gets settled on registry probes and taste, with no evidence from anyone outside the project.",
       "state": [
-        "Weeks 1-2 run four tests across fifteen recruits plus 20 team conversations (docs/PRODUCT-BRIEF.md:352).",
-        "The tested variable is three headline variants. The name is in no test (:296).",
-        "A five-second screenshot test is already in the script (docs/PRODUCT-BRIEF.md:411)."
+        "Weeks 1-2 run four tests across fifteen recruits plus 20 team conversations.",
+        "The tested variable is three headline variants. The name is in no test.",
+        "A five-second screenshot test is already in the script."
       ],
       "tension": [
-        "A landing-page arm would read the name cleanly, but the arms settle the headline.",
-        "If N2 freezes the name before week 1, asking becomes post-hoc justification."
+        "Testing the name on landing pages is clean, but those pages settle the headline.",
+        "If the name freezes before week 1, asking becomes post-hoc justification."
       ],
       "evidence": [
         {
@@ -1781,7 +1791,7 @@
             "A cleaner read than any interview gives"
           ],
           "costs": [
-            "Burns a headline arm, which is why the two weeks exist",
+            "Spends a headline test, the reason the two weeks exist",
             "Confounds the name with the headline it carries"
           ],
           "system": "No change.",
@@ -1806,7 +1816,7 @@
           "k": "d",
           "label": "Test only the confusion: show his listing and ask if it is the same product",
           "gains": [
-            "Sizes the confusion cost the reports call binding"
+            "Sizes the confusion cost the reports call the binding constraint"
           ],
           "costs": [
             "Answers nothing about whether an alternative name would land",
@@ -1820,9 +1830,9 @@
       "rec": "a",
       "recCase": [
         "Fifteen people are already recruited and the question takes ten seconds: the cheapest evidence available.",
-        "Separate pages would spend a headline arm, and the arms are why the two weeks exist (:296)."
+        "Separate pages would use up a headline test, and those tests are why the two weeks exist."
       ],
-      "flip": "If the name is frozen before week 1 under N2, drop the question rather than run it for comfort.",
+      "flip": "If the name is frozen before week 1, drop the question rather than run it for comfort.",
       "linked": [
         "N1",
         "N2"
