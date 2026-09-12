@@ -102,7 +102,7 @@
             [
               "The same vault measured two days earlier",
               "77.5 MB across 4,548 .md",
-              "r11 c2:19, measured 2026-08-29 — same vault, different date, not a contradiction"
+              "r11 c2:19, measured 2026-08-29: same vault, different date, not a contradiction"
             ],
             [
               "Installation token lifetime",
@@ -128,7 +128,7 @@
           "rows": [
             [
               "Browser, per file, lazy",
-              "For opening files as the user clicks them, yes. For any whole-vault pass — search index, F7 docs scan — no: 5,833 calls is 1.17× the floor",
+              "For opening files as the user clicks them, yes. For any whole-vault pass (search index, the repo docs scan) no: 5,833 calls is 1.17× the floor",
               "Browser only",
               "Yes, until a feature needs the whole vault"
             ],
@@ -140,7 +140,7 @@
             ],
             [
               "Browser, raw.githubusercontent.com",
-              "Yes — unauthenticated, off the REST bucket, sends access-control-allow-origin: *",
+              "Yes: unauthenticated, off the REST bucket, sends access-control-allow-origin: *",
               "Browser only",
               "Yes, but public repositories only (PRODUCT-BRIEF.md:310)"
             ],
@@ -148,7 +148,7 @@
               "Server, tarball plus a server-rendered snapshot (today's code)",
               "Yes, 1 call",
               "Our server, then the browser",
-              "No — this is the shipped path"
+              "No, this is the shipped path"
             ]
           ]
         }
@@ -351,27 +351,27 @@
           "rows": [
             [
               "File System Access adapter (showDirectoryPicker)",
-              "No — 0 occurrences in src/",
+              "No: 0 occurrences in src/",
               "0"
             ],
             [
               "GitHub App installation flow",
-              "No — 0 occurrences of \"installation\" in src/",
+              "No: 0 occurrences of \"installation\" in src/",
               "0"
             ],
             [
               "Tauri filesystem plugin + scoped capability",
-              "No — absent from Cargo.toml and capabilities/default.json",
+              "No, absent from Cargo.toml and capabilities/default.json",
               "0"
             ],
             [
               "Tauri updater plugin, signing key, endpoint",
-              "No — absent from Cargo.toml",
+              "No, absent from Cargo.toml",
               "0"
             ],
             [
               "Apple notarisation and Windows signing setup",
-              "No — signingIdentity, providerShortName and entitlements are all null",
+              "No, signingIdentity, providerShortName and entitlements are all null",
               "0"
             ]
           ]
@@ -397,13 +397,13 @@
             [
               "Web, local folder",
               "Yes, silently on disk",
-              "Not as built — the service worker never intercepts /api/",
+              "Not as built: the service worker never intercepts /api/",
               "No",
               "Firefox, Safari, iOS; Android unreconciled"
             ],
             [
               "Web, drag-in",
-              "No — session only, not persisted",
+              "No, session only, not persisted",
               "No",
               "No",
               "None"
@@ -412,7 +412,7 @@
               "Signed desktop build",
               "Yes, once tauri-plugin-fs exists",
               "Yes, once the frontend is bundled",
-              "Yes — notarisation plus an updater key",
+              "Yes, notarisation plus an updater key",
               "None"
             ]
           ]
@@ -600,7 +600,7 @@
       "evidence": [
         {
           "type": "table",
-          "title": "The permission ladder, from GitHub's own docs (fetched 2026-08-31, r20-q4 §101.2)",
+          "title": "The permission ladder, from GitHub's own docs (fetched 2026-08-31, a research report)",
           "cols": [
             "Permission",
             "Buys",
@@ -831,16 +831,16 @@
             ],
             [
               "s4-mobile-cross-device.md:202 (2026-08-31)",
-              "—",
-              "—",
-              "—",
-              "BCD 132 vs caniuse and_chr 151 \"n\" — recorded as unreconciled, do not build on either number without re-testing"
+              "n/a",
+              "n/a",
+              "n/a",
+              "BCD 132 vs caniuse and_chr 151 \"n\". Recorded as unreconciled: do not build on either number without re-testing"
             ],
             [
               "18-simplicity.md:283 (2026-08-31)",
-              "—",
-              "—",
-              "BCD says safari 15.2 for the handle interfaces; caniuse says \"n\" for the feature at every iOS version through 26.6 — both correct at different granularity, so cite the picker, not the interface",
+              "n/a",
+              "n/a",
+              "BCD says safari 15.2 for the handle interfaces; caniuse says \"n\" for the feature at every iOS version through 26.6. Both correct at different granularity, so cite the picker, not the interface",
               "same unreconciled note"
             ]
           ]
@@ -857,7 +857,7 @@
             [
               "Share assumed for our audience",
               "80%",
-              "also assumed — the source's words are \"call it 80%\""
+              "also assumed: the source's words are \"call it 80%\""
             ],
             [
               "Resulting refusal rate",
@@ -1072,7 +1072,7 @@
             [
               "macOS share of per-release CI cost",
               "89.3%",
-              "1.860 of 2.082 USD — the only CI line worth optimising"
+              "1.860 of 2.082 USD, the only CI line worth optimising"
             ],
             [
               "macOS-only CI, private repo",
@@ -1084,7 +1084,7 @@
         {
           "type": "bars",
           "title": "Per-release CI cost by platform, at GitHub's published rates",
-          "note": "Estimated build minutes (Linux 12, Windows 15, macOS universal 30) × published per-minute rates, fetched 2026-08-29. Minutes are inference — no release build was run; rates are fetched. Public repos are free.",
+          "note": "Estimated build minutes (Linux 12, Windows 15, macOS universal 30) × published per-minute rates, fetched 2026-08-29. Minutes are inference: no release build was run; rates are fetched. Public repos are free.",
           "unit": "USD per release",
           "data": [
             [
@@ -1114,14 +1114,14 @@
             [
               "Azure Trusted Signing, Basic",
               "9.99 USD/mo = 119.88/yr, plus 0.005 USD per signature above an unstated quota",
-              "None — managed HSM at FIPS 140-3 level 3",
+              "None, managed HSM at FIPS 140-3 level 3",
               "Not stated in what was fetched; eligibility for individuals unverified"
             ],
             [
               "OV certificate (Comodo/Sectigo)",
               "219 USD/yr",
               "Yes",
-              "Warns until reputation accrues, and reputation is per file hash — every release restarts the climb"
+              "Warns until reputation accrues, and reputation is per file hash, so every release restarts the climb"
             ],
             [
               "OV (GoGetSSL / DigiCert)",
@@ -1347,7 +1347,7 @@
             [
               "frontendDist / devUrl / window url",
               "https://md.sgnk.ai",
-              "tauri.conf.json — the shell loads remote content, not bundled assets"
+              "tauri.conf.json: the shell loads remote content, not bundled assets"
             ],
             [
               "security.csp",
@@ -1389,8 +1389,8 @@
             [
               "Sign and ship the shell as it is",
               "No",
-              "No — two channels, one unsigned",
-              "No — no bundled assets means no window content without a network"
+              "No, two channels, one unsigned",
+              "No, no bundled assets means no window content without a network"
             ],
             [
               "Bundle the frontend, add scoped fs, set a CSP, then sign",
@@ -1405,7 +1405,7 @@
               "No"
             ],
             [
-              "Drop the desktop build from MVP-0",
+              "Drop the desktop build from the pilot",
               "n/a",
               "n/a",
               "n/a"
@@ -1576,12 +1576,12 @@
             [
               "public/sw.js cache key",
               "sgnk-md-v2",
-              "line 13 — the web app carries it too"
+              "line 13: the web app carries it too"
             ],
             [
               "public/sw.js offline page copy",
               "\"md.sgnk.ai is unreachable\"",
-              "line 70 — user-visible on the web, not only in the bundle"
+              "line 70: user-visible on the web, not only in the bundle"
             ],
             [
               "Days budgeted in the plan",
@@ -1750,27 +1750,27 @@
             [
               "Signature verification",
               "cannot be disabled",
-              "k9:93 — the key is mandatory once the updater ships"
+              "k9:93: the key is mandatory once the updater ships"
             ],
             [
               "Lost private key",
               "installed users can never be updated again",
-              "k9:101 — no revocation, no rotation, no second signer in the manifest format"
+              "k9:101: no revocation, no rotation, no second signer in the manifest format"
             ],
             [
               "Where the key may live",
-              "env vars only — .env files do not work",
+              "env vars only, .env files do not work",
               "k9:102, TAURI_SIGNING_PRIVATE_KEY / _PASSWORD"
             ],
             [
               "Recommended custody",
               "3 independent copies",
-              "k9:103 — password manager + two offline media in two locations, plus the CI secret"
+              "k9:103: password manager plus two offline media in two locations, plus the CI secret"
             ],
             [
               "Manifest validation order",
               "whole file validated before the version check",
-              "k9:96 — one malformed platform entry breaks updates for every platform"
+              "k9:96: one malformed platform entry breaks updates for every platform"
             ],
             [
               "The asymmetry, stated",
@@ -1795,7 +1795,7 @@
           "rows": [
             [
               "Can serve a lower version (rollback)",
-              "No — the client refuses it",
+              "No, the client refuses it",
               "Yes, via version_comparator"
             ],
             [
@@ -2013,7 +2013,7 @@
             [
               "/api/ and /login",
               "never intercepted",
-              "lines 52–58 — which is where note content arrives"
+              "lines 52–58: which is where note content arrives"
             ],
             [
               "Cache key",
@@ -2023,7 +2023,7 @@
             [
               "Offline fallback that already exists",
               "an inline HTML page saying \"md.sgnk.ai is unreachable\"",
-              "lines 63–76 — so the shell-offline courtesy is shipped, with the wrong product's domain in it"
+              "lines 63–76: so the shell-offline courtesy is shipped, with the wrong product's domain in it"
             ],
             [
               "Offline reading today",
@@ -2037,14 +2037,14 @@
           "title": "What the plan claims against what the code does",
           "cols": [
             "Surface",
-            "Exhibit 2 claims",
+            "The \"what works where\" platform table's claims",
             "Code does"
           ],
           "rows": [
             [
               "Web, GitHub repo",
               "Cached open files only",
-              "Nothing — content comes from /api/, which the SW passes through"
+              "Nothing: content comes from /api/, which the SW passes through"
             ],
             [
               "Web, local folder",
@@ -2059,7 +2059,7 @@
             [
               "Desktop",
               "Everything except the model",
-              "No filesystem plugin, no bundled assets — no window content without a network"
+              "No filesystem plugin, no bundled assets, so no window content without a network"
             ]
           ]
         }
@@ -2225,7 +2225,7 @@
       "evidence": [
         {
           "type": "table",
-          "title": "Key custody, with the named failure mode for each (r20-q3 §100.2)",
+          "title": "Key custody, with the named failure mode for each (a research report)",
           "cols": [
             "Where the key lives",
             "Failure mode",
@@ -2245,7 +2245,7 @@
             [
               "OS keychain via Tauri",
               "Lost on machine change; no team sharing",
-              "Recommended — desktop only"
+              "Recommended, desktop only"
             ],
             [
               "Our server, envelope-encrypted",
@@ -2261,7 +2261,7 @@
         },
         {
           "type": "stat",
-          "title": "Browser-origin calls, measured with curl 2026-08-30 (r20-q3 §100.1)",
+          "title": "Browser-origin calls, measured with curl 2026-08-30 (a research report)",
           "items": [
             [
               "Anthropic, without the header",
@@ -2276,7 +2276,7 @@
             [
               "OpenAI",
               "reflects any origin verbatim",
-              "tested 4 origins including literal null — all reflected, no opt-in, no warning"
+              "tested 4 origins including literal null: all reflected, no opt-in, no warning"
             ],
             [
               "Google",
@@ -2302,7 +2302,7 @@
             [
               "Where else that figure appears",
               "only in earlier versions of this same plan",
-              "PILOT-PLAN v10/v10.1/v11/v12 and PLAN v13/v14 print HTML — circular, not corroborating"
+              "PILOT-PLAN v10/v10.1/v11/v12 and PLAN v13/v14 print HTML, circular, not corroborating"
             ],
             [
               "Occurrences in any research report, PRD section or engine document",
@@ -2310,14 +2310,14 @@
               "searched docs/research/ (235 reports) and docs/engine/"
             ],
             [
-              "What is traceable — constrained-decoding coverage",
+              "What is traceable: constrained-decoding coverage",
               "Guidance 41%, llama.cpp 39%, XGrammar 28%, Outlines 3%",
               "docs/engine/PLAN.md:1210; a coverage measure on \"GitHub Hard\" schemas, not a fabrication rate"
             ],
             [
               "Also traceable and adjacent",
               "Grammar-Aligned Decoding (NeurIPS 2024): naive masking \"distorts the output distribution\"",
-              "engine/PLAN.md:1211 — valid and bad, which is the same shape of failure"
+              "engine/PLAN.md:1211: valid and bad, which is the same shape of failure"
             ],
             [
               "The argument that needs no number",
@@ -2496,7 +2496,7 @@
               "No"
             ],
             [
-              "Export Word (.doc) — Word opens HTML",
+              "Export Word (.doc), Word opens HTML",
               "Browser, Blob",
               "No"
             ],
@@ -2508,7 +2508,7 @@
             [
               "Download PDF",
               "Server route, headless Chromium on Linux",
-              "Yes — the whole file"
+              "Yes, the whole file"
             ]
           ]
         },
@@ -2534,7 +2534,7 @@
             [
               "Platform gate",
               "process.platform === \"linux\"",
-              "route.ts:108 — cannot run in the desktop app"
+              "route.ts:108: cannot run in the desktop app"
             ],
             [
               "Browser PDF path already shipped",
@@ -2735,7 +2735,7 @@
             [
               "Server tier recommended",
               "Postgres tsvector + pg_trgm",
-              "r11 c2:90 — reuses the control plane, adds no service to operate"
+              "r11 c2:90: reuses the control plane, adds no service to operate"
             ],
             [
               "Flip condition named for the server tier",
@@ -2761,7 +2761,7 @@
             [
               "PRODUCT-BRIEF.md:233 (§9)",
               "Move to server full-text search in the web app",
-              "v15, 2026-09-08"
+              "the current plan, 2026-09-08"
             ],
             [
               "WEEK0-DECISIONS:44",
@@ -2770,7 +2770,7 @@
             ],
             [
               "WEEK0-DECISIONS:50",
-              "The §9 line \"must change\"",
+              "Section 9's line \"must change\"",
               "same document, explicit instruction"
             ],
             [
@@ -2955,7 +2955,7 @@
             [
               "Web, local folder (Chrome/Edge)",
               "Yes",
-              "Silent local write; needs the File System Access adapter AC4 recommends cutting"
+              "Silent local write, needs the File System Access adapter that the browser-access decision recommends cutting"
             ],
             [
               "Web, drag-in",
@@ -2985,7 +2985,7 @@
             ],
             [
               "How it reaches us",
-              "not at all by default — pasted once, on day 14",
+              "not at all by default, pasted once, on day 14",
               "WEEK0:21"
             ],
             [
@@ -3173,7 +3173,7 @@
             [
               "Holding a folder across launches",
               "security-scoped bookmarks via open panels",
-              "the source marks the bookmark mechanics as not opened — treat specifics as unverified"
+              "the source marks the bookmark mechanics as not opened: treat specifics as unverified"
             ],
             [
               "Commission",
@@ -3188,7 +3188,7 @@
             [
               "Guideline 4.2, verbatim",
               "an app \"should include features, content, and UI that elevate it beyond a repackaged website\"",
-              "fetched, s4:114 — and our shell loads https://md.sgnk.ai [derived from tauri.conf.json]"
+              "fetched, s4:114, and our shell loads https://md.sgnk.ai [derived from tauri.conf.json]"
             ]
           ]
         }

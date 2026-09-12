@@ -100,7 +100,7 @@
             [
               "Last commit touching src/",
               "2026-08-10",
-              "git log -1 -- src/ — thirty days ago"
+              "git log -1 -- src/, thirty days ago"
             ],
             [
               "Commits dated after 2026-08-31 touching src/",
@@ -110,14 +110,14 @@
             [
               "Measured engineering days per calendar week",
               "1.21, and 0.23 over the last 30 days",
-              "the withdrawn schedule needed 7.0 — PRODUCT-BRIEF:11, :227"
+              "the withdrawn schedule needed 7.0 (PRODUCT-BRIEF:11, :227)"
             ]
           ]
         },
         {
           "type": "bars",
           "title": "Words of tracked markdown per line of source",
-          "note": "Tracked .md excluding the pinned test corpus, summed per commit. The denominator, 25,407 lines of .ts/.tsx across 226 files, was verified identical at all three commits. The plan's own published series (87 at DECIDE:217, 92.2 at CRITIQUE:135) counts a wider file set that could not be reproduced here — the direction is the same, the absolute is not, so these are the reproducible figures.",
+          "note": "Tracked .md excluding the pinned test corpus, summed per commit. The denominator, 25,407 lines of .ts/.tsx across 226 files, was verified identical at all three commits. The plan's own published series (87 at DECIDE:217, 92.2 at CRITIQUE:135) counts a wider file set that could not be reproduced here: the direction is the same, the absolute is not, so these are the reproducible figures.",
           "data": [
             [
               "2026-08-31, DECIDE commit 8fd0bf9",
@@ -284,14 +284,14 @@
           "title": "Review state today, in the repo and in the schedule",
           "items": [
             [
-              "References to review.jsonl or sidecar in src/",
+              "References to review.jsonl or the review file in src/",
               "0",
               "grep -rn over 226 .ts/.tsx files, 2026-09-09"
             ],
             [
-              "Engineering days budgeted for F2",
+              "Engineering days budgeted for review state",
               "18",
-              "store 6d, rendering 5d, revert 3d, panel 4d — PRODUCT-BRIEF:56"
+              "store 6d, rendering 5d, revert 3d, panel 4d (PRODUCT-BRIEF:56)"
             ],
             [
               "Days budgeted for the anchor test in week 0",
@@ -306,7 +306,7 @@
             [
               "That row's stated outcome",
               "\"Tint works on files frontmatter did not write\"",
-              "PRODUCT-BRIEF:354 — the anchor test, already named"
+              "PRODUCT-BRIEF:354 (the anchor test, already named)"
             ],
             [
               "Byte-exact write proven on",
@@ -541,12 +541,12 @@
             [
               "Files identical per the family table",
               "202 of 228",
-              "PRODUCT-BRIEF:479 — the plan gives two different counts of the same thing; 226 .ts/.tsx files is what src/ actually holds today"
+              "PRODUCT-BRIEF:479 (the plan gives two different counts of the same thing; 226 .ts/.tsx files is what src/ actually holds today)"
             ],
             [
               "sgnk-md users",
               "never counted",
-              "GAPS:36 — the question has not been asked"
+              "GAPS:36 (the question has not been asked)"
             ],
             [
               "Interviews with them",
@@ -718,31 +718,31 @@
           "cols": [
             "Tag",
             "FRONTMATTER-RECORD.md",
-            "PRODUCT-BRIEF.md (v15)"
+            "PRODUCT-BRIEF.md (the current plan)"
           ],
           "rows": [
             [
-              "[fetched] — primary source opened",
+              "[fetched]: primary source opened",
               "1,097",
               "0"
             ],
             [
-              "[measured] — executed here",
+              "[measured]: executed here",
               "863",
               "0"
             ],
             [
-              "[derived] — arithmetic shown",
+              "[derived]: arithmetic shown",
               "369",
               "0"
             ],
             [
-              "[inference] — reasoning",
+              "[inference]: reasoning",
               "247",
               "0"
             ],
             [
-              "[SS] — may never be published as fact",
+              "[SS]: may never be published as fact",
               "165",
               "0"
             ],
@@ -942,14 +942,14 @@
             "As published",
             "Where it went out",
             "What it is now",
-            "In exhibit 4?"
+            "In the terms-checked table?"
           ],
           "rows": [
             [
               "62,976 public spec files with an unanswered marker",
               "commit 94edca6 title, plan v10.1, 2026-09-06",
               "3,368 files carry the marker; 42% of a read-every-hit sample of 50 were live, ≈1,400 (PRODUCT-BRIEF:58)",
-              "Yes, at :178 — but it says about 1,500"
+              "Yes, at :178, but it says about 1,500"
             ],
             [
               "\"496,000 stars\" as channel size",
@@ -970,8 +970,8 @@
               "No"
             ],
             [
-              "Ten weeks to MVP-0",
-              "v14 schedule",
+              "Ten weeks to the pilot",
+              "the previous plan's schedule",
               "withdrawn as arithmetically impossible; 70 engineering days is 37 weeks at the best rate ever observed, 58 at the measured one (:227, :229)",
               "No"
             ],
@@ -994,17 +994,17 @@
           "rows": [
             [
               "Obsidian plugin CUT",
-              "exhibit 17, line 304",
-              "§8 channels row :204; flowchart stop-branch :338; weeks 1-2 \"plugin shipped\" :352; retention lever :428; family diagram :464; exhibit 26 :477; §21 modes row :524"
+              "the channels table, line 304",
+              "the Tiers channels row :204; flowchart stop-branch :338; weeks 1-2 \"plugin shipped\" :352; retention lever :428; family diagram :464; the family table :477; the rendering-rules modes row :524"
             ],
             [
               "Chrome extension CUT",
-              "exhibit 17, line 310",
-              "§8 surfaces row :203; family diagram :464; exhibit 26 :477"
+              "the channels table, line 310",
+              "the Tiers surfaces row :203; family diagram :464; the family table :477"
             ],
             [
               "Diff-review issue at 266 reactions, re-checked 2026-09-08",
-              "§1 :23 and F2 :56",
+              "the Definition section :23 and review state :56",
               "262 reactions at :150, :322, :383"
             ],
             [
@@ -1014,7 +1014,7 @@
             ],
             [
               "Live markers ≈1,400",
-              "F4 :58",
+              "answer in place :58",
               "\"About 1,500 live markers\" at :178"
             ]
           ]
@@ -1255,13 +1255,13 @@
             ],
             [
               "Engine claims measured on it",
-              "refusal rate, byte-exactness, NF-1..4",
+              "refusal rate, byte-exactness, the engine bugs numbered 1 through 4",
               "PRODUCT-BRIEF:514"
             ],
             [
-              "Days budgeted for NF-1, sized on its refusal rate",
+              "Days budgeted for the left-edge list bug, sized on its refusal rate",
               "4",
-              "83% of real vaults refused — PRODUCT-BRIEF:214"
+              "83% of real vaults refused (PRODUCT-BRIEF:214)"
             ]
           ]
         }
@@ -1432,7 +1432,7 @@
             [
               "Registries actually checked",
               "0 of 5",
-              "USPTO TESS, EUIPO, IP India/TMR, WIPO Madrid, common-law — RECORD:4845"
+              "USPTO TESS, EUIPO, IP India/TMR, WIPO Madrid, common-law (RECORD:4845)"
             ],
             [
               "Mentions of the name in the plan's risk table",
@@ -1619,7 +1619,7 @@
             [
               "Wikilink regex on 320 KB of \"[[\"",
               "41,527.3 ms, slope k = 1.98, no guard on the path",
-              "r15-e4 §70.3 — shapeGate has no call site"
+              "r15-e4 §70.3 (shapeGate has no call site)"
             ],
             [
               "Vault parsed per cold start",
@@ -1663,13 +1663,13 @@
               "exhibit 21, PRODUCT-BRIEF:379-385"
             ],
             [
-              "Query groups exhibit 21 already answers",
+              "Query groups the interface-placement exhibit already answers",
               "4 of 6",
               "AI at rest :381, off switch :382, review placement :383, context scoping :384"
             ],
             [
               "Query groups it does not answer",
-              "2 — launcher/onboarding, pricing/upsell",
+              "2: launcher/onboarding, pricing/upsell",
               "4 of the 10 queries, :391 and :396"
             ],
             [
@@ -1879,7 +1879,7 @@
             ],
             [
               "Legal rules that depend on the answer",
-              "all of §22, and intermediary status under IT Act §2(1)(w)",
+              "all of the operating-rules section, and intermediary status under IT Act section 2(1)(w)",
               "decision 7, PRODUCT-BRIEF:365; §22 begins at :531"
             ]
           ]
@@ -2059,7 +2059,7 @@
             [
               "Install count for Cursor or any fork, anywhere in the plan",
               "none",
-              "grep: 5 Cursor mentions at :149, :157, :309, :326, :381 — none an install count"
+              "grep: 5 Cursor mentions at :149, :157, :309, :326, :381 (none an install count)"
             ],
             [
               "VS Code population measured",
@@ -2068,12 +2068,12 @@
             ],
             [
               "Days deleted if the model API holds",
-              "3 (fix #6) plus F8's key UI",
+              "3 (fix #6) plus file-scoped AI's key UI",
               "PRODUCT-BRIEF:219, :364"
             ],
             [
               "Live mode in an extension",
-              "not possible — no view-zone API",
+              "not possible: no view-zone API",
               "PRODUCT-BRIEF:364"
             ]
           ]
@@ -2262,12 +2262,12 @@
             ],
             [
               "Individuals charged for editing in this category",
-              "none — Obsidian, Logseq, VS Code, Zed free; Typora $14.99 one-time",
+              "none: Obsidian, Logseq, VS Code, Zed free; Typora $14.99 one-time",
               "r25-w3 finding 1, fetched 2026-08-31"
             ],
             [
               "Rs 299/mo against Obsidian Sync",
-              "Rs 299 vs Rs 381.56/mo — 78% of a sync add-on, for the whole editor",
+              "Rs 299 vs Rs 381.56/mo (78% of a sync add-on, for the whole editor)",
               "r25-w3 finding 2, USD/INR 95.39 ECB 2026-08-28"
             ],
             [
@@ -2446,12 +2446,12 @@
             [
               "Features in the class",
               "3 of 13",
-              "F5, F6, F7 — PRODUCT-BRIEF:187"
+              "F5, F6, F7 (PRODUCT-BRIEF:187)"
             ],
             [
               "Engineering days those three carry",
               "18 of about 70",
-              "F5+F6 8d, F7 10d — PRODUCT-BRIEF:227"
+              "F5+F6 8d, F7 10d (PRODUCT-BRIEF:227)"
             ],
             [
               "Participants recorded",

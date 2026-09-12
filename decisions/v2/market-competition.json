@@ -89,22 +89,22 @@
             [
               "Reactions on the request behind the headline",
               "266",
-              "anthropics/claude-code#33932, a per-session accept/reject panel — PRODUCT-BRIEF.md:23"
+              "anthropics/claude-code#33932, a per-session accept/reject panel (PRODUCT-BRIEF.md:23)"
             ],
             [
               "Of its 36 texts, how many ask for anything to persist",
               "0",
-              "18 of 36 name a tool that already does it; \"markdown\" appears in 1 — PRODUCT-BRIEF.md:23"
+              "18 of 36 name a tool that already does it; \"markdown\" appears in 1 (PRODUCT-BRIEF.md:23)"
             ],
             [
               "Installs of all 13 purpose-built markdown-review VS Code extensions",
               "1,217",
-              "ceiling 400 for any one of them — PRODUCT-BRIEF.md:9, :24"
+              "ceiling 400 for any one of them (PRODUCT-BRIEF.md:9, :24)"
             ],
             [
               "Installs of mddiff, this exact sentence shipped 2026-06-03",
               "74",
-              "\"High-Fidelity Markdown Review and Diff for the AI Era\" — PRODUCT-BRIEF.md:24"
+              "\"High-Fidelity Markdown Review and Diff for the AI Era\" (PRODUCT-BRIEF.md:24)"
             ],
             [
               "Lines of review-state code in src/",
@@ -120,7 +120,7 @@
         },
         {
           "type": "bars",
-          "title": "Obsidian forum likes — one population, one metric, read 2026-09-08",
+          "title": "Obsidian forum likes: one population, one metric, read 2026-09-08",
           "note": "The closest existing request to review state against the rendering bug the plan treats as a channel. PRODUCT-BRIEF.md:410",
           "data": [
             [
@@ -301,18 +301,18 @@
           "rows": [
             [
               "Population reached",
-              "Obsidian's audience plus web visitors; Show HN median 3 points (n=609 at CRITIQUE.md:52; the same corpus gives n=386 at :441 — unreconciled)",
+              "Obsidian's audience plus web visitors; Show HN median 3 points (n=609 at CRITIQUE.md:52; the same corpus gives n=386 at :441, unreconciled)",
               "VS Code 75.9% of SO 2025 respondents, n=49k+ (CRITIQUE.md:363, :431); Claude Code extension 24.89M installs (PRODUCT-BRIEF.md:150)"
             ],
             [
               "Table-stakes cost",
               "41 of 43 editor files are a fork of sgnk-md; across src/, 181 of 226 identical and 25 already diverged (PRODUCT-BRIEF.md:223)",
-              "Host supplies model picker and MCP registration free — deletes fix #6 and F8's key UI (PRODUCT-BRIEF.md:364)"
+              "Host supplies model picker and MCP registration free, which deletes fix #6 and file-scoped AI's key screen (PRODUCT-BRIEF.md:364)"
             ],
             [
               "Live mode",
               "Yes",
-              "No — there is no view-zone API (PRODUCT-BRIEF.md:364)"
+              "No: there is no view-zone API (PRODUCT-BRIEF.md:364)"
             ],
             [
               "Niche occupancy in that store",
@@ -338,7 +338,7 @@
             [
               "VS Code, Stack Overflow 2025 IDE usage",
               "75.9%",
-              "Cursor 17.9%, Sublime 10.5%, Claude Code 9.7%, Zed 7.3% — CRITIQUE.md:363"
+              "Cursor 17.9%, Sublime 10.5%, Claude Code 9.7%, Zed 7.3% (CRITIQUE.md:363)"
             ],
             [
               "Copilot Chat installs",
@@ -348,12 +348,12 @@
             [
               "markdown-all-in-one installs",
               "14.45M",
-              "10.6x co-recommendation lift alongside Copilot — GAPS-2026-09-08.md:48"
+              "10.6x co-recommendation lift alongside Copilot (GAPS-2026-09-08.md:48)"
             ],
             [
               "Stack Overflow's own 2025 verdict",
               "incumbent plus paid extension",
-              "subscription AI IDEs \"weren't able to topple\" VS Code — CRITIQUE.md:364, :443"
+              "subscription AI IDEs \"weren't able to topple\" VS Code (CRITIQUE.md:364, :443)"
             ]
           ]
         }
@@ -504,17 +504,17 @@
             [
               "Front Matter CMS installs, read 2026-08-29",
               "80,605",
-              "prior round 80,527, delta +78 — FRONTMATTER-PRD-v2-2026-08-29.md:4799-4800"
+              "prior round 80,527, delta +78 (FRONTMATTER-PRD-v2-2026-08-29.md:4799-4800)"
             ],
             [
               "Same extension, re-read 2026-09-08",
               "82,265",
-              "alive, v10.12.0 shipped 2026-08-21 — PRODUCT-BRIEF.md:13, GAPS-2026-09-08.md:132"
+              "alive, v10.12.0 shipped 2026-08-21 (PRODUCT-BRIEF.md:13, GAPS-2026-09-08.md:132)"
             ],
             [
               "GitHub stars of the incumbent, and its age",
               "2,539 stars, in market since 2019",
-              "estruyf/vscode-front-matter, MIT, last push 2026-08-21 — FRONTMATTER-PRD-v2-2026-08-29.md:2115, :4802"
+              "estruyf/vscode-front-matter, MIT, last push 2026-08-21 (FRONTMATTER-PRD-v2-2026-08-29.md:2115, :4802)"
             ],
             [
               "\"Frontmatter Studio\"",
@@ -524,17 +524,17 @@
             [
               "`@frontmatter` npm scope",
               "held by the incumbent",
-              "and `getfrontmatter` is already taken — GAPS-2026-09-08.md:132; FRONTMATTER-PRD-v2-2026-08-29.md:4829"
+              "and `getfrontmatter` is already taken (GAPS-2026-09-08.md:132; FRONTMATTER-PRD-v2-2026-08-29.md:4829)"
             ],
             [
               "FRONTMATTER EU word mark",
               "unverified",
-              "reported, not reproduced from five blocked registries — GAPS-2026-09-08.md:146"
+              "reported, not reproduced from five blocked registries (GAPS-2026-09-08.md:146)"
             ],
             [
               "The deeper collision: the name is the generic substrate term",
               "`gray-matter` does about 35M npm downloads a month",
-              "BUSINESS.md:942, :945 calls the brand-term collision \"total\". Caution: the corpus carries two irreconcilable `front-matter` npm figures (3,041,000 at :943 vs 17,570,026 at :1262) — quote neither"
+              "BUSINESS.md:942, :945 calls the brand-term collision \"total\". Caution: the corpus carries two irreconcilable `front-matter` npm figures (3,041,000 at :943 vs 17,570,026 at :1262), quote neither"
             ]
           ]
         },
@@ -555,12 +555,12 @@
             [
               "stet, bare",
               "adjacent package",
-              "`stetmark` shipped 2026-08-05, ~5,753 downloads/month — bare `stet` is contested (same line)"
+              "`stetmark` shipped 2026-08-05, ~5,753 downloads/month; bare `stet` is contested (same line)"
             ],
             [
               "Detente with the incumbent's author",
               "their README openly invites collaboration/sponsorship",
-              "already logged as founder decision D6 (FRONTMATTER-PRD-2026-08-29.md:1412; FRONTMATTER-MASTER-PLAN-2026-08-28.md:182)"
+              "already logged as a founder decision (FRONTMATTER-PRD-2026-08-29.md:1412; FRONTMATTER-MASTER-PLAN-2026-08-28.md:182)"
             ],
             [
               "frontmatter, bare",
@@ -722,34 +722,34 @@
           ],
           "rows": [
             [
-              "P5 compliance-adjacent writer",
+              "Compliance-adjacent writer",
               "A signed artifact that does not match its source is an audit finding",
-              "Fire exists — unreachable: no SOC 2, no attorney review, 9-18 month cycle"
+              "Fire exists but is unreachable: no SOC 2, no attorney review, 9-18 month cycle"
             ],
             [
               "Liable services operator (not one of the six)",
               "\"Two rounds of revisions\" silently becoming unbounded free labour",
-              "Fire exists — wrong substrate: their document is .docx, where dealfluence/adeu already ships this engine"
+              "Fire exists but the substrate is wrong: their document is .docx, where dealfluence/adeu already ships this engine"
             ],
             [
-              "P2 startup docs owner",
+              "Startup docs owner",
               "Docs, changelog, roadmap drift",
               "Warm; budgeted at $20-40/seat; needs multiplayer presence first"
             ],
             [
-              "P3 agency lead",
+              "Agency lead",
               "Notion export is 900 files of Untitled 3.md",
               "Warm; blocked by the 83% publish refusal"
             ],
             [
-              "P4 AI-heavy knowledge worker",
+              "AI-heavy knowledge worker",
               "Unreviewable agent diffs",
               "The record's own v1 target; its only measured instance is the founder's machine"
             ],
             [
-              "P1 solo dev",
+              "Solo dev",
               "He has git diff",
-              "Cold — 0 of 355 in the highest-intent thread"
+              "Cold: 0 of 355 in the highest-intent thread"
             ]
           ]
         },
@@ -760,7 +760,7 @@
             [
               "Sequoia Arc classification",
               "Hard Fact, not Hair on Fire",
-              "\"customers have resigned themselves to just living with the problem\" — CRITIQUE.md:244"
+              "\"customers have resigned themselves to just living with the problem\" (CRITIQUE.md:244)"
             ],
             [
               "What Hard Fact requires",
@@ -770,17 +770,17 @@
             [
               "Education budget today",
               "₹0 and two blog posts",
-              "one defective since 2026-08-10 — CRITIQUE.md:244"
+              "one defective since 2026-08-10 (CRITIQUE.md:244)"
             ],
             [
               "Falsifier already written",
               "20 outreach conversations",
-              "if 5 or more name whole-file rewrites unprompted, P4 is a segment — CRITIQUE.md:246"
+              "if 5 or more name whole-file rewrites unprompted, P4 is a segment (CRITIQUE.md:246)"
             ],
             [
-              "Evidence attached to the F5/F6 founder tests",
+              "Evidence attached to the idea-mode and decision-flow founder tests",
               "none",
-              "\"Founders' statement in chat. No notes, no participants, no protocol\" — GAPS-2026-09-08.md:23"
+              "\"Founders' statement in chat. No notes, no participants, no protocol\" (GAPS-2026-09-08.md:23)"
             ]
           ]
         },
@@ -791,7 +791,7 @@
             [
               "Obsidian forum, \"Obsidian for web\"",
               "246,568 views, 244 posts, 928 likes",
-              "six years, still active in 2026 — research/frontmatter-segment-strategy.md §1.1"
+              "six years, still active in 2026 (research/frontmatter-segment-strategy.md §1.1)"
             ],
             [
               "Docker pulls of linuxserver/obsidian",
@@ -816,7 +816,7 @@
             [
               "Obsidian forum likes for review state",
               "0",
-              "251 views, 1 post in nearly three years — PRODUCT-BRIEF.md:410"
+              "251 views, 1 post in nearly three years (PRODUCT-BRIEF.md:410)"
             ]
           ]
         }
@@ -975,12 +975,12 @@
             [
               "Boxes ticked across that sample",
               "354 of 355 = 99.7%",
-              "written by the agent at step 8a, ticked by the agent at step 8c — PRODUCT-BRIEF.md:306"
+              "written by the agent at step 8a, ticked by the agent at step 8c (PRODUCT-BRIEF.md:306)"
             ],
             [
               "Population of the reviewer-owned checklist",
               "4,536",
-              "11x rarer — PRODUCT-BRIEF.md:306"
+              "11x rarer (PRODUCT-BRIEF.md:306)"
             ],
             [
               "spec-kit public repos / active",
@@ -1021,12 +1021,12 @@
             [
               "Paths that write a document",
               "architectural only",
-              "spikes stay in chat; bounded says \"no plan document\" — PRODUCT-BRIEF.md:305"
+              "spikes stay in chat; bounded says \"no plan document\" (PRODUCT-BRIEF.md:305)"
             ],
             [
               "Fraction of sessions on the architectural path",
               "unmeasured",
-              "still open after round 2 — GAPS-2026-09-08.md:146"
+              "still open after round 2 (GAPS-2026-09-08.md:146)"
             ],
             [
               "Maintainer approached",
@@ -1226,7 +1226,7 @@
           "rows": [
             [
               "Exhibit 17, PRODUCT-BRIEF.md:304",
-              "Free Obsidian plugin — CUT. The parse is unreachable"
+              "Free Obsidian plugin: cut. The parse is unreachable"
             ],
             [
               "Exhibit 6, PRODUCT-BRIEF.md:204",
@@ -1242,7 +1242,7 @@
             ],
             [
               "Exhibit 26, PRODUCT-BRIEF.md:477",
-              "Family member: Chrome extension, Obsidian plugin — free; channels; MVP-1, week 2"
+              "Family member: Chrome extension, Obsidian plugin, free; channels; the build after the pilot, week 2"
             ],
             [
               "§21, PRODUCT-BRIEF.md:524",
@@ -1257,27 +1257,27 @@
             [
               "Obsidian Live Preview parse tree depth",
               "1, by construction",
-              "a CodeMirror StreamLanguage tree; \"this fence is inside a list item\" does not exist in it — PRODUCT-BRIEF.md:304"
+              "a CodeMirror StreamLanguage tree; \"this fence is inside a list item\" does not exist in it (PRODUCT-BRIEF.md:304)"
             ],
             [
               "What a plugin can change",
               "appearance only",
-              "on undocumented DOM classes Obsidian has already deleted once — PRODUCT-BRIEF.md:304"
+              "on undocumented DOM classes Obsidian has already deleted once (PRODUCT-BRIEF.md:304)"
             ],
             [
               "What the two plugins that do change nested behaviour write into user files",
               "U+200C",
-              "which a byte-exact product cannot ship — PRODUCT-BRIEF.md:304"
+              "which a byte-exact product cannot ship (PRODUCT-BRIEF.md:304)"
             ],
             [
               "Closest measured analogue, first 14 days",
               "115 installs",
-              "against our own 200 kill line — PRODUCT-BRIEF.md:304"
+              "against our own 200 kill line (PRODUCT-BRIEF.md:304)"
             ],
             [
               "Obsidian live-preview changelog lines in 2025",
               "9 across 5 of 12 months",
-              "PRODUCT-BRIEF.md:304. Flagged: CRITIQUE.md:362 measures the same surface as \"51 live preview hits in the 142 releases of 2025-26\" and calls Obsidian \"still actively fixing\" it — two readings of one question, unreconciled"
+              "PRODUCT-BRIEF.md:304. Flagged: CRITIQUE.md:362 measures the same surface as \"51 live preview hits in the 142 releases of 2025-26\" and calls Obsidian \"still actively fixing\" it, two readings of one question, unreconciled"
             ]
           ]
         },
@@ -1288,7 +1288,7 @@
             [
               "Claimed browser reading population",
               "1.5M",
-              "summed a 500,000-user reader with a 1,000,000-user clipper — PRODUCT-BRIEF.md:310"
+              "summed a 500,000-user reader with a 1,000,000-user clipper (PRODUCT-BRIEF.md:310)"
             ],
             [
               "Requests to read a .md URL in the clipper's tracker",
@@ -1298,17 +1298,17 @@
             [
               "Real reading population",
               "~647,000",
-              "its leader has not shipped a store build in over two years — PRODUCT-BRIEF.md:310"
+              "its leader has not shipped a store build in over two years (PRODUCT-BRIEF.md:310)"
             ],
             [
               "raw.githubusercontent.com CORS header",
               "access-control-allow-origin: *",
-              "so the web app needs no extension — PRODUCT-BRIEF.md:310"
+              "so the web app needs no extension (PRODUCT-BRIEF.md:310)"
             ],
             [
               "Cost of the replacement",
               "hours",
-              "no store listing, no Manifest V3 — PRODUCT-BRIEF.md:310"
+              "no store listing, no Manifest V3 (PRODUCT-BRIEF.md:310)"
             ],
             [
               "What GitHub already ships at that exact surface",
@@ -1486,12 +1486,12 @@
             [
               "Editors in the category with a durable community and no third-party code",
               "none found",
-              "Notion, Homebrew and pre-2019 Figma are the existence proofs and none is an editor — BUSINESS.md:846"
+              "Notion, Homebrew and pre-2019 Figma are the existence proofs and none is an editor (BUSINESS.md:846)"
             ],
             [
               "Warning the same section attaches",
               "do not quote 22.79% as our future tickets",
-              "it is a tag histogram from another product's fifteen-year-old forum — BUSINESS.md:819"
+              "it is a tag histogram from another product's fifteen-year-old forum (BUSINESS.md:819)"
             ]
           ]
         },
@@ -1734,32 +1734,32 @@
             [
               "Brevilabs Copilot, Obsidian registry downloads",
               "1,783,652",
-              "live since 2023-03-31, 7,651 stars — CRITIQUE.md:353"
+              "live since 2023-03-31, 7,651 stars (CRITIQUE.md:353)"
             ],
             [
               "Its price",
               "$0 BYOK, $7.99/mo Lite, $14.99/mo Plus, $349.99 lifetime",
-              "obsidiancopilot.com/en/pricing, HTTP 200 — CRITIQUE.md:354, :472"
+              "obsidiancopilot.com/en/pricing, HTTP 200 (CRITIQUE.md:354, :472)"
             ],
             [
               "Its editor maintenance burden",
               "none",
-              "it is a plugin inside a free app — CRITIQUE.md:473"
+              "it is a plugin inside a free app (CRITIQUE.md:473)"
             ],
             [
               "Its paid conversion rate",
               "unmeasured",
-              "named as the falsifier and tagged [SS]; treat as unverified — CRITIQUE.md:474"
+              "named as the falsifier and tagged [SS]; treat as unverified (CRITIQUE.md:474)"
             ],
             [
               "Registry downloads caveat",
               "cumulative across releases, includes updates",
-              "CRITIQUE.md:367 — the 1.78M is not 1.78M humans"
+              "CRITIQUE.md:367: the 1.78M is not 1.78M humans"
             ],
             [
               "Retention band at our intended price",
               "top-quartile annual gross retention 60-70%",
-              "23% for AI-native products under $50 — PRODUCT-BRIEF.md:292"
+              "23% for AI-native products under $50 (PRODUCT-BRIEF.md:292)"
             ]
           ]
         },
@@ -1788,13 +1788,13 @@
             [
               "Reviewable",
               "review state per reviewer",
-              "—",
+              "none",
               "free forever for public repos (PRODUCT-BRIEF.md:56)"
             ],
             [
               "Graphite",
               "persists a per-person form",
-              "—",
+              "none",
               "free tier (PRODUCT-BRIEF.md:559)"
             ],
             [
@@ -1964,17 +1964,17 @@
             [
               "Stars / last push / created",
               "149 / 2026-08-30 / 2025-12-30",
-              "api.github.com — CRITIQUE.md:307"
+              "api.github.com (CRITIQUE.md:307)"
             ],
             [
               "What it does",
               "automatically blocks ambiguous text matches",
-              "refuse-rather-than-guess, shipped — CRITIQUE.md:1700"
+              "refuse-rather-than-guess, shipped (CRITIQUE.md:1700)"
             ],
             [
               "Substrate",
               ".docx",
-              "they chose the substrate where the reviewer is a lawyer with Word — CRITIQUE.md:307"
+              "they chose the substrate where the reviewer is a lawyer with Word (CRITIQUE.md:307)"
             ],
             [
               "Distribution",
@@ -1989,7 +1989,7 @@
             [
               "What the war-game says about giving the certificate away",
               "\"the single highest-leverage defensive act available\"",
-              "because the certificate has \"zero defensibility if it is not independently checkable\" — BUSINESS.md:1168, :1203"
+              "because the certificate has \"zero defensibility if it is not independently checkable\" (BUSINESS.md:1168, :1203)"
             ]
           ]
         },
@@ -2025,7 +2025,7 @@
             [
               "Pre-registered kill number if we copied it",
               "fewer than 100 installs in 30 days means the mechanism is not wanted at any price (CRITIQUE.md:163)",
-              "—"
+              "none"
             ]
           ]
         },
@@ -2212,14 +2212,14 @@
               "PRODUCT-BRIEF.md:559"
             ],
             [
-              "SpecKit Companion, the nearest shipped sidecar pattern",
+              "SpecKit Companion, the nearest shipped review-file pattern",
               "9,367 installs",
-              "review state in .spec-context.json, spec-kit only — PRODUCT-BRIEF.md:135"
+              "review state in .spec-context.json, spec-kit only (PRODUCT-BRIEF.md:135)"
             ],
             [
               "git-ai, attribution after the fact",
               "61,517 installs",
-              "commit granularity, nothing per span — PRODUCT-BRIEF.md:151"
+              "commit granularity, nothing per span (PRODUCT-BRIEF.md:151)"
             ]
           ]
         },
@@ -2237,7 +2237,7 @@
               "Obsidian Git",
               "the JTBD incumbent, already installed",
               "3,075,875",
-              "—"
+              "none"
             ],
             [
               "Claudian",
@@ -2255,13 +2255,13 @@
               "Tag Wrangler",
               "tag rename and merge",
               "1,067,863",
-              "—"
+              "none"
             ],
             [
               "Global Search and Replace",
               "vault-wide replace",
               "65,569",
-              "—"
+              "none"
             ],
             [
               "Drift",
@@ -2273,7 +2273,7 @@
               "Schema Refactor",
               "renames properties across frontmatter",
               "66",
-              "—"
+              "none"
             ]
           ]
         },
@@ -2287,7 +2287,7 @@
           "rows": [
             [
               "Key figures, PRODUCT-BRIEF.md:9",
-              "1,217 total, ceiling 400 — the headline did not survive"
+              "1,217 total, ceiling 400: the headline did not survive"
             ],
             [
               "§1 risk callout, PRODUCT-BRIEF.md:24",
@@ -2295,7 +2295,7 @@
             ],
             [
               "§23 Opportunities, PRODUCT-BRIEF.md:559",
-              "\"Real, narrow, and small\" — thirteen extensions and seven plugins already sit in it, none above 1,540"
+              "\"Real, narrow, and small\": thirteen extensions and seven plugins already sit in it, none above 1,540"
             ]
           ]
         }
@@ -2457,7 +2457,7 @@
             [
               "Persisted unread state",
               "shipping",
-              "2.1.261 fixes a missing unread dot and the tab badge showing unread — PRODUCT-BRIEF.md:560"
+              "2.1.261 fixes a missing unread dot and the tab badge showing unread (PRODUCT-BRIEF.md:560)"
             ],
             [
               "Diff panel",
@@ -2693,11 +2693,11 @@
             [
               "Google span-level authorship",
               "Business Standard and above",
-              "\"See who changed a part of a document…\" available only to Business Standard, Business Plus, Enterprise Standard, Enterprise Plus and Education Plus — PRODUCT-BRIEF.md:57"
+              "\"See who changed a part of a document…\" available only to Business Standard, Business Plus, Enterprise Standard, Enterprise Plus and Education Plus (PRODUCT-BRIEF.md:57)"
             ],
             [
-              "Where the plan places F3 today",
-              "MVP-0, free, not the headline",
+              "Where the plan places attribution today",
+              "The pilot, free, not the headline",
               "PRODUCT-BRIEF.md:57, :200"
             ]
           ]
@@ -2714,17 +2714,17 @@
             [
               "Commit trailer",
               "reader not built, 3d estimated",
-              "MVP-0 (PRODUCT-BRIEF.md:57)"
+              "The pilot (PRODUCT-BRIEF.md:57)"
             ],
             [
               "git-ai note",
               "reader not built",
-              "MVP-0; git-ai has 61,517 installs and writes AI co-author trailers by default (PRODUCT-BRIEF.md:151)"
+              "The pilot; git-ai has 61,517 installs and writes AI co-author trailers by default (PRODUCT-BRIEF.md:151)"
             ],
             [
               "MCP write carrying the prompt",
               "not built",
-              "MVP-1, and whether agents route writes through a third party is untested (PRODUCT-BRIEF.md:65)"
+              "The build after the pilot, and whether agents route writes through a third party is untested (PRODUCT-BRIEF.md:65)"
             ],
             [
               "Signed provenance metadata",
@@ -2895,17 +2895,17 @@
             [
               "Bottom-up qualified population at a 5x private multiplier",
               "81,000 humans",
-              "10,800 repos x 5 x 1.5 humans — CRITIQUE.md:277"
+              "10,800 repos x 5 x 1.5 humans (CRITIQUE.md:277)"
             ],
             [
               "Top-down cross-check, generous end",
               "5,160 payers",
-              "against bottom-up 5,184 — the two routes agree within 0.5% — CRITIQUE.md:288"
+              "against bottom-up 5,184; the two routes agree within 0.5% (CRITIQUE.md:288)"
             ],
             [
               "Measured spontaneous-concern rate",
               "0.032%",
-              "even a 2% switch rate is 62x the observed signal — CRITIQUE.md:279"
+              "even a 2% switch rate is 62x the observed signal (CRITIQUE.md:279)"
             ],
             [
               "Central case against the ₹20L/month goal",
@@ -2915,17 +2915,17 @@
             [
               "Churn ceiling at c=4%/month",
               "the stock asymptotes at 804 payers forever",
-              "inside the TAM band — CRITIQUE.md:295"
+              "inside the TAM band (CRITIQUE.md:295)"
             ],
             [
               "Central case against the ₹1.09L/month nut",
               "clears it with ₹46,400 spare",
-              "\"a real, if small, business\" — CRITIQUE.md:292"
+              "\"a real, if small, business\" (CRITIQUE.md:292)"
             ],
             [
               "What the 1.26M visitor requirement actually is",
               "a 24-to-36-month cumulative figure, not year one",
-              "and the plan is \"missing at least one channel of a size nobody has yet named\" — BUSINESS.md:941, :1086"
+              "and the plan is \"missing at least one channel of a size nobody has yet named\" (BUSINESS.md:941, :1086)"
             ]
           ]
         }
@@ -3077,7 +3077,7 @@
             [
               "A · Obsidian ships conflict review",
               "6-12 months from trigger; the setting shipped 2025-08-18",
-              "Partly — it is about sync, not review state"
+              "Partly: it is about sync, not review state"
             ],
             [
               "B · Notion or Coda makes files on disk the store of record",
@@ -3087,7 +3087,7 @@
             [
               "C · GitHub ships a real editor over repo markdown",
               "12-24 months",
-              "Yes, and stronger — GitHub already ships Viewed state free"
+              "Yes, and stronger: GitHub already ships Viewed state free"
             ],
             [
               "D · A model vendor ships a filesystem-backed document surface",
@@ -3118,7 +3118,7 @@
             [
               "Signals that watch someone else",
               "7",
-              "recoverable by publishing a measurement or deleting a roadmap lane — BUSINESS.md:1240"
+              "recoverable by publishing a measurement or deleting a roadmap lane (BUSINESS.md:1240)"
             ],
             [
               "Signals that watch us",
@@ -3128,7 +3128,7 @@
             [
               "Whether that one exists",
               "no",
-              "\"our own funnel — does not exist yet\" — BUSINESS.md:1238"
+              "\"our own funnel — does not exist yet\" (BUSINESS.md:1238)"
             ],
             [
               "Scenarios recoverable in under a fortnight by one person",
@@ -3306,7 +3306,7 @@
             [
               "Firestore document writes across 226 source files",
               "0",
-              "verified this audit: only a `getFirestore` client factory exists in src/shared/infrastructure/firebase/client.ts — no setDoc, addDoc or updateDoc"
+              "verified this audit: only a `getFirestore` client factory exists in src/shared/infrastructure/firebase/client.ts, no setDoc, addDoc or updateDoc"
             ],
             [
               "What firestore.rules designs",
@@ -3325,13 +3325,13 @@
             ],
             [
               "What depends on the answer",
-              "every legal rule in §22, plus intermediary status under IT Act §2(1)(w)",
+              "every legal rule in the plan's operating-rules section, plus intermediary status under Section 2(1)(w) of the IT Act",
               "PRODUCT-BRIEF.md:365"
             ],
             [
               "Hosted-site comparable price",
               "$8 per site per month",
-              "mdown.ai, Obsidian Publish — PRODUCT-BRIEF.md:159"
+              "mdown.ai, Obsidian Publish (PRODUCT-BRIEF.md:159)"
             ]
           ]
         },
@@ -3347,7 +3347,7 @@
             [
               "Hosted read-only viewer",
               "a link anyone can open, with review state visible",
-              "a hosting obligation, intermediary status, an abuse and takedown surface, and it contradicts Exhibit 3's stated refusal"
+              "a hosting obligation, intermediary status, an abuse and takedown surface, and it contradicts the plan's own stated no-hosting position above"
             ],
             [
               "Permalink plus export",
@@ -3502,7 +3502,7 @@
             [
               "marked npm downloads, same window",
               "275,363,833",
-              "ratio 55,250 : 1 — PRODUCT-BRIEF.md:486"
+              "ratio 55,250 : 1 (PRODUCT-BRIEF.md:486)"
             ],
             [
               "Djot GitHub stars",
@@ -3527,7 +3527,7 @@
             [
               "The smart-punctuation objection against byte-exactness",
               "tested 2026-09-08 and fails",
-              "source-to-source round-trips are byte-identical — PRODUCT-BRIEF.md:490"
+              "source-to-source round-trips are byte-identical (PRODUCT-BRIEF.md:490)"
             ]
           ]
         },
@@ -3545,7 +3545,7 @@
             ],
             [
               "`[foo][bar]` means different things depending on a definition elsewhere in the file, which makes accurate highlighting nearly impossible",
-              "Named in §20 item 5 as the engine's real refusal condition — and none of the refusals is currently declared (PRODUCT-BRIEF.md:510)"
+              "Named in the markdown-format section's item 5 (non-locality as a declared refusal) as the engine's real refusal condition, and none of the refusals is currently declared (PRODUCT-BRIEF.md:510)"
             ],
             [
               "The fix is a new syntax",
@@ -3736,22 +3736,22 @@
             [
               "Threshold that decides it",
               "agreement above 95% means the certificate's product claim is the residual",
-              "and the residual must then itself be measured — ENGINE.md:899"
+              "and the residual must then itself be measured (ENGINE.md:899)"
             ],
             [
               "Certificate CLI status",
               "cannot start",
-              "ERR_MODULE_NOT_FOUND, 37 days after the commit claiming it landed; verified this audit that `cert` is absent from all 26 package.json scripts — PRODUCT-BRIEF.md:224"
+              "ERR_MODULE_NOT_FOUND, 37 days after the commit claiming it landed; verified this audit that `cert` is absent from all 26 package.json scripts (PRODUCT-BRIEF.md:224)"
             ],
             [
               "Construct detectors marked provenance: invented",
               "6 of 19",
-              "six false-positive shapes reproduce — PRODUCT-BRIEF.md:502"
+              "six false-positive shapes reproduce (PRODUCT-BRIEF.md:502)"
             ],
             [
               "Target surfaces that are uncertifiable",
               "8 of 15",
-              "and the code computes that share — PRODUCT-BRIEF.md:502"
+              "and the code computes that share (PRODUCT-BRIEF.md:502)"
             ]
           ]
         }
@@ -3910,7 +3910,7 @@
           "rows": [
             [
               "Markdown editor / notes app",
-              "Obsidian — 16.1% of 30,065 SO devs, free without limits, 7,092 plugins",
+              "Obsidian: 16.1% of 30,065 SO devs, free without limits, 7,092 plugins",
               "$0 for the editor; $4 for sync"
             ],
             [
@@ -3919,7 +3919,7 @@
               "$0-20"
             ],
             [
-              "AI review of machine changes — the only shelf where the job is ours",
+              "AI review of machine changes: the only shelf where the job is ours",
               "CodeRabbit $24-48/seat, Greptile $30/seat",
               "4-9x our top tier, sold to teams with budgets"
             ],
@@ -3930,7 +3930,7 @@
             ],
             [
               "Source-of-truth workspace",
-              "nobody — that is the problem",
+              "nobody, and that is the problem",
               "no search volume, no grid, no budget line"
             ]
           ]
@@ -3947,17 +3947,17 @@
             [
               "Obsidian Sync",
               "$4",
-              "the one proven individual price — PRODUCT-BRIEF.md:161"
+              "the one proven individual price (PRODUCT-BRIEF.md:161)"
             ],
             [
               "Obsidian commercial licence",
               "$50/user/year",
-              "confers no functional benefit, optional since Feb 2025, bought by 25+ seat organisations — PRODUCT-BRIEF.md:161"
+              "confers no functional benefit, optional since Feb 2025, bought by 25+ seat organisations (PRODUCT-BRIEF.md:161)"
             ],
             [
               "Zed",
               "free",
-              "reviews per hunk — PRODUCT-BRIEF.md:157"
+              "reviews per hunk (PRODUCT-BRIEF.md:157)"
             ],
             [
               "Free OSS floor in the category",
@@ -4141,12 +4141,12 @@
             [
               "Obsidian Sync price",
               "$4/user/month billed annually, $5 monthly",
-              "read 2026-08-31 — BUSINESS.md:1105"
+              "read 2026-08-31 (BUSINESS.md:1105)"
             ],
             [
               "What Obsidian's own doc concedes about auto-merge",
               "\"may sometimes create duplicate text or formatting problems. You will need to fix these manually\"",
-              "algorithm named as Google diff-match-patch — BUSINESS.md:1099"
+              "algorithm named as Google diff-match-patch (BUSINESS.md:1099)"
             ],
             [
               "Share of Obsidian payment comments about sync",
@@ -4156,22 +4156,22 @@
             [
               "Sync in the loved/hated/switching rankings",
               "#1 loved, #3 hated, #1 switching trigger",
-              "1,251 of 43,656 issues — DECIDE.md:107; CRITIQUE.md:520"
+              "1,251 of 43,656 issues (DECIDE.md:107; CRITIQUE.md:520)"
             ],
             [
               "Conflict-resolution setting Obsidian already ships",
               "1.9.10, early access 2025-08-05, public 2025-08-18",
-              "12.5 months old, not 9 — CRITIQUE.md:361, :498"
+              "12.5 months old, not 9 (CRITIQUE.md:361, :498)"
             ],
             [
               "Where the plan schedules sync",
-              "MVP-2, 15+ days",
+              "Two builds after the pilot, 15+ days",
               "PRODUCT-BRIEF.md:66"
             ],
             [
               "What the war-game says about out-shipping them on sync itself",
               "not credible",
-              "\"they have a paid sync product, a server fleet, mobile clients on both stores, and an installed base\" — BUSINESS.md:1120"
+              "\"they have a paid sync product, a server fleet, mobile clients on both stores, and an installed base\" (BUSINESS.md:1120)"
             ]
           ]
         },
@@ -4189,25 +4189,25 @@
               "Sync / provably safe merge",
               "yes, about $4",
               "yes, in the vendor's own docs",
-              "MVP-2"
+              "Two builds after the pilot"
             ],
             [
               "Retained splice journal",
               "priced by analogy to Obsidian and HackMD retention steps",
               "n/a",
-              "MVP-1 Pro — and no feature row builds it (PRODUCT-BRIEF.md:289)"
+              "The build after the pilot's Pro tier, and no feature row builds it (PRODUCT-BRIEF.md:289)"
             ],
             [
               "Review gates in CI",
               "GitHub sells enforcement at $4",
               "n/a",
-              "MVP-1 Pro, pulled forward from Max"
+              "The build after the pilot's Pro tier, pulled forward from Max"
             ],
             [
               "Shared review state",
               "GitHub bundles it free",
               "n/a",
-              "MVP-1, included not gated"
+              "The build after the pilot, included not gated"
             ]
           ]
         }
@@ -4384,7 +4384,7 @@
             [
               "Scale before shutdown",
               "7-figure ARR, 50+ staff",
-              "saasclub.io podcast summary — a secondary source, not the founder's writing"
+              "saasclub.io podcast summary, a secondary source, not the founder's writing"
             ],
             [
               "Shutdown date",
@@ -4741,17 +4741,17 @@
             [
               "Editorially",
               "closed 2014-05-30",
-              "stated that even if all users paid, it would not have been enough — stet.editorially.com"
+              "stated that even if all users paid, it would not have been enough (stet.editorially.com)"
             ],
             [
               "Poetica",
               "acquired 2016-03-01, dead 2016-06-01",
-              "goals described as at odds — blog.poetica.com via web.archive.org"
+              "goals described as at odds (blog.poetica.com via web.archive.org)"
             ],
             [
               "Atrium",
               "shut down 2020-03-03",
-              "after $75.5M — techcrunch.com"
+              "after $75.5M (techcrunch.com)"
             ],
             [
               "JetBrains Upsource",
@@ -4761,7 +4761,7 @@
             [
               "Almanac",
               "shut down 2025-01-31",
-              "cause stated as capacity — get.almanac.io/go-forward"
+              "cause stated as capacity (get.almanac.io/go-forward)"
             ],
             [
               "Draft and Penflip",
@@ -4951,7 +4951,7 @@
             [
               "Litera",
               "$16M to about $250M revenue, 15,000+ customers, 99% of the Am Law 100",
-              "litera.com/our-story — a self-claim, undated at both ends"
+              "litera.com/our-story, a self-claim, undated at both ends"
             ],
             [
               "Atrium",
@@ -5109,7 +5109,7 @@
             [
               "21 CFR 11.10(e)",
               "\"Record changes shall not obscure previously recorded information.\"",
-              "ecfr.gov — retention, not per-span review"
+              "ecfr.gov, retention, not per-span review"
             ],
             [
               "MHRA GxP data integrity guide",

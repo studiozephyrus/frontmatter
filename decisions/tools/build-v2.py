@@ -65,6 +65,7 @@ def main():
         print(f'  UNEXPECTED AREAS: {extra}')
 
     # Apply the cross-area pass: drop duplicates, add link edges.
+    area_of = {q['id']: cat for cat, qs in by_cat.items() for q in qs}
     dropped = set()
     dupes = {}
     edges = collections.defaultdict(set)
@@ -87,7 +88,19 @@ def main():
             # is the cheapest honest fix; merging the recommendations would be inventing one.
             others = [i for i in (dup.get('ids') or []) if i != keep]
             if keep and others:
-                dupes[keep] = {'dropped': others, 'why': dup.get('why') or ''}
+                # The reader cannot open a dropped card, so its id means nothing on the page. Carry
+                # the areas it came from instead. `agree` is set per entry from a mapping of each
+                # dropped recommendation onto the kept card's options; without it the page makes
+                # no claim either way, because the old fixed "they did not all agree" line was
+                # false on the entries whose recommendations matched.
+                areas = []
+                for i in others:
+                    c = area_of.get(i)
+                    if c and c != area_of.get(keep) and c not in areas:
+                        areas.append(c)
+                dupes[keep] = {'dropped': others, 'areas': areas, 'why': dup.get('why') or ''}
+                if isinstance(dup.get('agree'), bool):
+                    dupes[keep]['agree'] = dup['agree']
         for e in L.get('link_edges') or []:
             if e.get('from') and e.get('to'):
                 edges[e['from']].add(e['to'])

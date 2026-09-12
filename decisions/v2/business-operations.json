@@ -93,7 +93,7 @@
             [
               "Cofounder named anywhere in the record",
               "0",
-              "CRITIQUE.md:1437 — grep finds no cofounder in 16,189 lines"
+              "CRITIQUE.md:1437: a grep finds no cofounder in 16,189 lines"
             ],
             [
               "Signed founders' agreement in the repo",
@@ -314,7 +314,7 @@
             [
               "Two-year product success case, monthly",
               "₹1,09,135",
-              "BRIEF.md:25 — 502 paying users, 171,200 cumulative visitors"
+              "BRIEF.md:25: 502 paying users, 171,200 cumulative visitors"
             ],
             [
               "The same money in consulting hours",
@@ -339,7 +339,7 @@
             [
               "Burn, if no services at all",
               "₹4,700–9,300 a month",
-              "r23-u4:54 — runway is not the constraint"
+              "r23-u4:54: runway is not the constraint"
             ]
           ]
         },
@@ -624,7 +624,7 @@
           "title": "The calendar the plan still prints",
           "items": [
             [
-              "Span of Exhibit 19",
+              "Span of the 90-day calendar",
               "weeks 0 to 12",
               "PRODUCT-BRIEF.md:349-357"
             ],
@@ -634,7 +634,7 @@
               "derived: 12 × 1.21"
             ],
             [
-              "Engineering days MVP-0 needs",
+              "Engineering days the pilot needs",
               "about 70",
               "PRODUCT-BRIEF.md:227"
             ],
@@ -681,7 +681,7 @@
             ],
             [
               "Insertions, docs against src, all time",
-              "288,730 against 26,686 — 10.8 to 1",
+              "288,730 against 26,686, a ratio of 10.8 to 1",
               "git log --numstat, run 2026-09-08"
             ],
             [
@@ -694,7 +694,7 @@
         {
           "type": "bars",
           "title": "Engineering days per week against three candidate commitments",
-          "note": "Measured rate from PRODUCT-BRIEF.md:227, on the src/ + src-tauri/ + test/ measure. The last-30-days figure is 3 active days = 0.70/week on that same measure; the plan's 0.23 counts src/ alone. MVP-0 needs about 70 engineering days.",
+          "note": "Measured rate from PRODUCT-BRIEF.md:227, on the src/ + src-tauri/ + test/ measure. The last-30-days figure is 3 active days = 0.70/week on that same measure; the plan's 0.23 counts src/ alone. The pilot needs about 70 engineering days.",
           "data": [
             [
               "Measured, last 30 days",
@@ -879,17 +879,17 @@
               "grep -c, run 2026-09-08T18:29Z"
             ],
             [
-              "Rupee price points in PRODUCT-BRIEF.md v15",
+              "Rupee price points in the current plan, PRODUCT-BRIEF.md",
               "0",
               "grep -c, run 2026-09-08T18:29Z"
             ],
             [
-              "v15 individual tier",
+              "The current plan's individual tier",
               "Free, no limits",
               "PRODUCT-BRIEF.md:287"
             ],
             [
-              "v15 team tier",
+              "The current plan's team tier",
               "$4–5 per user per month",
               "PRODUCT-BRIEF.md:288"
             ],
@@ -1004,11 +1004,11 @@
             [
               "Support load per rupee, those 58 against that one team",
               "17× worse",
-              "CRITIQUE.md:1035 — 8.4 founder-hours a month against 0.5"
+              "CRITIQUE.md:1035: 8.4 founder-hours a month against 0.5"
             ],
             [
               "Evidence that any team pays for shared review state",
-              "none; F10 is marked untested",
+              "none; shared review state and comments is marked untested",
               "PRODUCT-BRIEF.md:64"
             ]
           ]
@@ -1193,13 +1193,13 @@
               "0.30 tickets per paying user per month, 12 minutes each"
             ],
             [
-              "PRD §21.1, quoted at CRITIQUE.md:901",
+              "PRD Section 21.1, quoted at CRITIQUE.md:901",
               "0.10 tickets per paying user per month"
             ],
             [
               "r6 measured mix, weighted",
               "20.72 minutes per ticket",
-              "r6-support-deflection.md:68 — 1.73× the flat 12"
+              "r6-support-deflection.md:68: 1.73× the flat 12"
             ],
             [
               "Times measured on our own users",
@@ -1235,11 +1235,11 @@
             ],
             [
               "r6's deflection plan applied (r6:87)",
-              "23.97 founder-hours a month — a 70.2% cut bought with engineering"
+              "23.97 founder-hours a month, a 70.2% cut bought with engineering"
             ],
             [
               "Support-hire trigger, without and with deflection (r6:157-159)",
-              "$14.18/hour against $82.64/hour of founder time — 5.83×"
+              "$14.18/hour against $82.64/hour of founder time, a 5.83× difference"
             ]
           ]
         }
@@ -1402,11 +1402,11 @@
       "evidence": [
         {
           "type": "stat",
-          "title": "Who the free tier actually is, at MVP-0",
+          "title": "Who the free tier actually is, at the pilot",
           "items": [
             [
-              "Paying users in MVP-0",
-              "0 — billing is in the Absent row",
+              "Paying users in the pilot",
+              "0: billing is in the Absent row",
               "PRODUCT-BRIEF.md:205"
             ],
             [
@@ -1462,7 +1462,7 @@
             [
               "Break-even between the two",
               "93.3 AI resolutions/month",
-              "—",
+              "none",
               "derived, r6:121"
             ]
           ]
@@ -1473,7 +1473,7 @@
           "items": [
             [
               "Hosted inference",
-              "₹0.00 — bring-your-own key only",
+              "₹0.00: bring-your-own key only",
               "CRITIQUE.md:963"
             ],
             [
@@ -1669,18 +1669,18 @@
           "cols": [
             "Location",
             "Where specified",
-            "Consistent with the one-sidecar rule?"
+            "Consistent with the one-review-file rule?"
           ],
           "rows": [
             [
               "`Notices/` at vault root, read-only markdown",
               "BUSINESS.md:121",
-              "No — a second vendor directory in the user's repo"
+              "No: a second vendor directory in the user's repo"
             ],
             [
               "In-product list",
               "PRODUCT-BRIEF.md:536",
-              "Yes — writes nothing"
+              "Yes: writes nothing"
             ],
             [
               "`.frontmatter/` sidecar, plain text",
@@ -1700,7 +1700,7 @@
             ],
             [
               "Severities",
-              "2 — must-read and for-the-record",
+              "2: must-read and for-the-record",
               "BUSINESS.md:130"
             ],
             [
@@ -1710,12 +1710,12 @@
             ],
             [
               "Breach intimation channel named by DPDP Rule 7(1)",
-              "\"through her user account or any mode of communication registered by her\" — verbatim",
+              "\"through her user account or any mode of communication registered by her\", verbatim",
               "BUSINESS.md:26, fetched 2026-08-30"
             ],
             [
               "When the DPDP substantive sections and penalties commence",
-              "2027-05-13; §2 and §§18–26 are live now",
+              "2027-05-13; Section 2 and Sections 18 to 26 are live now",
               "PRODUCT-BRIEF.md:541"
             ]
           ]
@@ -1763,7 +1763,7 @@
             [
               "Breach intimation to each affected user",
               "without delay (DPDP Rule 7(1))",
-              "none — no address, no ledger built"
+              "none: no address, no ledger built"
             ],
             [
               "Annual renewal pre-notice, California",
@@ -1930,7 +1930,7 @@
             [
               "What is counted",
               "days opened, documents opened, spans reviewed, proposals accepted, questions answered",
-              "WEEK0-DECISIONS-2026-09-08.md:19 — counts only, no content"
+              "WEEK0-DECISIONS-2026-09-08.md:19: counts only, no content"
             ],
             [
               "Where it lives",
@@ -1980,7 +1980,7 @@
             ],
             [
               "Nothing",
-              "—",
+              "none",
               "the exit test cannot be run at all"
             ]
           ]
@@ -2170,7 +2170,7 @@
               "find, run 2026-09-08; the plan's audit counted 226, so 22 files have been added since it was taken"
             ],
             [
-              "Files in src/modules/mdmax — the part we own",
+              "Files in src/modules/mdmax, the part we own",
               "13",
               "find, run 2026-09-08"
             ],
@@ -2186,7 +2186,7 @@
             ],
             [
               "Days assigned to this row in the fix-first table",
-              "none — it says \"Decision\", and the row has no date in Exhibit 20",
+              "none: the plan's decisions table marks it \"Decision\" but the row has no date",
               "PRODUCT-BRIEF.md:223 against PRODUCT-BRIEF.md:363-369"
             ]
           ]
@@ -2200,51 +2200,51 @@
           ],
           "rows": [
             [
-              "1 — NF-1 column-zero list item",
+              "1: the left-edge list bug, a column-zero list item",
               "4"
             ],
             [
-              "2 — NF-3 bare-CR frontmatter fence",
+              "2: the old line-ending bug, a bare-CR frontmatter fence",
               "3"
             ],
             [
-              "3 — No CI",
+              "3: no CI",
               "1"
             ],
             [
-              "4 — Engine unwired",
+              "4: engine unwired",
               "8"
             ],
             [
-              "5 — Byte budget is an echo",
+              "5: byte budget is an echo",
               "2"
             ],
             [
-              "6 — No bring-your-own key",
+              "6: no bring-your-own key",
               "3"
             ],
             [
-              "7 — LLM port returns a bare string",
+              "7: LLM port returns a bare string",
               "2"
             ],
             [
-              "8 — Web byte path undecided",
-              "Decision — but dated: week 0, Exhibit 20 item 4"
+              "8: web byte path undecided",
+              "Decision, but dated: week 0, in the plan's decisions table, item 4"
             ],
             [
-              "9 — src-tauri carries the sibling app's identity",
+              "9: src-tauri carries the sibling app's identity",
               "1"
             ],
             [
-              "0 — The fork",
-              "Decision — and undated, absent from Exhibit 20"
+              "0: the fork",
+              "Decision, but undated and absent from the plan's decisions table"
             ],
             [
-              "10 — mdmax cert never wired to a command",
+              "10: mdmax cert never wired to a command",
               "1"
             ],
             [
-              "11 — entities is an undeclared dependency",
+              "11: entities is an undeclared dependency",
               "0.5"
             ]
           ]
@@ -2601,8 +2601,8 @@
               "PRODUCT-BRIEF.md:543"
             ],
             [
-              "IT Act §70B(7) exposure",
-              "up to one year or ₹1 lakh; §70B(8) requires a CERT-In officer's complaint first",
+              "IT Act Section 70B(7) exposure",
+              "up to one year or ₹1 lakh; Section 70B(8) requires a CERT-In officer's complaint first",
               "PRODUCT-BRIEF.md:543"
             ],
             [
@@ -2627,7 +2627,7 @@
           "rows": [
             [
               "Statutory",
-              "CERT-In's 6 hours from noticing; DPDP §8(6); GDPR Art. 33 at 72 hours — not recoverable"
+              "CERT-In's 6 hours from noticing; DPDP Section 8(6); GDPR Art. 33 at 72 hours, none of it recoverable"
             ],
             [
               "On-call",
@@ -2639,7 +2639,7 @@
             ],
             [
               "Billing",
-              "about 8 involuntary churns, on a rail with one attempt and no retry"
+              "about 8 involuntary churns, on a payment mechanism with one attempt and no retry"
             ],
             [
               "The nut",
@@ -2657,12 +2657,12 @@
           ],
           "rows": [
             [
-              "8 — RCM bounded by the registration threshold",
+              "8: RCM bounded by the registration threshold",
               "REFUTED",
-              "CGST §24(iii): reverse-charge payers \"shall be required to be registered\", no turnover floor (VERIFICATION.md:41)"
+              "CGST Section 24(iii): reverse-charge payers \"shall be required to be registered\", no turnover floor (VERIFICATION.md:41)"
             ],
             [
-              "7 — RCM on imported services",
+              "7: RCM on imported services",
               "REVISED",
               "Notification 10/2017-IGST(R) Sl.1 excludes a \"non-taxable online recipient\"; unregistered means the vendor charges GST, registered means you self-assess (VERIFICATION.md:40)"
             ],
@@ -2693,7 +2693,7 @@
               "BUSINESS.md:719"
             ],
             [
-              "Payment rail",
+              "Payment processor",
               "Dodo Payments, 4% + 15¢ on Indian cards",
               "BUSINESS.md:719"
             ],
@@ -2868,7 +2868,7 @@
             [
               "Revision history",
               "allow delete: if false, inside match /revisions/{revId}",
-              "firestore.rules:361 — append-only by design"
+              "firestore.rules:361: append-only by design"
             ],
             [
               "Public reads",
@@ -2877,7 +2877,7 @@
             ],
             [
               "Built today",
-              "zero Firestore write calls across the source tree — the only hits are React setState",
+              "zero Firestore write calls across the source tree; the only hits are React setState",
               "grep for setDoc/addDoc/updateDoc/deleteDoc/writeBatch over src/, run 2026-09-08; matches PRODUCT-BRIEF.md:365"
             ]
           ]
@@ -3285,8 +3285,8 @@
             ],
             [
               "Statutory",
-              "CERT-In 6 hours; DPDP §8(6); GDPR Art. 33 at 72 hours",
-              "not recoverable — a missed clock is a violation"
+              "CERT-In 6 hours; DPDP Section 8(6); GDPR Art. 33 at 72 hours",
+              "not recoverable: a missed clock is a violation"
             ],
             [
               "Roadmap",
@@ -3302,7 +3302,7 @@
         },
         {
           "type": "stat",
-          "title": "Why the rail makes it worse",
+          "title": "Why the payment processor makes it worse",
           "items": [
             [
               "Indian card e-mandate attempts per cycle",

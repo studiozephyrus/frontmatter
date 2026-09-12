@@ -75,8 +75,8 @@
             ],
             [
               "Of those, zero-indent block sequence",
-              "6,611 by first-offending-line attribution; 6,613 by the §75 count",
-              "docs/ENGINE.md:487, docs/ENGINE.md:1101 — the doc explains the gap as an attribution-method difference, not corpus drift, and names `node scripts/corpus-foreign.mjs verify` as the authority"
+              "6,611 by first-offending-line attribution, and 6,613 by the key-addressability rule's count",
+              "docs/ENGINE.md:487, docs/ENGINE.md:1101: the doc explains the gap as an attribution-method difference, not corpus drift, and names `node scripts/corpus-foreign.mjs verify` as the authority"
             ],
             [
               "Throws / corruptions among the 1,354 that proceeded",
@@ -85,14 +85,14 @@
             ],
             [
               "Reproduced in this session",
-              "yes — `set` on `---\\ntags:\\n- a\\n- b\\n---` returns the input unchanged",
+              "yes: `set` on `---\\ntags:\\n- a\\n- b\\n---` returns the input unchanged",
               "live run against src/modules/share/domain/splice-frontmatter.ts at HEAD"
             ]
           ]
         },
         {
           "type": "table",
-          "title": "Three documents, three prices — and the disagreement is not the one that was reported",
+          "title": "Three documents, three prices, and the disagreement is not the one that was reported",
           "cols": [
             "Document",
             "Scope",
@@ -101,23 +101,23 @@
           "rows": [
             [
               "docs/PRODUCT-BRIEF.md:214-215",
-              "NF-1 (4 d) + NF-3 (3 d)",
+              "the left-edge list bug (4 d) plus the old line-ending bug (3 d)",
               "7 engineering days"
             ],
             [
               "docs/ENGINE.md:622",
-              "E1 — all four YAML defects",
+              "this same decision, covering all four YAML defects",
               "2.0 founder-weeks; CRITIQUE reads that as 10 working days"
             ],
             [
               "docs/DECIDE.md:82-83",
-              "NF-3 (4 pts) + NF-1/NF-2 (6 pts)",
+              "the old line-ending bug (4 pts) plus the left-edge list bug (6 pts)",
               "10 pts, which at DECIDE's own stated rate of 38 pts ≈ 41 days (docs/DECIDE.md:73) is ≈ 10.8 days"
             ],
             [
               "docs/CRITIQUE.md:795",
               "calls it \"a ~2× disagreement… unnoticed. SERIOUS\"",
-              "It derives those same 10 points as \"≈ 2.7 focused days\". That does not follow from DECIDE §3.1's only stated rate, and re-deriving it puts DECIDE and ENGINE within a day of each other. The real outlier is the brief's 7 days, on narrower scope"
+              "It derives those same 10 points as \"≈ 2.7 focused days\". That does not follow from the pilot's day-rate section in DECIDE, and re-deriving it puts DECIDE and ENGINE within a day of each other. The real outlier is the brief's 7 days, on narrower scope"
             ]
           ]
         },
@@ -133,7 +133,7 @@
           "rows": [
             [
               "Hand-rolled line scan (today)",
-              "no — 6,613 files refused",
+              "no: 6,613 files refused",
               "ours, 20 sites",
               "none"
             ],
@@ -141,7 +141,7 @@
               "`yaml` CST tokens for the range, our refusal on top",
               "yes, measured byte-identical round trip",
               "ours, unchanged",
-              "none — already a direct dep"
+              "none: already a direct dependency"
             ],
             [
               "Two-phase lexer of our own",
@@ -182,7 +182,7 @@
               "docs/ENGINE.md:1101"
             ],
             [
-              "What ENGINE §72.2 actually anti-recommends",
+              "What the engine's roadmap section on these YAML defects actually anti-recommends",
               "handing over mutation to a value tree, not reading token offsets",
               "docs/ENGINE.md:650"
             ]
@@ -344,7 +344,7 @@
             [
               "preview/presentation/PropertiesPanel.tsx:95, 106, 111, 130",
               "every write goes through `emit`, which returns early at `next === content`",
-              "nothing at all — the edit vanishes; the file's own comment concedes it"
+              "nothing at all: the edit vanishes, and the file's own comment concedes it"
             ],
             [
               "Total `return src` sites in the writer",
@@ -353,7 +353,7 @@
             ],
             [
               "Product code paths through the writer",
-              "2 files — share-writer.ts and PropertiesPanel.tsx",
+              "2 files: share-writer.ts and PropertiesPanel.tsx",
               "grep over src/"
             ]
           ]
@@ -379,7 +379,7 @@
             ],
             [
               "Where the refusal copy already exists and is unrendered",
-              "`explainFailure` in shape-gate.ts — zero callers",
+              "`explainFailure` in shape-gate.ts, with zero callers",
               "docs/ENGINE.md:467"
             ]
           ]
@@ -555,7 +555,7 @@
             [
               "Occurrences failing SAFE_KEY",
               "2,452 = 8.4%",
-              "docs/ENGINE.md:1092 (§68.5 quotes 2,447/8.35% — the 5-line gap is the aliases sequence items counted below)"
+              "docs/ENGINE.md:1092 (§68.5 quotes 2,447/8.35%: the 5-line gap is the aliases sequence items counted below)"
             ],
             [
               "Files with at least one unaddressable key",
@@ -573,17 +573,17 @@
               "docs/ENGINE.md:1105"
             ],
             [
-              "Files unlocked by the §75.5 predicate",
+              "Files unlocked by the new key-addressability predicate",
               "936 of 942 = 99.36%",
               "docs/ENGINE.md:1115"
             ],
             [
-              "— of which the predicate alone is enough",
+              "of which the predicate alone is enough",
               "750",
               "docs/ENGINE.md:1113-1120"
             ],
             [
-              "— of which NF-1 must also land before publish succeeds",
+              "of which the left-edge list bug fix must also land before publish succeeds",
               "186",
               "docs/ENGINE.md:1113-1120"
             ],
@@ -611,7 +611,7 @@
             [
               "Predicate: NFC, one line, no control char, no edge space, no `: `, no ` #`, no leading indicator",
               "936 of 942",
-              "6 files — 5 sequence items and one template line, all correct refusals"
+              "6 files: 5 sequence items and one template line, all correct refusals"
             ],
             [
               "Keep SAFE_KEY",
@@ -762,12 +762,12 @@
             [
               "docs/DECIDE.md:60",
               "\"edits them byte-exactly, changing only the bytes you touched\"",
-              "refuted by D10"
+              "refuted by the trailing-comment-deletion defect"
             ],
             [
               "src/modules/share/domain/splice-frontmatter.ts header",
               "the module's stated contract is to leave every other byte untouched",
-              "refuted by D10, in the same file"
+              "refuted by the trailing-comment-deletion defect, in the same file"
             ],
             [
               "docs/ENGINE.md:1000, demo beat 5",
@@ -796,13 +796,13 @@
               "docs/CRITIQUE.md:757"
             ],
             [
-              "In MVP-0's 38 points",
+              "In the pilot's 38 points",
               "no",
               "docs/CRITIQUE.md:757; docs/DECIDE.md:73"
             ],
             [
               "Product code paths through this function",
-              "2 — share-writer.ts and PropertiesPanel.tsx",
+              "2: share-writer.ts and PropertiesPanel.tsx",
               "grep over src/"
             ],
             [
@@ -968,7 +968,7 @@
         {
           "type": "bars",
           "title": "What the certificate's findings reduce to (800-file corpus sample)",
-          "note": "Kill condition 4 fires when the top five constructs exceed 80% of BROKEN attributions — the apparatus reduces to a static rule set. docs/ENGINE.md:816-828, 899.",
+          "note": "Kill condition 4 fires when the top five constructs exceed 80% of BROKEN attributions: the apparatus reduces to a static rule set. docs/ENGINE.md:816-828, 899.",
           "data": [
             [
               "Top-5 constructs' share of attributions",
@@ -1013,12 +1013,12 @@
             ],
             [
               "Tiers currently priced on the certificate",
-              "2 — Pro gates and the Max B2B line",
+              "2: Pro gates and the Max B2B line",
               "docs/PRODUCT-BRIEF.md:288, docs/PRODUCT-BRIEF.md:475"
             ],
             [
               "Blocker underneath the test",
-              "the CLI does not start — see E10",
+              "the CLI does not start, see the CLI-wiring decision",
               "reproduced this session"
             ]
           ]
@@ -1276,7 +1276,7 @@
             [
               "Share of vault-run attributions that are `task-list`",
               "172 of 484",
-              "—",
+              "none",
               "the second-largest attributed construct"
             ]
           ]
@@ -1293,7 +1293,7 @@
             [
               "Same file, 4 targets",
               "PASS 202 / CORRUPT 6",
-              "docs/ENGINE.md:808 — both MUTATE rows gone"
+              "docs/ENGINE.md:808: both MUTATE rows gone"
             ],
             [
               "Reason",
@@ -1302,7 +1302,7 @@
             ],
             [
               "Dead option in the code",
-              "`void oracle` — a caller-settable `oracleEngineId` that provably changes nothing",
+              "`void oracle`: a caller-settable `oracleEngineId` that provably changes nothing",
               "src/modules/mdmax/application/certify.ts:259; graded MINOR at docs/CRITIQUE.md:766"
             ],
             [
@@ -1491,13 +1491,13 @@
             ],
             [
               "Whole corpus, with kramdown",
-              "the document gives three answers — ≈45 min (docs/ENGINE.md:542), 92.4 min (docs/ENGINE.md:871), and 5.6 min (docs/ENGINE.md:354, quoted again at :427)",
+              "the document gives three answers: ≈45 min (docs/ENGINE.md:542), 92.4 min (docs/ENGINE.md:871), and 5.6 min (docs/ENGINE.md:354, quoted again at :427)",
               "all three are marked [derived] from different bases; this must be re-derived once before it is used to size a nightly job"
             ],
             [
               "Gemfile.lock / .ruby-version in repo",
               "absent",
-              "docs/ENGINE.md:231; verified — no such files"
+              "docs/ENGINE.md:231; verified: no such files"
             ],
             [
               "Cost if one ruby process is kept alive",
@@ -1519,25 +1519,25 @@
             [
               "`entities@8.0.0`",
               "fold.ts, verdict.ts",
-              "no — hoisted from parse5 and markdown-it, marked dev",
+              "no: hoisted from parse5 and markdown-it, marked dev",
               "`escapeText` changes; every verdict changes; `mdmax/fold@1` does not move"
             ],
             [
               "`marked`",
               "one of seven bench engines",
-              "no — one lockfile dependent, `mermaid`",
+              "no: one lockfile dependent, `mermaid`",
               "a mermaid upgrade silently changes `benchId`"
             ],
             [
               "`github-slugger@2.0.0`",
               "slug.ts",
               "yes, package.json:55",
-              "—"
+              "none"
             ],
             [
               "ruby + kramdown 2.5.2 + kramdown-parser-gfm 1.1.0",
               "bench.ts",
-              "no Gemfile, no Gemfile.lock, no .ruby-version — verified",
+              "no Gemfile, no Gemfile.lock, no .ruby-version: verified",
               "the seventh engine's version is whatever the machine has"
             ]
           ]
@@ -1564,7 +1564,7 @@
             [
               "Reproducibility gaps closed by those three",
               "3 of the 5 in the table",
-              "docs/ENGINE.md:228-232 — the other two are the CLI (E10) and the certificate schema, which needs a version bump"
+              "docs/ENGINE.md:228-232: the other two are the CLI (E10) and the certificate schema, which needs a version bump"
             ],
             [
               "What the plan already budgets",
@@ -1750,7 +1750,7 @@
             ],
             [
               "Compute, with kramdown",
-              "unsettled — see E8; ENGINE gives 92.4 min, ≈45 min and 5.6 min in three places",
+              "unsettled, see the engine-dependency decision; ENGINE gives 92.4 min, ≈45 min and 5.6 min in three places",
               "docs/ENGINE.md:871, :542, :354"
             ],
             [
@@ -1800,7 +1800,7 @@
               "MCP tool `certify_markdown`",
               "2",
               "an agent that can act on VOID and LEAK before writing",
-              "whole certificate is 24.4x source size — return summary plus non-PASS cells"
+              "whole certificate is 24.4x source size: return summary plus non-PASS cells"
             ],
             [
               "Public web checker",
@@ -1824,7 +1824,7 @@
               "Badge",
               "1",
               "nothing defensible",
-              "anti-recommended outright — target subsetting alone moved AGENTS.md from 38 CORRUPT to 6"
+              "anti-recommended outright: target subsetting alone moved AGENTS.md from 38 CORRUPT to 6"
             ]
           ]
         }
@@ -1975,17 +1975,17 @@
             ],
             [
               "`cert` in package.json scripts",
-              "absent — 26 scripts, none is cert",
+              "absent: 26 scripts, none is cert",
               "verified; package.json:8"
             ],
             [
               "Importers of scripts/ts-resolve.mjs anywhere in the repo",
-              "0 — it is named only in prose",
+              "0: it is named only in prose",
               "verified by grep"
             ],
             [
               "Works with `node --import ./scripts/ts-resolve.mjs`",
-              "yes — all seven engines load, including kramdown 2.5.2",
+              "yes: all seven engines load, including kramdown 2.5.2",
               "docs/ENGINE.md:526"
             ],
             [
@@ -2059,12 +2059,12 @@
             ],
             [
               "Full corpus, with kramdown",
-              "unsettled — see E8",
+              "unsettled, see the engine-dependency decision",
               "docs/ENGINE.md:871, :542, :354"
             ],
             [
               "Prerequisite",
-              "a runnable CLI — E10",
+              "a runnable CLI, the subject of this decision",
               "reproduced failing this session"
             ],
             [
@@ -2274,12 +2274,12 @@
               "nothing"
             ],
             [
-              "`npm run arch` — 208 files, 0 violations, MIN_SCANNED_FILES = 50",
+              "`npm run arch`: 208 files, 0 violations, MIN_SCANNED_FILES = 50",
               "green and honest",
               "nothing on push"
             ],
             [
-              "`npm run corpus` — the 8,513-file byte pin",
+              "`npm run corpus`: the 8,513-file byte pin",
               "exists as a script",
               "not in the `verify` chain"
             ],
@@ -2291,7 +2291,7 @@
             [
               ".github/workflows",
               "does not exist",
-              "—"
+              "none"
             ]
           ]
         },
@@ -2352,7 +2352,7 @@
               "quadratic-canary",
               "`[[` × 10–80 KB",
               "every push",
-              "asserts slope < 1.3 and 80 KB < 250 ms — today 80 KB measures 2,575.7 ms, so this bench is red against current code until E17 lands"
+              "asserts slope < 1.3 and 80 KB < 250 ms: today 80 KB measures 2,575.7 ms, so this bench is red against current code until the size-guard decision lands"
             ],
             [
               "offset-integrity",
@@ -2382,7 +2382,7 @@
               "cert-full",
               "all 8,513",
               "weekly",
-              "unsettled — ENGINE gives 5.6 min, ≈45 min and 92.4 min in three sections; see E8"
+              "unsettled: ENGINE gives 5.6 min, ≈45 min and 92.4 min in three sections, see the engine-dependency decision"
             ]
           ]
         }
@@ -2546,7 +2546,7 @@
             [
               "Estimated gzip after minification",
               "15–18 KB",
-              "docs/ENGINE.md:2243 — marked [derived, estimate]"
+              "docs/ENGINE.md:2243: marked [derived, estimate]"
             ],
             [
               "Proposed ceiling for the core",
@@ -2560,7 +2560,7 @@
             ],
             [
               "Actual bundler measurement",
-              "none — no bundler is configured for the engine",
+              "none: no bundler is configured for the engine",
               "package.json:20"
             ]
           ]
@@ -2715,7 +2715,7 @@
       "evidence": [
         {
           "type": "stat",
-          "title": "Reproduced at HEAD in this session — the shape matters",
+          "title": "Reproduced at HEAD in this session: the shape matters",
           "items": [
             [
               "Length 512",
@@ -2739,7 +2739,7 @@
             ],
             [
               "Every wrong answer",
-              "`{ok: true, value: <document length>}` — indistinguishable from a valid result",
+              "`{ok: true, value: <document length>}`: indistinguishable from a valid result",
               "live run"
             ],
             [
@@ -2785,8 +2785,8 @@
             ],
             [
               "A test at 512/1024/1536 that probes only low offsets",
-              "—",
-              "0 at 1024 and 1536 — it must probe at or past the last checkpoint"
+              "none",
+              "0 at 1024 and 1536: it must probe at or past the last checkpoint"
             ]
           ]
         },
@@ -2822,7 +2822,7 @@
           "items": [
             [
               "Reaches a user today",
-              "yes — the only mdmax defect that does",
+              "yes: the only mdmax defect that does",
               "docs/ENGINE.md:47; docs/CRITIQUE.md:762"
             ],
             [
@@ -3014,7 +3014,7 @@
           ],
           "rows": [
             [
-              "`# Title\\n\\n---\\n\\nBody\\n` — insert at the break",
+              "`# Title\\n\\n---\\n\\nBody\\n`: insert at the break",
               "allow: the `---` is a thematic break",
               "refuses, ADJACENT_TO_SETEXT_UNDERLINE"
             ],
@@ -3026,7 +3026,7 @@
             [
               "Insert inside a ```js fence",
               "refuse",
-              "{ok:true} — the marker becomes visible code"
+              "{ok:true}: the marker becomes visible code"
             ],
             [
               "Insert inside an inline code span",
@@ -3066,11 +3066,11 @@
             ],
             [
               "Is `land()` built",
-              "no — no `land()`, no splice journal, no review sidecar anywhere in src/",
+              "no: no `land()`, no splice journal, no review file anywhere in src/",
               "verified by grep"
             ],
             [
-              "Points MVP-0 assigns the feature it gates",
+              "Points the pilot assigns the feature it gates",
               "16",
               "docs/DECIDE.md:87"
             ]
@@ -3210,7 +3210,7 @@
         {
           "type": "bars",
           "title": "Wikilink regex cost against input size (docs/ENGINE.md:362)",
-          "note": "markdown-parser.ts, live and ungated today. Fitted log-log slope k = 1.98 — quadratic. BUDGET_MS.keystroke is 250 ms.",
+          "note": "markdown-parser.ts, live and ungated today. Fitted log-log slope k = 1.98: quadratic. BUDGET_MS.keystroke is 250 ms.",
           "data": [
             [
               "10 KB",
@@ -3239,7 +3239,7 @@
           "items": [
             [
               "Symbols of 13 engine files reachable from product code",
-              "1 — `decodeStrict`",
+              "1: `decodeStrict`",
               "verified by grep over src/"
             ],
             [
@@ -3254,7 +3254,7 @@
             ],
             [
               "Corpus files that reach any gate limit",
-              "0 — the corpus proves the happy path only",
+              "0: the corpus proves the happy path only",
               "docs/ENGINE.md:392"
             ],
             [
@@ -3264,7 +3264,7 @@
             ],
             [
               "Largest corpus file",
-              "939,763 bytes — 22.4% of MAX_BYTES",
+              "939,763 bytes: 22.4% of MAX_BYTES",
               "docs/ENGINE.md:392"
             ]
           ]
@@ -3493,7 +3493,7 @@
             [
               "Files with a zero-indent block sequence",
               "6,613",
-              "the refusal driver — an Obsidian default"
+              "the refusal driver: an Obsidian default"
             ],
             [
               "Same code, README population",
@@ -3517,17 +3517,17 @@
           ],
           "rows": [
             [
-              "NF-1 zero-indent red proof",
-              "exists — 99 lines",
-              "test/corpus/foreign/nf-001-red-proof.test.ts; ENGINE §68.5 still calls it a ghost"
+              "the left-edge list bug's zero-indent red proof",
+              "exists: 99 lines",
+              "test/corpus/foreign/nf-001-red-proof.test.ts; the engine's pre-publish test checklist still calls it a ghost"
             ],
             [
-              "NF-3 bare-CR red proof",
-              "exists — 82 lines",
+              "the old line-ending bug's bare-CR red proof",
+              "exists: 82 lines",
               "test/corpus/foreign/nf-003-red-proof.test.ts; same stale row"
             ],
             [
-              "NF-4 unaddressable-key residual",
+              "the spaced-key bug's unaddressable-key residual",
               "does not exist",
               "docs/ENGINE.md:213"
             ],
@@ -3574,7 +3574,7 @@
             ],
             [
               "What the audit says not to gate on",
-              "tests 5–8 — they protect the certificate, which is not yet customer-facing",
+              "tests 5–8: they protect the certificate, which is not yet customer-facing",
               "docs/ENGINE.md:220"
             ]
           ]
@@ -3741,7 +3741,7 @@
             [
               "`# 🌊 tide` heading span",
               "[0,9)",
-              "offset 0..9 — identical; byte length is 11"
+              "offset 0..9: identical; byte length is 11"
             ],
             [
               "Frontmatter block",
@@ -3791,7 +3791,7 @@
             ],
             [
               "Engine parse cost either way",
-              "the engine is cold, once, per document, in a worker — there is no keystroke loop in it",
+              "the engine is cold, once, per document, in a worker: there is no keystroke loop in it",
               "docs/ENGINE.md:1996"
             ]
           ]
@@ -3988,7 +3988,7 @@
             ],
             [
               "Why a fence is the opposite case",
-              "CommonMark 0.31.2 §4.5 — an unclosed fence swallows every line to end of document, and every save is a commit",
+              "CommonMark 0.31.2 section 4.5: an unclosed fence swallows every line to end of document, and every save is a commit",
               "docs/ENGINE.md:1350"
             ],
             [
@@ -4188,14 +4188,14 @@
             ],
             [
               "Same, with the quote gate raised to 64 characters",
-              "31.06% — length gates do not separate them",
+              "31.06%: length gates do not separate them",
               "docs/ENGINE.md:1628"
             ]
           ]
         },
         {
           "type": "table",
-          "title": "The multiplicity ablation — 448 files, 43,056 attempts (docs/ENGINE.md:1593-1596)",
+          "title": "The multiplicity ablation: 448 files, 43,056 attempts (docs/ENGINE.md:1593-1596)",
           "cols": [
             "Configuration",
             "Resolve rate",
@@ -4210,7 +4210,7 @@
               "0"
             ],
             [
-              "Without — unique hash means accept",
+              "Without: unique hash means accept",
               "99.1410%",
               "141 (0.3275%)",
               "115"
@@ -4218,8 +4218,8 @@
             [
               "Cost of the field",
               "0.49 points of resolve rate",
-              "—",
-              "—"
+              "none",
+              "none"
             ]
           ]
         }
@@ -4403,7 +4403,7 @@
               "n/a",
               "n/a",
               "n/a",
-              "catches it — 600 wrong answers"
+              "catches it: 600 wrong answers"
             ],
             [
               "Zero-indent sequence (open)",
@@ -4447,7 +4447,7 @@
             ],
             [
               "Zero-indent sequence caught by any property",
-              "no — and correctly so; properties encode the contract, and the contract is what is wrong",
+              "no, and correctly so; properties encode the contract, and the contract is what is wrong",
               "docs/ENGINE.md:1865"
             ]
           ]
@@ -4606,7 +4606,7 @@
           "items": [
             [
               "`mdmax` on npm",
-              "HTTP 404 — unregistered",
+              "HTTP 404: unregistered",
               "docs/ENGINE.md:2128, fetched 2026-08-30"
             ],
             [
@@ -4616,7 +4616,7 @@
             ],
             [
               "`frontmatter` on npm",
-              "HTTP 200 — taken",
+              "HTTP 200: taken",
               "docs/ENGINE.md:2130"
             ],
             [
@@ -4632,7 +4632,7 @@
             [
               "LICENSE file in repo",
               "absent",
-              "verified — no LICENSE* exists"
+              "verified: no LICENSE* exists"
             ],
             [
               "Engine export declarations",
@@ -4646,7 +4646,7 @@
             ],
             [
               "Runtime deps of the core",
-              "github-slugger (ISC), entities (BSD-2-Clause, undeclared — see E11)",
+              "github-slugger (ISC), entities (BSD-2-Clause, undeclared, see the dependency-declaration decision)",
               "docs/ENGINE.md:2125"
             ]
           ]
@@ -4817,12 +4817,12 @@
             ],
             [
               "Symbols consumed from outside",
-              "1 — `decodeStrict`",
+              "1: `decodeStrict`",
               "verified by grep"
             ],
             [
               "Imports mdmax makes from other modules",
-              "0 — the rule holds and nothing enforces it (see E28)",
+              "0: the rule holds and nothing enforces it (this decision's own gap)",
               "docs/ENGINE.md:546"
             ],
             [
@@ -4849,7 +4849,7 @@
             [
               "Move splice-frontmatter.ts into mdmax/domain/",
               "it is the engine's central contract living outside the module",
-              "nothing enforces its purity; the UI grew a second SAFE_KEY. Move it — do not copy it: two writers is how the shipped write paths diverged in the first place"
+              "nothing enforces its purity; the UI grew a second SAFE_KEY. Move it, do not copy it: two writers is how the shipped write paths diverged in the first place"
             ],
             [
               "bench.ts behind a node-only subpath",
@@ -4900,12 +4900,12 @@
             ],
             [
               "Anti-recommendation",
-              "do not move mdmax to src/shared — shared-domain is importable by everything and would still permit the reverse import",
+              "do not move mdmax to src/shared: shared-domain is importable by everything and would still permit the reverse import",
               "docs/ENGINE.md:554"
             ],
             [
               "What a per-file lint rule cannot see",
-              "a transitive `node:fs` three files down through a type-only-looking import — exactly how bench.ts would leak into a browser bundle",
+              "a transitive `node:fs` three files down through a type-only-looking import: exactly how bench.ts would leak into a browser bundle",
               "docs/ENGINE.md:2170"
             ],
             [
@@ -5314,7 +5314,7 @@
               "whether the mechanism is wanted; which substrate people ask for; who installs; whether anyone asks for an editor"
             ],
             [
-              "Free library after NF-1 and NF-4",
+              "Free library after the left-edge list bug and the spaced-key bug are fixed",
               "weeks later",
               "the same, without publishing an engine that refuses 83% of vaults or freezing SAFE_KEY as observable behaviour"
             ],
@@ -5510,7 +5510,7 @@
             [
               "Buyers pay for consolidation, not fidelity",
               "the first 25 sales conversations",
-              "—",
+              "none",
               "zero conversations held"
             ]
           ]
@@ -5706,7 +5706,7 @@
             ],
             [
               "Files where bytes equal UTF-16 units",
-              "6,568 of 8,513 — so 22.8% diverge",
+              "6,568 of 8,513, so 22.8% diverge",
               "docs/ENGINE.md:398"
             ],
             [
@@ -5754,11 +5754,11 @@
             ],
             [
               "`OffsetMap.toU16` at 512-multiples",
-              "returns end-of-document with ok:true for the last 512 bytes — reproduced today (E15)"
+              "returns end-of-document with ok:true for the last 512 bytes, reproduced today by the wrong-answer defects decision"
             ],
             [
               "Addressing a CJK frontmatter key",
-              "refused by SAFE_KEY — the whole Chinese vault (E3)"
+              "refused by SAFE_KEY: the whole Chinese vault, per the key-writability decision"
             ],
             [
               "A CJK-aware search tokeniser",

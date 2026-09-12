@@ -97,12 +97,12 @@
             [
               "Extension byte-exact write, harness 1",
               "94 / 94 bytes",
-              "VS Code 1.135.0 — PRODUCT-BRIEF.md:364"
+              "VS Code 1.135.0 (PRODUCT-BRIEF.md:364)"
             ],
             [
               "Extension byte-exact write, harness 2",
               "156 / 156 bytes",
-              "independent second harness — GAPS:125"
+              "independent second harness (GAPS:125)"
             ],
             [
               "Engine that would port",
@@ -112,7 +112,7 @@
             [
               "Engine symbols reaching product code today",
               "1 symbol from 1 of 13 files",
-              "decodeStrict, exactly 2 import sites — re-verified"
+              "decodeStrict, exactly 2 import sites, re-verified"
             ],
             [
               "Extension engineering estimate in the plan",
@@ -151,7 +151,7 @@
               "PRODUCT-BRIEF.md:151"
             ],
             [
-              "SpecKit Companion (nearest sidecar pattern)",
+              "SpecKit Companion (the closest comparable tool)",
               "9,367",
               "PRODUCT-BRIEF.md:152"
             ],
@@ -161,7 +161,7 @@
               "PRODUCT-BRIEF.md:9, :24"
             ],
             [
-              "Best of those 13 — the ceiling",
+              "Best of those 13, the ceiling",
               "400",
               "PRODUCT-BRIEF.md:24"
             ],
@@ -355,7 +355,7 @@
             ],
             [
               "View-zone API in VS Code",
-              "none — Live is standalone-only",
+              "none: Live is standalone-only",
               "PRODUCT-BRIEF.md:364"
             ]
           ]
@@ -372,7 +372,7 @@
             [
               "Exhibit 17, the cut",
               "304",
-              "CUT — the parse is unreachable, 115 installs against a 200 kill line"
+              "CUT: the parse is unreachable, 115 installs against a 200 kill line"
             ],
             [
               "Exhibit 6, MVP-0 channels",
@@ -413,17 +413,17 @@
             [
               "Nested-construct rendering bug",
               "501 likes",
-              "the thing a plugin cannot fix — PRODUCT-BRIEF.md:25"
+              "the thing a plugin cannot fix (PRODUCT-BRIEF.md:25)"
             ],
             [
               "Closest review-state request",
               "0 likes, 1 post in three years",
-              "the thing a plugin could ship — PRODUCT-BRIEF.md:25"
+              "the thing a plugin could ship (PRODUCT-BRIEF.md:25)"
             ],
             [
               "Closest measured analogue, first 14 days",
               "115 installs",
-              "against our own 200-install kill line — PRODUCT-BRIEF.md:304"
+              "against our own 200-install kill line (PRODUCT-BRIEF.md:304)"
             ],
             [
               "Extensions and plugins already sitting in this niche",
@@ -598,21 +598,21 @@
               "0"
             ],
             [
-              "src/ — all files, including non-code",
+              "src/ (all files, including non-code)",
               "202",
               "26 (one is .DS_Store)",
               "20"
             ],
             [
-              "src/ — .ts, .tsx, .css only",
+              "src/ (.ts, .tsx, .css only)",
               "183",
               "25",
               "20"
             ],
             [
               "Of those 20 unique files",
-              "—",
-              "—",
+              "none",
+              "none",
               "13 engine, 5 Firebase auth, 1 DI container, 1 splice-frontmatter"
             ],
             [
@@ -624,11 +624,11 @@
             [
               "The plan also says, at line 479",
               "202 of 228",
-              "—",
-              "—"
+              "none",
+              "none"
             ]
           ],
-          "note": "The 41-of-43 editor figure reproduces exactly. The whole-repo figure does not: line 223 and line 479 disagree with each other and both disagree with measurement. On like-for-like code files the divergence count is still 25, not 26 — the extra file is a macOS .DS_Store artifact, so nothing has actually drifted since the plan was written."
+          "note": "The 41-of-43 editor figure reproduces exactly. The whole-repo figure does not: line 223 and line 479 disagree with each other and both disagree with measurement. On like-for-like code files the divergence count is still 25, not 26 (the extra file is a macOS .DS_Store artifact), so nothing has actually drifted since the plan was written."
         },
         {
           "type": "stat",
@@ -841,7 +841,7 @@
             [
               "Agent writes while a human is typing",
               "unmeasured",
-              "unmeasured — named as a data-loss path",
+              "unmeasured: named as a data-loss path",
               "GAPS:146"
             ],
             [
@@ -905,18 +905,18 @@
             ],
             [
               "Of those, one cause",
-              "6,613 — a `-` item at column zero",
+              "6,613, a `-` item at column zero",
               "ENGINE.md:146, :51"
             ],
             [
-              "NF-1 budget, first item in the fix list",
+              "the left-edge list bug budget, first item in the fix list",
               "4 engineering days",
               "PRODUCT-BRIEF.md:214"
             ],
             [
-              "Unaddressable top-level keys (NF-4)",
+              "Unaddressable top-level keys (the spaced-key bug)",
               "2,447 of 29,288 across 937 of 7,969 files",
-              "ENGINE.md:213 — includes CJK keys from the same vaults"
+              "ENGINE.md:213 (includes CJK keys from the same vaults)"
             ],
             [
               "Refusal rate on repo-shaped markdown",
@@ -1104,7 +1104,7 @@
             ],
             [
               "npm `frontmatter`",
-              "taken (HTTP 200) — a dead 2022 0.0.3 YAML parser",
+              "taken (HTTP 200): a dead 2022 0.0.3 YAML parser",
               "RECORD:1403, :4827"
             ],
             [
@@ -1130,7 +1130,7 @@
             [
               "gray-matter, the generic-name substrate",
               "about 35.8M downloads a month (derived: 8,352,860 weekly x 4.28)",
-              "RECORD:9297, read 2026-08-30; CRITIQUE.md:1728 gives 35,124,859 for 2026-08-31 — same order, different day"
+              "RECORD:9297, read 2026-08-30; CRITIQUE.md:1728 gives 35,124,859 for 2026-08-31 (same order, different day)"
             ]
           ]
         }
@@ -1281,7 +1281,7 @@
             [
               "Claimed browser reader population",
               "1.5M",
-              "refuted — two products summed, one a clipper"
+              "refuted: two products summed, one a clipper"
             ],
             [
               "Real reading population",
@@ -1296,7 +1296,7 @@
             [
               "raw.githubusercontent.com CORS header",
               "access-control-allow-origin: *",
-              "no extension needed — PRODUCT-BRIEF.md:310"
+              "no extension needed (PRODUCT-BRIEF.md:310)"
             ],
             [
               "Cost of the `?src=` replacement",
@@ -1493,10 +1493,10 @@
           "rows": [
             [
               "Contains the editor, engine, git client, MCP server, search index (line 104)",
-              "window url, devUrl and frontendDist all = https://md.sgnk.ai — the sibling product's website"
+              "window url, devUrl and frontendDist all = https://md.sgnk.ai (the sibling product's website)"
             ],
             [
-              "Full local read/write; offline everything except the model (Exhibit 2)",
+              "Full local read/write; offline everything except the model (the plan's platform table)",
               "zero fs permissions. The set is: core, event, window, webview, shell, os, process, clipboard read/write, dialog"
             ],
             [
@@ -1505,7 +1505,7 @@
             ],
             [
               "Product identity re-labelled in 1 day (fix #9)",
-              "productName sgnk-md, identifier ai.sgnk.md — against a measured 4-8 weeks to go from remote wrapper to real (r19-p2 §91.2, option B)"
+              "productName sgnk-md, identifier ai.sgnk.md, against a measured 4-8 weeks to go from remote wrapper to real (a research report, section 91.2, option B)"
             ]
           ]
         },
@@ -1516,7 +1516,7 @@
             [
               "File System Access API support",
               "desktop Chrome and Edge only",
-              "none of Firefox, Safari, iOS, Android — PRODUCT-BRIEF.md:102, caniuse 2026-09-08"
+              "none of Firefox, Safari, iOS, Android (PRODUCT-BRIEF.md:102, caniuse 2026-09-08)"
             ],
             [
               "Users refused on a non-Chromium browser",
@@ -1728,12 +1728,12 @@
             ],
             [
               "Markdown-native mobile vs the OS notes app",
-              "about 1/32 the size — tagged [inference] in the record, not measured",
+              "about 1/32 the size (tagged [inference] in the record, not measured)",
               "RECORD:2067"
             ],
             [
               "Capture-shaped vs authoring-shaped markdown apps",
-              "about 7:1 — same [inference] tag",
+              "about 7:1 (same [inference] tag)",
               "RECORD:2067"
             ],
             [
@@ -1960,7 +1960,7 @@
             ],
             [
               "BYO key, fix #6",
-              "3 engineering days — \"deleted\" by the host model picker",
+              "3 engineering days (\"deleted\" by the host model picker)",
               "PRODUCT-BRIEF.md:219, :364"
             ],
             [
@@ -1982,7 +1982,7 @@
         },
         {
           "type": "table",
-          "title": "Table-stakes gaps in the standalone shell, and whether the host supplies them (r24-v1, eight ranked gaps)",
+          "title": "Table-stakes gaps in the standalone shell, and whether the host supplies them (a research report, eight ranked gaps)",
           "cols": [
             "Gap",
             "Cost",
@@ -2052,7 +2052,7 @@
               "PRODUCT-BRIEF.md:24"
             ],
             [
-              "Nearest sidecar pattern, SpecKit Companion",
+              "The closest comparable tool, SpecKit Companion",
               "9,367 installs",
               "PRODUCT-BRIEF.md:152"
             ],
@@ -2248,7 +2248,7 @@
             [
               "Competitor already shipping this shape",
               "dealfluence/adeu, MIT, 149 stars, pushed 2026-08-30",
-              "CRITIQUE.md:33, :1700 — for .docx"
+              "CRITIQUE.md:33, :1700 (for .docx)"
             ],
             [
               "`mdmax cert` today",
@@ -2426,7 +2426,7 @@
       "evidence": [
         {
           "type": "table",
-          "title": "Surfaces named or still referenced in the v15 plan",
+          "title": "Surfaces named or still referenced in the current plan",
           "cols": [
             "Surface",
             "Stated status",
@@ -2435,12 +2435,12 @@
           "rows": [
             [
               "Web app",
-              "MVP-0",
+              "the pilot",
               "Exhibit 6, line 203"
             ],
             [
               "Desktop app (Tauri)",
-              "MVP-0 — but the shell points at md.sgnk.ai with zero fs permissions",
+              "the pilot, but the shell points at md.sgnk.ai with zero fs permissions",
               "line 104; src-tauri/tauri.conf.json"
             ],
             [
@@ -2450,17 +2450,17 @@
             ],
             [
               "Obsidian plugin",
-              "CUT — still referenced in 6 places",
+              "CUT: still referenced in 6 places",
               "lines 204, 338, 428, 464, 477, 524 (cut at 304)"
             ],
             [
               "Chrome extension",
-              "CUT — still referenced in 3 places",
+              "CUT: still referenced in 3 places",
               "lines 203, 464, 477 (cut at 310)"
             ],
             [
               "MCP server",
-              "MVP-1; needs a local process",
+              "the build after the pilot; needs a local process",
               "F11, line 65"
             ],
             [
@@ -2477,12 +2477,12 @@
         },
         {
           "type": "stat",
-          "title": "The rate that binds all of it — independently reproduced 2026-09-09",
+          "title": "The rate that binds all of it, independently reproduced 2026-09-09",
           "items": [
             [
               "Measured engineering days per calendar week",
               "1.21",
-              "10 of 58 calendar days on src + src-tauri + test — reproduces exactly"
+              "10 of 58 calendar days on src + src-tauri + test (reproduces exactly)"
             ],
             [
               "Best rate ever observed on the sibling repo",
@@ -2492,10 +2492,10 @@
             [
               "Last 30 days, same path basis as the headline",
               "3 of 30 days = 0.70 per week",
-              "re-measured. The plan's \"0.23/week\" is src/ alone — a different denominator from its own headline, which makes the collapse look 3x worse than like-for-like"
+              "re-measured. The plan's \"0.23/week\" is src/ alone: a different denominator from its own headline, which makes the collapse look 3x worse than like-for-like"
             ],
             [
-              "MVP-0 estimate, one surface",
+              "the pilot estimate, one surface",
               "about 70 engineering days",
               "PRODUCT-BRIEF.md:227"
             ],
@@ -2506,7 +2506,7 @@
             ],
             [
               "Authors on the commit record",
-              "1 — now 82 of 82 on this repo (the plan says 80 of 80; two commits have landed since)",
+              "1, now 82 of 82 on this repo (the plan says 80 of 80; two commits have landed since)",
               "re-measured 2026-09-09"
             ]
           ]

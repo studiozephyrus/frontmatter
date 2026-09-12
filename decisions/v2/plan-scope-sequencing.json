@@ -92,39 +92,39 @@
       "evidence": [
         {
           "type": "table",
-          "title": "MVP-0, then and now",
+          "title": "the pilot, then and now",
           "cols": [
-            "MVP-0 in DECIDE §3.1 (38 pts ≈ 41 days)",
-            "MVP-0 in the plan §8 and §9 (2026-09-08)"
+            "the pilot's scope in DECIDE's original ship list (38 points, about 41 days)",
+            "the pilot in the plan's Tiers and Technical-plan sections (2026-09-08)"
           ],
           "rows": [
             [
-              "NF-3 bare-CR fence (4 pts)",
-              "F1 editor + NF-1/NF-3 + engine wiring"
+              "the old line-ending bug: bare-CR fence (4 points)",
+              "the editor, the left-edge list bug and the old line-ending bug, and engine wiring"
             ],
             [
-              "NF-1 + NF-2 zero-indent (6 pts)",
-              "F2 review state (18d)"
+              "the left-edge list bug: zero-indent (6 points)",
+              "review state (18 days)"
             ],
             [
               "CI with a deliberate red run (2 pts)",
-              "F3 attribution readers (3d)"
+              "attribution readers (3 days)"
             ],
             [
               "Real byte budget (2 pts)",
-              "F4 answer in place (2d)"
+              "answer in place (2 days)"
             ],
             [
               "Seams 2+3, one splice behind every write (8 pts)",
-              "F5 idea mode + F6 decision flow (8d)"
+              "idea mode and decision flow (8 days)"
             ],
             [
               "land() + per-hunk accept/reject (16 pts)",
-              "F7 repo docs scan (10d)"
+              "repo docs scan (10 days)"
             ],
             [
               "Absent: sign-up, hosted anything, billing, sync, publishing",
-              "F8 AI panel + BYO key (3d) — 69 sequenced days, about 70 with polish"
+              "AI panel and bring-your-own key (3 days): 69 sequenced days, about 70 with polish"
             ]
           ]
         },
@@ -133,7 +133,7 @@
           "title": "What the added block costs and rests on",
           "items": [
             [
-              "Generation and AI days in MVP-0 (F5,F6,F7,F8)",
+              "Generation and AI days in the pilot (idea mode, decision flow, repo docs scan, AI panel)",
               "21",
               "plan §9 sequence line"
             ],
@@ -143,14 +143,14 @@
               "21 ÷ 69, the sequence's own rows"
             ],
             [
-              "Evidence class, F5 and F6",
+              "Evidence class, idea mode and decision flow",
               "founder user test, reported",
               "Exhibit 1"
             ],
             [
-              "Evidence class, F7",
+              "Evidence class, repo docs scan",
               "founder direction",
-              "Exhibit 1 — Exhibit 5 lumps all three as tested"
+              "Exhibit 1: Exhibit 5 lumps all three as tested"
             ],
             [
               "Test notes attached to the plan",
@@ -169,29 +169,29 @@
           ],
           "rows": [
             [
-              "Row 6 — no bring-your-own key",
+              "Row 6: no bring-your-own key",
               "3",
               "deleted; the host supplies the model picker"
             ],
             [
-              "F8 — AI panel and key UI",
+              "AI panel and key UI",
               "3",
               "deleted; the host supplies it"
             ],
             [
-              "Row 9 — src-tauri identity",
+              "Row 9: src-tauri identity",
               "1",
               "moot if no desktop app ships"
             ],
             [
-              "Row 4 — engine unwired",
+              "Row 4: engine unwired",
               "8",
               "the wiring target changes, the work does not"
             ],
             [
-              "Row 7 — structured output in the LLM port",
+              "Row 7: structured output in the LLM port",
               "2",
-              "still needed if F5/F6/F7 stay"
+              "still needed if idea mode, decision flow and repo docs scan stay"
             ]
           ]
         },
@@ -391,7 +391,7 @@
         {
           "type": "bars",
           "title": "Engineering days per calendar week",
-          "note": "Re-measured here 2026-09-08 by git log: 10 distinct calendar days between 2026-07-13 and 2026-09-08 touched src/, src-tauri/ or test/, over a 58-day window = 1.21/week. Sibling best is the md repo's best-ever regime, per §9.",
+          "note": "Re-measured here on 2026-09-08 by git log: 10 distinct calendar days between 2026-07-13 and 2026-09-08 touched src/, src-tauri/ or test/, over a 58-day window, which is 1.21 a week. The sibling's best is the md repo's best-ever regime, in the plan's Technical-plan section.",
           "data": [
             [
               "Last 30 days here",
@@ -438,12 +438,12 @@
               "§9 table, rows summed"
             ],
             [
-              "Full MVP-0 at 1.21/week",
+              "The full pilot at 1.21 a week",
               "58 weeks",
               "70 ÷ 1.21, plan's own figure"
             ],
             [
-              "Full MVP-0 at 1.91/week",
+              "The full pilot at 1.91 a week",
               "37 weeks",
               "70 ÷ 1.91, plan's own figure"
             ],
@@ -634,12 +634,12 @@
           ],
           "rows": [
             [
-              "1 NF-1 column-zero list item",
+              "1: the left-edge list bug, column-zero list item",
               "4",
-              "No — engine, correct in any shell"
+              "No: engine, correct in any shell"
             ],
             [
-              "2 NF-3 bare-CR fence",
+              "2: the old line-ending bug, bare-CR fence",
               "3",
               "No"
             ],
@@ -666,22 +666,22 @@
             [
               "4 Engine unwired (one symbol of thirteen files)",
               "8",
-              "Yes — wiring target depends on the shell (decision 6)"
+              "Yes: wiring target depends on the shell (decision 6)"
             ],
             [
               "6 No bring-your-own key",
               "3",
-              "Yes — deleted if VS Code (decision 6)"
+              "Yes: deleted if VS Code (decision 6)"
             ],
             [
               "7 LLM port returns a bare string",
               "2",
-              "Yes — only needed if F5/F6/F7 stay (PL1)"
+              "Yes: only needed if idea mode, decision flow and repo docs scan stay (see the pilot's generation-and-AI features decision above)"
             ],
             [
               "9 src-tauri carries the sibling's identity",
               "1",
-              "Yes — moot if no desktop app"
+              "Yes: moot if no desktop app"
             ],
             [
               "0 The shell is a fork · 8 Web byte path",
@@ -728,11 +728,11 @@
         },
         {
           "type": "table",
-          "title": "Fix-first rows against the calendar in Exhibit 19",
+          "title": "Fix-first rows against the plan's 90-day calendar",
           "cols": [
             "Row",
             "Days",
-            "Week in Exhibit 19"
+            "Week in the plan's 90-day calendar"
           ],
           "rows": [
             [
@@ -741,12 +741,12 @@
               "3–4"
             ],
             [
-              "2 NF-3",
+              "2: the old line-ending bug",
               "3",
               "3–4"
             ],
             [
-              "1 NF-1",
+              "1: the left-edge list bug",
               "4",
               "3–4"
             ],
@@ -803,7 +803,7 @@
             ],
             [
               "package.json budget script",
-              "echo 'No bundle budget configured yet — skipping'",
+              "the `budget` npm script prints: `echo 'No bundle budget configured yet — skipping'`",
               "literal string at package.json:20, 26 scripts total"
             ],
             [
@@ -1297,7 +1297,7 @@
             ],
             [
               "Five-second screenshot test",
-              "Whether the tint reads as a tint",
+              "Whether the highlight reads as a highlight",
               "Anything commercial"
             ]
           ]
@@ -1395,18 +1395,18 @@
             ],
             [
               "Five-second screenshot",
-              "whether the tint design is wrong before building",
+              "whether the highlight design is wrong before building",
               "week 3"
             ],
             [
               "Five billers",
               "decision 2, first buyer",
-              "week 1, per Exhibit 20"
+              "week 1, per the plan's decision list"
             ],
             [
               "Twenty team conversations",
-              "the Pro price and MVP-1's offer",
-              "MVP-1, months later"
+              "the Pro price and what the build after the pilot offers",
+              "the build after the pilot, months later"
             ]
           ]
         }
@@ -1589,7 +1589,7 @@
           "rows": [
             [
               "§12 Exhibit 17",
-              "CUT — parse unreachable, 115-install analogue",
+              "CUT: parse unreachable, 115-install analogue",
               "the finding"
             ],
             [
@@ -1605,22 +1605,22 @@
             [
               "§17 Exhibit 24, retention",
               "stays installed in a vault the user opens daily",
-              "stale — one of seven retention levers"
+              "stale: one of seven retention levers"
             ],
             [
               "§19 family diagram",
-              "Chrome extension · Obsidian plugin — reading and distribution",
+              "Chrome extension, Obsidian plugin: reading and distribution",
               "stale twice: both channels are cut"
             ],
             [
               "§19 Exhibit 26",
-              "Chrome extension, Obsidian plugin · Free; channels · MVP-1, week 2",
+              "Chrome extension, Obsidian plugin, Free; channels, the build after the pilot, week 2",
               "stale twice"
             ],
             [
               "§14 flow, no-go branch",
               "Stop: free plugin, services, engine",
-              "stale — the fallback does not exist"
+              "stale: the fallback does not exist"
             ]
           ]
         },
@@ -1806,8 +1806,8 @@
       "evidence": [
         {
           "type": "bars",
-          "title": "KS5, measured on this repo 2026-09-08",
-          "note": "KS5 fires above 3:1 for two consecutive weeks. Re-run here with the two commands the switch itself names: git log --since='14 days ago' --name-only --pretty=format: -- docs, and the same for src.",
+          "title": "the writing switch, measured on this repo 2026-09-08",
+          "note": "The writing switch fires above 3:1 for two consecutive weeks. Re-run here with the two commands the switch itself names: git log --since='14 days ago' --name-only --pretty=format: -- docs, and the same for src.",
           "data": [
             [
               "docs/ file-changes, 14 days",
@@ -1818,7 +1818,7 @@
               0
             ],
             [
-              "KS5 trip line",
+              "the writing switch's trip line",
               3
             ]
           ],
@@ -1836,32 +1836,32 @@
           ],
           "rows": [
             [
-              "§13 row 1",
+              "the Risks section, row 1",
               "under 4 of 10 want review state",
-              "No — fires on the market"
+              "No: fires on the market"
             ],
             [
-              "§13 row 7",
+              "the Risks section, row 7",
               "patched corpus still refusing >10 of 7,969 by day 24",
-              "No — fires on the engine"
+              "No: fires on the engine"
             ],
             [
-              "§8 Exhibit 6",
+              "the Tiers section and the tiers table",
               "plugin under 200 installs in 14 days",
-              "No — and the plugin is cut (PL8)"
+              "No, and the plugin is cut (see the channels question above)"
             ],
             [
-              "KS5",
+              "the writing switch",
               "docs:src file-changes >3:1 for two weeks → freeze writing 14 days",
-              "Yes — reading 396:0 today"
+              "Yes, reading 396:0 today"
             ],
             [
-              "KS6",
+              "the product-hours switch",
               "logged product hours under 300 of 430 budgeted → drop client work or drop the product",
               "Yes"
             ],
             [
-              "KS7",
+              "the client-hours switch",
               "a client month demands >60 client hours → the product month is cancelled in writing",
               "Yes"
             ]
@@ -2067,22 +2067,22 @@
           ],
           "rows": [
             [
-              "Merge — one repo, frontmatter as a mode",
+              "Merge: one repo, frontmatter as a mode",
               "goes to zero",
               "the two products stop being separable, ever"
             ],
             [
-              "Vendor — pin the shell as a versioned internal package",
+              "Vendor: pin the shell as a versioned internal package",
               "a version bump per upstream fix",
               "nothing; survives either answer to decision 6"
             ],
             [
-              "Fork and own — declare the 25 diverged files the start",
+              "Fork and own: declare the 25 diverged files the start",
               "full table-stakes budget, unestimated",
               "nothing, but the number must be written first"
             ],
             [
-              "Drop the shell — if decision 6 goes to an extension",
+              "Drop the shell: if decision 6 goes to an extension",
               "most of the 43 files stop being needed",
               "the free-editor distribution story and the Obsidian audience"
             ]
@@ -2260,7 +2260,7 @@
               "the only Firestore code is an unused accessor"
             ],
             [
-              "What Exhibit 6 says MVP-0 has",
+              "What the tiers table says the pilot has",
               "no sign-up",
               "and §17 says no account"
             ]
@@ -2434,7 +2434,7 @@
             [
               "Channel needed",
               "superpowers maintainer's consent, not requested",
-              "npm, MCP registry, plugin manifest — no gatekeeper"
+              "npm, MCP registry, plugin manifest: no gatekeeper"
             ],
             [
               "Also answers",
@@ -2469,7 +2469,7 @@
             ],
             [
               "Defensibility rating in the record's own audit",
-              "No — a library, not a moat",
+              "No: a library, not a moat",
               "RECORD:12307"
             ],
             [
@@ -2615,7 +2615,7 @@
           "type": "table",
           "title": "What Pro sells against what is built",
           "cols": [
-            "Sold in §11",
+            "Sold in the Pricing section",
             "Built in any F-row",
             "Where it actually lives"
           ],
@@ -2623,7 +2623,7 @@
             [
               "Retained splice journal, 90 days",
               "No",
-              "no feature row; sidecar is current state (§4)"
+              "no feature row; the review file is current state"
             ],
             [
               "Review gates that block in CI",
@@ -2632,17 +2632,17 @@
             ],
             [
               "Shared review state",
-              "F10, MVP-1, 10 days",
+              "shared review state and comments, the build after the pilot, 10 days",
               "included, not the gate"
             ],
             [
               "Comments",
-              "F10, MVP-1",
+              "shared review state and comments, the build after the pilot",
               "included"
             ],
             [
               "MCP server",
-              "F11, MVP-1, 6 days",
+              "the MCP server, the build after the pilot, 6 days",
               "included"
             ]
           ]
@@ -2865,7 +2865,7 @@
           "rows": [
             [
               "Export beats decks on VS Code installs",
-              "4,107,590 vs 851,533 — 4.8:1"
+              "4,107,590 vs 851,533, a ratio of 4.8 to 1"
             ],
             [
               "Folder-to-one-PDF, the only leg with demonstrated demand",
@@ -2873,11 +2873,11 @@
             ],
             [
               "Folder-to-one-PDF cost",
-              "4 days, MVP-1"
+              "4 days, the build after the pilot"
             ],
             [
               "Copy-as-HTML",
-              "0 occurrences in src/ — not built, confirmed here"
+              "0 occurrences in src/: not built, confirmed here"
             ]
           ]
         }
@@ -3019,7 +3019,7 @@
           "title": "Two ninety-day endings",
           "cols": [
             "Week",
-            "Current plan (Exhibit 19)",
+            "Current plan (the plan's 90-day calendar)",
             "Record's 90-day plan"
           ],
           "rows": [
@@ -3075,7 +3075,7 @@
               "§14 Exhibit 19"
             ],
             [
-              "Show HN, per §12",
+              "Show HN, per the Go-to-market section",
               "after the exit test",
               "one shot, outside the quarter"
             ],

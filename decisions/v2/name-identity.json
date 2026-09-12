@@ -102,7 +102,7 @@
             [
               "Latest release",
               "v10.12.0, 2026-08-21",
-              "GAPS-2026-09-08.md:132 — alive, not abandoned"
+              "GAPS-2026-09-08.md:132 (alive, not abandoned)"
             ],
             [
               "Marketplace rating",
@@ -112,16 +112,16 @@
             [
               "GitHub stars",
               "2,539",
-              "e6-naming-risk.md:2 — estruyf/vscode-front-matter, created 2019-08-23"
+              "e6-naming-risk.md:2 (estruyf/vscode-front-matter, created 2019-08-23)"
             ],
             [
               "\"Frontmatter Studio\"",
               "taken 2026-09-07",
-              "GAPS-2026-09-08.md:132 — the qualifier §52.3 ranked best in the spoken name"
+              "GAPS-2026-09-08.md:132 (the qualifier §52.3 ranked best in the spoken name)"
             ],
             [
               "Marketplace listings the incumbent holds",
-              "3 — \"Front Matter CMS\", a \"(BETA)\" listing, \"Front Matter CMS - Theme\"",
+              "3: \"Front Matter CMS\", a \"(BETA)\" listing, \"Front Matter CMS - Theme\"",
               "e6-naming-risk.md:87; named at COMPLETE-RECORD-2026-08-30.md:12496"
             ]
           ]
@@ -215,7 +215,7 @@
             [
               "Cumulative visitors for the plan's revenue target",
               "1,260,000",
-              "BUSINESS.md:353 — settled figure"
+              "BUSINESS.md:353 (a settled figure)"
             ],
             [
               "Free signups implied",
@@ -230,7 +230,7 @@
             [
               "Marketing-site keyword map",
               "none written",
-              "r14-g1-final-gap-sweep.md:14 — MISSING"
+              "r14-g1-final-gap-sweep.md:14 (marked missing)"
             ]
           ]
         }
@@ -393,7 +393,7 @@
       "evidence": [
         {
           "type": "table",
-          "title": "What a rename costs, by artefact — and how well each verdict is evidenced",
+          "title": "What a rename costs, by artefact, and how well each verdict is evidenced",
           "cols": [
             "Artifact",
             "Cost of changing it later",
@@ -402,12 +402,12 @@
           "rows": [
             [
               "Source files carrying the word",
-              "Low — 169 occurrences in 44 of 248 src files",
+              "Low: 169 occurrences in 44 of 248 src files",
               "re-measured in src/ on 2026-09-09 [measured]"
             ],
             [
               "Public prototype URL",
-              "Low — one Vercel deployment",
+              "Low: one Vercel deployment",
               "docs/PRODUCT-BRIEF.md:237"
             ],
             [
@@ -417,8 +417,8 @@
             ],
             [
               "API error-type URIs at frontmatter.dev/errors/",
-              "Breaking — the plan's own words",
-              "docs/DEV-PLAN.md:627 [quoted — the only permanence the plan states]"
+              "Breaking, in the plan's own words",
+              "docs/DEV-PLAN.md:627 [quoted: the only permanence the plan states]"
             ],
             [
               "`*.frontmatter.app` published pages",
@@ -427,13 +427,13 @@
             ],
             [
               "Desktop bundle identifier `ai.sgnk.md`",
-              "Assumed permanent — it is the OS's key for preferences, keychain and the signed update channel",
+              "Assumed permanent: it is the OS's key for preferences, keychain and the signed update channel",
               "src-tauri/tauri.conf.json:5; the plan says only that it \"must be re-identified\" (PRODUCT-BRIEF.md:104) [unverified against platform docs]"
             ],
             [
               "GitHub App name \"Frontmatter\"",
-              "Assumed permanent — the plan registers 3 distinct App names across 4 environments, which implies a shared namespace",
-              "docs/DEV-PLAN.md:1104, 1610 [inference — the plan never says the App namespace is global, and it was not checked]"
+              "Assumed permanent: the plan registers 3 distinct App names across 4 environments, which implies a shared namespace",
+              "docs/DEV-PLAN.md:1104, 1610 [inference: the plan never says the App namespace is global, and it was not checked]"
             ]
           ]
         },
@@ -444,7 +444,7 @@
             [
               "Firefox renames before dominance",
               "2 (Phoenix, Firebird)",
-              "e6-naming-risk.md:110 — \"survivable and cheap\""
+              "e6-naming-risk.md:110 (\"survivable and cheap\")"
             ],
             [
               "Riot.im rename, post-launch",
@@ -459,7 +459,7 @@
             [
               "Rename tripwires written into the plan",
               "0",
-              "docs/PRODUCT-BRIEF.md — no gate in any exhibit"
+              "docs/PRODUCT-BRIEF.md (no gate in any exhibit)"
             ]
           ]
         },
@@ -479,7 +479,7 @@
             ],
             [
               "GAPS §G item 3",
-              "then resolve the name — keep, rename, or scope it to the desktop product",
+              "then resolve the name: keep, rename, or scope it to the desktop product",
               "GAPS-2026-09-08.md:101"
             ],
             [
@@ -505,12 +505,12 @@
           "items": [
             [
               "Arguments for the extension",
-              "4 — byte-exact writes 94/94 and 156/156; portable engine, 3,614 lines; free model picker and MCP; empty niche",
+              "4: byte-exact writes 94/94 and 156/156; portable engine, 3,614 lines; free model picker and MCP; empty niche",
               "PRODUCT-BRIEF.md:364"
             ],
             [
               "Arguments against",
-              "4 — save pipeline rewrites; no view-zone API; untested data-loss path; the name",
+              "4: save pipeline rewrites; no view-zone API; untested data-loss path; the name",
               "PRODUCT-BRIEF.md:364"
             ],
             [
@@ -690,17 +690,17 @@
             [
               "US registration",
               "none surfaced",
-              "e6-naming-risk.md:84 — search-summary only, \"snippets cannot prove a negative\""
+              "e6-naming-risk.md:84 (search-summary only, \"snippets cannot prove a negative\")"
             ],
             [
               "EU registration",
               "one reported, never reproduced",
-              "GAPS-2026-09-08.md:146 — five registries blocked"
+              "GAPS-2026-09-08.md:146 (five registries blocked)"
             ],
             [
               "Benelux (the incumbent is Belgian)",
               "unchecked",
-              "e6-naming-risk.md:85 — named as the relevant home registry"
+              "e6-naming-risk.md:85 (named as the relevant home registry)"
             ],
             [
               "India / IP India TMR",
@@ -710,12 +710,12 @@
             [
               "Cost of a knock-out search",
               "no figure anywhere in the corpus",
-              "grepped 2026-09-09 — every hit is the recommendation, none a price"
+              "grepped 2026-09-09 (every hit is the recommendation, none a price)"
             ],
             [
               "US registrability of \"frontmatter\"",
-              "§2(e)(1) descriptiveness refusal risk",
-              "e6-naming-risk.md:86 — tagged [inference], not counsel"
+              "Section 2(e)(1) descriptiveness refusal risk",
+              "e6-naming-risk.md:86 (tagged [inference], not counsel)"
             ]
           ]
         }
@@ -882,13 +882,13 @@
             [
               "mdmax",
               "free (404), confirmed 2026-08-30",
-              "user taken — 2 repos, joined 2012-11-28; 18 repos named, none a product",
+              "user taken: 2 repos, joined 2012-11-28; 18 repos named, none a product",
               "engine, certificate, CLI, MCP server",
               "ENGINE.md:2235; r4-naming-candidates.md:69"
             ],
             [
               "frontmatter",
-              "taken (HTTP 200) — dead 2022 v0.0.3 parser",
+              "taken (HTTP 200): dead 2022 v0.0.3 parser",
               "org taken by the incumbent, created 2021-09-21",
               "the product",
               "ENGINE.md:2235; 22-segments-disclosure-naming.md:187-188"
@@ -907,17 +907,17 @@
             [
               "Symbols product code imports from it",
               "1 (decodeStrict), in 2 files",
-              "ENGINE.md:444 — [measured]"
+              "ENGINE.md:444 (measured)"
             ],
             [
               "Engine tests passing",
               "851 across 23 files, 1.63s",
-              "ENGINE.md:444 — \"tested and unreached\""
+              "ENGINE.md:444 (\"tested and unreached\")"
             ],
             [
               "DESTROY verdicts on the pinned corpus",
               "0 in 10,176 blocks",
-              "PRODUCT-BRIEF.md:512 — the certificate's own falsifier"
+              "PRODUCT-BRIEF.md:512 (the certificate's own falsifier)"
             ]
           ]
         }
@@ -1092,18 +1092,18 @@
             ],
             [
               "Cofounder named anywhere in the record",
-              "0 — grepped across 16,189 lines when that audit ran; the file is 18,344 lines today and the claim has not been re-run",
+              "0: grepped across 16,189 lines when that audit ran; the file is 18,344 lines today and the claim has not been re-run",
               "FRONTMATTER-RECORD.md:13652"
             ],
             [
               "Deadline set for the founder count",
               "2026-09-07",
-              "CRITIQUE.md:2100 — passed"
+              "CRITIQUE.md:2100 (passed)"
             ],
             [
               "Measured engineering days per calendar week",
               "1.21",
-              "GAPS-2026-09-08.md:132 — a one-person rate"
+              "GAPS-2026-09-08.md:132 (a one-person rate)"
             ]
           ]
         }
@@ -1309,12 +1309,12 @@
           "items": [
             [
               "Apple Developer ID",
-              "$99/year — budgeted, not yet spent",
-              "PRODUCT-BRIEF.md:104, :231 — required to notarise the .dmg"
+              "$99/year (budgeted, not yet spent)",
+              "PRODUCT-BRIEF.md:104, :231 (required to notarise the .dmg)"
             ],
             [
               "Windows code signing",
-              "$150-400/year plus a hardware token — budgeted, not yet spent",
+              "$150-400/year plus a hardware token (budgeted, not yet spent)",
               "PRODUCT-BRIEF.md:104, :231"
             ],
             [
@@ -1375,12 +1375,12 @@
           "title": "How deep the assumption goes",
           "items": [
             [
-              "frontmatter.app — lines in DEV-PLAN",
+              "frontmatter.app: lines in DEV-PLAN",
               "17 lines, 19 occurrences",
               "measured 2026-09-09"
             ],
             [
-              "frontmatter.dev — lines in DEV-PLAN",
+              "frontmatter.dev: lines in DEV-PLAN",
               "6 lines, 6 occurrences",
               "measured 2026-09-09"
             ],
@@ -1391,7 +1391,7 @@
             ],
             [
               "URI spaces the plan declares unchangeable",
-              "1 — the error-type URIs, on frontmatter.dev",
+              "1: the error-type URIs, on frontmatter.dev",
               "DEV-PLAN.md:627"
             ],
             [
@@ -1565,16 +1565,16 @@
             [
               "Author",
               "Elio Struyf, Antwerp, Belgium",
-              "e6-naming-risk.md:3 — GitHub Star, Microsoft MVP, Google Developer Expert"
+              "e6-naming-risk.md:3 (GitHub Star, Microsoft MVP, Google Developer Expert)"
             ],
             [
               "Project created",
               "2019-08-23",
-              "e6-naming-risk.md:2 — senior use in the same trade channel"
+              "e6-naming-risk.md:2 (senior use in the same trade channel)"
             ],
             [
               "Marketplace listings held",
-              "3 — CMS, a (BETA) listing, a Theme",
+              "3: CMS, a (BETA) listing, a Theme",
               "e6-naming-risk.md:87; named at COMPLETE-RECORD-2026-08-30.md:12496"
             ],
             [
@@ -1584,7 +1584,7 @@
             ],
             [
               "Enforcement posture observed",
-              "none — \"confusion cost, not legal cost, is the binding constraint\"",
+              "none (\"confusion cost, not legal cost, is the binding constraint\")",
               "e6-naming-risk.md:89, tagged [inference]"
             ],
             [
@@ -1736,18 +1736,18 @@
           "items": [
             [
               "Names scored against criteria",
-              "2 — a coinage and a qualified form",
-              "r13-s4-positioning-messaging.md:129-136 — 4 of 6 criteria are pure judgment, 2 rest on registry probes"
+              "2: a coinage and a qualified form",
+              "r13-s4-positioning-messaging.md:129-136 (4 of 6 criteria are pure judgment, 2 rest on registry probes)"
             ],
             [
               "Candidate names generated",
               "41",
-              "r4-naming-candidates.md:29 — \"41 names, with strategy\"; an earlier draft of this card said 61, which the file does not support"
+              "r4-naming-candidates.md:29 (\"41 names, with strategy\"); an earlier draft of this card said 61, which the file does not support"
             ],
             [
               "Candidates probed for npm/GitHub availability",
               "15",
-              "r4-naming-candidates.md:63 — \"Availability table — top 15\", measured 2026-08-29"
+              "r4-naming-candidates.md:63 (\"Availability table — top 15\", measured 2026-08-29)"
             ],
             [
               "Strangers asked what any candidate name means",
@@ -1761,7 +1761,7 @@
             ],
             [
               "Existing five-second test in the script",
-              "1 — what the blue tint means",
+              "1: what the blue highlight means",
               "PRODUCT-BRIEF.md:411"
             ]
           ]

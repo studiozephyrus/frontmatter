@@ -105,7 +105,7 @@
             ],
             [
               "prototype:459 (S4 drawer buttons)",
-              "—",
+              "n/a",
               "a · accept",
               "r · revert",
               "s · skip"
@@ -119,10 +119,10 @@
             ],
             [
               "prototype:387 (S2 hover card)",
-              "—",
+              "n/a",
               "\"Mark reviewed\"",
               "\"Revert · ⌘⇧Z\"",
-              "—"
+              "n/a"
             ]
           ]
         },
@@ -133,12 +133,12 @@
             [
               "Global hotkeys bound",
               "3",
-              "use-hotkey.ts:5 — mod+k, mod+p, mod+g"
+              "use-hotkey.ts:5 (mod+k, mod+p, mod+g)"
             ],
             [
               "Authoring keys bound",
               "3",
-              "CodeMirrorEditor.tsx:224-226 — Mod-b/i/e"
+              "CodeMirrorEditor.tsx:224-226 (Mod-b/i/e)"
             ],
             [
               "Review keys bound",
@@ -331,27 +331,27 @@
               "NF-1, NF-3, CI, engine wiring, byte budget, BYO key, structured output"
             ],
             [
-              "Review state F2",
+              "Review state",
               "18 days",
               "store 6 + rendering 5 + revert 3 + panel 4"
             ],
             [
-              "F3 attribution + F4 answer in place",
+              "Attribution and answer in place",
               "6 days",
               ""
             ],
             [
-              "F5 idea mode + F6 decision flow",
+              "Idea mode and decision flow",
               "8 days",
               ""
             ],
             [
-              "F7 repo docs scan",
+              "Repo docs scan",
               "10 days",
               ""
             ],
             [
-              "F8 AI panel",
+              "File-scoped AI",
               "3 days",
               ""
             ],
@@ -491,7 +491,7 @@
             [
               "Authoring keys bound today",
               "3",
-              "CodeMirrorEditor.tsx:224-226 — no ⌘1–6, no list, no quote, no task"
+              "CodeMirrorEditor.tsx:224-226 (no ⌘1–6, no list, no quote, no task)"
             ],
             [
               "`toggleTaskAtLine`",
@@ -706,7 +706,7 @@
             [
               "Review : generation",
               "17–25×",
-              "CRITIQUE.md:637 — \"the product's structural problem\""
+              "CRITIQUE.md:637: \"the product's structural problem\""
             ]
           ]
         },
@@ -886,11 +886,11 @@
           ],
           "rows": [
             [
-              "Prototype S3 (`prototype:523`)",
-              "\"Mark all read\" — one click, whole file, no gate"
+              "Prototype's answer-in-place screen (`prototype:523`)",
+              "\"Mark all read\": one click, whole file, no gate"
             ],
             [
-              "Prototype S8 (`prototype:648`)",
+              "Prototype's refactor-preview screen (`prototype:648`)",
               "\"accept all in file\" alongside per-hunk accept/skip"
             ],
             [
@@ -902,7 +902,7 @@
               "\"If ≥5 hit 'accept all' in both, the interaction is theatre and MVP-0 has no demo\""
             ],
             [
-              "PRODUCT-BRIEF.md:56 (F2 spec)",
+              "PRODUCT-BRIEF.md:56 (review state spec)",
               "No bulk action specified at all"
             ]
           ]
@@ -914,7 +914,7 @@
             [
               "Retention lever #1",
               "the counter",
-              "PRODUCT-BRIEF.md:425 — \"opening frontmatter is how the count goes to zero\""
+              "PRODUCT-BRIEF.md:425: \"opening frontmatter is how the count goes to zero\""
             ],
             [
               "Exit measure input",
@@ -928,7 +928,7 @@
             ],
             [
               "States the drawer already offers",
-              "3 — accept, revert, skip",
+              "3: accept, revert, skip",
               "prototype:459; the sidecar spec at :135 names none of them"
             ]
           ]
@@ -1094,22 +1094,22 @@
           "title": "The percentage cannot be a span ratio on any screen (computed from the prototype's own printed numbers)",
           "items": [
             [
-              "S2 editor, auth.md",
+              "Editor, auth.md",
               "3 unreviewed · 64% → 4.69 total spans",
               "prototype:394"
             ],
             [
-              "S4 review",
+              "Review panel",
               "3 unreviewed · 88% → 3.41 total spans",
               "prototype:455, :458"
             ],
             [
-              "S3 clarify, spec.md",
+              "Answer in place (clarify), spec.md",
               "7 unreviewed · 92% → 7.61 total spans",
               "prototype:514"
             ],
             [
-              "S2c split",
+              "Split view",
               "2 unreviewed · 31% → 6.45 total spans",
               "prototype:591"
             ]
@@ -1136,7 +1136,7 @@
             ],
             [
               "Document body",
-              "6 tinted spans (`class=\"m1\"`)",
+              "6 highlighted spans (`class=\"m1\"`)",
               "prototype:503-510"
             ],
             [
@@ -1145,7 +1145,7 @@
               "prototype:495"
             ],
             [
-              "Status bar and right rail, questions",
+              "Status bar and right side panel, questions",
               "2 questions open / 2",
               "prototype:514, :517"
             ],
@@ -1213,7 +1213,7 @@
             ],
             [
               "PRD v2, §18.5 affordances",
-              "\"no badges, dots or status-bar chips **as a discovery strategy**\" — scoped to discovery, not to the number itself",
+              "\"no badges, dots or status-bar chips **as a discovery strategy**\": scoped to discovery, not to the number itself",
               "FRONTMATTER-PRD-v2:2029"
             ],
             [
@@ -1233,14 +1233,14 @@
           "title": "What the plan claims for the counter, and its evidence class",
           "items": [
             [
-              "Retention levers listed in §17",
+              "Retention levers, listed in the plan",
               "7",
               "PRODUCT-BRIEF.md:425-431"
             ],
             [
               "Levers with evidence that they retain",
               "0",
-              "GAPS-2026-09-08.md:24 — \"Reasoning. No evidence that any lever retains\""
+              "GAPS-2026-09-08.md:24: \"Reasoning. No evidence that any lever retains\""
             ],
             [
               "Editors publishing retention data",
@@ -1402,7 +1402,7 @@
             [
               "Typed failure codes in mdmax",
               "19",
-              "k3-error-refusal-ux.md:25 — 32 symbols − 13 verdict classes"
+              "k3-error-refusal-ux.md:25 (32 symbols down to 13 verdict classes)"
             ],
             [
               "Where the UI drops it",
@@ -1415,7 +1415,7 @@
               "PropertiesPanel.tsx:105, :129, :199, :201, :218"
             ],
             [
-              "On MVP-0's fix-first list",
+              "On the pilot's fix-first list",
               "no",
               "PRODUCT-BRIEF.md:214-225, 12 rows, none is the union"
             ]
@@ -1465,7 +1465,7 @@
         {
           "type": "bars",
           "title": "Issue threads about refusal messages in shipped agent tools (CRITIQUE.md:658)",
-          "note": "Counted by r25-w2 across 7 repos; every thread is a complaint about being refused, not a request for it.",
+          "note": "Counted by a research report across 7 repos; every thread is a complaint about being refused, not a request for it.",
           "data": [
             [
               "\"not unique\" edit",
@@ -1492,14 +1492,14 @@
           ],
           "rows": [
             [
-              "Inline, non-modal — row stays in edit state",
+              "Inline, non-modal: row stays in edit state",
               "User caused it and can fix it by retyping",
               "`UNSAFE_KEY`, `REFUSED_AMBIGUOUS`"
             ],
             [
               "Persistent strip on the affected panel",
               "The refusal changes what the surface can do",
-              "`FRONTMATTER_UNPARSEABLE` — properties read-only"
+              "`FRONTMATTER_UNPARSEABLE`: properties read-only"
             ],
             [
               "Nothing at all",
@@ -1530,12 +1530,12 @@
             [
               "Slot 1, the outcome, k3:51",
               "≤ 20 chars",
-              "\"Nothing changed.\" — the guarantee leads"
+              "\"Nothing changed.\": the guarantee leads"
             ],
             [
               "The prototype's one refusal",
               "264 visible chars, covering two files",
-              "prototype:654 — inside budget"
+              "prototype:654 (inside budget)"
             ],
             [
               "Its slot order",
@@ -1544,7 +1544,7 @@
             ],
             [
               "Screens with a refusal",
-              "1 of 9 (S8, MVP-1)",
+              "1 of 9 (refactor preview, the build after the pilot)",
               "prototype:625-658"
             ],
             [
@@ -1704,7 +1704,7 @@
       "evidence": [
         {
           "type": "table",
-          "title": "Three statements about the tint, all in PRODUCT-BRIEF.md, and what the prototype does",
+          "title": "Three statements about the highlight, all in PRODUCT-BRIEF.md, and what the prototype does",
           "cols": [
             "Section",
             "Says",
@@ -1728,7 +1728,7 @@
               "§22 Operating rules",
               "\"the tint is never colour alone\"",
               "540",
-              "breaks — `.m1` is background plus a same-colour inset ring"
+              "breaks: `.m1` is background plus a same-colour inset ring"
             ],
             [
               "Design record",
@@ -1755,17 +1755,17 @@
             [
               "`body-faint` token",
               "1.984:1",
-              "PRODUCT-BRIEF.md:540 — fails, fix scheduled in MVP-0"
+              "PRODUCT-BRIEF.md:540: fails, fix scheduled in the pilot"
             ],
             [
               "muted / danger / success",
               "2.64:1 / 4.19:1 / 3.84:1",
-              "k4-accessibility.md:98 — all below the 4.5:1 AA text floor"
+              "k4-accessibility.md:98: all below the 4.5:1 AA text floor"
             ],
             [
               "Border / focus ring",
               "1.13:1 / 2.14:1",
-              "k4-accessibility.md:99 — the ring fails 1.4.11"
+              "k4-accessibility.md:99: the ring fails 1.4.11"
             ]
           ]
         }
@@ -1920,17 +1920,17 @@
               "PRODUCT-BRIEF.md:327"
             ],
             [
-              "Ten strangers, MVP-0 exit",
+              "Ten strangers, the pilot's exit",
               "6 of 10 keep it",
               "PRODUCT-BRIEF.md:206"
             ],
             [
               "Obsidian plugin channel",
-              "under 200 installs in 14 days → kill — but the channel is CUT at :304, so the line is stale",
+              "under 200 installs in 14 days leads to a kill decision, but the channel is cut at line 304, so the line is stale",
               "PRODUCT-BRIEF.md:204"
             ],
             [
-              "Five-second tint test",
+              "Five-second highlight test",
               "none stated",
               "PRODUCT-BRIEF.md:352, :411"
             ]
@@ -1938,7 +1938,7 @@
         },
         {
           "type": "stat",
-          "title": "What the tint is competing against, in the one population with a vote",
+          "title": "What the highlight is competing against, in the one population with a vote",
           "items": [
             [
               "Nested-code-block rendering bug",
@@ -1963,7 +1963,7 @@
             [
               "People already scheduled for weeks 1–2 conversations",
               "35",
-              "PRODUCT-BRIEF.md:352 — 10 developers + 5 who bill + 20 team conversations"
+              "PRODUCT-BRIEF.md:352 (10 developers, 5 who bill, 20 team conversations)"
             ]
           ]
         }
@@ -2115,12 +2115,12 @@
           "rows": [
             [
               "Obsidian",
-              "Two choices only: \"Create new vault\" or \"Open folder as vault\" — recorded as \"co-equal, not buried\"; import is step 5 of 6",
+              "Two choices only: \"Create new vault\" or \"Open folder as vault\", recorded as \"co-equal, not buried\"; import is step 5 of 6",
               "c4-onboarding-activation.md:50-51"
             ],
             [
               "Obsidian sandbox",
-              "A real disposable vault, opened deliberately from Help — \"Not shown automatically at first run\"",
+              "A real disposable vault, opened deliberately from Help: \"Not shown automatically at first run\"",
               "c4:82"
             ],
             [
@@ -2135,11 +2135,11 @@
             ],
             [
               "PRD v2 step 1",
-              "Open an existing folder — primary; sandbox second",
+              "Open an existing folder: primary, sandbox second",
               "FRONTMATTER-PRD-v2:1763"
             ],
             [
-              "r21-s7 Flow 1 step 1",
+              "a research report, flow 1 step 1",
               "Open an existing folder (primary), Try a sandbox (secondary)",
               "r21-s7:37"
             ],
@@ -2166,7 +2166,7 @@
             ],
             [
               "C, concepts to learn",
-              "≤ 3 — file, folder, view",
+              "At most 3: file, folder, view",
               "FRONTMATTER-PRD-v2:1848"
             ],
             [
@@ -2216,7 +2216,7 @@
               "PRODUCT-BRIEF.md:514"
             ],
             [
-              "NF-1 + NF-3",
+              "the left-edge list bug and the old line-ending bug",
               "7 engineering days",
               "PRODUCT-BRIEF.md:214-215"
             ]
@@ -2417,18 +2417,18 @@
           "rows": [
             [
               "Everything unreviewed",
-              "Every paragraph tinted — the intended demo",
-              "Every paragraph tinted — reads as \"highlighted\", the stated test failure"
+              "Every paragraph highlighted: the intended demo",
+              "Every paragraph highlighted, reads as \"highlighted\", the stated test failure"
             ],
             [
               "Baseline at first open",
-              "Nothing tinted until the agent writes again",
-              "Nothing tinted; counter reads 0; nothing to show"
+              "Nothing highlighted until the agent writes again",
+              "Nothing highlighted; counter reads 0; nothing to show"
             ],
             [
               "Baseline at last commit, uncommitted work unreviewed",
-              "The agent's fresh spec is tinted",
-              "Only what changed since the last commit is tinted — usually a little, sometimes nothing"
+              "The agent's fresh spec is highlighted",
+              "Only what changed since the last commit is highlighted: usually a little, sometimes nothing"
             ]
           ]
         },
@@ -2479,8 +2479,8 @@
           ],
           "rows": [
             [
-              "Review state (F2)",
-              "Yes; sidecar committed",
+              "Review state",
+              "Yes; the review file is committed",
               "Yes",
               "Yes"
             ],
@@ -2503,7 +2503,7 @@
               "Yes"
             ],
             [
-              "MCP server — writes that carry the prompt",
+              "MCP server: writes that carry the prompt",
               "No",
               "No",
               "Yes"
@@ -2526,12 +2526,12 @@
             ],
             [
               "Journal as anchor",
-              "explicitly rejected — \"git, other editors and agents bypass it\"",
+              "explicitly rejected: \"git, other editors and agents bypass it\"",
               "PRODUCT-BRIEF.md:135"
             ],
             [
               "Week 3–4 test in the plan",
-              "tint works on files frontmatter did not write, on one spec-kit and one superpowers repo",
+              "the highlight works on files frontmatter did not write, on one spec-kit and one superpowers repo",
               "PRODUCT-BRIEF.md:354"
             ],
             [
@@ -2699,17 +2699,17 @@
             ],
             [
               "Per-person entries",
-              "Yes, same sidecar",
+              "Yes, same review file",
               "PRODUCT-BRIEF.md:64 (F10, MVP-1, 10d)"
             ],
             [
-              "Merge rule for the sidecar",
+              "Merge rule for the review file",
               "not stated",
               "grep: PRODUCT-BRIEF, GAPS, WEEK0"
             ],
             [
               "Conflict view",
-              "MVP-1, editor row",
+              "The build after the pilot, editor row",
               "PRODUCT-BRIEF.md:199"
             ],
             [
@@ -2719,7 +2719,7 @@
             ],
             [
               "Union merge",
-              "banned for documents — produced two `title:` keys, exit 0",
+              "banned for documents: produced two `title:` keys, exit 0",
               "r21-s7:130"
             ]
           ]
@@ -2746,7 +2746,7 @@
             [
               "Live cursors, cost per user per month at 2h/day",
               "$5.28",
-              "r21-s7:146 — above both price tiers"
+              "r21-s7:146 (above both price tiers)"
             ],
             [
               "Whether teams pay for shared review",

@@ -9,7 +9,14 @@
     "MK11"
    ],
    "keep": "FF12",
-   "why": "Five areas independently ask whether the splice engine ships free as an npm package + MCP server as a pre-build demand probe. Option sets map 1:1 (ship now with a pre-registered install kill / ship after the engine fixes / keep it inside the editor / don't publish). Recs disagree five ways: FF12 run it first, E31 after NF-1+NF-4, F14 both package and integration, PL14 MIT this month, MK11 make it the launch. Form factor & surfaces owns it because FF12 frames it correctly as a fourth option to the surface decision; the licence rider survives in E24/L20."
+   "why": "Engine & technical, Features, Plan, scope & sequencing and Market & competition all recommended shipping the package early as a probe, option a here. Engine & technical would first fix the left-edge list bug and the spaced-key bug; Market & competition would make the release the launch. Licence and package shape are decided separately.",
+   "map": {
+    "E31": "a",
+    "F14": "a",
+    "PL14": "a",
+    "MK11": "a"
+   },
+   "agree": true
   },
   {
    "ids": [
@@ -19,7 +26,13 @@
     "P21"
    ],
    "keep": "E6",
-   "why": "All four ask whether the five-regex bake-off runs before the rendering certificate is priced into a tier. Near-identical options (run the test first / fix the CLI and price now / ship the five-rule linter instead / drop the certificate from the tiers). Engine mechanism, so it belongs in Engine even though Features, Market and Product each ask it; the pricing consequence survives as an edge to PR21."
+   "why": "Features and Product & definition recommended the same as option a here: run the five-regex comparison before any tier is priced on the certificate. Market & competition recommended a different first step: fix the CLI, run the certificate end to end once, then decide. Which tiers exist at all is decided in Pricing & tiers.",
+   "map": {
+    "F30": "a",
+    "MK22": null,
+    "P21": "a"
+   },
+   "agree": false
   },
   {
    "ids": [
@@ -28,7 +41,12 @@
     "PL15"
    ],
    "keep": "PR1",
-   "why": "One decision \u2014 what Pro gates on, and whether retention gets built before the price is published \u2014 asked three times with three different answers (PR1 gate on attribution, F12 scope retention inside the review store, PL15 don't price Pro until the conversations return). Pricing & tiers owns tier contents."
+   "why": "Features recommended keeping retention and specifying it as an append-only file inside the review store, which is option a here. Plan, scope & sequencing recommended option d: publish no Pro price until the team conversations say what teams are gated on. Neither recommended gating Pro on attribution.",
+   "map": {
+    "F12": "a",
+    "PL15": "d"
+   },
+   "agree": false
   },
   {
    "ids": [
@@ -37,7 +55,12 @@
     "P8"
    ],
    "keep": "L1",
-   "why": "Do we hold user documents, i.e. does firestore.rules ship or get deleted. Same poles in all three (delete / adopt as written / keep server-side minus public read / defer). Recs split a/d/a. Legal, privacy & data owns it because the fiduciary and intermediary duty is the whole stake; P8's permalink option survives in F19."
+   "why": "Business & operations and Product & definition both recommended deleting the document-holding design, option b here. Business & operations would decide publishing separately, after the sharing decision; Product & definition would also delete the public route. Its idea of a permalink that renders a public GitHub URL is an option on the Features share-page card.",
+   "map": {
+    "B16": "b",
+    "P8": "b"
+   },
+   "agree": true
   },
   {
    "ids": [
@@ -46,7 +69,12 @@
     "MK18"
    ],
    "keep": "F19",
-   "why": "Does the shipped public-share route stay, and in what shape. Three different answers to one question: F19 disable in the build, G10 keep with noindex, MK18 permalink plus export. Features owns it because the share module is shipped code. L6 is NOT a duplicate \u2014 it decides governance (founder-only, noindex, system slugs) once the route survives."
+   "why": "Go-to-market & channels recommended keeping the page live, rendered from the repo with no stored snapshot and noindex by default, closest to option b here. Market & competition recommended option d, permalink plus export. If the page survives, who may publish and whether it is indexed is a separate Legal, privacy & data decision.",
+   "map": {
+    "G10": "b",
+    "MK18": "d"
+   },
+   "agree": false
   },
   {
    "ids": [
@@ -55,7 +83,12 @@
     "P18"
    ],
    "keep": "PL2",
-   "why": "Reconciling the twelve-week calendar with the measured 1.21 engineering days a week, by cutting scope or restating the date. Three of four options match in substance across all three cards; recs split d/b/a. Plan, scope & sequencing owns the schedule."
+   "why": "Business & operations recommended much the same as option d here: commit to a weekly density, count achieved days every Friday, re-cut at week 4. Product & definition recommended cutting scope instead, which is option c: fix-first plus review state in the pilot, six features moved to the build after it.",
+   "map": {
+    "B3": "d",
+    "P18": "c"
+   },
+   "agree": false
   },
   {
    "ids": [
@@ -63,7 +96,11 @@
     "MK2"
    ],
    "keep": "FF1",
-   "why": "Standalone editor / VS Code extension / one core behind both, and which ships first. Verbatim the same question and the same rec (c). Form factor & surfaces owns it."
+   "why": "Market & competition asked the same question with near-identical options and recommended the same answer, option c here: one core, extension first, standalone second. Its only different option was to defer until the raw-write data-loss path is tested.",
+   "map": {
+    "MK2": "c"
+   },
+   "agree": true
   },
   {
    "ids": [
@@ -71,7 +108,11 @@
     "AC2"
    ],
    "keep": "FF8",
-   "why": "Is MVP-0 the web app or a desktop build, and which one do the ten strangers get. AC2's b/c/d map 1:1 onto FF8's options and both rec (b) web-only. AC2's option (a), pricing the access layer into the schedule, is a schedule action and belongs with PL2."
+   "why": "Access, offline & install asked which build the ten pilot users get and recommended the same as option b here: the web app against a GitHub repo. Its remaining option, adding the file-access days and restating the schedule, belongs with the schedule decision in Plan, scope & sequencing.",
+   "map": {
+    "AC2": "b"
+   },
+   "agree": true
   },
   {
    "ids": [
@@ -80,7 +121,12 @@
     "PL11"
    ],
    "keep": "FF3",
-   "why": "Merge back / vendor / freeze / hard-fork / delete the sgnk-md editor shell. Same option set; recs split b/a/b. Form factor & surfaces owns which shell we ship. P1 is not a duplicate: it decides the definition noun, not the codebase."
+   "why": "Business & operations recommended owning the fork outright, option c here: absorb the shell and keep sgnk-md parked. Plan, scope & sequencing recommended pinning the shell as a versioned internal package, closest to freezing it, option b. Whether the product is still called a markdown editor is a separate Product & definition question.",
+   "map": {
+    "B11": "c",
+    "PL11": "b"
+   },
+   "agree": false
   },
   {
    "ids": [
@@ -89,7 +135,12 @@
     "D16"
    ],
    "keep": "E2",
-   "why": "Does the splice writer return a discriminated union so a refusal and a successful no-op stop being the same value. Same spine in all three, with recs a/a/d. Engine mechanism. FL8's placement ladder and D16's rendering site are sub-questions that survive under E2's answer."
+   "why": "Flow & interaction and Design, UI & attention both recommended the typed refusal return, option b here. Two narrower questions stay open under it: where a refusal is placed, which Flow & interaction answered with its placement ladder, and how it is shown, which Design, UI & attention answered with a line under the field.",
+   "map": {
+    "FL8": "b",
+    "D16": "b"
+   },
+   "agree": true
   },
   {
    "ids": [
@@ -97,7 +148,11 @@
     "R2"
    ],
    "keep": "F1",
-   "why": "Do we prove the review anchor survives an out-of-band write before committing the eighteen days. R2's options are purely when to run that test; F1's (a)/(b) are the same fork plus two product options. Recs a vs c. Features owns review state."
+   "why": "Research & evidence asked only when to run the test, and recommended running it in week 0 and making it the demo. That matches option a here: prove the anchor survives a real agent rewrite before committing the eighteen days.",
+   "map": {
+    "R2": "a"
+   },
+   "agree": true
   },
   {
    "ids": [
@@ -106,7 +161,12 @@
     "MK5"
    ],
    "keep": "G6",
-   "why": "Do we approach the superpowers and spec-kit maintainers, when, and with what ask. Three slices of one decision; recs b/a/b. Go-to-market & channels owns the channel."
+   "why": "Business & operations and Market & competition both recommended asking both maintainers in week 0, in writing, before the channel depends on them; Market & competition would publish whatever they answer. No option here asks both first: option a opens a PR to both after the MCP server is built, option b asks superpowers only.",
+   "map": {
+    "B17": null,
+    "MK5": null
+   },
+   "agree": false
   },
   {
    "ids": [
@@ -115,7 +175,12 @@
     "MK10"
    ],
    "keep": "PR3",
-   "why": "Which price rung, anchored to what. All three carry the $4-5 rung against a higher anchor and a 'take no number in' option; recs d/c/c. Pricing & tiers owns the price. MK10's second half (is cross-person review state the gate) is already PR1's question."
+   "why": "Market & competition recommended publishing no price until the twenty team conversations return, close to option d here. Business & operations recommended taking a single $30 per editor per month into them and negotiating down, above any number here. Whether cross-person review state is the paid gate is the Pro gate card in this area.",
+   "map": {
+    "B4": null,
+    "MK10": "d"
+   },
+   "agree": false
   },
   {
    "ids": [
@@ -124,7 +189,12 @@
     "P4"
    ],
    "keep": "F3",
-   "why": "Is attribution free, split Google's way (file-level free, span-level paid), or the headline. Near-verbatim option sets and all three rec (b), so the merge is lossless. Features owns the row that carries the days and the source dependency; 'promote to headline' is already an option inside P2."
+   "why": "Market & competition and Product & definition both recommended option b here: coarse authorship free, span-level authorship paid. Market & competition drew the free line at commit granularity rather than file level. Making attribution the headline is also an option on the Product & definition card about the headline.",
+   "map": {
+    "MK15": "b",
+    "P4": "b"
+   },
+   "agree": true
   },
   {
    "ids": [
@@ -133,7 +203,12 @@
     "R10"
    ],
    "keep": "N3",
-   "why": "Do we buy a trademark knock-out search, and before or after the name is decided. Recs b/a/a. Name & identity owns clearance. L15's rename options duplicate N1; R10's are the same timing fork."
+   "why": "Legal, privacy & data and Research & evidence both recommended paying an attorney for a knock-out search on two names now, option a here, rather than reading the registers ourselves first. The legal card's rename options are covered by the name decision in this area.",
+   "map": {
+    "L15": "a",
+    "R10": "a"
+   },
+   "agree": false
   },
   {
    "ids": [
@@ -141,7 +216,11 @@
     "MK3"
    ],
    "keep": "N1",
-   "why": "Keep the bare word, qualify it, or coin. Same options and same rec (c). Name & identity owns the name. MK3's fourth option (detente with the incumbent's author) is N9's question, already a separate card."
+   "why": "Market & competition asked the same question and recommended the same answer, option c here: take a clean coined name. Its fourth option, approaching the incumbent's author first, is a separate card in this area.",
+   "map": {
+    "MK3": "c"
+   },
+   "agree": true
   },
   {
    "ids": [
@@ -150,7 +229,12 @@
     "PL16"
    ],
    "keep": "F16",
-   "why": "Verify the 945 lines of unrun export, decide what happens to the server PDF route, and whether export stays an MVP-0 row. PL16(b)=F16(d), PL16(c)=F16(b), P20(c)=F16(d). Recs b/b/c. Features owns the row; AC14 stays separate as the byte-claim exception."
+   "why": "Plan, scope & sequencing recommended verifying export and going client-side if only the server half fails, close to option b here. Product & definition asked only whether export stays in the pilot: verify it, and remove the menu if it fails. Deleting the server PDF route is also asked in Access, offline & install.",
+   "map": {
+    "P20": null,
+    "PL16": "b"
+   },
+   "agree": false
   },
   {
    "ids": [
@@ -159,7 +243,12 @@
     "PL1"
    ],
    "keep": "F5",
-   "why": "Does the generation block (idea mode, decision flow) ship in MVP-0 on founder evidence never attached. Recs b/a/b. Features owns the rows and the day counts; PL1's 'settle the form factor first' rider survives as an edge from FF1."
+   "why": "Product & definition recommended the same as option b here: ship both and attach the founder test notes this week. Plan, scope & sequencing recommended cutting both, option d, along with the file-scoped AI, keeping only the scan with no model. Its option to settle the form factor first is carried by the form-factor card.",
+   "map": {
+    "P6": "b",
+    "PL1": "d"
+   },
+   "agree": false
   },
   {
    "ids": [
@@ -167,7 +256,11 @@
     "L2"
    ],
    "keep": "AC1",
-   "why": "Does the browser read the repository or does our server hand the bytes on. Answering AC1 settles L2 in both directions (browser path keeps the zero-bytes claim; server path withdraws it). Access, offline & install owns the web byte path and states the three read shapes mechanically."
+   "why": "Legal, privacy & data asked whether to rewrite the web app to a browser-only path before the first stranger or withdraw the zero-bytes claim, and recommended the rewrite. Option b here is that rewrite (option a would be too); option c is withdrawing the claim.",
+   "map": {
+    "L2": "b"
+   },
+   "agree": true
   },
   {
    "ids": [
@@ -175,7 +268,11 @@
     "MK1"
    ],
    "keep": "P2",
-   "why": "Does review state stay the headline, narrow to per-span state kept in the repo, or step aside for authorship. Near-verbatim, both rec (b). Product & definition owns the one-sentence definition."
+   "why": "Market & competition asked the same question with near-identical options and recommended the same answer, option b here: narrow the headline to per-span review state kept in the repo. Its only different option was to decide nothing until the weeks 1-2 tests run.",
+   "map": {
+    "MK1": "b"
+   },
+   "agree": true
   },
   {
    "ids": [
@@ -183,7 +280,11 @@
     "FL16"
    ],
    "keep": "E37",
-   "why": "Is the review sidecar one shared JSONL with a merge strategy or one file per person. Same option set, both rec (a) but for opposite shapes (E37 merge=union on a shared file, FL16 one file per person) \u2014 the merge forces that contradiction into the open. Engine & technical owns the sidecar mechanism."
+   "why": "Flow & interaction recommended one review file per person, option c here. This card recommends the opposite shape: one shared file, merged as a union and deduplicated on read. Flow & interaction's question also covered what a teammate sees.",
+   "map": {
+    "FL16": "c"
+   },
+   "agree": false
   },
   {
    "ids": [
@@ -191,7 +292,11 @@
     "D24"
    ],
    "keep": "FL19",
-   "why": "Does the review surface enumerate every changed span or suppress to an exception list. Same four poles (suppress / enumerate / budget / enumerate-plus-dismissal-rate) and both rec suppression. Flow & interaction owns the review surface."
+   "why": "Design, UI & attention asked the same question with the same four choices and recommended the same answer, option a here: surface only what a stated rule selects, and keep the rest one step away.",
+   "map": {
+    "D24": "a"
+   },
+   "agree": true
   },
   {
    "ids": [
@@ -199,7 +304,11 @@
     "FL10"
    ],
    "keep": "D1",
-   "why": "Does the 1.11:1 tint get a second, non-colour channel. Same options with the same rec (tint plus one non-colour mark). Design, UI & attention owns the tint."
+   "why": "Flow & interaction asked the same question and recommended the same answer, option b here: keep the colour and add one non-colour mark. It specified the mark as a one-pixel left rule on the span, with no icon.",
+   "map": {
+    "FL10": "b"
+   },
+   "agree": true
   },
   {
    "ids": [
@@ -207,7 +316,11 @@
     "F24"
    ],
    "keep": "FL3",
-   "why": "Do the table-stakes interaction days go into MVP-0 and does Cmd-K move to insert-link. Near-verbatim option sets, both rec (b) the cheap half. Flow & interaction owns the interaction floor."
+   "why": "Features asked the same question and recommended the same answer, option b here: budget the cheap half of the editing floor. Its cheap half names rebinding Cmd-K to insert-link, which this option does not list.",
+   "map": {
+    "F24": "b"
+   },
+   "agree": true
   },
   {
    "ids": [
@@ -215,7 +328,11 @@
     "AC15"
    ],
    "keep": "F25",
-   "why": "Client index or server index for search. Same four options; recs b vs a differ only on how eagerly the client index is built. Features owns search; the byte-path constraint reaches it as an edge from AC1."
+   "why": "Access, offline & install also recommended a client-side index, but built lazily as files are opened, which is option a here, not the whole-repo worker index. Where the browser gets the bytes from is decided on that area's web byte-path card.",
+   "map": {
+    "AC15": "a"
+   },
+   "agree": false
   },
   {
    "ids": [
@@ -223,7 +340,11 @@
     "R16"
    ],
    "keep": "PR17",
-   "why": "Does a price go into the weeks-1-2 conversations and what result kills the paid tier. Both rec (a) \u2014 a price question in the script with a stated kill. Pricing & tiers owns whether there is a paid tier at all."
+   "why": "Research & evidence asked whether the two-week tests ask about money, and recommended the same as option a here: a price question with both price rungs in the script. It would ask it in all forty conversations, not only the twenty with teams. It sets no kill threshold.",
+   "map": {
+    "R16": "a"
+   },
+   "agree": true
   },
   {
    "ids": [
@@ -231,7 +352,11 @@
     "R3"
    ],
    "keep": "G15",
-   "why": "Where the ten strangers and the twenty teams come from and who approaches them. Same cold/warm/panel/no-source fork; recs c vs a. Go-to-market & channels owns recruitment. G16 (contact sgnk-md's users) stays separate \u2014 it is one source, not the sourcing decision."
+   "why": "Research & evidence recommended recruiting from the founders' client list, plus sgnk-md's users if that list exists, which is the warm-network route of option b here. Contacting sgnk-md's users as one source is a separate card in this area.",
+   "map": {
+    "R3": "b"
+   },
+   "agree": false
   },
   {
    "ids": [
@@ -239,7 +364,11 @@
     "PL18"
    ],
    "keep": "B1",
-   "why": "One founder or two, and does every number get re-derived. Same options, both rec (a) strike the assumption. Business & operations owns capacity."
+   "why": "Plan, scope & sequencing asked the same question and recommended the same answer, option a here: record a one-person build and re-derive every estimate, date and cap at a one-person rate.",
+   "map": {
+    "PL18": "a"
+   },
+   "agree": true
   },
   {
    "ids": [
@@ -247,7 +376,11 @@
     "L18"
    ],
    "keep": "B10",
-   "why": "Which measurement instrument ships for the pilot \u2014 local file, opt-in upload, or nothing. Recs b vs a. Business & operations owns the exit measure; L18's rotating-install-id option is the legally-loaded variant and must be carried forward as a named non-option, and AC17 (where the file can physically live) links in."
+   "why": "Legal, privacy & data asked only which instrument ships and recommended the local file as drafted, pasted once by each person, option a here; it did not take up interviewing everyone. Its rotating install id stays a named non-option. Where the file can live is an Access, offline & install card.",
+   "map": {
+    "L18": "a"
+   },
+   "agree": false
   },
   {
    "ids": [
@@ -255,7 +388,11 @@
     "R12"
    ],
    "keep": "L16",
-   "why": "Buy an outside security review before the pilot or before the first team customer, and over what scope. Recs d vs a but both amount to 'settle the Firebase question first, then review a smaller product'. Legal, privacy & data owns it."
+   "why": "Research & evidence recommended the same as option d here: settle whether we hold user documents and make the repo say one thing, then buy the review. Its question also asked whether the review comes before the pilot or before the first team customer.",
+   "map": {
+    "R12": "d"
+   },
+   "agree": true
   },
   {
    "ids": [
@@ -263,7 +400,11 @@
     "MK28"
    ],
    "keep": "E35",
-   "why": "Does Zed Delta's CRDT bet reopen 'never a CRDT', and do we rebut them by name. Same options, both rec (a). Architecture position, so Engine & technical owns it; the market-table row is bookkeeping that follows."
+   "why": "Market & competition recommended the same as option b here: keep the position and write the rebuttal naming Zed. It also adds Delta to the market table. It did not separate the review file from prose.",
+   "map": {
+    "MK28": "b"
+   },
+   "agree": true
   },
   {
    "ids": [
@@ -271,7 +412,11 @@
     "P23"
    ],
    "keep": "MK27",
-   "why": "Do we name Almanac in the pitch or wait to be asked. Both rec naming it first. P23 is MK27 plus Zed Delta, and Delta's pitch treatment is already MK28/E35's option (a)."
+   "why": "Product & definition asked about Almanac and Zed Delta together and recommended naming both first, unprompted, with dates and stated causes. For Almanac that is option a here. How Delta is answered is on the Engine & technical card about the CRDT rebuttal.",
+   "map": {
+    "P23": "a"
+   },
+   "agree": true
   },
   {
    "ids": [
@@ -279,7 +424,11 @@
     "G13"
    ],
    "keep": "P1",
-   "why": "Is 'markdown editor' the product's noun. P1(a)=G13(b) keep it, P1(b)=G13(c) change the category noun; recs b vs a. Product & definition owns the definition. G13's public-versus-internal split is a sub-answer, not a separate decision."
+   "why": "Go-to-market & channels asked whether to call it a markdown editor in public, and recommended a split no option here offers: keep 'markdown editor' as the internal definition, never in public copy. Its option to rename the category matches option b here.",
+   "map": {
+    "G13": null
+   },
+   "agree": false
   },
   {
    "ids": [
@@ -287,7 +436,11 @@
     "G14"
    ],
    "keep": "P7",
-   "why": "Which refusals may be stated publicly. Both rec publishing only the subset that is true and differentiating today. Product & definition owns the boundary; refusals are the positioning."
+   "why": "Go-to-market & channels asked which refusals may be stated in public and recommended publishing only the three that are true and differentiating today, closest to option c here. This card recommends one reconciled list with a reversal price on each entry.",
+   "map": {
+    "G14": "c"
+   },
+   "agree": false
   },
   {
    "ids": [
@@ -295,7 +448,11 @@
     "MK9"
    ],
    "keep": "P10",
-   "why": "Does the no-plugins ban stay absolute or admit the data-only/out-of-process exception. Same four options; recs c vs b. Product & definition owns the refusal."
+   "why": "Market & competition recommended allowing out-of-process extension only, and saying so explicitly, which is the out-of-process half of option b here. This card recommends keeping the ban and no longer calling community the first moat.",
+   "map": {
+    "MK9": "b"
+   },
+   "agree": false
   },
   {
    "ids": [
@@ -303,7 +460,11 @@
     "MK26"
    ],
    "keep": "F15",
-   "why": "Does sync stay a fifteen-plus-day MVP-2 build, move earlier as the merge only, or become conflict surfacing over the user's own git. Recs c vs b are the same answer worded twice. Features owns the row."
+   "why": "Market & competition recommended moving the merge, but not the transport, into the build after the pilot. That is the same choice as option c here: the user's git carries the files and we handle the conflicts. It adds a timing, the build after the pilot, which this option leaves open.",
+   "map": {
+    "MK26": "c"
+   },
+   "agree": true
   },
   {
    "ids": [
@@ -311,7 +472,11 @@
     "P19"
    ],
    "keep": "F7",
-   "why": "Does the repo docs scan ship its commodity half, its staleness heuristic, or leave MVP-0 as the consultancy's diagnostic. Recs c vs b. Features owns the row; the services-funnel consequence links to G18."
+   "why": "Product & definition recommended the opposite order, option b here: ship broken links and missing standard docs, and defer staleness. Its question also asked whether the scan is a product feature or the consultancy's diagnostic; selling services off the scan is a Go-to-market & channels card.",
+   "map": {
+    "P19": "b"
+   },
+   "agree": false
   },
   {
    "ids": [
@@ -319,7 +484,11 @@
     "F28"
    ],
    "keep": "FF9",
-   "why": "Is mobile a permanent non-goal, a read-only reviewer at MVP-1, or undecided. Recs b vs c. Form factor & surfaces owns surfaces."
+   "why": "Features recommended a cheaper route no option here names: make the web app responsive enough to read and mark reviewed on a phone, rather than a separate mobile reviewer with its own budget and date.",
+   "map": {
+    "F28": null
+   },
+   "agree": false
   },
   {
    "ids": [
@@ -327,7 +496,11 @@
     "G25"
    ],
    "keep": "FF7",
-   "why": "Does the ?src= URL parameter ship, and when. Recs conflict outright: FF7 ships it in MVP-0, G25 builds it only as the demo surface. Form factor & surfaces owns surfaces; the channel claim follows."
+   "why": "Go-to-market & channels also recommended building it early, but as the demo surface for the three landing pages, not as a channel. On shipping it, that is option a here; whether it is ever counted as a channel follows from this card.",
+   "map": {
+    "G25": "a"
+   },
+   "agree": true
   },
   {
    "ids": [
@@ -335,7 +508,11 @@
     "G21"
    ],
    "keep": "FF5",
-   "why": "Does the marketplace name collision veto the extension or does the extension ship under the engine's name. Recs b vs a \u2014 one says ship as mdmax, the other says rename the product first. Form factor & surfaces owns extension scope; N1/N4 carry the naming half."
+   "why": "Go-to-market & channels recommended renaming the whole product first and then shipping the extension under the new name, option a here, not shipping it as mdmax. The naming itself is decided in Name & identity.",
+   "map": {
+    "G21": "a"
+   },
+   "agree": false
   },
   {
    "ids": [
@@ -343,7 +520,11 @@
     "PL8"
    ],
    "keep": "G2",
-   "why": "Does any Obsidian surface ship, and do the stale references get deleted. Same options, both rec (a) delete everywhere. Go-to-market & channels owns the channel. MK7 is NOT a duplicate \u2014 it bundles the ?src= replacement as well."
+   "why": "Plan, scope & sequencing asked the same question and recommended the same answer, option a here: no Obsidian surface, and delete every remaining mention. It adds rewriting the plan's no-go branch as services and engine. A Market & competition card that pairs an Obsidian extension with the ?src= link is separate.",
+   "map": {
+    "PL8": "a"
+   },
+   "agree": true
   },
   {
    "ids": [
@@ -351,7 +532,11 @@
     "P5"
    ],
    "keep": "F4",
-   "why": "Does answer-in-place stay in MVP-0 now its Q-to-A half is cut. Same options, both rec (a) keep at two days. Features owns the row."
+   "why": "Product & definition asked the same question and recommended the same answer, option a here: keep answer-in-place in the pilot as specified, markers only, two days.",
+   "map": {
+    "P5": "a"
+   },
+   "agree": true
   },
   {
    "ids": [
@@ -359,7 +544,11 @@
     "AC9"
    ],
    "keep": "N6",
-   "why": "Do the bundle identifier and the permanent URIs carry the product name or a string that survives a rename. Same options, both rec the name-free identifier. Name & identity owns the permanent strings; the Gatekeeper/updater consequence links to AC8."
+   "why": "Access, offline & install asked the narrower question of the app identifier and recommended the same as option b here: a vendor-scoped identifier now, with the display name free to change. What that means for signing and updates is on the Access, offline & install signing card.",
+   "map": {
+    "AC9": "b"
+   },
+   "agree": true
   }
  ],
  "link_edges": [

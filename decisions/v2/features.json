@@ -57,7 +57,7 @@
       "evidence": [
         {
           "type": "stat",
-          "title": "F2 as specified, against the measured rate",
+          "title": "Review state as specified, against the measured rate",
           "items": [
             [
               "Store, rendering, revert, panel",
@@ -67,10 +67,10 @@
             [
               "Measured engineering days per calendar week",
               "1.21",
-              "PRODUCT-BRIEF.md:227 — 10 of 58 calendar days touched src/, src-tauri/ or test/"
+              "PRODUCT-BRIEF.md:227, 10 of 58 calendar days touched src/, src-tauri/ or test/"
             ],
             [
-              "F2 alone at that rate",
+              "Review state alone at that rate",
               "about 15 calendar weeks",
               "derived: 18 ÷ 1.21"
             ],
@@ -81,7 +81,7 @@
             ],
             [
               "Review-state store in src/ today",
-              "None — no .frontmatter/review.jsonl writer, no per-span hash store, no review module",
+              "None: no .frontmatter/review.jsonl writer, no per-span hash store, no review module",
               "measured: src/modules/ holds ai, ai-tools, app-shell, auth, drafts, editor, export, graph, mdmax, preview, repository, share, vault"
             ]
           ]
@@ -136,7 +136,7 @@
           "items": [
             [
               "Review-state store in src/ today",
-              "None — .frontmatter/ appears only in src/modules/mdmax/domain/cert-contract.ts, not as a store",
+              "None: .frontmatter/ appears only in src/modules/mdmax/domain/cert-contract.ts, not as a store",
               "measured: grep for review.jsonl / sidecar / .frontmatter/ over src/"
             ],
             [
@@ -147,7 +147,7 @@
             [
               "Tested against an agent write",
               "No",
-              "docs/GAPS-2026-09-08.md:146 — listed as still open after round 2"
+              "docs/GAPS-2026-09-08.md:146, listed as still open after round 2"
             ],
             [
               "Nearest shipped pattern",
@@ -158,7 +158,7 @@
         },
         {
           "type": "table",
-          "title": "Writers that bypass the journal, per the plan's own sidecar note",
+          "title": "Writers that bypass the journal, per the plan's own note about the review file",
           "cols": [
             "Writer",
             "Reaches the file",
@@ -369,7 +369,7 @@
               "Sold today, verified 2026-09-08"
             ],
             [
-              "frontmatter F3 as planned",
+              "frontmatter, attribution as planned",
               "Span-level, from trailers and notes",
               "Free",
               "Untested"
@@ -378,7 +378,7 @@
         },
         {
           "type": "stat",
-          "title": "What F3 costs and where it sits",
+          "title": "What attribution costs and where it sits",
           "items": [
             [
               "Build",
@@ -387,12 +387,12 @@
             ],
             [
               "Stage",
-              "MVP-0 readers, MVP-1 prompts via MCP",
+              "readers in the pilot, prompts via MCP in the build after it",
               "PRODUCT-BRIEF.md:57"
             ],
             [
               "Price today",
-              "Free — Individual gets F1 to F8",
+              "Free: Individual gets everything from the editor through file-scoped AI",
               "PRODUCT-BRIEF.md:287"
             ],
             [
@@ -401,8 +401,8 @@
               "PRODUCT-BRIEF.md:288"
             ],
             [
-              "What the MVP-0 card usually says",
-              "prompt not recorded — no write path carries a prompt until F11",
+              "What the pilot card usually says",
+              "prompt not recorded: no write path carries a prompt until the MCP server exists",
               "PRODUCT-BRIEF.md:247"
             ]
           ]
@@ -740,7 +740,7 @@
       "evidence": [
         {
           "type": "stat",
-          "title": "F5's evidence and cost",
+          "title": "Idea mode's evidence and cost",
           "items": [
             [
               "Evidence class",
@@ -833,7 +833,7 @@
               "Free"
             ],
             [
-              "frontmatter F6",
+              "frontmatter, decision flow",
               "Structured question list from the LLM port",
               "Frontmatter keys in the user's file",
               "Free, 4 engineering days"
@@ -842,7 +842,7 @@
         },
         {
           "type": "stat",
-          "title": "F6's dependencies and class",
+          "title": "Decision flow's dependencies and class",
           "items": [
             [
               "Build",
@@ -851,7 +851,7 @@
             ],
             [
               "Blocked by",
-              "F5 structured output; the LLM port returns a bare string today",
+              "Idea mode structured output; the LLM port returns a bare string today",
               "PRODUCT-BRIEF.md:220"
             ],
             [
@@ -1065,14 +1065,14 @@
             [
               "Stale section (doc older than the code it cites)",
               "None found in the corpus",
-              "—",
+              "none",
               "The actual differentiator, 4 days, unspecified"
             ]
           ]
         },
         {
           "type": "stat",
-          "title": "F7 cost and class",
+          "title": "Repo docs scan cost and class",
           "items": [
             [
               "Staleness heuristic",
@@ -1085,13 +1085,13 @@
               "PRODUCT-BRIEF.md:61"
             ],
             [
-              "S13 UI",
+              "Evidence side panel UI",
               "4 engineering days",
               "PRODUCT-BRIEF.md:61"
             ],
             [
               "Model calls in the scan",
-              "Zero — git dates, package.json scripts, link resolution",
+              "Zero: git dates, package.json scripts, link resolution",
               "PRODUCT-BRIEF.md:61"
             ],
             [
@@ -1105,7 +1105,7 @@
               "PRODUCT-BRIEF.md:478"
             ],
             [
-              "What the S13 evidence rail lists",
+              "What the evidence side panel lists",
               "41 markdown files, package.json scripts, git dates, zero source files",
               "PRODUCT-BRIEF.md:253"
             ]
@@ -1285,7 +1285,7 @@
             [
               "Fix this selection",
               "Yes",
-              "Yes — Refine selection / note"
+              "Yes, refine selection or note"
             ],
             [
               "Critique this selection",
@@ -1295,7 +1295,7 @@
             [
               "Summarise this file",
               "Yes",
-              "Yes — Summarize note"
+              "Yes, summarise note"
             ],
             [
               "Expand",
@@ -1331,11 +1331,11 @@
         },
         {
           "type": "stat",
-          "title": "What F8 is priced at, and what exists",
+          "title": "What file-scoped AI is priced at, and what exists",
           "items": [
             [
-              "F8 build in Exhibit 1",
-              "3 days — BYO key UI plus keychain",
+              "File-scoped AI build in the plan's feature build-cost table",
+              "3 days: bring-your-own-key UI plus keychain",
               "PRODUCT-BRIEF.md:62"
             ],
             [
@@ -1345,12 +1345,12 @@
             ],
             [
               "Live AI routes",
-              "6 — complete, generate-doc, link-doctor, refine, suggest-links, summarize",
+              "6: complete, generate-doc, link-doctor, refine, suggest-links, summarize",
               "measured: src/app/api/ai/"
             ],
             [
               "Ghost text, handled separately",
-              "Shipped, off by default, absent from Exhibit 1",
+              "Shipped, off by default, absent from the plan's feature build-cost table",
               "see F22"
             ],
             [
@@ -1531,7 +1531,7 @@
           "items": [
             [
               "Booleans in the shipped settings",
-              "5 — vimMode, lineNumbers, spellcheck, focusMode, aiGhostText",
+              "5: vimMode, lineNumbers, spellcheck, focusMode, aiGhostText",
               "src/modules/editor/presentation/editor-settings.ts:12-16"
             ],
             [
@@ -1541,17 +1541,17 @@
             ],
             [
               "Where the plan puts it",
-              "S11 settings, day one, named in the positioning",
+              "The settings screen, day one, named in the positioning",
               "PRODUCT-BRIEF.md:382"
             ],
             [
               "Features that would have to respect it",
-              "F5, F6, F7 generation, F8, ghost text",
+              "idea mode, decision flow, repo docs scan generation, file-scoped AI, ghost text",
               "PRODUCT-BRIEF.md:200-202"
             ],
             [
               "Admission-test constraint",
-              "A configuration surface is an automatic fail, not a trade (gate G5)",
+              "A configuration surface is an automatic fail, not a trade-off, under the one-person-operability gate",
               "r20-q6-feature-discipline.md, 103.1"
             ]
           ]
@@ -1698,7 +1698,7 @@
             ],
             [
               "Operator keys read at request time",
-              "5 providers — Google, Groq, Cerebras, Mistral, OpenRouter",
+              "5 providers: Google, Groq, Cerebras, Mistral, OpenRouter",
               "src/modules/ai/infrastructure/gateway-client.ts:34-53"
             ],
             [
@@ -1713,7 +1713,7 @@
             ],
             [
               "Model cost the plan assumes",
-              "Zero — all AI on the user's key",
+              "Zero: all AI on the user's key",
               "PRODUCT-BRIEF.md:231"
             ],
             [
@@ -1733,22 +1733,22 @@
           ],
           "rows": [
             [
-              "F5 idea mode",
+              "Idea mode",
               "Yes",
               "Yes"
             ],
             [
-              "F6 decision flow",
+              "Decision flow",
               "Yes",
               "Yes"
             ],
             [
-              "F7 generation half",
+              "Repo docs scan generation half",
               "Yes",
-              "Yes — the scan itself is model-free"
+              "Yes, the scan itself is model-free"
             ],
             [
-              "F8 AI panel",
+              "File-scoped AI panel",
               "Yes",
               "Yes"
             ],
@@ -1758,7 +1758,7 @@
               "Yes"
             ],
             [
-              "F2 review state",
+              "Review state",
               "No",
               "No"
             ]
@@ -1904,48 +1904,48 @@
       "evidence": [
         {
           "type": "stat",
-          "title": "F9's evidence against the MVP-0 rows",
+          "title": "Vault-wide refactor's evidence against the pilot rows",
           "items": [
             [
-              "F9 broken-links-on-rename",
+              "Vault-wide refactor: broken links on rename",
               "86 likes",
               "PRODUCT-BRIEF.md:63; DECIDE.md:105"
             ],
             [
-              "F2 review state",
+              "Review state",
               "Untested as a product",
               "PRODUCT-BRIEF.md:188"
             ],
             [
-              "F5 idea mode",
+              "Idea mode",
               "Founder user test, no notes attached",
               "GAPS-2026-09-08.md:23"
             ],
             [
-              "F6 decision flow",
+              "Decision flow",
               "Founder user test, no notes attached",
               "GAPS-2026-09-08.md:23"
             ],
             [
-              "F7 repo docs scan",
+              "Repo docs scan",
               "Founder direction",
               "PRODUCT-BRIEF.md:61"
             ],
             [
-              "F9 build",
+              "Vault-wide refactor build",
               "8 engineering days",
               "PRODUCT-BRIEF.md:63"
             ],
             [
-              "F9 stage today",
-              "MVP-1",
+              "Vault-wide refactor stage today",
+              "the build after the pilot",
               "PRODUCT-BRIEF.md:63"
             ]
           ]
         },
         {
           "type": "table",
-          "title": "What F9 needs that already exists",
+          "title": "What vault-wide refactor needs that already exists",
           "cols": [
             "Requirement",
             "Status"
@@ -1953,7 +1953,7 @@
           "rows": [
             [
               "Byte-range splice across a file",
-              "Built — mdmax, 3,614 lines across 13 files, byte-exactness measured on 8,513 real files (PRODUCT-BRIEF.md:492, :498)"
+              "Built: mdmax, 3,614 lines across 13 files, byte-exactness measured on 8,513 real files (PRODUCT-BRIEF.md:492, :498)"
             ],
             [
               "Refusal on fenced or ambiguous matches",
@@ -1961,11 +1961,11 @@
             ],
             [
               "Multi-file apply with per-hunk review",
-              "Not built — this is the 8 days"
+              "Not built: this is the 8 days"
             ],
             [
               "Engine wired behind product writes",
-              "Not built — fix #4, 8 days (PRODUCT-BRIEF.md:217)"
+              "Not built: fix #4, 8 days (PRODUCT-BRIEF.md:217)"
             ]
           ]
         }
@@ -2133,7 +2133,7 @@
             [
               "GitHub per-file Viewed state",
               "Per-file, progress bar, auto-unmarked on change",
-              "No — private to each reviewer",
+              "No, private to each reviewer",
               "Free at every tier"
             ],
             [
@@ -2155,8 +2155,8 @@
               "Free forever for public repos"
             ],
             [
-              "frontmatter F10",
-              "Per-span, per-person, sidecar in the repo",
+              "frontmatter, shared review state and comments",
+              "Per span, per person, in a review file in the repo",
               "Yes",
               "$4 to $5, 10 engineering days"
             ]
@@ -2177,23 +2177,23 @@
               "PRODUCT-BRIEF.md:288"
             ],
             [
-              "Shared review state (F10)",
+              "Shared review state",
               "Included, not a gate",
               "PRODUCT-BRIEF.md:288"
             ],
             [
-              "Comments (F10)",
+              "Comments",
               "Included, untested",
               "PRODUCT-BRIEF.md:64"
             ],
             [
-              "MCP (F11)",
+              "The MCP server",
               "Included, untested",
               "PRODUCT-BRIEF.md:288"
             ],
             [
               "Feature rows that build retention",
-              "Zero — the sidecar spec is current state, not history",
+              "Zero: the review file spec is current state, not history",
               "PRODUCT-BRIEF.md:289"
             ]
           ]
@@ -2223,18 +2223,18 @@
               "PRODUCT-BRIEF.md:288"
             ],
             [
-              "Exhibit 6's placement",
-              "Version-history retention, MVP-2 max",
+              "The plan's stage-and-tier table's placement",
+              "Version-history retention, two builds after the pilot at the latest",
               "PRODUCT-BRIEF.md:200"
             ],
             [
-              "The sidecar as specified",
+              "The review file as specified",
               "Current state, one line per span; not history",
               "PRODUCT-BRIEF.md:135"
             ],
             [
               "What the journal half depends on",
-              "Fix #4, engine wired behind every write, 8d; prompts need F11 MCP, 6d",
+              "Fix #4, engine wired behind every write, 8 days; prompts need the MCP server, 6 days",
               "PRODUCT-BRIEF.md:217, PRODUCT-BRIEF.md:65"
             ]
           ]
@@ -2460,7 +2460,7 @@
             [
               "Sidecar .frontmatter/",
               "Not shown",
-              "Yes — plain JSONL",
+              "Yes, plain JSONL",
               "Yes"
             ],
             [
@@ -2620,8 +2620,8 @@
           "title": "The two sequences, priced",
           "items": [
             [
-              "F11 as planned",
-              "6 engineering days, MVP-1, after about 70 days of MVP-0",
+              "The MCP server as planned",
+              "6 engineering days, in the build after the pilot, after about 70 days of the pilot",
               "PRODUCT-BRIEF.md:65, PRODUCT-BRIEF.md:227"
             ],
             [
@@ -2641,7 +2641,7 @@
             ],
             [
               "Precedent",
-              "dealfluence/adeu shipped this way — MIT, 149 stars, pushed 2026-08-30 — but for .docx, not markdown",
+              "dealfluence/adeu shipped this way (MIT, 149 stars, pushed 2026-08-30), but for .docx, not markdown",
               "CRITIQUE.md:1826"
             ],
             [
@@ -2678,7 +2678,7 @@
             [
               "Does anyone want an editor at all",
               "Assumed",
-              "Tested — do they ask for one"
+              "Tested, do they ask for one"
             ],
             [
               "Cost to run the test",
@@ -2851,8 +2851,8 @@
               "PRODUCT-BRIEF.md:159"
             ],
             [
-              "F12 build",
-              "15+ engineering days, MVP-2",
+              "Sync build",
+              "15 or more engineering days, two builds after the pilot",
               "PRODUCT-BRIEF.md:66"
             ],
             [
@@ -2879,7 +2879,7 @@
             [
               "Obsidian user with a vault",
               "A folder",
-              "No — this is who pays $4"
+              "No, this is who pays $4"
             ],
             [
               "Web-app user on Chrome, local folder",
@@ -2887,9 +2887,9 @@
               "No"
             ],
             [
-              "Team on MVP-1",
+              "Team, in the build after the pilot",
               "A repo",
-              "Yes, plus the sidecar"
+              "Yes, plus the review file"
             ]
           ]
         }
@@ -3108,7 +3108,7 @@
             ],
             [
               "Of those, server-side",
-              "2 — both PDF paths call serverPdfUrl()",
+              "2: both PDF paths call serverPdfUrl()",
               "ExportMenu.tsx:101-116"
             ],
             [
@@ -3159,7 +3159,7 @@
             ],
             [
               "Folder-to-one-PDF build",
-              "4 engineering days, MVP-1",
+              "4 engineering days, in the build after the pilot",
               "PRODUCT-BRIEF.md:67"
             ],
             [
@@ -3195,7 +3195,7 @@
             ],
             [
               "Copy as HTML",
-              "No — 0 occurrences in src/",
+              "No, 0 occurrences in src/",
               "None recorded"
             ],
             [
@@ -3344,7 +3344,7 @@
           "items": [
             [
               "Plan's position",
-              "Should not have — confidence E",
+              "Should not have, confidence E",
               "GAPS-2026-09-08.md:81"
             ],
             [
@@ -3399,32 +3399,32 @@
               "r20-q6-feature-discipline.md, 103.2 row 6"
             ],
             [
-              "In Exhibit 1",
+              "In the plan's feature build-cost table",
               "Absent",
               "PRODUCT-BRIEF.md:55-67"
             ],
             [
               "Built",
-              "Yes — 685 lines, force-graph, tag-coloured, hover-focus",
+              "Yes, 685 lines, force-graph, tag-coloured, hover-focus",
               "src/modules/graph/; FEATURE-GAP-REPORT.md:41"
             ],
             [
               "Global hotkeys in the whole app",
-              "3 — mod+k, mod+p, mod+g",
+              "3: mod+k, mod+p, mod+g",
               "src/modules/app-shell/presentation/KnowledgeUI.tsx:56-58"
             ]
           ]
         },
         {
           "type": "table",
-          "title": "Where attention is supposed to go on S2",
+          "title": "Where attention is supposed to go on the editor",
           "cols": [
             "Element",
             "Position in the predicted scan path"
           ],
           "rows": [
             [
-              "Top bar and left rail — tabs, tree, unreviewed bars",
+              "Top bar and left side panel: tabs, tree, unreviewed bars",
               "First"
             ],
             [
@@ -3432,7 +3432,7 @@
               "Second"
             ],
             [
-              "Right rail",
+              "Right side panel",
               "Last"
             ],
             [
@@ -3627,7 +3627,7 @@
             ],
             [
               "PRODUCT-BRIEF.md:205",
-              "Hosting absent from MVP-0"
+              "Hosting absent from the pilot"
             ],
             [
               "FRONTMATTER-PRD-v2-2026-08-29.md:4295 and :4204",
@@ -4054,7 +4054,7 @@
           "rows": [
             [
               "Section 21 rendering rules (line 524)",
-              "Nested constructs render correctly — shipped first as the free plugin"
+              "Nested constructs render correctly, shipped first as the free plugin"
             ],
             [
               "Section 12 channels (line 304)",
@@ -4281,7 +4281,7 @@
         },
         {
           "type": "table",
-          "title": "What the shipped editor actually has — corrected against the source",
+          "title": "What the shipped editor actually has, corrected against the source",
           "cols": [
             "Capability",
             "Present in code?",
@@ -4315,7 +4315,7 @@
             ],
             [
               "Insert link, headings, lists, quote, task, code block, table",
-              "Yes, as toolbar buttons — no keybindings",
+              "Yes, as toolbar buttons, no keybindings",
               "Toolbar.tsx:60-115"
             ],
             [
@@ -4497,7 +4497,7 @@
             ],
             [
               "Feature row for search",
-              "None; one word inside F1",
+              "None; one word inside the editor",
               "PRODUCT-BRIEF.md:55"
             ],
             [
@@ -4649,7 +4649,7 @@
               "r26-c4-features.md, finding R1"
             ],
             [
-              "Rows in Exhibit 1 mentioning it",
+              "Rows in the plan's feature build-cost table mentioning it",
               "0",
               "PRODUCT-BRIEF.md:55-67"
             ],
@@ -4660,7 +4660,7 @@
             ],
             [
               "Where a scope rule would naturally live",
-              "F11 MCP server, 6 days, MVP-1, untested",
+              "The MCP server, 6 days, in the build after the pilot, untested",
               "PRODUCT-BRIEF.md:65"
             ]
           ]
@@ -4674,16 +4674,16 @@
           ],
           "rows": [
             [
-              "See what changed since a person last read it (F2)",
-              "Planned, MVP-0"
+              "See what changed since a person last read it (review state)",
+              "Planned, in the pilot"
             ],
             [
-              "Revert one span (F2)",
-              "Planned, MVP-0"
+              "Revert one span (review state)",
+              "Planned, in the pilot"
             ],
             [
               "Refuse an ambiguous splice (engine)",
-              "Partly — non-locality is listed as an improvement still to make (PRODUCT-BRIEF.md:510)"
+              "Partly: non-locality is listed as an improvement still to make (PRODUCT-BRIEF.md:510)"
             ],
             [
               "Say which paths an agent may write",
@@ -4850,7 +4850,7 @@
           "cols": [
             "",
             "Template file",
-            "Generator prompt (F5)"
+            "Generator prompt (idea mode)"
           ],
           "rows": [
             [
@@ -4875,7 +4875,7 @@
             ],
             [
               "Build cost",
-              "Near zero — four .md files",
+              "Near zero, four .md files",
               "Already built, needs structured output (2d) and BYO key (3d)"
             ]
           ]
@@ -4910,7 +4910,7 @@
               "measured: PRODUCT-BRIEF.md:525-526"
             ],
             [
-              "F5's five kinds already coded",
+              "Idea mode's five kinds already coded",
               "prd, frd, brd, product-note, spec",
               "src/modules/ai/application/doc-prompts.ts:10"
             ],
@@ -5083,8 +5083,8 @@
               "PRODUCT-BRIEF.md:539"
             ],
             [
-              "Stage in Exhibit 6",
-              "Absent from MVP-0 and MVP-1",
+              "Stage in the plan's stage-and-tier table",
+              "Absent from the pilot and the build after it",
               "PRODUCT-BRIEF.md:205"
             ],
             [
@@ -5104,7 +5104,7 @@
             ],
             [
               "The admission test's own verdict on it",
-              "ADMIT — separate surface, own budget V0 ≤ 4, do not port the rail",
+              "ADMIT: separate surface, own budget of at most 4 visible controls at rest, do not port the side panel",
               "r20-q6-feature-discipline.md, 103.2 row 9"
             ]
           ]
@@ -5269,7 +5269,7 @@
             ],
             [
               "Share of attributions covered by three constructs",
-              "93.8% — HTML comments, YAML frontmatter, pipes in prose",
+              "93.8%: HTML comments, YAML frontmatter, pipes in prose",
               "ENGINE.md:899"
             ],
             [
@@ -5284,7 +5284,7 @@
             ],
             [
               "Cost of the deciding test",
-              "One day — build the five-regex linter, run both over the same 800 files",
+              "One day: build the five-regex linter, run both over the same 800 files",
               "PRODUCT-BRIEF.md:512"
             ],
             [
@@ -5443,7 +5443,7 @@
             ],
             [
               "notion-labelled issues in that repo",
-              "58 total, 55 closed (94.8%) — the most-churned importer there",
+              "58 total, 55 closed (94.8%), the most-churned importer there",
               "r1-migration-fidelity.md:36"
             ],
             [
@@ -5452,7 +5452,7 @@
               "r1-migration-fidelity.md:187"
             ],
             [
-              "Import rows in Exhibit 1",
+              "Import rows in the plan's feature build-cost table",
               "0",
               "PRODUCT-BRIEF.md:55-67"
             ],

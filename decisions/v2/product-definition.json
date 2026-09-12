@@ -99,7 +99,7 @@
           "rows": [
             [
               "docs/DECIDE.md:59",
-              "\"a markdown editor for people who build software with AI\" — byte-exact editing",
+              "\"a markdown editor for people who build software with AI\" (byte-exact editing)",
               "Superseded; byte-exactness refuted as a pitch, docs/PRODUCT-BRIEF.md:174"
             ],
             [
@@ -278,7 +278,7 @@
             [
               "Reactions on the request cited as the demand signal",
               "266",
-              "docs/PRODUCT-BRIEF.md:23 — anthropics/claude-code#33932"
+              "docs/PRODUCT-BRIEF.md:23, anthropics/claude-code#33932"
             ],
             [
               "Of its 36 texts, how many ask for anything to persist",
@@ -318,19 +318,19 @@
           "note": "The closest existing request to review state, against the rendering bug the plan treats as a week-2 channel. docs/PRODUCT-BRIEF.md:25 and :410.",
           "data": [
             [
-              "Review state request — likes",
+              "Review state request (likes)",
               0
             ],
             [
-              "\"Tracking changes within notes\" — likes",
+              "\"Tracking changes within notes\" (likes)",
               1
             ],
             [
-              "\"Suggestion mode like Google Docs\" — likes",
+              "\"Suggestion mode like Google Docs\" (likes)",
               3
             ],
             [
-              "Nested-construct rendering bug — likes",
+              "Nested-construct rendering bug (likes)",
               501
             ]
           ],
@@ -348,22 +348,22 @@
             [
               "See what the AI wrote",
               "None found for consumers",
-              "iA Writer 7 shipped it 2023; 208-download Obsidian port; best VS Code extension 366 installs; 0 asks in the top twenty Reddit posts — docs/PRODUCT-BRIEF.md:175, :296"
+              "iA Writer 7 shipped it 2023; 208-download Obsidian port; best VS Code extension 366 installs; 0 asks in the top twenty Reddit posts (docs/PRODUCT-BRIEF.md:175, :296)"
             ],
             [
               "See what the agent changed without asking",
-              "The upvoted pain matches it — docs/PRODUCT-BRIEF.md:296",
-              "The 266-reaction request asks for a per-session panel; 18 of 36 texts name a tool that already does it — docs/PRODUCT-BRIEF.md:23"
+              "The upvoted pain matches it (docs/PRODUCT-BRIEF.md:296)",
+              "The 266-reaction request asks for a per-session panel; 18 of 36 texts name a tool that already does it (docs/PRODUCT-BRIEF.md:23)"
             ],
             [
               "Know what nobody has reviewed yet",
-              "The upvoted pain matches it; it is the narrowed survivor — docs/PRODUCT-BRIEF.md:27",
-              "Obsidian forum: closest request 0 likes, 1 post in nearly three years — docs/PRODUCT-BRIEF.md:410"
+              "The upvoted pain matches it; it is the narrowed survivor (docs/PRODUCT-BRIEF.md:27)",
+              "Obsidian forum: closest request 0 likes, 1 post in nearly three years (docs/PRODUCT-BRIEF.md:410)"
             ],
             [
               "Your checklist is green because the agent ticked it",
               "354 of 355 boxes ticked by the agent across a 20-file sample; population 49,664; reviewer-owned checklist 11× rarer",
-              "Untested as a headline — docs/PRODUCT-BRIEF.md:306"
+              "Untested as a headline (docs/PRODUCT-BRIEF.md:306)"
             ]
           ]
         },
@@ -387,7 +387,7 @@
               "docs/PRODUCT-BRIEF.md:352"
             ],
             [
-              "People shown the S2 screenshot for five seconds",
+              "People shown the editor screenshot for five seconds",
               "5",
               "docs/PRODUCT-BRIEF.md:352"
             ],
@@ -599,22 +599,22 @@
             [
               "LF, ASCII, flat, 2 hunks",
               "a reviewable diff",
-              "Zed: accept or reject each individual change hunk — docs/CRITIQUE.md:377"
+              "Zed: accept or reject each individual change hunk (docs/CRITIQUE.md:377)"
             ],
             [
               "Same, inside Obsidian",
               "nothing new",
-              "4,165,249 cumulative downloads across four AI plugins — docs/CRITIQUE.md:378"
+              "4,165,249 cumulative downloads across four AI plugins (docs/CRITIQUE.md:378)"
             ],
             [
               "Same, in a git repo",
               "a byte-identical rejected file",
-              "git diff / git add -p, installed 3,075,875 times inside Obsidian alone — docs/CRITIQUE.md:379"
+              "git diff / git add -p, installed 3,075,875 times inside Obsidian alone (docs/CRITIQUE.md:379)"
             ],
             [
               "CRLF, or nested fence-in-callout-in-list, or a 6-file change",
               "a real, unmatched difference",
-              "nothing equivalent — docs/CRITIQUE.md:380"
+              "nothing equivalent (docs/CRITIQUE.md:380)"
             ]
           ]
         }
@@ -779,30 +779,30 @@
             [
               "Google Docs",
               "File-level blue dot, \"see new changes\"",
-              "Span-level authorship — Business Standard, Business Plus, Enterprise Standard/Plus, Education Plus",
+              "Span-level authorship: Business Standard, Business Plus, Enterprise Standard/Plus, Education Plus",
               "docs/PRODUCT-BRIEF.md:57, quoted verbatim, fetched 2026-09-08"
             ],
             [
               "GitHub",
               "Per-file Viewed state with a progress bar, auto-unmarked on change, private to each reviewer",
-              "—",
+              "none",
               "docs/PRODUCT-BRIEF.md:56"
             ],
             [
               "Reviewable",
               "Free forever for public repos",
-              "—",
+              "none",
               "docs/PRODUCT-BRIEF.md:56"
             ],
             [
               "Anthropic (Claude Code extension)",
               "Persisted unread state, unread tab badge, /diff panel",
-              "—",
+              "none",
               "docs/PRODUCT-BRIEF.md:560"
             ],
             [
               "frontmatter, as planned",
-              "F2 review state, F3 attribution",
+              "Review state, attribution",
               "Retained splice journal + review gates that block in CI",
               "docs/PRODUCT-BRIEF.md:288, Exhibit 6 at :197"
             ]
@@ -833,8 +833,8 @@
               "docs/PRODUCT-BRIEF.md:296"
             ],
             [
-              "What F3 can actually show today",
-              "Only what the write carried — commit trailers and git-ai notes; prompts need F11 MCP, which is MVP-1 and untested",
+              "What attribution can actually show today",
+              "Only what the write carried (commit trailers and git-ai notes); prompts need the MCP server, which is in the build after the pilot and untested",
               "docs/PRODUCT-BRIEF.md:57, :65"
             ]
           ]
@@ -1169,22 +1169,22 @@
             [
               "PRD generators on GitHub",
               "512 repos; the top has 57 stars",
-              "No traction as standalone tools — docs/PRODUCT-BRIEF.md:155"
+              "No traction as standalone tools (docs/PRODUCT-BRIEF.md:155)"
             ],
             [
               "README generators",
               "readme-md-generator 11,131 stars, abandoned 2022; readme-ai 2,980",
-              "One file, no repo context — docs/PRODUCT-BRIEF.md:154"
+              "One file, no repo context (docs/PRODUCT-BRIEF.md:154)"
             ],
             [
               "The clarify step",
               "/speckit.clarify, Kiro and Claude Code plan mode ship it free",
-              "Difference claimed: ours writes into the document and stays reviewable — docs/PRODUCT-BRIEF.md:60"
+              "Difference claimed: ours writes into the document and stays reviewable (docs/PRODUCT-BRIEF.md:60)"
             ],
             [
               "Handover / context-pack products",
               "89 launched on HN in 20 months, median 2 points, 88 of 89 never reached 50",
-              "Refuted as a wedge — docs/DECIDE.md:28"
+              "Refuted as a wedge (docs/DECIDE.md:28)"
             ]
           ]
         },
@@ -1193,13 +1193,13 @@
           "title": "What the two features cost and what stands behind them",
           "items": [
             [
-              "F5 engineering days",
+              "Idea mode engineering days",
               "2 (structured output in the port) + 2 (from-repo input)",
               "docs/PRODUCT-BRIEF.md:59"
             ],
             [
-              "F6 engineering days",
-              "4, after F5's structured output",
+              "Decision flow engineering days",
+              "4, after idea mode's structured output",
               "docs/PRODUCT-BRIEF.md:60"
             ],
             [
@@ -1214,7 +1214,7 @@
             ],
             [
               "Blocking engine fix they need",
-              "LLM port returns a bare string; JSON sliced between brackets — 2 days, fix-first item 7",
+              "LLM port returns a bare string; JSON sliced between brackets (2 days, fix-first item 7)",
               "docs/PRODUCT-BRIEF.md:220"
             ]
           ]
@@ -1382,8 +1382,8 @@
           "title": "The two refusal lists, compared",
           "cols": [
             "Refusal",
-            "In plan §1 line 43",
-            "In record §103.3",
+            "In the plan's Definition section, line 43",
+            "In the record's refusal list, section 103.3",
             "Reversal condition on record"
           ],
           "rows": [
@@ -1397,7 +1397,7 @@
               "Project management",
               "Yes",
               "Yes (:852)",
-              "\"Nothing reverses it\" — a company-identity constraint, to be said publicly"
+              "\"Nothing reverses it\" (a company-identity constraint, to be said publicly)"
             ],
             [
               "Chat sidebar",
@@ -1409,13 +1409,13 @@
               "Hosting user content",
               "Yes",
               "Not listed",
-              "None written — and the code ships a wired public route (P8)"
+              "None written, and the code ships a wired public route (the document-hosting decision)"
             ],
             [
               "Vendor database of document bytes",
               "Yes",
               "Not listed",
-              "None written — and firestore.rules designs one (P9)"
+              "None written, and firestore.rules designs one (the same hosting decision)"
             ],
             [
               "Mobile editor in v1",
@@ -1433,7 +1433,7 @@
               "Template galleries",
               "Missing",
               "Yes (:856)",
-              "\"Where do I get templates\" a top-3 support string for two quarters — and even then the answer is a git repo"
+              "\"Where do I get templates\" a top-3 support string for two quarters, and even then the answer is a git repo"
             ],
             [
               "Dashboards",
@@ -1470,7 +1470,7 @@
             ],
             [
               "Warning attached to that number by its own author",
-              "Do not quote 22.79% as a share of our future tickets — it establishes the class exists and is large, not its size for us",
+              "Do not quote 22.79% as a share of our future tickets: it establishes the class exists and is large, not its size for us",
               "docs/BUSINESS.md:819"
             ]
           ]
@@ -1487,32 +1487,32 @@
             [
               "Plugins / code execution",
               "Forecloses the category's only demonstrated community moat; the competitor's registry is 143,290,675 downloads deep",
-              "Capability model with no fs/network/eval plus a published audit; not before 1,000 paying users — docs/THESIS.md:853"
+              "Capability model with no fs/network/eval plus a published audit; not before 1,000 paying users (docs/THESIS.md:853)"
             ],
             [
               "Project management",
               "Refuses a whole adjacent category",
-              "\"Nothing reverses it\" — a company-identity constraint, to be stated publicly — docs/THESIS.md:852"
+              "\"Nothing reverses it\" (a company-identity constraint, to be stated publicly; docs/THESIS.md:852)"
             ],
             [
               "Chat sidebar",
               "Refuses the surface every AI product ships",
-              "<20% strong acceptance across all verbs at 90 days — docs/THESIS.md:855"
+              "<20% strong acceptance across all verbs at 90 days (docs/THESIS.md:855)"
             ],
             [
               "Live cursors / multiplayer",
               "HackMD and Docmost lead with it",
-              "≥3 of the first 20 paying teams cancel citing presence by name — docs/THESIS.md:854"
+              "≥3 of the first 20 paying teams cancel citing presence by name (docs/THESIS.md:854)"
             ],
             [
               "Hosting user content",
               "\"a byte-preserving engine whose output nobody can see is a claim without a demonstration\"",
-              "None written; PRD v2 recommends shipping it — docs/FRONTMATTER-PRD-v2-2026-08-29.md:4206"
+              "None written; PRD v2 recommends shipping it (docs/FRONTMATTER-PRD-v2-2026-08-29.md:4206)"
             ],
             [
               "Mobile editor in v1",
               "About 15% of complaints",
-              "No condition — the record simply ADMITS mobile with its own V0 ≤ 4 budget — docs/THESIS.md:843, docs/PRODUCT-BRIEF.md:539"
+              "No condition: the record simply ADMITS mobile with its own V0 ≤ 4 budget (docs/THESIS.md:843, docs/PRODUCT-BRIEF.md:539)"
             ]
           ]
         },
@@ -1522,7 +1522,7 @@
           "items": [
             [
               "Share of Obsidian tagged forum topics touching the plugin surface",
-              "22.79% — but explicitly not to be quoted as a share of our tickets",
+              "22.79%, but explicitly not to be quoted as a share of our tickets",
               "docs/BUSINESS.md:808, :819"
             ],
             [
@@ -1717,7 +1717,7 @@
           ],
           "rows": [
             [
-              "Plan v15 §1",
+              "The current plan's Definition section",
               "\"no hosting of user content\"; control plane holds zero document bytes",
               "docs/PRODUCT-BRIEF.md:43, :133"
             ],
@@ -1727,8 +1727,8 @@
               "docs/WEEK0-DECISIONS-2026-09-08.md:35"
             ],
             [
-              "PRD v2 §44.5",
-              "\"Ship publishing in v1\" — paying accounts, noindex, system slugs; grievance apparatus first, 74 one-time hours",
+              "PRD v2's Recommendation section",
+              "\"Ship publishing in v1\" (paying accounts, noindex, system slugs; grievance apparatus first, 74 one-time hours)",
               "docs/FRONTMATTER-PRD-v2-2026-08-29.md:4204, :4206"
             ],
             [
@@ -1774,7 +1774,7 @@
             ],
             [
               "Default repo",
-              "sagnikmitra/md — the sibling product's",
+              "sagnikmitra/md, the sibling product's",
               "src/config/env.ts:86"
             ],
             [
@@ -1815,7 +1815,7 @@
             ],
             [
               "Firestore writes across 226 source files",
-              "zero — the design is committed but unbuilt",
+              "zero: the design is committed but unbuilt",
               "docs/PRODUCT-BRIEF.md:365"
             ]
           ]
@@ -1830,7 +1830,7 @@
           ],
           "rows": [
             [
-              "Plan v15",
+              "The current plan",
               "No vendor database holding document bytes; control plane holds identity, teams, entitlements and billing only",
               "docs/PRODUCT-BRIEF.md:43, :133"
             ],
@@ -2005,7 +2005,7 @@
             ],
             [
               "Registry entries",
-              "7,139 plugins (docs/CRITIQUE.md:350) — note docs/BUSINESS.md:827 counts 7,119 on the same date; reconcile before quoting",
+              "7,139 plugins (docs/CRITIQUE.md:350). Note docs/BUSINESS.md:827 counts 7,119 on the same date; reconcile before quoting",
               "plus 717 themes, docs/BUSINESS.md:827"
             ],
             [
@@ -2061,7 +2061,7 @@
             ],
             [
               "Predicted failure of a declarative surface",
-              "It grows conditionals, then loops, then an escape hatch — Dataview shipped DQL then dataviewjs",
+              "It grows conditionals, then loops, then an escape hatch: Dataview shipped DQL then dataviewjs",
               "docs/BUSINESS.md:914"
             ]
           ]
@@ -2238,22 +2238,22 @@
           ],
           "rows": [
             [
-              "Fifteen-second tint",
+              "Fifteen-second highlight",
               "docs/PRODUCT-BRIEF.md:45",
               "That review state exists on a spec the demo just generated",
-              "Store 6d, rendering 5d, revert 3d, panel 4d = 18d — docs/PRODUCT-BRIEF.md:56"
+              "Store 6d, rendering 5d, revert 3d, panel 4d = 18d (docs/PRODUCT-BRIEF.md:56)"
             ],
             [
               "Rejection / byte-identical",
               "docs/DECIDE.md:75",
               "That a rejected hunk is byte-identical",
-              "Shipped by Zed verbatim; \"0 days for the demo\" for them — docs/CRITIQUE.md:408"
+              "Shipped by Zed verbatim; \"0 days for the demo\" for them (docs/CRITIQUE.md:408)"
             ],
             [
               "Import / verification report on the prospect's own repo",
               "docs/CRITIQUE.md:715, docs/PRODUCT.md:900",
               "That their existing folder has named, countable problems",
-              "Needs NF-1, the splice return shape and a padEnd fix — no new capability, per docs/PRODUCT.md:900"
+              "Needs the left-edge list bug fix (the splice return shape and a padEnd fix); no new capability, per docs/PRODUCT.md:900"
             ]
           ]
         },
@@ -2262,7 +2262,7 @@
           "title": "What the demo has to overcome",
           "items": [
             [
-              "Purpose-built markdown-review extensions already shipping the tint idea",
+              "Purpose-built markdown-review extensions already shipping the highlight idea",
               "13, summing to 1,217 installs, ceiling 400",
               "docs/PRODUCT-BRIEF.md:24"
             ],
@@ -2309,7 +2309,7 @@
             ],
             [
               "Where it currently sits",
-              "DECIDE §9's day-41 test; the critique says run it at day 5 with a prototype instead",
+              "DECIDE's \"What would tell us we are wrong\" day-41 test; the critique says run it at day 5 with a prototype instead",
               "docs/CRITIQUE.md:386"
             ],
             [
@@ -2319,7 +2319,7 @@
             ],
             [
               "What the pilot's ten users bring",
-              "Their own repos and their own agents — no prepared files exist",
+              "Their own repos and their own agents: no prepared files exist",
               "docs/PRODUCT-BRIEF.md:231"
             ],
             [
@@ -2339,24 +2339,24 @@
           ],
           "rows": [
             [
-              "Fifteen-second tint (docs/PRODUCT-BRIEF.md:45)",
+              "Fifteen-second highlight (docs/PRODUCT-BRIEF.md:45)",
               "A spec the agent just generated, in our repo",
-              "No — the stranger's agent must have written something they have not read"
+              "No: the stranger's agent must have written something they have not read"
             ],
             [
               "Rejection / byte-identical (docs/DECIDE.md:75)",
               "Any file, but the difference is invisible unless it is CRLF or deeply nested",
-              "Sometimes — and only 83% of foreign vaults hit a refusal at all (docs/PRODUCT-BRIEF.md:214)"
+              "Sometimes, and only 83% of foreign vaults hit a refusal at all (docs/PRODUCT-BRIEF.md:214)"
             ],
             [
               "Repo report (docs/CRITIQUE.md:715)",
               "Any existing folder of markdown",
-              "Yes — that is the whole design"
+              "Yes: that is the whole design"
             ],
             [
               "Any of them, on a file we prepared",
               "A file crafted to break the competitor",
-              "Not applicable — and docs/CRITIQUE.md:382 says the room knows"
+              "Not applicable, and docs/CRITIQUE.md:382 says the room knows"
             ]
           ]
         }
@@ -2521,7 +2521,7 @@
               "docs/FRONTMATTER-RECORD.md:267"
             ],
             [
-              "G2, the entailment gate",
+              "The entailment gate",
               "Fails if it \"needs a sidecar, an index, a `.base`-equivalent, or a row in the control plane\"",
               "docs/THESIS.md:820"
             ],
@@ -2531,17 +2531,17 @@
               "docs/THESIS.md:857"
             ],
             [
-              "Saved searches, redesigned by G2",
+              "Saved searches, redesigned by the entailment gate",
               "Admitted only because the saved search is itself a .md file whose frontmatter holds the query",
               "docs/THESIS.md:836"
             ],
             [
               "Sort/group on the tree, admitted anyway",
-              "Passes only as palette plus `.frontmatter/state.json` — a sidecar already conceded once",
+              "Passes only as palette plus `.frontmatter/state.json`, a review file already conceded once",
               "docs/THESIS.md:837"
             ],
             [
-              "F2 review state",
+              "Review state",
               "Per-span hashes in `.frontmatter/review.jsonl` beside the files",
               "docs/PRODUCT-BRIEF.md:135"
             ],
@@ -2554,7 +2554,7 @@
         },
         {
           "type": "stat",
-          "title": "What the sidecar is and what is still unknown about it",
+          "title": "What the review file is and what is still unknown about it",
           "items": [
             [
               "Format",
@@ -2578,7 +2578,7 @@
             ],
             [
               "Whether the anchor survives an out-of-band write",
-              "Still open after round 2 — \"the only scenario the product exists for\"",
+              "Still open after round 2: \"the only scenario the product exists for\"",
               "docs/GAPS-2026-09-08.md:146"
             ]
           ]
@@ -2597,7 +2597,7 @@
               ".frontmatter/review.jsonl",
               "Per-span hash, reviewed-by, reviewed-at, and when known author, model, prompt",
               "docs/PRODUCT-BRIEF.md:135",
-              "Planned, MVP-0, unbuilt"
+              "Planned for the pilot, unbuilt"
             ],
             [
               ".frontmatter/usage.jsonl",
@@ -2606,10 +2606,10 @@
               "Drafted, week 0"
             ],
             [
-              "Comments sidecar",
+              "Comments review file",
               "Comments anchored to spans, never in the file",
               "docs/PRODUCT-BRIEF.md:64",
-              "Planned, MVP-1"
+              "Planned for the build after the pilot"
             ],
             [
               ".frontmatter/state.json",
@@ -2652,7 +2652,7 @@
             ],
             [
               "Stores counted together anywhere in the plan",
-              "0 — no exhibit lists them",
+              "0: no exhibit lists them",
               "verified: no such exhibit in docs/PRODUCT-BRIEF.md"
             ]
           ]
@@ -2834,7 +2834,7 @@
             [
               "THESIS §103.4",
               "4",
-              "file, folder, view, prompt — the fourth bought and paid for at :864",
+              "file, folder, view, prompt; the fourth bought and paid for at :864",
               "docs/THESIS.md:862"
             ],
             [
@@ -2846,7 +2846,7 @@
             [
               "What v15 actually introduces",
               "At least 10",
-              "file, folder, mode/view, span, review state, sidecar, attribution, proposal, scan, key",
+              "file, folder, mode/view, span, review state, review file, attribution, proposal, scan, key",
               "docs/PRODUCT-BRIEF.md:20, :55–62, :135"
             ]
           ]
@@ -2857,7 +2857,7 @@
           "items": [
             [
               "NN/g progressive disclosure",
-              "Bounds disclosure DEPTH, not breadth — \"beyond 2 disclosure levels typically have low usability\"",
+              "Bounds disclosure DEPTH, not breadth: \"beyond 2 disclosure levels typically have low usability\"",
               "docs/THESIS.md:872"
             ],
             [
@@ -2877,64 +2877,64 @@
             ],
             [
               "Hick's law",
-              "Not cited — the attached DOI resolves to Hyman 1953, a reaction-time study, not adoption",
+              "Not cited: the attached DOI resolves to Hyman 1953, a reaction-time study, not adoption",
               "docs/THESIS.md:877"
             ]
           ]
         },
         {
           "type": "table",
-          "title": "The nine at rest, and what v15 wants to add",
+          "title": "The nine at rest, and what the current plan wants to add",
           "cols": [
             "Slot",
             "Record's at-rest list (docs/FRONTMATTER-RECORD.md:1883–1891)",
-            "v15 addition"
+            "Current-plan addition"
           ],
           "rows": [
             [
               "1–2",
-              "The text, full-bleed; file tree collapsed to a rail, folder names only",
-              "Tree gains unreviewed bars — docs/PRODUCT-BRIEF.md:409"
+              "The text, full-bleed; file tree collapsed to a side panel, folder names only",
+              "Tree gains unreviewed bars (docs/PRODUCT-BRIEF.md:409)"
             ],
             [
               "3",
               "Breadcrumb path, also the rename affordance",
-              "Tab strip — docs/PRODUCT-BRIEF.md:55"
+              "Tab strip (docs/PRODUCT-BRIEF.md:55)"
             ],
             [
               "4",
               "One mode control: three-state segment Edit · Read · Split",
-              "Four modes: Live, Edit, Split, Read — docs/PRODUCT-BRIEF.md:55"
+              "Four modes: Live, Edit, Split, Read (docs/PRODUCT-BRIEF.md:55)"
             ],
             [
               "5",
               "One view control: projection selector",
-              "—"
+              "none"
             ],
             [
               "6",
               "Save/sync state as text, three states only",
-              "—"
+              "none"
             ],
             [
               "7",
               "Word count",
-              "Review counter, top-left of the panel — docs/PRODUCT-BRIEF.md:409"
+              "Review counter, top-left of the panel (docs/PRODUCT-BRIEF.md:409)"
             ],
             [
               "8",
               "Search entry point",
-              "—"
+              "none"
             ],
             [
               "9",
               "Right-pane toggle that cycles",
-              "Properties panel for frontmatter — docs/PRODUCT-BRIEF.md:55"
+              "Properties panel for frontmatter (docs/PRODUCT-BRIEF.md:55)"
             ],
             [
               "+",
               "Explicitly not visible at rest: no AI button, no export button, no share button",
-              "ShareMenu, AIMenu and ExportMenu are all wired into the editor header today — src/modules/editor/presentation/EditorPane.tsx:905–907"
+              "ShareMenu, AIMenu and ExportMenu are all wired into the editor header today (src/modules/editor/presentation/EditorPane.tsx:905–907)"
             ]
           ]
         },
@@ -2969,7 +2969,7 @@
             ],
             [
               "Buttons wired into the editor header today",
-              "ShareMenu, AIMenu, ExportMenu — all three on the record's not-visible-at-rest list",
+              "ShareMenu, AIMenu, ExportMenu: all three on the record's not-visible-at-rest list",
               "src/modules/editor/presentation/EditorPane.tsx:905–907"
             ]
           ]
@@ -3136,7 +3136,7 @@
         },
         {
           "type": "table",
-          "title": "What MVP-0 currently contains",
+          "title": "What the pilot currently contains",
           "cols": [
             "Block",
             "Days",
@@ -3144,32 +3144,32 @@
           ],
           "rows": [
             [
-              "Fix-first (items 1–11 plus row 0: NF-1, NF-3, CI, engine wiring, byte budget, BYO key, structured output, web byte path, tauri identity, cert CLI, entities)",
+              "Fix-first (items 1–11 plus row 0: the left-edge list bug, the old line-ending bug, CI, engine wiring, byte budget, BYO key, structured output, web byte path, tauri identity, cert CLI, entities)",
               "24 as stated in the sequence; the table's own day column sums to 25.5",
               "docs/PRODUCT-BRIEF.md:227, :212–225"
             ],
             [
-              "Review state F2 (store 6, rendering 5, revert 3, panel 4)",
+              "Review state (store 6, rendering 5, revert 3, panel 4)",
               "18",
               "docs/PRODUCT-BRIEF.md:227, :56"
             ],
             [
-              "Attribution readers F3 + answer in place F4",
+              "Attribution readers plus answer in place",
               "6",
               "docs/PRODUCT-BRIEF.md:227"
             ],
             [
-              "Idea mode F5 + decision flow F6",
+              "Idea mode plus decision flow",
               "8",
               "docs/PRODUCT-BRIEF.md:227"
             ],
             [
-              "Repo docs scan F7",
+              "Repo docs scan",
               "10",
               "docs/PRODUCT-BRIEF.md:227"
             ],
             [
-              "AI panel F8",
+              "AI panel",
               "3",
               "docs/PRODUCT-BRIEF.md:227"
             ],
@@ -3351,7 +3351,7 @@
       "evidence": [
         {
           "type": "table",
-          "title": "The incumbents F7 sits next to",
+          "title": "The incumbents the repo docs scan sits next to",
           "cols": [
             "Tool",
             "Reach",
@@ -3363,19 +3363,19 @@
               "Vale",
               "6,087 stars",
               "Prose lint",
-              "Lint only; no proposals, no review state — docs/PRODUCT-BRIEF.md:153"
+              "Lint only; no proposals, no review state (docs/PRODUCT-BRIEF.md:153)"
             ],
             [
               "markdownlint",
               "6,326 stars",
               "Markdown lint",
-              "Same — docs/PRODUCT-BRIEF.md:153"
+              "Same (docs/PRODUCT-BRIEF.md:153)"
             ],
             [
               "readme-md-generator",
               "11,131 stars, abandoned 2022",
               "Generate a README",
-              "One file, no repo context — docs/PRODUCT-BRIEF.md:154"
+              "One file, no repo context (docs/PRODUCT-BRIEF.md:154)"
             ],
             [
               "readme-ai",
@@ -3384,30 +3384,30 @@
               "Same"
             ],
             [
-              "frontmatter F7",
+              "frontmatter's repo docs scan",
               "0 users",
               "Stale sections, broken links, missing standard docs, offers to generate them",
-              "10 engineering days; no model needed for the scan — docs/PRODUCT-BRIEF.md:61"
+              "10 engineering days; no model needed for the scan (docs/PRODUCT-BRIEF.md:61)"
             ]
           ]
         },
         {
           "type": "stat",
-          "title": "What F7 rests on",
+          "title": "What the repo docs scan rests on",
           "items": [
             [
               "Evidence class",
-              "\"Founder direction\" — not a user test, not public evidence",
+              "\"Founder direction\": not a user test, not public evidence",
               "docs/PRODUCT-BRIEF.md:61"
             ],
             [
               "Engineering days",
-              "10 = staleness heuristic 4 + missing-doc templates 2 + S13 UI 4",
+              "10 = staleness heuristic 4 + missing-doc templates 2 + evidence side panel UI 4",
               "docs/PRODUCT-BRIEF.md:61"
             ],
             [
               "Model calls needed for the scan",
-              "Zero — git dates per file, package.json scripts, link resolution",
+              "Zero: git dates per file, package.json scripts, link resolution",
               "docs/PRODUCT-BRIEF.md:61"
             ],
             [
@@ -3563,7 +3563,7 @@
             ],
             [
               "Times it has been run",
-              "0 — \"already built and never run\"",
+              "0: \"already built and never run\"",
               "docs/PRODUCT-BRIEF.md:67"
             ],
             [
@@ -3573,12 +3573,12 @@
             ],
             [
               "Server PDF route dependency",
-              "A Vercel Linux chromium binary — contradicts the row's own offline claim",
+              "A Vercel Linux chromium binary, which contradicts the row's own offline claim",
               "docs/PRODUCT-BRIEF.md:67"
             ],
             [
               "Tier contradiction inside the plan",
-              "Feature row says MVP-0 (verify); Exhibit 6's Generation row puts F13 export in the MVP-2 max column",
+              "Feature row says the pilot (verify); the tier feature table's Generation row puts export in the two-builds-after-the-pilot max column",
               "docs/PRODUCT-BRIEF.md:67 vs :201"
             ]
           ]
@@ -3595,17 +3595,17 @@
             [
               "Single document to HTML/PDF/Word/.md",
               "Export beats decks 4.8:1 on VS Code installs (4,107,590 vs 851,533)",
-              "Built, unrun — docs/PRODUCT-BRIEF.md:67"
+              "Built, unrun (docs/PRODUCT-BRIEF.md:67)"
             ],
             [
               "Folder to one PDF",
-              "docusaurus#969, 79 reactions, open since 2018 — \"the only export with demonstrated demand\"",
-              "Unbuilt, 4 days, MVP-1 — docs/PRODUCT-BRIEF.md:67"
+              "docusaurus#969, 79 reactions, open since 2018: \"the only export with demonstrated demand\"",
+              "Unbuilt, 4 days, in the build after the pilot (docs/PRODUCT-BRIEF.md:67)"
             ],
             [
               "Decks / slides",
               "Cut on Obsidian plugin ratios; the refuter noted that population measures note-takers, not developers, who deploy from repos at scale",
-              "Cut, possibly for the wrong reason — docs/GAPS-2026-09-08.md:60"
+              "Cut, possibly for the wrong reason (docs/GAPS-2026-09-08.md:60)"
             ]
           ]
         }
@@ -3767,7 +3767,7 @@
           "title": "What the corpus run says about the certificate's own findings",
           "items": [
             [
-              "Kill condition (4) — top-5 constructs are >80% of BROKEN attributions",
+              "Kill condition (4): top-5 constructs are >80% of BROKEN attributions",
               "Fires at 99.8%",
               "docs/ENGINE.md:828"
             ],

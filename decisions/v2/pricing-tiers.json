@@ -93,18 +93,18 @@
             [
               "Review gates in CI (mdmax cert)",
               "none",
-              "1d to wire (§9 item 10, line 224)",
+              "1 day to wire in (section 9, item 10, line 224)",
               "no - ERR_MODULE_NOT_FOUND, re-run in this audit"
             ],
             [
-              "Shared review state, comments (F10) - in Pro, disclaimed as the gate",
-              "F10",
+              "Shared review state and comments: included in Pro, but stated not to be the reason it gates",
+              "Shared review state and comments",
               "10d",
               "not built"
             ],
             [
-              "MCP server (F11) - in Pro, disclaimed as the gate",
-              "F11",
+              "The MCP server: included in Pro, but stated not to be the reason it gates",
+              "The MCP server",
               "6d",
               "not built"
             ]
@@ -141,17 +141,17 @@
           "title": "The same document routes CI gates to two different tiers",
           "items": [
             [
-              "Exhibit 16 §11",
+              "The tiers and prices table, section 11",
               "Pro",
               "\"pulled forward from Max, because enforcement is what GitHub sells at $4\" (line 288)"
             ],
             [
-              "Exhibit 6 §8",
+              "The feature-by-tier build matrix, section 8",
               "Max",
               "AI row, MVP-2 column reads \"Document gates in CI\" (line 202)"
             ],
             [
-              "Exhibit 25 §18",
+              "The tier-trigger upsell table, section 18",
               "Max",
               "upsell row for CI gates routes to Max (line 443)"
             ]
@@ -192,7 +192,7 @@
           "title": "Where 90 days came from, and what the law now requires",
           "items": [
             [
-              "§22 operating rules",
+              "Section 22, operating rules",
               "\"Delete the record's 'no row-level retention beyond 90 days' rule\"",
               "PRODUCT-BRIEF.md:545 - the notified text refutes it"
             ],
@@ -441,7 +441,7 @@
         },
         {
           "type": "stat",
-          "title": "What BUSINESS.md's lapse table still describes that v15 no longer has",
+          "title": "What BUSINESS.md's lapse table still describes that the current plan no longer has",
           "items": [
             [
               "Hosted sync across devices",
@@ -696,7 +696,7 @@
         {
           "type": "bars",
           "title": "Paying seats needed to cover the Rs1,08,918 two-founder monthly nut",
-          "note": "Gross at USD/INR 95.39 (ECB rate date 2026-08-28). Contribution uses r26-c6's measured World Pro $5 contribution of Rs352.66. The eff rows are r26-c6:178-180's own table, which nets out founder support time at Rs1,700/h; the $30 row is its 8.6 teams x 5 seats. Nut from r26-c6:171, matching PRODUCT-BRIEF.md:292.",
+          "note": "Gross calculated at USD/INR 95.39 (ECB rate date 2026-08-28). Contribution uses r26-c6's measured World Pro $5 contribution of Rs352.66. The eff rows come from r26-c6:178-180's own table, which nets out founder support time at Rs1,700/h; the $30 row is its 8.6 teams times 5 seats. The nut comes from r26-c6:171, matching PRODUCT-BRIEF.md:292.",
           "data": [
             [
               "$4/seat, on gross revenue",
@@ -898,7 +898,7 @@
         {
           "type": "bars",
           "title": "Calendar weeks to a sellable product at measured velocity",
-          "note": "70 engineering days for MVP-0 plus 28 estimated MVP-1 days (F9 8d + F10 10d + F11 6d + folder-to-one-PDF 4d), divided by the density in each label. Densities measured on this repo 2026-07-13 to 2026-09-08 (PRODUCT-BRIEF.md:227).",
+          "note": "70 engineering days for the pilot plus 28 estimated days for the build after the pilot (vault-wide refactor 8 days plus shared review state and comments 10 days plus the MCP server 6 days plus folder-to-one-PDF 4 days), divided by the density in each label. Densities measured on this repo 2026-07-13 to 2026-09-08 (PRODUCT-BRIEF.md:227).",
           "data": [
             [
               "At 1.21 eng-days/week (measured here)",
@@ -922,7 +922,7 @@
           "title": "What is not sellable during that window, and what is",
           "items": [
             [
-              "MVP-0 billing and sign-up",
+              "The pilot's billing and sign-up",
               "both absent",
               "PRODUCT-BRIEF.md:205"
             ],
@@ -1116,17 +1116,17 @@
           "title": "Three founder-hour figures for the same free tier",
           "items": [
             [
-              "Plan, §7 cost rules",
+              "The plan, section 7 cost rules",
               "about 90 founder-hours/month at 10,000 users",
               "PRODUCT-BRIEF.md:137 - no rupee figure, no free/paid split"
             ],
             [
-              "r26-c6, modelled",
+              "A research report, modelled",
               "76.8 founder-hours/month at 10,000 users (400 paid) = Rs130,560",
               "r26-c6:62, at Rs1,700/h; founder time is 5.0x total cloud+AI (r26-c6:66)"
             ],
             [
-              "r19-p1, BYO-key support only",
+              "A research report, BYO-key support only",
               "300 founder-hours across 10,000 signups",
               "r19-p1:63 - cumulative onboarding, tagged [inference], not a monthly rate"
             ],
@@ -1139,7 +1139,7 @@
         },
         {
           "type": "stat",
-          "title": "What a free user costs, per r26-c6",
+          "title": "What a free user costs, according to a research report",
           "items": [
             [
               "Median free user, total",
@@ -1170,7 +1170,7 @@
         },
         {
           "type": "table",
-          "title": "The contradiction inside Exhibit 16 and Exhibit 25",
+          "title": "The contradiction between the tiers and prices table and the tier-trigger upsell table",
           "cols": [
             "Line",
             "Text",
@@ -1355,25 +1355,25 @@
           ],
           "rows": [
             [
-              "r26-c6 unit economics",
+              "A research report on unit economics",
               "Ship $50/user/year at Obsidian's exact unit",
               "Flat licence is 59.6x under at 50 people, 119.3x at 100",
               "2026-08-31"
             ],
             [
-              "r26-c8 B2B",
+              "A research report on B2B licensing",
               "Do not copy it; the precedent does not transfer",
               "Mandatory until Feb 2025; made optional because unenforceable",
               "2026-08-31"
             ],
             [
-              "r21-s5",
+              "A research report on licence counts",
               "Ship the licence motion first",
               "146 named orgs, 17,725 licences, $886,250/yr floor",
               "2026-08-30"
             ],
             [
-              "r26-c8 recount",
+              "The same B2B research report, recounted",
               "-",
               "84 named orgs, 16,175 licences, $808,750/yr floor; Amazon 61.8%",
               "2026-08-31"
@@ -1760,7 +1760,7 @@
       "evidence": [
         {
           "type": "table",
-          "title": "What the Indian rail and the fee schedule do to each period",
+          "title": "What the Indian payment network and the fee schedule do to each period",
           "cols": [
             "Constraint",
             "Monthly",
@@ -2678,7 +2678,7 @@
       "evidence": [
         {
           "type": "table",
-          "title": "Power analysis at the plan's own funnel, from BUSINESS.md §83.2-83.3",
+          "title": "Power analysis at the plan's own funnel, from BUSINESS.md, section 83.2 to 83.3",
           "cols": [
             "Test",
             "n per arm",
@@ -2758,7 +2758,7 @@
               "PRODUCT-BRIEF.md:321"
             ],
             [
-              "MVP-0 exit",
+              "The pilot's exit",
               "under 6 of 10 strangers still using it after two weeks",
               "PRODUCT-BRIEF.md:206"
             ],
@@ -2768,7 +2768,7 @@
               "PRODUCT-BRIEF.md:204"
             ],
             [
-              "Pre-order page, if PR4 goes that way",
+              "Pre-order page, if the checkout-timing decision goes that way",
               "zero pre-orders from 100 qualified conversations",
               "r26-c7:125"
             ],
@@ -3391,7 +3391,7 @@
               "docs/PRODUCT-BRIEF.md:285-290",
               "Individual / Pro, team / Max / Hosted AI",
               "2026-09-08",
-              "none until MVP-1"
+              "none until the build after the pilot"
             ],
             [
               "firestore.rules:22",
@@ -3443,17 +3443,17 @@
           ],
           "rows": [
             [
-              "16 (§11 pricing)",
+              "16 (section 11, pricing)",
               "retention beyond a year, admin, SSO when asked",
               "289"
             ],
             [
-              "6 (§8 tiers, MVP-2)",
+              "6 (section 8, tiers; two builds after the pilot)",
               "sync, multi-device, version-history retention, export, document gates in CI",
               "199-203"
             ],
             [
-              "25 (§18 upsell)",
+              "25 (section 18, upsell)",
               "CI gates; and \"Pro or Max\" for the second device",
               "442-443"
             ],
@@ -3474,12 +3474,12 @@
               "PRODUCT-BRIEF.md:289 says so explicitly"
             ],
             [
-              "Sync (F12)",
-              "15d+, MVP-2",
+              "Sync",
+              "15 days or more, two builds after the pilot",
               "\"sync is the one proven individual price\" (PRODUCT-BRIEF.md:66)"
             ],
             [
-              "Export (F13)",
+              "Export",
               "already built, never run, 0d + 1h to verify",
               "945 lines wired at EditorPane.tsx:907 (PRODUCT-BRIEF.md:67)"
             ],

@@ -50,14 +50,14 @@
         {
           "type": "bars",
           "title": "How loud each mark is against its own background",
-          "note": "Contrast ratios derived by me from the prototype's declared hexes (docs/prototype/frontmatter-prototype.html:13, :14, :16, :22) using the WCAG 2.x relative-luminance formula. The 3:1 line is the floor the plan's own PRD applies to borders that identify a control (docs/FRONTMATTER-PRD-v2-2026-08-29.md:3357). Whether a text-background wash falls under that rule is contested — the same PRD row says \"do not raise decorative dividers\" — so read the line as the standard the design is being argued against, not a settled verdict.",
+          "note": "Contrast ratios derived by me from the prototype's declared hexes (docs/prototype/frontmatter-prototype.html:13, :14, :16, :22) using the WCAG 2.x relative-luminance formula. The 3:1 line is the floor the plan's own PRD applies to borders that identify a control (docs/FRONTMATTER-PRD-v2-2026-08-29.md:3357). Whether a text-background wash falls under that rule is contested (the same PRD row says \"do not raise decorative dividers\"), so read the line as the standard the design is being argued against, not a settled verdict.",
           "data": [
             [
-              "Review tint #eef3ff on white",
+              "Review highlight #eef3ff on white",
               1.111
             ],
             [
-              "AI proposal tint #f4efff on white",
+              "AI proposal highlight #f4efff on white",
               1.127
             ],
             [
@@ -73,7 +73,7 @@
               1.333
             ],
             [
-              "Review tint #15213d on dark #0f1115",
+              "Review highlight #15213d on dark #0f1115",
               1.185
             ]
           ],
@@ -83,7 +83,7 @@
         },
         {
           "type": "table",
-          "title": "What the plan says about the tint, in three places",
+          "title": "What the plan says about the highlight, in three places",
           "cols": [
             "Where",
             "What it says"
@@ -274,7 +274,7 @@
       "evidence": [
         {
           "type": "stat",
-          "title": "The two tints, measured against each other",
+          "title": "The two highlights, measured against each other",
           "items": [
             [
               "Light mode, review #eef3ff vs proposal #f4efff",
@@ -324,11 +324,11 @@
         },
         {
           "type": "table",
-          "title": "The shipped highlight against the planned tint",
+          "title": "The shipped highlight against the planned highlight",
           "cols": [
             "Property",
             "Shipped .cm-ai-suggestion",
-            "Planned review tint"
+            "Planned review highlight"
           ],
           "rows": [
             [
@@ -339,7 +339,7 @@
             [
               "Border",
               "inset 1px at 30% over that fill → ≈#93b6fc, 1.53:1 against the fill and 1.95:1 against the page",
-              "none — \"no border, no icon\""
+              "none: \"no border, no icon\""
             ],
             [
               "Corners",
@@ -348,7 +348,7 @@
             ],
             [
               "Hue",
-              "blue — for a proposal",
+              "blue, for a proposal",
               "blue means written-and-unreviewed; purple means proposal"
             ],
             [
@@ -375,10 +375,10 @@
             [
               "prefers-reduced-motion guards",
               "0",
-              "measured — also flagged at docs/FRONTMATTER-PRD-v2-2026-08-29.md:3366"
+              "measured; also flagged at docs/FRONTMATTER-PRD-v2-2026-08-29.md:3366"
             ],
             [
-              "Files in src/ carrying review-tint state",
+              "Files in src/ carrying review-highlight state",
               "0",
               "the planned tint is unbuilt; the competing treatment is merged"
             ]
@@ -529,7 +529,7 @@
       "evidence": [
         {
           "type": "stat",
-          "title": "Settings toggles on S11, counted",
+          "title": "Settings toggles on the settings screen, counted",
           "items": [
             [
               "Toggles on the settings page",
@@ -549,12 +549,12 @@
             [
               "Editor files byte-identical to the sibling app",
               "41 of 43",
-              "docs/PRODUCT-BRIEF.md:223 — what is left when the tint is off"
+              "docs/PRODUCT-BRIEF.md:223: what is left when the highlight is off"
             ],
             [
-              "What the MVP-0 exit test counts",
+              "What the pilot's exit test counts",
               "\"days-opened, spans reviewed, proposals accepted\"",
-              "docs/PRODUCT-BRIEF.md:431 — all three read zero for a user who switched the tint off"
+              "docs/PRODUCT-BRIEF.md:431: all three read zero for a user who switched the highlight off"
             ]
           ]
         }
@@ -724,37 +724,37 @@
       "evidence": [
         {
           "type": "table",
-          "title": "§16's predicted reading order against where the counter actually is",
+          "title": "The attention section's predicted reading order against where the counter actually is",
           "cols": [
             "Region",
-            "§16's predicted order",
+            "The attention section's predicted order",
             "Carries the counter?"
           ],
           "rows": [
             [
               "Top bar (tabs)",
               "first",
-              "no — only a 6px dot on the active tab, `title=\"unreviewed\"` (:329)"
+              "no: only a 6px dot on the active tab, `title=\"unreviewed\"` (:329)"
             ],
             [
-              "Left rail (tree)",
+              "Left side panel (tree)",
               "first",
-              "no — per-file percentage bars, no total (:346–:353)"
+              "no: per-file percentage bars, no total (:346–:353)"
             ],
             [
               "Document body",
               "second",
-              "the tint itself"
+              "the highlight itself"
             ],
             [
-              "Right rail",
+              "Right side panel",
               "last",
-              "yes — the S4 drawer counter (:458)"
+              "yes: the review panel's drawer counter (:458)"
             ],
             [
               "Bottom status bar",
-              "not mentioned in §16",
-              "yes — \"3 unreviewed spans · 64%\" (:394)"
+              "not mentioned in the attention section",
+              "yes: \"3 unreviewed spans · 64%\" (:394)"
             ]
           ]
         },
@@ -763,7 +763,7 @@
           "title": "How well sourced the placement rule is",
           "items": [
             [
-              "Evidence rows in §16's exhibit 23",
+              "Evidence rows in the attention section's evidence table",
               "3 plus one scheduled test",
               "Tang et al. (:408), NN/g F-pattern (:409), Obsidian forum (:410); the five-second test (:411) is untested"
             ],
@@ -783,9 +783,9 @@
               "§16 opening line, docs/PRODUCT-BRIEF.md:402"
             ],
             [
-              "Gap register's grade for §16",
+              "Gap register's grade for the attention section",
               "Medium",
-              "\"Two sources, one of them a lab study on code, not prose. No measurement on our screens\" — docs/GAPS-2026-09-08.md:26"
+              "\"Two sources, one of them a lab study on code, not prose. No measurement on our screens\" (docs/GAPS-2026-09-08.md:26)"
             ]
           ]
         },
@@ -794,17 +794,17 @@
           "title": "Surfaces carrying unreviewed state, counted on the prototype",
           "items": [
             [
-              "On S2",
+              "On the editor",
               "5",
               "tab dot :329, tree bars :346–:353, outline counts :398, status-bar total :394, the tint"
             ],
             [
-              "On S4",
+              "On the review panel",
               "5",
-              "tab dot :415, tree bars :426–:431, status-bar total :455, drawer counter :458, the tint — the outline is replaced by the drawer"
+              "tab dot :415, tree bars :426–:431, status-bar total :455, drawer counter :458, the highlight (the outline is replaced by the drawer)"
             ],
             [
-              "On S0 launcher",
+              "On the launcher screen",
               "3",
               "per-card bar :304–:311, per-card \"NN% unreviewed\" label, footer \"7 unreviewed\" :315"
             ],
@@ -841,7 +841,7 @@
             ],
             [
               "Tab blue #cfe0ff",
-              "nothing — decorative tab identity, one of four",
+              "nothing: decorative tab identity, one of four",
               "`--t-blue` (:16), tab underline"
             ],
             [
@@ -1306,25 +1306,25 @@
               "Changed",
               "sidecar hash comparison",
               "yes",
-              "MVP-0"
+              "the pilot"
             ],
             [
               "Bytes",
               "splice engine",
               "yes",
-              "MVP-0"
+              "the pilot"
             ],
             [
               "Author (carries the model name too)",
               "commit trailer or git-ai note; MCP",
-              "no — needs a commit",
-              "MVP-0 readers / MVP-1 MCP"
+              "no: needs a commit",
+              "the pilot for readers, the build after the pilot for MCP"
             ],
             [
               "Prompt",
               "MCP write only",
               "no",
-              "MVP-1, and marked untested (docs/PRODUCT-BRIEF.md:65)"
+              "the build after the pilot, and marked untested (docs/PRODUCT-BRIEF.md:65)"
             ]
           ]
         },
@@ -1338,7 +1338,7 @@
               "docs/PRODUCT-BRIEF.md:20"
             ],
             [
-              "MVP-0 attribution readers",
+              "The pilot's attribution readers",
               "commit trailer, git-ai note",
               "both post-commit only, docs/PRODUCT-BRIEF.md:57"
             ],
@@ -1355,7 +1355,7 @@
             [
               "Sidecar filename in the plan vs the prototype",
               "review.jsonl vs provenance.jsonl",
-              "docs/PRODUCT-BRIEF.md:56 against docs/prototype/frontmatter-prototype.html:617 — two names for one file, unreconciled"
+              "docs/PRODUCT-BRIEF.md:56 against docs/prototype/frontmatter-prototype.html:617: two names for one file, unreconciled"
             ]
           ]
         }
@@ -1523,7 +1523,7 @@
           "rows": [
             [
               "c6-screens.md:22, 2026-08-28",
-              "prompt at the cursor; rail keeps a review tab",
+              "prompt at the cursor; side panel keeps a review tab",
               "every shipped convention; a docked prompt \"reads as bolted-on\""
             ],
             [
@@ -1533,7 +1533,7 @@
             ],
             [
               "prototype S2 (:391, :405)",
-              "both — docked strip and a rail prompt button, both ⌘J",
+              "both: docked strip and a side panel prompt button, both ⌘J",
               "not stated"
             ]
           ]
@@ -1545,7 +1545,7 @@
             [
               "Incumbents opening an AI panel expanded on load",
               "0 of 5 named",
-              "Google Docs, Notion, Cursor, Zed, Obsidian Copilot — docs/PRODUCT-BRIEF.md:381"
+              "Google Docs, Notion, Cursor, Zed, Obsidian Copilot (docs/PRODUCT-BRIEF.md:381)"
             ],
             [
               "Google Docs' stated behaviour",
@@ -1553,7 +1553,7 @@
               "docs/PRODUCT-BRIEF.md:381"
             ],
             [
-              "AI affordances on our S2 today",
+              "AI affordances on our editor today",
               "2",
               "the strip (:391) and the rail button (:405), both bound to ⌘J"
             ],
@@ -1724,14 +1724,14 @@
           "title": "The schedule the mode count is spent against",
           "items": [
             [
-              "Engineering days for MVP-0",
+              "Engineering days for the pilot",
               "about 70",
               "docs/PRODUCT-BRIEF.md:227"
             ],
             [
               "Measured engineering days per calendar week, 2026-07-13 to 2026-09-08",
               "1.21",
-              "10 of 58 calendar days touched src/, src-tauri/ or test/ — docs/PRODUCT-BRIEF.md:227"
+              "10 of 58 calendar days touched src/, src-tauri/ or test/ (docs/PRODUCT-BRIEF.md:227)"
             ],
             [
               "Sibling repo's best-ever rate",
@@ -1749,15 +1749,15 @@
               "docs/PRODUCT-BRIEF.md:227"
             ],
             [
-              "What F1's own estimate covers",
+              "What the editor's own estimate covers",
               "\"Exists. NF-1/NF-3 fixes (7d), engine wiring (8d)\"",
-              "docs/PRODUCT-BRIEF.md:55 — the modes are costed as inherited, not as new build"
+              "docs/PRODUCT-BRIEF.md:55: the modes are costed as inherited, not as new build"
             ]
           ]
         },
         {
           "type": "table",
-          "title": "What each mode is for, and whether the tint shows there",
+          "title": "What each mode is for, and whether the highlight shows there",
           "cols": [
             "Mode",
             "Stated purpose (docs/_wireframes.md:17)",
@@ -1944,7 +1944,7 @@
         },
         {
           "type": "table",
-          "title": "Where the tint renders, against where byte-level truth is most visible",
+          "title": "Where the highlight renders, against where byte-level truth is most visible",
           "cols": [
             "Surface",
             "Tint renders?",
@@ -1983,7 +1983,7 @@
           "title": "What is built today",
           "items": [
             [
-              "Files in src/ carrying review-tint state",
+              "Files in src/ carrying review-highlight state",
               "0",
               "measured: no file matches unreviewed / reviewTint / reviewState"
             ],
@@ -1995,7 +1995,7 @@
             [
               "CodeMirror version installed",
               "@codemirror/view ^6.43.0",
-              "package.json:47 — decorations are native"
+              "package.json:47: decorations are native"
             ],
             [
               "EditorView.announce call sites in src/",
@@ -2184,7 +2184,7 @@
             [
               "Clickable prototype (docs/prototype/frontmatter-prototype.html:14, :116)",
               "#1a5cff",
-              "square (`border-radius:0` on the tint)",
+              "square (`border-radius:0` on the highlight)",
               "what the pilot is shown"
             ],
             [
@@ -2201,12 +2201,12 @@
           "items": [
             [
               "First recorded",
-              "PRD v1 §16.3, 2026-08-29",
+              "PRD v1's design-system contradiction subsection, 2026-08-29",
               "docs/FRONTMATTER-PRD-2026-08-29.md:815, :817"
             ],
             [
               "Recorded again",
-              "PRD v2 §7.4 and PRODUCT.md",
+              "PRD v2's architecture section and PRODUCT.md",
               "docs/FRONTMATTER-PRD-v2-2026-08-29.md:430, docs/PRODUCT.md:997"
             ],
             [
@@ -2215,14 +2215,14 @@
               "docs/PRODUCT.md:997"
             ],
             [
-              "Mentions in the current plan (v15)",
+              "Mentions in the current plan",
               "0",
               "no occurrence of globals.css, design system, icons or corners in docs/PRODUCT-BRIEF.md"
             ],
             [
               "Fork state the plan does report",
               "181 of 226 src/ files identical, 25 already diverged; 41 of 43 editor files identical",
-              "docs/PRODUCT-BRIEF.md:223 — note the plan's own two figures leave 20 files unaccounted for"
+              "docs/PRODUCT-BRIEF.md:223: note the plan's own two figures leave 20 files unaccounted for"
             ]
           ]
         }
@@ -2415,7 +2415,7 @@
               "--danger",
               "#b2625e",
               "4.19:1",
-              "FAIL — used on live 12px role=\"alert\" text",
+              "FAIL: used on live 12px role=\"alert\" text",
               "PASS"
             ],
             [
@@ -2696,17 +2696,17 @@
           "rows": [
             [
               "Desktop app offline",
-              "yes — \"Everything except the model\" works offline (docs/PRODUCT-BRIEF.md:99)",
+              "yes: \"Everything except the model\" works offline (docs/PRODUCT-BRIEF.md:99)",
               "the icon name as text"
             ],
             [
               "Exported HTML opened on a reader's machine",
-              "yes — F13 export (docs/PRODUCT-BRIEF.md:67)",
+              "yes: export (docs/PRODUCT-BRIEF.md:67)",
               "the icon name as text"
             ],
             [
               "Web app, slow first load",
-              "yes — the web app is the trial",
+              "yes: the web app is the trial",
               "the icon name, then icons"
             ],
             [
@@ -2733,10 +2733,10 @@
             [
               "\"No document byte ever passes through a Zephyrus server\" (proposed)",
               "docs/WEEK0-DECISIONS-2026-09-08.md:35",
-              "still true — but a third party sees each reader's request"
+              "still true, but a third party sees each reader's request"
             ],
             [
-              "F13 already built and never run",
+              "export already built and never run",
               "docs/PRODUCT-BRIEF.md:67",
               "the template has not been reviewed against either claim"
             ]
@@ -2911,7 +2911,7 @@
           "rows": [
             [
               "docs/FRONTMATTER-PRD-v2-2026-08-29.md:3358, §35.2",
-              "\"`indentWithTab` appears 0 times in `src/`\" [measured] — keep it that way"
+              "\"`indentWithTab` appears 0 times in `src/`\" [measured]; keep it that way"
             ],
             [
               "src/modules/editor/presentation/CodeMirrorEditor.tsx:18, :233",
@@ -2945,7 +2945,7 @@
             [
               "PRD's stated anti-recommendation",
               "do not \"fix\" a trap by documenting the escape key in a help modal",
-              "same row — 2.1.2 requires discoverability at the point of trap"
+              "same row: 2.1.2 requires discoverability at the point of trap"
             ],
             [
               "EditorView.announce call sites in src/",
@@ -3098,12 +3098,12 @@
             [
               "Typed failure codes already emitted by mdmax",
               "19",
-              "k3:25 — 32 distinct uppercase symbols minus 13 verdict classes; e.g. BUDGET_BYTES, INVALID_UTF8, OFFSET_OUT_OF_RANGE, SHAPE_REFUSED"
+              "k3:25: 32 distinct uppercase symbols minus 13 verdict classes; e.g. BUDGET_BYTES, INVALID_UTF8, OFFSET_OUT_OF_RANGE, SHAPE_REFUSED"
             ],
             [
               "SAFE_KEY, precisely",
               "one definition, re-checked in 5 UI places",
-              "defined at splice-frontmatter.ts:53, imported at PropertiesPanel.tsx:23, re-tested at :105, :129, :199, :201, :218 — a duplicated check, not a duplicated rule; k3:24's \"two definitions\" overstates it"
+              "defined at splice-frontmatter.ts:53, imported at PropertiesPanel.tsx:23, re-tested at :105, :129, :199, :201, :218: a duplicated check, not a duplicated rule; k3:24's \"two definitions\" overstates it"
             ]
           ]
         },
@@ -3124,7 +3124,7 @@
             [
               "\"The amber box is the feature, not the failure\"",
               "docs/_wireframes.md:35",
-              "S8 is MVP-1 and unbuilt (prototype :624 labels it MVP-1)"
+              "The refactor preview belongs to the build after the pilot and is unbuilt (prototype :624 labels it that build)"
             ],
             [
               "\"malformed repos refused, not repaired\"",
@@ -3297,7 +3297,7 @@
       "evidence": [
         {
           "type": "table",
-          "title": "What the test asks, against what the tint decisions need to know",
+          "title": "What the test asks, against what the highlight decisions need to know",
           "cols": [
             "Question the design needs answered",
             "Asked by the test as specified?"
@@ -3305,7 +3305,7 @@
           "rows": [
             [
               "Did you notice anything marked on this page?",
-              "no — the question presupposes the tint was seen (D1)"
+              "no: the question presupposes the highlight was seen (the colour-only-vs-channel decision)"
             ],
             [
               "What do you think the mark means?",
@@ -3313,15 +3313,15 @@
             ],
             [
               "Can you tell these two marks apart?",
-              "no — only one tint is shown (D2)"
+              "no: only one highlight is shown (the washes-vs-border decision)"
             ],
             [
               "Where did you look first?",
-              "no — this is what would test §16's F-pattern prediction (D4, D5)"
+              "no: this is what would test the attention section's F-pattern prediction (the decision on where the unreviewed count sits)"
             ],
             [
               "What is the pass line?",
-              "not stated — only two failing answers are named"
+              "not stated: only two failing answers are named"
             ]
           ]
         },
@@ -3350,7 +3350,7 @@
               "review-state store and rendering are in weeks 5–7 regardless, docs/PRODUCT-BRIEF.md:355"
             ],
             [
-              "Gap register severity for §16",
+              "Gap register severity for the attention section",
               "Medium",
               "docs/GAPS-2026-09-08.md:26"
             ]
@@ -3536,17 +3536,17 @@
           ],
           "rows": [
             [
-              "S1 open a folder",
+              "Open a folder screen",
               "\"first run only\" (docs/_wireframes.md:51)",
-              "§17's first-session retention lever: edit in thirty seconds, no account (docs/PRODUCT-BRIEF.md:429)"
+              "The retention section's first-session retention lever: edit in thirty seconds, no account (docs/PRODUCT-BRIEF.md:429)"
             ],
             [
-              "S9 conflict",
+              "Conflict screen",
               "\"the only blocking modal\" (docs/_wireframes.md:51)",
-              "the sync doctrine — git merge, never a CRDT, divergence surfaced not guessed"
+              "the sync doctrine: git merge, never a CRDT, divergence surfaced not guessed"
             ],
             [
-              "S10 team view",
+              "Team view screen",
               "\"the only screen behind the paywall\" (docs/_wireframes.md:37)",
               "the entire paid tier, graded High in docs/GAPS-2026-09-08.md:25"
             ]
@@ -3563,11 +3563,11 @@
             ],
             [
               "Screens named in the wireframes",
-              "13, S0 through S12",
+              "13, launcher through export",
               "docs/_wireframes.md; the map at :51 covers S0–S10, and S13 appears only in the plan and the prototype"
             ],
             [
-              "Of the nine, screens after MVP-0",
+              "Of the nine, screens after the pilot",
               "2",
               "S8 is marked MVP-1 (:624), S12 is marked MVP-2 (:660)"
             ],
@@ -3587,24 +3587,24 @@
           ],
           "rows": [
             [
-              "S0 launcher, 2 queries",
-              "the empty state and first-run shape (D20)"
+              "Launcher screen, 2 queries",
+              "the empty state and first-run shape (the prototype-scope decision)"
             ],
             [
-              "S2 editor, AI placement, 3 queries",
-              "D7 — prompt at the cursor or docked"
+              "Editor screen, AI placement, 3 queries",
+              "the AI-placement decision: prompt at the cursor or docked"
             ],
             [
-              "S2 right rail and S13 evidence rail, 1 query",
-              "D4, D5 — where the counter lives, how many surfaces"
+              "Editor's right side panel and the evidence side panel, 1 query",
+              "The decision on where the unreviewed count sits and how many surfaces carry it"
             ],
             [
-              "S4 review panel, 1 query",
+              "Review panel, 1 query",
               "the accept/reject grammar"
             ],
             [
-              "S11 settings, 1 query",
-              "D3 — which toggles are conventional"
+              "Settings, 1 query",
+              "the highlight-switch decision: which toggles are conventional"
             ],
             [
               "Pricing and upsell, 2 queries",
@@ -3629,7 +3629,7 @@
             [
               "Screens drawn without it",
               "9",
-              "docs/GAPS-2026-09-08.md:27 — \"seen by nobody outside this session\""
+              "docs/GAPS-2026-09-08.md:27: \"seen by nobody outside this session\""
             ],
             [
               "Position in the ordered list of what makes the plan solid",
@@ -3807,12 +3807,12 @@
           ],
           "rows": [
             [
-              "Review tint against the page",
+              "Review highlight against the page",
               "1.111:1",
               "1.185:1"
             ],
             [
-              "Review tint vs proposal tint",
+              "Review highlight vs proposal highlight",
               "ΔE76 4.10",
               "ΔE76 8.85"
             ],
@@ -3840,10 +3840,10 @@
             [
               "Screenshots specified for the five-second test",
               "1",
-              "docs/PRODUCT-BRIEF.md:411 — no theme named"
+              "docs/PRODUCT-BRIEF.md:411: no theme named"
             ],
             [
-              "Themes named anywhere in §16",
+              "Themes named anywhere in the attention section",
               "0",
               "docs/PRODUCT-BRIEF.md:400–:413"
             ],
@@ -4031,13 +4031,13 @@
           "title": "What the record settled, and what the plan carries",
           "cols": [
             "Decision",
-            "In the record (§43)",
+            "In the record (the internationalisation section)",
             "In the plan"
           ],
           "rows": [
             [
               "Search tokenisation",
-              "character bigrams, not Intl.Segmenter — a segmenter mismatch gives silent zero-recall (§43.5)",
+              "character bigrams, not Intl.Segmenter, a segmenter mismatch gives silent zero-recall (internationalisation section)",
               "one clause: \"a bigram search tokeniser\" (:540)"
             ],
             [
@@ -4047,7 +4047,7 @@
             ],
             [
               "RTL chrome mirroring",
-              "explicitly out for v1 — \"weeks, not days\" (:4062)",
+              "explicitly out for v1: \"weeks, not days\" (:4062)",
               "not mentioned"
             ],
             [
@@ -4068,7 +4068,7 @@
           "items": [
             [
               "Status",
-              "outstanding since v14",
+              "outstanding since the previous plan",
               "docs/PRODUCT-BRIEF.md:540 lists it as owed"
             ],
             [

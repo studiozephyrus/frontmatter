@@ -129,7 +129,7 @@
     h += '<button class="navcat' + (view.mode === 'overview' ? ' on' : '') + '" data-ov="1">' +
       '<span class="nl">Overview</span><span class="nmeta"><span class="np">' + answered(Q) + '/' + Q.length + '</span></span></button>';
     h += '<button class="navcat' + (view.mode === 'import' ? ' on' : '') + '" data-import="1">' +
-      '<span class="nl">Import markdown</span><span class="nmeta"><span class="np">sidecar</span></span></button>';
+      '<span class="nl">Import markdown</span><span class="nmeta"><span class="np">local</span></span></button>';
     h += '</div>';
     groups.forEach(function (g) {
       var qs = g.qs.filter(function (q) { return match(q, f); });
@@ -259,11 +259,17 @@
         /* The cross-area pass matched on the QUESTION and never compared recommendations, so a
            survivor can carry the minority view: the free-engine probe was asked five times and
            the four merged cards recommended b, b, b and c against this card's a. Show it. */
+        /* Dropped ids are not shown: the reader cannot open those cards. The areas they came
+           from are. The agreement line is printed only when the entry carries a checked
+           `agree`, because a fixed "did not all agree" was false on the entries that did. */
+        var ar = q.dupes.areas || [];
+        var where = ar.length ? (ar.length === 1 ? ar[0] : ar.slice(0, -1).join(', ') + ' and ' + ar[ar.length - 1]) : '';
+        var verdict = q.dupes.agree === true ? ' Every version recommended the same choice as this card.' :
+          q.dupes.agree === false ? ' They did not all recommend the same choice.' : '';
         h += '<details class="ev dupes"><summary>' + icon('chevron_right', 'caret') +
           'Also asked in other areas<span class="cnt">' + q.dupes.dropped.length +
-          ' merged</span></summary><div class="evbody"><p>Asked in ' +
-          (q.dupes.dropped.length + 1) + ' areas (' + q.dupes.dropped.map(esc).join(', ') +
-          '). They did not all recommend the same option.</p>' +
+          ' merged</span></summary><div class="evbody">' +
+          ((where || verdict) ? '<p>' + (where ? 'Also asked in ' + esc(where) + '.' : '') + verdict + '</p>' : '') +
           (q.dupes.why ? '<p>' + md(q.dupes.why) + '</p>' : '') + '</div></details>';
       }
 
@@ -332,7 +338,7 @@
     /* right rail: where this question came from */
     var rail = '<div class="rsec"><div class="rh">This decision</div>' +
       '<div class="rrow"><span>Position</span><b>' + (idx + 1) + ' of ' + Q.length + '</b></div>' +
-      '<div class="rrow"><span>Weight</span><b>' + esc(q.weight || '—') + '</b></div>' +
+      '<div class="rrow"><span>Weight</span><b>' + esc(q.weight || 'none') + '</b></div>' +
       '<div class="rrow"><span>Area</span><b>' + esc(q.cat) + '</b></div>' +
       (q.sub ? '<div class="rrow"><span>Group</span><b>' + esc(q.sub) + '</b></div>' : '') +
       '<div class="rrow"><span>Status</span><b style="color:var(--' + (pick ? 'good' : 'ink-3') + ')">' +
@@ -386,7 +392,7 @@
     }).join('') + '</div>';
     var openCrit = Q.filter(function (q) { return q.weight === 'critical' && !state.picks[q.id]; }).slice(0, 10);
     if (openCrit.length) {
-      h += '<h2 class="sech">Start here</h2><p class="secn">Critical and unanswered — a wrong answer to any of ' +
+      h += '<h2 class="sech">Start here</h2><p class="secn">Critical and unanswered. A wrong answer to any of ' +
         'these costs the product or the company.</p><div class="qlist">';
       h += openCrit.map(function (q) {
         return '<button class="ql" data-q="' + esc(q.id) + '">' +
@@ -450,10 +456,10 @@
   /* ── markdown import — the sidecar ───────────────────────────────────── */
   function renderImport() {
     $('#main').innerHTML =
-      '<div class="hero"><span class="eyebrow">Sidecar</span><h1>Import a decision file</h1>' +
+      '<div class="hero"><span class="eyebrow">Import</span><h1>Import a decision file</h1>' +
       '<p>Paste or drop a markdown file and it becomes decision cards. ' +
-      'This is the sidecar in miniature: the file stays the source, the page is a projection of it. ' +
-      'Nothing is uploaded — parsing happens in this browser.</p>' +
+      'The file stays the source, and the page only shows what is in it. ' +
+      'Nothing is uploaded. The file is read in this browser.</p>' +
       '</div><div class="drop" id="drop">' + icon('upload') +
       '<div style="margin-top:8px">Drop a <b>.md</b> file here, or paste below</div></div>' +
       '<textarea class="mdin" id="mdin" style="margin-top:12px" placeholder="' + esc(
@@ -479,11 +485,11 @@
       '<div class="rrow"><span>cat, sub, weight, id</span><b class="mono">- key: value</b></div>' +
       '<div class="rrow"><span>The lede</span><b class="mono">&gt;</b></div>' +
       '<div class="rrow"><span>Context</span><b class="mono">now: why: problem:</b></div>' +
-      '<div class="rrow"><span>An option</span><b class="mono">- [ ] a. …</b></div>' +
+      '<div class="rrow"><span>An option</span><b class="mono">- [ ] a. ...</b></div>' +
       '<div class="rrow"><span>The recommendation</span><b class="mono">- [x]</b></div></div>' +
       '<div class="rsec"><div class="rh">Why this exists</div>' +
       '<p style="font-size:12.5px;color:var(--ink-2);line-height:1.55;margin:0">' +
-      'The file stays the source; this page is a projection of it. Parsing happens in your browser ' +
+      'The file stays the source, and this page only shows what is in it. Parsing happens in your browser ' +
       'and nothing is uploaded.</p></div>';
   }
 
@@ -549,14 +555,14 @@
 
   /* ── export ───────────────────────────────────────────────────────────── */
   function exportMd() {
-    var lines = ['# frontmatter — decisions', '', 'Answered ' + answered(Q) + ' of ' + Q.length + '.', ''];
+    var lines = ['# frontmatter decisions', '', 'Answered ' + answered(Q) + ' of ' + Q.length + '.', ''];
     cats().forEach(function (g) {
       var done = g.qs.filter(function (q) { return state.picks[q.id]; });
       if (!done.length) return;
       lines.push('## ' + g.cat, '');
       done.forEach(function (q) {
         var o = (q.options || []).filter(function (x) { return x.k === state.picks[q.id]; })[0];
-        lines.push('### ' + q.id + ' — ' + q.q);
+        lines.push('### ' + q.id + ': ' + q.q);
         lines.push('**Decision:** ' + (o ? o.label : state.picks[q.id]) +
           (state.picks[q.id] === q.rec ? ' (the recommendation)' : ' (against the recommendation of ' + String(q.rec).toUpperCase() + ')'));
         if (state.notes[q.id]) lines.push('', state.notes[q.id]);

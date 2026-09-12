@@ -94,15 +94,15 @@
               "docs/PRODUCT-BRIEF.md:175"
             ],
             [
-              "Reddit demand — the plan says both things",
-              "§12 says the top twenty \"AI wrote\" posts contain no request for authorship marking; Exhibit 4 says \"one Reddit ask\". Different samples, same document",
+              "Reddit demand (the plan says both things)",
+              "The capture loop (section 12) says the top twenty \"AI wrote\" posts contain no request for authorship marking; the exhibit on Reddit asks says \"one Reddit ask\". Different samples, same document",
               "docs/PRODUCT-BRIEF.md:296 and :175"
             ]
           ]
         },
         {
           "type": "bars",
-          "title": "What the target buyer complains about — 300 unbiased posts, r/ClaudeAI + r/cursor + r/ChatGPTCoding",
+          "title": "What the target buyer complains about: 300 unbiased posts, r/ClaudeAI + r/cursor + r/ChatGPTCoding",
           "note": "Full table at docs/research/agent-reports-2026-08-30/r25-w1-reddit-recovered.md:78-87. All seven rows shown; percentage of 300 posts.",
           "unit": "% of 300 posts",
           "data": [
@@ -284,22 +284,22 @@
           "title": "The Obsidian forum, one population, one metric, 2026-09-08",
           "items": [
             [
-              "Nested-code-block rendering bug — likes / posts / views",
+              "Nested code block rendering bug (likes, posts, views)",
               "501 / 117 / 18,331",
               "docs/PRODUCT-BRIEF.md:410"
             ],
             [
-              "Closest review-state request — likes / views / posts in ~3 years",
+              "Closest review-state request (likes, views, posts in about 3 years)",
               "0 / 251 / 1",
               "docs/PRODUCT-BRIEF.md:410"
             ],
             [
-              "\"Tracking changes within notes\" — likes",
+              "\"Tracking changes within notes\" (likes)",
               "1",
               "docs/PRODUCT-BRIEF.md:410"
             ],
             [
-              "\"Suggestion Mode like Google Docs/Word\" — likes",
+              "\"Suggestion Mode like Google Docs/Word\" (likes)",
               "3",
               "docs/PRODUCT-BRIEF.md:410"
             ]
@@ -330,20 +330,20 @@
               "r25-w4:81"
             ],
             [
-              "Relay, the exemplar the plan leaned on — rank",
+              "Relay, the exemplar the plan leaned on (rank)",
               "128 of 7,092 (p98.4)",
               "r25-w4:19"
             ],
             [
               "Relay's real best single release vs the 191,997 cumulative figure",
-              "21,047 — a 9.1× inflation",
+              "21,047, a 9.1 times inflation",
               "r25-w4:18"
             ]
           ]
         },
         {
           "type": "stat",
-          "title": "The cost of conceding this audience, which §12 does not price",
+          "title": "The cost of conceding this audience, which the capture loop section (12) does not price",
           "items": [
             [
               "The corpus every engine claim rests on",
@@ -363,32 +363,32 @@
         },
         {
           "type": "table",
-          "title": "Where the cut channels still live in v15",
+          "title": "Where the cut channels still live in the current plan",
           "cols": [
             "Location",
             "What it still says",
-            "Consequence if §12 governs"
+            "Consequence if the capture loop section (12) governs"
           ],
           "rows": [
             [
               "§12 Exhibit 17, docs/PRODUCT-BRIEF.md:304",
-              "Free Obsidian plugin — CUT",
-              "—"
+              "Free Obsidian plugin, CUT",
+              "none"
             ],
             [
               "§12 Exhibit 17, docs/PRODUCT-BRIEF.md:310",
-              "Chrome extension — CUT",
-              "—"
+              "Chrome extension, CUT",
+              "none"
             ],
             [
               "§8 Exhibit 6, docs/PRODUCT-BRIEF.md:204",
               "\"Free Obsidian live-preview plugin, week 2; kill: under 200 installs in 14 days\"",
-              "MVP-0 loses its only listed channel"
+              "The pilot loses its only listed channel"
             ],
             [
               "§8 Exhibit 6, docs/PRODUCT-BRIEF.md:203",
-              "\"Chrome extension; MCP server\" as MVP-1 surfaces",
-              "MVP-1 loses a surface"
+              "\"Chrome extension; MCP server\" as surfaces for the build after the pilot",
+              "The build after the pilot loses a surface"
             ],
             [
               "§14 Exhibit 19, docs/PRODUCT-BRIEF.md:352",
@@ -563,16 +563,16 @@
               "docs/CRITIQUE.md:1728"
             ],
             [
-              "\"markdown editor\", r25-w3 count",
+              "\"markdown editor\", the count from that research report",
               "609",
               "3",
-              "—",
+              "none",
               "docs/CRITIQUE.md:52"
             ],
             [
               "\"markdown editor\", 2024-08-18 → 2026-08-30",
               "235",
-              "—",
+              "none",
               "10 clear 100 = 4.3%; ~9.8 launches/month",
               "docs/BUSINESS.md:1264"
             ],
@@ -586,9 +586,9 @@
             [
               "The plan's own sizing",
               "2",
-              "—",
+              "none",
               "Zed 43, Cursor 9",
-              "docs/PRODUCT-BRIEF.md:309 — the only occurrence in the docs tree"
+              "docs/PRODUCT-BRIEF.md:309, the only occurrence in the docs tree"
             ]
           ]
         },
@@ -598,12 +598,12 @@
           "items": [
             [
               "Of the 42 posts that cleared 50 points in 12 months, share with \"open source\"/\"self-host\"/\"free\" in the title",
-              "31% — and the top four all do",
+              "31%, and the top four all do",
               "docs/CRITIQUE.md:1728"
             ],
             [
               "Of the 10 that cleared 100 in two years, how many announce free or open source in the title",
-              "Five products across six posts — OverType 471, OpenKnowledge 381, Rowboat twice at 219 and 205, Write.md 107, Ephe 143",
+              "Five products across six posts: OverType 471, OpenKnowledge 381, Rowboat twice at 219 and 205, Write.md 107, Ephe 143",
               "docs/BUSINESS.md:1264"
             ],
             [
@@ -613,7 +613,7 @@
             ],
             [
               "Corpus rule on the category noun",
-              "\"Never say markdown editor\" — every Show HN with that name becomes a thread of free alternatives",
+              "\"Never say markdown editor\": every Show HN with that name becomes a thread of free alternatives",
               "docs/FRONTMATTER-RECORD.md:2533"
             ]
           ]
@@ -629,7 +629,7 @@
             ],
             [
               "Plan's verdict",
-              "\"Product Hunt unchanged\" at MVP-1",
+              "\"Product Hunt unchanged\" at the build after the pilot",
               "docs/PRODUCT-BRIEF.md:310"
             ],
             [
@@ -644,7 +644,7 @@
             ],
             [
               "What the exclusion was reasoned from",
-              "A ₹599 product cannot fund paid acquisition at any CAC a two-founder Indian company can absorb — an argument about paid, not about a free launch day",
+              "A ₹599 product cannot fund paid acquisition at any CAC a two-founder Indian company can absorb (an argument about paid, not about a free launch day)",
               "docs/THESIS.md:752"
             ]
           ]
@@ -825,12 +825,12 @@
           "items": [
             [
               "Whether either maintainer would accept a README line",
-              "Unmeasured — listed as still open after round 2",
+              "Unmeasured, listed as still open after round 2",
               "docs/GAPS-2026-09-08.md:146"
             ],
             [
               "Share of superpowers sessions that take the architectural path (the only path that writes a document)",
-              "Unmeasured — listed as still open",
+              "Unmeasured, listed as still open",
               "docs/GAPS-2026-09-08.md:146"
             ],
             [
@@ -839,8 +839,8 @@
               "docs/GAPS-2026-09-08.md:58"
             ],
             [
-              "A caveat §12 already carries",
-              "Only the architectural path writes a document; spikes stay in chat, bounded says \"no plan document\", and the plan document gets no review gate — only the spec does",
+              "A caveat the capture loop section (12) already carries",
+              "Only the architectural path writes a document; spikes stay in chat, bounded says \"no plan document\", and the plan document gets no review gate, only the spec does",
               "docs/PRODUCT-BRIEF.md:305"
             ]
           ]
@@ -851,7 +851,7 @@
           "items": [
             [
               "MCP server in src/",
-              "None — no modelcontextprotocol dependency, no server module, zero MCP references in src/ (checked 2026-09-09)"
+              "None: no modelcontextprotocol dependency, no server module, zero MCP references in src/ (checked 2026-09-09)"
             ],
             [
               "MCP in package.json scripts",
@@ -859,11 +859,11 @@
             ],
             [
               "MCP server scheduled",
-              "MVP-1",
+              "The build after the pilot",
               "docs/PRODUCT-BRIEF.md:203"
             ],
             [
-              "F11, agents writing through MCP",
+              "The MCP server, agents writing through it",
               "Listed in the plan's own Untested row",
               "docs/PRODUCT-BRIEF.md:188"
             ],
@@ -885,12 +885,12 @@
           "items": [
             [
               "src-tauri identity, checked 2026-09-09",
-              "productName \"sgnk-md\", identifier \"ai.sgnk.md\" — the desktop build still ships as the sibling app",
+              "productName \"sgnk-md\", identifier \"ai.sgnk.md\": the desktop build still ships as the sibling app",
               "src-tauri/tauri.conf.json:3, :5"
             ],
             [
               "Fix-first item 9",
-              "\"src-tauri carries the sibling app's identity\" — 1 day, not yet done",
+              "\"src-tauri carries the sibling app's identity\", 1 day, not yet done",
               "docs/PRODUCT-BRIEF.md:222"
             ]
           ]
@@ -1069,33 +1069,33 @@
             ],
             [
               "Reviewer-owned checklist population, for contrast",
-              "4,536 — 11× rarer",
+              "4,536, 11 times rarer",
               "docs/PRODUCT-BRIEF.md:306"
             ],
             [
               "spec-kit's size in the plan's own preferred unit",
-              "11,072 public repos, about 1,660 active — the plan struck star counts as a channel-size measure",
+              "11,072 public repos, about 1,660 active. The plan struck star counts as a channel-size measure",
               "docs/PRODUCT-BRIEF.md:148 and :176"
             ]
           ]
         },
         {
           "type": "stat",
-          "title": "The publication rules this would sit under — what §58 actually says",
+          "title": "The publication rules this would sit under: what the \"what we may say in public\" section (58) actually says",
           "items": [
             [
               "Rule that bites here",
-              "Any [SS]-tagged number, in any public asset — [SS] means \"search summary, nobody opened the page\" — verdict: \"No. Verify or omit\"",
+              "Any [SS]-tagged number, in any public asset ([SS] means \"search summary, nobody opened the page\"): verdict \"No. Verify or omit\"",
               "docs/FRONTMATTER-RECORD.md:5022 and :100"
             ],
             [
               "Rule on fidelity percentages",
-              "Bans our own fidelity or coverage percentages until NF-1 and NF-3 land — it does not cover third-party measurements, so it is not the rule that governs this one",
+              "Bans our own fidelity or coverage percentages until the left-edge list bug and the old line-ending bug land; it does not cover third-party measurements, so it is not the rule that governs this one",
               "docs/FRONTMATTER-RECORD.md:5022"
             ],
             [
-              "What §58 explicitly permits",
-              "Numbers that are [measured] or [fetched] and re-derivable by anyone — which this becomes at a defensible n",
+              "What the \"what we may say in public\" section (58) explicitly permits",
+              "Numbers that are [measured] or [fetched] and re-derivable by anyone, which this becomes at a defensible n",
               "docs/FRONTMATTER-RECORD.md:5022"
             ],
             [
@@ -1268,7 +1268,7 @@
             ],
             [
               "What \"157 sources\" actually refers to",
-              "The v12 plan's own line, \"I checked it against 157 sources this week\" — a verification count, not a dataset",
+              "The previous plan's own line, \"I checked it against 157 sources this week\": a verification count, not a dataset",
               "docs/frontmatter-PILOT-PLAN-v12-2026-09-07-0756.print.html:86"
             ],
             [
@@ -1294,27 +1294,27 @@
             ],
             [
               "Corpus the engine is verified on",
-              "8,513 third-party files, 7 vaults, 0 corruption, 0 throws — §58 names this as a may-say",
+              "8,513 third-party files, 7 vaults, 0 corruption, 0 throws. The \"what we may say in public\" section (58) names this as a may-say",
               "docs/FRONTMATTER-RECORD.md:5022"
             ],
             [
               "The caveat the plan itself attaches",
-              "Those 7 vaults are all Obsidian and one wiki is 77% of the 8,513 files — the refusal rate is a property of those vaults, not of markdown in the wild",
+              "Those 7 vaults are all Obsidian and one wiki is 77% of the 8,513 files: the refusal rate is a property of those vaults, not of markdown in the wild",
               "docs/PRODUCT-BRIEF.md:514"
             ],
             [
-              "Non-locality — same ten bytes, two meanings",
+              "Non-locality: same ten bytes, two meanings",
               "Measured across four CommonMark engines, unanimous in both directions",
               "docs/PRODUCT-BRIEF.md:510"
             ],
             [
               "Carrier finding",
-              "An unclosed fence swallows the document; a callout has no closer to lose — tested on four engines and GitHub",
+              "An unclosed fence swallows the document; a callout has no closer to lose. Tested on four engines and GitHub",
               "docs/PRODUCT-BRIEF.md:500"
             ],
             [
-              "What §58 forbids here",
-              "Publishing our own fidelity or coverage percentage while the 83% refusal stands — so the refusal rate may be published as a defect report, never as a coverage claim",
+              "What the \"what we may say in public\" section (58) forbids here",
+              "Publishing our own fidelity or coverage percentage while the 83% refusal stands, so the refusal rate may be published as a defect report, never as a coverage claim",
               "docs/FRONTMATTER-RECORD.md:5022"
             ]
           ]
@@ -1325,7 +1325,7 @@
           "items": [
             [
               "Marketing posts ever shipped",
-              "2 — one with a visible defect since 2026-08-10",
+              "2, one with a visible defect since 2026-08-10",
               "r17-h7:7"
             ],
             [
@@ -1498,7 +1498,7 @@
       "evidence": [
         {
           "type": "table",
-          "title": "The shipped default against the written policy — code re-read 2026-09-09",
+          "title": "The shipped default against the written policy, code re-read 2026-09-09",
           "cols": [
             "Item",
             "Shipped code",
@@ -1517,7 +1517,7 @@
             ],
             [
               "Opt-in",
-              "None — publishing sets a public_slug and the page is live and crawlable",
+              "None: publishing sets a public_slug and the page is live and crawlable",
               "Per-page and per-workspace toggle (r17-h7:105)"
             ],
             [
@@ -1527,8 +1527,8 @@
             ],
             [
               "Footer link",
-              "\"Hosted on frontmatter.in\", href=\"/\" — same-domain, because the note is served from our domain (PublicNoteView.tsx:29-32)",
-              "No automatic backlink from user pages (r17-h7:111) — not yet applicable, since there is no user domain"
+              "\"Hosted on frontmatter.in\", href=\"/\": same domain, because the note is served from our domain (PublicNoteView.tsx:29-32)",
+              "No automatic backlink from user pages (r17-h7:111). Not yet applicable, since there is no user domain"
             ]
           ]
         },
@@ -1538,7 +1538,7 @@
           "items": [
             [
               "Published-page organic contribution under noindex",
-              "about 0 — \"structurally forgone by choice\"",
+              "about 0: \"structurally forgone by choice\"",
               "r17-h7:147"
             ],
             [
@@ -1593,16 +1593,16 @@
         },
         {
           "type": "stat",
-          "title": "How the two halves actually behave — code re-read 2026-09-09",
+          "title": "How the two halves actually behave, code re-read 2026-09-09",
           "items": [
             [
               "What the shipped route reads at request time",
-              "The file from the user's repository via a reader port; the share snapshot carries only path, slug and title — no stored body",
+              "The file from the user's repository via a reader port; the share snapshot carries only path, slug and title, no stored body",
               "src/modules/share/application/resolve-public-note.ts:27; src/modules/share/infrastructure/share-snapshot-port.ts:13"
             ],
             [
               "The qualification on \"we do not hold\"",
-              "export const revalidate = 60 — a rendered copy sits in the CDN cache for up to a minute",
+              "export const revalidate = 60: a rendered copy sits in the CDN cache for up to a minute",
               "src/app/(public)/[slug]/page.tsx:17"
             ],
             [
@@ -1612,7 +1612,7 @@
             ],
             [
               "Firestore writes across the source tree",
-              "Zero — the design is unbuilt",
+              "Zero: the design is unbuilt",
               "docs/PRODUCT-BRIEF.md:365"
             ],
             [
@@ -1791,12 +1791,12 @@
           "items": [
             [
               "Mark on the hosted public note",
-              "\"Hosted on frontmatter.in\", href=\"/\" — same domain as the note itself",
+              "\"Hosted on frontmatter.in\", href=\"/\", on the same domain as the note itself",
               "src/modules/share/presentation/PublicNoteView.tsx:29"
             ],
             [
               "Mark on exported output",
-              "None — no mark anywhere in the 945-line export module (checked 2026-09-09)"
+              "None. No mark anywhere in the 945-line export module (checked 2026-09-09)"
             ],
             [
               "Research position",
@@ -1810,7 +1810,7 @@
             ],
             [
               "Whether those reasons bite today",
-              "Only the third does. The first two describe a link on a user's own domain, which does not exist yet — every shared note is served from ours"
+              "Only the third does. The first two describe a link on a user's own domain, which does not exist yet: every shared note is served from ours"
             ]
           ]
         },
@@ -1820,7 +1820,7 @@
           "items": [
             [
               "What the cut used",
-              "Obsidian plugin-download ratios — a note-taker population",
+              "Obsidian plugin-download ratios: a note-taker population",
               "docs/GAPS-2026-09-08.md:60"
             ],
             [
@@ -1992,7 +1992,7 @@
       "evidence": [
         {
           "type": "bars",
-          "title": "The free price floor behind the ban — GitHub stars, all pushed within 24h of the count",
+          "title": "The free price floor behind the ban: GitHub stars, all pushed within 24h of the count",
           "note": "Fetched and recorded at docs/FRONTMATTER-RECORD.md:5588.",
           "unit": "stars",
           "data": [
@@ -2052,7 +2052,7 @@
             ],
             [
               "The same category as a moat",
-              "\"File-native data / no lock-in\" is structural but non-exclusive — every markdown tool claims it, against those seven free alternatives",
+              "\"File-native data / no lock-in\" is structural but non-exclusive: every markdown tool claims it, against those seven free alternatives",
               "docs/FRONTMATTER-RECORD.md:2551"
             ],
             [
@@ -2271,7 +2271,7 @@
             ],
             [
               "Where it ships for us",
-              "S11 settings, day one",
+              "The settings screen, day one",
               "docs/PRODUCT-BRIEF.md:382"
             ]
           ]
@@ -2417,12 +2417,12 @@
             ],
             [
               "Times run",
-              "0 — \"has never been run, by the record or by me\"",
+              "0: \"has never been run, by the record or by me\"",
               "docs/CRITIQUE.md:1191"
             ],
             [
               "Why not",
-              "Unauthenticated /search/code returns 401; gh fails TLS through the research proxy — the record said so and the auditor confirmed it",
+              "Unauthenticated /search/code returns 401; gh fails TLS through the research proxy. The record said so and the auditor confirmed it",
               "docs/CRITIQUE.md:1102"
             ],
             [
@@ -2443,7 +2443,7 @@
           "items": [
             [
               "Visitors needed for the first 100 paying customers",
-              "22,222 — 100 ÷ 5% conversion = 2,000 signups ÷ 9% visitor-to-signup",
+              "22,222 (100 divided by 5% conversion = 2,000 signups, divided by 9% visitor-to-signup)",
               "r25-w4:90"
             ],
             [
@@ -2464,12 +2464,12 @@
           "items": [
             [
               "Round-2 verdict on payment",
-              "\"Whether anyone pays for review state in any shell\" — eleven gaps measured installs and attention, never payment",
+              "\"Whether anyone pays for review state in any shell\": eleven gaps measured installs and attention, never payment",
               "docs/GAPS-2026-09-08.md:146"
             ],
             [
-              "What Pro sells at MVP-1",
-              "Shared review state, comments and MCP — the first is what GitHub Team bundles at $4, the other two untested",
+              "What Pro sells at the build after the pilot",
+              "Shared review state, comments and MCP: the first is what GitHub Team bundles at $4, the other two untested",
               "docs/GAPS-2026-09-08.md:54"
             ],
             [
@@ -2479,7 +2479,7 @@
             ],
             [
               "Withdrawn earlier claim",
-              "\"114 seats at $8 covers the nut\" — withdrawn because the feature was GitHub's at $4 and the band would require replacing 34–46 of 114 seats a year",
+              "\"114 seats at $8 covers the nut\": withdrawn because the feature was GitHub's at $4 and the band would require replacing 34-46 of 114 seats a year",
               "docs/PRODUCT-BRIEF.md:292"
             ],
             [
@@ -2817,7 +2817,7 @@
             ],
             [
               "Evidence that a scan produces an engagement",
-              "None — untested",
+              "None: untested",
               "docs/GAPS-2026-09-08.md:56"
             ],
             [
@@ -2827,7 +2827,7 @@
             ],
             [
               "When the scan ships",
-              "F7, 10 engineering days, after 24 days of fix-first work",
+              "The repo docs scan feature, 10 engineering days, after 24 days of fix-first work",
               "docs/PRODUCT-BRIEF.md:227"
             ],
             [
@@ -2985,7 +2985,7 @@
         {
           "type": "bars",
           "title": "Year-one visitor contribution by channel, optimistic end of each research estimate",
-          "note": "From the channel table at docs/research/agent-reports-2026-08-30/r17-h7-content-seo-distribution.md:144-151. Everything on that table sums to perhaps 350k–500k in year one (r17-h7:153). The ~1,260,000 visitor figure for ₹20L/month (r17-h7:8) is a 24-to-36-month cumulative number, not a year-one target.",
+          "note": "From the channel table at docs/research/agent-reports-2026-08-30/r17-h7-content-seo-distribution.md:144-151. Everything on that table sums to perhaps 350k-500k in year one (r17-h7:153). The approximately 1,260,000 visitor figure for ₹20L/month (r17-h7:8) is a 24-to-36-month cumulative number, not a year-one target.",
           "unit": "visitors, optimistic end",
           "data": [
             [
@@ -3012,11 +3012,11 @@
         },
         {
           "type": "stat",
-          "title": "Why the ceiling is the right order of magnitude — and the risk",
+          "title": "Why the ceiling is the right order of magnitude, and the risk",
           "items": [
             [
               "gray-matter npm downloads per month",
-              "35,782,000 per r17-h7:9; independently recorded at 35,124,859 in docs/CRITIQUE.md:1728 — same order, two counts"
+              "35,782,000 per r17-h7:9, and independently recorded at 35,124,859 in docs/CRITIQUE.md:1728. Same order, two counts"
             ],
             [
               "front-matter npm downloads per month",
@@ -3025,7 +3025,7 @@
             ],
             [
               "Query the validator targets",
-              "\"yaml frontmatter invalid / parse error\" — problem-aware, huge latent volume, our strongest asset",
+              "\"yaml frontmatter invalid / parse error\": problem-aware, huge latent volume, our strongest asset",
               "r17-h7:69"
             ],
             [
@@ -3035,12 +3035,12 @@
             ],
             [
               "What it would currently reveal",
-              "The engine refuses 83% of real vaults on the NF-1 zero-indent defect",
+              "The engine refuses 83% of real vaults on the left-edge list bug",
               "docs/PRODUCT-BRIEF.md:214"
             ],
             [
               "A second caveat on that number",
-              "It is measured on seven Obsidian vaults, one wiki being 77% of the files — a validator taking arbitrary pasted documents samples a different population",
+              "It is measured on seven Obsidian vaults, one wiki being 77% of the files: a validator taking arbitrary pasted documents samples a different population",
               "docs/PRODUCT-BRIEF.md:514"
             ]
           ]
@@ -3212,7 +3212,7 @@
       "evidence": [
         {
           "type": "bars",
-          "title": "VS Code Marketplace installs — the population the extension channel would reach",
+          "title": "VS Code Marketplace installs: the population the extension channel would reach",
           "note": "From the form-factor gap at docs/GAPS-2026-09-08.md:48. markdown-all-in-one carries a 10.6× co-recommendation lift alongside Copilot.",
           "unit": "installs (millions)",
           "data": [
@@ -3240,7 +3240,7 @@
           "items": [
             [
               "Front Matter CMS installs",
-              "82,265, alive at v10.12.0 on 2026-08-21 (the record's earlier count was about 80,605 — same product, two readings)",
+              "82,265, alive at v10.12.0 on 2026-08-21 (the record's earlier count was about 80,605, same product, two readings)",
               "docs/GAPS-2026-09-08.md:132 and :50"
             ],
             [
@@ -3402,14 +3402,14 @@
           "title": "The channel table's own status, row by row",
           "cols": [
             "Channel",
-            "Status in v15",
+            "Status in the current plan",
             "Depends on"
           ],
           "rows": [
             [
               "Obsidian plugin",
               "CUT (docs/PRODUCT-BRIEF.md:304)",
-              "—"
+              "none"
             ],
             [
               "superpowers",
@@ -3424,26 +3424,26 @@
             [
               "Plan mode",
               "Demoted (docs/PRODUCT-BRIEF.md:307)",
-              "An untested file location — one hour to check"
+              "An untested file location: one hour to check"
             ],
             [
               "Published research",
               "Now (docs/PRODUCT-BRIEF.md:308)",
-              "Nothing — the only unblocked row"
+              "Nothing: the only unblocked row"
             ],
             [
               "Show HN",
-              "MVP-0 exit (docs/PRODUCT-BRIEF.md:309)",
+              "Pilot exit (docs/PRODUCT-BRIEF.md:309)",
               "6 of 10, then 1.4% (all Show HN) to 5.7% (this category) odds of clearing 100 points"
             ],
             [
               "Chrome extension / Product Hunt",
-              "CUT / MVP-1 (docs/PRODUCT-BRIEF.md:310)",
+              "CUT / the build after the pilot (docs/PRODUCT-BRIEF.md:310)",
               "A ?src= parameter that is unbuilt; an exclusion the record already made"
             ],
             [
               "Exported pages with a mark",
-              "MVP-2 (docs/PRODUCT-BRIEF.md:311)",
+              "Two builds after the pilot (docs/PRODUCT-BRIEF.md:311)",
               "A deploy count that does not exist"
             ]
           ]
@@ -3631,7 +3631,7 @@
             [
               "10% refer 1",
               "0.10",
-              "The source gives both ~1,150,000 in its table and 1,134,000 in its derivation — the stated saving of ~126,000 belongs to the second"
+              "The source gives both approximately 1,150,000 in its table and 1,134,000 in its derivation: the stated saving of approximately 126,000 belongs to the second"
             ],
             [
               "20% refer 1 (optimistic ceiling, no cash incentive)",
@@ -3671,12 +3671,12 @@
             ],
             [
               "When a team surface exists to invite into",
-              "MVP-1 — F10 shared review state and comments",
+              "The build after the pilot: shared review state and comments",
               "docs/PRODUCT-BRIEF.md:200"
             ],
             [
               "Where the invitee would currently land",
-              "The public-note route, which is exactly what G10 and G11 are deciding"
+              "The public-note route, which is exactly what this decision and its companion on crawlability are deciding"
             ]
           ]
         }
@@ -3874,7 +3874,7 @@
           "items": [
             [
               "Where plan mode writes",
-              "~/.claude/plans/<slug>.md — outside the repo",
+              "~/.claude/plans/<slug>.md, outside the repo",
               "docs/PRODUCT-BRIEF.md:307"
             ],
             [
@@ -3883,13 +3883,13 @@
               "docs/PRODUCT-BRIEF.md:307"
             ],
             [
-              "The setting §12 names",
+              "The setting the capture loop section (12) names",
               "plansDirectory",
               "docs/PRODUCT-BRIEF.md:307"
             ],
             [
               "Whether it can point inside a repository",
-              "Untested — \"Where the files live is untested\"",
+              "Untested: \"Where the files live is untested\"",
               "docs/PRODUCT-BRIEF.md:149"
             ],
             [
