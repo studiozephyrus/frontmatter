@@ -191,7 +191,7 @@
           "rows": [
             [
               "`firestore.rules`",
-              "Caps a note body at 900000 characters and refuses every revision delete",
+              "Caps a note body at 900,000 characters and refuses every revision delete",
               "`firestore.rules:318`, `firestore.rules:361`"
             ],
             [
