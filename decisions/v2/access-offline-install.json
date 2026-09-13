@@ -2443,7 +2443,7 @@
       "sub": "Web byte path",
       "weight": "critical",
       "q": "Do we delete the server-side PDF route or amend the claim, and does folder-to-one-PDF get built?",
-      "lede": "Fixing the read path leaves one route that sends a whole file to a server by design.",
+      "lede": "Two of the five exports send the whole file to a server, not one, and the browser print path is written but wired to nothing.",
       "visual": {
         "kind": "screen",
         "title": "Export menu, as shipped",
@@ -2466,15 +2466,15 @@
               },
               {
                 "label": "Export Word (.doc)",
-                "meta": "Blob in the browser",
+                "meta": "HTML with a .doc name, in the browser",
                 "mark": "local",
                 "tone": "good"
               },
               {
                 "label": "Open PDF (print)",
-                "meta": "Blob, then window.print()",
-                "mark": "local",
-                "tone": "good"
+                "meta": "Headless Chromium on our server",
+                "mark": "server",
+                "tone": "stop"
               },
               {
                 "label": "Download PDF",
@@ -2485,13 +2485,14 @@
             ]
           }
         ],
-        "note": "One of five items sends the whole file to us, and a browser PDF path already ships above it.",
-        "caption": "Where each export runs, read from the shipped menu."
+        "note": "Two of five items send the whole file to us. The browser print path is written at `export-doc.ts:130` and nothing calls it.",
+        "caption": "Where each export runs, read from the shipped menu on 2026-09-13."
       },
       "stakes": "A security reviewer finds a route contradicting the published architecture, and that reads worse than the feature.",
       "state": [
-        "The server PDF route fetches the whole file and renders it with headless Chromium.",
-        "A browser PDF option already ships one line above it in the export menu."
+        "Both PDF items call the server route. `ExportMenu.tsx:108` opens it in a tab, `:114` downloads it.",
+        "`openPrintView` exists at `export-doc.ts:130`, is exported, and no file imports it.",
+        "Export Word is the HTML renderer with a `.doc` name, not a real docx (`ExportMenu.tsx:95`)."
       ],
       "tension": [
         "Every statement of the claim gains an exception, and competitors will quote it back.",
@@ -2574,18 +2575,19 @@
       "options": [
         {
           "k": "a",
-          "label": "Delete the server PDF route and keep the browser print item",
+          "label": "Delete the server route and wire the browser print path that already exists",
           "gains": [
             "The claim becomes true with no exception",
             "No CDN fetches while rendering a document"
           ],
           "costs": [
-            "No server-controlled page setup",
-            "Output depends on the browser's print dialogue"
+            "Browser print output varies by engine, so page breaks are not ours to control",
+            "Folder-to-one-PDF still needs a server renderer if it ships"
           ],
           "system": "Delete the server PDF route.",
           "screens": "The export menu goes five to four.",
-          "money": "Removes a Chromium cold start."
+          "money": "Removes a Chromium cold start.",
+          "detail": "`openPrintView` is written and unused. Wiring it is small, and it makes the zero-bytes claim true with no exception to explain."
         },
         {
           "k": "b",
@@ -2648,7 +2650,10 @@
         "docs/PRODUCT-BRIEF.md:67",
         "docs/PRODUCT-BRIEF.md:123",
         "docs/PRODUCT-BRIEF.md:133",
-        "docs/WEEK0-DECISIONS-2026-09-08.md:35"
+        "docs/WEEK0-DECISIONS-2026-09-08.md:35",
+        "src/modules/export/presentation/ExportMenu.tsx:108",
+        "src/modules/export/presentation/ExportMenu.tsx:114",
+        "src/modules/export/presentation/ExportMenu.tsx:95"
       ],
       "when": "mvp",
       "whenWhy": "The plan now allows holding bytes, so the export route can stay. Confirm it.",
@@ -3429,6 +3434,197 @@
       ],
       "when": "after",
       "whenWhy": "Writing review state to a repository is deferred with review state."
+    },
+    {
+      "id": "AC20",
+      "cat": "Access, offline & install",
+      "sub": "THE FRONT DOOR",
+      "weight": "critical",
+      "when": "mvp",
+      "whenWhy": "A stranger hits a login wall before they see an editor. It is the first screen and it blocks the funnel.",
+      "q": "Does the editor open and work without an account, or does the login wall at the front door stay?",
+      "lede": "`/` is the login screen when nobody is signed in, so nobody can try the product before joining it.",
+      "stakes": "The kit funnel needs strangers to arrive, paste something and see it work. Today they cannot open a file.",
+      "state": [
+        "`(vault)/layout.tsx` returns `<LoginScreen />` when there is no actor, so the home page is the wall.",
+        "Measured on 2026-09-13: dillinger.io serves a Monaco editor on its landing page with zero sign-in words in the HTML.",
+        "StackEdit and Excalidraw also show no sign-in words on the landing page. HackMD shows sixteen and Typst eight."
+      ],
+      "tension": [
+        "Every tool a developer reaches for to do one quick markdown job asks nothing of them first.",
+        "An account is needed the moment a document is stored or shared, and not before."
+      ],
+      "options": [
+        {
+          "k": "a",
+          "label": "Open editor at `/`, local only, account asked for at the first save or share",
+          "gains": [
+            "A stranger can paste and export in the first ten seconds",
+            "The funnel gets a top, which it does not have today"
+          ],
+          "costs": [
+            "Two states to build and test, signed in and not",
+            "Local drafts need a migration into the account on first sign-in"
+          ],
+          "system": "The vault layout stops short-circuiting to the login screen; drafts go to IndexedDB.",
+          "screens": "A new signed-out editor state, and a prompt at the first save.",
+          "money": "None. Anonymous use costs no storage."
+        },
+        {
+          "k": "b",
+          "label": "A separate `/try` page with the editor, and the wall stays at `/`",
+          "gains": [
+            "No change to the signed-in app",
+            "One page to measure the funnel against"
+          ],
+          "costs": [
+            "Two editors to keep in step, which is the fork problem again",
+            "The landing page still turns strangers away"
+          ],
+          "system": "A second route with its own state.",
+          "screens": "One new page.",
+          "money": "None."
+        },
+        {
+          "k": "c",
+          "label": "Keep the wall and rely on the unlisted kit link as the way in",
+          "gains": [
+            "Nothing new to build",
+            "Every user is known from the first byte"
+          ],
+          "costs": [
+            "Nobody can try the editor, which is the product",
+            "The kit link shows output, never the thing that made it"
+          ],
+          "system": "No change.",
+          "screens": "None.",
+          "money": "None."
+        },
+        {
+          "k": "d",
+          "label": "Open editor at `/` and never require an account for local work at all",
+          "gains": [
+            "The strongest version of the privacy claim",
+            "No sign-in to lose a user at"
+          ],
+          "costs": [
+            "Sharing and the kit both need identity, so the account returns anyway",
+            "No way to reach a user who is about to churn"
+          ],
+          "system": "Account becomes optional throughout.",
+          "screens": "Sign-in never blocks.",
+          "money": "No email list."
+        }
+      ],
+      "rec": "a",
+      "recCase": [
+        "The measured comparison is one sided. The tools that win this job ask nothing first.",
+        "Local only costs no storage and no legal surface, because nothing reaches us until the user chooses."
+      ],
+      "flip": "If the pilot shows strangers arrive through the kit link and never through the editor, (c) is honest and cheaper.",
+      "visual": {
+        "kind": "compare",
+        "title": "What a stranger can do before being asked who they are",
+        "cols": [
+          "dillinger.io",
+          "StackEdit",
+          "frontmatter today"
+        ],
+        "rows": [
+          {
+            "label": "Sign-in words in the landing HTML",
+            "cells": [
+              "0",
+              "0",
+              "the page is the login screen"
+            ]
+          },
+          {
+            "label": "Editor visible on arrival",
+            "cells": [
+              "yes, Monaco",
+              "yes",
+              "no"
+            ]
+          },
+          {
+            "label": "Can paste a document",
+            "cells": [
+              "yes",
+              "yes",
+              "no"
+            ]
+          },
+          {
+            "label": "Can export it",
+            "cells": [
+              "yes",
+              "yes",
+              "no"
+            ]
+          },
+          {
+            "label": "Account required to start",
+            "cells": [
+              "never",
+              "never",
+              "always"
+            ]
+          }
+        ],
+        "note": "Counted on 2026-09-13 by fetching each landing page and stripping script blocks first.",
+        "caption": "Entry friction, measured against the tools doing this job"
+      },
+      "sources": [
+        "src/app/(vault)/layout.tsx:11",
+        "src/proxy.ts:44",
+        "docs/GENERATION-SURFACE-2026-09-13-2113.md:1",
+        "docs/MVP-PLAN-2026-09-13.md:1"
+      ],
+      "linked": [
+        "PL12",
+        "F19",
+        "AC3"
+      ],
+      "evidence": [
+        {
+          "type": "stat",
+          "title": "Entry friction, measured on 2026-09-13",
+          "note": "Counted by fetching each landing page and counting sign-in, sign-up, log-in and create-account in the HTML with script blocks stripped.",
+          "items": [
+            [
+              "dillinger.io",
+              "0 sign-in words, Monaco editor in the landing HTML",
+              "measured 2026-09-13"
+            ],
+            [
+              "stackedit.io",
+              "0 sign-in words",
+              "measured 2026-09-13"
+            ],
+            [
+              "excalidraw.com",
+              "0 sign-in words",
+              "measured 2026-09-13"
+            ],
+            [
+              "hackmd.io",
+              "16 sign-in words",
+              "measured 2026-09-13"
+            ],
+            [
+              "typst.app",
+              "8 sign-in words",
+              "measured 2026-09-13"
+            ],
+            [
+              "frontmatter today",
+              "the page IS the login screen",
+              "src/app/(vault)/layout.tsx:11"
+            ]
+          ]
+        }
+      ]
     }
   ]
 }

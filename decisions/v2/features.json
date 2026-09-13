@@ -5728,6 +5728,138 @@
       ],
       "when": "after",
       "whenWhy": "Both answers describe the highlight, which is deferred."
+    },
+    {
+      "id": "F34",
+      "cat": "Features",
+      "sub": "KIT CONSISTENCY",
+      "weight": "critical",
+      "when": "mvp",
+      "whenWhy": "The kit is the funnel. Thirty-three files that contradict each other are worse than none, and nothing checks them.",
+      "q": "Who checks that the generated files agree with each other, and does that check ship with the kit?",
+      "lede": "Any model writes thirty-three files. Getting the API reference to match the data model is the whole job.",
+      "stakes": "A user hands a contradictory kit to their agent, the agent builds the contradiction, and it surfaces weeks later.",
+      "state": [
+        "The kit in the plan is a prompt, a handful of questions and a set of files at an unlisted link.",
+        "Nothing in the plan describes a check that the files are consistent with each other.",
+        "The failure is silent: a contradiction reads as ordinary prose in either file on its own."
+      ],
+      "tension": [
+        "Generation is commodity and every agent can do it. The check is the part that is ours.",
+        "A check that refuses is a product that sometimes says no, which is the engine's own posture already."
+      ],
+      "options": [
+        {
+          "k": "a",
+          "label": "Generate only, no check. Ship it and let the user read the kit",
+          "gains": [
+            "Fastest to build",
+            "No refusal to explain"
+          ],
+          "costs": [
+            "The contradiction lands in their codebase, not in our product, so we never see it",
+            "No defensible part"
+          ],
+          "system": "Generation only.",
+          "screens": "None.",
+          "money": "Lowest token cost."
+        },
+        {
+          "k": "b",
+          "label": "A names-and-claims pass across the kit, reported to the user before the link is made",
+          "gains": [
+            "Catches the failure where it is cheap, which is before the agent runs",
+            "This is the part a competitor cannot copy from a prompt"
+          ],
+          "costs": [
+            "A second model pass on every kit, so roughly double the tokens",
+            "A report the user has to read"
+          ],
+          "system": "A consistency stage between generation and publication.",
+          "screens": "A findings list before the link.",
+          "money": "Roughly double the per-kit token cost."
+        },
+        {
+          "k": "c",
+          "label": "Generate the kit from one structured answer set, so the files cannot disagree",
+          "gains": [
+            "The contradiction becomes impossible rather than detected",
+            "One source, many projections, which is the projection law again"
+          ],
+          "costs": [
+            "Much harder to build and slower to change",
+            "Files read as templated, which buyers notice"
+          ],
+          "system": "An intermediate model of the project, then rendering.",
+          "screens": "None.",
+          "money": "Lower tokens, higher build."
+        },
+        {
+          "k": "d",
+          "label": "Ship the check as a separate paid step after the free kit",
+          "gains": [
+            "A clear thing to charge for",
+            "Free tier stays cheap"
+          ],
+          "costs": [
+            "The free kit is the one that reaches the agent, so the damage still happens",
+            "Splits one product into two"
+          ],
+          "system": "A paid stage.",
+          "screens": "An upsell.",
+          "money": "A second price point."
+        }
+      ],
+      "rec": "b",
+      "recCase": [
+        "The check is the only part of the kit a competitor cannot reproduce with a better prompt.",
+        "It catches the failure before the agent runs, which is the only moment it is cheap."
+      ],
+      "flip": "If the twenty hand made kits show contradictions are rare, the check becomes a warning rather than a stage.",
+      "visual": {
+        "kind": "flow",
+        "title": "Where a contradiction gets caught, and what it costs there",
+        "nodes": [
+          {
+            "label": "Answers",
+            "meta": "5 to 8 questions"
+          },
+          {
+            "label": "Generate",
+            "meta": "33 files"
+          },
+          {
+            "label": "Consistency pass",
+            "meta": "names and claims",
+            "mark": true
+          },
+          {
+            "label": "Unlisted link",
+            "meta": "the kit"
+          },
+          {
+            "label": "Their agent",
+            "meta": "builds from it"
+          },
+          {
+            "label": "Three weeks later",
+            "meta": "the contradiction ships",
+            "tone": "stop"
+          }
+        ],
+        "note": "Caught at the third step it is a line in a report. Caught at the last it is a rewrite.",
+        "caption": "The cost of a contradiction, by where it is found"
+      },
+      "sources": [
+        "docs/MVP-PLAN-2026-09-13.md:1",
+        "docs/GENERATION-SURFACE-2026-09-13-2113.md:1",
+        "docs/13-TECH-DEBT.md:1"
+      ],
+      "linked": [
+        "F5",
+        "PR7",
+        "R1"
+      ]
     }
   ]
 }

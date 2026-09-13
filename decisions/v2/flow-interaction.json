@@ -3247,6 +3247,156 @@
       ],
       "when": "after",
       "whenWhy": "Clearing a span is review state."
+    },
+    {
+      "id": "FL21",
+      "cat": "Flow & interaction",
+      "sub": "EMPTY STATE",
+      "weight": "critical",
+      "when": "mvp",
+      "whenWhy": "An empty editor is the first thing a stranger sees. What sits in that space decides whether they try anything.",
+      "q": "What is on screen when nothing is open, and what can a stranger press to see the product work?",
+      "lede": "A bare editor is the goal, and a bare editor with nothing to press is a blank page a stranger leaves.",
+      "stakes": "This is the whole first impression. Too much furniture and it is not bare. Nothing at all and there is no way in.",
+      "state": [
+        "The plan calls for a bare bones editor with the md.sgnk.ai look.",
+        "The launcher iterations in the gallery show four templates and a recent list.",
+        "Nothing in the product today demonstrates what it does without the user supplying a document first."
+      ],
+      "tension": [
+        "Every affordance added to the empty state is a concept the reader has to hold.",
+        "A stranger with no file has nothing to paste and no reason to stay."
+      ],
+      "options": [
+        {
+          "k": "a",
+          "label": "One paste target and nothing else, with a single line of instruction",
+          "gains": [
+            "Truest to the bare bones claim",
+            "Nothing to learn"
+          ],
+          "costs": [
+            "A stranger with nothing to paste still leaves",
+            "No demonstration of generation at all"
+          ],
+          "system": "No sample content ships.",
+          "screens": "One empty state.",
+          "money": "None."
+        },
+        {
+          "k": "b",
+          "label": "Paste target, plus one sample document that shows a kit being made",
+          "gains": [
+            "Shows the thing that is actually different, not the editor",
+            "Costs one document to write, not a feature"
+          ],
+          "costs": [
+            "A sample is a maintenance item and goes stale",
+            "One more concept in the empty state"
+          ],
+          "system": "One bundled sample.",
+          "screens": "Empty state with a try line.",
+          "money": "Model tokens if the sample regenerates."
+        },
+        {
+          "k": "c",
+          "label": "The launcher as drawn: four templates and a recent list",
+          "gains": [
+            "A clear way in for a returning user",
+            "Templates are the paid surface later"
+          ],
+          "costs": [
+            "Four templates is four concepts before a single word is written",
+            "A first time user has no recents, so half of it is empty"
+          ],
+          "system": "Template store.",
+          "screens": "The launcher.",
+          "money": "None."
+        },
+        {
+          "k": "d",
+          "label": "Paste target with a live example that types itself out",
+          "gains": [
+            "Shows the product with no action from the reader"
+          ],
+          "costs": [
+            "Motion in an editor reads as a toy",
+            "Accessibility work for reduced motion and screen readers"
+          ],
+          "system": "An animation loop.",
+          "screens": "Animated empty state.",
+          "money": "None."
+        }
+      ],
+      "rec": "b",
+      "recCase": [
+        "The editor is not the thing worth demonstrating, because every editor looks the same when empty.",
+        "One sample that turns into a kit shows the part nobody else does, and it costs a document rather than a feature."
+      ],
+      "flip": "If the twenty hand made kits show people arrive already holding a document, (a) is enough and cheaper.",
+      "visual": {
+        "kind": "compare",
+        "title": "What sits in the empty space",
+        "cols": [
+          "Paste only",
+          "Paste plus one sample",
+          "The full launcher"
+        ],
+        "rows": [
+          {
+            "label": "Concepts on screen",
+            "cells": [
+              "1",
+              "2",
+              "4 or more"
+            ]
+          },
+          {
+            "label": "Works with nothing to paste",
+            "cells": [
+              "no",
+              "yes",
+              "yes"
+            ]
+          },
+          {
+            "label": "Shows generation",
+            "cells": [
+              "no",
+              "yes",
+              "no"
+            ]
+          },
+          {
+            "label": "Build cost",
+            "cells": [
+              "hours",
+              "a day",
+              "a week"
+            ]
+          },
+          {
+            "label": "Stays bare",
+            "cells": [
+              "yes",
+              "yes",
+              "no"
+            ]
+          }
+        ],
+        "note": "Generation is the part worth showing. An empty editor demonstrates nothing that a text area does not.",
+        "caption": "Three empty states, against the bare bones budget"
+      },
+      "sources": [
+        "docs/MVP-PLAN-2026-09-13.md:1",
+        "decisions/mockups-data.js:1",
+        "docs/GENERATION-SURFACE-2026-09-13-2113.md:1"
+      ],
+      "linked": [
+        "AC20",
+        "FL12",
+        "F27"
+      ]
     }
   ],
   "merged": [
