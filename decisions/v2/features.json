@@ -5873,8 +5873,8 @@
       "stakes": "If this is the wedge, the MVP is an editor for agent instructions that also does documents. If it is a feature, it waits and somebody else takes it.",
       "state": [
         "agents.md, fetched 2026-09-13: over 60,000 projects, stewarded by the Agentic AI Foundation under the Linux Foundation.",
-        "Files nest, and the nearest one up the tree wins. The page states the main OpenAI repository holds 88 of them.",
-        "The Claude Code memory doc lists three known failures: not followed, too large, and lost after compaction."
+        "Sampled the same day: 77 commits to the file in `openai/codex`, 64 in `apache/airflow`, 35 in `vercel/next.js`.",
+        "`apache/airflow` and `vercel/next.js` both symlink `CLAUDE.md` to `AGENTS.md`. LibreChat keeps two and they have drifted."
       ],
       "tension": [
         "Roughly two dozen agents read one format, so the work is portable in a way almost nothing else here is.",
@@ -5946,7 +5946,7 @@
         "It is the only item in the research with measured adoption, a governed standard and failure modes the vendor documents itself.",
         "It gives review state a job that is not the claim four free tools already took apart."
       ],
-      "flip": "If a sample of those 60,000 repositories shows most files were generated once and never touched, this is a one-off generator and (c) is right.",
+      "flip": "If a wider random sample shows most instruction files were written once and abandoned, this is a one-off generator and (c) is right.",
       "visual": {
         "kind": "compare",
         "title": "The three things the vendor's own manual says go wrong",
@@ -6041,6 +6041,43 @@
               "Failure modes in the vendor's own troubleshooting",
               "3",
               "Claude Code memory doc"
+            ]
+          ]
+        },
+        {
+          "type": "stat",
+          "title": "Sampled on GitHub, 2026-09-13: are these files maintained, and how big do they get",
+          "note": "A convenience sample of eight repositories named on agents.md or known to carry the file, read through the GitHub API. Biased towards large active projects, so it says what happens in a live repository and not what the median project does.",
+          "items": [
+            [
+              "openai/codex, commits touching AGENTS.md",
+              "77",
+              "GitHub API, repos/openai/codex/commits?path=AGENTS.md"
+            ],
+            [
+              "apache/airflow, commits touching AGENTS.md",
+              "64",
+              "GitHub API"
+            ],
+            [
+              "vercel/next.js, commits touching AGENTS.md",
+              "35",
+              "GitHub API"
+            ],
+            [
+              "Largest file in the sample",
+              "apache/airflow, 36,577 bytes, roughly 6,100 words",
+              "GitHub API contents"
+            ],
+            [
+              "apache/airflow and vercel/next.js CLAUDE.md",
+              "git mode 120000, a symlink to AGENTS.md",
+              "GitHub API git/trees"
+            ],
+            [
+              "danny-avila/LibreChat, two real files",
+              "AGENTS.md 7,415 bytes against CLAUDE.md 23,170",
+              "GitHub API contents"
             ]
           ]
         }

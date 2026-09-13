@@ -137,9 +137,15 @@ generation document.
 
 - I did not bind each Obsidian price to its exact product. The shape is verified, the
   pairing is not.
-- I did not measure how many of the 60,000 `AGENTS.md` projects have a file anyone maintains
-  rather than one generated once and abandoned. That number would change how big this is,
-  and I have no way to get it without sampling the repositories.
+- **Closed, partly.** I said I could not measure whether these files are maintained. I sampled
+  eight repositories through the GitHub API on 2026-09-13 and they are, heavily: 77 commits
+  touching `AGENTS.md` in `openai/codex`, 64 in `apache/airflow`, 35 in `vercel/next.js`. The
+  files are substantial, up to 36,577 bytes, roughly 6,100 words. `apache/airflow` and
+  `vercel/next.js` both keep `CLAUDE.md` as a git symlink to `AGENTS.md`, mode 120000, while
+  `danny-avila/LibreChat` keeps two real files that have drifted to 7,415 against 23,170 bytes.
+  That drift is the problem, visible in public. The sample is a convenience sample of large
+  active projects, so it says what happens in a live repository rather than what a median
+  project does. A random sample is still worth taking.
 - I have no evidence on willingness to pay for any of this. Nobody has been asked. That gap
   is already recorded in the gap register and none of the above closes it.
 - Slide tooling: I confirmed Marp and Slidev exist and are reachable. I did not compare

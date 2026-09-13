@@ -27,11 +27,11 @@
         ],
         "rows": [
           {
-            "label": "Senior user since 2019",
+            "label": "Whoever used the name first, from 2019",
             "cells": [
-              "Unmanaged",
-              "Still adjacent",
-              "Gone"
+              "Collision left unmanaged",
+              "Still adjacent to theirs",
+              "Collision gone"
             ]
           },
           {
