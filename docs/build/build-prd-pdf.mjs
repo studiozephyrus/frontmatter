@@ -21,6 +21,10 @@ import remarkRehype from 'remark-rehype'
 import rehypeStringify from 'rehype-stringify'
 
 const [input, outBase, coverTitle, coverLede] = process.argv.slice(2)
+const extraMeta = [
+  process.env.FM_PDF_AGENTS ? `<div><b>${process.env.FM_PDF_AGENTS}</b>research agents</div>` : '',
+  process.env.FM_PDF_ROUNDS ? `<div><b>${process.env.FM_PDF_ROUNDS}</b>rounds</div>` : '',
+].join('')
 if (!input || !outBase) {
   console.error('usage: node docs/build/build-prd-pdf.mjs <input.md> <output-basename> ["title"] ["lede"]')
   process.exit(2)
@@ -200,6 +204,10 @@ hr{border:0;border-top:.4pt solid var(--hair);margin:6mm 0}
    auto on the other axis makes the viewBox scale down to fit instead. Mermaid's own inline
    max-width is stripped at render time or it wins over this rule. */
 .dia svg{display:block;margin:0 auto;max-width:100%;max-height:203mm;width:auto;height:auto}
+/* A screenshot dropped in with ![]() arrives at its native pixel width, which on a
+   retina capture is far wider than A4 and gets cropped at the page edge. */
+img{display:block;max-width:100%;max-height:200mm;width:auto;height:auto;margin:3mm auto;
+  border:.4pt solid var(--hair);border-radius:1.5mm;break-inside:avoid}
 .dia figcaption{margin-top:2.5mm;font:400 7pt var(--mono);color:var(--ink3);letter-spacing:.04em}
 .cover{height:258mm;display:flex;flex-direction:column;justify-content:space-between;break-after:page}
 .ctop .k{font:600 8pt var(--mono);letter-spacing:.19em;text-transform:uppercase;color:var(--blue);margin:0 0 5mm}
@@ -222,7 +230,7 @@ hr{border:0;border-top:.4pt solid var(--hair);margin:6mm 0}
 <div class="cover"><div class="ctop"><p class="k">SGNK · Zephyrus Studio · Product requirements &amp; research record</p>
 <h1>${coverTitle || h1}</h1>
 <p class="lede">${coverLede || ''}</p></div>
-<div class="cmeta"><div><b>${chunks.length}</b>sections</div><div><b>${(words / 1000).toFixed(1)}k</b>words</div><div><b>${diagrams}</b>diagrams</div><div><b>${tables}</b>tables</div><div><b>38</b>research agents</div><div><b>7</b>rounds</div></div></div>
+<div class="cmeta"><div><b>${chunks.length}</b>sections</div><div><b>${(words / 1000).toFixed(1)}k</b>words</div><div><b>${diagrams}</b>diagrams</div><div><b>${tables}</b>tables</div>${extraMeta}</div></div>
 <section class="intro">${intro}</section>
 <section class="toc"><h2>Contents</h2>${toc}</section>${body}
 <script>${fs.readFileSync(MERMAID, 'utf8')}</script>
