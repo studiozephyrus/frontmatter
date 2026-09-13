@@ -4,12 +4,12 @@ updated: 2026-09-09
 verified_against: 6331b1b
 ---
 
-# 13 — Tech-debt register
+# 13. Tech-debt register
 
 > **Method.** Every item below was re-checked against the working tree at `e318ab3` with the
 > command shown beside it, on 2026-09-09. Items originate in `docs/PRODUCT-BRIEF.md` §9; the
 > plan's own text is treated as a claim to verify, not as evidence. **Not done in this pass:**
-> no test run, no build, no profiling, and no read of `src/modules/mdmax`'s internals — this is
+> no test run, no build, no profiling, and no read of `src/modules/mdmax`'s internals. This is
 > a register of what is owed, not an audit of how it is written.
 
 ## The two that decide whether anything else matters
@@ -40,8 +40,8 @@ without it.
 grep -rlE "review\.jsonl|reviewState|reviewedAt" src | wc -l   # 0
 ```
 
-Zero matches across 226 source files. The headline feature — the sidecar at
-`.frontmatter/review.jsonl`, per-span hashes, the tint — is entirely unbuilt. This is not a
+Zero matches across 226 source files. The headline feature, the sidecar at
+`.frontmatter/review.jsonl`, per-span hashes and the tint, is entirely unbuilt. This is not a
 defect; it is the honest state, and it belongs in this register because every schedule, price
 and demo in the plan assumes it exists.
 
@@ -63,7 +63,7 @@ This is the cheapest item in the register and it guards all the others.
 
 ```bash
 node -p "require('./package.json').scripts.budget"
-# echo 'No bundle budget configured yet — skipping'
+# echo 'No bundle budget configured yet, skipping'
 ```
 
 It exits 0 and measures nothing. A gate that cannot fail trains you to ignore the suite.
@@ -87,12 +87,12 @@ different package manager may not hoist it. **Cost: half a day.** Fix it with D-
 
 ## Engine defects that refuse real files
 
-### D-6 · NF-1 — column-zero list item in frontmatter
+### D-6 · NF-1, a column-zero list item in frontmatter
 
-Refuses 83% of real vaults, per `docs/PRODUCT-BRIEF.md` §9. **Not re-measured in this pass —
+Refuses 83% of real vaults, per `docs/PRODUCT-BRIEF.md` §9. **Not re-measured in this pass,
 carried forward from the plan and marked `**unverified**` at this commit.** **Cost: 4 days.**
 
-### D-7 · NF-3 — bare-CR frontmatter fence
+### D-7 · NF-3, a bare-CR frontmatter fence
 
 Adds a second frontmatter block, which is set-destruction rather than a refusal. **Same
 provenance and the same caveat: `**unverified**` here.** **Cost: 3 days.**
@@ -111,7 +111,7 @@ grep -o '"identifier"[^,]*' src-tauri/tauri.conf.json
 
 **Still true.** A signed, notarised build made today installs as `sgnk-md`. Note the deliberate
 counterpart in `AGENTS.md` §8: several persistence keys keep the `sgnk-md` prefix **on purpose**,
-because renaming them orphans a user's local drafts. The bundle identifier is not one of those —
+because renaming them orphans a user's local drafts. The bundle identifier is not one of those:
 it is simply unchanged. **Cost: 1 day.** Do it before any public build, never after.
 
 ### D-9 · The editor shell is a fork, not an asset
@@ -156,7 +156,7 @@ grep -rlE "setDoc|addDoc|updateDoc|writeBatch" src
 ```
 
 §9 records "zero Firestore writes across 226 source files". **That is now wrong: there is one.**
-It also sits in `presentation`, which the layer rule in `AGENTS.md` §3 forbids — infrastructure
+It also sits in `presentation`, which the layer rule in `AGENTS.md` §3 forbids, because infrastructure
 concerns do not belong there. Whether this is a real product path or leftover scaffolding
 decides whether the document-holding design in `firestore.rules` is live, and that answer gates
 every legal rule in the plan. See `docs/12-SECURITY-REVIEW.md`.
@@ -181,7 +181,7 @@ structured output for the generation features. **Carried from §9, `**unverified
 | 6 | D-10 BYO key | 3 | Precondition for showing anyone the AI features |
 | 7 | D-1 review state | 18 | The headline, and it does not exist yet |
 | 8 | D-8 Tauri identity | 1 | Before any public build |
-| — | D-9 fork, D-11 Firestore | decision | Not days — answers the founder owes |
+| n/a | D-9 fork, D-11 Firestore | decision | Not days, answers the founder owes |
 
 About **41.5 days** of enumerated work before the headline feature is built, against a measured
 rate of **1.21 engineering days per calendar week** (`docs/PRODUCT-BRIEF.md` §9). Read those two
