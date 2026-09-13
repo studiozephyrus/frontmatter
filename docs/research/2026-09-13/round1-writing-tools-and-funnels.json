@@ -1,0 +1,381 @@
+[
+ {
+  "lens": "editor-ai-features",
+  "already_in_corpus": [
+   "Obsidian AI-plugin ecosystem sizing (community-plugin-stats.json): 9.9% of plugins describe AI, only 3.44% of peak-install share; deterministic projections out-install all AI 7.25x — docs/research/agent-reports-2026-08-29-r8to10/d4-ai-document-interaction.md",
+   "Notion 'Edit with AI' transformation verbs, Notion AI pricing history (2024 $8-10/mo add-on -> 2026 bundled into Business + metered Custom Agents) — same file, section 2",
+   "Zettlr table editor (Tab/Shift-Tab nav, alignment commands) as the reference implementation for table editing — docs/research/agent-reports-2026-08-30/r24-v1-table-stakes.md",
+   "Typora shortcut keys, focus mode (F8), typewriter mode (F9) as non-AI table-stakes — same file",
+   "VS Code markdown docs (path IntelliSense, cross-file heading completion), VSCodeVim ~8M installs — docs/research/agent-reports-2026-08-29-r7/x8-editors-writing-tools-ides.md and docs/research/agent-reports-2026-08-28/ed2-ides.md",
+   "Obsidian Copilot / Claudian / agent-client agentic-in-vault download counts and consent-control issue requests — d4-ai-document-interaction.md and docs/research/agent-reports-2026-08-30/r26-c3-competitive.md",
+   "Obsidian Linter (deterministic structure fixer) install counts vs Smart Connections (AI ambient) — d4-ai-document-interaction.md",
+   "SO 2025 developer survey: 39.6% won't use AI for maintaining documentation, 66% cite 'almost right, not quite' as top AI frustration — d4-ai-document-interaction.md",
+   "Obsidian's public roadmap has zero mentions of 'AI' — ships deterministic Bases/Kanban/Calendar/CLI/Keychain instead — d4-ai-document-interaction.md"
+  ],
+  "findings": [
+   {
+    "topic": "VS Code markdown extension install counts (table-stakes floor)",
+    "claim": "Markdown All in One has 14,505,331 installs (4.70 avg rating), markdownlint (DavidAnson.vscode-markdownlint) has 12,151,909 installs (4.52), and Code Spell Checker has 18,190,674 installs (4.47) — read directly from the VS Code Marketplace gallery API, not a marketplace page scrape.",
+    "figure": "14.5M / 12.2M / 18.2M installs respectively",
+    "source_url": "https://marketplace.visualstudio.com/_apis/public/gallery/extensionquery (POST, extensionName filters yzhang.markdown-all-in-one, DavidAnson.vscode-markdownlint, streetsidesoftware.code-spell-checker)",
+    "opened": true,
+    "checked": "2026-09-13",
+    "relevance": "These are the deterministic-formatting and spell/style-checking floor for a huge non-Obsidian, VS-Code-native markdown audience — confirms the Obsidian corpus finding (deterministic > AI) generalizes to VS Code: the three biggest markdown extensions by an order of magnitude are all non-AI. A funnel built on 'AI review' alone would be competing against a much smaller demand pool than one built on formatting/linting reliability."
+   },
+   {
+    "topic": "Prose/docs linters as a distinct, non-AI funnel category with real enterprise pull",
+    "claim": "Vale (vale-cli/vale, formerly errata-ai/vale) is a Go CLI prose linter with markup-aware parsing (Markdown, AsciiDoc, reStructuredText, HTML) and pluggable style packages (Microsoft, Google, Red Hat); it runs entirely locally with 'no account, no upload, no training on your writing.' GitHub: 6,100 stars, 28 open issues, last pushed 2026-09-10 (3 days before this check) — actively maintained, adopted by AWS, NVIDIA, Microsoft, GitLab, Red Hat per its own docs.",
+    "figure": "6,100 stars, 28 open issues, pushed 2026-09-10",
+    "source_url": "https://api.github.com/repos/vale-cli/vale ; https://vale.sh/",
+    "opened": true,
+    "checked": "2026-09-13",
+    "relevance": "Vale is the closest existing analogue to the founder's own tiered writing-quality gate (block/warn/jargon-count) — it proves a standalone, local, CLI-first prose linter for docs repos has real enterprise-grade adoption independent of any editor. It validates 'a five-rule markdown linter vs a rendering certificate' as a funnel category, and suggests positioning frontmatter's writing-quality gate as a Vale-style pluggable, git-native check rather than an in-app-only feature."
+   },
+   {
+    "topic": "The exact funnel shape already in production: AI-doc-review tools that auto-fix and re-submit against a linter",
+    "claim": "Mintlify ships Vale as a built-in CI check for AI-native docs; Fern's own 'Fern Writer' agent opens a PR that must pass the same Vale checks as human-written content, and when the linter flags issues, the agent parses the error log and generates a correction commit automatically — a self-correcting loop with no human intervention for minor edits.",
+    "figure": "n/a (qualitative product mechanism, matched verbatim)",
+    "source_url": "https://buildwithfern.com/post/docs-linting-guide",
+    "opened": true,
+    "checked": "2026-09-13",
+    "relevance": "This is precisely the mechanism the founder is asking about, already shipped by a competitor-adjacent docs platform: an AI agent's PR is gated by a deterministic linter, and failures loop back into an automatic correction commit. It is direct evidence for building frontmatter's writing-quality gate as a CI-attachable, agent-facing check (not just an editor feature) — the review loop that catches leaked model artefacts/em-dash floods could plug into this exact agent-writes-then-gate-corrects pattern, positioning frontmatter's engine as the gate Fern/Mintlify-style agents call."
+   },
+   {
+    "topic": "Notion AI adoption friction removal in 2026 (bundling + latency)",
+    "claim": "In early 2026 Notion cut AI Autofill (database property generation) latency by ~70% (under 3 seconds) by switching to a smaller specialized model instead of routing through the general-purpose model, and eliminated the standalone $8-10/member/month AI add-on, bundling AI into paid plans — removing the budget-approval barrier that had gated AI usage.",
+    "figure": "~70% latency reduction, sub-3-second autofill",
+    "source_url": "https://fazm.ai/blog/notion-ai-updates-2026",
+    "opened": true,
+    "checked": "2026-09-13",
+    "relevance": "This is a search-summary aggregator, not Notion's own page, so treat the specific 70% figure as unverified pending a primary source; but it corroborates the corpus's already-verified finding (d4) that Notion's AI add-on disappeared between 2024 and 2026. It sharpens the takeaway: what pulled Notion users toward AI wasn't a new AI capability but removing friction (price, latency) around structured-field autofill — a narrow, bounded, deterministic-shaped task, which matches frontmatter's card #2 (frontmatter-key fill and repair) far more than open-ended generation."
+   },
+   {
+    "topic": "Typora has shipped no native AI feature as of this check",
+    "claim": "A targeted search for 'Typora AI feature 2026' surfaces only third-party AI tools that integrate with or compare to Typora (via SourceForge/Slashdot software directories and SEO review sites), not any Typora-authored AI feature or changelog entry; Typora's own site/changelog was not opened this pass.",
+    "figure": "",
+    "source_url": "",
+    "opened": false,
+    "checked": "2026-09-13",
+    "relevance": "Weak negative signal only (absence of search hits, not a checked changelog) — flagged as a gap, not a finding to build on. If true it reinforces the corpus's Obsidian-roadmap finding (zero 'AI' mentions) that some of the most-loved editors deliberately ship zero native AI and let plugins/other tools carry it, which argues frontmatter's core editor should stay AI-optional and let the writing-quality gate be the differentiator instead of chat/generation."
+   }
+  ],
+  "gaps": [
+   "Nobody surveyed ships a standalone, git-native, agent-facing prose/slop linter that specifically targets AI writing tells (leaked model artefacts like 'oaicite', invisible unicode, em-dash floods, promotional register) as a distinct product from general style linting (Vale/alex/write-good/textlint all check human-authored style rules — grammar, inclusivity, passive voice — not AI-specific leakage). Frontmatter's tiered gate (block/warn/jargon-counter) is that missing category.",
+   "Nobody found in this pass exposes their linter as a public, zero-install web check the way frontmatter's decision cards propose a 'rendering certificate' — Vale/Fern Writer require repo/CI setup; a paste-a-URL-get-a-slop-score funnel (parallel to the existing ?src= and docs-scan ideas) appears genuinely unoccupied.",
+   "The self-correcting agent-writes-then-gate-corrects loop (Fern Writer + Vale) is shipped today by a docs-platform competitor, but nobody in this survey packages that loop as an npm/MCP server a two-person team could point any coding agent at before it commits — which is exactly frontmatter's existing 'engine as free npm package + MCP server' funnel idea; this finding is direct evidence FOR building that, not a new idea."
+  ]
+ },
+ {
+  "lens": "free-tool-funnels",
+  "findings": [
+   {
+    "topic": "readme.so",
+    "claim": "octokatherine/readme.so is a free, no-signup README editor with drag-and-drop sections and markdown export. It has no company, no paid tier, and no funnel destination — it is a solo open-source project.",
+    "figure": "4,628 GitHub stars (octokatherine/readme.so)",
+    "source_url": "https://api.github.com/search/repositories?q=readme.so+in:name ; https://readme.so/",
+    "opened": true,
+    "checked": "2026-09-13",
+    "relevance": "Proves a bare single-purpose markdown tool with zero monetization can still get real adoption (4.6k stars) purely on utility, but it also shows the ceiling of a funnel with no product behind it: readme.so converts nobody into a paying customer because there is nothing to convert into. frontmatter's free-tool play needs the funnel destination readme.so lacks."
+   },
+   {
+    "topic": "DeepWiki",
+    "claim": "DeepWiki (Cognition/Devin) auto-generates a wiki-style documentation site for any public GitHub repo for free, and has indexed over 50,000 of the top public repos including LangChain and the Model Context Protocol; it now also ships an MCP server (mcp.deepwiki.com) so coding agents can query repo docs directly as tools.",
+    "figure": "50,000+ repos indexed (Cognition's own figure)",
+    "source_url": "https://cognition.com/blog/deepwiki",
+    "opened": true,
+    "checked": "2026-09-13",
+    "relevance": "DeepWiki is the closest existing analogue to the 'repo docs scan' funnel idea already on frontmatter's cards: it is free, works on any public repo without an account, and funnels into Devin/Cognition's paid agent. The MCP-server layer is a second funnel surface frontmatter's own npm/MCP card should copy — agents querying docs as tools, not just humans reading a webpage."
+   },
+   {
+    "topic": "llms.txt / llmstxt.org",
+    "claim": "llms.txt is now on v2 (authored by Jeremy Howard), and its own page states thousands of sites publish an llms.txt file, documentation platforms now generate one automatically, and Google Chrome's Lighthouse audits sites for one as part of its agentic-browsing checks; OpenAI, Anthropic and Gemini all publish llms.txt for their own dev docs.",
+    "figure": "thousands of sites (llmstxt.org's own wording); Lighthouse now audits for it",
+    "source_url": "https://llmstxt.org/",
+    "opened": true,
+    "checked": "2026-09-13",
+    "relevance": "llms.txt has crossed from proposal to a Lighthouse-audited best practice in two years, a much lower awareness bar than the AGENTS.md/CLAUDE.md linter category below. A free 'generate my repo's llms.txt' one-shot tool rides an already-legitimized standard rather than needing to build category awareness from zero."
+   },
+   {
+    "topic": "llms.txt generator tools",
+    "claim": "Multiple free, small, single-purpose llms.txt generators already exist as npm packages and no-code web tools (llms-txt-generator, @ammit/llms-txt, get-llms-txt, LLMS Generator), none tied to a paid docs product of their own.",
+    "figure": "",
+    "source_url": "https://www.npmjs.com/package/llms-txt-generator",
+    "opened": false,
+    "checked": "2026-09-13",
+    "relevance": "Unverified, search snippet only, not opened. Flagged as a gap: the llms.txt-generator space is crowded with disposable single-purpose tools that convert nobody, same failure mode as readme.so."
+   },
+   {
+    "topic": "Mintlify llms.txt platform survey",
+    "claim": "Mintlify's own March 2026 guide catalogues llms.txt support across documentation platforms (Mintlify, Fern, GitBook, ReadMe, Redocly) and static-site-generator plugins (Docusaurus, Astro Starlight, MkDocs, VitePress, Hugo, Sphinx) plus standalone generators — llms.txt generation is now a checkbox feature bundled into paid docs platforms rather than a standalone wedge.",
+    "figure": "",
+    "source_url": "https://www.mintlify.com/library/best-llms-txt-platforms",
+    "opened": true,
+    "checked": "2026-09-13",
+    "relevance": "Direct competitive threat to an llms.txt-generator funnel: every major paid docs platform already auto-generates llms.txt for its own customers, so a standalone frontmatter llms.txt tool competes with a free built-in feature of products people already pay for, not with a gap in the market."
+   },
+   {
+    "topic": "AGENTS.md / CLAUDE.md linters",
+    "claim": "A new but very small category of linters for agent-instruction files exists: cclint (two competing repos of the same name), claudelint, AgentLinter, AgentLint, agent-skills-lint. All are recent (oldest created July 2025) and tiny by GitHub-star count.",
+    "figure": "carlrannaberg/cclint 22 stars/7 forks (created 2025-08-21); felixgeelhaar/cclint 11 stars (created 2025-07-20); swarmclawai/agent-skills-lint 4 stars (created 2026-04-16)",
+    "source_url": "https://api.github.com/repos/carlrannaberg/cclint ; https://api.github.com/repos/felixgeelhaar/cclint ; https://api.github.com/repos/swarmclawai/agent-skills-lint",
+    "opened": true,
+    "checked": "2026-09-13",
+    "relevance": "This category is wide open and unconsolidated, no incumbent has more than ~20 stars, and two projects even collide on the name 'cclint'. Strongest funnel gap found this pass: a free 'lint my AGENTS.md / CLAUDE.md' check that plugs into frontmatter's own writing-quality gate would face essentially no entrenched competitor, unlike llms.txt generation which paid docs platforms already give away."
+   },
+   {
+    "topic": "claudelint.com / agentlint.app claimed rule counts",
+    "claim": "Search snippets state claudelint catches circular CLAUDE.md imports, dangerous skill commands and misconfigured MCP servers through 116 rules across 10 categories, and AgentLint runs 33 checks across CLAUDE.md, AGENTS.md, .cursor/rules, CI workflows, hooks and .gitignore.",
+    "figure": "",
+    "source_url": "https://claudelint.com/",
+    "opened": true,
+    "checked": "2026-09-13",
+    "relevance": "Unverified — claudelint.com is JS-rendered and returned no body text via curl, so the 116-rules and 33-checks numbers come only from the WebSearch snippet, not from a page actually opened. Do not cite these counts as confirmed; re-check with a JS-capable fetch first."
+   },
+   {
+    "topic": "AGENTS.md adoption (cross-check against existing corpus finding)",
+    "claim": "Already in the local corpus with opened figures: agents.md's own homepage claims 'used by over 60k open-source projects', while GitHub code search for filename:AGENTS.md returns 858,112, a roughly 14x gap the corpus already flags as an unreliable metric, with the correction that only the 60k figure is directly attributable to the standard's own claim.",
+    "figure": "60,000 (agents.md's own claim) vs 858,112 (GitHub code-search, flagged unreliable)",
+    "source_url": "docs/research/agent-reports-2026-08-29-r8to10/a4-skills-as-automation-format.md",
+    "opened": false,
+    "checked": "2026-09-13",
+    "relevance": "Already fully researched in this repo, no new work needed. AGENTS.md is confirmed as a large-scale new entry point (Copilot now honors it with nearest-in-tree precedence), which strengthens the case for an AGENTS.md-aware tool as a funnel, since the surface it targets is real and growing."
+   }
+  ],
+  "gaps": [
+   "Nobody found in this pass ships a free AGENTS.md/CLAUDE.md linter that also checks for AI-slop writing quality (leaked model artefacts, em-dash floods, vague attribution) — every linter found (cclint, claudelint, AgentLint, AgentLinter) checks structural/schema correctness of the instruction file, not the prose quality of what an agent then writes using it. frontmatter's founder already built exactly that quality gate for his own use; packaging it as a free 'lint your AGENTS.md, and the docs your agents write against it' tool sits in a near-empty category (largest incumbent ~22 GitHub stars) and is a natural extension of an asset that already exists.",
+   "No free tool found connects an AGENTS.md/llms.txt check to the actual editing/review loop the way frontmatter's splice-only engine and review-state sidecar could: existing linters stop at 'is this file well-formed', DeepWiki stops at 'here is a generated wiki page', llms.txt generators stop at 'here is the file' — none of them then let you open the flagged file and fix it in place, byte-exact, with review tracking. That handoff from free-check to free-fix-in-editor is unclaimed.",
+   "The llms.txt generator space is now commoditized as a built-in feature of paid docs platforms (Mintlify, GitBook, ReadMe, Fern, Redocly) as of Mintlify's own March 2026 survey — a standalone frontmatter llms.txt generator would compete with a free checkbox feature of tools people already pay for, a weaker wedge than the AGENTS.md linter gap above."
+  ],
+  "already_in_corpus": [
+   "GitBook pricing (~$113/mo for 5 seats) — docs/research/frontmatter-segment-strategy.md",
+   "Mintlify pricing ($150-550/mo) — docs/research/frontmatter-segment-strategy.md",
+   "HackMD pricing (~$5/user/mo) — docs/research/frontmatter-segment-strategy.md",
+   "Obsidian Sync pricing ($4/$8 per user/mo, verified against obsidian.md/sync) and Obsidian Publish ($96/yr) — docs/research/frontmatter-segment-strategy.md",
+   "AGENTS.md GitHub stars/forks for openai/agents.md (23,968 stars / 1,813 forks) and the 60k-vs-858,112 adoption-claim discrepancy — docs/research/agent-reports-2026-08-29-r8to10/a4-skills-as-automation-format.md",
+   "GitHub Copilot now honors AGENTS.md with nearest-in-tree precedence, and CLAUDE.md/GEMINI.md as single-file alternatives — docs/research/agent-reports-2026-08-29-r8to10/a4-skills-as-automation-format.md",
+   "GitHub Actions docs-linting tools (markdown-link-check, markdownlint-cli, Vale) referenced across multiple 2026-08-28/29/30 agent reports"
+  ]
+ },
+ {
+  "lens": "ai-writing-detection",
+  "already_in_corpus": [
+   "frontmatter's own tiered AI-writing gate (em-dash/leaked-artefact blocks, jargon/vocabulary-density warns) is described in the project brief itself, not in docs/research — no existing research doc names GPTZero, Pangram, Originality.ai, Grammarly Authorship, Writer.com, Hemingway, or any open-source slop list; this lens is genuinely new material, not a duplicate of prior research rounds."
+  ],
+  "findings": [
+   {
+    "topic": "Pangram Labs — accuracy, false-positive rate, pricing",
+    "claim": "Pangram claims 99.98% accuracy and a false-positive rate of about 1 in 10,000 (0.01%), with third-party evaluation cited from University of Chicago and University of Maryland researchers. Pricing: Free (2,000 words/day), Individual $20/mo (300,000 words), Team $20/seat/mo (2-seat minimum), Professional $65/mo (1.5M words + $200 API credit); a separate Developer API runs $25-$1,000/mo tiers with a stated 20% bulk discount; institutional pricing is custom-quoted. Pangram also publishes a comparison claiming 0-0.8% FPR across document types vs 0.5-2.4% for competitors (vendor's own number, flagged as such by the reviewer).",
+    "figure": "99.98% accuracy claim; ~1-in-10,000 (0.01%) false-positive rate; $20/mo Individual, $65/mo Professional, $200 API credit included, verified by the source as of 18 Aug 2026",
+    "source_url": "https://casrai.org/guides/pangram",
+    "opened": true,
+    "checked": "2026-09-13",
+    "relevance": "Pangram is the current accuracy/FPR leader among commercial AI-text detectors and integrates directly into LMS/Docs workflows — it targets institutions and publishers, not developers or markdown repos, leaving that space open for frontmatter's own gate to occupy as a funnel."
+   },
+   {
+    "topic": "Why false-positive rate, not accuracy, is the number that matters",
+    "claim": "A 1% false-positive rate at 10,000 submissions/term wrongly flags 100 people; at Pangram's claimed 0.01% it is roughly one. The piece argues headline 'accuracy' collapses two non-equivalent error types and that non-native English writers, autistic students, and users of assistive writing tech are structurally over-flagged by every detector in the category because the stylistic features detectors key on (limited vocabulary variation, formulaic sentence structure) overlap with competent ESL/assistive writing.",
+    "figure": "1% FPR x 10,000 submissions = 100 wrongly-flagged people vs ~1 at 0.01% FPR",
+    "source_url": "https://casrai.org/guides/pangram",
+    "opened": true,
+    "checked": "2026-09-13",
+    "relevance": "Directly informs the founder's percentage-of-repo unreviewed badge idea: if any frontmatter surface flags a whole document or author as 'AI-written' rather than pointing at the specific spans and reasons, it inherits this same discriminatory false-positive risk at repo scale — the review-state design (span-level, evidence-based) is structurally safer than a document-level score."
+   },
+   {
+    "topic": "GPTZero — reputation and false-positive pattern",
+    "claim": "An independent-leaning review (published by a competitor, TextSight) confirms GPTZero is one of the most recognized AI-detection brands, credits it with more transparency than most vendors about its methodology, but documents that it has a track record of false positives concentrated among non-native English writers and 'plain, uniform' writing styles, citing a Stanford study on ESL false-positive rates as the origin of the public controversy; GPTZero has since worked to reduce (not eliminate) this gap. The review explicitly declines to quote fixed prices, saying tiers and word caps 'change often' and should be checked live.",
+    "figure": "No fixed % figure could be confirmed from an opened source in this pass — GPTZero's own pricing page is a client-rendered SPA that did not yield readable numbers via curl; treat any GPTZero price/accuracy percentage as unverified until fetched from a working page.",
+    "source_url": "https://www.textsight.ai/blog/gptzero-review-2026/",
+    "opened": true,
+    "checked": "2026-09-13",
+    "relevance": "GPTZero is the brand-recognition leader in education, but its own reputation is built on well-known false-positive incidents — a caution against frontmatter ever presenting a single 'AI score' the way GPTZero does; supports building the gate as span-attributed evidence instead."
+   },
+   {
+    "topic": "Grammarly Authorship — writing-process replay, free feature",
+    "claim": "Grammarly ships a feature called 'Authorship' that automatically tracks writing process inside Microsoft Word (and other surfaces) and produces a shareable 'originality report' documenting how a document was written — positioned explicitly as an alternative to AI-detection scoring ('Authorship different from AI detection'). The page states the feature is available for free.",
+    "figure": "Feature name and free availability confirmed in page copy: \"Authorship feature available for free\" and \"Authorship automatically tracks your writing process in Microsoft Word\"",
+    "source_url": "https://www.grammarly.com/authorship",
+    "opened": true,
+    "checked": "2026-09-13",
+    "relevance": "This is the closest existing shipped analogue to frontmatter's review-state/provenance idea, but it lives inside a word processor, not a repo or markdown file — nobody has shipped an equivalent 'process replay' for git-committed markdown, which is exactly the gap a repo-native provenance/review-state feature could fill as a funnel."
+   },
+   {
+    "topic": "Writer.com — no longer a de-slop/style tool",
+    "claim": "Writer.com's current public positioning has moved to 'the enterprise AI platform for agentic work' — building, activating and supervising AI agents grounded in company data — not a writing-style/de-slop checker. Its former style-guide-enforcement angle is not evident on the current plans page.",
+    "figure": "Page tagline text: \"The enterprise AI platform for agentic work\"",
+    "source_url": "https://writer.com/plans/",
+    "opened": true,
+    "checked": "2026-09-13",
+    "relevance": "Writer.com has repositioned away from developer/writer-facing style tooling toward enterprise agent orchestration, which narrows the founder's competitive set for a de-slop/style-guide funnel rather than crowding it."
+   },
+   {
+    "topic": "Hemingway Editor — subscription model shift",
+    "claim": "Hemingway Editor now runs 'Hemingway Editor Plus' on a subscription model with a 2-week free trial and no credit card required for the trial; the legacy one-time-purchase desktop app ('Hemingway Editor Classic') is still listed as a separate product alongside the new subscription product.",
+    "figure": "\"Free 2-week trial\" / \"2-week trial, no credit card required\" confirmed in page copy; specific dollar price not resolved from the fetched page (JS-rendered pricing block)",
+    "source_url": "https://hemingwayapp.com/",
+    "opened": true,
+    "checked": "2026-09-13",
+    "relevance": "Hemingway remains a plain-prose-clarity tool (readability, passive voice, adverbs), not an AI-detection or AI-vocabulary tool, and has no markdown-repo or developer angle — confirms no incumbent has claimed the 'style checker for AI-written markdown in a repo' niche."
+   },
+   {
+    "topic": "Open-source AI-slop word lists and linters exist but are small and unmaintained at scale",
+    "claim": "A curated list (awesome-slop) tracks slop word-lists and linters, including 'slop-gate' — a zero-dependency npx CLI that checks for the em-dash plus ~40 English vocabulary tells, with opt-in translationese packs for Korean, Russian, Vietnamese, Chinese, and Filipino, runnable locally or in CI. slop-gate is functionally close to frontmatter's own writing-quality gate (em-dash/artefact blocking, vocabulary warning) but is a small, largely unadopted project.",
+    "figure": "slop-gate: 3 GitHub stars, 43 npm downloads in the week of 2026-09-05 to 2026-09-11; awesome-slop (the curator list): 5 GitHub stars, last updated 2026-08-30",
+    "source_url": "https://github.com/hwajongpark/slop-gate",
+    "opened": true,
+    "checked": "2026-09-13",
+    "relevance": "Direct prior art for frontmatter's own writing gate exists in the open-source ecosystem already, but it has near-zero adoption (3 stars, ~43 weekly downloads) — validates the idea's premise while showing nobody has packaged it as a discoverable funnel (no repo-docs-scan integration, no rendering certificate, no ?src= link) the way frontmatter's existing funnel ideas propose."
+   },
+   {
+    "topic": "Peer-reviewed evidence that LLM-favoured vocabulary is measurably rising in real writing",
+    "claim": "A Science Advances-track study of 15 million PubMed biomedical abstracts (2010-2024) found an abrupt 2024 spike in 'excess' style words correlated with LLM adoption: 'delves' had a frequency ratio (r) of 28.0 versus its pre-LLM trend, 'underscores' r=13.8, 'showcasing' r=10.7; the excess-word method puts a lower bound of at least 13.5% of 2024 biomedical abstracts as LLM-processed, reaching 40% in some subfields — a scale the paper says exceeds even the COVID-era vocabulary shift.",
+    "figure": "delves r=28.0; underscores r=13.8; showcasing r=10.7; >=13.5% of 2024 abstracts estimated LLM-processed (up to 40% in some subcorpora)",
+    "source_url": "https://pmc.ncbi.nlm.nih.gov/articles/PMC12219543/",
+    "opened": true,
+    "checked": "2026-09-13",
+    "relevance": "This is hard, peer-reviewed, non-vendor evidence that the founder's own vocabulary-density heuristic (banned/warned AI words) targets a real, measured, and still-growing signal rather than folk wisdom — strengthens the case for shipping the gate publicly as a credibility-building funnel, since it can cite independent science rather than only 'trust us.'"
+   },
+   {
+    "topic": "No detector or style tool in this set targets markdown-in-repos or developers",
+    "claim": "Across GPTZero, Pangram, Originality.ai, Grammarly, Writer.com, and Hemingway, every product's stated audience is education, publishing/editorial, enterprise content, or general writers using a document editor or LMS. None of the pages opened in this pass mention git, repositories, markdown, README files, docs-as-code, or CI as a target surface; the one open-source project close to that use case (slop-gate) explicitly frames itself as CI-runnable but has negligible adoption.",
+    "figure": "0 of 6 commercial tools' fetched pages mention 'markdown', 'repo', 'git', or 'CI'; the one CI-aimed open-source tool has 3 GitHub stars",
+    "source_url": "https://github.com/hwajongpark/slop-gate",
+    "opened": true,
+    "checked": "2026-09-13",
+    "relevance": "Confirms the founder's instinct: a 'writing-quality gate for markdown in a repo, runnable in CI, with a rendering certificate' is unclaimed territory among both the funded commercial detectors and the open-source slop-list projects — supports building it as a funnel rather than reinventing an already-crowded consumer-detector market."
+   }
+  ],
+  "gaps": [
+   "Nobody ships a repo-native, git-aware writing-quality gate: every detector and style tool targets a document pasted into a web app or an LMS/word-processor plugin, not a markdown file inside version control checked in CI against a diff. frontmatter's engine-as-npm-package + CI-runnable gate + rendering certificate would be first to combine 'runs where the AI agent commits' with the detection/de-slop space.",
+   "Nobody ties AI-writing detection to span-level review state. Every commercial detector (GPTZero, Pangram, Originality.ai) and Grammarly's Authorship produce a document-level score or process-replay, never a per-span 'has a human reviewed this exact byte range since it last changed' record — which is exactly frontmatter's review.jsonl headline claim, and no incumbent competes with it directly.",
+   "The open-source slop-word-list ecosystem is real but tiny and fragmented (3-5 GitHub stars, <50 weekly npm downloads for the closest analogue) — there is room for a better-distributed, better-integrated version of the same idea rather than a novel concept, and frontmatter would not be entering a space with an established open-source leader to displace.",
+   "The peer-reviewed 'excess vocabulary' methodology (frequency-ratio analysis against a pre-LLM baseline) is a rigorous, citable alternative to a fixed banned-word list, and nobody in the commercial or open-source space appears to have operationalized it into a real-time linter — frontmatter's tiered gate could differentiate by citing this method rather than only shipping a static word list.",
+   "False-positive harm is structurally worse at the person/document level (accusing an ESL writer of cheating) than it would be for a lint-style warning on an agent-authored markdown file; this suggests frontmatter's WARN-not-BLOCK tiering for vocabulary/register is the right posture, and any future document-level 'AI score' feature should be avoided as a design pattern given how consistently it produces discriminatory false positives across every detector reviewed here."
+  ]
+ },
+ {
+  "already_in_corpus": [
+   "Vale — README claims (markup-aware prose linting, config-as-code, Mintlify CI usage, Promptless AI-docs gate) covered in docs/research/agent-reports-2026-08-28/ed1-writing-tools.md and docs/research/agent-reports-2026-08-29-r7/x8-editors-writing-tools-ides.md",
+   "LanguageTool — README claims (LGPL 2.1, 20+ languages, self-hostable, Picky Mode opt-in severity tiers, per-category disable) covered in the same two reports",
+   "Harper — named in docs/research/agent-reports-2026-08-29-r8to10/s3-affordance-one-file-many-surfaces.md, prd-v2-sections/35-platform-surfaces.md, and two 2026-08-30 reports (not opened for adoption numbers in this pass, but the tool itself is already flagged in the corpus)",
+   "markdownlint and textlint — named in multiple 2026-08-28/29/30 reports as prior art for structural linting (not for adoption figures or AI-tell detection)",
+   "alex and cspell — named in docs/research/frontmatter-r2-raw-corpus.json and agent-reports-2026-08-28/e8-protocol-buyer.md / agent-reports-2026-08-29-r7/x5-external-community-protocol-fetch.md (mentioned, not measured)"
+  ],
+  "findings": [
+   {
+    "topic": "Vale adoption",
+    "claim": "vale-cli/vale (formerly errata-ai/vale) has 6,100 GitHub stars; MIT-style open-source project with no company or paid tier attached to the core linter.",
+    "figure": "6,100 stars",
+    "source_url": "https://api.github.com/repositories/81020247",
+    "opened": true,
+    "checked": "2026-09-13",
+    "relevance": "Vale is the credibility spec for config-as-code prose linting already cited in the corpus; its star count sits mid-pack among the tools checked here, well below Harper's or LanguageTool's, suggesting prose-style linting alone is a smaller install base than grammar or spelling checking."
+   },
+   {
+    "topic": "Vale VS Code extension installs",
+    "claim": "The unofficial Vale VS Code extension (chrischinchilla.vale-vscode) has 91,390 installs — two orders of magnitude below Code Spell Checker or the markdownlint extension.",
+    "figure": "91,390 installs",
+    "source_url": "https://marketplace.visualstudio.com/items?itemName=chrischinchilla.vale-vscode",
+    "opened": true,
+    "checked": "2026-09-13",
+    "relevance": "Vale's editor-integration reach is small; most Vale usage is likely CI-only. A funnel built around inline prose linting would be filling a gap Vale's own ecosystem hasn't filled in-editor."
+   },
+   {
+    "topic": "textlint adoption",
+    "claim": "textlint/textlint has 3,181 GitHub stars and the npm package receives 140,685 weekly downloads; it is a pluggable natural-language linter with rule plugins rather than a fixed rule set.",
+    "figure": "3,181 stars; 140,685 weekly npm downloads",
+    "source_url": "https://api.github.com/repos/textlint/textlint; https://api.npmjs.org/downloads/point/last-week/textlint",
+    "opened": true,
+    "checked": "2026-09-13",
+    "relevance": "Confirms textlint is a smaller, JS-ecosystem-only prose linter; its plugin architecture (not a monolithic rule set) is a pattern frontmatter's own linter could borrow for house-voice rules as an installable plugin."
+   },
+   {
+    "topic": "proselint adoption",
+    "claim": "amperser/proselint (mirrored on GitHub, description notes it is a mirror) has 4,576 stars; it is a Python CLI that flags jargon, clichés, redundancy, and weak qualifiers by rule, with no npm/VS Code distribution measured.",
+    "figure": "4,576 stars",
+    "source_url": "https://api.github.com/repos/amperser/proselint",
+    "opened": true,
+    "checked": "2026-09-13",
+    "relevance": "proselint's rule categories (clichés, jargon, weak qualifiers) overlap conceptually with the founder's own WARN tier (AI vocabulary, vague attribution) but the project shows no evidence of active maintenance or npm/editor packaging, so it is not a funnel competitor, just prior art for rule categories."
+   },
+   {
+    "topic": "alex adoption and scope",
+    "claim": "get-alex/alex has 5,099 GitHub stars and 30,636 weekly npm downloads; it checks specifically for insensitive/inconsiderate language (gendered terms, ableist language) — a narrower scope than general prose quality.",
+    "figure": "5,099 stars; 30,636 weekly npm downloads",
+    "source_url": "https://api.github.com/repos/get-alex/alex; https://api.npmjs.org/downloads/point/last-week/alex",
+    "opened": true,
+    "checked": "2026-09-13",
+    "relevance": "alex is not a style or AI-writing checker at all — it is a sensitivity linter. Its inclusion in the requested tool list is scope-adjacent, not a direct funnel comparator."
+   },
+   {
+    "topic": "write-good adoption and scope",
+    "claim": "btford/write-good has 5,089 GitHub stars and 43,246 weekly npm downloads; described by its own maintainer as a 'naive' linter for passive voice, weasel words, and adverbs.",
+    "figure": "5,089 stars; 43,246 weekly npm downloads",
+    "source_url": "https://api.github.com/repos/btford/write-good; https://api.npmjs.org/downloads/point/last-week/write-good",
+    "opened": true,
+    "checked": "2026-09-13",
+    "relevance": "write-good's self-described 'naive' heuristics (regex-level passive-voice and weasel-word detection) is the closest existing open-source analogue to a WARN-tier stylistic check, but has had no apparent update cadence to add AI-writing-pattern rules."
+   },
+   {
+    "topic": "markdownlint adoption",
+    "claim": "DavidAnson/markdownlint has 6,340 GitHub stars; the markdownlint npm library gets 2,237,323 weekly downloads and markdownlint-cli gets 797,700; the VS Code extension (DavidAnson.vscode-markdownlint) has 12,151,909 installs.",
+    "figure": "6,340 stars; 2.24M/797.7K weekly npm downloads; 12.15M VS Code installs",
+    "source_url": "https://api.github.com/repos/DavidAnson/markdownlint; https://api.npmjs.org/downloads/point/last-week/markdownlint; https://api.npmjs.org/downloads/point/last-week/markdownlint-cli; https://marketplace.visualstudio.com/items?itemName=DavidAnson.vscode-markdownlint",
+    "opened": true,
+    "checked": "2026-09-13",
+    "relevance": "markdownlint's huge install base (12M+) is for Markdown syntax/structure rules (heading order, list style), not prose quality — it validates that a five-rule markdown linter is a proven, high-adoption category distinct from prose/voice checking, supporting the existing 'five-rule linter vs rendering certificate' funnel idea rather than competing with it."
+   },
+   {
+    "topic": "Harper adoption and business model",
+    "claim": "Automattic/harper has 15,313 GitHub stars; Harper (Rust-based offline grammar checker) was acquired by Automattic in November 2024 and remains fully free under Apache-2.0 with no paid tier, no account, and no usage limit — Automattic funds development rather than charging users.",
+    "figure": "15,313 stars; Apache-2.0, free, no paid tier",
+    "source_url": "https://github.com/Automattic/harper; https://writewithharper.com/",
+    "opened": true,
+    "checked": "2026-09-13",
+    "relevance": "Harper shows a viable business model for a prose/grammar tool: get acquired by a company (Automattic/WordPress) that embeds it as a free product feature rather than monetizing it directly — relevant if frontmatter's linter is positioned as a free funnel rather than a paid product."
+   },
+   {
+    "topic": "LanguageTool adoption and business model",
+    "claim": "languagetool-org/languagetool has 15,015 GitHub stars; the product is freemium — a free base checker plus a paid monthly 'Premium' subscription and a paid developer API, and its marketing explicitly offers enterprise solutions to 'ensure error-free communication and a consistent brand voice.'",
+    "figure": "15,015 stars; freemium with monthly Premium subscription and paid API",
+    "source_url": "https://languagetool.org/proofreading-api",
+    "opened": true,
+    "checked": "2026-09-13",
+    "relevance": "LanguageTool is the one mainstream tool in this set that explicitly sells 'brand voice consistency' as a feature — but only as vague enterprise marketing copy with no visible rule set for it, so it validates the market appetite for house-voice checking without actually shipping the capability."
+   },
+   {
+    "topic": "cspell adoption",
+    "claim": "streetsidesoftware/cspell has 1,684 GitHub stars and the cspell npm package gets 1,061,011 weekly downloads; the Code Spell Checker VS Code extension (streetsidesoftware.code-spell-checker) has 18,190,674 installs — the highest install count of any tool checked in this lens.",
+    "figure": "1,684 stars; 1.06M weekly npm downloads; 18.19M VS Code installs",
+    "source_url": "https://api.github.com/repos/streetsidesoftware/cspell; https://api.npmjs.org/downloads/point/last-week/cspell; https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker",
+    "opened": true,
+    "checked": "2026-09-13",
+    "relevance": "Spell-checking (a purely mechanical check, no style or voice judgment) is by far the most-adopted category here — 18M+ installs versus under 100K for a prose-style checker like Vale. This is the strongest adoption-numbers evidence that mechanical, zero-judgment checks (spelling, markdown syntax) win installed base far more than prose-quality or voice checks do."
+   },
+   {
+    "topic": "AI-writing-tell detection exists but is unadopted",
+    "claim": "A Vale style package called vale-ai-tells (krishnasunkam/vale-ai-tells, created July 2026) explicitly targets AI-writing tells — em dash, epigram contrast, antithesis flourish ('never' clause endings), virtue tags, abstract-noun triads, filler adverbs, clichés — with 17 rules (6 gating as errors) scored against a labeled benchmark, and ships as a Claude Code skill; it has 1 GitHub star.",
+    "figure": "17 rules, 6 error-gated; 1 GitHub star",
+    "source_url": "https://raw.githubusercontent.com/krishnasunkam/vale-ai-tells/main/README.md; https://api.github.com/repos/krishnasunkam/vale-ai-tells",
+    "opened": true,
+    "checked": "2026-09-13",
+    "relevance": "This is the closest existing open-source analogue to the founder's own tiered checker (block/warn on AI artefacts), proving the exact idea has independent validation — but its near-zero adoption (1 star, days old) means frontmatter would be first to bring this capability to any meaningful install base, strengthening the case for it as a differentiated funnel rather than a commodity feature."
+   },
+   {
+    "topic": "No mainstream tool calibrates to a house voice",
+    "claim": "Across Vale, textlint, proselint, alex, write-good, markdownlint, Harper, LanguageTool, and cspell, none of the opened sources show a shipped feature that ingests a project-specific 'house voice' profile (banned words, register, jargon list) and checks documents against it — LanguageTool's 'consistent brand voice' claim is enterprise marketing prose with no visible rule mechanism, and the one tool built for AI-tell detection (vale-ai-tells) is a fixed, unconfigurable rule set, not a per-repo voice profile.",
+    "figure": "",
+    "source_url": "",
+    "opened": false,
+    "checked": "2026-09-13",
+    "relevance": "This is a genuine gap: frontmatter's founder-built tiered checker with a per-project jargon counter has no shipped open-source or commercial equivalent among the nine tools researched, which is direct support for positioning it as a differentiated funnel feature rather than a catch-up on prior art."
+   }
+  ],
+  "gaps": [
+   "No prose linter in this set (Vale, textlint, proselint, alex, write-good) ships a configurable 'house voice' profile per repo — only LanguageTool markets 'brand voice consistency' as vague enterprise copy with no visible rule mechanism, and the one open-source AI-tell package found (vale-ai-tells) has a fixed rule set, not a per-project voice profile. Frontmatter's founder-built tiered checker (block/warn tiers plus a jargon counter) has no shipped equivalent among the tools researched.",
+   "AI-writing-pattern detection (em-dash floods, leaked model artefacts, AI vocabulary density) exists in the open-source ecosystem but only as a 1-star, days-old Vale package (vale-ai-tells) — meaning there is effectively zero installed base for this exact capability today, which supports treating it as a genuinely new funnel rather than a commodity feature to match.",
+   "Adoption numbers show a stark split: mechanical, zero-judgment checks (spelling via cspell at 18.19M VS Code installs; markdown syntax via markdownlint at 12.15M installs and 2.24M weekly npm downloads) have adoption one to two orders of magnitude above prose-style/voice checkers (Vale's own VS Code extension at 91K installs; textlint at 140K weekly downloads; alex at 30K; write-good at 43K). This suggests the repo-docs-scan and five-rule-markdown-linter funnel ideas already on the table sit in the higher-adoption category, while a prose-voice checker is a differentiated but historically lower-adoption category — worth entering specifically because it is underserved, not because it is proven to convert at cspell/markdownlint scale.",
+   "Harper's business model (acquired by Automattic, folded in as a free product feature funded by the parent company rather than monetized directly) is a distinct precedent from LanguageTool's freemium-subscription model — both are viable paths for a free engine/funnel tool, but neither is a startup selling the checker itself as the product, which is closer to what frontmatter would be doing if the checker becomes the funnel and the editor is the monetized product."
+  ],
+  "lens": "prose-linters"
+ }
+]
