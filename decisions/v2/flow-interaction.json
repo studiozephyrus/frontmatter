@@ -170,7 +170,8 @@
           ],
           "system": "A stored keymap and a rebinding screen.",
           "screens": "Adds a Settings hotkeys screen.",
-          "money": "None."
+          "money": "None.",
+          "what": "Single letters everywhere, with a remap screen shipped in the pilot. The fastest map and it matches the drawer as drawn; the remap screen is three or four days nobody planned."
         },
         {
           "k": "b",
@@ -183,7 +184,8 @@
           ],
           "system": "One keymap table.",
           "screens": "Redraws the drawer's hint chip.",
-          "money": "None."
+          "money": "None.",
+          "what": "Modifier keys only: j and k to walk, Cmd-Enter to accept, Cmd-Shift-Z to revert. Clears the accessibility criterion with no remap screen; slower per hunk, and the drawer is redrawn."
         },
         {
           "k": "c",
@@ -196,7 +198,8 @@
           ],
           "system": "One focus rule around the drawer.",
           "screens": "The drawer becomes a focus container.",
-          "money": "None."
+          "money": "None.",
+          "what": "Single letters that work only while the review drawer has focus. Single-letter speed, no remap screen, one meaning for r; a new focus rule, and the keys do nothing outside the drawer."
         },
         {
           "k": "d",
@@ -209,7 +212,8 @@
           ],
           "system": "No change.",
           "screens": "The hint chip comes off.",
-          "money": "None."
+          "money": "None.",
+          "what": "No review keyboard in the pilot; buttons only. Removes the decision and the accessibility exposure, and a forty-hunk review becomes the slowest thing anyone has sold."
         }
       ],
       "rec": "c",
@@ -236,7 +240,8 @@
         "docs/PRODUCT-BRIEF.md:20"
       ],
       "when": "after",
-      "whenWhy": "A keyboard model for review needs review."
+      "whenWhy": "A keyboard model for review needs review.",
+      "recWhy": "Three written key maps disagree with each other, the code binds no review key at all, and single-letter shortcuts raise a WCAG level-A issue because a typed letter in the wrong place does something to your document. The way out is scope. Single letters that act only while the review drawer has focus are as fast as the drawer as drawn, and the accessibility research reads the criterion as allowing focus-only shortcuts, so no remap screen has to be built and drawn. Modifier-only keys comply but make every hunk slower and force a redraw. Buttons only make a forty-hunk review a mouse job. The one thing that would break c is if review acts are triggered from the document body rather than the drawer, because then focus scoping cannot apply and only modifiers comply."
     },
     {
       "id": "FL3",
@@ -530,7 +535,8 @@
           ],
           "system": "Table editing needs the editor's write engine, which changes only the bytes you edited and never rewrites the whole file.",
           "screens": "Hotkeys screen, table toolbar, palette.",
-          "money": "The delay is the cost."
+          "money": "The delay is the cost.",
+          "what": "The whole table-stakes floor into the pilot, eight items, bindings moved to markdown convention. The pilot judges the review idea rather than the editor, at fourteen more weeks."
         },
         {
           "k": "b",
@@ -557,7 +563,8 @@
           ],
           "system": "No change.",
           "screens": "No change.",
-          "money": "None."
+          "money": "None.",
+          "what": "Ship the pilot on the floor and bindings as they are. Fastest to the exit test, and Cmd-K on a pasted URL opens the file switcher instead of making a link."
         },
         {
           "k": "d",
@@ -570,7 +577,8 @@
           ],
           "system": "A different shell around the same engine.",
           "screens": "Kills launcher, tree, mode switcher.",
-          "money": "Removes desktop certificate costs."
+          "money": "Removes desktop certificate costs.",
+          "what": "Resolve the form factor first; an extension inherits the host's floor and keymap. Deletes the floor, the keymap and the key work at once, and forfeits Live mode."
         }
       ],
       "rec": "b",
@@ -600,7 +608,8 @@
         "merged: FL17"
       ],
       "when": "mvp",
-      "whenWhy": "Table stakes editing is what the first build is. Cmd K is part of it."
+      "whenWhy": "Table stakes editing is what the first build is. Cmd K is part of it.",
+      "recWhy": "The sequence spends 69 of about 70 engineering days before it reaches the line that says table stakes and polish, and the measured floor is eight items at 13 to 21 days, none of them scheduled. The whole floor is fourteen more weeks at the measured rate, which Phase 0 cannot carry. But the floor is not one thing. The cheap half, hotkeys, an outline key, the palette and the switcher deltas, is about three days and it is what a reviewer meets in the first two minutes. Cmd-K to insert-link is the clearest case: Typora, Bear, iA Writer, Obsidian and VS Code all bind it that way, the function already exists here, bound to nothing, and today Cmd-K on a pasted URL opens the file switcher. Table editing and HTML paste are the expensive half and F21 already decided the table editor goes. Q5 carries this as part of the chrome block."
     },
     {
       "id": "FL4",
@@ -767,7 +776,8 @@
           ],
           "system": "No change.",
           "screens": "No change.",
-          "money": "18 days at risk."
+          "money": "18 days at risk.",
+          "what": "Build the review surface, then compare it against git add -p in the pilot. Tests the real product rather than a mock; a failure costs eighteen days and the exit test."
         },
         {
           "k": "c",
@@ -780,7 +790,8 @@
           ],
           "system": "The unit becomes file or heading.",
           "screens": "The panel becomes a file list.",
-          "money": "None."
+          "money": "None.",
+          "what": "Change the unit so the comparison does not apply: review by file or section, not by hunk. Sidesteps the ratio and matches the free incumbent, and gives up the per-span claim."
         },
         {
           "k": "d",
@@ -793,7 +804,8 @@
           ],
           "system": "Stored per span, shown per file.",
           "screens": "Adds a level switch to the panel.",
-          "money": "None."
+          "money": "None.",
+          "what": "Accept the ratio and design for skimming: file level by default, hunks on demand. Honest about how a large change is read; two units everywhere, and it pre-empts the counter."
         }
       ],
       "rec": "a",
@@ -820,7 +832,8 @@
         "https://sback.it/publications/icse2018seip.pdf"
       ],
       "when": "after",
-      "whenWhy": "A head to head on review hunks needs review state."
+      "whenWhy": "A head to head on review hunks needs review state.",
+      "recWhy": "The critique carries a costed argument that per-hunk review is theatre on any change big enough to need it: review takes 17 to 25 times as long as generation on a forty-hunk change, and Cisco found no useful review above 250 lines, though that was source code. Eighteen days of store, rendering, revert and panel rest on the per-span unit being one a person will actually work through. The cheapest test that can refute those eighteen days is ten strangers reviewing one prepared forty-hunk change in both surfaces, with the thresholds already written. It runs at the start of Phase 1, before the instruction-file review build, which is why the label was corrected from weeks 1 to 2. The same test decides the review unit, and four other decisions here inherit that answer. If under four of ten ask for review state after the mock, the plan stops at week 3."
     },
     {
       "id": "FL5",
@@ -952,7 +965,8 @@
           ],
           "system": "No change.",
           "screens": "Removes two prototype buttons.",
-          "money": "None."
+          "money": "None.",
+          "what": "No bulk clear in the pilot. The counter means one thing and the pilot measures truly; a two-hundred-span backlog's only escape is abandoning the file."
         },
         {
           "k": "b",
@@ -965,7 +979,8 @@
           ],
           "system": "The review file grows an action kind.",
           "screens": "Keeps the button, adds copy.",
-          "money": "None."
+          "money": "None.",
+          "what": "Ship Mark all read, recorded in the review file as a bulk clear distinct from a reviewed span. An escape exists; a clicker still clears the counter, and the file knows it was a click."
         },
         {
           "k": "c",
@@ -978,7 +993,8 @@
           ],
           "system": "Depends on the seen-state decision.",
           "screens": "The button gains a disabled state.",
-          "money": "None."
+          "money": "None.",
+          "what": "Ship it gated: enabled only once every span has scrolled into view. Closest to what a review is meant to mean; needs viewport tracking, and a disabled button reads as broken."
         },
         {
           "k": "d",
@@ -991,7 +1007,8 @@
           ],
           "system": "No change.",
           "screens": "No change.",
-          "money": "None."
+          "money": "None.",
+          "what": "Ship Mark all read ungated, exactly as the prototype draws it. Least surprising, and the counter, the retention lever and the exit measure all clear in one click."
         }
       ],
       "rec": "b",
@@ -1017,7 +1034,8 @@
         "docs/PRODUCT-BRIEF.md:56"
       ],
       "when": "after",
-      "whenWhy": "Mark all read is review state."
+      "whenWhy": "Mark all read is review state.",
+      "recWhy": "The prototype draws two bulk-clear buttons and the critique names a bulk clear as precisely what turns review into theatre, so both instincts are right and the question is whether the two can be told apart afterwards. A returning user with a two-hundred-span backlog and no escape abandons the file, which loses them; that is the case for shipping it. A clicker who clears the counter in one click satisfies the week-two gate falsely; that is the case against. Recording the bulk clear as its own action kind in the review file resolves it for the cost of one field: the escape exists, and the exit measure can tell a reader from a clicker because the file says which one happened. The review file needs an action kind anyway under FL18. If pilot counts show bulk clears dominating, the interaction has failed and the unit changes."
     },
     {
       "id": "FL6",
@@ -1270,7 +1288,8 @@
           ],
           "system": "One counting function, four surfaces.",
           "screens": "Recomputes four bars; deletes the dot.",
-          "money": "None."
+          "money": "None.",
+          "what": "Count spans everywhere, as a plain number, never a dot. Matches the store so the number cannot drift; a one-word span counts the same as a four-hundred-word section."
         },
         {
           "k": "b",
@@ -1283,7 +1302,8 @@
           ],
           "system": "Two derived figures instead of one.",
           "screens": "Bar and count both need labels.",
-          "money": "None."
+          "money": "None.",
+          "what": "Bytes for the bar, spans for the count. The bar then means what a progress bar implies; two units, and the headline number stops being something a person can hold."
         },
         {
           "k": "c",
@@ -1296,7 +1316,8 @@
           ],
           "system": "A per-file rollup over the review file.",
           "screens": "Launcher and tree change, not the panel.",
-          "money": "None."
+          "money": "None.",
+          "what": "Files at the launcher and in the tree, spans inside a document. One small integer at the top level; the per-span claim is lost where a buyer compares products."
         },
         {
           "k": "d",
@@ -1309,7 +1330,8 @@
           ],
           "system": "No change.",
           "screens": "Deletes the bars and the tab dot.",
-          "money": "The retention argument is rewritten."
+          "money": "The retention argument is rewritten.",
+          "what": "No persistent count anywhere; the panel lists what is unread when opened. Honours the badge ban outright, and removes the plan's only daily return trigger."
         }
       ],
       "rec": "a",
@@ -1337,7 +1359,8 @@
         "merged: FL7"
       ],
       "when": "after",
-      "whenWhy": "The counter counts review state."
+      "whenWhy": "The counter counts review state.",
+      "recWhy": "The plan makes the unreviewed count its first retention lever and the PRD bans red-dot counts, and the prototype resolves that by showing four different numbers for one document, which is worse than either. Spans are the only unit that costs nothing to compute and cannot drift from the review file, because they are what the file records. A plain number is inside the PRD's ban, which is scoped to discovery badges, not to a count a person asked to see. The honest weakness is that a one-word span and a section count the same, and a bar drawn from spans implies bytes it does not measure. That is why D4 cuts the surfaces to three and D23 removes every percentage. If the forty-hunk test moves the unit to files or sections, the counter follows and c wins."
     },
     {
       "id": "FL8",
@@ -2004,7 +2027,8 @@
           ],
           "system": "No change.",
           "screens": "No change.",
-          "money": "None."
+          "money": "None.",
+          "what": "The highlight test only, widened to ten people at six of ten. Comparable with the other arms and cheap to act on; nothing catches the signal decaying after launch."
         },
         {
           "k": "c",
@@ -2017,7 +2041,8 @@
           ],
           "system": "Adds the dismissal count.",
           "screens": "No change.",
-          "money": "None."
+          "money": "None.",
+          "what": "The dismissal rate only, instrumented from the first pilot week. Measures what people do rather than what they say; the treatment is built before it is checked."
         },
         {
           "k": "d",
@@ -2030,7 +2055,8 @@
           ],
           "system": "No change.",
           "screens": "No change.",
-          "money": "None."
+          "money": "None.",
+          "what": "Both as advisory signals that feed the design rather than gates. Schedule certainty and no number to defend, and a surface that can never be proven wrong."
         }
       ],
       "rec": "a",
@@ -2054,7 +2080,8 @@
         "https://pubmed.ncbi.nlm.nih.gov/35673040/"
       ],
       "when": "after",
-      "whenWhy": "These numbers stop a build that is not running."
+      "whenWhy": "These numbers stop a build that is not running.",
+      "recWhy": "Every other Phase 1 test carries a number that stops the build, and the highlight test, five people looking at a screenshot for five seconds, names its failing answers with no count and no consequence. Ten people at six of ten matches the sampling every other arm uses, so the result sits beside them instead of being an anecdote. The dismissal rate is the other half, and it is the one that matters after launch: Google's Tricorder puts an analyser on probation at ten percent not-useful, having observed about five, and a span class ignored past a stated rate should stop being surfaced. One number before build, one number after, and the surface can be falsified at both points. If the mock test returns under four of ten, the product stops at week 3 before any of this runs."
     },
     {
       "id": "FL12",
@@ -2282,7 +2309,8 @@
           ],
           "system": "The scheduled fixes land first.",
           "screens": "Adds the missing first-run screen.",
-          "money": "Delays every week-1 signal."
+          "money": "Delays every week-1 signal.",
+          "what": "Gate the pilot: no stranger sees it until the flush-left list bug and the old line-ending bug are fixed. The first impression is the product working, after seven days of fix-first."
         },
         {
           "k": "c",
@@ -2295,7 +2323,8 @@
           ],
           "system": "No change.",
           "screens": "One status line.",
-          "money": "None."
+          "money": "None.",
+          "what": "Ship the launcher as drawn, templates first, with a guarantee-shaped status line. Demonstrates refuse-rather-than-guess at once and free; a stranger whose repo is 83 percent unreadable leaves."
         },
         {
           "k": "d",
@@ -2308,7 +2337,8 @@
           ],
           "system": "No change.",
           "screens": "No change.",
-          "money": "None."
+          "money": "None.",
+          "what": "Curate the pilot to spec-kit and superpowers repositories the engine already handles. Removes the failure from the pilot, and the exit test then proves nothing about real vaults."
         }
       ],
       "rec": "a",
@@ -2342,7 +2372,8 @@
         "merged: FL13"
       ],
       "when": "mvp",
-      "whenWhy": "First thirty seconds is the launcher and first run, which the MVP builds."
+      "whenWhy": "First thirty seconds is the launcher and first run, which the MVP builds.",
+      "recWhy": "Five of six flows open with a scan that refuses 83 percent of real vaults, and most of that number is one Obsidian habit, a list starting at the left edge, which is a write-path refusal. Reading never needed the write path. The pilot's loop is read, highlight, revert, and a revert writes back bytes the file already had. Splitting the read path from the write path means a refusal to write never blocks opening the file, which turns the worst number in the product into a minor one for the tier that ships first. Folder first because that is where a stranger's real documents are; a disposable sandbox second for someone with nothing to open. Q4 carries this as the first thirty seconds. If the split costs more than the seven days both engine fixes cost, gate instead and take the fixes first."
     },
     {
       "id": "FL14",
@@ -2582,7 +2613,8 @@
           ],
           "system": "Simplest rule; no git read.",
           "screens": "First open looks highlighted.",
-          "money": "None."
+          "money": "None.",
+          "what": "Everything counts as unreviewed at first open, on either surface. Honest and needs no git, so the surfaces match; a stranger's first document is fully highlighted, the stated failure."
         },
         {
           "k": "c",
@@ -2595,7 +2627,8 @@
           ],
           "system": "A re-read on window focus.",
           "screens": "No new screen.",
-          "money": "None."
+          "money": "None.",
+          "what": "Baseline at first open, pilot on the web with a refresh on focus. A clean first screen and no install for the trial; the first session may demonstrate nothing at all."
         },
         {
           "k": "d",
@@ -2608,7 +2641,8 @@
           ],
           "system": "No change until the test returns.",
           "screens": "No change until the test returns.",
-          "money": "None."
+          "money": "None.",
+          "what": "Run the anchor test first, then set the baseline at the last commit. The one mechanism never run gets run for almost nothing; the surface itself is settled by Q3."
         }
       ],
       "rec": "d",
@@ -2635,7 +2669,8 @@
         "merged: FL15"
       ],
       "when": "after",
-      "whenWhy": "A baseline on first open is review state."
+      "whenWhy": "A baseline on first open is review state.",
+      "recWhy": "Ten strangers bring their own repositories, and the plan says neither what their first document looks like nor where a write appears. The natural baseline is the working tree against the last commit, so that anything uncommitted at first open is unreviewed and a fresh clone is clean; and that baseline needs git, which the web has only through the GitHub read path. Both halves sit downstream of a mechanism nobody has run: whether the review anchor survives another tool's write. Run that test first, at the start of Phase 1 on the spec-kit and superpowers repositories already being opened there, then set the last-commit baseline on whatever the anchor turns out to be. The surface is no longer this card's to decide; Q3 put the pilot on the web, and the label was corrected to say so."
     },
     {
       "id": "FL16",
@@ -2923,7 +2958,8 @@
           ],
           "system": "No change.",
           "screens": "The demo has to be re-cut.",
-          "money": "None."
+          "money": "None.",
+          "what": "Two states, and only an explicit act clears a span. The counter means judged and there is no viewport tracking; it contradicts the demo, and every span costs a keystroke."
         },
         {
           "k": "c",
@@ -2936,7 +2972,8 @@
           ],
           "system": "Viewport tracking for the wrong purpose.",
           "screens": "No panel act is required.",
-          "money": "None."
+          "money": "None.",
+          "what": "Two states, and scrolling past a span clears it. Matches the demo with zero friction on a long document; scrolling fast clears a file, and the measure counts scrolling."
         },
         {
           "k": "d",
@@ -2949,7 +2986,8 @@
           ],
           "system": "A field nothing writes yet.",
           "screens": "No change.",
-          "money": "None."
+          "money": "None.",
+          "what": "Two states now, with an action-kind field reserved in the review file. Nothing to build and nothing breaks later; every pilot measurement is taken on a boolean."
         }
       ],
       "rec": "a",
@@ -2973,7 +3011,8 @@
         "https://pubmed.ncbi.nlm.nih.gov/38658357/"
       ],
       "when": "after",
-      "whenWhy": "Span states are review state."
+      "whenWhy": "Span states are review state.",
+      "recWhy": "The review file records reviewed-by and reviewed-at and nothing else, so scrolling past a span and judging it are one event, and the demo and the exit measure disagree about which one they mean. Clinical alerting is the cautionary case: one boolean at scale produced 12,659 overrides of 14,612 alerts and 88.3 percent of the typed reasons were meaningless. Three states, changed, seen and reviewed, settle the disagreement: fade at seen, clear at reviewed, and record which act cleared it, scrolled, accepted, reverted, skipped or bulk. The review file needs an action kind anyway under FL5, so only the seen transition is new, and viewport tracking is the one piece of code that does not exist. If pilot counts show seen and reviewed within a few percent of each other, the extra state bought nothing and it collapses."
     },
     {
       "id": "FL19",
@@ -3029,7 +3068,8 @@
           ],
           "system": "The filter must derive from the bytes.",
           "screens": "A filtered default and a full list.",
-          "money": "None."
+          "money": "None.",
+          "what": "Suppression by default, with the full list one click away. Matches every measured system that kept acceptance; a wrong rule hides the thing that mattered."
         },
         {
           "k": "b",
@@ -3042,7 +3082,8 @@
           ],
           "system": "No change.",
           "screens": "No change.",
-          "money": "None."
+          "money": "None.",
+          "what": "Enumeration as today: every changed span in document order. No rule to explain and nothing hidden, and the list stops being read before it ends."
         },
         {
           "k": "c",
@@ -3055,7 +3096,8 @@
           ],
           "system": "A counter and a cut-off, no ranking.",
           "screens": "The panel gains an end-of-batch state.",
-          "money": "None."
+          "money": "None.",
+          "what": "A budget rather than a filter: a fixed number of spans per sitting. Respects the measured wear-out without ranking; an arbitrary number, and deferred spans accumulate."
         },
         {
           "k": "d",
@@ -3068,7 +3110,8 @@
           ],
           "system": "Per-class dismissal counts, locally.",
           "screens": "Classes quietly stop appearing.",
-          "money": "None."
+          "money": "None.",
+          "what": "Enumerate, plus a dismissal rate that retires a span class once ignored past a threshold. Suppression is learned rather than guessed; the first weeks enumerate while counts build."
         }
       ],
       "rec": "a",
@@ -3094,7 +3137,8 @@
         "https://assets.publishing.service.gov.uk/media/5aa2b9ede5274a3e391e37f3/MHRA_GxP_data_integrity_guide_March_edited_Final.pdf"
       ],
       "when": "after",
-      "whenWhy": "Which spans show is review state."
+      "whenWhy": "Which spans show is review state.",
+      "recWhy": "Every review product that measured itself converged on the same finding: an exhaustible list stops being read before it ends, and enumerating systems are overridden between 55 and 98 percent of the time across 34 studies. The one clinical system that earned acceptance fired in 0.19 percent of half a million sessions. So the surface has to be selective by default and honest about it: a deterministic filter chooses what to show first, and the full list is one click away so nothing is hidden. On instruction files the filter has an obvious first rule, agent-authored changes to a file other agents obey come before anything else. The risk is a wrong rule hiding the thing that mattered, which is why the full list has to stay reachable and why D4's dismissal rate matters. If the forty-hunk test shows strangers finishing an exhaustive list without reaching for accept-all, b stands."
     },
     {
       "id": "FL20",
@@ -3186,7 +3230,8 @@
           ],
           "system": "No change.",
           "screens": "No change.",
-          "money": "None."
+          "money": "None.",
+          "what": "No reason anywhere; one keystroke clears a span. The fastest act, which the fatigue evidence favours; a revert records no lesson, and a buyer gets a file of hashes."
         },
         {
           "k": "b",
@@ -3199,7 +3244,8 @@
           ],
           "system": "One optional string on the action line.",
           "screens": "An inline field on revert.",
-          "money": "None."
+          "money": "None.",
+          "what": "A typed reason on rejections and overrides, optional on approvals. The common path stays one keystroke and the rare path is informative; two acts behave differently."
         },
         {
           "k": "c",
@@ -3212,7 +3258,8 @@
           ],
           "system": "A required string on every line.",
           "screens": "A field on every act.",
-          "money": "None."
+          "money": "None.",
+          "what": "A reason on every act, stored in the review file. The strongest record for whoever is answerable, and exactly the design that produced 88.3 percent meaningless reasons."
         },
         {
           "k": "d",
@@ -3225,7 +3272,8 @@
           ],
           "system": "No change now, a format change later.",
           "screens": "No change.",
-          "money": "None."
+          "money": "None.",
+          "what": "No reason in the pilot; add the field when a compliance buyer asks for it. No design work now, and the pilot's reverts carry nothing to learn from."
         }
       ],
       "rec": "b",
@@ -3246,7 +3294,8 @@
         "https://www.ecfr.gov/api/versioner/v1/full/2026-01-01/title-21.xml?part=11"
       ],
       "when": "after",
-      "whenWhy": "Clearing a span is review state."
+      "whenWhy": "Clearing a span is review state.",
+      "recWhy": "Two lines of evidence point opposite ways. Alert fatigue says a clearing act has to be one keystroke or people stop doing it; the compliance buyer wants a why beside every decision. The clinical data settles which acts get the field: of 14,612 alerts, 12,659 were overridden and 88.3 percent of the typed justifications were meaningless, because a reason demanded on every act becomes a reason typed on none. So the common path, approval, stays one keystroke, and the rare path, a rejection or an override, asks why. A revert is also the only moment the product learns what the agent got wrong, and on an instruction file that reason is the next learned rule. No regulation opened requires a reason at all, and MHRA permits an audit trail reviewed by exception, so c is not required by anyone."
     },
     {
       "id": "FL21",
@@ -3281,7 +3330,8 @@
           ],
           "system": "No sample content ships.",
           "screens": "One empty state.",
-          "money": "None."
+          "money": "None.",
+          "what": "One paste target and a single line of instruction. Truest to the bare bones claim and nothing to learn; a stranger with nothing to paste leaves, and generation is never shown."
         },
         {
           "k": "b",
@@ -3296,7 +3346,8 @@
           ],
           "system": "One bundled sample.",
           "screens": "Empty state with a try line.",
-          "money": "Model tokens if the sample regenerates."
+          "money": "Model tokens if the sample regenerates.",
+          "what": "A paste target plus one sample document that turns into a kit. Shows the part that is actually different; the sample is a document to keep current, and one more concept."
         },
         {
           "k": "c",
@@ -3311,7 +3362,8 @@
           ],
           "system": "Template store.",
           "screens": "The launcher.",
-          "money": "None."
+          "money": "None.",
+          "what": "The launcher as drawn: four templates and a recent list. Clear for a returning user; four concepts before a word is written, and a first-timer's recents are empty."
         },
         {
           "k": "d",
@@ -3325,7 +3377,8 @@
           ],
           "system": "An animation loop.",
           "screens": "Animated empty state.",
-          "money": "None."
+          "money": "None.",
+          "what": "A paste target with a live example that types itself out. Shows the product with no action from the reader; motion in an editor reads as a toy, and it needs reduced-motion work."
         }
       ],
       "rec": "b",
@@ -3396,7 +3449,8 @@
         "AC20",
         "FL12",
         "F27"
-      ]
+      ],
+      "recWhy": "A bare editor is the goal and a bare editor with nothing in it is a blank page somebody leaves, so the question is what the fewest things on that page can be. Every editor looks the same when empty, which means the editor is not the thing worth demonstrating. What nobody else does is turn a paste into a document kit and show the instruction files an agent will obey, so one sample document that does that, before the stranger has typed a word, demonstrates the difference at the cost of a document rather than a feature. That leaves the empty state at two concepts, a paste target and a sample, which is a budget P15's four nouns can carry. The launcher as drawn is four templates and an empty recents list for everyone new. If the twenty hand-made kits show people arrive already holding a document, a is enough."
     }
   ],
   "merged": [

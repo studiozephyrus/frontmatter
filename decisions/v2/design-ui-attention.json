@@ -116,7 +116,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Ship the colour-only wash and let the five-second test decide. Nothing to build or re-test, and the promise never to rely on colour alone stays false."
         },
         {
           "k": "b",
@@ -130,7 +131,8 @@
           ],
           "system": "One gutter decoration.",
           "screens": "Editor, review panel, Split, Read.",
-          "money": "None."
+          "money": "None.",
+          "what": "Add one gutter mark at 3:1 and keep the text wash quiet. Keeps the promise and ends the WCAG argument; line numbers want the same gutter width."
         },
         {
           "k": "c",
@@ -143,7 +145,8 @@
           ],
           "system": "One token.",
           "screens": "Every highlighted screen.",
-          "money": "None."
+          "money": "None.",
+          "what": "Raise the wash itself to 3:1 contrast. One token to change and impossible to miss; the document then looks marked up everywhere."
         },
         {
           "k": "d",
@@ -156,7 +159,8 @@
           ],
           "system": "A preference plus the gutter work.",
           "screens": "One control in Settings.",
-          "money": "None."
+          "money": "None.",
+          "what": "Make the channel a setting: wash, wash plus gutter, or gutter only. Nobody has to be right first time, and the default is still this decision."
         }
       ],
       "rec": "b",
@@ -184,7 +188,8 @@
         "docs/PRODUCT-BRIEF.md:409"
       ],
       "when": "after",
-      "whenWhy": "The review highlight is deferred."
+      "whenWhy": "The review highlight is deferred.",
+      "recWhy": "The only mark this product draws is quieter than the hairline dividers beside it, a wash at 1.11:1 under a 1.24:1 line, and the plan promises never to rely on colour alone while doing exactly that. A gutter mark at 3:1 keeps the promise and ends the argument about whether a text wash falls under the contrast rule, because a margin mark plainly does. It also sits where people scan first, at the left, and it is outside the text, which is where the Tang eye-tracking study found the attention cost lived. Raising the wash makes every document look marked up. On instruction files the gutter mark is the whole signal, one line in the margin that says an agent changed this rule and nobody has read it. If the five-second test shows people spotting the wash unprompted, the gutter is decoration and can go."
     },
     {
       "id": "D2",
@@ -399,7 +404,8 @@
           ],
           "system": "Delete the class, build the decoration.",
           "screens": "Answer-in-place screen and review panel unchanged.",
-          "money": "None."
+          "money": "None.",
+          "what": "Keep both washes as the wireframes draw them and delete the shipped highlight class. One vocabulary; the distinction between proposed and written rests on a 4.1 delta-E."
         },
         {
           "k": "b",
@@ -413,7 +419,8 @@
           ],
           "system": "Keep the class, guard the pulse.",
           "screens": "Answer-in-place screen and review panel redraw the span.",
-          "money": "None."
+          "money": "None.",
+          "what": "Adopt the shipped bordered highlight as the proposal mark and correct the wireframe note. Survives greyscale, dark mode and colour-blindness; the no-border rule then has one exception."
         },
         {
           "k": "c",
@@ -426,7 +433,8 @@
           ],
           "system": "One decoration, plus a deletion.",
           "screens": "Answer-in-place screen and review panel.",
-          "money": "None."
+          "money": "None.",
+          "what": "Keep both washes and add a dashed left rule to proposals. Keeps the palette and makes the distinction non-hue; builds a second treatment when a working one exists."
         },
         {
           "k": "d",
@@ -439,7 +447,8 @@
           ],
           "system": "Proposals render in the panel.",
           "screens": "Answer-in-place screen changes shape.",
-          "money": "None."
+          "money": "None.",
+          "what": "Take proposals out of the document and show them only in the review panel. One wash to test and one meaning to teach; forfeits proposal-in-place, which idea mode assumed."
         }
       ],
       "rec": "b",
@@ -473,7 +482,8 @@
         "docs/PRODUCT-BRIEF.md:62"
       ],
       "when": "after",
-      "whenWhy": "Both washes mark review state."
+      "whenWhy": "Both washes mark review state.",
+      "recWhy": "One wash means bytes are on disk and the other means nothing was written yet, and that is the distinction with a data consequence, riding on two blues that differ by 4.1 in delta-E, the weakest channel there is. The shipped .cm-ai-suggestion class already draws a fill with an inset border, it survives greyscale and dark mode and colour-blindness, and it is merged and working. Adopting it as the proposal mark means correcting one note in a wireframe rather than rebuilding a treatment in another colour, and the plan's no-border rule then covers exactly one mark, which is a fine exception for the one distinction that matters. Option d, proposals only in the panel, gives up proposal-in-place, which idea mode and the file-scoped AI both assumed. If the review panel ever replaces inline accept and reject, delete the class."
     },
     {
       "id": "D3",
@@ -575,7 +585,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Keep both toggles, default on. Nobody can call the mark forced, and the exit measure reads zero for anyone who switches it off."
         },
         {
           "k": "b",
@@ -589,7 +600,8 @@
           ],
           "system": "Delete one preference.",
           "screens": "Settings loses a row.",
-          "money": "None."
+          "money": "None.",
+          "what": "Remove the highlight toggle and keep the tree-bar toggle. Two fewer states to design and test, the pilot measures one product; a vocal user may object to a removed control."
         },
         {
           "k": "c",
@@ -602,7 +614,8 @@
           ],
           "system": "One key, plus a refusal path.",
           "screens": "Properties panel gains a row.",
-          "money": "None."
+          "money": "None.",
+          "what": "Make the highlight per-document, stored as a frontmatter key. Settings live in the file, the only source of truth; a new key to read, write and refuse on."
         },
         {
           "k": "d",
@@ -641,7 +654,8 @@
         "src/modules/share/domain/splice-frontmatter.ts:53"
       ],
       "when": "after",
-      "whenWhy": "A switch for a highlight that does not ship yet."
+      "whenWhy": "A switch for a highlight that does not ship yet.",
+      "recWhy": "Settings ships a toggle that turns off the one thing this product adds, and with it off, 41 of 43 editor files are byte-identical to sgnk-md, so a participant who flips it is testing the sibling. The hide-all-AI switch already draws the line that matters: AI is optional, file state is not, and the highlight is file state. A second switch that contradicts that line lets someone run the whole pilot without the feature the pilot exists to measure. Remove it, keep the tree-bar toggle because that one is a preference about density rather than about the product, and accept that a vocal user may object. The wireframes' own rule applies: every toggle we add is a decision we failed to make. If a participant asks for it unprompted, the need is real and per-document in frontmatter fits, because then the file itself says so."
     },
     {
       "id": "D4",
@@ -870,7 +884,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Leave all five surfaces and both totals as they are. No work and no screenshot redrawn; retention rests on a number placed where people look last."
         },
         {
           "k": "b",
@@ -884,7 +899,8 @@
           ],
           "system": "A rail header, two deletions.",
           "screens": "Editor and review panel lose two surfaces.",
-          "money": "None."
+          "money": "None.",
+          "what": "Cut to three: the highlight in the text, the bars in the tree, and one total above the tree. The total sits above what it summarises and amber is freed; the per-heading count goes."
         },
         {
           "k": "c",
@@ -897,7 +913,8 @@
           ],
           "system": "Deletions only.",
           "screens": "Launcher and tree lose bars.",
-          "money": "None."
+          "money": "None.",
+          "what": "Cut to two: the highlight and one total, tree bars included in the cut. The quietest surface and the smallest to test; the bar seen before opening a file, the retention trigger, goes."
         },
         {
           "k": "d",
@@ -910,7 +927,8 @@
           ],
           "system": "A token rule and one constant.",
           "screens": "Every amber screen re-checked.",
-          "money": "None."
+          "money": "None.",
+          "what": "Keep all five, give amber one meaning and a stated threshold. Fixes the inconsistency without removing anything; five surfaces for one fact remain."
         }
       ],
       "rec": "b",
@@ -950,7 +968,8 @@
         "merged: D5"
       ],
       "when": "after",
-      "whenWhy": "The unreviewed count is review state."
+      "whenWhy": "The unreviewed count is review state.",
+      "recWhy": "The editor states one fact, how much is unreviewed, in five places, and both totals sit where reading stops, in a tab dot and a status bar. The attention rules accept the highlight only if it is ignorable at rest, and five surfaces for one number is not that; clinical alerting overrides between 55 and 98 percent of the time, and the mechanism is repetition. Three surfaces do the work: the highlight where the change is, the bars in the tree that give a reason to open a file, and one total above the bars it summarises. The tree bar is the retention plan's reason to open the app; the tab dot never was. On instruction files those bars are over the handful of files agents obey, which is the scope P2 and D23 set, not the whole repository. If the five-second test shows the status bar is read first, keep the total there."
     },
     {
       "id": "D23",
@@ -1001,7 +1020,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Keep every share and count as built. Demonstrates well because the launcher reads as a queue; a repository share is unactionable, and unactionable warnings get overridden."
         },
         {
           "k": "b",
@@ -1014,7 +1034,8 @@
           ],
           "system": "Stop computing the share.",
           "screens": "Launcher cards and both status bars.",
-          "money": "None."
+          "money": "None.",
+          "what": "Counts only, no percentage anywhere. A count of spans can reach zero, which a share cannot; no denominator, so two files cannot be compared."
         },
         {
           "k": "c",
@@ -1028,7 +1049,8 @@
           ],
           "system": "The share is per open file.",
           "screens": "Launcher cards lose their labels.",
-          "money": "None."
+          "money": "None.",
+          "what": "A share inside an open file only; the tree keeps a bar with no number on it. A file can be finished in a sitting; the launcher loses its at-a-glance ranking."
         },
         {
           "k": "d",
@@ -1041,7 +1063,8 @@
           ],
           "system": "Unreviewed marks render only in a session.",
           "screens": "Launcher and tree lose marks.",
-          "money": "None."
+          "money": "None.",
+          "what": "No count outside an open review session, tree bars included. The strongest answer to the override evidence, and it deletes the only mechanical reason to come back."
         }
       ],
       "rec": "c",
@@ -1069,7 +1092,8 @@
         "https://pubmed.ncbi.nlm.nih.gov/34516216/"
       ],
       "when": "after",
-      "whenWhy": "A repository wide percentage is the element the attention research argues hardest against."
+      "whenWhy": "A repository wide percentage is the element the attention research argues hardest against.",
+      "recWhy": "A percentage of a repository unreviewed has the least evidence for it and the most against. No source in the corpus produces a repository share, the circulating 18 percent figure is unverified, and this repository alone holds 4.4 million markdown words, which at reading speed makes any share a matter of weeks and therefore a number nobody acts on. Almanac shipped read receipts on $45M and switched them off. A file is different: a person can finish a file in a sitting, so a share inside an open file means something. The tree keeps a bar with no number, which preserves the reason to open the app without claiming what the corpus cannot support. This is the repo-wide claim P2 dropped, made concrete in the interface. If a participant reads a folder share and opens that folder because of it, a stays."
     },
     {
       "id": "D24",
@@ -1382,7 +1406,8 @@
           ],
           "system": "Trailer and note readers.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Ship the attribution card as designed, blank rows and all. Honest, and it says why a row is empty; it advertises an absence on the one claim nobody has shipped."
         },
         {
           "k": "b",
@@ -1396,7 +1421,8 @@
           ],
           "system": "Card renders from the review file.",
           "screens": "The card loses two rows.",
-          "money": "None."
+          "money": "None.",
+          "what": "Two rows now, the ones that always fill; add author and prompt only when a source exists. The card is always complete; the Google paid-authorship precedent waits."
         },
         {
           "k": "c",
@@ -1409,7 +1435,8 @@
           ],
           "system": "Git log per file, not span.",
           "screens": "The row changes label.",
-          "money": "None."
+          "money": "None.",
+          "what": "Bind the author row to the file's last commit and label it file-level. Fills the row on any repository with history; invites reading a file-level fact as a span-level one."
         },
         {
           "k": "d",
@@ -1422,7 +1449,8 @@
           ],
           "system": "MCP into the pilot; readers drop.",
           "screens": "The card is unchanged, but full.",
-          "money": "None."
+          "money": "None.",
+          "what": "Cut the post-commit readers and pull the MCP write path into the pilot. The only path that fills author and prompt at write time; six days, desktop only, agent routing untested."
         }
       ],
       "rec": "b",
@@ -1448,7 +1476,8 @@
         "https://zed.dev/blog/agentic-xanadu"
       ],
       "when": "after",
-      "whenWhy": "Attribution is deferred, so its hover card is too."
+      "whenWhy": "Attribution is deferred, so its hover card is too.",
+      "recWhy": "Attribution is the one of the four claims nobody has shipped, and in the pilot the two readers that would fill its card need a commit, which a working tree does not have, so most cards would read prompt not recorded. A row that is empty advertises an absence on the claim we most need to look real. Two rows that always have content, the byte range and the hash, prove the engine works; author and prompt appear only when a source exists to fill them, and a card that only shows what it knows never looks broken. On instruction files the author row is the whole point, which agent wrote this rule, and it fills as soon as the MCP path carries a prompt. If the meeting confirms attribution as the surviving claim, the source becomes the question and d is the honest cost of answering it early."
     },
     {
       "id": "D7",
@@ -1590,7 +1619,8 @@
           ],
           "system": "One deletion, one relocation.",
           "screens": "The editor loses the strip.",
-          "money": "None."
+          "money": "None.",
+          "what": "The prompt opens where the cursor is and nowhere else, and the rail button stops being a prompt and becomes the place pending hunks are reviewed. One entry point; a first-run user has to find the shortcut."
         },
         {
           "k": "b",
@@ -1603,7 +1633,8 @@
           ],
           "system": "One deletion.",
           "screens": "The rail loses a button.",
-          "money": "None."
+          "money": "None.",
+          "what": "Docked strip only, and delete the rail button. Keeps the discoverability the strip was built for, and ships against the only convention evidence the research found."
         },
         {
           "k": "c",
@@ -1616,7 +1647,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Keep both the strip and the rail button. No work, and two entry points to one feature on the quietest screen in the product."
         },
         {
           "k": "d",
@@ -1629,7 +1661,8 @@
           ],
           "system": "A first-run flag.",
           "screens": "The editor gains a first-run variant.",
-          "money": "None."
+          "money": "None.",
+          "what": "At the cursor, with the strip shown on first run and dismissed after first use. Discoverability without a permanent surface; an element dismissed forever is hard to find again."
         }
       ],
       "rec": "a",
@@ -1652,7 +1685,8 @@
         "docs/GAPS-2026-09-08.md:48"
       ],
       "when": "mvp",
-      "whenWhy": "The AI writing box sits on new documents in the MVP, so its shape is decided now."
+      "whenWhy": "The AI writing box sits on new documents in the MVP, so its shape is decided now.",
+      "recWhy": "The screens research is the one place a report gave a clear answer on placement: every shipped product prompts at the cursor, and we dock a strip. The wireframes defended the strip on the grounds that a sidebar makes AI a place you go, which is true and is also why every competitor moved the prompt to the selection. Opening at the cursor is one deletion and one relocation, and it hands the rail the job the report wanted for it: review of pending hunks, not a prompt box. Q5 carries this as the AI prompt at the cursor. The one real cost is that a first-run user has to discover the shortcut, and the ten-developer walkthrough is where that gets measured. If nobody finds it, the problem is discoverability and d's first-run strip is the fix, not a permanent dock."
     },
     {
       "id": "D8",
@@ -1813,7 +1847,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Ship all four modes. Nothing a developer expects is missing; four modes, two themes and a 58-week schedule."
         },
         {
           "k": "b",
@@ -1826,7 +1861,8 @@
           ],
           "system": "Two modes wired.",
           "screens": "The control loses two buttons.",
-          "money": "None."
+          "money": "None.",
+          "what": "Ship two for the pilot, Live and Read, and add Edit and Split after. Both remaining modes show the highlight; no raw-source mode reads as incomplete to a developer."
         },
         {
           "k": "c",
@@ -1840,7 +1876,8 @@
           ],
           "system": "One mode and one screen removed.",
           "screens": "The split screen goes.",
-          "money": "None."
+          "money": "None.",
+          "what": "Ship three, Live, Edit and Read, and cut Split. Keeps what a developer looks for first and cuts the mode with the weakest job; a small saving if the modes are inherited."
         },
         {
           "k": "d",
@@ -1853,7 +1890,8 @@
           ],
           "system": "No change; the estimate is restated.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Ship all four and budget zero days, which is what the editor estimate already assumes. Makes the assumption explicit; 25 files have diverged from sgnk-md and the fork is not free."
         }
       ],
       "rec": "c",
@@ -1880,7 +1918,8 @@
         "docs/prototype/frontmatter-prototype.html:530"
       ],
       "when": "mvp",
-      "whenWhy": "Four modes or three is the editor the first build ships."
+      "whenWhy": "Four modes or three is the editor the first build ships.",
+      "recWhy": "Four modes is the largest surface in the editor and it exists because every editor has four, not because anyone chose them. Edit is what a developer looks for first, a raw-source view, and its absence reads as incomplete. Live is the mode with the counted vote behind it and the one an extension could never host. Read is where review happens. Split has the weakest job of the four and its own screen to maintain, and cutting it is the cheapest first answer to a 58-week schedule. Q5 carries this as three modes. The honest caveat is that if the modes are inherited untouched from sgnk-md the saving is small, and FF3's freeze means they mostly are. If auditing the fork shows all four survive the highlight work untouched, d is honest and the count stops mattering."
     },
     {
       "id": "D9",
@@ -2033,7 +2072,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Keep block granularity and the rendered-views-only rule, and document both. Zero build and the loss-less reassembly stays proven; the mark vanishes under the cursor in the default mode."
         },
         {
           "k": "b",
@@ -2047,7 +2087,8 @@
           ],
           "system": "Actions bind to byte ranges.",
           "screens": "Live keeps the highlight while editing.",
-          "money": "None."
+          "money": "None.",
+          "what": "Run review actions on byte ranges and carry the highlight into the inline block editor. Uses the write engine's own unit and fixes the case people hit by accident; a long block still opens raw."
         },
         {
           "k": "c",
@@ -2060,7 +2101,8 @@
           ],
           "system": "Splitter change plus a corpus re-proof.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Extend the splitter one level, into list items and blockquote children. Covers the constructs spec files are made of; loss-less reassembly has to be re-proved."
         },
         {
           "k": "d",
@@ -2073,7 +2115,8 @@
           ],
           "system": "One decoration set across modes.",
           "screens": "Edit gains the highlight.",
-          "money": "None."
+          "money": "None.",
+          "what": "Render the highlight everywhere as one decoration set, Edit mode included. One implementation used three times; a highlight behind monospace is a different legibility problem."
         }
       ],
       "rec": "b",
@@ -2101,7 +2144,8 @@
         "src/modules/editor/presentation/live/block-split.ts:45"
       ],
       "when": "after",
-      "whenWhy": "The broken mark is in review highlighting."
+      "whenWhy": "The broken mark is in review highlighting.",
+      "recWhy": "Click a highlighted span in Live mode and the block swaps to a raw CodeMirror instance with no review decoration, so the mark vanishes under the cursor in the default mode, which is a defect rather than a limitation. The write engine already changes only the bytes you edited and never rewrites the file, so review actions never needed the block splitter at all; they can run on byte ranges directly, which is the engine's own unit and costs nothing new. Carrying the highlight into the inline editor fixes the case people hit by accident. Extending the splitter into nested constructs means re-proving loss-less reassembly, which was hard-won. If the content-hash prototype shows most spans are whole paragraphs, the block unit was enough and a suffices."
     },
     {
       "id": "D11",
@@ -2258,7 +2302,8 @@
           ],
           "system": "Token edits in one file.",
           "screens": "Colour and radius everywhere.",
-          "money": "None."
+          "money": "None.",
+          "what": "Reconcile the tokens before the pilot: the blue accent, square corners, the failing contrast, gated in CI. A one-file edit the product document calls free, sharing a pass with D12."
         },
         {
           "k": "b",
@@ -2271,7 +2316,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Ship the sibling's stylesheet and reconcile after the pilot. Zero work now, and any visual feedback from the pilot is feedback on a palette we will not ship."
         },
         {
           "k": "c",
@@ -2284,7 +2330,8 @@
           ],
           "system": "The design document is rewritten.",
           "screens": "The prototype is redrawn.",
-          "money": "None."
+          "money": "None.",
+          "what": "Adopt the sibling's stylesheet as canonical and retire ours. Ends the divergence with the least code to change; gives up the blue that carries the highlight's meaning."
         },
         {
           "k": "d",
@@ -2297,7 +2344,8 @@
           ],
           "system": "Two token edits.",
           "screens": "The highlight and accent controls.",
-          "money": "None."
+          "money": "None.",
+          "what": "Reconcile only the tokens the highlight depends on. The smallest change that makes tested and shipped screens agree; everywhere else the app still looks like sgnk-md."
         }
       ],
       "rec": "a",
@@ -2327,7 +2375,8 @@
         "docs/prototype/frontmatter-prototype.html:116"
       ],
       "when": "mvp",
-      "whenWhy": "The MVP copies the sibling look. Aligning the stylesheet is that work."
+      "whenWhy": "The MVP copies the sibling look. Aligning the stylesheet is that work.",
+      "recWhy": "The app's stylesheet is a copy of sgnk-md's and its header says so, with a near-black accent and rounded corners, while every prototype and the five-second test use the electric blue and square corners of the design system. Run the pilot on the sibling's palette and every visual result is about a product we will not ship. Reconciling the tokens is one file's edit, on the record since 29 August and absent from the plan, and it shares a pass with the contrast-token fix that D12 folded into this card, so gating it in CI comes almost free. Q5 carries it. Adopting the sibling's stylesheet instead gives up the blue that carries the highlight's meaning. If the surface ever becomes an extension, only the highlight tokens matter and d is enough."
     },
     {
       "id": "D12",
@@ -2809,7 +2858,8 @@
           ],
           "system": "Icons inlined; export embeds faces.",
           "screens": "None, if the sprite matches.",
-          "money": "None."
+          "money": "None.",
+          "what": "Inline SVG at the 28 icon call sites and embed the export fonts as base64. The failure disappears and no third party sees who reads an export; 28 edits and weight per file."
         },
         {
           "k": "b",
@@ -2822,7 +2872,8 @@
           ],
           "system": "Two stylesheet edits.",
           "screens": "Exports change typeface.",
-          "money": "None."
+          "money": "None.",
+          "what": "Keep the web font with font-display and a preload, and use a system stack in exports. Cheaper, and no licence question on the export; the offline case still fails in the app."
         },
         {
           "k": "c",
@@ -2835,7 +2886,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Change nothing. No work, and a defect ships that fires exactly where the product advertises offline."
         },
         {
           "k": "d",
@@ -2848,7 +2900,8 @@
           ],
           "system": "Partial migration.",
           "screens": "Demo path and exports.",
-          "money": "None."
+          "money": "None.",
+          "what": "Fix only the surfaces other people see: the demo icons and the export template. Protects what a stranger meets; two delivery mechanisms in one codebase, which is what caused this."
         }
       ],
       "rec": "a",
@@ -2876,7 +2929,8 @@
         "src/shared/presentation/GoogleIcon.tsx:63"
       ],
       "when": "mvp",
-      "whenWhy": "Fonts and icons from an outside network break the offline claim in the first build."
+      "whenWhy": "Fonts and icons from an outside network break the offline claim in the first build.",
+      "recWhy": "When the icon font does not arrive, 28 controls display the words check_circle and close, and both export paths ship a Google Fonts link so every reader of an exported document makes a request to a third party. The desktop app advertises everything offline except the model, which is where both defects fire. This weekend made it worse than the card knew: the build itself failed inside a network sandbox because next/font fetches Google Sans at build time, so the dependency is on the CDN, not just the icons. Inline SVG at the 28 call sites and embedded fonts in exports remove the failure and the third-party request together, the prototype has already drawn the sprite, and Q9 carries it under nothing leaves the machine. If the font licence forbids embedding in a redistributed file, the export takes a system stack."
     },
     {
       "id": "D15",
@@ -2991,7 +3045,8 @@
           ],
           "system": "Two keymap edits.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Remove indentWithTab from both keymaps; Tab moves focus. Clears a level-A accessibility failure outright; writers who Tab to indent lose a habit every editor gives them."
         },
         {
           "k": "b",
@@ -3005,7 +3060,8 @@
           ],
           "system": "A keymap edit plus announce calls.",
           "screens": "A hint on editor focus.",
-          "money": "None."
+          "money": "None.",
+          "what": "Keep Tab-to-indent and add Escape-then-Tab to leave, with a visible hint on focus. Keeps the expected habit and satisfies the criterion if the hint is at the trap and announced."
         },
         {
           "k": "c",
@@ -3018,7 +3074,8 @@
           ],
           "system": "One keymap edit.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Keep it in the main editor only, remove it from the inline block editor. Keeps the habit where a developer chose to be; the main editor is still a trap."
         },
         {
           "k": "d",
@@ -3031,7 +3088,8 @@
           ],
           "system": "One preference.",
           "screens": "Settings gains a row.",
-          "money": "None."
+          "money": "None.",
+          "what": "Make it a setting under Keymap. Settings already has a Keymap group; the default is still this decision, and the default traps."
         }
       ],
       "rec": "b",
@@ -3054,7 +3112,8 @@
         "docs/prototype/frontmatter-prototype.html:606"
       ],
       "when": "mvp",
-      "whenWhy": "Tab behaviour is basic editing. Strangers hit it in the first minute."
+      "whenWhy": "Tab behaviour is basic editing. Strangers hit it in the first minute.",
+      "recWhy": "The PRD records Tab-to-indent as absent and says keep it that way, and it is bound in four places, in the main editor and the inline block editor. A Tab that indents is a keyboard trap under WCAG 2.1.2 at level A, the minimum, and it is also what every developer expects an editor to do. Escape-then-Tab to leave, with a visible hint the moment the editor takes focus, is the conventional CodeMirror answer and keeps the habit, and it clears the criterion only if the escape route is announced to a screen reader, which the code does not do yet; EditorView.announce has zero call sites. Q5 carries this, and the announce calls are the budget line that comes with it. If the announce work does not land alongside, b does not actually clear 2.1.2 and a is the honest fallback."
     },
     {
       "id": "D16",
@@ -3395,7 +3454,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "About an hour."
+          "money": "About an hour.",
+          "what": "Run it as written: five people, one screenshot, one question. The cheapest version, and it produces an anecdote that cannot fail."
         },
         {
           "k": "b",
@@ -3409,7 +3469,8 @@
           ],
           "system": "No change.",
           "screens": "Two screenshots.",
-          "money": "Recruitment for 15."
+          "money": "Recruitment for 15.",
+          "what": "Rewrite it: fifteen people, a noticing task first, both highlight treatments, a stated pass line. Numbers that can kill the design; recruiting fifteen in a fortnight is the cost."
         },
         {
           "k": "c",
@@ -3422,7 +3483,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "About an hour."
+          "money": "About an hour.",
+          "what": "Keep five people but make it a noticing test with a four-of-five line. Falsifiable for the same hour; five still cannot separate marginal from bad."
         },
         {
           "k": "d",
@@ -3435,7 +3497,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Drop it and decide the highlight on the contrast floors alone. Grounds the decision in numbers we hold; loses the chance to learn that people read blue as an error."
         }
       ],
       "rec": "b",
@@ -3460,7 +3523,8 @@
         "https://pubmed.ncbi.nlm.nih.gov/38658357/"
       ],
       "when": "after",
-      "whenWhy": "A five second test measures a screen the pilot will have."
+      "whenWhy": "A five second test measures a screen the pilot will have.",
+      "recWhy": "The one test that could settle every highlight question on this list is specified as five people, one screenshot, five seconds and one question, with two failing answers named and no pass line, which means it cannot fail and therefore cannot produce the day-14 kill signal the plan promises. Fifteen people, a noticing task first, both highlight treatments, and a pass line written before anyone is shown anything turns it into an instrument, and one recruitment then feeds four decisions here, D1, D2, D4 and D21. The dismissal literature that motivates all of this is clinical and code-review data, so the transfer to prose is by analogy, and a real noticing test is how the analogy gets checked. If the ten-developer walkthrough can carry these questions, recruit once rather than twice."
     },
     {
       "id": "D20",
@@ -3902,7 +3966,8 @@
           ],
           "system": "Token edits in both palettes.",
           "screens": "All, in dark.",
-          "money": "None."
+          "money": "None.",
+          "what": "Ship both themes and fix the dark contrast failures alongside the light ones. Meets the expectation and clears both palettes; doubles the test matrix for a design nobody has reviewed in dark."
         },
         {
           "k": "b",
@@ -3915,7 +3980,8 @@
           ],
           "system": "The theme control is hidden.",
           "screens": "Settings loses a control.",
-          "money": "None."
+          "money": "None.",
+          "what": "Ship light only for the pilot and make the dark tokens unreachable. Every result is attributable to one design; removing a working control reads as a regression."
         },
         {
           "k": "c",
@@ -3928,7 +3994,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Ship both and run the five-second test in dark, the harder case. Measures what is most likely to fail; answers one theme while every screenshot uses the other."
         },
         {
           "k": "d",
@@ -3942,7 +4009,8 @@
           ],
           "system": "No change.",
           "screens": "Nine dark renders.",
-          "money": "None."
+          "money": "None.",
+          "what": "Ship both and add dark renders of the nine screens to the prototype. Close to free since the prototype already toggles theme; a review is not a measurement."
         }
       ],
       "rec": "d",
@@ -3968,7 +4036,8 @@
         "src/app/globals.css:31"
       ],
       "when": "mvp",
-      "whenWhy": "Dark mode is a first build question because the sibling look has one."
+      "whenWhy": "Dark mode is a first build question because the sibling look has one.",
+      "recWhy": "Two themes double every visual decision on this list, and the highlight in the dark palette is 1.185:1, untested by anyone. Cutting dark mode from a developer tool costs more goodwill than it saves, and the first control in Settings is the theme picker, so removing it reads as a regression. The tokens are already written, with a full dark palette and a prefers-color-scheme fallback; what is missing is that nobody has looked. Adding dark renders of the nine screens to the prototype is close to free because the prototype already toggles theme, and it turns an unreviewed surface into a reviewed one before anyone is shown it. The dark palette has its own contrast failures and the D11 fix covers both palettes in one pass. Q5 carries this. If the extended five-second test finds the dark highlight goes unnoticed, b is honest."
     },
     {
       "id": "D22",
