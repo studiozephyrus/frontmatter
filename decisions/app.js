@@ -33,6 +33,12 @@
   var icon = function (n, cls) {
     return '<svg class="ic ' + (cls || '') + '" aria-hidden="true"><use href="#i-' + n + '"/></svg>';
   };
+  /* The point at which a card needs an answer, set per card by the 2026-09-13 triage. A card
+     without `when` makes no claim, and the page falls back to ordering by weight. */
+  var WHEN = { spec: 'Needed for the spec', pilot: 'Before the pilot', evidence: 'After the tests',
+    launch: 'Before launch', task: 'A task, not a decision' };
+  var WHEN_ORDER = ['spec', 'pilot', 'evidence', 'launch', 'task'];
+  var RANK = { critical: 0, high: 1, medium: 2 };
 
   function cats() {
     var seen = {}, out = [];
@@ -51,7 +57,8 @@
   var match = function (q, f) {
     if (!f) return true;
     f = f.toLowerCase();
-    return (q.id + ' ' + q.q + ' ' + q.cat + ' ' + (q.sub || '') + ' ' + (q.lede || '')).toLowerCase().indexOf(f) > -1;
+    return (q.id + ' ' + q.q + ' ' + q.cat + ' ' + (q.sub || '') + ' ' + (q.lede || '') + ' ' +
+      (WHEN[q.when] || '')).toLowerCase().indexOf(f) > -1;
   };
 
   /* ── nav ──────────────────────────────────────────────────────────────── */
@@ -209,6 +216,7 @@
     h += '<div class="qhead"><span class="pill id">' + esc(q.id) + '</span>' +
       '<span class="pill">' + esc(q.cat) + (q.sub ? ' \u00b7 ' + esc(q.sub) : '') + '</span>' +
       (q.weight && q.weight !== 'medium' ? '<span class="pill ' + wc + '">' + esc(q.weight) + '</span>' : '') +
+      (WHEN[q.when] ? '<span class="pill when when-' + esc(q.when) + '">' + esc(WHEN[q.when]) + '</span>' : '') +
       (pick ? '<span class="pill done">' + icon('check') + ' answered ' + esc(pick).toUpperCase() + '</span>' : '') + '</div>';
     h += '<h1 class="q">' + md(q.q) + '</h1>';
     if (q.lede) h += '<p class="lede">' + md(q.lede) + '</p>';
@@ -217,6 +225,18 @@
 
     if (q.stakes) h += '<div class="stakes">' + icon('warning', 'si') +
       '<span><b>If this goes the wrong way.</b> ' + md(q.stakes) + '</span></div>';
+
+    /* Cards whose answer changes this one's options. Shown before the options, not after,
+       because the point is to answer them first. */
+    var first = (q.dependsOn || []).filter(function (id) { return Q.some(function (x) { return x.id === id; }); });
+    if (first.length) {
+      h += '<div class="linked first"><span class="eyebrow">Answer these first</span><span class="lchips">' +
+        first.map(function (id) {
+          var t = Q.filter(function (x) { return x.id === id; })[0];
+          return '<button class="lchip' + (state.picks[id] ? ' done' : '') + '" data-q="' + esc(id) + '"><b>' +
+            esc(id) + '</b> ' + esc(t.q) + (state.picks[id] ? ' (answered)' : '') + '</button>';
+        }).join('') + '</span></div>';
+    }
 
       /* `path` was deleted from every card in the 2026-09-10 compaction, so this renders only the
          blocks that carry something. An empty "How it got here" column would show an em dash on
@@ -317,7 +337,7 @@
       }
     }
 
-    h += '<textarea class="note" id="note" placeholder="Your note on this decision \u2014 saved in this browser">' +
+    h += '<textarea class="note" id="note" placeholder="Your note on this decision. It is saved in this browser.">' +
       esc(state.notes[q.id] || '') + '</textarea>';
     h += '</div>';
 
@@ -343,6 +363,11 @@
       (q.sub ? '<div class="rrow"><span>Group</span><b>' + esc(q.sub) + '</b></div>' : '') +
       '<div class="rrow"><span>Status</span><b style="color:var(--' + (pick ? 'good' : 'ink-3') + ')">' +
       (pick ? 'answered ' + esc(pick).toUpperCase() : 'open') + '</b></div></div>';
+    if (WHEN[q.when]) {
+      rail += '<div class="rsec"><div class="rh">When to answer</div>' +
+        '<div class="rrow"><span>Stage</span><b>' + esc(WHEN[q.when]) + '</b></div>' +
+        (q.whenWhy ? '<div class="rnote">' + md(q.whenWhy) + '</div>' : '') + '</div>';
+    }
     if (q.sources && q.sources.length) {
       rail += '<div class="rsec"><div class="rh">Where this came from</div>' +
         q.sources.map(function (s) { return '<span class="src">' + esc(s) + '</span>'; }).join('') + '</div>';
@@ -364,23 +389,41 @@
   function renderOverview() {
     var groups = cats(), a = answered(Q), c = crit(Q);
     var ev = Q.reduce(function (n, q) { return n + (q.evidence || []).length; }, 0);
+    var tagged = Q.filter(function (q) { return WHEN[q.when]; });
+    var openIn = function (k) { return Q.filter(function (q) { return q.when === k && !state.picks[q.id]; }); };
     var h = '<div class="hero"><span class="eyebrow">Studio Zephyrus · frontmatter</span>' +
       '<h1>Decisions pending on frontmatter</h1>' +
-      '<p>' + Q.length + ' decisions drawn from three weeks of research: two verification rounds, a gap ' +
-      'register, an adversarial round that came back against the plan\'s own headline, and a sweep on ' +
-      '9 September of the nine market seams the corpus had never covered. Several answers changed that ' +
-      'day. Each decision shows the thing being decided, states where it stands, what forces a choice, ' +
-      'the evidence, and what every option buys and costs. Answers stay in this browser. ' +
+      '<p>' + Q.length + ' decisions drawn from three weeks of research, including a round of checks that ' +
+      'went against the plan\'s own headline and a market sweep on 9 September that changed several ' +
+      'answers. Each decision shows the thing being decided, where it stands, what forces a choice, the ' +
+      'evidence, and what every option buys and costs. Answers stay in this browser. ' +
       '<a class="gallerylink" href="mockups.html" target="_blank" rel="noopener">See the 23 screen iterations</a></p></div>';
     h += '<div class="kpis">' +
       '<div class="kpi acc"><div class="kn">Answered</div><div class="kv">' + a + '</div>' +
         '<div class="kn">of ' + Q.length + ' decisions</div></div>' +
-      '<div class="kpi crit"><div class="kn">Critical open</div><div class="kv">' + c + '</div>' +
-        '<div class="kn">decide these first</div></div>' +
-      '<div class="kpi"><div class="kn">Areas</div><div class="kv">' + groups.length + '</div>' +
-        '<div class="kn">grouped for the meeting</div></div>' +
+      (tagged.length ? '<div class="kpi crit"><div class="kn">Open for the spec</div><div class="kv">' +
+        openIn('spec').length + '</div><div class="kn">answer these first</div></div>' : '') +
+      '<div class="kpi' + (tagged.length ? '' : ' crit') + '"><div class="kn">Critical open</div><div class="kv">' + c + '</div>' +
+        '<div class="kn">' + (tagged.length ? 'across every stage' : 'decide these first') + '</div></div>' +
+      (tagged.length ? '' : '<div class="kpi"><div class="kn">Areas</div><div class="kv">' + groups.length + '</div>' +
+        '<div class="kn">grouped for the meeting</div></div>') +
       '<div class="kpi"><div class="kn">Evidence</div><div class="kv">' + ev + '</div>' +
         '<div class="kn">exhibits behind them</div></div></div>';
+    if (tagged.length) {
+      /* Not every decision blocks the spec. Each card is tagged with the point at which its answer
+         is needed, so the spec can start once the first group is done. */
+      h += '<h2 class="sech">What needs answering, and when</h2><p class="secn">Each decision is tagged by ' +
+        'the point at which its answer is needed. The spec can be written once the first group is answered.</p>';
+      h += '<div class="grid stages">' + WHEN_ORDER.map(function (k) {
+        var qs = Q.filter(function (q) { return q.when === k; });
+        if (!qs.length) return '';
+        var open = openIn(k), done = qs.length - open.length, go = open[0] || qs[0];
+        return '<button class="cat stage when-' + k + '" data-q="' + esc(go.id) + '">' +
+          '<div class="ct">' + esc(WHEN[k]) + '</div>' +
+          '<div class="cs"><span>' + done + ' of ' + qs.length + ' answered</span></div>' +
+          '<div class="cbar"><i style="width:' + (done / qs.length) * 100 + '%"></i></div></button>';
+      }).join('') + '</div>';
+    }
     h += '<h2 class="sech">By area</h2><p class="secn">Ordered the way the plan reads, not the way they were found.</p>';
     h += '<div class="grid">' + groups.map(function (g) {
       var ga = answered(g.qs), gc = crit(g.qs), pct = g.qs.length ? (ga / g.qs.length) * 100 : 0;
@@ -390,10 +433,24 @@
         (gc ? '<span class="cc">' + gc + ' critical</span>' : '') + '</div>' +
         '<div class="cbar"><i style="width:' + pct + '%"></i></div></button>';
     }).join('') + '</div>';
-    var openCrit = Q.filter(function (q) { return q.weight === 'critical' && !state.picks[q.id]; }).slice(0, 10);
+    /* Start here: the earliest stage that still has open cards, critical first. Untagged sets keep
+       the old list of critical open cards. */
+    var stage = null, openCrit;
+    if (tagged.length) {
+      for (var si = 0; si < WHEN_ORDER.length && !stage; si++) if (openIn(WHEN_ORDER[si]).length) stage = WHEN_ORDER[si];
+      openCrit = stage ? openIn(stage).slice().sort(function (x, y) {
+        return (RANK[x.weight] || 3) - (RANK[y.weight] || 3);
+      }).slice(0, 12) : [];
+    } else {
+      openCrit = Q.filter(function (q) { return q.weight === 'critical' && !state.picks[q.id]; }).slice(0, 10);
+    }
     if (openCrit.length) {
-      h += '<h2 class="sech">Start here</h2><p class="secn">Critical and unanswered. A wrong answer to any of ' +
-        'these costs the product or the company.</p><div class="qlist">';
+      h += stage
+        ? '<h2 class="sech">Start here: ' + esc(WHEN[stage].toLowerCase()) + '</h2><p class="secn">Unanswered, ' +
+          'critical first. ' + (stage === 'spec' ? 'The spec cannot be written until these are answered.' :
+          'Everything the spec needs is answered; this is the next stage.') + '</p><div class="qlist">'
+        : '<h2 class="sech">Start here</h2><p class="secn">Critical and unanswered. A wrong answer to any of ' +
+          'these costs the product or the company.</p><div class="qlist">';
       h += openCrit.map(function (q) {
         return '<button class="ql" data-q="' + esc(q.id) + '">' +
           '<span class="qi">' + esc(q.id) + '</span>' +
@@ -404,9 +461,9 @@
     $('#main').innerHTML = h; $('#main').scrollTop = 0;
     $('#aside').innerHTML = '<div class="rsec"><div class="rh">Your answers</div>' +
       '<button class="rlink" id="expMd"><span class="rm">Markdown</span>Decisions taken, and what is still open</button>' +
-      '<button class="rlink" id="expJson"><span class="rm">JSON</span>Raw answers and notes \u2014 the file that restores them</button>' +
+      '<button class="rlink" id="expJson"><span class="rm">JSON</span>Raw answers and notes, the file that restores them</button>' +
       '<button class="rlink" id="impJson"><span class="rm">Restore</span>Load a JSON export back in</button>' +
-      '<div class="rnote">Answers live in this browser only. Export after every sitting \u2014 clearing site data loses them.</div></div>' +
+      '<div class="rnote">Answers live in this browser only. Export after every sitting. Clearing site data loses them.</div></div>' +
       '<div class="rsec"><div class="rh">Keyboard</div>' +
       '<div class="rrow"><span>Next / previous</span><b class="mono">j k</b></div>' +
       '<div class="rrow"><span>Choose an option</span><b class="mono">a–d</b></div>' +

@@ -20,7 +20,10 @@ REPO = pathlib.Path('/Users/sagnikmitra/Desktop/GitHub/frontmatter')
 
 REQUIRED = ['id', 'cat', 'sub', 'weight', 'q', 'lede', 'visual', 'stakes',
             'state', 'tension', 'options', 'rec', 'recCase', 'sources']
-OPTIONAL = ['evidence', 'linked', 'flip']
+OPTIONAL = ['evidence', 'linked', 'flip', 'when', 'whenWhy', 'dependsOn']
+# `when` says at what point a card needs an answer. Set by the 2026-09-13 triage because 204 cards
+# were being read as one flat list when only some of them block the spec.
+WHEN = ('spec', 'pilot', 'evidence', 'launch', 'task')
 # `what` is optional: it is kept only where the label is ambiguous without it. The 2026-09-10
 # compaction measured 77 of 978 options needing it; the rest restated their own label.
 OPT_REQUIRED = ['k', 'label', 'gains', 'costs', 'system', 'screens', 'money']
@@ -208,6 +211,18 @@ def check_question(rep, q, corpus_ok):
     # load-bearing thing for someone deciding. Its return is a regression, not an addition.
     if q.get('path'):
         rep.warn(qid, 'path: deleted in the 2026-09-10 compaction; history does not belong on the card')
+    if 'when' in q or 'whenWhy' in q:
+        if q.get('when') not in WHEN:
+            rep.err(qid, f'when: "{q.get("when")}" is not one of {"/".join(WHEN)}')
+        w = q.get('whenWhy')
+        if not isinstance(w, str) or not w.strip():
+            rep.err(qid, 'whenWhy: required whenever `when` is set')
+        else:
+            if len(w.split()) > 25:
+                rep.warn(qid, f'whenWhy: {len(w.split())} words (limit 25)')
+            check_text(rep, qid, 'whenWhy', w)
+    if 'dependsOn' in q and not (isinstance(q['dependsOn'], list) and all(isinstance(x, str) for x in q['dependsOn'])):
+        rep.err(qid, 'dependsOn: must be a list of card ids')
     check_visual(rep, qid, q.get('visual'))
     check_sources(rep, qid, q.get('sources'), corpus_ok)
 
@@ -264,6 +279,11 @@ def main():
         for lid in q.get('linked') or []:
             if lid not in ids:
                 rep.warn(q.get('id'), f'linked: {lid} is not in this set')
+        for did in q.get('dependsOn') or []:
+            if did not in ids:
+                rep.err(q.get('id'), f'dependsOn: {did} is not in this set')
+            elif did == q.get('id'):
+                rep.err(q.get('id'), 'dependsOn: a card cannot depend on itself')
 
     ne = sum(len(v) for v in rep.errors.values())
     nw = sum(len(v) for v in rep.warns.values())

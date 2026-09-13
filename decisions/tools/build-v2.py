@@ -32,6 +32,8 @@ ORDER = [
 ]
 
 WEIGHT_RANK = {'critical': 0, 'high': 1, 'medium': 2}
+# Within an area, the cards the spec needs come first; a card without `when` sorts after all tagged ones.
+WHEN_RANK = {'spec': 0, 'pilot': 1, 'evidence': 2, 'launch': 3, 'task': 4}
 
 
 def main():
@@ -110,14 +112,19 @@ def main():
     for cat in ORDER + extra:
         qs = by_cat.get(cat) or []
         qs = [q for q in qs if q.get('id') not in dropped]
-        # Within an area: critical first, then the generator's own order.
-        qs.sort(key=lambda q: WEIGHT_RANK.get(q.get('weight'), 3))
+        # Within an area: what the spec needs first, then critical first, then the generator's order.
+        qs.sort(key=lambda q: (WHEN_RANK.get(q.get('when'), 5), WEIGHT_RANK.get(q.get('weight'), 3)))
         out.extend(qs)
 
     live = {q['id'] for q in out}
     for q in out:
         got = set(q.get('linked') or []) | edges.get(q['id'], set())
         q['linked'] = sorted(i for i in got if i in live and i != q['id'])[:6]
+        if q.get('dependsOn'):
+            # A dependency on a card dropped as a duplicate points at a card the reader cannot open.
+            q['dependsOn'] = [i for i in q['dependsOn'] if i in live and i != q['id']]
+            if not q['dependsOn']:
+                del q['dependsOn']
         if q['id'] in dupes:
             q['dupes'] = dupes[q['id']]
 
