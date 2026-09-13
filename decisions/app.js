@@ -20,8 +20,8 @@
   var view = { mode: 'overview', id: null, cat: null, filter: '' };
 
   function load() {
-    try { return JSON.parse(localStorage.getItem(KEY)) || { picks: {}, notes: {} }; }
-    catch (e) { return { picks: {}, notes: {} }; }
+    try { var st = JSON.parse(localStorage.getItem(KEY)) || {}; st.picks = st.picks || {}; st.notes = st.notes || {}; st.final = st.final || {}; return st; }
+    catch (e) { return { picks: {}, notes: {}, final: {} }; }
   }
   function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
 
@@ -491,6 +491,46 @@
         '<div class="kn">grouped for the meeting</div></div>') +
       '<div class="kpi"><div class="kn">Evidence</div><div class="kv">' + ev + '</div>' +
         '<div class="kn">exhibits behind them</div></div></div>';
+    var FINAL = window.FINAL;
+    if (FINAL && FINAL.groups) {
+      /* The final set: sixteen product questions that fold the MVP cards. A group is
+         answered as a whole (confirm, overrule, or your own line); the folded cards stay
+         answerable underneath for the build phase. */
+      var fa = FINAL.groups.filter(function (g) { return state.final[g.id] && state.final[g.id].a; }).length;
+      h += '<h2 class="sech">The final set</h2><p class="secn">' + FINAL.groups.length +
+        ' product questions that fold ' + FINAL.groups.reduce(function (n, g) { return n + g.cards.length; }, 0) +
+        ' cards. Each carries a position and its evidence. Confirm it, overrule it, or write your own. ' +
+        fa + ' of ' + FINAL.groups.length + ' answered.</p>';
+      var lastArea = null;
+      FINAL.groups.forEach(function (g) {
+        if (g.area !== lastArea) { lastArea = g.area; h += '<div class="farea">' + esc(g.area) + '</div>'; }
+        var ans = state.final[g.id] || {};
+        h += '<div class="fq' + (ans.a ? ' done' : '') + '" data-fq="' + esc(g.id) + '">' +
+          '<div class="fqh"><span class="fqid">' + esc(g.id) + '</span><span class="fqt">' + esc(g.title) + '</span></div>' +
+          '<div class="fqp">' + esc(g.position) + '</div>' +
+          '<div class="fqe">' + esc(g.evidence) + '</div>' +
+          '<div class="fqc">' + g.cards.map(function (id) {
+            var q = Q.filter(function (x) { return x.id === id; })[0];
+            return q ? '<button class="jcell' + (state.picks[id] ? ' done' : '') + '" data-q="' + esc(id) + '" title="' + esc(q.q) + '">' + esc(id) + '</button>' : '';
+          }).join('') + '</div>' +
+          '<div class="fqa">' +
+            ['confirm', 'overrule'].map(function (k) {
+              return '<button class="fbtn' + (ans.a === k ? ' on' : '') + '" data-fa="' + k + '" data-fq="' + esc(g.id) + '">' + k + '</button>';
+            }).join('') +
+            '<input class="fown" data-fq="' + esc(g.id) + '" placeholder="or your own line, and why" value="' + esc(ans.own || '') + '">' +
+          '</div></div>';
+      });
+      if (FINAL.facts) {
+        h += '<div class="farea">' + esc(FINAL.facts.title) + '</div><p class="secn">' + esc(FINAL.facts.note) + '</p><div class="fqc">' +
+          FINAL.facts.cards.map(function (id) { var q = Q.filter(function (x) { return x.id === id; })[0];
+            return q ? '<button class="jcell' + (state.picks[id] ? ' done' : '') + '" data-q="' + esc(id) + '" title="' + esc(q.q) + '">' + esc(id) + '</button>' : ''; }).join('') + '</div>';
+      }
+      if (FINAL.still) {
+        h += '<div class="farea">' + esc(FINAL.still.title) + '</div><p class="secn">' + esc(FINAL.still.note) + '</p><div class="fqc">' +
+          FINAL.still.cards.map(function (id) { var q = Q.filter(function (x) { return x.id === id; })[0];
+            return q ? '<button class="jcell' + (state.picks[id] ? ' done' : '') + '" data-q="' + esc(id) + '" title="' + esc(q.q) + '">' + esc(id) + '</button>' : ''; }).join('') + '</div>';
+      }
+    }
     if (tagged.length) {
       /* Not every decision blocks the spec. Each card is tagged with the point at which its answer
          is needed, so the spec can start once the first group is done. */
@@ -702,6 +742,17 @@
   }
 
   /* ── export ───────────────────────────────────────────────────────────── */
+  function finalMd() {
+    var F = window.FINAL; if (!F || !F.groups) return '';
+    var out = ['## The final set', ''];
+    F.groups.forEach(function (g) {
+      var a = state.final[g.id] || {};
+      out.push('**' + g.id + '. ' + g.title + '**' + (a.a ? ' \u2014 ' + a.a : ' \u2014 open') + (a.own ? ': ' + a.own : ''));
+      out.push('  folds ' + g.cards.join(', '));
+      out.push('');
+    });
+    return out.join('\n') + '\n';
+  }
   function exportMd() {
     var lines = ['# frontmatter decisions', '', 'Answered ' + answered(Q) + ' of ' + Q.length + '.', ''];
     cats().forEach(function (g) {
@@ -722,7 +773,7 @@
       lines.push('## Still open', '');
       open.forEach(function (q) { lines.push('- **' + q.id + '** ' + q.q + (q.weight === 'critical' ? ' _(critical)_' : '')); });
     }
-    download('frontmatter-decisions.md', lines.join('\n'), 'text/markdown');
+    download('frontmatter-decisions.md', finalMd() + lines.join('\n'), 'text/markdown');
   }
   function download(name, body, type) {
     var b = new Blob([body], { type: type });
@@ -812,6 +863,8 @@
 
   /* ── events ───────────────────────────────────────────────────────────── */
   document.addEventListener('click', function (e) {
+    var fb = e.target.closest('[data-fa]');
+    if (fb) { var gid = fb.getAttribute('data-fq'); state.final[gid] = state.final[gid] || {}; state.final[gid].a = fb.getAttribute('data-fa'); save(); renderOverview(); toast('Saved ' + gid); return; }
     var t = e.target.closest('[data-q],[data-cat],[data-ov],[data-import],[data-pick],#expMd,#expJson,#impJson,#mdgo,#mdsample,#menuBtn,#themeBtn,#abarPrev,#abarNext');
     if (!t) return;
     if (t.id === 'menuBtn') { document.body.classList.toggle('navopen'); return; }
@@ -904,6 +957,13 @@
     return { mode: 'overview', id: null };
   }
   go(fromHash());
+  document.addEventListener('change', function (e) {
+    var f = e.target.closest && e.target.closest('.fown');
+    if (!f) return;
+    var gid = f.getAttribute('data-fq'); state.final[gid] = state.final[gid] || {}; state.final[gid].own = f.value.trim();
+    if (f.value.trim() && !state.final[gid].a) state.final[gid].a = 'own';
+    save(); toast('Saved ' + gid);
+  });
   window.addEventListener('hashchange', function () {
     var v = fromHash();
     if (v.mode !== view.mode || v.id !== view.id || (v.mode === 'area' && v.cat !== view.cat)) go(v);

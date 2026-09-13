@@ -600,3 +600,25 @@ ul.bl.tight li::before{top:7px;width:3px;height:3px}
   opacity:0;pointer-events:none;transition:opacity .18s,transform .18s}
 #toast.on{opacity:1;transform:translate(-50%,0)}
 @media (prefers-reduced-motion:reduce){#toast{transition:none}}
+
+/* ── the final set ─────────────────────────────────────────────────────────
+   Sixteen groups above the areas. Quieter than a card: one line of position, one of
+   evidence, the folded ids, and three ways to answer. */
+.farea{font-size:10.5px;letter-spacing:.06em;text-transform:uppercase;color:var(--ink-4);margin:18px 0 6px}
+.fq{border:1px solid var(--line);border-left:3px solid var(--line-2);border-radius:10px;background:var(--card);
+  padding:12px 14px;margin:0 0 8px;transition:border-color .15s}
+.fq.done{border-left-color:var(--accent)}
+.fqh{display:flex;gap:10px;align-items:baseline;margin-bottom:4px}
+.fqid{font-family:var(--mono,ui-monospace,monospace);font-size:11px;color:var(--ink-4)}
+.fqt{font-family:var(--display);font-size:15px;letter-spacing:-.01em;color:var(--ink)}
+.fqp{font-size:13.5px;color:var(--ink);line-height:1.45;margin:4px 0}
+.fqe{font-size:12.5px;color:var(--ink-3);line-height:1.45;margin:0 0 8px}
+.fqc{display:flex;flex-wrap:wrap;gap:3px;margin:0 0 8px}
+.fqa{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.fbtn{font:inherit;font-size:12.5px;cursor:pointer;padding:5px 11px;border-radius:7px;
+  border:1px solid var(--line-2);background:var(--card);color:var(--ink-2)}
+.fbtn:hover{border-color:var(--accent);color:var(--accent)}
+.fbtn.on{background:var(--accent);border-color:var(--accent);color:#fff}
+.fown{flex:1;min-width:200px;font:inherit;font-size:12.5px;padding:5px 9px;border-radius:7px;
+  border:1px solid var(--line);background:var(--panel,var(--card));color:var(--ink)}
+.fown:focus{outline:none;border-color:var(--accent)}

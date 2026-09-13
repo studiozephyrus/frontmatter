@@ -1,0 +1,230 @@
+{
+ "note": "The final set. Sixteen product questions folding the MVP cards. Each carries a position and the evidence in one line; the folded cards stay answerable underneath. Written 2026-09-14.",
+ "groups": [
+  {
+   "id": "Q1",
+   "area": "What it is",
+   "title": "The sentence",
+   "position": "frontmatter is where you write, review and keep current the files your agents obey.",
+   "evidence": "60,000 projects use AGENTS.md, 77 commits to one file in openai/codex, two LibreChat files drifted 3x, and your own CLAUDE.md is 10,033 words. Spec Kit and Kiro generate and leave. The vendor's /memory shows what loaded this session, not which file wins across a repo.",
+   "cards": [
+    "P1",
+    "P2"
+   ]
+  },
+  {
+   "id": "Q2",
+   "area": "What it is",
+   "title": "The buyer",
+   "position": "The team running coding agents, then the organisation above it. Not the individual, who has one file and will not pay.",
+   "evidence": "The main OpenAI repo holds 88 instruction files. Claude Code documents an org-wide CLAUDE.md managed by IT for all users, with no tooling around it.",
+   "cards": [
+    "MK4"
+   ]
+  },
+  {
+   "id": "Q3",
+   "area": "What ships first",
+   "title": "Where it opens, and on what surface",
+   "position": "The web editor at /, no account until the first save or share. One core. The shell frozen; new work into the engine and one surface. The Mac app, built 27 May, becomes the desktop surface later from the same tree.",
+   "evidence": "dillinger, StackEdit and Excalidraw show zero sign-in words and an editor on arrival; our home page is the login screen; the gate is three lines and the editor never checks it.",
+   "cards": [
+    "FF1",
+    "FF3",
+    "FF8",
+    "AC20",
+    "PL12"
+   ]
+  },
+  {
+   "id": "Q4",
+   "area": "What ships first",
+   "title": "The first thirty seconds",
+   "position": "A paste target and one sample document that turns into a kit. Folder first, sandbox second, read path split from write path. Four templates as files.",
+   "evidence": "An empty editor demonstrates nothing a text area does not. The sample shows the part that is different and costs a document, not a feature.",
+   "cards": [
+    "FL21",
+    "FL12",
+    "F27"
+   ]
+  },
+  {
+   "id": "Q5",
+   "area": "What ships first",
+   "title": "The editor chrome, as one block",
+   "position": "Three modes and cut Split. AI prompt at the cursor. Tab indents, Escape then Tab leaves. Dark mode with dark renders. Tokens reconciled and gated in CI. Three AI verbs on the rail. One switch hides all AI. Bookmarks and graph to the palette. Table editor and ghost text deleted. Four concepts, nine controls.",
+   "evidence": "Eleven craft calls, each with a recommendation on its card. Confirm as a block and name any exception.",
+   "cards": [
+    "D8",
+    "D7",
+    "D15",
+    "D21",
+    "D11",
+    "FL3",
+    "F8",
+    "F9",
+    "F18",
+    "F21",
+    "P15"
+   ]
+  },
+  {
+   "id": "Q6",
+   "area": "What makes it different",
+   "title": "The instruction-file view is Phase 1, and the point",
+   "position": "Every AGENTS.md, CLAUDE.md and rules file in a repo. Which one wins for a path. Size against the vendor's limit. What an agent changed that no person read, by path, read-only. Comments in a separate file, CriticMarkup on demand. Body writes wait until after the pilot.",
+   "evidence": "The strongest signal found all week and the one thing none of the four competitors does.",
+   "cards": [
+    "F35",
+    "F26",
+    "F13",
+    "E21"
+   ]
+  },
+  {
+   "id": "Q7",
+   "area": "What makes it different",
+   "title": "Does this read like you, as a feature",
+   "position": "The writing gate runs on a document and names the tell.",
+   "evidence": "Measured against 2,710 dictation entries and 196,522 of your own words. It exists. No editor has it.",
+   "cards": [
+    "F39"
+   ]
+  },
+  {
+   "id": "Q8",
+   "area": "What makes it different",
+   "title": "What ships from the AIOS",
+   "position": "Three things as templates: the learned-rule format, the file gate, the skill file shape. The orchestrator, 128 skills and 156 scripts stay yours.",
+   "evidence": "43 of 128 skills run the system itself; the preference log it learns from holds zero pairs. The best thing you built, and not installable in a day.",
+   "cards": [
+    "P26"
+   ]
+  },
+  {
+   "id": "Q9",
+   "area": "What we promise",
+   "title": "Nothing leaves the machine in Phase 0",
+   "position": "Browser fetches the tarball and unzips in the page. Server PDF route deleted, browser print wired. Icons inline, fonts embedded, build stops fetching Google Sans. Client-side search index. Three GitHub permissions, never an org one. firestore.rules deleted; zero bytes as an operating rule.",
+   "evidence": "Two of five exports send the document to us today; the build failed inside a network sandbox on fonts.googleapis.com; the print function at export-doc.ts:130 is imported by nothing.",
+   "cards": [
+    "AC1",
+    "AC14",
+    "D13",
+    "F25",
+    "AC3",
+    "L1"
+   ]
+  },
+  {
+   "id": "Q10",
+   "area": "What we promise",
+   "title": "Whose key",
+   "position": "The user's own key, a hard gate before any stranger reaches an AI route. Session memory on the web, OS keychain on desktop. No local model.",
+   "evidence": "Nothing in the tools checked offers generation on a key the user holds. Keeps the privacy claim exact with no metering to build.",
+   "cards": [
+    "F10",
+    "AC13"
+   ]
+  },
+  {
+   "id": "Q11",
+   "area": "What we promise",
+   "title": "Sharing",
+   "position": "A link somebody reads and comments on, with suggestions the owner accepts or refuses. Not live editing. Public share route disabled, decided in week 2. Publishing gated to founder with noindex and system slugs. Wordmark on exports off by default.",
+   "evidence": "Live editing reopens the sync decision settled against CRDTs and competes with Google Docs on its strongest axis. A kit is reviewed asynchronously.",
+   "cards": [
+    "F36",
+    "F19",
+    "L6",
+    "G12"
+   ]
+  },
+  {
+   "id": "Q12",
+   "area": "The kit",
+   "title": "The kit, and its check",
+   "position": "Generation ships in Phase 2 as start from here, never as the claim, after founder notes are attached and twenty kits are made by hand. A names-and-claims pass runs before the link, and the user sees the report.",
+   "evidence": "Any model writes 33 files. A kit whose files disagree is worse than none. The check is the half a competitor cannot copy from a prompt.",
+   "cards": [
+    "F34",
+    "F5"
+   ]
+  },
+  {
+   "id": "Q13",
+   "area": "What it costs",
+   "title": "Free and paid",
+   "position": "Free: editor, paste, export, local, uncapped. Pro, $6 to $8: storage, sync, share, own key, kit, templates. Team, $15 to $20 a seat: the instruction-file view across a repo, who changed what, review state. Enterprise unpriced until asked. Hosted AI metered in actions with a daily breaker. Two tiers at launch.",
+   "evidence": "Obsidian gives the editor away and charges for Sync and Publish. Kiro's Pro row is $20 per user. Nobody charges for an editor.",
+   "cards": [
+    "PR24",
+    "PR1",
+    "PR21",
+    "PR7",
+    "PR10"
+   ]
+  },
+  {
+   "id": "Q14",
+   "area": "The floor",
+   "title": "What has to be true before a stranger opens a file",
+   "position": "Patch the flush-left refusal, red-proof first, pre-commit to the structural fix above a residual of ten. CI in week one with a deliberate red run. Non-English and text scaling in scope. Six fix-first items start now.",
+   "evidence": "The editor refuses most real vaults today, and no automated check runs on any push.",
+   "cards": [
+    "E1",
+    "E12",
+    "E33",
+    "PL3"
+   ]
+  },
+  {
+   "id": "Q15",
+   "area": "The floor",
+   "title": "What the pilot passed means",
+   "position": "Three of ten name the problem unprompted. Two still using at day 30. One booked call from someone not asked. Agreed before it starts.",
+   "evidence": "A kill line set after the fact is not a kill line.",
+   "cards": [
+    "PL5"
+   ]
+  },
+  {
+   "id": "Q16",
+   "area": "The name",
+   "title": "The name",
+   "position": "Coin a new one and keep frontmatter as the word for the block we edit. This is the one I would not decide for you.",
+   "evidence": "frontmatter is taken in the VS Code store your buyer uses. It goes on every screen and export, so it is due before Phase 0 ships.",
+   "cards": [
+    "N1"
+   ]
+  }
+ ],
+ "facts": {
+  "title": "Not product, still needed",
+  "note": "These set every date in the plan and no research can answer them.",
+  "cards": [
+   "B1",
+   "B2",
+   "G15"
+  ]
+ },
+ "still": {
+  "title": "Still needed before the pilot, not product",
+  "note": "Legal clocks, the name registers, the research process. On the site, not in the way.",
+  "cards": [
+   "G16",
+   "B14",
+   "L3",
+   "L4",
+   "L7",
+   "L12",
+   "L17",
+   "N2",
+   "N3",
+   "PL2",
+   "PL10",
+   "R1",
+   "R17"
+  ]
+ }
+}

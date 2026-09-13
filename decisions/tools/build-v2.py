@@ -162,7 +162,11 @@ def main():
         ' */\n'
     )
     p = pathlib.Path(a.out)
-    p.write_text(header + 'window.QUESTIONS=' + body + ';\n')
+    final_p = pathlib.Path(a.src) / '_final.json'
+    # The final set: sixteen product questions that fold the MVP cards. Rendered above the
+    # areas on the overview; the folded cards stay answerable underneath.
+    final_js = ('window.FINAL=' + json.dumps(json.loads(final_p.read_text()), ensure_ascii=False) + ';\n') if final_p.exists() else ''
+    p.write_text(header + 'window.QUESTIONS=' + body + ';\n' + final_js)
     print(f'\nwrote {p} ({p.stat().st_size // 1024} KB)')
 
 

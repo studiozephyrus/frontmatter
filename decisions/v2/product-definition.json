@@ -4436,6 +4436,150 @@
       ],
       "when": "after",
       "whenWhy": "Fusing with the studio AI system is the opposite of narrowing. Revisit once the pilot has a result."
+    },
+    {
+      "id": "P26",
+      "cat": "Product & definition",
+      "sub": "THE WORKSHOP",
+      "weight": "critical",
+      "when": "mvp",
+      "whenWhy": "The AIOS is the founder's most-built thing. Whether it is the product or a source of templates decides the surface count.",
+      "q": "Does the AIOS ship as a product, or do three things from it ship as templates while the rest stays private?",
+      "lede": "82 rules, 128 skills, 31 hooks and 156 scripts make the founder's agent good. Nobody else can install it in a day.",
+      "stakes": "Ship it and the product is two products on one person's pace. Extract from it and frontmatter gets the three ideas that matter without the workshop.",
+      "state": [
+        "Counted 2026-09-14: 82 learned rules, 128 skills, 31 hooks, 156 scripts, a 10,033 word CLAUDE.md.",
+        "43 of the 128 skills are about running the system itself.",
+        "The preference log the loop learns from holds zero pairs; aios-site has no commits since it was made."
+      ],
+      "tension": [
+        "It is why the founder's output is better than most people's.",
+        "A workshop tuned to one person's failures is not a kit anyone else adopts."
+      ],
+      "options": [
+        {
+          "k": "a",
+          "label": "Ship three templates: rule format, file gate, skill shape. The rest stays private",
+          "gains": [
+            "The ideas that matter, without the surface",
+            "Fits one person's pace"
+          ],
+          "costs": [
+            "The orchestrator's value is never sold"
+          ],
+          "system": "Three templates in the product.",
+          "screens": "A template picker.",
+          "money": "None."
+        },
+        {
+          "k": "b",
+          "label": "Ship the AIOS as the product and frontmatter as its editor",
+          "gains": [
+            "The founder's strongest asset becomes the offer"
+          ],
+          "costs": [
+            "Two products on 1.21 days a week",
+            "Nobody installs 82 rules and 31 hooks on day one"
+          ],
+          "system": "A second product with its own installer.",
+          "screens": "Its own surface.",
+          "money": "Its own support."
+        },
+        {
+          "k": "c",
+          "label": "Ship the AIOS as a paid add-on to the Team tier, after the pilot",
+          "gains": [
+            "A later reason to pay"
+          ],
+          "costs": [
+            "Promises a second product before the first has a user"
+          ],
+          "system": "No change in the pilot.",
+          "screens": "None.",
+          "money": "A future price with no costing."
+        },
+        {
+          "k": "d",
+          "label": "Keep all of it private and ship nothing from it",
+          "gains": [
+            "Nothing to explain"
+          ],
+          "costs": [
+            "Loses the learned-rule format, which is the one pattern nobody has"
+          ],
+          "system": "No change.",
+          "screens": "None.",
+          "money": "None."
+        }
+      ],
+      "rec": "a",
+      "recCase": [
+        "The learned-rule format is the one pattern inside the AIOS that answers a documented failure, and it ships as a template.",
+        "Everything else in it is tooling for the workshop, which one person cannot carry as a second product."
+      ],
+      "flip": "If a team asks to buy the orchestration itself rather than the templates, (c) becomes worth costing.",
+      "visual": {
+        "kind": "compare",
+        "title": "What the AIOS is, counted, and what could ship from it",
+        "cols": [
+          "In the workshop",
+          "Ships as a template",
+          "Stays private"
+        ],
+        "rows": [
+          {
+            "label": "Learned rules",
+            "cells": [
+              "82",
+              "the format",
+              "the 82"
+            ]
+          },
+          {
+            "label": "Skills",
+            "cells": [
+              "128",
+              "the file shape",
+              "the 128"
+            ]
+          },
+          {
+            "label": "Hooks and gates",
+            "cells": [
+              "31 and 69",
+              "the file gate",
+              "the rest"
+            ]
+          },
+          {
+            "label": "Scripts",
+            "cells": [
+              "156",
+              "none",
+              "all"
+            ]
+          },
+          {
+            "label": "Installable by a stranger in a day",
+            "cells": [
+              "no",
+              "yes",
+              "not needed"
+            ]
+          }
+        ],
+        "note": "Counted from ~/.claude and ~/.sgnk on 2026-09-14. Skills about running the system itself: 43 of 128.",
+        "caption": "The workshop against what leaves it"
+      },
+      "sources": [
+        "docs/AUDIT-EVERYTHING-2026-09-14-0238.md:1",
+        "docs/WHAT-TO-SHIP-2026-09-14-0229.md:1"
+      ],
+      "linked": [
+        "F39",
+        "FF8",
+        "P15"
+      ]
     }
   ]
 }

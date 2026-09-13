@@ -6519,6 +6519,142 @@
         "F16",
         "F34"
       ]
+    },
+    {
+      "id": "F39",
+      "cat": "Features",
+      "sub": "VOICE",
+      "weight": "high",
+      "when": "mvp",
+      "whenWhy": "The gate exists and runs on real text. Whether it is a feature decides one rail item in Phase 1.",
+      "q": "Does the writing gate ship as a feature, telling the reader a paragraph drifted and naming the tell?",
+      "lede": "A gate measured against 196,522 of the founder's own words already runs on documents. No editor offers it.",
+      "stakes": "Ship it and the product has one feature nobody else can copy. Skip it and the most unusual asset here stays a private tool.",
+      "state": [
+        "bands.json is derived from 2,710 dictation entries and 196,522 cleaned words, audited 2026-09-11.",
+        "gate.py, patterns.py and style_score.py run today and caught the author's own replies three times on 2026-09-13.",
+        "The corpus is one person's instruction register, not composed prose, and the audit says so."
+      ],
+      "tension": [
+        "A feature that says your writing drifted is a feature some people will resent.",
+        "The bands are one person's. A second user needs their own corpus or a generic band, and neither exists yet."
+      ],
+      "options": [
+        {
+          "k": "a",
+          "label": "Ship in Phase 1 with the founder's bands; each user grows their own from their edits",
+          "gains": [
+            "The one feature no editor has",
+            "The corpus mechanism already exists"
+          ],
+          "costs": [
+            "First-run bands are somebody else's voice",
+            "Needs a per-user corpus store, which is bytes held"
+          ],
+          "system": "A per-document gate run, with bands per user.",
+          "screens": "A rail item that names the tell.",
+          "money": "None until per-user corpora need storage."
+        },
+        {
+          "k": "b",
+          "label": "Generic tells only: dashes, stock phrases, three constructions. No personal bands",
+          "gains": [
+            "Works for everyone on day one",
+            "Holds no personal data"
+          ],
+          "costs": [
+            "Loses the reads-like-you claim, which is the point"
+          ],
+          "system": "The gate with bands.json's banned list only.",
+          "screens": "Same rail item, weaker.",
+          "money": "None."
+        },
+        {
+          "k": "c",
+          "label": "Keep it private, as a tool the founders use on their own documents",
+          "gains": [
+            "Nothing to build or explain"
+          ],
+          "costs": [
+            "The most unusual asset stays invisible"
+          ],
+          "system": "No change.",
+          "screens": "None.",
+          "money": "None."
+        },
+        {
+          "k": "d",
+          "label": "Ship it after the pilot, once a second corpus exists to prove the bands generalise",
+          "gains": [
+            "Evidence before a claim"
+          ],
+          "costs": [
+            "The pilot loses its one unusual feature"
+          ],
+          "system": "No change in the pilot.",
+          "screens": "None.",
+          "money": "None."
+        }
+      ],
+      "rec": "b",
+      "recCase": [
+        "The generic tells are measured, hold no personal data, and work for a stranger on the first paste.",
+        "Personal bands can follow once a second corpus shows the mechanism generalises past one voice."
+      ],
+      "flip": "If three of the twenty ask for their own voice rather than the generic tells, (a) is right and the per-user store is worth its bytes.",
+      "visual": {
+        "kind": "compare",
+        "title": "What the gate can say about a paragraph, and to whom",
+        "cols": [
+          "Generic tells",
+          "Founder's bands",
+          "Per-user bands"
+        ],
+        "rows": [
+          {
+            "label": "Works for a stranger on first paste",
+            "cells": [
+              "yes",
+              "no, wrong voice",
+              "after a corpus"
+            ]
+          },
+          {
+            "label": "Holds personal data",
+            "cells": [
+              "no",
+              "no",
+              "yes"
+            ]
+          },
+          {
+            "label": "Makes the reads-like-you claim",
+            "cells": [
+              "no",
+              "only for one person",
+              "yes"
+            ]
+          },
+          {
+            "label": "Exists today",
+            "cells": [
+              "yes",
+              "yes",
+              "no"
+            ]
+          }
+        ],
+        "note": "Bands derived from a 196,522 word corpus audited 2026-09-11, in gate/bands.json.",
+        "caption": "Three ways to ship the gate, by who it works for"
+      },
+      "sources": [
+        "docs/AUDIT-EVERYTHING-2026-09-14-0238.md:1",
+        "docs/FEATURE-RESEARCH-2026-09-13-2130.md:1"
+      ],
+      "linked": [
+        "F35",
+        "P26"
+      ]
     }
   ]
 }

@@ -81,7 +81,7 @@ does.
 **7. "Does this read like you" ships as a feature.**
 The writing gate, measured against 2,710 dictation entries and 196,522 of your own words,
 runs on a document and names the tell. It exists. No editor has it.
-*New. No card yet; I add one on your answer.*
+*Card `F39`, added 2026-09-14.*
 **Your answer:**
 
 **8. What ships from the AIOS.**
@@ -90,7 +90,7 @@ orchestrator, the 128 skills and the 156 scripts stay yours.
 Evidence: 43 of 128 skills are about running the system itself and the preference log it
 learns from holds zero pairs. It is the best thing you built and it cannot be installed in a
 day. I know this is the one you feel most about; say so if I have it wrong.
-*New. Touches `FF14`, `P15`.*
+*Card `P26`, added 2026-09-14. Touches `FF8`, `P15`.*
 **Your answer:**
 
 ## What we promise
