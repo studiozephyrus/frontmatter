@@ -123,8 +123,8 @@
             ],
             [
               "Client hours per month to fund it",
-              "54–78",
-              "32.0–45.7"
+              "54 to 78",
+              "32.0 to 45.7"
             ],
             [
               "Cumulative visitors, 24 months",
@@ -179,7 +179,7 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "₹15,000–₹40,000 for the agreement, plus hours."
+          "money": "₹15,000 to ₹40,000 for the agreement, plus hours."
         },
         {
           "k": "d",
@@ -306,7 +306,7 @@
       "tension": [
         "78 hours is 1.95× the measured ceiling of 40 hours.",
         "₹4 crore is 367 months of runway against a seven-year fund.",
-        "Burn without services is ₹4,700–9,300 a month, so runway is not the constraint."
+        "Burn without services is ₹4,700 to ₹9,300 a month, so runway is not the constraint."
       ],
       "evidence": [
         {
@@ -321,7 +321,7 @@
             [
               "The same money in consulting hours",
               "78 hours a month",
-              "BRIEF.md:170, at the measured ₹1,400–2,000/hour"
+              "BRIEF.md:170, at the measured ₹1,400 to ₹2,000/hour"
             ],
             [
               "One productised engagement",
@@ -340,7 +340,7 @@
             ],
             [
               "Burn, if no services at all",
-              "₹4,700–9,300 a month",
+              "₹4,700 to ₹9,300 a month",
               "r23-u4:54: runway is not the constraint"
             ]
           ]
@@ -359,11 +359,11 @@
             ],
             [
               "PRODUCT-BRIEF.md:292, to cover the ₹1.09L two-founder nut",
-              "54–78"
+              "54 to 78"
             ],
             [
               "CRITIQUE.md:1460, against the one-founder nut",
-              "32.0–45.7"
+              "32.0 to 45.7"
             ],
             [
               "r23-u4:60, measured ceiling from active-day clustering",
@@ -438,7 +438,7 @@
             [
               "No funding at all",
               "full ownership",
-              "a burn of ₹4,700–9,300 a month, which is survivable (r23-u4:54)"
+              "a burn of ₹4,700 to ₹9,300 a month, which is survivable (r23-u4:54)"
             ]
           ]
         }
@@ -866,7 +866,7 @@
       },
       "stakes": "Anchor wrong and twenty conversations, the only pricing evidence this quarter, answer the wrong question.",
       "state": [
-        "The current plan, v15, prices teams at $4–5 a user, from GitHub's $4.",
+        "The current plan, v15, prices teams at $4 to $5 a user, from GitHub's $4.",
         "It has no rupee price; BUSINESS.md mentions ₹299/₹599/₹3,999 thirty-three times.",
         "Six operating artefacts are specified against the withdrawn list."
       ],
@@ -897,12 +897,12 @@
             ],
             [
               "The current plan's team tier",
-              "$4–5 per user per month",
+              "$4 to $5 per user per month",
               "PRODUCT-BRIEF.md:288"
             ],
             [
               "BUSINESS.md team tier",
-              "₹3,999 per year, flat, 2–20 people",
+              "₹3,999 per year, flat, 2 to 20 people",
               "BUSINESS.md:451"
             ]
           ]
@@ -959,7 +959,7 @@
           "rows": [
             [
               "PRODUCT-BRIEF.md:288, the v15 plan",
-              "$4–5",
+              "$4 to $5",
               "per user per month"
             ],
             [
@@ -985,7 +985,7 @@
             [
               "BUSINESS.md:451, withdrawn",
               "₹3,999",
-              "per year, flat, whole team of 2–20"
+              "per year, flat, whole team of 2 to 20"
             ]
           ]
         },
@@ -1024,7 +1024,7 @@
       "options": [
         {
           "k": "a",
-          "label": "$4–5 per user per month, as the current plan states, and mark BUSINESS.md historical",
+          "label": "$4 to $5 per user per month, as the plan states, and mark BUSINESS.md historical",
           "gains": [
             "One governing list, which every downstream artefact needs."
           ],
@@ -1033,7 +1033,7 @@
           ],
           "system": "No change.",
           "screens": "Pricing page rebuilt on one seat price.",
-          "money": "$48–60 per seat a year."
+          "money": "$48 to $60 per seat a year."
         },
         {
           "k": "b",
@@ -2451,7 +2451,7 @@
             ],
             [
               "ChartMogul band for accounts under $50/month",
-              "top-quartile annual gross retention 60–70%; 23% for AI-native",
+              "top-quartile annual gross retention 60 to 70%; 23% for AI-native",
               "PRODUCT-BRIEF.md:292"
             ]
           ]
@@ -2721,7 +2721,7 @@
             ],
             [
               "CA retainer already budgeted",
-              "₹35,000–₹90,000 a year, quotes not yet obtained",
+              "₹35,000 to ₹90,000 a year, quotes not yet obtained",
               "BUSINESS.md:678"
             ]
           ]
@@ -2741,7 +2741,7 @@
           ],
           "system": "No change.",
           "screens": "A grievance and privacy page.",
-          "money": "₹35,000–₹90,000 a year CA retainer, budgeted."
+          "money": "₹35,000 to ₹90,000 a year CA retainer, budgeted."
         },
         {
           "k": "b",
@@ -3064,7 +3064,7 @@
         "Approaches made to either maintainer: zero."
       ],
       "tension": [
-        "superpowers reaches 22–30 thousand repos active in 30 days; spec-kit about 1,660.",
+        "superpowers reaches 22 to 30 thousand repos active in 30 days; spec-kit about 1,660.",
         "The spec-kit pitch is strong: 354 of 355 checklist boxes ticked by the agent.",
         "A message costs an hour; planning three months around an unasked question risks the quarter."
       ],
@@ -3116,7 +3116,7 @@
           "items": [
             [
               "superpowers reach",
-              "75–85k public repos; 22–30k active in 30 days",
+              "75 to 85k public repos; 22 to 30k active in 30 days",
               "PRODUCT-BRIEF.md:147"
             ],
             [

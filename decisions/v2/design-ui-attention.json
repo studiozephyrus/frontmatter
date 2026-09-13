@@ -725,7 +725,7 @@
       ],
       "tension": [
         "The attention rules accept the highlight only if it is ignorable at rest.",
-        "Clinical alerting overrides 55–98% across 34 studies; 86.6% of 14,612 alerts."
+        "Clinical alerting overrides 55 to 98% across 34 studies; 86.6% of 14,612 alerts."
       ],
       "evidence": [
         {
@@ -3314,10 +3314,10 @@
       "state": [
         "The plan specifies five people, one editor screenshot, five seconds, one question.",
         "Only two failing answers are named, and there is no pass line or protocol.",
-        "No build day depends on it; rendering is weeks 5–7 either way."
+        "No build day depends on it; rendering is weeks 5 to 7 either way."
       ],
       "tension": [
-        "Comprehension is the wrong measure. The literature is about dismissal: 55–98% override.",
+        "Comprehension is the wrong measure. The literature is about dismissal: 55 to 98% override.",
         "Those figures come from clinical alerting and code review, so the transfer is analogy."
       ],
       "evidence": [
@@ -3373,7 +3373,7 @@
             [
               "Build days gated on the result",
               "0",
-              "review-state store and rendering are in weeks 5–7 regardless, docs/PRODUCT-BRIEF.md:355"
+              "review-state store and rendering are in weeks 5 to 7 regardless, docs/PRODUCT-BRIEF.md:355"
             ],
             [
               "Gap register severity for the attention section",
@@ -3732,7 +3732,7 @@
         "The benchmark costs one session, no founder time, and answers placement from evidence.",
         "Every participant reaches the undrawn first-run screen, and it carries retention."
       ],
-      "flip": "If the paid tier comes up in the twenty team conversations in weeks 1–2, draw the team view first.",
+      "flip": "If the paid tier comes up in the twenty team conversations in weeks 1 to 2, draw the team view first.",
       "linked": [
         "D4",
         "D7",

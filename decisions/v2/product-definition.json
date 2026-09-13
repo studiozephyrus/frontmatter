@@ -168,7 +168,7 @@
             "Form factor genuinely decides the noun"
           ],
           "costs": [
-            "Weeks 1–2 pages need copy now"
+            "Weeks 1 to 2 pages need copy now"
           ],
           "system": "No change.",
           "screens": "None.",
@@ -371,7 +371,7 @@
         },
         {
           "type": "stat",
-          "title": "What the weeks 1–2 tests currently specify",
+          "title": "What the weeks 1 to 2 tests currently specify",
           "items": [
             [
               "Developers shown the review mock in both framings",
@@ -685,7 +685,7 @@
         "The measurement is real but demand is 4 in 12,556, so the plan's slot is right.",
         "One sentence keeps the only claim checkable against their own folder."
       ],
-      "flip": "If every headline variant fails in weeks 1–2 and people react to corruption, take b.",
+      "flip": "If every headline variant fails in weeks 1 to 2 and people react to corruption, take b.",
       "linked": [
         "P11",
         "P21"
@@ -1766,7 +1766,7 @@
             [
               "Cache",
               "revalidate = 60, dynamicParams = true",
-              "src/app/(public)/[slug]/page.tsx:17–18"
+              "src/app/(public)/[slug]/page.tsx:17 to 18"
             ],
             [
               "Description exposed to crawlers",
@@ -1812,7 +1812,7 @@
             [
               "Revision history",
               "append-only: allow update: if false; allow delete: if false",
-              "firestore.rules:360–361"
+              "firestore.rules:360 to 361"
             ],
             [
               "Unauthenticated read",
@@ -2232,7 +2232,7 @@
       "stakes": "A demo that works only on prepared files fails at week 12.",
       "state": [
         "The plan's demo starts \"Run the agent's spec command\": we generate the file.",
-        "Weeks 8–9, after 18 days of store, rendering, revert and panel.",
+        "Weeks 8 to 9, after 18 days of store, rendering, revert and panel.",
         "The alternative: open the prospect's repo, print what will not survive."
       ],
       "tension": [
@@ -2327,7 +2327,7 @@
             ],
             [
               "Where the plan puts the equivalent",
-              "Weeks 10–12, ten strangers, 6 of 10 by the week-0 measure",
+              "Weeks 10 to 12, ten strangers, 6 of 10 by the week-0 measure",
               "docs/PRODUCT-BRIEF.md:357"
             ],
             [
@@ -2417,12 +2417,12 @@
         },
         {
           "k": "d",
-          "label": "Build no demo until weeks 1–2 pick the headline; test on mocks",
+          "label": "Build no demo until weeks 1 to 2 pick the headline; test on mocks",
           "gains": [
             "No demo built for a headline that may fall"
           ],
           "costs": [
-            "Defers the decision; the demo is week 8–9 anyway"
+            "Defers the decision; the demo is week 8 to 9 anyway"
           ],
           "system": "No change.",
           "screens": "Mocks only.",
@@ -2864,7 +2864,7 @@
               "What v15 actually introduces",
               "At least 10",
               "file, folder, mode/view, span, review state, review file, attribution, proposal, scan, key",
-              "docs/PRODUCT-BRIEF.md:20, :55–62, :135"
+              "docs/PRODUCT-BRIEF.md:20, :55 to 62, :135"
             ]
           ]
         },
@@ -2904,12 +2904,12 @@
           "title": "The nine at rest, and what the current plan wants to add",
           "cols": [
             "Slot",
-            "Record's at-rest list (docs/FRONTMATTER-RECORD.md:1883–1891)",
+            "Record's at-rest list (docs/FRONTMATTER-RECORD.md:1883 to 1891)",
             "Current-plan addition"
           ],
           "rows": [
             [
-              "1–2",
+              "1 to 2",
               "The text, full-bleed; file tree collapsed to a side panel, folder names only",
               "Tree gains unreviewed bars (docs/PRODUCT-BRIEF.md:409)"
             ],
@@ -2951,7 +2951,7 @@
             [
               "+",
               "Explicitly not visible at rest: no AI button, no export button, no share button",
-              "ShareMenu, AIMenu and ExportMenu are all wired into the editor header today (src/modules/editor/presentation/EditorPane.tsx:905–907)"
+              "ShareMenu, AIMenu and ExportMenu are all wired into the editor header today (src/modules/editor/presentation/EditorPane.tsx:905 to 907)"
             ]
           ]
         },
@@ -2982,12 +2982,12 @@
             [
               "Slash commands today",
               "14, capped at 16",
-              "src/modules/editor/presentation/slash-commands.ts:34–51; docs/FRONTMATTER-RECORD.md:1901"
+              "src/modules/editor/presentation/slash-commands.ts:34 to 51; docs/FRONTMATTER-RECORD.md:1901"
             ],
             [
               "Buttons wired into the editor header today",
               "ShareMenu, AIMenu, ExportMenu: all three on the record's not-visible-at-rest list",
-              "src/modules/editor/presentation/EditorPane.tsx:905–907"
+              "src/modules/editor/presentation/EditorPane.tsx:905 to 907"
             ]
           ]
         }
@@ -3163,9 +3163,9 @@
           ],
           "rows": [
             [
-              "Fix-first (items 1–11 plus row 0: the left-edge list bug, the old line-ending bug, CI, engine wiring, byte budget, BYO key, structured output, web byte path, tauri identity, cert CLI, entities)",
+              "Fix-first (items 1 to 11 plus row 0: the left-edge list bug, the old line-ending bug, CI, engine wiring, byte budget, BYO key, structured output, web byte path, tauri identity, cert CLI, entities)",
               "24 as stated in the sequence; the table's own day column sums to 25.5",
-              "docs/PRODUCT-BRIEF.md:227, :212–225"
+              "docs/PRODUCT-BRIEF.md:227, :212 to 225"
             ],
             [
               "Review state (store 6, rendering 5, revert 3, panel 4)",
@@ -3465,7 +3465,7 @@
           "costs": [
             "Staleness is the half that is novel against Vale"
           ],
-          "system": "Our link checker plus two template checks, 2–4 days.",
+          "system": "Our link checker plus two template checks, 2 to 4 days.",
           "screens": "The scan screen without the staleness column.",
           "money": "None."
         },
@@ -4189,7 +4189,7 @@
             ],
             [
               "Drug-interaction alert override rate across 34 studies",
-              "55–98%",
+              "55 to 98%",
               "pubmed 35673040"
             ],
             [

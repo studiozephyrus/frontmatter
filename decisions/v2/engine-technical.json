@@ -964,7 +964,7 @@
       },
       "stakes": "Two tiers are priced on an apparatus that may reduce to five regexes.",
       "state": [
-        "Pro and Max both sell the certificate, `mdmax cert`, at $4–5 per user monthly.",
+        "Pro and Max both sell the certificate, `mdmax cert`, at $4 to $5 per user monthly.",
         "The kill condition for \"it is a rule set\" fires at 99.8%; three constructs cover 93.8% of attributions.",
         "392 of 845 attributions are blocks no detector claimed, so the condition is unreadable."
       ],
@@ -1769,7 +1769,7 @@
             ],
             [
               "Artifact size uncompressed",
-              "0.35–0.43 GB",
+              "0.35 to 0.43 GB",
               "docs/ENGINE.md:872"
             ],
             [
@@ -1854,7 +1854,7 @@
             "Four days of UI",
             "A stranger's first impression is 94% broken on their own files"
           ],
-          "system": "Web surface plus a 0.35–0.43 GB artefact.",
+          "system": "Web surface plus a 0.35 to 0.43 GB artefact.",
           "screens": "A checker page and a dataset page.",
           "money": "Hosting cost for the artefact."
         },
@@ -2368,7 +2368,7 @@
             ],
             [
               "quadratic-canary",
-              "`[[` × 10–80 KB",
+              "`[[` × 10 to 80 KB",
               "every push",
               "asserts slope < 1.3 and 80 KB < 250 ms: today 80 KB measures 2,575.7 ms, so this bench is red against current code until the size-guard decision lands"
             ],
@@ -2565,7 +2565,7 @@
             ],
             [
               "Estimated gzip after minification",
-              "15–18 KB",
+              "15 to 18 KB",
               "docs/ENGINE.md:2243: marked [derived, estimate]"
             ],
             [
@@ -2791,7 +2791,7 @@
           ],
           "rows": [
             [
-              "Uniform random (emoji every 7th, lengths 400–2000)",
+              "Uniform random (emoji every 7th, lengths 400 to 2000)",
               "4,966",
               "0"
             ],
@@ -3602,7 +3602,7 @@
             ],
             [
               "What the audit says not to gate on",
-              "tests 5–8: they protect the certificate, which is not yet customer-facing",
+              "tests 5 to 8: they protect the certificate, which is not yet customer-facing",
               "docs/ENGINE.md:220"
             ]
           ]
@@ -5338,7 +5338,7 @@
             ],
             [
               "Measured build velocity",
-              "1.21 engineering days per calendar week; 37–58 calendar weeks for the plan's ~70 days",
+              "1.21 engineering days per calendar week; 37 to 58 calendar weeks for the plan's ~70 days",
               "docs/PRODUCT-BRIEF.md:227"
             ]
           ]
@@ -5364,12 +5364,12 @@
             ],
             [
               "Editor first, engine inside it",
-              "37–58 calendar weeks at measured density",
+              "37 to 58 calendar weeks at measured density",
               "whether the editor sells"
             ],
             [
               "Priced CLI (`fm check`)",
-              "3–4 weeks",
+              "3 to 4 weeks",
               "whether anyone pays, with no subscription, no churn, no merchant of record"
             ]
           ]

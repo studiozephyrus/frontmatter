@@ -8,9 +8,6 @@
       "weight": "critical",
       "q": "Do we delete the Firebase document-holding design, or adopt it and take the fiduciary and intermediary duty?",
       "lede": "Three committed files give three answers, and every legal rule in the plan follows from this one.",
-      "_ev": [
-        "L1"
-      ],
       "visual": {
         "kind": "compare",
         "labelWidth": 190,
@@ -180,7 +177,51 @@
         "docs/PRODUCT-BRIEF.md:531"
       ],
       "when": "mvp",
-      "whenWhy": "Holding document bytes is the first of the five decisions. Everything about storage hangs off it."
+      "whenWhy": "Holding document bytes is the first of the five decisions. Everything about storage hangs off it.",
+      "evidence": [
+        {
+          "type": "table",
+          "title": "What the three committed files actually say",
+          "note": "A Firestore handle exists at `src/shared/infrastructure/firebase/client.ts:38`, but no write call does. The rules are a design that shipped without the code behind it, and the design is the thing being decided.",
+          "cols": [
+            "File",
+            "What it says",
+            "Where"
+          ],
+          "rows": [
+            [
+              "`firestore.rules`",
+              "Caps a note body at 900000 characters and refuses every revision delete",
+              "`firestore.rules:318`, `firestore.rules:361`"
+            ],
+            [
+              "`firestore.rules`",
+              "Allows an unauthenticated read of any share marked public. Its own comment calls that the product feature",
+              "`firestore.rules:393`"
+            ],
+            [
+              "`firestore.rules`, first line",
+              "Calls the whole file a prototype",
+              "`firestore.rules:7`"
+            ],
+            [
+              "`docs/PRODUCT-BRIEF.md`",
+              "The control plane holds identity, team membership, entitlements and billing, and no document bytes",
+              "`docs/PRODUCT-BRIEF.md:133`"
+            ],
+            [
+              "`docs/PRODUCT-BRIEF.md`",
+              "Carries the same question as open decision 7, still open",
+              "`docs/PRODUCT-BRIEF.md:365`"
+            ],
+            [
+              "`docs/GAPS-2026-09-08.md`",
+              "Records the contradiction as gap 5",
+              "`docs/GAPS-2026-09-08.md:142`"
+            ]
+          ]
+        }
+      ]
     },
     {
       "id": "L2",
@@ -189,9 +230,6 @@
       "weight": "critical",
       "q": "Do we rewrite the web app to the browser-only byte path before the pilot, or withdraw the zero-bytes claim?",
       "lede": "Zero document bytes on our server is the plan's central legal claim. The shipped code refutes it.",
-      "_ev": [
-        "L2"
-      ],
       "visual": {
         "kind": "ba",
         "before": {
@@ -290,7 +328,7 @@
           ],
           "system": "Web deployment paused.",
           "screens": "No web trial.",
-          "money": "$99/yr Apple, $150–400/yr Windows, brought forward."
+          "money": "$99/yr Apple, $150 to $400/yr Windows, brought forward."
         },
         {
           "k": "d",
@@ -341,9 +379,6 @@
       "weight": "critical",
       "q": "Do we treat every legal clock as already running, or as starting at the pilot?",
       "lede": "sgnk-md is the same codebase and is listed as production. If it has users, the clocks started.",
-      "_ev": [
-        "L3"
-      ],
       "visual": {
         "kind": "flow",
         "nodes": [
@@ -473,6 +508,45 @@
       "whenWhy": "If we hold kits, the clocks start at the first kit, not at the pilot.",
       "dependsOn": [
         "L1"
+      ],
+      "evidence": [
+        {
+          "type": "stat",
+          "title": "The fork, counted",
+          "note": "If sgnk-md has users, they are the only real users this product has ever had, and the clocks in every other legal card started when they arrived.",
+          "items": [
+            [
+              "Source files byte-identical with sgnk-md",
+              "202 of 228",
+              "`docs/DECIDE.md:168`"
+            ],
+            [
+              "Files that exist only in sgnk-md",
+              "0",
+              "`docs/DECIDE.md:168`"
+            ],
+            [
+              "Editor files byte-identical with sgnk-md",
+              "41 of 43",
+              "`docs/GAPS-2026-09-08.md:141`"
+            ],
+            [
+              "What the portfolio calls sgnk-md",
+              "production",
+              "`docs/GAPS-2026-09-08.md:36`"
+            ],
+            [
+              "What the plan says our user count is",
+              "zero",
+              "`docs/PRODUCT-BRIEF.md:558`"
+            ],
+            [
+              "User interviews across the whole programme",
+              "zero",
+              "`docs/GAPS-2026-09-08.md:35`"
+            ]
+          ]
+        }
       ]
     },
     {
@@ -482,10 +556,6 @@
       "weight": "critical",
       "q": "Who answers the six-hour clock, and do we file the CERT-In point of contact now?",
       "lede": "The six-hour clock has no size floor, and one person covers it at 1.21 engineering days a week.",
-      "_ev": [
-        "L4",
-        "L5"
-      ],
       "visual": {
         "kind": "compare",
         "labelWidth": 180,
@@ -645,6 +715,40 @@
       "whenWhy": "A six hour breach clock needs a named person before the first kit is stored.",
       "dependsOn": [
         "L1"
+      ],
+      "evidence": [
+        {
+          "type": "stat",
+          "title": "The clock, and the person on it",
+          "note": "A six hour clock with no size floor needs somebody awake to notice. One person at 1.21 days a week is the whole roster.",
+          "items": [
+            [
+              "Report a listed incident to CERT-In, from noticing",
+              "6 hours",
+              "`docs/FRONTMATTER-RECORD.md:4122`"
+            ],
+            [
+              "Keep ICT logs, inside Indian jurisdiction",
+              "rolling 180 days",
+              "`docs/FRONTMATTER-RECORD.md:4122`"
+            ],
+            [
+              "Acknowledge a grievance, every day, permanently",
+              "24 hours",
+              "`docs/FRONTMATTER-PRD-v2-2026-08-29.md:4198`"
+            ],
+            [
+              "Measured engineering days per calendar week",
+              "1.21",
+              "`docs/PRODUCT-BRIEF.md:11`"
+            ],
+            [
+              "Commits by a single author",
+              "80 of 80",
+              "`docs/PRODUCT-BRIEF.md:12`"
+            ]
+          ]
+        }
       ]
     },
     {
@@ -654,10 +758,6 @@
       "weight": "critical",
       "q": "Do we close publishing to founder-only, and adopt noindex and system-assigned slugs as a standing rule?",
       "lede": "A crawlable public page with user-chosen slugs makes us an intermediary, and none of the apparatus exists.",
-      "_ev": [
-        "L6",
-        "L9"
-      ],
       "visual": {
         "kind": "compare",
         "labelWidth": 180,
@@ -837,6 +937,45 @@
       "whenWhy": "Unlisted kit links need the indexing rule settled, and the public route is indexable today.",
       "dependsOn": [
         "L1"
+      ],
+      "evidence": [
+        {
+          "type": "table",
+          "title": "What the share surface does today, against the narrow shape the PRD asks for",
+          "note": "The apparatus the wide shape needs is costed at 74 one-time founder hours, arithmetic shown, at `docs/FRONTMATTER-PRD-v2-2026-08-29.md:4194`.",
+          "cols": [
+            "What it does today",
+            "Where",
+            "What PRD v2 asks for instead"
+          ],
+          "rows": [
+            [
+              "Published pages set `index: true, follow: true`",
+              "`src/app/(public)/[slug]/page.tsx:30`",
+              "`noindex` by default"
+            ],
+            [
+              "`robots.ts` allows crawlers at `/`",
+              "`src/app/robots.ts:18`",
+              "The same rule applied to published pages"
+            ],
+            [
+              "The slug is user-chosen, up to 60 characters",
+              "`src/modules/share/domain/slug.ts:4`, `src/modules/share/domain/slug.ts:26`",
+              "System-assigned slugs"
+            ],
+            [
+              "Any signed-in actor may publish; the only gate is authentication",
+              "`src/app/api/share/route.ts:31`",
+              "Paying accounts only, `docs/FRONTMATTER-PRD-v2-2026-08-29.md:4204`"
+            ],
+            [
+              "Outbound links get `noopener noreferrer`",
+              "`src/modules/preview/presentation/markdown/html-policy.ts:214`",
+              "SEO spam is the named first risk, `docs/FRONTMATTER-RECORD.md:4181`"
+            ]
+          ]
+        }
       ]
     },
     {
@@ -846,10 +985,6 @@
       "weight": "high",
       "q": "Do we publish a privacy policy, terms and a named grievance officer before the pilot, and which window?",
       "lede": "SPDI Rule 4 requires a published policy today. The app has four pages and none is a policy.",
-      "_ev": [
-        "L7",
-        "L8"
-      ],
       "visual": {
         "kind": "screen",
         "title": "Pages served on the live app",
@@ -978,11 +1113,11 @@
             "A reviewed document, covering CERT-In and terms together"
           ],
           "costs": [
-            "₹40,000–1,20,000 before evidence anyone wants the product"
+            "₹40,000 to ₹1,20,000 before evidence anyone wants the product"
           ],
           "system": "No change.",
           "screens": "Same three pages, later.",
-          "money": "₹40,000–1,20,000, unverified."
+          "money": "₹40,000 to ₹1,20,000, unverified."
         }
       ],
       "rec": "b",
@@ -1015,6 +1150,45 @@
       "whenWhy": "A policy, terms and a named officer are due before a stranger stores anything.",
       "dependsOn": [
         "L1"
+      ],
+      "evidence": [
+        {
+          "type": "stat",
+          "title": "The clocks that are already running",
+          "note": "Two of these say at launch, and the app has four pages with no policy among them.",
+          "items": [
+            [
+              "Publish rules, privacy policy and user agreement",
+              "at launch",
+              "`docs/FRONTMATTER-RECORD.md:4107`"
+            ],
+            [
+              "Publish the grievance officer name and contact",
+              "at launch",
+              "`docs/FRONTMATTER-RECORD.md:4114`"
+            ],
+            [
+              "Acknowledge a grievance",
+              "within 24 hours",
+              "`docs/FRONTMATTER-RECORD.md:4115`"
+            ],
+            [
+              "Resolve a grievance",
+              "within 15 days",
+              "`docs/FRONTMATTER-RECORD.md:4116`"
+            ],
+            [
+              "Grievance window under SPDI Rule 5(9), today",
+              "one month",
+              "`docs/PRODUCT-BRIEF.md:548`"
+            ],
+            [
+              "Published window from 2027-05-13",
+              "not exceeding ninety days",
+              "`docs/PRODUCT-BRIEF.md:548`"
+            ]
+          ]
+        }
       ]
     },
     {
@@ -1024,10 +1198,6 @@
       "weight": "high",
       "q": "Do we cut the vendor chain to bring-your-own key and bundled assets, or paper every processor?",
       "lede": "Six AI routes send up to 200,000 characters to whichever of five foreign providers an env var selects.",
-      "_ev": [
-        "L10",
-        "L11"
-      ],
       "visual": {
         "kind": "flow",
         "nodes": [
@@ -1173,9 +1343,6 @@
       "weight": "high",
       "q": "Do we geo-exclude the EU for the pilot, or accept EU users and budget an Art 27 representative?",
       "lede": "GDPR Art 3(2)(a) catches a free tool, and the plan admits its targeting posture covers only that.",
-      "_ev": [
-        "L12"
-      ],
       "visual": {
         "kind": "compare",
         "labelWidth": 190,
@@ -1242,7 +1409,7 @@
       "state": [
         "An Art 27 representative and Art 30 record are due from the first EU seat.",
         "The plan names our rotating install ID as the Recital 24 monitoring pattern.",
-        "A representative for a one-founder company costs €39–€160 a month, not €200–500."
+        "A representative for a one-founder company costs €39 to €160 a month, not €200 to €500."
       ],
       "tension": [
         "The Art 27(2)(a) occasional-processing escape fails for a subscription editor with sync.",
@@ -1329,6 +1496,39 @@
       "whenWhy": "European users reach a free web tool on day one. Accept or exclude, and budget it.",
       "dependsOn": [
         "L1"
+      ],
+      "evidence": [
+        {
+          "type": "table",
+          "title": "What an Article 27 representative costs, after the August re-check",
+          "note": "Prighter and EDPO price pages were read live on 2026-08-31. Budget the top of the range, because the cheap tiers are usage capped.",
+          "cols": [
+            "What the record said",
+            "Verdict",
+            "What was measured",
+            "Where"
+          ],
+          "rows": [
+            [
+              "A representative costs €200 to €500 a month",
+              "Revised",
+              "That band is the 51 to 500 employee price. A one person company pays €39 to €160 a month",
+              "`docs/research/agent-reports-2026-08-30/r18-v2-compliance-legal.md:5`"
+            ],
+            [
+              "Article 27 is often cited as Article 13",
+              "Refuted",
+              "Two different laws, two different obligations",
+              "`docs/research/agent-reports-2026-08-30/r18-v2-compliance-legal.md:6`"
+            ],
+            [
+              "No exemption was noted",
+              "Added",
+              "Article 27(2)(a) removes the duty where processing is occasional and unlikely to risk rights",
+              "`docs/research/agent-reports-2026-08-30/r18-v2-compliance-legal.md:33`"
+            ]
+          ]
+        }
       ]
     },
     {
@@ -1338,9 +1538,6 @@
       "weight": "high",
       "q": "Does the review file carry a person's real identity into the user's repository, or a pseudonymous id?",
       "lede": "The review file is the product's main output, and nobody has asked what personal data it carries.",
-      "_ev": [
-        "L13"
-      ],
       "visual": {
         "kind": "file",
         "name": ".frontmatter/review.jsonl",
@@ -1472,9 +1669,6 @@
       "weight": "high",
       "q": "Do we build the India-resident 180-day log store now, or run with no logs and say so?",
       "lede": "The plan says log residency is already priced, and the store it was priced against is not our stack.",
-      "_ev": [
-        "L14"
-      ],
       "visual": {
         "kind": "ba",
         "before": {
@@ -1613,9 +1807,6 @@
       "weight": "high",
       "q": "Do we pay for a trademark knock-out search now, rename before launch, or ship qualified?",
       "lede": "An 82,265-install incumbent owns the word in the exact store we might ship to, and nothing is cleared.",
-      "_ev": [
-        "L15"
-      ],
       "visual": {
         "kind": "timeline",
         "items": [
@@ -1748,9 +1939,6 @@
       "weight": "high",
       "q": "Do we buy an outside security review before the first non-founder user, and does it cover shipped code?",
       "lede": "We assert our own safety, and the shipped code carries a defect two files revealed in one pass.",
-      "_ev": [
-        "L16"
-      ],
       "visual": {
         "kind": "flow",
         "nodes": [
@@ -1879,9 +2067,6 @@
       "weight": "high",
       "q": "What does the privacy policy promise about deletion, now that retention has a floor as well as a ceiling?",
       "lede": "We cannot promise to delete what the law requires us to keep, and the refuted rule is still in the record.",
-      "_ev": [
-        "L17"
-      ],
       "visual": {
         "kind": "timeline",
         "items": [
@@ -2010,6 +2195,40 @@
       "whenWhy": "Deletion promises have to match the retention floor before the policy is written.",
       "dependsOn": [
         "L1"
+      ],
+      "evidence": [
+        {
+          "type": "stat",
+          "title": "The floor, the ceiling, and the rule the notified text refuted",
+          "note": "Rule 3(1)(g) contradicts a promise to delete what the user deletes. The record says to name that conflict in the policy rather than hide it, `docs/FRONTMATTER-RECORD.md:4123`.",
+          "items": [
+            [
+              "Never delete below, today",
+              "180 days, CERT-In",
+              "`docs/PRODUCT-BRIEF.md:545`"
+            ],
+            [
+              "Access logs and the personal data they concern, from 2027-05-13",
+              "one year, Rule 6(1)(e)",
+              "`docs/PRODUCT-BRIEF.md:545`"
+            ],
+            [
+              "Processing logs surviving account deletion",
+              "one year, Rule 8(3)",
+              "`docs/PRODUCT-BRIEF.md:545`"
+            ],
+            [
+              "The record rule of no row-level retention beyond 90 days",
+              "refuted, delete it",
+              "`docs/PRODUCT-BRIEF.md:545`"
+            ],
+            [
+              "Does the Third Schedule inactivity timer reach us",
+              "no",
+              "`docs/PRODUCT-BRIEF.md:546`"
+            ]
+          ]
+        }
       ]
     },
     {
@@ -2019,9 +2238,6 @@
       "weight": "medium",
       "q": "Do we ship the local usage file, a rotating install id, or an account-keyed opt-in upload?",
       "lede": "The plan's own EU rule calls a persistent rotating install id GDPR's Art 3(2)(b) monitoring pattern.",
-      "_ev": [
-        "L18"
-      ],
       "visual": {
         "kind": "compare",
         "labelWidth": 190,
@@ -2183,9 +2399,6 @@
       "weight": "medium",
       "q": "Do we register for GST now, stop buying foreign AI services, or put the position to a CA first?",
       "lede": "Buying API access from a foreign supplier is importing a service, and registration starts at the first rupee.",
-      "_ev": [
-        "L19"
-      ],
       "visual": {
         "kind": "flow",
         "nodes": [
@@ -2308,9 +2521,6 @@
       "weight": "medium",
       "q": "Do we split the licence, Apache-2.0 for the engine and proprietary for the app, or license the repository one way?",
       "lede": "The repo states no licence, so the default is all rights reserved and nobody may lawfully run the engine.",
-      "_ev": [
-        "L20"
-      ],
       "visual": {
         "kind": "arch",
         "layers": [
@@ -2442,9 +2652,6 @@
       "weight": "medium",
       "q": "Do we adopt the rule that an unverifiable citation is dropped rather than repeated, starting with the gazette number?",
       "lede": "Four governing documents cite one instrument four ways, and every legal deadline derives from it.",
-      "_ev": [
-        "L21"
-      ],
       "visual": {
         "kind": "flow",
         "nodes": [
@@ -2576,9 +2783,6 @@
       "weight": "medium",
       "q": "Do we state 18-plus in the terms, build an age gate, or write down why the question is out of scope?",
       "lede": "DPDP section 9 carries a ₹200 crore ceiling, the plan never mentions children, and the code has no age field.",
-      "_ev": [
-        "L22"
-      ],
       "visual": {
         "kind": "compare",
         "labelWidth": 190,
@@ -2728,7 +2932,6 @@
       "weight": "medium",
       "q": "Do we cite regulators at all, and do we say plainly that none requires per-span review?",
       "lede": "Nothing opened on 2026-09-09 mandates review below the whole document, and a compliance buyer will check.",
-      "_ev": [],
       "visual": {
         "kind": "compare",
         "labelWidth": 200,

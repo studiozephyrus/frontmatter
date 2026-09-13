@@ -6,7 +6,7 @@
       "cat": "Go-to-market & channels",
       "sub": "Headline",
       "weight": "high",
-      "q": "Do the weeks 1–2 headline tests run three arms, two, or one?",
+      "q": "Do the weeks 1 to 2 headline tests run three arms, two, or one?",
       "lede": "The two-week test is the only gate before building, and the plan gives two answers.",
       "visual": {
         "kind": "compare",
@@ -394,7 +394,7 @@
             ],
             [
               "§14 Exhibit 19, docs/PRODUCT-BRIEF.md:352",
-              "\"plugin shipped\" in weeks 1–2",
+              "\"plugin shipped\" in weeks 1 to 2",
               "A fortnight deliverable disappears"
             ],
             [
@@ -643,7 +643,7 @@
             ],
             [
               "Launch-platform contribution, all platforms combined, year 1",
-              "30k–100k visitors in spikes, decaying to zero in 96 hours",
+              "30k to 100k visitors in spikes, decaying to zero in 96 hours",
               "r17-h7:149"
             ],
             [
@@ -705,7 +705,7 @@
             "Every hour goes to named humans"
           ],
           "costs": [
-            "Loses a free 30k–100k spike at 1.4–5.7% odds",
+            "Loses a free 30k to 100k spike at 1.4 to 5.7% odds",
             "Loses the credibility a good thread confers"
           ],
           "system": "No change.",
@@ -813,7 +813,7 @@
           "rows": [
             [
               "obra/superpowers",
-              "75–85k public repos; 22–30k active in 30 days; marketplace counter 1,009,371 (cached)",
+              "75 to 85k public repos; 22 to 30k active in 30 days; marketplace counter 1,009,371 (cached)",
               "Brainstorms, designs, writes the spec, commits it, then asks the human to review it",
               "Terminal. No editor, no review state"
             ],
@@ -1260,7 +1260,7 @@
       ],
       "tension": [
         "Engine findings cost about 90 minutes; the build already produces them.",
-        "Content's year-one contribution is 20k–60k visitors, back-loaded to months 9–18.",
+        "Content's year-one contribution is 20k to 60k visitors, back-loaded to months 9 to 18.",
         "A post every fortnight takes six to eight hours the first round of engine fixes also needs."
       ],
       "evidence": [
@@ -1355,12 +1355,12 @@
             ],
             [
               "Content's year-1 direct contribution at 24 pieces",
-              "20k–60k visitors; \"its real value is link acquisition and sales-page support, not raw traffic\"",
+              "20k to 60k visitors; \"its real value is link acquisition and sales-page support, not raw traffic\"",
               "r17-h7:146"
             ],
             [
               "When organic starts to matter at all",
-              "Back-loaded to months 9–18",
+              "Back-loaded to months 9 to 18",
               "r17-h7:144"
             ]
           ]
@@ -1996,7 +1996,7 @@
       "state": [
         "The plan opens with \"frontmatter is a markdown editor for repositories…\"",
         "The research record's rule is \"Never say markdown editor.\"",
-        "Seven free self-hosted editors hold 21,501–76,040 stars, all pushed within a day."
+        "Seven free self-hosted editors hold 21,501 to 76,040 stars, all pushed within a day."
       ],
       "tension": [
         "The phrase describes the product accurately, but in public it invites free alternatives.",
@@ -2488,7 +2488,7 @@
             ],
             [
               "Retention band the tier sits in",
-              "Top-quartile annual gross retention 60–70% under $50/month; 23% for AI-native products under $50",
+              "Top-quartile annual gross retention 60 to 70% under $50/month; 23% for AI-native products under $50",
               "docs/PRODUCT-BRIEF.md:292"
             ],
             [
@@ -2498,7 +2498,7 @@
             ],
             [
               "Monthly nut the tier would have to reach",
-              "about ₹1.09L, currently covered by 54–78 consulting hours",
+              "about ₹1.09L, currently covered by 54 to 78 consulting hours",
               "docs/PRODUCT-BRIEF.md:292"
             ],
             [
@@ -2833,7 +2833,7 @@
             ],
             [
               "Monthly nut",
-              "about ₹1.09L, covered by 54–78 consulting hours",
+              "about ₹1.09L, covered by 54 to 78 consulting hours",
               "docs/PRODUCT-BRIEF.md:292"
             ],
             [
@@ -2996,7 +2996,7 @@
       "stakes": "Skipping it loses the only lever sized to gray-matter's 35M monthly downloads.",
       "state": [
         "The channel table does not mention it.",
-        "The research calls it the one asymmetric move: 30k–150k year-one visitors.",
+        "The research calls it the one asymmetric move: 30k to 150k year-one visitors.",
         "The bug where a list starting at the left edge makes the editor refuse the file hits 83% of real vaults."
       ],
       "tension": [
@@ -3489,7 +3489,7 @@
             ],
             [
               "Everything in the channel table, summed, optimistic, year one",
-              "350k–500k visitors; the 1.26M requirement is a 24-to-36-month cumulative figure",
+              "350k to 500k visitors; the 1.26M requirement is a 24-to-36-month cumulative figure",
               "r17-h7:153"
             ],
             [
@@ -3526,7 +3526,7 @@
           "label": "Toolchain documentation: superpowers, then spec-kit",
           "gains": [
             "Highest relevance per reader",
-            "Reaches 22–30k active repos if accepted"
+            "Reaches 22 to 30k active repos if accepted"
           ],
           "costs": [
             "Entirely outside our control",
@@ -3560,7 +3560,7 @@
             "One day of work per quarter"
           ],
           "costs": [
-            "1.4–5.7% odds of clearing 100 points",
+            "1.4 to 5.7% odds of clearing 100 points",
             "Decays to zero in 96 hours"
           ],
           "system": "No change.",
@@ -3573,7 +3573,7 @@
         "The first 100 paying customers need 22,222 visitors, and no measured loop delivers that.",
         "Only conversations answer whether anyone pays, which the eleven listed gaps never touched."
       ],
-      "flip": "If the superpowers maintainer says yes in week 2, a channel reaching 22–30k repos outranks recruitment.",
+      "flip": "If the superpowers maintainer says yes in week 2, a channel reaching 22 to 30k repos outranks recruitment.",
       "linked": [
         "G6",
         "G15",
@@ -4096,7 +4096,7 @@
             ],
             [
               "What the fortnight actually needs",
-              "Three landing pages, in weeks 1–2",
+              "Three landing pages, in weeks 1 to 2",
               "docs/PRODUCT-BRIEF.md:352"
             ]
           ]
@@ -4166,7 +4166,7 @@
       ],
       "rec": "d",
       "recCase": [
-        "The landing pages need something clickable in weeks 1–2 and nothing else costs this little.",
+        "The landing pages need something clickable in weeks 1 to 2 and nothing else costs this little.",
         "Labelling it a demo removes a channel claim that cannot be measured."
       ],
       "flip": "If review state can anchor to a file the user does not own, it becomes a product surface.",
@@ -4227,8 +4227,8 @@
       "stakes": "If the plan assumes any organic discovery, every channel number is optimistic by that amount.",
       "state": [
         "No section states what organic discovery contributes; published-page organic is about zero.",
-        "Organic search is back-loaded to months 9–18 and cannot carry a launch.",
-        "The whole table, summed optimistically, reaches 350k–500k year-one visitors."
+        "Organic search is back-loaded to months 9 to 18 and cannot carry a launch.",
+        "The whole table, summed optimistically, reaches 350k to 500k year-one visitors."
       ],
       "tension": [
         "Free artefacts do get attention: human-review went to 1,241 stars in six weeks.",

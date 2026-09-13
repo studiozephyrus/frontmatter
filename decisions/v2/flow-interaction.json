@@ -148,7 +148,7 @@
             [
               "Customisable keymap",
               "none",
-              "r24-v1:36 costs it at 3–4 days and names this exact line: \"`use-hotkey.ts:5` literally types the world as…\""
+              "r24-v1:36 costs it at 3 to 4 days and names this exact line: \"`use-hotkey.ts:5` literally types the world as…\""
             ],
             [
               "WCAG remedy on record",
@@ -379,7 +379,7 @@
           ],
           "rows": [
             [
-              "⌘1–6, ⌘K link, list/quote/task toggles, checkbox, move-line",
+              "⌘1 to 6, ⌘K link, list/quote/task toggles, checkbox, move-line",
               "0.5 d",
               "No"
             ],
@@ -390,7 +390,7 @@
             ],
             [
               "Palette that indexes everything and shows hotkeys",
-              "1–2 d",
+              "1 to 2 d",
               "No"
             ],
             [
@@ -400,12 +400,12 @@
             ],
             [
               "HTML paste → markdown",
-              "2–3 d",
+              "2 to 3 d",
               "No"
             ],
             [
               "Table editing: Tab nav, add/remove row and column, alignment",
-              "5–8 d",
+              "5 to 8 d",
               "No"
             ],
             [
@@ -415,12 +415,12 @@
             ],
             [
               "Customisable keymap",
-              "3–4 d",
+              "3 to 4 d",
               "No"
             ],
             [
               "Total",
-              "13–21 d, midpoint 17.5",
+              "13 to 21 d, midpoint 17.5",
               "0 of 8"
             ]
           ]
@@ -451,7 +451,7 @@
             ],
             [
               "17.5 days in calendar terms",
-              "70 calendar days as person-days; 104–140 as pair-days",
+              "70 calendar days as person-days; 104 to 140 as pair-days",
               "CRITIQUE.md:616"
             ]
           ]
@@ -493,7 +493,7 @@
             [
               "Authoring keys bound today",
               "3",
-              "CodeMirrorEditor.tsx:224-226 (no ⌘1–6, no list, no quote, no task)"
+              "CodeMirrorEditor.tsx:224-226 (no ⌘1 to 6, no list, no quote, no task)"
             ],
             [
               "`toggleTaskAtLine`",
@@ -699,7 +699,7 @@
             ],
             [
               "Total review",
-              "17–25 min",
+              "17 to 25 min",
               "reading + 3 s/hunk decision"
             ],
             [
@@ -709,7 +709,7 @@
             ],
             [
               "Review : generation",
-              "17–25×",
+              "17 to 25×",
               "CRITIQUE.md:637: \"the product's structural problem\""
             ]
           ]
@@ -1971,7 +1971,7 @@
               "same"
             ],
             [
-              "People already scheduled for weeks 1–2 conversations",
+              "People already scheduled for weeks 1 to 2 conversations",
               "35",
               "PRODUCT-BRIEF.md:352 (10 developers, 5 who bill, 20 team conversations)"
             ]
@@ -2544,7 +2544,7 @@
               "PRODUCT-BRIEF.md:135"
             ],
             [
-              "Week 3–4 test in the plan",
+              "Week 3 to 4 test in the plan",
               "the highlight works on files frontmatter did not write, on one spec-kit and one superpowers repo",
               "PRODUCT-BRIEF.md:354"
             ],

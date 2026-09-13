@@ -64,7 +64,7 @@
       },
       "stakes": "Nobody can build against a price for things no planned feature builds.",
       "state": [
-        "Pro is $4–5 per user: 90-day edit journal, CI gates.",
+        "Pro is $4 to $5 per user: 90-day edit journal, CI gates.",
         "Neither exists: no feature-list row builds retention; the CI check `mdmax cert` is unwired.",
         "Attribution is free today, a free-tier feature."
       ],
@@ -562,7 +562,7 @@
       "sub": "Price level",
       "weight": "critical",
       "q": "What is the price, and which category is it anchored to?",
-      "lede": "Draftable sells prose comparison alone at $129–261 per user a year. Our band is $48–60.",
+      "lede": "Draftable sells prose comparison alone at $129 to $261 per user a year. Our band is $48 to $60.",
       "visual": {
         "kind": "matrix",
         "x": [
@@ -611,13 +611,13 @@
       },
       "stakes": "Price against the wrong category and the number is either uncollectable or not credible.",
       "state": [
-        "Pro is $4–5 per user per month, period unstated: $48–60 a year.",
+        "Pro is $4 to $5 per user per month, period unstated: $48 to $60 a year.",
         "Two anchors are annual-billed rates; GitHub Team $4 has no fetched source.",
         "$5 needs 1,018 subscribers to cover monthly costs, counting founder time."
       ],
       "tension": [
-        "Draftable charges $129–261 per user a year for comparison with no editor.",
-        "Diffchecker charges $15–40 per user per month for the same narrow job.",
+        "Draftable charges $129 to $261 per user a year for comparison with no editor.",
+        "Diffchecker charges $15 to $40 per user per month for the same narrow job.",
         "The conversations carry only the low number, so they can return one answer."
       ],
       "evidence": [
@@ -776,13 +776,13 @@
           ],
           "system": "Two SKUs and a proration path.",
           "screens": "Pricing page with a period toggle.",
-          "money": "$48–60 per seat per year."
+          "money": "$48 to $60 per seat per year."
         },
         {
           "k": "b",
           "label": "$10-20 per editor per month - the diff-tool anchor",
           "gains": [
-            "Draftable sells less than this for $129–261"
+            "Draftable sells less than this for $129 to $261"
           ],
           "costs": [
             "No markdown editor charges this",
@@ -790,7 +790,7 @@
           ],
           "system": "Same billing, different number.",
           "screens": "The page must justify the level.",
-          "money": "$120–240 per editor per year."
+          "money": "$120 to $240 per editor per year."
         },
         {
           "k": "c",
@@ -1019,7 +1019,7 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "₹2,40,000–3,00,000 per engagement."
+          "money": "₹2,40,000 to ₹3,00,000 per engagement."
         }
       ],
       "rec": "b",
@@ -1553,7 +1553,7 @@
       "state": [
         "The tier table reads: hosted AI, cost plus margin, off by default.",
         "\"Capped\" appears three times in the plan; no cap number appears anywhere.",
-        "One UI call a minute for 24 hours costs $1,254–2,507 a month."
+        "One UI call a minute for 24 hours costs $1,254 to $2,507 a month."
       ],
       "tension": [
         "We cannot set a margin over model prices our reports disagree about.",
@@ -2003,7 +2003,7 @@
       "tension": [
         "Obsidian serves no rupee string; Indians pay the full dollar price.",
         "Craft serves an Indian IP ₹526.70 a month, above our band, not below.",
-        "A GDPR Article 27 EU representative costs €420–852 a year, 3.6–7.2% of annual burn."
+        "A GDPR Article 27 EU representative costs €420 to €852 a year, 3.6 to 7.2% of annual burn."
       ],
       "evidence": [
         {
@@ -2552,7 +2552,7 @@
             "No jurisdiction arrives as a surprise"
           ],
           "costs": [
-            "4–5.5% plus a cent charge worth 4.79%",
+            "4 to 5.5% plus a cent charge worth 4.79%",
             "Worst at the price we intend to charge"
           ],
           "system": "One integration, one webhook, one reconciliation surface.",
@@ -2700,7 +2700,7 @@
       ],
       "tension": [
         "Desk research on eleven gaps measured installs and attention, never payment.",
-        "As scheduled the conversations test only $4–5, so two rejections look identical.",
+        "As scheduled the conversations test only $4 to $5, so two rejections look identical.",
         "Twenty conversations return opinions. A pre-order returns money."
       ],
       "evidence": [
@@ -3173,12 +3173,12 @@
       "stakes": "The one revenue line available this month is priced on a discipline whose own measurement failed.",
       "state": [
         "The engagement sits in the upsell table at ₹3,00,000 fixed scope.",
-        "The ₹1.09L monthly costs are covered by 54–78 consulting hours.",
+        "The ₹1.09L monthly costs are covered by 54 to 78 consulting hours.",
         "Its eval kappa was measured once: 0.1 against a 0.7 bar, on nine samples."
       ],
       "tension": [
         "The upsell runs through the docs scan, a pilot feature about a year away.",
-        "Days 7–8 sell an eval discipline whose own measurement failed.",
+        "Days 7 to 8 sell an eval discipline whose own measurement failed.",
         "Engagement hours are hours not spent on the 81-week build."
       ],
       "evidence": [
@@ -3259,7 +3259,7 @@
             "Four a year cover all monthly costs"
           ],
           "costs": [
-            "Days 7–8 sell a kappa of 0.1",
+            "Days 7 to 8 sell a kappa of 0.1",
             "Not quotable from the rate card today"
           ],
           "system": "No change.",
@@ -3302,7 +3302,7 @@
             "Maximum product velocity"
           ],
           "costs": [
-            "Contradicts the funding line assuming 54–78 client hours"
+            "Contradicts the funding line assuming 54 to 78 client hours"
           ],
           "system": "No change.",
           "screens": "None.",
@@ -3720,7 +3720,7 @@
           ],
           "system": "A repo-scoped entitlement the GitHub Action checks.",
           "screens": "A repos list with a per-repo toggle.",
-          "money": "Priced against $250–450 monthly comparables."
+          "money": "Priced against $250 to $450 monthly comparables."
         },
         {
           "k": "c",
@@ -3825,13 +3825,13 @@
       },
       "stakes": "We would price what this category never paid for, and give away what it does.",
       "state": [
-        "The plan prices a team tier at $4–5 per user per month.",
+        "The plan prices a team tier at $4 to $5 per user per month.",
         "The founder's own stated numbers are free / ₹299 / ₹699 per user per month.",
         "No message records him accepting the per-seat dollar figure."
       ],
       "tension": [
         "₹699 is about $7.90, above every India AI anchor.",
-        "$4–5 is a team price benchmarked on GitHub; ₹299 is consumer.",
+        "$4 to $5 is a team price benchmarked on GitHub; ₹299 is consumer.",
         "The plan names its own retention contradiction: Max in one table, Pro in another."
       ],
       "evidence": [
@@ -3851,7 +3851,7 @@
             ],
             [
               "What the plan carries",
-              "team tier at $4–5 per user per month",
+              "team tier at $4 to $5 per user per month",
               "docs/PRODUCT-BRIEF.md:288"
             ]
           ]
@@ -3882,7 +3882,7 @@
             "Individual pricing needs no team first"
           ],
           "costs": [
-            "₹699 sits above ChatGPT Go ₹399 and Gemini ₹199–399",
+            "₹699 sits above ChatGPT Go ₹399 and Gemini ₹199 to ₹399",
             "Dodo's fee is 12.7% of a ₹299 charge"
           ],
           "system": "No retention build for the free tier.",

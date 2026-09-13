@@ -330,7 +330,7 @@
             ],
             [
               "Tauri remote wrapper → real local-first app",
-              "4–8 weeks",
+              "4 to 8 weeks",
               "r19-p2 §91.2, Option B build estimate"
             ],
             [
@@ -339,7 +339,7 @@
               "10 of 58 calendar days touched src/, src-tauri/ or test/, 2026-07-13 → 2026-09-08 (PRODUCT-BRIEF.md:227)"
             ],
             [
-              "What 20–40 added days cost at that rate",
+              "What 20 to 40 added days cost at that rate",
               "16.5 to 33.1 calendar weeks",
               "[derived] 20 ÷ 1.21 and 40 ÷ 1.21"
             ]
@@ -1161,7 +1161,7 @@
           "items": [
             [
               "Plan's stated Windows range",
-              "150–400 USD/year",
+              "150 to 400 USD/year",
               "PRODUCT-BRIEF.md:104 and :231"
             ],
             [
@@ -2031,7 +2031,7 @@
             [
               "/api/ and /login",
               "never intercepted",
-              "lines 52–58: which is where note content arrives"
+              "lines 52 to 58: which is where note content arrives"
             ],
             [
               "Cache key",
@@ -2041,7 +2041,7 @@
             [
               "Offline fallback that already exists",
               "an inline HTML page saying \"md.sgnk.ai is unreachable\"",
-              "lines 63–76: so the shell-offline courtesy is shipped, with the wrong product's domain in it"
+              "lines 63 to 76: so the shell-offline courtesy is shipped, with the wrong product's domain in it"
             ],
             [
               "Offline reading today",
@@ -2551,7 +2551,7 @@
             [
               "External calls at render time",
               "mermaid via CDN, KaTeX via CDN",
-              "route.ts header, lines 4–13"
+              "route.ts header, lines 4 to 13"
             ],
             [
               "Platform gate",
