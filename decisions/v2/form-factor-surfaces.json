@@ -81,13 +81,13 @@
       "stakes": "Choosing the shell commits 58 calendar weeks before a stranger is asked anything.",
       "state": [
         "The plan's form-factor decision offers three options and carries an estimate for none.",
-        "Every feature and fix in the plan budgets the standalone shell only.",
-        "The 2026-09-08 research round measured byte-exact extension writes twice: 94/94 and 156/156 bytes."
+        "The 2026-09-08 research round measured byte-exact extension writes twice: 94/94 and 156/156 bytes.",
+        "GitHub's Spec Kit does prompt-to-spec free and open source: 136,339 stars, 12,249 forks, pushed 2026-09-12. Kiro from AWS does it paid. Fetched 2026-09-14."
       ],
       "tension": [
-        "VS Code, as a host, reaches three orders of magnitude more people.",
         "It shipped the per-file half of our review marker itself on 2026-07-03.",
-        "Nobody ships review state, who read which span, in the repo across machines."
+        "Nobody ships review state, who read which span, in the repo across machines.",
+        "Generating the kit is the half two of the largest players give away or subsidise. Reading, editing and keeping it current is the half nobody has taken."
       ],
       "evidence": [
         {
@@ -258,7 +258,8 @@
         "docs/GAPS-2026-09-08.md:141",
         "docs/CRITIQUE.md:441",
         "src/modules/mdmax",
-        "https://api.github.com/repos/microsoft/vscode/pulls/324218"
+        "https://api.github.com/repos/microsoft/vscode/pulls/324218",
+        "docs/PRODUCT-SHAPE-2026-09-14-0219.md:1"
       ],
       "when": "mvp",
       "whenWhy": "The plan proposes standalone web first. It is the shape of everything built in phase one."
