@@ -24,13 +24,18 @@ So each card was read and sorted against the plan:
 
 | Stage | Cards | What it means |
 |---|---|---|
-| Answer now, it blocks the MVP | 65 | The build cannot start, or starts wrong, without this |
+| Answer now, it blocks the MVP | 60 | The build cannot start, or starts wrong, without this |
 | Beta slot in the pilot | 2 | Only if the pilot earns it |
 | After the pilot | 119 | Good question, wrong month |
 | Not now | 9 | The plan rules the surface out |
 | A task, not a decision | 9 | Somebody does it, nobody chooses |
 
 The 119 are not deleted. They are still there, still answerable, just not in your way.
+
+Five more were then merged, because each was the same decision written twice. `FF16` into `FF1`,
+`FF14` into `FF8`, `D12` into `D11`, `D22` into `E33`, and `F16` into `AC14`. Each survivor names
+what it absorbed, so nothing was dropped quietly. That is what took the set from 204 to 199 and
+the MVP group from 65 to 60.
 
 ## The order to answer in
 
@@ -44,11 +49,13 @@ holding kits. Answering yes starts a six hour breach clock, a privacy policy, an
 person on the paperwork. Answering no means no funnel. Six other cards wait on this one:
 `L3`, `L4`, `L6`, `L7`, `L12`, `L17`, and the storage design in `AC1` and `AC14`.
 
-**2. Is the kickoff prompt back?** `FF16`, with `F5` and `R17`
+**2. What are we building, and on what surface?** `FF1`, with `F5` and `R17`
 
-Plan v15 cut it on evidence. You brought it back on 13 September. The plan carries both, and
-the gate is twenty kits made by hand before any of it is written as code. `F5` asks whether
-generation ships at all, and `R17` asks for the founder test notes that were never attached.
+`FF1` now carries the editor-first question too, because the card that asked it separately was
+the same decision written twice. Plan v15 cut the kickoff prompt on evidence and you brought it
+back on 13 September, so the plan carries both, and the gate is twenty kits made by hand before
+any of it is written as code. `F5` asks whether generation ships at all, and `R17` asks for the
+founder test notes that were never attached.
 
 **3. What do Pro and Max gate?** `PR24`, then `PR1` and `PR21`
 
@@ -67,13 +74,13 @@ recording on the site, because `P2` is where review state formally moves to afte
 
 ## Then the rest, in sittings
 
-The other 55 group cleanly. One sitting each.
+The five groups above are twelve cards. The other 48 group cleanly. One sitting each.
 
-**The shape of the product** (`FF1`, `FF3`, `FF8`, `FF14`, `MK4`, `P15`). Standalone web first,
+**The shape of the product** (`FF1`, `FF3`, `FF8`, `MK4`, `P15`). Standalone web first,
 one surface, and what to do about the shell being a fork of md.sgnk.ai. `FF3` matters more than
 it looks: the MVP wears the sibling's face, so merge, freeze or own is a week one call.
 
-**The editor itself** (`D8`, `D7`, `D11`, `D12`, `D13`, `D15`, `D21`, `D22`, `FL3`, `FL12`,
+**The editor itself** (`D8`, `D7`, `D11`, `D13`, `D15`, `D21`, `FL3`, `FL12`,
 `F18`, `F25`, `F27`, `E21`). Four modes or three, where the AI box sits, what a template is,
 what Tab does, dark mode, and which scripts and screen readers are in scope. Small questions
 individually. Together they are the first screen a stranger meets.
@@ -82,7 +89,7 @@ individually. Together they are the first screen a stranger meets.
 real vaults over a flush left list in the frontmatter. Strangers cannot open their own notes
 until that is fixed. `E12` is one day of automated checks that guards everything after it.
 
-**Storage, keys and access** (`AC1`, `AC3`, `AC13`, `F10`, `F16`, `AC14`, `F19`, `F9`, `F8`,
+**Storage, keys and access** (`AC1`, `AC3`, `AC13`, `F10`, `AC14`, `F19`, `F9`, `F8`,
 `F21`). Where bytes travel, whose key pays for the AI, what happens to the share page, and two
 shipped surfaces that contradict claims the product makes.
 
@@ -118,8 +125,8 @@ set.
 
 ## What I would not do
 
-Answer all 65 in one go. The first five decide the shape of the other sixty, and several of the
-sixty read differently once the first five are settled. Take the five, then stop, then come
+Answer all 60 in one go. The first five decide the shape of the rest, and several of them read
+differently once the first five are settled. Take the five, then stop, then come
 back.
 
 ## What happens after

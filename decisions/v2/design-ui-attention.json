@@ -2248,7 +2248,7 @@
       "options": [
         {
           "k": "a",
-          "label": "Reconcile the tokens before the pilot: accent, corners, failing contrast",
+          "label": "Reconcile the tokens before the pilot: accent, corners, contrast, gated in CI",
           "gains": [
             "A one-file edit the product document calls free",
             "Shares one pass with the contrast-token fix"

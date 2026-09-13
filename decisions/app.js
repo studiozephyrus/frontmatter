@@ -386,6 +386,10 @@
   }
 
   /* ── overview ─────────────────────────────────────────────────────────── */
+  function nonDecisions() {
+    return Q.filter(function (q) { return q.when === 'task'; }).length;
+  }
+
   function renderOverview() {
     var groups = cats(), a = answered(Q), c = crit(Q);
     var ev = Q.reduce(function (n, q) { return n + (q.evidence || []).length; }, 0);
@@ -393,14 +397,16 @@
     var openIn = function (k) { return Q.filter(function (q) { return q.when === k && !state.picks[q.id]; }); };
     var h = '<div class="hero"><span class="eyebrow">Studio Zephyrus · frontmatter</span>' +
       '<h1>Decisions pending on frontmatter</h1>' +
-      '<p>' + Q.length + ' decisions drawn from three weeks of research, including a round of checks that ' +
-      'went against the plan\'s own headline and a market sweep on 9 September that changed several ' +
-      'answers. Each decision shows the thing being decided, where it stands, what forces a choice, the ' +
-      'evidence, and what every option buys and costs. Answers stay in this browser. ' +
+      '<p>' + (Q.length - nonDecisions()) + ' decisions and ' + nonDecisions() + ' tasks, drawn from three ' +
+      'weeks of research, including a round of checks that went against the plan\'s own headline and a ' +
+      'market sweep on 9 September that changed several answers. ' +
+      Q.filter(function (q) { return q.when === 'mvp'; }).length + ' of them block the MVP; the rest ' +
+      'are staged for later. Each one shows the thing being decided, where it stands, what forces a ' +
+      'choice, the evidence, and what every option buys and costs. Answers stay in this browser. ' +
       '<a class="gallerylink" href="mockups.html" target="_blank" rel="noopener">See the screen iterations</a></p></div>';
     h += '<div class="kpis">' +
       '<div class="kpi acc"><div class="kn">Answered</div><div class="kv">' + a + '</div>' +
-        '<div class="kn">of ' + Q.length + ' decisions</div></div>' +
+        '<div class="kn">of ' + Q.length + ' in the set</div></div>' +
       (tagged.length ? '<div class="kpi crit"><div class="kn">Open for the spec</div><div class="kv">' +
         openIn('spec').length + '</div><div class="kn">answer these first</div></div>' : '') +
       '<div class="kpi' + (tagged.length ? '' : ' crit') + '"><div class="kn">Critical open</div><div class="kv">' + c + '</div>' +

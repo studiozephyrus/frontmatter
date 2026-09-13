@@ -2442,7 +2442,7 @@
       "cat": "Access, offline & install",
       "sub": "Web byte path",
       "weight": "critical",
-      "q": "Do we delete the server-side PDF route, or amend the zero-document-bytes claim to admit it?",
+      "q": "Do we delete the server-side PDF route or amend the claim, and does folder-to-one-PDF get built?",
       "lede": "Fixing the read path leaves one route that sends a whole file to a server by design.",
       "visual": {
         "kind": "screen",

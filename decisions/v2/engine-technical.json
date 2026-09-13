@@ -5675,7 +5675,7 @@
       "cat": "Engine & technical",
       "sub": "Scope",
       "weight": "high",
-      "q": "Is non-English correctness in scope for the pilot, or declared out?",
+      "q": "Is non-English correctness and text scaling in scope for the pilot, or declared out?",
       "lede": "The plan calls the byte-to-UTF-16 offset map the engine's highest-risk part, and our Chinese vault cannot be written.",
       "visual": {
         "kind": "compare",

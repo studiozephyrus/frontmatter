@@ -549,6 +549,66 @@
     "AC9": "b"
    },
    "agree": true
+  },
+  {
+   "ids": [
+    "FF1",
+    "FF16"
+   ],
+   "keep": "FF1",
+   "why": "Both ask what gets built and on which surface. FF16's 'one portable core, both surfaces' is FF1's option c word for word, so the two were the same decision written twice.",
+   "map": {
+    "FF16": "c"
+   },
+   "agree": true
+  },
+  {
+   "ids": [
+    "FF8",
+    "FF14"
+   ],
+   "keep": "FF8",
+   "why": "FF14 asks how many surfaces one person can carry and FF8 asks whether the desktop app is one of them. Answering FF14 with 'one surface for the pilot' names the web app and settles FF8 in the same breath.",
+   "map": {
+    "FF14": "b"
+   },
+   "agree": true
+  },
+  {
+   "ids": [
+    "D11",
+    "D12"
+   ],
+   "keep": "D11",
+   "why": "D11's recommended option already says 'accent, corners, failing contrast', which is the whole of D12. D12's own flip condition points back at D11 and says to do both edits once.",
+   "map": {
+    "D12": "a"
+   },
+   "agree": true
+  },
+  {
+   "ids": [
+    "E33",
+    "D22"
+   ],
+   "keep": "E33",
+   "why": "Design and Engine both asked whether non-Latin scripts are in scope for the pilot. D22's 'support CJK and RTL' and E33's 'in scope' are the same answer. Text scaling came in with D22 and is named in the kept question so it does not get lost.",
+   "map": {
+    "D22": "b"
+   },
+   "agree": true
+  },
+  {
+   "ids": [
+    "AC14",
+    "F16"
+   ],
+   "keep": "AC14",
+   "why": "Both decide the server PDF route. F16's 'cut the server PDF route, write a print path' is AC14's option a. The folder-to-one-PDF clause came in with F16 and is named in the kept question.",
+   "map": {
+    "F16": "a"
+   },
+   "agree": true
   }
  ],
  "link_edges": [
@@ -862,5 +922,5 @@
   "R5",
   "R6"
  ],
- "notes": "Read all 261 cards across 15 files (AC 15, B 15, D 19, E 28, F 26, FL 14, FF 11, G 21, L 19, MK 24, N 8, PL 14, PR 16, P 18, R 13).\n\nSCALE OF THE DUPLICATION. 43 duplicate sets covering 103 cards; 60 cards fall away, leaving 201. Market & competition loses 12 of 24 and Plan, scope & sequencing loses 8 of 14 \u2014 both areas were largely re-asking decisions owned elsewhere. Engine & technical loses only 1 of 28 and Legal 4 of 19, which is what you would expect from areas that own mechanisms rather than commentary.\n\nTHE TWO WORST. (1) The free-engine package probe is asked five times (FF12/E31/F14/PL14/MK11) with five different recommendations \u2014 run it first, run it after the engine fixes, run both, ship MIT this month, make it the launch. (2) The rendering certificate's bake-off is asked four times (E6/F30/MK22/P21). A meeting working from the un-merged set would answer each independently and ship a contradiction.\n\nRECOMMENDATION CONFLICTS INSIDE DUPLICATE SETS. About twenty sets carry disagreeing recs. The sharpest: what Pro gates on (PR1 attribution / F12 retention-as-sidecar / PL15 don't price yet); the hosted share route (F19 disable / G10 keep with noindex / MK18 permalink plus export); the ?src= parameter (FF7 ship in MVP-0 / G25 demo only); the sidecar layout (E37 shared file with merge=union / FL16 one file per person \u2014 both rec \"a\", for opposite shapes); the extension name (FF5 ship as mdmax / G21 rename the product first); the security review (L16 shrink the product first / R12 review firestore.rules now). Merging is not cosmetic here: it forces a single answer where three exist.\n\nCARDS I DELIBERATELY DID NOT MERGE. L6 (publishing governance) is not F19 \u2014 it decides noindex and system slugs once the route survives. MK7 is not G2 \u2014 it bundles the ?src= replacement. F10 is not L10 \u2014 L10's DPA and sub-processor options have no counterpart in F10. AC14 is not F16 \u2014 F16 also decides folder-to-one-PDF. E18 is not R7, D22 is not E33, D18 is not FL11: each pair shares one axis but carries a genuinely different option set, so they are edges instead.\n\nLINK EDGES. Capped at 60 and biased to cross-area, since intra-area dependency is already carried by each card's own \"linked\" array. Absence from this list is therefore NOT evidence a card is isolated \u2014 I dropped roughly forty real edges to fit the cap, including B14 to L7/L19, G6 to G8, N1 to N2, F5 to F10, L21 to R18, F16 to G12, E18 to G9, MK31 to L23, R11 to D20, FF4 to R7, G4 to PL17, and most of the Engine-internal chain (E1/E15/E16/E17/E20/E21/E23/E26 to E12).\n\nORPHANS. Seven cards change nothing else's right answer and nothing changes theirs. D13 (Google CDN icon font) and PR19 (grandfathering) are real but self-contained hygiene. L22 (children/age gate) and MK21 (the Djot arithmetic) are one-line written positions. MK17 (competitive re-read cadence) is process with no downstream. R5 (evidence tags) and R6 (withdrawals ledger gating the PDF build) are document hygiene for the plan itself rather than product decisions \u2014 worth asking whether they belong in this set at all, or in a separate editorial checklist.\n\nONE STRUCTURAL OBSERVATION. Four areas \u2014 Market & competition, Plan, scope & sequencing, Product & definition and Research & evidence \u2014 write mostly ABOUT decisions owned in Engine, Features, Form factor, Pricing and Legal. After the merge they hold the genuinely distinctive cards (MK13 incumbent response, MK16 market size, MK29 the graveyard, PL3 fix-first order, PL5 the exit bar, PL10 kill conditions, P11 the demo, P13 the projection law, P24 what review claims, R1 stop-the-rounds, R7 the second corpus, R18 verbatim-only). If a further pass is wanted, those four are where to look for a second round of re-framing rather than duplication."
+ "notes": "Read all 261 cards across 15 files (AC 15, B 15, D 19, E 28, F 26, FL 14, FF 11, G 21, L 19, MK 24, N 8, PL 14, PR 16, P 18, R 13).\n\nSCALE OF THE DUPLICATION. 43 duplicate sets covering 103 cards; 60 cards fall away, leaving 201. Market & competition loses 12 of 24 and Plan, scope & sequencing loses 8 of 14 — both areas were largely re-asking decisions owned elsewhere. Engine & technical loses only 1 of 28 and Legal 4 of 19, which is what you would expect from areas that own mechanisms rather than commentary.\n\nTHE TWO WORST. (1) The free-engine package probe is asked five times (FF12/E31/F14/PL14/MK11) with five different recommendations — run it first, run it after the engine fixes, run both, ship MIT this month, make it the launch. (2) The rendering certificate's bake-off is asked four times (E6/F30/MK22/P21). A meeting working from the un-merged set would answer each independently and ship a contradiction.\n\nRECOMMENDATION CONFLICTS INSIDE DUPLICATE SETS. About twenty sets carry disagreeing recs. The sharpest: what Pro gates on (PR1 attribution / F12 retention-as-sidecar / PL15 don't price yet); the hosted share route (F19 disable / G10 keep with noindex / MK18 permalink plus export); the ?src= parameter (FF7 ship in MVP-0 / G25 demo only); the sidecar layout (E37 shared file with merge=union / FL16 one file per person — both rec \"a\", for opposite shapes); the extension name (FF5 ship as mdmax / G21 rename the product first); the security review (L16 shrink the product first / R12 review firestore.rules now). Merging is not cosmetic here: it forces a single answer where three exist.\n\nCARDS I DELIBERATELY DID NOT MERGE. L6 (publishing governance) is not F19 — it decides noindex and system slugs once the route survives. MK7 is not G2 — it bundles the ?src= replacement. F10 is not L10 — L10's DPA and sub-processor options have no counterpart in F10. AC14 is not F16 — F16 also decides folder-to-one-PDF. E18 is not R7, D22 is not E33, D18 is not FL11: each pair shares one axis but carries a genuinely different option set, so they are edges instead.\n\nLINK EDGES. Capped at 60 and biased to cross-area, since intra-area dependency is already carried by each card's own \"linked\" array. Absence from this list is therefore NOT evidence a card is isolated — I dropped roughly forty real edges to fit the cap, including B14 to L7/L19, G6 to G8, N1 to N2, F5 to F10, L21 to R18, F16 to G12, E18 to G9, MK31 to L23, R11 to D20, FF4 to R7, G4 to PL17, and most of the Engine-internal chain (E1/E15/E16/E17/E20/E21/E23/E26 to E12).\n\nORPHANS. Seven cards change nothing else's right answer and nothing changes theirs. D13 (Google CDN icon font) and PR19 (grandfathering) are real but self-contained hygiene. L22 (children/age gate) and MK21 (the Djot arithmetic) are one-line written positions. MK17 (competitive re-read cadence) is process with no downstream. R5 (evidence tags) and R6 (withdrawals ledger gating the PDF build) are document hygiene for the plan itself rather than product decisions — worth asking whether they belong in this set at all, or in a separate editorial checklist.\n\nONE STRUCTURAL OBSERVATION. Four areas — Market & competition, Plan, scope & sequencing, Product & definition and Research & evidence — write mostly ABOUT decisions owned in Engine, Features, Form factor, Pricing and Legal. After the merge they hold the genuinely distinctive cards (MK13 incumbent response, MK16 market size, MK29 the graveyard, PL3 fix-first order, PL5 the exit bar, PL10 kill conditions, P11 the demo, P13 the projection law, P24 what review claims, R1 stop-the-rounds, R7 the second corpus, R18 verbatim-only). If a further pass is wanted, those four are where to look for a second round of re-framing rather than duplication."
 }
