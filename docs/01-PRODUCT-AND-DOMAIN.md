@@ -1,7 +1,7 @@
 ---
 mode: reference
 updated: 2026-09-09
-verified_against: e318ab3
+verified_against: 6331b1b
 ---
 
 # Product and domain
@@ -61,7 +61,7 @@ All four were re-derived here.
 |---|---|---|
 | 14 modules | **13** | `ls -d src/modules/*/ \| wc -l` |
 | 12 API route handlers | **26** | `find src/app/api -name route.ts \| wc -l` |
-| 81 test files | **100** (1,587 tests: 1,581 pass, 6 expected-fail) | `npx vitest run` |
+| 81 test files | **100** (1,602 tests: 1,596 pass, 6 expected-fail) | `npx vitest run` |
 | 226 TypeScript files under `src/` | **226** — correct | `find src -name '*.ts' -o -name '*.tsx' \| wc -l` |
 
 The test-file count is easy to inflate: `find` across the whole repo returns 264 because

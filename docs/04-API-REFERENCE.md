@@ -1,13 +1,13 @@
 ---
 mode: reference
 updated: 2026-09-09
-verified_against: e318ab3
+verified_against: 6331b1b
 ---
 
 # API reference
 
 > **Method.** I read all 26 `route.ts` files under `src/app/api/` in full, plus
-> `src/proxy.ts` (141 lines), `src/auth.ts`, `src/modules/auth/infrastructure/auth-options.ts`,
+> `src/proxy.ts` (150 lines), `src/auth.ts`, `src/modules/auth/infrastructure/auth-options.ts`,
 > `src/modules/auth/presentation/session.ts`, `src/container/dependency-container.ts`,
 > `src/modules/ai/infrastructure/gateway-client.ts`, `src/modules/vault/application/dto.ts`,
 > `src/modules/vault/application/ports.ts`, `src/modules/vault/application/get-file.ts`,
@@ -51,7 +51,7 @@ Read from the source, not assumed:
 
 - **Auth is per-handler, not middleware-enforced.** Every handler except
   `auth/[...nextauth]` opens with `const actor = await getActor(); if (!actor) return 401`.
-  The proxy (§4) deliberately does not redirect `/api/*` — the comment at `src/proxy.ts:89-91`
+  The proxy (§4) deliberately does not redirect `/api/*` — the comment at `src/proxy.ts:98-100`
   says a redirect would hand a `fetch()` an HTML page instead of an error.
 - **The 401 body is always** `{"error":"unauthorized"}` with
   `content-type: application/json`.
@@ -526,7 +526,7 @@ no catch clause, and `vault/create` re-throws any non-`InvalidPathError` from
 
 ## 4. `src/proxy.ts`
 
-141 lines. Under Next 16 (`"next": "^16.2.6"` in `package.json`) this file replaces
+150 lines. Under Next 16 (`"next": "^16.2.6"` in `package.json`) this file replaces
 `middleware.ts`; there is no `middleware.ts` or `src/middleware.ts` in the repo.
 
 It does three things: an optimistic auth redirect for page navigations, a Report-Only CSP
@@ -543,8 +543,8 @@ const PUBLIC_STATIC_RE = /^\/[a-z0-9._-]+\.(svg|png|jpg|jpeg|gif|ico|webp|avif|w
 `svg`, `png`, `jpg`, `jpeg`, `gif`, `ico`, `webp`, `avif`, `webmanifest`, `xml`, `txt`, `json`,
 `js`, `map` — fourteen, case-insensitive.
 
-The same fourteen are repeated in the `config.matcher` negative lookahead at line 139. AGENTS.md
-§1 says to edit both in the same commit, and at `e318ab3` they do match.
+The same fourteen are repeated in the `config.matcher` negative lookahead at line 148. AGENTS.md
+§1 says to edit both in the same commit, and at `6331b1b` they still match.
 
 Two constraints the regex imposes that are easy to miss:
 
@@ -557,50 +557,33 @@ Two constraints the regex imposes that are easy to miss:
 The comment block calls this pattern "THE SOURCE OF TRUTH" and says you should never have to add
 explicit names again. That is true only for top-level files with one of the fourteen extensions.
 
-### 4.2 A live instance of the §1 failure mode, in the repo right now
+### 4.2 The §1 failure mode, found and fixed on 9 September
 
 `public/` contains two directories of assets:
 
 ```
-public/decisions/{index.html, app.css, app.js, diagram.js, fonts.css, questions.js}
+public/decisions/{index.html, app.css, app.js, diagram.js, fonts.css, questions.js,
+                  mockups.html, mockups-data.js, vercel.json, build-questions.py}
 public/prototype/index.html
 ```
 
-I re-implemented `isPublicPath`, `PUBLIC_STATIC_RE`, `SLUG_PATTERN` and the matcher regex
-verbatim in node, sourced `RESERVED_SLUGS` from `src/modules/share/domain/slug.ts`, and ran the
-real public asset paths through them:
+Until commit `3f230d2` (9 September), every asset inside those directories was sent to `/login`
+for a visitor without a session. `PUBLIC_STATIC_RE` matches one top-level segment only, and
+`css` and `html` are not among its extensions. The bare `/decisions` and `/prototype` passed only
+because they look like public share slugs.
 
-```
-/decisions               middlewareRuns=true  isPublicPath=true
-/decisions/index.html    middlewareRuns=true  isPublicPath=false
-/decisions/app.css       middlewareRuns=true  isPublicPath=false
-/decisions/app.js        middlewareRuns=true  isPublicPath=false
-/decisions/diagram.js    middlewareRuns=true  isPublicPath=false
-/decisions/fonts.css     middlewareRuns=true  isPublicPath=false
-/decisions/questions.js  middlewareRuns=true  isPublicPath=false
-/prototype               middlewareRuns=true  isPublicPath=true
-/prototype/index.html    middlewareRuns=true  isPublicPath=false
-/favicon.ico             middlewareRuns=false isPublicPath=true
-/sw.js                   middlewareRuns=false isPublicPath=true
-```
+The fix, at `src/proxy.ts:79-87`, adds both directories to `isPublicPath()`, which is what
+AGENTS.md §1 prescribes for public paths that do not live at `/<name>.<ext>`. Both names are in
+`RESERVED_SLUGS` now, so nobody can publish a note at either slug and shadow the directory.
+`test/proxy.test.ts` gained ten nested-path cases, and the commit records that all ten failed
+with the fix stashed. On 13 September the file passes 41 of 41.
 
-The bare `/decisions` and `/prototype` pass only because they look like public share slugs —
-one lowercase segment, and neither word is in `RESERVED_SLUGS` (423 entries; I checked both).
-Every asset *inside* those directories is subject to a 307 to `/login` for an unauthenticated
-visitor, which is exactly the "broken image / failed manifest" symptom AGENTS.md §1 describes.
-
-This is static analysis of the regexes, not a live `curl`. AGENTS.md §1 gives the verification
-command, and it should be run before anyone acts on this:
+To check a running server:
 
 ```bash
 curl -s -o /dev/null -w "%{http_code}\n" http://localhost:3000/decisions/app.css
-# 200 = fine. 307 = the analysis above is right.
+# 200 = fine. 307 = the fix has regressed.
 ```
-
-Two further consequences of `/decisions` and `/prototype` resolving as slugs: a user cannot
-publish a note at either slug without shadowing the static directory, and `RESERVED_SLUGS`
-does not protect them. AGENTS.md's own instruction is to add to that list *before* adding the
-matching route; these two directories were added without it.
 
 ### 4.3 The other public paths
 
@@ -618,7 +601,7 @@ matching route; these two directories were added without it.
 - `/opengraph-image` and `/opengraph-image.*` — Next metadata routes that need to be public but
   do not end in a static extension.
 
-`RESERVED_SLUGS` holds 423 strings (counted by extracting the `Set` literal and counting quoted
+`RESERVED_SLUGS` holds 425 strings (423 at `e318ab3`; `3f230d2` added `decisions` and `prototype`) (counted by extracting the `Set` literal and counting quoted
 tokens). The domain file's comment explains the trade-off: generous is chosen because a
 rejected slug costs the user five seconds while a slug that shadows a future route is a bug
 shipped to users.

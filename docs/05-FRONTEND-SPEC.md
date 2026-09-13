@@ -1,7 +1,7 @@
 ---
 mode: reference
 updated: 2026-09-09
-verified_against: e318ab3
+verified_against: 6331b1b
 ---
 
 # Frontend specification
@@ -524,7 +524,7 @@ node -e 'console.log(require("./package.json").scripts.budget)'
              →  echo 'No bundle budget configured yet — skipping'
 ```
 
-The gates that do exist are green and real: 100 test files / 1,581 passing assertions in
+The gates that do exist are green and real: 100 test files / 1,596 passing assertions in
 11.76s, `clean-architecture-report.mjs` at 0 violations over 208 files, and
 `spec-report.mjs` at 4 specs / 0 errors. The specs governing frontend behaviour: there are
 none. `spec-report.mjs` reports **169 of 171 module files ungoverned**, and all 4 specs

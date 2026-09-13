@@ -1,7 +1,7 @@
 ---
 mode: reference
 updated: 2026-09-09
-verified_against: e318ab3
+verified_against: 6331b1b
 ---
 
 # Security review

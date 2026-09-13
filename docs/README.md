@@ -13,7 +13,9 @@ verified_against: e318ab3
 | Method | Nine agents on disjoint files, each required to read the code before writing, plus two documents written by the coordinator. Every quantitative claim comes from a command recorded in the document that makes it. |
 | Analyst | Claude (Opus 5), session 2e90ab3b |
 
-<!-- docs-verified-against: e318ab3 -->
+<!-- docs-verified-against: 6331b1b -->
+
+**Re-verified 2026-09-13 against `6331b1b`.** Only one commit since `e318ab3` touched code: `3f230d2`, which changed `src/proxy.ts`, `src/modules/share/domain/slug.ts`, `eslint.config.mjs` and `test/proxy.test.ts`. Every claim about those four files was re-checked and corrected (the `/decisions` redirect now fixed, shifted line numbers, file lengths, the reserved-slug count, and the test counts: 1,596 passing and 6 expected-fail on 2026-09-13). Every other claim rests on code that has not changed since the original analysis.
 
 **Not done in this pass:** no production probe, no live boot of the desktop build, no call
 requiring a credential, no comparison against the sibling `sgnk-md` repo, and no re-measurement

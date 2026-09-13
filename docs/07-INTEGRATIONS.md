@@ -1,7 +1,7 @@
 ---
 mode: reference
 updated: 2026-09-09
-verified_against: e318ab3
+verified_against: 6331b1b
 ---
 
 # Third-party integrations
@@ -169,7 +169,7 @@ string `process.env["AI_MODEL"]?.trim() || "google/gemini-3.5-flash"` as the mod
 the free tier". So on a bare deploy with no keys, every AI feature returns
 `{"error":"ai_failed"}` with a 502 — the failure is graceful and confined to AI, but it
 is a failure. The gateway host `https://ai-gateway.vercel.sh` is allowlisted in the
-report-only CSP at `src/proxy.ts:120`.
+report-only CSP at `src/proxy.ts:129`.
 
 **Failure mode if all providers are unavailable.** The six `/api/ai/*` routes return 502
 with `{"error":"ai_failed", detail}`. Editing, reading, committing, sharing, search,

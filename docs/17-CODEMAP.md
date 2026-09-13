@@ -1,7 +1,7 @@
 ---
 mode: reference
 updated: 2026-09-09
-verified_against: e318ab3
+verified_against: 6331b1b
 ---
 
 # CODEMAP
@@ -399,7 +399,7 @@ Everything else (6).
 |---|---|---|
 | `index.ts` | 8 | Barrel. |
 | `domain/splice-frontmatter.ts` | 282 | `spliceFrontmatterValue`, `spliceFrontmatterKey`, `SAFE_KEY` — the byte-preserving frontmatter writer. This is the file NF-1 and NF-3 are about, and the only source file `specs/engine/splice-writer.md` governs. |
-| `domain/slug.ts` | 258 | `validateSlug`, `suggestSlug`, `publicHref`, `RESERVED_SLUGS`, and the invalid/conflict error pair. |
+| `domain/slug.ts` | 261 | `validateSlug`, `suggestSlug`, `publicHref`, `RESERVED_SLUGS`, and the invalid/conflict error pair. |
 | `application/ports.ts` | 18 | `ShareWriter` and `ShareSnapshotPort`. |
 | `application/set-share.ts` | 45 | `makeSetShare` — publish a note under a slug. |
 | `application/remove-share.ts` | 13 | `makeRemoveShare` — unpublish. |

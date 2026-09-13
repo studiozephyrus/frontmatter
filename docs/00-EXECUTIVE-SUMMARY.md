@@ -1,7 +1,7 @@
 ---
 mode: reference
 updated: 2026-09-09
-verified_against: e318ab3
+verified_against: 6331b1b
 ---
 
 # Executive summary
@@ -70,7 +70,7 @@ product. Both halves of that sentence matter.
 **What runs.** 226 TypeScript and TSX files under `src/`, in 14 modules
 (`find src -name '*.ts' -o -name '*.tsx' | wc -l`; `ls src/modules`). 26 API route handlers, of
 which 6 are AI endpoints (`find src/app/api -name route.ts`). 100 test files outside
-`.claude/worktrees`, and `npm run test` reports **1,581 passing, 6 expected-fail, 8.93s**. The
+`.claude/worktrees`, and `npm run test` reports **1,596 passing, 6 expected-fail, 4.86s**. The
 architecture gate is clean: `npm run arch` returns `total: 0` over 208 files scanned. `npm run
 typecheck` exits silent. `npx eslint src --max-warnings=0` exits 0. The byte-pinned corpus is
 clean, as above. Editing, tabs, tree, preview, search, git commit, share, export and six AI
