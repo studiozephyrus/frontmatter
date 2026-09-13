@@ -153,7 +153,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "Nut falls from ₹1,08,918 to ₹63,918."
+          "money": "Nut falls from ₹1,08,918 to ₹63,918.",
+          "what": "Strike the second founder. One person is the default and every figure is re-derived before it is published; default-alive falls to 294 paying users, and the calendar stretches 1.46 times."
         },
         {
           "k": "b",
@@ -166,7 +167,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "Nut ₹1,08,918; default-alive 501 users."
+          "money": "Nut ₹1,08,918; default-alive 501 users.",
+          "what": "Sign this week: a named person, an equity split, a start date, hours a week. Client work stops costing product velocity; it doubles the draw from day one, before revenue exists."
         },
         {
           "k": "c",
@@ -179,7 +181,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "₹15,000 to ₹40,000 for the agreement, plus hours."
+          "money": "₹15,000 to ₹40,000 for the agreement, plus hours.",
+          "what": "Name the second person as a contractor with an hours floor, not a founder. Buys hours without giving away equity; a cash cost against a consulting-funded nut, and an IP assignment."
         },
         {
           "k": "d",
@@ -192,7 +195,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Carry both scenarios in the plan, labelled, until revenue decides. Honest about what is unknown and costs nothing today; the calendar cannot be committed to at all."
         }
       ],
       "rec": "a",
@@ -218,7 +222,8 @@
         "docs/BUSINESS.md:759"
       ],
       "when": "mvp",
-      "whenWhy": "The pace decision needs to know who builds. Every date in the plan rests on the answer."
+      "whenWhy": "The pace decision needs to know who builds. Every date in the plan rests on the answer.",
+      "recWhy": "Two governing documents disagree on how many founders exist, and every number in the plan is denominated in that count: the nut moves 70 percent and default-alive moves 41 with the answer. The only measurement available says one person, twice: 80 of 80 commits here and 416 of 416 on the sibling md repository. No signed agreement exists in the repository, and the critique's deadline for one was 7 September. So strike it, re-derive every figure at one founder, and accept that the plan reads smaller to anyone shown it; a plan that reads larger than its commit log is the lesson three withdrawn numbers already taught. This is B1, the first of the three facts on the final set, and only the founders can answer it. A signed agreement naming hours a week flips it, and the figures are then re-derived rather than doubled."
     },
     {
       "id": "B2",
@@ -455,7 +460,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "₹6,00,000 booked; zero product days."
+          "money": "₹6,00,000 booked; zero product days.",
+          "what": "Book two engagements before the week-3 go or no-go, and write no product code until they are invoiced. ₹6,00,000 is 9.4 months of the one-founder nut; 180 founder-hours and 4.5 months of client lane."
         },
         {
           "k": "b",
@@ -468,7 +474,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "₹1L a month from hours that cannot be worked."
+          "money": "₹1L a month from hours that cannot be worked.",
+          "what": "Run both lanes from week 0 at the plan's 78-hour cap. Fastest to a shipped product on paper; 78 hours is 1.95 times the measured ceiling, so one lane absorbs the other."
         },
         {
           "k": "c",
@@ -497,7 +504,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "₹4 crore for 11%, post-money $3.81M."
+          "money": "₹4 crore for 11%, post-money $3.81M.",
+          "what": "Apply to Antler or Y Combinator now. ₹4 crore is 367 months of the two-founder nut; a seven-year obligation, while support fills the founder's month at 1,239 paying users."
         }
       ],
       "rec": "c",
@@ -536,7 +544,8 @@
       "whenWhy": "How the build is funded decides how many hours a week it can have.",
       "dependsOn": [
         "B1"
-      ]
+      ],
+      "recWhy": "Services are the only funding line, the plan caps client work at 78 hours a month, and the measured ceiling is 40, so the cap is 1.95 times what one person has delivered; the 90-day calendar schedules no client hours at all. Burn without services is ₹4,700 to ₹9,300 a month, so runway is not the constraint, and a raise buys 367 months of runway against a seven-year obligation. Corrected for the ceiling, booking two engagements first and one a quarter alongside buy the same money; only the second leaves the build running, and PR20 gives the engagement its shape. ₹1,00,000 a month is 1.56 times the one-founder nut, inside the ceiling, and one client is worth 63,060 funnel visitors. This is B2, the second fact on the final set; send the proposals in week 0 and treat the closes as the measurement. Three unsolicited inbound teams reopen the raise."
     },
     {
       "id": "B3",
@@ -1265,7 +1274,8 @@
           ],
           "system": "A log, not a feature.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Instrument the pilot: log every support message with a category and a handle time. Separates 0.10 from 0.30 for the cost of a spreadsheet; ten users give no confidence interval."
         },
         {
           "k": "b",
@@ -1292,7 +1302,8 @@
           ],
           "system": "No change.",
           "screens": "Pricing page.",
-          "money": "Raises modelled cost per user about 73%."
+          "money": "Raises modelled cost per user about 73%.",
+          "what": "Adopt the pessimistic reading, 0.30 tickets at 20.72 minutes, and price against it. Conservative, needs no measurement and pushes towards teams; if the true rate is 0.10 the price is out of a market."
         },
         {
           "k": "d",
@@ -1305,7 +1316,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Publish the 90-hour figure with its denominator stated and measure later. Cheapest, and it names what makes the figure unauditable; the next measurement costs customers."
         }
       ],
       "rec": "a",
@@ -1332,7 +1344,8 @@
         "docs/research/agent-reports-2026-08-29-r11/r6-support-deflection.md:157"
       ],
       "when": "after",
-      "whenWhy": "Support load is measured once there are paying users."
+      "whenWhy": "Support load is measured once there are paying users.",
+      "recWhy": "Support is the cost structure of this business, and the number that drives it is written two ways: BUSINESS.md uses 0.3 tickets per paying user a month at 12 minutes and the PRD uses 0.10, a threefold gap on the largest cost in the model. At 0.30 support fills the founder's whole month at 1,239 paying users; at 0.10 an individual subscription flips from below cost to above it. Ten strangers yield no confidence interval, and they separate two numbers that differ threefold, for the cost of a spreadsheet with a category and a handle time per message. PR7 adopts the ₹1,30,560 figure, and B7 gives the ten a 48-hour best effort so the messages arrive. The deflection changes in (b) are engineering days spent on an unmeasured number, so they follow the measurement. Under about five messages in the fortnight, the sample is unreadable and the pessimistic reading stands."
     },
     {
       "id": "B7",
@@ -1551,7 +1564,8 @@
           ],
           "system": "No change.",
           "screens": "One line on the pricing page.",
-          "money": "None."
+          "money": "None.",
+          "what": "No commitment on free, stated plainly, in the pilot too. Honest, and it bounds the founder's time absolutely; a pilot stranger who hits a refusal may get no answer."
         },
         {
           "k": "b",
@@ -1564,7 +1578,8 @@
           ],
           "system": "GitHub Discussions with category forms.",
           "screens": "A support page; a forum link.",
-          "money": "$0 a month to 1,000 users."
+          "money": "$0 a month to 1,000 users.",
+          "what": "Unlimited features and bounded support: free goes to a public forum, never a queue. Bounds the only cost that scales and answers stay indexed; a ten-user forum reads as an empty room."
         },
         {
           "k": "c",
@@ -1578,7 +1593,8 @@
           ],
           "system": "No change.",
           "screens": "Pricing page; a pilot welcome note.",
-          "money": "A few founder-hours a week, twice."
+          "money": "A few founder-hours a week, twice.",
+          "what": "Forum standing for free, plus a 48-hour best effort for the ten pilot users only. Protects the one measurement the plan turns on at a few hours a week; an expectation withdrawn later."
         },
         {
           "k": "d",
@@ -1591,7 +1607,8 @@
           ],
           "system": "A metering surface where none exists.",
           "screens": "An upgrade prompt at the ceiling.",
-          "money": "Unknown; nothing comparable meters an editor."
+          "money": "Unknown; nothing comparable meters an editor.",
+          "what": "Cap the free tier by vault size or repository count instead of support. Creates a paid moment the product can see; it contradicts free with no limits and cuts the funnel with the ops bill."
         }
       ],
       "rec": "c",
@@ -1620,7 +1637,8 @@
         "docs/CRITIQUE.md:966"
       ],
       "when": "after",
-      "whenWhy": "What free support means comes with the paid tier."
+      "whenWhy": "What free support means comes with the paid tier.",
+      "recWhy": "The free tier is the whole funnel and, at scale, the largest consumer of founder time, which cannot be bought: a median free user costs ₹7.87 a month and 86 percent of that is founder time. Only founder time grows with users, so the bound goes on support and never on features, as Q13's uncapped free tier requires. A public forum is the shape that scales, because answers stay indexed and the queue never forms. The pilot is different: it is a study with ten named strangers, support is how we learn what breaks, and a stranger who goes quiet unanswered is indistinguishable from one who left, which wastes a tenth of the answer. India to US Pacific is 12.5 hours, so 48 is the honest number rather than 24. The expectation is withdrawn afterwards, and that is said at recruitment. Heavy vaults driving import and data-loss tickets in the first hundred users make (d) worth using."
     },
     {
       "id": "B8",
@@ -1813,7 +1831,8 @@
           ],
           "system": "A notices writer inside the existing `.frontmatter/` folder.",
           "screens": "A status-line affordance; a notices list.",
-          "money": "None."
+          "money": "None.",
+          "what": "A notices ledger at .frontmatter/notices/, the no-email rule held, and a consent page for the ten pilot users. One vendor directory and a plain file; it still lands in the user's git history."
         },
         {
           "k": "b",
@@ -1826,7 +1845,8 @@
           ],
           "system": "A second vendor directory.",
           "screens": "A notices folder in the tree.",
-          "money": "None."
+          "money": "None.",
+          "what": "A Notices folder at vault root, as BUSINESS.md specifies. The most visible to a user who never opens .frontmatter; vendor files at the top of someone's repository, against our own rule."
         },
         {
           "k": "c",
@@ -1839,7 +1859,8 @@
           ],
           "system": "An optional address; a sending vendor.",
           "screens": "First run gains a field.",
-          "money": "Resend Pro, $20 a month at 24,145 messages."
+          "money": "Resend Pro, $20 a month at 24,145 messages.",
+          "what": "An in-app list plus an optional email field at first run, purpose stated. Solves breach, renewal and price-change delivery at once; a field on the most protected screen, decliners get nothing."
         },
         {
           "k": "d",
@@ -1852,7 +1873,8 @@
           ],
           "system": "Accounts before value.",
           "screens": "A signup screen that does not exist.",
-          "money": "Unknown; the plan reads it as the largest."
+          "money": "Unknown; the plan reads it as the largest.",
+          "what": "Require an email at first run. Every notice class has a channel from day one; it contradicts the category convention the plan cites as a kill condition."
         }
       ],
       "rec": "a",
@@ -1883,7 +1905,8 @@
         "docs/WEEK0-DECISIONS-2026-09-08.md:21"
       ],
       "when": "after",
-      "whenWhy": "Reaching users we hold no address for assumes users."
+      "whenWhy": "Reaching users we hold no address for assumes users.",
+      "recWhy": "With no address, a breach notice, a price change and a failed renewal all have nowhere to go, and the pilot's day-14 ask needs a channel the plan does not have. BUSINESS.md writes obligatory messages into the vault under Notices, which puts vendor files at the top of someone's repository against our own rule; the in-app list reaches nobody who stopped opening the app. We already committed to one vendor directory, .frontmatter, and a plain file inside it breaks none of our rules while landing in git history. The pilot is a study with ten named participants, so a consent page at recruitment turns the day-14 ask into a commitment. Q3 opens the editor with no account, so an email field at first run is the change most likely to depress conversion. Breach and price-change notices still have no channel at scale under (a), so (c) is due before the first charge."
     },
     {
       "id": "B10",
@@ -2011,7 +2034,8 @@
           ],
           "system": "A daily counts writer in `.frontmatter/`.",
           "screens": "A settings line naming the file.",
-          "money": "None."
+          "money": "None.",
+          "what": "Adopt the draft as written: a local usage file and one ask on day 14. Consistent with every operating rule and cheap; anyone who declines is uncounted, and it says nothing about why."
         },
         {
           "k": "b",
@@ -2026,7 +2050,8 @@
           ],
           "system": "Same writer as (a).",
           "screens": "Same as (a).",
-          "money": "Founder time, about a day across the fortnight."
+          "money": "Founder time, about a day across the fortnight.",
+          "what": "Adopt the draft and interview every stranger on day 14 regardless. All ten accounted for, shared file or not, and the reason is the input to re-cutting or killing it; only the founder can run it."
         },
         {
           "k": "c",
@@ -2039,7 +2064,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Self-report only and skip the file. Nothing to build and nothing lands in the repository; it rests on recall against a 1.0 percent baseline."
         },
         {
           "k": "d",
@@ -2052,7 +2078,8 @@
           ],
           "system": "An upload path and a consent record.",
           "screens": "A consent toggle at first run.",
-          "money": "None material at pilot scale."
+          "money": "None material at pilot scale.",
+          "what": "Opt-in upload, off by default, from day one. Clean counts with no day-14 ask; keyed to an account the line is personal data, and consent moves forward."
         }
       ],
       "rec": "b",
@@ -2079,7 +2106,8 @@
         "docs/WEEK0-DECISIONS-2026-09-08.md:22"
       ],
       "when": "after",
-      "whenWhy": "The exit measure belongs with the pilot."
+      "whenWhy": "The exit measure belongs with the pilot.",
+      "recWhy": "The pilot passes if six of ten strangers keep using it, which cannot be observed unless the measure is designed in first, and a local file reaches us only if volunteered, so one decline moves the result by a tenth. The instrument has since become pwa's /pilot app, six tasks with a verdict each and offline feedback, and AC17 settles where the count lives per surface. What no count supplies is the reason, and with ten people the reason is the input to re-cutting or killing the product. Q15 sets the pass at three of ten naming the problem unprompted, two still using at day 30, and a booked call from someone who was not asked, so the day-30 call is already in the design and the interview folds into it; booking it at recruitment turns a one percent ask into an appointment. At a hundred users interviewing everyone is impossible and (d) becomes the design, consent first."
     },
     {
       "id": "B11",
@@ -2471,7 +2499,8 @@
           ],
           "system": "No change.",
           "screens": "The milestone table is rewritten.",
-          "money": "Target falls from 6,689 paying users to 294."
+          "money": "Target falls from 6,689 paying users to 294.",
+          "what": "Delete ₹20 lakh a month; publish default-alive, 294 paying users, as the only target. Every channel in the audit reaches its 4,185 visitors a month; the number that made this look big goes."
         },
         {
           "k": "b",
@@ -2484,7 +2513,8 @@
           ],
           "system": "No change.",
           "screens": "The milestone table gains a churn column.",
-          "money": "About 89,000 replacement visitors a month."
+          "money": "About 89,000 replacement visitors a month.",
+          "what": "Keep ₹20 lakh as a three-year figure, restated with the churn replacement flow. Honest about the flow the original omitted; still twelve times default-alive, and reads as failure for three years."
         },
         {
           "k": "c",
@@ -2497,7 +2527,8 @@
           ],
           "system": "No change.",
           "screens": "None until sized.",
-          "money": "Unknown until measured, which is the point."
+          "money": "Unknown until measured, which is the point.",
+          "what": "Size the developer-tool distribution channel before publishing any target. The only candidate of the right order of magnitude; it reaches developers, the worst-converting audience."
         },
         {
           "k": "d",
@@ -2510,7 +2541,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Publish no traffic target until the two-week tests return. Avoids committing before the product is confirmed; no way to say whether any channel works, and the question returns."
         }
       ],
       "rec": "a",
@@ -2540,7 +2572,8 @@
         "docs/CRITIQUE.md:1459"
       ],
       "when": "after",
-      "whenWhy": "Traffic milestones belong with the launch plan."
+      "whenWhy": "Traffic milestones belong with the launch plan.",
+      "recWhy": "The ₹20 lakh a month milestone needs about 1,260,000 cumulative visitors, and the channel audit sums every available channel at 350,000 to 500,000 in year one, a third of it; holding the figure at 6 percent monthly churn takes about 89,000 visitors a month. Every honest weekly report against that number would read as failure. Default-alive at one founder is 294 paying users, about 100,428 cumulative visitors or 4,185 a month, which every channel in the audit can reach, and hitting it means the founder is paid. Q13's bands and MK16's denominator change move the arithmetic upward later, and the target can move with evidence; a number no channel mix reaches cannot. A small target is harder to raise against, and B2 already declines the raise. A developer-tool channel sized and found large makes ₹20 lakh arguable, with a date."
     },
     {
       "id": "B14",
@@ -2741,7 +2774,8 @@
           ],
           "system": "No change.",
           "screens": "A grievance and privacy page.",
-          "money": "₹35,000 to ₹90,000 a year CA retainer, budgeted."
+          "money": "₹35,000 to ₹90,000 a year CA retainer, budgeted.",
+          "what": "The whole pack in week 0: the CERT-In point-of-contact filing, the six-hour runbook, a published grievance officer and a CA's GST opinion. Hours from a short schedule; the runbook is revised later."
         },
         {
           "k": "b",
@@ -2754,7 +2788,8 @@
           ],
           "system": "No change.",
           "screens": "A grievance page.",
-          "money": "Nothing today; an accrued position, size unknown."
+          "money": "Nothing today; an accrued position, size unknown.",
+          "what": "CERT-In filing and runbook now, grievance officer now, tax at first revenue. Deals with the six-hour clock, the one not recoverable; GST attaches to purchases already made, so deferring accrues."
         },
         {
           "k": "c",
@@ -2767,7 +2802,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "None today."
+          "money": "None today.",
+          "what": "File everything at the first paying customer. Defers all of it at zero cost today; the CERT-In directions have no size floor, so they already bind the pilot."
         },
         {
           "k": "d",
@@ -2780,7 +2816,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "None today."
+          "money": "None today.",
+          "what": "Wait for the Firebase decision, since the answer changes what data we hold. Avoids writing the runbook twice; that decision has no date, and the filing does not depend on it."
         }
       ],
       "rec": "a",
@@ -2814,7 +2851,8 @@
       "whenWhy": "Some statutory work is due before the first stored kit, so it is scheduled with phase zero.",
       "dependsOn": [
         "L7"
-      ]
+      ],
+      "recWhy": "The legal duties that bind today have no size floor, no owner and nothing written, and one has a six-hour clock: the CERT-In direction is named in the plan while the Annexure II point-of-contact filing is missing. A grievance officer is due now under SPDI Rule 5(9) and none is published. CGST section 24(iii) has no turnover floor on one reading, and the company already buys foreign services, so whichever reading holds is operative; a chartered accountant answers it in an hour. The filing is a form, the runbook a page, the officer appears on the site rather than in code, and the CA retainer is already in the budget, so the pack costs hours, not engineering days. Q9 deletes firestore.rules, so file the point of contact first and write the runbook once that lands. Deferring to the first paying customer fails because the directions already bind the pilot."
     },
     {
       "id": "B16",
@@ -3366,7 +3404,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "Five working days."
+          "money": "Five working days.",
+          "what": "Run the five-day laptop-off drill before the pilot starts. The cheapest moment, because nothing much can break; it tests almost nothing, no renewals, no queue, no incident surface."
         },
         {
           "k": "b",
@@ -3381,7 +3420,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "Five working days, plus what it surfaces."
+          "money": "Five working days, plus what it surfaces.",
+          "what": "Run it before the first paying user. Tests the systems that matter while breaking them is cheap, and converts an argument into a measurement; five working days from a schedule that has few."
         },
         {
           "k": "c",
@@ -3394,7 +3434,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "Half a day."
+          "money": "Half a day.",
+          "what": "Write a continuity runbook without running a drill. An afternoon, and it captures the obvious items; nobody has run it, so it records intent rather than tested steps."
         },
         {
           "k": "d",
@@ -3407,7 +3448,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "None until an absence."
+          "money": "None until an absence.",
+          "what": "Accept bus factor zero: one founder, no drill, no runbook. Free until an absence happens; every compliance clock runs on and the retainer SLA has no cover."
         }
       ],
       "rec": "b",
@@ -3434,7 +3476,8 @@
         "docs/research/agent-reports-2026-08-30/r26-c9-capacity.md:181"
       ],
       "when": "after",
-      "whenWhy": "A continuity drill is due before the first paying user."
+      "whenWhy": "A continuity drill is due before the first paying user.",
+      "recWhy": "One person carries the funding, the calendar, the support queue and a six-hour statutory clock, the risk register's ten rows do not include founder unavailability, and no absence has ever been tested. Before the pilot almost nothing runs, so a drill then would test very little; before the first paying user, renewals, the queue and the incident surface exist and breaking them is still cheap, because a five-day outage is a test rather than an incident until someone has paid. Indian card mandates get one attempt, so a failed renewal during a real absence is terminal. Write down what broke and use that list as the runbook. B1 decides whether there is a second person at all; if the count resolves to two, the drill still runs and its result changes meaning. PR4's page sets when the first paying user arrives, so the drill gets a date the moment that does."
     },
     {
       "id": "B21",
@@ -3504,7 +3547,8 @@
           ],
           "system": "The review file schema is published and versioned.",
           "screens": "A format page in the docs.",
-          "money": "No acquisition premium, ever."
+          "money": "No acquisition premium, ever.",
+          "what": "Independent, permanently, written down, with the separate-file review format published. Matches the architecture already chosen, where exit is free; it rules out acquisition, the most common ending."
         },
         {
           "k": "b",
@@ -3517,7 +3561,8 @@
           ],
           "system": "Proprietary review file; no open format.",
           "screens": "None.",
-          "money": "One-time, unpredictable, and it ends the product."
+          "money": "One-time, unpredictable, and it ends the product.",
+          "what": "Build to be acquired by a docs platform, CMS or agent vendor. An acquirer with a pipeline gets distribution we cannot buy; four of eight dead products were bought and the software went too."
         },
         {
           "k": "c",
@@ -3532,7 +3577,8 @@
           ],
           "system": "Review file format published; nothing else changes.",
           "screens": "A format page.",
-          "money": "None today."
+          "money": "None today.",
+          "what": "Independent by default, with a written price at which we would sell. Keeps the open-format promise and removes the question from every future cash scare; a number that can leak or age badly."
         },
         {
           "k": "d",
@@ -3545,7 +3591,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Leave it open. Costs nothing today; the format decision defaults to closed, and the question returns under pressure."
         }
       ],
       "rec": "c",
@@ -3566,7 +3613,8 @@
         "docs/CRITIQUE.md:1766"
       ],
       "when": "after",
-      "whenWhy": "What we are building toward is worth asking once the pilot reports."
+      "whenWhy": "What we are building toward is worth asking once the pilot reports.",
+      "recWhy": "Acquisition is the most common ending among the dead products studied, four of eight were bought and the software went with them, and the plan never names the ending it wants. The architecture has already chosen: files stay the user's, the review file is plain text readable without us, and exit is free, which is the differentiator Q9 and Q11 rest on; building to be bought argues for a closed format, so leaving the question open lets the format default to closed under pressure. A written price costs a paragraph and stops the question returning at every cash scare, a recurring event for a services-funded company. The caveats are on the card: the number can leak or age, and it is decided without ever having met an acquirer. An approach that would keep the users and the format, which none of the four got, is the one thing that reopens it."
     }
   ]
 }

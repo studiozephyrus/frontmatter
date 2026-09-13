@@ -151,7 +151,8 @@
           ],
           "system": "The pilot app records exports and the day-14 answer.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Phase 0 passes when ten of twenty export a document; Phase 1 when three people on one team say the which-file-wins view was news. One number per phase, agreed first; twenty named people must exist."
         },
         {
           "k": "b",
@@ -164,7 +165,8 @@
           ],
           "system": "None.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "One test for both phases: the highlight test at n=15 with a stated pass line. Cheap and already designed on D18; it measures noticing, not use or payment."
         },
         {
           "k": "c",
@@ -177,7 +179,8 @@
           ],
           "system": "None.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Keep the three arms as written. Nothing to redesign; arm 2 now ships free in four editors, so the test cannot show demand for us."
         },
         {
           "k": "d",
@@ -190,7 +193,8 @@
           ],
           "system": "None.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "No pre-registered test; judge by what the twenty say. Nothing to write, and a bar set after the result is not a bar."
         }
       ],
       "rec": "a",
@@ -211,7 +215,8 @@
         "docs/research/agent-reports-2026-08-30/r25-w1-reddit-recovered.md:79"
       ],
       "when": "after",
-      "whenWhy": "The old two week tests are replaced by the twenty hand made kits."
+      "whenWhy": "The old two week tests are replaced by the twenty hand made kits.",
+      "recWhy": "The old headline tests measured claims four free tools now ship: arm 2, what the agent changed in the working tree, is in Claude Code, Antigravity, Codex and VS Code, and arm 3 is Almanac's feature sentence, which raised $45 million and shut down. Ten people split three ways cannot separate a bad arm from a bad product. Each phase needs one judge written before it starts, because that is the only kind that can say no: Phase 0, the open editor at /, passes when ten of twenty strangers export a document, which the pilot app can observe; Phase 1, the instruction-file view, passes when three people on a team say the view told them something they did not know, the unprompted-demand test Q15 keeps. Both are observable with what exists. The cost is that twenty named people must exist first, which is G15. If the twenty cannot include a team, Phase 1's judge is rewritten before Phase 1 starts."
     },
     {
       "id": "G2",
@@ -421,7 +426,8 @@
           ],
           "system": "No change.",
           "screens": "Removes it from the product-family diagram.",
-          "money": "None."
+          "money": "None.",
+          "what": "No Obsidian surface, and the four surviving mentions come out: tiers table, weekly schedule, retention table, product family. Week 2 loses its one non-outbound action."
         },
         {
           "k": "b",
@@ -436,7 +442,8 @@
           ],
           "system": "CodeMirror extension over `.frontmatter/review.jsonl`; no re-parse.",
           "screens": "A highlight layer inside Obsidian.",
-          "money": "None. Free plugin."
+          "money": "None. Free plugin.",
+          "what": "Ship the additive review-state CodeMirror extension in week 2. Buildable, because it needs no nesting data; it ships the zero-likes feature into a build-nothing fortnight."
         },
         {
           "k": "c",
@@ -450,7 +457,8 @@
           ],
           "system": "A rendering hack outside the engine.",
           "screens": "None of ours.",
-          "money": "None."
+          "money": "None.",
+          "what": "Ship the live-preview fix as an appearance-only repaint. Reaches the one measured demand in that population; the parse was verified unreachable twice, and the working plugins write U+200C into files."
         },
         {
           "k": "d",
@@ -463,7 +471,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Delete three mentions and keep the retention lever open in writing. Honest about the one loss with no replacement; a lever that depends on a cut channel."
         }
       ],
       "rec": "a",
@@ -492,7 +501,8 @@
         "merged: G3"
       ],
       "when": "notnow",
-      "whenWhy": "No Obsidian surface ships in the first build."
+      "whenWhy": "No Obsidian surface ships in the first build.",
+      "recWhy": "The plugin was week 2's channel in every earlier plan, and the current plan cuts it while still mentioning it four times, so someone builds the cut plugin from the tiers table next month unless the mentions go. The cut is technical and final: Obsidian's Live Preview syntax tree is one level deep by construction, verified unreachable twice, so (c) is not available at any price, and the two plugins that do fix nesting write an invisible character into user files, the thing this product refuses to do. Every engine number is measured on seven Obsidian vaults, and that population gave review state zero likes and a rendering bug 501: it is our test corpus, not our market. Q3 puts one surface first, which is why this sits at not now; MK7 carries the same cut from the market side. An Obsidian user asking for review state unprompted makes the additive extension the cheapest reach, re-costed then."
     },
     {
       "id": "G4",
@@ -664,7 +674,8 @@
           ],
           "system": "No change.",
           "screens": "A launch page built on the refusal list.",
-          "money": "None."
+          "money": "None.",
+          "what": "One Show HN at the pilot exit, titled on the refusals. Differentiated against everything else on the list; refusals are abstract to a stranger scrolling, and two of the five are disprovable today."
         },
         {
           "k": "b",
@@ -679,7 +690,8 @@
           ],
           "system": "No change.",
           "screens": "A launch page leading with the free tier.",
-          "money": "None. Advertises the tier, not a price."
+          "money": "None. Advertises the tier, not a price.",
+          "what": "One Show HN at the pilot exit, titled on free, and Product Hunt cut. Matches the only measured predictor of 50 points and the tier is free with no sign-up; it invites the free-alternatives thread."
         },
         {
           "k": "c",
@@ -693,7 +705,8 @@
           ],
           "system": "No change.",
           "screens": "The mock becomes the landing page.",
-          "money": "None."
+          "money": "None.",
+          "what": "Post at the end of the two-week test instead. A signal months earlier; it burns the one shot on a mock and cannot be repeated on the real product."
         },
         {
           "k": "d",
@@ -707,7 +720,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Do not post; put the hours into hand recruitment. Every hour goes to named humans; it forgoes a free 30,000 to 100,000 visitor spike at 1.4 to 5.7 percent odds."
         }
       ],
       "rec": "b",
@@ -737,7 +751,8 @@
         "https://hn.algolia.com/api/v1/items/23339147"
       ],
       "when": "after",
-      "whenWhy": "One launch shot, spent when the pilot ends."
+      "whenWhy": "One launch shot, spent when the pilot ends.",
+      "recWhy": "Show HN is the only launch event left in the plan, and it was sized with two figures, Zed's 43 points and Cursor's 9, that appear nowhere else in the docs tree. The one measured predictor in this category is the title: 31 percent of posts clearing 50 points carry free, open source or self-host, and our individual tier is free forever with no sign-up, so that title is true, which matters because a title that is true survives the thread. Titling on the refusals reads as abstract to a stranger scrolling, and two of the five refusals are disprovable today. Product Hunt has no evidence either way and the one document that treated it as a decision excluded it, so it goes. One shot, at the pilot exit, on the real product, with PL17's floor written before the post goes up. If the twenty team conversations name a paying buyer who avoids Hacker News, the shot is spent on a case study instead."
     },
     {
       "id": "G6",
@@ -912,7 +927,8 @@
           ],
           "system": "A local MCP server, due in the build after the pilot.",
           "screens": "A config entry in the user's agent.",
-          "money": "Six engineering days at 1.21 days a week."
+          "money": "Six engineering days at 1.21 days a week.",
+          "what": "A documentation pull request to superpowers and spec-kit, with the MCP server built first. Reaches both populations; build days in a build-nothing fortnight, and a rejection is public in two repos."
         },
         {
           "k": "b",
@@ -926,7 +942,8 @@
           ],
           "system": "No change.",
           "screens": "One integration page on our own site.",
-          "money": "None."
+          "money": "None.",
+          "what": "superpowers only: ask in an issue first, then a README line and one integration page. Highest relevance and reversible, ships in hours; spec-kit's 11,072 repos wait."
         },
         {
           "k": "c",
@@ -940,7 +957,8 @@
           ],
           "system": "No change.",
           "screens": "One page.",
-          "money": "None."
+          "money": "None.",
+          "what": "No outbound; publish our own integration page and wait to be found. No permission and no rejection risk; search contributes nothing for three quarters and neither community learns it exists."
         },
         {
           "k": "d",
@@ -954,7 +972,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Move the toolchain channel to the build after the pilot, where the MCP server lives. Consistent with what is built; week 2 has no channel once Obsidian is cut."
         }
       ],
       "rec": "b",
@@ -981,7 +1000,8 @@
         "merged: G7"
       ],
       "when": "after",
-      "whenWhy": "Approaching maintainers comes with a product to show."
+      "whenWhy": "Approaching maintainers comes with a product to show.",
+      "recWhy": "Week 2's channel is a request nobody has made, and its named artefact does not exist: checked on 9 September, there is no MCP dependency, no script and zero MCP references in src, so the MCP entry cannot ship in week 2 whatever else is decided. superpowers halts, names a repository path and asks a human to review a file, the exact moment our product exists for, so it is the higher-relevance population and the larger one. Our pitch to spec-kit criticises spec-kit's own default artefact, which makes first contact awkward, and G8 says the sentence behind it is not yet publishable. An issue costs nothing and returns a yes or a no before a public pull request exists; a rejected PR is public and permanent, an issue is neither. A no from the maintainer leaves our own page as the channel, which G22 absorbs."
     },
     {
       "id": "G8",
@@ -1123,7 +1143,8 @@
           ],
           "system": "No change.",
           "screens": "A post and a spec-kit integration page.",
-          "money": "None."
+          "money": "None.",
+          "what": "Publish now, with the sample size and method in the sentence: 19 of 20 files fully ticked, 354 of 355 boxes. The strongest sentence the research produced; twenty files invite a 200-file rebuttal."
         },
         {
           "k": "b",
@@ -1137,7 +1158,8 @@
           ],
           "system": "A counting script; nothing in the product.",
           "screens": "Same as (a), later.",
-          "money": "One engineering day."
+          "money": "One engineering day.",
+          "what": "Re-measure at 200 files or more before publishing anything. Meets our own public-claims standard; a day's delay on the spec-kit channel, and the larger sample may return a weaker number."
         },
         {
           "k": "c",
@@ -1151,7 +1173,8 @@
           ],
           "system": "No change.",
           "screens": "A published post.",
-          "money": "None."
+          "money": "None.",
+          "what": "Publish the finding without naming spec-kit. Removes the confrontation with a maintainer we want a link from; readers identify the target anyway and the specificity goes."
         },
         {
           "k": "d",
@@ -1165,7 +1188,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Do not publish; use it only with the ten and the twenty. Still works where the decision is made; the one sentence likely to travel stays private."
         }
       ],
       "rec": "b",
@@ -1186,7 +1210,8 @@
         "docs/FRONTMATTER-RECORD.md:100"
       ],
       "when": "after",
-      "whenWhy": "Publishing a finding is a launch move."
+      "whenWhy": "Publishing a finding is a launch move.",
+      "recWhy": "The sharpest sentence the research produced, your checklist is green because the agent ticked it, is a public claim about somebody else's artefact from twenty files out of 49,664. Nineteen fully ticked and 354 of 355 boxes is 99.7 percent, and 99.7 percent from twenty files publishes only with its sample size in the sentence, the same rule that has already withdrawn three of our own numbers after they failed a control. One more day at 200 files turns a claim into a measurement on exactly the number most likely to be re-run by the maintainer we also want a README line from. Our pitch is refusing rather than guessing, so we cannot publish a guessed denominator about someone else. It sits after the pilot because the spec-kit channel waits on G6. Under 90 percent at the larger sample, the sentence goes and spec-kit needs a different pitch; if it holds, it is the best line the launch has."
     },
     {
       "id": "G9",
@@ -1377,7 +1402,8 @@
           ],
           "system": "No change. The engine already emits the numbers.",
           "screens": "A research index on the site.",
-          "money": "About 90 minutes a post."
+          "money": "About 90 minutes a post.",
+          "what": "Engine measurements only, published when the build produces one. Everything is ours and re-derivable, and supply is a by-product; it reaches engineers only, and gives search nothing predictable."
         },
         {
           "k": "b",
@@ -1390,7 +1416,8 @@
           ],
           "system": "No change.",
           "screens": "Same index, with dates.",
-          "money": "Six to eight founder-hours a fortnight."
+          "money": "Six to eight founder-hours a fortnight.",
+          "what": "Engine measurements on the fortnightly cadence with a bank, as written. Builds an internal link graph; at 0.23 engineering days a week it breaks publicly in month one."
         },
         {
           "k": "c",
@@ -1404,7 +1431,8 @@
           ],
           "system": "No change.",
           "screens": "Same index.",
-          "money": "A day of re-derivation first."
+          "money": "A day of re-derivation first.",
+          "what": "Publish the market research too, after re-deriving every third-party number. Draws links from category writers; several figures have a single source and they are numbers about other people's products."
         },
         {
           "k": "d",
@@ -1418,7 +1446,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Publish nothing until the two-week test returns. Every hour goes to the test and the build; three months lost on a channel that needs nine to eighteen, and nobody sees the 235 reports."
         }
       ],
       "rec": "a",
@@ -1447,7 +1476,8 @@
         "merged: G19"
       ],
       "when": "after",
-      "whenWhy": "Publishing research is a launch move."
+      "whenWhy": "Publishing research is a launch move.",
+      "recWhy": "Published research is the only channel that needs nobody's permission, and it has shipped two posts ever, one carrying a defect since 10 August, while 235 report files and about 823,000 words sit under docs/research. Engine findings cost about 90 minutes each because the build produces them anyway, so supply is free; the market research is not, because several of its figures have a single source and all are numbers about other people's products, and three of our own have been withdrawn. A fortnightly commitment at a measured 0.23 engineering days a week fails publicly in month one, and a broken cadence reads worse than none. So engine measurements only, when the build produces one, no promised rhythm, and Q7's writing gate on every post. Two engine posts in a quarter drawing no links closes the channel."
     },
     {
       "id": "G10",
@@ -1863,7 +1893,8 @@
           ],
           "system": "Remove the footer from PublicNoteView.",
           "screens": "The public note loses its footer.",
-          "money": "None."
+          "money": "None.",
+          "what": "No mark anywhere, and the shipped hosted footer comes out too. Cleanest against the file-is-truth position; the growth loop goes entirely, and the exported-pages channel row with it."
         },
         {
           "k": "b",
@@ -1878,7 +1909,8 @@
           ],
           "system": "A mark in the export module and a settings toggle.",
           "screens": "A settings row; a footer in exported HTML.",
-          "money": "Unmeasured. There is no deploy count."
+          "money": "Unmeasured. There is no deploy count.",
+          "what": "Keep the footer, add a linked mark on exported pages, with an opt-out. Keeps the growth loop and both surfaces agree; exports carry the devaluation risk, and the links sit on someone else's domain."
         },
         {
           "k": "c",
@@ -1893,7 +1925,8 @@
           ],
           "system": "An optional wordmark in the export module.",
           "screens": "A settings row, off by default.",
-          "money": "None."
+          "money": "None.",
+          "what": "Keep the hosted footer; a small unlinked wordmark on exports, off by default. Leaves the shipped surface alone and forms no link scheme; the weakest growth effect, and markup absent from the file."
         },
         {
           "k": "d",
@@ -1907,7 +1940,8 @@
           ],
           "system": "A counter endpoint we would have to run.",
           "screens": "A dashboard nobody asked for.",
-          "money": "Server cost for a channel of unknown size."
+          "money": "Server cost for a channel of unknown size.",
+          "what": "Keep both marks and add a deploy counter so the channel can be measured. Makes the channel row falsifiable; counts an event on a user's page, which the telemetry rule forbids."
         }
       ],
       "rec": "c",
@@ -1929,7 +1963,8 @@
         "src/modules/share/presentation/PublicNoteView.tsx:30"
       ],
       "when": "mvp",
-      "whenWhy": "Every free kit carries a mark back to us. That badge is part of the funnel design."
+      "whenWhy": "Every free kit carries a mark back to us. That badge is part of the funnel design.",
+      "recWhy": "The plan defers marked exports until measured, and a mark already ships on one of the two surfaces: the hosted note carries a Hosted on frontmatter.in footer, while the 945-line export module carries none. The research objection is to links on a user's own domain, and only the export half is that; an unlinked wordmark cannot form the link scheme it warns about, and off by default means nobody gets one they did not choose. The third objection stands and is stated: the mark is markup that is not in the file, which is why it stays small, unlinked and optional. Q11 carries this exactly. The export cut in the plan used Obsidian download ratios, which count note-takers, so the growth estimate behind (b) was never for this buyer. If a custom-domain deploy path ships, an exported mark lands on somebody else's domain and every objection applies, and the mark is revisited then."
     },
     {
       "id": "G13",
@@ -2520,7 +2555,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "An afternoon, plus a token already held."
+          "money": "An afternoon, plus a token already held.",
+          "what": "Run the written code search now and recruit both cohorts cold from the list. Unbiased on both sides and produces the first named humans; twenty cold conversations are not bookable in a fortnight."
         },
         {
           "k": "b",
@@ -2535,7 +2571,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Recruit both cohorts from the studio's network. Fastest to book and everyone answers; ten friendly reads falsify nothing, and a warm no reads as politeness."
         },
         {
           "k": "c",
@@ -2550,7 +2587,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "An afternoon for the search."
+          "money": "An afternoon for the search.",
+          "what": "The cold list for the ten strangers; ten warm and ten cold for the twenty teams. The exit test stays a stranger test and twenty become bookable; it halves the sample each side of the price question."
         },
         {
           "k": "d",
@@ -2565,7 +2603,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "The paid tier stays unevidenced."
+          "money": "The paid tier stays unevidenced.",
+          "what": "Defer the twenty conversations until after the pilot. Removes a fortnight of load from one person; the build proceeds with the revenue hypothesis untested."
         }
       ],
       "rec": "c",
@@ -2598,7 +2637,8 @@
       "whenWhy": "Phase zero needs twenty people outside the studio. Where they come from blocks the first step.",
       "dependsOn": [
         "R1"
-      ]
+      ],
+      "recWhy": "Everything after week 3 depends on ten people nobody has identified, from a code-search query that is written down and has never been run, and across 105 reports and 374,866 words there are no customer interviews at all. The exit test in Q15 proves nothing without strangers, because a warm no is indistinguishable from politeness, so the ten come from the cold list. Twenty cold conversations in a fortnight at 1.21 days a week is optimistic, and the warm-versus-cold split on the twenty is itself a finding: warm teams saying yes while cold teams do not is an answer. The cost is a halved sample each side of the price question, which PR17's kill number allows for. Q2 says who the twenty are, teams running coding agents, found by the files they commit. Under fifty qualified repositories with visible emails means the network is all there is."
     },
     {
       "id": "G16",
@@ -2707,7 +2747,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Establish whether a list exists, and ask ten of sgnk-md's users. The cheapest interviews available and the only people with a real usage history; the wrong population for the agent question."
         },
         {
           "k": "b",
@@ -2722,7 +2763,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Look at usage data only, with no outreach. No consent question and no waiting on a founder; it answers how, never why, and nothing about willingness to pay."
         },
         {
           "k": "c",
@@ -2737,7 +2779,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "No; they are the wrong population for this buyer. Keeps the pilot clean; it throws away the only users this codebase has had and leaves zero interviews standing."
         },
         {
           "k": "d",
@@ -2750,7 +2793,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Ask them, but only after the ten strangers. Preserves the exit test's independence; two months of latency on the cheapest interviews there are."
         }
       ],
       "rec": "a",
@@ -2771,7 +2815,8 @@
         "docs/PRODUCT-BRIEF.md:479"
       ],
       "when": "mvp",
-      "whenWhy": "The sibling has users and the MVP wears its look. Whether we approach them is a now question."
+      "whenWhy": "The sibling has users and the MVP wears its look. Whether we approach them is a now question.",
+      "recWhy": "sgnk-md's users are the only real users this codebase has had, 202 of its 228 files are shared with frontmatter, and nobody has asked them anything; the whole programme stands at zero interviews. They are note-takers, so they cannot settle the agent-review question Q2 asks, and they signed up for a different product with its own consent history, both of which the ask has to respect. Even so, ten conversations with people who have used the editor are the cheapest way from zero to non-zero, and the editor is what Q3 ships first. The stranger test stays separate: these are not the ten and are not counted as them. The question is stuck on a fact only the founders have, whether a list exists at all. If it is empty or was never collected, the ten strangers are the only interviews available, and G15 carries the whole weight."
     },
     {
       "id": "G18",
@@ -2870,7 +2915,8 @@
           ],
           "system": "No change. The scan is done by hand.",
           "screens": "None. A written report.",
-          "money": "₹3,00,000 an engagement, against ₹1.09L monthly costs."
+          "money": "₹3,00,000 an engagement, against ₹1.09L monthly costs.",
+          "what": "Sell the ₹3,00,000 engagement now, with the docs scan run by hand. Revenue and conversion data months before the feature; it consumes the hours the build also needs."
         },
         {
           "k": "b",
@@ -2884,7 +2930,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "No product-attributable services revenue this year."
+          "money": "No product-attributable services revenue this year.",
+          "what": "Wait for the scan to ship before selling the engagement. The client sees the product's own scan; the only revenue instrument in the plan waits months."
         },
         {
           "k": "c",
@@ -2899,7 +2946,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "A smaller fee sooner, with anchoring risk."
+          "money": "A smaller fee sooner, with anchoring risk.",
+          "what": "Sell a smaller paid diagnostic first and price the larger engagement off it. The lowest-friction test of whether anyone buys a diagnosis; it anchors the studio below ₹3,00,000."
         },
         {
           "k": "d",
@@ -2913,7 +2961,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "Services continue unchanged."
+          "money": "Services continue unchanged.",
+          "what": "Drop the productised funnel and keep services as ordinary client work. Removes an unevidenced claim from the plan; the one place product and studio connect goes."
         }
       ],
       "rec": "a",
@@ -2934,7 +2983,8 @@
         "docs/GAPS-2026-09-08.md:56"
       ],
       "when": "after",
-      "whenWhy": "Selling off a scan that has not run."
+      "whenWhy": "Selling off a scan that has not run.",
+      "recWhy": "Services fund the company, and the product-family section makes the docs scan the diagnostic for a ₹3,00,000 engagement, calling it the one place consultancy and product are the same funnel; the gap register calls that a design presented as a finding. The scan sits ten engineering days behind a 24-day first round of engine fixes, so at 1.21 days a week it is months off against ₹1.09 lakh of monthly costs. The conversion claim is testable by hand today and untestable until the scan ships, and it is the only item in this area that produces cash rather than spending it. PR20 settles the engagement's shape, eight days at ₹2,40,000 with the eval days held back; this card says sell it now with the scan done by hand. Two hand-run scans in a month with no engagement conversation makes the funnel a design."
     },
     {
       "id": "G20",
@@ -3095,7 +3145,8 @@
           ],
           "system": "A client-side engine build, as it stands.",
           "screens": "Same page, worse verdicts.",
-          "money": "The page, ahead of the fixes."
+          "money": "The page, ahead of the fixes.",
+          "what": "Build it now; the refusal is the point. The fastest route to a compounding channel and refusing honestly is our own claim; a visitor's first sight is our defect rate."
         },
         {
           "k": "c",
@@ -3109,7 +3160,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Do not build it; the plan is already over capacity. No page leading with our own defect; the only lever of the right magnitude goes, and nothing else in the table compounds."
         },
         {
           "k": "d",
@@ -3124,7 +3176,8 @@
           ],
           "system": "A published package with its own releases.",
           "screens": "None.",
-          "money": "Public package upkeep."
+          "money": "Public package upkeep.",
+          "what": "Ship it as a CLI or npm package instead of a page. Reaches developers where they are with no hosting; it forfeits the search intent, which is the page's whole reason."
         }
       ],
       "rec": "a",
@@ -3149,7 +3202,8 @@
         "docs/PRODUCT-BRIEF.md:300"
       ],
       "when": "after",
-      "whenWhy": "A public checker is a later surface."
+      "whenWhy": "A public checker is a later surface.",
+      "recWhy": "The public validator is in no plan, and the research calls it the one asymmetric move, 30,000 to 150,000 year-one visitors, because its ceiling is how widely YAML frontmatter is parsed and that search intent does not expire. Built today, it would show a refusal rate our public-claims rule forbids calling coverage: the flush-left list bug hits 83 percent of real vaults and the old line-ending bug sits beside it, and a page that opens on our own defect rate is worse than no page. Both bugs are the first two engine fixes on Q14's list, so sequencing the validator after them costs nothing extra; it must also never send document content to a server, visibly, in the network tab, which Q9 requires of everything. It sits after the pilot because the fixes and the pilot come first. If the fixes slip a quarter, a validator that names the refused byte still beats no page."
     },
     {
       "id": "G21",
@@ -3516,7 +3570,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "No spend. Founder hours only."
+          "money": "No spend. Founder hours only.",
+          "what": "Hand recruitment: the code-search list, the ten users, the twenty teams. The only unborrowed channel and the only one that answers whether anyone pays; it does not scale or compound."
         },
         {
           "k": "b",
@@ -3531,7 +3586,8 @@
           ],
           "system": "An integration page, eventually an MCP server.",
           "screens": "One integration page.",
-          "money": "None."
+          "money": "None.",
+          "what": "Toolchain documentation: superpowers first, then spec-kit. The highest relevance per reader and 22,000 to 30,000 active repos if accepted; entirely outside our control and produces no interviews."
         },
         {
           "k": "c",
@@ -3562,7 +3618,8 @@
           ],
           "system": "No change.",
           "screens": "A launch page.",
-          "money": "None."
+          "money": "None.",
+          "what": "Launch events: Show HN and Product Hunt. Visible, free, and credibility for a solo founder at one day a quarter; 1.4 to 5.7 percent odds of clearing 100 points, and it decays in 96 hours."
         }
       ],
       "rec": "a",
@@ -3586,7 +3643,8 @@
         "docs/research/agent-reports-2026-08-30/r17-h7-content-seo-distribution.md:153"
       ],
       "when": "after",
-      "whenWhy": "Launch hours come when there is something to launch."
+      "whenWhy": "Launch hours come when there is something to launch.",
+      "recWhy": "Eight channels, two of them cut and three of them requests to strangers, share a measured 1.21 engineering days a week, 0.23 over the last thirty, and no section allocates founder time to any of them. The first hundred paying customers need about 22,222 visitors and no measured loop delivers that, so the question is not which channel scales but which one answers something. Only conversations answer whether anyone pays, which eleven desk-research gaps never touched, and hand recruitment is the only channel not borrowed from someone else's audience. It does not compound, and quarter two starts from nothing. G6 asks the superpowers maintainer in the same fortnight because one reply decides whether a second channel exists. A yes from the maintainer in week 2 means a channel reaching 22,000 to 30,000 repositories outranks recruitment for the launch hours."
     },
     {
       "id": "G23",
@@ -3719,7 +3777,8 @@
           ],
           "system": "An invite token against shared review state.",
           "screens": "An invite dialogue inside the review panel.",
-          "money": "None. It creates seats, which is the paid tier."
+          "money": "None. It creates seats, which is the paid tier.",
+          "what": "Ship the invite form in the build after the pilot, once shared review state exists to invite someone into. Consistent with the stated positions; nothing for months, and weaker than two-sided rewards."
         },
         {
           "k": "b",
@@ -3733,7 +3792,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Keep referral banned. No invite surface to design or support; the ban was inherited beside streaks and XP, never reasoned, and it forgoes the one loop the research endorses."
         },
         {
           "k": "c",
@@ -3748,7 +3808,8 @@
           ],
           "system": "Depends on the public route surviving that decision.",
           "screens": "A share dialogue.",
-          "money": "None."
+          "money": "None.",
+          "what": "Ship it in the pilot as a document share link. Something to measure this quarter; it collides with the open public-page decision, and the landing surface may not survive."
         },
         {
           "k": "d",
@@ -3763,7 +3824,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Decide after the twenty team conversations. The answer arrives before anything is built; one more open item carried into the build."
         }
       ],
       "rec": "a",
@@ -3787,7 +3849,8 @@
         "docs/PRODUCT-BRIEF.md:300"
       ],
       "when": "after",
-      "whenWhy": "Referral comes after there are users."
+      "whenWhy": "Referral comes after there are users.",
+      "recWhy": "Referral sits on a banned list beside streaks and XP with no written argument, and the research allows exactly one form, a workspace invite that gives the inviter nothing, which is not what the ban was written to keep out. The invite needs something to invite a person into, and that is the team surface, who changed what and review state across a repository, which Q6 puts in Phase 1 and Q11 keeps asynchronous, so the build after the pilot is the first point where the form has a destination. The research expects it to underperform two-sided rewards substantially, and that is accepted, because inviter rewards are the thing the ban rightly excludes. A share link in the pilot collides with the public-route decision in Q11 and F19. If the twenty team conversations describe the invite as how work starts on their team, it belongs in the pilot and this moves forward."
     },
     {
       "id": "G24",
@@ -3944,7 +4007,8 @@
           ],
           "system": "No change.",
           "screens": "An onboarding step.",
-          "money": "None."
+          "money": "None.",
+          "what": "Keep plan mode demoted to a plansDirectory onboarding step. Consistent with the working-tree framing and no hour spent; it walks away from the largest attention pool unverified."
         },
         {
           "k": "b",
@@ -3959,7 +4023,8 @@
           ],
           "system": "No change. A documented setting.",
           "screens": "One recipe page.",
-          "money": "None."
+          "money": "None.",
+          "what": "Promote it to a week-2 channel and ship a plansDirectory recipe. The biggest population and the smallest artefact; it fails if the setting cannot point into a repository."
         },
         {
           "k": "c",
@@ -3974,7 +4039,8 @@
           ],
           "system": "No change.",
           "screens": "None yet.",
-          "money": "One hour."
+          "money": "One hour.",
+          "what": "Spend the hour: confirm plansDirectory and the deletion behaviour, then decide. Settles a two-section contradiction and blocks nothing; the answer may confirm the demotion."
         },
         {
           "k": "d",
@@ -3989,7 +4055,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Treat plan mode as a recruitment channel rather than a product channel. Uses the biggest pool for what the two-week test needs; outbound into other people's communities, and the file question stays."
         }
       ],
       "rec": "c",
@@ -4009,7 +4076,8 @@
         "docs/GAPS-2026-09-08.md:126"
       ],
       "when": "after",
-      "whenWhy": "Channel weighting belongs with the launch plan."
+      "whenWhy": "Channel weighting belongs with the launch plan.",
+      "recWhy": "Claude Code's plan mode out-scores both named toolchains by two orders of magnitude in the competitor table, and the plan demotes it to an onboarding step on a file-location assumption nobody has tested; two sections of the same document disagree about the same channel. The gap register priced the check at one hour: does plansDirectory point inside a repository, and does the 30-day deletion apply there. The second part matters, because a review record that outlives the document it points to is the failure E36 is built to avoid. An hour that resolves a contradiction and blocks nothing is worth spending before promotion or demotion is written down. If plansDirectory cannot point inside a repository, the demotion stands and the row says so; if it can, (b) is the cheapest channel in the table."
     },
     {
       "id": "G25",
@@ -4247,7 +4315,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "None. Removes an implicit revenue assumption."
+          "money": "None. Removes an implicit revenue assumption.",
+          "what": "State that organic discovery contributes zero in year one, and budget nothing. Makes every other number in the table falsifiable for a paragraph; it reads as pessimism to newcomers."
         },
         {
           "k": "b",
@@ -4261,7 +4330,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Keep the channel table as a ranking and add no such statement. The table reads as a plan rather than a warning; the optimism stays hidden inside eight rows."
         },
         {
           "k": "c",
@@ -4276,7 +4346,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "Commits content hours against a year-two return."
+          "money": "Commits content hours against a year-two return.",
+          "what": "Budget for organic on the research's own numbers, back-loaded to months 9 to 18. Uses the research rather than an anecdote; nothing arrives inside this plan's decision window."
         },
         {
           "k": "d",
@@ -4291,7 +4362,8 @@
           ],
           "system": "A published package or skill with a release process.",
           "screens": "None.",
-          "money": "Engineering days against unmeasured payment."
+          "money": "Engineering days against unmeasured payment.",
+          "what": "Make a free artefact the discovery plan: publish a skill and see if it travels. The only observed mechanism producing attention from nothing; it trains the audience that this is free."
         }
       ],
       "rec": "a",
@@ -4317,7 +4389,8 @@
         "research briefing 2026-09-09, graveyard lens: Draft, 503 served since April 2023"
       ],
       "when": "after",
-      "whenWhy": "A statement about discovery belongs with the launch plan."
+      "whenWhy": "A statement about discovery belongs with the launch plan.",
+      "recWhy": "Two of the eight dead products studied died with nobody noticing, and neither had a channel written down. No section of the plan states what organic discovery contributes; published pages sit under noindex, organic search is back-loaded to months 9 to 18, and the whole channel table summed optimistically reaches 350,000 to 500,000 year-one visitors against a milestone needing 1.26 million, which B12 deletes for the same reason. Writing the zero down is what makes every other row checkable, because a reader can see which numbers assume being found. Free artefacts do get attention, human-review went to 1,241 stars in six weeks, and stars measure attention, not paying, so (d) is a real mechanism and a poor plan. A free artefact of ours drawing a thousand stars in six weeks earns a carve-out, with the replacement number measured, not assumed."
     },
     {
       "id": "G27",
@@ -4405,7 +4478,8 @@
           ],
           "system": "No change.",
           "screens": "One integration page.",
-          "money": "None."
+          "money": "None.",
+          "what": "Add the git-backed CMS audience as a week-3 channel with its own page. No education about repositories needed and the gap is visible; it competes with toolchain outreach for hours."
         },
         {
           "k": "b",
@@ -4420,7 +4494,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Ignore it; the audience does not pay. Protects week 2 for the toolchains; it gives up the adjacency where the incumbent itself names the hole."
         },
         {
           "k": "c",
@@ -4435,7 +4510,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Use it as a recruitment pool for the ten strangers, not a channel. The two-week test needs people more than a channel, at no permission and no build; their expectations are set by a free tool."
         },
         {
           "k": "d",
@@ -4450,7 +4526,8 @@
           ],
           "system": "An integration against their storage model.",
           "screens": "A view inside somebody else's product.",
-          "money": "Engineering days against an audience that pays nothing."
+          "money": "Engineering days against an audience that pays nothing.",
+          "what": "Build the review feature Pages CMS lists as Soon and offer it to them. Addresses a stated need and the engine does the hard part; it builds for a project that gives everything away."
         }
       ],
       "rec": "c",
@@ -4469,7 +4546,8 @@
         "https://pagescms.org/"
       ],
       "when": "after",
-      "whenWhy": "A new audience comes after the first one is served."
+      "whenWhy": "A new audience comes after the first one is served.",
+      "recWhy": "Pages CMS edits markdown in a repository, is MIT with 3,976 stars, has no paid tier, and lists inline comments as Soon, so the review-shaped hole is visible and named by the incumbent itself. Developers deploy from repositories at scale, 443,392 root CNAME files and 113,536 Astro configs, and these people already keep documents in git, so the review file needs no explaining to them. What the two-week test needs most is named people, and G15's cold list has to come from somewhere; this audience is a pool that costs no permission, no build and no channel hours. What it is not is a paying channel: no paid tier anywhere in view means they are trained to expect this free, and Q13 already gives the editor away, so the pool feeds the stranger test rather than the price test. If a Pages CMS user in the pilot says they would pay, the audience becomes a channel and gets its own page."
     }
   ]
 }
