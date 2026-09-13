@@ -569,16 +569,16 @@
             "label": "Left-edge list bug, 4 days",
             "cells": [
               "First",
-              "Weeks 3–4",
-              "Weeks 3–5, demo-blocker"
+              "Weeks 3 to 4",
+              "Weeks 3 to 5, demo-blocker"
             ]
           },
           {
             "label": "Engine wiring, 8 days",
             "cells": [
               "Fourth",
-              "Weeks 8–9",
-              "Weeks 3–5, demo-blocker"
+              "Weeks 8 to 9",
+              "Weeks 3 to 5, demo-blocker"
             ]
           },
           {
@@ -1239,7 +1239,7 @@
             "tone": "neutral"
           },
           {
-            "when": "Weeks 1–2",
+            "when": "Weeks 1 to 2",
             "label": "Forty contacts and three landing pages",
             "note": "four a day from a standing start",
             "tone": "warn"
@@ -1257,7 +1257,7 @@
             "tone": "accent"
           },
           {
-            "when": "Weeks 1–4",
+            "when": "Weeks 1 to 4",
             "label": "Team conversations and the priced arm",
             "note": "the Pro price gates the build after the pilot, not week 3",
             "tone": "accent"
@@ -1530,7 +1530,7 @@
               "mark": "warn"
             },
             {
-              "t": "Fortnightly table: 'plugin shipped', weeks 1–2",
+              "t": "Fortnightly table: 'plugin shipped', weeks 1 to 2",
               "mark": "warn"
             },
             {
@@ -1559,7 +1559,7 @@
               "mark": "good"
             },
             {
-              "t": "Fortnightly table weeks 1–2: tests only",
+              "t": "Fortnightly table weeks 1 to 2: tests only",
               "mark": "good"
             },
             {
@@ -2591,7 +2591,7 @@
         "states": [
           {
             "label": "Priced, unbuilt",
-            "meta": "$4–5, no feature row",
+            "meta": "$4 to $5, no feature row",
             "tone": "warn",
             "current": true
           },
@@ -2999,7 +2999,7 @@
             "tone": "warn"
           },
           {
-            "when": "Weeks 10–12",
+            "when": "Weeks 10 to 12",
             "label": "Polish; ten strangers",
             "note": "the quarter's only outcome",
             "tone": "neutral"

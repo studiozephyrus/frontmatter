@@ -745,7 +745,7 @@
             [
               "Left side panel (tree)",
               "first",
-              "no: per-file percentage bars, no total (:346–:353)"
+              "no: per-file percentage bars, no total (:346-:353)"
             ],
             [
               "Document body",
@@ -802,17 +802,17 @@
             [
               "On the editor",
               "5",
-              "tab dot :329, tree bars :346–:353, outline counts :398, status-bar total :394, the tint"
+              "tab dot :329, tree bars :346-:353, outline counts :398, status-bar total :394, the tint"
             ],
             [
               "On the review panel",
               "5",
-              "tab dot :415, tree bars :426–:431, status-bar total :455, drawer counter :458, the highlight (the outline is replaced by the drawer)"
+              "tab dot :415, tree bars :426-:431, status-bar total :455, drawer counter :458, the highlight (the outline is replaced by the drawer)"
             ],
             [
               "On the launcher screen",
               "3",
-              "per-card bar :304–:311, per-card \"NN% unreviewed\" label, footer \"7 unreviewed\" :315"
+              "per-card bar :304-:311, per-card \"NN% unreviewed\" label, footer \"7 unreviewed\" :315"
             ],
             [
               "Amber threshold, stated in the plan",
@@ -2776,7 +2776,7 @@
             [
               "Preconnect hints to third parties",
               "2",
-              "fonts.googleapis.com and fonts.gstatic.com, print-css.ts:27–:28"
+              "fonts.googleapis.com and fonts.gstatic.com, print-css.ts:27-:28"
             ],
             [
               "Export paths that include them",
@@ -3587,12 +3587,12 @@
             [
               "Screens in the clickable prototype",
               "9",
-              "section markers at docs/prototype/frontmatter-prototype.html:281–:686"
+              "section markers at docs/prototype/frontmatter-prototype.html:281-:686"
             ],
             [
               "Screens named in the wireframes",
               "13, launcher through export",
-              "docs/_wireframes.md; the map at :51 covers S0–S10, and S13 appears only in the plan and the prototype"
+              "docs/_wireframes.md; the map at :51 covers S0 to S10, and S13 appears only in the plan and the prototype"
             ],
             [
               "Of the nine, screens after the pilot",
@@ -3875,7 +3875,7 @@
             [
               "Themes named anywhere in the attention section",
               "0",
-              "docs/PRODUCT-BRIEF.md:400–:413"
+              "docs/PRODUCT-BRIEF.md:400-:413"
             ],
             [
               "Exhibits or files in docs/ that name a dark render",

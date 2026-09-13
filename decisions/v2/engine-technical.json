@@ -2529,7 +2529,7 @@
           ]
         },
         "via": "one bundler",
-        "note": "The proposed ceilings rest on a 15–18 KB estimate the engine doc says must be replaced by a real number first.",
+        "note": "The proposed ceilings rest on a 15 to 18 KB estimate the engine doc says must be replaced by a real number first.",
         "caption": "Two placeholders: a script that prints, a ceiling that was guessed"
       },
       "stakes": "The packaging plan says the engine core drops into another host, and nothing has measured its size.",

@@ -22,7 +22,7 @@
               "mark": "warn"
             },
             {
-              "t": "Client hours 54–78 a month",
+              "t": "Client hours 54 to 78 a month",
               "mark": "warn"
             },
             {
@@ -47,7 +47,7 @@
               "mark": "good"
             },
             {
-              "t": "Client hours 32.0–45.7 a month",
+              "t": "Client hours 32.0 to 45.7 a month",
               "mark": "good"
             },
             {
@@ -855,13 +855,13 @@
             "y": 0.9
           },
           {
-            "label": "frontmatter Pro $4–5/user/mo",
+            "label": "frontmatter Pro $4 to $5/user/mo",
             "x": 0.14,
             "y": 0.5,
             "us": true
           }
         ],
-        "note": "Prices fetched from each vendor's own pricing page. The plan's rung annualises to $48–60.",
+        "note": "Prices fetched from each vendor's own pricing page. The plan's rung annualises to $48 to $60.",
         "caption": "The barbell: indie licences low, docs platforms high, nothing between"
       },
       "stakes": "Anchor wrong and twenty conversations, the only pricing evidence this quarter, answer the wrong question.",
@@ -1358,7 +1358,7 @@
               {
                 "label": "No private queue, no response window",
                 "meta": "stated on the page",
-                "mark": "–",
+                "mark": "no",
                 "tone": "neutral"
               },
               {
@@ -2375,7 +2375,7 @@
             "tone": "good"
           }
         ],
-        "note": "Everything on the channel table reaches perhaps 350k–500k year-one visitors (BUSINESS.md). Marketing posts ever shipped: 2.",
+        "note": "Everything on the channel table reaches perhaps 350k to 500k year-one visitors (BUSINESS.md). Marketing posts ever shipped: 2.",
         "caption": "The milestone against the only threshold that changes anything"
       },
       "stakes": "If the target cannot be reached, every honest report will read as failure.",
