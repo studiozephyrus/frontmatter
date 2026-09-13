@@ -1517,8 +1517,8 @@
         "docs/research/agent-reports-2026-08-28/e6-naming-risk.md:97",
         "docs/FRONTMATTER-COMPLETE-RECORD-2026-08-30.md:7755"
       ],
-      "when": "task",
-      "whenWhy": "The desktop identifier still carries the sibling name. Changing it is a known chore."
+      "when": "after",
+      "whenWhy": "The desktop app is not in the pilot. Renaming the bundle id orphans a user’s local drafts, so it moves only behind a migration."
     },
     {
       "id": "N9",

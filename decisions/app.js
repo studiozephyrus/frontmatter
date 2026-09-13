@@ -8,7 +8,13 @@
 (function () {
   'use strict';
 
-  var Q = (window.QUESTIONS || []).slice();
+  /* A card tagged `task` is something somebody does, not something anybody chooses between.
+     It stays in the data so the record is intact, but it is not a decision, so it is out of
+     the count, the numbering, the search and the answer flow. It renders as a chore list on
+     the overview instead. */
+  var ALL = (window.QUESTIONS || []).slice();
+  var CHORES = ALL.filter(function (q) { return q.when === 'task'; });
+  var Q = ALL.filter(function (q) { return q.when !== 'task'; });
   var KEY = 'fm-decisions-v1';
   var state = load();
   var view = { mode: 'overview', id: null, cat: null, filter: '' };
@@ -37,7 +43,7 @@
      without `when` makes no claim, and the page falls back to ordering by weight. */
   var WHEN = { mvp: 'Answer now, it blocks the MVP', beta: 'Beta slot in the pilot',
     after: 'After the pilot', notnow: 'Not now', task: 'A task, not a decision' };
-  var WHEN_ORDER = ['mvp', 'beta', 'after', 'notnow', 'task'];
+  var WHEN_ORDER = ['mvp', 'beta', 'after', 'notnow'];
   var RANK = { critical: 0, high: 1, medium: 2 };
 
   function cats() {
@@ -386,10 +392,6 @@
   }
 
   /* ── overview ─────────────────────────────────────────────────────────── */
-  function nonDecisions() {
-    return Q.filter(function (q) { return q.when === 'task'; }).length;
-  }
-
   function renderOverview() {
     var groups = cats(), a = answered(Q), c = crit(Q);
     var ev = Q.reduce(function (n, q) { return n + (q.evidence || []).length; }, 0);
@@ -397,7 +399,7 @@
     var openIn = function (k) { return Q.filter(function (q) { return q.when === k && !state.picks[q.id]; }); };
     var h = '<div class="hero"><span class="eyebrow">Studio Zephyrus · frontmatter</span>' +
       '<h1>Decisions pending on frontmatter</h1>' +
-      '<p>' + (Q.length - nonDecisions()) + ' decisions and ' + nonDecisions() + ' tasks, drawn from three ' +
+      '<p>' + Q.length + ' decisions and ' + CHORES.length + ' tasks, drawn from three ' +
       'weeks of research, including a round of checks that went against the plan\'s own headline and a ' +
       'market sweep on 9 September that changed several answers. ' +
       Q.filter(function (q) { return q.when === 'mvp'; }).length + ' of them block the MVP; the rest ' +
@@ -429,6 +431,18 @@
           '<div class="cs"><span>' + done + ' of ' + qs.length + ' answered</span></div>' +
           '<div class="cbar"><i style="width:' + (done / qs.length) * 100 + '%"></i></div></button>';
       }).join('') + '</div>';
+    }
+    if (CHORES.length) {
+      h += '<h2 class="sech">' + CHORES.length + ' chores, not decisions</h2>' +
+        '<p class="secn">Each of these has one sensible answer and somebody just has to do it. ' +
+        'They are here so they are not forgotten, and out of the count so they do not look ' +
+        'like something to sit and argue about.</p>';
+      h += '<ul class="chores">' + CHORES.map(function (q) {
+        var rec = q.options[('abcd').indexOf(q.rec)];
+        return '<li><span class="chid">' + esc(q.id) + '</span>' +
+          '<span class="chq">' + esc(q.q) + '</span>' +
+          (rec ? '<span class="chr">' + esc(rec.label) + '</span>' : '') + '</li>';
+      }).join('') + '</ul>';
     }
     h += '<h2 class="sech">By area</h2><p class="secn">Ordered the way the plan reads, not the way they were found.</p>';
     h += '<div class="grid">' + groups.map(function (g) {

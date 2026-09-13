@@ -324,6 +324,20 @@ table.d td:not(:first-child){font-variant-numeric:tabular-nums}
 .cat .cbar i{position:absolute;inset:0 auto 0 0;background:var(--accent);border-radius:2px}
 .sech{font-family:var(--display);font-size:19px;margin:0 0 4px;letter-spacing:-.015em}
 .secn{font-size:13.5px;color:var(--ink-3);margin:0 0 14px}
+/* Chores sit below the stage grid. Deliberately quieter than a decision card: no progress
+   bar, no click target, no weight chip, because there is nothing here to choose. */
+.chores{list-style:none;margin:0 0 30px;padding:0;display:grid;gap:1px;background:var(--line);
+  border:1px solid var(--line);border-radius:10px;overflow:hidden}
+.chores li{display:grid;grid-template-columns:auto 1fr auto;gap:12px;align-items:baseline;
+  background:var(--card);padding:11px 15px}
+.chid{font-family:var(--mono,ui-monospace,monospace);font-size:11.5px;color:var(--ink-4);
+  min-width:36px}
+.chq{font-size:13.5px;color:var(--ink-2)}
+.chr{font-size:12px;color:var(--ink-3);text-align:right;max-width:34%}
+@media (max-width:720px){
+  .chores li{grid-template-columns:auto 1fr;row-gap:4px}
+  .chr{grid-column:2;text-align:left;max-width:none}
+}
 .qlist{display:grid;gap:8px;margin-bottom:30px}
 .ql{display:grid;grid-template-columns:auto 1fr auto;gap:13px;align-items:center;background:var(--card);
   border:1px solid var(--line);border-left:3px solid var(--crit);border-radius:10px;padding:13px 15px;

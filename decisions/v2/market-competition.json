@@ -1400,8 +1400,8 @@
         "docs/GAPS-2026-09-08.md:127",
         "merged: MK8"
       ],
-      "when": "task",
-      "whenWhy": "Six places still promise two cut channels. Deleting them is a chore."
+      "when": "after",
+      "whenWhy": "Two cut channels are still promised in six places. Which surface replaces each has four real answers, so it waits for the pilot."
     },
     {
       "id": "MK9",
