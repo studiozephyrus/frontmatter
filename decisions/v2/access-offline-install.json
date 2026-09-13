@@ -165,7 +165,8 @@
           ],
           "system": "A per-file reader in the browser.",
           "screens": "A vault-size limit on the repo picker.",
-          "money": "None."
+          "money": "None.",
+          "what": "The browser fetches each file from GitHub as you open it, with a supported vault size printed on the page. Nothing reaches us, and a 5,832-file vault needs 5,833 calls against a 5,000 an hour cap."
         },
         {
           "k": "b",
@@ -180,7 +181,8 @@
           ],
           "system": "Unzip in a worker; drop the server snapshot.",
           "screens": "A loading state on first connect.",
-          "money": "Function time drops."
+          "money": "Function time drops.",
+          "what": "One tarball request, unzipped inside the page, so a whole vault is one call and no byte reaches us. The cost is 88.1 MB of markdown held in a tab and a redirect nobody has tested from a browser."
         },
         {
           "k": "c",
@@ -193,7 +195,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "Function time scales with vault size."
+          "money": "Function time scales with vault size.",
+          "what": "Our server keeps downloading and parsing the tarball as it does today, and the web page stops claiming zero bytes. No build time, and the one claim a rival cannot copy is spent for it."
         },
         {
           "k": "d",
@@ -206,7 +209,8 @@
           ],
           "system": "Delete the GitHub client from the web.",
           "screens": "Drag-and-drop only.",
-          "money": "None."
+          "money": "None.",
+          "what": "The web app opens pasted and dragged-in files only; a repository needs the desktop build. True by construction, and it removes the finishable trial from the surface strangers arrive on."
         }
       ],
       "rec": "b",
@@ -241,7 +245,8 @@
       "whenWhy": "Where the bytes travel is the storage design the plan reverses. It decides privacy and the free tier.",
       "dependsOn": [
         "L1"
-      ]
+      ],
+      "recWhy": "The plan promises that no document byte touches our servers, and today the server reads the whole repository with our own token: it downloads the zipball, unzips it and parses every file on our side. Reading file by file from the browser cannot replace that, because a 5,832-file vault is 5,833 calls against GitHub's 5,000 an hour limit, and the repo scan the pilot depends on reads every file. One tarball request is the only whole-vault read that sits inside the limit and spares our server, so the browser fetches the tarball and unzips it in the page. Two things are unmeasured and both are cheap to test before a line is written: whether a browser can follow GitHub's zipball redirect, and whether 88.1 MB of markdown in a tab is survivable. Q9 carries this as the first item of the privacy block. Either test failing sends this to per-file reading with a published ceiling."
     },
     {
       "id": "AC2",
@@ -690,7 +695,8 @@
           ],
           "system": "Push a branch, not a PR.",
           "screens": "A compare link after a save.",
-          "money": "None."
+          "money": "None.",
+          "what": "Contents read and write, metadata, and pull requests read, with no organisation permission anywhere. A three-line consent screen with a repo picker, and a repo admin can install it alone."
         },
         {
           "k": "b",
@@ -703,7 +709,8 @@
           ],
           "system": "A PR builder from saved edits.",
           "screens": "A review-and-open-PR step.",
-          "money": "None."
+          "money": "None.",
+          "what": "The same three plus pull_requests: write from day one, so the app can open a pull request with a title and body. A fourth consent line at the moment trust is lowest."
         },
         {
           "k": "c",
@@ -716,7 +723,8 @@
           ],
           "system": "One long-lived token, no installation.",
           "screens": "A sign-in screen, no install.",
-          "money": "None."
+          "money": "None.",
+          "what": "Plain OAuth with the repo scope. The fewest steps to a first file, and it is all or nothing across every repository the account can reach, which is the consent a stranger refuses."
         },
         {
           "k": "d",
@@ -729,7 +737,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Keep our operator token through the pilot and build the App later. Zero build cost and an earlier start, and a pilot that never touches a stranger's repository measures nothing about real ones."
         }
       ],
       "rec": "a",
@@ -758,7 +767,8 @@
       "whenWhy": "Sign in and per user storage need the app permissions settled first.",
       "dependsOn": [
         "AC1"
-      ]
+      ],
+      "recWhy": "Every repository call today carries one operator token of ours, and sign-in accepts a single GitHub login, so a pilot with strangers cannot run until an App exists. The permission set cannot widen quietly later: adding one re-prompts every owner, and installations that do not approve keep the old set. Three permissions and no organisation permission, because that absence is what lets a repository admin install alone, which is distribution as much as security. A pushed branch with a compare link still gets review before merge, so the fourth permission buys a title and a body, not the review. Q2 settles the buyer as the team, which is what this card's flip names, and AC22 rules repository writes out for its own reason: the value of repository access sits on the reading side and the duty on the writing side. The flip has fired and three holds anyway. Delete GITHUB_REPO_TOKEN either way."
     },
     {
       "id": "AC4",
@@ -904,7 +914,8 @@
           ],
           "system": "A local-folder adapter for the editor.",
           "screens": "A folder picker and support line.",
-          "money": "None."
+          "money": "None.",
+          "what": "showDirectoryPicker on Chrome and Edge, with the limitation named before the click. Zero-install access to a plain folder on those browsers, and about two weeks the schedule does not have."
         },
         {
           "k": "b",
@@ -919,7 +930,8 @@
           ],
           "system": "One fewer adapter to maintain.",
           "screens": "A download prompt instead.",
-          "money": "None."
+          "money": "None.",
+          "what": "No folder access in the browser at all: the desktop build owns plain folders, the web build owns GitHub. What both earlier rounds recommended, and a download at the moment of peak intent."
         },
         {
           "k": "c",
@@ -932,7 +944,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Log the browser mix on the landing page now and decide when four weeks of data exist. Turns an assumed refusal rate into a number, free only if the pilot runs on a repository anyway."
         },
         {
           "k": "d",
@@ -945,7 +958,8 @@
           ],
           "system": "A read-only session adapter as well.",
           "screens": "A drag target that cannot save.",
-          "money": "None."
+          "money": "None.",
+          "what": "The File System Access API where the browser has it, and drag-and-drop read-only everywhere else. No visible refusal on any browser; review state silently fails for the fallback users."
         }
       ],
       "rec": "d",
@@ -971,7 +985,8 @@
         "docs/research/prd-v2-sections/18-simplicity.md:283"
       ],
       "when": "after",
-      "whenWhy": "Direct folder access was cut twice and is not in the first build."
+      "whenWhy": "Direct folder access was cut twice and is not in the first build.",
+      "recWhy": "Two earlier research rounds cut the File System Access API and the plan shipped it without noting the reversal, and no showDirectoryPicker code exists. The deciding number, how many visitors arrive on a browser that has the API, has never been measured; the only figure in the plan is an assumption, and Chrome on Android is disputed between MDN and caniuse. It sits after the pilot because FL12 and PL12 in the MVP set already put folder first and drag-in with no account on the web, and the MVP decision governs. When built, ship the API where the browser has it and drag-and-drop read-only as the fallback, so nobody sees a refusal; the honest cost is that review state cannot persist for the fallback users and the page has to say so. Q3 and Q4 carry the surface. If the landing page shows under half of visitors can use the API, drag-in becomes primary and the API the extra."
     },
     {
       "id": "AC6",
@@ -1206,7 +1221,8 @@
           ],
           "system": "Keep the build targets unchanged.",
           "screens": "A download page saying macOS only.",
-          "money": "99 USD/year plus 193 USD CI."
+          "money": "99 USD/year plus 193 USD CI.",
+          "what": "One notarised .dmg and a download page that says macOS only. Notarisation is debuggable on hardware we own and macOS is 89.3 percent of CI spend; every Windows visitor bounces uncounted."
         },
         {
           "k": "b",
@@ -1219,7 +1235,8 @@
           ],
           "system": "A Windows target, a second CI path.",
           "screens": "A second download button.",
-          "money": "119.88 USD/year on top of Apple."
+          "money": "119.88 USD/year on top of Apple.",
+          "what": "macOS plus Windows signed through Azure Trusted Signing at 119.88 dollars a year. The cheapest measured Windows route; the signature quota is unknown, so that price is a floor."
         },
         {
           "k": "c",
@@ -1232,7 +1249,8 @@
           ],
           "system": "Token-bound signing, which CI cannot automate.",
           "screens": "A second button, SmartScreen warning.",
-          "money": "219 USD/year."
+          "money": "219 USD/year.",
+          "what": "macOS plus Windows signed with an OV certificate on a hardware token. No eligibility question to resolve; 219 dollars a year and a USB token that CI cannot hold."
         },
         {
           "k": "d",
@@ -1245,7 +1263,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Log the operating system mix on the site for four weeks and choose from the number. Cheap and it settles the order; the desktop build waits a month."
         }
       ],
       "rec": "a",
@@ -1278,7 +1297,8 @@
         "merged: AC7"
       ],
       "when": "notnow",
-      "whenWhy": "The desktop app is outside the first build."
+      "whenWhy": "The desktop app is outside the first build.",
+      "recWhy": "The plan promises three installers and a Windows signing price of 150 to 400 dollars a year that matches nothing measured: the cheapest certificate found costs 219 dollars a year and needs a hardware token, and Azure Trusted Signing is 119.88 with an unknown signature quota. The build targets are dmg and app only, and package.json has no Windows or Linux target, so the promise is on paper. One person can debug notarisation on the Mac we own; nobody can debug SmartScreen reputation, which is earned by install volume and not by a certificate. macOS is 89.3 percent of per-release CI cost already. So v1 is macOS only, said plainly on the download page, and the plan's Windows price gets corrected in the same edit. This sits at not now because Q3 puts the desktop surface after the web editor. If the OS mix on the site comes back Windows-first, the research says the order reverses."
     },
     {
       "id": "AC8",
@@ -1439,7 +1459,8 @@
           ],
           "system": "Bundled assets, `tauri-plugin-fs`, a real CSP.",
           "screens": "A folder picker and real offline.",
-          "money": "None beyond the days."
+          "money": "None beyond the days.",
+          "what": "Bundle the frontend into the binary, add a scoped filesystem capability and a real content security policy, then sign. The only version worth shipping; four to eight weeks against a one-day rename."
         },
         {
           "k": "b",
@@ -1468,7 +1489,8 @@
           ],
           "system": "No shell change, only the pipeline.",
           "screens": "A download page for something broken.",
-          "money": "99 USD/year for a wrapper."
+          "money": "99 USD/year for a wrapper.",
+          "what": "Sign and notarise the shell as it is so a download link exists. A link exists, and the signature vouches for whatever the last web deploy put at md.sgnk.ai."
         },
         {
           "k": "d",
@@ -1481,7 +1503,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "No desktop build in the pilot at all. Consistent with a web-first pilot; offline and local folders leave the year."
         }
       ],
       "rec": "b",
@@ -1508,7 +1531,8 @@
         "docs/research/agent-reports-2026-08-30/r19-p2-offline-or-online.md"
       ],
       "when": "notnow",
-      "whenWhy": "The desktop app is outside the first build."
+      "whenWhy": "The desktop app is outside the first build.",
+      "recWhy": "The desktop config loads the app from https://md.sgnk.ai with no content security policy, carries shell, os, process and dialog plugins but no filesystem plugin, and grants no file access, so the app cannot open a local file. Signing that would certify a swappable website: every web deploy becomes an unsigned update channel, which rules (c) out for good. The rebuild that makes it worth shipping, a bundled frontend with a scoped filesystem capability and a real policy, is four to eight weeks, and the schedule shows a one-day rename. Keep the shell as an unsigned internal artefact for smoke-testing window chrome and menus, never on a download page. That costs nothing and keeps the option open. Q3 puts the Mac app after the web editor, from the same tree, which is why this sits at not now. If the pilot moves to a desktop build, (a) starts immediately."
     },
     {
       "id": "AC9",
@@ -1877,7 +1901,8 @@
           ],
           "system": "One version endpoint and a link.",
           "screens": "A one-line update notice.",
-          "money": "None."
+          "money": "None.",
+          "what": "No updater. The app checks a version file and opens the download page when a newer build exists. No signing key to lose and nothing to strand anyone; every update is a manual download."
         },
         {
           "k": "b",
@@ -1890,7 +1915,8 @@
           ],
           "system": "Updater plugin, signing key, a Worker.",
           "screens": "An update prompt and restart.",
-          "money": "Free at this volume."
+          "money": "Free at this volume.",
+          "what": "tauri-plugin-updater against a Cloudflare Worker endpoint from the first public build. Rollback exists the first time it is needed; a key whose loss strands every user comes with it."
         },
         {
           "k": "c",
@@ -1903,7 +1929,8 @@
           ],
           "system": "Updater plugin, signing key, one file.",
           "screens": "An update prompt and restart.",
-          "money": "Free."
+          "money": "Free.",
+          "what": "The updater against a static JSON manifest on R2. Nothing to operate and free; the client refuses any lower version, so a bad release cannot be undone."
         },
         {
           "k": "d",
@@ -1916,7 +1943,8 @@
           ],
           "system": "Same as (c), plus a missing migration.",
           "screens": "Same as (c).",
-          "money": "Free."
+          "money": "Free.",
+          "what": "Static manifest now, a Worker later. Reads as the prudent middle; the no-downgrade rule is compiled into the client, so the later switch never reaches the users who need it."
         }
       ],
       "rec": "a",
@@ -1944,7 +1972,8 @@
         "merged: AC11"
       ],
       "when": "notnow",
-      "whenWhy": "The desktop app is outside the first build."
+      "whenWhy": "The desktop app is outside the first build.",
+      "recWhy": "Tauri's updater checks signatures and that check cannot be switched off, so the signing key is a permanent liability: it is unrecoverable, one person holds it, and losing it strands every installed copy. Nothing is built, the updater plugin is absent and no endpoint is named. A static manifest cannot roll back either, because the client refuses any version lower than its own, and a Worker that can roll back still needs the key. The real risk in year one is losing the key, not shipping a bad release. An in-app version check that opens the download page needs no key, no manifest and no operations, and can be replaced with a real updater later without stranding anyone, which is the property none of the other three have. Q3 has the desktop surface arriving after the web editor. When the user base outgrows manual re-downloads, or a second person holds the key, (b) is the route."
     },
     {
       "id": "AC12",
@@ -2094,7 +2123,8 @@
           ],
           "system": "An IndexedDB cache with pins and eviction.",
           "screens": "A per-file offline toggle.",
-          "money": "None."
+          "money": "None.",
+          "what": "Cache the N most recent files plus pins in IndexedDB and serve them when the network is gone. Makes the published claim true; days the schedule does not have, and the store is evictable."
         },
         {
           "k": "b",
@@ -2109,7 +2139,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Say the web build is online-only and fix the plan's platform table. One edit, and offline becomes a real reason to download the desktop app; the web column loses a capability."
         },
         {
           "k": "c",
@@ -2122,7 +2153,8 @@
           ],
           "system": "Edit the service worker.",
           "screens": "The offline page.",
-          "money": "None."
+          "money": "None.",
+          "what": "Keep the shell-offline page and correct its copy, which still names md.sgnk.ai. Nearly free because the page exists; the user still cannot read a file."
         },
         {
           "k": "d",
@@ -2135,7 +2167,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Leave the table as written and look again after the pilot. No work, and the plan keeps publishing a capability the code does not have to the person choosing a surface."
         }
       ],
       "rec": "b",
@@ -2162,7 +2195,8 @@
         "docs/research/agent-reports-2026-08-29-r8to10/s4-mobile-cross-device.md:222"
       ],
       "when": "after",
-      "whenWhy": "Offline reading is not in the first build."
+      "whenWhy": "Offline reading is not in the first build.",
+      "recWhy": "The plan's platform table, its second exhibit, claims cached open files in both web columns, and the service worker treats page loads as network-only and never intercepts the API, so the claim is false in the table a buyer reads to choose a surface. An earlier round refused a half-working offline mode in writing, and IndexedDB evicts least-recently-used data, so a browser store can never be the record. Correct the table, and fix the offline page's copy alongside it, because that page still names the sibling product. Offline then belongs to the desktop build, which is a reason to download it rather than a gap. Q3 has the web editor first and the Mac app later from the same tree. If the pilot shows offline reading is why people stop using the web app, (a) is worth its days."
     },
     {
       "id": "AC13",
@@ -2366,7 +2400,8 @@
           ],
           "system": "A keychain on desktop, memory on web.",
           "screens": "A key field marked not saved.",
-          "money": "None. Spend stays with the user."
+          "money": "None. Spend stays with the user.",
+          "what": "The key lives in memory for the tab on the web and in the OS keychain on desktop, with no local model. Exposure ends when the tab closes; the key is retyped after every reload."
         },
         {
           "k": "b",
@@ -2379,7 +2414,8 @@
           ],
           "system": "A browser store the security model forbids.",
           "screens": "A key field and a warning.",
-          "money": "None."
+          "money": "None.",
+          "what": "localStorage on the web with the blast radius written down. No friction after the first entry, and a bearer credential sits inside a page that renders untrusted markdown."
         },
         {
           "k": "c",
@@ -2392,7 +2428,8 @@
           ],
           "system": "Remove the AI path from web.",
           "screens": "No AI panel on the web.",
-          "money": "None."
+          "money": "None.",
+          "what": "No AI on the web at all: a desktop feature keyed from the OS keychain. The cleanest custody story, and it weakens the surface the trial runs on."
         },
         {
           "k": "d",
@@ -2405,7 +2442,8 @@
           ],
           "system": "A bundled runtime and weights.",
           "screens": "A model picker with a local option.",
-          "money": "Installer size against zero spend."
+          "money": "Installer size against zero spend.",
+          "what": "Bundle a small local model so desktop AI needs no key and no network. Closes the offline gap every design leaves; small models fabricate, which breaks refuse rather than guess."
         }
       ],
       "rec": "a",
@@ -2435,7 +2473,8 @@
         "merged: AC16"
       ],
       "when": "mvp",
-      "whenWhy": "Strangers bring their own key on the web. Where it is kept is a first build answer."
+      "whenWhy": "Strangers bring their own key on the web. Where it is kept is a first build answer.",
+      "recWhy": "The plan's web answer is an OS keychain, which browsers do not have, and its local-model deferral cites a 10-of-13 fabrication figure that appears in no report or source. The provider-keys research refuses browser storage because this product renders untrusted markdown, and a bearer credential next to untrusted content is the standard exfiltration setup. Session memory is the only web option whose exposure ends with the tab; the price is retyping the key on every reload, and that friction is visible. Never our server, because a breach there runs up your provider bill. Desktop uses the OS keychain. Q10 carries this as the user's own key, a hard gate before any stranger reaches an AI route. Cite the engine plan's decoding figures for the local-model deferral instead of the number nobody can find. Under 40 percent finishing key setup would send this to (b) with the risk documented."
     },
     {
       "id": "AC14",
@@ -2614,7 +2653,8 @@
           ],
           "system": "A second renderer inside Tauri.",
           "screens": "None visible.",
-          "money": "The web route still bills."
+          "money": "The web route still bills.",
+          "what": "The server route stays for the web and a native PDF path is built on desktop. The best output on both surfaces, and two renderers that have to stay byte-identical forever."
         },
         {
           "k": "d",
@@ -2627,7 +2667,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Keep the route and say nothing. No work and the better output stays; the first security review finds the exception and the claim reads as a lie."
         }
       ],
       "rec": "a",
@@ -2659,7 +2700,8 @@
       "whenWhy": "The plan now allows holding bytes, so the export route can stay. Confirm it.",
       "dependsOn": [
         "L1"
-      ]
+      ],
+      "recWhy": "Two of the five exports send the whole document to a server today: both PDF items call the server route, one opens it in a tab at ExportMenu.tsx:108 and one downloads it at :114. The browser print path, openPrintView at export-doc.ts:130, is written, exported and imported by nothing. Export Word is the HTML renderer with a .doc name. One export format is not worth an exception on the whole claim, because every statement of it would gain a clause that competitors quote back. Delete the route and wire the print path that already exists; browser print output varies by engine, so page breaks stop being ours to control, and that is the honest trade. The route can never run on desktop anyway. Q9 carries this in the privacy block. Folder-to-one-PDF is the only export with demonstrated demand, and if it ships it needs a server renderer, so the exception is written before that feature, not after."
     },
     {
       "id": "AC15",
@@ -3046,7 +3088,8 @@
           ],
           "system": "A weekly commit through the GitHub client.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "The daily line stays in the repo at .frontmatter/usage.jsonl, batched into one commit a week. The user owns the file; drag-and-drop and Firefox still have nowhere to write it."
         },
         {
           "k": "b",
@@ -3061,7 +3104,8 @@
           ],
           "system": "Browser storage on web, a file on desktop.",
           "screens": "A settings row to copy it.",
-          "money": "None."
+          "money": "None.",
+          "what": "Each surface keeps its own count where it can, and on day 14 the tester pastes whichever they have. Works on every path; a cleared browser makes a zero ambiguous."
         },
         {
           "k": "c",
@@ -3074,7 +3118,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "No file; ask the day-14 question the draft already proposes. Zero build and works everywhere; self-reported, which is what the measure existed to avoid."
         },
         {
           "k": "d",
@@ -3087,7 +3132,8 @@
           ],
           "system": "An endpoint and a consent record.",
           "screens": "A consent toggle in settings.",
-          "money": "It brings in data-protection obligations."
+          "money": "It brings in data-protection obligations.",
+          "what": "Opt-in upload of the daily line to the control plane, off by default. The only reliable count, and it makes usage personal data keyed to an account."
         }
       ],
       "rec": "b",
@@ -3110,7 +3156,8 @@
         "src-tauri/Cargo.toml"
       ],
       "when": "after",
-      "whenWhy": "The usage file measures a pilot that has not run."
+      "whenWhy": "The usage file measures a pilot that has not run.",
+      "recWhy": "The measurement decision and the access model were never checked against each other. The 8 September draft puts a usage line a day in .frontmatter/usage.jsonl with a pass mark of use on 6 of the last 10 working days. Through GitHub on the web that is a daily commit into a stranger's repository; with drag-and-drop or on Firefox nothing persists, so the file cannot exist at all. Three of four access paths cannot hold it. Per-surface storage is the only form that works on every path, and the settled parts of the draft survive: counts only, pasted once on day 14, no upload. The pwa /pilot app with its private store takes tester feedback. E32's refusal counter lives in the same local file, so this decision also decides whether the engine's kill condition can be instrumented. Q15 defines what passed means. A signed desktop build, where the repo file works, flips this back to (a)."
     },
     {
       "id": "AC18",
@@ -3242,7 +3289,8 @@
           ],
           "system": "No change.",
           "screens": "A download page naming the channel.",
-          "money": "No commission, no review cycle."
+          "money": "No commission, no review cycle.",
+          "what": "Direct download only, stated on the site, with no Mac App Store or Microsoft Store listing. No sandbox, commission or review queue; store discovery is forfeited, and it was never quantified."
         },
         {
           "k": "b",
@@ -3255,7 +3303,8 @@
           ],
           "system": "A bookmark store in the file layer.",
           "screens": "None visible.",
-          "money": "None."
+          "money": "None.",
+          "what": "Direct download now, with security-scoped bookmarks designed in from the first version. Cheaper designed in than retrofitted; more code in the part that must not be wrong."
         },
         {
           "k": "c",
@@ -3268,7 +3317,8 @@
           ],
           "system": "A store config, universal build, bookmarks.",
           "screens": "A store listing and folder grant.",
-          "money": "15% under the Small Business Program."
+          "money": "15% under the Small Business Program.",
+          "what": "Ship to the Mac App Store in v1. Store discovery and Apple-handled payments, and App Sandbox gives the app a container, not the home folder."
         },
         {
           "k": "d",
@@ -3281,7 +3331,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Leave the channel undecided. No channel ruled out, and reopening it later means rebuilding file access around bookmarks."
         }
       ],
       "rec": "a",
@@ -3303,7 +3354,8 @@
         "docs/research/agent-reports-2026-08-29-r8to10/s4-mobile-cross-device.md:114"
       ],
       "when": "notnow",
-      "whenWhy": "The desktop app is outside the first build."
+      "whenWhy": "The desktop app is outside the first build.",
+      "recWhy": "The Mac App Store requires App Sandbox, which gives the app a container rather than the home folder, and holding a folder open across launches then routes every access through security-scoped bookmarks. File access is the one thing the product does, and the engine's splice-only writer needs it plain. No evidence found shows store discovery matters for this category, so the constraint buys nothing measurable. Direct download, said on the site, and the plan already names only a .dmg, .exe and AppImage. This sits at not now because Q3 puts the desktop surface after the web editor and Q13 leaves enterprise unpriced until somebody asks. A managed fleet that can only install from a store is the one buyer that reopens it, and then (b) is the preparation, not (c)."
     },
     {
       "id": "AC19",
@@ -3371,7 +3423,8 @@
           ],
           "system": "A commit per interaction through the client.",
           "screens": "None, until they read git log.",
-          "money": "None."
+          "money": "None.",
+          "what": "One commit per review action. Durable the moment it is made; the user's history fills with commits they did not make, and each write counts against the 5,000 an hour limit."
         },
         {
           "k": "b",
@@ -3386,7 +3439,8 @@
           ],
           "system": "A write timer and a tab-close handler.",
           "screens": "A saved indicator in the panel.",
-          "money": "None."
+          "money": "None.",
+          "what": "Write on idle, on file close and on tab close. One commit a session that still lands in the repository; a killed tab loses that session's marks."
         },
         {
           "k": "c",
@@ -3399,7 +3453,8 @@
           ],
           "system": "A review-file branch and a merge policy.",
           "screens": "None, unless a conflict surfaces.",
-          "money": "None."
+          "money": "None.",
+          "what": "Write review state to a separate branch, never the working branch. The user's branch history is untouched; a fresh clone without that branch shows nothing."
         },
         {
           "k": "d",
@@ -3412,7 +3467,8 @@
           ],
           "system": "A browser store with no git path.",
           "screens": "Marks are local to this browser.",
-          "money": "None."
+          "money": "None.",
+          "what": "Keep web review state in the browser and write the file only on desktop. No repository writes on the trial surface; not durable across machines, which is the surviving claim."
         }
       ],
       "rec": "b",
@@ -3434,7 +3490,8 @@
         "docs/research/agent-reports-2026-08-30/r20-q4-repo-and-folders.md:38"
       ],
       "when": "after",
-      "whenWhy": "Writing review state to a repository is deferred with review state."
+      "whenWhy": "Writing review state to a repository is deferred with review state.",
+      "recWhy": "Review state, what you have read, is a file in the repository, so on the web every review action is a git write, and nothing in the plan says when that write happens. Marks come far faster than edits: one commit per mark floods the history with commits the user did not make and spends the same 5,000 an hour budget the reads need. Batching on idle, file close and tab close gives one commit a session that still lands in the repository; a killed tab loses that session's marks and two machines can disagree for a session. (d) forfeits the one claim nothing else in the market reaches, durable across machines. E37 decides how two people's review files merge and E36 how a record survives a rename; this card is the third leg. It sits after the pilot because Q6 makes the instruction-file view read-only first. Short-burst reviewing that loses marks to closed tabs sends this to (a)."
     },
     {
       "id": "AC20",
@@ -3469,7 +3526,8 @@
           ],
           "system": "The vault layout stops short-circuiting to the login screen; drafts go to IndexedDB.",
           "screens": "A new signed-out editor state, and a prompt at the first save.",
-          "money": "None. Anonymous use costs no storage."
+          "money": "None. Anonymous use costs no storage.",
+          "what": "The editor opens at / with local drafts and asks for an account at the first save or share. A stranger can paste and export in ten seconds; two states to build, and local drafts migrate on sign-in."
         },
         {
           "k": "b",
@@ -3484,7 +3542,8 @@
           ],
           "system": "A second route with its own state.",
           "screens": "One new page.",
-          "money": "None."
+          "money": "None.",
+          "what": "A separate /try page carries the editor and the wall stays at /. Nothing changes for signed-in users; two editors to keep in step, and the landing page still turns strangers away."
         },
         {
           "k": "c",
@@ -3499,7 +3558,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Keep the wall and let the unlisted kit link be the way in. Nothing to build and every user is known; nobody can try the editor, which is the product."
         },
         {
           "k": "d",
@@ -3514,7 +3574,8 @@
           ],
           "system": "Account becomes optional throughout.",
           "screens": "Sign-in never blocks.",
-          "money": "No email list."
+          "money": "No email list.",
+          "what": "The editor opens at / and local work never needs an account at all. The strongest privacy claim; sharing and the kit need identity, so the account returns anyway."
         }
       ],
       "rec": "a",
@@ -3625,7 +3686,8 @@
             ]
           ]
         }
-      ]
+      ],
+      "recWhy": "(vault)/layout.tsx returns the login screen when there is no actor, so the home page is the wall and nobody can try the product before joining it. Measured on 13 September: dillinger.io serves a Monaco editor on its landing page with zero sign-in words in the HTML, StackEdit and Excalidraw also show zero, HackMD shows sixteen and Typst eight. The tools that win the quick markdown job ask nothing first. The gate is three lines and the editor never checks it, so opening it is a small change; the real work is the second state and the draft migration on first sign-in. Local only costs no storage and no legal surface because nothing reaches us until the user chooses. Q3 carries this as the first decision of what ships. If the pilot shows strangers arrive through the kit link and never through the editor, (c) is honest and cheaper, and that is the only thing that changes this."
     },
     {
       "id": "AC21",
@@ -3660,7 +3722,8 @@
           ],
           "system": "A key store on the device.",
           "screens": "A settings pane.",
-          "money": "No model cost to us."
+          "money": "No model cost to us.",
+          "what": "Generation runs on a key the user holds, one provider at first. No model bill, no metering and no ceiling to build; a key is a real barrier for anyone without one."
         },
         {
           "k": "b",
@@ -3675,7 +3738,8 @@
           ],
           "system": "A metered proxy.",
           "screens": "Usage and a ceiling.",
-          "money": "Model spend, capped."
+          "money": "Model spend, capped.",
+          "what": "The user's key, or an aggregator route billed to us on the top tier. Works for people without a key and gives the top tier a clear purchase; metering, a ceiling and an abuse surface, which is PR10."
         },
         {
           "k": "c",
@@ -3690,7 +3754,8 @@
           ],
           "system": "A bundled runtime.",
           "screens": "A download step.",
-          "money": "None."
+          "money": "None.",
+          "what": "A local model with no key and no network. The strongest privacy claim and no running cost; output far below hosted models for this task, a large download, and weak machines are out."
         },
         {
           "k": "d",
@@ -3704,7 +3769,8 @@
           ],
           "system": "None.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "No offline mode; the web app is the product. One runtime to build and support; the clearest differentiator in the research goes, and the desktop shell has no reason to exist."
         }
       ],
       "rec": "a",
@@ -3774,7 +3840,8 @@
         "AC13",
         "PR10",
         "PR7"
-      ]
+      ],
+      "recWhy": "Nothing in the tools checked on 13 September offers generation on a key the user holds, so offline with your own key is the one feature here that nothing in the comparison set has. A key the user holds costs us no model spend, no metering and no ceiling, three things that are not built, and it keeps the privacy claim exact, which is the part a competitor cannot copy cheaply. AC13 is the web half of the same question and lands the same way. One provider at first, because every provider behaves differently and supporting the user's choice is support cost that never ends. This sits after the pilot because Q3 has the desktop surface arriving later and Q10 already settles the key. If most pilot users turn out not to hold a key, (b) is the only version that works and PR10, the metered route with a daily breaker, has to be answered first."
     },
     {
       "id": "AC22",
@@ -3809,7 +3876,8 @@
           ],
           "system": "A read-scoped token and no write path.",
           "screens": "A connect screen naming the scope.",
-          "money": "Duties for transit, not storage."
+          "money": "Duties for transit, not storage.",
+          "what": "Read only, forever, written into the operating rules. Most of the value at a fraction of the duty and a claim write-access tools cannot make; users will ask for write and we keep refusing."
         },
         {
           "k": "b",
@@ -3823,7 +3891,8 @@
           ],
           "system": "Write scopes, commits, conflicts.",
           "screens": "A review and commit flow.",
-          "money": "Counsel, and the 74 hour pack."
+          "money": "Counsel, and the 74 hour pack.",
+          "what": "Read and write on the top tier, as the 13 September direction proposes. The agent loop closes inside our product; every duty in L1 reopens at the first write, against tools already good at it."
         },
         {
           "k": "c",
@@ -3838,7 +3907,8 @@
           ],
           "system": "None.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Never touch a repository; the user pastes what they want considered. Zero new duty and the zero-bytes claim stays exact; kits stay weaker, and a manual step when patience is lowest."
         },
         {
           "k": "d",
@@ -3853,7 +3923,8 @@
           ],
           "system": "Local file access in the shell.",
           "screens": "A desktop-only connect screen.",
-          "money": "None."
+          "money": "None.",
+          "what": "Read only, and only on the desktop build where bytes never leave the machine. The strongest privacy story; needs the desktop app FF8 keeps out of the pilot, and splits the product."
         }
       ],
       "rec": "a",
@@ -3924,7 +3995,8 @@
         "L1",
         "L6",
         "FF8"
-      ]
+      ],
+      "recWhy": "Reading a repository to write better documents about it is a different proposition, legally and commercially, from writing to it. Nearly all the value of repository access is on the reading side, a kit written with the code in view is far better than one written from answers, and nearly all the duty is on the writing side: every byte we write into customer code is L1's intermediary duty arriving at once, against Claude Code, Cursor and Codex, which already do this well on the local machine. Ruling writing out in the operating rules turns a refusal into a claim, which is how this product argues everywhere. It is also why AC3 keeps three permissions though Q2 settled the buyer as the team. It sits after the pilot because the top plan that connects GitHub is Q13's team tier and comes later. If users will not paste and will not connect a read-only token either, (c) is the honest fallback."
     }
   ]
 }

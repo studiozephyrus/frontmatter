@@ -1620,7 +1620,7 @@
           "system": "One deletion, one relocation.",
           "screens": "The editor loses the strip.",
           "money": "None.",
-          "what": "The prompt opens where the cursor is and nowhere else, and the rail button stops being a prompt and becomes the place pending hunks are reviewed. One entry point; a first-run user has to find the shortcut."
+          "what": "The prompt opens where the cursor is and nowhere else, and the rail button becomes the place pending hunks are reviewed. One entry point; a first-run user has to find the shortcut."
         },
         {
           "k": "b",
