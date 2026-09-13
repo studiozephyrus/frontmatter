@@ -83,7 +83,11 @@ export const authEnv = new Proxy({} as AuthEnv, {
 
 const repoSchema = z.object({
   GITHUB_REPO_TOKEN: z.string().min(1),
-  GITHUB_REPO: z.string().min(1).default("sagnikmitra/md"),
+  // No default. This value feeds github-writer.ts, so a fallback is a write into
+  // whichever repo the fallback names. It used to default to the sibling
+  // product's vault, which a deploy that forgot the variable would have written
+  // to silently. Missing now fails at boot, loudly.
+  GITHUB_REPO: z.string().min(1).regex(/^[^/\s]+\/[^/\s]+$/, 'GITHUB_REPO must be "owner/repo"'),
   GITHUB_BRANCH: z.string().min(1).default("main"),
 });
 

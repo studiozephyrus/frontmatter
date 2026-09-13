@@ -35,11 +35,21 @@ describe("parseAuthEnv", () => {
 });
 
 describe("parseRepoEnv", () => {
-  it("accepts a token and defaults GITHUB_REPO and GITHUB_BRANCH", () => {
-    const e = parseRepoEnv({ GITHUB_REPO_TOKEN: "t" });
+  it("defaults GITHUB_BRANCH but never GITHUB_REPO", () => {
+    const e = parseRepoEnv({ GITHUB_REPO_TOKEN: "t", GITHUB_REPO: "owner/repo" });
     expect(e.GITHUB_REPO_TOKEN).toBe("t");
-    expect(e.GITHUB_REPO).toBe("sagnikmitra/md");
     expect(e.GITHUB_BRANCH).toBe("main");
+  });
+  // GITHUB_REPO feeds github-writer.ts, so a default is a write to someone
+  // else's vault. It used to default to the sibling product's repo, which meant
+  // a deploy that forgot the variable wrote there silently.
+  it("throws when GITHUB_REPO is missing, rather than picking a repo", () => {
+    expect(() => parseRepoEnv({ GITHUB_REPO_TOKEN: "t" })).toThrow();
+  });
+  it("never falls back to the sibling product's vault", () => {
+    let repo: string | undefined;
+    try { repo = parseRepoEnv({ GITHUB_REPO_TOKEN: "t" }).GITHUB_REPO; } catch { repo = undefined; }
+    expect(repo).not.toBe("sagnikmitra/md");
   });
   it("accepts explicit GITHUB_REPO and GITHUB_BRANCH overrides", () => {
     const e = parseRepoEnv({ GITHUB_REPO_TOKEN: "t", GITHUB_REPO: "owner/repo", GITHUB_BRANCH: "dev" });
