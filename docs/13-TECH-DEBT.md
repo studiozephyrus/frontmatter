@@ -120,10 +120,22 @@ it is simply unchanged. **Cost: 1 day.** Do it before any public build, never af
 `src/modules/app-shell` were byte-identical to the sibling repo, with 181 of 226 identical
 across `src/` and 25 already diverged.
 
-**Not verified at this commit.** The comparison needs the sibling repo checked out beside this
-one, which this pass did not do. **Do not re-quote the 41-of-43 figure as current without
-re-running that diff.** The decision it implies — merge, vendor, or fork-and-own — is open, and
-every table-stakes day not budgeted is either a fork tax or an upstream merge.
+**Verified 2026-09-13** against `~/Desktop/GitHub/md`, which is checked out on this machine:
+
+```bash
+diff -rq src ../md/src
+# editor + app-shell: 43 files, 41 byte-identical, 2 differ
+# whole src tree:    228 files, 193 identical, 27 differ, 8 only ours
+```
+
+**The 41 of 43 figure is confirmed.** The whole-tree numbers have drifted from the plan's
+"181 of 226 identical, 25 diverged" to 193 of 228 identical and 27 diverged, which is the
+same picture with three more weeks of work on it.
+
+`src/app/globals.css` is **byte-identical** to the sibling's, so the stylesheet the product
+ships is md.sgnk.ai's, not a separate studio design system. Under the MVP plan that is not a
+defect, because the MVP is meant to wear that look. It does mean the decision this implies,
+merge, vendor, or fork-and-own, is now a live answer-now card rather than a note.
 
 ## Product surfaces that contradict the plan
 
