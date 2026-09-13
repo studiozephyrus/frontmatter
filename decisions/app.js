@@ -397,7 +397,7 @@
       'went against the plan\'s own headline and a market sweep on 9 September that changed several ' +
       'answers. Each decision shows the thing being decided, where it stands, what forces a choice, the ' +
       'evidence, and what every option buys and costs. Answers stay in this browser. ' +
-      '<a class="gallerylink" href="mockups.html" target="_blank" rel="noopener">See the 23 screen iterations</a></p></div>';
+      '<a class="gallerylink" href="mockups.html" target="_blank" rel="noopener">See the screen iterations</a></p></div>';
     h += '<div class="kpis">' +
       '<div class="kpi acc"><div class="kn">Answered</div><div class="kv">' + a + '</div>' +
         '<div class="kn">of ' + Q.length + ' decisions</div></div>' +
