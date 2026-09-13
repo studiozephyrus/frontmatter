@@ -301,6 +301,51 @@ project contributes exactly one thing, and nothing contributes twice.
 That is the whole portfolio, folded into one product, and it is not cluttered because each row
 is a single lift with a phase beside it.
 
+### 4.1 Concepts, which are finer than projects
+
+You asked whether I had checked every project for things that would help. The table above is
+at the level of projects. These are the concepts inside them, and one of these I had wrongly
+filed under archive.
+
+**One source, many agent formats.** From `skills-registry`, which I marked superseded. The
+repository is; the concept is Phase 1. One canonical file, mirrored to every destination that
+reads a different shape. `apache/airflow` did this by hand with a symlink. LibreChat did not and
+its two files drifted 3x apart. The registry proved the mechanism for skills across Claude,
+Codex and Antigravity. The same mechanism across `AGENTS.md`, `CLAUDE.md` and `.cursorrules` is
+the product.
+
+**A probe attached to an instruction.** From `pwa`'s 67 capability probes: does this browser
+support the thing, run it on the device and see. Transferred: was this instruction obeyed, run
+it and see. The card `F35` calls this "show what was obeyed" and has no mechanism behind it.
+This is one. Untested as a transfer, and worth a week in Phase 1.
+
+**The decision card as the ADR template.** From `tred`, through six versions, into 208 cards
+here: the question, where it stands, what forces a choice, options with gains and costs, a
+recommendation, what would flip it, the evidence. That is a document shape, proven at scale,
+and the kit's `adr/` folder should be written in it rather than in the generic form.
+
+**Raw alongside synthesis.** From `knowledge`, which files the original under `_raw/` next to
+every note, and from Learned Rule 71. The kit keeps the user's answers next to the generated
+files, so every claim in a spec traces back to an answer. That is what `F34`'s check runs on.
+
+**Refuted numbers kept as a log.** From `sgnk-campaign`'s `numbers-refuted.json`: every figure
+in a published thing checked, and the refutations kept rather than silently corrected. The
+kit's consistency pass has a working precedent, and the precedent says keep the refutations
+visible.
+
+**Every edit leaves one trace line.** From the AIOS ledger, 5,897 rows of it: which tool, which
+task, accepted or not. Review state's substrate is the same line for a span: which span, which
+agent, when, read by a person or not. The ledger already does this for tool calls; the product
+does it for spans.
+
+**The answers file is the source and the plan is a projection.** From `tred`'s decisions site:
+answers exported to a file, the spec generated from the file, never from the conversation.
+Frontmatter's own plan already works this way, and it is the projection law applied to planning.
+The final plan will be written that way too.
+
+Seven concepts. None of them is a new build; each is a thing that already works somewhere on
+this machine, pointed at a different file.
+
 ## 5. What to archive, with a date
 
 Not delete. Archive means: mark it in the register, stop counting it, stop opening it.
