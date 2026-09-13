@@ -201,7 +201,8 @@
           ],
           "system": "Relocation, tested on files we did not write.",
           "screens": "None. A script and a diff.",
-          "money": "None."
+          "money": "None.",
+          "what": "Spend two or three days proving a review mark survives a real agent rewrite before the eighteen-day store is built. If it does not survive, the store was never worth building."
         },
         {
           "k": "b",
@@ -215,7 +216,8 @@
           ],
           "system": "Store and rendering on an unproven locator.",
           "screens": "Editor screen: highlight and unreviewed bars.",
-          "money": "None."
+          "money": "None.",
+          "what": "Build the store and the rendering now, eleven days, and treat a mark that loses its place as a later fix. Highlight on screen sooner; a structural failure surfaces at week nine."
         },
         {
           "k": "c",
@@ -230,7 +232,8 @@
           ],
           "system": "The span table becomes a paragraph table.",
           "screens": "Hover card loses byte ranges.",
-          "money": "Drops the granularity a comparable is paid for."
+          "money": "Drops the granularity a comparable is paid for.",
+          "what": "Narrow the anchor to whole paragraphs. Fewer false relocations on ordinary rewrites, and the span-level precision that attribution and the paid tier rest on goes."
         },
         {
           "k": "d",
@@ -275,7 +278,8 @@
         "merged: F2"
       ],
       "when": "after",
-      "whenWhy": "The anchor test protects review state, which is deferred."
+      "whenWhy": "The anchor test protects review state, which is deferred.",
+      "recWhy": "Eighteen days at the measured rate is about fifteen calendar weeks, and every one of them rests on an assumption nobody has tested: that a mark anchored to a byte range and a content hash finds its span again after another tool rewrote the file. If it does not, the store renders history rather than state. Two or three days on a real agent rewrite settles it for a sixth of the cost, and the milestone is already set for the start of Phase 1. On instruction files the question is sharper still, because those files are rewritten by agents by design, and a review mark that cannot survive that is a review mark on the wrong product. Option c is the honest retreat if relocation fails: paragraphs relocate better and the span-level claim goes with them."
     },
     {
       "id": "F3",
@@ -423,7 +427,8 @@
           ],
           "system": "No change.",
           "screens": "Editor hover card, as drawn.",
-          "money": "None."
+          "money": "None.",
+          "what": "Attribution stays free, as a hover card in the pilot. Nothing to bill for, and the half a live comparable charges for is given away."
         },
         {
           "k": "b",
@@ -437,7 +442,8 @@
           ],
           "system": "Two readers plus an entitlement check.",
           "screens": "Hover card gains a locked state.",
-          "money": "Puts a paid-elsewhere capability behind the seat price."
+          "money": "Puts a paid-elsewhere capability behind the seat price.",
+          "what": "Split it the way Google does: who touched the file is free, who wrote each span is paid. Copies a priced split at our band; the paid half stays thin until writes carry a prompt."
         },
         {
           "k": "c",
@@ -451,7 +457,8 @@
           ],
           "system": "Attribution becomes the surface everything hangs off.",
           "screens": "The editor leads with authorship.",
-          "money": "Reprices both tiers on an untested claim."
+          "money": "Reprices both tiers on an untested claim.",
+          "what": "Lead the pitch with attribution. The only claim four platforms did not absorb, and it reverses a demotion made on measured evidence while most writes still carry no author."
         },
         {
           "k": "d",
@@ -465,7 +472,8 @@
           ],
           "system": "Attribution folds into the MCP work.",
           "screens": "Hover card keeps time and byte range.",
-          "money": "None."
+          "money": "None.",
+          "what": "Cut it from the pilot and ship it with the MCP write path later. Saves three days now, and the pilot never shows the one claim nobody occupies."
         }
       ],
       "rec": "b",
@@ -490,7 +498,8 @@
         "https://marketplace.visualstudio.com/items?itemName=dfarkash.claude-edits-scm"
       ],
       "when": "after",
-      "whenWhy": "Attribution is after the pilot in the plan."
+      "whenWhy": "Attribution is after the pilot in the plan.",
+      "recWhy": "Attribution, which text a machine wrote and which a person did, is the one of the four claims that no platform has shipped at span level, and its demotion rested on iA Writer, a consumer app in a personal document. That was the wrong comparison. Google is the only company on record selling span-level authorship, from Business Standard, with file-level free, and that split sits in our price band. On instruction files it is the whole Team tier: what did an agent change in the file other agents obey. Copy the split. Free for the file, paid for the span, and accept that the paid half reads thin until the MCP path carries prompts, because a row that appears only when it has content never advertises an absence. If the twenty say git blame already answers authorship, keep it free and out of Pro."
     },
     {
       "id": "F4",
@@ -601,7 +610,8 @@
           ],
           "system": "Marker detector over the byte-exact writer.",
           "screens": "Answer-in-place screen, as drawn.",
-          "money": "None."
+          "money": "None.",
+          "what": "Keep it in the pilot at two days. The cheapest row in the table and a fifteen-second demo, for one toolchain's marker and about 1,400 public files."
         },
         {
           "k": "b",
@@ -615,7 +625,8 @@
           ],
           "system": "Pattern registry plus settings persistence.",
           "screens": "A row in settings.",
-          "money": "None."
+          "money": "None.",
+          "what": "Generalise the detector to any marker a user configures. Serves far more files, and adds a settings surface the plan's own feature test fails outright."
         },
         {
           "k": "c",
@@ -629,7 +640,8 @@
           ],
           "system": "No change.",
           "screens": "Its screen leaves the pilot.",
-          "money": "None."
+          "money": "None.",
+          "what": "Move it to the build after the pilot and spend the two days on the anchor prototype instead. Loses a small demo beat; buys time on the question that gates everything."
         },
         {
           "k": "d",
@@ -643,7 +655,8 @@
           ],
           "system": "Deletes the detector; the panel carries it.",
           "screens": "Absorbed into the AI panel.",
-          "money": "None."
+          "money": "None.",
+          "what": "Cut it and fold marker answering into the AI panel. One fewer row, and the distinctive part, replacing exactly the marker's bytes, goes with it."
         }
       ],
       "rec": "c",
@@ -662,7 +675,8 @@
         "docs/GAPS-2026-09-08.md:126"
       ],
       "when": "after",
-      "whenWhy": "Answer in place serves a narrow file population and is not in the first build."
+      "whenWhy": "Answer in place serves a narrow file population and is not in the first build.",
+      "recWhy": "This was once a headline and is now two days for one toolchain's marker syntax, which is the right size for it. The card is staged after the pilot and its old recommendation said keep it in the pilot, which contradicted its own stage; Phase 0 is paste and export and the marker feature is neither. Two days is small enough that a pilot person arriving with spec-kit markers in hand pulls it forward, and the demand was counted by hand, about 1,400 live files, so the row keeps its denominator. Generalising adds a settings surface, and every false positive would land inside our own review claim. Folding it into the AI panel loses the one distinctive thing about it, the exact byte range, and needs a key the marker case does not."
     },
     {
       "id": "F5",
@@ -887,7 +901,7 @@
         {
           "k": "a",
           "label": "Ship both in the pilot as planned, eight days",
-          "what": "The generated document arrives with its assumptions written into the file and highlighted.",
+          "what": "Ship idea mode and the decision flow in the pilot, eight days. The founders' strongest-evidenced feature, and four of the eight days repeat a step three free tools perform.",
           "gains": [
             "The strongest founder-evidenced feature is in the pilot",
             "Most of idea mode is already written"
@@ -912,7 +926,8 @@
           ],
           "system": "No change.",
           "screens": "No change.",
-          "money": "None."
+          "money": "None.",
+          "what": "Attach the founder test notes first, then ship. One hour closes the evidence gap; if the notes do not exist the label changes before anything is built."
         },
         {
           "k": "c",
@@ -926,12 +941,13 @@
           ],
           "system": "Structured output only; no question contract.",
           "screens": "Launcher cards without a question step.",
-          "money": "None."
+          "money": "None.",
+          "what": "Ship idea mode, defer the decision flow. Halves the exposure and buys four days; drops the part the founders say they watched someone use."
         },
         {
           "k": "d",
           "label": "Cut both and let the user's agent generate",
-          "what": "frontmatter reads the frontmatter keys it finds and highlights what arrives.",
+          "what": "Cut both and let the user's own agent generate. Zero build, and the empty folder stays empty on first run; the only two features with user contact go.",
           "gains": [
             "Zero build, and it matches the reading-surface story"
           ],
@@ -946,10 +962,10 @@
       ],
       "rec": "b",
       "recCase": [
-        "Cheapest open item in the plan: the founders either have notes or they do not.",
-        "Shipping is probably right either way. An evidence column reading \"founder user test\" is not."
+        "The founders either have notes or they do not, and one hour settles a High-severity gap. Attach them first.",
+        "Q12 then puts generation in Phase 2 as start from here, after twenty kits made by hand, never as the claim. Not the pilot."
       ],
-      "flip": "If no notes exist, relabel both untested and ship idea mode alone, which is option c.",
+      "flip": "If no notes exist, relabel both untested; idea mode alone in Phase 2 is option c's shape. If the twenty ask for generation unprompted, it moves up.",
       "linked": [
         "F10",
         "F27",
@@ -973,7 +989,8 @@
       "whenWhy": "Generation is the funnel now, so whether it ships is no longer optional.",
       "dependsOn": [
         "R17"
-      ]
+      ],
+      "recWhy": "Two features rest on a sentence in a chat window that says founders tested them, and the notes the sentence cites are not attached. That is cheap to fix and it has to be fixed first, because an evidence column reading founder user test with nothing behind it is the kind of thing a reviewer finds in a minute. After that the research moved the timing. GitHub's Spec Kit does prompt-to-spec free with 136,339 stars and Kiro does it paid, so generation cannot be what a stranger meets first; Q12 puts it in Phase 2 as start from here, after twenty kits have been made by hand, with a consistency check that is the defensible half. So attach the notes, then ship in Phase 2, and if the notes turn out not to exist, say so on the card and let idea mode go alone."
     },
     {
       "id": "F7",
@@ -1137,7 +1154,8 @@
           ],
           "system": "Git dates, script parsing, link resolution.",
           "screens": "The scan screen, complete.",
-          "money": "Feeds the fixed-scope engagement."
+          "money": "Feeds the fixed-scope engagement.",
+          "what": "Ship all ten days: staleness, missing-doc templates and the scan screen. The prototype's most complete screen, and six of the ten days rebuild checks the editor already has."
         },
         {
           "k": "b",
@@ -1151,7 +1169,8 @@
           ],
           "system": "Reuses link-doctor; no new heuristic.",
           "screens": "Scan screen, no staleness panel.",
-          "money": "None."
+          "money": "None.",
+          "what": "Links and missing docs first, six days, staleness held until the rule is written. Fastest screen, and it demos as markdownlint with a nicer panel."
         },
         {
           "k": "c",
@@ -1165,7 +1184,8 @@
           ],
           "system": "Git dates and code references only.",
           "screens": "Scan screen with one proposal type.",
-          "money": "None."
+          "money": "None.",
+          "what": "Staleness first, four days plus the panel, and point at VS Code for link checking. The novel check in front of the first stranger; awkward to cite a competitor in our screen."
         },
         {
           "k": "d",
@@ -1179,7 +1199,8 @@
           ],
           "system": "No product code.",
           "screens": "The scan screen goes.",
-          "money": "Keeps the engagement, loses the self-serve path."
+          "money": "Keeps the engagement, loses the self-serve path.",
+          "what": "Cut it from the pilot and keep it as the consultancy's hand-run diagnostic. Ten days back, and retention loses its one lever that needs no key."
         }
       ],
       "rec": "c",
@@ -1202,7 +1223,8 @@
         "src/modules/ai/application/link-doctor.ts"
       ],
       "when": "after",
-      "whenWhy": "The docs scan is after the pilot."
+      "whenWhy": "The docs scan is after the pilot.",
+      "recWhy": "Two of the scan's three checks, broken links and missing standard documents, are free in the editor the buyer already has open, and link checking exists here already as link-doctor. Staleness, a document older than the code it describes, is the one check nobody ships, and it is also the one with no written rule behind it yet. The evidence panel is what makes the screen credible, and it is most credible about a check nobody else runs. So write the staleness rule as a rule before a line of code, ship that with its panel, and cite the host for links rather than rebuilding them. The scan is also the diagnostic that scopes a services engagement, so the hand-run version earns money while the product version is built. If the first conversations name broken links as the pain and never staleness, invert to b."
     },
     {
       "id": "F8",
@@ -1387,7 +1409,8 @@
           ],
           "system": "Removes five route entry points; adds one.",
           "screens": "The AI menu shrinks to three.",
-          "money": "None."
+          "money": "None.",
+          "what": "Cut to the two verbs the plan specifies and build critique. The product matches the positioning; working code is deleted and six deletions become merge conflicts with sgnk-md."
         },
         {
           "k": "b",
@@ -1401,7 +1424,8 @@
           ],
           "system": "No change.",
           "screens": "No change.",
-          "money": "None."
+          "money": "None.",
+          "what": "Ship the eight verbs the code already has and drop the two-verb line. Zero build, and the largest surface in a product that leads with restraint."
         },
         {
           "k": "c",
@@ -1430,7 +1454,8 @@
           ],
           "system": "No change.",
           "screens": "Menu of two.",
-          "money": "None."
+          "money": "None.",
+          "what": "Ship two by promoting refine and summarise, and defer critique. No build, and the one verb that belongs to a review product is the one left out."
         }
       ],
       "rec": "c",
@@ -1451,7 +1476,8 @@
         "src/modules/editor/presentation/AIMenu.tsx:248"
       ],
       "when": "mvp",
-      "whenWhy": "The rail carries AI edit. Two verbs or eight decides what that rail looks like."
+      "whenWhy": "The rail carries AI edit. Two verbs or eight decides what that rail looks like.",
+      "recWhy": "The plan says two AI verbs and the shipped menu has eight, none of them critique, which is the only verb on either list that belongs in a product about reviewing what a machine wrote. Deleting six working routes costs days and buys no capability, and every deletion becomes a merge conflict with the parent repository. Demoting them to the palette costs an afternoon, keeps them findable by search, and clears the menu to three: refine, summarise, and a critique that has to be built. Q5 in the final set carries this as three verbs on the rail. On instruction files critique is the whole point of the panel, because the question is whether the rule you just wrote will be obeyed. If the five-second test shows people reading the panel before the highlight, cut to two."
     },
     {
       "id": "F9",
@@ -1600,7 +1626,8 @@
           ],
           "system": "One setting, narrower scope.",
           "screens": "A settings row with a qualifier.",
-          "money": "None."
+          "money": "None.",
+          "what": "Hide the panel and ghost text only; generation stays reachable. The launcher stays useful, and the switch does not mean what the positioning says it means."
         },
         {
           "k": "c",
@@ -1614,7 +1641,8 @@
           ],
           "system": "Five settings and their persistence.",
           "screens": "Settings grows a section.",
-          "money": "None."
+          "money": "None.",
+          "what": "A toggle per surface instead of one switch. Precise, and five booleans become ten, which the plan's feature test fails outright, with no sentence for the page."
         },
         {
           "k": "d",
@@ -1628,7 +1656,8 @@
           ],
           "system": "No change.",
           "screens": "No change.",
-          "money": "None."
+          "money": "None.",
+          "what": "Take the switch off the page until it is built. Nothing false in the copy, and the sharpest refusal in the positioning, one three incumbents proved people want, goes quiet."
         }
       ],
       "rec": "a",
@@ -1650,7 +1679,8 @@
         "docs/research/agent-reports-2026-08-30/r20-q6-feature-discipline.md"
       ],
       "when": "mvp",
-      "whenWhy": "A switch that hides AI is a promise made in the positioning. Say what it hides."
+      "whenWhy": "A switch that hides AI is a promise made in the positioning. Say what it hides.",
+      "recWhy": "The positioning leads with a switch that turns every AI surface off, and no code for it exists, and nobody has written down what off means. All or nothing is the only version that can be said in one sentence, which is the only version a positioning line can carry, and it is also the cheapest to build. With it on, the product is the editor and the highlight, which is exactly the Phase 0 front door: paste, clean up, export, nothing sent anywhere. Its scope shrinks if ghost text is deleted under F21, so settle that first. Per-surface toggles are a settings surface the plan's own five-gate test fails. Hiding only the panel leaves a gap between the switch and the promise, and that gap is what gets screenshotted."
     },
     {
       "id": "F10",
@@ -1811,7 +1841,8 @@
           ],
           "system": "Metering, ceilings, a refusal at the ceiling.",
           "screens": "A quota state nobody has drawn.",
-          "money": "A real bill, bounded by unwritten code."
+          "money": "A real bill, bounded by unwritten code.",
+          "what": "Run the pilot on the operator's keys with a per-user cap enforced in code. Strangers see the whole product at once, against the plan's own cost rule, and the cap has to be right first time."
         },
         {
           "k": "c",
@@ -1825,7 +1856,8 @@
           ],
           "system": "Key UI plus metering plus billing.",
           "screens": "Settings key field plus usage.",
-          "money": "Revenue and cost start before a paying tier."
+          "money": "Revenue and cost start before a paying tier.",
+          "what": "Ship the user's own key and keep a metered operator fallback as paid hosted AI. The upsell is observable, and this is the one path where document text reaches a model through us."
         },
         {
           "k": "d",
@@ -1839,7 +1871,8 @@
           ],
           "system": "Routes unreachable behind a build flag.",
           "screens": "Settings loses the AI section.",
-          "money": "None."
+          "money": "None.",
+          "what": "Cut every model feature from the pilot and run it on review state alone. No key, no spend, no metering, and a first-time user has nothing to do."
         }
       ],
       "rec": "a",
@@ -1861,7 +1894,8 @@
         "src/modules/ai/infrastructure/gateway-client.ts:34"
       ],
       "when": "mvp",
-      "whenWhy": "Strangers use the AI features on day one. Whose key pays is a gate before anyone signs up."
+      "whenWhy": "Strangers use the AI features on day one. Whose key pays is a gate before anyone signs up.",
+      "recWhy": "Every AI request in the shipped code bills the operator through five keys with a Vercel fallback, and the cost model assumes model cost is zero because it sits on the user's key. Both cannot be true when strangers arrive. A hard gate, no AI route reachable by a non-founder until the key field ships, makes the architecture claim true and bounds the bill to nothing, and it is three days inside a fix-first block that already exists. Q10 carries the same position: the user's key, in session memory on the web and the keychain on desktop, no local model. A stranger without a key sees a smaller product, and that is the honest product; the editor, the highlight and export all work with AI hidden. A cap in policy is not a cap, and a cap in code is another build."
     },
     {
       "id": "F11",
@@ -2002,7 +2036,8 @@
           ],
           "system": "No change.",
           "screens": "The refactor preview stays after the pilot.",
-          "money": "None."
+          "money": "None.",
+          "what": "Leave vault-wide refactor in the build after the pilot, as planned. The pilot says one thing to its people; the best-evidenced capability waits behind six weaker ones."
         },
         {
           "k": "b",
@@ -2017,7 +2052,8 @@
           ],
           "system": "Multi-file apply that changes only the edited bytes.",
           "screens": "The refactor preview enters the pilot.",
-          "money": "None."
+          "money": "None.",
+          "what": "Move it into the pilot and push the decision flow out. Trades a weaker evidence class for a counted vote and reuses the review panel for hunks, at four net days more."
         },
         {
           "k": "c",
@@ -2031,7 +2067,8 @@
           ],
           "system": "The same apply, on one file only.",
           "screens": "A hunk list in the editor.",
-          "money": "None."
+          "money": "None.",
+          "what": "Ship the single-file half in the pilot, the vault-wide half after. Reuses the review surface with no new apply path, and it is not what the 86 likes asked for."
         },
         {
           "k": "d",
@@ -2045,7 +2082,8 @@
           ],
           "system": "Engine-first sequencing.",
           "screens": "The refactor preview becomes the front door.",
-          "money": "None."
+          "money": "None.",
+          "what": "Ship it first, before review state, as the pilot's demo. Leads with the engine's real strength, and abandons a headline that was already decided."
         }
       ],
       "rec": "a",
@@ -2068,7 +2106,8 @@
         "docs/GAPS-2026-09-08.md:23"
       ],
       "when": "after",
-      "whenWhy": "Vault wide refactor is not in the first build."
+      "whenWhy": "Vault wide refactor is not in the first build.",
+      "recWhy": "Rename a tag or a heading across a vault is the only feature in the plan whose demand was counted as votes on a specific request, 86 of them, and the engine that does it exists. It still does not belong in Phase 0. Phase 0 is the front door, paste and clean up and export with nothing sent anywhere, judged by whether twenty strangers export something, and eight days on a multi-file apply path with per-hunk review is a different product from that. The recheck flipped this card's recommendation for exactly that reason, and the counted vote keeps its estimate and its stage in the build after. If the twenty ask for it unprompted, it moves forward and the paste path waits, because a counted request from a real user outranks a plan."
     },
     {
       "id": "F12",
@@ -2533,7 +2572,8 @@
           ],
           "system": "A serialiser over the review file.",
           "screens": "An entry in the export menu.",
-          "money": "None."
+          "money": "None.",
+          "what": "Comments live in the review file beside the document and export to CriticMarkup on demand. The file is never touched; the export answers the lock-in objection."
         },
         {
           "k": "c",
@@ -2547,7 +2587,8 @@
           ],
           "system": "A writer path that adds bytes on purpose.",
           "screens": "A materialise control per comment.",
-          "money": "None."
+          "money": "None.",
+          "what": "Comments in the review file, plus an optional callout written into the document for open ones. Visible where reviewers already read, and it writes into a file we promised never to write."
         },
         {
           "k": "d",
@@ -2561,7 +2602,8 @@
           ],
           "system": "No comment schema.",
           "screens": "The review panel without a comment thread.",
-          "money": "Thins the team offer further."
+          "money": "Thins the team offer further.",
+          "what": "Defer comments to a later build and ship shared read-state alone. Halves the team build, and teams asking for comments get what GitHub already bundles at $4."
         }
       ],
       "rec": "b",
@@ -2582,7 +2624,8 @@
         "docs/FRONTMATTER-PRD-v2-2026-08-29.md:1043"
       ],
       "when": "beta",
-      "whenWhy": "Comments are a beta slot in the plan, and the format question comes with them."
+      "whenWhy": "Comments are a beta slot in the plan, and the format question comes with them.",
+      "recWhy": "A comment kept in a file beside the document is invisible to anyone who opens the document on GitHub, which is most reviewers, and that reproduces the isolation this product criticises in SpecKit Companion. Writing the comment into the document is refused everywhere else in the plan, because bytes we did not touch stay untouched, and an in-file callout renders as a callout in every other tool. The review file as the source of truth with an export to CriticMarkup on demand keeps the promise and answers the objection. CriticMarkup itself has been still since 2021 and its site is parked, so treat it as a byte format we own and maintain, as the record concluded. Q11 puts share-and-comment in Phase 2; this card decides where those comments live when it arrives."
     },
     {
       "id": "F14",
@@ -2930,7 +2973,8 @@
           ],
           "system": "A sync service with its own storage.",
           "screens": "Multi-device and conflict views.",
-          "money": "The only proven individual price."
+          "money": "The only proven individual price.",
+          "what": "Keep sync at fifteen-plus days in the third build, as planned. Preserves the one individual price the category has proven, for an audience the plan does not target."
         },
         {
           "k": "b",
@@ -2944,7 +2988,8 @@
           ],
           "system": "A git client and a watcher, already planned.",
           "screens": "A commit and push affordance.",
-          "money": "No individual revenue line."
+          "money": "No individual revenue line.",
+          "what": "Cut it and say plainly that git is the sync. Removes the largest build in the plan, gives up the only proven individual price, and folder users get nothing across devices."
         },
         {
           "k": "c",
@@ -2958,7 +3003,8 @@
           ],
           "system": "A write that fails if the file changed, plus a review-file merge driver.",
           "screens": "A conflict view already planned after the pilot.",
-          "money": "No new price; protects the team tier."
+          "money": "No new price; protects the team tier.",
+          "what": "Reframe it as conflict surfacing over the user's own git. What the settled architecture already describes, at a fraction of the build, without the word sync on the roadmap."
         },
         {
           "k": "d",
@@ -2972,7 +3018,8 @@
           ],
           "system": "No change.",
           "screens": "No change.",
-          "money": "None."
+          "money": "None.",
+          "what": "Hold until the first buyer is chosen. Nothing designed for the wrong audience, and a fifteen-day row with no owner stays on the roadmap while Zed publishes."
         }
       ],
       "rec": "c",
@@ -2994,7 +3041,8 @@
         "https://zed.dev/blog/agentic-xanadu"
       ],
       "when": "after",
-      "whenWhy": "Sync is the paid tier, phase four."
+      "whenWhy": "Sync is the paid tier, phase four.",
+      "recWhy": "The architecture is settled and it already says what sync is here: git merge, a write log, and writes that land only if nobody changed the file first, conflicts shown and never guessed. For a repository user git already syncs, free. What the fifteen-day row was buying was a separate sync store for folder users, who are the audience the VS Code route abandoned, and it carried the one price individuals are proven to pay, Obsidian Sync at about $4. Reframing it as conflict surfacing over the user's existing git is what the architecture says and a fraction of the build. Q13's Pro tier lists storage and sync, and this is what that sync means: hosted storage for the files, git for the merge, never a second store. The rebuttal to Zed Delta's real-time-merge bet stays unwritten while this waits, and E35 owns that."
     },
     {
       "id": "F16",
@@ -3486,7 +3534,8 @@
           ],
           "system": "Two modules removed; divergence from sgnk-md grows.",
           "screens": "A status-bar control and a hotkey go.",
-          "money": "None."
+          "money": "None.",
+          "what": "Delete bookmarks and graph view and their stores. The product matches the plan exactly; 685 plus 33 lines of working code go, and every deletion is a merge conflict with sgnk-md."
         },
         {
           "k": "b",
@@ -3500,7 +3549,8 @@
           ],
           "system": "Storage key rename only.",
           "screens": "No change.",
-          "money": "None."
+          "money": "None.",
+          "what": "Keep both, remove the refusal line, rename the storage keys. No deletion risk, a shorter and less credible refusal list, and restraint stops being visibly true at rest."
         },
         {
           "k": "c",
@@ -3514,7 +3564,8 @@
           ],
           "system": "Routing change; `mod+g` freed.",
           "screens": "Two palette entries replace a control.",
-          "money": "None."
+          "money": "None.",
+          "what": "Move bookmarks and graph view behind the command palette and free the hotkey. The code stays, the idle screen clears, and both are one keystroke of typing away."
         },
         {
           "k": "d",
@@ -3528,7 +3579,8 @@
           ],
           "system": "No change.",
           "screens": "No change.",
-          "money": "None."
+          "money": "None.",
+          "what": "Leave both until the fork decision is made. One decision settles many instances, and the published plan keeps describing a product the code is not."
         }
       ],
       "rec": "c",
@@ -3555,7 +3607,8 @@
         "merged: F29"
       ],
       "when": "mvp",
-      "whenWhy": "Bookmarks and the graph sit in the right rail the MVP is building."
+      "whenWhy": "Bookmarks and the graph sit in the right rail the MVP is building.",
+      "recWhy": "Both surfaces ship, neither was chosen, and graph view holds one of three global hotkeys in a product whose first screen has a nine-control budget. Demotion to the command palette is the reversible move: the code stays, the hotkey is freed for the highlight, the idle screen clears, and an Obsidian migrant who wants the graph can still find it by typing. Deleting 718 lines of working code to satisfy one word on a refusal list is a merge conflict with the parent repository forever, for no capability gained. The plan's own feature test reached the same verdict on graph view: zero of 89 requests. Q5 carries this as bookmarks and graph to the palette. If FF3 goes to merge rather than freeze, deletion becomes free and a wins."
     },
     {
       "id": "F19",
@@ -3686,7 +3739,8 @@
           ],
           "system": "Removes a module, a route and a writer.",
           "screens": "Share control and public page go.",
-          "money": "None."
+          "money": "None.",
+          "what": "Delete the share module and the public route before any build leaves the studio. The legal section closes this month; the only way to show a document to a non-user goes with it."
         },
         {
           "k": "b",
@@ -3700,7 +3754,8 @@
           ],
           "system": "No code change; policy and process work.",
           "screens": "The public page becomes supported.",
-          "money": "74 founder-hours by the PRD's estimate."
+          "money": "74 founder-hours by the PRD's estimate.",
+          "what": "Keep the page and rewrite every operating rule around hosting. A distribution surface nothing else replaces, and grievance, takedown and abuse become live work today."
         },
         {
           "k": "c",
@@ -3714,7 +3769,8 @@
           ],
           "system": "A build flag over the public route.",
           "screens": "Share control hidden.",
-          "money": "None."
+          "money": "None.",
+          "what": "Disable the route behind a build flag, keep the code, decide in week two. One reversible change; a flag defers the decision and flags tend to ship on."
         },
         {
           "k": "d",
@@ -3758,7 +3814,8 @@
       "whenWhy": "The public share page is replaced by unlisted kit links, so its fate has to be settled.",
       "dependsOn": [
         "L6"
-      ]
+      ],
+      "recWhy": "The plan says frontmatter hosts nothing, and the code serves any shared note to an anonymous reader today, 1,407 lines with a write path measured clean on 907 files. Three committed artefacts disagree and no operating rule can be written while they do. The hosting decision itself, L1, is question one in the reading order and it is not this card's to make. What this card can settle is that nothing serves user content while that decision is open, which one build flag does, reversibly. Q11 carries it that way: route disabled, decided in week two, and if publishing returns it returns gated to the founder with noindex and system slugs. If L1 confirms we hold nothing, delete the module rather than leaving a flag that will one day ship on."
     },
     {
       "id": "F21",
@@ -3905,7 +3962,8 @@
           ],
           "system": "Removes 190 lines, a CodeMirror compartment, a route.",
           "screens": "Preview table editing and ghost text go.",
-          "money": "None."
+          "money": "None.",
+          "what": "Delete the table editor and ghost text this week and keep the CRLF table measurement as a regression test. The worst artefact in the repo becomes the most persuasive."
         },
         {
           "k": "b",
@@ -3934,7 +3992,8 @@
           ],
           "system": "No change.",
           "screens": "Two disclosure strings.",
-          "money": "None."
+          "money": "None.",
+          "what": "Keep both and disclose the limits in the interface. Zero work, and a note saying this control rewrites your file is worse than no control at all."
         },
         {
           "k": "d",
@@ -3948,7 +4007,8 @@
           ],
           "system": "A read-only flag and a switch dependency.",
           "screens": "Tables read-only in the preview pane.",
-          "money": "None."
+          "money": "None.",
+          "what": "Tables read-only in preview, ghost text behind the hide-all switch. The cheapest way to make the byte claim true, and the contradiction persists for anyone who leaves AI on."
         }
       ],
       "rec": "a",
@@ -3975,7 +4035,8 @@
         "merged: F22"
       ],
       "when": "mvp",
-      "whenWhy": "Two shipped surfaces contradict claims the product makes. Keep or cut them before strangers see them."
+      "whenWhy": "Two shipped surfaces contradict claims the product makes. Keep or cut them before strangers see them.",
+      "recWhy": "One cell edit in a four-line table with Windows line endings destroys three carriage returns, which refutes byte-exact editing in one line; and ghost text sends the text before the cursor to our server, which refutes no document bytes on our side. Two inherited surfaces, each disproving a claim the pitch rests on. The decision to delete the table editor was made on 31 August and never executed, so the only open question was the date. Deleting is half a day; rebuilding table editing byte-exactly is a week or more and unbudgeted. Keeping the CRLF measurement as a regression test is the move that matters, because the same file that proves the defect then proves it fixed, in the test suite, forever. Q5 carries this as deleted. If completion is wanted later as a differentiator, ghost text has to call the user's provider directly, which is a different feature."
     },
     {
       "id": "F23",
@@ -4120,7 +4181,8 @@
           ],
           "system": "Our own CodeMirror parse, containment included.",
           "screens": "Live mode changes; no new screen.",
-          "money": "None."
+          "money": "None.",
+          "what": "Make nested-construct rendering a feature row in our own Live mode, with an estimate and a stage. The strongest counted demand in the corpus gets an owner; the estimate is unknown."
         },
         {
           "k": "b",
@@ -4149,7 +4211,8 @@
           ],
           "system": "No change.",
           "screens": "No change.",
-          "money": "None."
+          "money": "None.",
+          "what": "Drop the rendering claim and fix the three sections that contradict each other. The document stops disagreeing with itself, and the one signal measured at this size goes unserved."
         },
         {
           "k": "d",
@@ -4186,7 +4249,8 @@
         "docs/GAPS-2026-09-08.md:127"
       ],
       "when": "after",
-      "whenWhy": "Nested rendering is editor polish for later."
+      "whenWhy": "Nested rendering is editor polish for later.",
+      "recWhy": "Five hundred and one likes against zero, in the only forum where anyone votes, and the plan gives the request no owner, no estimate and no stage, while three sections of the plan contradict each other about whether we ship it at all. If that count means anything it has to appear as work. The plugin route is cut and cannot serve it anyway, because the parse it needs was verified unreachable twice. Our own CodeMirror Live mode is the one surface where we control the parse, and Live stays in the pilot under D8 and Q5, so the row belongs there. What the estimate turns out to be is unknown until someone scopes it; core rendering could be days or a parser rewrite. If it is the rewrite, c is honest and the claim goes, because a certificate that says your file renders wrong in our own editor is indefensible."
     },
     {
       "id": "F24",
@@ -4559,7 +4623,8 @@
           ],
           "system": "Index on open; no snapshot load.",
           "screens": "Results carry a scope caveat.",
-          "money": "None."
+          "money": "None.",
+          "what": "Index only files as they are opened, on the client. Cheapest to build, and most of a new vault is unsearchable, which every competitor does better."
         },
         {
           "k": "b",
@@ -4573,7 +4638,8 @@
           ],
           "system": "A worker, persistence, an invalidation rule.",
           "screens": "A first-connect progress state.",
-          "money": "None."
+          "money": "None.",
+          "what": "Build the whole-repo index in a web worker on the client and cache it in IndexedDB. Full search and the no-bytes promise both hold; first connect on a big repo is slow."
         },
         {
           "k": "c",
@@ -4587,7 +4653,8 @@
           ],
           "system": "An index service and retention rules.",
           "screens": "No visible difference.",
-          "money": "Infrastructure cost the plan assumes away."
+          "money": "Infrastructure cost the plan assumes away.",
+          "what": "Index on our server, as the technical plan says, and narrow the promise. Best search at any size, and document text lands on our server, which reopens hosting and the legal section."
         },
         {
           "k": "d",
@@ -4601,7 +4668,8 @@
           ],
           "system": "Two implementations.",
           "screens": "A stated limitation in the web app.",
-          "money": "None."
+          "money": "None.",
+          "what": "Full search on desktop only; the web app searches open files. No worker and no server, and the trial a stranger meets is visibly worse than the download."
         }
       ],
       "rec": "b",
@@ -4622,7 +4690,8 @@
         "docs/FEATURE-GAP-REPORT.md:45"
       ],
       "when": "mvp",
-      "whenWhy": "The launcher has search, so where the index lives is a first build question."
+      "whenWhy": "The launcher has search, so where the index lives is a first build question.",
+      "recWhy": "Two sections of the plan prescribe opposite fixes for the same measured problem: the technical plan says a server index, the week-zero decision says no document bytes on our server, and the later decision wins. A worker-built client index over the whole repository, cached in IndexedDB, keeps the promise and still searches every file. First connect on a large repository will be slow and browser memory bounds it, and the web is where a stranger meets us, so that cost is real and has to be measured rather than assumed. Q9 in the final set carries this as the client-side index. The 77 MB figure that scared people was measured against an implementation that loads the whole snapshot at once, which a worker does not. If first-connect indexing measures badly on a repository the size of this one, a is the fallback and it should say so on the page."
     },
     {
       "id": "F26",
@@ -4749,7 +4818,8 @@
           ],
           "system": "A scope file, a parser, a refusal path.",
           "screens": "A scope editor, or a hand-written file.",
-          "money": "None."
+          "money": "None.",
+          "what": "A write-scope file in the repo, enforced where writes pass through our MCP server. Real where it applies; it binds only agents that use our server, and that path is untested."
         },
         {
           "k": "b",
@@ -4763,7 +4833,8 @@
           ],
           "system": "No change.",
           "screens": "No change.",
-          "money": "None."
+          "money": "None.",
+          "what": "Refuse it in writing: we review writes, we do not police them. Honest, free, and a prospect may ask why a review product cannot say which files an agent may touch."
         },
         {
           "k": "c",
@@ -4777,7 +4848,8 @@
           ],
           "system": "A group-by in the review panel.",
           "screens": "The review panel gains a path grouping.",
-          "money": "None."
+          "money": "None.",
+          "what": "Group unreviewed spans by path, read-only, in the panel already being built. Close to zero cost; it notices after the fact rather than preventing."
         },
         {
           "k": "d",
@@ -4791,7 +4863,8 @@
           ],
           "system": "No change.",
           "screens": "No change.",
-          "money": "None."
+          "money": "None.",
+          "what": "Defer until the agent-write-authority decision is settled. No design for the wrong model, and the gap stays visible in the plan to anyone reading it."
         }
       ],
       "rec": "c",
@@ -4812,7 +4885,8 @@
         "docs/research/agent-reports-2026-08-30/r26-c4-features.md"
       ],
       "when": "beta",
-      "whenWhy": "Controlling what an agent may write belongs with the kit, once the kit is real."
+      "whenWhy": "Controlling what an agent may write belongs with the kit, once the kit is real.",
+      "recWhy": "The product exists to adjudicate what agents write and cannot say which files an agent may touch, and that omission is larger than several rows that carry no evidence at all. Prevention needs a write path we control, which is the MCP server, which is after the pilot and untested; a control a user can walk around reads worse than none. Noticing needs only a group-by in a panel that is already funded, and on instruction files it is exactly the Phase 1 view: here are the files agents obey, here is which one an agent changed, grouped by where it lives. That answers the question a team actually asks, which is what happened, at close to zero cost, and it leaves the enforcing version open for the day agents write through us. If the twenty name write scope as the reason they would pay, a becomes the offer."
     },
     {
       "id": "F27",
@@ -5007,7 +5081,8 @@
           ],
           "system": "Two behaviours behind one card component.",
           "screens": "The launcher gains a second card style.",
-          "money": "None."
+          "money": "None.",
+          "what": "Two template files and two generator cards that visibly need a key. Nothing is dead for an unkeyed user, and four cards become two concepts in a first session."
         },
         {
           "k": "d",
@@ -5047,7 +5122,8 @@
         "docs/research/agent-reports-2026-08-30/r20-q6-feature-discipline.md"
       ],
       "when": "mvp",
-      "whenWhy": "The launcher shows four templates. What a template is decides the first screen."
+      "whenWhy": "The launcher shows four templates. What a template is decides the first screen.",
+      "recWhy": "The launcher cards are the first thing a stranger sees and nobody had said what clicking one does. A template file needs no model, no key and no network: click, and a markdown file lands in the folder and opens. A generator needs all three, and a stranger with no key would see four dead cards. Q4 and Q10 together settle it: the first thirty seconds work with nothing configured, and the user's own key is a hard gate before any AI route, so on first run the cards have to be files. Three of the four cite a published standard; Handover cites none, because it is this studio's own structure, and the rendering rules require it to be labelled as an offered structure rather than a standard. If the key lands early and first-run users reach for generation, two of each becomes affordable."
     },
     {
       "id": "F28",
@@ -5541,7 +5617,8 @@
           ],
           "system": "A script, not a module.",
           "screens": "None.",
-          "money": "Migration stays billable and manual."
+          "money": "Migration stays billable and manual.",
+          "what": "Migration stays a service, and we build an internal tool to do it. The paying case is served at a fraction of a public importer's cost; each migration still costs founder hours."
         },
         {
           "k": "c",
@@ -5555,7 +5632,8 @@
           ],
           "system": "No change.",
           "screens": "A documentation page.",
-          "money": "None."
+          "money": "None.",
+          "what": "Keep the file picker and write up the Notion export path. Near zero cost, and it reads as advice where a tool was expected, with the UUID filenames and broken links unfixed."
         },
         {
           "k": "d",
@@ -5569,7 +5647,8 @@
           ],
           "system": "Removes a modal.",
           "screens": "The import control disappears.",
-          "money": "None."
+          "money": "None.",
+          "what": "No import at all; the product opens folders and repositories. The smallest surface, and it contradicts a service the plan already sells."
         }
       ],
       "rec": "b",
@@ -5589,7 +5668,8 @@
         "src/modules/app-shell/presentation/ImportModal.tsx"
       ],
       "when": "after",
-      "whenWhy": "Import is not in the first build."
+      "whenWhy": "Import is not in the first build.",
+      "recWhy": "The product sells a Notion migration as a service and ships a plain file picker, which looks like a contradiction until you ask who the importer would serve. The counted demand for a Notion importer comes from Obsidian's users, not from a developer with a repository, and Notion exports are messy enough that a public importer is a maintenance commitment that never ends. An internal tool serves the paid engagement at a fraction of that cost. What changed this weekend is that import is no longer zero: chatgpt-to-claude turns a ChatGPT export into a clean working directory, stdlib Python, reads only, and that is exactly the Phase 0 front door, paste what a model gave you and get a document. So the ChatGPT path ships free in Phase 0 and Notion stays a service. If two or more pilot users arrive from Notion and stall, a follows."
     },
     {
       "id": "F33",
@@ -5660,7 +5740,8 @@
           ],
           "system": "Hash per span; no author field.",
           "screens": "Editor and review panel as drawn.",
-          "money": "None."
+          "money": "None.",
+          "what": "Highlight every span that changed since a person last read it, as specified. The simplest rule with no dependency, and the shape Almanac sold at scale before shutting down."
         },
         {
           "k": "b",
@@ -5689,7 +5770,8 @@
           ],
           "system": "Author required, so unknown means no highlight.",
           "screens": "The editor shows fewer highlights.",
-          "money": "None."
+          "money": "None.",
+          "what": "Highlight only spans a machine wrote. Exactly the claim nothing occupies, useless wherever a write carried no author, which is most writes until the MCP path exists."
         },
         {
           "k": "d",
@@ -5703,7 +5785,8 @@
           ],
           "system": "General store; author added later.",
           "screens": "No change now.",
-          "money": "None."
+          "money": "None.",
+          "what": "Ship every-changed-span now and decide the scope after the five-second test. The store schema is set before the question is asked; adding an author field later costs more."
         }
       ],
       "rec": "b",
@@ -5727,7 +5810,8 @@
         "https://antigravity.google/blog/vcs-and-terminal"
       ],
       "when": "after",
-      "whenWhy": "Both answers describe the highlight, which is deferred."
+      "whenWhy": "Both answers describe the highlight, which is deferred.",
+      "recWhy": "Highlighting everything that changed is honest, cheap and has a dead precedent behind it: it is the general form Almanac sold on $45M and switched off in January 2025. Highlighting only what a machine wrote is the claim nothing occupies, and it depends on attribution, which most writes will not carry until the MCP path exists. Keeping the store general costs nothing, so the choice belongs in the panel, not the schema: record every change, sort and default the view to agent-authored spans, and let a person widen it. On instruction files that default is the feature: what did an agent change in the file other agents obey, and did anyone look. It is the only version no observed product offers. If authorship turns out absent on most real agent writes, b collapses into a and the schema is still right."
     },
     {
       "id": "F34",
@@ -5762,7 +5846,8 @@
           ],
           "system": "Generation only.",
           "screens": "None.",
-          "money": "Lowest token cost."
+          "money": "Lowest token cost.",
+          "what": "Generate the files and ship them; the user reads the kit. Fastest, no refusal to explain, and a contradiction lands in their codebase where we never see it."
         },
         {
           "k": "b",
@@ -5777,7 +5862,8 @@
           ],
           "system": "A consistency stage between generation and publication.",
           "screens": "A findings list before the link.",
-          "money": "Roughly double the per-kit token cost."
+          "money": "Roughly double the per-kit token cost.",
+          "what": "A names-and-claims pass across every file before the link is made, with the report shown to the user. Catches the failure before an agent runs, at roughly double the tokens."
         },
         {
           "k": "c",
@@ -5792,7 +5878,8 @@
           ],
           "system": "An intermediate model of the project, then rendering.",
           "screens": "None.",
-          "money": "Lower tokens, higher build."
+          "money": "Lower tokens, higher build.",
+          "what": "Generate from one structured answer set so the files cannot disagree. The contradiction becomes impossible; much harder to build, and the output reads as templated."
         },
         {
           "k": "d",
@@ -5807,7 +5894,8 @@
           ],
           "system": "A paid stage.",
           "screens": "An upsell.",
-          "money": "A second price point."
+          "money": "A second price point.",
+          "what": "Ship the check as a paid step after the free kit. Something clear to charge for, and the free kit is the one that reaches the agent, so the damage still happens."
         }
       ],
       "rec": "b",
@@ -5859,7 +5947,8 @@
         "F5",
         "PR7",
         "R1"
-      ]
+      ],
+      "recWhy": "Any model writes thirty-three files, and Spec Kit does it free with 136,339 stars, so generation is not the part that is ours. What no generator does is check that 04-API-REFERENCE describes the endpoints 03-DATA-MODEL implies, with the same names, and a kit whose files disagree is worse than no kit, because the user hands it to an agent and the agent builds the contradiction without noticing. That failure is silent and lands weeks later. A names-and-claims pass before the link is made catches it at the only moment it is cheap, and it is the half a competitor cannot copy from a better prompt. Generating from one structured source, c, is the right end state and too large to start with; the check is the road to it. Q12 carries this. If the twenty hand-made kits show contradictions are rare, the stage becomes a warning."
     },
     {
       "id": "F35",
@@ -5894,7 +5983,8 @@
           ],
           "system": "Hierarchy resolution, size reporting, a which-file-wins view.",
           "screens": "A tree of instruction files, and a resolved view for a path.",
-          "money": "None directly. It is the reason somebody arrives."
+          "money": "None directly. It is the reason somebody arrives.",
+          "what": "Make it the MVP's reason to exist: an editor for the files agents obey. Review state gets a real job on files that are obeyed; the landing page, the kit and the pricing reframe together."
         },
         {
           "k": "b",
@@ -5909,7 +5999,8 @@
           ],
           "system": "A generator template.",
           "screens": "One more kit output.",
-          "money": "None."
+          "money": "None.",
+          "what": "Ship it as one feature inside the kit, after the kit works. No reframing, and the best-founded thing in the research sits behind the least-founded."
         },
         {
           "k": "c",
@@ -5924,7 +6015,8 @@
           ],
           "system": "One more file in the kit.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Generate the instruction files and never edit or check them. Days of work, and it touches none of the three failures the vendor documents."
         },
         {
           "k": "d",
@@ -5938,7 +6030,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Not now; decide after the twenty hand-made kits. The surface count stays where the pace can carry it, and the evidence is already in."
         }
       ],
       "rec": "a",
@@ -6081,7 +6174,8 @@
             ]
           ]
         }
-      ]
+      ],
+      "recWhy": "This is the strongest signal found all week and the only one with adoption, governance and failure modes all measured. AGENTS.md is used by over 60,000 open-source projects and stewarded by the Agentic AI Foundation under the Linux Foundation; roughly two dozen agents read it; files nest and the nearest one wins, and the main OpenAI repository holds 88 of them. They are maintained, 77 commits in openai/codex; they are large, 6,100 words in apache/airflow; and they drift, LibreChat's two copies 3x apart while airflow resorted to a symlink. The vendor's own manual lists too large, not followed and lost after compaction as known failures, and the founder's CLAUDE.md is 10,033 words. Spec Kit and Kiro generate and leave. Nobody stands where a person reads, edits and keeps these files current. That is an editor problem, and it is ours."
     },
     {
       "id": "F36",
@@ -6116,7 +6210,8 @@
           ],
           "system": "Comment threads against a span, and a suggestion queue.",
           "screens": "A shared read view with a margin, and a review inbox.",
-          "money": "Storage for comments. Small."
+          "money": "Storage for comments. Small.",
+          "what": "A link somebody reads and comments on, with suggestions the owner accepts or refuses. Weeks rather than months, and it matches how a document actually gets reviewed."
         },
         {
           "k": "b",
@@ -6131,7 +6226,8 @@
           ],
           "system": "A realtime transport and a merge strategy we have argued against.",
           "screens": "Presence, cursors, conflict states.",
-          "money": "A realtime bill per connected pair."
+          "money": "A realtime bill per connected pair.",
+          "what": "Live editing for two people on the free tier, as the direction proposed. The strongest hook on the list, and it reopens the sync decision and competes with Google Docs where they are strongest."
         },
         {
           "k": "c",
@@ -6145,7 +6241,8 @@
           ],
           "system": "Reuse the share module.",
           "screens": "One.",
-          "money": "None."
+          "money": "None.",
+          "what": "A read-only link and nothing else. Days of work on a route that exists, and the second person has no reason to return and nowhere to put a remark."
         },
         {
           "k": "d",
@@ -6159,7 +6256,8 @@
           ],
           "system": "As (a), plus a stated roadmap.",
           "screens": "As (a).",
-          "money": "A future price with no costing behind it."
+          "money": "A future price with no costing behind it.",
+          "what": "Read and comment now, live editing priced into the top tier later. Keeps the door open, and a promise on a pricing page is a commitment the architecture makes expensive."
         }
       ],
       "rec": "a",
@@ -6231,7 +6329,8 @@
         "F19",
         "L6",
         "PR24"
-      ]
+      ],
+      "recWhy": "Two people editing one document at the same time needs operational transforms or CRDTs, and this repository settled against CRDTs on evidence that has not changed: they converge on byte-identical garbage for prose, and the sync position is git merge plus a write log. Building live multiplayer reopens that, costs months, and lands in direct competition with Google Docs on the one axis where they are strongest. What a document kit actually needs is different. A kit is reviewed before it goes to an agent, which is asynchronous by nature: someone reads it, leaves remarks, suggests a change, the owner accepts or refuses. Read and comment delivers that in weeks, and it is the free-tier hook in a shape we can afford. Q11 carries it. If the twenty show people genuinely sit together and edit at once, b's cost has to be faced honestly."
     },
     {
       "id": "F37",
@@ -6266,7 +6365,8 @@
           ],
           "system": "A template store with versioning.",
           "screens": "A picker in the kit flow.",
-          "money": "Maintenance time, not money."
+          "money": "Maintenance time, not money.",
+          "what": "Four templates we write and keep: web app, library, research, internal tool. Predictable output that can be red-proofed against a real repository; anyone outside the four gets a poor fit."
         },
         {
           "k": "b",
@@ -6281,7 +6381,8 @@
           ],
           "system": "No store.",
           "screens": "None.",
-          "money": "Higher tokens per kit."
+          "money": "Higher tokens per kit.",
+          "what": "One shape the model adapts from the answers. Nothing to maintain and it fits any project on the first try; output varies run to run and there is nothing to list on a pricing page."
         },
         {
           "k": "c",
@@ -6296,7 +6397,8 @@
           ],
           "system": "A template registry with identity.",
           "screens": "Browse and publish screens.",
-          "money": "Storage and moderation time."
+          "money": "Storage and moderation time.",
+          "what": "Users write templates and we host them. The set grows without us, and hosting other people's content reopens every question in L1, plus moderation."
         },
         {
           "k": "d",
@@ -6310,7 +6412,8 @@
           ],
           "system": "None.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "No templates; one kit, and the user edits what they get. The least work, and every user does the same adaptation by hand while the clearest paid surface after storage goes unused."
         }
       ],
       "rec": "a",
@@ -6380,7 +6483,8 @@
         "F27",
         "F34",
         "PR24"
-      ]
+      ],
+      "recWhy": "A template is high perceived value for very little work, and a set of them is a maintenance surface that grows with every project type anyone names, so the answer is a small fixed set, not an open one. Four we write and keep, one per project shape, is the only option where the output can be red-proofed against a real repository before anyone relies on it, which the consistency check in F34 needs. It is also the only option with something visible to list on the Pro tier. One adaptive shape makes the consistency check harder because the output moves run to run. User-written templates are somebody else's content on our servers, which is L1 again. If the twenty hand-made kits come out nearly identical across project types, the fixed set is invented work and b is cheaper."
     },
     {
       "id": "F38",
@@ -6415,7 +6519,8 @@
           ],
           "system": "A renderer over the existing HTML path.",
           "screens": "One menu item and a preview.",
-          "money": "None."
+          "money": "None.",
+          "what": "One command, one fixed template, no options. Days of work, and the whole value is that nobody had to open Keynote; one template will suit some documents badly."
         },
         {
           "k": "b",
@@ -6429,7 +6534,8 @@
           ],
           "system": "A second document model.",
           "screens": "A slide workspace.",
-          "money": "None."
+          "money": "None.",
+          "what": "A slide editor with layouts, themes and per-slide control. Weeks of polish against free incumbents with mindshare, and it pulls the product away from being an editor."
         },
         {
           "k": "c",
@@ -6444,7 +6550,8 @@
           ],
           "system": "A format writer.",
           "screens": "A menu item.",
-          "money": "None."
+          "money": "None.",
+          "what": "Export to Marp or Slidev format and let their tools render. Almost free, and the output leaves our product so we never see it; a conversion rather than a feature."
         },
         {
           "k": "d",
@@ -6457,7 +6564,8 @@
           ],
           "system": "None.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "No slides. Nothing to build or keep, and a cheap way to make a visit worth more is turned down."
         }
       ],
       "rec": "a",
@@ -6518,7 +6626,8 @@
       "linked": [
         "F16",
         "F34"
-      ]
+      ],
+      "recWhy": "Markdown to slides is a solved problem with free, good, established tools, and the separator convention is a decade old, so nobody changes editor to get slides and this can never be an acquisition feature. It can be a retention one. Somebody who has just pasted a chat output and cleaned it up is glad a deck falls out for nothing, and the entire value of that moment is that they did not have to open a presentation tool. That value survives having no options, and dies under weeks of polish against Marp and Slidev. One command, one template, days of work, never on the landing page as a reason to switch. If people ask for control rather than for slides, c hands them to a tool that already has it, for almost nothing."
     },
     {
       "id": "F39",
@@ -6553,7 +6662,8 @@
           ],
           "system": "A per-document gate run, with bands per user.",
           "screens": "A rail item that names the tell.",
-          "money": "None until per-user corpora need storage."
+          "money": "None until per-user corpora need storage.",
+          "what": "Ship in Phase 1 with the founder's bands and let each user grow their own from their edits. The one feature no editor has; first-run bands are someone else's voice and need a store."
         },
         {
           "k": "b",
@@ -6567,7 +6677,8 @@
           ],
           "system": "The gate with bands.json's banned list only.",
           "screens": "Same rail item, weaker.",
-          "money": "None."
+          "money": "None.",
+          "what": "The generic tells only: dashes, stock phrases, the three constructions. Works for a stranger on the first paste and holds no personal data; the reads-like-you claim waits."
         },
         {
           "k": "c",
@@ -6580,7 +6691,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Keep it private, a tool the founders run on their own documents. Nothing to build or explain, and the most unusual asset on this machine stays invisible."
         },
         {
           "k": "d",
@@ -6593,7 +6705,8 @@
           ],
           "system": "No change in the pilot.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Ship after the pilot, once a second corpus proves the bands generalise. Evidence before a claim, and the pilot loses its one unusual feature."
         }
       ],
       "rec": "b",
@@ -6654,7 +6767,8 @@
       "linked": [
         "F35",
         "P26"
-      ]
+      ],
+      "recWhy": "A gate that reads a document and names the tell, this paragraph drifted into machine cadence here, exists today and no editor offers it. It is measured against 2,710 dictation entries and 196,522 of one person's words, and it caught that person's own agent three times in one evening. The corpus is one voice, which is the honest limit: the personal bands would tell a stranger their writing does not sound like Sagnik, which is true and useless. The generic tells are different. Dashes above a measured rate, forty-two stock phrases, three constructions, all derived from the same audit, all voice-neutral, all things a stranger recognises in their own draft. Ship those in Phase 1, hold no personal data, and let personal bands follow when a second corpus shows the mechanism generalises. If three of the twenty ask for their own voice, a is right and the store is worth its bytes."
     }
   ]
 }

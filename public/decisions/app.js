@@ -426,7 +426,10 @@
     if (q.recCase) {
       h += '<div class="reccase"><div class="rh">' + icon('lightbulb') +
         'Why ' + esc(String(q.rec).toUpperCase()) + '</div>' +
-        (Array.isArray(q.recCase) ? bullets(q.recCase) : md(q.recCase));
+        (Array.isArray(q.recCase) ? bullets(q.recCase) : md(q.recCase)) +
+        /* The two bullets are the sixty-second read. The paragraph is the argument in full,
+           one click below, so a card stays short and the reasoning is never missing. */
+        (q.recWhy ? '<details class="recwhy"><summary>The reasoning in full</summary><div class="recwhyb">' + md(q.recWhy) + '</div></details>' : '');
       if (q.flip) h += '<div class="flip"><b>What would change this answer.</b> ' + md(q.flip) + '</div>';
       h += '</div>';
     }

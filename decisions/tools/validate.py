@@ -20,7 +20,7 @@ REPO = pathlib.Path('/Users/sagnikmitra/Desktop/GitHub/frontmatter')
 
 REQUIRED = ['id', 'cat', 'sub', 'weight', 'q', 'lede', 'visual', 'stakes',
             'state', 'tension', 'options', 'rec', 'recCase', 'sources']
-OPTIONAL = ['evidence', 'linked', 'flip', 'when', 'whenWhy', 'dependsOn']
+OPTIONAL = ['evidence', 'linked', 'flip', 'when', 'whenWhy', 'dependsOn', 'recWhy']
 # `when` says at what point a card needs an answer. Set by the 2026-09-13 triage because 204 cards
 # were being read as one flat list when only some of them block the spec.
 WHEN = ('mvp', 'beta', 'after', 'notnow', 'task')
@@ -57,7 +57,7 @@ LIMITS = {
     'lede': 140, 'stakes': 260, 'q': 190,
     'opt.label': 84, 'opt.what': 200, 'opt.system': 170,
     'opt.screens': 170, 'opt.money': 170, 'flip': 300,
-    'bullet': 190, 'visual.caption': 74,
+    'bullet': 190, 'visual.caption': 74, 'recWhy': 900,
 }
 
 VIS_LIMITS = {

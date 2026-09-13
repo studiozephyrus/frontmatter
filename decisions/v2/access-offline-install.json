@@ -2587,7 +2587,7 @@
           "system": "Delete the server PDF route.",
           "screens": "The export menu goes five to four.",
           "money": "Removes a Chromium cold start.",
-          "detail": "`openPrintView` is written and unused. Wiring it is small, and it makes the zero-bytes claim true with no exception to explain."
+          "what": "`openPrintView` is written and unused. Wiring it is small, and it makes the zero-bytes claim true with no exception to explain."
         },
         {
           "k": "b",

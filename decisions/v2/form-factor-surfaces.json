@@ -186,7 +186,8 @@
           ],
           "system": "No change.",
           "screens": "All nine prototype screens survive.",
-          "money": "$99 Apple, $150-400 Windows."
+          "money": "$99 Apple, $150-400 Windows.",
+          "what": "The standalone editor and nothing else, as the plan is written. Keeps Live and the free-editor story, and pays every table-stakes day on a shell that is 202 of 228 files sgnk-md's."
         },
         {
           "k": "b",
@@ -200,7 +201,8 @@
           ],
           "system": "Engine ports; shell and Tauri abandoned.",
           "screens": "Launcher, editor tabs and settings screen die.",
-          "money": "No certificates, no store fee."
+          "money": "No certificates, no store fee.",
+          "what": "An extension only. Meets the people already running agents, inside the window they work in, with no Live mode and a niche whose best of thirteen has 400 installs."
         },
         {
           "k": "c",
@@ -214,7 +216,8 @@
           ],
           "system": "Engine becomes a package: two hosts.",
           "screens": "Editor and review panel ship twice, one spec.",
-          "money": "Unpriced."
+          "money": "Unpriced.",
+          "what": "One engine, extension first, a standalone shell second. A real population sees it early; two shells to keep later, and the extension has never been estimated."
         },
         {
           "k": "d",
@@ -228,15 +231,16 @@
           ],
           "system": "No change.",
           "screens": "No change.",
-          "money": "None."
+          "money": "None.",
+          "what": "One engine, the web editor first at /, the extension in the build after the pilot. Every estimate stays valid and the front door a stranger meets is the one we can judge in four weeks."
         }
       ],
-      "rec": "c",
+      "rec": "d",
       "recCase": [
-        "Only the engine is ours: 3,614 lines with no DOM, and measured as portable.",
-        "41 of 43 editor files are byte-identical to sgnk-md, so the shell is not an asset."
+        "Q3 settles the web editor at / first. The extension is the one surface with no estimate and a niche whose best entry has 400 installs.",
+        "The core is already portable, so the extension is not foreclosed. It is sequenced after the pilot, where its cost can be measured against a real ask."
       ],
-      "flip": "If VS Code loses a byte when an agent writes while you type, (d) wins.",
+      "flip": "If VS Code loses a byte when an agent writes while you type, the extension never ships. If the twenty all live inside VS Code, it moves up.",
       "linked": [
         "FF3",
         "FF4",
@@ -262,7 +266,8 @@
         "docs/PRODUCT-SHAPE-2026-09-14-0219.md:1"
       ],
       "when": "mvp",
-      "whenWhy": "The plan proposes standalone web first. It is the shape of everything built in phase one."
+      "whenWhy": "The plan proposes standalone web first. It is the shape of everything built in phase one.",
+      "recWhy": "The engine is the only thing here that is ours, 3,614 lines with no DOM and measured as portable, so one core behind more than one surface is right and was never in doubt. The order is what changed. The extension route looked like the fast way to a real population, and it still has no estimate, no Live mode, and a niche where the best of thirteen listings has 400 installs. Meanwhile the tools a developer reaches for to do one quick markdown job, dillinger and StackEdit and Excalidraw, show zero sign-in words and an editor on arrival, and our home page is a login screen. Phase 0 fixes that on the web in four weeks, on code that exists. Kiro from AWS is now fighting Cursor for the IDE window, which is one more reason not to open there first. The extension waits, unforeclosed, until someone in the twenty asks for it."
     },
     {
       "id": "FF2",
@@ -449,7 +454,8 @@
           ],
           "system": "Live-preview renderer plus a decoration layer.",
           "screens": "Editor keeps four mode tabs; adds a settings pane.",
-          "money": "None. Both surfaces are free."
+          "money": "None. Both surfaces are free.",
+          "what": "Keep Live in the pilot and ship the additive Obsidian review plugin. Keeps the one feature with a 501-vote signal, forces the standalone shell, and ships that population the thing it scored zero."
         },
         {
           "k": "b",
@@ -462,7 +468,8 @@
           ],
           "system": "No live-preview renderer, no CodeMirror build.",
           "screens": "Editor loses the Live tab.",
-          "money": "None."
+          "money": "None.",
+          "what": "Cut Live and cut Obsidian, and delete the six stale references. One feature set on both surfaces, and the only feature with measured demand goes with it."
         },
         {
           "k": "c",
@@ -476,7 +483,8 @@
           ],
           "system": "One engine, two renderers, one review file.",
           "screens": "Editor differs by surface, unlike the prototype.",
-          "money": "None."
+          "money": "None.",
+          "what": "Keep Live in the standalone web shell and ship no Obsidian surface. Two feature sets if an extension ever comes; the form-factor choice stays open."
         },
         {
           "k": "d",
@@ -490,7 +498,8 @@
           ],
           "system": "No change.",
           "screens": "No change.",
-          "money": "None."
+          "money": "None.",
+          "what": "Wait for the five-second screenshot test. Cheap, already scheduled, and it measures the highlight rather than Live, so it answers a different question."
         }
       ],
       "rec": "c",
@@ -521,7 +530,8 @@
         "docs/CRITIQUE.md:362"
       ],
       "when": "after",
-      "whenWhy": "Rendering fidelity and an Obsidian surface are both outside the first build."
+      "whenWhy": "Rendering fidelity and an Obsidian surface are both outside the first build.",
+      "recWhy": "Live mode and the Obsidian surface were bundled into one question because both are about rendering fidelity, and they need separating. D8 in the MVP set keeps Live and cuts Split, and an MVP decision governs a card staged after the pilot, so Live stays in the web shell. It is also the one feature with a counted vote behind it, 501 likes against 0 for our old headline, on the only forum that votes. Obsidian is different. The parse the plugin would need was verified unreachable twice, and what a plugin could deliver scored zero with that audience, so the plugin stays cut and its six stale references go with it. That leaves c: Live in the shell we ship, nothing in a shell we do not. If Live's cost threatens Phase 0's four weeks, cut it there and say so on the card."
     },
     {
       "id": "FF3",
@@ -679,7 +689,8 @@
           ],
           "system": "One tree, one build, a feature flag.",
           "screens": "The launcher becomes a mode switch.",
-          "money": "One set of certificates, not two."
+          "money": "One set of certificates, not two.",
+          "what": "Merge frontmatter back into sgnk-md as a mode of it. Ends the divergence at source, and it needs to know how many people use sgnk-md, which nobody has asked."
         },
         {
           "k": "b",
@@ -693,7 +704,8 @@
           ],
           "system": "No upstream tracking. Engine work continues.",
           "screens": "Existing screens stop improving.",
-          "money": "None."
+          "money": "None.",
+          "what": "Freeze the shell where it is. New work goes into the engine and one surface; the shell stays at today's quality with eight table-stakes gaps open."
         },
         {
           "k": "c",
@@ -707,7 +719,8 @@
           ],
           "system": "The shell becomes first-class, with tests.",
           "screens": "Table editing, paste-to-markdown, a keymap.",
-          "money": "Four months of the measured rate."
+          "money": "Four months of the measured rate.",
+          "what": "Hard-fork and own it. Honest about what maintaining an editor costs, which is 14.5 to 20.5 days before any new feature, at a rate that cannot pay it."
         },
         {
           "k": "d",
@@ -721,7 +734,8 @@
           ],
           "system": "Engine becomes a package. Nothing to sign.",
           "screens": "Launcher, editor and settings retired.",
-          "money": "No certificates, no hosting."
+          "money": "No certificates, no hosting.",
+          "what": "Delete the shell and ship the engine inside someone else's editor. Keeps the 14.2 percent that is ours and loses 21,793 lines, the free-editor story and Live mode."
         }
       ],
       "rec": "b",
@@ -751,7 +765,8 @@
       "whenWhy": "The MVP keeps the sibling look, so whether we merge, freeze or own that shell decides week one.",
       "dependsOn": [
         "FF1"
-      ]
+      ],
+      "recWhy": "The plan calls the same fork a strength on one page and a liability on another, and both are true, which is why this is a decision rather than a fix. Merging is the best deal if sgnk-md has reachable users, because one codebase ends the divergence cost for good, and the honest state is that nobody has asked whether those users exist; that is question 3 of the facts only you know. Hard-forking is the honest cost of owning an editor, and 14.5 to 20.5 days is not payable at 1.21 days a week before anything new ships. Deleting is right only if the surface goes to VS Code, and Q3 just said web first. Freezing is the one answer that needs nothing we do not already have: the shell stays as it is, new work goes to the engine and the one surface, and the merge question waits for the user count."
     },
     {
       "id": "FF4",
@@ -949,7 +964,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Decide the surface at the meeting and run neither test. Unblocks everything today, and nobody has tested an agent writing while a person types, which is the product's whole claim."
         },
         {
           "k": "b",
@@ -962,7 +978,8 @@
           ],
           "system": "A harness where an agent writes mid-typing, on both surfaces.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Run the contention test only, with a one-byte kill line written first. Covers the scenario the product exists for and leaves the refusal number measured on Obsidian vaults."
         },
         {
           "k": "c",
@@ -976,7 +993,8 @@
           ],
           "system": "That harness plus a pinned repo-markdown corpus.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Run both: the contention test and a repo-shaped corpus, kill lines written first. Answers whether the surface is safe and whether the four-day refusal fix is aimed at real users."
         },
         {
           "k": "d",
@@ -990,7 +1008,8 @@
           ],
           "system": "Same two harnesses, no gate.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Run both but decide the surface anyway, and let the results set build order. Keeps momentum, and a late bad result gets re-argued after the build has started."
         }
       ],
       "rec": "c",
@@ -1017,7 +1036,8 @@
         "test/corpus/foreign/SOURCES.json"
       ],
       "when": "after",
-      "whenWhy": "The surface is chosen by the plan, so the measurements that would choose it are moot."
+      "whenWhy": "The surface is chosen by the plan, so the measurements that would choose it are moot.",
+      "recWhy": "The surface is now settled by Q3, which makes the first clause of this question moot and leaves the part that matters: nothing has ever tested bytes surviving an agent writing while a person reads, and that is the entire claim. The contention test with a one-byte kill line written before it runs is the cheapest way to find out. The repo-shaped corpus is the second half: 83 percent of today's refusals are one Obsidian habit, lists at the left edge, and if the buyer is a developer with a repository that four-day fix may repair nothing they have. Both tests are days, not weeks, and both belong at the start of Phase 1 before the instruction-file view is built on top of the engine. If together they cost more than a week, run the contention test alone."
     },
     {
       "id": "FF5",
@@ -1160,7 +1180,8 @@
           ],
           "system": "Package, repo and bundle identifier change.",
           "screens": "Every title bar and the wordmark.",
-          "money": "A domain, and five registries re-checked."
+          "money": "A domain, and five registries re-checked.",
+          "what": "Rename the whole product before any store listing. Removes the collision on every surface at once, and every document, repository and reference changes with it."
         },
         {
           "k": "b",
@@ -1174,7 +1195,8 @@
           ],
           "system": "Published as mdmax; the app keeps its identifier.",
           "screens": "A different wordmark on the store page.",
-          "money": "None."
+          "money": "None.",
+          "what": "Ship the extension under the engine's name, mdmax, and keep frontmatter for the app. The one name free on npm and in the store; a two-name story to tell."
         },
         {
           "k": "c",
@@ -1188,7 +1210,8 @@
           ],
           "system": "No change.",
           "screens": "No change.",
-          "money": "Paid in acquisition, not cash."
+          "money": "Paid in acquisition, not cash.",
+          "what": "Keep frontmatter everywhere and pay the tax: a permanent qualifier against Front Matter CMS, 82,265 installs and seven years of search history that are theirs."
         },
         {
           "k": "d",
@@ -1202,7 +1225,8 @@
           ],
           "system": "No extension build.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Stay out of the marketplace entirely. Sidesteps the store collision, rules out the extension being weighed, and leaves the npm collision for the package decision."
         }
       ],
       "rec": "b",
@@ -1230,7 +1254,8 @@
         "docs/CRITIQUE.md:1728"
       ],
       "when": "notnow",
-      "whenWhy": "No extension ships before the pilot, so the store name cannot veto anything yet."
+      "whenWhy": "No extension ships before the pilot, so the store name cannot veto anything yet.",
+      "recWhy": "This only fires if an extension ships, which Q3 puts after the pilot, so it is not now. When it does fire the facts are fixed: Front Matter CMS is bigger than the record thought, 82,265 installs and alive, and it owns the @frontmatter scope on npm as well as the store listing. mdmax is free in both places and it is already the engine's name. Shipping the extension as mdmax costs a two-name story, which Q16 may resolve anyway if the product name is coined. Renaming the whole product to dodge one store is the tail wagging the dog, and paying the qualifier tax forever is worse than either. The one thing this card should not do is decide the product's name; that is Q16's, and this waits for it."
     },
     {
       "id": "FF7",
@@ -1569,7 +1594,8 @@
           ],
           "system": "Scoped filesystem access, bundled frontend, local git.",
           "screens": "No new screens; the desktop promises become true.",
-          "money": "$99/yr Apple, $150-400/yr Windows."
+          "money": "$99/yr Apple, $150-400/yr Windows.",
+          "what": "Build the real Tauri app now: MCP, local git, the file watcher, offline. Four to eight weeks, two signing certificates, a per-OS build matrix, before the first stranger."
         },
         {
           "k": "b",
@@ -1583,7 +1609,8 @@
           ],
           "system": "No Tauri work; file access stays browser-only.",
           "screens": "The what-works-where table loses its desktop column.",
-          "money": "None."
+          "money": "None.",
+          "what": "Ship web only for the pilot and rewrite the platform table to match what exists. The pilot runs on code that is built; MCP, local git and the file watcher wait."
         },
         {
           "k": "c",
@@ -1596,7 +1623,8 @@
           ],
           "system": "Entitlement check in the desktop build.",
           "screens": "An upgrade path in settings.",
-          "money": "A price on an unbuilt artefact."
+          "money": "A price on an unbuilt artefact.",
+          "what": "Web free, desktop as the paid tier. Gives the paid tier something concrete, and prices a product that does not exist yet, with the weeks arriving before the first rupee."
         },
         {
           "k": "d",
@@ -1610,7 +1638,8 @@
           ],
           "system": "Two builds, sharply different capabilities.",
           "screens": "The web app loses editing.",
-          "money": "Certificates and an update server first."
+          "money": "Certificates and an update server first.",
+          "what": "Desktop first, web as a read-only viewer. The best offline and legal posture of any option, and an install step in front of the funnel, with every desktop cost at once."
         }
       ],
       "rec": "b",
@@ -1644,7 +1673,8 @@
       "whenWhy": "The plan says web only. Saying so closes the desktop work the old plan still implies.",
       "dependsOn": [
         "FF14"
-      ]
+      ],
+      "recWhy": "The shell in the repository loads md.sgnk.ai and declares no filesystem permission, so every desktop promise in the plan rests on an app that cannot open a file. A .dmg was built on 27 May and it exists; it is not the product the plan describes. Phase 0 is four weeks and twenty people, and shell work buys those people nothing they can judge. The web app already covers the pilot's features on Chrome and Edge, and the front-door research says the web is where a stranger meets us and where zero sign-in tools win. So web only for the pilot, honestly labelled, with the platform table corrected so nobody reads a promise the code cannot keep. Desktop comes back the moment there is a paying reason, and the one tree builds both. If the MCP server moves into the pilot, desktop becomes mandatory and this card reopens."
     },
     {
       "id": "FF9",
@@ -1777,7 +1807,8 @@
           ],
           "system": "No change.",
           "screens": "Mobile leaves the what-works-where table.",
-          "money": "None."
+          "money": "None.",
+          "what": "Say on the page that mobile is a permanent non-goal. Cheap and honest, and it means going without something the whole category treats as expected."
         },
         {
           "k": "b",
@@ -1821,7 +1852,8 @@
           ],
           "system": "Two layouts and two interaction models.",
           "screens": "A full mobile set beside the desktop nine.",
-          "money": "None."
+          "money": "None.",
+          "what": "Review on mobile first, edit on desktop first. The strongest form of the review thesis, and it doubles the surface count before anyone has been asked."
         }
       ],
       "rec": "b",
@@ -1844,7 +1876,8 @@
         "docs/FRONTMATTER-RECORD.md:10836"
       ],
       "when": "notnow",
-      "whenWhy": "Mobile is outside the first build in the plan."
+      "whenWhy": "Mobile is outside the first build in the plan.",
+      "recWhy": "Three documents say three different things about mobile, and surface count is the constraint that binds everything else here, so the answer has to add no surface now and not foreclose one later. Reviewing is the one job in this product that genuinely happens away from a desk: reading what an agent changed in an instruction file is a phone-shaped task in a way editing never is. The web app already renders on a phone, which makes a read-only reviewer after the pilot a scope decision rather than a build. Stating mobile as a permanent non-goal saves a sentence and goes without something the critique classes as expected. Building mobile-first review doubles the surfaces on 1.21 days a week. Not now, then a reader, is the line that keeps the plan saying one thing."
     },
     {
       "id": "FF11",
@@ -2099,7 +2132,8 @@
           ],
           "system": "No key UI, no keychain, no registry.",
           "screens": "The settings key field never ships.",
-          "money": "Saves 3 days if the assumption holds."
+          "money": "Saves 3 days if the assumption holds.",
+          "what": "A thin extension on the host's own model picker, in the Microsoft store only. The cheapest test of the one surviving claim, and no AI on any fork that ignores the host API."
         },
         {
           "k": "b",
@@ -2113,7 +2147,8 @@
           ],
           "system": "Bring-your-own key and keychain, shared with the shell.",
           "screens": "The settings key field ships on both.",
-          "money": "3 engineering days, never wasted."
+          "money": "3 engineering days, never wasted.",
+          "what": "Thin first, with its own key, in both stores, and the line at which it widens written before publishing. AI works on every host, using key work the shell needs anyway."
         },
         {
           "k": "c",
@@ -2127,7 +2162,8 @@
           ],
           "system": "Every feature ported to the host's APIs.",
           "screens": "All nine screens rebuilt in the host idiom.",
-          "money": "Unpriced."
+          "money": "Unpriced.",
+          "what": "Thick: the first eight features inside the host, editor through file-scoped AI. Competes above the niche, and it is a second product with no estimate."
         },
         {
           "k": "d",
@@ -2140,7 +2176,8 @@
           ],
           "system": "No change.",
           "screens": "No change.",
-          "money": "None."
+          "money": "None.",
+          "what": "No extension. One surface, no store, no host API, no name collision, and the only measured route to the population running agents is gone."
         }
       ],
       "rec": "b",
@@ -2172,7 +2209,8 @@
         "https://api.github.com/repos/microsoft/vscode/pulls/324218"
       ],
       "when": "notnow",
-      "whenWhy": "Nothing is inside an extension that is not being built."
+      "whenWhy": "Nothing is inside an extension that is not being built.",
+      "recWhy": "Not now, because Q3 puts any extension after the pilot. When it comes, the shape is mostly forced by one fact: whether Cursor and the other VS Code forks honour the model API is still an open question, and the saving from relying on it is three days. A thin extension that carries its own key spends those three days and works on every host, and the key work is what the web shell needs anyway, so nothing is wasted. Thick is a second product with no estimate. None is a surface count kept at one, and it gives up the only measured route to the people already running agents. The widening line has to be written before the first publish, because scope moves after a store listing cost tenfold."
     },
     {
       "id": "FF12",
@@ -2296,7 +2334,8 @@
           ],
           "system": "Engine extracted, CLI fixed, MCP server built.",
           "screens": "None. This surface has no screens.",
-          "money": "None in, a week out."
+          "money": "None in, a week out.",
+          "what": "Add the engine as an npm package, MCP server and plugin as a fourth surface and run it first, with a 100-install kill line. One week for a number, and it gives the engine away."
         },
         {
           "k": "b",
@@ -2310,7 +2349,8 @@
           ],
           "system": "Import extensions and the `@/` alias fixed; `cert` script added.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Fix the CLI only, one day, and keep the engine internal. mdmax cert finally runs, which closes a fix; no external signal and no installs."
         },
         {
           "k": "c",
@@ -2324,7 +2364,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Leave the package route unmodelled, as the plan has it. Three choices, no licence decision, nothing given away, and the cheapest test stays unrun."
         },
         {
           "k": "d",
@@ -2338,7 +2379,8 @@
           ],
           "system": "Deferred.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Ship the package after the pilot exits, kill line intact. No new work before the pilot; if the pilot fails the one-week test never ran, and an MIT competitor is already moving."
         }
       ],
       "rec": "d",
@@ -2368,7 +2410,8 @@
         "docs/PRODUCT-BRIEF.md:516"
       ],
       "when": "after",
-      "whenWhy": "The plan puts the engine package after the pilot."
+      "whenWhy": "The plan puts the engine package after the pilot.",
+      "recWhy": "The critique's strongest recommendation, the engine as a package with a kill line, was missing from the decision put to the founders, and this card put it back. The recheck against Q3 changed only its timing. One surface first means the web editor gets a user before anything else does, and an npm probe run first is a second surface however small. The probe is still cheap, its 100-install kill line still travels with it, and a maintainer asking for the engine during the pilot would move it up. What it does not change is the licence question underneath: publishing forecloses selling the engine as a library, and dealfluence/adeu already ships a refuse-when-ambiguous engine for .docx under MIT with 149 stars, so the field is not empty. Decide the licence on E24 before the package ships, not after."
     },
     {
       "id": "FF14",

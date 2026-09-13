@@ -132,12 +132,13 @@
           ],
           "system": "Recurring merge against sgnk-md.",
           "screens": "None.",
-          "money": "Unpriced time on the shell."
+          "money": "Unpriced time on the shell.",
+          "what": "The landing page keeps saying editor. Every table-stakes feature is then paid for twice, once by the sibling and once here, and nobody has estimated that."
         },
         {
           "k": "b",
           "label": "Change the noun to the engine and the state, shipped inside an editor",
-          "what": "New sentence: \"a review layer for markdown written by agents\".",
+          "what": "The sentence becomes: where you write, review and keep current the files your agents obey. The editor is the container it happens in, not the claim.",
           "gains": [
             "Names the only code we own"
           ],
@@ -159,7 +160,8 @@
           ],
           "system": "One codebase; also fixes the desktop app shipping as sgnk-md.",
           "screens": "None yet.",
-          "money": "Unknown weeks before anything ships."
+          "money": "Unknown weeks before anything ships.",
+          "what": "One codebase, then the sentence. It ends the fork at source, and nobody has costed it against one person at 1.21 engineering days a week."
         },
         {
           "k": "d",
@@ -172,7 +174,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Wait for the surface decision. Honest, except Phase 0's landing page needs copy in its first week and cannot wait."
         }
       ],
       "rec": "b",
@@ -199,7 +202,8 @@
         "docs/PRODUCT-BRIEF.md:227"
       ],
       "when": "mvp",
-      "whenWhy": "The plan says the editor is the product. Confirm the noun before any copy or landing page is written."
+      "whenWhy": "The plan says the editor is the product. Confirm the noun before any copy or landing page is written.",
+      "recWhy": "The noun is what a stranger repeats to a colleague, so it has to name something we own and something they cannot get free elsewhere. Editor fails both. It is the one part we did not write, with 202 of 228 files identical to sgnk-md, and it is the one part nobody in this market charges for. This weekend moved the sentence again: not a review layer, which four free tools now ship, but the files your agents obey, which 60,000 projects carry and nobody helps maintain. Option b names that and keeps the editor as the container, so the fork finding does not break the free front door. Option c is cleaner and would be the right call if the merge is genuinely a week, which nobody has measured. Option d costs Phase 0 its landing copy for a decision the research has already made."
     },
     {
       "id": "P2",
@@ -418,7 +422,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Keep the headline as written and test it in the pilot. Page one of the plan then refutes itself, because four free tools already satisfy the sentence."
         },
         {
           "k": "b",
@@ -431,7 +436,8 @@
           ],
           "system": "The review file must survive out-of-band writes.",
           "screens": "A cross-person list, not a diff.",
-          "money": "What a team seat sells."
+          "money": "What a team seat sells.",
+          "what": "Narrow to per-span state that lives in the repo and travels across people, tools and machines. True and unoccupied, and invisible until a second person and tool exist."
         },
         {
           "k": "c",
@@ -444,12 +450,12 @@
           ],
           "system": "Pulls the MCP server and trailer readers forward.",
           "screens": "The hover card becomes primary.",
-          "money": "A live paid precedent behind the tier."
+          "money": "A live paid precedent behind the tier.",
+          "what": "Lead with which text the agent wrote. Nobody has shipped it at span level, and the prompt half needs the MCP server, which is untested and due after the pilot."
         },
         {
           "k": "d",
           "label": "Scope it to the instruction files agents obey, and drop the repo-wide claim",
-          "detail": "Not what share of the repo is unreviewed, which four free tools now answer. Whether a person has read the AGENTS.md an agent is about to follow.",
           "gains": [
             "Answers a question nobody else is answering, on files that are obeyed rather than read",
             "Stops competing with the four tools that shipped the working-tree half free"
@@ -460,7 +466,8 @@
           ],
           "system": "Review state keyed to instruction files rather than to every file in the tree.",
           "screens": "An unreviewed marker in the instruction tree, not a repo percentage.",
-          "money": "None directly."
+          "money": "None directly.",
+          "what": "Not what share of the repo is unreviewed, which four free tools now answer. Whether a person has read the AGENTS.md an agent is about to follow."
         }
       ],
       "rec": "d",
@@ -507,7 +514,8 @@
       "whenWhy": "The plan moves review state to after the pilot. This is the reset, so it needs saying out loud.",
       "dependsOn": [
         "P1"
-      ]
+      ],
+      "recWhy": "The repo-wide version was the headline, and in nine weeks Claude Code, Codex and VS Code all shipped a way to see what an agent changed, VS Code shipped per-file review state behind a setting, and Almanac, which sold the general form, raised $45M and shut on 31 January 2025. That is three of four claims gone table stakes and the fourth dead. Scoping to instruction files changes what the claim competes with. Not what share of a repo is unreviewed, which is now free, but whether a person has read the AGENTS.md this agent is about to obey. Those files are maintained, 77 commits in openai/codex; large, 6,100 words in apache/airflow; and they drift, LibreChat's two copies 3x apart. Nobody tools that. Tying the headline to F35 is the point, not a cost. If the twenty show nobody maintains these files, fall back to b."
     },
     {
       "id": "P3",
@@ -643,7 +651,8 @@
           ],
           "system": "No change.",
           "screens": "One landing-page line.",
-          "money": "None."
+          "money": "None.",
+          "what": "One line under the headline that says bytes you did not touch are never changed. Costs nothing and matches a demand signal of 4 complaints in 12,556."
         },
         {
           "k": "b",
@@ -656,7 +665,8 @@
           ],
           "system": "No change.",
           "screens": "A second, technical landing page.",
-          "money": "None."
+          "money": "None.",
+          "what": "Make it a headline for the technical reader. It is a claim about named competitors' defects, and it drags the 83% refusal rate into every conversation."
         },
         {
           "k": "c",
@@ -669,7 +679,8 @@
           ],
           "system": "The corpus test stays in CI.",
           "screens": "One line removed.",
-          "money": "None."
+          "money": "None.",
+          "what": "Take it off the page and keep it as an engine test. Shorter pitch, and the demo loses the one thing a stranger can check on their own folder in five seconds."
         },
         {
           "k": "d",
@@ -682,7 +693,8 @@
           ],
           "system": "The corpus run emits both numbers.",
           "screens": "A methodology note beside it.",
-          "money": "None."
+          "money": "None.",
+          "what": "Publish fidelity and refusal as one fraction. Defensible and required by the plan anyway, and an 83% refusal figure sits beside the claim."
         }
       ],
       "rec": "a",
@@ -709,7 +721,8 @@
         "https://www.diffchecker.com/pricing/"
       ],
       "when": "after",
-      "whenWhy": "Byte exactness is engine copy. The pitch is the editor and the kit now."
+      "whenWhy": "Byte exactness is engine copy. The pitch is the editor and the kit now.",
+      "recWhy": "Byte-exactness is real, measured, and admitted as a defect by an incumbent's own staff. It is also wanted by almost nobody: four complaints in a corpus of 12,556, and no vendor has taught buyers to want it because none of them can make the claim. That is the shape of a proof line, not a headline. Phase 0 puts that line under the sentence on the landing page, which is why E5, the one engine file that refutes it, moved into the floor this weekend: a proof line that is false in one line of code is worse than no line. Option a keeps the only claim checkable against their own folder without spending the pitch on it. Promote it and the demo has to be built on a file designed to break a competitor, which is a demo about them rather than about us."
     },
     {
       "id": "P4",
@@ -1588,7 +1601,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "The plan's six stay as public copy and the record's seven stay as the internal gate. Short, strict, and nobody reading both can tell which one governs."
         },
         {
           "k": "c",
@@ -1615,7 +1629,8 @@
           ],
           "system": "No change.",
           "screens": "The positioning line goes.",
-          "money": "None."
+          "money": "None.",
+          "what": "Stop publishing refusals and keep them as the admission gate. No reversal can embarrass us, and the copy loses the only lines that promise nothing unproven."
         }
       ],
       "rec": "a",
@@ -1649,7 +1664,8 @@
         "merged: P17"
       ],
       "when": "after",
-      "whenWhy": "The refusal list is positioning for a product with users. None yet."
+      "whenWhy": "The refusal list is positioning for a product with users. None yet.",
+      "recWhy": "Refusals are the positioning, and two lists that disagree, already on mobile, mean the positioning is not written down. One reconciled list fixes that, and this weekend added two entries it has to carry: no live collaborative editing, and no writes to a customer's repository, both refused with reasons in the research. A published reversal price is the part that worries people, because a competitor can quote it. It is also what makes the permanent refusals credible by contrast: no plugins, no code execution, no held documents read as identity when the roadmap items beside them carry a price. Option c keeps only the three that never reverse and loses the promise that files stay yours, which is the one buyers check."
     },
     {
       "id": "P8",
@@ -2095,7 +2111,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "No third-party code, ever, and say so on the page. Simplest to defend and the largest support deflection; it also rules out the one community moat this category has shown."
         },
         {
           "k": "b",
@@ -2108,7 +2125,8 @@
           ],
           "system": "Profile format, conformance runner, registry.",
           "screens": "A profiles list in settings.",
-          "money": "Support load with no revenue."
+          "money": "Support load with no revenue.",
+          "what": "Allow declarative render profiles and out-of-process adapters. Contribution without touching the bytes, until the profile grammar grows conditionals and becomes a language."
         },
         {
           "k": "c",
@@ -2121,7 +2139,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Keep the ban exactly as written and stop calling community the first moat. A documentation change; every deck loses a claim it could not back."
         },
         {
           "k": "d",
@@ -2134,7 +2153,8 @@
           ],
           "system": "The MCP server gains a published contract.",
           "screens": "An integrations page.",
-          "money": "None."
+          "money": "None.",
+          "what": "Keep the ban and route third parties through the MCP server, which is planned after the pilot. No sandbox needed; untested whether agents will route writes through it."
         }
       ],
       "rec": "c",
@@ -2163,7 +2183,8 @@
         "docs/CRITIQUE.md:409"
       ],
       "when": "after",
-      "whenWhy": "No plugin surface ships before the pilot, so the ban has nothing to govern."
+      "whenWhy": "No plugin surface ships before the pilot, so the ban has nothing to govern.",
+      "recWhy": "The ban is correct for a reason that does not move: the security boundary in this product is the bytes on disk, and a sandbox protects the process, not the bytes. Every plugin system that ever mattered eventually wrote to the file. What fails is the sentence on top, that community is the first moat, because the record could not find a durable community moat in this category without third-party code. Dropping the claim costs a paragraph in some decks. Dropping the ban costs the promise the whole product rests on. Option d is where this goes later: an MCP surface lets an agent act through us without running inside us, which is the only third-party model that keeps the boundary. It is after the pilot and untested, so it is not the answer today."
     },
     {
       "id": "P11",
@@ -2391,7 +2412,8 @@
           ],
           "system": "Needs store, rendering, revert, panel.",
           "screens": "The highlight and the review panel.",
-          "money": "None."
+          "money": "None.",
+          "what": "The fifteen-second highlight demo on a file we prepared, in our repo. Eighteen days of build and it only shows the headline if review state stays the headline, which it did not."
         },
         {
           "k": "b",
@@ -2418,7 +2440,8 @@
           ],
           "system": "Both paths finished.",
           "screens": "The repo report, then the editor.",
-          "money": "None."
+          "money": "None.",
+          "what": "Both: the repo report as the cold open, the highlight as the second beat. The most convincing sitting and the largest scope, at 1.21 engineering days a week."
         },
         {
           "k": "d",
@@ -2431,7 +2454,8 @@
           ],
           "system": "No change.",
           "screens": "Mocks only.",
-          "money": "None."
+          "money": "None.",
+          "what": "No demo until the headline is chosen; test on mocks. Defers a decision the research has now made, and the demo lands in week 8 or 9 either way."
         }
       ],
       "rec": "b",
@@ -2466,7 +2490,8 @@
         "docs/ENGINE.md:1004"
       ],
       "when": "after",
-      "whenWhy": "The demo shows a finished loop. Nothing to demo until the editor and the kit both exist."
+      "whenWhy": "The demo shows a finished loop. Nothing to demo until the editor and the kit both exist.",
+      "recWhy": "A demo on a file we prepared proves we can prepare a file. A demo on a folder the viewer chose, that prints what is stale, broken or missing in their own repository, proves something about them, and nobody else can run it because nobody else has the engine. Two independent reviews argued for it and it needs no capability we do not have. After this weekend it is also exactly Phase 1's screen: point it at their repo, show every instruction file, which one wins for a path, and what an agent changed that nobody read. The report and the product are the same view. Option c is the better show and the worse schedule; take it only if the pilot ends with time to spare, which the measured pace says it will not."
     },
     {
       "id": "P13",
@@ -2474,7 +2499,7 @@
       "sub": "Projection law",
       "weight": "critical",
       "q": "Does the projection law survive a review file beside the document, and how many stores outside the file are allowed?",
-      "lede": "The founding law says views own no state. The headline feature is a store beside the file.",
+      "lede": "The founding law says views own no state. The review file beside the document is a store, and the law never allowed one.",
       "visual": {
         "kind": "arch",
         "layers": [
@@ -2690,7 +2715,8 @@
           ],
           "system": "A CI check: no store outside the two.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Amend the law with a bounded exception. Two stores outside the file: one directory in the repo, one control plane for identity and billing. Nothing else, ever."
         },
         {
           "k": "b",
@@ -2703,7 +2729,8 @@
           ],
           "system": "An in-file syntax the engine writes and strips.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Keep the law absolute by writing review state into the document. Ruled out already, because an annotation in the file renders as garbage on GitHub and in every other tool."
         },
         {
           "k": "c",
@@ -2716,7 +2743,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Retire the law from the product's language and keep it as an engineering rule. The contradiction disappears, and so does the one sentence that puts us in a category."
         },
         {
           "k": "d",
@@ -2729,7 +2757,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Re-test whether review state needs a store outside the file at all, and publish the result either way. Honest, and as written the feature fails the gate and there is no headline."
         }
       ],
       "rec": "a",
@@ -2763,7 +2792,8 @@
         "merged: P14"
       ],
       "when": "after",
-      "whenWhy": "The review file is the thing being deferred, so the law it bends waits with it."
+      "whenWhy": "The review file is the thing being deferred, so the law it bends waits with it.",
+      "recWhy": "The projection law is the sentence that makes this product a category rather than a feature: the file on disk is the only truth and every view is a projection of it. The review file beside the document breaks that as written, and it has to, because state inside the file renders as garbage everywhere else. So the choice is between amending the law and losing it. Option a amends it with a cap that stays true after billing exists: one directory in the repo that travels with the code, one control plane that holds identity and money and never a byte of a document. Two is a number a competitor can quote, and it is also a number we can defend, which is more than the six uncounted stores in the code today. On instruction files the same law holds: the review file records who read AGENTS.md, and AGENTS.md itself is untouched."
     },
     {
       "id": "P15",
@@ -3009,7 +3039,8 @@
           ],
           "system": "Build the DOM assertion; there is no CI.",
           "screens": "The editor loses its tab strip; Live folds into modes.",
-          "money": "None."
+          "money": "None.",
+          "what": "Four nouns a new user meets: file, folder, view, prompt. Nine controls at rest, checked by a DOM assertion in CI. Anything else has to displace something to get in."
         },
         {
           "k": "b",
@@ -3036,7 +3067,8 @@
           ],
           "system": "Two assertions, scoped by region.",
           "screens": "The panel grows independently.",
-          "money": "None."
+          "money": "None.",
+          "what": "Nine for the document and a separate budget for the review panel. Mobile has a precedent for its own budget; unlike mobile, the panel shares the screen."
         },
         {
           "k": "d",
@@ -3049,7 +3081,8 @@
           ],
           "system": "No assertion.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Stop citing a number and review the at-rest screenshot instead. Removes a figure with no source, and removes the only enforceable check on surface growth."
         }
       ],
       "rec": "a",
@@ -3088,7 +3121,8 @@
         "merged: P16"
       ],
       "when": "mvp",
-      "whenWhy": "A bare bones editor is a budget claim. Say how many concepts and controls the first build may carry."
+      "whenWhy": "A bare bones editor is a budget claim. Say how many concepts and controls the first build may carry.",
+      "recWhy": "A budget that is not enforced is a sentence, and the plan names feature accretion as the failure it most fears. Four nouns is the only number anyone argued for; the seven-concept figure occurs once in the corpus with nothing behind it. Nine controls at rest with a DOM assertion in CI turns the budget into a test that fails a pull request, which is the only form a budget survives in for one person building alone. This weekend's Q4 and Q5 are this card applied: a paste target and one sample, three modes, three AI verbs, one switch, bookmarks and graph out of the chrome. Displacing to fit is the discipline; if the five-second test shows the highlight needs a label, buy the slot under b and pin the new number the same way."
     },
     {
       "id": "P18",
@@ -4232,7 +4266,8 @@
           ],
           "system": "Needs a judgement layer we do not have.",
           "screens": "A ranked findings list, not a change list.",
-          "money": "Higher price, and a support obligation."
+          "money": "Higher price, and a support obligation.",
+          "what": "Promise that review finds what the agent got wrong. The strongest sentence in a sale, falsified by the first defect it misses, which every dead review tool learned."
         },
         {
           "k": "b",
@@ -4245,7 +4280,8 @@
           ],
           "system": "No judgement layer; the review file is enough.",
           "screens": "An exhaustible change list and the highlight.",
-          "money": "Prices like a utility."
+          "money": "Prices like a utility.",
+          "what": "Promise that you can see what changed and who wrote it. The one job with a measurement behind it: reviewers told which text was machine-written validated it better."
         },
         {
           "k": "c",
@@ -4258,7 +4294,8 @@
           ],
           "system": "Keeping review-file history becomes a feature nothing builds.",
           "screens": "An export of who read what, when.",
-          "money": "Team tier only."
+          "money": "Team tier only.",
+          "what": "Promise a durable record of who was answerable for what. Fits a regulated buyer and needs no attention; no regulation opened requires review below the whole document."
         },
         {
           "k": "d",
@@ -4271,7 +4308,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Promise nothing and show the state. Cannot be wrong, and a pitch with no verb does not survive a meeting."
         }
       ],
       "rec": "b",
@@ -4298,7 +4336,8 @@
         "docs/PRODUCT-BRIEF.md:408"
       ],
       "when": "after",
-      "whenWhy": "Both readings describe review state, which is deferred."
+      "whenWhy": "Both readings describe review state, which is deferred.",
+      "recWhy": "There are two jobs a review surface can claim and only one of them can be measured. Defect detection is the sentence a buyer wants to hear and it is falsified by a single miss, which is how the dead tools in this category went. Orientation, seeing what changed and who wrote it, is the job with evidence behind it: reviewers told which text was machine-written validated it better, and defects were 78 of 570 review comments, fourth of nine categories, so review was never mostly about errors. On instruction files orientation is the entire feature: what did an agent change in the file other agents obey, and has a person looked. Claim b, and put c underneath it as the team framing, because a record is bought by whoever is answerable and nobody buys one for themselves."
     },
     {
       "id": "P25",
@@ -4386,7 +4425,8 @@
           ],
           "system": "No change to frontmatter.",
           "screens": "None.",
-          "money": "None now."
+          "money": "None now.",
+          "what": "A separate product with a name and an owner, parked. The 90-day plan stays buildable and the idea stops returning every planning round because it finally has somewhere to sit."
         },
         {
           "k": "b",
@@ -4399,7 +4439,8 @@
           ],
           "system": "The engine gains a token pass and render target.",
           "screens": "Adds a live-preview surface.",
-          "money": "Raises the v2 build cost materially."
+          "money": "Raises the v2 build cost materially.",
+          "what": "One product, the compiler in version two. One brand and one codebase, and version two is unbounded until Framer and self-healing are specified, which they are not."
         },
         {
           "k": "c",
@@ -4435,7 +4476,8 @@
         "CLAUDE.md:74"
       ],
       "when": "after",
-      "whenWhy": "Fusing with the studio AI system is the opposite of narrowing. Revisit once the pilot has a result."
+      "whenWhy": "Fusing with the studio AI system is the opposite of narrowing. Revisit once the pilot has a result.",
+      "recWhy": "The compiler that drives Framer and heals its own code is the largest thing dictated in six weeks and it appears in no plan, card or feature row, which is why it keeps resurfacing. Rendering live components is a different product from an editor for the files agents obey, with a different buyer and a different surface, and the 90-day plan already carries 41.5 days of debt before its headline starts. Naming it and parking it is not a rejection; it gives the idea an owner so it stops being raised and dropped. This is also the P26 answer applied one level up: the AIOS is a workshop, and the compiler is the largest room in it. Option c, tokens to CSS variables only, is the smallest honest slice and still needs a render surface to be worth anything."
     },
     {
       "id": "P26",
@@ -4469,7 +4511,8 @@
           ],
           "system": "Three templates in the product.",
           "screens": "A template picker.",
-          "money": "None."
+          "money": "None.",
+          "what": "The learned-rule format, the file gate and the skill file shape ship inside frontmatter as templates a stranger can use in a minute. The orchestrator, the 128 skills and the 156 scripts stay yours."
         },
         {
           "k": "b",
@@ -4483,7 +4526,8 @@
           ],
           "system": "A second product with its own installer.",
           "screens": "Its own surface.",
-          "money": "Its own support."
+          "money": "Its own support.",
+          "what": "The AIOS is the product and frontmatter is its editor. Two products on one person at 1.21 days a week, and nobody installs 82 rules and 31 hooks on their first day."
         },
         {
           "k": "c",
@@ -4496,7 +4540,8 @@
           ],
           "system": "No change in the pilot.",
           "screens": "None.",
-          "money": "A future price with no costing."
+          "money": "A future price with no costing.",
+          "what": "The AIOS becomes a paid add-on to the Team tier after the pilot. A later reason to pay, promised before the first product has a single user."
         },
         {
           "k": "d",
@@ -4509,7 +4554,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Nothing ships from it. Nothing to explain, and the learned-rule format, the one pattern nobody has that answers a failure the vendor documents, stays invisible."
         }
       ],
       "rec": "a",
@@ -4579,7 +4625,8 @@
         "F39",
         "FF8",
         "P15"
-      ]
+      ],
+      "recWhy": "The AIOS is the best thing on this machine and it is not a product, and both halves matter. Every one of the 82 rules was paid for by a real failure, which is why the agent output here is better than most people's. But 43 of the 128 skills exist to run the system itself, the preference log the loop was built to learn from holds zero pairs, and aios-site has not had a commit since it was made. A workshop tuned to one person's scars is not a kit. Inside it is one pattern that is a product: an instruction file that grows as rules with a reason and a date, so it stays small enough to be obeyed. The vendor's own manual lists too large as a documented failure, and the founder's CLAUDE.md is 10,033 words, which is the proof and the customer in one. Ship that format, the gate that checks a file, and the skill shape. Keep the rest."
     }
   ]
 }

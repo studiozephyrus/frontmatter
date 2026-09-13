@@ -622,3 +622,12 @@ ul.bl.tight li::before{top:7px;width:3px;height:3px}
 .fown{flex:1;min-width:200px;font:inherit;font-size:12.5px;padding:5px 9px;border-radius:7px;
   border:1px solid var(--line);background:var(--panel,var(--card));color:var(--ink)}
 .fown:focus{outline:none;border-color:var(--accent)}
+
+/* the recommendation's argument in full, one click below its two bullets */
+.recwhy{margin:8px 0 0}
+.recwhy summary{cursor:pointer;font-size:12.5px;color:var(--accent);list-style:none;padding:2px 0}
+.recwhy summary::-webkit-details-marker{display:none}
+.recwhy summary::before{content:"+ ";color:var(--ink-4)}
+.recwhy[open] summary::before{content:"\2212 "}
+.recwhyb{font-size:13.5px;line-height:1.55;color:var(--ink-2);padding:6px 0 2px;max-width:68ch}
+.recwhyb p{margin:0 0 8px}

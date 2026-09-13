@@ -16,7 +16,7 @@ Three things are load-bearing and true:
   never rewrites a whole file. When the range is ambiguous it REFUSES rather than guess.
 - **Review state.** A sidecar at `.frontmatter/review.jsonl` records which spans a person has
   read, keyed by content hash. The current headline claim, and it failed its own adversarial
-  round on 8 September 2026 — see the exemplar.
+  round on 8 September 2026, see the exemplar.
 
 The plan is honest about being unproven. Match that. A decision card that oversells is worse
 than useless, because the whole point is to decide well.
@@ -44,6 +44,8 @@ Return an array of objects. Every object has exactly these keys.
   // reintroduce it; the validator warns if you do.
 
   evidence: [ … ],                  // keep the existing evidence blocks; see EVIDENCE.
+  recWhy: "…",                     // optional, up to 900 chars. The recommendation's argument in full,
+                                    // rendered one click below the two recCase bullets. Added 2026-09-14.
 
   options: [{
     k:       "a",                   // a, b, c, d in order
@@ -69,14 +71,14 @@ Return an array of objects. Every object has exactly these keys.
 Bullets are strings. No nested objects inside bullets. No markdown headings anywhere. Inline
 `` `code` `` and **bold** are fine and render.
 
-## THE BUDGET — about 250 words of prose a card
+## THE BUDGET, about 250 words of prose a card
 
 Measured 2026-09-10 before the compaction: 264 cards, **157,248 words**, median **591 a card**.
-At 250 wpm that is roughly eight hours of reading before any thinking. A card is a 60–75 second
+At 250 wpm that is roughly eight hours of reading before any thinking. A card is a 60 to 75 second
 read or it does not get read. Keep the numbers and the `file:line` refs; cut the words around
 them. If a bullet carries no fact a reader would act on, delete the bullet.
 
-## VOICE — this is the part most likely to go wrong
+## VOICE, this is the part most likely to go wrong
 
 The reader is Sagnik. He wrote most of the source material. He will notice padding immediately.
 
@@ -91,7 +93,7 @@ The reader is Sagnik. He wrote most of the source material. He will notice paddi
   "holistic", "streamline", "empower", "game-changing", "best-in-class"
 - "Moreover", "Furthermore", "Additionally", "That said," as a sentence opener
 - Triads for rhythm: "clear, concise, and compelling"
-- "not just X, but Y" — the single most obvious tell
+- "not just X, but Y", the single most obvious tell
 - Rhetorical questions inside a body field
 - Any sentence that would survive unchanged in a different product's document
 
@@ -102,7 +104,7 @@ The reader is Sagnik. He wrote most of the source material. He will notice paddi
 - British spelling, matching the corpus: "behaviour", "licence" (noun), "recognise", "artefact".
 - Say "we" for the studio, "you" for the reader, never "the user" when "you" fits.
 
-## MERGING — the point of this pass
+## MERGING, the point of this pass
 
 You will receive N questions for your area. Several will be the same decision asked twice, or a
 decision and its own sub-clause. **Merge them.**
@@ -112,14 +114,14 @@ decision and its own sub-clause. **Merge them.**
 - Merge when the answers are the same set of choices, or when answering one forces the other.
 - Do NOT merge when two questions genuinely have different option sets, even if adjacent.
 - Do NOT merge across areas. Instead put the other area's id in `linked`.
-- Expect to reduce your area by roughly 15–35%. If you merge nothing, you probably did not read
+- Expect to reduce your area by roughly 15 to 35%. If you merge nothing, you probably did not read
   carefully. If you merge more than half, you are destroying decisions.
 
 Also: **drop anything that is not a decision.** Some entries are research tasks in disguise
 ("find out whether X"). A decision has options a person could choose between today. If it is a
 task, drop it and note the id in your `dropped` list with a one-line reason.
 
-## VISUALS — every question gets one
+## VISUALS, every question gets one
 
 Pick the primitive that actually explains the decision. A wrong-but-pretty diagram is worse than
 none. Ten kinds are available:
@@ -129,11 +131,11 @@ none. Ten kinds are available:
 | `screen` | the decision is about what a surface shows | `{kind:'screen', title, panes:[{label,w,rows:[{label,meta,mark,tone}]}], note, caption}` |
 | `flow` | it is a sequence, or a fork in one | `{kind:'flow', nodes:[{label,note,tone,edge,dashed}], perRow, note, caption}` |
 | `state` | it is a lifecycle | `{kind:'state', states:[{label,meta,via,tone,current}], note, caption}` |
-| `compare` | there are 2–3 options to hold against each other | `{kind:'compare', labelWidth, cols:[{title,tone}], rows:[{label,cells:[]}], note, caption}` |
+| `compare` | there are 2 to 3 options to hold against each other | `{kind:'compare', labelWidth, cols:[{title,tone}], rows:[{label,cells:[]}], note, caption}` |
 | `ba` | something changes from one state to another | `{kind:'ba', before:{title,lines:[{t,mark}]}, after:{…}, via, note, caption}` |
-| `arch` | it is about which layer owns something | `{kind:'arch', layers:[{label,items:[],side,tone}], note, caption}` — order bottom-up |
+| `arch` | it is about which layer owns something | `{kind:'arch', layers:[{label,items:[],side,tone}], note, caption}`, order bottom-up |
 | `timeline` | dates carry the argument | `{kind:'timeline', items:[{when,label,note,tone}], note, caption}` |
-| `matrix` | it is about positioning against the field | `{kind:'matrix', x:[lo,hi], y:[lo,hi], points:[{label,x,y,us}], note, caption}` — x/y are 0–1 |
+| `matrix` | it is about positioning against the field | `{kind:'matrix', x:[lo,hi], y:[lo,hi], points:[{label,x,y,us}], note, caption}`, x/y are 0 to 1 |
 | `file` | it is about bytes, spans, or markdown syntax | `{kind:'file', name, lines:[{t,mark,note}], note, caption}` |
 | `funnel` | a count collapses through stages | `{kind:'funnel', steps:[{label,n,unit,tone}], note, caption}` |
 
@@ -148,22 +150,22 @@ Constraints, because the renderer computes geometry from these:
 - `matrix`: at most 7 points, exactly one with `us:true`.
 - `file`: at most 12 lines, each under 52 chars.
 - `funnel`: at most 6 steps, `n` must be a real number from the corpus.
-- Every visual carries a `caption` — one line, under 70 chars, saying what it shows.
+- Every visual carries a `caption`, one line, under 70 chars, saying what it shows.
 - **Never invent a number for a diagram.** If the corpus has no number, use a `flow`, `compare`,
   `screen` or `ba`, which need none.
 
 ## EVIDENCE
 
 Keep the evidence blocks that already exist on the questions you keep. They are `stat`, `table`
-and `bars` types and they are already correct — do not rewrite them, do not invent new ones, do
+and `bars` types and they are already correct, do not rewrite them, do not invent new ones, do
 not fabricate figures. When you merge two questions, concatenate their evidence arrays and drop
 exact duplicates. You may drop an evidence block only if it belonged to a dropped question.
 
 ## WEIGHT
 
-- `critical` — blocks other work, or is expensive to reverse after week 2.
-- `high` — shapes a surface or a price, reversible but costly.
-- `medium` — everything else.
+- `critical`, blocks other work, or is expensive to reverse after week 2.
+- `high`, shapes a surface or a price, reversible but costly.
+- `medium`, everything else.
 
 Keep the existing weight unless merging changes it. Do not inflate: an area where everything is
 critical tells the reader nothing.
@@ -186,7 +188,7 @@ A single JSON object:
 `added` lists ids of genuinely new decisions you created because the source material implies a
 choice nobody wrote down. New ids continue your area's existing prefix and numbering.
 
-## Read before you write — and mind the budget
+## Read before you write, and mind the budget
 
 Token budget is real on this run. Read these three in full and nothing else in full:
 
@@ -194,16 +196,16 @@ Token budget is real on this run. Read these three in full and nothing else in f
 2. The research briefing named in your prompt.
 3. Your area's current questions (the JSON file named in your prompt).
 
-`docs/PRODUCT-BRIEF.md` is the current plan and is only 560 lines — read it in full too.
+`docs/PRODUCT-BRIEF.md` is the current plan and is only 560 lines, read it in full too.
 
 **Everything else in `docs/` is enormous** (`FRONTMATTER-PRD-v2-2026-08-29.md` is 760 KB,
 `ENGINE.md` 258 KB, `CRITIQUE.md` 246 KB, `DEV-PLAN.md` 244 KB, and two RECORD files are
-2–3 MB). **Never open one of those with Read.** Use `grep -n` for the term you need and then
+2 to 3 MB). **Never open one of those with Read.** Use `grep -n` for the term you need and then
 `sed -n 'START,ENDp'` for the twenty lines around a hit. `docs/GAPS-2026-09-08.md` (21 KB) and
 `docs/DECIDE.md` (13 KB) are small and may be read whole.
 
 Every `file:line` citation you write must be real. Check it with `sed -n 'Np' <file>` before you
-cite it — that is one cheap command, not a file read. A fabricated citation is the worst failure
+cite it, that is one cheap command, not a file read. A fabricated citation is the worst failure
 available to you here and it is checked mechanically afterwards. When in doubt, cite the file
 with no line number.
 
