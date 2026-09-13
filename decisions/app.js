@@ -194,6 +194,105 @@
     return h + '</div>';
   }
 
+
+
+  var toastT = null;
+  function toast(msg) {
+    var el = document.getElementById('toast');
+    if (!el) { el = document.createElement('div'); el.id = 'toast'; document.body.appendChild(el); }
+    el.textContent = msg;
+    el.classList.add('on');
+    clearTimeout(toastT);
+    toastT = setTimeout(function () { el.classList.remove('on'); }, 1600);
+  }
+
+  /* ── the right rail ───────────────────────────────────────────────────────
+     Ported from the tred decisions rail. Four things that were previously either
+     absent or buried on another screen: how far along you are, one click to the next
+     unanswered question, the export, and a grid of every id so any question is one
+     click away. The old rail showed metadata about the card you were already reading,
+     which is the one thing you do not need help finding. */
+  function answeredList() { return Q.filter(function (q) { return state.picks[q.id]; }); }
+  function nextUnanswered(from) {
+    var i = from == null ? -1 : from;
+    for (var k = i + 1; k < Q.length; k++) if (!state.picks[Q[k].id]) return Q[k];
+    for (var j = 0; j <= i && j < Q.length; j++) if (!state.picks[Q[j].id]) return Q[j];
+    return null;
+  }
+  function rlist(items, n) {
+    return '<ul class="rlist">' + items.slice(0, n).map(function (q) {
+      return '<li><button data-q="' + esc(q.id) + '"><span class="rid">' + esc(q.id) + '</span>' +
+        esc(q.q) + '</button></li>';
+    }).join('') +
+      (items.length > n ? '<li class="rmore">and ' + (items.length - n) + ' more</li>' : '') + '</ul>';
+  }
+  function jumpGrid(currentId) {
+    var cats = [];
+    Q.forEach(function (q) { if (cats.indexOf(q.cat) < 0) cats.push(q.cat); });
+    return '<div class="rsec jump"><div class="rh">Jump to any question</div>' +
+      cats.map(function (c) {
+        var qs = Q.filter(function (q) { return q.cat === c; });
+        return '<div class="jumpgrp"><div class="jumpcat">' + esc(c) + '</div><div class="jumpgrid">' +
+          qs.map(function (q) {
+            return '<button class="jcell' + (state.picks[q.id] ? ' done' : '') +
+              (q.id === currentId ? ' on' : '') + (q.weight === 'critical' ? ' crit' : '') +
+              '" data-q="' + esc(q.id) + '" title="' + esc(q.q) + '">' + esc(q.id) + '</button>';
+          }).join('') + '</div></div>';
+      }).join('') + '</div>';
+  }
+  function railCommon(currentId, currentIdx) {
+    var done = answeredList().length, t = Q.length;
+    var crit = Q.filter(function (q) { return q.weight === 'critical'; });
+    var critLeft = crit.filter(function (q) { return !state.picks[q.id]; });
+    var differ = Q.filter(function (q) { return state.picks[q.id] && q.rec && state.picks[q.id] !== q.rec; });
+    var noted = Q.filter(function (q) { return (state.notes[q.id] || '').trim(); });
+    var up = nextUnanswered(currentIdx);
+
+    var h = '<div class="rsec ring-sec">' +
+      '<div class="ring" style="--p:' + (t ? done / t : 0) + '">' +
+        '<span class="rnum">' + done + '</span><span class="rden">/ ' + t + '</span></div>' +
+      '<p class="rlab">' + (t - done) + ' left to answer</p>' +
+      (up ? '<button class="rbtn" data-q="' + esc(up.id) + '">Go to next unanswered</button>'
+          : '<p class="rdone">All answered. Export it.</p>') +
+      '</div>';
+
+    h += '<div class="rsec"><div class="rh">Your answers are saved</div>' +
+      '<p class="rsub">In this browser only. Export after every sitting.</p>' +
+      '<button class="rlink" id="expJson"><span class="rm">JSON</span>Download every answer and note</button>' +
+      '<button class="rlink" id="expMd"><span class="rm">Markdown</span>What is decided, and what is open</button>' +
+      '<button class="rlink" id="impJson"><span class="rm">Restore</span>Load a JSON export back in</button></div>';
+
+    if (critLeft.length) {
+      h += '<div class="rsec"><div class="rh">Critical, still open</div>' +
+        '<p class="rsub">' + (crit.length - critLeft.length) + ' of ' + crit.length + ' settled</p>' +
+        rlist(critLeft, 7) + '</div>';
+    }
+    if (differ.length) {
+      h += '<div class="rsec"><div class="rh">You went against the recommendation</div>' +
+        '<p class="rsub">worth talking through</p>' + rlist(differ, 6) + '</div>';
+    }
+    if (noted.length) {
+      h += '<div class="rsec"><div class="rh">With notes</div>' + rlist(noted, 6) + '</div>';
+    }
+    return h;
+  }
+  function railFor(q, idx, pick) {
+    var h = railCommon(q.id, idx);
+    h += '<div class="rsec"><div class="rh">This decision</div>' +
+      '<div class="rrow"><span>Position</span><b>' + (idx + 1) + ' of ' + Q.length + '</b></div>' +
+      '<div class="rrow"><span>Weight</span><b>' + esc(q.weight || 'none') + '</b></div>' +
+      '<div class="rrow"><span>Area</span><b>' + esc(q.cat) + '</b></div>' +
+      '<div class="rrow"><span>Status</span><b style="color:var(--' + (pick ? 'good' : 'ink-3') + ')">' +
+      (pick ? 'answered ' + esc(pick).toUpperCase() : 'open') + '</b></div>' +
+      (WHEN[q.when] ? '<div class="rrow"><span>Stage</span><b>' + esc(WHEN[q.when]) + '</b></div>' : '') +
+      '</div>';
+    if (q.sources && q.sources.length) {
+      h += '<div class="rsec"><div class="rh">Where this came from</div>' +
+        q.sources.map(function (s) { return '<span class="src">' + esc(s) + '</span>'; }).join('') + '</div>';
+    }
+    return h + jumpGrid(q.id);
+  }
+
   /* ── the question ─────────────────────────────────────────────────────── */
   /* A decision is only useful if the reader can see the thing being decided. The v2
      shape leads with a diagram, states the context as bullets rather than paragraphs,
@@ -361,32 +460,7 @@
     $('#main').innerHTML = h;
     $('#main').scrollTop = 0;
 
-    /* right rail: where this question came from */
-    var rail = '<div class="rsec"><div class="rh">This decision</div>' +
-      '<div class="rrow"><span>Position</span><b>' + (idx + 1) + ' of ' + Q.length + '</b></div>' +
-      '<div class="rrow"><span>Weight</span><b>' + esc(q.weight || 'none') + '</b></div>' +
-      '<div class="rrow"><span>Area</span><b>' + esc(q.cat) + '</b></div>' +
-      (q.sub ? '<div class="rrow"><span>Group</span><b>' + esc(q.sub) + '</b></div>' : '') +
-      '<div class="rrow"><span>Status</span><b style="color:var(--' + (pick ? 'good' : 'ink-3') + ')">' +
-      (pick ? 'answered ' + esc(pick).toUpperCase() : 'open') + '</b></div></div>';
-    if (WHEN[q.when]) {
-      rail += '<div class="rsec"><div class="rh">When to answer</div>' +
-        '<div class="rrow"><span>Stage</span><b>' + esc(WHEN[q.when]) + '</b></div>' +
-        (q.whenWhy ? '<div class="rnote">' + md(q.whenWhy) + '</div>' : '') + '</div>';
-    }
-    if (q.sources && q.sources.length) {
-      rail += '<div class="rsec"><div class="rh">Where this came from</div>' +
-        q.sources.map(function (s) { return '<span class="src">' + esc(s) + '</span>'; }).join('') + '</div>';
-    }
-    var same = Q.filter(function (o) { return o.cat === q.cat && o.id !== q.id; }).slice(0, 8);
-    if (same.length) {
-      rail += '<div class="rsec"><div class="rh">Also in ' + esc(q.cat) + '</div>' +
-        same.map(function (o) {
-          return '<button class="rlink' + (state.picks[o.id] ? ' done' : '') + '" data-q="' + esc(o.id) + '">' +
-            '<span class="rm">' + esc(o.id) + (state.picks[o.id] ? ' · answered' : '') + '</span>' + esc(o.q) + '</button>';
-        }).join('') + '</div>';
-    }
-    $('#aside').innerHTML = rail;
+    $('#aside').innerHTML = railFor(q, idx, pick);
     $('#abarPos').innerHTML = '<b>' + esc(q.id) + '</b>' + (idx + 1) + ' of ' + Q.length;
     $('#abarPrev').disabled = !prev; $('#abarNext').disabled = !next;
   }
@@ -479,11 +553,7 @@
       }).join('') + '</div>';
     }
     $('#main').innerHTML = h; $('#main').scrollTop = 0;
-    $('#aside').innerHTML = '<div class="rsec"><div class="rh">Your answers</div>' +
-      '<button class="rlink" id="expMd"><span class="rm">Markdown</span>Decisions taken, and what is still open</button>' +
-      '<button class="rlink" id="expJson"><span class="rm">JSON</span>Raw answers and notes, the file that restores them</button>' +
-      '<button class="rlink" id="impJson"><span class="rm">Restore</span>Load a JSON export back in</button>' +
-      '<div class="rnote">Answers live in this browser only. Export after every sitting. Clearing site data loses them.</div></div>' +
+    $('#aside').innerHTML = railCommon(null, null) +
       '<div class="rsec"><div class="rh">Keyboard</div>' +
       '<div class="rrow"><span>Next / previous</span><b class="mono">j k</b></div>' +
       '<div class="rrow"><span>Choose an option</span><b class="mono">a–d</b></div>' +
@@ -526,7 +596,8 @@
     $('#aside').innerHTML = '<div class="rsec"><div class="rh">This area</div>' +
       '<div class="rrow"><span>Decisions</span><b>' + qs.length + '</b></div>' +
       '<div class="rrow"><span>Answered</span><b>' + a + '</b></div>' +
-      '<div class="rrow"><span>Critical open</span><b style="color:var(--crit)">' + c + '</b></div></div>';
+      '<div class="rrow"><span>Critical open</span><b style="color:var(--crit)">' + c + '</b></div></div>' +
+      railCommon(null, null) + jumpGrid(null);
     $('#abarPos').innerHTML = '<b>' + a + ' / ' + qs.length + '</b>' + esc(cat);
   }
 
@@ -754,7 +825,8 @@
     if (t.hasAttribute('data-pick')) {
       var q = Q.filter(function (x) { return x.id === view.id; })[0];
       if (!q) return;
-      state.picks[q.id] = t.getAttribute('data-pick'); save(); renderQ(q); paintNav(); progress(); return;
+      state.picks[q.id] = t.getAttribute('data-pick'); save(); renderQ(q); paintNav(); progress();
+      toast('Saved. ' + (Q.length - answeredList().length) + ' left'); return;
     }
     if (t.hasAttribute('data-q')) { go({ mode: 'q', id: t.getAttribute('data-q') }); return; }
     if (t.hasAttribute('data-cat')) {
