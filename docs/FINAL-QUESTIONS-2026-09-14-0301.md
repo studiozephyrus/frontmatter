@@ -158,7 +158,7 @@ structural fix if the residual stays above ten. CI lands in week one with a deli
 Non-English correctness and text scaling in scope. The six fix-first items start now; the rest
 split into demo-blockers and ship-blockers.
 Evidence: the editor refuses most real vaults today, and no automated check runs on any push.
-*Folds `E1`, `E12`, `E33`, `PL3`.*
+*Folds `E1`, `E12`, `E33`, `PL3`, `E5`, `E17`.*
 **Your answer:**
 
 **15. What "the pilot passed" means.**

@@ -527,12 +527,12 @@
           "money": "None until another gate is named."
         }
       ],
-      "rec": "a",
+      "rec": "d",
       "recCase": [
-        "The only option that breaks no promise the plan makes in bold elsewhere.",
-        "Lapse falls out of it: stop appending, keep everything, say so at checkout."
+        "PR1 in the MVP set gates Pro on attribution, not on a retained journal, so where the journal lives is moot.",
+        "Retention stays a feature of the review file in the user's repo, honour system by design, and gates nothing."
       ],
-      "flip": "If teams will not buy without an enforced entitlement, (b) is honest and the zero-bytes promise is rewritten.",
+      "flip": "If the twenty conversations name retention rather than attribution as the paid thing, (a) returns as written.",
       "linked": [
         "PR1",
         "PR8",
@@ -562,7 +562,7 @@
       "sub": "Price level",
       "weight": "critical",
       "q": "What is the price, and which category is it anchored to?",
-      "lede": "Draftable sells prose comparison alone at $129 to $261 per user a year. Our band is $48 to $60.",
+      "lede": "Two bands from the research: Pro $6 to $8 against Obsidian Sync, Team $15 to $20 a seat against Kiro's Pro row.",
       "visual": {
         "kind": "matrix",
         "x": [

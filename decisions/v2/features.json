@@ -646,12 +646,12 @@
           "money": "None."
         }
       ],
-      "rec": "a",
+      "rec": "c",
       "recCase": [
-        "Two days is below this schedule's resolution, and the demand was counted by hand.",
-        "Keep the denominator on the page: about 1,400 files, spec-kit only."
+        "The card is staged after the pilot; a recommendation to keep it in the pilot contradicts its own stage.",
+        "Two days is small, and Phase 0 is paste and export. The marker feature lands in the build after, denominator stated."
       ],
-      "flip": "If week-3 runs show spec-kit users clearing markers in chat before a file opens, cut it.",
+      "flip": "If a pilot person arrives with spec-kit markers in hand, two days is cheap enough to pull forward.",
       "linked": [
         "F5",
         "F8"
@@ -2048,12 +2048,12 @@
           "money": "None."
         }
       ],
-      "rec": "b",
+      "rec": "a",
       "recCase": [
-        "Every other pilot day buys an untested hypothesis, and this one buys a counted request.",
-        "The engine exists, so most of the eight days are apply path and hunk list."
+        "Phase 0 is the front door: paste, clean up, export, local only. Eight days on a refactor engine is not in it.",
+        "The counted vote still stands, so the row keeps its estimate and its stage in the build after the pilot."
       ],
-      "flip": "If review state is confirmed as the headline, leave this for later and let the pilot say one thing.",
+      "flip": "If the twenty pilot people ask for a vault-wide refactor unprompted, it moves forward and the paste path waits.",
       "linked": [
         "F1",
         "F5"
@@ -5468,7 +5468,7 @@
       "state": [
         "The plan's feature table has no import row.",
         "Migration from Notion sits inside the Zephyrus services engagement.",
-        "ImportModal is 101 lines, no zip handling, no link rewriting."
+        "A ChatGPT export importer ships in Phase 0 through chatgpt-to-claude, so import is not zero."
       ],
       "tension": [
         "Selling migration by hand contradicts the argument that the product does the selling.",

@@ -1305,7 +1305,7 @@
         },
         {
           "k": "c",
-          "label": "Keep the vaults as the gate; add the agent corpus at weeks 3-4",
+          "label": "Keep the vaults as the gate; add the instruction-file corpus at the start of Phase 1",
           "gains": [
             "Costs nothing extra; weeks 3-4 name those repos",
             "Keeps the byte-exactness proof intact"

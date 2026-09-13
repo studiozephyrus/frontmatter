@@ -892,8 +892,8 @@
         "docs/CRITIQUE.md:757",
         "docs/DECIDE.md:60"
       ],
-      "when": "after",
-      "whenWhy": "The claim this protects is not on any public page now."
+      "when": "mvp",
+      "whenWhy": "Phase 0 carries the byte-exactness proof line, so the claim goes public. One engine file refutes it in one line."
     },
     {
       "id": "E6",
@@ -3374,8 +3374,8 @@
         "docs/ENGINE.md:467",
         "docs/ENGINE.md:469"
       ],
-      "when": "after",
-      "whenWhy": "Both are engine performance, not first build."
+      "when": "mvp",
+      "whenWhy": "Phase 0 opens a stranger's folder. The guard is written and never called, and the regex runs on every open."
     },
     {
       "id": "E18",

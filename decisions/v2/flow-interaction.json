@@ -744,7 +744,7 @@
       "options": [
         {
           "k": "a",
-          "label": "Run the head-to-head in weeks 1-2, before the 18 days of build",
+          "label": "Run the head-to-head at the start of Phase 1, before the 18 days of build",
           "what": "Ten strangers review one prepared 40-hunk change in both surfaces.",
           "gains": [
             "The only cheap test that can refute 18 days"
@@ -1861,7 +1861,7 @@
       "sub": "Kill lines",
       "weight": "high",
       "q": "Which review numbers stop the build: the five-second highlight test, and a dismissal rate?",
-      "lede": "Every other week 1-2 test has a number that stops the build. The highlight test has none.",
+      "lede": "Every other Phase 1 test has a number that stops the build. The highlight test has none.",
       "visual": {
         "kind": "flow",
         "perRow": 3,
@@ -2599,7 +2599,7 @@
         },
         {
           "k": "d",
-          "label": "Anchor test in weeks 3-4, then last-commit baseline, pilot on desktop",
+          "label": "Anchor test first, then last-commit baseline; the surface is settled by Q3",
           "gains": [
             "Answers the one mechanism never run, at almost no cost"
           ],

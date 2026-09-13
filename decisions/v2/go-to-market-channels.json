@@ -6,8 +6,8 @@
       "cat": "Go-to-market & channels",
       "sub": "Headline",
       "weight": "high",
-      "q": "Do the weeks 1 to 2 headline tests run three arms, two, or one?",
-      "lede": "The two-week test is the only gate before building, and the plan gives two answers.",
+      "q": "Which tests judge Phase 0 and Phase 1, and at what n?",
+      "lede": "The old headline tests measured claims four free tools now ship. The phases need judges written before they start.",
       "visual": {
         "kind": "compare",
         "labelWidth": 150,
@@ -60,7 +60,7 @@
           }
         ],
         "note": "Arm 1 was demoted two rounds ago and is still in the test.",
-        "caption": "Three arms over ten people is three reads each, which is not a signal."
+        "caption": "Two judges, one per phase, written before either starts"
       },
       "stakes": "With ten people across three arms, a day-14 kill cannot be traced to one headline.",
       "state": [
@@ -140,68 +140,65 @@
       "options": [
         {
           "k": "a",
-          "label": "Test all three arms as the plan and the gap register list them",
+          "label": "Phase 0: ten of twenty export. Phase 1: three on a team say the view was news",
           "gains": [
-            "Matches the go-to-market section as written"
+            "Each phase has one number agreed before it starts",
+            "Both are observable without instrumentation beyond the pilot app"
           ],
           "costs": [
-            "No arm reaches a readable signal",
-            "Day 14 returns an opinion, not a kill"
+            "Twenty named people have to exist first",
+            "Three on a team needs at least one team in the twenty"
           ],
-          "system": "No change.",
-          "screens": "Three landing pages.",
+          "system": "The pilot app records exports and the day-14 answer.",
+          "screens": "None.",
           "money": "None."
         },
         {
           "k": "b",
-          "label": "Drop arm 1; test arms 2 and 3, five people each",
+          "label": "One test for both phases: the highlight test at n=15 with a stated pass line",
           "gains": [
-            "Five reads per arm"
+            "Cheap and already designed on D18"
           ],
           "costs": [
-            "Arm 2 is already free in four editors",
-            "Drops the only claim nobody occupies"
+            "Measures noticing, not use or payment"
           ],
-          "system": "No change.",
-          "screens": "Two landing pages.",
+          "system": "None.",
+          "screens": "None.",
           "money": "None."
         },
         {
           "k": "c",
-          "label": "Drop arm 2; test authorship against unreviewed state, five each",
+          "label": "Keep the three arms as written",
           "gains": [
-            "Both arms are still open in the market",
-            "Five reads per arm"
+            "Nothing to redesign"
           ],
           "costs": [
-            "Contradicts the plan's recorded demotion of authorship",
-            "Authorship has no measured pull outside teams"
+            "Arm 2 shipped free in four editors; the test cannot show demand for us"
           ],
-          "system": "No change.",
-          "screens": "Two landing pages; the highlighted-text card shows an author.",
+          "system": "None.",
+          "screens": "None.",
           "money": "None."
         },
         {
           "k": "d",
-          "label": "One arm, shown to all ten",
+          "label": "No pre-registered test; judge by what the twenty say",
           "gains": [
-            "Strongest single read a fortnight buys"
+            "Nothing to write"
           ],
           "costs": [
-            "A bad arm looks like a bad product",
-            "No second sentence to fall back to"
+            "A bar set after the result is not a bar"
           ],
-          "system": "No change.",
-          "screens": "One landing page.",
+          "system": "None.",
+          "screens": "None.",
           "money": "None."
         }
       ],
-      "rec": "c",
+      "rec": "a",
       "recCase": [
-        "Arm 2 shipped free in four editors this quarter, so testing it cannot show demand for us.",
-        "Span-level authorship is the only one of four claims no checked product has shipped."
+        "A judge written before the phase starts is the only kind that can say no, and both numbers are observable with what exists.",
+        "The old arms tested a headline four free tools shipped in nine weeks; testing it cannot show demand for us."
       ],
-      "flip": "If a platform ships span-level authorship marking before week 2, arm 1 is dropped too.",
+      "flip": "If the twenty cannot include a single team, Phase 1's judge has to be rewritten before Phase 1 starts.",
       "linked": [
         "G13",
         "G14"
