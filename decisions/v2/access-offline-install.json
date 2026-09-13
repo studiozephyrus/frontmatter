@@ -3625,6 +3625,305 @@
           ]
         }
       ]
+    },
+    {
+      "id": "AC21",
+      "cat": "Access, offline & install",
+      "sub": "OFFLINE AND KEYS",
+      "weight": "high",
+      "when": "after",
+      "whenWhy": "Offline is a second runtime to build and support, so it belongs after the pilot rather than in it.",
+      "q": "Does offline mode run the user's own key, a local model, or an account-billed route, and which ships first?",
+      "lede": "Offline with the user's own key is the one feature here that nothing in the comparison set offers.",
+      "stakes": "It is a real differentiator and a second runtime. Shipping it early buys distinctiveness and doubles the support surface.",
+      "state": [
+        "The direction given on 13 September proposes local generation via the user's key or an aggregator route.",
+        "`AC13` already asks where a key lives on the web, and this is the offline half of the same question.",
+        "Nothing in the tools checked on 2026-09-13 offers generation with a key the user holds."
+      ],
+      "tension": [
+        "Holding no key and no bytes is the strongest version of the privacy claim.",
+        "Every model provider behaves differently, so supporting the user's choice is support cost that never ends."
+      ],
+      "options": [
+        {
+          "k": "a",
+          "label": "The user's own key only, one provider at first",
+          "gains": [
+            "No model bill and no metering to build",
+            "The privacy claim stays true with no exception"
+          ],
+          "costs": [
+            "A key is a real barrier for anyone who does not have one",
+            "One provider will not suit everyone"
+          ],
+          "system": "A key store on the device.",
+          "screens": "A settings pane.",
+          "money": "No model cost to us."
+        },
+        {
+          "k": "b",
+          "label": "The user's key, or an aggregator route billed to us on the top tier",
+          "gains": [
+            "Works for people without a key",
+            "A clear thing the top tier buys"
+          ],
+          "costs": [
+            "Metering, a ceiling and an abuse surface, which is `PR10`",
+            "We hold a key that pays for other people's work"
+          ],
+          "system": "A metered proxy.",
+          "screens": "Usage and a ceiling.",
+          "money": "Model spend, capped."
+        },
+        {
+          "k": "c",
+          "label": "A local model, no key and no network at all",
+          "gains": [
+            "The strongest possible privacy claim",
+            "No running cost"
+          ],
+          "costs": [
+            "Output quality is far below hosted models for this task",
+            "Large download, and it rules out weak machines"
+          ],
+          "system": "A bundled runtime.",
+          "screens": "A download step.",
+          "money": "None."
+        },
+        {
+          "k": "d",
+          "label": "No offline mode. The web app is the product",
+          "gains": [
+            "One runtime to build, test and support"
+          ],
+          "costs": [
+            "Gives up the clearest differentiator found in the research",
+            "The desktop shell then has no reason to exist"
+          ],
+          "system": "None.",
+          "screens": "None.",
+          "money": "None."
+        }
+      ],
+      "rec": "a",
+      "recCase": [
+        "A key the user holds costs us no model spend, no metering and no ceiling, which is three things not built.",
+        "It keeps the privacy claim exact, and exactness is the part competitors cannot copy cheaply."
+      ],
+      "flip": "If most pilot users turn out not to hold a key, (b) is the only version that works and `PR10` has to be answered first.",
+      "visual": {
+        "kind": "compare",
+        "title": "Who pays for the model, and what each choice costs us",
+        "cols": [
+          "Their key",
+          "Their key or ours",
+          "Local model"
+        ],
+        "rows": [
+          {
+            "label": "Our model spend",
+            "cells": [
+              "none",
+              "capped",
+              "none"
+            ]
+          },
+          {
+            "label": "Metering to build",
+            "cells": [
+              "no",
+              "yes",
+              "no"
+            ]
+          },
+          {
+            "label": "Works without a key",
+            "cells": [
+              "no",
+              "yes",
+              "yes"
+            ]
+          },
+          {
+            "label": "Output quality",
+            "cells": [
+              "hosted",
+              "hosted",
+              "well below"
+            ]
+          },
+          {
+            "label": "Privacy claim",
+            "cells": [
+              "exact",
+              "has an exception",
+              "exact"
+            ]
+          }
+        ],
+        "note": "Nothing in the tools checked on 2026-09-13 offered generation on a key the user holds.",
+        "caption": "Three ways to run generation offline, and what each costs"
+      },
+      "sources": [
+        "docs/FEATURE-RESEARCH-2026-09-13-2130.md:1",
+        "docs/MVP-PLAN-2026-09-13.md:1"
+      ],
+      "linked": [
+        "AC13",
+        "PR10",
+        "PR7"
+      ]
+    },
+    {
+      "id": "AC22",
+      "cat": "Access, offline & install",
+      "sub": "REPOSITORY ACCESS",
+      "weight": "high",
+      "when": "after",
+      "whenWhy": "Repository access is the riskiest item on the list and it reopens `L1`, so it is last rather than planned.",
+      "q": "If we ever read a user's repository, is it read only, and is writing ruled out in writing?",
+      "lede": "Reading a repository to write better documents about it is a different proposition, legally and commercially, from writing to it.",
+      "stakes": "Writing to a customer's repository makes us an intermediary holding their code, with every duty `L1` costs at 74 founder hours.",
+      "state": [
+        "The direction given on 13 September proposes connecting GitHub and the local machine on the top plan.",
+        "`L1` prices the intermediary duties that holding customer content brings.",
+        "Claude Code, Cursor and Codex already run on the local machine and do this well."
+      ],
+      "tension": [
+        "A kit written with the repository in view is far better than one written from answers alone.",
+        "Every byte of customer code we touch is a duty, and the value is nearly all on the reading side."
+      ],
+      "options": [
+        {
+          "k": "a",
+          "label": "Read only, forever, and say so in the operating rules",
+          "gains": [
+            "Most of the value at a fraction of the duty",
+            "A claim competitors with write access cannot make"
+          ],
+          "costs": [
+            "Users will ask for write and we will keep refusing",
+            "Still means holding code in memory while reading"
+          ],
+          "system": "A read-scoped token and no write path.",
+          "screens": "A connect screen naming the scope.",
+          "money": "Duties for transit, not storage."
+        },
+        {
+          "k": "b",
+          "label": "Read and write, on the top tier, as the direction proposes",
+          "gains": [
+            "The agent loop closes inside our product"
+          ],
+          "costs": [
+            "Reopens every duty in `L1` at the moment of the first write",
+            "Direct competition with tools that are already good at it"
+          ],
+          "system": "Write scopes, commits, conflicts.",
+          "screens": "A review and commit flow.",
+          "money": "Counsel, and the 74 hour pack."
+        },
+        {
+          "k": "c",
+          "label": "Never touch a repository. The user pastes what they want considered",
+          "gains": [
+            "Zero new duty and zero new surface",
+            "Keeps the zero-bytes claim exact"
+          ],
+          "costs": [
+            "Kits stay weaker than they could be",
+            "A manual step at the moment the user is least patient"
+          ],
+          "system": "None.",
+          "screens": "None.",
+          "money": "None."
+        },
+        {
+          "k": "d",
+          "label": "Read only, and only on the desktop build where bytes never leave the machine",
+          "gains": [
+            "The strongest privacy story available",
+            "No transit duty at all"
+          ],
+          "costs": [
+            "Needs the desktop app, which `FF8` says is not in the pilot",
+            "Splits the product in two"
+          ],
+          "system": "Local file access in the shell.",
+          "screens": "A desktop-only connect screen.",
+          "money": "None."
+        }
+      ],
+      "rec": "a",
+      "recCase": [
+        "Nearly all the value of repository access is on the reading side, and nearly all the duty is on the writing side.",
+        "Ruling writing out in the operating rules turns a refusal into a claim, which is how this product argues everywhere else."
+      ],
+      "flip": "If the pilot shows users will not paste and will not connect a read-only token either, (c) is the honest fallback.",
+      "visual": {
+        "kind": "compare",
+        "title": "Reading a repository against writing to one",
+        "cols": [
+          "Read only",
+          "Read and write",
+          "Never connect"
+        ],
+        "rows": [
+          {
+            "label": "Reopens L1",
+            "cells": [
+              "partly, transit",
+              "fully",
+              "no"
+            ]
+          },
+          {
+            "label": "Kit quality",
+            "cells": [
+              "much better",
+              "much better",
+              "weakest"
+            ]
+          },
+          {
+            "label": "Competes with Cursor and Claude Code",
+            "cells": [
+              "no",
+              "yes",
+              "no"
+            ]
+          },
+          {
+            "label": "Can be stated as a refusal",
+            "cells": [
+              "yes",
+              "no",
+              "yes"
+            ]
+          },
+          {
+            "label": "Founder hours of legal pack",
+            "cells": [
+              "part",
+              "74",
+              "none"
+            ]
+          }
+        ],
+        "note": "The 74 hour figure is the publishing and intermediary pack costed at PRD v2 line 4194.",
+        "caption": "Where the value sits, and where the duty sits"
+      },
+      "sources": [
+        "docs/FEATURE-RESEARCH-2026-09-13-2130.md:1",
+        "docs/FRONTMATTER-PRD-v2-2026-08-29.md:4194",
+        "docs/MVP-PLAN-2026-09-13.md:1"
+      ],
+      "linked": [
+        "L1",
+        "L6",
+        "FF8"
+      ]
     }
   ]
 }

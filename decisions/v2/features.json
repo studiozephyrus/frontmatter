@@ -5860,6 +5860,628 @@
         "PR7",
         "R1"
       ]
+    },
+    {
+      "id": "F35",
+      "cat": "Features",
+      "sub": "INSTRUCTION FILES",
+      "weight": "critical",
+      "when": "mvp",
+      "whenWhy": "This is the clearest fit between what we already are and something many people are short of. It changes what the MVP is for.",
+      "q": "Do we build authoring for the instruction files agents read, and is that the MVP's reason to exist rather than a later feature?",
+      "lede": "`AGENTS.md` is a Linux Foundation standard used by over 60,000 projects, and people write it by hand in a code editor.",
+      "stakes": "If this is the wedge, the MVP is an editor for agent instructions that also does documents. If it is a feature, it waits and somebody else takes it.",
+      "state": [
+        "agents.md, fetched 2026-09-13: over 60,000 projects, stewarded by the Agentic AI Foundation under the Linux Foundation.",
+        "Files nest, and the nearest one up the tree wins. The page states the main OpenAI repository holds 88 of them.",
+        "The Claude Code memory doc lists three known failures: not followed, too large, and lost after compaction."
+      ],
+      "tension": [
+        "Roughly two dozen agents read one format, so the work is portable in a way almost nothing else here is.",
+        "It is a new surface on a plan that already has more surfaces than one person can carry."
+      ],
+      "options": [
+        {
+          "k": "a",
+          "label": "Make it the MVP's point: an editor for the files agents obey",
+          "gains": [
+            "A reason to exist that no markdown editor has taken",
+            "Review state gets a real job, on files that are obeyed"
+          ],
+          "costs": [
+            "Reframes the landing page, the kit and the pricing together",
+            "Narrower audience than everyone who writes markdown"
+          ],
+          "system": "Hierarchy resolution, size reporting, a which-file-wins view.",
+          "screens": "A tree of instruction files, and a resolved view for a path.",
+          "money": "None directly. It is the reason somebody arrives."
+        },
+        {
+          "k": "b",
+          "label": "Ship it as one feature inside the document kit, after the kit works",
+          "gains": [
+            "No reframing, and the kit stays the funnel",
+            "Lower risk if the standard fades"
+          ],
+          "costs": [
+            "The best-founded thing in the research sits behind the least-founded",
+            "A well funded competitor can take it in a quarter"
+          ],
+          "system": "A generator template.",
+          "screens": "One more kit output.",
+          "money": "None."
+        },
+        {
+          "k": "c",
+          "label": "Generate the files only, and never edit or check them",
+          "gains": [
+            "Days of work, not weeks",
+            "Fits the kit exactly as planned"
+          ],
+          "costs": [
+            "Generation is the commodity half, so nothing here is defensible",
+            "Does not touch any of the three documented failures"
+          ],
+          "system": "One more file in the kit.",
+          "screens": "None.",
+          "money": "None."
+        },
+        {
+          "k": "d",
+          "label": "Not now. Decide after the twenty hand made kits",
+          "gains": [
+            "Keeps the surface count where the pace can carry it"
+          ],
+          "costs": [
+            "The evidence is already in and waiting does not add to it",
+            "Adoption is growing while we wait"
+          ],
+          "system": "No change.",
+          "screens": "None.",
+          "money": "None."
+        }
+      ],
+      "rec": "a",
+      "recCase": [
+        "It is the only item in the research with measured adoption, a governed standard and failure modes the vendor documents itself.",
+        "It gives review state a job that is not the claim four free tools already took apart."
+      ],
+      "flip": "If a sample of those 60,000 repositories shows most files were generated once and never touched, this is a one-off generator and (c) is right.",
+      "visual": {
+        "kind": "compare",
+        "title": "The three things the vendor's own manual says go wrong",
+        "cols": [
+          "Written by hand today",
+          "What an editor could do",
+          "Ours?"
+        ],
+        "rows": [
+          {
+            "label": "Agent does not follow it",
+            "cells": [
+              "no way to tell",
+              "show what was obeyed",
+              "review state"
+            ]
+          },
+          {
+            "label": "File is too large",
+            "cells": [
+              "no size signal",
+              "report the size",
+              "yes"
+            ]
+          },
+          {
+            "label": "Lost after compaction",
+            "cells": [
+              "invisible",
+              "flag what dropped",
+              "yes"
+            ]
+          },
+          {
+            "label": "88 files, which one wins",
+            "cells": [
+              "read the tree yourself",
+              "resolve for a path",
+              "yes"
+            ]
+          },
+          {
+            "label": "Portable across agents",
+            "cells": [
+              "one format, two dozen agents",
+              "same",
+              "same"
+            ]
+          }
+        ],
+        "note": "Failure list quoted from the Claude Code memory doc, fetched 2026-09-13. File count from agents.md.",
+        "caption": "What breaks today, and whether an editor can see it"
+      },
+      "sources": [
+        "docs/FEATURE-RESEARCH-2026-09-13-2130.md:1",
+        "docs/MVP-PLAN-2026-09-13.md:1",
+        "AGENTS.md:1",
+        "CLAUDE.md:1"
+      ],
+      "linked": [
+        "P2",
+        "F34",
+        "PR24"
+      ],
+      "evidence": [
+        {
+          "type": "stat",
+          "title": "What was fetched on 2026-09-13",
+          "note": "Both pages were opened and the figures read off them. Neither number is derived.",
+          "items": [
+            [
+              "Open-source projects using AGENTS.md",
+              "over 60,000",
+              "agents.md, fetched 2026-09-13"
+            ],
+            [
+              "Who stewards the format",
+              "Agentic AI Foundation, Linux Foundation",
+              "agents.md"
+            ],
+            [
+              "AGENTS.md files in the main OpenAI repository",
+              "88",
+              "agents.md"
+            ],
+            [
+              "Scopes a CLAUDE.md can live at",
+              "4: managed policy, user, project, local",
+              "Claude Code memory doc"
+            ],
+            [
+              "Failure modes in the vendor's own troubleshooting",
+              "3",
+              "Claude Code memory doc"
+            ]
+          ]
+        }
+      ]
+    },
+    {
+      "id": "F36",
+      "cat": "Features",
+      "sub": "SHARING",
+      "weight": "critical",
+      "when": "mvp",
+      "whenWhy": "Sharing is the free tier hook in the 13 September direction, and the shape decides months of engine work.",
+      "q": "Is sharing a live editing session, or a link somebody reads and comments on?",
+      "lede": "Live editing means operational transforms or CRDTs, and this repo settled against CRDTs on evidence.",
+      "stakes": "Live editing is a multi-month lane against Google Docs. Read and comment is weeks and fits what a reviewed kit needs.",
+      "state": [
+        "The direction given on 13 September proposed live sharing, free for up to two people, with Google login.",
+        "`CLAUDE.md` records sync as git merge plus a splice journal and CAS, never a CRDT.",
+        "A kit is reviewed before it goes to an agent, which is asynchronous work by nature."
+      ],
+      "tension": [
+        "Two people in one document at once is what people picture when they hear sharing.",
+        "Almost nobody edits a specification simultaneously. They read it and leave remarks."
+      ],
+      "options": [
+        {
+          "k": "a",
+          "label": "Read and comment on a link, with suggestions the owner accepts or refuses",
+          "gains": [
+            "Weeks rather than months, and no settled position reopened",
+            "Matches how a document actually gets reviewed"
+          ],
+          "costs": [
+            "Looks less impressive in a demo than two cursors",
+            "Somebody will ask for live editing anyway"
+          ],
+          "system": "Comment threads against a span, and a suggestion queue.",
+          "screens": "A shared read view with a margin, and a review inbox.",
+          "money": "Storage for comments. Small."
+        },
+        {
+          "k": "b",
+          "label": "Live editing for two on free, as the direction proposed",
+          "gains": [
+            "The strongest free tier hook on the list",
+            "Demonstrates well"
+          ],
+          "costs": [
+            "Reopens the CRDT decision the repo settled on evidence",
+            "Competes with Google Docs on their single strongest axis"
+          ],
+          "system": "A realtime transport and a merge strategy we have argued against.",
+          "screens": "Presence, cursors, conflict states.",
+          "money": "A realtime bill per connected pair."
+        },
+        {
+          "k": "c",
+          "label": "A read-only link and nothing else",
+          "gains": [
+            "Days of work, and the public share route already exists"
+          ],
+          "costs": [
+            "No reason for the second person to come back",
+            "Gives the reviewer nowhere to put a remark"
+          ],
+          "system": "Reuse the share module.",
+          "screens": "One.",
+          "money": "None."
+        },
+        {
+          "k": "d",
+          "label": "Read and comment now, live editing priced into the top tier later",
+          "gains": [
+            "Keeps the door open without paying for it now"
+          ],
+          "costs": [
+            "Promises something the settled architecture makes expensive",
+            "A promise on a page is a commitment"
+          ],
+          "system": "As (a), plus a stated roadmap.",
+          "screens": "As (a).",
+          "money": "A future price with no costing behind it."
+        }
+      ],
+      "rec": "a",
+      "recCase": [
+        "Asynchronous review is what a document kit needs before it reaches an agent, and it costs a fraction of live editing.",
+        "Live editing would reopen a position this repo settled with reasons that have not changed."
+      ],
+      "flip": "If the twenty hand made kits show people sit together and edit at the same time, the cost of (b) has to be faced.",
+      "visual": {
+        "kind": "compare",
+        "title": "What the two shapes actually cost",
+        "cols": [
+          "Read and comment",
+          "Live editing",
+          "Read only"
+        ],
+        "rows": [
+          {
+            "label": "Build",
+            "cells": [
+              "weeks",
+              "months",
+              "days"
+            ]
+          },
+          {
+            "label": "Reopens the sync decision",
+            "cells": [
+              "no",
+              "yes",
+              "no"
+            ]
+          },
+          {
+            "label": "Competes with",
+            "cells": [
+              "nothing directly",
+              "Google Docs, Notion",
+              "nothing"
+            ]
+          },
+          {
+            "label": "Fits reviewing a kit",
+            "cells": [
+              "yes",
+              "not really",
+              "no place for remarks"
+            ]
+          },
+          {
+            "label": "Free tier hook",
+            "cells": [
+              "two readers",
+              "two editors",
+              "a link"
+            ]
+          }
+        ],
+        "note": "Sync position quoted from CLAUDE.md: git merge plus a splice journal and CAS, never a CRDT.",
+        "caption": "Three shapes of sharing, against what a kit review needs"
+      },
+      "sources": [
+        "CLAUDE.md:1",
+        "docs/GENERATION-SURFACE-2026-09-13-2113.md:1",
+        "src/app/api/share/route.ts:31",
+        "docs/MVP-PLAN-2026-09-13.md:1"
+      ],
+      "linked": [
+        "F19",
+        "L6",
+        "PR24"
+      ]
+    },
+    {
+      "id": "F37",
+      "cat": "Features",
+      "sub": "TEMPLATES",
+      "weight": "high",
+      "when": "after",
+      "whenWhy": "Templates are the paid surface later. The MVP ships one kit shape, so this waits for the pilot.",
+      "q": "Do templates vary by project type, and who writes them: us, the user, or a model each time?",
+      "lede": "One kit shape fits a web app badly and a research repo worse, and a template is cheap to make and costly to keep.",
+      "stakes": "Every template is a thing to maintain, and a stale template writes a stale kit into somebody's repository.",
+      "state": [
+        "The plan describes one document kit, not a set of them.",
+        "The launcher iterations show four templates, which is a first-screen decision already in `F27`.",
+        "The 33 file structure in the founder's own docs folder is one shape, aimed at a product build."
+      ],
+      "tension": [
+        "A template is high perceived value for very little work.",
+        "A set of them is a maintenance surface that grows with every project type we name."
+      ],
+      "options": [
+        {
+          "k": "a",
+          "label": "A small fixed set we write and maintain: web app, library, research, internal tool",
+          "gains": [
+            "Predictable output we can actually check",
+            "Each one can be red-proofed against a real repo"
+          ],
+          "costs": [
+            "Four things to keep current",
+            "Anybody outside those four gets a bad fit"
+          ],
+          "system": "A template store with versioning.",
+          "screens": "A picker in the kit flow.",
+          "money": "Maintenance time, not money."
+        },
+        {
+          "k": "b",
+          "label": "One shape, and the model adapts it from the answers",
+          "gains": [
+            "Nothing to maintain",
+            "Fits any project type on the first try"
+          ],
+          "costs": [
+            "Output varies run to run, which makes the consistency check harder",
+            "Nothing to show on a pricing page"
+          ],
+          "system": "No store.",
+          "screens": "None.",
+          "money": "Higher tokens per kit."
+        },
+        {
+          "k": "c",
+          "label": "Users write and share their own, and we host them",
+          "gains": [
+            "The set grows without us",
+            "A reason to come back"
+          ],
+          "costs": [
+            "Moderation, and hosting other people's content reopens `L1`",
+            "Nothing to show on day one"
+          ],
+          "system": "A template registry with identity.",
+          "screens": "Browse and publish screens.",
+          "money": "Storage and moderation time."
+        },
+        {
+          "k": "d",
+          "label": "No templates. One kit, and the user edits what they get",
+          "gains": [
+            "Least work, and the editor is right there"
+          ],
+          "costs": [
+            "Loses the clearest paid surface after storage",
+            "Every user does the same adaptation by hand"
+          ],
+          "system": "None.",
+          "screens": "None.",
+          "money": "None."
+        }
+      ],
+      "rec": "a",
+      "recCase": [
+        "A fixed small set is the only option where we can red-proof the output against a real repository before anybody relies on it.",
+        "It is also the only one that gives the paid tier something visible to list."
+      ],
+      "flip": "If the twenty hand made kits come out nearly identical across project types, (b) is cheaper and (a) is invented work.",
+      "visual": {
+        "kind": "compare",
+        "title": "Who writes the template, and who keeps it current",
+        "cols": [
+          "A fixed set we keep",
+          "One adaptive shape",
+          "User written"
+        ],
+        "rows": [
+          {
+            "label": "Maintenance",
+            "cells": [
+              "ours, grows",
+              "none",
+              "theirs"
+            ]
+          },
+          {
+            "label": "Output predictable",
+            "cells": [
+              "yes",
+              "varies per run",
+              "no"
+            ]
+          },
+          {
+            "label": "Can be red-proofed",
+            "cells": [
+              "yes",
+              "hard",
+              "no"
+            ]
+          },
+          {
+            "label": "Visible on a pricing page",
+            "cells": [
+              "yes",
+              "no",
+              "yes"
+            ]
+          },
+          {
+            "label": "Reopens hosting duties",
+            "cells": [
+              "no",
+              "no",
+              "yes"
+            ]
+          }
+        ],
+        "note": "Hosting user-written templates puts other people's content on our servers, which is `L1` again.",
+        "caption": "Three ways to have templates, and what each costs later"
+      },
+      "sources": [
+        "docs/FEATURE-RESEARCH-2026-09-13-2130.md:1",
+        "docs/MVP-PLAN-2026-09-13.md:1"
+      ],
+      "linked": [
+        "F27",
+        "F34",
+        "PR24"
+      ]
+    },
+    {
+      "id": "F38",
+      "cat": "Features",
+      "sub": "SLIDES",
+      "weight": "medium",
+      "when": "after",
+      "whenWhy": "Slides are a retention feature, not a reason to arrive, so they wait until somebody is already here.",
+      "q": "Do slides ship as one command with no options, as a slide editor, or not at all?",
+      "lede": "Markdown to slides is solved by Marp, Slidev and reveal.js, all free, all established, all with mindshare.",
+      "stakes": "Built as a feature it is weeks that win nobody. Built as one command it is days that make a visit worth more.",
+      "state": [
+        "The direction given on 13 September asks for presentations generated from the document.",
+        "Marp and Slidev both exist, are reachable and are free. Checked 2026-09-13.",
+        "The slide separator convention in markdown is roughly a decade old and widely known."
+      ],
+      "tension": [
+        "Nobody changes editor to get slides, so this cannot be an acquisition feature.",
+        "Somebody who has just cleaned up a chat output is glad a deck falls out for nothing."
+      ],
+      "options": [
+        {
+          "k": "a",
+          "label": "One command, one fixed template, no options",
+          "gains": [
+            "Days rather than weeks",
+            "The whole value is not having opened Keynote"
+          ],
+          "costs": [
+            "No control, so anybody who wants control leaves",
+            "One template will suit some documents badly"
+          ],
+          "system": "A renderer over the existing HTML path.",
+          "screens": "One menu item and a preview.",
+          "money": "None."
+        },
+        {
+          "k": "b",
+          "label": "A slide editor with layouts, themes and per-slide control",
+          "gains": [
+            "Competes properly with the established tools"
+          ],
+          "costs": [
+            "Weeks of polish against free incumbents with mindshare",
+            "Pulls the product away from being an editor"
+          ],
+          "system": "A second document model.",
+          "screens": "A slide workspace.",
+          "money": "None."
+        },
+        {
+          "k": "c",
+          "label": "Export to Marp or Slidev format and let their tools render it",
+          "gains": [
+            "Almost free to build",
+            "Their ecosystem does the hard part"
+          ],
+          "costs": [
+            "The output leaves our product, so we see none of it",
+            "A conversion, not a feature"
+          ],
+          "system": "A format writer.",
+          "screens": "A menu item.",
+          "money": "None."
+        },
+        {
+          "k": "d",
+          "label": "No slides",
+          "gains": [
+            "Nothing to build or keep"
+          ],
+          "costs": [
+            "Turns down a cheap reason for a visit to be worth more"
+          ],
+          "system": "None.",
+          "screens": "None.",
+          "money": "None."
+        }
+      ],
+      "rec": "a",
+      "recCase": [
+        "Days of work for a feature that makes an existing visit worth more is a good trade, and weeks of work for it is not.",
+        "The value here is that the user did not have to open a presentation tool, and that survives having no options."
+      ],
+      "flip": "If people ask for control rather than for slides, (c) hands them to a tool that already has it, for almost nothing.",
+      "visual": {
+        "kind": "compare",
+        "title": "Three ways to do slides, and what each is worth",
+        "cols": [
+          "One command",
+          "A slide editor",
+          "Export to Marp"
+        ],
+        "rows": [
+          {
+            "label": "Build",
+            "cells": [
+              "days",
+              "weeks",
+              "hours"
+            ]
+          },
+          {
+            "label": "Reason to switch to us",
+            "cells": [
+              "no",
+              "no",
+              "no"
+            ]
+          },
+          {
+            "label": "Makes a visit worth more",
+            "cells": [
+              "yes",
+              "yes",
+              "no, output leaves"
+            ]
+          },
+          {
+            "label": "Competes with Marp and Slidev",
+            "cells": [
+              "no",
+              "yes, badly",
+              "no"
+            ]
+          }
+        ],
+        "note": "Marp and Slidev were both reachable and free when checked on 2026-09-13.",
+        "caption": "Slides, rated on what they are actually worth to us"
+      },
+      "sources": [
+        "docs/FEATURE-RESEARCH-2026-09-13-2130.md:1",
+        "docs/GENERATION-SURFACE-2026-09-13-2113.md:1"
+      ],
+      "linked": [
+        "F16",
+        "F34"
+      ]
     }
   ]
 }

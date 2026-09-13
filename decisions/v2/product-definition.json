@@ -206,8 +206,8 @@
       "cat": "Product & definition",
       "sub": "Definition",
       "weight": "critical",
-      "q": "Does review state stay the headline, narrow to per-span state in the repo, or does something else lead?",
-      "lede": "Three of four claims went table stakes in nine weeks. Almanac sold read receipts, raised $45M and shut down.",
+      "q": "Does review state lead, narrow to per-span state in the repo, or move onto the files agents obey?",
+      "lede": "Three of the four claims became table stakes in nine weeks, and the company that sold the fourth one shut down.",
       "visual": {
         "kind": "compare",
         "labelWidth": 150,
@@ -227,23 +227,23 @@
         ],
         "rows": [
           {
-            "label": "Shipped free by",
+            "label": "Who ships it free already",
             "cells": [
               "Claude Code, Antigravity, Codex, VS Code",
               "VS Code, per file, merged 2026-07-03",
-              "Nobody"
+              "Nobody ships it"
             ]
           },
           {
-            "label": "Dated",
+            "label": "When they shipped it",
             "cells": [
               "v2.1.260, published 2026-09-03",
               "Milestone 1.128.0, undocumented",
-              "One extension, 88 installs"
+              "One extension, 88 installs, no date given"
             ]
           },
           {
-            "label": "Precedent",
+            "label": "Who tried to sell it",
             "cells": [
               "petergyang/human-review: 1,241 stars in 6 weeks",
               "Almanac sold it, raised $45M, shut 2025-01-31",
@@ -251,16 +251,16 @@
             ]
           },
           {
-            "label": "Left to us",
+            "label": "What is left for us",
             "cells": [
-              "Nothing",
+              "Nothing is left here",
               "Per-span, in the repo, across tools and machines",
               "The whole claim, and we cannot deliver it yet"
             ]
           }
         ],
         "note": "Almanac totals are from a podcast summary, not the founder's own writing.",
-        "caption": "Where each of the four claims stands on 9 September 2026."
+        "caption": "Where each of the four claims stood on 9 September 2026"
       },
       "stakes": "Lead with a sentence four free tools satisfy and the room refutes it live.",
       "state": [
@@ -448,29 +448,33 @@
         },
         {
           "k": "d",
-          "label": "Demote review state and lead with spec-kit self-certification",
+          "label": "Scope it to the instruction files agents obey, and drop the repo-wide claim",
+          "detail": "Not what share of the repo is unreviewed, which four free tools now answer. Whether a person has read the AGENTS.md an agent is about to follow.",
           "gains": [
-            "354 of 355 boxes ticked by the agent"
+            "Answers a question nobody else is answering, on files that are obeyed rather than read",
+            "Stops competing with the four tools that shipped the working-tree half free"
           ],
           "costs": [
-            "One toolchain, 11,072 repos"
+            "Only matters to people running agents, which is a narrower audience",
+            "Ties the headline to F35, so both stand or fall together"
           ],
-          "system": "No change.",
-          "screens": "The launcher leads with the scan.",
-          "money": "None."
+          "system": "Review state keyed to instruction files rather than to every file in the tree.",
+          "screens": "An unreviewed marker in the instruction tree, not a repo percentage.",
+          "money": "None directly."
         }
       ],
-      "rec": "b",
+      "rec": "d",
       "recCase": [
-        "The only form the 2026-09-08 adversarial round left standing; the plan already says it.",
-        "Per-span, in the repo, not workspace state: no tool we found does that."
+        "The repo-wide version lost to four free tools in nine weeks, and the one company that sold it shut down.",
+        "Scoped to files an agent obeys, the claim is narrow, testable and nobody has taken it."
       ],
-      "flip": "If under 4 of 10 developers name unreviewed agent edits unprompted, take c or d.",
+      "flip": "If the twenty hand made kits show people do not maintain instruction files, this collapses back to (b). The repo-wide claim then has to be defended on its own.",
       "linked": [
-        "P4",
+        "F35",
+        "P11",
         "P23",
         "P24",
-        "P11"
+        "P4"
       ],
       "sources": [
         "docs/PRODUCT-BRIEF.md:22",
@@ -496,7 +500,8 @@
         "docs/PRODUCT-BRIEF.md:20",
         "docs/GAPS-2026-09-08.md:146",
         "docs/PRODUCT-BRIEF.md:65",
-        "docs/PRODUCT-BRIEF.md:148"
+        "docs/PRODUCT-BRIEF.md:148",
+        "docs/FEATURE-RESEARCH-2026-09-13-2130.md:1"
       ],
       "when": "mvp",
       "whenWhy": "The plan moves review state to after the pilot. This is the reset, so it needs saying out loud.",
