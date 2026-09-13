@@ -216,7 +216,9 @@
         "docs/CRITIQUE.md:2100",
         "docs/BRIEF.md:116",
         "docs/BUSINESS.md:759"
-      ]
+      ],
+      "when": "mvp",
+      "whenWhy": "The pace decision needs to know who builds. Every date in the plan rests on the answer."
     },
     {
       "id": "B2",
@@ -529,6 +531,11 @@
         "docs/research/agent-reports-2026-08-30/r23-u4-consultation-and-services.md:62",
         "docs/research/agent-reports-2026-08-30/r23-u4-consultation-and-services.md:84",
         "docs/research/agent-reports-2026-08-30/r23-u4-consultation-and-services.md:95"
+      ],
+      "when": "mvp",
+      "whenWhy": "How the build is funded decides how many hours a week it can have.",
+      "dependsOn": [
+        "B1"
       ]
     },
     {
@@ -1323,7 +1330,9 @@
         "docs/research/agent-reports-2026-08-29-r11/r6-support-deflection.md:68",
         "docs/research/agent-reports-2026-08-29-r11/r6-support-deflection.md:87",
         "docs/research/agent-reports-2026-08-29-r11/r6-support-deflection.md:157"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "Support load is measured once there are paying users."
     },
     {
       "id": "B7",
@@ -1609,7 +1618,9 @@
         "docs/research/agent-reports-2026-08-29-r11/r6-support-deflection.md:120",
         "docs/research/agent-reports-2026-08-29-r11/r6-support-deflection.md:163",
         "docs/CRITIQUE.md:966"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "What free support means comes with the paid tier."
     },
     {
       "id": "B8",
@@ -1870,7 +1881,9 @@
         "docs/BUSINESS.md:142",
         "docs/BUSINESS.md:281",
         "docs/WEEK0-DECISIONS-2026-09-08.md:21"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "Reaching users we hold no address for assumes users."
     },
     {
       "id": "B10",
@@ -2064,7 +2077,9 @@
         "docs/WEEK0-DECISIONS-2026-09-08.md:20",
         "docs/WEEK0-DECISIONS-2026-09-08.md:21",
         "docs/WEEK0-DECISIONS-2026-09-08.md:22"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "The exit measure belongs with the pilot."
     },
     {
       "id": "B11",
@@ -2523,7 +2538,9 @@
         "docs/BUSINESS.md:1086",
         "docs/BUSINESS.md:1088",
         "docs/CRITIQUE.md:1459"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "Traffic milestones belong with the launch plan."
     },
     {
       "id": "B14",
@@ -2792,6 +2809,11 @@
         "docs/BUSINESS.md:719",
         "docs/BUSINESS.md:771",
         "docs/research/agent-reports-2026-08-30/r26-c9-capacity.md:149"
+      ],
+      "when": "mvp",
+      "whenWhy": "Some statutory work is due before the first stored kit, so it is scheduled with phase zero.",
+      "dependsOn": [
+        "L7"
       ]
     },
     {
@@ -3410,7 +3432,9 @@
         "docs/research/agent-reports-2026-08-30/r26-c9-capacity.md:149",
         "docs/research/agent-reports-2026-08-30/r26-c9-capacity.md:162",
         "docs/research/agent-reports-2026-08-30/r26-c9-capacity.md:181"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "A continuity drill is due before the first paying user."
     },
     {
       "id": "B21",
@@ -3540,7 +3564,9 @@
         "docs/PRODUCT-BRIEF.md:557",
         "docs/DECIDE.md:150",
         "docs/CRITIQUE.md:1766"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "What we are building toward is worth asking once the pilot reports."
     }
   ]
 }

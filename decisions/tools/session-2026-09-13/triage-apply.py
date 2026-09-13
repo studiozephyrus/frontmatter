@@ -11,7 +11,7 @@ turns them into links), a dependsOn id that is not a served card, or a self-depe
 import json, glob, os, re, sys
 
 REPO = '/Users/sagnikmitra/Desktop/GitHub/frontmatter'
-WHEN = ('spec', 'pilot', 'evidence', 'launch', 'task')
+WHEN = ('mvp', 'beta', 'after', 'notnow', 'task')
 src = open(f'{REPO}/decisions/questions.js', encoding='utf-8').read()
 served = {q['id'] for q in json.loads(src[src.index('['):src.rindex(']') + 1])}
 files = [f for f in sorted(glob.glob(f'{REPO}/decisions/v2/*.json')) if not os.path.basename(f).startswith('_')]

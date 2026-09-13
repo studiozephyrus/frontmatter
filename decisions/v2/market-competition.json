@@ -902,7 +902,9 @@
         "docs/CRITIQUE.md:246",
         "docs/research/frontmatter-segment-strategy.md",
         "merged: MK24"
-      ]
+      ],
+      "when": "mvp",
+      "whenWhy": "The plan names people who build with coding agents. Confirm the buyer before anything is written for them."
     },
     {
       "id": "MK5",
@@ -1397,7 +1399,9 @@
         "docs/GAPS-2026-09-08.md:62",
         "docs/GAPS-2026-09-08.md:127",
         "merged: MK8"
-      ]
+      ],
+      "when": "task",
+      "whenWhy": "Six places still promise two cut channels. Deleting them is a chore."
     },
     {
       "id": "MK9",
@@ -2382,7 +2386,9 @@
         "docs/CRITIQUE.md:436",
         "https://api.github.com/repos/petergyang/human-review",
         "merged: MK19"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "The ceiling matters when we are selling into it."
     },
     {
       "id": "MK13",
@@ -2589,7 +2595,9 @@
         "https://www.notion.com/releases",
         "https://antigravity.google/blog/vcs-and-terminal",
         "https://raw.githubusercontent.com/anthropics/claude-code/main/CHANGELOG.md"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "A platform response plan is for when there is something to defend."
     },
     {
       "id": "MK15",
@@ -3012,7 +3020,9 @@
         "docs/CRITIQUE.md:295",
         "docs/BUSINESS.md:941",
         "docs/BUSINESS.md:1086"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "The size of the business is judged after the pilot gives a number."
     },
     {
       "id": "MK17",
@@ -3250,7 +3260,9 @@
         "docs/BUSINESS.md:1240",
         "docs/DECIDE.md:212",
         "merged: MK23"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "Competitive watching is a standing habit, not a first build gate."
     },
     {
       "id": "MK18",
@@ -3628,7 +3640,9 @@
         "docs/PRODUCT-BRIEF.md:490",
         "docs/PRODUCT-BRIEF.md:510",
         "docs/GAPS-2026-09-08.md:68"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "A public position on dialects is not first build."
     },
     {
       "id": "MK22",
@@ -4051,7 +4065,9 @@
         "docs/CRITIQUE.md:258",
         "docs/CRITIQUE.md:260",
         "https://draftable.com/pricing"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "Shelf and price come with the pricing work."
     },
     {
       "id": "MK26",
@@ -4480,7 +4496,9 @@
         "https://get.almanac.io/go-forward",
         "https://www.thesaasnews.com/news/almanac-raises-34-million-in-series-a/",
         "https://hn.algolia.com/api/v1/items/23339147"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "Naming a dead competitor is pitch copy."
     },
     {
       "id": "MK28",
@@ -4851,7 +4869,9 @@
         "http://stet.editorially.com/articles/goodbye/",
         "https://techcrunch.com/2020/03/03/atrium-shuts-down/",
         "https://get.almanac.io/go-forward"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "Publishing why we differ is launch copy."
     },
     {
       "id": "MK30",
@@ -5049,7 +5069,9 @@
         "https://www.litera.com/our-story",
         "https://techcrunch.com/2020/03/03/atrium-shuts-down/",
         "docs/PRODUCT-BRIEF.md:145"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "A second buyer comes after the first."
     },
     {
       "id": "MK31",
@@ -5211,7 +5233,9 @@
         "https://www.ecfr.gov/api/versioner/v1/full/2026-01-01/title-21.xml?part=11",
         "https://www.ema.europa.eu/en/documents/scientific-guideline/reflection-paper-use-artificial-intelligence-ai-medicinal-product-lifecycle_en.pdf",
         "docs/PRODUCT-BRIEF.md:535"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "A second buyer comes after the first."
     }
   ]
 }

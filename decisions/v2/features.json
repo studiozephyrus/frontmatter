@@ -273,7 +273,9 @@
         "docs/PRODUCT-BRIEF.md:135",
         "docs/GAPS-2026-09-08.md:146",
         "merged: F2"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "The anchor test protects review state, which is deferred."
     },
     {
       "id": "F3",
@@ -486,7 +488,9 @@
         "docs/PRODUCT-BRIEF.md:288",
         "docs/GAPS-2026-09-08.md:139",
         "https://marketplace.visualstudio.com/items?itemName=dfarkash.claude-edits-scm"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "Attribution is after the pilot in the plan."
     },
     {
       "id": "F4",
@@ -656,7 +660,9 @@
         "docs/PRODUCT-BRIEF.md:58",
         "docs/PRODUCT-BRIEF.md:178",
         "docs/GAPS-2026-09-08.md:126"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "Answer in place serves a narrow file population and is not in the first build."
     },
     {
       "id": "F5",
@@ -962,6 +968,11 @@
         "docs/PRODUCT-BRIEF.md:307",
         "docs/GAPS-2026-09-08.md:126",
         "merged: F6"
+      ],
+      "when": "mvp",
+      "whenWhy": "Generation is the funnel now, so whether it ships is no longer optional.",
+      "dependsOn": [
+        "R17"
       ]
     },
     {
@@ -1189,7 +1200,9 @@
         "docs/FRONTMATTER-COMPLETE-RECORD-2026-08-30.md:13331",
         "docs/FRONTMATTER-COMPLETE-RECORD-2026-08-30.md:13371",
         "src/modules/ai/application/link-doctor.ts"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "The docs scan is after the pilot."
     },
     {
       "id": "F8",
@@ -1436,7 +1449,9 @@
         "docs/PRODUCT-BRIEF.md:202",
         "docs/PRODUCT-BRIEF.md:381",
         "src/modules/editor/presentation/AIMenu.tsx:248"
-      ]
+      ],
+      "when": "mvp",
+      "whenWhy": "The rail carries AI edit. Two verbs or eight decides what that rail looks like."
     },
     {
       "id": "F9",
@@ -1633,7 +1648,9 @@
         "docs/PRODUCT-BRIEF.md:382",
         "src/modules/editor/presentation/editor-settings.ts:12",
         "docs/research/agent-reports-2026-08-30/r20-q6-feature-discipline.md"
-      ]
+      ],
+      "when": "mvp",
+      "whenWhy": "A switch that hides AI is a promise made in the positioning. Say what it hides."
     },
     {
       "id": "F10",
@@ -1842,7 +1859,9 @@
         "docs/PRODUCT-BRIEF.md:328",
         "docs/PRODUCT-BRIEF.md:357",
         "src/modules/ai/infrastructure/gateway-client.ts:34"
-      ]
+      ],
+      "when": "mvp",
+      "whenWhy": "Strangers use the AI features on day one. Whose key pays is a gate before anyone signs up."
     },
     {
       "id": "F11",
@@ -2047,7 +2066,9 @@
         "docs/PRODUCT-BRIEF.md:510",
         "docs/DECIDE.md:105",
         "docs/GAPS-2026-09-08.md:23"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "Vault wide refactor is not in the first build."
     },
     {
       "id": "F12",
@@ -2559,7 +2580,9 @@
         "docs/FRONTMATTER-RECORD.md:178",
         "docs/FRONTMATTER-RECORD.md:3306",
         "docs/FRONTMATTER-PRD-v2-2026-08-29.md:1043"
-      ]
+      ],
+      "when": "beta",
+      "whenWhy": "Comments are a beta slot in the plan, and the format question comes with them."
     },
     {
       "id": "F14",
@@ -2969,7 +2992,9 @@
         "docs/DECIDE.md:107",
         "docs/DECIDE.md:171",
         "https://zed.dev/blog/agentic-xanadu"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "Sync is the paid tier, phase four."
     },
     {
       "id": "F16",
@@ -3285,7 +3310,9 @@
         "docs/GAPS-2026-09-08.md:60",
         "src/modules/vault/application/export-vault-zip.ts",
         "merged: F17"
-      ]
+      ],
+      "when": "mvp",
+      "whenWhy": "The plan reverses the no bytes rule, so the export route no longer breaks it. Decide export."
     },
     {
       "id": "F18",
@@ -3526,7 +3553,9 @@
         "docs/research/agent-reports-2026-08-30/r20-q6-feature-discipline.md",
         "src/modules/app-shell/presentation/KnowledgeUI.tsx:58",
         "merged: F29"
-      ]
+      ],
+      "when": "mvp",
+      "whenWhy": "Bookmarks and the graph sit in the right rail the MVP is building."
     },
     {
       "id": "F19",
@@ -3724,6 +3753,11 @@
         "src/modules/share/application/resolve-public-note.ts:36",
         "src/modules/share/application/resolve-public-note.ts",
         "src/modules/share/infrastructure/share-writer.ts:22"
+      ],
+      "when": "mvp",
+      "whenWhy": "The public share page is replaced by unlisted kit links, so its fate has to be settled.",
+      "dependsOn": [
+        "L6"
       ]
     },
     {
@@ -3939,7 +3973,9 @@
         "src/modules/editor/presentation/ghost-text.ts:133",
         "src/modules/editor/presentation/editor-settings.ts:41",
         "merged: F22"
-      ]
+      ],
+      "when": "mvp",
+      "whenWhy": "Two shipped surfaces contradict claims the product makes. Keep or cut them before strangers see them."
     },
     {
       "id": "F23",
@@ -4148,7 +4184,9 @@
         "docs/PRODUCT-BRIEF.md:524",
         "docs/DECIDE.md:106",
         "docs/GAPS-2026-09-08.md:127"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "Nested rendering is editor polish for later."
     },
     {
       "id": "F24",
@@ -4582,7 +4620,9 @@
         "docs/WEEK0-DECISIONS-2026-09-08.md:44",
         "docs/WEEK0-DECISIONS-2026-09-08.md:50",
         "docs/FEATURE-GAP-REPORT.md:45"
-      ]
+      ],
+      "when": "mvp",
+      "whenWhy": "The launcher has search, so where the index lives is a first build question."
     },
     {
       "id": "F26",
@@ -4770,7 +4810,9 @@
         "docs/PRODUCT-BRIEF.md:551",
         "docs/PRODUCT.md:655",
         "docs/research/agent-reports-2026-08-30/r26-c4-features.md"
-      ]
+      ],
+      "when": "beta",
+      "whenWhy": "Controlling what an agent may write belongs with the kit, once the kit is real."
     },
     {
       "id": "F27",
@@ -5003,7 +5045,9 @@
         "docs/prototype/frontmatter-prototype.html",
         "src/modules/ai/application/doc-prompts.ts:10",
         "docs/research/agent-reports-2026-08-30/r20-q6-feature-discipline.md"
-      ]
+      ],
+      "when": "mvp",
+      "whenWhy": "The launcher shows four templates. What a template is decides the first screen."
     },
     {
       "id": "F28",
@@ -5543,7 +5587,9 @@
         "docs/FEATURE-GAP-REPORT.md:99",
         "docs/research/agent-reports-2026-08-29-r11/r1-migration-fidelity.md:35",
         "src/modules/app-shell/presentation/ImportModal.tsx"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "Import is not in the first build."
     },
     {
       "id": "F33",
@@ -5679,7 +5725,9 @@
         "https://www.notion.com/releases",
         "https://raw.githubusercontent.com/anthropics/claude-code/main/CHANGELOG.md",
         "https://antigravity.google/blog/vcs-and-terminal"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "Both answers describe the highlight, which is deferred."
     }
   ]
 }

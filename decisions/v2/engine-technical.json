@@ -271,7 +271,9 @@
         "src/modules/share/domain/splice-frontmatter.ts:197",
         "package.json:81",
         "merged: E4"
-      ]
+      ],
+      "when": "mvp",
+      "whenWhy": "The editor refuses most real vaults over a flush left list. Strangers cannot open their own files."
     },
     {
       "id": "E2",
@@ -460,7 +462,9 @@
         "docs/CRITIQUE.md:660",
         "src/modules/share/infrastructure/share-writer.ts:25",
         "src/modules/preview/presentation/PropertiesPanel.tsx:95"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "The writer return type serves engine callers that do not exist yet."
     },
     {
       "id": "E3",
@@ -698,7 +702,9 @@
         "docs/ENGINE.md:1115",
         "docs/ENGINE.md:1250",
         "docs/ENGINE.md:213"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "Key addressability serves the review file."
     },
     {
       "id": "E5",
@@ -885,7 +891,9 @@
         "docs/ENGINE.md:1000",
         "docs/CRITIQUE.md:757",
         "docs/DECIDE.md:60"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "The claim this protects is not on any public page now."
     },
     {
       "id": "E6",
@@ -1186,7 +1194,9 @@
         "docs/PRODUCT-BRIEF.md:512",
         "src/modules/mdmax/domain/constructs.ts",
         "merged: E27"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "The certificate is after the pilot."
     },
     {
       "id": "E7",
@@ -1390,7 +1400,9 @@
         "docs/ENGINE.md:808",
         "docs/CRITIQUE.md:766",
         "docs/PRODUCT-BRIEF.md:506"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "The certificate is after the pilot."
     },
     {
       "id": "E8",
@@ -1656,7 +1668,9 @@
         "docs/PRODUCT-BRIEF.md:225",
         "package.json:55",
         "merged: E11"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "Reproducibility matters when someone outside recomputes a verdict."
     },
     {
       "id": "E9",
@@ -1913,7 +1927,9 @@
         "src/modules/mdmax/domain/targets.ts:24",
         "src/modules/mdmax/domain/targets.ts:125",
         "merged: E30"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "The certificate is after the pilot."
     },
     {
       "id": "E10",
@@ -2169,7 +2185,9 @@
         "package.json:8",
         "mdmax-cert.mjs:195",
         "merged: E34"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "Making the certificate runnable is engine work, deferred with it."
     },
     {
       "id": "E12",
@@ -2471,7 +2489,9 @@
         "docs/PRODUCT-BRIEF.md:216",
         "docs/DECIDE.md:84",
         "merged: E13"
-      ]
+      ],
+      "when": "mvp",
+      "whenWhy": "No automated checks run at all. One day of work guards everything after it."
     },
     {
       "id": "E14",
@@ -2639,7 +2659,9 @@
         "docs/ENGINE.md:2244",
         "docs/ENGINE.md:2127",
         "docs/PRODUCT-BRIEF.md:218"
-      ]
+      ],
+      "when": "task",
+      "whenWhy": "Replacing a check that only prints a line is a chore with a known fix."
     },
     {
       "id": "E15",
@@ -2931,7 +2953,9 @@
         "docs/CRITIQUE.md:761",
         "docs/CRITIQUE.md:762",
         "merged: E29"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "Both defects sit in engine paths the first build does not call."
     },
     {
       "id": "E16",
@@ -3152,7 +3176,9 @@
         "docs/ENGINE.md:1464",
         "docs/CRITIQUE.md:760",
         "docs/DECIDE.md:87"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "Placement gating serves the review flow."
     },
     {
       "id": "E17",
@@ -3347,7 +3373,9 @@
         "docs/ENGINE.md:371",
         "docs/ENGINE.md:467",
         "docs/ENGINE.md:469"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "Both are engine performance, not first build."
     },
     {
       "id": "E18",
@@ -3661,7 +3689,9 @@
         "docs/ENGINE.md:1746",
         "docs/GAPS-2026-09-08.md:13",
         "merged: E19"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "Nothing publishes an engine number in the first build."
     },
     {
       "id": "E20",
@@ -3874,7 +3904,9 @@
         "docs/ENGINE.md:2007",
         "docs/ENGINE.md:2017",
         "docs/ENGINE.md:2102"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "Incremental parsing is a performance choice for later."
     },
     {
       "id": "E21",
@@ -4084,7 +4116,9 @@
         "docs/ENGINE.md:1348",
         "docs/ENGINE.md:1350",
         "docs/ENGINE.md:1378"
-      ]
+      ],
+      "when": "mvp",
+      "whenWhy": "Writing inside the document body is what an editor does. The question names the MVP itself."
     },
     {
       "id": "E22",
@@ -4300,7 +4334,9 @@
         "docs/ENGINE.md:1596",
         "docs/ENGINE.md:1628",
         "docs/ENGINE.md:1714"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "Anchors are review state."
     },
     {
       "id": "E23",
@@ -4533,7 +4569,9 @@
         "docs/ENGINE.md:1913",
         "docs/ENGINE.md:1915",
         "package.json:19"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "Property tests protect engine behaviour that is deferred."
     },
     {
       "id": "E24",
@@ -4728,7 +4766,9 @@
         "docs/ENGINE.md:2243",
         "docs/ENGINE.md:2251",
         "docs/GAPS-2026-09-08.md:132"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "Publishing the engine is after the pilot."
     },
     {
       "id": "E25",
@@ -4997,7 +5037,9 @@
         "docs/ENGINE.md:2168",
         "docs/ENGINE.md:2170",
         "merged: E28"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "The barrel is engine housekeeping."
     },
     {
       "id": "E26",
@@ -5185,7 +5227,9 @@
         "docs/ENGINE.md:767",
         "docs/ENGINE.md:1388",
         "docs/FRONTMATTER-PRD-v2-2026-08-29.md:5829"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "Edit blast radius is engine correctness for later."
     },
     {
       "id": "E31",
@@ -5622,7 +5666,9 @@
         "docs/CRITIQUE.md:330",
         "docs/CRITIQUE.md:662",
         "docs/PRODUCT-BRIEF.md:327"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "A kill line for engine work that is deferred."
     },
     {
       "id": "E33",
@@ -5841,7 +5887,9 @@
         "docs/GAPS-2026-09-08.md:42",
         "src/modules/mdmax/domain/offsets.ts:127",
         "src/modules/share/domain/splice-frontmatter.ts:53"
-      ]
+      ],
+      "when": "mvp",
+      "whenWhy": "If other scripts are out of scope, say so before a stranger opens a file we cannot handle."
     },
     {
       "id": "E35",
@@ -5984,7 +6032,9 @@
         "docs/CRITIQUE.md:523",
         "docs/CRITIQUE.md:1730",
         "research briefing 2026-09-09"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "The sync position matters when sync ships, which is the paid tier."
     },
     {
       "id": "E36",
@@ -6113,7 +6163,9 @@
         "docs/PRODUCT-BRIEF.md:135",
         "docs/PRODUCT-BRIEF.md:527",
         "research briefing 2026-09-09"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "Document identity is a review file question."
     },
     {
       "id": "E37",
@@ -6244,7 +6296,9 @@
         "docs/PRODUCT-BRIEF.md:135",
         "docs/ENGINE.md:124",
         "research briefing 2026-09-09"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "The review file is deferred, so its merge behaviour is too."
     }
   ]
 }

@@ -338,7 +338,9 @@
         "docs/research/agent-reports-2026-08-28/e6-naming-risk.md:113",
         "docs/PRODUCT-BRIEF.md:305",
         "docs/research/agent-reports-2026-08-28/e6-naming-risk.md:110"
-      ]
+      ],
+      "when": "mvp",
+      "whenWhy": "The landing page, the launcher and the badge all carry the name. It cannot wait."
     },
     {
       "id": "N2",
@@ -622,6 +624,11 @@
         "docs/research/agent-reports-2026-08-28/e6-naming-risk.md:110-111",
         "docs/research/agent-reports-2026-08-28/e6-naming-risk.md:130",
         "docs/GAPS-2026-09-08.md:100-101"
+      ],
+      "when": "mvp",
+      "whenWhy": "A freeze date stops the name being reopened mid build.",
+      "dependsOn": [
+        "N1"
       ]
     },
     {
@@ -805,6 +812,11 @@
         "docs/research/agent-reports-2026-08-29-r11/r4-naming-candidates.md:154",
         "docs/research/agent-reports-2026-08-30/r13-s6-remaining-unknowns.md:149",
         "docs/research/agent-reports-2026-08-30/r13-s6-remaining-unknowns.md:177"
+      ],
+      "when": "mvp",
+      "whenWhy": "A register check is cheap and it is due before the name goes on a public page.",
+      "dependsOn": [
+        "N1"
       ]
     },
     {
@@ -1002,7 +1014,9 @@
         "docs/research/prd-v2-sections/22-segments-disclosure-naming.md:229",
         "docs/research/agent-reports-2026-08-28/e6-naming-risk.md:9",
         "docs/research/agent-reports-2026-08-29-r11/r4-naming-candidates.md:69"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "Two names or one matters when the engine is published."
     },
     {
       "id": "N5",
@@ -1188,7 +1202,9 @@
         "docs/GAPS-2026-09-08.md:112",
         "docs/GAPS-2026-09-08.md:132",
         "docs/GAPS-2026-09-08.md:150"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "Who signs off follows the naming decision."
     },
     {
       "id": "N6",
@@ -1500,7 +1516,9 @@
         "docs/research/agent-reports-2026-08-28/e6-naming-risk.md:7",
         "docs/research/agent-reports-2026-08-28/e6-naming-risk.md:97",
         "docs/FRONTMATTER-COMPLETE-RECORD-2026-08-30.md:7755"
-      ]
+      ],
+      "when": "task",
+      "whenWhy": "The desktop identifier still carries the sibling name. Changing it is a known chore."
     },
     {
       "id": "N9",
@@ -1679,7 +1697,9 @@
         "docs/research/agent-reports-2026-08-28/e6-naming-risk.md:89",
         "docs/research/agent-reports-2026-08-29-r7/x4-external-frontier-importer-naming.md:141",
         "docs/research/2026-09-09/BRIEFING.md:291"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "Contacting the incumbent follows the naming decision."
     },
     {
       "id": "N11",
@@ -1845,7 +1865,9 @@
         "docs/research/agent-reports-2026-08-30/r13-s4-positioning-messaging.md:129-136",
         "docs/research/agent-reports-2026-08-29-r11/r4-naming-candidates.md:29",
         "docs/research/agent-reports-2026-08-29-r11/r4-naming-candidates.md:63"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "Testing the name with people comes with the pilot."
     }
   ],
   "merged": [

@@ -35,9 +35,9 @@
   };
   /* The point at which a card needs an answer, set per card by the 2026-09-13 triage. A card
      without `when` makes no claim, and the page falls back to ordering by weight. */
-  var WHEN = { spec: 'Needed for the spec', pilot: 'Before the pilot', evidence: 'After the tests',
-    launch: 'Before launch', task: 'A task, not a decision' };
-  var WHEN_ORDER = ['spec', 'pilot', 'evidence', 'launch', 'task'];
+  var WHEN = { mvp: 'Answer now, it blocks the MVP', beta: 'Beta slot in the pilot',
+    after: 'After the pilot', notnow: 'Not now', task: 'A task, not a decision' };
+  var WHEN_ORDER = ['mvp', 'beta', 'after', 'notnow', 'task'];
   var RANK = { critical: 0, high: 1, medium: 2 };
 
   function cats() {

@@ -197,7 +197,9 @@
         "src/modules/vault/infrastructure/search-index.ts:16",
         "docs/PRODUCT-BRIEF.md:217",
         "docs/PRODUCT-BRIEF.md:227"
-      ]
+      ],
+      "when": "mvp",
+      "whenWhy": "The plan says the editor is the product. Confirm the noun before any copy or landing page is written."
     },
     {
       "id": "P2",
@@ -495,6 +497,11 @@
         "docs/GAPS-2026-09-08.md:146",
         "docs/PRODUCT-BRIEF.md:65",
         "docs/PRODUCT-BRIEF.md:148"
+      ],
+      "when": "mvp",
+      "whenWhy": "The plan moves review state to after the pilot. This is the reset, so it needs saying out loud.",
+      "dependsOn": [
+        "P1"
       ]
     },
     {
@@ -695,7 +702,9 @@
         "docs/CRITIQUE.md:377",
         "docs/CRITIQUE.md:382",
         "https://www.diffchecker.com/pricing/"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "Byte exactness is engine copy. The pitch is the editor and the kit now."
     },
     {
       "id": "P4",
@@ -1633,7 +1642,9 @@
         "docs/FRONTMATTER-PRD-v2-2026-08-29.md:4206",
         "docs/FRONTMATTER-PRD-v2-2026-08-29.md:4208",
         "merged: P17"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "The refusal list is positioning for a product with users. None yet."
     },
     {
       "id": "P8",
@@ -2145,7 +2156,9 @@
         "docs/CRITIQUE.md:350",
         "docs/CRITIQUE.md:398",
         "docs/CRITIQUE.md:409"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "No plugin surface ships before the pilot, so the ban has nothing to govern."
     },
     {
       "id": "P11",
@@ -2446,7 +2459,9 @@
         "docs/CRITIQUE.md:382",
         "merged: P12",
         "docs/ENGINE.md:1004"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "The demo shows a finished loop. Nothing to demo until the editor and the kit both exist."
     },
     {
       "id": "P13",
@@ -2741,7 +2756,9 @@
         "src/config/env.ts:85",
         "src/container/dependency-container.ts:140",
         "merged: P14"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "The review file is the thing being deferred, so the law it bends waits with it."
     },
     {
       "id": "P15",
@@ -3064,7 +3081,9 @@
         "docs/CRITIQUE.md:614",
         "src/modules/editor/presentation/EditorPane.tsx:905",
         "merged: P16"
-      ]
+      ],
+      "when": "mvp",
+      "whenWhy": "A bare bones editor is a budget claim. Say how many concepts and controls the first build may carry."
     },
     {
       "id": "P18",
@@ -4272,7 +4291,9 @@
         "https://pubmed.ncbi.nlm.nih.gov/34450669/",
         "docs/PRODUCT-BRIEF.md:409",
         "docs/PRODUCT-BRIEF.md:408"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "Both readings describe review state, which is deferred."
     },
     {
       "id": "P25",
@@ -4407,7 +4428,9 @@
         "docs/HANDOVER-ANSWERS-2-2026-09-09.md:606",
         "docs/PRODUCT-BRIEF.md:332",
         "CLAUDE.md:74"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "Fusing with the studio AI system is the opposite of narrowing. Revisit once the pilot has a result."
     }
   ]
 }

@@ -300,6 +300,11 @@
         "docs/research/agent-reports-2026-08-29-r8to10/s4-mobile-cross-device.md:63",
         "merged: PR6",
         "docs/PRODUCT-BRIEF.md:65"
+      ],
+      "when": "mvp",
+      "whenWhy": "What the paid tier gates is one of the five decisions the meeting settles.",
+      "dependsOn": [
+        "PR24"
       ]
     },
     {
@@ -547,7 +552,9 @@
         "docs/research/agent-reports-2026-08-30/r26-c8-b2b.md:21",
         "docs/research/agent-reports-2026-08-30/r26-c8-b2b.md:39",
         "merged: PR14"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "A retained journal belongs to the deferred review work."
     },
     {
       "id": "PR3",
@@ -843,7 +850,9 @@
         "https://www.diffchecker.com/pricing/",
         "https://obsidian.md/pricing",
         "merged: PR9"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "The plan sets no new price. Tests start from the numbers already on record."
     },
     {
       "id": "PR4",
@@ -1036,7 +1045,9 @@
         "docs/research/agent-reports-2026-08-30/r26-c7-d2c.md:125",
         "docs/research/agent-reports-2026-08-30/r23-u4-consultation-and-services.md:62",
         "http://stet.editorially.com/articles/goodbye/"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "Checkout comes with the paid tier in phase four."
     },
     {
       "id": "PR7",
@@ -1275,6 +1286,11 @@
         "docs/research/agent-reports-2026-08-30/r26-c6-unit-economics.md:62",
         "docs/research/agent-reports-2026-08-30/r19-p1-ai-economics.md:26",
         "http://stet.editorially.com/articles/goodbye/"
+      ],
+      "when": "mvp",
+      "whenWhy": "Each kit costs model tokens, so whether the free tier is capped is a first build answer.",
+      "dependsOn": [
+        "PR10"
       ]
     },
     {
@@ -1489,7 +1505,9 @@
         "docs/research/agent-reports-2026-08-30/r26-c8-b2b.md:39",
         "docs/research/agent-reports-2026-08-30/r25-w4-retention-and-growth.md:61",
         "https://obsidian.md/blog/free-for-work/"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "Licence shapes follow the pricing decision."
     },
     {
       "id": "PR10",
@@ -1684,7 +1702,9 @@
         "docs/research/agent-reports-2026-08-30/r19-p4-credits-and-limits.md:82",
         "docs/research/agent-reports-2026-08-30/r19-p1-ai-economics.md:26",
         "docs/research/agent-reports-2026-08-30/r26-c6-unit-economics.md:124"
-      ]
+      ],
+      "when": "mvp",
+      "whenWhy": "Metering and a ceiling on AI spend protect the free tier from the first week."
     },
     {
       "id": "PR11",
@@ -1909,7 +1929,9 @@
         "docs/BUSINESS.md:543",
         "docs/BUSINESS.md:719",
         "docs/BUSINESS.md:723"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "Billing period is a checkout detail."
     },
     {
       "id": "PR12",
@@ -2128,7 +2150,9 @@
         "docs/research/agent-reports-2026-08-30/r26-c7-d2c.md:24",
         "docs/research/agent-reports-2026-08-30/r26-c8-b2b.md:70",
         "https://obsidian.md/pricing"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "Regional pricing is a checkout detail."
     },
     {
       "id": "PR13",
@@ -2401,7 +2425,9 @@
         "docs/PRODUCT-BRIEF.md:550",
         "docs/research/agent-reports-2026-08-30/r26-c8-b2b.md:70",
         "merged: PR15"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "Refund terms come with checkout."
     },
     {
       "id": "PR16",
@@ -2593,7 +2619,9 @@
         "docs/BUSINESS.md:580",
         "docs/BUSINESS.md:719",
         "docs/BUSINESS.md:723"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "How money is collected comes with checkout."
     },
     {
       "id": "PR17",
@@ -2889,7 +2917,9 @@
         "docs/research/agent-reports-2026-08-30/r26-c7-d2c.md:22",
         "docs/research/agent-reports-2026-08-30/r26-c7-d2c.md:125",
         "merged: PR18"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "Pricing evidence comes from the pilot."
     },
     {
       "id": "PR19",
@@ -3076,7 +3106,9 @@
         "docs/BUSINESS.md:426",
         "docs/research/agent-reports-2026-08-30/r26-c6-unit-economics.md:45",
         "docs/research/agent-reports-2026-08-30/r26-c6-unit-economics.md:50"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "Price grandfathering comes with checkout."
     },
     {
       "id": "PR20",
@@ -3294,7 +3326,9 @@
         "docs/research/agent-reports-2026-08-30/r23-u4-consultation-and-services.md:10",
         "docs/research/agent-reports-2026-08-30/r23-u4-consultation-and-services.md:62",
         "docs/research/agent-reports-2026-08-30/r23-u4-consultation-and-services.md:105"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "Services revenue is a separate line from the product."
     },
     {
       "id": "PR21",
@@ -3579,6 +3613,11 @@
         "firestore.rules:61",
         "docs/GAPS-2026-09-08.md:142",
         "merged: PR22"
+      ],
+      "when": "mvp",
+      "whenWhy": "Which rungs exist, and whether the top one survives, is the same decision.",
+      "dependsOn": [
+        "PR24"
       ]
     },
     {
@@ -3728,7 +3767,9 @@
         "docs/PRODUCT-BRIEF.md:443",
         "docs/PRODUCT-BRIEF.md:475",
         "https://mintlify.com/pricing"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "The gate being priced is deferred."
     },
     {
       "id": "PR24",
@@ -3881,7 +3922,9 @@
         "docs/HANDOVER-ANSWERS-2026-09-09.md:571",
         "docs/HANDOVER-ANSWERS-2-2026-09-09.md:91",
         "docs/HANDOVER-ANSWERS-2-2026-09-09.md:181"
-      ]
+      ],
+      "when": "mvp",
+      "whenWhy": "Charge for the editor or for state. The plan proposes state, and it sets the whole tier table."
     }
   ]
 }

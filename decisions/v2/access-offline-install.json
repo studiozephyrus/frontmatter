@@ -236,6 +236,11 @@
         "docs/research/agent-reports-2026-08-30/r20-q4-repo-and-folders.md:38",
         "docs/research/agent-reports-2026-08-30/r20-q4-repo-and-folders.md:40",
         "docs/research/agent-reports-2026-08-29-r11/c2-architecture-decisions.md:19"
+      ],
+      "when": "mvp",
+      "whenWhy": "Where the bytes travel is the storage design the plan reverses. It decides privacy and the free tier.",
+      "dependsOn": [
+        "L1"
       ]
     },
     {
@@ -748,6 +753,11 @@
         "docs/research/agent-reports-2026-08-30/r20-q4-repo-and-folders.md:151",
         "docs/research/agent-reports-2026-08-30/r20-q7-one-page.md:96",
         "docs/research/agent-reports-2026-08-30/r20-q7-one-page.md:46"
+      ],
+      "when": "mvp",
+      "whenWhy": "Sign in and per user storage need the app permissions settled first.",
+      "dependsOn": [
+        "AC1"
       ]
     },
     {
@@ -959,7 +969,9 @@
         "docs/research/agent-reports-2026-08-30/r19-p2-offline-or-online.md",
         "docs/research/agent-reports-2026-08-29-r8to10/s4-mobile-cross-device.md:202",
         "docs/research/prd-v2-sections/18-simplicity.md:283"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "Direct folder access was cut twice and is not in the first build."
     },
     {
       "id": "AC6",
@@ -1264,7 +1276,9 @@
         "docs/research/agent-reports-2026-08-29-r12/k9-desktop-distribution.md:79",
         "docs/research/agent-reports-2026-08-29-r12/k9-desktop-distribution.md:131",
         "merged: AC7"
-      ]
+      ],
+      "when": "notnow",
+      "whenWhy": "The desktop app is outside the first build."
     },
     {
       "id": "AC8",
@@ -1492,7 +1506,9 @@
         "docs/research/agent-reports-2026-08-29-r12/k9-desktop-distribution.md:121",
         "docs/research/prd-v2-sections/35-platform-surfaces.md:311",
         "docs/research/agent-reports-2026-08-30/r19-p2-offline-or-online.md"
-      ]
+      ],
+      "when": "notnow",
+      "whenWhy": "The desktop app is outside the first build."
     },
     {
       "id": "AC9",
@@ -1926,7 +1942,9 @@
         "docs/research/agent-reports-2026-08-29-r12/k9-desktop-distribution.md:125",
         "docs/research/agent-reports-2026-08-29-r12/k9-desktop-distribution.md:143",
         "merged: AC11"
-      ]
+      ],
+      "when": "notnow",
+      "whenWhy": "The desktop app is outside the first build."
     },
     {
       "id": "AC12",
@@ -2142,7 +2160,9 @@
         "docs/research/agent-reports-2026-08-29-r8to10/s4-mobile-cross-device.md:60",
         "docs/research/agent-reports-2026-08-29-r8to10/s4-mobile-cross-device.md:153",
         "docs/research/agent-reports-2026-08-29-r8to10/s4-mobile-cross-device.md:222"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "Offline reading is not in the first build."
     },
     {
       "id": "AC13",
@@ -2413,7 +2433,9 @@
         "docs/engine/PLAN.md:1211",
         "docs/research/agent-reports-2026-08-30/r19-p2-offline-or-online.md",
         "merged: AC16"
-      ]
+      ],
+      "when": "mvp",
+      "whenWhy": "Strangers bring their own key on the web. Where it is kept is a first build answer."
     },
     {
       "id": "AC14",
@@ -2627,6 +2649,11 @@
         "docs/PRODUCT-BRIEF.md:123",
         "docs/PRODUCT-BRIEF.md:133",
         "docs/WEEK0-DECISIONS-2026-09-08.md:35"
+      ],
+      "when": "mvp",
+      "whenWhy": "The plan now allows holding bytes, so the export route can stay. Confirm it.",
+      "dependsOn": [
+        "L1"
       ]
     },
     {
@@ -3075,7 +3102,9 @@
         "docs/WEEK0-DECISIONS-2026-09-08.md:27",
         "docs/PRODUCT-BRIEF.md:313",
         "src-tauri/Cargo.toml"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "The usage file measures a pilot that has not run."
     },
     {
       "id": "AC18",
@@ -3266,7 +3295,9 @@
         "docs/research/agent-reports-2026-08-29-r12/k9-desktop-distribution.md:135",
         "docs/research/prd-v2-sections/35-platform-surfaces.md:384",
         "docs/research/agent-reports-2026-08-29-r8to10/s4-mobile-cross-device.md:114"
-      ]
+      ],
+      "when": "notnow",
+      "whenWhy": "The desktop app is outside the first build."
     },
     {
       "id": "AC19",
@@ -3395,7 +3426,9 @@
         "docs/PRODUCT-BRIEF.md:135",
         "docs/WEEK0-DECISIONS-2026-09-08.md:20",
         "docs/research/agent-reports-2026-08-30/r20-q4-repo-and-folders.md:38"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "Writing review state to a repository is deferred with review state."
     }
   ]
 }

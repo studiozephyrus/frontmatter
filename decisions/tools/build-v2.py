@@ -33,7 +33,7 @@ ORDER = [
 
 WEIGHT_RANK = {'critical': 0, 'high': 1, 'medium': 2}
 # Within an area, the cards the spec needs come first; a card without `when` sorts after all tagged ones.
-WHEN_RANK = {'spec': 0, 'pilot': 1, 'evidence': 2, 'launch': 3, 'task': 4}
+WHEN_RANK = {'mvp': 0, 'beta': 1, 'after': 2, 'notnow': 3, 'task': 4}
 
 
 def main():

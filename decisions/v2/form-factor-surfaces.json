@@ -259,7 +259,9 @@
         "docs/CRITIQUE.md:441",
         "src/modules/mdmax",
         "https://api.github.com/repos/microsoft/vscode/pulls/324218"
-      ]
+      ],
+      "when": "mvp",
+      "whenWhy": "The plan proposes standalone web first. It is the shape of everything built in phase one."
     },
     {
       "id": "FF2",
@@ -516,7 +518,9 @@
         "docs/PRODUCT-BRIEF.md:559",
         "docs/GAPS-2026-09-08.md:127",
         "docs/CRITIQUE.md:362"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "Rendering fidelity and an Obsidian surface are both outside the first build."
     },
     {
       "id": "FF3",
@@ -741,6 +745,11 @@
         "src-tauri/tauri.conf.json:3",
         "src-tauri/tauri.conf.json:5",
         "docs/research/agent-reports-2026-08-30/r24-v1-table-stakes.md:87"
+      ],
+      "when": "mvp",
+      "whenWhy": "The MVP keeps the sibling look, so whether we merge, freeze or own that shell decides week one.",
+      "dependsOn": [
+        "FF1"
       ]
     },
     {
@@ -1005,7 +1014,9 @@
         "docs/ENGINE.md:146",
         "docs/ENGINE.md:213",
         "test/corpus/foreign/SOURCES.json"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "The surface is chosen by the plan, so the measurements that would choose it are moot."
     },
     {
       "id": "FF5",
@@ -1216,7 +1227,9 @@
         "docs/FRONTMATTER-RECORD.md:5632",
         "docs/FRONTMATTER-RECORD.md:9297",
         "docs/CRITIQUE.md:1728"
-      ]
+      ],
+      "when": "notnow",
+      "whenWhy": "No extension ships before the pilot, so the store name cannot veto anything yet."
     },
     {
       "id": "FF7",
@@ -1392,7 +1405,9 @@
         "docs/PRODUCT-BRIEF.md:464",
         "docs/PRODUCT-BRIEF.md:477",
         "docs/GAPS-2026-09-08.md:134"
-      ]
+      ],
+      "when": "task",
+      "whenWhy": "Deleting three stale references to a cut extension is a chore, not a choice."
     },
     {
       "id": "FF8",
@@ -1623,6 +1638,11 @@
         "docs/research/agent-reports-2026-08-30/r19-p2-offline-or-online.md:18",
         "docs/research/agent-reports-2026-08-30/r19-p2-offline-or-online.md:67",
         "docs/research/agent-reports-2026-08-30/r19-p2-offline-or-online.md:78"
+      ],
+      "when": "mvp",
+      "whenWhy": "The plan says web only. Saying so closes the desktop work the old plan still implies.",
+      "dependsOn": [
+        "FF14"
       ]
     },
     {
@@ -1821,7 +1841,9 @@
         "docs/CRITIQUE.md:680",
         "docs/FRONTMATTER-RECORD.md:2067",
         "docs/FRONTMATTER-RECORD.md:10836"
-      ]
+      ],
+      "when": "notnow",
+      "whenWhy": "Mobile is outside the first build in the plan."
     },
     {
       "id": "FF11",
@@ -2147,7 +2169,9 @@
         "docs/FRONTMATTER-COMPLETE-RECORD-2026-08-30.md:20787",
         "docs/research/agent-reports-2026-08-30/r24-v1-table-stakes.md:87",
         "https://api.github.com/repos/microsoft/vscode/pulls/324218"
-      ]
+      ],
+      "when": "notnow",
+      "whenWhy": "Nothing is inside an extension that is not being built."
     },
     {
       "id": "FF12",
@@ -2341,7 +2365,9 @@
         "docs/FRONTMATTER-RECORD.md:9439",
         "https://api.github.com/repos/petergyang/human-review",
         "docs/PRODUCT-BRIEF.md:516"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "The plan puts the engine package after the pilot."
     },
     {
       "id": "FF14",
@@ -2595,7 +2621,9 @@
         "src-tauri/tauri.conf.json:3",
         "src-tauri/capabilities/default.json",
         "docs/BRIEF.md:115"
-      ]
+      ],
+      "when": "mvp",
+      "whenWhy": "One person at the measured pace can carry one surface. Name it and delete the rest."
     },
     {
       "id": "FF16",
@@ -2745,6 +2773,11 @@
         "docs/HANDOVER-ANSWERS-2-2026-09-09.md:82",
         "HANDOFF-decisions-v2-2026-09-09.md:298",
         "docs/PRODUCT-BRIEF.md:365"
+      ],
+      "when": "mvp",
+      "whenWhy": "This asks whether editor first survives the newer evidence. The reset answers it, so record the answer.",
+      "dependsOn": [
+        "FF1"
       ]
     }
   ],

@@ -212,7 +212,9 @@
         "docs/PRODUCT-BRIEF.md:175",
         "docs/GAPS-2026-09-08.md:110",
         "docs/research/agent-reports-2026-08-30/r25-w1-reddit-recovered.md:79"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "The old two week tests are replaced by the twenty hand made kits."
     },
     {
       "id": "G2",
@@ -491,7 +493,9 @@
         "docs/PRODUCT-BRIEF.md:464",
         "docs/PRODUCT-BRIEF.md:477",
         "merged: G3"
-      ]
+      ],
+      "when": "notnow",
+      "whenWhy": "No Obsidian surface ships in the first build."
     },
     {
       "id": "G4",
@@ -734,7 +738,9 @@
         "docs/FRONTMATTER-RECORD.md:11918",
         "merged: G5",
         "https://hn.algolia.com/api/v1/items/23339147"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "One launch shot, spent when the pilot ends."
     },
     {
       "id": "G6",
@@ -976,7 +982,9 @@
         "docs/PRODUCT-BRIEF.md:224",
         "docs/PRODUCT-BRIEF.md:227",
         "merged: G7"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "Approaching maintainers comes with a product to show."
     },
     {
       "id": "G8",
@@ -1179,7 +1187,9 @@
         "docs/GAPS-2026-09-08.md:13",
         "docs/FRONTMATTER-RECORD.md:5022",
         "docs/FRONTMATTER-RECORD.md:100"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "Publishing a finding is a launch move."
     },
     {
       "id": "G9",
@@ -1438,7 +1448,9 @@
         "docs/research/agent-reports-2026-08-30/r17-h7-content-seo-distribution.md:144",
         "docs/research/agent-reports-2026-08-30/r17-h7-content-seo-distribution.md:146",
         "merged: G19"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "Publishing research is a launch move."
     },
     {
       "id": "G10",
@@ -1918,7 +1930,9 @@
         "docs/GAPS-2026-09-08.md:60",
         "docs/GAPS-2026-09-08.md:133",
         "src/modules/share/presentation/PublicNoteView.tsx:30"
-      ]
+      ],
+      "when": "mvp",
+      "whenWhy": "Every free kit carries a mark back to us. That badge is part of the funnel design."
     },
     {
       "id": "G13",
@@ -2582,6 +2596,11 @@
         "docs/GAPS-2026-09-08.md:54",
         "docs/GAPS-2026-09-08.md:146",
         "merged: G17"
+      ],
+      "when": "mvp",
+      "whenWhy": "Phase zero needs twenty people outside the studio. Where they come from blocks the first step.",
+      "dependsOn": [
+        "R1"
       ]
     },
     {
@@ -2753,7 +2772,9 @@
         "docs/GAPS-2026-09-08.md:141",
         "docs/GAPS-2026-09-08.md:146",
         "docs/PRODUCT-BRIEF.md:479"
-      ]
+      ],
+      "when": "mvp",
+      "whenWhy": "The sibling has users and the MVP wears its look. Whether we approach them is a now question."
     },
     {
       "id": "G18",
@@ -2914,7 +2935,9 @@
         "docs/PRODUCT-BRIEF.md:292",
         "docs/PRODUCT-BRIEF.md:227",
         "docs/GAPS-2026-09-08.md:56"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "Selling off a scan that has not run."
     },
     {
       "id": "G20",
@@ -3127,7 +3150,9 @@
         "docs/research/agent-reports-2026-08-30/r17-h7-content-seo-distribution.md:72",
         "docs/research/agent-reports-2026-08-30/r17-h7-content-seo-distribution.md:145",
         "docs/PRODUCT-BRIEF.md:300"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "A public checker is a later surface."
     },
     {
       "id": "G21",
@@ -3562,7 +3587,9 @@
         "docs/research/agent-reports-2026-08-30/r25-w4-retention-and-growth.md:92",
         "docs/research/agent-reports-2026-08-30/r25-w4-retention-and-growth.md:94",
         "docs/research/agent-reports-2026-08-30/r17-h7-content-seo-distribution.md:153"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "Launch hours come when there is something to launch."
     },
     {
       "id": "G23",
@@ -3761,7 +3788,9 @@
         "docs/research/agent-reports-2026-08-30/r17-h7-content-seo-distribution.md:134",
         "docs/research/agent-reports-2026-08-30/r17-h7-content-seo-distribution.md:138",
         "docs/PRODUCT-BRIEF.md:300"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "Referral comes after there are users."
     },
     {
       "id": "G24",
@@ -3981,7 +4010,9 @@
         "docs/PRODUCT-BRIEF.md:149",
         "docs/GAPS-2026-09-08.md:40",
         "docs/GAPS-2026-09-08.md:126"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "Channel weighting belongs with the launch plan."
     },
     {
       "id": "G25",
@@ -4287,7 +4318,9 @@
         "https://api.github.com/repos/petergyang/human-review",
         "http://stet.editorially.com/articles/goodbye/",
         "research briefing 2026-09-09, graveyard lens: Draft, 503 served since April 2023"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "A statement about discovery belongs with the launch plan."
     },
     {
       "id": "G27",
@@ -4437,7 +4470,9 @@
         "docs/PRODUCT-BRIEF.md:300",
         "docs/GAPS-2026-09-08.md:60",
         "https://pagescms.org/"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "A new audience comes after the first one is served."
     }
   ]
 }

@@ -182,7 +182,9 @@
         "docs/prototype/frontmatter-prototype.html:116",
         "docs/FRONTMATTER-PRD-v2-2026-08-29.md:3357",
         "docs/PRODUCT-BRIEF.md:409"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "The review highlight is deferred."
     },
     {
       "id": "D2",
@@ -469,7 +471,9 @@
         "docs/FRONTMATTER-PRD-v2-2026-08-29.md:3366",
         "merged: D17",
         "docs/PRODUCT-BRIEF.md:62"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "Both washes mark review state."
     },
     {
       "id": "D3",
@@ -635,7 +639,9 @@
         "docs/PRODUCT-BRIEF.md:385",
         "docs/PRODUCT-BRIEF.md:431",
         "src/modules/share/domain/splice-frontmatter.ts:53"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "A switch for a highlight that does not ship yet."
     },
     {
       "id": "D4",
@@ -942,7 +948,9 @@
         "https://pubmed.ncbi.nlm.nih.gov/38658357/",
         "https://raw.githubusercontent.com/anthropics/claude-code/main/CHANGELOG.md",
         "merged: D5"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "The unreviewed count is review state."
     },
     {
       "id": "D23",
@@ -1059,7 +1067,9 @@
         "https://get.almanac.io/go-forward",
         "https://sback.it/publications/icse2018seip.pdf",
         "https://pubmed.ncbi.nlm.nih.gov/34516216/"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "A repository wide percentage is the element the attention research argues hardest against."
     },
     {
       "id": "D24",
@@ -1436,7 +1446,9 @@
         "docs/prototype/frontmatter-prototype.html:617",
         "https://marketplace.visualstudio.com/items?itemName=dfarkash.claude-edits-scm",
         "https://zed.dev/blog/agentic-xanadu"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "Attribution is deferred, so its hover card is too."
     },
     {
       "id": "D7",
@@ -1638,7 +1650,9 @@
         "docs/PRODUCT-BRIEF.md:381",
         "docs/PRODUCT-BRIEF.md:298",
         "docs/GAPS-2026-09-08.md:48"
-      ]
+      ],
+      "when": "mvp",
+      "whenWhy": "The AI writing box sits on new documents in the MVP, so its shape is decided now."
     },
     {
       "id": "D8",
@@ -1864,7 +1878,9 @@
         "docs/GAPS-2026-09-08.md:48",
         "docs/prototype/frontmatter-prototype.html:361",
         "docs/prototype/frontmatter-prototype.html:530"
-      ]
+      ],
+      "when": "mvp",
+      "whenWhy": "Four modes or three is the editor the first build ships."
     },
     {
       "id": "D9",
@@ -2083,7 +2099,9 @@
         "src/modules/editor/presentation/live/InlineBlockEditor.tsx:64",
         "src/modules/editor/presentation/live/block-split.ts:16",
         "src/modules/editor/presentation/live/block-split.ts:45"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "The broken mark is in review highlighting."
     },
     {
       "id": "D11",
@@ -2307,7 +2325,9 @@
         "docs/GAPS-2026-09-08.md:48",
         "src/app/globals.css:2",
         "docs/prototype/frontmatter-prototype.html:116"
-      ]
+      ],
+      "when": "mvp",
+      "whenWhy": "The MVP copies the sibling look. Aligning the stylesheet is that work."
     },
     {
       "id": "D12",
@@ -2556,7 +2576,9 @@
         "docs/FRONTMATTER-PRD-v2-2026-08-29.md:3404",
         "docs/FRONTMATTER-PRD-2026-08-29.md:819",
         "docs/PRODUCT.md:997"
-      ]
+      ],
+      "when": "mvp",
+      "whenWhy": "Contrast failures ship to strangers unless they are fixed and gated first."
     },
     {
       "id": "D13",
@@ -2852,7 +2874,9 @@
         "src/modules/export/presentation/print-css.ts:29",
         "src/shared/presentation/GoogleIcon.tsx:60",
         "src/shared/presentation/GoogleIcon.tsx:63"
-      ]
+      ],
+      "when": "mvp",
+      "whenWhy": "Fonts and icons from an outside network break the offline claim in the first build."
     },
     {
       "id": "D15",
@@ -3028,7 +3052,9 @@
         "docs/FRONTMATTER-PRD-v2-2026-08-29.md:3395",
         "src/modules/editor/presentation/live/InlineBlockEditor.tsx:13",
         "docs/prototype/frontmatter-prototype.html:606"
-      ]
+      ],
+      "when": "mvp",
+      "whenWhy": "Tab behaviour is basic editing. Strangers hit it in the first minute."
     },
     {
       "id": "D16",
@@ -3432,7 +3458,9 @@
         "docs/GAPS-2026-09-08.md:26",
         "https://pubmed.ncbi.nlm.nih.gov/35673040/",
         "https://pubmed.ncbi.nlm.nih.gov/38658357/"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "A five second test measures a screen the pilot will have."
     },
     {
       "id": "D20",
@@ -3725,7 +3753,9 @@
         "docs/prototype/frontmatter-prototype.html:624",
         "docs/research/agent-reports-2026-08-28/c6-screens.md:12",
         "merged: D19"
-      ]
+      ],
+      "when": "task",
+      "whenWhy": "Drawing three screens or buying a benchmark is work to schedule, not a choice."
     },
     {
       "id": "D21",
@@ -3936,7 +3966,9 @@
         "docs/FRONTMATTER-PRD-2026-08-29.md:819",
         "docs/prototype/frontmatter-prototype.html:605",
         "src/app/globals.css:31"
-      ]
+      ],
+      "when": "mvp",
+      "whenWhy": "Dark mode is a first build question because the sibling look has one."
     },
     {
       "id": "D22",
@@ -4165,7 +4197,9 @@
         "docs/FRONTMATTER-RECORD.md:4088",
         "docs/FRONTMATTER-RECORD.md:4064",
         "docs/FRONTMATTER-RECORD.md:3994"
-      ]
+      ],
+      "when": "mvp",
+      "whenWhy": "Scope for other scripts and text scaling has to be stated before strangers arrive."
     }
   ]
 }

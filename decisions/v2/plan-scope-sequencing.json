@@ -533,6 +533,11 @@
         "docs/CRITIQUE.md:779",
         "docs/CRITIQUE.md:791",
         "docs/CRITIQUE.md:793"
+      ],
+      "when": "mvp",
+      "whenWhy": "The pace is one of the five decisions. Every date in the plan rests on which rate is committed.",
+      "dependsOn": [
+        "B1"
       ]
     },
     {
@@ -910,7 +915,9 @@
         "docs/GAPS-2026-09-08.md:124",
         "package.json:20",
         "merged: PL4"
-      ]
+      ],
+      "when": "mvp",
+      "whenWhy": "Phase zero has a short fix list. The order it runs in is a first week answer."
     },
     {
       "id": "PL5",
@@ -1208,6 +1215,11 @@
         "docs/research/agent-reports-2026-08-29-r11/r5-measurement-plan.md:14",
         "docs/research/agent-reports-2026-08-29-r11/r5-measurement-plan.md:17",
         "merged: PL6"
+      ],
+      "when": "mvp",
+      "whenWhy": "The plan proposes what passing means. Agree it before phase zero starts, not after.",
+      "dependsOn": [
+        "PL2"
       ]
     },
     {
@@ -1493,7 +1505,9 @@
         "docs/GAPS-2026-09-08.md:35",
         "docs/GAPS-2026-09-08.md:146",
         "merged: PL9"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "The old two week test shape is replaced by the twenty hand made kits."
     },
     {
       "id": "PL8",
@@ -1952,7 +1966,9 @@
         "docs/FRONTMATTER-RECORD.md:14297",
         "docs/FRONTMATTER-RECORD.md:14299",
         "docs/CRITIQUE.md:793"
-      ]
+      ],
+      "when": "mvp",
+      "whenWhy": "Kill lines only work if they are set before the work starts. Pick which ones are live."
     },
     {
       "id": "PL11",
@@ -2344,7 +2360,9 @@
         "firestore.rules:221",
         "firestore.rules:318",
         "firestore.rules:361"
-      ]
+      ],
+      "when": "mvp",
+      "whenWhy": "Sign in for strangers is in the first build, and today the app shows a login before a file."
     },
     {
       "id": "PL14",
@@ -3169,7 +3187,9 @@
         "docs/FRONTMATTER-RECORD.md:14226",
         "docs/GAPS-2026-09-08.md:58",
         "docs/GAPS-2026-09-08.md:134"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "How the quarter ends depends on what phase zero returns."
     },
     {
       "id": "PL18",

@@ -23,7 +23,7 @@ REQUIRED = ['id', 'cat', 'sub', 'weight', 'q', 'lede', 'visual', 'stakes',
 OPTIONAL = ['evidence', 'linked', 'flip', 'when', 'whenWhy', 'dependsOn']
 # `when` says at what point a card needs an answer. Set by the 2026-09-13 triage because 204 cards
 # were being read as one flat list when only some of them block the spec.
-WHEN = ('spec', 'pilot', 'evidence', 'launch', 'task')
+WHEN = ('mvp', 'beta', 'after', 'notnow', 'task')
 # `what` is optional: it is kept only where the label is ambiguous without it. The 2026-09-10
 # compaction measured 77 of 978 options needing it; the rest restated their own label.
 OPT_REQUIRED = ['k', 'label', 'gains', 'costs', 'system', 'screens', 'money']

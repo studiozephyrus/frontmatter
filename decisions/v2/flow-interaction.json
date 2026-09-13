@@ -234,7 +234,9 @@
         "docs/research/agent-reports-2026-08-30/r24-v1-table-stakes.md:36",
         "docs/research/agent-reports-2026-08-29-r12/k4-accessibility.md:106",
         "docs/PRODUCT-BRIEF.md:20"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "A keyboard model for review needs review."
     },
     {
       "id": "FL3",
@@ -596,7 +598,9 @@
         "src/modules/app-shell/presentation/KnowledgeUI.tsx:56",
         "docs/prototype/frontmatter-prototype.html:315",
         "merged: FL17"
-      ]
+      ],
+      "when": "mvp",
+      "whenWhy": "Table stakes editing is what the first build is. Cmd K is part of it."
     },
     {
       "id": "FL4",
@@ -814,7 +818,9 @@
         "docs/PRODUCT-BRIEF.md:56",
         "https://static1.smartbear.co/support/media/resources/cc/book/code-review-cisco-case-study.pdf",
         "https://sback.it/publications/icse2018seip.pdf"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "A head to head on review hunks needs review state."
     },
     {
       "id": "FL5",
@@ -1009,7 +1015,9 @@
         "docs/WEEK0-DECISIONS-2026-09-08.md:22",
         "https://pubmed.ncbi.nlm.nih.gov/38658357/",
         "docs/PRODUCT-BRIEF.md:56"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "Mark all read is review state."
     },
     {
       "id": "FL6",
@@ -1327,7 +1335,9 @@
         "docs/FRONTMATTER-PRD-v2-2026-08-29.md:2029",
         "docs/WEEK0-DECISIONS-2026-09-08.md:19",
         "merged: FL7"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "The counter counts review state."
     },
     {
       "id": "FL8",
@@ -2042,7 +2052,9 @@
         "docs/WEEK0-DECISIONS-2026-09-08.md:19",
         "https://static.googleusercontent.com/media/research.google.com/en//pubs/archive/43322.pdf",
         "https://pubmed.ncbi.nlm.nih.gov/35673040/"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "These numbers stop a build that is not running."
     },
     {
       "id": "FL12",
@@ -2328,7 +2340,9 @@
         "docs/PRODUCT-BRIEF.md:215",
         "docs/PRODUCT-BRIEF.md:514",
         "merged: FL13"
-      ]
+      ],
+      "when": "mvp",
+      "whenWhy": "First thirty seconds is the launcher and first run, which the MVP builds."
     },
     {
       "id": "FL14",
@@ -2619,7 +2633,9 @@
         "docs/PRODUCT-BRIEF.md:56",
         "docs/GAPS-2026-09-08.md:146",
         "merged: FL15"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "A baseline on first open is review state."
     },
     {
       "id": "FL16",
@@ -2955,7 +2971,9 @@
         "docs/prototype/frontmatter-prototype.html:459",
         "docs/WEEK0-DECISIONS-2026-09-08.md:19",
         "https://pubmed.ncbi.nlm.nih.gov/38658357/"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "Span states are review state."
     },
     {
       "id": "FL19",
@@ -3074,7 +3092,9 @@
         "https://static1.smartbear.co/support/media/resources/cc/book/code-review-cisco-case-study.pdf",
         "https://sback.it/publications/icse2018seip.pdf",
         "https://assets.publishing.service.gov.uk/media/5aa2b9ede5274a3e391e37f3/MHRA_GxP_data_integrity_guide_March_edited_Final.pdf"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "Which spans show is review state."
     },
     {
       "id": "FL20",
@@ -3224,7 +3244,9 @@
         "https://pubmed.ncbi.nlm.nih.gov/38658357/",
         "https://assets.publishing.service.gov.uk/media/5aa2b9ede5274a3e391e37f3/MHRA_GxP_data_integrity_guide_March_edited_Final.pdf",
         "https://www.ecfr.gov/api/versioner/v1/full/2026-01-01/title-21.xml?part=11"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "Clearing a span is review state."
     }
   ],
   "merged": [

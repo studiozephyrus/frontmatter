@@ -227,7 +227,9 @@
         "https://www.notion.com/releases",
         "https://antigravity.google/blog/vcs-and-terminal",
         "https://raw.githubusercontent.com/anthropics/claude-code/main/CHANGELOG.md"
-      ]
+      ],
+      "when": "mvp",
+      "whenWhy": "The plan stops the rounds and runs twenty kits by hand. This card is that decision."
     },
     {
       "id": "R2",
@@ -875,7 +877,9 @@
         "docs/VERIFICATION.md:21",
         "docs/VERIFICATION.md:26",
         "docs/VERIFICATION.md:165"
-      ]
+      ],
+      "when": "task",
+      "whenWhy": "Restoring evidence tags is a formatting job on the plan."
     },
     {
       "id": "R6",
@@ -1112,7 +1116,9 @@
         "docs/WEEK0-DECISIONS-2026-09-08.md:50",
         "docs/MAP.md:108",
         "merged: R9"
-      ]
+      ],
+      "when": "task",
+      "whenWhy": "Building a checker from a ledger is tooling work."
     },
     {
       "id": "R7",
@@ -1343,7 +1349,9 @@
         "docs/PRODUCT-BRIEF.md:514",
         "test/corpus/foreign/SOURCES.json",
         "https://arxiv.org/abs/2602.09185"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "A second corpus protects engine work that is deferred."
     },
     {
       "id": "R10",
@@ -1777,7 +1785,9 @@
         "docs/GAPS-2026-09-08.md:43",
         "docs/research/agent-reports-2026-08-30/r15-e4-performance.md",
         "merged: R13"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "Competitor benchmarks come before a launch, not before phase zero."
     },
     {
       "id": "R12",
@@ -2159,7 +2169,9 @@
         "docs/GAPS-2026-09-08.md:125",
         "docs/GAPS-2026-09-08.md:146",
         "microsoft/vscode#324218, merged 2026-07-03; issues #326539 and #326540, milestone 1.130.0"
-      ]
+      ],
+      "when": "notnow",
+      "whenWhy": "Testing editor forks matters only if an extension ships."
     },
     {
       "id": "R16",
@@ -2564,7 +2576,9 @@
         "docs/PRODUCT-BRIEF.md:351",
         "docs/GAPS-2026-09-08.md:23",
         "docs/GAPS-2026-09-08.md:52"
-      ]
+      ],
+      "when": "mvp",
+      "whenWhy": "Generation ships as the funnel on founder tests whose notes were never attached."
     },
     {
       "id": "R18",
@@ -2701,7 +2715,9 @@
         "docs/MAP.md:108",
         "https://zed.dev/blog/agentic-xanadu",
         "https://antigravity.google/blog/vcs-and-terminal"
-      ]
+      ],
+      "when": "task",
+      "whenWhy": "A quoting rule is a working practice to adopt."
     }
   ]
 }

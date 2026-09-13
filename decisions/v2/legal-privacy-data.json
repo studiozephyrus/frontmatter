@@ -178,7 +178,9 @@
         "docs/FRONTMATTER-RECORD.md:10100",
         "docs/FRONTMATTER-RECORD.md:10104",
         "docs/PRODUCT-BRIEF.md:531"
-      ]
+      ],
+      "when": "mvp",
+      "whenWhy": "Holding document bytes is the first of the five decisions. Everything about storage hangs off it."
     },
     {
       "id": "L2",
@@ -466,6 +468,11 @@
         "src/modules/auth/infrastructure/auth-options.ts:80",
         "src/modules/auth/infrastructure/firebase-auth-gateway.ts:30",
         "docs/PRODUCT-BRIEF.md:531"
+      ],
+      "when": "mvp",
+      "whenWhy": "If we hold kits, the clocks start at the first kit, not at the pilot.",
+      "dependsOn": [
+        "L1"
       ]
     },
     {
@@ -633,6 +640,11 @@
         "docs/BUSINESS.md:767",
         "package.json",
         "merged: L5"
+      ],
+      "when": "mvp",
+      "whenWhy": "A six hour breach clock needs a named person before the first kit is stored.",
+      "dependsOn": [
+        "L1"
       ]
     },
     {
@@ -820,6 +832,11 @@
         "merged: L9",
         "docs/PRODUCT-BRIEF.md:332",
         "docs/PRODUCT-BRIEF.md:520"
+      ],
+      "when": "mvp",
+      "whenWhy": "Unlisted kit links need the indexing rule settled, and the public route is indexable today.",
+      "dependsOn": [
+        "L1"
       ]
     },
     {
@@ -993,6 +1010,11 @@
         "docs/FRONTMATTER-RECORD.md:4196",
         "src/modules/share/domain/slug.ts:43",
         "merged: L8"
+      ],
+      "when": "mvp",
+      "whenWhy": "A policy, terms and a named officer are due before a stranger stores anything.",
+      "dependsOn": [
+        "L1"
       ]
     },
     {
@@ -1140,7 +1162,9 @@
         "src/modules/export/presentation/export-doc.ts:98",
         "package.json",
         "merged: L11"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "The vendor chain matters once there are paying users and real volume."
     },
     {
       "id": "L12",
@@ -1300,6 +1324,11 @@
         "docs/research/agent-reports-2026-08-30/r18-v2-compliance-legal.md:34",
         "docs/FRONTMATTER-RECORD.md:4137",
         "docs/FRONTMATTER-PRD-v2-2026-08-29.md:6041"
+      ],
+      "when": "mvp",
+      "whenWhy": "European users reach a free web tool on day one. Accept or exclude, and budget it.",
+      "dependsOn": [
+        "L1"
       ]
     },
     {
@@ -1432,7 +1461,9 @@
         "docs/PRODUCT-BRIEF.md:152",
         "docs/WEEK0-DECISIONS-2026-09-08.md:43",
         "docs/FRONTMATTER-RECORD.md:8888"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "Identity in the review file is deferred with review state."
     },
     {
       "id": "L14",
@@ -1571,7 +1602,9 @@
         "vercel.json",
         "package.json",
         "docs/PRODUCT-BRIEF.md:531"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "A log store is due with real traffic."
     },
     {
       "id": "L15",
@@ -1835,7 +1868,9 @@
         "src/proxy.ts:112",
         "src/proxy.ts:117",
         "src/proxy.ts:138"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "An outside review is due before paying users, not before twenty hand made kits."
     },
     {
       "id": "L17",
@@ -1970,6 +2005,11 @@
         "docs/FRONTMATTER-RECORD.md:4123",
         "docs/FRONTMATTER-RECORD.md:4508",
         "docs/FRONTMATTER-RECORD.md:8983"
+      ],
+      "when": "mvp",
+      "whenWhy": "Deletion promises have to match the retention floor before the policy is written.",
+      "dependsOn": [
+        "L1"
       ]
     },
     {
@@ -2257,7 +2297,9 @@
         "docs/BUSINESS.md:680",
         "docs/BUSINESS.md:698",
         "src/modules/ai/infrastructure/gateway-client.ts:34"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "Tax registration follows revenue."
     },
     {
       "id": "L20",
@@ -2389,7 +2431,9 @@
         "docs/ENGINE.md:2237",
         "docs/DECIDE.md:168",
         "package.json"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "Licence split follows publishing the engine."
     },
     {
       "id": "L21",
@@ -2521,7 +2565,9 @@
         "docs/FRONTMATTER-PRD-v2-2026-08-29.md:5982",
         "docs/DECIDE.md:212",
         "docs/PRODUCT-BRIEF.md:531"
-      ]
+      ],
+      "when": "task",
+      "whenWhy": "A citation rule is a working practice to adopt, not a product choice."
     },
     {
       "id": "L22",
@@ -2671,7 +2717,9 @@
         "docs/PRODUCT-BRIEF.md:538",
         "docs/PRODUCT-BRIEF.md:541",
         "docs/PRODUCT-BRIEF.md:531"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "Age terms come with the full terms of service."
     },
     {
       "id": "L23",
@@ -2816,7 +2864,9 @@
         "https://assets.publishing.service.gov.uk/media/5aa2b9ede5274a3e391e37f3/MHRA_GxP_data_integrity_guide_March_edited_Final.pdf",
         "https://www.ema.europa.eu/en/documents/scientific-guideline/reflection-paper-use-artificial-intelligence-ai-medicinal-product-lifecycle_en.pdf",
         "added: L23"
-      ]
+      ],
+      "when": "after",
+      "whenWhy": "How we talk about regulators is positioning."
     }
   ]
 }
