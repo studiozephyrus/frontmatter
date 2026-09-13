@@ -228,7 +228,8 @@
           ],
           "system": "Append-only journal, retention policy, deletion job.",
           "screens": "A history view. No screen shows one.",
-          "money": "No revenue until that row lands."
+          "money": "No revenue until that row lands.",
+          "what": "Keep the 90-day journal as the gate and write it as a feature row first. The plan's Max row instructs it and comparables charge for retention; unestimated work, and 90 days moves again under CERT-In."
         },
         {
           "k": "b",
@@ -271,7 +272,8 @@
           ],
           "system": "No change.",
           "screens": "No pricing page.",
-          "money": "None."
+          "money": "None.",
+          "what": "Name no gate until the twenty conversations return. Publishes no price with nothing behind it, and leaves no revenue line for the whole build."
         }
       ],
       "rec": "b",
@@ -305,7 +307,8 @@
       "whenWhy": "What the paid tier gates is one of the five decisions the meeting settles.",
       "dependsOn": [
         "PR24"
-      ]
+      ],
+      "recWhy": "Neither thing behind the Pro gate exists: no feature row builds a 90-day journal, mdmax cert exits with a module error, and 90 days collides with the CERT-In 180-day log floor anyway. Attribution, which agent wrote which span, is the one headline claim nobody shipped in nine weeks, and Google sells exactly it at exactly this tier, so it is the paid thing. Q13 then places it: Pro at $6 to $8 buys state across your own devices, sync, a share link, your key and the kit, while the team rung at $15 to $20 a seat buys state across people, who changed what and review state on the files agents obey. So Pro gates on sync and sharing, and attribution is the rung above: (b) with the tier named. The cost stands: attribution leaves the free tier and needs six untested MCP days. If the conversations name shared review state rather than provenance as the paid thing, (a) or (c) returns."
     },
     {
       "id": "PR2",
@@ -484,7 +487,8 @@
           ],
           "system": "One entitlement check before appending. No server storage.",
           "screens": "Pricing line: your history stays, we stop adding.",
-          "money": "Revenue voluntary in effect. No storage cost."
+          "money": "Revenue voluntary in effect. No storage cost.",
+          "what": "The journal stays in the repo, honour system by design, and a lapse only stops new entries. Breaks no promise made in bold elsewhere; Pro becomes a licence rather than a lock."
         },
         {
           "k": "b",
@@ -498,7 +502,8 @@
           ],
           "system": "Hosted store, retention job, processor agreements.",
           "screens": "A lapse banner and read-only history.",
-          "money": "Storage and compliance cost from the first team."
+          "money": "Storage and compliance cost from the first team.",
+          "what": "A server-held journal and a rewritten zero-bytes promise. A real gate with real enforcement; it loses the line the plan leads with and drags prompts into DPDP and CERT-In's 180-day floor."
         },
         {
           "k": "c",
@@ -511,7 +516,8 @@
           ],
           "system": "Key management on top of the review-file writer.",
           "screens": "An encrypted-file state nobody has designed.",
-          "money": "Key infrastructure, small but permanent."
+          "money": "Key infrastructure, small but permanent.",
+          "what": "The journal in the repo, encrypted to a control-plane key. Enforceable and bytes never leave the machine; it breaks readable-without-frontmatter, which is what makes the review file safe to adopt."
         },
         {
           "k": "d",
@@ -524,7 +530,8 @@
           ],
           "system": "No journal store at all.",
           "screens": "No history view.",
-          "money": "None until another gate is named."
+          "money": "None until another gate is named.",
+          "what": "Retention stops being a gate at all. Removes the contradiction at its root, and Pro is left with a CI gate that does not run."
         }
       ],
       "rec": "d",
@@ -554,7 +561,8 @@
         "merged: PR14"
       ],
       "when": "after",
-      "whenWhy": "A retained journal belongs to the deferred review work."
+      "whenWhy": "A retained journal belongs to the deferred review work.",
+      "recWhy": "The paid object as written is a plain-text file the free client writes into the user's repository, so either Pro is an honour system or the zero-bytes promise is false; there is no third shape, and Obsidian made its licence optional for the same reason, a local app cannot enforce one. PR1 in the MVP set gates Pro on attribution rather than a retained journal, and Q13 gives Pro sync and sharing, so where the journal lives no longer decides anything. Retention stays what it is, a feature of the review file in the user's repo, honour system by design, gating nothing. It sits after the pilot because the contradiction is resolved upstream and the remaining work is one edit to the tier table. If the twenty conversations name retention rather than attribution as the paid thing, (a) returns as written, and (b) and (c) stay ruled out because each breaks a promise the product makes in bold."
     },
     {
       "id": "PR3",
@@ -776,7 +784,8 @@
           ],
           "system": "Two SKUs and a proration path.",
           "screens": "Pricing page with a period toggle.",
-          "money": "$48 to $60 per seat per year."
+          "money": "$48 to $60 per seat per year.",
+          "what": "$5 monthly and $4 annual per seat, the editor anchor. Full parity with the anchor already chosen; it needs 1,018 subscribers once founder time is costed, and anchors to editors, not diff tools."
         },
         {
           "k": "b",
@@ -790,7 +799,8 @@
           ],
           "system": "Same billing, different number.",
           "screens": "The page must justify the level.",
-          "money": "$120 to $240 per editor per year."
+          "money": "$120 to $240 per editor per year.",
+          "what": "$10 to $20 per editor a month, the diff-tool anchor. Draftable sells less than this for $129 to $261 a year; no markdown editor charges it and the Pro gate is unbuilt."
         },
         {
           "k": "c",
@@ -803,7 +813,8 @@
           ],
           "system": "No seat model. One entitlement per repo.",
           "screens": "No invite-and-count flow.",
-          "money": "Predictable per logo, capped per logo."
+          "money": "Predictable per logo, capped per logo.",
+          "what": "A flat price per repository or per organisation. No seat accounting and no proration; it kills seat expansion, the main growth engine."
         },
         {
           "k": "d",
@@ -818,7 +829,8 @@
           ],
           "system": "No change.",
           "screens": "No pricing page until the answer lands.",
-          "money": "Defers revenue two weeks."
+          "money": "Defers revenue two weeks.",
+          "what": "Both bands go into the conversations: Pro $6 to $8 against Obsidian Sync, Team $15 to $20 a seat against Kiro. Separates rejecting a number from rejecting paying; two prices may read as unserious."
         }
       ],
       "rec": "d",
@@ -852,7 +864,8 @@
         "merged: PR9"
       ],
       "when": "after",
-      "whenWhy": "The plan sets no new price. Tests start from the numbers already on record."
+      "whenWhy": "The plan sets no new price. Tests start from the numbers already on record.",
+      "recWhy": "The plan calls the price a hypothesis and then asks a question with only one possible answer, because the conversations carry only the low number; a team rejecting $5 and a team rejecting paying at all look identical. Two anchors in the plan are annual-billed rates quoted as monthly, and the GitHub Team $4 figure has no fetched source, so it is struck. The research gives two bands with sources: Pro at $6 to $8 against Obsidian Sync, which is the paid half of a free editor, and Team at $15 to $20 a seat against Kiro's Pro row, and Q13 adopts both as the working prices. Carrying both into the conversations costs one extra sentence, and the period is stated each time. $5 needed 1,018 subscribers to cover monthly costs once founder time was counted, which is why the low band alone was never a business. Fewer than five of twenty engaging with the higher band settles (a) honestly."
     },
     {
       "id": "PR4",
@@ -975,7 +988,8 @@
           ],
           "system": "No change.",
           "screens": "No checkout, no account.",
-          "money": "None until then."
+          "money": "None until then.",
+          "what": "Billing waits until the build after the pilot. The cleanest pilot with no billing code to maintain, and no money and no price evidence for 81 weeks."
         },
         {
           "k": "b",
@@ -1005,7 +1019,8 @@
           ],
           "system": "A payment link. No entitlement checks.",
           "screens": "A supporters page.",
-          "money": "Small, unpredictable, immediate."
+          "money": "Small, unpredictable, immediate.",
+          "what": "An optional licence and a supporters wall from day one. Revenue from day one with no engineering; voluntary money on a product with no users sets the anchor low and hard to move."
         },
         {
           "k": "d",
@@ -1019,7 +1034,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "₹2,40,000 to ₹3,00,000 per engagement."
+          "money": "₹2,40,000 to ₹3,00,000 per engagement.",
+          "what": "Sell the services engagement instead and let it fund the build. Revenue this month from clients who exist; the product gets no price evidence, and founder hours split."
         }
       ],
       "rec": "b",
@@ -1047,7 +1063,8 @@
         "http://stet.editorially.com/articles/goodbye/"
       ],
       "when": "after",
-      "whenWhy": "Checkout comes with the paid tier in phase four."
+      "whenWhy": "Checkout comes with the paid tier in phase four.",
+      "recWhy": "The pilot ships no sign-up and no billing, it is 70 engineering days at a measured 1.21 a calendar week, and 105 reports over 374,866 words contain zero willingness-to-pay work, so at the plan's own pace first revenue is 81 weeks out. Our own research made this criticism and the demand test still sits after the build. The pre-order page the corpus already specified is one page, a named price, a real checkout and a full refund, and it turns a pricing opinion into a fact in two weeks; its kill number is already written, zero pre-orders from a hundred conversations. Failing publicly at week 2 costs less than failing privately at week 81, and Editorially closed in 2014 saying full conversion would not have been enough, the outcome a pre-order finds early. PR16 settles the rail before the first sale. Over five teams signing an intent to buy before that build makes the page redundant."
     },
     {
       "id": "PR7",
@@ -1220,7 +1237,8 @@
           ],
           "system": "No change.",
           "screens": "Delete the free-quota line from the upsell table.",
-          "money": "₹1,30,560 a month of founder time at 10,000 users."
+          "money": "₹1,30,560 a month of founder time at 10,000 users.",
+          "what": "Free stays uncapped, and the founder-hour cost is one number, ₹1,30,560 a month at 10,000 users, printed where it is used. Keeps the distribution story; commits to a cost uncertain threefold."
         },
         {
           "k": "b",
@@ -1234,7 +1252,8 @@
           ],
           "system": "One counter and one threshold.",
           "screens": "A cap notice that reads generous.",
-          "money": "Caps the tail. Costs nothing directly."
+          "money": "Caps the tail. Costs nothing directly.",
+          "what": "Free with a soft cap on the support driver and never on features. Bounds the worst case; any cap makes no limits untrue, and it needs a number nobody has measured."
         },
         {
           "k": "c",
@@ -1248,7 +1267,8 @@
           ],
           "system": "No enforcement code by definition.",
           "screens": "A licence page and a supporters wall.",
-          "money": "Unpredictable. The only measured B2B mechanism here."
+          "money": "Unpredictable. The only measured B2B mechanism here.",
+          "what": "Free for individuals, with a licence asked for above a seat count. The only B2B motion two people can run; voluntary, and Obsidian gave up the mandatory version."
         },
         {
           "k": "d",
@@ -1262,7 +1282,8 @@
           ],
           "system": "A local, opt-in ticket count.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Measure the support coefficient before deciding. The one input the report says would change its verdict; ten users cannot resolve a threefold spread and the page copy waits past the meeting."
         }
       ],
       "rec": "a",
@@ -1291,7 +1312,8 @@
       "whenWhy": "Each kit costs model tokens, so whether the free tier is capped is a first build answer.",
       "dependsOn": [
         "PR10"
-      ]
+      ],
+      "recWhy": "The free tier costs founder time, not compute: at 10,000 users support is five times the whole infrastructure bill, and the plan and two reports give three different figures for it because the support coefficient is stated as 0.10 and 0.30 in the same repository. The tier also cannot be both no limits and subject to the AI quota the upsell table names, so the quota line is deleted. Q13 keeps free uncapped, the editor, paste and export, local only, because a free editor is the distribution the plan otherwise lacks, and Obsidian shows the shape works. Adopt the ₹1,30,560 figure, the only one with its working shown, and price it on the page it appears on. Ticket-deflecting documentation is the unbuilt, unestimated cost of this answer. If the ten pilot users exceed 0.02 tickets each a month, a soft cap on the support driver goes in before launch, and features stay free either way."
     },
     {
       "id": "PR8",
@@ -1441,7 +1463,8 @@
           ],
           "system": "A payment link and a name on a page.",
           "screens": "A licence page and a supporters wall.",
-          "money": "Unpredictable upside at no build cost."
+          "money": "Unpredictable upside at no build cost.",
+          "what": "An optional commercial licence, $50 per user a year, alongside seats. No SSO, SCIM, audit log or SOC 2 behind it; it may earn nothing for years, and Obsidian's precedent had five mandatory years."
         },
         {
           "k": "b",
@@ -1454,7 +1477,8 @@
           ],
           "system": "No change.",
           "screens": "No change.",
-          "money": "Seat revenue only."
+          "money": "Seat revenue only.",
+          "what": "No licence; teams buy seats only. One SKU and one story; it forgoes the only measured B2B mechanism in this category."
         },
         {
           "k": "c",
@@ -1467,7 +1491,8 @@
           ],
           "system": "No seat model at all.",
           "screens": "No invite-and-count flow.",
-          "money": "Predictable per logo, capped per logo."
+          "money": "Predictable per logo, capped per logo.",
+          "what": "A licence instead of seats. One number to quote a procurement team; it gives up seat expansion, the main growth engine."
         },
         {
           "k": "d",
@@ -1481,7 +1506,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Re-count Obsidian's logo wall first and decide after the conversations. One hour settles which report is right; the wall was never the measure, Obsidian's own page names over 10,000 organisations."
         }
       ],
       "rec": "a",
@@ -1507,7 +1533,8 @@
         "https://obsidian.md/blog/free-for-work/"
       ],
       "when": "after",
-      "whenWhy": "Licence shapes follow the pricing decision."
+      "whenWhy": "Licence shapes follow the pricing decision.",
+      "recWhy": "Obsidian made the only measured B2B licence in this category optional in February 2025 and kept growing, and its own page names over 10,000 organisations, which makes the logo-wall objection moot. A licence confers no features, so it costs a page and no code, and an honour-system Pro is a licence anyway, so naming one only says out loud what PR2 already accepted. It goes alongside seats, not instead of them, because seats are the growth engine and Q13's team rung is seat-priced. The honest caveats stand: Obsidian's founder says the money comes from Sync and Publish, not the licence, and the precedent had five mandatory years we start without, so this may earn nothing for a long time. This sits after the pilot because Q13 leaves enterprise unpriced until someone asks. If a team asks how to pay for commercial use and then asks what it enforces, the answer is nothing, and (b) is cleaner."
     },
     {
       "id": "PR10",
@@ -1638,7 +1665,8 @@
           ],
           "system": "Metering proxy, per-account ledger, breaker before every call.",
           "screens": "A usage line and a refusal state.",
-          "money": "Bounded downside per account per day."
+          "money": "Bounded downside per account per day.",
+          "what": "Actions as the unit, cheap calls unmetered, and a server-side daily dollar breaker. A report already designed it and it survives a tokeniser change; proxy, ledger and breaker are all unestimated."
         },
         {
           "k": "b",
@@ -1652,7 +1680,8 @@
           ],
           "system": "A ledger and a breaker. No taxonomy.",
           "screens": "A live spend readout.",
-          "money": "Thin margin, fully visible."
+          "money": "Thin margin, fully visible.",
+          "what": "Dollars spent, shown as a running total. Impossible to mis-price; it publishes our unit cost and invites comparison with the raw API."
         },
         {
           "k": "c",
@@ -1665,7 +1694,8 @@
           ],
           "system": "Nothing to build.",
           "screens": "The key field, already planned.",
-          "money": "No AI revenue, no AI cost."
+          "money": "No AI revenue, no AI cost.",
+          "what": "No hosted AI at all; bring your own key forever. Zero inference cost and zero abuse surface; it loses anyone who has never held an API key."
         },
         {
           "k": "d",
@@ -1704,7 +1734,8 @@
         "docs/research/agent-reports-2026-08-30/r26-c6-unit-economics.md:124"
       ],
       "when": "mvp",
-      "whenWhy": "Metering and a ceiling on AI spend protect the free tier from the first week."
+      "whenWhy": "Metering and a ceiling on AI spend protect the free tier from the first week.",
+      "recWhy": "Hosted AI is priced at cost plus margin over model costs that three reports disagree about, capped appears three times in the plan and no cap number appears anywhere, and the abuse case is trivial: one UI call a minute for 24 hours costs $1,254 to $2,507 a month. Actions are the only unit that is both easy to understand and bounded, cheap calls stay unmetered, and a server-side daily dollar breaker turns an unbounded liability into a number. Dollars would publish our unit cost. Q10 makes the user's own key the default and Q13 says hosted AI, if ever, is metered in actions with a daily breaker, so this card decides the shape of something that may never ship, which is why the wording matters more than the build: say unmetered up to a daily ceiling, never free. If nobody without a key reaches the AI panel in the pilot, (c) is cheaper and the breaker is never built."
     },
     {
       "id": "PR11",
@@ -1865,7 +1896,8 @@
           ],
           "system": "Two SKUs and a proration path.",
           "screens": "Period toggle above the columns, monthly first.",
-          "money": "9.29% of gross on the monthly mix."
+          "money": "9.29% of gross on the monthly mix.",
+          "what": "Monthly by default, annual offered and priced. The lowest checkout-failure rate on the Indian rail and a churn signal twelve times faster; concedes 466 basis points on non-annual customers."
         },
         {
           "k": "b",
@@ -1880,7 +1912,8 @@
           ],
           "system": "Same two SKUs, different default.",
           "screens": "Toggle defaults to annual.",
-          "money": "4.63% of gross. Better cash position."
+          "money": "4.63% of gross. Better cash position.",
+          "what": "Annual by default, monthly available. Captures the fee saving and raises cash earlier; a surprised customer on a one-attempt rail declines, and churn becomes one high-variance event a year."
         },
         {
           "k": "c",
@@ -1893,7 +1926,8 @@
           ],
           "system": "One SKU.",
           "screens": "No toggle.",
-          "money": "Best rail economics, smallest addressable set."
+          "money": "Best rail economics, smallest addressable set.",
+          "what": "Annual only. The simplest ledger and the best fee arithmetic; it excludes anyone who will not commit a year."
         },
         {
           "k": "d",
@@ -1906,7 +1940,8 @@
           ],
           "system": "One SKU.",
           "screens": "No toggle.",
-          "money": "9.29% of gross throughout."
+          "money": "9.29% of gross throughout.",
+          "what": "Monthly only until twenty teams pay. Nothing to build and the fastest churn signal; it forgoes the fee saving for the whole first year."
         }
       ],
       "rec": "a",
@@ -1931,7 +1966,8 @@
         "docs/BUSINESS.md:723"
       ],
       "when": "after",
-      "whenWhy": "Billing period is a checkout detail."
+      "whenWhy": "Billing period is a checkout detail.",
+      "recWhy": "The business plan defaults to annual on one page and monthly on its pricing page, and the plan states a per-user-per-month price with no period, so the first thing to fix is that the tier table names the period at all. The fee arithmetic favours annual by 466 basis points, 9.29 percent all-in monthly against 4.63 percent annual. The Indian rail decides the default anyway: it sends a pre-debit notice and gets one attempt with no retries, and ₹15,000 per transaction is an architectural constant, so a surprising annual charge on that rail is a declined card. Monthly by default keeps the checkout failure rate lowest and delivers the churn signal twelve times faster, which matters more in the first year than the fee. Offering annual, priced, captures most of the 466 points from the people who choose it. If the annual mix stays low enough that the saving goes unclaimed, the default switches."
     },
     {
       "id": "PR12",
@@ -2087,7 +2123,8 @@
           ],
           "system": "One SKU per period.",
           "screens": "One pricing page.",
-          "money": "Highest revenue per Indian customer, fewest of them."
+          "money": "Highest revenue per Indian customer, fewest of them.",
+          "what": "One USD price worldwide and no geo-pricing. One number to publish, defend and change, and no screenshot argument on Hacker News; Indian buyers pay the full dollar price."
         },
         {
           "k": "b",
@@ -2101,7 +2138,8 @@
           ],
           "system": "Two price books, one checkout decision.",
           "screens": "A country selector.",
-          "money": "Lower per Indian customer, possibly more of them."
+          "money": "Lower per Indian customer, possibly more of them.",
+          "what": "A USD list price plus a published India price. Meets the home market where the network is; reads as domestic software, and ₹299 undercuts measured Indian willingness to pay."
         },
         {
           "k": "c",
@@ -2115,7 +2153,8 @@
           ],
           "system": "A country-to-band table and VPN handling.",
           "screens": "A banded pricing page.",
-          "money": "More conversions, lower average, more support."
+          "money": "More conversions, lower average, more support.",
+          "what": "A USD list price plus published purchasing-power bands. Defensible when disclosed and uniform per country; a policy, a table and an abuse surface, and every band is a number somebody argues with."
         },
         {
           "k": "d",
@@ -2128,7 +2167,8 @@
           ],
           "system": "No change.",
           "screens": "No pricing page.",
-          "money": "None."
+          "money": "None.",
+          "what": "USD only until the conversations return. No wrong answer published; the page stays unfinished if checkout ships early."
         }
       ],
       "rec": "a",
@@ -2152,7 +2192,8 @@
         "https://obsidian.md/pricing"
       ],
       "when": "after",
-      "whenWhy": "Regional pricing is a checkout detail."
+      "whenWhy": "Regional pricing is a checkout detail.",
+      "recWhy": "The plan quotes dollars for the price and rupees for the costs with no geo policy, and the operating rules already say price in USD and INR only and do not localise. The category leader settles it: Obsidian serves no rupee string and Indians pay its dollar price anyway, and both products that do geo-price to India charge more than our proposed band, Craft at ₹526.70 a month. One number is one thing to publish, defend and change, and it removes the screenshot argument. A GDPR Article 27 representative at €420 to €852 a year is a cost of selling into the EU at all, not of the price policy. Q13's bands are in dollars. This sits after the pilot because PR4's pre-order page is the first place a price is shown. If most of the twenty are Indian and name the dollar figure itself as the objection, a published India price goes on the page."
     },
     {
       "id": "PR13",
@@ -2360,7 +2401,8 @@
           ],
           "system": "A refunds path. No consent capture.",
           "screens": "A refunds page and one checkout line.",
-          "money": "About 2.08% of gross at a 2% refund rate."
+          "money": "About 2.08% of gross at a 2% refund rate.",
+          "what": "Ship the drafted policy: a thirty-day refund on the first payment, a capped prorated refund on renewal, the EU withdrawal right unconditional. Removes most dispute cost for 2.08 percent of gross."
         },
         {
           "k": "b",
@@ -2374,7 +2416,8 @@
           ],
           "system": "Consent capture, performance-start event, durable-medium receipt.",
           "screens": "An unticked box with statutory wording.",
-          "money": "Highest retained revenue, highest tail risk."
+          "money": "Highest retained revenue, highest tail risk.",
+          "what": "Non-refundable, with the EU waiver taken properly. The category norm for file-first tools; a slightly wrong waiver makes the supply free, and each dispute costs months of that seat."
         },
         {
           "k": "c",
@@ -2387,7 +2430,8 @@
           ],
           "system": "A refunds path with a date check.",
           "screens": "One line at checkout.",
-          "money": "Bounded, smaller than (a)."
+          "money": "Bounded, smaller than (a).",
+          "what": "A thirty-day first-charge refund only. Covers remorse at a bounded cost; it leaves the forgotten annual renewal, which is what drives chargebacks."
         },
         {
           "k": "d",
@@ -2400,7 +2444,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "An obligation the day checkout ships."
+          "money": "An obligation the day checkout ships.",
+          "what": "No published policy until there is a customer. No work now; India's e-commerce rules require the policy displayed before the first sale."
         }
       ],
       "rec": "a",
@@ -2427,7 +2472,8 @@
         "merged: PR15"
       ],
       "when": "after",
-      "whenWhy": "Refund terms come with checkout."
+      "whenWhy": "Refund terms come with checkout.",
+      "recWhy": "One chargeback costs thirty dollars plus the principal and a refund costs one, so a single dispute is six to seven and a half months of a seat, and the asymmetry decides the policy on its own. The business plan already drafts it, thirty days on the first payment and a prorated refund on renewal, checked against four fetched benchmarks that are bimodal, Obsidian non-refundable and 37signals refunding on request. Granting the EU withdrawal right unconditionally deletes a compliance surface and a checkout step for 2.08 percent of gross, and the drafted clause gets a cap before it ships because as written it has none. India's e-commerce rules require the policy displayed, so (d) is not available once checkout exists, and PR4 puts checkout early. If the measured refund rate goes above 2 percent, the thirty-day window is the dial to turn, not the policy."
     },
     {
       "id": "PR16",
@@ -2557,7 +2603,8 @@
           ],
           "system": "One integration, one webhook, one reconciliation surface.",
           "screens": "Their checkout, our page.",
-          "money": "9.29% of gross monthly, 4.63% annual."
+          "money": "9.29% of gross monthly, 4.63% annual.",
+          "what": "A merchant of record from the first sale, one counterparty for tax, invoices and disputes. No jurisdiction arrives as a surprise; 4 to 5.5 percent plus a 15 cent charge that is 4.79 percent of ₹299."
         },
         {
           "k": "b",
@@ -2571,7 +2618,8 @@
           ],
           "system": "A billing integration plus tax logic we own.",
           "screens": "Our own checkout.",
-          "money": "Lower cut, unbounded administrative cost."
+          "money": "Lower cut, unbounded administrative cost.",
+          "what": "Bill direct and register for tax as it arises. Keeps the margin and the direct relationship; every new country is a project and cross-border disputes land on one person."
         },
         {
           "k": "c",
@@ -2584,7 +2632,8 @@
           ],
           "system": "Two billing paths and a routing rule.",
           "screens": "Two checkouts.",
-          "money": "Best blended rate, worst operational cost."
+          "money": "Best blended rate, worst operational cost.",
+          "what": "Merchant of record for non-India sales, direct billing for India. Keeps domestic margin and outsources the hard jurisdictions; two ledgers and two reconciliation surfaces for two people."
         },
         {
           "k": "d",
@@ -2597,7 +2646,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "Nothing now, an unbounded obligation later."
+          "money": "Nothing now, an unbounded obligation later.",
+          "what": "Defer until a foreign buyer asks. No work now; the first EU sale arrives with VAT owed and no mechanism to pay it."
         }
       ],
       "rec": "a",
@@ -2621,7 +2671,8 @@
         "docs/BUSINESS.md:723"
       ],
       "when": "after",
-      "whenWhy": "How money is collected comes with checkout."
+      "whenWhy": "How money is collected comes with checkout.",
+      "recWhy": "The plan defers this with SSO and SOC 2 until a buyer refuses without it, and it is not that kind of thing: SSO is a feature a buyer asks for, this is whose name is on the invoice, and it must be settled before the first sale, since nobody can refuse it beforehand. At this volume one dispute or one foreign tax registration costs more than the cut, and a two-person company cannot run a VAT registration per country. The cut is honest and it is worst exactly at our price, Dodo's fixed 15 cents alone is 4.79 percent of a ₹299 charge, one more reason Q13's bands sit at $6 to $8, not ₹299. Indian cards get one payment attempt, which the merchant of record handles on our behalf. It comes off the deferred list and ships with PR4's page. If direct billing plus outsourced tax filing beats the cut below 200 seats, (b) is cheaper and the switch is a rail change, not a rewrite."
     },
     {
       "id": "PR17",
@@ -2848,7 +2899,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "None spent. The answer arrives in week 2."
+          "money": "None spent. The answer arrives in week 2.",
+          "what": "Kill the paid tier if fewer than 5 of 20 name a gate at a named price, with both bands in the script. Falsifiable and it tests the axis too; twenty is small and interviews over-report prices."
         },
         {
           "k": "b",
@@ -2862,7 +2914,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Kill under 3 of 20 giving a seat count and a budget line. A harder bar that filters talk from procurement; three of twenty is a thin thread and 15 percent is noise at this size."
         },
         {
           "k": "c",
@@ -2877,7 +2930,8 @@
           ],
           "system": "A checkout and a refunds path.",
           "screens": "One page.",
-          "money": "$49 a pre-order, refundable."
+          "money": "$49 a pre-order, refundable.",
+          "what": "Replace the conversations with a paid pre-order. The only instrument that returns a fact rather than an opinion, and its kill number is already dated; it tests one price, not the axis."
         },
         {
           "k": "d",
@@ -2891,7 +2945,8 @@
           ],
           "system": "Two landing variants and a counter.",
           "screens": "Two pricing pages.",
-          "money": "None, and no revenue evidence."
+          "money": "None, and no revenue evidence.",
+          "what": "A free-signup-rate test only, labelled price anchoring. The one randomised measurement the traffic can support; it answers signup suppression, not what anyone pays, in 2.6 months."
         }
       ],
       "rec": "a",
@@ -2919,7 +2974,8 @@
         "merged: PR18"
       ],
       "when": "after",
-      "whenWhy": "Pricing evidence comes from the pilot."
+      "whenWhy": "Pricing evidence comes from the pilot.",
+      "recWhy": "Every other test in the plan carries a kill number and the one that decides the business does not: the paid tier stays a hypothesis until twenty conversations return seat counts, with no threshold written, while under 4 of 10 already kills review state. Desk research on eleven gaps measured installs and attention and never payment, and as scheduled the conversations test only $4 to $5, so two different rejections look identical. Five of twenty naming a gate at a named price is high enough that a polite yes fails and low enough that a niche survives, and putting both of Q13's bands in the script tests the axis in the same call. Q15 sets the pilot's own pass marks beside this one. The three-price randomised test would take 57 months and stays struck. If PR4's pre-order page ships, the pre-order replaces this gate, because money is a fact and a conversation is an opinion."
     },
     {
       "id": "PR19",
@@ -3046,7 +3102,8 @@
           ],
           "system": "A price snapshot per account.",
           "screens": "One line at checkout.",
-          "money": "Locks early revenue close to cost."
+          "money": "Locks early revenue close to cost.",
+          "what": "The early price is perpetual while the subscription stays continuous. The strongest trust signal and the easiest to state; it caps blended revenue near a break-even that is uncertain threefold."
         },
         {
           "k": "b",
@@ -3059,7 +3116,8 @@
           ],
           "system": "A price snapshot plus an expiry date.",
           "screens": "A notice in the in-product list.",
-          "money": "Recovers revenue at year three."
+          "money": "Recovers revenue at year three.",
+          "what": "A three-year sunset with ninety days' notice. Standard, and the price can move later; it costs goodwill with the cohort that supplies word of mouth."
         },
         {
           "k": "c",
@@ -3072,7 +3130,8 @@
           ],
           "system": "No snapshot needed.",
           "screens": "The price-change email rule, already written.",
-          "money": "Full flexibility on price."
+          "money": "Full flexibility on price.",
+          "what": "No grandfathering at all. The simplest ledger with no legacy prices; it removes a real reason to buy early."
         },
         {
           "k": "d",
@@ -3086,7 +3145,8 @@
           ],
           "system": "A snapshot on the first hundred accounts.",
           "screens": "Both policies visible at checkout.",
-          "money": "Caps the concession at a hundred accounts."
+          "money": "Caps the concession at a hundred accounts.",
+          "what": "Perpetual for the first hundred subscribers, then none. Buys the founding cohort at a countable cost and leaves the price free afterwards; two policies to publish and one number to defend."
         }
       ],
       "rec": "d",
@@ -3108,7 +3168,8 @@
         "docs/research/agent-reports-2026-08-30/r26-c6-unit-economics.md:50"
       ],
       "when": "after",
-      "whenWhy": "Price grandfathering comes with checkout."
+      "whenWhy": "Price grandfathering comes with checkout.",
+      "recWhy": "Break-even at the founder's own rate is ₹333.25 a month per seat, which sits between what $4 and $5 buy, and the support input behind it is unsettled, 0.10 and 0.30 tickets per user in one repository. A perpetual promise to everyone could mean running near cost forever; no promise at all removes the one reason to buy before the product is finished. The first hundred matter more as advocates than as revenue, so their price can be a promise at a countable cost, and everyone after sits under a policy that can move, because break-even is close and Q13's bands are still working numbers. The cost is two policies side by side and the question from customer 101, which is answered with the number. This sits after the pilot because PR4's page is where the first hundred are counted. If the pilot measures support at the low end, (a) becomes affordable and reads better."
     },
     {
       "id": "PR20",
@@ -3264,7 +3325,8 @@
           ],
           "system": "No change.",
           "screens": "None; the docs scan is the diagnostic later.",
-          "money": "₹12,00,000 a year at four engagements."
+          "money": "₹12,00,000 a year at four engagements.",
+          "what": "Sell the ten-day engagement at ₹3,00,000 now. Revenue this month from clients who exist and four a year cover all monthly costs; days 7 and 8 sell an eval discipline whose kappa measured 0.1."
         },
         {
           "k": "b",
@@ -3279,7 +3341,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "₹9,60,000 a year at four engagements."
+          "money": "₹9,60,000 a year at four engagements.",
+          "what": "Sell an eight-day version at ₹2,40,000, evals as a later phase. Sellable this month, eighty percent of the revenue and none of the objection; forty hours a month off the build."
         },
         {
           "k": "c",
@@ -3293,7 +3356,8 @@
           ],
           "system": "No change.",
           "screens": "The scan's proposal list becomes the brief.",
-          "money": "None for about a year."
+          "money": "None for about a year.",
+          "what": "Keep it as a downstream upsell from the docs scan. Keeps the founder's hours on the build; the scan that generates the lead is a year away and no diagnostic has conversion data."
         },
         {
           "k": "d",
@@ -3306,7 +3370,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "No services revenue, no funding."
+          "money": "No services revenue, no funding.",
+          "what": "Do not sell it and protect the build. Maximum product velocity; it contradicts the funding line that assumes 54 to 78 client hours a month."
         }
       ],
       "rec": "b",
@@ -3328,7 +3393,8 @@
         "docs/research/agent-reports-2026-08-30/r23-u4-consultation-and-services.md:105"
       ],
       "when": "after",
-      "whenWhy": "Services revenue is a separate line from the product."
+      "whenWhy": "Services revenue is a separate line from the product.",
+      "recWhy": "The plan funds the build with 54 to 78 consulting hours a month and then lists the same engagement as its last upsell, behind a docs scan about a year away. The engagement exists now, and the only honest objection to it is days 7 and 8: they sell an eval discipline whose own measurement failed, a kappa of 0.1 against a 0.7 bar on nine samples, and selling a judge before its alignment passes is the guess this product refuses elsewhere. Eight days at ₹2,40,000 removes that objection, is sellable this month at a scope the services report itself proposes, and covers the ₹1.09 lakh monthly cost with just over four sales a year. The cost is real: forty hours a month off an 81-week build. B2, how the build is funded, is the fact behind this card and the founders answer it on the site. If a client will pay for the eval days specifically, the kappa is re-run first and then (a) is sold."
     },
     {
       "id": "PR21",
@@ -3539,7 +3605,8 @@
           ],
           "system": "One paid entitlement instead of two.",
           "screens": "A two-column pricing page.",
-          "money": "Loses whatever a decoy tier is worth."
+          "money": "Loses whatever a decoy tier is worth.",
+          "what": "Two tiers, free and Pro, with Max deleted until someone asks. Removes three contradictory ladders and a rung; anything parked in Max needs a home, and a top tier's anchoring goes."
         },
         {
           "k": "b",
@@ -3552,7 +3619,8 @@
           ],
           "system": "The plan changes; the rules file does not.",
           "screens": "Renamed columns.",
-          "money": "None."
+          "money": "None.",
+          "what": "free, pro and team, matching the enum in the Firestore rules file. The least churn and the names a build team finds; it adopts the vocabulary of a file that may go."
         },
         {
           "k": "c",
@@ -3565,7 +3633,8 @@
           ],
           "system": "No change.",
           "screens": "Three columns, the third hollow.",
-          "money": "None."
+          "money": "None.",
+          "what": "Keep three rungs and fix the stale rows. The cheapest edit; Max still holds one unbuilt feature and two features refused until asked."
         },
         {
           "k": "d",
@@ -3618,7 +3687,8 @@
       "whenWhy": "Which rungs exist, and whether the top one survives, is the same decision.",
       "dependsOn": [
         "PR24"
-      ]
+      ],
+      "recWhy": "Three committed artefacts name three different ladders: the plan runs Individual, Pro, Max and Hosted AI, the Firestore rules file defines free, pro and team, and the business plan runs Free, Pro, Power and Work. Max holds retention, admin and SSO; retention is unbuilt, SSO deferred until a team refuses without it, and two tables still route CI gates there, so Max has nothing to sell. Two tiers on the page at launch, free and Pro, and the operating rules already write Max's return: the first team refusing without SSO. Q13 names a team rung at $15 to $20 a seat for the instruction-file view, which arrives with Phase 1 rather than at launch, so the ladder grows to three when the third rung holds something, and free, pro, team is the enum it grows into. Q9 deletes firestore.rules, which answers (d). A commercial licence under PR8 returns the third rung as a per-organisation licence."
     },
     {
       "id": "PR23",
@@ -3705,7 +3775,8 @@
           ],
           "system": "No change.",
           "screens": "No change.",
-          "money": "Revenue scales with readers, not repos."
+          "money": "Revenue scales with readers, not repos.",
+          "what": "Per seat, folded into Pro as written. One SKU and one price to explain; it bills readers who never see a CI run and wastes the one enforceable checkpoint."
         },
         {
           "k": "b",
@@ -3720,7 +3791,8 @@
           ],
           "system": "A repo-scoped entitlement the GitHub Action checks.",
           "screens": "A repos list with a per-repo toggle.",
-          "money": "Priced against $250 to $450 monthly comparables."
+          "money": "Priced against $250 to $450 monthly comparables.",
+          "what": "Per repository, sold separately from seats. Matches every docs-platform comparable; the buyer is the repo owner who wants it. Two paid objects on one page, and repo identity nothing builds today."
         },
         {
           "k": "c",
@@ -3733,7 +3805,8 @@
           ],
           "system": "An org-scoped entitlement.",
           "screens": "One switch per organisation.",
-          "money": "Predictable per logo, capped per logo."
+          "money": "Predictable per logo, capped per logo.",
+          "what": "Per organisation, flat, any number of repos. One number for a procurement conversation; the same number must fit two repos and two hundred."
         },
         {
           "k": "d",
@@ -3746,7 +3819,8 @@
           ],
           "system": "Wire the command; no billing work.",
           "screens": "None.",
-          "money": "None until it runs."
+          "money": "None until it runs.",
+          "what": "No price until mdmax cert runs. Refuses to price a command that exits with an error; it leaves Pro without its enforceable half."
         }
       ],
       "rec": "b",
@@ -3769,7 +3843,8 @@
         "https://mintlify.com/pricing"
       ],
       "when": "after",
-      "whenWhy": "The gate being priced is deferred."
+      "whenWhy": "The gate being priced is deferred.",
+      "recWhy": "A CI check is bought by the owner of the repository, not by everyone who reads it, and Mintlify, GitBook and ReadMe all price theirs per site or per project; the plan is the only document in the set that prices a build gate per person. Per repository also matches the one place payment can be enforced, because a GitHub Action can check a repo's entitlement and cannot check a reader's. Keeping the gate off the seat price keeps Q13's Pro band low while the gate carries a number the docs platforms have already justified. The costs are two paid objects on one page and repo-level identity, which nothing builds today, and mdmax cert itself exits with a module error, so this is priced after the pilot and after the command runs. If the same person buys seats and the gate and wants one invoice, it folds back into (a)."
     },
     {
       "id": "PR24",
@@ -3871,7 +3946,8 @@
           ],
           "system": "Needs the retained journal, which no planned feature builds.",
           "screens": "Adds billing and seat management.",
-          "money": "Requires seats to exist to earn anything."
+          "money": "Requires seats to exist to earn anything.",
+          "what": "The plan's per-seat team price, $4 to $5 a user a month. Anchored to a comparable teams already pay and enforcement is what GitHub sells at that price; no record of the founder accepting it."
         },
         {
           "k": "b",
@@ -3902,7 +3978,8 @@
           ],
           "system": "Requires review-file sync. Not built.",
           "screens": "Adds account and sharing surfaces.",
-          "money": "Slowest to first revenue, largest ceiling."
+          "money": "Slowest to first revenue, largest ceiling.",
+          "what": "The editor is free and the charge is for state across people and devices: sync, sharing, who changed what, review state. Prices on the axis the category pays for; earns nothing from the solo user."
         }
       ],
       "rec": "c",
@@ -3924,7 +4001,8 @@
         "docs/HANDOVER-ANSWERS-2-2026-09-09.md:181"
       ],
       "when": "mvp",
-      "whenWhy": "Charge for the editor or for state. The plan proposes state, and it sets the whole tier table."
+      "whenWhy": "Charge for the editor or for state. The plan proposes state, and it sets the whole tier table.",
+      "recWhy": "The argument that we price on the wrong axis was made on 31 August and never answered. Every comparable gives the editor away and charges for state, Obsidian at $4 for Sync and HackMD at $5. A free editor is also the distribution the plan otherwise lacks, and Q3 opens it at / with no account. So the editor is free and the charge is for state: across your own devices in Pro, sync and a share link, and across people in the team rung, who changed what and review state on the files agents obey. The founder's rupee numbers are points on that axis rather than a different one, though ₹699 sits above every India AI anchor and Dodo's fee is 12.7 percent of a ₹299 charge, which is why Q13's bands are $6 to $8 and $15 to $20 in dollars. The cost: the solo user who exists today pays nothing. If the twenty conversations return that teams pay for the editor itself, (a) is right."
     }
   ]
 }
