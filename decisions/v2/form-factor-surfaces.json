@@ -178,7 +178,8 @@
           "k": "a",
           "label": "Standalone editor only, as the plan is written",
           "gains": [
-            "Keeps Live, the free-editor story, the Obsidian audience"
+            "Keeps Live, the free-editor story, the Obsidian audience",
+            "Keeps Live rendering, which VS Code cannot host at all: it has no view-zone API."
           ],
           "costs": [
             "57.9 calendar weeks to the pilot",
@@ -193,7 +194,8 @@
           "k": "b",
           "label": "VS Code extension only",
           "gains": [
-            "Meets the population already running the agents"
+            "Meets the population already running the agents",
+            "The extension write path is already measured twice: 94 of 94 and 156 of 156 bytes exact."
           ],
           "costs": [
             "No view-zone API, so no Live mode",
@@ -208,7 +210,8 @@
           "k": "c",
           "label": "One core, extension first, standalone shell second",
           "gains": [
-            "A real population sees the highlight inside the test window"
+            "A real population sees the highlight inside the test window",
+            "A stranger inside the extension sees the highlight while the standalone shell is still building."
           ],
           "costs": [
             "Two shells to maintain later",
@@ -223,7 +226,8 @@
           "k": "d",
           "label": "One core, standalone first, extension in the build after the pilot",
           "gains": [
-            "No re-planning; every estimate stays valid"
+            "No re-planning; every estimate stays valid",
+            "Every fix-first estimate in the plan is already costed against the standalone shell."
           ],
           "costs": [
             "Defers the population question 57.9 weeks",
@@ -446,7 +450,8 @@
           "k": "a",
           "label": "Keep Live in the pilot and ship the additive Obsidian review-state plugin",
           "gains": [
-            "Keeps the only feature with a 501-vote signal"
+            "Keeps the only feature with a 501-vote signal",
+            "Obsidian shipped the neighbouring nested-list fix twice in 2026, so the demand is durable, not a fluke."
           ],
           "costs": [
             "Forces the standalone shell first",
@@ -461,10 +466,12 @@
           "k": "b",
           "label": "Cut Live from the pilot, cut Obsidian, delete the six stale references",
           "gains": [
-            "One feature set on both surfaces"
+            "One feature set on both surfaces",
+            "Removes six stale references to a channel already cut from the plan's own table."
           ],
           "costs": [
-            "Drops the only feature with measured demand"
+            "Drops the only feature with measured demand",
+            "501 likes on one Obsidian thread is the single largest demand signal found anywhere in the corpus."
           ],
           "system": "No live-preview renderer, no CodeMirror build.",
           "screens": "Editor loses the Live tab.",
@@ -475,7 +482,8 @@
           "k": "c",
           "label": "Keep Live in the standalone shell only; no Obsidian surface",
           "gains": [
-            "Leaves the form-factor choice open"
+            "Leaves the form-factor choice open",
+            "VS Code's missing view-zone API already rules Live out there, so nothing is lost on that surface."
           ],
           "costs": [
             "Two feature sets to document and support",
@@ -490,7 +498,8 @@
           "k": "d",
           "label": "Hold until the five-second screenshot test in weeks 1-2",
           "gains": [
-            "Cheap, and already scheduled for weeks 1-2"
+            "Cheap, and already scheduled for weeks 1-2",
+            "The five-second test is already scheduled and costs nothing extra to also answer this."
           ],
           "costs": [
             "Blocks the form factor two weeks",
@@ -682,10 +691,12 @@
           "k": "a",
           "label": "Merge back: one codebase, frontmatter as a mode of sgnk-md",
           "gains": [
-            "Ends the divergence cost outright"
+            "Ends the divergence cost outright",
+            "25,407 total lines against 3,614 owned means the shell is 85.8 percent someone else's code either way."
           ],
           "costs": [
-            "Needs a user count nobody has asked for"
+            "Needs a user count nobody has asked for",
+            "The two counts of shared files in the plan itself disagree, 181 of 226 versus 202 of 228."
           ],
           "system": "One tree, one build, a feature flag.",
           "screens": "The launcher becomes a mode switch.",
@@ -696,7 +707,8 @@
           "k": "b",
           "label": "Freeze the shell: new work goes to the engine and one surface",
           "gains": [
-            "Needs no answer we do not already have"
+            "Needs no answer we do not already have",
+            "Costs nothing today and defers the choice until the form-factor decision is actually made."
           ],
           "costs": [
             "The shell stays at current quality",
@@ -711,7 +723,8 @@
           "k": "c",
           "label": "Hard-fork and own it: stop tracking the sibling, budget the table stakes",
           "gains": [
-            "Honest about what maintaining an editor costs"
+            "Honest about what maintaining an editor costs",
+            "Makes visible what maintaining an editor actually costs, rather than inheriting it silently."
           ],
           "costs": [
             "14.5-20.5 days before any novel feature",
@@ -726,7 +739,8 @@
           "k": "d",
           "label": "Delete the shell; ship the engine inside someone else's shell",
           "gains": [
-            "Keeps only the 14.2% that is ours"
+            "Keeps only the 14.2% that is ours",
+            "Keeps only the 3,614 lines and one symbol, decodeStrict, that reach product code today."
           ],
           "costs": [
             "Loses 21,793 lines and the free-editor story",
@@ -956,7 +970,8 @@
           "k": "a",
           "label": "Decide the form factor at the meeting; run neither test",
           "gains": [
-            "Unblocks every downstream decision today"
+            "Unblocks every downstream decision today",
+            "Removes the two-test delay entirely, at the cost of deciding on what is measured today."
           ],
           "costs": [
             "Chooses without testing agent writes during typing",
@@ -971,10 +986,12 @@
           "k": "b",
           "label": "Run the contention test only, with a one-byte kill written first",
           "gains": [
-            "Covers the only scenario the product exists for"
+            "Covers the only scenario the product exists for",
+            "The one-byte kill line means this test can fail fast rather than run indefinitely."
           ],
           "costs": [
-            "Leaves the headline refusal number measured on vaults"
+            "Leaves the headline refusal number measured on vaults",
+            "Leaves the 83.01 percent refusal figure resting on seven Obsidian vaults, not a repo-shaped corpus."
           ],
           "system": "A harness where an agent writes mid-typing, on both surfaces.",
           "screens": "None.",
@@ -985,7 +1002,8 @@
           "k": "c",
           "label": "Run both: contention test and a repo-shaped corpus, kills written first",
           "gains": [
-            "Answers if the surface is safe and the refusal fix aimed right"
+            "Answers if the surface is safe and the refusal fix aimed right",
+            "Answers both open questions the corpus itself names as unmeasured before committing to a surface."
           ],
           "costs": [
             "Delays the form-factor decision by two tests",
@@ -1000,7 +1018,8 @@
           "k": "d",
           "label": "Run both, but decide the surface anyway; results feed build order",
           "gains": [
-            "Keeps momentum and still produces the evidence"
+            "Keeps momentum and still produces the evidence",
+            "Keeps the build moving instead of stalling on a decision the tests will inform either way."
           ],
           "costs": [
             "The wrong surface shows after the build",
@@ -1172,7 +1191,8 @@
           "k": "a",
           "label": "Rename the whole product before any store listing",
           "gains": [
-            "Removes the name problem on every surface at once"
+            "Removes the name problem on every surface at once",
+            "Ends the two-name story cleanly, since the collision hits the extension, the app and npm alike."
           ],
           "costs": [
             "Discards what the name has built",
@@ -1187,7 +1207,8 @@
           "k": "b",
           "label": "Ship the extension as mdmax; keep frontmatter for the app",
           "gains": [
-            "The one name free on npm and in the store"
+            "The one name free on npm and in the store",
+            "mdmax is free on npm (HTTP 404) and unclaimed in either extension marketplace today."
           ],
           "costs": [
             "A two-name story to explain",
@@ -1202,7 +1223,8 @@
           "k": "c",
           "label": "Keep the name everywhere and pay the tax",
           "gains": [
-            "One brand everywhere, and no rework"
+            "One brand everywhere, and no rework",
+            "No rework and no new name to teach anyone who already knows the product."
           ],
           "costs": [
             "A permanent qualifier against the incumbent",
@@ -1217,7 +1239,8 @@
           "k": "d",
           "label": "Stay out of the marketplace; the collision becomes a search problem",
           "gains": [
-            "Sidesteps the store collision entirely"
+            "Sidesteps the store collision entirely",
+            "Removes the store collision without touching the product name anywhere else."
           ],
           "costs": [
             "Rules out the extension option being weighed",
@@ -1587,10 +1610,12 @@
           "k": "a",
           "label": "Build the real Tauri app now",
           "gains": [
-            "Delivers MCP, local git, the file watcher, offline"
+            "Delivers MCP, local git, the file watcher, offline",
+            "The only route that lets an MCP server run at all, since that needs a local process."
           ],
           "costs": [
-            "Four to eight weeks, two certificates, a per-OS matrix"
+            "Four to eight weeks, two certificates, a per-OS matrix",
+            "Two certificates and a per-OS matrix is real, ongoing maintenance, not a one-time cost."
           ],
           "system": "Scoped filesystem access, bundled frontend, local git.",
           "screens": "No new screens; the desktop promises become true.",
@@ -1601,7 +1626,8 @@
           "k": "b",
           "label": "Ship web-only for the pilot; rewrite the plan's platform table to match what exists",
           "gains": [
-            "The pilot runs on what is already built"
+            "The pilot runs on what is already built",
+            "Matches what is actually shippable today: the committed config has zero filesystem permissions."
           ],
           "costs": [
             "Loses MCP, local git, the file watcher, offline",
@@ -1616,10 +1642,12 @@
           "k": "c",
           "label": "Web-only free; the desktop app becomes the paid tier",
           "gains": [
-            "Gives the paid tier a concrete offer"
+            "Gives the paid tier a concrete offer",
+            "Lets the pilot ship on the web now while pricing evidence accumulates for the paid build later."
           ],
           "costs": [
-            "Prices an unbuilt product, and the weeks come before the first rupee"
+            "Prices an unbuilt product, and the weeks come before the first rupee",
+            "Nobody has paid for anything yet, so this prices a product with no revenue signal behind it."
           ],
           "system": "Entitlement check in the desktop build.",
           "screens": "An upgrade path in settings.",
@@ -1630,7 +1658,8 @@
           "k": "d",
           "label": "Desktop primary, web as a read-only viewer",
           "gains": [
-            "Best offline and legal posture of any option researched"
+            "Best offline and legal posture of any option researched",
+            "Desktop-first avoids the File System Access API gap that refuses roughly one visitor in five on the web."
           ],
           "costs": [
             "An install step before a 1.26M-visitor funnel",
@@ -1800,10 +1829,12 @@
           "k": "a",
           "label": "State mobile as a permanent non-goal, on the page",
           "gains": [
-            "Cheap, honest, and the plan then says one thing"
+            "Cheap, honest, and the plan then says one thing",
+            "Matches the operating rules' own figure: mobile complaints are about 15 percent, not a majority."
           ],
           "costs": [
-            "Goes without a Must-be the whole category has"
+            "Goes without a Must-be the whole category has",
+            "Kano classes this a Must-be, the category people expect regardless of what else ships."
           ],
           "system": "No change.",
           "screens": "Mobile leaves the what-works-where table.",
@@ -1815,7 +1846,8 @@
           "label": "Non-goal for the pilot; a read-only mobile reviewer in the build after the pilot",
           "what": "Shows unreviewed spans and lets a person mark them read. No editing.",
           "gains": [
-            "Matches the thesis: the reviewer is mobile"
+            "Matches the thesis: the reviewer is mobile",
+            "A read-only reviewer is the cheapest version of the thesis that the reviewer belongs on mobile."
           ],
           "costs": [
             "Adds a surface when count already binds",
@@ -1830,7 +1862,8 @@
           "label": "Leave it undecided",
           "what": "Keep the plan's three conflicting statements as they are.",
           "gains": [
-            "Nothing committed, nothing foreclosed"
+            "Nothing committed, nothing foreclosed",
+            "Nothing is spent and nothing is promised while the surface count question is still open elsewhere."
           ],
           "costs": [
             "The plan keeps saying three things",
@@ -1844,7 +1877,8 @@
           "k": "d",
           "label": "Mobile-first review, desktop-first editing",
           "gains": [
-            "The strongest expression of the review-state thesis"
+            "The strongest expression of the review-state thesis",
+            "The strongest possible version of the review-state thesis: reviewed anywhere, written with intent."
           ],
           "costs": [
             "Doubles surface count before anyone is asked",
@@ -2125,10 +2159,12 @@
           "k": "a",
           "label": "Thin, on the host model picker, Microsoft Marketplace only",
           "gains": [
-            "Cheapest test of the one surviving claim"
+            "Cheapest test of the one surviving claim",
+            "Uses the host's own model picker, which is exactly the three days fix #6 would otherwise cost."
           ],
           "costs": [
-            "No AI on forks that ignore the model API"
+            "No AI on forks that ignore the model API",
+            "Cursor, at 17.9 percent of the IDE population measured, is not confirmed to honour that API."
           ],
           "system": "No key UI, no keychain, no registry.",
           "screens": "The settings key field never ships.",
@@ -2139,7 +2175,8 @@
           "k": "b",
           "label": "Thin first, own key, both stores, widening line written before publishing",
           "gains": [
-            "AI works on every host, using key work already needed"
+            "AI works on every host, using key work already needed",
+            "AI works on every host by construction, since the key is not borrowed from any one vendor's picker."
           ],
           "costs": [
             "Spends the three days the model picker saved",
@@ -2154,7 +2191,8 @@
           "k": "c",
           "label": "Thick: the first eight features, editor through file-scoped AI, inside the host",
           "gains": [
-            "Competes above the niche, where git-ai sits at 61,517"
+            "Competes above the niche, where git-ai sits at 61,517",
+            "Aims at a larger population: git-ai alone, at 61,517 installs, is fifty times the whole niche's total."
           ],
           "costs": [
             "A second product, unestimated",
@@ -2169,10 +2207,12 @@
           "k": "d",
           "label": "No extension",
           "gains": [
-            "One surface, no store, no host API, no collision"
+            "One surface, no store, no host API, no collision",
+            "No store, no marketplace review, and no dependency on VS Code or any fork's own API choices."
           ],
           "costs": [
-            "Removes the only measured route to the population"
+            "Removes the only measured route to the population",
+            "Removes the only measured route into a population as large as 135,646 marketplace extensions."
           ],
           "system": "No change.",
           "screens": "No change.",
@@ -2326,7 +2366,8 @@
           "k": "a",
           "label": "Add it as a fourth option and run it first, with the 100-install kill",
           "gains": [
-            "One week buys an installs number before 58 weeks"
+            "One week buys an installs number before 58 weeks",
+            "A free MIT competitor, dealfluence/adeu, already ships this shape for .docx, so the window is closing."
           ],
           "costs": [
             "Gives the engine away, foreclosing a sale",
@@ -2341,7 +2382,8 @@
           "k": "b",
           "label": "Fix the CLI only, one day, and keep it internal",
           "gains": [
-            "Makes `mdmax cert` actually run, closing that fix"
+            "Makes `mdmax cert` actually run, closing that fix",
+            "The fix is one day and finally makes `mdmax cert` runnable, which today exits 1 on every call."
           ],
           "costs": [
             "No external signal and no installs",
@@ -2356,7 +2398,8 @@
           "k": "c",
           "label": "Leave the package surface unmodelled, as the plan has it",
           "gains": [
-            "Three choices, no licence decision, nothing given away"
+            "Three choices, no licence decision, nothing given away",
+            "Commits to nothing and gives away nothing while the licence question stays open."
           ],
           "costs": [
             "Leaves the cheapest test unrun",
@@ -2371,7 +2414,8 @@
           "k": "d",
           "label": "Ship the package after the pilot exits",
           "gains": [
-            "No new work before the pilot"
+            "No new work before the pilot",
+            "Keeps founder attention on the 240-day plan rather than a one-week detour before any pilot user exists."
           ],
           "costs": [
             "If the pilot fails, the one-week test never ran",
