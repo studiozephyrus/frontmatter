@@ -8,6 +8,13 @@
 <meta name="theme-color" content="#f4f6f9" media="(prefers-color-scheme: light)">
 <meta name="theme-color" content="#080a0e" media="(prefers-color-scheme: dark)">
 <title>frontmatter · decisions</title>
+<link rel="manifest" href="manifest.webmanifest">
+<link rel="icon" href="icons/icon-32.png" sizes="32x32">
+<link rel="icon" href="icons/icon-192.png" sizes="192x192">
+<link rel="apple-touch-icon" href="icons/apple-touch-icon.png">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-title" content="Decisions">
+<meta name="apple-mobile-web-app-status-bar-style" content="default">
 <link rel="stylesheet" href="app.css">
 <!-- fonts.css is 265 KB of base64-embedded faces. In <head> as a plain
      stylesheet it BLOCKS FIRST PAINT for its whole download — ~203 KB even
@@ -38,6 +45,7 @@ try{var t=localStorage.getItem('fm-theme');if(t)document.documentElement.setAttr
   <symbol id="i-lightbulb" viewBox="0 -960 960 960"><path d="M480-80q-33 0-56.5-23.5T400-160h160q0 33-23.5 56.5T480-80ZM360-200v-60h240v60H360Zm-8-96q-60-38-96-100.5T220-540q0-109 75.5-184.5T480-800q109 0 184.5 75.5T740-540q0 81-36 143t-96 101H352Z"/></symbol>
   <symbol id="i-upload" viewBox="0 -960 960 960"><path d="M450-313v-371L330-564l-43-43 193-193 193 193-43 43-120-120v371h-60ZM220-160q-24 0-42-18t-18-42v-121h60v121h520v-121h60v121q0 24-18 42t-42 18H220Z"/></symbol>
   <symbol id="i-warning" viewBox="0 -960 960 960"><path d="M92-120q-9 0-15.5-4T66-135q-4-7-4.5-14.5T66-165l388-670q5-8 11.5-11.5T480-850q8 0 14.5 3.5T506-835l388 670q5 8 4.5 15.5T894-135q-4 7-10.5 11t-15.5 4H92Zm52-60h672L480-760 144-180Zm361.5-65.5Q514-254 514-267t-8.5-21.5Q497-297 484-297t-21.5 8.5Q454-280 454-267t8.5 21.5Q471-237 484-237t21.5-8.5Zm0-111Q514-365 514-378v-164q0-13-8.5-21.5T484-572q-13 0-21.5 8.5T454-542v164q0 13 8.5 21.5T484-348q13 0 21.5-8.5ZM480-470Z"/></symbol>
+  <symbol id="i-download" viewBox="0 -960 960 960"><path d="M469-327q-5-2-10-7L308-485q-9-9.27-8.5-21.64.5-12.36 9.11-21.36 9.39-9 21.89-9t21.5 9l98 99v-341q0-12.75 8.68-21.38 8.67-8.62 21.5-8.62 12.82 0 21.32 8.62 8.5 8.63 8.5 21.38v341l99-99q8.8-9 20.9-8.5 12.1.5 21.49 9.5 8.61 9 8.61 21.5t-9 21.5L501-334q-5 5-10.13 7-5.14 2-11 2-5.87 0-10.87-2ZM220-160q-24 0-42-18t-18-42v-113q0-12.75 8.68-21.38 8.67-8.62 21.5-8.62 12.82 0 21.32 8.62 8.5 8.63 8.5 21.38v113h520v-113q0-12.75 8.68-21.38 8.67-8.62 21.5-8.62 12.82 0 21.32 8.62 8.5 8.63 8.5 21.38v113q0 24-18 42t-42 18H220Z"/></symbol>
 </svg>
 
 <header class="top">
@@ -47,6 +55,12 @@ try{var t=localStorage.getItem('fm-theme');if(t)document.documentElement.setAttr
     <i id="prog" style="width:0"></i><u id="progCrit" style="width:0"></u>
   </span>
   <span class="progtxt" id="progtxt">0 / 0</span>
+  <!-- Chrome and Edge fire beforeinstallprompt when the manifest and service worker
+       both check out; hidden until then, since the button has nothing to do before
+       that event exists. Safari never fires it -- there, Add to Home Screen already
+       works from the share sheet once the manifest and icons are in place, so no
+       button is needed. -->
+  <button class="tbtn" id="installBtn" hidden><svg class="ic"><use href="#i-download"/></svg>Install</button>
   <button class="tbtn icon" id="themeBtn" aria-label="Toggle theme"><svg class="ic"><use href="#i-dark_mode"/></svg></button>
 </header>
 
@@ -70,5 +84,36 @@ try{var t=localStorage.getItem('fm-theme');if(t)document.documentElement.setAttr
 <script src="diagram.js" defer></script>
 <script src="mockups-data.js" defer></script>
 <script src="app.js" defer></script>
+<script>
+/* Registered after load so it never competes with the first paint for bandwidth.
+   A failed registration (an old browser, a blocked scope) is silent and harmless --
+   the site already works with no service worker at all; this only adds the offline
+   cache and the install prompt. */
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', function () {
+    navigator.serviceWorker.register('sw.js').catch(function () {});
+  });
+}
+/* The browser decides installability (manifest + service worker + a few visits),
+   not us; this only shows the button once the browser has already decided yes,
+   and asks again after use since the same deferred prompt cannot fire twice. */
+var deferredInstall = null;
+window.addEventListener('beforeinstallprompt', function (e) {
+  e.preventDefault();
+  deferredInstall = e;
+  document.getElementById('installBtn').hidden = false;
+});
+document.getElementById('installBtn').addEventListener('click', function () {
+  if (!deferredInstall) return;
+  deferredInstall.prompt();
+  deferredInstall.userChoice.finally(function () {
+    deferredInstall = null;
+    document.getElementById('installBtn').hidden = true;
+  });
+});
+window.addEventListener('appinstalled', function () {
+  document.getElementById('installBtn').hidden = true;
+});
+</script>
 </body>
 </html>

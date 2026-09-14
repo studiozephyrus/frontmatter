@@ -96,7 +96,17 @@
     n.innerHTML = '<div class="nsearch"><div class="field">' + icon('search') +
       '<input id="navsearch" type="search" placeholder="Search ' + Q.length + ' decisions" ' +
       'value="' + esc(view.filter) + '" aria-label="Search questions"></div></div>' +
-      '<div id="navlist"></div>';
+      '<div id="navlist"></div>' +
+      /* The export, restore and keyboard-hint panel lives in the right rail, which is
+         display:none below 1180px — a phone or tablet could save answers but never get
+         them back out. navactions is that same panel, a second copy, shown only where
+         the rail is hidden (see .navactions in app.css), reached through the menu that
+         already exists. */
+      '<div class="navactions"><div class="rsec"><div class="rh">Your answers are saved</div>' +
+      '<p class="rsub">In this browser only. Export after every sitting.</p>' +
+      '<button class="rlink" data-action="expjson"><span class="rm">JSON</span>Download every answer and note</button>' +
+      '<button class="rlink" data-action="expmd"><span class="rm">Markdown</span>What is decided, and what is open</button>' +
+      '<button class="rlink" data-action="impjson"><span class="rm">Restore</span>Load a JSON export back in</button></div></div>';
   }
 
   function syncNav() {
@@ -275,9 +285,9 @@
 
     h += '<div class="rsec"><div class="rh">Your answers are saved</div>' +
       '<p class="rsub">In this browser only. Export after every sitting.</p>' +
-      '<button class="rlink" id="expJson"><span class="rm">JSON</span>Download every answer and note</button>' +
-      '<button class="rlink" id="expMd"><span class="rm">Markdown</span>What is decided, and what is open</button>' +
-      '<button class="rlink" id="impJson"><span class="rm">Restore</span>Load a JSON export back in</button></div>';
+      '<button class="rlink" data-action="expjson"><span class="rm">JSON</span>Download every answer and note</button>' +
+      '<button class="rlink" data-action="expmd"><span class="rm">Markdown</span>What is decided, and what is open</button>' +
+      '<button class="rlink" data-action="impjson"><span class="rm">Restore</span>Load a JSON export back in</button></div>';
 
     if (critLeft.length) {
       h += '<div class="rsec"><div class="rh">Critical, still open</div>' +
@@ -904,13 +914,17 @@
   document.addEventListener('click', function (e) {
     var fb = e.target.closest('[data-fa]');
     if (fb) { var gid = fb.getAttribute('data-fq'); state.final[gid] = state.final[gid] || {}; state.final[gid].a = fb.getAttribute('data-fa'); save(); renderOverview(); toast('Saved ' + gid); return; }
-    var t = e.target.closest('[data-q],[data-cat],[data-ov],[data-import],[data-pick],[data-detail],#expMd,#expJson,#impJson,#mdgo,#mdsample,#menuBtn,#themeBtn,#abarPrev,#abarNext');
+    var t = e.target.closest('[data-q],[data-cat],[data-ov],[data-import],[data-pick],[data-detail],[data-action],#mdgo,#mdsample,#menuBtn,#themeBtn,#abarPrev,#abarNext');
     if (!t) return;
     if (t.id === 'menuBtn') { document.body.classList.toggle('navopen'); return; }
     if (t.id === 'themeBtn') { theme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'); return; }
-    if (t.id === 'expMd') { exportMd(); return; }
-    if (t.id === 'expJson') { download('frontmatter-decisions.json', JSON.stringify(state, null, 2), 'application/json'); return; }
-    if (t.id === 'impJson') { restoreAnswers(); return; }
+    /* data-action, not id: this same block of export/restore buttons now also renders
+       inside the mobile nav drawer, where aside does not reach, and two elements
+       cannot share one id. */
+    var act = t.getAttribute('data-action');
+    if (act === 'expmd') { exportMd(); return; }
+    if (act === 'expjson') { download('frontmatter-decisions.json', JSON.stringify(state, null, 2), 'application/json'); return; }
+    if (act === 'impjson') { restoreAnswers(); return; }
     if (t.id === 'mdgo') { doImport(); return; }
     if (t.id === 'mdsample') { $('#mdin').value = $('#mdin').placeholder; doImport(); return; }
     if (t.id === 'abarPrev' || t.id === 'abarNext') { step(t.id === 'abarNext' ? 1 : -1); return; }

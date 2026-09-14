@@ -17,7 +17,12 @@ const DIR = '/Users/sagnikmitra/Desktop/GitHub/frontmatter/decisions';
 const SHIP = ['index.html', 'app.css', 'app.js', 'diagram.js', 'questions.js', 'fonts.css', 'vercel.json',
   // The 23 screen iterations. mockups-data.js is loaded by BOTH index.html (for the per-card
   // strip) and mockups.html (for the gallery), so omitting either leaves a card linking nowhere.
-  'mockups.html', 'mockups-data.js'];
+  'mockups.html', 'mockups-data.js',
+  // PWA installability: the manifest names the icons, the icons make the manifest installable,
+  // and sw.js is what makes it a PWA rather than just a bookmark with an icon. Omitting any one
+  // leaves the other two unable to do their job.
+  'manifest.webmanifest', 'sw.js',
+  'icons/icon-32.png', 'icons/icon-192.png', 'icons/icon-512.png', 'icons/apple-touch-icon.png'];
 
 const H = { Authorization: `Bearer ${TOKEN}`, 'Content-Type': 'application/json' };
 const api = (p) => `https://api.vercel.com${p}${p.includes('?') ? '&' : '?'}teamId=${TEAM}`;

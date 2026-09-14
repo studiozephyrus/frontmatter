@@ -407,10 +407,16 @@ table.d td:not(:first-child){font-variant-numeric:tabular-nums}
 .btn.primary{background:var(--accent);border-color:var(--accent);color:#fff}
 .btn.primary:hover{background:var(--accent-2);border-color:var(--accent-2)}
 
+/* Export, restore and the rest of the right rail's own answers panel, folded into the
+   nav drawer. Hidden here on desktop, where the rail already shows it once; shown only
+   where the rail is hidden, so the two are never both on screen and never both absent. */
+.navactions{display:none}
+
 /* ── phone ─────────────────────────────────────────────────────────────── */
 @media(max-width:1180px){
   .wrap{grid-template-columns:278px minmax(0,1fr)}
   aside{display:none}
+  .navactions{display:block;padding:18px 14px 24px;border-top:1px solid var(--line)}
 }
 @media(max-width:900px){
   :root{--actionbar:64px;--topbar:52px}
@@ -523,6 +529,16 @@ table.d td:not(:first-child){font-variant-numeric:tabular-nums}
 .dg svg{display:block;width:100%;height:auto}
 .dg figcaption{padding:9px 15px;border-top:1px solid var(--line);background:var(--sunk);
   font-size:11.5px;color:var(--ink-3);letter-spacing:.01em}
+/* Every diagram's text is sized in the SVG's own coordinate space (a fixed 760-unit
+   viewBox), and width:100% scales that space, font included, down to fit its container.
+   On a phone that container is roughly a third of 760px, which put the smallest labels
+   under 5px tall: readable as a shape, not as words. Below 600px the SVG stops scaling
+   and renders at its native size instead, and the frame it sits in scrolls sideways,
+   the same pattern the evidence tables already use for a wide row on a narrow screen. */
+@media(max-width:600px){
+  .dg{overflow-x:auto;overflow-y:hidden;-webkit-overflow-scrolling:touch}
+  .dg svg{width:760px;max-width:none;flex-shrink:0}
+}
 
 /* bulleted context — the replacement for the paragraph blocks */
 ul.bl{margin:0;padding:0;list-style:none}
