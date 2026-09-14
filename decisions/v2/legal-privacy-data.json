@@ -93,10 +93,12 @@
           "k": "a",
           "label": "Defer past the pilot",
           "gains": [
-            "Costs nothing this week"
+            "Costs nothing this week",
+            "Buys time to decide once the pilot shows whether Firebase writes are actually needed"
           ],
           "costs": [
-            "A pilot with no published policy breaches SPDI Rule 4 today"
+            "A pilot with no published policy breaches SPDI Rule 4 today",
+            "The anonymous-read rule stays live and reachable the whole time, whether or not anything is written to it"
           ],
           "system": "No change.",
           "screens": "None.",
@@ -111,7 +113,8 @@
             "Zero Firestore writes exist, so no engineering cost"
           ],
           "costs": [
-            "Forecloses hosted publishing, server search and a hosted viewer"
+            "Forecloses hosted publishing, server search and a hosted viewer",
+            "Undoes the one place the old PRD and the plan actually agree, since the PRD still describes holding documents"
           ],
           "system": "Firestore schema removed; no-bytes rule written down.",
           "screens": "Kills the hosted-viewer screen.",
@@ -122,7 +125,8 @@
           "k": "c",
           "label": "Adopt the Firebase design as written",
           "gains": [
-            "Hosted sync, server search and publishing become possible"
+            "Hosted sync, server search and publishing become possible",
+            "Matches the code that already exists, so nothing here needs to be built, only enabled"
           ],
           "costs": [
             "Document content falls under DPDP section 8(5), ceiling ₹250 crore",
@@ -298,10 +302,12 @@
           "k": "a",
           "label": "Keep both: server path for the web trial, browser-only on desktop, labelled",
           "gains": [
-            "Truthful and cheap, and keeps the zero-install trial"
+            "Truthful and cheap, and keeps the zero-install trial",
+            "Keeps the desktop app honestly labelled as the byte-path option, without blocking the web trial on a rewrite"
           ],
           "costs": [
-            "The pilot's ten strangers sit under the larger duty"
+            "The pilot's ten strangers sit under the larger duty",
+            "Two data flows to maintain and explain, one per surface"
           ],
           "system": "No change.",
           "screens": "A disclosure on the first screen.",
@@ -311,7 +317,8 @@
           "k": "b",
           "label": "Keep the server path, withdraw the claim, write the real data flow into the policy",
           "gains": [
-            "No engineering cost; policy and code agree"
+            "No engineering cost; policy and code agree",
+            "The CDN-load contradiction on the export renderers stays, but at least matches a claim the policy also makes"
           ],
           "costs": [
             "Loses the sentence a server-side rival cannot say",
@@ -325,7 +332,8 @@
           "k": "c",
           "label": "Ship the desktop app first and take the web app offline until it is rewritten",
           "gains": [
-            "Removes the contradiction entirely"
+            "Removes the contradiction entirely",
+            "A single byte path to build toward, with no dual-flow to keep in sync"
           ],
           "costs": [
             "Costs the zero-install trial, the only easy entry point",
@@ -437,7 +445,8 @@
             "That list is the only interview pool the product has"
           ],
           "costs": [
-            "A verbal answer is not a deployment log"
+            "A verbal answer is not a deployment log",
+            "Depends on getting a straight answer fast, and the record so far is a portfolio and a gap register disagreeing with each other"
           ],
           "system": "No change.",
           "screens": "None.",
@@ -447,7 +456,8 @@
           "k": "b",
           "label": "Assume live: file the contact, publish the policy and grievance page this week",
           "gains": [
-            "No downside if the assumption is wrong"
+            "No downside if the assumption is wrong",
+            "Matches the safer reading of a document set that already contradicts itself on whether anyone used it"
           ],
           "costs": [
             "About a day of work brought forward",
@@ -462,10 +472,12 @@
           "k": "c",
           "label": "Take the sgnk-md deployment offline until the question is settled",
           "gains": [
-            "Removes any live exposure immediately"
+            "Removes any live exposure immediately",
+            "The one option that does not depend on which of the two contradicting documents turns out to be right"
           ],
           "costs": [
-            "Kills the only real user population, and the interview pool"
+            "Kills the only real user population, and the interview pool",
+            "202 of 228 files are shared code, so offline has to be scoped carefully or it takes frontmatter's own path down too"
           ],
           "system": "One deployment paused.",
           "screens": "None.",
@@ -476,7 +488,8 @@
           "k": "d",
           "label": "Assume dormant because the GitHub allowlist gates sign-in",
           "gains": [
-            "Every legal deadline stands as written"
+            "Every legal deadline stands as written",
+            "Cheapest to state today, since it only requires reading the code that exists"
           ],
           "costs": [
             "Rests on one code path, as of now",
@@ -642,10 +655,12 @@
           "k": "a",
           "label": "File nothing and rely on section 70B(8) needing a CERT-In officer's complaint",
           "gains": [
-            "Costs nothing"
+            "Costs nothing",
+            "Matches the honest state of detection today: there is none, so a clock that starts on noticing would rarely start"
           ],
           "costs": [
-            "Fails the first security questionnaire and any insurer's form"
+            "Fails the first security questionnaire and any insurer's form",
+            "A missing filing is itself the kind of gap a security questionnaire is built to surface, whether or not a breach ever happens"
           ],
           "system": "No change.",
           "screens": "None.",
@@ -656,7 +671,8 @@
           "k": "b",
           "label": "File the point of contact now, write the runbook, and state a best-effort clock",
           "gains": [
-            "About a day of work, and honest on its face"
+            "About a day of work, and honest on its face",
+            "The only option that produces the Annexure II filing the register has listed as missing across the board"
           ],
           "costs": [
             "A solo founder cannot guarantee six hours",
@@ -687,7 +703,8 @@
           "k": "d",
           "label": "File now and pay a second responder onto a rota before the pilot",
           "gains": [
-            "Real coverage of a clock we otherwise cannot meet"
+            "Real coverage of a clock we otherwise cannot meet",
+            "Closest to a genuine six-hour capability, since a solo founder cannot watch a clock alone"
           ],
           "costs": [
             "A second holder of production credentials",
@@ -856,7 +873,8 @@
           "k": "a",
           "label": "Delete the share module",
           "gains": [
-            "Removes the exposure permanently"
+            "Removes the exposure permanently",
+            "The only option that needs no new gating logic, since there is nothing left to gate"
           ],
           "costs": [
             "Forecloses the hosted viewer, which is still undecided",
@@ -887,7 +905,8 @@
           "k": "c",
           "label": "Open it as configured today and keep the indexable pages for distribution",
           "gains": [
-            "Keeps the organic channel argument alive"
+            "Keeps the organic channel argument alive",
+            "Keeps today's code unchanged, so no engineering precedes the pilot"
           ],
           "costs": [
             "The shape the abuse research ranked first, with no takedown path",
@@ -906,7 +925,8 @@
             "Buys back roughly seven weeks of apparatus work"
           ],
           "costs": [
-            "Loses whatever distribution a public page brings"
+            "Loses whatever distribution a public page brings",
+            "Still a user-chosen slug and any-signed-in-user path to close off in code, even though it is a small change"
           ],
           "system": "One route gate, plus a rendering rule.",
           "screens": "Public note page unreachable.",
@@ -1086,10 +1106,12 @@
           "k": "a",
           "label": "A written notice by hand to each of the ten, full pages in the build after the pilot",
           "gains": [
-            "Proportionate to ten known participants, and cheap"
+            "Proportionate to ten known participants, and cheap",
+            "Matches the ten known participants exactly, rather than a published page nobody but them will ever read"
           ],
           "costs": [
-            "Does not satisfy the published-policy duty, and anyone can reach the app"
+            "Does not satisfy the published-policy duty, and anyone can reach the app",
+            "The reserved privacy and terms slugs stay unrouted the whole time, which is its own visible gap"
           ],
           "system": "No change.",
           "screens": "None.",
@@ -1116,7 +1138,8 @@
           "k": "c",
           "label": "Publish the tightest window from day one: 24-hour ack, 15-day resolution",
           "gains": [
-            "Simplest to explain, and no revisiting if publishing opens"
+            "Simplest to explain, and no revisiting if publishing opens",
+            "Removes the need to revisit wording later if the app opens past the ten strangers"
           ],
           "costs": [
             "Binds one person to a daily acknowledgement duty",
@@ -1131,10 +1154,12 @@
           "k": "d",
           "label": "Counsel drafts them first, then the pilot",
           "gains": [
-            "A reviewed document, covering CERT-In and terms together"
+            "A reviewed document, covering CERT-In and terms together",
+            "The only option that puts a reviewed document behind the CERT-In filing and the grievance officer at once"
           ],
           "costs": [
-            "₹40,000 to ₹1,20,000 before evidence anyone wants the product"
+            "₹40,000 to ₹1,20,000 before evidence anyone wants the product",
+            "Nothing is published while the fee and the review are in progress, so the pilot waits on it"
           ],
           "system": "No change.",
           "screens": "Same three pages, later.",
@@ -1274,7 +1299,8 @@
           "k": "a",
           "label": "Keep the five-provider fallback and publish a sub-processor list",
           "gains": [
-            "Truthful at the moment of writing, at no cost"
+            "Truthful at the moment of writing, at no cost",
+            "Cheapest path to a truthful list today, since the five keys already exist in the code"
           ],
           "costs": [
             "The list drifts whenever an env var changes",
@@ -1293,7 +1319,8 @@
             "Removes the operator's AI bill"
           ],
           "costs": [
-            "Loses the first-run demo of idea mode and the decision flow"
+            "Loses the first-run demo of idea mode and the decision flow",
+            "Still needs a proper bring-your-own-key settings surface, since none exists in the product today"
           ],
           "system": "Six routes moved client-side; CDN vendored.",
           "screens": "A key field in settings.",
@@ -1304,7 +1331,8 @@
           "k": "c",
           "label": "Keep the server path, pin one provider, sign standard DPAs, publish the list",
           "gains": [
-            "Keeps the zero-configuration demo; one relationship, not five"
+            "Keeps the zero-configuration demo; one relationship, not five",
+            "One agreement to negotiate instead of eight, and it maps onto the plan's own three-vendor description"
           ],
           "costs": [
             "The operator still pays for every call",
@@ -1319,7 +1347,8 @@
           "k": "d",
           "label": "Defer the agreements to 2027 when DPDP commences",
           "gains": [
-            "No work now"
+            "No work now",
+            "No fee and no vendor negotiation needed before the pilot"
           ],
           "costs": [
             "Backwards: SPDI Rule 7 binds today and DPDP waits",
@@ -1448,10 +1477,12 @@
           "k": "a",
           "label": "Accept EU users and appoint at the first EU signup rather than pre-emptively",
           "gains": [
-            "Matches spend to the obligation, with €39 as the floor"
+            "Matches spend to the obligation, with €39 as the floor",
+            "Spends nothing until the product actually has a European user to justify it"
           ],
           "costs": [
-            "Requires detecting the first EU seat, which our telemetry cannot do"
+            "Requires detecting the first EU seat, which our telemetry cannot do",
+            "The detection gap is real: nothing in the product currently distinguishes an EU signup from any other"
           ],
           "system": "Needs a signup-country signal we lack.",
           "screens": "None until the trigger.",
@@ -1462,7 +1493,8 @@
           "k": "b",
           "label": "Accept EU users and appoint an Art 27 representative now at €160 a month",
           "gains": [
-            "No trigger to detect and no gap to explain"
+            "No trigger to detect and no gap to explain",
+            "The only option that is compliant on day one regardless of where the first signup happens to be from"
           ],
           "costs": [
             "€1,920 a year before any evidence of demand",
@@ -1493,10 +1525,12 @@
           "k": "d",
           "label": "Accept EU users and appoint nobody, arguing occasional processing",
           "gains": [
-            "Costs nothing"
+            "Costs nothing",
+            "Zero cost and zero process while the research question it rests on gets settled"
           ],
           "costs": [
-            "The research tested this; it fails for a subscription editor"
+            "The research tested this; it fails for a subscription editor",
+            "The rotating install id the plan already proposes is exactly the kind of monitoring Recital 24 counts against the occasional-processing escape"
           ],
           "system": "No change.",
           "screens": "None.",
@@ -1623,10 +1657,12 @@
           "k": "a",
           "label": "Keep the separate file out of the repo, machine-local and synced separately",
           "gains": [
-            "Removes the exposure entirely"
+            "Removes the exposure entirely",
+            "Sidesteps the erasure problem entirely, since nothing about who read what ever leaves the machine it was written on"
           ],
           "costs": [
-            "Destroys the central claim: review state (who has read what) must travel"
+            "Destroys the central claim: review state (who has read what) must travel",
+            "Needs its own sync mechanism to build, since the repo's existing git-based sync no longer carries it"
           ],
           "system": "A separate store and a sync path.",
           "screens": "No shared review state.",
@@ -1637,7 +1673,8 @@
           "k": "b",
           "label": "Store real identity and say so plainly in the docs and at first write",
           "gains": [
-            "Most legible to a team that wants names"
+            "Most legible to a team that wants names",
+            "Answers the team-buyer want for names directly, with nothing to build beyond documenting the choice"
           ],
           "costs": [
             "Publishes a reading history forever, with no erasure route",
@@ -1668,7 +1705,8 @@
           "k": "d",
           "label": "Drop the prompt field, keep identity, document the rest",
           "gains": [
-            "Removes the field most likely to carry something private"
+            "Removes the field most likely to carry something private",
+            "A one-field change rather than a new storage design, since the file format already exists"
           ],
           "costs": [
             "Identity and timestamps stay, and stay unerasable",
@@ -1762,10 +1800,12 @@
           "k": "a",
           "label": "Turn on the host's own logs and accept whatever region they land in",
           "gains": [
-            "The cheapest way to have logs at all"
+            "The cheapest way to have logs at all",
+            "The fastest way to have something to hand an incident responder, even an imperfect one"
           ],
           "costs": [
-            "Fails the residency clause"
+            "Fails the residency clause",
+            "Still leaves the floor unmet, since the host's own logs carry no residency guarantee at all"
           ],
           "system": "A configuration change, no new code.",
           "screens": "None.",
@@ -1776,7 +1816,8 @@
           "k": "b",
           "label": "Run with no logs through the pilot and state that plainly in the runbook",
           "gains": [
-            "Zero cost and zero personal data at rest"
+            "Zero cost and zero personal data at rest",
+            "Matches exactly what the code does today, so the runbook states a fact rather than a plan"
           ],
           "costs": [
             "Leaves the 180-day floor unmet and incidents un-investigable",
@@ -1791,10 +1832,12 @@
           "k": "c",
           "label": "Fix the plan to name the real stack and defer the store to the build after the pilot",
           "gains": [
-            "Honest and free; stops a wrong price being quoted"
+            "Honest and free; stops a wrong price being quoted",
+            "Stops a wrong price and a wrong vendor being quoted to anyone who reads the plan before the store exists"
           ],
           "costs": [
-            "Fixes the document, not the duty"
+            "Fixes the document, not the duty",
+            "The 180-day floor and the incident-response gap both stay open exactly as they are today"
           ],
           "system": "No change.",
           "screens": "None.",
@@ -1806,7 +1849,8 @@
           "label": "Build the minimal India-resident append-only security log now",
           "what": "Timestamp, request id, opaque user id, verb and outcome, and nothing else.",
           "gains": [
-            "Satisfies the floor and gives breach response something to capture"
+            "Satisfies the floor and gives breach response something to capture",
+            "The PRD's own five fields, timestamp, request id, opaque user id, verb, no bytes, are already specified and ready to build"
           ],
           "costs": [
             "Adds a vendor and a region decision to a one-person stack",
@@ -2041,7 +2085,8 @@
           "k": "b",
           "label": "Fix the known defects internally and defer the review to the first team customer",
           "gains": [
-            "Free now"
+            "Free now",
+            "No fee and no wait, and it is the review's own trigger condition as currently written"
           ],
           "costs": [
             "Keeps the pattern that produced the defect",
@@ -2056,10 +2101,12 @@
           "k": "c",
           "label": "Review only `firestore.rules`, the named concrete subject",
           "gains": [
-            "Cheapest scoping"
+            "Cheapest scoping",
+            "The cheapest scope to buy, and it targets the one file that already calls itself a prototype"
           ],
           "costs": [
-            "Reviews a file nothing runs while running code goes unreviewed"
+            "Reviews a file nothing runs while running code goes unreviewed",
+            "Leaves the CSP's unsafe-eval allowance and the redirect-bypassed enforcement entirely unexamined"
           ],
           "system": "No change.",
           "screens": "None.",
@@ -2070,7 +2117,8 @@
           "k": "d",
           "label": "Settle Firestore and the server path first, then buy a scoped review of what is left",
           "gains": [
-            "The smallest subject is the cheapest real review"
+            "The smallest subject is the cheapest real review",
+            "Avoids paying to review code the Firebase and byte-path decisions might delete before anyone reads the report"
           ],
           "costs": [
             "Pushes the review past the pilot",
@@ -2166,7 +2214,8 @@
           "k": "a",
           "label": "Promise deletion on request with an except-where-law-requires clause",
           "gains": [
-            "Short, conventional and fast to write"
+            "Short, conventional and fast to write",
+            "Costs nothing to draft and matches what most policies already say"
           ],
           "costs": [
             "The user discovers the exceptions when they matter",
@@ -2181,10 +2230,12 @@
           "k": "b",
           "label": "Defer the retention schedule until DPDP commences",
           "gains": [
-            "No work now"
+            "No work now",
+            "No drafting work needed before the pilot"
           ],
           "costs": [
-            "Wrong direction: CERT-In and the IT Rules bind today"
+            "Wrong direction: CERT-In and the IT Rules bind today",
+            "Gets the binding regime backwards: CERT-In's floor and the IT Rules already apply, and DPDP is not what starts the clock"
           ],
           "system": "No change.",
           "screens": "None.",
@@ -2199,7 +2250,8 @@
             "The artefact a rights request is answered from"
           ],
           "costs": [
-            "Every row must be true, including the Companies Act floor"
+            "Every row must be true, including the Companies Act floor",
+            "The 90-day figure still sitting in the record needs correcting first, or the table repeats a number nobody has re-derived"
           ],
           "system": "Forces a written record inventory first.",
           "screens": "A table inside /privacy.",
@@ -2210,7 +2262,8 @@
           "k": "d",
           "label": "Hold nothing that needs retaining, so the retention schedule is genuinely near-empty",
           "gains": [
-            "The shortest honest policy available"
+            "The shortest honest policy available",
+            "The cleanest policy sentence available, if the Firebase and log-store decisions land on holding nothing"
           ],
           "costs": [
             "Only reachable if we hold no documents and no logs",
@@ -2494,7 +2547,8 @@
           "k": "a",
           "label": "Stop buying foreign AI services on the company account until registration is settled",
           "gains": [
-            "Removes the trigger immediately, and matches the processor decision"
+            "Removes the trigger immediately, and matches the processor decision",
+            "Matches the direction the vendor-chain decision is already pointing, cutting the same five keys"
           ],
           "costs": [
             "Conflicts with running server-side AI at all",
@@ -2509,7 +2563,8 @@
           "k": "b",
           "label": "Register now and start filing, before any revenue",
           "gains": [
-            "Compliant from the first import"
+            "Compliant from the first import",
+            "Removes the open question in the risk register permanently, rather than leaving it with no owner"
           ],
           "costs": [
             "Monthly filing overhead on a company with no revenue",
@@ -2528,7 +2583,8 @@
             "Covers the inference-only tax items too"
           ],
           "costs": [
-            "A short delay, and one fee"
+            "A short delay, and one fee",
+            "Still leaves the five-supplier and hosting exposure running while the question is asked"
           ],
           "system": "No change.",
           "screens": "None.",
@@ -2539,10 +2595,12 @@
           "k": "d",
           "label": "Treat it as immaterial at current spend and revisit at revenue",
           "gains": [
-            "Cheapest today"
+            "Cheapest today",
+            "No fee and no filing overhead while the company has no revenue to file against"
           ],
           "costs": [
-            "Interest and penalty accrue on whatever is owed"
+            "Interest and penalty accrue on whatever is owed",
+            "The risk register already carries this with no owner, and this option leaves it exactly that way"
           ],
           "system": "No change.",
           "screens": "None.",
@@ -2644,7 +2702,8 @@
           "k": "b",
           "label": "Leave it unlicensed until the engine is extracted",
           "gains": [
-            "No work now"
+            "No work now",
+            "No packaging work needed before the pilot, since nothing has to be split out yet"
           ],
           "costs": [
             "Every day nobody may lawfully verify the engine",
@@ -2659,7 +2718,8 @@
           "k": "c",
           "label": "One proprietary licence for the whole repository",
           "gains": [
-            "Simplest, and true to the current code layout"
+            "Simplest, and true to the current code layout",
+            "Matches the current single-package layout exactly, so nothing has to change in the repo structure first"
           ],
           "costs": [
             "Forecloses the third-party verification the certificate needs",
@@ -2674,10 +2734,12 @@
           "k": "d",
           "label": "Apache-2.0 for everything",
           "gains": [
-            "Maximum adoption and the easiest verification story"
+            "Maximum adoption and the easiest verification story",
+            "The simplest licence file to write, one line covering the whole repository"
           ],
           "costs": [
-            "Hands the whole editor to the incumbent we may be colliding with"
+            "Hands the whole editor to the incumbent we may be colliding with",
+            "Sits on the same 202 shared files as sgnk-md, whose own licence position is unchecked"
           ],
           "system": "One root LICENSE.",
           "screens": "None.",
@@ -2762,10 +2824,12 @@
           "k": "a",
           "label": "No rule; treat each citation on its merits",
           "gains": [
-            "No process to maintain"
+            "No process to maintain",
+            "No process to design or maintain across the document set"
           ],
           "costs": [
-            "And a 62% correction rate on load-bearing claims"
+            "And a 62% correction rate on load-bearing claims",
+            "Leaves exactly the pattern that produced four different numbers across four documents"
           ],
           "system": "No change.",
           "screens": "None.",
@@ -2775,7 +2839,8 @@
           "k": "b",
           "label": "Standardise on 846(E) because three documents use it",
           "gains": [
-            "Fastest to apply"
+            "Fastest to apply",
+            "Fast to apply across every document that currently disagrees"
           ],
           "costs": [
             "Resolves by majority rather than by source",
@@ -2790,7 +2855,8 @@
           "label": "Adopt the rule but keep unverified details behind an explicit marker",
           "what": "The number stays behind the `[SS]` search-summary marker, which travels with every copy.",
           "gains": [
-            "Preserves the lead for a later verification pass"
+            "Preserves the lead for a later verification pass",
+            "Lets drafting continue without waiting on a Gazette lookup for every contested number"
           ],
           "costs": [
             "The marker is only as good as the reader's attention",
@@ -2915,7 +2981,8 @@
           "k": "a",
           "label": "Leave it unaddressed until DPDP commences",
           "gains": [
-            "No work now"
+            "No work now",
+            "No drafting work before the pilot, since the section itself has not commenced yet"
           ],
           "costs": [
             "Defers a clause that costs one sentence",
@@ -2934,7 +3001,8 @@
             "Pairs with the no-telemetry answer at no cost"
           ],
           "costs": [
-            "A clause nobody reads is weak evidence"
+            "A clause nobody reads is weak evidence",
+            "Nobody currently reads the terms, so the clause is evidence of intent rather than proof anyone saw it"
           ],
           "system": "No change.",
           "screens": "One clause in /terms.",
@@ -2945,7 +3013,8 @@
           "k": "c",
           "label": "Build verifiable age assurance at sign-up",
           "gains": [
-            "The strongest position if the audience assumption is wrong"
+            "The strongest position if the audience assumption is wrong",
+            "The one design that would hold even if the developer-audience assumption in the state turns out wrong"
           ],
           "costs": [
             "Real friction on the first screen",
@@ -2960,10 +3029,12 @@
           "k": "d",
           "label": "Write down that the product is not directed at children, and publish nothing",
           "gains": [
-            "Documents the position internally at no cost"
+            "Documents the position internally at no cost",
+            "Costs nothing beyond writing a sentence into an internal document"
           ],
           "costs": [
-            "The argument is not available to anyone who asks"
+            "The argument is not available to anyone who asks",
+            "The 200 crore ceiling attaches to the obligation whether or not anyone can see the reasoning behind it"
           ],
           "system": "No change.",
           "screens": "None.",
@@ -3067,7 +3138,8 @@
           "k": "a",
           "label": "Cite them as pressure without the caveat",
           "gains": [
-            "The strongest-sounding version"
+            "The strongest-sounding version",
+            "The shortest pitch to write, with no caveat sentence to fit in"
           ],
           "costs": [
             "A compliance buyer refutes it from the source in one reading",
@@ -3082,10 +3154,12 @@
           "k": "b",
           "label": "Defer until five regulated-document buyers have been asked what they need",
           "gains": [
-            "Evidence before wording, which is the right order"
+            "Evidence before wording, which is the right order",
+            "Grounds the pitch in what buyers actually say they need, rather than in what three documents happen to permit"
           ],
           "costs": [
-            "Leaves the pitch without a regulated story; the conversations have not started"
+            "Leaves the pitch without a regulated story; the conversations have not started",
+            "The conversations named in the state have not started, so this option has nothing to report yet"
           ],
           "system": "No change.",
           "screens": "None.",
@@ -3100,7 +3174,8 @@
             "Keeps MHRA's exception-reporting line, which supports the design"
           ],
           "costs": [
-            "Every quote must be re-fetched and string-matched first"
+            "Every quote must be re-fetched and string-matched first",
+            "Every cited line has to be re-opened and matched before it goes into a deck, the same discipline the 2026-09-09 round itself needed"
           ],
           "system": "No change.",
           "screens": "Wording on the regulated-buyer page.",
@@ -3111,10 +3186,12 @@
           "k": "d",
           "label": "Do not cite regulators at all; sell on the working-tree case alone",
           "gains": [
-            "Nothing to refute and nothing to re-fetch"
+            "Nothing to refute and nothing to re-fetch",
+            "Sidesteps the fabricated-quote risk entirely, since nothing from the three sources is repeated"
           ],
           "costs": [
-            "Gives up the one adjacency where document review is a habit"
+            "Gives up the one adjacency where document review is a habit",
+            "Leaves the exception-reporting line from MHRA unused, even though the state notes it supports the design"
           ],
           "system": "No change.",
           "screens": "None.",
