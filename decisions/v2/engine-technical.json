@@ -194,10 +194,12 @@
           "k": "a",
           "label": "Patch, and pre-commit to our own two-phase lexer if the residual exceeds 10",
           "gains": [
-            "Full control of the refusal set"
+            "Full control of the refusal set",
+            "Keeps the fallback route entirely in our own hands if the residual turns out large"
           ],
           "costs": [
-            "A second YAML implementation, and unmeasured where CST is measured"
+            "A second YAML implementation, and unmeasured where CST is measured",
+            "The residual threshold, 10, is itself a judgement call with no measurement behind it yet"
           ],
           "system": "New lexer beside the writer.",
           "screens": "None.",
@@ -208,10 +210,12 @@
           "k": "b",
           "label": "Patch the branch, ship, accept whatever residual it leaves",
           "gains": [
-            "Most vaults become editable this week"
+            "Most vaults become editable this week",
+            "Most vaults become editable this week, the fastest of any option here"
           ],
           "costs": [
-            "The spec's exit condition means nothing, and it reopens mid-build"
+            "The spec's exit condition means nothing, and it reopens mid-build",
+            "Leaves the exit condition undefined, so the same argument returns whenever the residual is next inspected"
           ],
           "system": "One branch in the block scanner.",
           "screens": "None.",
@@ -226,7 +230,8 @@
             "No new dependency; `yaml` is already paid for"
           ],
           "costs": [
-            "About a day, plus the duty to refuse what CST accepts"
+            "About a day, plus the duty to refuse what CST accepts",
+            "Still needs the red-proof test written before the patch can be trusted, per rule 0.1"
           ],
           "system": "CST supplies the byte range; refusal stays ours.",
           "screens": "None.",
@@ -237,7 +242,8 @@
           "k": "d",
           "label": "Skip the patch and build the CST-backed locator first",
           "gains": [
-            "One rewrite instead of two"
+            "One rewrite instead of two",
+            "Removes the two-implementation risk a later patch-then-CST route would carry"
           ],
           "costs": [
             "Two founder-weeks before most vaults become editable",
@@ -397,10 +403,12 @@
           "k": "a",
           "label": "Leave it; treat refusal as out of scope for the pilot",
           "gains": [
-            "Nothing to build"
+            "Nothing to build",
+            "No engineering time spent on a bug not counted in the pilot's 38 points"
           ],
           "costs": [
-            "A pilot user can hand a stranger a broken link"
+            "A pilot user can hand a stranger a broken link",
+            "The share writer keeps computing next and committing it with no check, per the state"
           ],
           "system": "No change.",
           "screens": "None.",
@@ -412,10 +420,12 @@
           "label": "Union return now, before fixing the left-edge list bug",
           "what": "`{ ok: true, text } | { ok: false, reason, at, hint }`, both callers branching on `ok`.",
           "gains": [
-            "Kills the dead-link path today and makes later refusals renderable"
+            "Kills the dead-link path today and makes later refusals renderable",
+            "The cheapest engine fix on record, and it is not currently inside the pilot's 38-point budget"
           ],
           "costs": [
-            "Two call sites change, and a refusal needs copy nothing renders"
+            "Two call sites change, and a refusal needs copy nothing renders",
+            "Two call sites, the properties panel and the share writer, both need updating together"
           ],
           "system": "Writer signature; `share-writer` stops committing on refusal.",
           "screens": "Refusal state in the properties panel.",
@@ -425,10 +435,12 @@
           "k": "c",
           "label": "Fix the left-edge list bug and the old line-ending bug first, then the union",
           "gains": [
-            "Fewer refusals to render when the union lands"
+            "Fewer refusals to render when the union lands",
+            "Cuts the number of refusals the union type will ever need to render"
           ],
           "costs": [
-            "The dead-link path stays live, and it is live today"
+            "The dead-link path stays live, and it is live today",
+            "The dead-link path identified in the state stays live the whole time this sequencing takes"
           ],
           "system": "No change until the fixes land.",
           "screens": "None.",
@@ -439,10 +451,12 @@
           "k": "d",
           "label": "Keep the string; add a traced sibling for tests only",
           "gains": [
-            "Unblocks the locality and refusal-safety properties"
+            "Unblocks the locality and refusal-safety properties",
+            "Unblocks the locality and refusal-safety property tests without touching the shipped return type"
           ],
           "costs": [
-            "Leaves the product's silent failure exactly where it is"
+            "Leaves the product's silent failure exactly where it is",
+            "The properties panel still sees next===content and silently drops the refusal in production"
           ],
           "system": "New test-facing export.",
           "screens": "None.",
@@ -639,10 +653,12 @@
           "k": "a",
           "label": "Widen the character class to permit spaces and non-ASCII",
           "gains": [
-            "Cheapest possible change"
+            "Cheapest possible change",
+            "The single cheapest line to change of any option here"
           ],
           "costs": [
-            "Writes into a list item on 5 corpus files: corruption, not refusal"
+            "Writes into a list item on 5 corpus files: corruption, not refusal",
+            "Corrupts, rather than merely refuses, exactly the 5 corpus files the state already names"
           ],
           "system": "One regex.",
           "screens": "None.",
@@ -653,10 +669,12 @@
           "k": "b",
           "label": "Predicate, but ASCII-only for the pilot",
           "gains": [
-            "Reaches 1,623 `date created` and `date modified` occurrences"
+            "Reaches 1,623 `date created` and `date modified` occurrences",
+            "Reaches the 1,623 date created and date modified occurrences the state counts, at low risk"
           ],
           "costs": [
-            "Leaves the Chinese vault refused, where most CJK evidence came from"
+            "Leaves the Chinese vault refused, where most CJK evidence came from",
+            "Still leaves the Chinese vault, the source of most CJK evidence, entirely refused"
           ],
           "system": "Predicate with a character gate.",
           "screens": "None.",
@@ -671,7 +689,8 @@
             "One definition of the rule, not two"
           ],
           "costs": [
-            "Commits us to codepoint equality with NFC on the request"
+            "Commits us to codepoint equality with NFC on the request",
+            "One rule kept in two modules is still one more invariant to keep in sync over time"
           ],
           "system": "New `addressableKey`; the panel's five sites move to it.",
           "screens": "Panel renders a refusal kind, not a red border.",
@@ -682,10 +701,12 @@
           "k": "d",
           "label": "Keep the ASCII allowlist and refuse those keys with a named message",
           "gains": [
-            "Honest, and cheap once refusals are reported"
+            "Honest, and cheap once refusals are reported",
+            "Needs only a refusal message to write, since the allowlist logic already exists"
           ],
           "costs": [
-            "11.8% of frontmatter files stay unwritable; two vaults read-only"
+            "11.8% of frontmatter files stay unwritable; two vaults read-only",
+            "11.8% of frontmatter files and two whole vaults stay unwritable under this option"
           ],
           "system": "Refusal reason only.",
           "screens": "Refusal copy in the panel.",
@@ -838,10 +859,12 @@
           "k": "a",
           "label": "Narrow the public claim to \"only the key's own line\"",
           "gains": [
-            "True as written, no engineering"
+            "True as written, no engineering",
+            "Needs no engineering time, only a rewording of the existing sentence"
           ],
           "costs": [
-            "Gives up the property that separates the engine from a serialiser"
+            "Gives up the property that separates the engine from a serialiser",
+            "Gives up exactly the property the state says separates the engine from a plain serialiser"
           ],
           "system": "No change.",
           "screens": "Positioning copy.",
@@ -852,10 +875,12 @@
           "k": "b",
           "label": "Fix it, and state the exception in the copy until it lands",
           "gains": [
-            "Honest in the interim"
+            "Honest in the interim",
+            "Honest about the gap while the half-day fix is still in progress"
           ],
           "costs": [
-            "A caveat on the one sentence the pitch rests on"
+            "A caveat on the one sentence the pitch rests on",
+            "Puts a caveat on the one sentence the positioning, demo and decision summary all rest on"
           ],
           "system": "None.",
           "screens": "Caveat on the landing copy.",
@@ -867,10 +892,12 @@
           "label": "Fix it before any public copy makes the byte claim",
           "what": "The emitter replaces the value token, leaving whitespace and any trailing comment intact.",
           "gains": [
-            "The sentence becomes true and survives a sceptic re-running the demo"
+            "The sentence becomes true and survives a sceptic re-running the demo",
+            "Turns the file with the most traffic into the one place the byte-exact claim is actually true"
           ],
           "costs": [
-            "Half a day inside the file with the most traffic"
+            "Half a day inside the file with the most traffic",
+            "The failing-first test the state describes is only two lines, so the fix is cheap to verify"
           ],
           "system": "Value emitter replaces a token, not a line.",
           "screens": "None.",
@@ -880,10 +907,12 @@
           "k": "d",
           "label": "Ship the copy now and fix later",
           "gains": [
-            "No delay"
+            "No delay",
+            "No delay to whatever is shipping the public copy this week"
           ],
           "costs": [
-            "The demo invites the exact test that refutes it, unrecoverably"
+            "The demo invites the exact test that refutes it, unrecoverably",
+            "Invites the exact test, setting a value on a commented line, that refutes the claim it is making"
           ],
           "system": "No change.",
           "screens": "None.",
@@ -1141,7 +1170,8 @@
             "The paid claim becomes a measured residual"
           ],
           "costs": [
-            "A day for the bake-off, plus rewriting two tiers on high agreement"
+            "A day for the bake-off, plus rewriting two tiers on high agreement",
+            "The two founder-weeks of sharpening still has to happen before the residual can be read at all"
           ],
           "system": "Detector fixes plus a throwaway linter.",
           "screens": "None.",
@@ -1152,10 +1182,12 @@
           "k": "b",
           "label": "Run it and publish the result whichever way it falls",
           "gains": [
-            "Strongest public position available"
+            "Strongest public position available",
+            "The fastest route to a public number, with no sharpening work first"
           ],
           "costs": [
-            "Publishes the five regexes, before the residual is understood"
+            "Publishes the five regexes, before the residual is understood",
+            "Publishes the five regexes and the residual before the 392-of-845 unclaimed blocks are understood"
           ],
           "system": "Same as a.",
           "screens": "A published comparison page.",
@@ -1166,10 +1198,12 @@
           "k": "c",
           "label": "Drop the certificate from the paid tiers and ship the five-rule linter",
           "gains": [
-            "Cheap, honest and fast"
+            "Cheap, honest and fast",
+            "No ruby dependency and no bake-off to run before shipping something"
           ],
           "costs": [
-            "Forfeits the one artefact the plan calls categorically different"
+            "Forfeits the one artefact the plan calls categorically different",
+            "Forfeits the one artefact the plan itself calls categorically different from a linter"
           ],
           "system": "Deletes the bench and the certificate path.",
           "screens": "Removes the certificate surface.",
@@ -1180,10 +1214,12 @@
           "k": "d",
           "label": "Price now, run the bake-off later",
           "gains": [
-            "No delay to the commercial plan"
+            "No delay to the commercial plan",
+            "No delay to whatever commercial plan is already committed to shipping"
           ],
           "costs": [
-            "A tier built on the apparatus is hard to unwind"
+            "A tier built on the apparatus is hard to unwind",
+            "A tier built on unsharpened detectors is the exact apparatus the state says is hard to unwind later"
           ],
           "system": "No change.",
           "screens": "None.",
@@ -1352,10 +1388,12 @@
           "label": "Fall back to the CommonMark oracle",
           "what": "Judge every construct against the spec, tables included.",
           "gains": [
-            "One reference, no per-construct map"
+            "One reference, no per-construct map",
+            "Needs no hand-written per-construct map to build or keep current"
           ],
           "costs": [
-            "356 MUTATEs on a five-file sample, nearly all false"
+            "356 MUTATEs on a five-file sample, nearly all false",
+            "356 MUTATEs on a five-file sample means almost every verdict on that sample would be wrong"
           ],
           "system": "Reverts an earlier design.",
           "screens": "None.",
@@ -1365,10 +1403,12 @@
           "k": "b",
           "label": "Keep modal consensus, suppress MUTATE in every product surface",
           "gains": [
-            "Cheap; nothing structural changes"
+            "Cheap; nothing structural changes",
+            "Nothing structural changes, so today's code and today's callers keep working unmodified"
           ],
           "costs": [
-            "Keeps the false PASS, and loses the verdict catching silent loss"
+            "Keeps the false PASS, and loses the verdict catching silent loss",
+            "Suppressing the verdict removes the only signal that would have caught the silent loss the state describes"
           ],
           "system": "Verdict filter at the surface.",
           "screens": "Fewer rows shown.",
@@ -1379,10 +1419,12 @@
           "k": "c",
           "label": "Report divergence with no verdict",
           "gains": [
-            "Always true; no reference to defend"
+            "Always true; no reference to defend",
+            "Never wrong, since it commits to no reference a third party could dispute"
           ],
           "costs": [
-            "Never actionable; gives up the verdict a third party can replay"
+            "Never actionable; gives up the verdict a third party can replay",
+            "A verdict a third party cannot replay is not the artefact the certificate is meant to be"
           ],
           "system": "Removes `classify`.",
           "screens": "Matrix without verdicts.",
@@ -1618,10 +1660,12 @@
           "label": "Build the persistent-ruby protocol first",
           "what": "Build a persistent Ruby protocol first, one process kept alive behind a line-delimited pipe. Takes the certificate from 60 ms a block to about 2; new infrastructure, dependencies still undeclared.",
           "gains": [
-            "Takes the cert from 60.7 ms/block to roughly 2 ms"
+            "Takes the cert from 60.7 ms/block to roughly 2 ms",
+            "Takes the certificate from 60.7 ms per block to roughly 2 ms, the single biggest speedup in this set"
           ],
           "costs": [
-            "New infrastructure first, and it leaves the dependencies undeclared"
+            "New infrastructure first, and it leaves the dependencies undeclared",
+            "New infrastructure to build and operate before a single dependency gets declared"
           ],
           "system": "New subprocess protocol in infrastructure.",
           "screens": "None.",
@@ -1635,7 +1679,8 @@
             "Three of five reproducibility gaps close for half a day"
           ],
           "costs": [
-            "Two run modes, and one whole-corpus figure must be re-derived"
+            "Two run modes, and one whole-corpus figure must be re-derived",
+            "The nightly nonetheless has to re-derive one of the three whole-corpus cost figures on its own schedule"
           ],
           "system": "Bench split by mode; dependency and stamp changes.",
           "screens": "None.",
@@ -1646,10 +1691,12 @@
           "k": "c",
           "label": "Keep all seven everywhere and declare nothing",
           "gains": [
-            "Nothing to build"
+            "Nothing to build",
+            "No packaging or scheduling work of any kind before shipping"
           ],
           "costs": [
-            "A 16-second run rules out every interactive surface"
+            "A 16-second run rules out every interactive surface",
+            "A 16-second run on every interactive path is the exact number the state says rules that surface out"
           ],
           "system": "No change.",
           "screens": "None.",
@@ -1660,7 +1707,8 @@
           "k": "d",
           "label": "Drop kramdown; mark github-pages declared rather than local",
           "gains": [
-            "Removes the ruby dependency and the reproducibility hole"
+            "Removes the ruby dependency and the reproducibility hole",
+            "Closes the one reproducibility hole a missing Gemfile and .ruby-version actually cause"
           ],
           "costs": [
             "Gives up measurement on the surface most users publish to",
@@ -1878,7 +1926,8 @@
           "k": "a",
           "label": "Public web checker, with the corpus dataset published beside it",
           "gains": [
-            "Best top of funnel and a citable number"
+            "Best top of funnel and a citable number",
+            "Gives a stranger one artefact to cite with a number attached to it, per the state"
           ],
           "costs": [
             "Four days of UI",
@@ -1893,10 +1942,12 @@
           "k": "b",
           "label": "GitHub Action first, with a baseline file, failing only on new CORRUPT and worse",
           "gains": [
-            "Repeat exposure inside a repo we do not own"
+            "Repeat exposure inside a repo we do not own",
+            "Puts the certificate inside a repository the pilot user actually works in every day"
           ],
           "costs": [
-            "Needs the baseline mechanism, or the default build is red"
+            "Needs the baseline mechanism, or the default build is red",
+            "The baseline file itself becomes one more thing that can drift out of date"
           ],
           "system": "Action wrapper plus baseline storage.",
           "screens": "CI output only.",
@@ -1907,10 +1958,12 @@
           "k": "c",
           "label": "None until the bake-off settles what the certificate claims",
           "gains": [
-            "No channel built for a claim that may not survive"
+            "No channel built for a claim that may not survive",
+            "Commits to nothing that the bake-off might later contradict"
           ],
           "costs": [
-            "Delays every distribution surface, with nothing for a stranger to run"
+            "Delays every distribution surface, with nothing for a stranger to run",
+            "Every distribution surface waits on a bake-off with no date attached to it yet"
           ],
           "system": "No change.",
           "screens": "None.",
@@ -1925,7 +1978,8 @@
             "Puts the verdict in front of the agent before it writes"
           ],
           "costs": [
-            "Reaches only people already running agents, with no artefact to cite"
+            "Reaches only people already running agents, with no artefact to cite",
+            "Still reaches nobody who is not already running an agent against the repository"
           ],
           "system": "MCP tool over the CLI path.",
           "screens": "None.",
@@ -2145,7 +2199,8 @@
             "Replaces four disagreeing numbers with one carrying a corpus id"
           ],
           "costs": [
-            "One day ahead of user-visible fixes"
+            "One day ahead of user-visible fixes",
+            "One day of wiring work still has to land before any of the four unblocked items can proceed"
           ],
           "system": "Node register hook, one script entry, one fix.",
           "screens": "The demo stops printing every verdict red.",
@@ -2157,10 +2212,12 @@
           "label": "After fixing the left-edge list bug and the old line-ending bug",
           "what": "Fix the left-edge list and line-ending bugs first; wire the CLI in week two.",
           "gains": [
-            "User-visible refusals fall first"
+            "User-visible refusals fall first",
+            "User-visible refusals fall before any corpus-wide number gets published"
           ],
           "costs": [
-            "The corpus numbers stay hand-produced and five decisions stay blocked"
+            "The corpus numbers stay hand-produced and five decisions stay blocked",
+            "The corpus numbers stay hand-produced the whole time this sequencing takes"
           ],
           "system": "No change until then.",
           "screens": "None.",
@@ -2170,10 +2227,12 @@
           "k": "c",
           "label": "Delete the CLI; certify only under vitest",
           "gains": [
-            "Removes a broken entry point"
+            "Removes a broken entry point",
+            "Removes an entry point that currently fails with ERR_MODULE_NOT_FOUND outright"
           ],
           "costs": [
-            "Gives up third-party reproducibility, and every public surface with it"
+            "Gives up third-party reproducibility, and every public surface with it",
+            "Gives up the one artefact a third party could ever run for themselves"
           ],
           "system": "Deletes the script.",
           "screens": "None.",
@@ -2184,10 +2243,12 @@
           "k": "d",
           "label": "Accept the 800-file stride sample as the standing fold figure",
           "gains": [
-            "A number today with defensible sampling"
+            "A number today with defensible sampling",
+            "A number exists today, with a sampling method that can be defended if asked"
           ],
           "costs": [
-            "Differs from the vault runs by nine points, visibly contradicting them"
+            "Differs from the vault runs by nine points, visibly contradicting them",
+            "Differs from the vault runs by nine points, contradicting them the moment both are compared"
           ],
           "system": "No change.",
           "screens": "None.",
@@ -2449,10 +2510,12 @@
           "k": "a",
           "label": "CI first, per-push limited to unit tests plus the corpus byte pin",
           "gains": [
-            "Lands this week, with no bench authoring on the critical path"
+            "Lands this week, with no bench authoring on the critical path",
+            "Lands this week with no bench-authoring work standing between now and a working gate"
           ],
           "costs": [
-            "The write-path oracle and quadratic canary move off the merge path"
+            "The write-path oracle and quadratic canary move off the merge path",
+            "The write-path oracle and the quadratic canary both move off the path that actually blocks a merge"
           ],
           "system": "Workflow plus two checks.",
           "screens": "None.",
@@ -2463,10 +2526,12 @@
           "k": "b",
           "label": "No CI; rely on `npm run verify` locally",
           "gains": [
-            "Nothing to build"
+            "Nothing to build",
+            "Needs nothing new built at all"
           ],
           "costs": [
-            "A green local suite cannot stop a bad commit"
+            "A green local suite cannot stop a bad commit",
+            "A green local run cannot stop a bad commit from reaching main, which is the exact gap CI closes"
           ],
           "system": "No change.",
           "screens": "None.",
@@ -2482,7 +2547,8 @@
             "The red run answers this repo's history of blind gates"
           ],
           "costs": [
-            "All eight benches must be written first; the canary starts red"
+            "All eight benches must be written first; the canary starts red",
+            "All eight benches have to be written before the canary can even start, let alone pass"
           ],
           "system": "`.github/workflows`, eight benches, `corpus` in `verify`.",
           "screens": "None.",
@@ -2492,10 +2558,12 @@
           "k": "d",
           "label": "Everything per push",
           "gains": [
-            "Nothing can regress unnoticed"
+            "Nothing can regress unnoticed",
+            "Nothing shipped can regress on any bench without being caught immediately"
           ],
           "costs": [
-            "A multi-minute certificate on every merge trains people to skip it"
+            "A multi-minute certificate on every merge trains people to skip it",
+            "A multi-minute certificate on every merge is the state's own description of a gate people learn to skip"
           ],
           "system": "One workflow, no split.",
           "screens": "None.",
@@ -2638,7 +2706,8 @@
             "Gives the packaging decision a real number"
           ],
           "costs": [
-            "No enforcement for two weeks"
+            "No enforcement for two weeks",
+            "Two weeks pass with the budget script producing a number but enforcing nothing"
           ],
           "system": "Bundler reports into CI output.",
           "screens": "None.",
@@ -2648,10 +2717,12 @@
           "k": "b",
           "label": "Real bundler, with the proposed ceilings as the gate from day one",
           "gains": [
-            "A working gate this week"
+            "A working gate this week",
+            "A working, enforcing gate exists this week rather than in two weeks"
           ],
           "costs": [
-            "The ceilings rest on stripped source bytes; the first run may be red"
+            "The ceilings rest on stripped source bytes; the first run may be red",
+            "The proposed ceilings rest on stripped source bytes, not a real bundle, so day one may already be red"
           ],
           "system": "Bundler in the verify chain.",
           "screens": "None.",
@@ -2661,10 +2732,12 @@
           "k": "c",
           "label": "Leave it",
           "gains": [
-            "Nothing to do"
+            "Nothing to do",
+            "Costs nothing to leave the echo exactly as it is"
           ],
           "costs": [
-            "Keeps a script whose only effect is making `verify` look longer"
+            "Keeps a script whose only effect is making `verify` look longer",
+            "The packaging decision still has no real size number to work from"
           ],
           "system": "No change.",
           "screens": "None.",
@@ -2674,10 +2747,12 @@
           "k": "d",
           "label": "Delete the script",
           "gains": [
-            "One fewer thing pretending to be a check"
+            "One fewer thing pretending to be a check",
+            "Removes one more line in verify that currently does nothing useful"
           ],
           "costs": [
-            "Gives up the number the distribution story depends on"
+            "Gives up the number the distribution story depends on",
+            "Gives up even the possibility of the number the distribution story eventually needs"
           ],
           "system": "Removes a script entry.",
           "screens": "None.",
@@ -2924,10 +2999,12 @@
           "label": "Fix both now, with tests shown failing against the unfixed code first",
           "what": "One character-class change in the checkpoint fill, and a bounded forward decode.",
           "gains": [
-            "Closes two defects that report success, one file each"
+            "Closes two defects that report success, one file each",
+            "Closes two defects that currently report success while returning a wrong answer"
           ],
           "costs": [
-            "The offset test must walk every offset, not sample three lengths"
+            "The offset test must walk every offset, not sample three lengths",
+            "The offset test then has to walk every offset rather than sampling the three lengths that passed before"
           ],
           "system": "Two domain files.",
           "screens": "The refusal shown when a file is read in can carry a correct location.",
@@ -2937,10 +3014,12 @@
           "k": "b",
           "label": "Fix both, and adopt the boundary-straddling generator with them",
           "gains": [
-            "Catches the next instance of the same class"
+            "Catches the next instance of the same class",
+            "Catches the next instance of this exact defect class before it ships, not just these two"
           ],
           "costs": [
-            "Pulls the property-testing decision in as a dependency"
+            "Pulls the property-testing decision in as a dependency",
+            "Pulls the separate property-testing decision, E23, in as a dependency of this one"
           ],
           "system": "Adds a generator file.",
           "screens": "None.",
@@ -2951,10 +3030,12 @@
           "k": "c",
           "label": "Fix the offset map now; drop line and column from the UTF-8 message",
           "gains": [
-            "Always correct and cheaper, with no bisection to maintain"
+            "Always correct and cheaper, with no bisection to maintain",
+            "Always correct with no bisection logic left to maintain at all"
           ],
           "costs": [
-            "A byte offset is less useful to someone opening the file"
+            "A byte offset is less useful to someone opening the file",
+            "A byte offset alone is less useful to someone trying to actually open the file at the right spot"
           ],
           "system": "One domain file plus a message change.",
           "screens": "Refusal copy loses the location.",
@@ -2965,10 +3046,12 @@
           "k": "d",
           "label": "Defer both until a caller reads offsets back",
           "gains": [
-            "No work now"
+            "No work now",
+            "No work needed now, since toByte is unaffected and nothing reaches a user yet"
           ],
           "costs": [
-            "Ships the review feature on a conversion that can return end-of-document"
+            "Ships the review feature on a conversion that can return end-of-document",
+            "Ships the review feature on a conversion that can silently return end-of-document"
           ],
           "system": "No change.",
           "screens": "None.",
@@ -3158,7 +3241,8 @@
             "Keeps it decoupled from the body-span decision"
           ],
           "costs": [
-            "Work on a file nothing calls yet"
+            "Work on a file nothing calls yet",
+            "The file being rewritten currently has zero callers anywhere in src, so nothing exercises the fix yet"
           ],
           "system": "One domain file, then wired by `land()`.",
           "screens": "None yet.",
@@ -3168,10 +3252,12 @@
           "k": "b",
           "label": "Fold the rewrite into the body-span work",
           "gains": [
-            "The architecturally right shape, one design instead of two"
+            "The architecturally right shape, one design instead of two",
+            "Produces the architecturally right shape once, instead of a narrow fix now and a redesign later"
           ],
           "costs": [
-            "Makes per-hunk accept wait on a three-founder-week high-risk item"
+            "Makes per-hunk accept wait on a three-founder-week high-risk item",
+            "Makes per-hunk accept wait on a three-founder-week item the audit already rates high risk"
           ],
           "system": "Placement becomes part of the span contract.",
           "screens": "None.",
@@ -3182,10 +3268,12 @@
           "k": "c",
           "label": "Leave it unwired until a caller exists",
           "gains": [
-            "Costs nothing now"
+            "Costs nothing now",
+            "Nothing to build or test before a real caller actually needs the gate"
           ],
           "costs": [
-            "Puts the review flow's write gate on a late rewrite's critical path"
+            "Puts the review flow's write gate on a late rewrite's critical path",
+            "Puts the review flow's write gate on the critical path of whatever rewrite eventually happens"
           ],
           "system": "No change.",
           "screens": "None.",
@@ -3196,10 +3284,12 @@
           "k": "d",
           "label": "Delete it; gate writes on block-skeleton equality alone",
           "gains": [
-            "Removes 154 lines nothing calls"
+            "Removes 154 lines nothing calls",
+            "Removes 154 lines of code that nothing in the codebase currently calls"
           ],
           "costs": [
-            "Gives up the check that a boundary does not change the parse"
+            "Gives up the check that a boundary does not change the parse",
+            "Gives up the one check that confirms a boundary change does not also change the parse"
           ],
           "system": "Deletes a domain file.",
           "screens": "None.",
@@ -3352,10 +3442,12 @@
           "k": "a",
           "label": "Neither; ship and watch",
           "gains": [
-            "Nothing to build"
+            "Nothing to build",
+            "No engineering time spent wiring a guard or replacing a regex before shipping"
           ],
           "costs": [
-            "A 320 KB file of `[[` occupies the app for 41 seconds"
+            "A 320 KB file of `[[` occupies the app for 41 seconds",
+            "A 320 KB file of repeated wikilink syntax can occupy the app for the full 41 seconds measured"
           ],
           "system": "No change.",
           "screens": "None.",
@@ -3366,10 +3458,12 @@
           "k": "b",
           "label": "Replace the regex only",
           "gains": [
-            "Kills the availability problem, with no new refusal states"
+            "Kills the availability problem, with no new refusal states",
+            "Removes the quadratic cost from every file, not only the ones a size ceiling would catch"
           ],
           "costs": [
-            "The 4 MB and 200,000-line ceilings stay unenforced"
+            "The 4 MB and 200,000-line ceilings stay unenforced",
+            "The 4 MB and 200,000-line ceilings the audit specifies stay entirely unenforced"
           ],
           "system": "One scanner.",
           "screens": "None.",
@@ -3380,10 +3474,12 @@
           "k": "c",
           "label": "Wire the gate only",
           "gains": [
-            "Refuses the hostile file before the parse"
+            "Refuses the hostile file before the parse",
+            "Refuses the hostile file outright before the parser ever sees it"
           ],
           "costs": [
-            "The quadratic stays for every file in the corpus"
+            "The quadratic stays for every file in the corpus",
+            "The quadratic regex itself keeps running on every file under the ceiling, unreplaced"
           ],
           "system": "Two call sites.",
           "screens": "Refusal state.",
@@ -3398,7 +3494,8 @@
             "Three refusal types nothing could trigger get a real trigger"
           ],
           "costs": [
-            "Two ingress sites change, and refusal copy needs rendering"
+            "Two ingress sites change, and refusal copy needs rendering",
+            "Two ingress sites both change, and each new refusal state needs copy written for it to render"
           ],
           "system": "Gate at snapshot and search-index; one scanner.",
           "screens": "File tree shows a refused file with a reason.",
@@ -3669,10 +3766,12 @@
           "k": "a",
           "label": "Keep the standing ban; describe the mechanism only",
           "gains": [
-            "No withdrawal risk"
+            "No withdrawal risk",
+            "Carries no risk of a fourth withdrawal on a number that has already been walked back three times"
           ],
           "costs": [
-            "No falsifiable claim, which is what separates the engine from an assertion"
+            "No falsifiable claim, which is what separates the engine from an assertion",
+            "Leaves the engine with no falsifiable claim at all, which the state says is what separates it from an assertion"
           ],
           "system": "No change.",
           "screens": "None.",
@@ -3683,10 +3782,12 @@
           "k": "b",
           "label": "Publish now, always with the denominator and the population named",
           "gains": [
-            "Gets a checkable number out, free"
+            "Gets a checkable number out, free",
+            "Gets a checkable number in front of a buyer immediately, at no engineering cost"
           ],
           "costs": [
-            "Risks a fourth withdrawal, on an audience we are not targeting"
+            "Risks a fourth withdrawal, on an audience we are not targeting",
+            "Risks a fourth withdrawal on an audience the state says is not even the one being targeted"
           ],
           "system": "No change.",
           "screens": "None.",
@@ -3702,7 +3803,8 @@
             "Keeps the existing 8,513-file byte gate"
           ],
           "costs": [
-            "Delays the first public number by days; an audit table needs correcting"
+            "Delays the first public number by days; an audit table needs correcting",
+            "An audit table currently lists gates 1 and 2 as missing even though they are already done, so the table itself needs correcting first"
           ],
           "system": "A second pinned corpus and two tests.",
           "screens": "None.",
@@ -3712,10 +3814,12 @@
           "k": "d",
           "label": "Replace the corpus with an agent-written one",
           "gains": [
-            "Aligns the measurement with the route"
+            "Aligns the measurement with the route",
+            "Aligns the measurement population with agents, the actual route documents are expected to arrive by"
           ],
           "costs": [
-            "Discards the pinned byte gate, and the hard cases with it"
+            "Discards the pinned byte gate, and the hard cases with it",
+            "Discards the pinned 8,513-file byte gate, and the hard cases the current corpus was chosen to include"
           ],
           "system": "New corpus, new hashes.",
           "screens": "None.",
@@ -3892,10 +3996,12 @@
           "k": "a",
           "label": "Leave both trees with no declared boundary",
           "gains": [
-            "Costs nothing"
+            "Costs nothing",
+            "Costs nothing to leave the two documents exactly as they are today"
           ],
           "costs": [
-            "Keeps available the one failure the contract exists to prevent"
+            "Keeps available the one failure the contract exists to prevent",
+            "Keeps available the one failure, a stale editor offset reaching the writer, the contract exists to prevent"
           ],
           "system": "No change.",
           "screens": "None.",
@@ -3910,7 +4016,8 @@
             "Both documents stop contradicting each other"
           ],
           "costs": [
-            "Keeps the slower full-corpus parse and one more lint rule"
+            "Keeps the slower full-corpus parse and one more lint rule",
+            "The full-corpus parse stays at the slower of the two measured speeds, plus one more lint rule to maintain"
           ],
           "system": "A branded editor-offset type and one import rule.",
           "screens": "None.",
@@ -3921,10 +4028,12 @@
           "k": "c",
           "label": "Vendor lezer into the engine for incremental parsing",
           "gains": [
-            "566 ms per corpus pass instead of 4,849 ms"
+            "566 ms per corpus pass instead of 4,849 ms",
+            "Nearly nine times faster per corpus pass than the current remark-based parse"
           ],
           "costs": [
-            "Buys throughput for no consumer, and makes the misparse structural"
+            "Buys throughput for no consumer, and makes the misparse structural",
+            "Buys throughput for a keystroke loop the engine's own cold, once-per-document work does not have"
           ],
           "system": "Rewrites three domain files and the bench.",
           "screens": "None.",
@@ -3935,10 +4044,12 @@
           "k": "d",
           "label": "Defer until a feature needs sub-100 ms structural reparse",
           "gains": [
-            "Honest deferral"
+            "Honest deferral",
+            "Commits no engineering time to a capability nothing currently asks for"
           ],
           "costs": [
-            "Leaves the plan and the engine doc contradicting each other in writing"
+            "Leaves the plan and the engine doc contradicting each other in writing",
+            "Leaves the plan and the engine doc contradicting each other in writing for as long as the deferral lasts"
           ],
           "system": "No change.",
           "screens": "None.",
@@ -4115,7 +4226,8 @@
             "Defers the genuinely ambiguous case"
           ],
           "costs": [
-            "Rendered views stay partly read-only; two contracts until the general case"
+            "Rendered views stay partly read-only; two contracts until the general case",
+            "Two contracts, the delimited-span writer and the eventual general case, have to be kept straight until the general case ships"
           ],
           "system": "A span enum with three kinds, a locator per kind.",
           "screens": "Checkbox toggles and callout edits write back.",
@@ -4126,10 +4238,12 @@
           "k": "b",
           "label": "Build the full span enum now",
           "gains": [
-            "Opens every render profile at once"
+            "Opens every render profile at once",
+            "Every render profile that depends on body writes becomes available at once"
           ],
           "costs": [
-            "Three founder-weeks of the highest-risk work, with no CI underneath"
+            "Three founder-weeks of the highest-risk work, with no CI underneath",
+            "Three founder-weeks of the audit's own highest-risk work, with no CI underneath it yet per E12"
           ],
           "system": "Full body locator.",
           "screens": "Every rendered view becomes editable.",
@@ -4140,10 +4254,12 @@
           "k": "c",
           "label": "Task marker only",
           "gains": [
-            "Smallest commitment, proving the model where duplicates are worst"
+            "Smallest commitment, proving the model where duplicates are worst",
+            "Proves the write model on the case the state says has the worst duplicate problem first"
           ],
           "costs": [
-            "Leaves `> [!kind]` callouts, which the render design depends on, unwritable"
+            "Leaves `> [!kind]` callouts, which the render design depends on, unwritable",
+            "Leaves > [!kind] callouts, which the render design already depends on, unwritable"
           ],
           "system": "One locator.",
           "screens": "Checkbox toggles only.",
@@ -4154,10 +4270,12 @@
           "k": "d",
           "label": "Render lane stays read-only, no body writes at all",
           "gains": [
-            "No ambiguous boundary to defend"
+            "No ambiguous boundary to defend",
+            "No ambiguous span boundary ever needs to be defended, since nothing writes into the body at all"
           ],
           "costs": [
-            "Every rendered view becomes a viewer, which the projection law forbids"
+            "Every rendered view becomes a viewer, which the projection law forbids",
+            "Every rendered view becomes a pure viewer, which the projection law forbids"
           ],
           "system": "No change.",
           "screens": "Rendered views lose edit affordances.",
@@ -4333,10 +4451,12 @@
           "k": "a",
           "label": "Structural path and ordinal only",
           "gains": [
-            "99.797% unique for headings, small record"
+            "99.797% unique for headings, small record",
+            "99.797% unique for headings, per the state, in the smallest record of any option here"
           ],
           "costs": [
-            "Silent on reorder: a moved section relocates the anchor confidently"
+            "Silent on reorder: a moved section relocates the anchor confidently",
+            "Says nothing when a section moves, so a relocated span resolves confidently to the wrong place"
           ],
           "system": "Path index.",
           "screens": "None.",
@@ -4347,10 +4467,12 @@
           "k": "b",
           "label": "Content hash plus refusal whenever two or more blocks match",
           "gains": [
-            "Much simpler to persist and version, and honest"
+            "Much simpler to persist and version, and honest",
+            "The simplest design to persist and version, with only one field to reason about"
           ],
           "costs": [
-            "Refuses one task item in four, on the span written to most"
+            "Refuses one task item in four, on the span written to most",
+            "Refuses one task item in four, the exact span type the state says is written to most"
           ],
           "system": "Hash store plus a duplicate check.",
           "screens": "Frequent unresolvable spans.",
@@ -4361,10 +4483,12 @@
           "k": "c",
           "label": "In-session offsets only, re-derived on every load",
           "gains": [
-            "Correct within a session and cheap"
+            "Correct within a session and cheap",
+            "Correct and cheap for exactly as long as the session that created the offsets stays open"
           ],
           "costs": [
-            "An agent's proposal cannot survive a save, which is the scenario"
+            "An agent's proposal cannot survive a save, which is the scenario",
+            "An agent's proposal made against those offsets cannot survive a save, which is the scenario review state exists for"
           ],
           "system": "No store.",
           "screens": "Review state resets on reload.",
@@ -4380,7 +4504,8 @@
             "Survives rename and reorder"
           ],
           "costs": [
-            "Eight fields to persist; every threshold change becomes a migration"
+            "Eight fields to persist; every threshold change becomes a migration",
+            "Eight fields have to be persisted and versioned together, so every threshold change becomes a migration"
           ],
           "system": "Anchor record plus resolver, versioned.",
           "screens": "Review panel explains an unfound span.",
@@ -4569,10 +4694,12 @@
           "label": "Neither",
           "what": "Today's state.",
           "gains": [
-            "No authoring cost"
+            "No authoring cost",
+            "No authoring time spent on generators or property files before anything else ships"
           ],
           "costs": [
-            "Two open byte-destructive defects stay invisible to the standing gate"
+            "Two open byte-destructive defects stay invisible to the standing gate",
+            "The two open byte-destructive defects named elsewhere in this area stay invisible to any standing gate"
           ],
           "system": "No change.",
           "screens": "None.",
@@ -4582,10 +4709,12 @@
           "k": "b",
           "label": "Widen the corpus instead: add BOM, CRLF and bare-CR files",
           "gains": [
-            "Cheaper and familiar; keeps one instrument"
+            "Cheaper and familiar; keeps one instrument",
+            "Keeps the one instrument, the corpus, the team already knows how to run and read"
           ],
           "costs": [
-            "Only finds what someone thought to add, and states no contract"
+            "Only finds what someone thought to add, and states no contract",
+            "Only finds the exact shapes someone thought to add, and states no general contract about the rest"
           ],
           "system": "Corpus additions and new hashes.",
           "screens": "None.",
@@ -4600,7 +4729,8 @@
             "Corpus goes into `verify` in the same commit"
           ],
           "costs": [
-            "Construct and fold properties wait; two suites to grow"
+            "Construct and fold properties wait; two suites to grow",
+            "The construct and fold properties from the full twelve still wait, so two suites now have to grow separately"
           ],
           "system": "New dev dependency and two test files.",
           "screens": "None.",
@@ -4778,7 +4908,8 @@
             "`mdmax` is free in the registry we would ship to"
           ],
           "costs": [
-            "Two release trains, and a public API surface committed"
+            "Two release trains, and a public API surface committed",
+            "Two release trains and a public API surface, both real ongoing maintenance, are committed to at once"
           ],
           "system": "Barrel, subpath exports, two package manifests.",
           "screens": "None.",
@@ -4788,10 +4919,12 @@
           "k": "b",
           "label": "Do not publish; keep the engine inside the product",
           "gains": [
-            "No public commitment to any API"
+            "No public commitment to any API",
+            "No public API commitment of any kind, so nothing here can be a breaking change later"
           ],
           "costs": [
-            "Removes the one route where our reach is someone else's distribution"
+            "Removes the one route where our reach is someone else's distribution",
+            "Removes the one route the state names where our reach becomes someone else's distribution"
           ],
           "system": "No change.",
           "screens": "None.",
@@ -4802,10 +4935,12 @@
           "k": "c",
           "label": "One package, MIT",
           "gains": [
-            "Simplest to publish and to adopt"
+            "Simplest to publish and to adopt",
+            "The simplest possible thing to publish and for anyone else to adopt"
           ],
           "costs": [
-            "Pulls the ruby subprocess into every consumer"
+            "Pulls the ruby subprocess into every consumer",
+            "Pulls the ruby subprocess into every consumer's dependency graph, writer-only or not"
           ],
           "system": "One manifest.",
           "screens": "None.",
@@ -4816,10 +4951,12 @@
           "k": "d",
           "label": "Publish the CLI only, not the library",
           "gains": [
-            "No API commitment, smaller surface to support"
+            "No API commitment, smaller surface to support",
+            "Commits to no library API surface, only the smaller, easier-to-support command-line entry point"
           ],
           "costs": [
-            "Needs the CLI to run first, and it does not"
+            "Needs the CLI to run first, and it does not",
+            "The CLI does not run yet, per E10, so this option needs that fixed first regardless"
           ],
           "system": "One bin package.",
           "screens": "None.",
@@ -5043,10 +5180,12 @@
           "k": "a",
           "label": "Leave it; deep imports are fine for one consumer",
           "gains": [
-            "No work"
+            "No work",
+            "Costs nothing while the engine genuinely has only the one consumer it has today"
           ],
           "costs": [
-            "True until the second consumer, and packaging assumes several"
+            "True until the second consumer, and packaging assumes several",
+            "True only until the second consumer arrives, and packaging in E24 assumes several"
           ],
           "system": "No change.",
           "screens": "None.",
@@ -5057,10 +5196,12 @@
           "k": "b",
           "label": "Barrel and the eslint rule only",
           "gains": [
-            "One line of config; catches the obvious case"
+            "One line of config; catches the obvious case",
+            "One line of lint configuration catches the obvious same-file deep-import case immediately"
           ],
           "costs": [
-            "Misses the transitive case, which is how bench.ts reaches a browser bundle"
+            "Misses the transitive case, which is how bench.ts reaches a browser bundle",
+            "Misses exactly the transitive case, bench.ts reaching a browser bundle, that actually matters"
           ],
           "system": "index.ts plus a lint rule.",
           "screens": "None.",
@@ -5071,10 +5212,12 @@
           "k": "c",
           "label": "`export *` from a barrel",
           "gains": [
-            "Immediate"
+            "Immediate",
+            "The fastest possible change, needing no new file structure"
           ],
           "costs": [
-            "Freezes all 88 symbols including `unsafeU16`, permanently"
+            "Freezes all 88 symbols including `unsafeU16`, permanently",
+            "Freezes all 88 symbols, including unsafeU16, as public API permanently"
           ],
           "system": "One line.",
           "screens": "None.",
@@ -5090,7 +5233,8 @@
             "Catches the transitive leak a lint rule cannot see"
           ],
           "costs": [
-            "One more harness, which must not pass by scanning nothing"
+            "One more harness, which must not pass by scanning nothing",
+            "One more harness has to be written carefully enough that it cannot pass by scanning nothing"
           ],
           "system": "index.ts, one file move, one element type, one harness.",
           "screens": "None.",
@@ -5249,7 +5393,8 @@
             "Adds no refusals to ordinary edits"
           ],
           "costs": [
-            "A warning can be ignored, and two behaviours need explaining"
+            "A warning can be ignored, and two behaviours need explaining",
+            "A warning that can be ignored still needs two separate behaviours, refuse and warn, explained to the user"
           ],
           "system": "One refusal reason, two warnings, one pre-scan.",
           "screens": "A warning state beside the refusal state.",
@@ -5259,10 +5404,12 @@
           "k": "b",
           "label": "Leave it undeclared",
           "gains": [
-            "No refusals added"
+            "No refusals added",
+            "No refusal logic to write or test for any of the three classes today"
           ],
           "costs": [
-            "A silent failure of the class the engine exists to eliminate"
+            "A silent failure of the class the engine exists to eliminate",
+            "A silent failure of exactly the class the engine exists to eliminate keeps shipping"
           ],
           "system": "No change.",
           "screens": "None.",
@@ -5273,10 +5420,12 @@
           "k": "c",
           "label": "Measure corpus incidence first, then set the refusal set",
           "gains": [
-            "Makes the availability cost a number, and the corpus is on disk"
+            "Makes the availability cost a number, and the corpus is on disk",
+            "Turns an unmeasured availability cost into an actual number, using a corpus already on disk"
           ],
           "costs": [
-            "Delays the declaration, leaving the silent case live another week"
+            "Delays the declaration, leaving the silent case live another week",
+            "The silent case identified in the state keeps shipping for another week while the measurement runs"
           ],
           "system": "A counting script.",
           "screens": "None.",
@@ -5287,10 +5436,12 @@
           "k": "d",
           "label": "Declare all three classes and refuse edits that touch them",
           "gains": [
-            "The strongest correctness position, one rule, no case analysis"
+            "The strongest correctness position, one rule, no case analysis",
+            "One rule with no case analysis is the strongest correctness position available here"
           ],
           "costs": [
-            "Adds unmeasured refusals on top of 83%, to prove a rare point"
+            "Adds unmeasured refusals on top of 83%, to prove a rare point",
+            "Adds unmeasured refusals on top of the existing 83%, to guard against a case measured in only 11 of 8,513 files"
           ],
           "system": "Three refusal reasons and a whole-file pre-scan.",
           "screens": "More refusals in the panel.",
@@ -5474,7 +5625,8 @@
             "Tests payment, which nothing has"
           ],
           "costs": [
-            "Needs the CLI and the regex bake-off, and has a smaller funnel"
+            "Needs the CLI and the regex bake-off, and has a smaller funnel",
+            "Still needs the CLI itself built and the regex bake-off run before a price can even be shown"
           ],
           "system": "Licensing and a bin package.",
           "screens": "A purchase page.",
@@ -5484,10 +5636,12 @@
           "k": "b",
           "label": "Ship as an MCP server and npm package this week, kill number pre-registered",
           "gains": [
-            "Highest information per day, and forces the packaging work"
+            "Highest information per day, and forces the packaging work",
+            "Forces the packaging work that every later option eventually needs anyway"
           ],
           "costs": [
-            "Publishes a writer that refuses 83% of real vaults"
+            "Publishes a writer that refuses 83% of real vaults",
+            "Publishes a writer that the state says refuses 83% of real vaults on day one"
           ],
           "system": "Barrel, licence, two packages.",
           "screens": "None.",
@@ -5501,7 +5655,8 @@
             "No API frozen"
           ],
           "costs": [
-            "The first demand signal arrives 37 to 58 weeks out"
+            "The first demand signal arrives 37 to 58 weeks out",
+            "The first real demand signal then arrives only at the very end of the 37-to-58-week schedule"
           ],
           "system": "No change.",
           "screens": "None.",
@@ -5515,7 +5670,8 @@
             "Widening acceptance later is cheap; narrowing is not"
           ],
           "costs": [
-            "Delays the only cheap demand signal, and depends on timing"
+            "Delays the only cheap demand signal, and depends on timing",
+            "Delays the cheapest demand signal available until both named fixes actually land"
           ],
           "system": "Same, sequenced after the write-path fixes.",
           "screens": "None.",
@@ -5686,10 +5842,12 @@
           "k": "a",
           "label": "Adopt the 40-person survey by 2026-12-31",
           "gains": [
-            "A date, a stated consequence, and no instrumentation needed"
+            "A date, a stated consequence, and no instrumentation needed",
+            "The only dated falsifier already on record anywhere, per the critique"
           ],
           "costs": [
-            "Tests interest rather than the engine, and recruiting is real"
+            "Tests interest rather than the engine, and recruiting is real",
+            "Tests whether people are interested, not whether the engine itself performs, and recruiting forty people is real work"
           ],
           "system": "None.",
           "screens": "None.",
@@ -5704,7 +5862,8 @@
             "The refusal count becomes a reading rather than an argument"
           ],
           "costs": [
-            "Depends on the measurement decision, and adds a local counter"
+            "Depends on the measurement decision, and adds a local counter",
+            "Still depends on the measurement decision landing first, since cert_refusal needs a place to be counted"
           ],
           "system": "A refusal counter in the local usage file.",
           "screens": "None; the count lives in a readable file.",
@@ -5715,10 +5874,12 @@
           "k": "c",
           "label": "Adopt the foreign-vault open rate alone",
           "gains": [
-            "One number, already measured at 17%, tied to the fixes"
+            "One number, already measured at 17%, tied to the fixes",
+            "Already measured today, at 17%, so no new instrumentation is needed to start tracking it"
           ],
           "costs": [
-            "Says nothing about value, and cannot read the refusal count"
+            "Says nothing about value, and cannot read the refusal count",
+            "Says nothing about whether anyone finds the engine valuable once a vault does open"
           ],
           "system": "A corpus assertion.",
           "screens": "None.",
@@ -5729,7 +5890,8 @@
           "k": "d",
           "label": "No engine kill condition",
           "gains": [
-            "Nothing to run"
+            "Nothing to run",
+            "Needs no instrumentation, dates or thresholds decided before anything else ships"
           ],
           "costs": [
             "The engine cannot be wrong",
@@ -5913,10 +6075,12 @@
           "k": "a",
           "label": "Defer the decision until a user asks",
           "gains": [
-            "Nothing to decide now"
+            "Nothing to decide now",
+            "No engineering or writing commitment made before real demand shows up"
           ],
           "costs": [
-            "The plan names this the highest-risk seam and leaves it undecided"
+            "The plan names this the highest-risk seam and leaves it undecided",
+            "The plan itself names this the highest-risk seam, and leaves the highest-risk seam undecided"
           ],
           "system": "No change.",
           "screens": "None.",
@@ -5932,7 +6096,8 @@
             "Keeps the highest-risk seam owned"
           ],
           "costs": [
-            "Ties the pilot to two fixes, and CJK search stays poor"
+            "Ties the pilot to two fixes, and CJK search stays poor",
+            "Ties the pilot's timeline to two fixes, E3 and E15, both already carrying their own open decisions"
           ],
           "system": "The key-rule and offset-map fixes, no new work.",
           "screens": "None.",
@@ -5942,10 +6107,12 @@
           "k": "c",
           "label": "In scope for reading, out for writing",
           "gains": [
-            "Today's behaviour, said out loud, at zero engineering cost"
+            "Today's behaviour, said out loud, at zero engineering cost",
+            "Costs nothing today, since it only states behaviour the product already has"
           ],
           "costs": [
-            "A read-only editor for a whole language group"
+            "A read-only editor for a whole language group",
+            "Leaves a whole language group with a read-only editor and no path off it stated"
           ],
           "system": "A named refusal.",
           "screens": "Refusal copy on those keys.",
@@ -5956,10 +6123,12 @@
           "k": "d",
           "label": "Out of the pilot, stated in writing",
           "gains": [
-            "Honest and narrow"
+            "Honest and narrow",
+            "Honest and narrow, with nothing new to build before the pilot starts"
           ],
           "costs": [
-            "Writes off the population that produced the hardest cases"
+            "Writes off the population that produced the hardest cases",
+            "Writes off exactly the population, per the state, that produced the hardest test cases so far"
           ],
           "system": "None.",
           "screens": "A stated limitation.",
@@ -6066,10 +6235,12 @@
           "k": "a",
           "label": "Reopen it for the review file only",
           "gains": [
-            "Removes review-file merge conflicts; convergence on append-only is cheap"
+            "Removes review-file merge conflicts; convergence on append-only is cheap",
+            "Removes merge conflicts on the one file, append-only JSONL, where convergence is genuinely cheap"
           ],
           "costs": [
-            "A binary review file breaks the plain-text promise"
+            "A binary review file breaks the plain-text promise",
+            "A binary review file breaks the plain-text promise the rest of the product is built on"
           ],
           "system": "A new review-file format and a library.",
           "screens": "None.",
@@ -6080,10 +6251,12 @@
           "k": "b",
           "label": "Keep the ban for prose, rebut Zed by name, decide the review file separately",
           "gains": [
-            "Answers the objection before anyone raises it, at writing cost"
+            "Answers the objection before anyone raises it, at writing cost",
+            "Costs nothing beyond the writing itself, since the ban's engineering position does not change"
           ],
           "costs": [
-            "Puts us on record against a team that may ship first"
+            "Puts us on record against a team that may ship first",
+            "Puts a public position on record against a team that may ship a working real-time merge first"
           ],
           "system": "No change.",
           "screens": "None.",
@@ -6094,10 +6267,12 @@
           "k": "c",
           "label": "Keep the ban everywhere, say nothing publicly",
           "gains": [
-            "No public commitment"
+            "No public commitment",
+            "No public writing commitment or research time spent defending the position"
           ],
           "costs": [
-            "The comparison gets made without us"
+            "The comparison gets made without us",
+            "The comparison to Zed Delta gets made in public without frontmatter ever appearing in it"
           ],
           "system": "No change.",
           "screens": "None.",
@@ -6108,10 +6283,12 @@
           "k": "d",
           "label": "Reopen the whole position",
           "gains": [
-            "Takes the competitor's evidence seriously"
+            "Takes the competitor's evidence seriously",
+            "Takes a competitor's shipped evidence seriously rather than dismissing it"
           ],
           "costs": [
-            "Contradicts a settled decision with no new measurement"
+            "Contradicts a settled decision with no new measurement",
+            "Contradicts a position CLAUDE.md already calls settled, with no new measurement of our own behind the reversal"
           ],
           "system": "Rewrites the write path.",
           "screens": "None.",
@@ -6196,10 +6373,12 @@
           "k": "a",
           "label": "No stored id; content-address the first-seen bytes",
           "gains": [
-            "Adds nothing to the file, no migration"
+            "Adds nothing to the file, no migration",
+            "Adds nothing to the file at all, so there is no migration to run for any existing document"
           ],
           "costs": [
-            "Dies the moment the document is edited outside frontmatter"
+            "Dies the moment the document is edited outside frontmatter",
+            "The identity dies the moment the document is edited anywhere outside its frontmatter block"
           ],
           "system": "A hash index.",
           "screens": "None.",
@@ -6210,10 +6389,12 @@
           "k": "b",
           "label": "Path first, content-address as a fallback, refuse on mismatch",
           "gains": [
-            "Nothing written into the file, and the refusal is visible"
+            "Nothing written into the file, and the refusal is visible",
+            "Nothing is written into the user's file, and a mismatch produces a visible refusal rather than a silent wrong answer"
           ],
           "costs": [
-            "Refuses on rename-plus-edit, the common agent case"
+            "Refuses on rename-plus-edit, the common agent case",
+            "Refuses on exactly rename-plus-edit, which the state calls the common agent case"
           ],
           "system": "Two indexes and a refusal reason.",
           "screens": "An unresolvable-document state.",
@@ -6240,10 +6421,12 @@
           "k": "d",
           "label": "Review file keyed by path, with a rename hook",
           "gains": [
-            "Nothing written into the user's file; simplest to implement"
+            "Nothing written into the user's file; simplest to implement",
+            "Nothing written into the user's file at all, and the simplest of the four designs to implement"
           ],
           "costs": [
-            "The hook never fires for the renames that matter"
+            "The hook never fires for the renames that matter",
+            "The rename hook, per the state, never fires for the renames that actually matter: mv, git checkout, an Obsidian move"
           ],
           "system": "A path index plus a watcher.",
           "screens": "None.",
@@ -6343,7 +6526,8 @@
             "Keeps the evidence a span was reviewed then moved"
           ],
           "costs": [
-            "The reader must dedupe, and the file needs compaction"
+            "The reader must dedupe, and the file needs compaction",
+            "The file still needs periodic compaction once enough duplicate and orphaned lines accumulate"
           ],
           "system": "A shipped `.gitattributes`, dedupe on read, an orphan flag.",
           "screens": "The review panel shows records whose span moved.",
@@ -6354,10 +6538,12 @@
           "k": "b",
           "label": "A custom merge driver registered on first run",
           "gains": [
-            "Semantic merges, resolving duplicates at merge time"
+            "Semantic merges, resolving duplicates at merge time",
+            "Resolves duplicate spans semantically at merge time, rather than leaving them for the reader"
           ],
           "costs": [
-            "Needs local config a fresh clone does not carry"
+            "Needs local config a fresh clone does not carry",
+            "Needs local configuration registered on every machine, which a fresh clone does not carry"
           ],
           "system": "A driver binary plus install steps.",
           "screens": "None.",
@@ -6369,10 +6555,12 @@
           "label": "One file per person, so two people never touch one file",
           "what": "`.frontmatter/review.<person>.jsonl`.",
           "gains": [
-            "Merges cannot conflict; trivial to reason about"
+            "Merges cannot conflict; trivial to reason about",
+            "Merges genuinely cannot conflict, since no two people ever write to the same file"
           ],
           "costs": [
-            "The team view becomes a join across files"
+            "The team view becomes a join across files",
+            "Turns the team view into a join across as many files as there are reviewers"
           ],
           "system": "Per-person file naming.",
           "screens": "None.",
@@ -6382,10 +6570,12 @@
           "k": "d",
           "label": "Leave it; resolve conflicts by hand",
           "gains": [
-            "Nothing to build"
+            "Nothing to build",
+            "Nothing to build or configure before the pilot starts"
           ],
           "costs": [
-            "A conflicted JSONL is the first thing a two-person pilot meets"
+            "A conflicted JSONL is the first thing a two-person pilot meets",
+            "A conflicted JSONL file is, per the state, the first thing a two-person pilot actually meets"
           ],
           "system": "No change.",
           "screens": "None.",
