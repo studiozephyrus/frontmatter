@@ -158,10 +158,12 @@
           "k": "a",
           "label": "Browser reads each file as you open it, with a published vault ceiling",
           "gains": [
-            "No byte reaches us while you open files"
+            "No byte reaches us while you open files",
+            "Nothing to build beyond a rate-limit warning on large vaults"
           ],
           "costs": [
-            "5,833 calls, over the 5,000 an hour limit"
+            "5,833 calls, over the 5,000 an hour limit",
+            "Still fails the exact vault size named in the tension, since 5,833 calls is already over the limit before any user opens one"
           ],
           "system": "A per-file reader in the browser.",
           "screens": "A vault-size limit on the repo picker.",
@@ -188,10 +190,12 @@
           "k": "c",
           "label": "Our server reads the tarball, as today, and we drop the claim for the web",
           "gains": [
-            "Already built, no days"
+            "Already built, no days",
+            "The safest choice against the untested zipball-redirect risk, since it changes nothing already working"
           ],
           "costs": [
-            "Spends the differentiator a rival cannot copy"
+            "Spends the differentiator a rival cannot copy",
+            "Gives a server-side rival the one sentence it needed to match us"
           ],
           "system": "No change.",
           "screens": "None.",
@@ -202,10 +206,12 @@
           "k": "d",
           "label": "No repo lane on the web at all",
           "gains": [
-            "True by construction"
+            "True by construction",
+            "Removes every rate-limit and redirect question at once, since there is no code path left to fail"
           ],
           "costs": [
-            "The web app stops being a finishable trial"
+            "The web app stops being a finishable trial",
+            "The web app then has nothing to demonstrate to a stranger who has no desktop install"
           ],
           "system": "Delete the GitHub client from the web.",
           "screens": "Drag-and-drop only.",
@@ -464,10 +470,12 @@
           "k": "a",
           "label": "Add the access days and restate the schedule",
           "gains": [
-            "Testable on day 7, not week 10"
+            "Testable on day 7, not week 10",
+            "The only option where the desktop, repo-picker and updater work in the plan actually gets built before it is tested"
           ],
           "costs": [
-            "20 to 40 days: 16 to 33 calendar weeks"
+            "20 to 40 days: 16 to 33 calendar weeks",
+            "Even the low end, 16 calendar weeks, is longer than the 10-to-12-week pilot window already named"
           ],
           "system": "Same build, later date.",
           "screens": "None.",
@@ -492,10 +500,12 @@
           "k": "c",
           "label": "The pilot is a signed desktop build, and all ten get that",
           "gains": [
-            "Tests local files and offline as designed"
+            "Tests local files and offline as designed",
+            "The only option that tests the offline claim on the surface built for it"
           ],
           "costs": [
-            "Needs a 4-to-8-week rebuild first"
+            "Needs a 4-to-8-week rebuild first",
+            "The 4-to-8-week rebuild has to land before a single stranger can be given a build"
           ],
           "system": "Bundled frontend, scoped filesystem, signing.",
           "screens": "A download and first-launch flow.",
@@ -505,10 +515,12 @@
           "k": "d",
           "label": "The pilot is an unsigned desktop build, given to ten people we warn in person",
           "gains": [
-            "Tests offline with no certificate"
+            "Tests offline with no certificate",
+            "Tests offline weeks earlier than waiting for a signed build"
           ],
           "costs": [
-            "The Gatekeeper dialog contaminates the retention signal"
+            "The Gatekeeper dialog contaminates the retention signal",
+            "Every one of the ten strangers hits the same Gatekeeper warning before they see the product"
           ],
           "system": "Same rebuild as (c), unsigned.",
           "screens": "A download link and a warning.",
@@ -702,10 +714,12 @@
           "k": "b",
           "label": "The same three, plus pull_requests:write taken at launch",
           "gains": [
-            "The flow a team reviewer wants"
+            "The flow a team reviewer wants",
+            "Gives a reviewer the one action, opening a PR, that the three-permission version cannot"
           ],
           "costs": [
-            "A fourth consent line when trust is lowest"
+            "A fourth consent line when trust is lowest",
+            "The extra line lands on the exact screen where a first-time installer is deciding whether to trust the App at all"
           ],
           "system": "A PR builder from saved edits.",
           "screens": "A review-and-open-PR step.",
@@ -716,10 +730,12 @@
           "k": "c",
           "label": "OAuth with the repo scope",
           "gains": [
-            "Fewest steps to a first file"
+            "Fewest steps to a first file",
+            "Fewer steps between a stranger clicking install and reading their first file"
           ],
           "costs": [
-            "All or nothing across every repository reachable"
+            "All or nothing across every repository reachable",
+            "One grant reaches every repository the account can see, not just the one being tried"
           ],
           "system": "One long-lived token, no installation.",
           "screens": "A sign-in screen, no install.",
@@ -730,10 +746,12 @@
           "k": "d",
           "label": "Keep the operator token through the pilot and build the App afterwards",
           "gains": [
-            "Zero build cost; the pilot starts earlier"
+            "Zero build cost; the pilot starts earlier",
+            "No installation flow to design or test before strangers are already using the product"
           ],
           "costs": [
-            "The pilot measures nothing about real repositories"
+            "The pilot measures nothing about real repositories",
+            "Every call still carries the one shared token, so the pilot never touches the flow it is meant to validate"
           ],
           "system": "No change.",
           "screens": "None.",
@@ -907,10 +925,12 @@
           "k": "a",
           "label": "Ship it on Chrome and Edge, labelled as limited before the click",
           "gains": [
-            "Zero-install access to a plain folder"
+            "Zero-install access to a plain folder",
+            "No download step for the one browser pair where it already works"
           ],
           "costs": [
-            "Two weeks the schedule has no room for"
+            "Two weeks the schedule has no room for",
+            "Ships against an assumed refusal rate with no measurement behind it, per the tension"
           ],
           "system": "A local-folder adapter for the editor.",
           "screens": "A folder picker and support line.",
@@ -937,10 +957,12 @@
           "k": "c",
           "label": "Instrument the landing page for browser mix now, decide when the number arrives",
           "gains": [
-            "Turns an assumed refusal rate into data"
+            "Turns an assumed refusal rate into data",
+            "Answers the exact open question the tension names, whether Chrome on Android really lacks support"
           ],
           "costs": [
-            "Free only if the pilot is web-on-a-repo anyway"
+            "Free only if the pilot is web-on-a-repo anyway",
+            "The instrumentation is free only under the assumption the pilot is already web-on-a-repo, itself an open decision"
           ],
           "system": "No change.",
           "screens": "None.",
@@ -951,10 +973,12 @@
           "k": "d",
           "label": "Ship it, with drag-and-drop read-only as the Firefox and Safari fallback",
           "gains": [
-            "No visible refusal on any browser"
+            "No visible refusal on any browser",
+            "No browser is left with a visible refusal screen"
           ],
           "costs": [
-            "Review state, what you have read, silently fails for them"
+            "Review state, what you have read, silently fails for them",
+            "A silent failure is worse than a visible one for review state, the feature the whole product is named after"
           ],
           "system": "A read-only session adapter as well.",
           "screens": "A drag target that cannot save.",
@@ -1228,10 +1252,12 @@
           "k": "b",
           "label": "macOS and Windows, with Windows signed through Azure Trusted Signing",
           "gains": [
-            "Cheapest measured Windows route"
+            "Cheapest measured Windows route",
+            "At 119.88 USD a year it is roughly half the OV-certificate route"
           ],
           "costs": [
-            "The signature quota is unknown, so 119.88 is a floor"
+            "The signature quota is unknown, so 119.88 is a floor",
+            "The unknown signature quota means the real annual cost cannot be quoted with confidence"
           ],
           "system": "A Windows target, a second CI path.",
           "screens": "A second download button.",
@@ -1242,10 +1268,12 @@
           "k": "c",
           "label": "macOS and Windows, with Windows signed by an OV certificate on a token",
           "gains": [
-            "No eligibility question to resolve first"
+            "No eligibility question to resolve first",
+            "No unverified pricing or quota question to resolve before committing"
           ],
           "costs": [
-            "219 USD a year, and a USB token CI cannot use"
+            "219 USD a year, and a USB token CI cannot use",
+            "A hardware token is a CI blocker on top of the 219 USD figure"
           ],
           "system": "Token-bound signing, which CI cannot automate.",
           "screens": "A second button, SmartScreen warning.",
@@ -1256,10 +1284,12 @@
           "k": "d",
           "label": "Measure the OS mix on the site for four weeks, then choose",
           "gains": [
-            "Turns the deciding number into data cheaply"
+            "Turns the deciding number into data cheaply",
+            "Turns the 89.3% macOS figure from a CI-spend proxy into a real visitor measurement"
           ],
           "costs": [
-            "Delays the desktop build by a month"
+            "Delays the desktop build by a month",
+            "A month's delay lands directly on the desktop build the pilot may depend on"
           ],
           "system": "No change.",
           "screens": "None.",
@@ -1452,10 +1482,12 @@
           "k": "a",
           "label": "Bundle the frontend, declare a scoped fs capability, set a real CSP, then sign",
           "gains": [
-            "The only version worth shipping"
+            "The only version worth shipping",
+            "The only version that closes the CSP gap and the remote-load gap at the same time"
           ],
           "costs": [
-            "The schedule shows only a one-day rename"
+            "The schedule shows only a one-day rename",
+            "Nothing in the current schedule allocates more than the one-day rename already booked"
           ],
           "system": "Bundled assets, `tauri-plugin-fs`, a real CSP.",
           "screens": "A folder picker and real offline.",
@@ -1482,10 +1514,12 @@
           "k": "c",
           "label": "Sign and notarise the shell now, so there is a download to point at",
           "gains": [
-            "A download link exists"
+            "A download link exists",
+            "Gives the desktop build a download link months sooner than the full rebuild allows"
           ],
           "costs": [
-            "Vouches for code any web deploy can change"
+            "Vouches for code any web deploy can change",
+            "Signs an artefact whose content a web deploy to md.sgnk.ai can change without re-signing"
           ],
           "system": "No shell change, only the pipeline.",
           "screens": "A download page for something broken.",
@@ -1496,10 +1530,12 @@
           "k": "d",
           "label": "Drop the desktop build from the pilot entirely",
           "gains": [
-            "Consistent with a web-first pilot"
+            "Consistent with a web-first pilot",
+            "Removes the CSP, filesystem-permission and signing questions from the pilot at once"
           ],
           "costs": [
-            "Removes offline and local folders this year"
+            "Removes offline and local folders this year",
+            "Offline and local folders, the two claims the desktop build exists to prove, get no evidence this year"
           ],
           "system": "No change.",
           "screens": "None.",
@@ -1662,10 +1698,12 @@
           "k": "a",
           "label": "Rename now to the final product name",
           "gains": [
-            "Simplest to explain, no indirection"
+            "Simplest to explain, no indirection",
+            "One rename instead of the two-step indirection option b proposes"
           ],
           "costs": [
-            "If the name moves post-release, so does the identifier"
+            "If the name moves post-release, so does the identifier",
+            "Ties the bundle identifier to a name that is not yet finally decided, per the tension"
           ],
           "system": "New identifier, package and product name.",
           "screens": "Window title and About panel.",
@@ -1680,7 +1718,8 @@
             "Costs the same one day already budgeted"
           ],
           "costs": [
-            "A small indirection between bundle and brand"
+            "A small indirection between bundle and brand",
+            "Still needs the display name settled separately later, so the naming work is not fully done today"
           ],
           "system": "New identifier; display name set separately.",
           "screens": "Window title and About panel.",
@@ -1690,10 +1729,12 @@
           "k": "c",
           "label": "Leave it until the name decision lands",
           "gains": [
-            "No chance of renaming twice"
+            "No chance of renaming twice",
+            "Avoids the exact double-rename risk the state's own tension names"
           ],
           "costs": [
-            "Risk of a signed build shipping as sgnk-md"
+            "Risk of a signed build shipping as sgnk-md",
+            "Every day it stays as ai.sgnk.md is a day a signed build could ship under the sibling's identity"
           ],
           "system": "No change.",
           "screens": "None.",
@@ -1703,10 +1744,12 @@
           "k": "d",
           "label": "Keep ai.sgnk.md and ship under the sibling's name",
           "gains": [
-            "No work at all"
+            "No work at all",
+            "The only option needing literally no engineering time before a signed build"
           ],
           "costs": [
-            "Installing one app collides with the other"
+            "Installing one app collides with the other",
+            "Two installed apps sharing one identifier is the exact collision the state describes"
           ],
           "system": "No change.",
           "screens": "None.",
@@ -1908,10 +1951,12 @@
           "k": "b",
           "label": "Ship the updater against a Worker-backed endpoint from the first public build",
           "gains": [
-            "Rollback exists the first time it is needed"
+            "Rollback exists the first time it is needed",
+            "The only design in this set that can push a fix without asking every user to redownload"
           ],
           "costs": [
-            "Creates a credential whose loss strands every user"
+            "Creates a credential whose loss strands every user",
+            "A lost signing key becomes a permanent liability the moment this ships"
           ],
           "system": "Updater plugin, signing key, a Worker.",
           "screens": "An update prompt and restart.",
@@ -1922,10 +1967,12 @@
           "k": "c",
           "label": "Ship the updater against a static JSON manifest on R2",
           "gains": [
-            "Nothing to operate, and free"
+            "Nothing to operate, and free",
+            "Nothing to run or pay for beyond the file already sitting on R2"
           ],
           "costs": [
-            "No rollback: the client refuses a lower version"
+            "No rollback: the client refuses a lower version",
+            "The compiled-in no-downgrade rule means a bad release cannot be rolled back for anyone"
           ],
           "system": "Updater plugin, signing key, one file.",
           "screens": "An update prompt and restart.",
@@ -1936,10 +1983,12 @@
           "k": "d",
           "label": "Static now, a Worker later",
           "gains": [
-            "Reads as the prudent middle"
+            "Reads as the prudent middle",
+            "Ships something before the Worker exists, rather than waiting on infrastructure that is not built"
           ],
           "costs": [
-            "The no-downgrade rule is compiled in, so the later switch reaches nobody"
+            "The no-downgrade rule is compiled in, so the later switch reaches nobody",
+            "The no-downgrade rule is compiled into the static client, so the later Worker switch cannot reach anyone already on it"
           ],
           "system": "Same as (c), plus a missing migration.",
           "screens": "Same as (c).",
@@ -2116,10 +2165,12 @@
           "k": "a",
           "label": "Build real offline reading: N most-recent files plus pins, in IndexedDB",
           "gains": [
-            "Makes the published claim true"
+            "Makes the published claim true",
+            "The only option where the plan's published claim and the code agree"
           ],
           "costs": [
-            "Days the schedule does not have"
+            "Days the schedule does not have",
+            "An earlier round already refused a half-working offline mode in writing, which this risks becoming if the days run out"
           ],
           "system": "An IndexedDB cache with pins and eviction.",
           "screens": "A per-file offline toggle.",
@@ -2146,10 +2197,12 @@
           "k": "c",
           "label": "Keep the shell-offline page and fix its copy",
           "gains": [
-            "Nearly free; the page already exists"
+            "Nearly free; the page already exists",
+            "Cheapest possible change, since the page already exists and only its wording is wrong"
           ],
           "costs": [
-            "The user still cannot read anything"
+            "The user still cannot read anything",
+            "Fixing the copy does not give the user a single file to read while offline"
           ],
           "system": "Edit the service worker.",
           "screens": "The offline page.",
@@ -2160,10 +2213,12 @@
           "k": "d",
           "label": "Leave the table as written and revisit after the pilot",
           "gains": [
-            "No work"
+            "No work",
+            "No engineering time spent before the pilot decides whether offline reading matters at all"
           ],
           "costs": [
-            "The plan keeps publishing a capability that is absent"
+            "The plan keeps publishing a capability that is absent",
+            "The plan keeps telling readers the web app does something it currently cannot do"
           ],
           "system": "No change.",
           "screens": "None.",
@@ -2407,10 +2462,12 @@
           "k": "b",
           "label": "localStorage on the web, with the blast radius documented",
           "gains": [
-            "No friction after the first entry"
+            "No friction after the first entry",
+            "The user types the key exactly once, ever"
           ],
           "costs": [
-            "A bearer credential inside an untrusted-markdown renderer"
+            "A bearer credential inside an untrusted-markdown renderer",
+            "Sits the key inside the same renderer the provider-keys research already refused, because it renders untrusted markdown"
           ],
           "system": "A browser store the security model forbids.",
           "screens": "A key field and a warning.",
@@ -2421,10 +2478,12 @@
           "k": "c",
           "label": "No AI on the web at all: a desktop feature, keyed from the OS keychain",
           "gains": [
-            "The cleanest custody story"
+            "The cleanest custody story",
+            "Matches the same custody line already drawn for the desktop keychain design"
           ],
           "costs": [
-            "Weakens the web app, which is the trial"
+            "Weakens the web app, which is the trial",
+            "The web app loses the one feature most likely to be the first thing a stranger tries"
           ],
           "system": "Remove the AI path from web.",
           "screens": "No AI panel on the web.",
@@ -2435,10 +2494,12 @@
           "k": "d",
           "label": "Bundle a small local model so desktop AI needs no key and no network",
           "gains": [
-            "Closes the offline-AI gap every design leaves"
+            "Closes the offline-AI gap every design leaves",
+            "Works with no network at all, which no other option in this set offers"
           ],
           "costs": [
-            "Small models fabricate, which breaks the refuse-not-guess promise"
+            "Small models fabricate, which breaks the refuse-not-guess promise",
+            "Fabrication risk is exactly what the refuse-not-guess promise exists to rule out"
           ],
           "system": "A bundled runtime and weights.",
           "screens": "A model picker with a local option.",
@@ -2633,10 +2694,12 @@
           "label": "Keep it and amend the claim to name the exception",
           "what": "The claim becomes zero document bytes except a PDF you export.",
           "gains": [
-            "Keeps the better PDF output"
+            "Keeps the better PDF output",
+            "No rendering code changes, only the sentence describing it"
           ],
           "costs": [
-            "Any competitor can quote the exception"
+            "Any competitor can quote the exception",
+            "The exact wording a competitor would quote back is now written down as fact"
           ],
           "system": "No code change, one architecture edit.",
           "screens": "None.",
@@ -2646,10 +2709,12 @@
           "k": "c",
           "label": "Keep it for the web and build a native PDF path on desktop",
           "gains": [
-            "Best output on both surfaces"
+            "Best output on both surfaces",
+            "Web keeps its current output quality while desktop gets a real native renderer"
           ],
           "costs": [
-            "Two renderers to keep byte-identical"
+            "Two renderers to keep byte-identical",
+            "Two renderers now have to be kept byte-identical, the same burden already flagged elsewhere for exports"
           ],
           "system": "A second renderer inside Tauri.",
           "screens": "None visible.",
@@ -2660,10 +2725,12 @@
           "k": "d",
           "label": "Keep it and say nothing",
           "gains": [
-            "No work; the better output stays"
+            "No work; the better output stays",
+            "No engineering or writing time spent on it before the pilot"
           ],
           "costs": [
-            "The first security review finds it"
+            "The first security review finds it",
+            "Leaves the exact defect ExportMenu.tsx:108 and :114 describe sitting unaddressed"
           ],
           "system": "No change.",
           "screens": "None.",
@@ -2875,10 +2942,12 @@
           "k": "b",
           "label": "Server full-text search, and accept document text on our infrastructure",
           "gains": [
-            "Best search quality, and it fixes CJK recall"
+            "Best search quality, and it fixes CJK recall",
+            "The only option in this set that actually fixes the named 18.1% CJK recall figure"
           ],
           "costs": [
-            "Breaks the no-bytes claim on every search"
+            "Breaks the no-bytes claim on every search",
+            "Document text then sits on our infrastructure on every single search, not just the ones that need it"
           ],
           "system": "An index tier, and a rewritten claim.",
           "screens": "None visible.",
@@ -2888,10 +2957,12 @@
           "k": "c",
           "label": "Full-text search is a desktop feature; the web searches names and headings",
           "gains": [
-            "No text on our servers"
+            "No text on our servers",
+            "No document text ever reaches our servers under this design"
           ],
           "costs": [
-            "The web loses a capability it has today"
+            "The web loses a capability it has today",
+            "The web app loses a capability the plan currently claims it has"
           ],
           "system": "A local index on desktop only.",
           "screens": "A reduced search, labelled.",
@@ -2901,10 +2972,12 @@
           "k": "d",
           "label": "Stop shipping the snapshot first, then decide the tier",
           "gains": [
-            "Fixes the 16.4x overrun without deciding"
+            "Fixes the 16.4x overrun without deciding",
+            "Fixes the 16.4x body-size overrun immediately, without waiting on the tier decision"
           ],
           "costs": [
-            "Leaves two documents contradicting each other"
+            "Leaves two documents contradicting each other",
+            "The plan and the 8 September draft keep contradicting each other on which tier is correct"
           ],
           "system": "Serve the file tree; fetch contents on demand.",
           "screens": "None.",
@@ -3081,10 +3154,12 @@
           "k": "a",
           "label": "Keep it in the repo, batched to one commit a week",
           "gains": [
-            "The user owns the file"
+            "The user owns the file",
+            "Matches the file-ownership model the rest of the product is built around"
           ],
           "costs": [
-            "Still impossible with drag-and-drop or Firefox"
+            "Still impossible with drag-and-drop or Firefox",
+            "Still cannot exist at all for anyone using drag-and-drop or Firefox, per the tension"
           ],
           "system": "A weekly commit through the GitHub client.",
           "screens": "None.",
@@ -3111,10 +3186,12 @@
           "k": "c",
           "label": "Drop the file and use the day-14 question the draft already proposes",
           "gains": [
-            "Zero build, works everywhere"
+            "Zero build, works everywhere",
+            "The only option that needs no code and works on every access path without exception"
           ],
           "costs": [
-            "Self-reported, which the measure existed to avoid"
+            "Self-reported, which the measure existed to avoid",
+            "Self-reported answers are exactly what the daily-usage measure was designed to avoid"
           ],
           "system": "No change.",
           "screens": "None.",
@@ -3125,10 +3202,12 @@
           "k": "d",
           "label": "Opt-in upload of the daily line to the control plane, off by default",
           "gains": [
-            "The only reliable count"
+            "The only reliable count",
+            "The only design that produces one reliable count instead of a per-surface patchwork"
           ],
           "costs": [
-            "Makes counts personal data keyed to an account"
+            "Makes counts personal data keyed to an account",
+            "Turns a simple usage count into personal data keyed to an account, which needs its own notice"
           ],
           "system": "An endpoint and a consent record.",
           "screens": "A consent toggle in settings.",
@@ -3296,10 +3375,12 @@
           "k": "b",
           "label": "Direct download now, with security-scoped bookmarks designed in from the start",
           "gains": [
-            "Bookmarks are cheaper designed in than retrofitted"
+            "Bookmarks are cheaper designed in than retrofitted",
+            "Solves the exact problem the tension names, holding a folder open across launches, before it has to be retrofitted"
           ],
           "costs": [
-            "More code in the part that must not be wrong"
+            "More code in the part that must not be wrong",
+            "Adds more code to the one part of the app, file access, that must not be wrong"
           ],
           "system": "A bookmark store in the file layer.",
           "screens": "None visible.",
@@ -3310,10 +3391,12 @@
           "k": "c",
           "label": "Ship to the Mac App Store in v1",
           "gains": [
-            "Store discovery and Apple-handled payments"
+            "Store discovery and Apple-handled payments",
+            "Apple handles discovery and payment collection instead of building either ourselves"
           ],
           "costs": [
-            "The sandbox restricts our core: file access"
+            "The sandbox restricts our core: file access",
+            "App Sandbox restricts exactly the capability the product exists to provide"
           ],
           "system": "A store config, universal build, bookmarks.",
           "screens": "A store listing and folder grant.",
@@ -3324,10 +3407,12 @@
           "k": "d",
           "label": "Leave it undecided",
           "gains": [
-            "No channel ruled out"
+            "No channel ruled out",
+            "Commits to nothing while the store-discovery question in the tension remains unquantified"
           ],
           "costs": [
-            "Reopening later means rebuilding file access"
+            "Reopening later means rebuilding file access",
+            "File access has to be rebuilt if the sandbox route is chosen later, since it is not designed in from the start"
           ],
           "system": "No change.",
           "screens": "None.",
@@ -3416,10 +3501,12 @@
           "k": "a",
           "label": "One commit per review action",
           "gains": [
-            "Durable the moment it is made"
+            "Durable the moment it is made",
+            "The simplest rule to implement: write on every mark, nothing to batch or hold"
           ],
           "costs": [
-            "Their history fills with commits they did not make"
+            "Their history fills with commits they did not make",
+            "Runs straight into the same 5,000-an-hour limit the reads already compete for, per the tension"
           ],
           "system": "A commit per interaction through the client.",
           "screens": "None, until they read git log.",
@@ -3446,10 +3533,12 @@
           "k": "c",
           "label": "Write to a separate branch, never to the working branch",
           "gains": [
-            "The user's branch history is untouched"
+            "The user's branch history is untouched",
+            "Never touches the branch the user is actually working on"
           ],
           "costs": [
-            "A fresh clone without the branch shows nothing"
+            "A fresh clone without the branch shows nothing",
+            "A fresh clone of the working branch alone shows no review history at all"
           ],
           "system": "A review-file branch and a merge policy.",
           "screens": "None, unless a conflict surfaces.",
@@ -3460,10 +3549,12 @@
           "k": "d",
           "label": "Keep web review state in the browser, and write the file only on desktop",
           "gains": [
-            "No repository writes on the trial surface"
+            "No repository writes on the trial surface",
+            "No new write traffic against the repository from the web surface at all"
           ],
           "costs": [
-            "Not durable across machines, the surviving claim"
+            "Not durable across machines, the surviving claim",
+            "Review marks made on the web vanish the moment the browser's storage is cleared"
           ],
           "system": "A browser store with no git path.",
           "screens": "Marks are local to this browser.",
@@ -3761,7 +3852,8 @@
           "k": "d",
           "label": "No offline mode. The web app is the product",
           "gains": [
-            "One runtime to build, test and support"
+            "One runtime to build, test and support",
+            "One runtime to build, test and support, rather than three converging designs"
           ],
           "costs": [
             "Gives up the clearest differentiator found in the research",
@@ -3883,7 +3975,8 @@
           "k": "b",
           "label": "Read and write, on the top tier, as the direction proposes",
           "gains": [
-            "The agent loop closes inside our product"
+            "The agent loop closes inside our product",
+            "Closes the loop competitors like Claude Code and Cursor already close, per the state"
           ],
           "costs": [
             "Reopens every duty in `L1` at the moment of the first write",
