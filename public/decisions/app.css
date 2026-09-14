@@ -289,8 +289,12 @@ table.d td:not(:first-child){font-variant-numeric:tabular-nums}
   color:#fff;background:var(--accent);padding:3px 7px;border-radius:4px;font-weight:600}
 .opt.on .rectag{background:var(--good)}
 
+/* max-width:66ch belongs on running prose, not on the tinted box that holds it: the box
+   stopped at 594px on a 934px-wide card, well short of the note field below it and every
+   other section on the card. The reasoning paragraph inside already has its own measure
+   (.recwhyb, 68ch); the box around it should match the rest of the card. */
 .reccase{background:var(--wash);border-radius:11px;padding:16px 18px;margin:0 0 24px;
-  font-size:14px;color:var(--ink-2);line-height:1.6;max-width:66ch}
+  font-size:14px;color:var(--ink-2);line-height:1.6}
 .reccase .rh{display:flex;align-items:center;gap:8px;margin-bottom:7px;
   font-family:var(--display);font-weight:600;font-size:13.5px;color:var(--accent-ink)}
 .note{width:100%;min-height:76px;padding:13px 15px;background:var(--sunk);color:var(--ink);

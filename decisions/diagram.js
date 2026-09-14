@@ -284,7 +284,16 @@
     var y = PAD + headH;
     rowsN.forEach(function (r, ri) {
       out += txt(PAD, y + 18, r.label, { size: 11.5, weight: 600, fill: 'var(--ink-2)' });
-      if (ri) out += '<line x1="' + (PAD + labW) + '" y1="' + y + '" x2="' + (W - PAD) + '" y2="' + y + '" stroke="var(--line)"/>';
+      /* One line used to run the full canvas width, crossing every column's own rounded
+         border and continuing 7px past the last column into open margin. Each column is
+         its own bordered box, so its row dividers belong inside that box: drawn per
+         column, inset a pixel from its own edges, never touching a corner or a border
+         it does not belong to. */
+      if (ri) cols.forEach(function (c, ci) {
+        var lx = PAD + labW + gap / 2 + ci * (cw + gap);
+        out += '<line x1="' + (lx + 1) + '" y1="' + y + '" x2="' + (lx + cw - 1) + '" y2="' + y +
+          '" stroke="var(--line)" stroke-opacity="0.6"/>';
+      });
       cols.forEach(function (c, ci) {
         var x = PAD + labW + gap / 2 + ci * (cw + gap);
         var cell = (r.cells || [])[ci];

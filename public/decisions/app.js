@@ -447,8 +447,8 @@
         (o.what ? '<span class="ow">' + md(o.what) + '</span>' : '') +
         (o.impact && !o.gains && !o.costs ? '<span class="oi">' + md(o.impact) + '</span>' : '') +
         (med && (o.gains || o.costs) ? '<span class="gc">' +
-          '<span class="gcc gain"><span class="gch">What it buys</span>' + bullets(o.gains, 'bl tight') + '</span>' +
-          '<span class="gcc cost"><span class="gch">What it costs</span>' + bullets(o.costs, 'bl tight') + '</span></span>' : '') +
+          '<span class="gcc gain"><span class="gch">Gains</span>' + bullets(o.gains, 'bl tight') + '</span>' +
+          '<span class="gcc cost"><span class="gch">Costs</span>' + bullets(o.costs, 'bl tight') + '</span></span>' : '') +
         (med && meta.length ? '<span class="ometa">' + meta.map(function (m) {
           return '<span class="om"><b>' + m[0] + '</b> ' + md(m[1]) + '</span>';
         }).join('') + '</span>' : '') +
