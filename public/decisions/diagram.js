@@ -204,11 +204,24 @@
      between each. Used wherever a decision is really about a lifecycle. */
   function state(v) {
     var st = v.states || [];
-    var gap = Math.max(34, Math.min(78, 12 + 6.2 * Math.max.apply(null,
-      st.map(function (s) { return (s.via || '').length; }).concat([0]))));
+    /* The gap sizing formula scaled with via-label length but capped at 78px, which
+       fit "one slip" and clipped anything past about eleven characters: "installed
+       users unreachable, per install" is 33. Wrap long ones onto a second line, the
+       same treatment ba() gets, instead of letting the cap defeat its own purpose. */
+    var hasVia = st.some(function (s) { return !!s.via; });
+    var gap = hasVia ? 98 : 34;
     var bw = (W - PAD * 2 - gap * (st.length - 1)) / st.length;
     var bh = 62;
-    var h = PAD + bh + 46 + PAD + (v.note ? 22 : 0);
+    /* The caption under each box was one unwrapped line, so "installed users
+       unreachable, permanently" (41 characters) rendered across a box as narrow as
+       109px on a four-state diagram, running the caption into the neighbouring
+       boxes on both sides. Wrapped at the box width plus a little bleed into the
+       gaps either side, and the diagram's own height grows to fit whichever
+       caption ends up tallest. */
+    var metaW = bw + Math.min(20, gap * 0.4);
+    var metaLines = st.map(function (s) { return s.meta ? wrap(s.meta, metaW, 10.5) : []; });
+    var maxMeta = Math.max.apply(null, metaLines.map(function (l) { return l.length; }).concat([0]));
+    var h = PAD + bh + 20 + Math.max(1, maxMeta) * 13 + PAD + (v.note ? 22 : 0);
     var out = '';
     st.forEach(function (s, i) {
       var x = PAD + i * (bw + gap);
@@ -218,12 +231,19 @@
       out += block(x + bw / 2, PAD + (bh / 2) - (ll.length - 1) * 8 + 4, bw, ll, {
         size: 12.5, weight: 600, anchor: 'middle', fill: t.ink,
       });
-      if (s.meta) out += txt(x + bw / 2, PAD + bh + 17, s.meta, { size: 10.5, anchor: 'middle', fill: 'var(--ink-4)', mono: true });
+      metaLines[i].forEach(function (line, li) {
+        out += txt(x + bw / 2, PAD + bh + 17 + li * 13, line, { size: 10.5, anchor: 'middle', fill: 'var(--ink-4)', mono: true });
+      });
       if (i < st.length - 1) {
         var my = PAD + bh / 2;
         out += '<line x1="' + (x + bw + 5) + '" y1="' + my + '" x2="' + (x + bw + gap - 7) + '" y2="' + my +
           '" stroke="var(--ink-4)" stroke-width="1.4" marker-end="url(#dgar)"/>';
-        if (s.via) out += txt(x + bw + gap / 2, my - 13, s.via, { size: 9.5, anchor: 'middle', fill: 'var(--ink-4)', mono: true });
+        if (s.via) {
+          var viaLines = wrap(s.via, gap - 16, 9.5);
+          viaLines.slice().reverse().forEach(function (line, li) {
+            out += txt(x + bw + gap / 2, my - 13 - li * 11, line, { size: 9.5, anchor: 'middle', fill: 'var(--ink-4)', mono: true });
+          });
+        }
       }
     });
     if (v.note) out += txt(PAD, h - 6, v.note, { size: 11.5, fill: 'var(--ink-3)' });
@@ -281,13 +301,34 @@
   /* ── ba — before and after ───────────────────────────────────────────────
      Two panels, the change between them named in the middle. */
   function ba(v) {
-    var gap = 54;
+    /* The via label sits centred in the gutter between the two boxes. A flat 54px gutter
+       fit "one edit" and overflowed into both boxes for anything longer, which was 16 of
+       the 18 cards using this primitive: "register to the company, never to a person" at
+       54px wide needed nearly five times that. Wrap it like prose, at a size that keeps
+       the boxes from shrinking too far, and widen the gutter only to what the wrapped
+       label actually needs. */
+    var viaLines = v.via ? wrap(v.via, 132, 10) : [];
+    var viaW = viaLines.length ? Math.max.apply(null, viaLines.map(function (l) { return l.length * 10 * 0.56; })) : 0;
+    var gap = Math.max(54, viaW + 20);
     var cw = (W - PAD * 2 - gap) / 2;
     var sides = [v.before || {}, v.after || {}];
-    var maxLines = Math.max(
-      (sides[0].lines || []).length, (sides[1].lines || []).length
-    );
-    var bh = 42 + maxLines * 24 + 14;
+    /* Each line was one txt() call at a fixed 24px step, never wrapped, so a genuinely
+       long line ("Outbound to people who signed up for another product", 54 characters)
+       ran past its own box and off the whole diagram. Wrapped here at the box's actual
+       width, with a running cursor per side so a wrapped entry takes the extra rows it
+       needs and a plain short entry still gets the original 24px row. */
+    var wrapped = sides.map(function (s) {
+      var y = 0, entries = [];
+      (s.lines || []).forEach(function (l) {
+        var text = typeof l === 'string' ? l : l.t;
+        var sub = wrap(text, cw - 38, 11.5);
+        entries.push({ l: l, sub: sub, y0: y });
+        y += Math.max(24, 10 + sub.length * 15);
+      });
+      return { entries: entries, total: y };
+    });
+    var maxTotal = Math.max.apply(null, wrapped.map(function (w) { return w.total; }).concat([0]));
+    var bh = 42 + maxTotal + 14;
     var h = PAD + bh + PAD + (v.note ? 24 : 0);
     var out = '';
     sides.forEach(function (s, i) {
@@ -297,18 +338,26 @@
       out += txt(x + 13, PAD + 21, (s.title || (i ? 'After' : 'Before')).toUpperCase(), {
         size: 9.5, ls: '.09em', fill: t.ink, weight: 700, mono: true,
       });
-      (s.lines || []).forEach(function (l, li) {
-        var ly = PAD + 42 + li * 24;
+      wrapped[i].entries.forEach(function (e) {
+        var l = e.l, ly = PAD + 42 + e.y0;
         out += '<circle cx="' + (x + 18) + '" cy="' + (ly + 6) + '" r="2.6" fill="' + (l.mark ? t.stroke : 'var(--ink-4)') + '"/>';
-        out += txt(x + 28, ly + 10, typeof l === 'string' ? l : l.t, {
-          size: 11.5, fill: (l.mark ? t.ink : 'var(--ink-2)'), weight: l.mark ? 600 : 400,
+        e.sub.forEach(function (subline, si) {
+          out += txt(x + 28, ly + 10 + si * 15, subline, {
+            size: 11.5, fill: (l.mark ? t.ink : 'var(--ink-2)'), weight: l.mark ? 600 : 400,
+          });
         });
       });
     });
     var mx = PAD + cw + gap / 2;
     out += '<line x1="' + (PAD + cw + 8) + '" y1="' + (PAD + bh / 2) + '" x2="' + (PAD + cw + gap - 10) + '" y2="' + (PAD + bh / 2) +
       '" stroke="var(--accent)" stroke-width="1.5" marker-end="url(#dgar-a)"/>';
-    if (v.via) out += txt(mx, PAD + bh / 2 - 12, v.via, { size: 10, anchor: 'middle', fill: 'var(--accent)', mono: true });
+    if (viaLines.length) {
+      /* Stack from the arrow upward so a wrapped label still reads top-to-bottom and the
+         line nearest the arrow keeps the same 12px clearance a single-line label had. */
+      viaLines.slice().reverse().forEach(function (line, i) {
+        out += txt(mx, PAD + bh / 2 - 12 - i * 13, line, { size: 10, anchor: 'middle', fill: 'var(--accent)', mono: true });
+      });
+    }
     if (v.note) out += txt(PAD, h - 6, v.note, { size: 11.5, fill: 'var(--ink-3)' });
     return svg(h, out, v.caption);
   }
@@ -342,7 +391,13 @@
     var it = v.items || [];
     var rowH = 46;
     var h = PAD + it.length * rowH + PAD + (v.note ? 22 : 0);
-    var lx = PAD + 96;
+    /* The date column was a flat 96px, right-anchored, so a longer date like
+       "Record's week 12" (matching this plan's own kill-switch names, not just
+       ISO dates) ran off the left edge of the whole diagram. Widened only when a
+       date in this timeline actually needs it. */
+    var lx = PAD + Math.max(96, Math.max.apply(null, it.map(function (e) {
+      return String(e.when || '').length * 11 * 0.56 + 16;
+    }).concat([0])));
     var out = '<line x1="' + lx + '" y1="' + (PAD + 8) + '" x2="' + lx + '" y2="' + (PAD + it.length * rowH - 18) + '" stroke="var(--line-2)" stroke-width="1.5"/>';
     it.forEach(function (e, i) {
       var y = PAD + i * rowH + 14;
@@ -359,16 +414,29 @@
   /* ── matrix — a 2x2 with the field on it ─────────────────────────────────
      x and y are 0..1. `us` marks where frontmatter would sit. */
   function matrix(v) {
-    var size = 300, ox = PAD + 108, oy = PAD + 14;
+    /* Both left-pole labels rendered as one unwrapped line, right-anchored at a fixed
+       x. Built for a single word like "Low"; "the job is somebody else's" is 27
+       characters and ran clean off the left edge of the diagram. Reserve the margin
+       from what the two pole labels actually need, and let each wrap onto its own
+       stacked lines instead of guessing they will always be short. */
+    var poleWrapW = 128;
+    var y0lines = wrap((v.y || [])[0] || '', poleWrapW, 11);
+    var x0lines = wrap((v.x || [])[0] || '', poleWrapW, 11);
+    var neededPoleW = Math.max.apply(null, y0lines.concat(x0lines)
+      .map(function (l) { return l.length * 11 * 0.56; }).concat([0]));
+    var size = 300, ox = Math.max(PAD + 108, PAD + neededPoleW + 24), oy = PAD + 14;
     var h = oy + size + 46 + (v.note ? 20 : 0);
     var out = '';
     out += rect(ox, oy, size, size, { r: 8, fill: 'var(--sunk)', stroke: 'var(--line)' });
     out += '<line x1="' + (ox + size / 2) + '" y1="' + oy + '" x2="' + (ox + size / 2) + '" y2="' + (oy + size) + '" stroke="var(--line-2)" stroke-dasharray="3 3"/>';
     out += '<line x1="' + ox + '" y1="' + (oy + size / 2) + '" x2="' + (ox + size) + '" y2="' + (oy + size / 2) + '" stroke="var(--line-2)" stroke-dasharray="3 3"/>';
-    out += txt(ox + size / 2, oy + size + 22, (v.x || [])[1] || '', { size: 11, anchor: 'middle', fill: 'var(--ink-3)' });
-    out += txt(ox + size / 2, oy - 4, (v.y || [])[1] || '', { size: 11, anchor: 'middle', fill: 'var(--ink-3)' });
-    out += txt(ox - 10, oy + size / 2, (v.y || [])[0] || '', { size: 11, anchor: 'end', fill: 'var(--ink-3)' });
-    out += txt(ox - 10, oy + size / 2 + 15, (v.x || [])[0] || '', { size: 11, anchor: 'end', fill: 'var(--ink-4)' });
+    out += block(ox + size / 2, oy + size + 22, size, wrap((v.x || [])[1] || '', size - 10, 11), { size: 11, anchor: 'middle', fill: 'var(--ink-3)' });
+    out += block(ox + size / 2, oy - 4 - (wrap((v.y || [])[1] || '', size - 10, 11).length - 1) * 13, size,
+      wrap((v.y || [])[1] || '', size - 10, 11), { size: 11, anchor: 'middle', fill: 'var(--ink-3)' });
+    var curY = oy + size / 2 - (y0lines.length - 1) * 6.5;
+    y0lines.forEach(function (line, li) { out += txt(ox - 10, curY + li * 13, line, { size: 11, anchor: 'end', fill: 'var(--ink-3)' }); });
+    curY = curY + (y0lines.length - 1) * 13 + 15;
+    x0lines.forEach(function (line, li) { out += txt(ox - 10, curY + li * 13, line, { size: 11, anchor: 'end', fill: 'var(--ink-4)' }); });
 
     (v.points || []).forEach(function (p) {
       var px = ox + p.x * size, py = oy + (1 - p.y) * size;
@@ -422,10 +490,19 @@
     var rowH = 44;
     var h = PAD + st.length * rowH + PAD + (v.note ? 22 : 0);
     var labW = 250;
+    /* The value text sits after the bar, so its reserved space has to fit the widest
+       value in this funnel, not a flat guess. A flat 70px clipped every funnel whose
+       top step ran six digits with a unit ("500274 sessions"): the full-width bar left
+       only 10px before text that needed over 100. Sized here from the same per-character
+       estimate wrap() uses for prose, at the actual mono/bold size this text renders in. */
+    var maxChars = Math.max.apply(null, st.map(function (s) {
+      return String(s.n + (s.unit ? ' ' + s.unit : '')).length;
+    }).concat([1]));
+    var valW = Math.ceil(maxChars * 12.5 * 0.62) + 10;
     var out = '';
     st.forEach(function (s, i) {
       var y = PAD + i * rowH;
-      var bw = Math.max(3, (Math.abs(s.n) / max) * (W - PAD * 2 - labW - 70));
+      var bw = Math.max(3, (Math.abs(s.n) / max) * (W - PAD * 2 - labW - valW));
       var t = tone(s.tone || (i === st.length - 1 ? 'stop' : 'sunk'));
       out += block(PAD, y + 17, labW, wrap(s.label, labW - 8, 11.5), { size: 11.5, fill: 'var(--ink-2)' });
       out += rect(PAD + labW, y + 6, bw, 24, { r: 4, fill: t.fill, stroke: t.stroke });

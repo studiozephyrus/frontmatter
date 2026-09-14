@@ -20,8 +20,16 @@
   var view = { mode: 'overview', id: null, cat: null, filter: '' };
 
   function load() {
-    try { var st = JSON.parse(localStorage.getItem(KEY)) || {}; st.picks = st.picks || {}; st.notes = st.notes || {}; st.final = st.final || {}; return st; }
-    catch (e) { return { picks: {}, notes: {}, final: {} }; }
+    try {
+      var st = JSON.parse(localStorage.getItem(KEY)) || {};
+      st.picks = st.picks || {}; st.notes = st.notes || {}; st.final = st.final || {};
+      /* How much of each card is showing: 'low', 'med' or 'high'. Absent means low, so
+         nothing in localStorage from before this existed has to migrate. */
+      st.detail = st.detail || {};
+      st.detailDefault = st.detailDefault || 'low';
+      return st;
+    }
+    catch (e) { return { picks: {}, notes: {}, final: {}, detail: {} }; }
   }
   function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
 
@@ -181,7 +189,13 @@
           (it[2] ? '<span class="sn">' + md(it[2]) + '</span>' : '') + '</div>';
       }).join('');
     } else if (b.type === 'bars' && b.data) {
-      var max = Math.max.apply(null, b.data.map(function (d) { return Math.abs(Number(d[1])) || 0; })) || 1;
+      /* The axis has to include the threshold, not just the data: D1's exhibit measures
+         six washes against a 3:1 floor and every one fails it, so a scale fit only to the
+         data (max 1.333) put the marker at left:225%, off the track and off the card.
+         Scaling to whichever is larger keeps the marker on the same 0-100% line the bars
+         are on, which is also the honest picture: the floor sits visibly out of reach. */
+      var max = Math.max.apply(null, b.data.map(function (d) { return Math.abs(Number(d[1])) || 0; })
+        .concat([b.threshold != null ? Math.abs(Number(b.threshold)) || 0 : 0])) || 1;
       h += b.data.map(function (d) {
         var v = Number(d[1]) || 0, w = (Math.abs(v) / max) * 100;
         var thr = b.threshold != null ? (Math.abs(b.threshold) / max) * 100 : null;
@@ -249,8 +263,11 @@
     var up = nextUnanswered(currentIdx);
 
     var h = '<div class="rsec ring-sec">' +
+      /* The two numbers share a baseline, so they need a box of their own: baseline
+         alignment on the ring itself pinned the pair to the top of the circle. */
       '<div class="ring" style="--p:' + (t ? done / t : 0) + '">' +
-        '<span class="rnum">' + done + '</span><span class="rden">/ ' + t + '</span></div>' +
+        '<span class="rval"><span class="rnum">' + done + '</span>' +
+        '<span class="rden">/ ' + t + '</span></span></div>' +
       '<p class="rlab">' + (t - done) + ' left to answer</p>' +
       (up ? '<button class="rbtn" data-q="' + esc(up.id) + '">Go to next unanswered</button>'
           : '<p class="rdone">All answered. Export it.</p>') +
@@ -308,11 +325,20 @@
       arr.map(function (b) { return '<li>' + md(b) + '</li>'; }).join('') + '</ul>';
   }
 
+  var DETAIL = { low: 'Low', med: 'Medium', high: 'High' };
   function renderQ(q) {
     var idx = Q.indexOf(q), prev = Q[idx - 1], next = Q[idx + 1], pick = state.picks[q.id];
     var wc = q.weight === 'critical' ? 'crit' : q.weight === 'high' ? 'high' : '';
     var inCat = Q.filter(function (x) { return x.cat === q.cat; });
     var catIdx = inCat.indexOf(q) + 1;
+    /* Three levels of the same card, not three different cards: low is the question, the
+       diagram and the options with one line each, enough to answer from. Medium adds the
+       state/tension the question sits in, the option-by-option cost and the case for the
+       recommendation. High adds the exhibits and the reasoning in full. Nothing here is
+       ever hidden for good \u2014 a reader who wants more clicks once and every later card
+       opens at that level, because re-choosing it 203 times is not a real option. */
+    var lvl = state.detail[q.id] || state.detailDefault || 'low';
+    var med = lvl === 'med' || lvl === 'high', high = lvl === 'high';
     var h = '';
 
     h += '<div class="card-q w-' + esc(q.weight || 'medium') + '">';
@@ -322,7 +348,12 @@
       '<span class="pill">' + esc(q.cat) + (q.sub ? ' \u00b7 ' + esc(q.sub) : '') + '</span>' +
       (q.weight && q.weight !== 'medium' ? '<span class="pill ' + wc + '">' + esc(q.weight) + '</span>' : '') +
       (WHEN[q.when] ? '<span class="pill when when-' + esc(q.when) + '">' + esc(WHEN[q.when]) + '</span>' : '') +
-      (pick ? '<span class="pill done">' + icon('check') + ' answered ' + esc(pick).toUpperCase() + '</span>' : '') + '</div>';
+      (pick ? '<span class="pill done">' + icon('check') + ' answered ' + esc(pick).toUpperCase() + '</span>' : '') +
+      '<span class="dtoggle" role="radiogroup" aria-label="How much detail">' +
+      ['low', 'med', 'high'].map(function (k) {
+        return '<button class="dbtn' + (lvl === k ? ' on' : '') + '" data-detail="' + k +
+          '" role="radio" aria-checked="' + (lvl === k) + '">' + DETAIL[k] + '</button>';
+      }).join('') + '</span></div>';
     h += '<h1 class="q">' + md(q.q) + '</h1>';
     if (q.lede) h += '<p class="lede">' + md(q.lede) + '</p>';
 
@@ -356,9 +387,11 @@
       if (has(sV)) cols.push(col('Where it stands', sV));
       if (has(pV)) cols.push(col('How it got here', pV));
       if (has(tV)) cols.push(col('What forces a choice', tV, 'tension'));
-      if (cols.length) h += '<div class="ctx">' + cols.join('') + '</div>';
+      /* The state a question sits in is medium depth, not low: low is meant to be
+         answerable from the question and the options alone. */
+      if (med && cols.length) h += '<div class="ctx">' + cols.join('') + '</div>';
 
-    if (q.evidence && q.evidence.length) {
+    if (high && q.evidence && q.evidence.length) {
       h += '<details class="ev"><summary>' + icon('chevron_right', 'caret') + 'Evidence' +
         '<span class="cnt">' + q.evidence.length + ' ' + (q.evidence.length === 1 ? 'exhibit' : 'exhibits') + '</span></summary>' +
         '<div class="evbody">' + q.evidence.map(evBlock).join('') + '</div></details>';
@@ -366,7 +399,7 @@
 
       /* Screen iterations bound to this decision. Each one is a real alternative for the
          surface the card decides, not decoration -- clicking opens it full size in a new tab. */
-      if (window.MOCKUPS) {
+      if (high && window.MOCKUPS) {
         var mine = window.MOCKUPS.filter(function (m) { return m.card === q.id; });
         if (mine.length) {
           h += '<div class="ev mocks"><div class="mockhead">' +
@@ -380,7 +413,7 @@
         }
       }
 
-      if (q.dupes && q.dupes.dropped && q.dupes.dropped.length) {
+      if (high && q.dupes && q.dupes.dropped && q.dupes.dropped.length) {
         /* The cross-area pass matched on the QUESTION and never compared recommendations, so a
            survivor can carry the minority view: the free-engine probe was asked five times and
            the four merged cards recommended b, b, b and c against this card's a. Show it. */
@@ -413,28 +446,28 @@
         '<span class="ol">' + md(o.label) + (o.k === q.rec ? '<span class="rectag">recommended</span>' : '') + '</span>' +
         (o.what ? '<span class="ow">' + md(o.what) + '</span>' : '') +
         (o.impact && !o.gains && !o.costs ? '<span class="oi">' + md(o.impact) + '</span>' : '') +
-        ((o.gains || o.costs) ? '<span class="gc">' +
+        (med && (o.gains || o.costs) ? '<span class="gc">' +
           '<span class="gcc gain"><span class="gch">What it buys</span>' + bullets(o.gains, 'bl tight') + '</span>' +
           '<span class="gcc cost"><span class="gch">What it costs</span>' + bullets(o.costs, 'bl tight') + '</span></span>' : '') +
-        (meta.length ? '<span class="ometa">' + meta.map(function (m) {
+        (med && meta.length ? '<span class="ometa">' + meta.map(function (m) {
           return '<span class="om"><b>' + m[0] + '</b> ' + md(m[1]) + '</span>';
         }).join('') + '</span>' : '') +
         '</span></button>';
     });
     h += '</div>';
 
-    if (q.recCase) {
+    /* recCase is the sixty-second argument, medium depth; recWhy and flip are the
+       reasoning in full and what would reverse it, high only. */
+    if (med && q.recCase) {
       h += '<div class="reccase"><div class="rh">' + icon('lightbulb') +
         'Why ' + esc(String(q.rec).toUpperCase()) + '</div>' +
         (Array.isArray(q.recCase) ? bullets(q.recCase) : md(q.recCase)) +
-        /* The two bullets are the sixty-second read. The paragraph is the argument in full,
-           one click below, so a card stays short and the reasoning is never missing. */
-        (q.recWhy ? '<details class="recwhy"><summary>The reasoning in full</summary><div class="recwhyb">' + md(q.recWhy) + '</div></details>' : '');
-      if (q.flip) h += '<div class="flip"><b>What would change this answer.</b> ' + md(q.flip) + '</div>';
+        (high && q.recWhy ? '<details class="recwhy" open><summary>The reasoning in full</summary><div class="recwhyb">' + md(q.recWhy) + '</div></details>' : '');
+      if (high && q.flip) h += '<div class="flip"><b>What would change this answer.</b> ' + md(q.flip) + '</div>';
       h += '</div>';
     }
 
-    if (q.linked && q.linked.length) {
+    if (med && q.linked && q.linked.length) {
       var live = q.linked.filter(function (id) { return Q.some(function (x) { return x.id === id; }); });
       if (live.length) {
         h += '<div class="linked"><span class="eyebrow">Decide alongside</span><span class="lchips">' +
@@ -486,8 +519,10 @@
     h += '<div class="kpis">' +
       '<div class="kpi acc"><div class="kn">Answered</div><div class="kv">' + a + '</div>' +
         '<div class="kn">of ' + Q.length + ' in the set</div></div>' +
-      (tagged.length ? '<div class="kpi crit"><div class="kn">Open for the spec</div><div class="kv">' +
-        openIn('spec').length + '</div><div class="kn">answer these first</div></div>' : '') +
+      /* 'spec' was the old name for this stage; the triage renamed it 'mvp' and this call was
+         left behind, so the card read 0 on a page whose own first paragraph says 69. */
+      (tagged.length ? '<div class="kpi crit"><div class="kn">Blocking the MVP</div><div class="kv">' +
+        openIn('mvp').length + '</div><div class="kn">answer these first</div></div>' : '') +
       '<div class="kpi' + (tagged.length ? '' : ' crit') + '"><div class="kn">Critical open</div><div class="kv">' + c + '</div>' +
         '<div class="kn">' + (tagged.length ? 'across every stage' : 'decide these first') + '</div></div>' +
       (tagged.length ? '' : '<div class="kpi"><div class="kn">Areas</div><div class="kv">' + groups.length + '</div>' +
@@ -535,10 +570,10 @@
       }
     }
     if (tagged.length) {
-      /* Not every decision blocks the spec. Each card is tagged with the point at which its answer
-         is needed, so the spec can start once the first group is done. */
+      /* Not every decision blocks the MVP. Each card is tagged with the point at which its answer
+         is needed, so the build can start once the first group is done. */
       h += '<h2 class="sech">What needs answering, and when</h2><p class="secn">Each decision is tagged by ' +
-        'the point at which its answer is needed. The spec can be written once the first group is answered.</p>';
+        'the point at which its answer is needed. The build can start once the first group is answered.</p>';
       h += '<div class="grid stages">' + WHEN_ORDER.map(function (k) {
         var qs = Q.filter(function (q) { return q.when === k; });
         if (!qs.length) return '';
@@ -583,9 +618,10 @@
     }
     if (openCrit.length) {
       h += stage
-        ? '<h2 class="sech">Start here: ' + esc(WHEN[stage].toLowerCase()) + '</h2><p class="secn">Unanswered, ' +
-          'critical first. ' + (stage === 'spec' ? 'The spec cannot be written until these are answered.' :
-          'Everything the spec needs is answered; this is the next stage.') + '</p><div class="qlist">'
+        ? '<h2 class="sech">Start here: ' + esc(WHEN[stage].charAt(0).toLowerCase() + WHEN[stage].slice(1)) +
+          '</h2><p class="secn">Unanswered, ' +
+          'critical first. ' + (stage === 'mvp' ? 'The MVP cannot be built until these are answered.' :
+          'Everything the MVP needs is answered; this is the next stage.') + '</p><div class="qlist">'
         : '<h2 class="sech">Start here</h2><p class="secn">Critical and unanswered. A wrong answer to any of ' +
           'these costs the product or the company.</p><div class="qlist">';
       h += openCrit.map(function (q) {
@@ -868,7 +904,7 @@
   document.addEventListener('click', function (e) {
     var fb = e.target.closest('[data-fa]');
     if (fb) { var gid = fb.getAttribute('data-fq'); state.final[gid] = state.final[gid] || {}; state.final[gid].a = fb.getAttribute('data-fa'); save(); renderOverview(); toast('Saved ' + gid); return; }
-    var t = e.target.closest('[data-q],[data-cat],[data-ov],[data-import],[data-pick],#expMd,#expJson,#impJson,#mdgo,#mdsample,#menuBtn,#themeBtn,#abarPrev,#abarNext');
+    var t = e.target.closest('[data-q],[data-cat],[data-ov],[data-import],[data-pick],[data-detail],#expMd,#expJson,#impJson,#mdgo,#mdsample,#menuBtn,#themeBtn,#abarPrev,#abarNext');
     if (!t) return;
     if (t.id === 'menuBtn') { document.body.classList.toggle('navopen'); return; }
     if (t.id === 'themeBtn') { theme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'); return; }
@@ -883,6 +919,15 @@
       if (!q) return;
       state.picks[q.id] = t.getAttribute('data-pick'); save(); renderQ(q); paintNav(); progress();
       toast('Saved. ' + (Q.length - answeredList().length) + ' left'); return;
+    }
+    if (t.hasAttribute('data-detail')) {
+      var qd = Q.filter(function (x) { return x.id === view.id; })[0];
+      if (!qd) return;
+      var lvl = t.getAttribute('data-detail');
+      /* Setting a level carries forward to the next unvisited card, so choosing
+         once at "high" does not mean re-clicking it 202 more times; it still
+         starts every reader at "low" until they say otherwise. */
+      state.detail[qd.id] = lvl; state.detailDefault = lvl; save(); renderQ(qd); return;
     }
     if (t.hasAttribute('data-q')) { go({ mode: 'q', id: t.getAttribute('data-q') }); return; }
     if (t.hasAttribute('data-cat')) {

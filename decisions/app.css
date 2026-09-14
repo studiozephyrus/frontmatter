@@ -104,8 +104,11 @@ code{font-family:var(--mono);font-size:.9em;background:var(--sunk);padding:1px 5
 
 /* progress: a segmented meter, not a hairline. Critical-open is shown in red
    inside the same bar, so "how far" and "how urgent" read together. */
-.meter{flex:1;min-width:70px;height:6px;background:var(--line);border-radius:3px;
-  position:relative;overflow:hidden}
+/* Capped and pushed right so it sits beside the number it describes. Left as flex:1 it
+   stretched to 1,474px on a 1920 screen: an empty ruler with a 7px fill at one end and a
+   red block at the other, which reads as a broken element rather than a progress bar. */
+.meter{flex:0 1 300px;margin-left:auto;min-width:70px;height:6px;
+  background:var(--line);border-radius:3px;position:relative;overflow:hidden}
 .meter i{position:absolute;inset:0 auto 0 0;background:linear-gradient(90deg,var(--accent),var(--accent-2));
   transition:width .45s cubic-bezier(.2,.8,.2,1)}
 .meter u{position:absolute;inset:0 0 0 auto;background:var(--crit);opacity:.55;text-decoration:none;
@@ -124,8 +127,14 @@ code{font-family:var(--mono);font-size:.9em;background:var(--sunk);padding:1px 5
 .wrap{display:grid;grid-template-columns:278px minmax(0,1fr) 300px;
   height:calc(100vh - var(--topbar));height:calc(100dvh - var(--topbar))}
 @media(min-width:1720px){.wrap{grid-template-columns:310px minmax(0,1fr) 348px}}
-main{overflow-y:auto;padding:30px 34px 150px;scroll-behavior:smooth;overscroll-behavior:contain}
-main>*{max-width:1000px;margin-inline:auto}
+/* One column, centred by padding on main rather than by auto margins on the children.
+   A child rule that writes the `margin` shorthand silently resets margin-inline and drops
+   that child back to the left edge; .kpis, .sech, .secn, .farea, .fq and .foot all do,
+   which put two left edges 97px apart on any screen wider than about 1650px. Padding on
+   the scroll container cannot be overridden from a child. */
+main{overflow-y:auto;padding:30px max(34px, calc((100% - 1000px) / 2)) 150px;
+  scroll-behavior:smooth;overscroll-behavior:contain;scrollbar-gutter:stable both-edges}
+main>*{max-width:1000px}
 nav{border-right:1px solid var(--line);overflow-y:auto;background:var(--rail);
   padding:0 0 70px;overscroll-behavior:contain}
 aside{overflow-y:auto;border-left:1px solid var(--line);background:var(--rail);
@@ -183,6 +192,18 @@ aside{overflow-y:auto;border-left:1px solid var(--line);background:var(--rail);
 .pill.crit{background:var(--crit-soft);color:var(--crit)}
 .pill.high{background:var(--high-soft);color:var(--high)}
 .pill.done{background:var(--good-soft);color:var(--good)}
+/* The pill row on a wide card left most of it empty: three short chips in a 1000px box.
+   This sits at the end of the same flex row, margin-left:auto, and both uses the space
+   and does the actual job progressive disclosure needs — how much of the card to show. */
+.dtoggle{display:inline-flex;margin-left:auto;border:1px solid var(--line-2);
+  border-radius:7px;overflow:hidden;background:var(--sunk)}
+.dbtn{font:inherit;font-family:var(--mono);font-size:10px;letter-spacing:.05em;
+  text-transform:uppercase;color:var(--ink-3);background:transparent;border:none;
+  padding:6px 11px;cursor:pointer;transition:background .12s,color .12s}
+.dbtn+.dbtn{border-left:1px solid var(--line-2)}
+.dbtn:hover{color:var(--ink);background:var(--card)}
+.dbtn.on{background:var(--accent);color:#fff;font-weight:600}
+.dbtn.on:hover{background:var(--accent);color:#fff}
 h1.q{font-size:34px;line-height:1.14;margin:0 0 12px;text-wrap:balance;max-width:20ch;
   max-width:min(100%,26ch);letter-spacing:-.022em}
 @media(min-width:900px){h1.q{max-width:min(100%,30ch)}}
@@ -218,11 +239,18 @@ table.d td{padding:8px 10px;border-bottom:1px solid var(--line);vertical-align:t
 table.d tr:last-child td{border-bottom:none}
 table.d td:first-child{color:var(--ink)}
 table.d td:not(:first-child){font-variant-numeric:tabular-nums}
-.statrow{display:grid;grid-template-columns:1fr auto;gap:3px 14px;font-size:13px;
+/* Built for a short number in the second column, but 567 of 1,288 rows in the corpus
+   (44%) carry a full-sentence value instead, and a plain `1fr` column does not shrink
+   below its own content, so `auto` demanding room for the long ones pushed the whole
+   row past the card. `minmax(0,1fr)` lets the label give up all of it; dropping nowrap
+   on the value lets a sentence wrap instead of running off the edge, and a short number
+   never wraps regardless, so the common case looks exactly as before. */
+.statrow{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:3px 14px;font-size:13px;
   padding:9px 0;border-bottom:1px solid var(--line);align-items:baseline}
 .statrow:last-child{border-bottom:none}
 .statrow b{font-variant-numeric:tabular-nums;font-size:15px;font-family:var(--display);
-  font-weight:600;color:var(--ink);white-space:nowrap}
+  font-weight:600;color:var(--ink);max-width:min(60vw,420px);text-align:right;
+  overflow-wrap:break-word}
 .statrow .sn{grid-column:1/-1;font-size:11.5px;color:var(--ink-3);margin-top:-2px}
 .brow{display:grid;grid-template-columns:minmax(90px,150px) 1fr auto;gap:12px;align-items:center;
   font-size:12.5px;padding:5px 0;color:var(--ink-2)}
@@ -273,6 +301,12 @@ table.d td:not(:first-child){font-variant-numeric:tabular-nums}
 
 /* ── pager ─────────────────────────────────────────────────────────────── */
 .pager{display:grid;grid-template-columns:1fr 1fr;gap:11px;margin:28px 0 0}
+/* min-width:0 on both grid items: a bare 1fr column still floors at its own content's
+   width, so at mobile widths (.foot collapses to one column) each button demanded its
+   full nowrap content and pushed the row up to 200px past the card. This is what
+   minmax(0,1fr) does for the desktop track; the items need the same guard directly,
+   since a single-column 1fr has no track-level minmax to fall back on. */
+.pg,.go{min-width:0}
 .pg{border:1px solid var(--line);border-radius:11px;padding:14px 16px;text-align:left;min-height:66px;
   background:var(--card);box-shadow:var(--sh-1);transition:border-color .15s,box-shadow .15s}
 .pg:hover{border-color:var(--line-3);box-shadow:var(--sh-2)}
@@ -303,7 +337,8 @@ table.d td:not(:first-child){font-variant-numeric:tabular-nums}
 
 /* ── overview ──────────────────────────────────────────────────────────── */
 .hero{margin-bottom:30px}
-.hero h1{font-size:40px;line-height:1.08;letter-spacing:-.028em;margin-bottom:14px;max-width:16ch}
+.hero h1{font-size:40px;line-height:1.08;letter-spacing:-.028em;margin-bottom:14px;
+  max-width:20ch;text-wrap:balance}
 .hero p{font-size:17px;line-height:1.55;color:var(--ink-2);max-width:60ch;margin:0}
 .kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:12px;margin:0 0 30px}
 .kpi{background:var(--card);border:1px solid var(--line);border-radius:12px;padding:17px 18px;
@@ -415,7 +450,11 @@ table.d td:not(:first-child){font-variant-numeric:tabular-nums}
 .pcat{display:inline-block;margin-right:10px;padding:2px 8px;border-radius:5px;background:var(--sunk);
   color:var(--ink-2);font-size:11.5px}
 
-.foot{display:grid;grid-template-columns:1fr auto;gap:12px;margin:28px 0 0;align-items:stretch}
+/* Same fix as .statrow: a plain 1fr column keeps its own content's width as a floor, so
+   .go's nowrap label (worst case "Next decision or press ↵" plus its icon) pushed the row
+   5 to 38px past the card at some viewport widths. minmax(0,1fr) lets .pg give up all of
+   it first, so .go always gets the room its short label actually needs. */
+.foot{display:grid;grid-template-columns:minmax(0,1fr) auto;gap:12px;margin:28px 0 0;align-items:stretch}
 .go{display:flex;align-items:center;gap:12px;padding:0 20px;min-height:66px;border-radius:11px;
   border:1px solid var(--line-2);background:var(--card);box-shadow:var(--sh-1);
   transition:background .15s,border-color .15s,box-shadow .15s,transform .1s;white-space:nowrap}
@@ -453,7 +492,7 @@ table.d td:not(:first-child){font-variant-numeric:tabular-nums}
 .navq.done .dot{background:var(--good);box-shadow:0 0 0 3px var(--good-soft)}
 
 @media(max-width:900px){
-  .foot{grid-template-columns:1fr}
+  .foot{grid-template-columns:minmax(0,1fr)}
   .go{justify-content:space-between;min-height:56px}
   .pos{flex-wrap:wrap}
   /* Must stay AFTER the base .abar rule: same specificity, so source order decides. */
@@ -558,14 +597,18 @@ ul.bl.tight li::before{top:7px;width:3px;height:3px}
    Progress, the export, and a grid of every id. The rail scrolls independently
    of the card, so a 192-cell jump grid costs the reader nothing until they look. */
 .ring-sec{text-align:center}
-.ring{width:96px;height:96px;margin:2px auto 10px;border-radius:50%;display:flex;
-  align-items:baseline;justify-content:center;gap:2px;
+.ring{width:96px;height:96px;margin:2px auto 10px;border-radius:50%;display:grid;
+  place-items:center;
   background:conic-gradient(var(--accent) calc(var(--p) * 360deg), var(--line) 0);
   position:relative}
 .ring::after{content:"";position:absolute;inset:8px;border-radius:50%;background:var(--card)}
-.rnum{position:relative;z-index:1;font-family:var(--display);font-size:26px;line-height:1;
+/* The pair sits in its own box so the count and the total keep one baseline while the
+   pair itself centres in the circle. Baseline alignment applied to the ring aligned them
+   to each other and then parked the whole line against the top edge. */
+.rval{position:relative;z-index:1;display:flex;align-items:baseline;gap:2px}
+.rnum{font-family:var(--display);font-size:26px;line-height:1;
   letter-spacing:-.02em;color:var(--ink)}
-.rden{position:relative;z-index:1;font-size:12px;color:var(--ink-3)}
+.rden{font-size:12px;color:var(--ink-3)}
 .rlab{font-size:12.5px;color:var(--ink-3);margin:0 0 10px}
 .rbtn{display:block;width:100%;font:inherit;font-size:13px;font-weight:600;cursor:pointer;
   padding:9px 12px;border-radius:8px;border:1px solid var(--accent);
