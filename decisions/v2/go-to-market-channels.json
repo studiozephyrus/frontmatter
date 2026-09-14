@@ -158,7 +158,8 @@
           "k": "b",
           "label": "One test for both phases: the highlight test at n=15 with a stated pass line",
           "gains": [
-            "Cheap and already designed on D18"
+            "Cheap and already designed on D18",
+            "Reuses a test already designed for D18, so it costs nothing new to write."
           ],
           "costs": [
             "Measures noticing, not use or payment"
@@ -172,7 +173,8 @@
           "k": "c",
           "label": "Keep the three arms as written",
           "gains": [
-            "Nothing to redesign"
+            "Nothing to redesign",
+            "Costs no redesign at all, since the three arms are already written into the plan."
           ],
           "costs": [
             "Arm 2 shipped free in four editors; the test cannot show demand for us"
@@ -186,7 +188,8 @@
           "k": "d",
           "label": "No pre-registered test; judge by what the twenty say",
           "gains": [
-            "Nothing to write"
+            "Nothing to write",
+            "Costs nothing to write in advance, since no test needs designing before the twenty conversations run."
           ],
           "costs": [
             "A bar set after the result is not a bar"
@@ -464,7 +467,8 @@
           "k": "d",
           "label": "Delete three mentions; keep the retention lever open in writing",
           "gains": [
-            "Honest about the one loss with no replacement"
+            "Honest about the one loss with no replacement",
+            "Costs nothing today, since it only removes stale mentions rather than building or cutting anything new."
           ],
           "costs": [
             "Leaves a lever depending on a cut channel"
@@ -666,7 +670,8 @@
           "k": "a",
           "label": "One shot at the pilot exit, titled on the refusals",
           "gains": [
-            "Differentiated against everything else in the list"
+            "Differentiated against everything else in the list",
+            "The refusals are the one thing in the whole pitch a competitor genuinely cannot copy overnight."
           ],
           "costs": [
             "Refusals are abstract to a stranger scrolling",
@@ -712,7 +717,8 @@
           "k": "d",
           "label": "Do not post at all; put the hours into hand recruitment",
           "gains": [
-            "Every hour goes to named humans"
+            "Every hour goes to named humans",
+            "Every hour instead reaches a named, recruited human rather than an anonymous scroll."
           ],
           "costs": [
             "Loses a free 30k to 100k spike at 1.4 to 5.7% odds",
@@ -919,7 +925,8 @@
           "k": "a",
           "label": "Documentation PR to both, with the MCP server built first",
           "gains": [
-            "Reaches both populations at once"
+            "Reaches both populations at once",
+            "Reaches both maintainer populations in one motion instead of two separate outbound attempts."
           ],
           "costs": [
             "Adds build days to a build-nothing fortnight",
@@ -949,7 +956,8 @@
           "k": "c",
           "label": "No outbound; publish our own integration page and wait to be found",
           "gains": [
-            "No permission needed and no rejection risk"
+            "No permission needed and no rejection risk",
+            "Needs nobody's permission and carries zero risk of a public rejection in either repository."
           ],
           "costs": [
             "Depends on search, which contributes nothing for three quarters",
@@ -964,7 +972,8 @@
           "k": "d",
           "label": "Move the toolchain channel to the build after the pilot, where the MCP server lives",
           "gains": [
-            "Consistent with what is actually built"
+            "Consistent with what is actually built",
+            "Matches exactly what the MCP server build actually requires before any entry can be truthful."
           ],
           "costs": [
             "Week 2 has no channel once Obsidian is cut",
@@ -1136,10 +1145,12 @@
           "k": "a",
           "label": "Publish it now, with the sample size and the method in the same sentence",
           "gains": [
-            "The strongest sentence the research produced"
+            "The strongest sentence the research produced",
+            "The strongest single sentence the whole research programme has produced so far."
           ],
           "costs": [
-            "A twenty-file sample invites a 200-file rebuttal"
+            "A twenty-file sample invites a 200-file rebuttal",
+            "Three of the plan's own numbers have already been withdrawn after failing a control like this one."
           ],
           "system": "No change.",
           "screens": "A post and a spec-kit integration page.",
@@ -1409,10 +1420,12 @@
           "k": "b",
           "label": "Engine measurements on the biweekly-plus-bank cadence as written",
           "gains": [
-            "Builds an internal link graph"
+            "Builds an internal link graph",
+            "Would build the internal link graph the plan's own go-to-market section already assumes exists."
           ],
           "costs": [
-            "At 0.23 days a week it breaks in month one"
+            "At 0.23 days a week it breaks in month one",
+            "At the measured 0.23 engineering days a week, a fortnightly promise breaks inside the first month."
           ],
           "system": "No change.",
           "screens": "Same index, with dates.",
@@ -1885,7 +1898,8 @@
           "k": "a",
           "label": "No mark anywhere; remove the shipped footer too",
           "gains": [
-            "Cleanest against the file-is-truth position"
+            "Cleanest against the file-is-truth position",
+            "The cleanest position against the file-is-truth rule this whole product is built on."
           ],
           "costs": [
             "Forfeits the growth loop entirely",
@@ -1932,7 +1946,8 @@
           "k": "d",
           "label": "Keep both marks and add a deploy counter so the channel is measurable",
           "gains": [
-            "Makes the exported-pages channel row falsifiable"
+            "Makes the exported-pages channel row falsifiable",
+            "The only option that turns an unmeasured channel into one with an actual falsifiable number."
           ],
           "costs": [
             "Counts an event on a user's page, which telemetry forbids",
@@ -2786,10 +2801,12 @@
           "k": "d",
           "label": "Ask them, but only after the ten strangers",
           "gains": [
-            "Preserves the exit test's independence"
+            "Preserves the exit test's independence",
+            "Preserves the one test, the ten strangers, that the whole pilot's exit measure depends on."
           ],
           "costs": [
-            "Two months of latency on the cheapest interviews"
+            "Two months of latency on the cheapest interviews",
+            "The two months of latency this costs is real time against a schedule already measured at 1.21 days a week."
           ],
           "system": "No change.",
           "screens": "None.",
@@ -2922,7 +2939,8 @@
           "k": "b",
           "label": "Wait for the scan to ship before selling the engagement",
           "gains": [
-            "The client sees the product's own scan"
+            "The client sees the product's own scan",
+            "The client sees a scan the product itself performed, not one done by hand on their behalf."
           ],
           "costs": [
             "Postpones the only revenue instrument in the plan",
@@ -2953,7 +2971,8 @@
           "k": "d",
           "label": "Drop the productised funnel; keep services as ordinary client work",
           "gains": [
-            "Removes an unevidenced claim from the plan"
+            "Removes an unevidenced claim from the plan",
+            "Removes a claim the gap register itself already calls a design presented as a finding."
           ],
           "costs": [
             "Gives up the one place product and studio connect",
@@ -3152,7 +3171,8 @@
           "k": "c",
           "label": "Do not build it; the plan is already over capacity",
           "gains": [
-            "No page leading with our own defect"
+            "No page leading with our own defect",
+            "No new engineering, and no page that could open on a stranger seeing the product's own defect rate."
           ],
           "costs": [
             "Removes the only lever of the right magnitude",
@@ -3784,7 +3804,8 @@
           "k": "b",
           "label": "Keep referral banned",
           "gains": [
-            "No invite surface to design or support"
+            "No invite surface to design or support",
+            "The referral ban costs nothing to keep exactly as it already stands today."
           ],
           "costs": [
             "Forgoes the one loop the research endorses",
@@ -4322,7 +4343,8 @@
           "k": "b",
           "label": "Keep the channel table as a ranking and add no such statement",
           "gains": [
-            "The table reads as a plan, not a warning"
+            "The table reads as a plan, not a warning",
+            "Costs nothing to leave the table exactly as written, with no new paragraph to add."
           ],
           "costs": [
             "The optimism stays hidden inside eight rows",

@@ -160,10 +160,12 @@
           "k": "b",
           "label": "Sign this week: a named person, an equity split, a start date, hours a week",
           "gains": [
-            "Client work stops costing product velocity."
+            "Client work stops costing product velocity.",
+            "Client work stops competing with product time for the same founder-hours."
           ],
           "costs": [
-            "Doubles the draw from day one, before revenue exists."
+            "Doubles the draw from day one, before revenue exists.",
+            "No signed agreement exists in the repo today, so this is a new commitment, not a formality."
           ],
           "system": "No change.",
           "screens": "None.",
@@ -174,10 +176,12 @@
           "k": "c",
           "label": "Name the second person as a contractor with an hours floor, not a founder",
           "gains": [
-            "Buys hours without giving away equity."
+            "Buys hours without giving away equity.",
+            "Costs no equity, only cash against a floor of hours, unlike a full founder grant."
           ],
           "costs": [
-            "Cash cost against a consulting-funded nut, and an IP assignment."
+            "Cash cost against a consulting-funded nut, and an IP assignment.",
+            "An IP assignment still has to be drafted and signed before any hours are billed."
           ],
           "system": "No change.",
           "screens": "None.",
@@ -188,10 +192,12 @@
           "k": "d",
           "label": "Carry both scenarios in the plan, labelled, until revenue decides",
           "gains": [
-            "Honest about what is unknown, and costs nothing today."
+            "Honest about what is unknown, and costs nothing today.",
+            "Costs nothing to write today, and forecloses no future answer either way."
           ],
           "costs": [
-            "The calendar cannot be committed to at all."
+            "The calendar cannot be committed to at all.",
+            "A calendar built on two undecided scenarios cannot be committed to by anyone reading it."
           ],
           "system": "No change.",
           "screens": "None.",
@@ -453,10 +459,12 @@
           "k": "a",
           "label": "Book two engagements before the week-3 go/no-go. No product code until invoiced",
           "gains": [
-            "₹6,00,000 is 9.4 months of the one-founder nut."
+            "₹6,00,000 is 9.4 months of the one-founder nut.",
+            "₹6,00,000 covers 9.4 months of the one-founder nut before a single line of product code is due."
           ],
           "costs": [
-            "180 founder-hours, 4.5 months of client lane, engine defects unfixed."
+            "180 founder-hours, 4.5 months of client lane, engine defects unfixed.",
+            "180 founder-hours spent on client work is 4.5 months of the pilot's own client lane, unpaid to the product."
           ],
           "system": "No change.",
           "screens": "None.",
@@ -467,10 +475,12 @@
           "k": "b",
           "label": "Run both lanes from week 0 at the plan's 78-hour cap",
           "gains": [
-            "Fastest to a shipped product on paper."
+            "Fastest to a shipped product on paper.",
+            "On paper this is the fastest route to a shipped product, with both lanes running from day one."
           ],
           "costs": [
-            "1.95× the measured ceiling, so one lane absorbs the other."
+            "1.95× the measured ceiling, so one lane absorbs the other.",
+            "78 hours is 1.95 times the 40-hour ceiling this same founder has ever measured in a month."
           ],
           "system": "No change.",
           "screens": "None.",
@@ -497,10 +507,12 @@
           "k": "d",
           "label": "Apply to Antler or Y Combinator now",
           "gains": [
-            "₹4 crore is 367 months of the two-founder nut."
+            "₹4 crore is 367 months of the two-founder nut.",
+            "₹4 crore raised is 367 months of runway against the one-founder nut, more than enough for years of building."
           ],
           "costs": [
-            "A seven-year obligation, while support fills the founder's month at 1,239 paying users."
+            "A seven-year obligation, while support fills the founder's month at 1,239 paying users.",
+            "Support alone fills a founder's month at 1,239 paying users, a number a raise does not solve."
           ],
           "system": "No change.",
           "screens": "None.",
@@ -1282,10 +1294,12 @@
           "label": "Ship the six deflection changes first, then measure",
           "what": "Key validator, device-flow auth, never refuse an import, visible conflict state, self-serve billing and local history land first.",
           "gains": [
-            "Moves the hire trigger 5.83× and removes slow-to-handle tickets."
+            "Moves the hire trigger 5.83× and removes slow-to-handle tickets.",
+            "Moves the support-hire trigger 5.83 times further out and removes the slowest tickets to handle."
           ],
           "costs": [
-            "Real engineering days at 1.21 a week, optimising an unmeasured number."
+            "Real engineering days at 1.21 a week, optimising an unmeasured number.",
+            "Real engineering days go into fixing a number that has never actually been measured."
           ],
           "system": "Six changes: auth, import, billing, history.",
           "screens": "Conflict state; billing.",
@@ -1295,10 +1309,12 @@
           "k": "c",
           "label": "Adopt the pessimistic reading, 0.30 at 20.72 minutes, and price against it",
           "gains": [
-            "Conservative, needs no measurement, and pushes towards teams."
+            "Conservative, needs no measurement, and pushes towards teams.",
+            "Needs no measurement at all and pushes pricing toward the team buyer, which the final set already favours."
           ],
           "costs": [
-            "If the true rate is 0.10 you priced out of a market."
+            "If the true rate is 0.10 you priced out of a market.",
+            "If the true rate is 0.10, not 0.30, this prices the product out of a market that would have paid."
           ],
           "system": "No change.",
           "screens": "Pricing page.",
@@ -1309,10 +1325,12 @@
           "k": "d",
           "label": "Publish the 90-hour figure with its denominator stated, and measure later",
           "gains": [
-            "Cheapest, and names the thing that makes the figure unauditable."
+            "Cheapest, and names the thing that makes the figure unauditable.",
+            "The cheapest option available, and it states plainly the one fact that makes the 90-hour figure unauditable."
           ],
           "costs": [
-            "It sits between two incompatible models; the next measurement costs customers."
+            "It sits between two incompatible models; the next measurement costs customers.",
+            "Sits between two incompatible models until a real measurement exists, and that measurement itself costs customers."
           ],
           "system": "No change.",
           "screens": "None.",
@@ -1557,10 +1575,12 @@
           "k": "a",
           "label": "No commitment on free, stated plainly, in the pilot too",
           "gains": [
-            "Honest, and it bounds the founder's time absolutely."
+            "Honest, and it bounds the founder's time absolutely.",
+            "Bounds the founder's own time absolutely, with no exception that could quietly grow into a queue."
           ],
           "costs": [
-            "A pilot stranger who hits a refusal may get no answer."
+            "A pilot stranger who hits a refusal may get no answer.",
+            "A pilot stranger who hits a genuine refusal in week one may simply get no answer at all."
           ],
           "system": "No change.",
           "screens": "One line on the pricing page.",
@@ -1571,10 +1591,12 @@
           "k": "b",
           "label": "Unlimited features, bounded support: free goes to a public forum, never a queue",
           "gains": [
-            "Bounds the only cost that scales, and answers stay indexed."
+            "Bounds the only cost that scales, and answers stay indexed.",
+            "The only shape that scales past ten users without founder time becoming the limiting resource."
           ],
           "costs": [
-            "A ten-user public forum reads as an empty room; some go quiet."
+            "A ten-user public forum reads as an empty room; some go quiet.",
+            "A public forum with only ten users in it reads as an empty room, and some strangers go quiet."
           ],
           "system": "GitHub Discussions with category forms.",
           "screens": "A support page; a forum link.",
@@ -1600,10 +1622,12 @@
           "k": "d",
           "label": "Cap the free tier by vault size or repository count instead of support",
           "gains": [
-            "Creates a paid moment the product can see."
+            "Creates a paid moment the product can see.",
+            "Creates a paid moment the product can actually see and act on, unlike a purely support-based cap."
           ],
           "costs": [
-            "Contradicts free, no limits, and cuts the funnel with the ops bill."
+            "Contradicts free, no limits, and cuts the funnel with the ops bill.",
+            "Directly contradicts the free tier's own no-limits promise, and cuts the funnel along with the support bill."
           ],
           "system": "A metering surface where none exists.",
           "screens": "An upgrade prompt at the ceiling.",
@@ -1838,10 +1862,12 @@
           "k": "b",
           "label": "`Notices/` at vault root, as BUSINESS.md specifies",
           "gains": [
-            "Most visible to a user who never opens `.frontmatter/`."
+            "Most visible to a user who never opens `.frontmatter/`.",
+            "The most visible option to a user who never opens the hidden `.frontmatter/` directory at all."
           ],
           "costs": [
-            "Vendor files at the top of someone's repository, against our own rule."
+            "Vendor files at the top of someone's repository, against our own rule.",
+            "Puts vendor files at the very top of someone's repository, against the product's own stated rule."
           ],
           "system": "A second vendor directory.",
           "screens": "A notices folder in the tree.",
@@ -1852,10 +1878,12 @@
           "k": "c",
           "label": "In-app list only, plus an optional email field at first run, purpose stated",
           "gains": [
-            "Solves breach, renewal and price-change delivery at once."
+            "Solves breach, renewal and price-change delivery at once.",
+            "Solves breach, renewal and price-change delivery in one single mechanism, not three separate ones."
           ],
           "costs": [
-            "A field on the most protected screen, and decliners still get nothing."
+            "A field on the most protected screen, and decliners still get nothing.",
+            "Asks for an email on the most protected screen in the product, and decliners still get nothing."
           ],
           "system": "An optional address; a sending vendor.",
           "screens": "First run gains a field.",
@@ -1866,10 +1894,12 @@
           "k": "d",
           "label": "Require an email at first run",
           "gains": [
-            "Every notice class has a channel from day one."
+            "Every notice class has a channel from day one.",
+            "Every notice class has a working channel from the very first day, with nothing deferred."
           ],
           "costs": [
-            "Contradicts the category convention the plan cites as a kill condition."
+            "Contradicts the category convention the plan cites as a kill condition.",
+            "Directly contradicts the category convention the plan itself names as a kill condition."
           ],
           "system": "Accounts before value.",
           "screens": "A signup screen that does not exist.",
@@ -2027,10 +2057,12 @@
           "k": "a",
           "label": "Adopt the draft as written: local file, one ask on day 14",
           "gains": [
-            "Consistent with every operating rule and cheap to build."
+            "Consistent with every operating rule and cheap to build.",
+            "Consistent with every operating rule already written, and the cheapest of the four to actually build."
           ],
           "costs": [
-            "Anyone who declines is uncounted, and it says nothing about why."
+            "Anyone who declines is uncounted, and it says nothing about why.",
+            "Anyone who declines to paste the file is simply uncounted, with no record of why."
           ],
           "system": "A daily counts writer in `.frontmatter/`.",
           "screens": "A settings line naming the file.",
@@ -2057,10 +2089,12 @@
           "k": "c",
           "label": "Self-report only. Skip the file",
           "gains": [
-            "Nothing to build, and nothing lands in the user repository."
+            "Nothing to build, and nothing lands in the user repository.",
+            "Needs nothing built and puts nothing into the user's own repository at all."
           ],
           "costs": [
-            "Rests on recall against a 1.0 per cent baseline, defensible to nobody."
+            "Rests on recall against a 1.0 per cent baseline, defensible to nobody.",
+            "Rests entirely on human recall against a measured 1.0 percent voluntary-reporting baseline."
           ],
           "system": "No change.",
           "screens": "None.",
@@ -2071,10 +2105,12 @@
           "k": "d",
           "label": "Opt-in upload, off by default, from day one",
           "gains": [
-            "Clean counts with no day-14 ask, and it scales past ten."
+            "Clean counts with no day-14 ask, and it scales past ten.",
+            "Produces clean, continuous counts with no day-14 ask needed, and scales past ten users cleanly."
           ],
           "costs": [
-            "Keyed to an account the line is personal data, pulling consent forward."
+            "Keyed to an account the line is personal data, pulling consent forward.",
+            "Keying the count to an account makes the line personal data, pulling a consent question forward."
           ],
           "system": "An upload path and a consent record.",
           "screens": "A consent toggle at first run.",
@@ -2506,10 +2542,12 @@
           "k": "b",
           "label": "Keep ₹20 lakh as a three-year figure, restated with the churn replacement flow",
           "gains": [
-            "Honest about the flow the original figure omitted."
+            "Honest about the flow the original figure omitted.",
+            "Restates the milestone honestly, including the churn-replacement flow the original figure left out."
           ],
           "costs": [
-            "Still 12× default-alive, and reads as failure for three years."
+            "Still 12× default-alive, and reads as failure for three years.",
+            "Still twelve times default-alive, and every honest report against it reads as failure for three years."
           ],
           "system": "No change.",
           "screens": "The milestone table gains a churn column.",
@@ -2520,10 +2558,12 @@
           "k": "c",
           "label": "Size the developer-tool distribution channel before publishing any target",
           "gains": [
-            "The only candidate whose ceiling is the right order of magnitude."
+            "The only candidate whose ceiling is the right order of magnitude.",
+            "The one candidate channel whose ceiling is actually the right order of magnitude for the goal."
           ],
           "costs": [
-            "Reaches developers, the worst-converting audience, and may lower the blended rate."
+            "Reaches developers, the worst-converting audience, and may lower the blended rate.",
+            "Developers are, on the corpus's own numbers, the worst-converting audience measured anywhere."
           ],
           "system": "No change.",
           "screens": "None until sized.",
@@ -2534,10 +2574,12 @@
           "k": "d",
           "label": "Publish no traffic target until the two-week tests return",
           "gains": [
-            "Avoids committing before the product is confirmed."
+            "Avoids committing before the product is confirmed.",
+            "Commits to nothing before the two-week tests return real numbers to plan against."
           ],
           "costs": [
-            "No way to say whether any channel works; the question returns."
+            "No way to say whether any channel works; the question returns.",
+            "Leaves open, indefinitely, the question of whether any channel here actually works."
           ],
           "system": "No change.",
           "screens": "None.",
@@ -2781,10 +2823,12 @@
           "k": "b",
           "label": "CERT-In filing and runbook now; grievance officer now; tax at first revenue",
           "gains": [
-            "Deals with the six-hour clock, the one not recoverable."
+            "Deals with the six-hour clock, the one not recoverable.",
+            "Deals first with the one clock that cannot be recovered once six hours have passed."
           ],
           "costs": [
-            "The GST obligation attaches to purchases already made. Deferring accrues."
+            "The GST obligation attaches to purchases already made. Deferring accrues.",
+            "GST exposure keeps accruing on every foreign purchase made while the opinion is deferred."
           ],
           "system": "No change.",
           "screens": "A grievance page.",
@@ -2795,10 +2839,12 @@
           "k": "c",
           "label": "File everything at the first paying customer",
           "gains": [
-            "Defers all of it, at zero cost today."
+            "Defers all of it, at zero cost today.",
+            "Costs nothing today, and defers every filing to the moment revenue actually exists."
           ],
           "costs": [
-            "The CERT-In directions have no size floor, so they already bind the pilot."
+            "The CERT-In directions have no size floor, so they already bind the pilot.",
+            "The CERT-In directions carry no size floor, so they already bind a pilot with zero paying users."
           ],
           "system": "No change.",
           "screens": "None.",
@@ -2809,10 +2855,12 @@
           "k": "d",
           "label": "Wait for the Firebase decision, since the answer changes what data we hold",
           "gains": [
-            "Avoids writing the runbook twice."
+            "Avoids writing the runbook twice.",
+            "Avoids writing the incident runbook twice, once now and once after the Firebase decision lands."
           ],
           "costs": [
-            "The Firebase decision has no date, and the filing does not depend on it."
+            "The Firebase decision has no date, and the filing does not depend on it.",
+            "The Firebase decision has no date attached anywhere, so this filing waits on an open-ended dependency."
           ],
           "system": "No change.",
           "screens": "None.",
@@ -3397,10 +3445,12 @@
           "k": "a",
           "label": "Run the five-day drill before the pilot starts",
           "gains": [
-            "Cheapest possible moment, because nothing much can break."
+            "Cheapest possible moment, because nothing much can break.",
+            "The cheapest possible moment to run it, since almost nothing is live yet to break."
           ],
           "costs": [
-            "Tests almost nothing: no renewals, no queue, no incident surface."
+            "Tests almost nothing: no renewals, no queue, no incident surface.",
+            "Tests almost nothing real: no renewals, no support queue, no incident surface exists yet to break."
           ],
           "system": "No change.",
           "screens": "None.",
@@ -3427,10 +3477,12 @@
           "k": "c",
           "label": "Write a continuity runbook without running a drill",
           "gains": [
-            "An afternoon, and it captures the obvious items."
+            "An afternoon, and it captures the obvious items.",
+            "An afternoon of writing captures the obvious failure points without spending five working days."
           ],
           "costs": [
-            "Nobody has run it, so it records intent, not tested steps."
+            "Nobody has run it, so it records intent, not tested steps.",
+            "Nobody has actually run the steps, so the runbook records intent, not a tested procedure."
           ],
           "system": "No change.",
           "screens": "None.",
@@ -3441,10 +3493,12 @@
           "k": "d",
           "label": "Accept it. One founder, no drill, no runbook",
           "gains": [
-            "Free until an absence happens, and five days stay in the schedule."
+            "Free until an absence happens, and five days stay in the schedule.",
+            "Free until the day an absence actually happens, and the five days stay available in the schedule."
           ],
           "costs": [
-            "Every compliance clock runs on, and the retainer SLA has no cover."
+            "Every compliance clock runs on, and the retainer SLA has no cover.",
+            "Every statutory clock keeps running regardless, and the retainer's own SLA has no cover for an absence."
           ],
           "system": "No change.",
           "screens": "None.",
@@ -3540,10 +3594,12 @@
           "k": "a",
           "label": "Independent, permanently. Write it down, with the separate-file format published",
           "gains": [
-            "Matches the architecture already chosen: exit is free."
+            "Matches the architecture already chosen: exit is free.",
+            "Matches the architecture already chosen: files stay the user's, so exit costs nothing to arrange."
           ],
           "costs": [
-            "Rules out acquisition, the most common ending, and opens the format a buyer would want."
+            "Rules out acquisition, the most common ending, and opens the format a buyer would want.",
+            "Rules out acquisition, the most common ending among the dead products this research studied."
           ],
           "system": "The review file schema is published and versioned.",
           "screens": "A format page in the docs.",
@@ -3554,10 +3610,12 @@
           "k": "b",
           "label": "Build to be acquired by a docs platform, CMS or agent vendor",
           "gains": [
-            "An acquirer with a pipeline gets distribution we cannot buy."
+            "An acquirer with a pipeline gets distribution we cannot buy.",
+            "An acquirer with an existing pipeline brings distribution this size of company cannot otherwise buy."
           ],
           "costs": [
-            "Four of eight dead products were bought and the software went too."
+            "Four of eight dead products were bought and the software went too.",
+            "Four of the eight dead products studied were bought, and the software itself still went with them."
           ],
           "system": "Proprietary review file; no open format.",
           "screens": "None.",
@@ -3584,10 +3642,12 @@
           "k": "d",
           "label": "Leave it open",
           "gains": [
-            "Costs nothing today, and no position to defend."
+            "Costs nothing today, and no position to defend.",
+            "Costs nothing today, and defends no position that could later prove wrong."
           ],
           "costs": [
-            "The format decision defaults to closed, and the question returns under pressure."
+            "The format decision defaults to closed, and the question returns under pressure.",
+            "Leaving it open lets the format decision default to closed the moment real pressure arrives."
           ],
           "system": "No change.",
           "screens": "None.",
