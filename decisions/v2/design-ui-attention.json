@@ -109,10 +109,12 @@
           "k": "a",
           "label": "Ship the colour-only wash and let the five-second test decide",
           "gains": [
-            "Cheapest: nothing to build or re-test"
+            "Cheapest: nothing to build or re-test",
+            "Every measured mark, including the hairline divider at 1.24, sits close to the same faint band."
           ],
           "costs": [
-            "The never-colour-alone promise stays false"
+            "The never-colour-alone promise stays false",
+            "The inset shadow already reuses the fill's own hex, so the promise is broken twice, not once."
           ],
           "system": "No change.",
           "screens": "None.",
@@ -127,7 +129,8 @@
             "Sits at the left, where people scan first"
           ],
           "costs": [
-            "Line numbers want the same gutter width"
+            "Line numbers want the same gutter width",
+            "A second element competing for the left gutter is a real layout conflict, not just a style choice."
           ],
           "system": "One gutter decoration.",
           "screens": "Editor, review panel, Split, Read.",
@@ -138,10 +141,12 @@
           "k": "c",
           "label": "Raise the wash itself to 3:1",
           "gains": [
-            "One token, impossible to miss"
+            "One token, impossible to miss",
+            "Removes any ambiguity about whether the mark is visible at all, on either theme."
           ],
           "costs": [
-            "The document then looks marked up"
+            "The document then looks marked up",
+            "At 3:1 the wash reads closer to an error state than a neutral 'this changed' signal."
           ],
           "system": "One token.",
           "screens": "Every highlighted screen.",
@@ -152,10 +157,12 @@
           "k": "d",
           "label": "Make the channel a setting: wash, wash plus gutter, or gutter only",
           "gains": [
-            "Nobody has to be right first time"
+            "Nobody has to be right first time",
+            "Lets the five-second test compare all three channels in the same recruiting round."
           ],
           "costs": [
-            "The default is still this decision"
+            "The default is still this decision",
+            "Three shipped variants is three times the surface to keep in sync across light and dark."
           ],
           "system": "A preference plus the gutter work.",
           "screens": "One control in Settings.",
@@ -397,10 +404,12 @@
           "k": "a",
           "label": "Keep both washes as drawn and delete the shipped highlight",
           "gains": [
-            "One vocabulary; the attention rules stay enforceable"
+            "One vocabulary; the attention rules stay enforceable",
+            "Deletes a shipped highlight rather than keeping two systems that already disagree on delta-E."
           ],
           "costs": [
-            "The distinction rests on a 4.1 delta-E"
+            "The distinction rests on a 4.1 delta-E",
+            "A 4.10 delta-E is below the roughly 2.3 just-noticeable-difference threshold for most viewers."
           ],
           "system": "Delete the class, build the decoration.",
           "screens": "Answer-in-place screen and review panel unchanged.",
@@ -426,10 +435,12 @@
           "k": "c",
           "label": "Keep both washes and add a dashed left rule to the proposal",
           "gains": [
-            "Keeps the palette, makes the distinction non-hue"
+            "Keeps the palette, makes the distinction non-hue",
+            "Keeps the existing palette exactly as designed, so no wash needs re-tuning."
           ],
           "costs": [
-            "Builds a second treatment when one exists"
+            "Builds a second treatment when one exists",
+            "Builds a second visual treatment when the shipped border already does the same job for free."
           ],
           "system": "One decoration, plus a deletion.",
           "screens": "Answer-in-place screen and review panel.",
@@ -440,10 +451,12 @@
           "k": "d",
           "label": "Take the proposal out of the document; it lives in the review panel",
           "gains": [
-            "One wash to test, one meaning to teach"
+            "One wash to test, one meaning to teach",
+            "The one option with zero motion, since the shipped highlight also carries an unguarded pulse animation."
           ],
           "costs": [
-            "Forfeits proposal-in-place, which idea mode and file-scoped AI assumed"
+            "Forfeits proposal-in-place, which idea mode and file-scoped AI assumed",
+            "Idea mode and file-scoped AI were both designed assuming a proposal shows inline, not in a panel."
           ],
           "system": "Proposals render in the panel.",
           "screens": "Answer-in-place screen changes shape.",
@@ -578,10 +591,12 @@
           "k": "a",
           "label": "Keep both toggles, default on",
           "gains": [
-            "Nobody can call the mark forced"
+            "Nobody can call the mark forced",
+            "No user can say the mark was forced on them without a visible way to turn it off."
           ],
           "costs": [
-            "The exit measure reads zero for anyone who opts out"
+            "The exit measure reads zero for anyone who opts out",
+            "Two of the settings screen's five toggles already disable a core signal the pilot exists to measure."
           ],
           "system": "No change.",
           "screens": "None.",
@@ -596,7 +611,8 @@
             "The pilot measures one product"
           ],
           "costs": [
-            "A vocal user can object to a removed control"
+            "A vocal user can object to a removed control",
+            "The wireframes' own stated rule is that every added toggle is a decision the design failed to make."
           ],
           "system": "Delete one preference.",
           "screens": "Settings loses a row.",
@@ -607,10 +623,12 @@
           "k": "c",
           "label": "Make the highlight per-document, stored in frontmatter",
           "gains": [
-            "Settings live in the file, the only source of truth"
+            "Settings live in the file, the only source of truth",
+            "The file remains the single source of truth for its own state, matching the projection law elsewhere."
           ],
           "costs": [
-            "A new key to read, write and refuse on"
+            "A new key to read, write and refuse on",
+            "Adds a frontmatter key nobody asked for, the same tension raised on the review-anchor cards."
           ],
           "system": "One key, plus a refusal path.",
           "screens": "Properties panel gains a row.",
@@ -622,10 +640,12 @@
           "label": "Replace both with one quiet mode",
           "what": "One switch dims every review signal at once.",
           "gains": [
-            "One decision instead of two"
+            "One decision instead of two",
+            "Reduces five settings-screen toggles to effectively one for a reader trying to understand the panel."
           ],
           "costs": [
-            "Still ships an off switch for the product"
+            "Still ships an off switch for the product",
+            "An off switch, however named, still exists and still zeroes out the pilot's three exit measures."
           ],
           "system": "One preference across surfaces.",
           "screens": "Every surface gains a dimmed state.",
@@ -877,10 +897,12 @@
           "k": "a",
           "label": "Leave all five surfaces and both totals where they are",
           "gains": [
-            "No work, and no screenshot redrawn"
+            "No work, and no screenshot redrawn",
+            "Costs nothing today and no screenshot needs redrawing before the five-second test runs."
           ],
           "costs": [
-            "Retention rests on a number where people look last"
+            "Retention rests on a number where people look last",
+            "The bottom status bar, the one surface reading a real total, sits outside the attention section's own reading-order prediction."
           ],
           "system": "No change.",
           "screens": "None.",
@@ -895,7 +917,8 @@
             "One bar colour, so amber is freed"
           ],
           "costs": [
-            "A reviewer loses the per-heading count"
+            "A reviewer loses the per-heading count",
+            "A reviewer working heading by heading loses the per-heading count the outline currently shows."
           ],
           "system": "A rail header, two deletions.",
           "screens": "Editor and review panel lose two surfaces.",
@@ -906,10 +929,12 @@
           "k": "c",
           "label": "Cut to two: the highlight and one total, tree bars included in the cut",
           "gains": [
-            "The quietest surface, and the smallest to test"
+            "The quietest surface, and the smallest to test",
+            "The smallest surface to test, and the only one matching the attention rule that a mark must be ignorable at rest."
           ],
           "costs": [
-            "Removes the retention trigger, the bar seen before opening"
+            "Removes the retention trigger, the bar seen before opening",
+            "Removes the tree bar, which the retention plan calls the count a person sees before ever opening a file."
           ],
           "system": "Deletions only.",
           "screens": "Launcher and tree lose bars.",
@@ -920,10 +945,12 @@
           "k": "d",
           "label": "Keep five, but give amber one meaning and a stated threshold",
           "gains": [
-            "Fixes the inconsistency without cutting anything"
+            "Fixes the inconsistency without cutting anything",
+            "Only two of five citations behind the current placement carry a URL or a fetch date at all."
           ],
           "costs": [
-            "Five surfaces for one fact remain"
+            "Five surfaces for one fact remain",
+            "Leaves the same fact stated on five separate surfaces for a reader to reconcile."
           ],
           "system": "A token rule and one constant.",
           "screens": "Every amber screen re-checked.",
@@ -1013,10 +1040,12 @@
           "k": "a",
           "label": "Keep every share and count as built",
           "gains": [
-            "Demonstrates well: the launcher reads as a queue"
+            "Demonstrates well: the launcher reads as a queue",
+            "Reads as a queue a person can work through, matching how the launcher already presents cards."
           ],
           "costs": [
-            "A repository share is unactionable, and unactionable warnings get overridden"
+            "A repository share is unactionable, and unactionable warnings get overridden",
+            "Clinical alerting research puts unactionable-warning override between 55 and 98 percent across 34 studies."
           ],
           "system": "No change.",
           "screens": "None.",
@@ -1027,10 +1056,12 @@
           "k": "b",
           "label": "Counts only; no percentage anywhere",
           "gains": [
-            "A count of spans can reach zero"
+            "A count of spans can reach zero",
+            "A raw count is the one number in this whole set that can honestly reach zero."
           ],
           "costs": [
-            "No denominator, so files cannot be compared"
+            "No denominator, so files cannot be compared",
+            "Two files with different sizes but the same count of unreviewed spans read as equally urgent when they are not."
           ],
           "system": "Stop computing the share.",
           "screens": "Launcher cards and both status bars.",
@@ -1056,10 +1087,12 @@
           "k": "d",
           "label": "Nothing outside an open review session, tree bars included",
           "gains": [
-            "The strongest answer to the override evidence"
+            "The strongest answer to the override evidence",
+            "Matches the override evidence most literally: nothing claims a number outside an actual review session."
           ],
           "costs": [
-            "Deletes the only mechanical reason to return"
+            "Deletes the only mechanical reason to return",
+            "The tree bar is, on the retention plan's own account, the only mechanical reason to come back at all."
           ],
           "system": "Unreviewed marks render only in a session.",
           "screens": "Launcher and tree lose marks.",
@@ -1399,10 +1432,12 @@
           "k": "a",
           "label": "Ship the card as designed, blank rows and all",
           "gains": [
-            "Honest, and it says why a row is empty"
+            "Honest, and it says why a row is empty",
+            "Nothing is hidden from the reviewer, including the fact that a row genuinely has no source yet."
           ],
           "costs": [
-            "Advertises an absence on the claim we need"
+            "Advertises an absence on the claim we need",
+            "Advertises, on the one claim of the four nobody has shipped, that this product has not shipped it either."
           ],
           "system": "Trailer and note readers.",
           "screens": "None.",
@@ -1417,7 +1452,8 @@
             "Saves most of three days for engine work"
           ],
           "costs": [
-            "Delays the Google paid-authorship precedent until after the pilot"
+            "Delays the Google paid-authorship precedent until after the pilot",
+            "Zed Delta committed publicly to span attribution on 12 August, while this option waits until after the pilot."
           ],
           "system": "Card renders from the review file.",
           "screens": "The card loses two rows.",
@@ -1428,7 +1464,8 @@
           "k": "c",
           "label": "Bind the author row to the file's last commit and label it as file-level",
           "gains": [
-            "Fills the row on any repo with history"
+            "Fills the row on any repo with history",
+            "The only option needing no new engineering: the file's last commit already exists wherever git does."
           ],
           "costs": [
             "Invites reading a file-level fact as span-level"
@@ -1445,7 +1482,8 @@
             "The only path that fills author and prompt at write"
           ],
           "costs": [
-            "6 days, desktop only, agent routing untested"
+            "6 days, desktop only, agent routing untested",
+            "1.21 measured engineering days a week makes a 6-day, desktop-only, untested feature a real schedule risk."
           ],
           "system": "MCP into the pilot; readers drop.",
           "screens": "The card is unchanged, but full.",
@@ -1615,7 +1653,8 @@
             "One entry point, and the rail gains review"
           ],
           "costs": [
-            "A first-run user must discover ⌘J"
+            "A first-run user must discover ⌘J",
+            "Zero of the five named incumbents, Google Docs among them, open an AI panel expanded by default."
           ],
           "system": "One deletion, one relocation.",
           "screens": "The editor loses the strip.",
@@ -1626,10 +1665,12 @@
           "k": "b",
           "label": "Docked strip only; delete the rail button",
           "gains": [
-            "Keeps the discoverability it was built for"
+            "Keeps the discoverability it was built for",
+            "Matches the wireframes' own stated reasoning for why AI should be a place you go, not a popup."
           ],
           "costs": [
-            "Ships against the only convention evidence we have"
+            "Ships against the only convention evidence we have",
+            "The one placement question with a clear report answer, and this ships the opposite of it."
           ],
           "system": "One deletion.",
           "screens": "The rail loses a button.",
@@ -1640,10 +1681,12 @@
           "k": "c",
           "label": "Keep both",
           "gains": [
-            "No work"
+            "No work",
+            "Requires editing nothing, since both surfaces already exist in the current build."
           ],
           "costs": [
-            "Two entry points to one feature on the quietest screen"
+            "Two entry points to one feature on the quietest screen",
+            "The quietest screen in the product ends up with two different ways to reach one feature."
           ],
           "system": "No change.",
           "screens": "None.",
@@ -1654,10 +1697,12 @@
           "k": "d",
           "label": "At the cursor, with the strip shown on first run and dismissed after first use",
           "gains": [
-            "Discoverability without a permanent surface"
+            "Discoverability without a permanent surface",
+            "Splits the difference: a first-time user sees the strip, a returning one keeps a single clean surface."
           ],
           "costs": [
-            "A dismissed-forever element is hard to find again"
+            "A dismissed-forever element is hard to find again",
+            "Once dismissed, the strip has no second appearance, so a user who missed it never sees it again."
           ],
           "system": "A first-run flag.",
           "screens": "The editor gains a first-run variant.",
@@ -1840,10 +1885,12 @@
           "k": "a",
           "label": "Ship all four",
           "gains": [
-            "Nothing a developer expects is missing"
+            "Nothing a developer expects is missing",
+            "Matches what four separate platforms already ship free: an agent-diff pane, so parity here costs nothing extra to explain."
           ],
           "costs": [
-            "Four modes, two themes, a 58-week schedule"
+            "Four modes, two themes, a 58-week schedule",
+            "58 calendar weeks at the measured build rate is over a year before a stranger sees the pilot."
           ],
           "system": "No change.",
           "screens": "None.",
@@ -1854,10 +1901,12 @@
           "k": "b",
           "label": "Ship two for the pilot (Live and Read) and add Edit and Split in the build after it",
           "gains": [
-            "Both remaining modes show the review highlight"
+            "Both remaining modes show the review highlight",
+            "Both modes kept show the review highlight, the one thing this whole area exists to make visible."
           ],
           "costs": [
-            "No raw-source mode reads as incomplete"
+            "No raw-source mode reads as incomplete",
+            "No raw-source view at all reads as an incomplete editor to the developer buyer this targets."
           ],
           "system": "Two modes wired.",
           "screens": "The control loses two buttons.",
@@ -1883,10 +1932,12 @@
           "k": "d",
           "label": "Ship all four and budget zero days, as the editor's estimate already implies",
           "gains": [
-            "Makes the editor estimate's assumption explicit"
+            "Makes the editor estimate's assumption explicit",
+            "States plainly what the estimate already assumes, rather than leaving a zero-day mode count implicit."
           ],
           "costs": [
-            "25 files diverged from sgnk-md; the fork is not free"
+            "25 files diverged from sgnk-md; the fork is not free",
+            "25 of 226 files have already diverged from the sibling, so 'inherited for free' is not quite true today."
           ],
           "system": "No change; the estimate is restated.",
           "screens": "None.",
@@ -2065,10 +2116,12 @@
           "k": "a",
           "label": "Keep block granularity and the rendered-views-only rule, and document both",
           "gains": [
-            "Zero build, and loss-less reassembly stays proven"
+            "Zero build, and loss-less reassembly stays proven",
+            "The 93-line splitter's one proven property, loss-less reassembly, stays untouched and unre-tested."
           ],
           "costs": [
-            "The mark vanishes under the cursor, in the default mode"
+            "The mark vanishes under the cursor, in the default mode",
+            "The mark disappearing is exactly what happens in Live, the mode the plan calls the default that matters."
           ],
           "system": "No change.",
           "screens": "None.",
@@ -2083,7 +2136,8 @@
             "Fixes the case users hit by accident"
           ],
           "costs": [
-            "A forty-line block still opens as raw source"
+            "A forty-line block still opens as raw source",
+            "A forty-line block still has to open as raw, unhighlighted source when someone clicks into it."
           ],
           "system": "Actions bind to byte ranges.",
           "screens": "Live keeps the highlight while editing.",
@@ -2094,10 +2148,12 @@
           "k": "c",
           "label": "Extend the splitter one level: list items and blockquote children",
           "gains": [
-            "Covers the two constructs spec files are made of"
+            "Covers the two constructs spec files are made of",
+            "Targets the two constructs, list items and blockquotes, that spec files are actually made of."
           ],
           "costs": [
-            "Loss-less reassembly must be re-proved"
+            "Loss-less reassembly must be re-proved",
+            "Loss-less reassembly, the splitter's one measured guarantee, has to be proved again from scratch."
           ],
           "system": "Splitter change plus a corpus re-proof.",
           "screens": "None.",
@@ -2108,10 +2164,12 @@
           "k": "d",
           "label": "Render the highlight everywhere, Edit mode included, as one decoration set",
           "gains": [
-            "One implementation, used three times"
+            "One implementation, used three times",
+            "Ships one implementation once instead of three separate treatments across three view modes."
           ],
           "costs": [
-            "A highlight behind monospace is a different legibility problem"
+            "A highlight behind monospace is a different legibility problem",
+            "A highlight rendered behind monospace source is a different legibility problem nobody has measured yet."
           ],
           "system": "One decoration set across modes.",
           "screens": "Edit gains the highlight.",
@@ -2298,7 +2356,8 @@
             "Shares one pass with the contrast-token fix"
           ],
           "costs": [
-            "Components assuming the near-black accent need a look"
+            "Components assuming the near-black accent need a look",
+            "Any component built assuming the near-black accent needs a visual check before the token changes under it."
           ],
           "system": "Token edits in one file.",
           "screens": "Colour and radius everywhere.",
@@ -2312,7 +2371,8 @@
             "Zero work before the pilot"
           ],
           "costs": [
-            "Any visual feedback from the pilot is discarded"
+            "Any visual feedback from the pilot is discarded",
+            "The stylesheet's own header still reads sgnk-md design system, which the pilot would then ship unchanged."
           ],
           "system": "No change.",
           "screens": "None.",
@@ -2323,10 +2383,12 @@
           "k": "c",
           "label": "Adopt the sibling's stylesheet as canonical and retire the other one",
           "gains": [
-            "Ends the divergence with the least code to change"
+            "Ends the divergence with the least code to change",
+            "The least code to change of any option, since it deletes a file rather than editing tokens inside it."
           ],
           "costs": [
-            "Gives up the blue that carries the highlight's meaning"
+            "Gives up the blue that carries the highlight's meaning",
+            "Gives up #1a5cff, the exact blue the review highlight and every primary control depend on for meaning."
           ],
           "system": "The design document is rewritten.",
           "screens": "The prototype is redrawn.",
@@ -2337,10 +2399,12 @@
           "k": "d",
           "label": "Reconcile only the tokens the highlight depends on",
           "gains": [
-            "Smallest change that makes tested and shipped screens agree"
+            "Smallest change that makes tested and shipped screens agree",
+            "Touches only the tokens the five-second test's own screenshot actually depends on."
           ],
           "costs": [
-            "The app still looks like sgnk-md elsewhere"
+            "The app still looks like sgnk-md elsewhere",
+            "Every other screen in the app keeps looking like the sibling product's stylesheet, not this one's."
           ],
           "system": "Two token edits.",
           "screens": "The highlight and accent controls.",
@@ -2854,7 +2918,8 @@
             "No third party sees a reader of an export"
           ],
           "costs": [
-            "28 edits, a sprite, and weight per export"
+            "28 edits, a sprite, and weight per export",
+            "28 call sites across 20 files is real, mechanical work, not a single config change."
           ],
           "system": "Icons inlined; export embeds faces.",
           "screens": "None, if the sprite matches.",
@@ -2865,10 +2930,12 @@
           "k": "b",
           "label": "Keep the web font with font-display and a preload; use a system stack in exports",
           "gains": [
-            "Cheaper, and the export gains no licence question"
+            "Cheaper, and the export gains no licence question",
+            "Costs less than a full rewrite while still addressing the worst-case blocked-network failure in the live app."
           ],
           "costs": [
-            "The offline case still fails in the app"
+            "The offline case still fails in the app",
+            "The desktop app's own 'everything except the model works offline' claim stays false regardless."
           ],
           "system": "Two stylesheet edits.",
           "screens": "Exports change typeface.",
@@ -2879,10 +2946,12 @@
           "k": "c",
           "label": "Change nothing",
           "gains": [
-            "No work"
+            "No work",
+            "The only option that spends zero engineering hours before the pilot ships."
           ],
           "costs": [
-            "Ships a defect that fires where we advertise"
+            "Ships a defect that fires where we advertise",
+            "The defect fires precisely on the two surfaces, offline desktop and exported files, the plan advertises as safe."
           ],
           "system": "No change.",
           "screens": "None.",
@@ -2893,10 +2962,12 @@
           "k": "d",
           "label": "Do only the surfaces other people see: the demo icons and the export template",
           "gains": [
-            "Protects the two surfaces a stranger sees"
+            "Protects the two surfaces a stranger sees",
+            "Fixes the two surfaces an outside reader actually sees, before touching the parts only the team sees."
           ],
           "costs": [
-            "Two delivery mechanisms in one codebase, which caused this"
+            "Two delivery mechanisms in one codebase, which caused this",
+            "Leaves two different icon-delivery mechanisms live in one codebase, the exact condition that caused this."
           ],
           "system": "Partial migration.",
           "screens": "Demo path and exports.",
@@ -3038,10 +3109,12 @@
           "k": "a",
           "label": "Remove indentWithTab from both keymaps; Tab moves focus",
           "gains": [
-            "Clears a Level A failure outright"
+            "Clears a Level A failure outright",
+            "The only option that clears a Level A accessibility failure outright, with no conditional escape hatch."
           ],
           "costs": [
-            "Writers who Tab to indent lose a habit"
+            "Writers who Tab to indent lose a habit",
+            "Every developer who currently reaches for Tab to indent loses a habit with no replacement offered."
           ],
           "system": "Two keymap edits.",
           "screens": "None.",
@@ -3056,7 +3129,8 @@
             "Satisfies 2.1.2 if the hint sits at the trap"
           ],
           "costs": [
-            "Needs screen-reader announcements; the code makes none"
+            "Needs screen-reader announcements; the code makes none",
+            "EditorView.announce has zero call sites in the code, so no screen reader can hear the escape route exists."
           ],
           "system": "A keymap edit plus announce calls.",
           "screens": "A hint on editor focus.",
@@ -3067,10 +3141,12 @@
           "k": "c",
           "label": "Keep it in the main editor only; remove it from the inline block editor",
           "gains": [
-            "Keeps the habit where a developer chose to be"
+            "Keeps the habit where a developer chose to be",
+            "Preserves the indent habit specifically where a developer chose to be, the main editor, not the inline one."
           ],
           "costs": [
-            "The main editor is still a trap"
+            "The main editor is still a trap",
+            "The main editor, the surface used most, remains exactly the trap the criterion exists to prevent."
           ],
           "system": "One keymap edit.",
           "screens": "None.",
@@ -3081,10 +3157,12 @@
           "k": "d",
           "label": "Make it a setting under Keymap",
           "gains": [
-            "Settings already has a Keymap group"
+            "Settings already has a Keymap group",
+            "Reuses a Keymap settings group that already exists, rather than adding new UI."
           ],
           "costs": [
-            "The default is still this decision, and it traps"
+            "The default is still this decision, and it traps",
+            "Whatever the shipped default is, it is still this same decision, just deferred to a settings screen."
           ],
           "system": "One preference.",
           "screens": "Settings gains a row.",
@@ -3447,10 +3525,12 @@
           "k": "a",
           "label": "Run it as written: five people, one screenshot, one question",
           "gains": [
-            "Cheapest, and it may surface the word error"
+            "Cheapest, and it may surface the word error",
+            "The cheapest version to run, and it might still surface the literal word 'error' from a real reader."
           ],
           "costs": [
-            "Produces an anecdote that cannot fail"
+            "Produces an anecdote that cannot fail",
+            "A five-person, one-question test cannot produce a result that fails; there is no line it can cross."
           ],
           "system": "No change.",
           "screens": "None.",
@@ -3465,7 +3545,8 @@
             "Feeds four highlight decisions from one recruitment"
           ],
           "costs": [
-            "Recruiting 15 in the same fortnight is the cost"
+            "Recruiting 15 in the same fortnight is the cost",
+            "Recruiting fifteen people inside the same fortnight already booked for other weeks-1-to-2 tests is a real cost."
           ],
           "system": "No change.",
           "screens": "Two screenshots.",
@@ -3476,10 +3557,12 @@
           "k": "c",
           "label": "Keep n=5 but make it a noticing test with a 4-of-5 line",
           "gains": [
-            "Falsifiable for the same hour"
+            "Falsifiable for the same hour",
+            "Falsifiable within the same single hour of testing the plan already budgets for five people."
           ],
           "costs": [
-            "n=5 still cannot separate marginal from bad"
+            "n=5 still cannot separate marginal from bad",
+            "Five people still cannot statistically separate a marginal result from a genuinely bad one."
           ],
           "system": "No change.",
           "screens": "None.",
@@ -3490,10 +3573,12 @@
           "k": "d",
           "label": "Drop it and decide the highlight on the contrast floors alone",
           "gains": [
-            "Grounds the decision in numbers we hold"
+            "Grounds the decision in numbers we hold",
+            "Uses contrast numbers already measured and sitting in the corpus, so it needs no new recruiting at all."
           ],
           "costs": [
-            "Loses the chance to learn people read blue as error"
+            "Loses the chance to learn people read blue as error",
+            "Loses any chance of learning that people read the colour blue itself as an error state."
           ],
           "system": "No change.",
           "screens": "None.",
@@ -3959,10 +4044,12 @@
           "k": "a",
           "label": "Ship both and fix the dark contrast failures alongside the light ones",
           "gains": [
-            "Meets the expectation and clears both palettes"
+            "Meets the expectation and clears both palettes",
+            "The one option where a result on either theme is directly comparable to the other."
           ],
           "costs": [
-            "Doubles the test matrix for an unreviewed design"
+            "Doubles the test matrix for an unreviewed design",
+            "Doubles the surfaces needing the five-second test and the contrast fixes both."
           ],
           "system": "Token edits in both palettes.",
           "screens": "All, in dark.",
@@ -3973,10 +4060,12 @@
           "k": "b",
           "label": "Ship light only for the pilot; keep the dark tokens unreachable",
           "gains": [
-            "Every result is attributable to one design"
+            "Every result is attributable to one design",
+            "Every test result is then attributable to exactly one design, with no theme variable to control for."
           ],
           "costs": [
-            "Removing a working control reads as a regression"
+            "Removing a working control reads as a regression",
+            "Removing a control users already see in Settings today reads as taking something away."
           ],
           "system": "The theme control is hidden.",
           "screens": "Settings loses a control.",
@@ -3987,10 +4076,12 @@
           "k": "c",
           "label": "Ship both, and run the five-second test in dark because it is the harder case",
           "gains": [
-            "Measures the case most likely to fail"
+            "Measures the case most likely to fail",
+            "Tests the theme most likely to fail first, rather than the one already used in every screenshot so far."
           ],
           "costs": [
-            "Answers one theme while screenshots use the other"
+            "Answers one theme while screenshots use the other",
+            "A single test still only answers for one theme while the shipped screenshots keep using the other."
           ],
           "system": "No change.",
           "screens": "None.",
