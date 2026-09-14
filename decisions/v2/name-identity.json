@@ -247,7 +247,8 @@
           ],
           "system": "No change.",
           "screens": "No change.",
-          "money": "Nothing now; a worse-priced rename later."
+          "money": "Nothing now; a worse-priced rename later.",
+          "what": "Keep frontmatter bare. No teaching cost, because the word already names what we edit; the one configuration all three naming reports argue against, in the store our buyer uses."
         },
         {
           "k": "b",
@@ -261,7 +262,8 @@
           ],
           "system": "Package and org handles change; the engine is untouched.",
           "screens": "Wordmark, launcher title, desktop window title.",
-          "money": "One domain and a handle set."
+          "money": "One domain and a handle set.",
+          "what": "Qualify the spoken name, and not with CMS or Studio. Keeps the word's teaching value; both best qualifiers are gone, and a disambiguation sentence follows every conversation permanently."
         },
         {
           "k": "c",
@@ -276,7 +278,8 @@
           ],
           "system": "Rename two published packages and 169 src strings.",
           "screens": "Every wordmark, the launcher, the desktop title.",
-          "money": "A domain, handles, a second clearance search."
+          "money": "A domain, handles, a second clearance search.",
+          "what": "Coin a name and keep frontmatter as the word for the block we edit. Kills the collision and the search problem outright; one sentence of category teaching in every asset."
         },
         {
           "k": "d",
@@ -291,7 +294,8 @@
           ],
           "system": "One package name survives; product strings change.",
           "screens": "Wordmark everywhere.",
-          "money": "The cheapest of the three changes."
+          "money": "The cheapest of the three changes.",
+          "what": "Flip the hierarchy so MDMAX becomes the brand. No new clearance and it settles the two-names question; md reads as a medical degree, and the research rates it a library name."
         }
       ],
       "rec": "c",
@@ -340,7 +344,8 @@
         "docs/research/agent-reports-2026-08-28/e6-naming-risk.md:110"
       ],
       "when": "mvp",
-      "whenWhy": "The landing page, the launcher and the badge all carry the name. It cannot wait."
+      "whenWhy": "The landing page, the launcher and the badge all carry the name. It cannot wait.",
+      "recWhy": "The name is taken in the VS Code store our buyer uses: Front Matter CMS has 82,265 installs, shipped v10.12.0 on 21 August, and owns the @frontmatter npm scope, and every week-1 asset spends our word against it. The best spoken qualifier went on 7 September when somebody registered Frontmatter Studio, and the bare name on a qualified handle is what the naming report calls highest-risk. Both documented same-market precedents ended in a rename, Firefox twice while small and Riot.im after launch; Obsidian's namesakes were in other markets, ours is in the same store. Renaming costs 169 strings today and a migration later, which is why Q16 puts the name before Phase 0 ships. Coining kills the collision and the search problem for one sentence of teaching per asset, and frontmatter stays the word for the block we edit. A clean attorney knock-out plus a free qualifier makes (b) cheaper."
     },
     {
       "id": "N2",
@@ -542,7 +547,8 @@
           ],
           "system": "Build-plan and desktop-config strings all settle this week.",
           "screens": "Wordmark on all nine prototype screens.",
-          "money": "Domains and handles bought once."
+          "money": "Domains and handles bought once.",
+          "what": "Freeze the name this week, before the landing pages go up. Ends the circle so the surface decision scores honestly; it forces the choice before the register searches run."
         },
         {
           "k": "b",
@@ -588,7 +594,8 @@
           ],
           "system": "No change.",
           "screens": "No change.",
-          "money": "None."
+          "money": "None.",
+          "what": "Form factor first, and the name inherits whatever the surface requires. Follows the written ordering; it scores the extension with a cost that may not exist and lets a surface set a company asset."
         }
       ],
       "rec": "b",
@@ -629,7 +636,8 @@
       "whenWhy": "A freeze date stops the name being reopened mid build.",
       "dependsOn": [
         "N1"
-      ]
+      ],
+      "recWhy": "The name is spent one asset at a time, and the surface decision was scoring a rename cost against the VS Code extension while the name waited on the surface, which is circular. Before the first install a rename is search-and-replace, 169 occurrences in 44 of 248 files measured on 9 September. What cannot be undone is a string somebody else holds, a notarised app, a customer CNAME, a bookmark a stranger keeps. Under Q3 the first artefact a third party holds is the open editor at / that Phase 0 ships to strangers, so the freeze lands before Phase 0 ships. That is exactly where Q16 puts it, and it is the same rule as this card rather than a different one. N3's register read happens first, and N6 keeps the identifier name-free. If the landing pages are meant to earn press and backlinks rather than recruit ten people, freeze this week."
     },
     {
       "id": "N3",
@@ -741,7 +749,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "Unbudgeted; the research has no figure."
+          "money": "Unbudgeted; the research has no figure.",
+          "what": "Pay an attorney for a knock-out search now, on two names. The only thing that settles the question and unblocks three decisions at once; spends before any demand signal, with no price budgeted."
         },
         {
           "k": "b",
@@ -756,7 +765,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "Nothing this week."
+          "money": "Nothing this week.",
+          "what": "Read the registers ourselves first, then buy counsel on what survives. The cheapest item on this list, and the money then follows a fact; not clearance, and never to be reported as clearance."
         },
         {
           "k": "c",
@@ -770,7 +780,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "None, until a rename."
+          "money": "None, until a rename.",
+          "what": "Skip clearance and rely on descriptiveness and the incumbent's no-enforcement posture. Nothing spent; the evidence is that nobody could open a register, and unregistrable also means undefendable."
         },
         {
           "k": "d",
@@ -785,7 +796,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "None now, more later."
+          "money": "None now, more later.",
+          "what": "Defer until after the two-week tests. Nothing spent before evidence anyone wants the product; public assets go up under a name of unknown legal status, the one thing all three reports said not to do."
         }
       ],
       "rec": "b",
@@ -817,7 +829,8 @@
       "whenWhy": "A register check is cheap and it is due before the name goes on a public page.",
       "dependsOn": [
         "N1"
-      ]
+      ],
+      "recWhy": "One EU word mark for FRONTMATTER has been reported and nobody has reproduced it, because five registries were unreachable from the research network; TESS, EUIPO, IP India, WIPO and every domain are still listed unchecked. That is a tooling fact being carried as a cost decision. An hour on an open connection either produces that record or kills it, and the money for counsel then follows a fact rather than a rumour, on the two names that survive: the coined one Q16 prefers and, per N4, MDMAX. A free search is not clearance and cannot prove a negative, so it is reported as a read, never as cleared. If the word is too descriptive to register, we cannot defend it either, which is what forced Riot.im's rename. N9's email to the incumbent's author waits on this read by a week. A live mark in an overlapping class turns this into an attorney engagement the same day."
     },
     {
       "id": "N4",
@@ -947,7 +960,8 @@
           ],
           "system": "No change; the packages already exist.",
           "screens": "A NOTICE and a mark line on the certificate.",
-          "money": "A second knock-out search."
+          "money": "A second knock-out search.",
+          "what": "Keep both names and register MDMAX as the house mark. The certificate gets a mark a fork cannot use, at no extra cost because the packages already exist; two clearance searches instead of one."
         },
         {
           "k": "b",
@@ -961,7 +975,8 @@
           ],
           "system": "Rename two published packages and the CLI.",
           "screens": "Certificate output and the CLI banner.",
-          "money": "One search instead of two."
+          "money": "One search instead of two.",
+          "what": "Collapse to one name: the product's name is also the engine's. One mark, one story, one search; it loses the trademark hook the licence rests on, and a fork could certify under it."
         },
         {
           "k": "c",
@@ -976,7 +991,8 @@
           ],
           "system": "The engine keeps its packages; product strings change.",
           "screens": "Wordmark everywhere.",
-          "money": "No new clearance beyond the one search."
+          "money": "No new clearance beyond the one search.",
+          "what": "Flip: MDMAX is the product and frontmatter stays the descriptive word. Settles the name with one we own; md reads as a medical degree, and the research rates it a library name."
         },
         {
           "k": "d",
@@ -990,7 +1006,8 @@
           ],
           "system": "Republish under a scope; every import path changes.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Drop MDMAX and publish the engine under the product's scope. One npm scope to hold; it concedes the certificate mark entirely and contradicts a licence decision already written down."
         }
       ],
       "rec": "a",
@@ -1016,7 +1033,8 @@
         "docs/research/agent-reports-2026-08-29-r11/r4-naming-candidates.md:69"
       ],
       "when": "after",
-      "whenWhy": "Two names or one matters when the engine is published."
+      "whenWhy": "Two names or one matters when the engine is published.",
+      "recWhy": "Two packages already ship from one repository, mdmax and mdmax-cli, and Apache-2.0 was chosen for the engine for one reason: its section 6 withholds trademark rights, so a fork cannot issue certificates under the mark. That only works if MDMAX is a mark we can defend, and it has had no more clearance than the product name; mdmax was 404 on npm on 30 August, which is availability, not clearance. Two names double the teaching, an accepted cost because the engine name is for the certificate and the CLI, not the pitch. E24 and L20 both rest on this. The certificate itself may not survive, since its one customer-facing verdict occurs zero times in 10,176 blocks, and the deciding test costs a day. Add MDMAX to the attorney's shortlist in N3 rather than assuming it is clean. If the certificate is cut, the second name is not needed and (b) follows."
     },
     {
       "id": "N5",
@@ -1136,7 +1154,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "Registrations billed to the company, not reimbursed."
+          "money": "Registrations billed to the company, not reimbursed.",
+          "what": "The commit author decides, and every registration goes to the entity. Unblocks the name, the domains and the clearance search this week, and the split can change later; the entity has to exist first."
         },
         {
           "k": "b",
@@ -1150,7 +1169,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "None, and no progress."
+          "money": "None, and no progress.",
+          "what": "Hold the name until a signed founders' agreement exists. Nothing a second founder could object to; four downstream decisions wait on a signature overdue since 7 September."
         },
         {
           "k": "c",
@@ -1164,7 +1184,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Decide the name now and record it as reversible until the agreement exists. Progress without foreclosing the founder question; it contradicts the freeze, which exists to end reversibility."
         },
         {
           "k": "d",
@@ -1179,7 +1200,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "A later assignment cost."
+          "money": "A later assignment cost.",
+          "what": "Register personally and assign to the entity later. Cheapest today, and the entity need not exist first; most expensive if a second founder is real, and mark assignments are a filing, not an email."
         }
       ],
       "rec": "a",
@@ -1204,7 +1226,8 @@
         "docs/GAPS-2026-09-08.md:150"
       ],
       "when": "after",
-      "whenWhy": "Who signs off follows the naming decision."
+      "whenWhy": "Who signs off follows the naming decision.",
+      "recWhy": "One author on all 80 commits here and all 416 on sgnk-md, 496 of 496, and the project record's own audit found no second name. The gap list still puts the name among four items needing the founders, and the founder agreement is overdue since 7 September. Waiting on that signature blocks the domain, the identifier and the clearance search. Registering every name, domain and mark to the entity makes the founder count irrelevant to ownership. The company owns the mark whatever the split turns out to be, and only the registrant, not the equity, has to be settled this week. B1 carries the founder question itself; this card refuses to let the name wait on it. The cost is that the entity has to exist before the first registration. A signed agreement naming a person, a start date and hours changes nothing here, because registering to the entity still stands."
     },
     {
       "id": "N6",
@@ -1448,7 +1471,8 @@
           ],
           "system": "One line in tauri.conf.json; the error-type base URI moves.",
           "screens": "Only the error URI in API responses.",
-          "money": "One extra domain a year."
+          "money": "One extra domain a year.",
+          "what": "A name-free identifier, and the permanent URIs on a domain we hold regardless. Separates what cannot change from what will, and can be set before the first signed build; a second domain to renew."
         },
         {
           "k": "c",
@@ -1462,7 +1486,8 @@
           ],
           "system": "No change.",
           "screens": "The desktop app keeps sgnk-md's title.",
-          "money": "None now."
+          "money": "None now.",
+          "what": "Leave ai.sgnk.md and both domains until the name is settled. No work, no decision taken twice; ten strangers install an app naming itself another product, and a notarised build carries it forward."
         },
         {
           "k": "d",
@@ -1477,7 +1502,8 @@
           ],
           "system": "An hour of editing across 23 lines.",
           "screens": "None.",
-          "money": "Two domain registrations."
+          "money": "Two domain registrations.",
+          "what": "Buy both domains today and collapse the dev plan's 23 lines onto one. Removes the unchecked assumption and ends the which-domain-is-home disagreement; spends on a name we may replace."
         }
       ],
       "rec": "b",
@@ -1518,7 +1544,8 @@
         "docs/FRONTMATTER-COMPLETE-RECORD-2026-08-30.md:7755"
       ],
       "when": "after",
-      "whenWhy": "The desktop app is not in the pilot. Renaming the bundle id orphans a user’s local drafts, so it moves only behind a migration."
+      "whenWhy": "The desktop app is not in the pilot. Renaming the bundle id orphans a user’s local drafts, so it moves only behind a migration.",
+      "recWhy": "The desktop config still names the app sgnk-md with identifier ai.sgnk.md and frontend md.sgnk.ai, the build plan carries frontmatter.app on 17 lines and frontmatter.dev on 6, and no domain lookup was reachable. The one string the plan declares permanent points at a domain nobody has checked. The bundle identifier keys preferences, keychain entries and the signed update channel, so making it match the marketing name is what turns a naming decision into a migration. A name-free identifier and permanent URIs on a domain we hold regardless separate what cannot change from what most likely will, and can be set before the first signed build without the name. AC10 removes the updater for v1, which makes this cheaper still. If the name freezes this week, the identifier and the brand can be one string and binding everything is simpler."
     },
     {
       "id": "N9",
@@ -1627,7 +1654,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Send a friendly heads-up now, before any public asset carries the name. The cheapest goodwill move available and he is sympathetic; it creates a dated record that we knew before we shipped."
         },
         {
           "k": "b",
@@ -1642,7 +1670,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "A sponsorship, sized by him."
+          "money": "A sponsorship, sized by him.",
+          "what": "Open a sponsorship or brand-licence conversation on his own invitation. Could settle the whole question at freelance-budget scale; it commits us to the name before it is chosen or cleared."
         },
         {
           "k": "c",
@@ -1656,7 +1685,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Do nothing and avoid creating the record. No dated admission of prior knowledge; it leaves a live name clash in that store unmanaged and forfeits an open invitation."
         },
         {
           "k": "d",
@@ -1671,7 +1701,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Contact him only after the registers have been read. Delays a friendly email by a week and loses nothing; one more week of a live collision unmanaged."
         }
       ],
       "rec": "d",
@@ -1699,7 +1730,8 @@
         "docs/research/2026-09-09/BRIEFING.md:291"
       ],
       "when": "after",
-      "whenWhy": "Contacting the incumbent follows the naming decision."
+      "whenWhy": "Contacting the incumbent follows the naming decision.",
+      "recWhy": "Elio Struyf's README carries a 2026 Open Source Priorities Update that says open source is not sustainable income and that major changes need a company commitment. He has publicly asked for the kind of collaboration that would settle this, and emailing him has been an open item since 28 August. The tension is real: contacting him creates dated proof we knew before shipping, which a passing-off claim needs, and not contacting leaves a 2019 extension with three store listings unmanaged. The view that confusion rather than litigation is the real risk is an inference from searches that opened no register, and one EU mark is reported and unreproduced. N3's read takes an hour, so the delay is one week and it changes what the email says. A clean clearance makes sponsorship attractive, because he is asking for exactly the collaboration that would settle this permanently."
     },
     {
       "id": "N11",
@@ -1816,7 +1848,8 @@
           ],
           "system": "No change.",
           "screens": "Three landing pages re-cut.",
-          "money": "None beyond the pages already planned."
+          "money": "None beyond the pages already planned.",
+          "what": "Run one landing page per candidate name and compare. A cleaner read than any interview; it spends a headline test, the reason the two weeks exist, and confounds the name with the headline it carries."
         },
         {
           "k": "c",
@@ -1830,7 +1863,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Do not test the name; decide on clearance and collision alone. Defensible, since those are the arguments that carry weight; a founder decision with zero evidence behind it."
         },
         {
           "k": "d",
@@ -1844,7 +1878,8 @@
           ],
           "system": "No change.",
           "screens": "A mock store listing for the test.",
-          "money": "None."
+          "money": "None.",
+          "what": "Test only the confusion: show his listing and ask if it is the same product. Sizes the confusion cost the reports call the binding constraint; it needs a mock listing that does not exist."
         }
       ],
       "rec": "a",
@@ -1867,7 +1902,8 @@
         "docs/research/agent-reports-2026-08-29-r11/r4-naming-candidates.md:63"
       ],
       "when": "after",
-      "whenWhy": "Testing the name with people comes with the pilot."
+      "whenWhy": "Testing the name with people comes with the pilot.",
+      "recWhy": "Fifteen people are already being recruited for the weeks 1 and 2 tests and twenty teams for the conversations, and not one will be asked what the name means. The tested variable is three headline variants, and a five-second screenshot test is already in the script. One question, what would a tool called X do, and is it the same product as the listing beside it, takes ten seconds a person, needs no extra recruiting, and would be the only naming evidence anyone has. It is a weak signal from a small n and is reported that way. Separate landing pages per name would spend a headline test, and those tests are why the two weeks exist, so (b) is out. Q16 asks the founders to choose between keeping, qualifying and coining, and this is the one cheap piece of evidence that can arrive before they do. If the name is frozen before week 1, the question is dropped rather than run for comfort."
     }
   ],
   "merged": [

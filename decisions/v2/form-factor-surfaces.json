@@ -766,7 +766,7 @@
       "dependsOn": [
         "FF1"
       ],
-      "recWhy": "The plan calls the same fork a strength on one page and a liability on another, and both are true, which is why this is a decision rather than a fix. Merging is the best deal if sgnk-md has reachable users, because one codebase ends the divergence cost for good, and the honest state is that nobody has asked whether those users exist; that is question 3 of the facts only you know. Hard-forking is the honest cost of owning an editor, and 14.5 to 20.5 days is not payable at 1.21 days a week before anything new ships. Deleting is right only if the surface goes to VS Code, and Q3 just said web first. Freezing is the one answer that needs nothing we do not already have: the shell stays as it is, new work goes to the engine and the one surface, and the merge question waits for the user count."
+      "recWhy": "The plan calls the same fork a strength on one page and a liability on another, and both are true, which is why this is a decision rather than a fix. Merging is the best deal if sgnk-md has reachable users, because one codebase ends the divergence cost for good, and the honest state is that nobody has asked whether those users exist. That is question 3 of the facts only you know. Hard-forking is the honest cost of owning an editor, and 14.5 to 20.5 days is not payable at 1.21 days a week before anything new ships. Deleting is right only if the surface goes to VS Code, and Q3 just said web first. Freezing is the one answer that needs nothing we do not already have: the shell stays as it is, new work goes to the engine and the one surface, and the merge question waits for the user count."
     },
     {
       "id": "FF4",
@@ -1037,7 +1037,7 @@
       ],
       "when": "after",
       "whenWhy": "The surface is chosen by the plan, so the measurements that would choose it are moot.",
-      "recWhy": "The surface is now settled by Q3, which makes the first clause of this question moot and leaves the part that matters: nothing has ever tested bytes surviving an agent writing while a person reads, and that is the entire claim. The contention test with a one-byte kill line written before it runs is the cheapest way to find out. The repo-shaped corpus is the second half: 83 percent of today's refusals are one Obsidian habit, lists at the left edge, and if the buyer is a developer with a repository that four-day fix may repair nothing they have. Both tests are days, not weeks, and both belong at the start of Phase 1 before the instruction-file view is built on top of the engine. If together they cost more than a week, run the contention test alone."
+      "recWhy": "The surface is now settled by Q3, which makes the first clause of this question moot and leaves the part that matters. Nothing has ever tested bytes surviving an agent writing while a person reads, and that is the entire claim. The contention test with a one-byte kill line written before it runs is the cheapest way to find out. The repo-shaped corpus is the second half: 83 percent of today's refusals are one Obsidian habit, lists at the left edge, and if the buyer is a developer with a repository that four-day fix may repair nothing they have. Both tests are days, not weeks, and both belong at the start of Phase 1 before the instruction-file view is built on top of the engine. If together they cost more than a week, run the contention test alone."
     },
     {
       "id": "FF5",

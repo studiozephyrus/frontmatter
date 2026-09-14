@@ -515,7 +515,7 @@
       "dependsOn": [
         "P1"
       ],
-      "recWhy": "The repo-wide version was the headline, and in nine weeks Claude Code, Codex and VS Code all shipped a way to see what an agent changed, VS Code shipped per-file review state behind a setting, and Almanac, which sold the general form, raised $45M and shut on 31 January 2025. That is three of four claims gone table stakes and the fourth dead. Scoping to instruction files changes what the claim competes with. Not what share of a repo is unreviewed, which is now free, but whether a person has read the AGENTS.md this agent is about to obey. Those files are maintained, 77 commits in openai/codex; large, 6,100 words in apache/airflow; and they drift, LibreChat's two copies 3x apart. Nobody tools that. Tying the headline to F35 is the point, not a cost. If the twenty show nobody maintains these files, fall back to b."
+      "recWhy": "The repo-wide version was the headline, and in nine weeks Claude Code, Codex and VS Code all shipped a way to see what an agent changed, and VS Code shipped per-file review state behind a setting. Almanac, which sold the general form, raised $45M and shut on 31 January 2025. That is three of four claims gone table stakes and the fourth dead. Scoping to instruction files changes what the claim competes with. Not what share of a repo is unreviewed, which is now free, but whether a person has read the AGENTS.md this agent is about to obey. Those files are maintained, 77 commits in openai/codex; large, 6,100 words in apache/airflow; and they drift, LibreChat's two copies 3x apart. Nobody tools that. Tying the headline to F35 is the point, not a cost. If the twenty show nobody maintains these files, fall back to b."
     },
     {
       "id": "P3",
@@ -722,7 +722,7 @@
       ],
       "when": "after",
       "whenWhy": "Byte exactness is engine copy. The pitch is the editor and the kit now.",
-      "recWhy": "Byte-exactness is real, measured, and admitted as a defect by an incumbent's own staff. It is also wanted by almost nobody: four complaints in a corpus of 12,556, and no vendor has taught buyers to want it because none of them can make the claim. That is the shape of a proof line, not a headline. Phase 0 puts that line under the sentence on the landing page, which is why E5, the one engine file that refutes it, moved into the floor this weekend: a proof line that is false in one line of code is worse than no line. Option a keeps the only claim checkable against their own folder without spending the pitch on it. Promote it and the demo has to be built on a file designed to break a competitor, which is a demo about them rather than about us."
+      "recWhy": "Byte-exactness is real, measured, and admitted as a defect by an incumbent's own staff. It is also wanted by almost nobody: four complaints in a corpus of 12,556, and no vendor has taught buyers to want it because none of them can make the claim. That is the shape of a proof line, not a headline. Phase 0 puts that line under the sentence on the landing page, which is why E5, the one engine file that refutes it, moved into the floor this weekend. A proof line that is false in one line of code is worse than no line. Option a keeps the only claim checkable against their own folder without spending the pitch on it. Promote it and the demo has to be built on a file designed to break a competitor, which is a demo about them rather than about us."
     },
     {
       "id": "P4",
@@ -4337,7 +4337,7 @@
       ],
       "when": "after",
       "whenWhy": "Both readings describe review state, which is deferred.",
-      "recWhy": "There are two jobs a review surface can claim and only one of them can be measured. Defect detection is the sentence a buyer wants to hear and it is falsified by a single miss, which is how the dead tools in this category went. Orientation, seeing what changed and who wrote it, is the job with evidence behind it: reviewers told which text was machine-written validated it better, and defects were 78 of 570 review comments, fourth of nine categories, so review was never mostly about errors. On instruction files orientation is the entire feature: what did an agent change in the file other agents obey, and has a person looked. Claim b, and put c underneath it as the team framing, because a record is bought by whoever is answerable and nobody buys one for themselves."
+      "recWhy": "There are two jobs a review surface can claim and only one of them can be measured. Defect detection is the sentence a buyer wants to hear and it is falsified by a single miss, which is how the dead tools in this category went. Orientation, seeing what changed and who wrote it, is the job with evidence behind it. Reviewers told which text was machine-written validated it better, and defects were 78 of 570 review comments, fourth of nine categories, so review was never mostly about errors. On instruction files orientation is the entire feature: what did an agent change in the file other agents obey, and has a person looked. Claim b, and put c underneath it as the team framing, because a record is bought by whoever is answerable and nobody buys one for themselves."
     },
     {
       "id": "P25",

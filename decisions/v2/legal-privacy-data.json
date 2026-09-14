@@ -100,7 +100,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Defer past the pilot. Costs nothing this week; a pilot with no published policy breaches SPDI Rule 4 today, and every other legal rule waits on this one."
         },
         {
           "k": "b",
@@ -114,7 +115,8 @@
           ],
           "system": "Firestore schema removed; no-bytes rule written down.",
           "screens": "Kills the hosted-viewer screen.",
-          "money": "None."
+          "money": "None.",
+          "what": "Delete firestore.rules and make zero document bytes an operating rule. The legal surface collapses to identity and billing at no cost; hosted publishing and server search are foreclosed."
         },
         {
           "k": "c",
@@ -128,7 +130,8 @@
           ],
           "system": "Firestore becomes the store of record.",
           "screens": "Share manager, revisions, moderation console.",
-          "money": "Storage, egress, counsel."
+          "money": "Storage, egress, counsel.",
+          "what": "Adopt the Firebase design as written. Hosted sync, search and publishing become possible; content falls under DPDP section 8(5) ceiling ₹250 crore, and intermediary status costs 74 founder-hours."
         },
         {
           "k": "d",
@@ -143,7 +146,8 @@
           ],
           "system": "One rule deleted; the duties remain.",
           "screens": "Hosted viewer stays behind sign-in.",
-          "money": "Storage plus processor agreements."
+          "money": "Storage plus processor agreements.",
+          "what": "Hold documents server-side but delete the unauthenticated public-read path. Intermediary duty mostly falls away and hosted sync stays; the fiduciary duty and the ₹250 crore ceiling remain."
         }
       ],
       "rec": "b",
@@ -221,7 +225,8 @@
             ]
           ]
         }
-      ]
+      ],
+      "recWhy": "Three committed files give three answers: the Firestore rules cap bodies at 900,000 characters, make revisions undeletable and allow anonymous reads; the old PRD says we hold documents; the plan says we hold no bytes. Nothing writes to Firestore across 226 source files and the rules call themselves a prototype, so deleting the design costs no engineering. Holding bytes makes us an intermediary under IT Act section 2(1)(w), 74 founder-hours before the first stranger, and puts document content under DPDP's ₹250 crore ceiling; holding none collapses the legal surface to identity and billing. The cost model and the strongest marketing claim, that documents never reach us, both rest on the same choice. Q9 carries this, with AC1 and AC14 as the code changes that make it true. If sharing ever lands on a hosted viewer, (c) is the honest minimum and ₹250 crore is budgeted."
     },
     {
       "id": "L2",
@@ -450,7 +455,8 @@
           ],
           "system": "No change.",
           "screens": "Adds /privacy, /terms, /grievance.",
-          "money": "Founder time."
+          "money": "Founder time.",
+          "what": "Assume live: file the point of contact, publish the policy and grievance page this week. No downside if the assumption is wrong; a day of work brought forward, possibly rewritten later."
         },
         {
           "k": "c",
@@ -463,7 +469,8 @@
           ],
           "system": "One deployment paused.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Take the sgnk-md deployment offline until the question is settled. Removes any live exposure immediately; it kills the only real user population and the interview pool."
         },
         {
           "k": "d",
@@ -477,7 +484,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Assume dormant because the GitHub allowlist gates sign-in. Every legal deadline stands as written; it rests on one code path as of now, and Google sign-in is ungated and takes an email."
         }
       ],
       "rec": "a",
@@ -547,7 +555,8 @@
             ]
           ]
         }
-      ]
+      ],
+      "recWhy": "sgnk-md is the same codebase, 202 of 228 source files byte-identical and none unique to it, and the portfolio lists it as production while the plan says zero users. Both cannot be true, and if it has users the breach, policy and retention clocks started in July. The sign-in allowlist is evidence about today's code, not the July deployment, and Google sign-in is not allowlisted and takes an email at first run. One question to the founders, has any non-founder ever signed in, is five minutes and moves every deadline in this area. It is also the question G16 asks for a different reason, because that list is the only interview pool the product has. A verbal answer is not a deployment log, so the answer is acted on the same week, with B14 and L7 already doing most of what (b) would do regardless. A deployment log showing non-founder sign-ins makes (b) mandatory rather than prudent."
     },
     {
       "id": "L4",
@@ -640,7 +649,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "File nothing and rely on section 70B(8) needing a CERT-In officer's complaint. Costs nothing; fails the first security questionnaire and any insurer's form."
         },
         {
           "k": "b",
@@ -654,7 +664,8 @@
           ],
           "system": "Alerting on the deploy; runbook in the repo.",
           "screens": "None.",
-          "money": "Free-tier alerting; founder time."
+          "money": "Free-tier alerting; founder time.",
+          "what": "File the point of contact now, write the runbook, and state a best-effort clock. About a day of work and honest; one person cannot guarantee six hours, and the whole server surface stays reportable."
         },
         {
           "k": "c",
@@ -684,7 +695,8 @@
           ],
           "system": "Credential issue and revocation runbook.",
           "screens": "None.",
-          "money": "A retainer before revenue."
+          "money": "A retainer before revenue.",
+          "what": "File now and pay a second responder onto a rota before the pilot. Real coverage of a clock we otherwise cannot meet; a second holder of production credentials and a wider revocation runbook."
         }
       ],
       "rec": "c",
@@ -749,7 +761,8 @@
             ]
           ]
         }
-      ]
+      ],
+      "recWhy": "The six-hour reporting clock has no size floor, one person made 80 of 80 commits, and there is no runbook, roster, pager or logging dependency in package.json, so the clock starts on noticing and nothing notices. Filing the point of contact is an hour and appears in three of the four options, so the real choice is what we hold. One person cannot staff a six-hour clock, and paying a second responder onto a rota creates a second holder of production credentials before there is a product. The lasting answer is to hold less, so that a reportable incident is near impossible. That is what Q9 does: no server-side documents, no hosted publishing, no hosted AI, and the GitHub App with three permissions. The cost is that the web trial and hosted publishing stay closed. A paying team requiring hosted sync reopens the surface, and Q13's team price has to carry the responder that comes with it."
     },
     {
       "id": "L6",
@@ -851,7 +864,8 @@
           ],
           "system": "Share module removed; slug list retired.",
           "screens": "Kills the public note page.",
-          "money": "None."
+          "money": "None.",
+          "what": "Delete the share module. Removes the exposure permanently; it forecloses the hosted viewer, still undecided, and throws away code that mostly works."
         },
         {
           "k": "b",
@@ -866,7 +880,8 @@
           ],
           "system": "Report form, ticket store, preservation store, log.",
           "screens": "Report page, grievance page, moderation console.",
-          "money": "Seven and a half weeks of founder time."
+          "money": "Seven and a half weeks of founder time.",
+          "what": "Open publishing under PRD v2's narrow shape and build the 74-hour takedown apparatus first. Cuts the abuse surface and produces what a B2B buyer asks for; 74 founder-hours do not fit before the pilot."
         },
         {
           "k": "c",
@@ -880,7 +895,8 @@
           ],
           "system": "No change, which is the problem.",
           "screens": "None.",
-          "money": "None, until a takedown arrives."
+          "money": "None, until a takedown arrives.",
+          "what": "Open it as configured today and keep the indexable pages for distribution. Keeps the organic argument alive; the shape the abuse research ranked first, with no takedown path."
         },
         {
           "k": "d",
@@ -894,7 +910,8 @@
           ],
           "system": "One route gate, plus a rendering rule.",
           "screens": "Public note page unreachable.",
-          "money": "None."
+          "money": "None.",
+          "what": "Gate publishing to the founder only, with noindex and system slugs as the rule. One line of gating removes intermediary exposure and buys back seven weeks; a public page's distribution is lost."
         }
       ],
       "rec": "d",
@@ -976,7 +993,8 @@
             ]
           ]
         }
-      ]
+      ],
+      "recWhy": "Public pages set index true, robots.ts allows crawlers at /, any signed-in user can publish under a slug they choose, and outbound links carry noopener noreferrer rather than nofollow ugc. That is the shape the abuse research ranked first, and none of the apparatus that makes it survivable exists. A crawlable page with user-chosen slugs makes us an intermediary on a permanent 24-hour clock, section 79 safe harbour is conditional, and losing it makes the founder a co-defendant. The apparatus is 74 founder-hours, seven and a half weeks the plan never schedules. Publishing is not on the pilot's critical path and the twelve-week plan omits it, so one line of gating removes the exposure and the seven weeks at once. Q11 carries this exactly. If the hosted viewer becomes what Pro sells, the 74 hours enter the schedule first."
     },
     {
       "id": "L7",
@@ -1075,7 +1093,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "A written notice by hand to each of the ten, full pages later. Proportionate to ten known participants and cheap; it does not meet the published-policy duty, and anyone can reach the app."
         },
         {
           "k": "b",
@@ -1090,7 +1109,8 @@
           ],
           "system": "Three static routes and a monitored address.",
           "screens": "/privacy, /terms, /grievance, linked from sign-in.",
-          "money": "Founder time; counsel deferred."
+          "money": "Founder time; counsel deferred.",
+          "what": "Publish all three before the pilot, self-drafted, with the one-month window and the founder named. The pilot runs lawfully for under a week of capacity; a self-drafted policy may need correcting."
         },
         {
           "k": "c",
@@ -1104,7 +1124,8 @@
           ],
           "system": "A monitored inbox with a same-day rota.",
           "screens": "Same pages, tighter copy.",
-          "money": "None in cash; real in attention."
+          "money": "None in cash; real in attention.",
+          "what": "Publish the tightest window from day one: 24-hour acknowledgement, 15-day resolution. Simplest to explain; it binds one person to a daily duty, and a missed self-imposed window is worse."
         },
         {
           "k": "d",
@@ -1117,7 +1138,8 @@
           ],
           "system": "No change.",
           "screens": "Same three pages, later.",
-          "money": "₹40,000 to ₹1,20,000, unverified."
+          "money": "₹40,000 to ₹1,20,000, unverified.",
+          "what": "Counsel drafts them first, then the pilot. A reviewed document covering CERT-In and terms together; ₹40,000 to ₹1,20,000 before any evidence anyone wants the product."
         }
       ],
       "rec": "b",
@@ -1189,7 +1211,8 @@
             ]
           ]
         }
-      ]
+      ],
+      "recWhy": "SPDI Rule 4 requires a published privacy policy today, the app has four pages and none is a policy, and privacy and terms are reserved slugs with no route behind them. Due now: the policy, consent, a grievance officer within a month, and a transfer gate; from 13 May 2027 the ceiling is ninety days and DPDP section 13(3) makes us the mandatory first stop. The window is set by what we publish, closed publishing owes one month and open publishing owes 24 hours and 15 days, and we are bound by whatever we print, so publish the window the law sets and no tighter. Twelve hours of writing is under a week of measured capacity and removes a live breach; counsel's fee comes before any evidence anyone wants the product. Q9 keeps the policy short, and L17 supplies its retention table. If we ever hold document content, the policy is a much harder document and counsel drafts it."
     },
     {
       "id": "L10",
@@ -1259,7 +1282,8 @@
           ],
           "system": "No change.",
           "screens": "Adds a sub-processor page.",
-          "money": "Unchanged."
+          "money": "Unchanged.",
+          "what": "Keep the five-provider fallback and publish a sub-processor list. Truthful at the moment of writing, at no cost; the list drifts whenever an env var changes, and five relationships need papering."
         },
         {
           "k": "b",
@@ -1273,7 +1297,8 @@
           ],
           "system": "Six routes moved client-side; CDN vendored.",
           "screens": "A key field in settings.",
-          "money": "Operator AI spend goes to zero."
+          "money": "Operator AI spend goes to zero.",
+          "what": "Cut the chain: bring-your-own key, bundled CDN assets, then paper what is left. Removes five sub-processors, one CDN and the operator's AI bill in one change; the zero-configuration demo goes."
         },
         {
           "k": "c",
@@ -1287,7 +1312,8 @@
           ],
           "system": "Provider pinned; fallback chain removed.",
           "screens": "A sub-processor page and an AI-panel disclosure.",
-          "money": "AI spend scales with use."
+          "money": "AI spend scales with use.",
+          "what": "Keep the server path, pin one provider, sign standard DPAs, publish the list. Keeps the zero-configuration demo with one relationship; the operator pays for every call, and fiduciary exposure stays."
         },
         {
           "k": "d",
@@ -1301,7 +1327,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Defer the agreements to 2027 when DPDP commences. No work now; backwards, because SPDI Rule 7 binds today, and there is nothing to hand the first B2B buyer."
         }
       ],
       "rec": "b",
@@ -1334,7 +1361,8 @@
         "merged: L11"
       ],
       "when": "after",
-      "whenWhy": "The vendor chain matters once there are paying users and real volume."
+      "whenWhy": "The vendor chain matters once there are paying users and real volume.",
+      "recWhy": "Six AI routes send up to 200,000 characters to whichever of five foreign providers an environment variable selects, no bring-your-own key exists, the plan names three vendors while the code has eight parties and no agreement, and the export renderers still load from jsdelivr. SPDI Rule 7 binds today and names password and payment details, the two we have not papered. Bring-your-own key is already the plan's position and Q10 makes it a hard gate before any stranger reaches an AI route. With the key the user's own and the assets bundled, five sub-processor relationships and the operator's AI bill disappear in one change, and what is left to paper is identity and billing. The cost is the first-run demo of idea mode and decision flow with no configuration, which R17 already puts in question. If the pilot needs that zero-configuration demo, the provider must be named and papered first."
     },
     {
       "id": "L12",
@@ -1427,7 +1455,8 @@
           ],
           "system": "Needs a signup-country signal we lack.",
           "screens": "None until the trigger.",
-          "money": "€468 a year from the trigger."
+          "money": "€468 a year from the trigger.",
+          "what": "Accept EU users and appoint a representative at the first EU signup. Matches spend to the obligation with €39 as the floor; it needs detecting the first EU seat, which we cannot do."
         },
         {
           "k": "b",
@@ -1441,7 +1470,8 @@
           ],
           "system": "No change.",
           "screens": "A representative named in the policy.",
-          "money": "€1,920 a year."
+          "money": "€1,920 a year.",
+          "what": "Accept EU users and appoint an Article 27 representative now at €160 a month. No trigger to detect and no gap to explain; €1,920 a year before any evidence of demand."
         },
         {
           "k": "c",
@@ -1456,7 +1486,8 @@
           ],
           "system": "A recruitment rule and a sign-up check.",
           "screens": "None during the pilot.",
-          "money": "None."
+          "money": "None.",
+          "what": "Geo-exclude the EU for the pilot and revisit at the first paying EU team. Removes Articles 27 and 30 and DSA Article 13 from the pilot; the pool narrows, and the exclusion has to be enforced."
         },
         {
           "k": "d",
@@ -1469,7 +1500,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Accept EU users and appoint nobody, arguing occasional processing. Costs nothing; the research tested the argument and it fails for a subscription editor with sync."
         }
       ],
       "rec": "c",
@@ -1529,7 +1561,8 @@
             ]
           ]
         }
-      ]
+      ],
+      "recWhy": "GDPR Article 3(2)(a) catches a free tool, the Article 27(2)(a) occasional-processing escape fails for a subscription editor with sync, and a representative plus an Article 30 record are due from the first EU seat. The plan names our rotating install ID as the Recital 24 monitoring pattern. A representative costs a one-founder company €39 to €160 a month, not the €200 to €500 the plan assumed, and it is still an annual commitment made before we learn whether the product survives. The pilot is ten people we choose, so excluding the EU costs a sentence in the recruitment and has to be enforced there rather than merely written. DSA Article 13 follows publishing, which Q11 keeps closed, so it falls away with L6. If the pilot cannot be filled without EU participants, the representative is contracted that day."
     },
     {
       "id": "L13",
@@ -1597,7 +1630,8 @@
           ],
           "system": "A separate store and a sync path.",
           "screens": "No shared review state.",
-          "money": "Sync infrastructure, two builds after the pilot."
+          "money": "Sync infrastructure, two builds after the pilot.",
+          "what": "Keep the review file out of the repository, machine-local and synced separately. Removes the exposure entirely; it destroys the central claim that review state must travel with the documents."
         },
         {
           "k": "b",
@@ -1611,7 +1645,8 @@
           ],
           "system": "No change to the format.",
           "screens": "A prominent first-write notice.",
-          "money": "None."
+          "money": "None.",
+          "what": "Store real identity and say so plainly in the docs and at first write. Most legible to a team that wants names; it publishes a reading history forever with no erasure route."
         },
         {
           "k": "c",
@@ -1626,7 +1661,8 @@
           ],
           "system": "An id-to-name map outside the repo.",
           "screens": "Panel shows names; the file shows ids.",
-          "money": "None."
+          "money": "None.",
+          "what": "Store a per-repo pseudonymous id by default, with a local map the user owns. Removes the identifier from the artefact that leaves our control and review still works; needs a missing-map rule."
         },
         {
           "k": "d",
@@ -1640,7 +1676,8 @@
           ],
           "system": "One field removed from the writer.",
           "screens": "The panel drops the prompt.",
-          "money": "None."
+          "money": "None.",
+          "what": "Drop the prompt field, keep identity, document the rest. Removes the field most likely to carry something private; identity and timestamps stay, and stay unerasable."
         }
       ],
       "rec": "c",
@@ -1660,7 +1697,8 @@
         "docs/FRONTMATTER-RECORD.md:8888"
       ],
       "when": "after",
-      "whenWhy": "Identity in the review file is deferred with review state."
+      "whenWhy": "Identity in the review file is deferred with review state.",
+      "recWhy": "The review file is the product's main output and nobody has asked what personal data it carries. One JSON line per span with reviewed-by, reviewed-at, author, model and prompt, committed alongside the documents by the same path, into a repository whose clones we never control. A public repository publishes identity and timestamps forever; a private one shares them with every cloner; DPDP section 12(3) and GDPR Article 17 give erasure rights we cannot honour on either. The product needs a stable per-span identity, not a name, so a pseudonymous id costs nothing and removes the only irreversible personal-data flow the architecture creates. The cost is a missing-map rule and a team buyer who wants names in the file itself. If team buyers need human-readable attribution in the file, real identity with a prominent first-write notice is the fallback."
     },
     {
       "id": "L14",
@@ -1731,7 +1769,8 @@
           ],
           "system": "A configuration change, no new code.",
           "screens": "None.",
-          "money": "Platform retention charges."
+          "money": "Platform retention charges.",
+          "what": "Turn on the host's own logs and accept whatever region they land in. The cheapest way to have logs at all; it fails the residency clause."
         },
         {
           "k": "b",
@@ -1745,7 +1784,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Run with no logs through the pilot and state that plainly in the runbook. Zero cost and zero personal data at rest; the 180-day floor stays unmet, and a questionnaire finds it."
         },
         {
           "k": "c",
@@ -1758,7 +1798,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Fix the plan to name the real stack and defer the store to the build after the pilot. Honest and free, and stops a wrong price being quoted; it fixes the document, not the duty."
         },
         {
           "k": "d",
@@ -1798,7 +1839,8 @@
         "docs/PRODUCT-BRIEF.md:531"
       ],
       "when": "after",
-      "whenWhy": "A log store is due with real traffic."
+      "whenWhy": "A log store is due with real traffic.",
+      "recWhy": "The plan says log residency is already priced, as R2 with object-lock, and we run Vercel plus Firebase with no region pinned and no logging dependency at all. The price is for a stack we do not have, and the problem is not residency but absence: there are no logs. CERT-In's 180 days is a floor, one-year access logs follow from 13 May 2027, and a security log is the one artefact a breach response cannot reconstruct afterwards. The PRD specifies five opaque append-only fields, timestamp, request id, opaque user id, verb, outcome, and no bytes, which is small enough to build now. Q9's zero document bytes shrinks what the log captures to identity and billing events, so the store is minimal. The cost is a vendor and a region decision on a one-person stack, plus NTP sync and an object-lock equivalent. If we hold nothing server-side at all, no logs plus a written statement is defensible."
     },
     {
       "id": "L15",
@@ -1992,7 +2034,8 @@
           ],
           "system": "No change until findings land.",
           "screens": "None.",
-          "money": "A review fee, unbudgeted."
+          "money": "A review fee, unbudgeted.",
+          "what": "Buy an external review of the shipped code and Firestore design before the pilot. Finds the class of defect two files revealed in one pass; a fee and a week before revenue, on code that may go."
         },
         {
           "k": "b",
@@ -2006,7 +2049,8 @@
           ],
           "system": "A two-line CSP fix.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Fix the known defects internally and defer the review to the first team customer. Free now; it keeps the pattern that produced the defect, and ten strangers use it before anyone outside looks."
         },
         {
           "k": "c",
@@ -2019,7 +2063,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "A small fee, little coverage."
+          "money": "A small fee, little coverage.",
+          "what": "Review only firestore.rules, the named concrete subject. The cheapest scoping; it reviews a file nothing runs while running code goes unreviewed."
         },
         {
           "k": "d",
@@ -2033,7 +2078,8 @@
           ],
           "system": "Follows the Firebase and byte-path decisions; no new work.",
           "screens": "None.",
-          "money": "A smaller fee, later."
+          "money": "A smaller fee, later.",
+          "what": "Settle Firestore and the server path first, then buy a scoped review of what is left. The smallest subject is the cheapest real review; it pushes the review past the pilot."
         }
       ],
       "rec": "d",
@@ -2058,7 +2104,8 @@
         "src/proxy.ts:138"
       ],
       "when": "after",
-      "whenWhy": "An outside review is due before paying users, not before twenty hand made kits."
+      "whenWhy": "An outside review is due before paying users, not before twenty hand made kits.",
+      "recWhy": "We assert our own safety, and the shipped code carries a defect two files revealed in one pass. The enforced content security policy binds to /p/:slug*, which is now a redirect, so public pages run report-only, and the policy that applies to untrusted content permits unsafe-eval. Both files' comments describe the old arrangement, which is how the defect survived. Q9 deletes firestore.rules and the server PDF route and Q11 keeps publishing closed, so most of what a review bought this week would review code that is about to go. The cheapest real review has the smallest subject, and that subject exists once those decisions land. Fix the policy binding this week regardless: two lines. The cost is that the review sits past the pilot. If we ever hold documents server-side, the review moves ahead of the pilot and stops being optional."
     },
     {
       "id": "L17",
@@ -2127,7 +2174,8 @@
           ],
           "system": "No change.",
           "screens": "One clause.",
-          "money": "None."
+          "money": "None.",
+          "what": "Promise deletion on request with an except-where-law-requires clause. Short and fast to write; the user discovers the exceptions when they matter, and a rights request has nothing to answer from."
         },
         {
           "k": "b",
@@ -2140,7 +2188,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Defer the retention schedule until DPDP commences. No work now; the wrong direction, because CERT-In and the IT Rules bind today."
         },
         {
           "k": "c",
@@ -2154,7 +2203,8 @@
           ],
           "system": "Forces a written record inventory first.",
           "screens": "A table inside /privacy.",
-          "money": "Founder time; possibly one CA question."
+          "money": "Founder time; possibly one CA question.",
+          "what": "Publish a retention table naming the floors and what survives an account closure. One document serves the policy page and the internal schedule; every row must be true."
         },
         {
           "k": "d",
@@ -2168,7 +2218,8 @@
           ],
           "system": "Follows the Firebase, byte-path and log decisions.",
           "screens": "A very short retention section.",
-          "money": "None."
+          "money": "None.",
+          "what": "Hold nothing that needs retaining, so the schedule is near-empty. The shortest honest policy; only reachable with no documents and no logs, and the CERT-In floor and billing records still apply."
         }
       ],
       "rec": "c",
@@ -2229,7 +2280,8 @@
             ]
           ]
         }
-      ]
+      ],
+      "recWhy": "Retention now has a floor as well as a ceiling, and we cannot promise to delete what the law requires us to keep. The CERT-In and IT Rules floors bind today, a books-of-account floor applies with a period still unverified, and the record's refuted 90-day rule is still in the record for someone to quote. A retention table names each floor and what survives an account closure, and it doubles as the internal schedule, so it is written once and it is the artefact a rights request is answered from. Q9 keeps it short, and L14 decides the row most likely to change. The 90-day rule is deleted in the same edit, before it is quoted in six months. The cost is that every row must be true, including the Companies Act period, which the CA in B14 confirms. If we hold no documents and no logs, the table gets shorter and the claim stronger, and (d) is where this converges."
     },
     {
       "id": "L18",
@@ -2450,7 +2502,8 @@
           ],
           "system": "Server-side AI off; keys removed.",
           "screens": "The AI panel needs the user's key.",
-          "money": "Operator AI spend to zero."
+          "money": "Operator AI spend to zero.",
+          "what": "Stop buying foreign AI services on the company account until registration is settled. Removes the trigger immediately and matches L10; hosting is foreign too, so imports remain."
         },
         {
           "k": "b",
@@ -2464,7 +2517,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "Monthly filing overhead."
+          "money": "Monthly filing overhead.",
+          "what": "Register for GST now and start filing, before any revenue. Compliant from the first import; monthly filing overhead on a company with no revenue, and it is permanent."
         },
         {
           "k": "c",
@@ -2478,7 +2532,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "One consultation fee."
+          "money": "One consultation fee.",
+          "what": "Ask a CA to confirm the position and the exposure to date, then act. Settles a factual question about our own filings and covers the export and LUT positions; a short delay and one fee."
         },
         {
           "k": "d",
@@ -2491,7 +2546,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "Unquantified exposure."
+          "money": "Unquantified exposure.",
+          "what": "Treat it as immaterial at current spend and revisit at revenue. Cheapest today; interest and penalty accrue on whatever is owed."
         }
       ],
       "rec": "c",
@@ -2512,7 +2568,8 @@
         "src/modules/ai/infrastructure/gateway-client.ts:34"
       ],
       "when": "after",
-      "whenWhy": "Tax registration follows revenue."
+      "whenWhy": "Tax registration follows revenue.",
+      "recWhy": "Buying API access from a foreign supplier is importing a service, and on one reading of CGST section 24(iii) registration starts at the first rupee with no turnover floor. Our decision memo states this as fact, the risk list carries it with a one-line response and no owner, and whether registration has already happened is stated nowhere. The code reads five foreign suppliers' keys and the hosting is foreign too, so the trigger exists whatever the AI route does. This is a factual question about our own filings that should not be guessed, and one consultation settles it along with the export-of-services and LUT positions, which are inference only. B14 puts the CA opinion in week 0 and the retainer is already in the budget, so the cost is a short delay and no new fee. If the CA confirms registration is already due, stopping the foreign purchases follows the same day."
     },
     {
       "id": "L20",
@@ -2580,7 +2637,8 @@
           ],
           "system": "Engine extraction, per-directory LICENSE, a license field.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Apache-2.0 with a NOTICE for the engine, proprietary for the app, per directory. Reasoned twice already, and it reserves the trademark the certificate needs; the engine becomes its own package."
         },
         {
           "k": "b",
@@ -2594,7 +2652,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Leave it unlicensed until the engine is extracted. No work now; every day nobody may lawfully verify the engine, the worst position for a spec others should implement."
         },
         {
           "k": "c",
@@ -2608,7 +2667,8 @@
           ],
           "system": "One root LICENSE and a license field.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "One proprietary licence for the whole repository. Simplest and true to the current layout; it forecloses the third-party verification the certificate needs."
         },
         {
           "k": "d",
@@ -2621,7 +2681,8 @@
           ],
           "system": "One root LICENSE.",
           "screens": "None.",
-          "money": "Removes licence revenue."
+          "money": "Removes licence revenue.",
+          "what": "Apache-2.0 for everything. Maximum adoption and the easiest verification story; it hands the whole editor to the incumbent we may be colliding with."
         }
       ],
       "rec": "a",
@@ -2643,7 +2704,8 @@
         "package.json"
       ],
       "when": "after",
-      "whenWhy": "Licence split follows publishing the engine."
+      "whenWhy": "Licence split follows publishing the engine.",
+      "recWhy": "The repository states no licence, has no LICENSE or NOTICE file and no license field, and package.json declares private true, so the default is all rights reserved and nobody may lawfully run the engine, which the PRD itself calls the worst position for a spec. The split has been reasoned twice, in the PRD and the engine document, and nobody added the file. Apache-2.0 with a NOTICE for the engine, because its section 6 withholds trademark rights, so the engine can be verified by anyone without a fork issuing certificates under the mark. Proprietary for the app, because Apache for everything hands the editor to the incumbent in the same store. E24 settles the package split and N4 the mark. Per-directory declarations are needed because a root licence cannot cover the spec prose. If the engine is not extracted this quarter, written intent to open it later is the honest interim."
     },
     {
       "id": "L21",
@@ -2861,7 +2923,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Leave it unaddressed until DPDP commences. No work now; it defers a clause that costs one sentence and leaves a visible hole at a ₹200 crore penalty tier."
         },
         {
           "k": "b",
@@ -2875,7 +2938,8 @@
           ],
           "system": "No change.",
           "screens": "One clause in /terms.",
-          "money": "None."
+          "money": "None.",
+          "what": "State 18-plus in the terms and do no behavioural monitoring of anyone. One sentence satisfies section 9(3) and pairs with the no-telemetry answer at no cost; a clause nobody reads is weak evidence."
         },
         {
           "k": "c",
@@ -2889,7 +2953,8 @@
           ],
           "system": "An age field, storage and a verification path.",
           "screens": "A step before the editor.",
-          "money": "A vendor, if assurance is real."
+          "money": "A vendor, if assurance is real.",
+          "what": "Build verifiable age assurance at sign-up. The strongest position if the audience assumption is wrong; real friction on the first screen, disproportionate to a developer-tool audience."
         },
         {
           "k": "d",
@@ -2902,7 +2967,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Write down that the product is not directed at children, and publish nothing. Documents the position at no cost; the argument is not available to anyone who asks."
         }
       ],
       "rec": "b",
@@ -2923,7 +2989,8 @@
         "docs/PRODUCT-BRIEF.md:531"
       ],
       "when": "after",
-      "whenWhy": "Age terms come with the full terms of service."
+      "whenWhy": "Age terms come with the full terms of service.",
+      "recWhy": "DPDP section 9 carries a ₹200 crore ceiling and bans tracking or behavioural monitoring of children, the plan never mentions children, and there is no age field, date of birth or terms acceptance anywhere in src. A markdown editor for repositories has few children, and nobody wrote that assumption down; the obligation does not scale with the number of children affected, so the size of the audience is no defence. One sentence in the terms plus an architecture that monitors nobody, which AC17 and Q9 already commit to, meets section 9(3) at no cost and is the only version that can be explained to a buyer or a regulator when asked. It ships with L7's terms. The cost is that a clause nobody reads is weak evidence on its own. If publishing ever aims at note-takers rather than developers, the audience assumption is re-argued."
     },
     {
       "id": "L23",
@@ -3008,7 +3075,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Cite the regulators as pressure without the caveat. The strongest-sounding version; a compliance buyer refutes it from the source in one reading, and one refuted claim discredits the deck."
         },
         {
           "k": "b",
@@ -3021,7 +3089,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Defer until five regulated-document buyers have been asked what they need. Evidence before wording, the right order; it leaves the pitch without a regulated story."
         },
         {
           "k": "c",
@@ -3035,7 +3104,8 @@
           ],
           "system": "No change.",
           "screens": "Wording on the regulated-buyer page.",
-          "money": "None."
+          "money": "None.",
+          "what": "Cite regulators only with the caveat that none mandates per-span review. Compliance buyers reward the caveat and punish its absence; every quote is re-fetched and string-matched first."
         },
         {
           "k": "d",
@@ -3048,7 +3118,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "Forgoes a buyer segment."
+          "money": "Forgoes a buyer segment.",
+          "what": "Do not cite regulators at all; sell on the working-tree case alone. Nothing to refute and nothing to re-fetch; it gives up the one adjacency where document review is already a habit."
         }
       ],
       "rec": "c",
@@ -3069,7 +3140,8 @@
         "added: L23"
       ],
       "when": "after",
-      "whenWhy": "How we talk about regulators is positioning."
+      "whenWhy": "How we talk about regulators is positioning.",
+      "recWhy": "The 9 September round opened 21 CFR 11.10(e), the MHRA GxP guide and the EMA reflection paper, and none mandates review below the whole document: pharma approves whole documents, aviation dates each page, the EMA paper says should and names no granularity. A compliance buyer will check, and one refuted claim discredits the rest of the deck, which is the same rule that withdrew three of our own numbers. MHRA permits exception reporting, which supports the design and undercuts an enumerate-everything pitch, so the honest citation is also the useful one. MK31 designs for these teams without chasing them. The cost is that every quote is re-fetched and string-matched first, because a research pass here has fabricated quotations before. If regulated buyers report a written internal requirement for span-level review, the claim becomes buyers require, with the buyer named."
     }
   ]
 }

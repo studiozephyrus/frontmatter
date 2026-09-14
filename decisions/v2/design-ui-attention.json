@@ -1477,7 +1477,7 @@
       ],
       "when": "after",
       "whenWhy": "Attribution is deferred, so its hover card is too.",
-      "recWhy": "Attribution is the one of the four claims nobody has shipped, and in the pilot the two readers that would fill its card need a commit, which a working tree does not have, so most cards would read prompt not recorded. A row that is empty advertises an absence on the claim we most need to look real. Two rows that always have content, the byte range and the hash, prove the engine works; author and prompt appear only when a source exists to fill them, and a card that only shows what it knows never looks broken. On instruction files the author row is the whole point, which agent wrote this rule, and it fills as soon as the MCP path carries a prompt. If the meeting confirms attribution as the surviving claim, the source becomes the question and d is the honest cost of answering it early."
+      "recWhy": "Attribution is the one of the four claims nobody has shipped, and in the pilot the two readers that would fill its card need a commit, which a working tree does not have, so most cards would read prompt not recorded. A row that is empty advertises an absence on the claim we most need to look real. Two rows that always have content, the byte range and the hash, prove the engine works. Author and prompt appear only when a source exists to fill them, and a card that only shows what it knows never looks broken. On instruction files the author row is the whole point, which agent wrote this rule, and it fills as soon as the MCP path carries a prompt. If the meeting confirms attribution as the surviving claim, the source becomes the question and d is the honest cost of answering it early."
     },
     {
       "id": "D7",
@@ -2145,7 +2145,7 @@
       ],
       "when": "after",
       "whenWhy": "The broken mark is in review highlighting.",
-      "recWhy": "Click a highlighted span in Live mode and the block swaps to a raw CodeMirror instance with no review decoration, so the mark vanishes under the cursor in the default mode, which is a defect rather than a limitation. The write engine already changes only the bytes you edited and never rewrites the file, so review actions never needed the block splitter at all; they can run on byte ranges directly, which is the engine's own unit and costs nothing new. Carrying the highlight into the inline editor fixes the case people hit by accident. Extending the splitter into nested constructs means re-proving loss-less reassembly, which was hard-won. If the content-hash prototype shows most spans are whole paragraphs, the block unit was enough and a suffices."
+      "recWhy": "Click a highlighted span in Live mode and the block swaps to a raw CodeMirror instance with no review decoration, so the mark vanishes under the cursor in the default mode, which is a defect rather than a limitation. The write engine already changes only the bytes you edited and never rewrites the file, so review actions never needed the block splitter at all. They can run on byte ranges directly, which is the engine's own unit and costs nothing new. Carrying the highlight into the inline editor fixes the case people hit by accident. Extending the splitter into nested constructs means re-proving loss-less reassembly, which was hard-won. If the content-hash prototype shows most spans are whole paragraphs, the block unit was enough and a suffices."
     },
     {
       "id": "D11",
@@ -3113,7 +3113,7 @@
       ],
       "when": "mvp",
       "whenWhy": "Tab behaviour is basic editing. Strangers hit it in the first minute.",
-      "recWhy": "The PRD records Tab-to-indent as absent and says keep it that way, and it is bound in four places, in the main editor and the inline block editor. A Tab that indents is a keyboard trap under WCAG 2.1.2 at level A, the minimum, and it is also what every developer expects an editor to do. Escape-then-Tab to leave, with a visible hint the moment the editor takes focus, is the conventional CodeMirror answer and keeps the habit, and it clears the criterion only if the escape route is announced to a screen reader, which the code does not do yet; EditorView.announce has zero call sites. Q5 carries this, and the announce calls are the budget line that comes with it. If the announce work does not land alongside, b does not actually clear 2.1.2 and a is the honest fallback."
+      "recWhy": "The PRD records Tab-to-indent as absent and says keep it that way, and it is bound in four places, in the main editor and the inline block editor. A Tab that indents is a keyboard trap under WCAG 2.1.2 at level A, the minimum, and it is also what every developer expects an editor to do. Escape-then-Tab to leave, with a visible hint the moment the editor takes focus, is the conventional CodeMirror answer and keeps the habit, and it clears the criterion only if the escape route is announced to a screen reader, which the code does not do yet. EditorView.announce has zero call sites. Q5 carries this, and the announce calls are the budget line that comes with it. If the announce work does not land alongside, b does not actually clear 2.1.2 and a is the honest fallback."
     },
     {
       "id": "D16",
@@ -3524,7 +3524,7 @@
       ],
       "when": "after",
       "whenWhy": "A five second test measures a screen the pilot will have.",
-      "recWhy": "The one test that could settle every highlight question on this list is specified as five people, one screenshot, five seconds and one question, with two failing answers named and no pass line, which means it cannot fail and therefore cannot produce the day-14 kill signal the plan promises. Fifteen people, a noticing task first, both highlight treatments, and a pass line written before anyone is shown anything turns it into an instrument, and one recruitment then feeds four decisions here, D1, D2, D4 and D21. The dismissal literature that motivates all of this is clinical and code-review data, so the transfer to prose is by analogy, and a real noticing test is how the analogy gets checked. If the ten-developer walkthrough can carry these questions, recruit once rather than twice."
+      "recWhy": "The one test that could settle every highlight question on this list is specified as five people, one screenshot, five seconds and one question, with two failing answers named and no pass line. It cannot fail, so it cannot produce the day-14 kill signal the plan promises. Fifteen people, a noticing task first, both highlight treatments, and a pass line written before anyone is shown anything turns it into an instrument, and one recruitment then feeds four decisions here, D1, D2, D4 and D21. The dismissal literature that motivates all of this is clinical and code-review data, so the transfer to prose is by analogy, and a real noticing test is how the analogy gets checked. If the ten-developer walkthrough can carry these questions, recruit once rather than twice."
     },
     {
       "id": "D20",

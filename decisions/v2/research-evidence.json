@@ -149,7 +149,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Stop the rounds and run the weeks 1 and 2 tests next. First human contact in week 1 and a programme that finally stops; a fatal review-mark result arrives after the tests."
         },
         {
           "k": "b",
@@ -164,7 +165,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "One bounded round 3 on the founder-independent items, capped at two days. Closes the cheap items with an end date; the cap has to be enforced against a programme that never stops."
         },
         {
           "k": "c",
@@ -179,7 +181,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Run round 3 unbounded, as rounds 1 and 2 were. Every round has caught real errors; on the observed rate it returns 150-plus findings and another headline change, with human contact still unscheduled."
         },
         {
           "k": "d",
@@ -229,7 +232,8 @@
         "https://raw.githubusercontent.com/anthropics/claude-code/main/CHANGELOG.md"
       ],
       "when": "mvp",
-      "whenWhy": "The plan stops the rounds and runs twenty kits by hand. This card is that decision."
+      "whenWhy": "The plan stops the rounds and runs twenty kits by hand. This card is that decision.",
+      "recWhy": "Every research round has changed the headline and none has produced a user, and src has been untouched since 10 August; zero of sixteen commits after 31 August touch it. Round 2 left eleven items open, and only two of them gate the build: whether review marks survive an agent's rewrite, and whether Cursor offers the model API. Each of those is one person for one day, and each moves a number the meeting uses, so they run in week 0 while the other nine are accepted as risk, in writing, with a signature, because an unsigned accepted risk is worth nothing. The monthly competitor check stays, named separately, since it caught Notion, Antigravity and Claude Code and three headline claims moved in nine weeks. If the surface decision picks a VS Code extension, the Cursor test stops being optional and the split becomes three gating experiments."
     },
     {
       "id": "R2",
@@ -1286,7 +1290,8 @@
           ],
           "system": "A second SOURCES.json and a second gate run in CI.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Pin a second corpus of agent-written repositories before the engine fixes. Sizes the fixes against the population the pitch names; delays the fixes by the clone-and-pin time."
         },
         {
           "k": "b",
@@ -1301,7 +1306,8 @@
           ],
           "system": "The existing gate is repointed; historical comparisons break.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Replace the vault corpus with the agent corpus. One corpus matching the pitch; it throws away byte-exactness proven on 8,513 files and the standing regression gate."
         },
         {
           "k": "c",
@@ -1316,7 +1322,8 @@
           ],
           "system": "One extra pinned source at weeks 3-4.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Keep the vaults as the gate; add the instruction-file corpus at the start of Phase 1. Nothing extra, because weeks 3 and 4 already name those repos; refusal figures stay vault-derived for now."
         },
         {
           "k": "d",
@@ -1331,7 +1338,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Keep as is; markdown is markdown. No work, and the gate is green and understood; every fidelity number describes a population the pitch ignores."
         }
       ],
       "rec": "c",
@@ -1351,7 +1359,8 @@
         "https://arxiv.org/abs/2602.09185"
       ],
       "when": "after",
-      "whenWhy": "A second corpus protects engine work that is deferred."
+      "whenWhy": "A second corpus protects engine work that is deferred.",
+      "recWhy": "Every engine number is measured on seven Obsidian vaults, 8,513 files and 19,047,891 bytes pinned on 29 August, and one vault is 77.4 percent of the file count, so the 83 percent refusal figure mostly describes one wiki. In those files there are zero spec.md, zero specs directories and two agent-instruction files, while the pitch is documents an agent wrote into a repository. The vault corpus is still the one thing the engine can prove, byte-exactness on 8,513 real files, so it stays as the gate. Weeks 3 and 4 already prototype on a spec-kit and a superpowers repository, and Q6 makes instruction files the point. The second corpus is the AGENTS.md and CLAUDE.md files those repositories hold, pinned at the start of Phase 1 for the cost of a clone. If the list bug's four-day estimate is defended with the 83 percent figure, the second corpus comes first."
     },
     {
       "id": "R10",
@@ -1712,7 +1721,8 @@
           ],
           "system": "A benchmark harness over the application, which does not exist.",
           "screens": "Launcher, review panel, settings and the pricing page.",
-          "money": "None beyond time."
+          "money": "None beyond time.",
+          "what": "Buy both benchmarks now: our four numbers, the Obsidian comparison, all ten screen queries. A speed number nobody claims and a reference for every screen; two days and a session out of two weeks."
         },
         {
           "k": "b",
@@ -1727,7 +1737,8 @@
           ],
           "system": "A small app benchmark; no new corpus.",
           "screens": "The launcher and the pricing page.",
-          "money": "None."
+          "money": "None.",
+          "what": "Our four numbers, plus the four screen queries the incumbents' docs cannot answer. Hours rather than days, aimed where no primary source answers; no competitor speed claim if a headline needs one."
         },
         {
           "k": "c",
@@ -1742,7 +1753,8 @@
           ],
           "system": "The four published measures are dropped.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Neither: the incumbents' docs stand and five real people beat both benchmarks. Frees the session and the two days; the launcher and pricing page get no external reference."
         },
         {
           "k": "d",
@@ -1757,7 +1769,8 @@
           ],
           "system": "No change now.",
           "screens": "None yet.",
-          "money": "None."
+          "money": "None.",
+          "what": "Both, after the two-week tests, so the borrows answer what confused real people. Best-targeted; the screens the test judges are built first, and measurement moves past the go or no-go."
         }
       ],
       "rec": "b",
@@ -1787,7 +1800,8 @@
         "merged: R13"
       ],
       "when": "after",
-      "whenWhy": "Competitor benchmarks come before a launch, not before phase zero."
+      "whenWhy": "Competitor benchmarks come before a launch, not before phase zero.",
+      "recWhy": "Ten screen queries are written and unrun because a prompt-injection guard refused every call to the screen library, and the technical plan names four performance measures to publish and gives a value for none. Six of the ten queries re-derive conventions the incumbents' own documentation already establishes, so buying all ten spends a session on what a table already answers. The four that vendor text cannot answer, the launcher and the pricing page among them, are hours rather than days. Our own four numbers are owed regardless. The engine benchmark also found a quadratic, 41,527.3 milliseconds on 320 KB of wikilink openers with slope 1.98, and that regex gets guarded whatever this card decides, since 41 seconds on a keystroke path is a defect. Q5 fixes the chrome this references. If any tested headline claims speed, the Obsidian comparison becomes mandatory before that headline ships."
     },
     {
       "id": "R12",
@@ -2103,7 +2117,8 @@
           ],
           "system": "A throwaway stub extension; no product code.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Test before the meeting: a stub extension in Cursor calling the model API, and count the fork population in the same sitting. Moves a number the surface decision rests on; an afternoon in a full week."
         },
         {
           "k": "b",
@@ -2118,7 +2133,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Decide on the VS Code numbers alone and treat the forks as upside. Defensible, since VS Code is the population with real numbers; the saving covers a smaller base than the argument implies."
         },
         {
           "k": "c",
@@ -2133,7 +2149,8 @@
           ],
           "system": "The bring-your-own-key fix and the AI panel's key screen stay in the sequence.",
           "screens": "Settings keeps the key field.",
-          "money": "Three engineering days."
+          "money": "Three engineering days.",
+          "what": "Build the key UI regardless, so the extension works everywhere. Removes the dependency entirely; costs the three days back, and the extension case gets weaker by that much."
         },
         {
           "k": "d",
@@ -2148,7 +2165,8 @@
           ],
           "system": "No change until week 3.",
           "screens": "Both mocks stay live.",
-          "money": "None."
+          "money": "None.",
+          "what": "Defer the form factor until the two-week tests say which shell people want. Decides on demand rather than savings; ten people's preference is not a population measurement."
         }
       ],
       "rec": "a",
@@ -2171,7 +2189,8 @@
         "microsoft/vscode#324218, merged 2026-07-03; issues #326539 and #326540, milestone 1.130.0"
       ],
       "when": "notnow",
-      "whenWhy": "Testing editor forks matters only if an extension ships."
+      "whenWhy": "Testing editor forks matters only if an extension ships.",
+      "recWhy": "Two of the savings that made the extension route attractive, byte-exact writes and a host-supplied model picker that deletes three days of key UI, are proven on VS Code 1.135.0 and nowhere else. The plan carries no install count for Cursor or any fork, which is itself the finding. One afternoon moves an input to a decision that is expensive to reverse, and counts the fork population in the same sitting. This sits at not now because Q3 chose the web editor at / as the one surface and the Mac app later from the same tree, so the extension is not the form factor being built and the test has nothing to inform yet. The finding is kept rather than deleted because FF12's later extension keeps the question alive. If the surface decision ever moves to an extension, this test runs before that meeting, not after it."
     },
     {
       "id": "R16",
@@ -2507,7 +2526,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Attach the notes this week: who, when, what they did, what they said. A day of writing decides eighteen engineering days; it may show the test was informal."
         },
         {
           "k": "b",
@@ -2522,7 +2542,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Relabel all three untested and move them into the ten-stranger pilot. Matches what the risk table anticipates; it moves 18 pilot days onto week-10 evidence and discards a real test for lack of notes."
         },
         {
           "k": "c",
@@ -2537,7 +2558,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Keep the label and attach nothing. Free; no artefact behind a class, in a document built on openable claims, and the first reader who asks finds nothing."
         },
         {
           "k": "d",
@@ -2552,7 +2574,8 @@
           ],
           "system": "Structured output leaves the pilot build.",
           "screens": "Idea-mode and decision-flow screens leave the pilot.",
-          "money": "None."
+          "money": "None.",
+          "what": "Cut idea mode and decision flow from the pilot and keep the docs scan, which needs no model. Removes 8 days and the buyer contradiction; cuts on the label, not the feature."
         }
       ],
       "rec": "a",
@@ -2578,7 +2601,8 @@
         "docs/GAPS-2026-09-08.md:52"
       ],
       "when": "mvp",
-      "whenWhy": "Generation ships as the funnel on founder tests whose notes were never attached."
+      "whenWhy": "Generation ships as the funnel on founder tests whose notes were never attached.",
+      "recWhy": "Three features carrying eighteen engineering days rest on evidence that is one sentence in a chat log. The plan's evidence table gives idea mode, decision flow and the docs scan their own class, and the gap register rates that High, a chat statement with no notes and no protocol. Standalone PRD generators number 512 repositories with the top one at 57 stars, and speckit.clarify, Kiro and Claude Code plan mode ship the same step free, so the market points against these features and the founder test for them. One document either exists or it does not, and if it exists it is the plan's only evidence from a person using the thing. Q12 makes the kit wait on exactly this: generation ships in Phase 2, after the founder test notes are attached and twenty kits have been made by hand. No research changes this; only the founders can say whether the notes exist."
     },
     {
       "id": "R18",

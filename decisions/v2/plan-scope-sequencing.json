@@ -467,7 +467,8 @@
           ],
           "system": "No change.",
           "screens": "No change.",
-          "money": "Honest only if client hours go to zero."
+          "money": "Honest only if client hours go to zero.",
+          "what": "Keep twelve weeks and commit in writing to 5.8 engineering days a week. Every existing gate date survives; nothing supports 5.8, and the last thirty days ran at 0.23."
         },
         {
           "k": "b",
@@ -480,7 +481,8 @@
           ],
           "system": "No change.",
           "screens": "No change.",
-          "money": "Consulting covers running costs for a year."
+          "money": "Consulting covers running costs for a year.",
+          "what": "Keep the scope and publish 37 to 58 weeks. Truthful and checkable against the commit log; the pilot lands in 2027 and dated kill lines lose meaning."
         },
         {
           "k": "c",
@@ -494,7 +496,8 @@
           ],
           "system": "The cut falls below even the engine fixes.",
           "screens": "No feature screens ship.",
-          "money": "None."
+          "money": "None.",
+          "what": "Re-cut the pilot to what 1.91 days a week delivers in twelve weeks: 22.9 days. Forces a hard cut now; that is under the 25.5-day fix-first list, so no pilot is left to show."
         },
         {
           "k": "d",
@@ -509,7 +512,8 @@
           ],
           "system": "The plan already prescribes the weekly report.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Publish engineering days and a weekly rate, and re-forecast the date at week 4. Checkable on day 7 and a real date from four weeks of data; no external commitment for a month."
         }
       ],
       "rec": "d",
@@ -538,7 +542,8 @@
       "whenWhy": "The pace is one of the five decisions. Every date in the plan rests on which rate is committed.",
       "dependsOn": [
         "B1"
-      ]
+      ],
+      "recWhy": "One document carries a twelve-week calendar and a measured rate of 1.21 engineering days a week, which makes the same scope 37 to 58 weeks; they differ fivefold. Twelve weeks at the measured rate buys 14.5 days, and the engine fixes alone are 25.5, so nobody can plan against the calendar, and at the best-ever 1.91 a week it still buys only 22.9. Four competitors shipped a working-tree agent diff between 3 July and 3 September, and on 8 September this code had been untouched for 29 days, so a dateless plan is a real risk too. Publishing the rate and re-forecasting at week 4 is the only version that is checkable on day 7 and produces a date somebody owns from data rather than hope. Q3's one-surface order and Q14's six fix-first items are what the rate is spent on. A named second engineer with a commit record makes 1.21 obsolete, and the rate is re-derived, not doubled."
     },
     {
       "id": "PL3",
@@ -842,7 +847,8 @@
           ],
           "system": "No change.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Build nothing until week 3 and keep the calendar as written. Keeps the discipline that refuted three headlines; extends a 29-day code freeze to 43, and the day-24 refusal test cannot run."
         },
         {
           "k": "b",
@@ -855,7 +861,8 @@
           ],
           "system": "Left-edge bug, old-line-ending bug that adds a second frontmatter block, CI, bundle budget, certification command, `entities`.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Start the six decision-independent rows now, alongside the tests. Engine fixes land whatever the meeting decides; founder attention splits across two jobs."
         },
         {
           "k": "c",
@@ -870,7 +877,8 @@
           ],
           "system": "Demo-blockers 18 days, ship-blockers 7.5.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Start the six now, and split the rest into demo-blockers and ship-blockers. Two named gates instead of one vague header; the same attention split, and the calendar is rewritten in the same edit."
         },
         {
           "k": "d",
@@ -884,7 +892,8 @@
           ],
           "system": "No change to the code.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Keep the calendar and demote the table to a defect list with no ordering claim. Removes the contradiction in one edit; drops the argument that the engine comes first."
         }
       ],
       "rec": "c",
@@ -917,7 +926,8 @@
         "merged: PL4"
       ],
       "when": "mvp",
-      "whenWhy": "Phase zero has a short fix list. The order it runs in is a first week answer."
+      "whenWhy": "Phase zero has a short fix list. The order it runs in is a first week answer.",
+      "recWhy": "A table headed these block everything else schedules its largest row five weeks after the work it blocks, and the calendar says build nothing in weeks 1 and 2 while the code sat untouched for 29 days. Six rows depend on no open decision and total 11.5 days: the flush-left list refusal that rejects 83 percent of real vaults, the line-ending bug, and their neighbours. Refusing most vaults is wrong in any product, so those six start now and land whatever else is decided. The remaining rows split into demo-blockers, what has to be true before a stranger sees a file, and ship-blockers, what has to be true before one is paid for. The split also forces the 4.5 unscheduled days, bundle budget, certification command, entities, desktop app name, onto a week. Q14 carries this exactly. The cost is the same attention split as (b) plus a calendar rewrite. If the meeting drops the engine, (a) is right."
     },
     {
       "id": "PL5",
@@ -1139,7 +1149,8 @@
           ],
           "system": "The local usage file, nothing else.",
           "screens": "A settings line explaining the file.",
-          "money": "None."
+          "money": "None.",
+          "what": "Six of ten still using after two weeks, with the local usage file pasted on request. Cheapest to build and it measures retention; the paste method measured effectively zero here."
         },
         {
           "k": "b",
@@ -1153,7 +1164,8 @@
           ],
           "system": "No local usage file needed for the gate.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Six of ten run it once and three ask for it unprompted, read from the session. Restores the unprompted-demand test with no file and no paste; says nothing about whether anyone returns."
         },
         {
           "k": "c",
@@ -1168,7 +1180,8 @@
           ],
           "system": "The usage file stays; the call is scheduling.",
           "screens": "The settings line only.",
-          "money": "None."
+          "money": "None.",
+          "what": "Three of ten name the problem unprompted, two still using at day 30, and a booked call from someone not asked. Neither half passes on politeness; ten calls of founder time and two extra weeks."
         },
         {
           "k": "d",
@@ -1182,7 +1195,8 @@
           ],
           "system": "None.",
           "screens": "None.",
-          "money": "Unbudgeted recruitment cost."
+          "money": "Unbudgeted recruitment cost.",
+          "what": "An Ellis survey of forty people, 40 percent very disappointed, by year end. The strongest signal available; forty strangers from zero interviews is another project, and nothing is decided until then."
         }
       ],
       "rec": "c",
@@ -1220,7 +1234,8 @@
       "whenWhy": "The plan proposes what passing means. Agree it before phase zero starts, not after.",
       "dependsOn": [
         "PL2"
-      ]
+      ],
+      "recWhy": "Three live documents set three different bars, and the instrument the plan proposed, a local usage file pasted on request, has been measured on our own tools. hand-filled feedback got 7 entries in 694 chances, and across three measurements that 7 never grew, so new entries ran at zero. A silent pilot reads as a failed one, and a false negative here is the most expensive result available. The bar in (c) is the only one written after somebody attacked the other two. Three of ten naming the problem unprompted cannot be politeness, two still using at day 30 cannot be a first-day courtesy, and a booked call from someone who was not asked is demand. Booking the call at recruitment turns a one percent ask into an appointment, and the call finds out why. Q15 carries this word for word, agreed before the pilot starts. If strangers will not take a call, the opt-in upload toggle is the fallback."
     },
     {
       "id": "PL7",
@@ -1436,7 +1451,8 @@
           ],
           "system": "None.",
           "screens": "Three landing pages.",
-          "money": "No revenue signal at all."
+          "money": "No revenue signal at all.",
+          "what": "Run all four tests as written: forty free contacts in two weeks. Every question closes at once if recruitment holds; partial data at the week-3 gate if it slips, and nothing can disprove the price."
         },
         {
           "k": "b",
@@ -1450,7 +1466,8 @@
           ],
           "system": "None.",
           "screens": "Three landing pages.",
-          "money": "None."
+          "money": "None.",
+          "what": "Sequence: developers and the screenshot test first, the twenty teams over four weeks. The go or no-go runs on time on what it needs; still no test that returns a refusal to pay."
         },
         {
           "k": "c",
@@ -1465,7 +1482,8 @@
           ],
           "system": "A checkout and a refund path.",
           "screens": "Pricing and checkout, outside the product.",
-          "money": "₹20,000 ad ceiling; refunds on request."
+          "money": "₹20,000 ad ceiling; refunds on request.",
+          "what": "Sequence as in (b) and add a refundable pre-order arm to the landing pages. The only test that can return a hard no, with its numbers already in the record; needs a checkout and unbudgeted visitors."
         },
         {
           "k": "d",
@@ -1479,7 +1497,8 @@
           ],
           "system": "None.",
           "screens": "Three landing pages.",
-          "money": "None."
+          "money": "None.",
+          "what": "Keep all four at lower n and ask teams for signed intent at a stated price. Twenty-one contacts is deliverable; every kill threshold must be restated, and signed intent has no measured conversion."
         }
       ],
       "rec": "c",
@@ -1507,7 +1526,8 @@
         "merged: PL9"
       ],
       "when": "after",
-      "whenWhy": "The old two week test shape is replaced by the twenty hand made kits."
+      "whenWhy": "The old two week test shape is replaced by the twenty hand made kits.",
+      "recWhy": "After two adversarial rounds nothing has tested whether anyone pays, and the fortnight as written books ten developer sessions, five people who bill for documents and twenty team conversations. That is forty free contacts in ten days from a programme with zero interviews, with no checkout, no price and no card anywhere in it. Only the developer sessions and the screenshot test gate week 3, so they run first and the teams spread over four weeks, which G15 makes bookable. The pre-order arm is the one test that can return a hard no, its numbers already exist in the record, and PR4 and PR16 put the page and the rail in place. The costs are a checkout before the product exists and about 1,200 unbudgeted visitors. If the surface decision changes what is sold, the page sells the new artefact."
     },
     {
       "id": "PL8",
@@ -1895,7 +1915,8 @@
           ],
           "system": "None.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Keep the plan's four market conditions and treat the record's seven switches as superseded. Simplest, no new bookkeeping; nothing can fire on the founder, and one row names a cut channel."
         },
         {
           "k": "b",
@@ -1925,7 +1946,8 @@
           ],
           "system": "None.",
           "screens": "None.",
-          "money": "Ties the plan to a paid gate."
+          "money": "Ties the plan to a paid gate.",
+          "what": "Adopt all seven of the record's kill switches with new dates. A complete set with dates and actions; the pre-order switch assumes a paid test nobody chose yet, and every date needs re-deriving."
         },
         {
           "k": "d",
@@ -1939,7 +1961,8 @@
           ],
           "system": "None.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Keep the plan's four and replace the cut-plugin row with a live channel condition. Fixes the one row attached to nothing; still nothing measures the founder."
         }
       ],
       "rec": "b",
@@ -1968,7 +1991,8 @@
         "docs/CRITIQUE.md:793"
       ],
       "when": "mvp",
-      "whenWhy": "Kill lines only work if they are set before the work starts. Pick which ones are live."
+      "whenWhy": "Kill lines only work if they are set before the work starts. Pick which ones are live.",
+      "recWhy": "Not one condition in the current plan can fire on the founder. The risk table's four numeric kills are all on the market or the engine, a fifth names the Obsidian plugin that was cut, and the record's seven dated switches were never carried across. The record's last three watch the person building, writing, product hours and client hours, and the writing switch is checkable with two commands and reads its most extreme value now, 396 docs changes to zero code in fourteen days. Adding those three to the plan's four gives a set that can say no to the founder as well as to the market, and it starts on a named Monday, because a start date that drifts is no start date. The fourteen-day writing freeze it triggers is the honest cost. PL2 supplies the rate it reads. If the two-week tests count as the work, the writing switch's window excludes that fortnight."
     },
     {
       "id": "PL11",
@@ -2296,7 +2320,8 @@
           ],
           "system": "A flag around the main layout.",
           "screens": "The launcher becomes the first screen.",
-          "money": "None."
+          "money": "None.",
+          "what": "Remove the gate for the pilot and keep the auth code behind a flag. Restores the thirty-second first run and nothing is deleted; the only non-engine work this repo owns is shelved."
         },
         {
           "k": "b",
@@ -2310,7 +2335,8 @@
           ],
           "system": "None.",
           "screens": "The login screen stays first.",
-          "money": "None."
+          "money": "None.",
+          "what": "Keep sign-in and make the tier and retention sections admit an account is required. Honest about what ships today and no code changes; asking for an account before value is a known failure."
         },
         {
           "k": "c",
@@ -2325,7 +2351,8 @@
           ],
           "system": "The layout branches on storage, not on sign-in.",
           "screens": "The launcher gains a no-account path.",
-          "money": "None."
+          "money": "None.",
+          "what": "Optional: a local folder and drag-in with no account, and a repository requires one. Matches what each path needs and keeps the thirty-second first run; two first-run paths to design and test."
         },
         {
           "k": "d",
@@ -2339,7 +2366,8 @@
           ],
           "system": "None.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "Defer until it is decided whether the Firebase design ships. One decision instead of two; the first screen stays undecided as the pilot nears, and every legal rule waits on it too."
         }
       ],
       "rec": "c",
@@ -2362,7 +2390,8 @@
         "firestore.rules:361"
       ],
       "when": "mvp",
-      "whenWhy": "Sign in for strangers is in the first build, and today the app shows a login before a file."
+      "whenWhy": "Sign in for strangers is in the first build, and today the app shows a login before a file.",
+      "recWhy": "The pilot scope table lists sign-up among the things the pilot leaves out, the retention section wants a folder opened and edited in thirty seconds with no account, and the app's main layout shows a login screen whenever nobody is signed in. The plan and the code contradict each other on the first screen. A local folder and a dragged-in file need no identity; a GitHub repository needs a token, and that is the only place an account is physically required. Asking for one where it is required, and nowhere else, deletes no sign-in work and waits on nothing: zero Firestore document writes exist across 226 source files, so the Firebase question does not gate this. Q3 and AC20 carry the same rule. The cost is two first-run paths to design and test. If Firebase is removed entirely, (a) is right and the login screen goes."
     },
     {
       "id": "PL14",
@@ -3118,7 +3147,8 @@
           ],
           "system": "None.",
           "screens": "None.",
-          "money": "No revenue this quarter."
+          "money": "No revenue this quarter.",
+          "what": "End the quarter at the pilot as written, with launch a separate quarter. Focused and matched to capacity; no distribution evidence in ninety days, and the one channel needs an unasked permission."
         },
         {
           "k": "b",
@@ -3132,7 +3162,8 @@
           ],
           "system": "None.",
           "screens": "A public landing page.",
-          "money": "None."
+          "money": "None.",
+          "what": "Add a week 13: Show HN and one community post with a stated floor. A distribution number inside the quarter; spends a one-shot channel on a pilot-grade build, and adds a week the schedule cannot hold."
         },
         {
           "k": "c",
@@ -3146,7 +3177,8 @@
           ],
           "system": "Billing and entitlements, none in the pilot.",
           "screens": "Checkout and account screens.",
-          "money": "Merchant fees and a compliance surface."
+          "money": "Merchant fees and a compliance surface.",
+          "what": "Add a payment event: the first paid team seat inside the ninety days. The strongest ending; billing and a merchant account are outside the pilot, and redundant beside a week-2 pre-order."
         },
         {
           "k": "d",
@@ -3161,7 +3193,8 @@
           ],
           "system": "None.",
           "screens": "None.",
-          "money": "None."
+          "money": "None.",
+          "what": "End at the pilot, pre-register the launch date and its floor now, and ask the superpowers maintainer this week. Removes a bar chosen under relief; no revenue evidence this quarter."
         }
       ],
       "rec": "d",
@@ -3189,7 +3222,8 @@
         "docs/GAPS-2026-09-08.md:134"
       ],
       "when": "after",
-      "whenWhy": "How the quarter ends depends on what phase zero returns."
+      "whenWhy": "How the quarter ends depends on what phase zero returns.",
+      "recWhy": "As written the quarter ends with polish and ten strangers, produces no distribution and no revenue, and its one scheduled channel is a README line in a toolchain whose maintainer nobody has asked. Show HN is one shot, so its floor has to be written before the result is seen, because a bar chosen after the pilot is chosen under relief. Zed Delta's 679 points on launch give the floor a reference, and G4 settles the title. Asking the superpowers maintainer this week, which G6 specifies as an issue, decides whether the quarter has one channel or none, for the cost of an email. The revenue event in (c) needs billing and a merchant account the pilot does not have; PL7 and PR4 put a refundable pre-order in weeks 1 and 2 instead, which is the commercial evidence this quarter can honestly carry. If that pre-order ships, the quarter already has its number and this card's flip has fired."
     },
     {
       "id": "PL18",
