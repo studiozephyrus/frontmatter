@@ -751,10 +751,12 @@
           "k": "a",
           "label": "Re-cut the 90-day calendar to the measured rate: 58 weeks at 1.21, or 37 at 1.91",
           "gains": [
-            "Honest, and nobody executes against a schedule already refuted."
+            "Honest, and nobody executes against a schedule already refuted.",
+            "Puts every downstream date on a footing nobody can later call fictional"
           ],
           "costs": [
-            "Puts first strangers in mid-2027, and tests nothing about allocation."
+            "Puts first strangers in mid-2027, and tests nothing about allocation.",
+            "Tests nothing about whether the low rate reflects capability or a document-heavy allocation choice"
           ],
           "system": "No change.",
           "screens": "The 90-day calendar rewritten.",
@@ -780,10 +782,12 @@
           "k": "c",
           "label": "Cut the pilot to what 1.21 a week delivers in twelve weeks, about 15 days",
           "gains": [
-            "Fits without fiction and keeps the twelve-week horizon."
+            "Fits without fiction and keeps the twelve-week horizon.",
+            "The only option that neither inflates the rate nor abandons the twelve-week horizon entirely"
           ],
           "costs": [
-            "15 days misses the 24 days of first engine fixes; review state (tracking what you read) would not ship."
+            "15 days misses the 24 days of first engine fixes; review state (tracking what you read) would not ship.",
+            "Still misses the 24 days of first-engine fixes, so review state itself would not ship inside it"
           ],
           "system": "Engine fixes cut short; review state leaves the pilot.",
           "screens": "The pilot demo changes shape.",
@@ -793,10 +797,12 @@
           "k": "d",
           "label": "Adopt the documentation-to-source ratio as the only check, from week 3",
           "gains": [
-            "Unarguable, cheap, and needs nobody to count honestly."
+            "Unarguable, cheap, and needs nobody to count honestly.",
+            "Needs no honest self-counting from anyone, since the ratio comes straight from the repository"
           ],
           "costs": [
-            "Measures allocation, not progress, and it starts already tripped."
+            "Measures allocation, not progress, and it starts already tripped.",
+            "Starts the check already tripped, per the tension, before a single week of the plan has run"
           ],
           "system": "No change.",
           "screens": "None.",
@@ -1047,10 +1053,12 @@
           "k": "a",
           "label": "$4 to $5 per user per month, as the plan states, and mark BUSINESS.md historical",
           "gains": [
-            "One governing list, which every downstream artefact needs."
+            "One governing list, which every downstream artefact needs.",
+            "Every downstream artefact, pricing page included, finally has one number to be written against"
           ],
           "costs": [
-            "About 1,018 seats to cover the two-founder nut, in an unoccupied rung."
+            "About 1,018 seats to cover the two-founder nut, in an unoccupied rung.",
+            "Anchors directly to a feature checkbox GitHub already gives away free, per the tension"
           ],
           "system": "No change.",
           "screens": "Pricing page rebuilt on one seat price.",
@@ -1060,10 +1068,12 @@
           "k": "b",
           "label": "$50 per user per year, Obsidian's exact number and unit",
           "gains": [
-            "The only measured B2B price in this category."
+            "The only measured B2B price in this category.",
+            "The only price in this whole set that is a real, measured B2B number rather than an estimate"
           ],
           "costs": [
-            "One payment attempt makes a failed renewal final; Obsidian made its licence optional."
+            "One payment attempt makes a failed renewal final; Obsidian made its licence optional.",
+            "A per-seat annual licence with one payment attempt turns any failed renewal into a permanent loss"
           ],
           "system": "Annual billing; dunning for one attempt.",
           "screens": "Pricing page; renewal notice.",
@@ -1088,10 +1098,12 @@
           "k": "d",
           "label": "Take no number in. Ask what they pay today and what they are gated on",
           "gains": [
-            "Removes the anchor and produces the reason a team would pay."
+            "Removes the anchor and produces the reason a team would pay.",
+            "Learns what a team is actually gated on before a single number is offered to negotiate against"
           ],
           "costs": [
-            "A second round is needed; pricing, refunds and dunning still must exist."
+            "A second round is needed; pricing, refunds and dunning still must exist.",
+            "Pricing, refunds and dunning still all have to be built afterwards regardless of what the conversations return"
           ],
           "system": "No change.",
           "screens": "None yet.",
@@ -1611,7 +1623,8 @@
             "Ten users at 48 hours is a few hours weekly."
           ],
           "costs": [
-            "Sets an expectation that must be withdrawn to the same people."
+            "Sets an expectation that must be withdrawn to the same people.",
+            "Sets an expectation for the ten pilot users that then has to be explicitly withdrawn once the pilot ends"
           ],
           "system": "No change.",
           "screens": "Pricing page; a pilot welcome note.",
@@ -2349,10 +2362,12 @@
           "k": "b",
           "label": "Extract the shell into a package both repositories consume",
           "gains": [
-            "Fixes flow both ways and the diverged files reconcile once."
+            "Fixes flow both ways and the diverged files reconcile once.",
+            "The only design where the 25 already-diverged files get reconciled once instead of drifting further"
           ],
           "costs": [
-            "Two release processes at 1.21 days a week, with nothing to flow."
+            "Two release processes at 1.21 days a week, with nothing to flow.",
+            "Two separate release processes have to run at the same 1.21-engineering-day weekly rate, for one person"
           ],
           "system": "A new package and a second release process.",
           "screens": "None.",
@@ -2362,10 +2377,12 @@
           "k": "c",
           "label": "Merge frontmatter into sgnk-md and rename that repository",
           "gains": [
-            "Keeps whatever users sgnk-md has, who are the only real ones."
+            "Keeps whatever users sgnk-md has, who are the only real ones.",
+            "Keeps whichever real users sgnk-md already has, rather than stranding them on an abandoned branch"
           ],
           "costs": [
-            "Inherits the Firebase wiring the Firebase decision may delete."
+            "Inherits the Firebase wiring the Firebase decision may delete.",
+            "Inherits the Firebase wiring that the separate Firebase decision may end up deleting anyway"
           ],
           "system": "Repository rename; Firebase resolved with the Firebase decision.",
           "screens": "None.",
@@ -2375,10 +2392,12 @@
           "k": "d",
           "label": "Keep both and reconcile monthly",
           "gains": [
-            "Zero cost today and nothing breaks for sgnk-md users."
+            "Zero cost today and nothing breaks for sgnk-md users.",
+            "Nothing breaks for either repository's users today, since neither codebase is touched"
           ],
           "costs": [
-            "The divergence count only rises, on a monthly task with no owner."
+            "The divergence count only rises, on a monthly task with no owner.",
+            "The divergence count keeps rising every month with nobody assigned to actually own the reconciliation"
           ],
           "system": "No change.",
           "screens": "None.",
@@ -3022,10 +3041,12 @@
           "k": "a",
           "label": "Delete `firestore.rules` and the publishing plan. Zero document bytes in code",
           "gains": [
-            "The plan's operating rules become writable immediately."
+            "The plan's operating rules become writable immediately.",
+            "Zero document bytes in code becomes true immediately, not just stated"
           ],
           "costs": [
-            "Forfeits publishing and pre-judges a question with its own week-2 slot."
+            "Forfeits publishing and pre-judges a question with its own week-2 slot.",
+            "Pre-judges the publishing question before its own already-scheduled week-2 slot gets to weigh in"
           ],
           "system": "Firebase document paths removed.",
           "screens": "No publishing or viewer screens.",
@@ -3035,10 +3056,12 @@
           "k": "b",
           "label": "Keep the design and ship publishing, accepting intermediary status",
           "gains": [
-            "Publishing is a real feature with a real buyer."
+            "Publishing is a real feature with a real buyer.",
+            "Gives publishing a real buyer and a real feature instead of leaving it as an aspiration in the PRD"
           ],
           "costs": [
-            "Permanent on-call and takedowns, and the operating rules rewritten first."
+            "Permanent on-call and takedowns, and the operating rules rewritten first.",
+            "The operating rules would all need rewriting first, before this design could even ship honestly"
           ],
           "system": "Hosting, takedowns, retention, an abuse path.",
           "screens": "Publish, viewer, takedown.",
@@ -3048,10 +3071,12 @@
           "k": "c",
           "label": "Keep the file behind a flag, unbuilt, and decide later",
           "gains": [
-            "Costs nothing today and forecloses nothing."
+            "Costs nothing today and forecloses nothing.",
+            "Forecloses nothing: publishing, deletion or a third option all stay available after this"
           ],
           "costs": [
-            "No operating rule can be written while it stands."
+            "No operating rule can be written while it stands.",
+            "No operating rule about document handling can be written while the file stands unresolved"
           ],
           "system": "No change.",
           "screens": "None.",
@@ -3248,10 +3273,12 @@
           "k": "b",
           "label": "Ship our own MCP entry and documentation page, and open no PR at all",
           "gains": [
-            "Needs nobody's permission and can start immediately."
+            "Needs nobody's permission and can start immediately.",
+            "Can start immediately, with nothing waiting on either maintainer's response"
           ],
           "costs": [
-            "Reaches only people already looking, leaving the repo counts unclaimed."
+            "Reaches only people already looking, leaving the repo counts unclaimed.",
+            "Reaches only people already searching, leaving the 22-to-30-thousand-repo population the state names entirely unclaimed"
           ],
           "system": "An MCP entry and a docs page.",
           "screens": "A docs page.",
@@ -3261,10 +3288,12 @@
           "k": "c",
           "label": "Take the channel to the git-backed CMS shelf instead",
           "gains": [
-            "Right audience, and their own page shows the gap where review goes."
+            "Right audience, and their own page shows the gap where review goes.",
+            "Puts the channel in front of an audience whose own page already shows the exact gap review fills"
           ],
           "costs": [
-            "That audience expects this free, and it still needs someone's consent."
+            "That audience expects this free, and it still needs someone's consent.",
+            "That audience already expects tools like this for free, so pricing pressure follows the channel regardless"
           ],
           "system": "No change.",
           "screens": "None.",
@@ -3274,10 +3303,12 @@
           "k": "d",
           "label": "Build the channel assuming yes and open the PR when the material is ready",
           "gains": [
-            "Fastest if the answer is yes, and nothing is wasted."
+            "Fastest if the answer is yes, and nothing is wasted.",
+            "Fastest possible outcome if both maintainers turn out to say yes, with nothing built twice"
           ],
           "costs": [
-            "A no arrives exactly when the channel was supposed to fire."
+            "A no arrives exactly when the channel was supposed to fire.",
+            "A no arrives at exactly the moment the channel was scheduled to fire, with nothing else ready to replace it"
           ],
           "system": "No change.",
           "screens": "None.",

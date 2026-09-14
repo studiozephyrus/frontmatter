@@ -424,7 +424,8 @@
             "Reuses working code at near-zero cost"
           ],
           "costs": [
-            "The no-border rule then covers one mark"
+            "The no-border rule then covers one mark",
+            "Legitimises a treatment the plan's own no-border rule was written to rule out"
           ],
           "system": "Keep the class, guard the pulse.",
           "screens": "Answer-in-place screen and review panel redraw the span.",
@@ -1076,7 +1077,8 @@
             "Nothing claims what the corpus cannot support"
           ],
           "costs": [
-            "The launcher loses its at-a-glance ranking"
+            "The launcher loses its at-a-glance ranking",
+            "A tree-level bar with no number still has to be designed and explained, even carrying no figure"
           ],
           "system": "The share is per open file.",
           "screens": "Launcher cards lose their labels.",
@@ -1230,10 +1232,12 @@
           "k": "a",
           "label": "Enumerate everything, as drawn",
           "gains": [
-            "Nothing is hidden, the easiest promise to keep"
+            "Nothing is hidden, the easiest promise to keep",
+            "Requires no rule to write about what counts as an exception"
           ],
           "costs": [
-            "Unbounded on the repos this product targets"
+            "Unbounded on the repos this product targets",
+            "Runs straight into the exact 250-line ceiling Cisco's own review-rate research measured"
           ],
           "system": "No change.",
           "screens": "None.",
@@ -1247,7 +1251,8 @@
             "Gives the panel an end, so a sitting finishes"
           ],
           "costs": [
-            "Anything suppressed is something we chose to hide"
+            "Anything suppressed is something we chose to hide",
+            "The rule deciding what surfaces has to be written and then defended when a user asks why something was hidden"
           ],
           "system": "A display rule over the review file.",
           "screens": "Review panel gains a rule line.",
@@ -1257,10 +1262,12 @@
           "k": "c",
           "label": "Cap the sitting: a stated number of spans, then stop",
           "gains": [
-            "Bounded, with no judgement about which spans matter"
+            "Bounded, with no judgement about which spans matter",
+            "The simplest rule of the four to state and to implement, a single number"
           ],
           "costs": [
-            "An arbitrary cap cuts a document mid-argument"
+            "An arbitrary cap cuts a document mid-argument",
+            "Cisco's ceiling was measured in lines of code, so mapping it onto markdown spans is the same analogy the tension already flags"
           ],
           "system": "A cap constant in the panel.",
           "screens": "Review panel gains a batch boundary.",
@@ -1270,10 +1277,12 @@
           "k": "d",
           "label": "Enumerate, but log dismissal rate and cut categories that cross a threshold",
           "gains": [
-            "Turns the display rule into a measurement"
+            "Turns the display rule into a measurement",
+            "Turns a design guess into a number the pilot itself can produce"
           ],
           "costs": [
-            "Ten pilot users cannot fill a rate"
+            "Ten pilot users cannot fill a rate",
+            "Ten pilot users is too small a sample for a per-category dismissal rate to mean anything yet"
           ],
           "system": "Dismissal counts in the review file.",
           "screens": "Settings gains a disclosure.",
@@ -1468,7 +1477,8 @@
             "The only option needing no new engineering: the file's last commit already exists wherever git does."
           ],
           "costs": [
-            "Invites reading a file-level fact as span-level"
+            "Invites reading a file-level fact as span-level",
+            "A file-level fact rendered in a span-level card format reads as more precise than it is"
           ],
           "system": "Git log per file, not span.",
           "screens": "The row changes label.",
@@ -1479,7 +1489,8 @@
           "k": "d",
           "label": "Cut the post-commit readers and pull the MCP write path into the pilot",
           "gains": [
-            "The only path that fills author and prompt at write"
+            "The only path that fills author and prompt at write",
+            "The only design in this set where every filled row actually reflects the write that produced it"
           ],
           "costs": [
             "6 days, desktop only, agent routing untested",
@@ -1921,7 +1932,8 @@
             "Cuts the weakest-job mode and its screen"
           ],
           "costs": [
-            "The saving is small if the modes are inherited"
+            "The saving is small if the modes are inherited",
+            "Split is inherited from the sibling app, so cutting it saves less schedule time than a from-scratch mode would"
           ],
           "system": "One mode and one screen removed.",
           "screens": "The split screen goes.",
@@ -2368,7 +2380,8 @@
           "k": "b",
           "label": "Ship the sibling's stylesheet and reconcile after the pilot",
           "gains": [
-            "Zero work before the pilot"
+            "Zero work before the pilot",
+            "Nothing before the pilot competes with engine or content work for the same limited days"
           ],
           "costs": [
             "Any visual feedback from the pilot is discarded",
@@ -2622,7 +2635,8 @@
             "An arithmetic gate never flakes, so this cannot return"
           ],
           "costs": [
-            "Raising --muted and --ring changes a lot of chrome"
+            "Raising --muted and --ring changes a lot of chrome",
+            "Raising --muted and --ring is a wide token change, so it needs a visual pass across the chrome that depends on them"
           ],
           "system": "Token edits plus one CI check.",
           "screens": "Chrome everywhere.",
@@ -2632,10 +2646,12 @@
           "k": "b",
           "label": "Fix --danger only, which is a live production failure, and defer the rest",
           "gains": [
-            "An hour removes a live WCAG 1.4.3 failure"
+            "An hour removes a live WCAG 1.4.3 failure",
+            "The one fix that clears an actual production WCAG failure happening today, not a future one"
           ],
           "costs": [
-            "Leaves the focus ring at 2.14:1 everywhere"
+            "Leaves the focus ring at 2.14:1 everywhere",
+            "The other five failing tokens, including the focus ring, stay exactly as broken as they are now"
           ],
           "system": "One token.",
           "screens": "Error text.",
@@ -2645,10 +2661,12 @@
           "k": "c",
           "label": "Correct the plan's accessibility rule; fix the tokens in the build after the pilot",
           "gains": [
-            "Honest, and costs nothing now"
+            "Honest, and costs nothing now",
+            "Matches the document to the code instead of matching the code to an unbuilt promise"
           ],
           "costs": [
-            "Any procurement conversation reads that sentence"
+            "Any procurement conversation reads that sentence",
+            "Six shipped tokens keep failing WCAG 1.4.3 for the whole length of the pilot"
           ],
           "system": "No change.",
           "screens": "None.",
@@ -2658,10 +2676,12 @@
           "k": "d",
           "label": "Fix the tokens now and defer the CI gate",
           "gains": [
-            "The visible failures go away immediately"
+            "The visible failures go away immediately",
+            "Every visible contrast failure a user could screenshot today disappears immediately"
           ],
           "costs": [
-            "It regresses on the next stylesheet edit"
+            "It regresses on the next stylesheet edit",
+            "With no gate behind it, the very next stylesheet edit can silently reintroduce the same failures"
           ],
           "system": "Token edits only.",
           "screens": "Chrome.",
@@ -3307,10 +3327,12 @@
           "k": "a",
           "label": "Return a result type with a reason code from splice, and render it",
           "gains": [
-            "Makes refuse-rather-than-guess visible where people touch it"
+            "Makes refuse-rather-than-guess visible where people touch it",
+            "Makes the positioning's own refuse-rather-than-guess claim visible on the one path a pilot user actually touches"
           ],
           "costs": [
-            "Touches 20 return sites and every caller"
+            "Touches 20 return sites and every caller",
+            "Twenty return sites and every caller of them have to change together for the type to be sound"
           ],
           "system": "A discriminated return across the module.",
           "screens": "A message line.",
@@ -3320,10 +3342,12 @@
           "k": "b",
           "label": "Leave the domain alone; the panel re-checks the rule and shows its own message",
           "gains": [
-            "Fast; the panel already checks for uneditable keys five times"
+            "Fast; the panel already checks for uneditable keys five times",
+            "Reuses a check the panel already runs five times, so almost nothing new has to be written"
           ],
           "costs": [
-            "Keeps the rule in two layers, a known drift risk"
+            "Keeps the rule in two layers, a known drift risk",
+            "Keeps the same rule duplicated in two layers, which is already a known drift risk per the state"
           ],
           "system": "Panel-side validation only.",
           "screens": "A message line.",
@@ -3333,10 +3357,12 @@
           "k": "c",
           "label": "Do nothing until the refactor preview ships in the build after the pilot",
           "gains": [
-            "No work until the refactor preview is built"
+            "No work until the refactor preview is built",
+            "No engineering time spent before the refactor preview it depends on actually ships"
           ],
           "costs": [
-            "The pilot meets silent refusals on the positioning feature"
+            "The pilot meets silent refusals on the positioning feature",
+            "The pilot meets silent refusals on exactly the feature the positioning leads with"
           ],
           "system": "No change.",
           "screens": "None.",
@@ -3350,7 +3376,8 @@
             "Proves the return shape before applying it everywhere"
           ],
           "costs": [
-            "Two return shapes in one module until a lands"
+            "Two return shapes in one module until a lands",
+            "Two return shapes coexist in one module until option a's wider rollout eventually lands"
           ],
           "system": "Two signatures change; callers updated.",
           "screens": "A message line.",
@@ -3826,10 +3853,12 @@
           "k": "a",
           "label": "Draw the first-run screen only, before the pilot",
           "gains": [
-            "Covers the retention claim with least evidence"
+            "Covers the retention claim with least evidence",
+            "Covers the retention plan's own first-session claim with the least drawing work of any option"
           ],
           "costs": [
-            "The conflict modal ships undesigned into the worst moment"
+            "The conflict modal ships undesigned into the worst moment",
+            "The conflict modal, per the state, still ships completely undesigned into what the state calls the worst moment"
           ],
           "system": "None.",
           "screens": "First-run screen added.",
@@ -3843,7 +3872,8 @@
             "One session, no founder time, queries written"
           ],
           "costs": [
-            "Comparables are conventions, not evidence about our users"
+            "Comparables are conventions, not evidence about our users",
+            "The comparables it produces describe what four other products do, not what this product's own users want"
           ],
           "system": "None.",
           "screens": "First-run screen added; the nine revised.",
@@ -3853,10 +3883,12 @@
           "k": "c",
           "label": "Draw all three undrawn screens and skip the benchmark",
           "gains": [
-            "Nothing the plan promises is missing"
+            "Nothing the plan promises is missing",
+            "Nothing the plan promises is left undrawn by the time the pilot starts"
           ],
           "costs": [
-            "Three screens to keep consistent at 1.21 days a week"
+            "Three screens to keep consistent at 1.21 days a week",
+            "Three screens have to be kept visually consistent at the same 1.21-engineering-day weekly rate as everything else"
           ],
           "system": "None.",
           "screens": "First run, conflict, team view added.",
@@ -3866,10 +3898,12 @@
           "k": "d",
           "label": "Neither; test on the nine that exist",
           "gains": [
-            "No delay at all"
+            "No delay at all",
+            "No drawing or benchmark time spent before the pilot's existing nine screens are tested"
           ],
           "costs": [
-            "Retention, sync and paid-tier claims have no visual"
+            "Retention, sync and paid-tier claims have no visual",
+            "Retention, sync and the paid tier all go into the pilot with no visual anyone has actually seen"
           ],
           "system": "None.",
           "screens": "None.",
@@ -4096,7 +4130,8 @@
             "Turns an unreviewed surface into a reviewed one"
           ],
           "costs": [
-            "A review is not a measurement"
+            "A review is not a measurement",
+            "A reviewed screenshot in dark mode is not the same evidence as a measured five-second test result"
           ],
           "system": "No change.",
           "screens": "Nine dark renders.",
@@ -4286,10 +4321,12 @@
           "k": "a",
           "label": "State it out of scope: Latin-script content only, on the page and in the app",
           "gains": [
-            "Honest, free, and it closes the owed decision"
+            "Honest, free, and it closes the owed decision",
+            "Costs nothing to write and closes the owed v1-scope decision immediately"
           ],
           "costs": [
-            "Discards RTL work the record shows is nearly free"
+            "Discards RTL work the record shows is nearly free",
+            "Discards RTL support the record already shows is nearly free to keep, per the state"
           ],
           "system": "No change.",
           "screens": "A line in Settings.",
@@ -4303,7 +4340,8 @@
             "The byte map is on the pilot list regardless"
           ],
           "costs": [
-            "Commits the byte map to the pilot, a schedule claim"
+            "Commits the byte map to the pilot, a schedule claim",
+            "Ties the pilot's scope to the byte-map fix, which the technical plan already calls the highest-risk seam"
           ],
           "system": "Direction attributes, a bigram index.",
           "screens": "Editor and preview share direction.",
@@ -4313,10 +4351,12 @@
           "k": "c",
           "label": "Refuse non-Latin files until the byte map is verified",
           "gains": [
-            "Refuse rather than corrupt, the rule elsewhere"
+            "Refuse rather than corrupt, the rule elsewhere",
+            "Applies the same refuse-rather-than-corrupt rule the rest of the product already follows"
           ],
           "costs": [
-            "Refusing a file for its language reads badly"
+            "Refusing a file for its language reads badly",
+            "Refusing a file because of the language it is written in reads badly to exactly the population it affects"
           ],
           "system": "A refusal path on non-Latin content.",
           "screens": "A refusal panel.",
@@ -4326,10 +4366,12 @@
           "k": "d",
           "label": "Leave it open and decide after the pilot",
           "gains": [
-            "Nothing to write now"
+            "Nothing to write now",
+            "No scope decision has to be written or defended before the pilot starts"
           ],
           "costs": [
-            "The corruption risk ships with no statement"
+            "The corruption risk ships with no statement",
+            "The corruption risk the technical plan calls highest-risk ships with no statement anywhere about it"
           ],
           "system": "No change.",
           "screens": "None.",

@@ -531,7 +531,8 @@
           "k": "d",
           "label": "Drop retention as the gate entirely",
           "gains": [
-            "Removes the contradiction at its root"
+            "Removes the contradiction at its root",
+            "The CI gate and any encryption or server-storage question both disappear along with the retention story"
           ],
           "costs": [
             "Pro is left with a CI gate that does not run",
@@ -1474,7 +1475,8 @@
           "k": "a",
           "label": "Ship an optional commercial licence alongside seats",
           "gains": [
-            "No SSO, SCIM, audit log or SOC 2 behind it"
+            "No SSO, SCIM, audit log or SOC 2 behind it",
+            "Tests the one measured B2B mechanism in the category at zero feature-engineering cost"
           ],
           "costs": [
             "May earn nothing for years",
@@ -1521,7 +1523,8 @@
           "k": "d",
           "label": "Re-count the wall first, decide after the conversations",
           "gains": [
-            "One hour settles which of two reports is right"
+            "One hour settles which of two reports is right",
+            "One hour of counting settles a factual disagreement before it gets built around either way"
           ],
           "costs": [
             "Delays past the meeting",
@@ -1727,7 +1730,8 @@
           "k": "d",
           "label": "Keep the wording, specify in the build after the pilot",
           "gains": [
-            "No work now"
+            "No work now",
+            "No engineering time spent designing a metering unit before the build after the pilot needs it"
           ],
           "costs": [
             "Leaves an unbounded liability described as capped",
@@ -3143,7 +3147,8 @@
           "k": "a",
           "label": "Perpetual while the subscription is continuous",
           "gains": [
-            "Strongest trust signal, easiest to state"
+            "Strongest trust signal, easiest to state",
+            "The simplest single sentence to write and to defend to every subscriber, present or future"
           ],
           "costs": [
             "Caps blended revenue permanently near break-even",

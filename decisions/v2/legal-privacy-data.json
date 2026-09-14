@@ -1945,10 +1945,12 @@
           "k": "a",
           "label": "Ship bare and deal with it if a letter arrives",
           "gains": [
-            "Costs nothing today"
+            "Costs nothing today",
+            "No fee and no wait before the pilot can start"
           ],
           "costs": [
-            "Maximum exposure in an overlapping class with a near-identical mark"
+            "Maximum exposure in an overlapping class with a near-identical mark",
+            "The 82,265-install extension already occupying this near-identical mark makes the exposure concrete, not hypothetical"
           ],
           "system": "No change.",
           "screens": "None.",
@@ -1962,7 +1964,8 @@
             "At zero users the rename is close to free"
           ],
           "costs": [
-            "A coinage has to be found and cleared too"
+            "A coinage has to be found and cleared too",
+            "A coinage still has to clear the same registries currently unchecked for the current name"
           ],
           "system": "Repo, package and Tauri identity change.",
           "screens": "Every surface carrying the name.",
@@ -1976,7 +1979,8 @@
             "Turns an unverified report into a decision"
           ],
           "costs": [
-            "A fee, a short wait, and two candidates to choose first"
+            "A fee, a short wait, and two candidates to choose first",
+            "Two final candidates have to be chosen and agreed before the search can even be commissioned"
           ],
           "system": "No change.",
           "screens": "None.",
@@ -1986,7 +1990,8 @@
           "k": "d",
           "label": "Keep the name but qualify it, and keep the bare word off the store listing",
           "gains": [
-            "Keeps continuity with the record and the repo"
+            "Keeps continuity with the record and the repo",
+            "No rename work anywhere in the product, repo or npm scope"
           ],
           "costs": [
             "Rated the highest-risk option, with extra steps",
@@ -2421,7 +2426,8 @@
           "label": "Add a rotating install id with a first-run toggle",
           "what": "A salted identifier regenerated every 90 days.",
           "gains": [
-            "A continuous measure that survives the pilot"
+            "A continuous measure that survives the pilot",
+            "Gives a continuous usage signal that survives past the ten-person pilot"
           ],
           "costs": [
             "Puts an identifier on terminal equipment on a contested basis",
@@ -2435,7 +2441,8 @@
           "k": "b",
           "label": "Account-keyed opt-in upload of the same daily line, off by default",
           "gains": [
-            "A clean legal basis and a continuous signal"
+            "A clean legal basis and a continuous signal",
+            "Consent is unambiguous, since the upload is opt-in and tied to an account the person controls"
           ],
           "costs": [
             "Personal data once keyed, so notice and consent apply",
@@ -2464,10 +2471,12 @@
           "k": "d",
           "label": "Measure nothing and ask the ten a question on day 14",
           "gains": [
-            "Cheapest, and already drafted as the fallback"
+            "Cheapest, and already drafted as the fallback",
+            "The fallback design already drafted, needing nothing new built"
           ],
           "costs": [
-            "Self-reported evidence for a decision that kills or funds the product"
+            "Self-reported evidence for a decision that kills or funds the product",
+            "A self-reported answer on day 14 is the exact evidence quality the daily-usage measure exists to avoid"
           ],
           "system": "No change.",
           "screens": "None.",

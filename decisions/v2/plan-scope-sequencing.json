@@ -232,7 +232,8 @@
           "k": "a",
           "label": "Ship features 1 to 8 as written, 69 sequenced days plus polish",
           "gains": [
-            "Exercises every claim in one pilot"
+            "Exercises every claim in one pilot",
+            "Verifies whether idea mode and decision flow actually have the demand the plan assumes, all inside one pilot"
           ],
           "costs": [
             "30% of the build rests on an unrecorded test",
@@ -261,10 +262,12 @@
           "k": "c",
           "label": "Answer the form-factor decision at the meeting first, then decide the block on it",
           "gains": [
-            "An hour against six possibly wasted days"
+            "An hour against six possibly wasted days",
+            "Costs one hour of meeting time against a possible six wasted engineering days either way"
           ],
           "costs": [
-            "Forces a form-factor call without the Mobbin benchmark"
+            "Forces a form-factor call without the Mobbin benchmark",
+            "Still leaves idea mode and decision flow's founder test unrecorded no matter which way the form-factor call goes"
           ],
           "system": "No change until the answer lands.",
           "screens": "None until decided.",
@@ -274,10 +277,12 @@
           "k": "d",
           "label": "Keep all four if the idea mode and decision flow test notes are attached this week",
           "gains": [
-            "No scope lost if the test was real"
+            "No scope lost if the test was real",
+            "Keeps the full feature set intact if the founder notes turn out to exist and get attached"
           ],
           "costs": [
-            "Two more weeks before the cut lands"
+            "Two more weeks before the cut lands",
+            "Two more weeks pass before any cut lands, whichever way the notes turn out"
           ],
           "system": "No change this week.",
           "screens": "No change.",
@@ -864,7 +869,8 @@
             "Six rows totalling 11.5 days move regardless of which surface or which features the meeting picks."
           ],
           "costs": [
-            "Splits founder attention across two jobs"
+            "Splits founder attention across two jobs",
+            "Still splits founder attention across two jobs at once, the six rows and whatever the meeting decides"
           ],
           "system": "Left-edge bug, old-line-ending bug that adds a second frontmatter block, CI, bundle budget, certification command, `entities`.",
           "screens": "None.",
@@ -1169,7 +1175,8 @@
             "Observable with no file and no paste"
           ],
           "costs": [
-            "Says nothing about whether anyone returns"
+            "Says nothing about whether anyone returns",
+            "Reading straight from the session still says nothing about whether anyone comes back after the first run"
           ],
           "system": "No local usage file needed for the gate.",
           "screens": "None.",
@@ -1196,7 +1203,8 @@
           "k": "d",
           "label": "Ellis survey, forty people, 40% very disappointed, by year end",
           "gains": [
-            "The strongest signal available"
+            "The strongest signal available",
+            "The one design here built on an actual, named survey methodology rather than an internal guess"
           ],
           "costs": [
             "Forty strangers from zero interviews is another project",
@@ -1732,10 +1740,12 @@
           "k": "c",
           "label": "Keep it as a retention lever only; drop it as a channel and from the stop branch",
           "gains": [
-            "Fewer edits than a full delete"
+            "Fewer edits than a full delete",
+            "Fewer edits than option a's full delete, while still removing it as a channel and from the stop branch"
           ],
           "costs": [
-            "Nobody is scheduled to build it"
+            "Nobody is scheduled to build it",
+            "Nobody is scheduled to build the retention lever this option keeps on paper"
           ],
           "system": "No code.",
           "screens": "None.",
@@ -1746,10 +1756,12 @@
           "label": "Delete it; the `?src=` web-app parameter becomes the week-2 channel",
           "what": "A parameter that opens any raw markdown URL in the web app.",
           "gains": [
-            "Costs hours and needs no store listing"
+            "Costs hours and needs no store listing",
+            "Costs only hours, and needs no app-store listing or review process at all"
           ],
           "costs": [
-            "A reading surface, not a fix anyone voted for"
+            "A reading surface, not a fix anyone voted for",
+            "Reads as a reading surface nobody actually voted for as the intended fix"
           ],
           "system": "One route parameter in the web app.",
           "screens": "A read-only view opened from a URL.",
@@ -1951,7 +1963,8 @@
           "k": "c",
           "label": "Adopt all seven of the record's kill switches with new dates",
           "gains": [
-            "A complete set with dates and actions"
+            "A complete set with dates and actions",
+            "The only option that gives every one of the seven original kill switches a live date again"
           ],
           "costs": [
             "The pre-order switch assumes a paid test nobody has chosen yet",
@@ -2148,7 +2161,8 @@
           "k": "a",
           "label": "Merge: one repo, frontmatter is a mode of the sibling",
           "gains": [
-            "Divergence cost goes to zero immediately"
+            "Divergence cost goes to zero immediately",
+            "Removes the quiet ongoing cost of the two already-diverged shared-module files at a stroke"
           ],
           "costs": [
             "The two products can never ship on different schedules",
@@ -2177,7 +2191,8 @@
           "k": "c",
           "label": "Fork and own: budget the table-stakes days explicitly",
           "gains": [
-            "Honest, and the total becomes quotable again"
+            "Honest, and the total becomes quotable again",
+            "Gives the seventy-day total a real number to be quoted against, instead of an open decision"
           ],
           "costs": [
             "The most expensive of the three",
@@ -2192,7 +2207,8 @@
           "label": "Defer until the form-factor decision",
           "what": "Wait for the form-factor decision.",
           "gains": [
-            "Avoids paying for a shell that may be abandoned"
+            "Avoids paying for a shell that may be abandoned",
+            "Commits no table-stakes days until the form factor itself is settled at the founder meeting"
           ],
           "costs": [
             "The seventy-day total stays unquotable",
@@ -2330,7 +2346,8 @@
             "Nothing is deleted"
           ],
           "costs": [
-            "Shelves the only non-engine work this repo owns"
+            "Shelves the only non-engine work this repo owns",
+            "The auth code stays half-built behind a flag, so it is still there to finish or delete later"
           ],
           "system": "A flag around the main layout.",
           "screens": "The launcher becomes the first screen.",
@@ -2548,7 +2565,8 @@
           "k": "a",
           "label": "No: giving the engine away removes the reason to buy",
           "gains": [
-            "Nothing is given away"
+            "Nothing is given away",
+            "Protects the one asset the audit itself calls a library rather than a finished product"
           ],
           "costs": [
             "Protects an asset our own audit calls a library",
@@ -2577,7 +2595,8 @@
           "k": "c",
           "label": "Ship it source-available rather than MIT",
           "gains": [
-            "Keeps the licence lever, with the same install counter"
+            "Keeps the licence lever, with the same install counter",
+            "Keeps a licence lever available while still producing the same install counter the kill number needs"
           ],
           "costs": [
             "Loses most of the traction MIT buys in registries",
@@ -2591,7 +2610,8 @@
           "k": "d",
           "label": "Ship only the MCP server, not the library",
           "gains": [
-            "The smallest surface to publish"
+            "The smallest surface to publish",
+            "The smallest possible thing to publish and support if the week turns out to be a mistake"
           ],
           "costs": [
             "Install counts will be far smaller",
@@ -2762,10 +2782,12 @@
           "k": "b",
           "label": "Price Pro on shared review state and enforcement only",
           "gains": [
-            "Ships what exists, in a shorter pitch"
+            "Ships what exists, in a shorter pitch",
+            "Ships in a shorter pitch, built entirely from features that already exist today"
           ],
           "costs": [
-            "Pro then sells what GitHub Team bundles at $4"
+            "Pro then sells what GitHub Team bundles at $4",
+            "Sells the exact thing GitHub Team already bundles for $4, per the state"
           ],
           "system": "None.",
           "screens": "None.",
@@ -2775,10 +2797,12 @@
           "k": "c",
           "label": "Move retention back to Max and find a different Pro gate",
           "gains": [
-            "Resolves the conflict between two pricing tables"
+            "Resolves the conflict between two pricing tables",
+            "Resolves the direct conflict between the two pricing tables in one move"
           ],
           "costs": [
-            "Pro is thin again, and no candidate gate is named"
+            "Pro is thin again, and no candidate gate is named",
+            "Leaves Pro thin again, with no named candidate to replace the retention gate"
           ],
           "system": "None.",
           "screens": "None.",
@@ -2950,7 +2974,8 @@
           "k": "a",
           "label": "Verify in week 0, record the result, decide later",
           "gains": [
-            "Closes an item open for two rounds, cheaply"
+            "Closes an item open for two rounds, cheaply",
+            "Closes an item that has stayed open across two full rounds already, for the cost of one verification hour"
           ],
           "costs": [
             "Leaves the half-works case undecided when it arises",
@@ -2964,7 +2989,8 @@
           "k": "b",
           "label": "Move export out of the pilot now, before verifying",
           "gains": [
-            "One fewer feature in the pilot"
+            "One fewer feature in the pilot",
+            "Removes any chance of shipping the wrong-claim PDF offline behaviour the tension already names"
           ],
           "costs": [
             "Leaves working code nobody has checked",
@@ -2993,10 +3019,12 @@
           "k": "d",
           "label": "Leave it unverified and stop claiming it until someone asks",
           "gains": [
-            "Honest about the evidence, and no work at all"
+            "Honest about the evidence, and no work at all",
+            "Costs nothing at all: no verification, no edit, no schedule change"
           ],
           "costs": [
-            "Loses a shipped feature from the pitch for nothing"
+            "Loses a shipped feature from the pitch for nothing",
+            "Drops a feature from the pitch that the two rounds of investigation never actually found broken"
           ],
           "system": "None.",
           "screens": "None.",
@@ -3351,7 +3379,8 @@
           "k": "c",
           "label": "Contract a second engineer for the fix-first list only, paid from consulting",
           "gains": [
-            "Buys back the decision-independent 11.5 days"
+            "Buys back the decision-independent 11.5 days",
+            "Buys back exactly the 11.5 decision-independent days named in PL3, without touching the founder's own week"
           ],
           "costs": [
             "Contracting time is founder time too",
@@ -3365,7 +3394,8 @@
           "k": "d",
           "label": "Leave it as written: two founders in the prose, one author in the log",
           "gains": [
-            "No decision to make today"
+            "No decision to make today",
+            "No rewrite of the plan's own summary or estimates has to happen today"
           ],
           "costs": [
             "Every date rests on an unresolved headcount",

@@ -3118,10 +3118,12 @@
           "k": "a",
           "label": "Four concepts, nine controls, and displace to fit",
           "gains": [
-            "Both numbers traceable; displacement makes it real"
+            "Both numbers traceable; displacement makes it real",
+            "Both numbers, four and nine, trace to an actual source in the record rather than a guess"
           ],
           "costs": [
-            "No tabs, only quick-switch on mod+k"
+            "No tabs, only quick-switch on mod+k",
+            "Quick-switch alone is a real behaviour change from tabs, and it has not been tested with anyone"
           ],
           "system": "Build the DOM assertion; there is no CI.",
           "screens": "The editor loses its tab strip; Live folds into modes.",
@@ -3133,10 +3135,12 @@
           "label": "Raise both numbers and pin them with the assertion",
           "what": "Five concepts, eleven controls.",
           "gains": [
-            "The headline can be named on first run"
+            "The headline can be named on first run",
+            "Names the headline concept on the very first run, with nothing displaced to make room"
           ],
           "costs": [
-            "Concedes the argument the budget exists to win"
+            "Concedes the argument the budget exists to win",
+            "Undermines the entire reason a concept budget was set in the first place"
           ],
           "system": "The assertion pins the new numbers.",
           "screens": "The editor keeps tabs and gains the counter.",
@@ -3146,10 +3150,12 @@
           "k": "c",
           "label": "Keep nine for the document surface and give the review panel its own budget",
           "gains": [
-            "Precedent: mobile has its own budget"
+            "Precedent: mobile has its own budget",
+            "Follows a precedent the record itself already sets: mobile gets its own separate budget too"
           ],
           "costs": [
-            "Unlike mobile, the panel shares the screen"
+            "Unlike mobile, the panel shares the screen",
+            "The review panel, unlike mobile, competes for the same screen space rather than living apart from it"
           ],
           "system": "Two assertions, scoped by region.",
           "screens": "The panel grows independently.",
@@ -3160,10 +3166,12 @@
           "k": "d",
           "label": "Delete the counters and review the at-rest screenshot instead",
           "gains": [
-            "Stops citing a number with no source"
+            "Stops citing a number with no source",
+            "Removes a number, the seven-concept figure, that the corpus can trace to only a single occurrence"
           ],
           "costs": [
-            "Loses the only enforceable check on surface growth"
+            "Loses the only enforceable check on surface growth",
+            "The at-rest screenshot alone is a manual check, not the automated one a CI assertion would give"
           ],
           "system": "No assertion.",
           "screens": "None.",

@@ -1383,7 +1383,8 @@
           "k": "a",
           "label": "Ship `?src=` in the pilot and delete the Chrome extension from all three places",
           "gains": [
-            "A shareable entry point before the first Show HN"
+            "A shareable entry point before the first Show HN",
+            "The pilot's own ten-stranger window closes before the build-after-pilot cycle would ship this otherwise"
           ],
           "costs": [
             "Adds a surface one person cannot carry",
@@ -1397,7 +1398,8 @@
           "k": "b",
           "label": "Ship `?src=` in the build after the pilot, as the plan's channel table implies",
           "gains": [
-            "Nothing changes in the ninety-day sequence"
+            "Nothing changes in the ninety-day sequence",
+            "Matches the ninety-day sequence exactly as already written, with nothing reordered"
           ],
           "costs": [
             "Misses the ten-stranger window",
@@ -1411,7 +1413,8 @@
           "k": "c",
           "label": "Reinstate the Chrome extension",
           "gains": [
-            "A store listing carries its own search"
+            "A store listing carries its own search",
+            "A store listing carries its own discoverability, something a bare URL parameter cannot offer"
           ],
           "costs": [
             "Overturns two measured findings",
@@ -1426,7 +1429,8 @@
           "label": "No browser-link surface at all",
           "what": "Neither the extension nor the parameter. Repos and folders only.",
           "gains": [
-            "Simplest to maintain and to document"
+            "Simplest to maintain and to document",
+            "Nothing to build, own or maintain: no code path exists for anyone to hit"
           ],
           "costs": [
             "Nothing for a visitor who installed nothing",
@@ -2631,7 +2635,8 @@
           "k": "a",
           "label": "One surface for the pilot, named today; every other surface deleted from the plan",
           "gains": [
-            "Makes the plan match the measured rate"
+            "Makes the plan match the measured rate",
+            "Names today, in writing, exactly what the measured 1.21-day rate can actually carry"
           ],
           "costs": [
             "Drops the free-plugin and browser channels",
@@ -2645,7 +2650,8 @@
           "k": "b",
           "label": "Two surfaces: the web app plus one host surface",
           "gains": [
-            "Keeps a trial and a distribution channel"
+            "Keeps a trial and a distribution channel",
+            "A second surface gives the launch something to point people at beyond the trial itself"
           ],
           "costs": [
             "Roughly doubles maintenance",
@@ -2659,7 +2665,8 @@
           "k": "c",
           "label": "Keep the current list and accept the elapsed time",
           "gains": [
-            "No re-planning today"
+            "No re-planning today",
+            "Nothing has to be decided or rewritten in the plan today"
           ],
           "costs": [
             "The plan's own arithmetic puts the pilot in late 2027",
@@ -2673,10 +2680,12 @@
           "k": "d",
           "label": "Resolve the second founder first; choose the surface count after",
           "gains": [
-            "The only option that changes the rate, not the scope"
+            "The only option that changes the rate, not the scope",
+            "The only option that could actually change the underlying rate rather than just the scope built against it"
           ],
           "costs": [
-            "Blocks every other form-factor decision until answered"
+            "Blocks every other form-factor decision until answered",
+            "Every other form-factor decision stays blocked until the second-founder question is actually answered"
           ],
           "system": "No change.",
           "screens": "No change.",
@@ -2804,7 +2813,8 @@
           "k": "a",
           "label": "Hold editor-first",
           "gains": [
-            "No re-planning; the 90-day sequence survives"
+            "No re-planning; the 90-day sequence survives",
+            "The ninety-day sequence already written survives with no rewrite at all"
           ],
           "costs": [
             "It is the shape Almanac shut down with",
@@ -2818,7 +2828,8 @@
           "k": "b",
           "label": "Provenance as a plugin, editor later",
           "gains": [
-            "Inherits about 6.5 of 17.5 table-stakes days"
+            "Inherits about 6.5 of 17.5 table-stakes days",
+            "Inherits roughly 6.5 of the 17.5 table-stakes days from whichever host it plugs into"
           ],
           "costs": [
             "No pricing surface of its own",
@@ -2833,7 +2844,8 @@
           "label": "One portable core, both surfaces",
           "what": "The engine is the product; two thin shells over it.",
           "gains": [
-            "The engine is already DOM-free, so this is near true"
+            "The engine is already DOM-free, so this is near true",
+            "The engine's existing DOM-free design makes a single portable core closer to already true than built"
           ],
           "costs": [
             "Two shells at 1.21 days a week",

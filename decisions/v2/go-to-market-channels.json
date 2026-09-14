@@ -162,7 +162,8 @@
             "Reuses a test already designed for D18, so it costs nothing new to write."
           ],
           "costs": [
-            "Measures noticing, not use or payment"
+            "Measures noticing, not use or payment",
+            "Says nothing about whether a noticed highlight ever turns into someone actually using the product"
           ],
           "system": "None.",
           "screens": "None.",
@@ -177,7 +178,8 @@
             "Costs no redesign at all, since the three arms are already written into the plan."
           ],
           "costs": [
-            "Arm 2 shipped free in four editors; the test cannot show demand for us"
+            "Arm 2 shipped free in four editors; the test cannot show demand for us",
+            "Arm 2, per the tension, already ships free in four editors, so the test cannot show demand for us specifically"
           ],
           "system": "None.",
           "screens": "None.",
@@ -192,7 +194,8 @@
             "Costs nothing to write in advance, since no test needs designing before the twenty conversations run."
           ],
           "costs": [
-            "A bar set after the result is not a bar"
+            "A bar set after the result is not a bar",
+            "A bar chosen after seeing the twenty conversations is easy to satisfy retroactively"
           ],
           "system": "None.",
           "screens": "None.",
@@ -452,7 +455,8 @@
           "k": "c",
           "label": "Ship the live-preview fix as an appearance-only repaint",
           "gains": [
-            "Reaches the one measured demand in that population"
+            "Reaches the one measured demand in that population",
+            "Reaches the one demand figure in this population actually measured at 501 likes"
           ],
           "costs": [
             "Depends on DOM classes Obsidian has already deleted once",
@@ -471,7 +475,8 @@
             "Costs nothing today, since it only removes stale mentions rather than building or cutting anything new."
           ],
           "costs": [
-            "Leaves a lever depending on a cut channel"
+            "Leaves a lever depending on a cut channel",
+            "Leaves a retention lever depending on a channel the plan itself has already cut elsewhere"
           ],
           "system": "No change.",
           "screens": "None.",
@@ -702,7 +707,8 @@
           "k": "c",
           "label": "Post at the end of the two-week test instead",
           "gains": [
-            "A signal months earlier"
+            "A signal months earlier",
+            "Produces a real signal months before the pilot even ends"
           ],
           "costs": [
             "Burns the one shot on a mock",
@@ -945,7 +951,8 @@
             "Ships in hours, not days"
           ],
           "costs": [
-            "Forgoes spec-kit's 11,072 repos for now"
+            "Forgoes spec-kit's 11,072 repos for now",
+            "Forgoes spec-kit's far larger population of 11,072 repos for now, per the state"
           ],
           "system": "No change.",
           "screens": "One integration page on our own site.",
@@ -1161,7 +1168,8 @@
           "k": "b",
           "label": "Re-measure at n of 200 or more before publishing anything",
           "gains": [
-            "Meets our public-claims standard"
+            "Meets our public-claims standard",
+            "The only option that meets the plan's own stated bar for a public-claims number"
           ],
           "costs": [
             "Delays the spec-kit channel by a day",
@@ -1176,7 +1184,8 @@
           "k": "c",
           "label": "Publish the finding without naming spec-kit",
           "gains": [
-            "Removes confrontation with a maintainer we want a link from"
+            "Removes confrontation with a maintainer we want a link from",
+            "Avoids putting a maintainer we still want a README line from in an awkward position"
           ],
           "costs": [
             "Removes the specificity that makes it land",
@@ -1191,7 +1200,8 @@
           "k": "d",
           "label": "Do not publish; use it only with the ten and the twenty",
           "gains": [
-            "Still works where the decision is made"
+            "Still works where the decision is made",
+            "Still works everywhere the actual decision gets made, the ten and the twenty conversations"
           ],
           "costs": [
             "Forgoes the one sentence likely to travel",
@@ -1436,7 +1446,8 @@
           "k": "c",
           "label": "Publish the market research too, after re-deriving every third-party number",
           "gains": [
-            "Draws links from category writers"
+            "Draws links from category writers",
+            "Draws links from category writers who would never cite a purely internal engine measurement"
           ],
           "costs": [
             "Several figures have a single source",
@@ -1451,7 +1462,8 @@
           "k": "d",
           "label": "Publish nothing until the two-week test returns",
           "gains": [
-            "Every hour goes to the test and the build"
+            "Every hour goes to the test and the build",
+            "Every hour in the fortnight goes to the test and the build, with nothing split off for publishing"
           ],
           "costs": [
             "Loses three months on a channel needing nine to eighteen",
@@ -2144,7 +2156,8 @@
           "k": "b",
           "label": "Keep it everywhere; the qualifier does the work",
           "gains": [
-            "Nothing to remember and nothing to teach"
+            "Nothing to remember and nothing to teach",
+            "Nothing new to write, remember or teach beyond the sentence already in the plan today"
           ],
           "costs": [
             "Puts the launch in a thread with a $0 floor",
@@ -2173,7 +2186,8 @@
           "k": "d",
           "label": "Refuse a category noun; lead with the sentence about what it shows",
           "gains": [
-            "Avoids both the crowded corner and the teaching cost"
+            "Avoids both the crowded corner and the teaching cost",
+            "Avoids the crowded free-editor corner without inventing a noun nobody is searching for yet"
           ],
           "costs": [
             "Search, directories and comparison pages index nouns",
@@ -2358,7 +2372,8 @@
           "k": "b",
           "label": "Publish all five and fix the code first",
           "gains": [
-            "Forces the hosting contradiction to be settled"
+            "Forces the hosting contradiction to be settled",
+            "Forces the hosting contradiction the state already names to get settled before launch, not after"
           ],
           "costs": [
             "Gates the launch on deleting a shipped feature",
@@ -2372,7 +2387,8 @@
           "k": "c",
           "label": "Publish all five as intentions, marked as such",
           "gains": [
-            "Honest about what is not yet true"
+            "Honest about what is not yet true",
+            "Keeps all five lines in the pitch, with nothing quietly dropped from the original list"
           ],
           "costs": [
             "A stated intention is not a refusal",
@@ -2386,7 +2402,8 @@
           "k": "d",
           "label": "Drop refusal-led positioning; lead with the outcome",
           "gains": [
-            "No sentence depends on the repository"
+            "No sentence depends on the repository",
+            "No line depends on the repository's current code matching what the page says, ever"
           ],
           "costs": [
             "Gives up a differentiator no incumbent can copy",
@@ -3145,7 +3162,8 @@
             "The search intent does not expire"
           ],
           "costs": [
-            "The channel starts three to six months later"
+            "The channel starts three to six months later",
+            "The search intent named in the tension does not expire, but a competitor could still claim it first"
           ],
           "system": "The two fixes, then a client-side engine build.",
           "screens": "One page: paste, verdict, the byte that broke it.",
@@ -3387,7 +3405,8 @@
           "k": "b",
           "label": "Keep the product name; ship the extension under a different one",
           "gains": [
-            "Cheapest today"
+            "Cheapest today",
+            "Costs nothing today: no rename, no trademark check, no rewritten surfaces"
           ],
           "costs": [
             "A permanent disambiguation cost in every conversation",

@@ -1634,10 +1634,12 @@
           "label": "Build the union first, then adopt the ladder as specified",
           "what": "Typed return first; refusals inline, a strip on capability change, never modal.",
           "gains": [
-            "Every later surface gets a renderable refusal"
+            "Every later surface gets a renderable refusal",
+            "Matches the exact rule the engine already exports for which keys are safe to edit, so nothing new has to be invented"
           ],
           "costs": [
-            "20 call sites and the UI reader, uncosted"
+            "20 call sites and the UI reader, uncosted",
+            "None of the twenty call sites has an estimate attached yet, so the true cost is still unknown"
           ],
           "system": "The write path's return shape changes.",
           "screens": "Adds a refusal to a pilot screen.",
@@ -1647,10 +1649,12 @@
           "k": "b",
           "label": "Build the union before review state, decide placement after first refusals are seen",
           "gains": [
-            "The expensive half lands early"
+            "The expensive half lands early",
+            "Fixes the expensive half of the work before review state's own schedule has to absorb it later"
           ],
           "costs": [
-            "Strangers meet an undesigned refusal in minute one"
+            "Strangers meet an undesigned refusal in minute one",
+            "The first strangers to touch the product meet a refusal with no designed placement for it yet"
           ],
           "system": "Same engine change.",
           "screens": "No refusal screen before the pilot.",
@@ -1660,10 +1664,12 @@
           "k": "c",
           "label": "Keep the bare string and duplicate the rule in the UI, as today",
           "gains": [
-            "Zero engineering, and review state starts sooner"
+            "Zero engineering, and review state starts sooner",
+            "Review state, the plan's own headline feature, can start sooner with no engine detour first"
           ],
           "costs": [
-            "The founding claim is demonstrable only in the CLI"
+            "The founding claim is demonstrable only in the CLI",
+            "The founding refuse-rather-than-guess claim stays demonstrable only from the command line, per the state"
           ],
           "system": "Divergence grows with each consumer.",
           "screens": "A refused edit looks like a no-op.",
@@ -1673,10 +1679,12 @@
           "k": "d",
           "label": "Build the union and refuse-and-offer-candidates rather than refuse-and-stop",
           "gains": [
-            "Addresses the 323 complaint threads directly"
+            "Addresses the 323 complaint threads directly",
+            "Answers the 323 issue threads the state counts, not with a refusal alone but with something to try next"
           ],
           "costs": [
-            "Candidate generation is a guess, against the engine's rule"
+            "Candidate generation is a guess, against the engine's rule",
+            "Generating a candidate the engine's own safety rule might reject is itself a guess, the exact thing being refused"
           ],
           "system": "Adds a candidate ranker to the range locator.",
           "screens": "The refusal becomes a picker.",
@@ -1848,10 +1856,12 @@
           "k": "a",
           "label": "Colour only, as drawn, with the exposure written down",
           "gains": [
-            "Keeps the ignorable-at-rest property, and no redraw"
+            "Keeps the ignorable-at-rest property, and no redraw",
+            "The prototype's fifteen-second demo needs no redraw at all under this option"
           ],
           "costs": [
-            "Breaks the plan's own rule; greyscale readers see nothing"
+            "Breaks the plan's own rule; greyscale readers see nothing",
+            "Three colour tokens already measured failing the AA floor stay exactly as they are"
           ],
           "system": "No change.",
           "screens": "No change.",
@@ -1861,10 +1871,12 @@
           "k": "b",
           "label": "Highlight plus a one-pixel left rule on the span, no icon",
           "gains": [
-            "Smallest second cue, and it survives greyscale"
+            "Smallest second cue, and it survives greyscale",
+            "Needs the fewest new pixels of any non-colour option, a single one-pixel rule"
           ],
           "costs": [
-            "It is a border, so the attention section must be amended"
+            "It is a border, so the attention section must be amended",
+            "The attention section's own no-border rule has to be formally amended to allow it"
           ],
           "system": "No change.",
           "screens": "One rule on the span decoration.",
@@ -1874,10 +1886,12 @@
           "k": "c",
           "label": "Highlight at rest, second cue on demand from the panel and the outline",
           "gains": [
-            "Both surfaces are built anyway; the body stays quiet"
+            "Both surfaces are built anyway; the body stays quiet",
+            "No new drawing work at all, since the panel and the outline already exist as built surfaces"
           ],
           "costs": [
-            "The body still conveys status by colour alone"
+            "The body still conveys status by colour alone",
+            "A user who never opens either surface still reads the body by colour alone, unchanged"
           ],
           "system": "No change.",
           "screens": "More weight on panel and outline.",
@@ -1887,10 +1901,12 @@
           "k": "d",
           "label": "No highlight in the body: state lives in the panel, the outline and the tree",
           "gains": [
-            "Removes the contradiction and the contrast question"
+            "Removes the contradiction and the contrast question",
+            "Removes both the contrast question and the colour-alone rule violation in one move"
           ],
           "costs": [
-            "Removes the fifteen-second demo, the one visible idea"
+            "Removes the fifteen-second demo, the one visible idea",
+            "Removes the one visible thing four separate wireframe rounds have used as the demo"
           ],
           "system": "No change.",
           "screens": "Deletes the highlight; the panel remains.",
@@ -2876,10 +2892,12 @@
           "k": "a",
           "label": "One file per person: `.frontmatter/review/<who>.jsonl`",
           "gains": [
-            "Conflicts disappear by construction; one file answers per person"
+            "Conflicts disappear by construction; one file answers per person",
+            "No merge driver to install on any collaborator's machine, since each file only ever has one writer"
           ],
           "costs": [
-            "The directory grows; a cross-person view reads N files"
+            "The directory grows; a cross-person view reads N files",
+            "A cross-person view has to read and merge N separate files just to answer one simple question"
           ],
           "system": "reviewed-by becomes the filename, not a field.",
           "screens": "One file per person to read.",
@@ -2890,10 +2908,12 @@
           "label": "One shared file with a committed git merge driver",
           "what": "A driver unions lines and de-duplicates by path, range, hash and person.",
           "gains": [
-            "Keeps one readable artefact that diffs as a unit"
+            "Keeps one readable artefact that diffs as a unit",
+            "Stays as one readable artefact, so nothing about the review-file format itself has to change"
           ],
           "costs": [
-            "Every collaborator installs the driver; union merge is banned"
+            "Every collaborator installs the driver; union merge is banned",
+            "Union merge, per the tension, is exactly the merge behaviour already measured producing duplicate keys"
           ],
           "system": "A `.gitattributes` entry and a driver.",
           "screens": "No change.",
@@ -2903,10 +2923,12 @@
           "k": "c",
           "label": "One shared file, conflicts surfaced in the conflict view",
           "gains": [
-            "Consistent with refuse rather than guess, no driver"
+            "Consistent with refuse rather than guess, no driver",
+            "Needs no driver installed anywhere, and conflicts are handled the same way the product handles everything else"
           ],
           "costs": [
-            "A merge conflict on a machine-written file, after the pilot"
+            "A merge conflict on a machine-written file, after the pilot",
+            "A merge conflict on a file nobody hand-edits is a confusing thing for a person to be shown at all"
           ],
           "system": "No change.",
           "screens": "The conflict view must handle JSONL.",
@@ -2916,10 +2938,12 @@
           "k": "d",
           "label": "Defer: the pilot is one-person, decide when shared review state and comments exist",
           "gains": [
-            "No cost now, and decided with a real team"
+            "No cost now, and decided with a real team",
+            "The pilot, being one person, never actually needs this decision made at all"
           ],
           "costs": [
-            "The format is written in the pilot; changing it rewrites readers"
+            "The format is written in the pilot; changing it rewrites readers",
+            "Whatever format ships during the pilot becomes a migration the moment a second person needs to read it"
           ],
           "system": "No change now, a migration later.",
           "screens": "No change.",
