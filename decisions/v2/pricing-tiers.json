@@ -252,10 +252,12 @@
           "what": "Pro is the second seat on a repo. Nothing withheld.",
           "label": "Gate on people, not features",
           "gains": [
-            "Nothing to build, one sentence to explain"
+            "Nothing to build, one sentence to explain",
+            "Costs nothing to build; a per-seat gate needs no feature flag or retention code at all."
           ],
           "costs": [
-            "Honour system, the same problem as the journal"
+            "Honour system, the same problem as the journal",
+            "Nobody has verified whether a per-person gate is even technically enforceable without new code."
           ],
           "system": "No change.",
           "screens": "A seat count in settings.",
@@ -265,10 +267,12 @@
           "k": "d",
           "label": "Name no gate until the conversations return",
           "gains": [
-            "Publishes no price with nothing behind it"
+            "Publishes no price with nothing behind it",
+            "Names no number the twenty conversations could later contradict or force a walk-back on."
           ],
           "costs": [
-            "No revenue line for the whole build"
+            "No revenue line for the whole build",
+            "Leaves the whole build with no priced tier to point to when the question is asked."
           ],
           "system": "No change.",
           "screens": "No pricing page.",
@@ -483,7 +487,8 @@
             "Nothing to build for the lapse path"
           ],
           "costs": [
-            "Pro becomes a licence, not a lock"
+            "Pro becomes a licence, not a lock",
+            "On a public repository this honour-system journal is visible to anyone who clones it."
           ],
           "system": "One entitlement check before appending. No server storage.",
           "screens": "Pricing line: your history stays, we stop adding.",
@@ -494,7 +499,8 @@
           "k": "b",
           "label": "Server-held journal, and rewrite the zero-bytes promise",
           "gains": [
-            "A real gate with real enforcement"
+            "A real gate with real enforcement",
+            "The only shape where a lapsed team's data is actually, mechanically cut off, not just asked nicely."
           ],
           "costs": [
             "Loses the positioning line the plan leads with",
@@ -509,10 +515,12 @@
           "k": "c",
           "label": "Repo, encrypted to a control-plane key",
           "gains": [
-            "Enforceable, and bytes never leave the machine"
+            "Enforceable, and bytes never leave the machine",
+            "Keeps every byte inside the user's own repository, matching the zero-bytes promise exactly."
           ],
           "costs": [
-            "Breaks readable-without-frontmatter, which makes the review file safe to adopt"
+            "Breaks readable-without-frontmatter, which makes the review file safe to adopt",
+            "An encrypted file a user cannot read without us breaks the plain-text safety the review file relies on."
           ],
           "system": "Key management on top of the review-file writer.",
           "screens": "An encrypted-file state nobody has designed.",
@@ -526,7 +534,8 @@
             "Removes the contradiction at its root"
           ],
           "costs": [
-            "Pro is left with a CI gate that does not run"
+            "Pro is left with a CI gate that does not run",
+            "Removes retention from the pricing story entirely, leaving Pro to justify itself on attribution alone."
           ],
           "system": "No journal store at all.",
           "screens": "No history view.",
@@ -791,7 +800,8 @@
           "k": "b",
           "label": "$10-20 per editor per month - the diff-tool anchor",
           "gains": [
-            "Draftable sells less than this for $129 to $261"
+            "Draftable sells less than this for $129 to $261",
+            "Costs nothing to state; Diffchecker already prices this exact narrow job at $15 to $40 a month."
           ],
           "costs": [
             "No markdown editor charges this",
@@ -806,10 +816,12 @@
           "k": "c",
           "label": "Flat, per repository or per organisation",
           "gains": [
-            "No seat accounting and no proration"
+            "No seat accounting and no proration",
+            "The simplest possible pricing model to explain to a procurement team in one sentence."
           ],
           "costs": [
-            "Kills seat expansion, the main growth engine"
+            "Kills seat expansion, the main growth engine",
+            "A flat organisation price has never been tested against what any real prospect would actually pay."
           ],
           "system": "No seat model. One entitlement per repo.",
           "screens": "No invite-and-count flow.",
@@ -981,10 +993,12 @@
           "k": "a",
           "label": "Keep billing out until the build after the pilot",
           "gains": [
-            "Cleanest pilot, no billing code to maintain"
+            "Cleanest pilot, no billing code to maintain",
+            "Needs no payment rail, no refund policy and no new legal surface before the pilot even starts."
           ],
           "costs": [
-            "No money and no price evidence for 81 weeks"
+            "No money and no price evidence for 81 weeks",
+            "Every week without a checkout is another week the willingness-to-pay question stays completely open."
           ],
           "system": "No change.",
           "screens": "No checkout, no account.",
@@ -1011,7 +1025,8 @@
           "k": "c",
           "label": "Optional licence and a supporters wall from day one",
           "gains": [
-            "Revenue from day one with no engineering"
+            "Revenue from day one with no engineering",
+            "Needs no engineering at all; a supporters page can go live in an afternoon."
           ],
           "costs": [
             "Voluntary money on a product with no users",
@@ -1026,7 +1041,8 @@
           "k": "d",
           "label": "Sell the services engagement instead",
           "gains": [
-            "Revenue this month from clients who exist"
+            "Revenue this month from clients who exist",
+            "Client work is a lane that already exists today, with paying clients, unlike anything else on this list."
           ],
           "costs": [
             "The product gets no price evidence at all",
@@ -1244,7 +1260,8 @@
           "k": "b",
           "label": "Free with a soft cap on the support driver, never on features",
           "gains": [
-            "Bounds the worst case, keeps every feature free"
+            "Bounds the worst case, keeps every feature free",
+            "The support driver is the only cost in the whole tier that actually scales with user count."
           ],
           "costs": [
             "Any cap makes no-limits untrue",
@@ -1259,7 +1276,8 @@
           "k": "c",
           "label": "Free for individuals, licence asked for above a seat count",
           "gains": [
-            "The only B2B motion two people can run"
+            "The only B2B motion two people can run",
+            "Two people can run exactly one B2B sales motion; this is the only option that is actually it."
           ],
           "costs": [
             "Voluntary, so revenue is unpredictable",
@@ -1274,7 +1292,8 @@
           "k": "d",
           "label": "Measure the support coefficient before deciding",
           "gains": [
-            "The one input the report says would change its verdict"
+            "The one input the report says would change its verdict",
+            "Answers the one input the report itself says would change which of its own verdicts is correct."
           ],
           "costs": [
             "Ten users cannot resolve a threefold spread",
@@ -1470,10 +1489,12 @@
           "k": "b",
           "label": "No licence; teams buy seats only",
           "gains": [
-            "One SKU and one story"
+            "One SKU and one story",
+            "The simplest story to tell: one SKU, seats only, nothing else to explain to a buyer."
           ],
           "costs": [
-            "Forgoes the only measured B2B mechanism in the category"
+            "Forgoes the only measured B2B mechanism in the category",
+            "Leaves the one measured B2B mechanism in this whole category sitting unused on the table."
           ],
           "system": "No change.",
           "screens": "No change.",
@@ -1484,10 +1505,12 @@
           "k": "c",
           "label": "Licence instead of seats",
           "gains": [
-            "One number to quote a procurement team"
+            "One number to quote a procurement team",
+            "Gives a procurement team exactly one number to approve, with no seat math involved."
           ],
           "costs": [
-            "Gives up seat expansion, the main growth engine"
+            "Gives up seat expansion, the main growth engine",
+            "Trading seats for a flat licence removes the expansion motion the tier ladder is built around."
           ],
           "system": "No seat model at all.",
           "screens": "No invite-and-count flow.",
@@ -1672,7 +1695,8 @@
           "k": "b",
           "label": "Dollars spent, shown as a running float",
           "gains": [
-            "Impossible to mis-price"
+            "Impossible to mis-price",
+            "The only unit where a customer can never be surprised, since every dollar spent is the dollar shown."
           ],
           "costs": [
             "Publishes our unit cost",
@@ -1687,10 +1711,12 @@
           "k": "c",
           "label": "No hosted AI; bring your own key forever",
           "gains": [
-            "Zero inference cost and zero abuse surface"
+            "Zero inference cost and zero abuse surface",
+            "Zero inference cost to the operator and zero abuse surface, since no shared model spend exists."
           ],
           "costs": [
-            "Loses anyone who has never held an API key"
+            "Loses anyone who has never held an API key",
+            "Excludes every buyer who has never held their own API key from using the feature at all."
           ],
           "system": "Nothing to build.",
           "screens": "The key field, already planned.",
@@ -1704,7 +1730,8 @@
             "No work now"
           ],
           "costs": [
-            "Leaves an unbounded liability described as capped"
+            "Leaves an unbounded liability described as capped",
+            "The word capped keeps appearing in the plan with no number ever attached to back it up."
           ],
           "system": "No change.",
           "screens": "No change.",
@@ -1919,10 +1946,12 @@
           "k": "c",
           "label": "Annual only",
           "gains": [
-            "Simplest ledger, best fee arithmetic"
+            "Simplest ledger, best fee arithmetic",
+            "The simplest ledger possible, and it captures the best fee arithmetic of any option here."
           ],
           "costs": [
-            "Excludes anyone who will not commit a year"
+            "Excludes anyone who will not commit a year",
+            "Excludes anyone unwilling to commit to a full year before ever trying the paid tier."
           ],
           "system": "One SKU.",
           "screens": "No toggle.",
@@ -1933,10 +1962,12 @@
           "k": "d",
           "label": "Monthly only until twenty teams pay",
           "gains": [
-            "Nothing to build, fastest churn signal"
+            "Nothing to build, fastest churn signal",
+            "Needs nothing built before the first paying customer, and produces the fastest churn signal available."
           ],
           "costs": [
-            "Forgoes the fee saving for the whole first year"
+            "Forgoes the fee saving for the whole first year",
+            "Forgoes the fee saving annual billing offers for the entire first year of the business."
           ],
           "system": "One SKU.",
           "screens": "No toggle.",
@@ -2119,7 +2150,8 @@
             "No screenshot argument on Hacker News"
           ],
           "costs": [
-            "Indian buyers pay the full dollar price"
+            "Indian buyers pay the full dollar price",
+            "Indian buyers see and pay the same price as a dollar-earning market, with no local adjustment."
           ],
           "system": "One SKU per period.",
           "screens": "One pricing page.",
@@ -2130,7 +2162,8 @@
           "k": "b",
           "label": "USD list plus a published India price",
           "gains": [
-            "Meets the home market where the network is"
+            "Meets the home market where the network is",
+            "Meets the home market exactly where its own network and word of mouth already exist."
           ],
           "costs": [
             "Reads as domestic-market software",
@@ -2145,7 +2178,8 @@
           "k": "c",
           "label": "USD list plus published PPP bands",
           "gains": [
-            "Defensible when disclosed and uniform per country"
+            "Defensible when disclosed and uniform per country",
+            "Defensible precisely because it is disclosed and applied the same way to everyone in a given country."
           ],
           "costs": [
             "A policy, a table and an abuse surface",
@@ -2160,10 +2194,12 @@
           "k": "d",
           "label": "USD only until the conversations return",
           "gains": [
-            "No wrong answer published"
+            "No wrong answer published",
+            "Publishes nothing that could later be quoted back as the wrong number for either market."
           ],
           "costs": [
-            "Leaves the page unfinished if checkout ships early"
+            "Leaves the page unfinished if checkout ships early",
+            "Leaves the pricing page genuinely unfinished if a checkout ships before the question is settled."
           ],
           "system": "No change.",
           "screens": "No pricing page.",
@@ -2397,7 +2433,8 @@
             "Deletes a compliance surface and a checkout step"
           ],
           "costs": [
-            "Forgoes the revenue a waiver would retain"
+            "Forgoes the revenue a waiver would retain",
+            "Gives up whatever revenue a properly taken waiver would otherwise have retained."
           ],
           "system": "A refunds path. No consent capture.",
           "screens": "A refunds page and one checkout line.",
@@ -2408,7 +2445,8 @@
           "k": "b",
           "label": "Non-refundable, with the waiver taken properly",
           "gains": [
-            "The category norm for file-first tools"
+            "The category norm for file-first tools",
+            "Matches the category norm Obsidian itself uses for a file-first product like this one."
           ],
           "costs": [
             "A slightly wrong waiver makes the supply free",
@@ -2423,10 +2461,12 @@
           "k": "c",
           "label": "Thirty-day first-charge refund only",
           "gains": [
-            "Covers remorse at a bounded cost"
+            "Covers remorse at a bounded cost",
+            "Bounds the cost of remorse to thirty days, rather than leaving it open-ended."
           ],
           "costs": [
-            "Leaves the forgotten annual renewal, which drives chargebacks"
+            "Leaves the forgotten annual renewal, which drives chargebacks",
+            "Still leaves the forgotten annual renewal exposed, which is what actually drives most chargebacks."
           ],
           "system": "A refunds path with a date check.",
           "screens": "One line at checkout.",
@@ -2437,10 +2477,12 @@
           "k": "d",
           "label": "No published policy until there is a customer",
           "gains": [
-            "No work now"
+            "No work now",
+            "Costs nothing today, though India's own e-commerce rules require a displayed policy before any sale."
           ],
           "costs": [
-            "India's e-commerce rules require the policy displayed"
+            "India's e-commerce rules require the policy displayed",
+            "India's own e-commerce rules require a displayed refund policy before the first sale, not after."
           ],
           "system": "No change.",
           "screens": "None.",
@@ -2610,7 +2652,8 @@
           "k": "b",
           "label": "Bill direct; register for tax as it arises",
           "gains": [
-            "Keeps the margin and the direct relationship"
+            "Keeps the margin and the direct relationship",
+            "Keeps the full margin and the direct customer relationship with no intermediary cut taken."
           ],
           "costs": [
             "Cross-border registration and disputes on one person",
@@ -2625,10 +2668,12 @@
           "k": "c",
           "label": "Merchant of record for non-India sales, direct for India",
           "gains": [
-            "Keeps domestic margin, outsources hard jurisdictions"
+            "Keeps domestic margin, outsources hard jurisdictions",
+            "Keeps the better domestic margin at home while handing off only the jurisdictions that are genuinely hard."
           ],
           "costs": [
-            "Two ledgers and two reconciliation surfaces for two people"
+            "Two ledgers and two reconciliation surfaces for two people",
+            "Runs two separate ledgers and two reconciliation processes for what is still a two-person company."
           ],
           "system": "Two billing paths and a routing rule.",
           "screens": "Two checkouts.",
@@ -2639,10 +2684,12 @@
           "k": "d",
           "label": "Defer until a foreign buyer asks",
           "gains": [
-            "No work now"
+            "No work now",
+            "Costs nothing today, until the first foreign sale actually arrives and forces the question."
           ],
           "costs": [
-            "The first EU sale arrives with VAT and no mechanism"
+            "The first EU sale arrives with VAT and no mechanism",
+            "The first EU sale would arrive with VAT owed and literally no mechanism in place to pay it."
           ],
           "system": "No change.",
           "screens": "None.",
@@ -2906,7 +2953,8 @@
           "k": "b",
           "label": "Kill under 3 of 20 giving a seat count and a budget line",
           "gains": [
-            "A harder bar that filters talk from procurement"
+            "A harder bar that filters talk from procurement",
+            "A harder bar filters out polite interest from an actual seat count and a stated budget."
           ],
           "costs": [
             "Three of twenty is a thin thread",
@@ -2937,7 +2985,8 @@
           "k": "d",
           "label": "Free-signup-rate test only, labelled price anchoring",
           "gains": [
-            "The one randomised measurement that fits the traffic"
+            "The one randomised measurement that fits the traffic",
+            "The one test design that actually fits the traffic this pilot is realistically going to see."
           ],
           "costs": [
             "Answers signup suppression, not what anyone pays",
@@ -3109,10 +3158,12 @@
           "k": "b",
           "label": "Three-year sunset with ninety days' notice",
           "gains": [
-            "Standard, and lets the price move later"
+            "Standard, and lets the price move later",
+            "Standard in the category, and it leaves room to move the price once break-even is actually known."
           ],
           "costs": [
-            "Costs goodwill with the cohort supplying word of mouth"
+            "Costs goodwill with the cohort supplying word of mouth",
+            "Costs goodwill specifically with the earliest cohort, the ones most likely to talk about the product."
           ],
           "system": "A price snapshot plus an expiry date.",
           "screens": "A notice in the in-product list.",
@@ -3123,10 +3174,12 @@
           "k": "c",
           "label": "No grandfathering at all",
           "gains": [
-            "Simplest ledger, no legacy prices"
+            "Simplest ledger, no legacy prices",
+            "The simplest ledger of all four options, with no legacy price to track or explain later."
           ],
           "costs": [
-            "Removes a real reason to buy early"
+            "Removes a real reason to buy early",
+            "Removes the one concrete reason anyone had to buy in during the earliest, least-proven days."
           ],
           "system": "No snapshot needed.",
           "screens": "The price-change email rule, already written.",
@@ -3141,7 +3194,8 @@
             "Leaves the price free to move afterwards"
           ],
           "costs": [
-            "Two policies to publish and one number to defend"
+            "Two policies to publish and one number to defend",
+            "Still requires publishing and defending two different policies side by side, not one."
           ],
           "system": "A snapshot on the first hundred accounts.",
           "screens": "Both policies visible at checkout.",
@@ -3348,7 +3402,8 @@
           "k": "c",
           "label": "Keep it as a downstream upsell from the docs scan",
           "gains": [
-            "Keeps the founder's hours on the build"
+            "Keeps the founder's hours on the build",
+            "Keeps every founder-hour on the 81-week build rather than diverting it into a sales engagement."
           ],
           "costs": [
             "The lead-generating scan is a year away",
@@ -3363,10 +3418,12 @@
           "k": "d",
           "label": "Do not sell it; protect the build",
           "gains": [
-            "Maximum product velocity"
+            "Maximum product velocity",
+            "Maximum product velocity, with zero hours diverted from the build in any given month."
           ],
           "costs": [
-            "Contradicts the funding line assuming 54 to 78 client hours"
+            "Contradicts the funding line assuming 54 to 78 client hours",
+            "Directly contradicts the funding line, which already assumes 54 to 78 hours of client work a month."
           ],
           "system": "No change.",
           "screens": "None.",
@@ -3612,10 +3669,12 @@
           "k": "b",
           "label": "free / pro / team, matching the code",
           "gains": [
-            "Least churn, and the names a build team finds"
+            "Least churn, and the names a build team finds",
+            "The least churn of any option, since it adopts names a build team would find in the code itself."
           ],
           "costs": [
-            "Adopts the vocabulary of a file that may go"
+            "Adopts the vocabulary of a file that may go",
+            "Adopts the vocabulary of a rules file that may itself be deleted once the Firebase question is settled."
           ],
           "system": "The plan changes; the rules file does not.",
           "screens": "Renamed columns.",
@@ -3626,10 +3685,12 @@
           "k": "c",
           "label": "Keep three rungs and fix the stale rows",
           "gains": [
-            "Cheapest edit, keeps the ladder intact"
+            "Cheapest edit, keeps the ladder intact",
+            "The cheapest edit of any option: fix the stale rows, change nothing about the ladder itself."
           ],
           "costs": [
-            "Max still holds one unbuilt feature and two refused"
+            "Max still holds one unbuilt feature and two refused",
+            "Max still holds one feature that has never been built and two that are refused until asked for."
           ],
           "system": "No change.",
           "screens": "Three columns, the third hollow.",
@@ -3767,7 +3828,8 @@
           "k": "a",
           "label": "Per seat, folded into Pro as written",
           "gains": [
-            "One SKU and one price to explain"
+            "One SKU and one price to explain",
+            "One price, one SKU, and nothing new to explain to a buyer who already understands per-seat pricing."
           ],
           "costs": [
             "Bills readers who never see a CI run",
@@ -3798,10 +3860,12 @@
           "k": "c",
           "label": "Per organisation, flat, any number of repos",
           "gains": [
-            "One number for a procurement conversation"
+            "One number for a procurement conversation",
+            "Gives a procurement team exactly one flat number to sign off on, regardless of repo count."
           ],
           "costs": [
-            "One number must fit two repos and two hundred"
+            "One number must fit two repos and two hundred",
+            "One flat number has to work whether the organisation holds two repositories or two hundred."
           ],
           "system": "An org-scoped entitlement.",
           "screens": "One switch per organisation.",
@@ -3812,10 +3876,12 @@
           "k": "d",
           "label": "Do not price it until the command runs",
           "gains": [
-            "Refuses to price a command that exits with an error"
+            "Refuses to price a command that exits with an error",
+            "Refuses to price a feature that, as of today, exits with an error every time it is run."
           ],
           "costs": [
-            "Leaves Pro without its enforceable half"
+            "Leaves Pro without its enforceable half",
+            "Leaves Pro's one enforceable, checkable gate priced at nothing, indefinitely."
           ],
           "system": "Wire the command; no billing work.",
           "screens": "None.",
