@@ -163,10 +163,12 @@
           "k": "a",
           "label": "Single letters everywhere, with a remap screen in the pilot",
           "gains": [
-            "Fastest map, and matches the drawer as drawn"
+            "Fastest map, and matches the drawer as drawn",
+            "Single letters are the fastest binding measured in the corpus's own comparison table."
           ],
           "costs": [
-            "Adds a 3-4 day remap screen the plan never draws"
+            "Adds a 3-4 day remap screen the plan never draws",
+            "No review key exists in the code at all today: zero hits for review.jsonl or unreviewed."
           ],
           "system": "A stored keymap and a rebinding screen.",
           "screens": "Adds a Settings hotkeys screen.",
@@ -177,10 +179,12 @@
           "k": "b",
           "label": "Modifier keys only: j and k walk, Cmd-Enter accepts, Cmd-Shift-Z reverts",
           "gains": [
-            "Clears SC 2.1.4 with no remap UI"
+            "Clears SC 2.1.4 with no remap UI",
+            "Modifier keys are what the WCAG remedy itself names as one of three compliant options."
           ],
           "costs": [
-            "Slower per hunk; the drawer's buttons are redrawn"
+            "Slower per hunk; the drawer's buttons are redrawn",
+            "Every prototype screen shown so far draws single letters, not modifier chords."
           ],
           "system": "One keymap table.",
           "screens": "Redraws the drawer's hint chip.",
@@ -191,10 +195,12 @@
           "k": "c",
           "label": "Single letters, active only while the review drawer has focus",
           "gains": [
-            "Single-letter speed, no remap screen, one meaning for `r`"
+            "Single-letter speed, no remap screen, one meaning for `r`",
+            "Costs no remap screen, the 3 to 4 day item the customisable-keymap line already prices."
           ],
           "costs": [
-            "New focus rule; keys do nothing outside the drawer"
+            "New focus rule; keys do nothing outside the drawer",
+            "Focus-scoping is a new interaction rule nothing in the code implements yet."
           ],
           "system": "One focus rule around the drawer.",
           "screens": "The drawer becomes a focus container.",
@@ -205,10 +211,12 @@
           "k": "d",
           "label": "No review keyboard in the pilot, buttons only",
           "gains": [
-            "Removes a decision, costs nothing, no accessibility exposure"
+            "Removes a decision, costs nothing, no accessibility exposure",
+            "Zero accessibility exposure, since a mouse-only control needs no keyboard remedy at all."
           ],
           "costs": [
-            "A 40-hunk review becomes mouse-driven, the slowest version sold"
+            "A 40-hunk review becomes mouse-driven, the slowest version sold",
+            "Every keyboard model in the comparison table assumes some key does something."
           ],
           "system": "No change.",
           "screens": "The hint chip comes off.",
@@ -528,10 +536,12 @@
           "k": "a",
           "label": "The whole floor into the pilot, bindings moved to markdown convention",
           "gains": [
-            "The pilot judges the review idea, not the editor"
+            "The pilot judges the review idea, not the editor",
+            "Matches five incumbents, Typora, Bear, iA Writer, Obsidian and VS Code, which all bind the same key this way."
           ],
           "costs": [
-            "The pilot goes from 70 to 87 days, fourteen more weeks"
+            "The pilot goes from 70 to 87 days, fourteen more weeks",
+            "87 days at the measured 1.21 engineering days a week is roughly seventeen more calendar weeks."
           ],
           "system": "Table editing needs the editor's write engine, which changes only the bytes you edited and never rewrites the whole file.",
           "screens": "Hotkeys screen, table toolbar, palette.",
@@ -543,10 +553,12 @@
           "label": "The cheap half only: hotkeys, outline key, palette, switcher deltas",
           "what": "Cmd-K becomes insert-link, the switcher moves to Cmd-O.",
           "gains": [
-            "The first ninety seconds for about 4% of budget"
+            "The first ninety seconds for about 4% of budget",
+            "Covers 6 of the 8 measured floor items for about 3 of the 17.5-day midpoint."
           ],
           "costs": [
-            "Leaves out table editing and HTML paste, both disqualifying"
+            "Leaves out table editing and HTML paste, both disqualifying",
+            "Table editing and HTML paste are named in the same table as disqualifying gaps if missing."
           ],
           "system": "A keymap table over existing toolbar actions.",
           "screens": "The palette gains a hotkey column.",
@@ -556,10 +568,12 @@
           "k": "c",
           "label": "Ship the pilot on the current floor and the current bindings",
           "gains": [
-            "Fastest to the exit test, on real feedback"
+            "Fastest to the exit test, on real feedback",
+            "Zero new engineering days before the exit test the pilot is built to run."
           ],
           "costs": [
-            "Cmd-K on a pasted URL opens the file switcher"
+            "Cmd-K on a pasted URL opens the file switcher",
+            "Command-K already opens a note switcher in the code, so this is a real, live collision."
           ],
           "system": "No change.",
           "screens": "No change.",
@@ -570,10 +584,12 @@
           "k": "d",
           "label": "Resolve the form factor first: an extension inherits floor and keymap",
           "gains": [
-            "Deletes the floor, the keymap and bring-your-own-key at once"
+            "Deletes the floor, the keymap and bring-your-own-key at once",
+            "An extension inherits the host's own keymap, deleting all 13 to 21 days of this decision at once."
           ],
           "costs": [
-            "Forfeits Live mode; an 82,265-install incumbent holds the name"
+            "Forfeits Live mode; an 82,265-install incumbent holds the name",
+            "The best of 13 markdown-review extensions in that niche still only reaches 400 installs."
           ],
           "system": "A different shell around the same engine.",
           "screens": "Kills launcher, tree, mode switcher.",
@@ -756,10 +772,12 @@
           "label": "Run the head-to-head at the start of Phase 1, before the 18 days of build",
           "what": "Ten strangers review one prepared 40-hunk change in both surfaces.",
           "gains": [
-            "The only cheap test that can refute 18 days"
+            "The only cheap test that can refute 18 days",
+            "Costs nothing but a prepared file and a script, against 18 days of build the result could refute."
           ],
           "costs": [
-            "Needs a prepared 40-hunk change and a script"
+            "Needs a prepared 40-hunk change and a script",
+            "The comparison itself needs a genuine 40-hunk change prepared, not a trivial one."
           ],
           "system": "A mock and a terminal.",
           "screens": "One mock walking 40 hunks.",
@@ -769,10 +787,12 @@
           "k": "b",
           "label": "Build the surface, then compare at the ten-stranger pilot",
           "gains": [
-            "Tests the product, not a mock"
+            "Tests the product, not a mock",
+            "Tests the real, shipped surface rather than a mock that may not match it."
           ],
           "costs": [
-            "A failure means 18 days and the exit test"
+            "A failure means 18 days and the exit test",
+            "A negative result only arrives after the 18 days and the ten-stranger exit test are both spent."
           ],
           "system": "No change.",
           "screens": "No change.",
@@ -783,10 +803,12 @@
           "k": "c",
           "label": "Change the unit so the comparison does not apply: file or section, not hunk",
           "gains": [
-            "Sidesteps the ratio; matches the free incumbent"
+            "Sidesteps the ratio; matches the free incumbent",
+            "Matches what a free incumbent, git add -p, already ships at the file or section grain."
           ],
           "costs": [
-            "Gives up the per-span claim, the differentiator"
+            "Gives up the per-span claim, the differentiator",
+            "Per-span review is the differentiator named elsewhere in the corpus; this trades it away."
           ],
           "system": "The unit becomes file or heading.",
           "screens": "The panel becomes a file list.",
@@ -797,10 +819,12 @@
           "k": "d",
           "label": "Accept the ratio and design for skim: file level by default, hunks on demand",
           "gains": [
-            "Honest about how a large change is read"
+            "Honest about how a large change is read",
+            "Matches the measured reading rate directly: 22 minutes to read what an agent writes in 60 seconds."
           ],
           "costs": [
-            "Two units everywhere, and it pre-empts the counter"
+            "Two units everywhere, and it pre-empts the counter",
+            "Building two units, file-level and hunk-level, is more surface to design and maintain than one."
           ],
           "system": "Stored per span, shown per file.",
           "screens": "Adds a level switch to the panel.",
@@ -958,10 +982,12 @@
           "k": "a",
           "label": "No bulk clear in the pilot",
           "gains": [
-            "The counter means one thing; the pilot measures truly"
+            "The counter means one thing; the pilot measures truly",
+            "Matches the retention lever as written: the count reaches zero only by opening the file."
           ],
           "costs": [
-            "A 200-span backlog's only escape is abandoning the file"
+            "A 200-span backlog's only escape is abandoning the file",
+            "A 200-span backlog has no way out except abandoning the file entirely."
           ],
           "system": "No change.",
           "screens": "Removes two prototype buttons.",
@@ -972,10 +998,12 @@
           "k": "b",
           "label": "Ship Mark all read, recorded in the separate file as a bulk clear",
           "gains": [
-            "An escape exists and bulk clears stay separable"
+            "An escape exists and bulk clears stay separable",
+            "The prototype already draws exactly this control with no gate, so it costs no new design."
           ],
           "costs": [
-            "A clicker still clears the counter"
+            "A clicker still clears the counter",
+            "CRITIQUE.md names the exact failure: if five or more people hit accept-all, the interaction is theatre."
           ],
           "system": "The review file grows an action kind.",
           "screens": "Keeps the button, adds copy.",
@@ -986,10 +1014,12 @@
           "k": "c",
           "label": "Ship it gated: enabled only when every span has been scrolled into view",
           "gains": [
-            "Closest to what a review is meant to mean"
+            "Closest to what a review is meant to mean",
+            "The only option that requires a span to have actually been seen before it counts as reviewed."
           ],
           "costs": [
-            "Needs viewport tracking; a disabled button reads as broken"
+            "Needs viewport tracking; a disabled button reads as broken",
+            "Viewport tracking is code that does not exist anywhere in the corpus today."
           ],
           "system": "Depends on the seen-state decision.",
           "screens": "The button gains a disabled state.",
@@ -1000,10 +1030,12 @@
           "k": "d",
           "label": "Ship Mark all read ungated, as drawn",
           "gains": [
-            "Matches the prototype, and is the least surprising"
+            "Matches the prototype, and is the least surprising",
+            "Matches the prototype exactly, so nothing about the drawn screens needs to change."
           ],
           "costs": [
-            "Counter, lever and exit measure clear in one click"
+            "Counter, lever and exit measure clear in one click",
+            "The same CRITIQUE line calls this exact shape the interaction that makes MVP-0 have no demo."
           ],
           "system": "No change.",
           "screens": "No change.",
@@ -1281,10 +1313,12 @@
           "k": "a",
           "label": "Spans everywhere, plain number, never a dot",
           "gains": [
-            "Matches the store, so the number cannot drift"
+            "Matches the store, so the number cannot drift",
+            "Matches the exit measure directly: spans reviewed is already the number the pilot counts."
           ],
           "costs": [
-            "A one-word span counts as a 400-word section"
+            "A one-word span counts as a 400-word section",
+            "Every launcher card bar in the prototype is drawn as a percentage, not spans, so those all change."
           ],
           "system": "One counting function, four surfaces.",
           "screens": "Recomputes four bars; deletes the dot.",
@@ -1295,10 +1329,12 @@
           "k": "b",
           "label": "Bytes for the bar, spans for the count",
           "gains": [
-            "The bar means what a progress bar implies"
+            "The bar means what a progress bar implies",
+            "A byte-based bar cannot drift from the file the way a hand-maintained percentage can."
           ],
           "costs": [
-            "Two units, and the headline stops being holdable"
+            "Two units, and the headline stops being holdable",
+            "None of the eight prototype screens showing a percentage currently distinguish the two units."
           ],
           "system": "Two derived figures instead of one.",
           "screens": "Bar and count both need labels.",
@@ -1309,10 +1345,12 @@
           "k": "c",
           "label": "Files at the launcher and the tree, spans inside the document",
           "gains": [
-            "One small integer at the top level"
+            "One small integer at the top level",
+            "Keeps the launcher's single integer, the number the plan calls the daily return trigger."
           ],
           "costs": [
-            "Loses the per-span claim where a buyer compares"
+            "Loses the per-span claim where a buyer compares",
+            "A buyer comparing tools sees only a file count, not the per-span claim the product is built on."
           ],
           "system": "A per-file rollup over the review file.",
           "screens": "Launcher and tree change, not the panel.",
@@ -1323,10 +1361,12 @@
           "k": "d",
           "label": "No persistent count: the panel lists what is unread when opened",
           "gains": [
-            "Honours the ban outright, cleanest against the controls budget"
+            "Honours the ban outright, cleanest against the controls budget",
+            "Zero retention levers in the plan currently have any evidence they retain anyone at all."
           ],
           "costs": [
-            "Removes the plan's only daily return trigger"
+            "Removes the plan's only daily return trigger",
+            "Removes the one trigger the plan names as created by the user's own agent, daily."
           ],
           "system": "No change.",
           "screens": "Deletes the bars and the tab dot.",
@@ -2007,10 +2047,12 @@
           "label": "Both get a line: 6 of 10 on the highlight test, and a live dismissal rate",
           "what": "A span class ignored past a stated rate stops being surfaced.",
           "gains": [
-            "The signal is checked before build and after launch"
+            "The signal is checked before build and after launch",
+            "Matches every other arm's kill-line pattern: a number and a stated consequence, not just a name."
           ],
           "costs": [
-            "Five more conversations, and a local dismissal counter"
+            "Five more conversations, and a local dismissal counter",
+            "Adds a local dismissal counter that nothing in the code today implements."
           ],
           "system": "Per-class dismissal counts in the local file.",
           "screens": "A rule about what stops appearing.",
@@ -2020,10 +2062,12 @@
           "k": "b",
           "label": "The highlight test only, widened to ten people at 6 of 10",
           "gains": [
-            "Comparable with the other arms, and cheap to act on"
+            "Comparable with the other arms, and cheap to act on",
+            "Ten matches the size already used for the ten-developer and ten-stranger tests elsewhere."
           ],
           "costs": [
-            "Nothing catches the signal decaying after launch"
+            "Nothing catches the signal decaying after launch",
+            "Answers only whether people notice at launch, not whether the feeling survives daily use."
           ],
           "system": "No change.",
           "screens": "No change.",
@@ -2034,10 +2078,12 @@
           "k": "c",
           "label": "The dismissal rate only, instrumented from the first pilot week",
           "gains": [
-            "Measures action rather than naming; no week-1 load"
+            "Measures action rather than naming; no week-1 load",
+            "Measures what people actually do, closer to Tricorder's 10 percent not-useful probation line."
           ],
           "costs": [
-            "The treatment is built before it is checked"
+            "The treatment is built before it is checked",
+            "The surface it measures is built and shipped before any number exists to check it against."
           ],
           "system": "Adds the dismissal count.",
           "screens": "No change.",
@@ -2048,10 +2094,12 @@
           "k": "d",
           "label": "Both advisory: signals that feed the design, not gates",
           "gains": [
-            "Schedule certainty, and no number to defend"
+            "Schedule certainty, and no number to defend",
+            "Cheapest to run: 35 people are already scheduled across the other weeks 1 to 2 conversations."
           ],
           "costs": [
-            "A test with no line leaves the surface unfalsifiable"
+            "A test with no line leaves the surface unfalsifiable",
+            "Every other arm in the plan has a number that can say stop; this one alone would not."
           ],
           "system": "No change.",
           "screens": "No change.",
@@ -2289,10 +2337,12 @@
           "label": "Folder primary, sandbox second, and split the read path from the write path",
           "what": "A write-path refusal never blocks reading; the sandbox is disposable real files.",
           "gains": [
-            "Most of the 83% then affects only writing"
+            "Most of the 83% then affects only writing",
+            "Confines most of the 83 percent refusal to writing, which review state does not need at all."
           ],
           "costs": [
-            "A sandbox to maintain, and an unestimated read/write seam"
+            "A sandbox to maintain, and an unestimated read/write seam",
+            "No engineering estimate exists yet for the read/write seam this split would create."
           ],
           "system": "A seam between reader and writer.",
           "screens": "Draws the first-run screen.",
@@ -2302,10 +2352,12 @@
           "k": "b",
           "label": "Gate: no stranger until the left-edge list bug and the old line-ending bug are fixed",
           "gains": [
-            "The first impression is the product working"
+            "The first impression is the product working",
+            "Matches the flow research's own recommendation: ship no flow until both bugs land."
           ],
           "costs": [
-            "Seven days of fix-first before every human test"
+            "Seven days of fix-first before every human test",
+            "Seven days of fix-first happens before a single human sees the product."
           ],
           "system": "The scheduled fixes land first.",
           "screens": "Adds the missing first-run screen.",
@@ -2316,10 +2368,12 @@
           "k": "c",
           "label": "Ship as drawn: templates first, with a guarantee-shaped status line",
           "gains": [
-            "Demonstrates refuse-rather-than-guess at once, at no cost"
+            "Demonstrates refuse-rather-than-guess at once, at no cost",
+            "Costs nothing extra; the status line already exists to be reworded from apology to guarantee."
           ],
           "costs": [
-            "A stranger whose repo is 83% unreadable leaves"
+            "A stranger whose repo is 83% unreadable leaves",
+            "83 percent of foreign vaults hit this exact refusal, measured on the corpus in hand."
           ],
           "system": "No change.",
           "screens": "One status line.",
@@ -2330,10 +2384,12 @@
           "k": "d",
           "label": "Curate the pilot to spec-kit and superpowers repos the engine handles",
           "gains": [
-            "Removes the failure from the pilot"
+            "Removes the failure from the pilot",
+            "Two named repo types, spec-kit and superpowers, are already how the week 3 to 4 test is scoped."
           ],
           "costs": [
-            "The exit test then proves nothing about vaults"
+            "The exit test then proves nothing about vaults",
+            "A pilot that never meets a real vault cannot speak to the population it is refusing today."
           ],
           "system": "No change.",
           "screens": "No change.",
@@ -2593,10 +2649,12 @@
           "label": "Baseline at the last commit; pilot on desktop",
           "what": "Anything uncommitted at first open is unreviewed.",
           "gains": [
-            "Uses the working tree, which the product claims as its differentiator"
+            "Uses the working tree, which the product claims as its differentiator",
+            "Matches the product's own stated differentiator: the working tree, which only git can see."
           ],
           "costs": [
-            "Puts Tauri, notarisation and identity on the critical path"
+            "Puts Tauri, notarisation and identity on the critical path",
+            "Local git is desktop-only, so this option cannot exist on the web surface at all."
           ],
           "system": "Reads git; degrades without it.",
           "screens": "The highlight's meaning changes on first open.",
@@ -2606,10 +2664,12 @@
           "k": "b",
           "label": "Everything unreviewed at first open; pilot on either surface",
           "gains": [
-            "Honest, and no git dependency, so surfaces match"
+            "Honest, and no git dependency, so surfaces match",
+            "No git dependency means the same rule works identically on every surface at once."
           ],
           "costs": [
-            "A stranger's first document is fully highlighted, the stated failure"
+            "A stranger's first document is fully highlighted, the stated failure",
+            "This is the exact failure the five-second test names: a fully highlighted first document."
           ],
           "system": "Simplest rule; no git read.",
           "screens": "First open looks highlighted.",
@@ -2620,10 +2680,12 @@
           "k": "c",
           "label": "Baseline at first open; pilot on the web app with a focus refresh",
           "gains": [
-            "Clean first screen, and no install for the trial"
+            "Clean first screen, and no install for the trial",
+            "No install needed for the trial, matching the web-first funnel the pilot is built around."
           ],
           "costs": [
-            "The first session may demonstrate nothing at all"
+            "The first session may demonstrate nothing at all",
+            "A session that shows nothing highlighted also demonstrates nothing about the product."
           ],
           "system": "A re-read on window focus.",
           "screens": "No new screen.",
@@ -2634,10 +2696,12 @@
           "k": "d",
           "label": "Anchor test first, then last-commit baseline; the surface is settled by Q3",
           "gains": [
-            "Answers the one mechanism never run, at almost no cost"
+            "Answers the one mechanism never run, at almost no cost",
+            "The untested anchor mechanism, open after two adversarial rounds, finally gets run before anything else."
           ],
           "costs": [
-            "The surface stays unsettled for two more weeks"
+            "The surface stays unsettled for two more weeks",
+            "Two more weeks pass before the web-versus-desktop question this depends on is even settled."
           ],
           "system": "No change until the test returns.",
           "screens": "No change until the test returns.",
@@ -2938,10 +3002,12 @@
           "label": "Three states, and the separate file records which act cleared a span",
           "what": "Changed, seen and reviewed, with an action kind: scrolled, accepted, reverted, skipped, bulk.",
           "gains": [
-            "The exit measure can tell a reader from a clicker"
+            "The exit measure can tell a reader from a clicker",
+            "The only shape where a reader and a person who merely scrolled past are ever distinguishable."
           ],
           "costs": [
-            "One field, one transition, and viewport tracking the code lacks"
+            "One field, one transition, and viewport tracking the code lacks",
+            "Viewport tracking, the mechanism a gated bulk clear also needs, does not exist in the code."
           ],
           "system": "An action kind and a seen transition.",
           "screens": "Two highlight treatments rather than one.",
@@ -2951,10 +3017,12 @@
           "k": "b",
           "label": "Two states, and only an explicit act clears a span",
           "gains": [
-            "The counter means judged, and no viewport tracking"
+            "The counter means judged, and no viewport tracking",
+            "Matches the clinical-alerting lesson directly: a boolean at scale invites near-total override."
           ],
           "costs": [
-            "Contradicts the demo, and every span costs a keystroke"
+            "Contradicts the demo, and every span costs a keystroke",
+            "Contradicts the demo's own premise, that opening a file is what clears its highlights."
           ],
           "system": "No change.",
           "screens": "The demo has to be re-cut.",
@@ -2965,10 +3033,12 @@
           "k": "c",
           "label": "Two states, and scrolling past a span clears it",
           "gains": [
-            "Matches the demo, zero friction on a long document"
+            "Matches the demo, zero friction on a long document",
+            "Zero friction on a long document, matching exactly what the demo shows happening today."
           ],
           "costs": [
-            "Scrolling fast clears a file; the measure counts scrolling"
+            "Scrolling fast clears a file; the measure counts scrolling",
+            "Fast scrolling would clear a whole file, and the exit measure would be counting scroll speed."
           ],
           "system": "Viewport tracking for the wrong purpose.",
           "screens": "No panel act is required.",
@@ -2979,10 +3049,12 @@
           "k": "d",
           "label": "Two states now, with an action-kind field reserved in the separate file",
           "gains": [
-            "No behaviour to build; readers do not break later"
+            "No behaviour to build; readers do not break later",
+            "No new behaviour ships now, so no pilot reader is exposed to code that does not exist yet."
           ],
           "costs": [
-            "Every pilot measurement is taken on the boolean"
+            "Every pilot measurement is taken on the boolean",
+            "Every pilot number collected in the meantime is still only ever a boolean, not an action kind."
           ],
           "system": "A field nothing writes yet.",
           "screens": "No change.",
@@ -3061,10 +3133,12 @@
           "k": "a",
           "label": "Suppression by default, with the full list one click away",
           "gains": [
-            "Matches every measured system that kept acceptance"
+            "Matches every measured system that kept acceptance",
+            "The one clinical system that earned real acceptance fired in 0.19 percent of 500,274 sessions, not on every span."
           ],
           "costs": [
-            "A wrong rule hides the thing that mattered"
+            "A wrong rule hides the thing that mattered",
+            "A wrong suppression rule hides exactly the span a reader most needed to see."
           ],
           "system": "The filter must derive from the bytes.",
           "screens": "A filtered default and a full list.",
@@ -3075,10 +3149,12 @@
           "k": "b",
           "label": "Enumeration as today: every changed span, in document order",
           "gains": [
-            "No rule to explain, and nothing hidden"
+            "No rule to explain, and nothing hidden",
+            "Matches the projection law's own core claim: every view derives from the file, nothing hidden."
           ],
           "costs": [
-            "The list stops being read before it ends"
+            "The list stops being read before it ends",
+            "A list long enough stops being read before a person reaches its end."
           ],
           "system": "No change.",
           "screens": "No change.",
@@ -3089,10 +3165,12 @@
           "k": "c",
           "label": "A budget rather than a filter: a fixed number of spans a sitting",
           "gains": [
-            "Respects the measured wear-out without ranking anything"
+            "Respects the measured wear-out without ranking anything",
+            "Sidesteps building any ranking logic while still respecting the measured wear-out effect."
           ],
           "costs": [
-            "An arbitrary number, and deferred spans still accumulate"
+            "An arbitrary number, and deferred spans still accumulate",
+            "The budget number is picked, not measured, and deferred spans keep piling up regardless."
           ],
           "system": "A counter and a cut-off, no ranking.",
           "screens": "The panel gains an end-of-batch state.",
@@ -3103,10 +3181,12 @@
           "k": "d",
           "label": "Enumeration, plus a dismissal rate that retires a span class",
           "gains": [
-            "Suppression is learned rather than guessed"
+            "Suppression is learned rather than guessed",
+            "Turns the ranking rule into something the pilot's own usage teaches rather than something guessed upfront."
           ],
           "costs": [
-            "Needs live counts, so the first weeks enumerate"
+            "Needs live counts, so the first weeks enumerate",
+            "Needs live counts to work at all, so the first weeks of the pilot enumerate everything anyway."
           ],
           "system": "Per-class dismissal counts, locally.",
           "screens": "Classes quietly stop appearing.",
@@ -3223,10 +3303,12 @@
           "k": "a",
           "label": "No reason anywhere: one keystroke clears a span",
           "gains": [
-            "The fastest act, which the fatigue evidence favours"
+            "The fastest act, which the fatigue evidence favours",
+            "Directly matches what the fatigue evidence favours: the fewer required steps, the more real the act."
           ],
           "costs": [
-            "A revert records no lesson; the buyer gets hashes"
+            "A revert records no lesson; the buyer gets hashes",
+            "A revert with no typed reason leaves a buyer holding only hashes, nothing to learn from."
           ],
           "system": "No change.",
           "screens": "No change.",
@@ -3237,10 +3319,12 @@
           "k": "b",
           "label": "A reason on rejections and overrides, optional on approvals",
           "gains": [
-            "The common path stays fast, the rare path informative"
+            "The common path stays fast, the rare path informative",
+            "Keeps the common accept path exactly as fast as option a while adding record where it matters most."
           ],
           "costs": [
-            "Two acts behave differently, and revert slows"
+            "Two acts behave differently, and revert slows",
+            "Two acts now behave differently, and the rarer one, revert, becomes the slower one."
           ],
           "system": "One optional string on the action line.",
           "screens": "An inline field on revert.",
@@ -3251,10 +3335,12 @@
           "k": "c",
           "label": "A reason on every act, stored in the separate file",
           "gains": [
-            "The strongest record for an answerable buyer"
+            "The strongest record for an answerable buyer",
+            "The strongest paper trail available for a buyer who has to answer for what was reviewed."
           ],
           "costs": [
-            "This design produced 88.3% meaningless reasons"
+            "This design produced 88.3% meaningless reasons",
+            "This exact shape, a reason on every act, is what produced 88.3 percent meaningless reasons in the cited study."
           ],
           "system": "A required string on every line.",
           "screens": "A field on every act.",
@@ -3265,10 +3351,12 @@
           "k": "d",
           "label": "No reason in the pilot; add the field when a compliance buyer asks",
           "gains": [
-            "No design work now; a real requirement shapes it"
+            "No design work now; a real requirement shapes it",
+            "No design work happens on a requirement nobody has actually asked for yet."
           ],
           "costs": [
-            "The pilot's reverts carry no reason to learn from"
+            "The pilot's reverts carry no reason to learn from",
+            "Every revert made during the pilot itself is recorded with nothing to learn from later."
           ],
           "system": "No change now, a format change later.",
           "screens": "No change.",
@@ -3369,7 +3457,8 @@
           "k": "d",
           "label": "Paste target with a live example that types itself out",
           "gains": [
-            "Shows the product with no action from the reader"
+            "Shows the product with no action from the reader",
+            "Needs no separate document to write or maintain, since the example lives in the interaction itself."
           ],
           "costs": [
             "Motion in an editor reads as a toy",
