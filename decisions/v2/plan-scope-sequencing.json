@@ -460,10 +460,12 @@
           "k": "a",
           "label": "Keep twelve weeks and commit in writing to 5.8 engineering days a week",
           "gains": [
-            "Every existing gate date survives"
+            "Every existing gate date survives",
+            "No new decision to make; the plan keeps every commitment already made to the founders."
           ],
           "costs": [
-            "Nothing supports 5.8 days; the last 30 ran at 0.23"
+            "Nothing supports 5.8 days; the last 30 ran at 0.23",
+            "The independent estimate multiple on the last 41 days ran 1.6 to 3.2 times over, not under."
           ],
           "system": "No change.",
           "screens": "No change.",
@@ -474,10 +476,12 @@
           "k": "b",
           "label": "Keep the scope and publish 37 to 58 weeks",
           "gains": [
-            "Truthful, and checkable against the commit log"
+            "Truthful, and checkable against the commit log",
+            "Matches the plan's own two figures exactly: 37 weeks at the best rate, 58 at the measured one."
           ],
           "costs": [
-            "The pilot lands in 2027 and dated kill lines lose meaning"
+            "The pilot lands in 2027 and dated kill lines lose meaning",
+            "A dated kill line meant to bite in week 3 loses its meaning against a year-long schedule."
           ],
           "system": "No change.",
           "screens": "No change.",
@@ -488,7 +492,8 @@
           "k": "c",
           "label": "Re-cut the pilot to what 1.91 a week delivers in twelve weeks: 22.9 days",
           "gains": [
-            "Forces a hard cut now rather than a slip later"
+            "Forces a hard cut now rather than a slip later",
+            "Fits inside the best rate ever measured on the sibling repo, 1.91 days a week, not an assumed one."
           ],
           "costs": [
             "22.9 days is under the 25.5-day fix-first list",
@@ -839,7 +844,8 @@
           "k": "a",
           "label": "Build nothing until week 3 and keep the calendar as written",
           "gains": [
-            "Keeps the discipline that refuted three headlines"
+            "Keeps the discipline that refuted three headlines",
+            "Matches the discipline that already refuted three earlier headline claims before they shipped."
           ],
           "costs": [
             "Extends a 29-day code freeze to 43",
@@ -854,7 +860,8 @@
           "k": "b",
           "label": "Start the six decision-independent rows now, in parallel with the tests",
           "gains": [
-            "Engine fixes land whatever the meeting decides"
+            "Engine fixes land whatever the meeting decides",
+            "Six rows totalling 11.5 days move regardless of which surface or which features the meeting picks."
           ],
           "costs": [
             "Splits founder attention across two jobs"
@@ -884,7 +891,8 @@
           "k": "d",
           "label": "Keep the calendar and demote the table to a defect list with no ordering claim",
           "gains": [
-            "Removes the contradiction in one edit"
+            "Removes the contradiction in one edit",
+            "The smallest possible edit: nothing in the schedule moves, only the table's own heading."
           ],
           "costs": [
             "Drops the argument that the engine comes first",
@@ -1141,7 +1149,8 @@
           "k": "a",
           "label": "Six of ten still using after two weeks, local file pasted on request",
           "gains": [
-            "Cheapest to build, and it measures retention"
+            "Cheapest to build, and it measures retention",
+            "The cheapest instrument to build: a local file with one paste-on-request ask."
           ],
           "costs": [
             "The paste method measured effectively zero here",
@@ -1443,7 +1452,8 @@
           "k": "a",
           "label": "Run all four tests as written, forty contacts in two weeks, free",
           "gains": [
-            "Every question closes at once if recruitment holds"
+            "Every question closes at once if recruitment holds",
+            "If recruitment genuinely holds across all forty contacts, every open question closes in one fortnight."
           ],
           "costs": [
             "Partial data at the week-3 gate if it slips",
@@ -1458,7 +1468,8 @@
           "k": "b",
           "label": "Sequence: developers and the screenshot test first, teams over four weeks",
           "gains": [
-            "The go/no-go runs on time on what it needs"
+            "The go/no-go runs on time on what it needs",
+            "The two tests that actually gate week 3 run first, so the go or no-go date never moves."
           ],
           "costs": [
             "The team-pricing answer arrives later",
@@ -1489,7 +1500,8 @@
           "k": "d",
           "label": "Keep all four at lower n; ask teams for signed intent at a stated price",
           "gains": [
-            "Twenty-one contacts is deliverable"
+            "Twenty-one contacts is deliverable",
+            "Twenty-one contacts across the same fortnight is a schedule that is actually deliverable."
           ],
           "costs": [
             "Every 'x of 10' kill threshold must be restated",
@@ -1907,7 +1919,8 @@
           "k": "a",
           "label": "Keep the plan's conditions and treat the record's seven as superseded",
           "gains": [
-            "Simplest, and no new bookkeeping"
+            "Simplest, and no new bookkeeping",
+            "No new bookkeeping and no dates to re-derive against a schedule that keeps moving."
           ],
           "costs": [
             "Nothing can fire on the founder",
@@ -1953,7 +1966,8 @@
           "k": "d",
           "label": "Keep the plan's four and replace the cut plugin line with a live channel condition",
           "gains": [
-            "Fixes the one row attached to nothing"
+            "Fixes the one row attached to nothing",
+            "Fixes the one row in the risk table that currently points at a channel already cut elsewhere."
           ],
           "costs": [
             "Still nothing measures the founder",
@@ -2327,7 +2341,8 @@
           "k": "b",
           "label": "Keep sign-in and make the tier and retention sections admit an account is required",
           "gains": [
-            "Honest about what ships today, and no code changes"
+            "Honest about what ships today, and no code changes",
+            "No code changes at all; the fix is entirely in what two sections of the plan say."
           ],
           "costs": [
             "Loses the no-account first run retention depends on",
@@ -2358,7 +2373,8 @@
           "k": "d",
           "label": "Defer until it is decided whether the Firebase design ships",
           "gains": [
-            "One decision instead of two"
+            "One decision instead of two",
+            "Removes the appearance of choosing between two things that are actually the same underlying question."
           ],
           "costs": [
             "The first screen stays undecided as the pilot nears",
@@ -3139,7 +3155,8 @@
           "k": "a",
           "label": "End at the pilot as written; launch is a separate quarter",
           "gains": [
-            "Focused, and it matches the build capacity"
+            "Focused, and it matches the build capacity",
+            "Matches what 1.21 measured engineering days a week can actually deliver inside ninety days."
           ],
           "costs": [
             "No distribution evidence in ninety days",
@@ -3154,7 +3171,8 @@
           "k": "b",
           "label": "Add a week 13: Show HN and one community post, with a stated floor",
           "gains": [
-            "Puts a distribution number inside the quarter"
+            "Puts a distribution number inside the quarter",
+            "Puts one real distribution number inside the quarter instead of deferring it past the pilot entirely."
           ],
           "costs": [
             "Spends a one-shot channel on a pilot-grade build",
@@ -3169,7 +3187,8 @@
           "k": "c",
           "label": "Add a payment event: the first paid team seat inside the ninety days",
           "gains": [
-            "The strongest possible ending"
+            "The strongest possible ending",
+            "The strongest possible signal a quarter could end on: money from a stranger who was not asked."
           ],
           "costs": [
             "Billing and a merchant account are outside the pilot",
