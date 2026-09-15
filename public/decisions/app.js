@@ -27,11 +27,78 @@
          nothing in localStorage from before this existed has to migrate. */
       st.detail = st.detail || {};
       st.detailDefault = st.detailDefault || 'low';
+      st.showTaken = !!st.showTaken;
       return st;
     }
     catch (e) { return { picks: {}, notes: {}, final: {}, detail: {} }; }
   }
-  function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} }
+  function save() { try { localStorage.setItem(KEY, JSON.stringify(state)); } catch (e) {} computeStatus(); }
+
+  /* ── the compact set ──────────────────────────────────────────────────────
+     Three decisions only the founders can take, five facts only they know, and every
+     other card TAKEN on its own recommendation until somebody overrules it. A take is
+     written under assumptions: `deps` lists, per card, the answers it assumed. When one
+     of those answers changes, the card re-opens instead of staying quietly answered on a
+     premise that has moved. Status is derived from the picks and the root answers on
+     every change, never stored. */
+  var FINAL = window.FINAL || {};
+  var ROOTS = FINAL.decisions || [];
+  var ROOT_BY = {}; ROOTS.forEach(function (d) { ROOT_BY[d.id] = d; });
+  var FACTS = (FINAL.facts && FINAL.facts.cards) || [];
+  var DEPS = FINAL.deps || {};
+  var QBY = {}; Q.forEach(function (q) { QBY[q.id] = q; });
+  var isFact = function (id) { return FACTS.indexOf(id) > -1; };
+  var STATUS = {};
+  /* A root is answered with an option key, or with the founder's own line. */
+  function rootAnswer(id) { var a = state.final[id]; if (!a) return null; return a.k || (a.own ? 'own' : null); }
+  /* What a card or root currently answers, or null while open. A taken card answers its
+     recommendation; a re-opened one answers nothing, which is what re-opens its dependents. */
+  function effective(id) {
+    if (ROOT_BY[id]) return rootAnswer(id);
+    var q = QBY[id]; if (!q) return null;
+    if (state.picks[id]) return state.picks[id];
+    if (isFact(id) || STATUS[id] === 'reopened') return null;
+    return q.rec || null;
+  }
+  function depOk(dep) {
+    var e = effective(dep[0]);
+    /* An unanswered root or fact leaves the take standing, provisionally. */
+    if (e == null) return !!ROOT_BY[dep[0]] || (isFact(dep[0]) && !state.picks[dep[0]]);
+    return e === dep[1];
+  }
+  function computeStatus() {
+    STATUS = {};
+    Q.forEach(function (q) {
+      var p = state.picks[q.id];
+      if (isFact(q.id)) STATUS[q.id] = p ? 'answered' : 'fact';
+      else if (p) STATUS[q.id] = (q.rec && p !== q.rec) ? 'overruled' : 'answered';
+      else STATUS[q.id] = 'taken';
+    });
+    /* Re-opening propagates: a card taken under a re-opened card re-opens too. The only
+       move is taken to reopened, so this converges. */
+    for (var pass = 0, changed = true; changed && pass < 16; pass++) {
+      changed = false;
+      Q.forEach(function (q) {
+        if (STATUS[q.id] !== 'taken') return;
+        var ds = DEPS[q.id] || [];
+        for (var i = 0; i < ds.length; i++) if (!depOk(ds[i])) { STATUS[q.id] = 'reopened'; changed = true; return; }
+      });
+    }
+  }
+  var isOpen = function (id) { return STATUS[id] === 'fact' || STATUS[id] === 'reopened'; };
+  var isDone = function (id) { return !!STATUS[id] && !isOpen(id); };
+  function brokenDeps(id) { return (DEPS[id] || []).filter(function (d) { return !depOk(d); }); }
+  function labelOf(id, k) {
+    var src = ROOT_BY[id] || QBY[id]; if (!src) return k;
+    var o = (src.options || []).filter(function (x) { return x.k === k; })[0];
+    return o ? o.label : (k === 'own' ? 'your own line' : k);
+  }
+  var rootsOpen = function () { return ROOTS.filter(function (d) { return !rootAnswer(d.id); }); };
+  var openOf = function (list) { return list.filter(function (q) { return isOpen(q.id); }); };
+  var countOf = function (list, s) { return list.filter(function (q) { return STATUS[q.id] === s; }).length; };
+  /* what is genuinely the founders': open roots, open facts, and anything re-opened */
+  var yoursOpen = function () { return rootsOpen().length + openOf(Q).length; };
+  computeStatus();
 
   var $ = function (s, r) { return (r || document).querySelector(s); };
   var esc = function (s) {
@@ -62,12 +129,8 @@
     });
     return out;
   }
-  var answered = function (list) {
-    return list.filter(function (q) { return state.picks[q.id]; }).length;
-  };
-  var crit = function (list) {
-    return list.filter(function (q) { return q.weight === 'critical' && !state.picks[q.id]; }).length;
-  };
+  var answered = function (list) { return list.filter(function (q) { return isDone(q.id); }).length; };
+  var crit = function (list) { return list.filter(function (q) { return q.weight === 'critical' && isOpen(q.id); }).length; };
   var match = function (q, f) {
     if (!f) return true;
     f = f.toLowerCase();
@@ -115,11 +178,12 @@
     var i, el, els = list.querySelectorAll('.navq');
     for (i = 0; i < els.length; i++) {
       el = els[i];
-      var id = el.getAttribute('data-q');
+      var id = el.getAttribute('data-q'), st = STATUS[id];
       el.classList.toggle('on', id === view.id);
-      var done = !!state.picks[id];
-      el.classList.toggle('done', done);
-      el.classList.toggle('open', !done);
+      el.classList.toggle('done', isDone(id));
+      el.classList.toggle('open', isOpen(id));
+      el.classList.toggle('taken', st === 'taken');
+      el.classList.toggle('reopen', st === 'reopened');
     }
     els = list.querySelectorAll('.navcat');
     for (i = 0; i < els.length; i++) {
@@ -147,7 +211,8 @@
 
   /* Cheap when nothing structural moved, full rebuild when it did. */
   function paintNav() {
-    var shape = (view.filter || '') + '\u0000' + (view.mode === 'q' || view.mode === 'area' ? (view.cat || '') : '\u0000' + view.mode);
+    var shape = (view.filter || '') + '\u0000' + (view.mode === 'q' || view.mode === 'area' ? (view.cat || '') : '\u0000' + view.mode) +
+      (state.showTaken ? '\u0001' : '');
     if (shape === navShape && syncNav()) return;
     navShape = shape;
     renderNav();
@@ -172,15 +237,26 @@
         '<span class="np">' + a + '/' + g.qs.length + '</span></span>' +
         '<span class="nbar"><i style="width:' + pct + '%"></i></span></button>';
       var open = view.cat === g.cat || f;
-      if (open) qs.forEach(function (q) {
-        h += '<button class="navq' + (view.id === q.id ? ' on' : '') +
-          (state.picks[q.id] ? ' done' : ' open') +
-          (q.weight === 'critical' ? ' crit' : q.weight === 'high' ? ' high' : '') +
-          '" data-q="' + esc(q.id) + '"><span class="dot"></span>' +
-          '<span class="qt">' + esc(q.q) + '</span></button>';
-      });
+      if (open) {
+        /* Taken cards are folded out of the list by default: they are answered, and
+           listing 198 of them beside the eight that are open is the noise the compact
+           set exists to remove. A search or the toggle shows them. */
+        var show = qs, hid = 0;
+        if (!f && !state.showTaken) { show = qs.filter(function (q) { return STATUS[q.id] !== 'taken'; }); hid = qs.length - show.length; }
+        show.forEach(function (q) { h += navRow(q); });
+        if (hid) h += '<button class="navtk" data-action="toggletaken">' + hid + ' taken on the evidence · show</button>';
+        else if (!f && state.showTaken && qs.some(function (q) { return STATUS[q.id] === 'taken'; })) h += '<button class="navtk" data-action="toggletaken">hide the taken cards</button>';
+      }
     });
     $('#navlist').innerHTML = h;
+  }
+  function navRow(q) {
+    var st = STATUS[q.id];
+    return '<button class="navq' + (view.id === q.id ? ' on' : '') + (isDone(q.id) ? ' done' : ' open') +
+      (st === 'taken' ? ' taken' : st === 'reopened' ? ' reopen' : '') +
+      (q.weight === 'critical' ? ' crit' : q.weight === 'high' ? ' high' : '') +
+      '" data-q="' + esc(q.id) + '"><span class="dot"></span>' +
+      '<span class="qt">' + esc(q.q) + '</span></button>';
   }
 
   /* ── evidence ─────────────────────────────────────────────────────────── */
@@ -236,11 +312,11 @@
      unanswered question, the export, and a grid of every id so any question is one
      click away. The old rail showed metadata about the card you were already reading,
      which is the one thing you do not need help finding. */
-  function answeredList() { return Q.filter(function (q) { return state.picks[q.id]; }); }
+  function answeredList() { return Q.filter(function (q) { return isDone(q.id); }); }
   function nextUnanswered(from) {
     var i = from == null ? -1 : from;
-    for (var k = i + 1; k < Q.length; k++) if (!state.picks[Q[k].id]) return Q[k];
-    for (var j = 0; j <= i && j < Q.length; j++) if (!state.picks[Q[j].id]) return Q[j];
+    for (var k = i + 1; k < Q.length; k++) if (isOpen(Q[k].id)) return Q[k];
+    for (var j = 0; j <= i && j < Q.length; j++) if (isOpen(Q[j].id)) return Q[j];
     return null;
   }
   function rlist(items, n) {
@@ -265,23 +341,36 @@
       }).join('') + '</div>';
   }
   function railCommon(currentId, currentIdx) {
-    var done = answeredList().length, t = Q.length;
     var crit = Q.filter(function (q) { return q.weight === 'critical'; });
-    var critLeft = crit.filter(function (q) { return !state.picks[q.id]; });
-    var differ = Q.filter(function (q) { return state.picks[q.id] && q.rec && state.picks[q.id] !== q.rec; });
+    var critLeft = crit.filter(function (q) { return isOpen(q.id); });
+    var differ = Q.filter(function (q) { return STATUS[q.id] === 'overruled'; });
+    var reopened = Q.filter(function (q) { return STATUS[q.id] === 'reopened'; });
     var noted = Q.filter(function (q) { return (state.notes[q.id] || '').trim(); });
     var up = nextUnanswered(currentIdx);
+    var ro = rootsOpen(), taken = countOf(Q, 'taken');
+    /* The ring counts what is the founders' to answer: the roots, the facts, and whatever
+       their answers re-opened. The 198 taken cards are progress already made, not a
+       backlog, so they sit under the ring as a line rather than inside it. */
+    var yTotal = ROOTS.length + FACTS.length + reopened.length;
+    var yDone = (ROOTS.length - ro.length) + FACTS.filter(function (id) { return state.picks[id]; }).length;
 
     var h = '<div class="rsec ring-sec">' +
       /* The two numbers share a baseline, so they need a box of their own: baseline
          alignment on the ring itself pinned the pair to the top of the circle. */
-      '<div class="ring" style="--p:' + (t ? done / t : 0) + '">' +
-        '<span class="rval"><span class="rnum">' + done + '</span>' +
-        '<span class="rden">/ ' + t + '</span></span></div>' +
-      '<p class="rlab">' + (t - done) + ' left to answer</p>' +
-      (up ? '<button class="rbtn" data-q="' + esc(up.id) + '">Go to next unanswered</button>'
-          : '<p class="rdone">All answered. Export it.</p>') +
+      '<div class="ring" style="--p:' + (yTotal ? yDone / yTotal : 0) + '">' +
+        '<span class="rval"><span class="rnum">' + yDone + '</span>' +
+        '<span class="rden">/ ' + yTotal + '</span></span></div>' +
+      '<p class="rlab">' + (yTotal - yDone) + ' left that only you can answer</p>' +
+      '<p class="rsub">' + taken + ' taken on the evidence' + (differ.length ? ' · ' + differ.length + ' overruled' : '') +
+        (reopened.length ? ' · ' + reopened.length + ' re-opened' : '') + '</p>' +
+      (up ? '<button class="rbtn" data-q="' + esc(up.id) + '">Go to the next open card</button>' : '') +
+      (ro.length ? '<button class="rbtn' + (up ? ' ghost' : '') + '" data-ov="1">' + ro.length + ' decision' + (ro.length === 1 ? '' : 's') + ' open on the overview</button>' : '') +
+      (!up && !ro.length ? '<p class="rdone">Nothing open. Export it.</p>' : '') +
       '</div>';
+    if (reopened.length) {
+      h += '<div class="rsec"><div class="rh">Re-opened by your answers</div>' +
+        '<p class="rsub">taken under an answer that has changed</p>' + rlist(reopened, 6) + '</div>';
+    }
 
     h += '<div class="rsec"><div class="rh">Your answers are saved</div>' +
       '<p class="rsub">In this browser only. Export after every sitting.</p>' +
@@ -295,7 +384,7 @@
         rlist(critLeft, 7) + '</div>';
     }
     if (differ.length) {
-      h += '<div class="rsec"><div class="rh">You went against the recommendation</div>' +
+      h += '<div class="rsec"><div class="rh">You overruled the take</div>' +
         '<p class="rsub">worth talking through</p>' + rlist(differ, 6) + '</div>';
     }
     if (noted.length) {
@@ -309,8 +398,9 @@
       '<div class="rrow"><span>Position</span><b>' + (idx + 1) + ' of ' + Q.length + '</b></div>' +
       '<div class="rrow"><span>Weight</span><b>' + esc(q.weight || 'none') + '</b></div>' +
       '<div class="rrow"><span>Area</span><b>' + esc(q.cat) + '</b></div>' +
-      '<div class="rrow"><span>Status</span><b style="color:var(--' + (pick ? 'good' : 'ink-3') + ')">' +
-      (pick ? 'answered ' + esc(pick).toUpperCase() : 'open') + '</b></div>' +
+      '<div class="rrow"><span>Status</span><b style="color:var(--' + (isDone(q.id) ? 'good' : 'high') + ')">' +
+      esc({ taken: 'taken ' + String(q.rec).toUpperCase(), reopened: 're-opened', overruled: 'overruled, ' + String(pick).toUpperCase(),
+        answered: 'answered ' + String(pick).toUpperCase(), fact: 'a fact, open' }[STATUS[q.id]] || 'open') + '</b></div>' +
       (WHEN[q.when] ? '<div class="rrow"><span>Stage</span><b>' + esc(WHEN[q.when]) + '</b></div>' : '') +
       '</div>';
     if (q.sources && q.sources.length) {
@@ -349,6 +439,7 @@
        opens at that level, because re-choosing it 203 times is not a real option. */
     var lvl = state.detail[q.id] || state.detailDefault || 'low';
     var med = lvl === 'med' || lvl === 'high', high = lvl === 'high';
+    var st = STATUS[q.id];
     var h = '';
 
     h += '<div class="card-q w-' + esc(q.weight || 'medium') + '">';
@@ -358,7 +449,11 @@
       '<span class="pill">' + esc(q.cat) + (q.sub ? ' \u00b7 ' + esc(q.sub) : '') + '</span>' +
       (q.weight && q.weight !== 'medium' ? '<span class="pill ' + wc + '">' + esc(q.weight) + '</span>' : '') +
       (WHEN[q.when] ? '<span class="pill when when-' + esc(q.when) + '">' + esc(WHEN[q.when]) + '</span>' : '') +
-      (pick ? '<span class="pill done">' + icon('check') + ' answered ' + esc(pick).toUpperCase() + '</span>' : '') +
+      (st === 'taken' ? '<span class="pill taken">taken ' + esc(q.rec).toUpperCase() + '</span>' :
+       st === 'reopened' ? '<span class="pill reopen">re-opened</span>' :
+       st === 'overruled' ? '<span class="pill over">overruled ' + esc(pick).toUpperCase() + '</span>' :
+       st === 'answered' ? '<span class="pill done">' + icon('check') + ' answered ' + esc(pick).toUpperCase() + '</span>' :
+       '<span class="pill">a fact, open</span>') +
       '<span class="dtoggle" role="radiogroup" aria-label="How much detail">' +
       ['low', 'med', 'high'].map(function (k) {
         return '<button class="dbtn' + (lvl === k ? ' on' : '') + '" data-detail="' + k +
@@ -372,16 +467,32 @@
     if (q.stakes) h += '<div class="stakes">' + icon('warning', 'si') +
       '<span><b>If this goes the wrong way.</b> ' + md(q.stakes) + '</span></div>';
 
-    /* Cards whose answer changes this one's options. Shown before the options, not after,
-       because the point is to answer them first. */
-    var first = (q.dependsOn || []).filter(function (id) { return Q.some(function (x) { return x.id === id; }); });
-    if (first.length) {
-      h += '<div class="linked first"><span class="eyebrow">Answer these first</span><span class="lchips">' +
-        first.map(function (id) {
-          var t = Q.filter(function (x) { return x.id === id; })[0];
-          return '<button class="lchip' + (state.picks[id] ? ' done' : '') + '" data-q="' + esc(id) + '"><b>' +
-            esc(id) + '</b> ' + esc(t.q) + (state.picks[id] ? ' (answered)' : '') + '</button>';
-        }).join('') + '</span></div>';
+    /* The take, and what it assumed. Shown before the options because the reader's first
+       question is whether this is settled, and on what. A chip per assumption: a root or
+       a card, the answer assumed, and, if that answer has since changed, what it is now. */
+    var ds = DEPS[q.id] || [], broken = brokenDeps(q.id);
+    var depChip = function (d) {
+      var isR = !!ROOT_BY[d[0]], ok = depOk(d), now = effective(d[0]);
+      return '<button class="tchip' + (ok ? '' : ' bad') + '" data-' + (isR ? 'root' : 'q') + '="' + esc(d[0]) + '"><b>' + esc(d[0]) + '</b>' +
+        esc(d[1]).toUpperCase() + ': ' + esc(labelOf(d[0], d[1])) +
+        (ok ? '' : '<i>now ' + (now ? esc(String(now)).toUpperCase() + (now === 'own' ? '' : ': ' + esc(labelOf(d[0], now))) : 'open') + '</i>') + '</button>';
+    };
+    var rc = Array.isArray(q.recCase) && q.recCase.length ? q.recCase[0] : '';
+    if (st === 'taken') {
+      h += '<div class="takenbar">' + icon('check') + '<span><b>Taken on the evidence: ' + esc(q.rec).toUpperCase() + '.</b> ' + md(rc) +
+        ' Choose another option below to overrule it.' +
+        (ds.length ? '<span class="tchips"><span class="tlab">Assumes</span>' + ds.map(depChip).join('') + '</span>' : '') + '</span></div>';
+    } else if (st === 'reopened') {
+      h += '<div class="takenbar warn">' + icon('warning') + '<span><b>Re-opened.</b> This card was taken assuming an answer that has since changed. Choose again, or put the upstream answer back.' +
+        '<span class="tchips"><span class="tlab">Changed</span>' + broken.map(depChip).join('') + '</span></span></div>';
+    } else if (st === 'overruled') {
+      h += '<div class="takenbar">' + icon('lightbulb') + '<span><b>Overruled.</b> You chose ' + esc(pick).toUpperCase() + ' against the take, ' + esc(q.rec).toUpperCase() + '. ' +
+        '<button class="tlink" data-reset="1">Reset to the take</button></span></div>';
+    } else if (st === 'answered' && !isFact(q.id)) {
+      h += '<div class="takenbar">' + icon('check') + '<span><b>Confirmed ' + esc(pick).toUpperCase() + '.</b> The take, chosen by you. ' +
+        '<button class="tlink" data-reset="1">Back to taken</button></span></div>';
+    } else if (isFact(q.id)) {
+      h += '<div class="takenbar fact">' + icon('lightbulb') + '<span><b>A fact only you know.</b> Not taken on the evidence. Answer it yourself, and the cards that assume it follow.</span></div>';
     }
 
       /* `path` was deleted from every card in the 2026-09-10 compaction, so this renders only the
@@ -496,8 +607,8 @@
     h += prev ? '<button class="pg" data-q="' + esc(prev.id) + '"><span class="pk">' + icon('arrow_back') +
       'Previous</span><span class="pt">' + esc(prev.q) + '</span></button>' : '<span></span>';
     if (next) {
-      h += '<button class="go' + (pick ? ' primary' : '') + '" data-q="' + esc(next.id) + '">' +
-        '<span class="gt">' + (pick ? 'Next decision' : 'Skip for now') + '</span>' +
+      h += '<button class="go' + (isDone(q.id) ? ' primary' : '') + '" data-q="' + esc(next.id) + '">' +
+        '<span class="gt">' + (isDone(q.id) ? 'Next card' : 'Skip for now') + '</span>' +
         '<span class="gk">or press <kbd>\u21b5</kbd></span>' + icon('arrow_forward') + '</button>';
     } else {
       h += '<button class="go" data-ov="1"><span class="gt">Back to the overview</span></button>';
@@ -516,74 +627,86 @@
     var groups = cats(), a = answered(Q), c = crit(Q);
     var ev = Q.reduce(function (n, q) { return n + (q.evidence || []).length; }, 0);
     var tagged = Q.filter(function (q) { return WHEN[q.when]; });
-    var openIn = function (k) { return Q.filter(function (q) { return q.when === k && !state.picks[q.id]; }); };
+    var openIn = function (k) { return Q.filter(function (q) { return q.when === k && isOpen(q.id); }); };
+    var ro = rootsOpen(), reopened = Q.filter(function (q) { return STATUS[q.id] === 'reopened'; });
+    var factsOpen = FACTS.filter(function (id) { return QBY[id] && !state.picks[id]; });
+    var taken = countOf(Q, 'taken'), over = countOf(Q, 'overruled');
+    var yours = ro.length + factsOpen.length + reopened.length;
     var h = '<div class="hero"><span class="eyebrow">Studio Zephyrus · frontmatter</span>' +
-      '<h1>Decisions pending on frontmatter</h1>' +
-      '<p>' + Q.length + ' decisions and ' + CHORES.length + ' tasks, drawn from three ' +
-      'weeks of research, including a round of checks that went against the plan\'s own headline and a ' +
-      'market sweep on 9 September that changed several answers. ' +
-      Q.filter(function (q) { return q.when === 'mvp'; }).length + ' of them block the MVP; the rest ' +
-      'are staged for later. Each one shows the thing being decided, where it stands, what forces a ' +
-      'choice, the evidence, and what every option buys and costs. Answers stay in this browser. ' +
+      '<h1>' + ROOTS.length + ' decisions and ' + FACTS.length + ' facts</h1>' +
+      '<p>That is what is yours. The other ' + (Q.length - FACTS.length) + ' cards are taken on the evidence already ' +
+      'on them, each with its reason, and any one can be overruled. A taken card re-opens by itself when an ' +
+      'answer it assumed changes, so nothing stays quietly settled on a premise you have moved. ' +
+      'Answers stay in this browser. ' +
       '<a class="gallerylink" href="mockups.html" target="_blank" rel="noopener">See the screen iterations</a></p></div>';
     h += '<div class="kpis">' +
-      '<div class="kpi acc"><div class="kn">Answered</div><div class="kv">' + a + '</div>' +
-        '<div class="kn">of ' + Q.length + ' in the set</div></div>' +
-      /* 'spec' was the old name for this stage; the triage renamed it 'mvp' and this call was
-         left behind, so the card read 0 on a page whose own first paragraph says 69. */
-      (tagged.length ? '<div class="kpi crit"><div class="kn">Blocking the MVP</div><div class="kv">' +
-        openIn('mvp').length + '</div><div class="kn">answer these first</div></div>' : '') +
-      '<div class="kpi' + (tagged.length ? '' : ' crit') + '"><div class="kn">Critical open</div><div class="kv">' + c + '</div>' +
-        '<div class="kn">' + (tagged.length ? 'across every stage' : 'decide these first') + '</div></div>' +
-      (tagged.length ? '' : '<div class="kpi"><div class="kn">Areas</div><div class="kv">' + groups.length + '</div>' +
-        '<div class="kn">grouped for the meeting</div></div>') +
+      '<div class="kpi acc"><div class="kn">Yours, still open</div><div class="kv">' + yours + '</div>' +
+        '<div class="kn">' + ro.length + ' decision' + (ro.length === 1 ? '' : 's') + ', ' + factsOpen.length + ' fact' + (factsOpen.length === 1 ? '' : 's') +
+        (reopened.length ? ', ' + reopened.length + ' re-opened' : '') + '</div></div>' +
+      '<div class="kpi"><div class="kn">Taken</div><div class="kv">' + taken + '</div>' +
+        '<div class="kn">on the evidence, overrulable</div></div>' +
+      '<div class="kpi' + (over ? ' crit' : '') + '"><div class="kn">Overruled</div><div class="kv">' + over + '</div>' +
+        '<div class="kn">by you, against the take</div></div>' +
       '<div class="kpi"><div class="kn">Evidence</div><div class="kv">' + ev + '</div>' +
         '<div class="kn">exhibits behind them</div></div></div>';
-    var FINAL = window.FINAL;
-    if (FINAL && FINAL.groups) {
-      /* The final set: sixteen product questions that fold the MVP cards. A group is
-         answered as a whole (confirm, overrule, or your own line); the folded cards stay
-         answerable underneath for the build phase. */
-      var fa = FINAL.groups.filter(function (g) { return state.final[g.id] && state.final[g.id].a; }).length;
-      h += '<h2 class="sech">The final set</h2><p class="secn">' + FINAL.groups.length +
-        ' product questions that fold ' + FINAL.groups.reduce(function (n, g) { return n + g.cards.length; }, 0) +
-        ' cards. Each carries a position and its evidence. Confirm it, overrule it, or write your own. ' +
-        fa + ' of ' + FINAL.groups.length + ' answered.</p>';
-      var lastArea = null;
-      FINAL.groups.forEach(function (g) {
-        if (g.area !== lastArea) { lastArea = g.area; h += '<div class="farea">' + esc(g.area) + '</div>'; }
-        var ans = state.final[g.id] || {};
-        h += '<div class="fq' + (ans.a ? ' done' : '') + '" data-fq="' + esc(g.id) + '">' +
-          '<div class="fqh"><span class="fqid">' + esc(g.id) + '</span><span class="fqt">' + esc(g.title) + '</span></div>' +
-          '<div class="fqp">' + esc(g.position) + '</div>' +
-          '<div class="fqe">' + esc(g.evidence) + '</div>' +
-          '<div class="fqc">' + g.cards.map(function (id) {
-            var q = Q.filter(function (x) { return x.id === id; })[0];
-            return q ? '<button class="jcell' + (state.picks[id] ? ' done' : '') + '" data-q="' + esc(id) + '" title="' + esc(q.q) + '">' + esc(id) + '</button>' : '';
+    if (ROOTS.length) {
+      /* The three roots. Each is answered with an option, or the founder's own line, and
+         each settles a set of cards underneath it; those chips turn to re-opened the moment
+         the answer differs from the one they were taken under. */
+      h += '<h2 class="sech">Decisions only you can take</h2><p class="secn">Each one settles the cards under it. ' +
+        'The recommendation is marked. Choose it, choose against it, or write your own line. ' +
+        (ROOTS.length - ro.length) + ' of ' + ROOTS.length + ' answered.</p>';
+      ROOTS.forEach(function (d) {
+        var ans = state.final[d.id] || {}, k = ans.k;
+        h += '<div class="fq' + (rootAnswer(d.id) ? ' done' : '') + '" id="root-' + esc(d.id) + '">' +
+          '<div class="fqh"><span class="fqid">' + esc(d.id) + '</span><span class="fqt">' + esc(d.title) + '</span></div>' +
+          '<div class="fqp">' + esc(d.q) + '</div>' +
+          '<div class="fopts" role="radiogroup" aria-label="' + esc(d.title) + '">' + d.options.map(function (o) {
+            return '<button class="fopt' + (o.k === d.rec ? ' rec' : '') + (k === o.k ? ' on' : '') +
+              '" data-root-opt="' + esc(o.k) + '" data-fq="' + esc(d.id) + '" role="radio" aria-checked="' + (k === o.k) + '">' +
+              '<span class="k">' + esc(o.k) + '</span><span class="ob"><span class="ol">' + esc(o.label) +
+              (o.k === d.rec ? '<span class="rectag">recommended</span>' : '') + '</span>' +
+              (o.what ? '<span class="ow">' + esc(o.what) + '</span>' : '') + '</span></button>';
           }).join('') + '</div>' +
-          '<div class="fqa">' +
-            ['confirm', 'overrule'].map(function (k) {
-              return '<button class="fbtn' + (ans.a === k ? ' on' : '') + '" data-fa="' + k + '" data-fq="' + esc(g.id) + '">' + k + '</button>';
-            }).join('') +
-            '<input class="fown" data-fq="' + esc(g.id) + '" placeholder="or your own line, and why" value="' + esc(ans.own || '') + '">' +
-          '</div></div>';
+          '<div class="fqe"><b>Why ' + esc(d.rec).toUpperCase() + '.</b> ' + esc(d.why) + '</div>' +
+          '<div class="fqe">' + esc(d.evidence) + '</div>' +
+          '<div class="fqc"><span class="tlab">Settles</span>' + (d.settles || []).map(function (id) {
+            var q = QBY[id]; if (!q) return '';
+            return '<button class="jcell' + (isDone(id) ? ' done' : '') + (STATUS[id] === 'reopened' ? ' warn' : '') +
+              '" data-q="' + esc(id) + '" title="' + esc(q.q) + '">' + esc(id) + '</button>';
+          }).join('') + '</div>' +
+          '<div class="fqa"><input class="fown" data-fq="' + esc(d.id) + '" placeholder="or your own line, and why" value="' + esc(ans.own || '') + '"></div>' +
+          '</div>';
       });
-      if (FINAL.facts) {
-        h += '<div class="farea">' + esc(FINAL.facts.title) + '</div><p class="secn">' + esc(FINAL.facts.note) + '</p><div class="fqc">' +
-          FINAL.facts.cards.map(function (id) { var q = Q.filter(function (x) { return x.id === id; })[0];
-            return q ? '<button class="jcell' + (state.picks[id] ? ' done' : '') + '" data-q="' + esc(id) + '" title="' + esc(q.q) + '">' + esc(id) + '</button>' : ''; }).join('') + '</div>';
-      }
-      if (FINAL.still) {
-        h += '<div class="farea">' + esc(FINAL.still.title) + '</div><p class="secn">' + esc(FINAL.still.note) + '</p><div class="fqc">' +
-          FINAL.still.cards.map(function (id) { var q = Q.filter(function (x) { return x.id === id; })[0];
-            return q ? '<button class="jcell' + (state.picks[id] ? ' done' : '') + '" data-q="' + esc(id) + '" title="' + esc(q.q) + '">' + esc(id) + '</button>' : ''; }).join('') + '</div>';
-      }
+    }
+    if (FACTS.length) {
+      h += '<h2 class="sech">' + esc(FINAL.facts.title) + '</h2><p class="secn">' + esc(FINAL.facts.note) + '</p><div class="qlist">' +
+        FACTS.map(function (id) {
+          var q = QBY[id]; if (!q) return '';
+          var o = (q.options || []).filter(function (x) { return x.k === state.picks[id]; })[0];
+          return '<button class="ql' + (state.picks[id] ? ' done' : '') + '" data-q="' + esc(id) + '">' +
+            '<span class="qi">' + esc(id) + '</span><span class="qq">' + esc(q.q) +
+            (o ? '<span class="aa">' + icon('check', 's') + esc(o.label) + '</span>' : '') + '</span>' +
+            '<span class="qc">' + (state.picks[id] ? 'answered' : 'open') + '</span></button>';
+        }).join('') + '</div>';
+    }
+    if (reopened.length) {
+      h += '<h2 class="sech">Re-opened by your answers</h2><p class="secn">Each of these was taken assuming an answer ' +
+        'you have since changed. Choose again, or put the upstream answer back.</p><div class="qlist">' +
+        reopened.map(function (q) {
+          var b = brokenDeps(q.id);
+          return '<button class="ql" data-q="' + esc(q.id) + '"><span class="qi">' + esc(q.id) + '</span>' +
+            '<span class="qq">' + esc(q.q) + '<span class="aa warn">assumed ' +
+            b.map(function (d) { return esc(d[0]) + ' = ' + esc(d[1]).toUpperCase(); }).join(', ') + '</span></span>' +
+            '<span class="qc">' + esc(q.cat) + '</span></button>';
+        }).join('') + '</div>';
     }
     if (tagged.length) {
-      /* Not every decision blocks the MVP. Each card is tagged with the point at which its answer
-         is needed, so the build can start once the first group is done. */
-      h += '<h2 class="sech">What needs answering, and when</h2><p class="secn">Each decision is tagged by ' +
-        'the point at which its answer is needed. The build can start once the first group is answered.</p>';
+      /* Each card is tagged with the point at which its answer is needed. With the takes in
+         place this reads as a build sequence rather than a backlog: what each stage assumes
+         is settled, and whether anything in it has re-opened. */
+      h += '<h2 class="sech">By stage</h2><p class="secn">Each card is tagged by the point at which its answer ' +
+        'is needed. A stage with nothing open can be built.</p>';
       h += '<div class="grid stages">' + WHEN_ORDER.map(function (k) {
         var qs = Q.filter(function (q) { return q.when === k; });
         if (!qs.length) return '';
@@ -624,15 +747,13 @@
         return (RANK[x.weight] || 3) - (RANK[y.weight] || 3);
       }).slice(0, 12) : [];
     } else {
-      openCrit = Q.filter(function (q) { return q.weight === 'critical' && !state.picks[q.id]; }).slice(0, 10);
+      openCrit = Q.filter(function (q) { return q.weight === 'critical' && isOpen(q.id); }).slice(0, 10);
     }
     if (openCrit.length) {
       h += stage
-        ? '<h2 class="sech">Start here: ' + esc(WHEN[stage].charAt(0).toLowerCase() + WHEN[stage].slice(1)) +
-          '</h2><p class="secn">Unanswered, ' +
-          'critical first. ' + (stage === 'mvp' ? 'The MVP cannot be built until these are answered.' :
-          'Everything the MVP needs is answered; this is the next stage.') + '</p><div class="qlist">'
-        : '<h2 class="sech">Start here</h2><p class="secn">Critical and unanswered. A wrong answer to any of ' +
+        ? '<h2 class="sech">Open cards: ' + esc(WHEN[stage].charAt(0).toLowerCase() + WHEN[stage].slice(1)) +
+          '</h2><p class="secn">Facts and re-opened cards, critical first.</p><div class="qlist">'
+        : '<h2 class="sech">Open cards</h2><p class="secn">Critical and open. A wrong answer to any of ' +
           'these costs the product or the company.</p><div class="qlist">';
       h += openCrit.map(function (q) {
         return '<button class="ql" data-q="' + esc(q.id) + '">' +
@@ -647,7 +768,7 @@
       '<div class="rrow"><span>Next / previous</span><b class="mono">j k</b></div>' +
       '<div class="rrow"><span>Choose an option</span><b class="mono">a–d</b></div>' +
       '<div class="rrow"><span>Search</span><b class="mono">/</b></div></div>';
-    $('#abarPos').innerHTML = '<b>' + a + ' / ' + Q.length + '</b>answered';
+    $('#abarPos').innerHTML = '<b>' + yours + '</b>yours open';
   }
 
   /* ── one area: every question in it, with its state ──────────────────────
@@ -656,30 +777,37 @@
   function renderArea(cat) {
     var qs = Q.filter(function (x) { return x.cat === cat; });
     var a = answered(qs), c = crit(qs);
-    var open = qs.filter(function (q) { return !state.picks[q.id]; });
-    var done = qs.filter(function (q) { return state.picks[q.id]; });
+    var open = qs.filter(function (q) { return isOpen(q.id); });
+    var over = qs.filter(function (q) { return STATUS[q.id] === 'overruled'; });
+    var conf = qs.filter(function (q) { return STATUS[q.id] === 'answered'; });
+    var taken = qs.filter(function (q) { return STATUS[q.id] === 'taken'; });
     var row = function (q) {
-      var pickOpt = (q.options || []).filter(function (o) { return o.k === state.picks[q.id]; })[0];
-      return '<button class="ar' + (state.picks[q.id] ? ' done' : '') +
+      var st = STATUS[q.id], k = state.picks[q.id] || (st === 'taken' ? q.rec : null);
+      var o = (q.options || []).filter(function (x) { return x.k === k; })[0];
+      return '<button class="ar' + (isDone(q.id) ? ' done' : '') + (st === 'taken' ? ' taken' : '') +
         (q.weight === 'critical' ? ' crit' : q.weight === 'high' ? ' high' : '') +
         '" data-q="' + esc(q.id) + '">' +
         '<span class="ai">' + esc(q.id) + '</span>' +
         '<span class="aq">' + esc(q.q) +
-        (pickOpt ? '<span class="aa">' + icon('check', 's') + esc(pickOpt.label) + '</span>' : '') + '</span>' +
-        '<span class="aw">' + (state.picks[q.id] ? '' : esc(q.weight || '')) + '</span></button>';
+        (o ? '<span class="aa">' + icon('check', 's') + esc(o.label) + '</span>' : '') + '</span>' +
+        '<span class="aw">' + esc(st === 'taken' ? 'taken' : st === 'reopened' ? 're-opened' : st === 'overruled' ? 'overruled' :
+          st === 'answered' ? '' : (q.weight || '')) + '</span></button>';
     };
     var h = '<div class="hero"><span class="eyebrow">Area ' + (cats().map(function (g) { return g.cat; }).indexOf(cat) + 1) +
       ' of ' + cats().length + '</span><h1>' + esc(cat) + '</h1>' +
-      '<p>' + qs.length + ' decisions · ' + a + ' answered · ' +
-      (c ? c + ' critical still open' : 'no critical left open') + '.</p></div>';
+      '<p>' + qs.length + ' cards · ' + open.length + ' open · ' + taken.length + ' taken · ' +
+      (over.length ? over.length + ' overruled · ' : '') + (c ? c + ' critical still open' : 'no critical left open') + '.</p></div>';
     if (open.length) {
       h += '<button class="go primary wide" data-q="' + esc(open[0].id) + '">' +
         '<span class="gt">Start with ' + esc(open[0].id) + '</span>' +
         '<span class="gk">' + esc(open.length) + ' open</span>' + icon('arrow_forward') + '</button>';
       h += '<h2 class="sech">Open</h2><div class="arlist">' + open.map(row).join('') + '</div>';
     }
-    if (done.length) {
-      h += '<h2 class="sech">Answered</h2><div class="arlist">' + done.map(row).join('') + '</div>';
+    if (over.length) h += '<h2 class="sech">Overruled</h2><div class="arlist">' + over.map(row).join('') + '</div>';
+    if (conf.length) h += '<h2 class="sech">Confirmed</h2><div class="arlist">' + conf.map(row).join('') + '</div>';
+    if (taken.length) {
+      h += '<details class="ev takenlist"><summary>' + icon('chevron_right', 'caret') + 'Taken on the evidence' +
+        '<span class="cnt">' + taken.length + '</span></summary><div class="arlist">' + taken.map(row).join('') + '</div></details>';
     }
     $('#main').innerHTML = h; $('#main').scrollTop = 0;
     $('#aside').innerHTML = '<div class="rsec"><div class="rh">This area</div>' +
@@ -792,36 +920,46 @@
 
   /* ── export ───────────────────────────────────────────────────────────── */
   function finalMd() {
-    var F = window.FINAL; if (!F || !F.groups) return '';
-    var out = ['## The final set', ''];
-    F.groups.forEach(function (g) {
-      var a = state.final[g.id] || {};
-      out.push('**' + g.id + '. ' + g.title + '**' + (a.a ? ' \u2014 ' + a.a : ' \u2014 open') + (a.own ? ': ' + a.own : ''));
-      out.push('  folds ' + g.cards.join(', '));
+    if (!ROOTS.length) return '';
+    var out = ['## Decisions', ''];
+    ROOTS.forEach(function (d) {
+      var a = rootAnswer(d.id), s = state.final[d.id] || {};
+      out.push('**' + d.id + '. ' + d.title + '**: ' + (a ? (a === 'own' ? 'own line' : a.toUpperCase() + '. ' + labelOf(d.id, a)) : 'open') +
+        (s.own ? ' | ' + s.own : ''));
       out.push('');
     });
+    out.push('## Facts', '');
+    FACTS.forEach(function (id) {
+      var q = QBY[id]; if (!q) return;
+      var p = state.picks[id];
+      out.push('- **' + id + '** ' + q.q + ' | ' + (p ? p.toUpperCase() + '. ' + labelOf(id, p) : 'open') +
+        (state.notes[id] ? ' | ' + state.notes[id] : ''));
+    });
+    out.push('');
     return out.join('\n') + '\n';
   }
   function exportMd() {
-    var lines = ['# frontmatter decisions', '', 'Answered ' + answered(Q) + ' of ' + Q.length + '.', ''];
-    cats().forEach(function (g) {
-      var done = g.qs.filter(function (q) { return state.picks[q.id]; });
-      if (!done.length) return;
-      lines.push('## ' + g.cat, '');
-      done.forEach(function (q) {
-        var o = (q.options || []).filter(function (x) { return x.k === state.picks[q.id]; })[0];
-        lines.push('### ' + q.id + ': ' + q.q);
-        lines.push('**Decision:** ' + (o ? o.label : state.picks[q.id]) +
-          (state.picks[q.id] === q.rec ? ' (the recommendation)' : ' (against the recommendation of ' + String(q.rec).toUpperCase() + ')'));
-        if (state.notes[q.id]) lines.push('', state.notes[q.id]);
-        lines.push('');
+    var over = Q.filter(function (q) { return STATUS[q.id] === 'overruled'; });
+    var conf = Q.filter(function (q) { return STATUS[q.id] === 'answered' && !isFact(q.id); });
+    var re = Q.filter(function (q) { return STATUS[q.id] === 'reopened'; });
+    var taken = Q.filter(function (q) { return STATUS[q.id] === 'taken'; });
+    var lines = ['# frontmatter decisions', '', yoursOpen() + ' left that only the founders can answer. ' +
+      taken.length + ' taken on the evidence, ' + conf.length + ' confirmed, ' + over.length + ' overruled, ' + re.length + ' re-opened.', ''];
+    var block = function (title, list, note) {
+      if (!list.length) return;
+      lines.push('## ' + title, '');
+      if (note) lines.push(note, '');
+      list.forEach(function (q) {
+        var k = state.picks[q.id] || q.rec;
+        lines.push('- **' + q.id + '** ' + q.q + ' | ' + String(k).toUpperCase() + '. ' + labelOf(q.id, k) +
+          (state.notes[q.id] ? ' | ' + state.notes[q.id] : ''));
       });
-    });
-    var open = Q.filter(function (q) { return !state.picks[q.id]; });
-    if (open.length) {
-      lines.push('## Still open', '');
-      open.forEach(function (q) { lines.push('- **' + q.id + '** ' + q.q + (q.weight === 'critical' ? ' _(critical)_' : '')); });
-    }
+      lines.push('');
+    };
+    block('Overruled', over, 'Chosen against the take.');
+    block('Re-opened', re, 'Taken under an answer that has since changed. Still to choose again.');
+    block('Confirmed', conf, 'The take, chosen by you.');
+    block('Taken on the evidence', taken, 'Each on its own recommendation, with the reason on the card.');
     download('frontmatter-decisions.md', finalMd() + lines.join('\n'), 'text/markdown');
   }
   function download(name, body, type) {
@@ -869,6 +1007,14 @@
           if (!live[id] || !nn[id]) return;
           if (state.notes[id] !== nn[id]) { state.notes[id] = nn[id]; notes++; }
         });
+        /* The root answers travel with the export too; a file from before the roots
+           existed simply has none, and an id that is not a root now is skipped. */
+        var fin = data.final || {};
+        Object.keys(fin).forEach(function (id) {
+          if (!ROOT_BY[id] || !fin[id] || typeof fin[id] !== 'object') return;
+          state.final[id] = { k: fin[id].k || undefined, own: fin[id].own || '' };
+          if (!state.final[id].k) delete state.final[id].k;
+        });
 
         save(); navShape = null; renderNav(); go({ mode: 'overview' });
         alert('Restored ' + added + ' answer' + (added === 1 ? '' : 's') +
@@ -898,7 +1044,7 @@
     paintNav(); progress();
   }
   function progress() {
-    var a = answered(Q), c = crit(Q), n = Q.length || 1;
+    var a = answered(Q), c = crit(Q), n = Q.length || 1, y = yoursOpen();
     $('#prog').style.width = (a / n) * 100 + '%';
     $('#progCrit').style.width = (c / n) * 100 + '%';
     var here = '';
@@ -906,16 +1052,34 @@
       var g = Q.filter(function (x) { return x.cat === view.cat; });
       here = '<span class="pcat">' + esc(view.cat) + ' ' + answered(g) + '/' + g.length + '</span>';
     }
-    $('#progtxt').innerHTML = here + '<b>' + a + '</b> / ' + Q.length + ' answered' +
+    $('#progtxt').innerHTML = here + '<b>' + y + '</b> yours open · ' + a + ' / ' + Q.length + ' settled' +
       (c ? ' · <b style="color:var(--crit)">' + c + '</b> critical' : '');
   }
 
   /* ── events ───────────────────────────────────────────────────────────── */
   document.addEventListener('click', function (e) {
-    var fb = e.target.closest('[data-fa]');
-    if (fb) { var gid = fb.getAttribute('data-fq'); state.final[gid] = state.final[gid] || {}; state.final[gid].a = fb.getAttribute('data-fa'); save(); renderOverview(); toast('Saved ' + gid); return; }
-    var t = e.target.closest('[data-q],[data-cat],[data-ov],[data-import],[data-pick],[data-detail],[data-action],#mdgo,#mdsample,#menuBtn,#themeBtn,#abarPrev,#abarNext');
+    var fb = e.target.closest('[data-root-opt]');
+    if (fb) {
+      /* A root option toggles: choosing it again clears it, which is the reset. */
+      var gid = fb.getAttribute('data-fq'), kk = fb.getAttribute('data-root-opt');
+      state.final[gid] = state.final[gid] || {};
+      if (state.final[gid].k === kk) delete state.final[gid].k; else state.final[gid].k = kk;
+      save(); renderOverview(); paintNav(); progress();
+      var el = document.getElementById('root-' + gid); if (el) el.scrollIntoView({ block: 'nearest' });
+      toast(state.final[gid].k ? 'Saved ' + gid + ' = ' + kk.toUpperCase() : gid + ' cleared'); return;
+    }
+    var t = e.target.closest('[data-q],[data-root],[data-reset],[data-cat],[data-ov],[data-import],[data-pick],[data-detail],[data-action],#mdgo,#mdsample,#menuBtn,#themeBtn,#abarPrev,#abarNext');
     if (!t) return;
+    if (t.hasAttribute('data-reset')) {
+      var qr = QBY[view.id]; if (!qr) return;
+      delete state.picks[qr.id]; save(); renderQ(qr); paintNav(); progress(); toast('Back to the take'); return;
+    }
+    if (t.hasAttribute('data-root')) {
+      var rid = t.getAttribute('data-root');
+      go({ mode: 'overview', id: null });
+      var rel = document.getElementById('root-' + rid); if (rel) rel.scrollIntoView({ block: 'start' });
+      return;
+    }
     if (t.id === 'menuBtn') { document.body.classList.toggle('navopen'); return; }
     if (t.id === 'themeBtn') { theme(document.documentElement.getAttribute('data-theme') === 'dark' ? 'light' : 'dark'); return; }
     /* data-action, not id: this same block of export/restore buttons now also renders
@@ -925,6 +1089,7 @@
     if (act === 'expmd') { exportMd(); return; }
     if (act === 'expjson') { download('frontmatter-decisions.json', JSON.stringify(state, null, 2), 'application/json'); return; }
     if (act === 'impjson') { restoreAnswers(); return; }
+    if (act === 'toggletaken') { state.showTaken = !state.showTaken; save(); navShape = null; paintNav(); return; }
     if (t.id === 'mdgo') { doImport(); return; }
     if (t.id === 'mdsample') { $('#mdin').value = $('#mdin').placeholder; doImport(); return; }
     if (t.id === 'abarPrev' || t.id === 'abarNext') { step(t.id === 'abarNext' ? 1 : -1); return; }
@@ -932,7 +1097,7 @@
       var q = Q.filter(function (x) { return x.id === view.id; })[0];
       if (!q) return;
       state.picks[q.id] = t.getAttribute('data-pick'); save(); renderQ(q); paintNav(); progress();
-      toast('Saved. ' + (Q.length - answeredList().length) + ' left'); return;
+      toast('Saved. ' + yoursOpen() + ' left that only you can answer'); return;
     }
     if (t.hasAttribute('data-detail')) {
       var qd = Q.filter(function (x) { return x.id === view.id; })[0];
@@ -1023,8 +1188,11 @@
     var f = e.target.closest && e.target.closest('.fown');
     if (!f) return;
     var gid = f.getAttribute('data-fq'); state.final[gid] = state.final[gid] || {}; state.final[gid].own = f.value.trim();
-    if (f.value.trim() && !state.final[gid].a) state.final[gid].a = 'own';
-    save(); toast('Saved ' + gid);
+    if (!state.final[gid].own) delete state.final[gid].own;
+    /* An own line counts as an answer that is not the recommendation, so the cards taken
+       under the recommendation re-open. The overview re-renders on change, not on input,
+       so the field is not rebuilt under the caret. */
+    save(); renderOverview(); paintNav(); progress(); toast('Saved ' + gid);
   });
   window.addEventListener('hashchange', function () {
     var v = fromHash();

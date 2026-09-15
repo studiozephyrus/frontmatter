@@ -316,7 +316,9 @@ table.d td:not(:first-child){font-variant-numeric:tabular-nums}
 .pg:hover{border-color:var(--line-3);box-shadow:var(--sh-2)}
 .pg .pk{display:flex;align-items:center;gap:6px;font-family:var(--mono);font-size:9.5px;
   letter-spacing:.08em;text-transform:uppercase;color:var(--ink-4)}
-.pg .pt{font-size:13.5px;margin-top:5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+/* display:block, or overflow:hidden does nothing on the inline span and a long previous-card
+   title at 375px runs 200px past the button, which was the only horizontal scroll left. */
+.pg .pt{display:block;max-width:100%;font-size:13.5px;margin-top:5px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
   color:var(--ink-2)}
 .pg.next{text-align:right}
 .pg.next .pk{justify-content:flex-end}
@@ -700,3 +702,62 @@ ul.bl.tight li::before{top:7px;width:3px;height:3px}
 .recwhy[open] summary::before{content:"\2212 "}
 .recwhyb{font-size:13.5px;line-height:1.55;color:var(--ink-2);padding:6px 0 2px;max-width:68ch}
 .recwhyb p{margin:0 0 8px}
+
+/* ── the compact set: takes, re-opens, roots ──────────────────────────────
+   A taken card is answered on its recommendation until overruled. The bar above the
+   options says so, and lists what the take assumed; a chip goes amber when that
+   assumption no longer holds and the card has re-opened. The three roots render on the
+   overview as option lists in the same shape as a card's options. */
+.takenbar{display:flex;gap:10px;align-items:flex-start;margin:0 0 20px;padding:12px 15px;border-radius:10px;
+  background:var(--wash);border:1px solid var(--wash-2);font-size:13.5px;line-height:1.5;color:var(--ink-2)}
+.takenbar>.ic{flex:0 0 auto;width:17px;height:17px;margin-top:2px;color:var(--accent)}
+.takenbar b{color:var(--ink);font-weight:650}
+.takenbar.warn{background:var(--high-soft);border-color:transparent}
+.takenbar.warn>.ic,.takenbar.warn b{color:var(--high)}
+.takenbar.fact{background:var(--card);border-color:var(--line)}
+.takenbar.fact>.ic{color:var(--ink-3)}
+.tchips{display:flex;flex-wrap:wrap;gap:6px;align-items:center;margin-top:9px}
+.tlab{font-family:var(--mono);font-size:9.5px;letter-spacing:.09em;text-transform:uppercase;color:var(--ink-4);margin-right:2px}
+.tchip{display:inline-flex;flex-wrap:wrap;align-items:baseline;gap:6px;max-width:100%;font:inherit;font-size:12px;line-height:1.35;
+  padding:4px 9px;border-radius:7px;border:1px solid var(--line-2);background:var(--card);color:var(--ink-2);cursor:pointer;text-align:left}
+.tchip b{font-family:var(--mono);font-size:10.5px;color:var(--accent);font-weight:600}
+.tchip i{font-style:normal;color:var(--high);font-weight:600}
+.tchip.bad{border-color:var(--high);background:var(--card)}
+.tchip:hover{border-color:var(--accent);color:var(--ink)}
+.tlink{font:inherit;font-size:12.5px;color:var(--accent);background:none;border:0;padding:0;cursor:pointer;text-decoration:underline;text-underline-offset:2px}
+.tlink:hover{color:var(--accent-ink)}
+.pill.taken{background:var(--accent-soft);color:var(--accent-ink)}
+.pill.reopen{background:var(--high-soft);color:var(--high)}
+.pill.over{background:var(--crit-soft);color:var(--crit)}
+.fopts{display:grid;gap:6px;margin:10px 0 12px}
+.fopt{display:grid;grid-template-columns:auto 1fr;gap:11px;align-items:start;width:100%;text-align:left;font:inherit;font-size:13.5px;
+  line-height:1.4;padding:9px 12px;border-radius:9px;border:1px solid var(--line);background:var(--card);color:var(--ink);cursor:pointer}
+.fopt:hover{border-color:var(--accent)}
+.fopt.rec{border-color:var(--accent-2);background:linear-gradient(180deg,var(--wash) 0%,var(--card) 60%)}
+.fopt.on,.fopt.on.rec{background:var(--accent);border-color:var(--accent);color:#fff}
+.fopt .k{width:24px;height:24px;display:grid;place-items:center;border:1px solid var(--line-2);border-radius:6px;
+  font-family:var(--mono);font-size:11px;text-transform:uppercase;color:var(--ink-3);margin-top:1px}
+.fopt.rec .k{border-color:var(--accent);color:var(--accent)}
+.fopt.on .k{border-color:rgba(255,255,255,.6);color:#fff}
+.fopt .ob{min-width:0}
+.fopt .ol{display:block}
+.fopt .ow{display:block;font-size:12.5px;color:var(--ink-3);margin-top:2px}
+.fopt.on .ow{color:rgba(255,255,255,.82)}
+.fopt.on .rectag{color:rgba(255,255,255,.85)}
+.fqe b{color:var(--ink);font-weight:650}
+.fqc .tlab{align-self:center}
+.jcell.warn{border-color:var(--high);color:var(--high);background:var(--card)}
+.qq .aa{display:flex;align-items:center;gap:6px;margin-top:4px;font-size:12px;color:var(--good)}
+.qq .aa.warn{color:var(--high)}
+.navq.taken .dot{background:var(--line-2);box-shadow:none}
+.navq.taken .qt{color:var(--ink-4);font-weight:400}
+.navq.reopen .dot{background:var(--high);box-shadow:0 0 0 3px var(--high-soft)}
+.navq.reopen .qt{color:var(--ink);font-weight:500}
+.navtk{display:block;width:100%;text-align:left;font:inherit;font-size:11.5px;color:var(--ink-4);background:none;border:0;
+  padding:7px 14px 9px 27px;cursor:pointer}
+.navtk:hover{color:var(--accent)}
+.ar.taken{border-left-color:var(--line-2);background:var(--card)}
+.ar.taken .aa{color:var(--ink-3)}
+.takenlist{margin-top:6px}
+.rbtn.ghost{background:var(--card);color:var(--accent);border:1px solid var(--accent-2);margin-top:8px}
+.rbtn.ghost:hover{filter:none;background:var(--wash)}

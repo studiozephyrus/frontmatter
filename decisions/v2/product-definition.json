@@ -139,7 +139,7 @@
         },
         {
           "k": "b",
-          "label": "Change the noun to the engine and the state, shipped inside an editor",
+          "label": "Change the noun to the files your agents obey, edited in place",
           "what": "The sentence becomes: where you write, review and keep current the files your agents obey. The editor is the container it happens in, not the claim.",
           "gains": [
             "Names the only code we own",

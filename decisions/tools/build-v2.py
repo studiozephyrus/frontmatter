@@ -163,9 +163,38 @@ def main():
     )
     p = pathlib.Path(a.out)
     final_p = pathlib.Path(a.src) / '_final.json'
-    # The final set: sixteen product questions that fold the MVP cards. Rendered above the
-    # areas on the overview; the folded cards stay answerable underneath.
-    final_js = ('window.FINAL=' + json.dumps(json.loads(final_p.read_text()), ensure_ascii=False) + ';\n') if final_p.exists() else ''
+    # The compact set: three root decisions, five facts, and the dependency map that lets a
+    # taken card re-open when an answer it assumed changes. Every id it names must be a
+    # served card or a root, and every assumed answer must be one of that card's options,
+    # otherwise the page would silently treat a typo as "always satisfied".
+    final_js = ''
+    if final_p.exists():
+        F = json.loads(final_p.read_text())
+        roots = {d['id']: d for d in F.get('decisions') or []}
+        by_id = {q['id']: q for q in out}
+        bad = []
+        for d in roots.values():
+            for c in d.get('settles') or []:
+                if c not in by_id:
+                    bad.append(f'{d["id"]} settles unknown card {c}')
+        for c in (F.get('facts') or {}).get('cards') or []:
+            if c not in by_id:
+                bad.append(f'fact {c} is not a served card')
+        for t, ds in (F.get('deps') or {}).items():
+            if t not in by_id:
+                bad.append(f'deps names unknown card {t}')
+                continue
+            for s, k in ds:
+                src = roots.get(s) or by_id.get(s)
+                if not src:
+                    bad.append(f'{t} depends on unknown {s}')
+                elif not any(o.get('k') == k for o in src.get('options') or []):
+                    bad.append(f'{t} assumes {s} = {k}, which is not an option there')
+        if bad:
+            sys.exit('_final.json is inconsistent with the served set:\n  ' + '\n  '.join(bad))
+        print(f'compact set: {len(roots)} decisions, {len((F.get("facts") or {}).get("cards") or [])} facts, '
+              f'{len(F.get("deps") or {})} cards with assumptions')
+        final_js = 'window.FINAL=' + json.dumps(F, ensure_ascii=False) + ';\n'
     p.write_text(header + 'window.QUESTIONS=' + body + ';\n' + final_js)
     print(f'\nwrote {p} ({p.stat().st_size // 1024} KB)')
 
