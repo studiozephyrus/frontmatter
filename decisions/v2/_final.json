@@ -167,6 +167,35 @@
    "R17"
   ]
  },
+ "meeting": {
+  "title": "The 23 for the meeting",
+  "note": "The critical product and business calls, numbered on every screen. Three are open decisions, three are facts, the rest are taken and wait for you to confirm or overrule.",
+  "cards": [
+   "D1",
+   "MK4",
+   "F35",
+   "P26",
+   "MK16",
+   "MK27",
+   "PL5",
+   "FF1",
+   "FF8",
+   "AC20",
+   "FL21",
+   "D2",
+   "F36",
+   "F19",
+   "L6",
+   "F34",
+   "PR24",
+   "PR1",
+   "PR3",
+   "B1",
+   "B2",
+   "G15",
+   "D3"
+  ]
+ },
  "deps": {
   "P1": [
    [

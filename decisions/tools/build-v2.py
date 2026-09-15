@@ -180,6 +180,9 @@ def main():
         for c in (F.get('facts') or {}).get('cards') or []:
             if c not in by_id:
                 bad.append(f'fact {c} is not a served card')
+        for c in (F.get('meeting') or {}).get('cards') or []:
+            if c not in by_id and c not in roots:
+                bad.append(f'meeting set names unknown card {c}')
         for t, ds in (F.get('deps') or {}).items():
             if t not in by_id:
                 bad.append(f'deps names unknown card {t}')

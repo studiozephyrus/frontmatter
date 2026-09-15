@@ -48,6 +48,12 @@
   var DEPS = FINAL.deps || {};
   var QBY = {}; Q.forEach(function (q) { QBY[q.id] = q; });
   var isFact = function (id) { return FACTS.indexOf(id) > -1; };
+  /* The meeting set: the critical product and business calls, numbered 1 to N in the
+     order the founders read them. The number rides on every surface the card appears on,
+     so "question 12" means the same thing on the overview, in the nav and on the card. */
+  var MEET = FINAL.meeting || {}, MLIST = MEET.cards || [];
+  var MEETN = {}; MLIST.forEach(function (id, i) { MEETN[id] = i + 1; });
+  var mnum = function (id, cls) { var n = MEETN[id]; return n ? '<span class="mnum' + (cls ? ' ' + cls : '') + '" title="Question ' + n + ' of ' + MLIST.length + '">' + n + '</span>' : ''; };
   var STATUS = {};
   /* A root is answered with an option key, or with the founder's own line. */
   function rootAnswer(id) { var a = state.final[id]; if (!a) return null; return a.k || (a.own ? 'own' : null); }
@@ -242,7 +248,7 @@
            listing 198 of them beside the eight that are open is the noise the compact
            set exists to remove. A search or the toggle shows them. */
         var show = qs, hid = 0;
-        if (!f && !state.showTaken) { show = qs.filter(function (q) { return STATUS[q.id] !== 'taken'; }); hid = qs.length - show.length; }
+        if (!f && !state.showTaken) { show = qs.filter(function (q) { return STATUS[q.id] !== 'taken' || MEETN[q.id]; }); hid = qs.length - show.length; }
         show.forEach(function (q) { h += navRow(q); });
         if (hid) h += '<button class="navtk" data-action="toggletaken">' + hid + ' taken on the evidence · show</button>';
         else if (!f && state.showTaken && qs.some(function (q) { return STATUS[q.id] === 'taken'; })) h += '<button class="navtk" data-action="toggletaken">hide the taken cards</button>';
@@ -256,7 +262,7 @@
       (st === 'taken' ? ' taken' : st === 'reopened' ? ' reopen' : '') +
       (q.weight === 'critical' ? ' crit' : q.weight === 'high' ? ' high' : '') +
       '" data-q="' + esc(q.id) + '"><span class="dot"></span>' +
-      '<span class="qt">' + esc(q.q) + '</span></button>';
+      '<span class="qt">' + (MEETN[q.id] ? '<i class="nn">' + MEETN[q.id] + '</i>' : '') + esc(q.q) + '</span></button>';
   }
 
   /* ── evidence ─────────────────────────────────────────────────────────── */
@@ -445,7 +451,8 @@
     h += '<div class="card-q w-' + esc(q.weight || 'medium') + '">';
     h += '<div class="pos"><span class="eyebrow">Decision ' + (idx + 1) + ' of ' + Q.length + '</span>' +
       '<span class="dotsep">\u00b7</span><span class="eyebrow">' + esc(q.cat) + ' ' + catIdx + '/' + inCat.length + '</span></div>';
-    h += '<div class="qhead"><span class="pill id">' + esc(q.id) + '</span>' +
+    h += '<div class="qhead">' + (MEETN[q.id] ? '<span class="pill meet">Question ' + MEETN[q.id] + ' of ' + MLIST.length + '</span>' : '') +
+      '<span class="pill id">' + esc(q.id) + '</span>' +
       '<span class="pill">' + esc(q.cat) + (q.sub ? ' \u00b7 ' + esc(q.sub) : '') + '</span>' +
       (q.weight && q.weight !== 'medium' ? '<span class="pill ' + wc + '">' + esc(q.weight) + '</span>' : '') +
       (WHEN[q.when] ? '<span class="pill when when-' + esc(q.when) + '">' + esc(WHEN[q.when]) + '</span>' : '') +
@@ -637,6 +644,7 @@
       '<p>That is what is yours. The other ' + (Q.length - FACTS.length) + ' cards are taken on the evidence already ' +
       'on them, each with its reason, and any one can be overruled. A taken card re-opens by itself when an ' +
       'answer it assumed changes, so nothing stays quietly settled on a premise you have moved. ' +
+      (MLIST.length ? 'The ' + MLIST.length + ' critical product and business calls are numbered on every screen. ' : '') +
       'Answers stay in this browser. ' +
       '<a class="gallerylink" href="mockups.html" target="_blank" rel="noopener">See the screen iterations</a></p></div>';
     h += '<div class="kpis">' +
@@ -649,6 +657,33 @@
         '<div class="kn">by you, against the take</div></div>' +
       '<div class="kpi"><div class="kn">Evidence</div><div class="kv">' + ev + '</div>' +
         '<div class="kn">exhibits behind them</div></div></div>';
+    if (MLIST.length) {
+      /* The meeting set, numbered. A row per question: its number, its id, the question,
+         the answer it currently carries, and whether that answer is the founders' or a
+         take waiting on them. Roots link to their section below; cards open the card. */
+      var mSettled = MLIST.filter(function (id) { return ROOT_BY[id] ? !!rootAnswer(id) : !!state.picks[id]; }).length;
+      h += '<h2 class="sech">' + esc(MEET.title || 'For the meeting') + '</h2><p class="secn">' + esc(MEET.note || '') + ' ' +
+        mSettled + ' of ' + MLIST.length + ' answered by you.</p><div class="qlist">' +
+        MLIST.map(function (id, i) {
+          var isR = !!ROOT_BY[id], src = isR ? ROOT_BY[id] : QBY[id]; if (!src) return '';
+          var st, lab, tag, cls;
+          if (isR) {
+            var ra = rootAnswer(id);
+            st = ra ? 'done' : 'open'; tag = ra ? 'answered' : 'open';
+            lab = ra ? (ra === 'own' ? 'your own line' : ra.toUpperCase() + '. ' + labelOf(id, ra)) : 'decide below';
+          } else {
+            var s = STATUS[id], k = state.picks[id] || (s === 'taken' ? src.rec : null);
+            st = s === 'taken' ? 'taken' : (s === 'fact' || s === 'reopened') ? 'open' : 'done';
+            tag = s === 'taken' ? 'taken, confirm or overrule' : s === 'reopened' ? 're-opened' : s === 'overruled' ? 'overruled' :
+              s === 'fact' ? 'a fact, open' : 'confirmed';
+            lab = k ? k.toUpperCase() + '. ' + labelOf(id, k) : 'open';
+          }
+          return '<button class="ql meet ' + st + '" data-' + (isR ? 'root' : 'q') + '="' + esc(id) + '">' +
+            mnum(id) + '<span class="qq"><span class="qi">' + esc(id) + '</span>' + esc(src.q) +
+            '<span class="aa' + (st === 'taken' ? ' muted' : st === 'open' ? ' warn' : '') + '">' + esc(lab) + '</span></span>' +
+            '<span class="qc">' + esc(tag) + '</span></button>';
+        }).join('') + '</div>';
+    }
     if (ROOTS.length) {
       /* The three roots. Each is answered with an option, or the founder's own line, and
          each settles a set of cards underneath it; those chips turn to re-opened the moment
@@ -659,7 +694,7 @@
       ROOTS.forEach(function (d) {
         var ans = state.final[d.id] || {}, k = ans.k;
         h += '<div class="fq' + (rootAnswer(d.id) ? ' done' : '') + '" id="root-' + esc(d.id) + '">' +
-          '<div class="fqh"><span class="fqid">' + esc(d.id) + '</span><span class="fqt">' + esc(d.title) + '</span></div>' +
+          '<div class="fqh">' + mnum(d.id) + '<span class="fqid">' + esc(d.id) + '</span><span class="fqt">' + esc(d.title) + '</span></div>' +
           '<div class="fqp">' + esc(d.q) + '</div>' +
           '<div class="fopts" role="radiogroup" aria-label="' + esc(d.title) + '">' + d.options.map(function (o) {
             return '<button class="fopt' + (o.k === d.rec ? ' rec' : '') + (k === o.k ? ' on' : '') +
@@ -787,12 +822,16 @@
       return '<button class="ar' + (isDone(q.id) ? ' done' : '') + (st === 'taken' ? ' taken' : '') +
         (q.weight === 'critical' ? ' crit' : q.weight === 'high' ? ' high' : '') +
         '" data-q="' + esc(q.id) + '">' +
-        '<span class="ai">' + esc(q.id) + '</span>' +
+        '<span class="ai">' + mnum(q.id, 's') + esc(q.id) + '</span>' +
         '<span class="aq">' + esc(q.q) +
         (o ? '<span class="aa">' + icon('check', 's') + esc(o.label) + '</span>' : '') + '</span>' +
         '<span class="aw">' + esc(st === 'taken' ? 'taken' : st === 'reopened' ? 're-opened' : st === 'overruled' ? 'overruled' :
           st === 'answered' ? '' : (q.weight || '')) + '</span></button>';
     };
+    /* Taken cards in the meeting set stay visible: they are waiting on the founders to
+       confirm or overrule, which is not the same as settled. The rest fold away. */
+    var takenMeet = taken.filter(function (q) { return MEETN[q.id]; });
+    taken = taken.filter(function (q) { return !MEETN[q.id]; });
     var h = '<div class="hero"><span class="eyebrow">Area ' + (cats().map(function (g) { return g.cat; }).indexOf(cat) + 1) +
       ' of ' + cats().length + '</span><h1>' + esc(cat) + '</h1>' +
       '<p>' + qs.length + ' cards · ' + open.length + ' open · ' + taken.length + ' taken · ' +
@@ -803,6 +842,7 @@
         '<span class="gk">' + esc(open.length) + ' open</span>' + icon('arrow_forward') + '</button>';
       h += '<h2 class="sech">Open</h2><div class="arlist">' + open.map(row).join('') + '</div>';
     }
+    if (takenMeet.length) h += '<h2 class="sech">For the meeting, taken: confirm or overrule</h2><div class="arlist">' + takenMeet.map(row).join('') + '</div>';
     if (over.length) h += '<h2 class="sech">Overruled</h2><div class="arlist">' + over.map(row).join('') + '</div>';
     if (conf.length) h += '<h2 class="sech">Confirmed</h2><div class="arlist">' + conf.map(row).join('') + '</div>';
     if (taken.length) {
@@ -921,7 +961,18 @@
   /* ── export ───────────────────────────────────────────────────────────── */
   function finalMd() {
     if (!ROOTS.length) return '';
-    var out = ['## Decisions', ''];
+    var out = [];
+    if (MLIST.length) {
+      out.push('## ' + (MEET.title || 'For the meeting'), '');
+      MLIST.forEach(function (id, i) {
+        var isR = !!ROOT_BY[id], src = isR ? ROOT_BY[id] : QBY[id]; if (!src) return;
+        var k = isR ? rootAnswer(id) : (state.picks[id] || (STATUS[id] === 'taken' ? src.rec : null));
+        var how = isR ? (k ? 'answered' : 'open') : STATUS[id] === 'taken' ? 'taken, not yet confirmed' : STATUS[id] === 'fact' ? 'open' : STATUS[id];
+        out.push((i + 1) + '. **' + id + '** ' + src.q + ' | ' + (k ? (k === 'own' ? 'own line' : k.toUpperCase() + '. ' + labelOf(id, k)) : 'open') + ' | ' + how);
+      });
+      out.push('');
+    }
+    out.push('## Decisions', '');
     ROOTS.forEach(function (d) {
       var a = rootAnswer(d.id), s = state.final[d.id] || {};
       out.push('**' + d.id + '. ' + d.title + '**: ' + (a ? (a === 'own' ? 'own line' : a.toUpperCase() + '. ' + labelOf(d.id, a)) : 'open') +

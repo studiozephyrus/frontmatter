@@ -761,3 +761,20 @@ ul.bl.tight li::before{top:7px;width:3px;height:3px}
 .takenlist{margin-top:6px}
 .rbtn.ghost{background:var(--card);color:var(--accent);border:1px solid var(--accent-2);margin-top:8px}
 .rbtn.ghost:hover{filter:none;background:var(--wash)}
+
+/* ── the 23 for the meeting: a number on every surface the card appears on ──── */
+.mnum{display:inline-grid;place-items:center;min-width:22px;height:22px;padding:0 6px;border-radius:6px;
+  background:var(--ink);color:var(--card);font-family:var(--mono);font-size:11px;font-weight:600;line-height:1}
+.mnum.s{min-width:18px;height:18px;font-size:10px;margin-right:6px;vertical-align:middle}
+.pill.meet{background:var(--ink);color:var(--card);font-weight:600}
+.fqh .mnum{margin-right:2px;align-self:center}
+.navq .nn{display:inline-block;min-width:16px;padding:0 4px;margin-right:6px;border-radius:4px;background:var(--ink);
+  color:var(--card);font-family:var(--mono);font-size:9.5px;font-weight:600;text-align:center;line-height:15px;font-style:normal}
+.navq.taken .nn{background:var(--ink-3)}
+.ql.meet{border-left-color:var(--ink)}
+.ql.meet.open{border-left-color:var(--high)}
+.ql.meet.done{border-left-color:var(--good)}
+.ql.meet.taken{border-left-color:var(--line-3)}
+.ql .qq .qi{display:inline;margin-right:6px}
+.qq .aa.muted{color:var(--ink-3)}
+.ar .ai .mnum{margin-right:6px}
