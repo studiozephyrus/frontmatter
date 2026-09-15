@@ -28,6 +28,7 @@
       st.detail = st.detail || {};
       st.detailDefault = st.detailDefault || 'low';
       st.showTaken = !!st.showTaken;
+      st.showAll = !!st.showAll;
       return st;
     }
     catch (e) { return { picks: {}, notes: {}, final: {}, detail: {} }; }
@@ -54,6 +55,15 @@
   var MEET = FINAL.meeting || {}, MLIST = MEET.cards || [];
   var MEETN = {}; MLIST.forEach(function (id, i) { MEETN[id] = i + 1; });
   var mnum = function (id, cls) { var n = MEETN[id]; return n ? '<span class="mnum' + (cls ? ' ' + cls : '') + '" title="Question ' + n + ' of ' + MLIST.length + '">' + n + '</span>' : ''; };
+  /* Focus. By default the site shows the meeting set and nothing else: the nav, the pager,
+     the rail and the overview all run over the 23. `showAll` opens the other 180 cards up
+     again; a search always looks through everything, and a hidden card still opens from
+     its own link. In focus, "answered" means answered by the founders: a taken card that
+     nobody has confirmed still counts as waiting. */
+  var focus = function () { return !state.showAll && MLIST.length > 0; };
+  var needsYou = function (id) { return ROOT_BY[id] ? !rootAnswer(id) : !state.picks[id]; };
+  var meetAnswered = function () { return MLIST.filter(function (id) { return !needsYou(id); }).length; };
+  function VIS() { return focus() ? MLIST.filter(function (id) { return QBY[id]; }).map(function (id) { return QBY[id]; }) : Q; }
   var STATUS = {};
   /* A root is answered with an option key, or with the founder's own line. */
   function rootAnswer(id) { var a = state.final[id]; if (!a) return null; return a.k || (a.own ? 'own' : null); }
@@ -184,11 +194,12 @@
     var i, el, els = list.querySelectorAll('.navq');
     for (i = 0; i < els.length; i++) {
       el = els[i];
-      var id = el.getAttribute('data-q'), st = STATUS[id];
+      var id = el.getAttribute('data-q') || el.getAttribute('data-root'), st = STATUS[id], isR = !!ROOT_BY[id];
+      var done = isR ? !!rootAnswer(id) : (focus() ? !!state.picks[id] : isDone(id));
       el.classList.toggle('on', id === view.id);
-      el.classList.toggle('done', isDone(id));
-      el.classList.toggle('open', isOpen(id));
-      el.classList.toggle('taken', st === 'taken');
+      el.classList.toggle('done', done);
+      el.classList.toggle('open', !done);
+      el.classList.toggle('taken', !isR && !focus() && st === 'taken');
       el.classList.toggle('reopen', st === 'reopened');
     }
     els = list.querySelectorAll('.navcat');
@@ -211,28 +222,41 @@
       if (bar) bar.style.width = (g.length ? (a / g.length) * 100 : 0) + '%';
     }
     var ov = list.querySelector('[data-ov] .np');
-    if (ov) ov.textContent = answered(Q) + '/' + Q.length;
+    if (ov) ov.textContent = focus() ? meetAnswered() + '/' + MLIST.length : answered(Q) + '/' + Q.length;
     return true;
   }
 
   /* Cheap when nothing structural moved, full rebuild when it did. */
   function paintNav() {
     var shape = (view.filter || '') + '\u0000' + (view.mode === 'q' || view.mode === 'area' ? (view.cat || '') : '\u0000' + view.mode) +
-      (state.showTaken ? '\u0001' : '');
+      (state.showTaken ? '\u0001' : '') + (state.showAll ? '\u0002' : '');
     if (shape === navShape && syncNav()) return;
     navShape = shape;
     renderNav();
   }
 
   function renderNav() {
-    var f = view.filter, groups = cats(), h = '';
+    var f = view.filter, groups = cats(), h = '', fo = focus();
     navShell();
     h += '<div class="nsec">';
     h += '<button class="navcat' + (view.mode === 'overview' ? ' on' : '') + '" data-ov="1">' +
-      '<span class="nl">Overview</span><span class="nmeta"><span class="np">' + answered(Q) + '/' + Q.length + '</span></span></button>';
+      '<span class="nl">Overview</span><span class="nmeta"><span class="np">' +
+      (fo ? meetAnswered() + '/' + MLIST.length : answered(Q) + '/' + Q.length) + '</span></span></button>';
     h += '<button class="navcat' + (view.mode === 'import' ? ' on' : '') + '" data-import="1">' +
       '<span class="nl">Import markdown</span><span class="nmeta"><span class="np">local</span></span></button>';
+    if (MLIST.length) {
+      h += '<button class="navtoggle" data-action="toggleall">' + (fo
+        ? 'Showing the ' + MLIST.length + ' for the meeting · <b>show all ' + Q.length + '</b>'
+        : 'Showing all ' + Q.length + ' · <b>show only the ' + MLIST.length + '</b>') + '</button>';
+    }
     h += '</div>';
+    if (fo && !f) {
+      /* The meeting set, flat and in its numbered order. A search leaves focus for as
+         long as the field has text, so anything hidden is one keystroke away. */
+      h += '<div class="nsec meetnav">' + MLIST.map(function (id) { var src = ROOT_BY[id] || QBY[id]; return src ? navRow(src) : ''; }).join('') + '</div>';
+      $('#navlist').innerHTML = h;
+      return;
+    }
     groups.forEach(function (g) {
       var qs = g.qs.filter(function (q) { return match(q, f); });
       if (!qs.length) return;
@@ -257,11 +281,12 @@
     $('#navlist').innerHTML = h;
   }
   function navRow(q) {
-    var st = STATUS[q.id];
-    return '<button class="navq' + (view.id === q.id ? ' on' : '') + (isDone(q.id) ? ' done' : ' open') +
-      (st === 'taken' ? ' taken' : st === 'reopened' ? ' reopen' : '') +
-      (q.weight === 'critical' ? ' crit' : q.weight === 'high' ? ' high' : '') +
-      '" data-q="' + esc(q.id) + '"><span class="dot"></span>' +
+    var isR = !!ROOT_BY[q.id], st = STATUS[q.id];
+    var done = isR ? !!rootAnswer(q.id) : (focus() ? !!state.picks[q.id] : isDone(q.id));
+    return '<button class="navq' + (view.id === q.id ? ' on' : '') + (done ? ' done' : ' open') +
+      (!isR && !focus() && st === 'taken' ? ' taken' : st === 'reopened' ? ' reopen' : '') +
+      (isR || q.weight === 'critical' ? ' crit' : q.weight === 'high' ? ' high' : '') +
+      '" data-' + (isR ? 'root' : 'q') + '="' + esc(q.id) + '"><span class="dot"></span>' +
       '<span class="qt">' + (MEETN[q.id] ? '<i class="nn">' + MEETN[q.id] + '</i>' : '') + esc(q.q) + '</span></button>';
   }
 
@@ -319,10 +344,11 @@
      click away. The old rail showed metadata about the card you were already reading,
      which is the one thing you do not need help finding. */
   function answeredList() { return Q.filter(function (q) { return isDone(q.id); }); }
-  function nextUnanswered(from) {
-    var i = from == null ? -1 : from;
-    for (var k = i + 1; k < Q.length; k++) if (isOpen(Q[k].id)) return Q[k];
-    for (var j = 0; j <= i && j < Q.length; j++) if (isOpen(Q[j].id)) return Q[j];
+  function nextUnanswered(fromId) {
+    var V = VIS(), i = fromId ? V.findIndex(function (q) { return q.id === fromId; }) : -1;
+    var open = function (q) { return focus() ? needsYou(q.id) : isOpen(q.id); };
+    for (var k = i + 1; k < V.length; k++) if (open(V[k])) return V[k];
+    for (var j = 0; j <= i && j < V.length; j++) if (open(V[j])) return V[j];
     return null;
   }
   function rlist(items, n) {
@@ -333,6 +359,14 @@
       (items.length > n ? '<li class="rmore">and ' + (items.length - n) + ' more</li>' : '') + '</ul>';
   }
   function jumpGrid(currentId) {
+    if (focus()) {
+      return '<div class="rsec jump"><div class="rh">The ' + MLIST.length + ' for the meeting</div><div class="jumpgrid">' +
+        MLIST.map(function (id) {
+          var src = ROOT_BY[id] || QBY[id]; if (!src) return '';
+          return '<button class="jcell' + (needsYou(id) ? '' : ' done') + (id === currentId ? ' on' : '') +
+            '" data-' + (ROOT_BY[id] ? 'root' : 'q') + '="' + esc(id) + '" title="' + esc(id + '. ' + src.q) + '">' + MEETN[id] + '</button>';
+        }).join('') + '</div></div>';
+    }
     var cats = [];
     Q.forEach(function (q) { if (cats.indexOf(q.cat) < 0) cats.push(q.cat); });
     return '<div class="rsec jump"><div class="rh">Jump to any question</div>' +
@@ -352,13 +386,14 @@
     var differ = Q.filter(function (q) { return STATUS[q.id] === 'overruled'; });
     var reopened = Q.filter(function (q) { return STATUS[q.id] === 'reopened'; });
     var noted = Q.filter(function (q) { return (state.notes[q.id] || '').trim(); });
-    var up = nextUnanswered(currentIdx);
+    var up = nextUnanswered(currentId);
     var ro = rootsOpen(), taken = countOf(Q, 'taken');
-    /* The ring counts what is the founders' to answer: the roots, the facts, and whatever
-       their answers re-opened. The 198 taken cards are progress already made, not a
-       backlog, so they sit under the ring as a line rather than inside it. */
-    var yTotal = ROOTS.length + FACTS.length + reopened.length;
-    var yDone = (ROOTS.length - ro.length) + FACTS.filter(function (id) { return state.picks[id]; }).length;
+    /* The ring counts what is the founders' to answer. In focus that is the meeting set,
+       where a taken card nobody has confirmed still counts as waiting. Otherwise it is the
+       roots, the facts, and whatever their answers re-opened; the taken cards are progress
+       already made, not a backlog, so they sit under the ring as a line. */
+    var yTotal = focus() ? MLIST.length : ROOTS.length + FACTS.length + reopened.length;
+    var yDone = focus() ? meetAnswered() : (ROOTS.length - ro.length) + FACTS.filter(function (id) { return state.picks[id]; }).length;
 
     var h = '<div class="rsec ring-sec">' +
       /* The two numbers share a baseline, so they need a box of their own: baseline
@@ -366,8 +401,9 @@
       '<div class="ring" style="--p:' + (yTotal ? yDone / yTotal : 0) + '">' +
         '<span class="rval"><span class="rnum">' + yDone + '</span>' +
         '<span class="rden">/ ' + yTotal + '</span></span></div>' +
-      '<p class="rlab">' + (yTotal - yDone) + ' left that only you can answer</p>' +
-      '<p class="rsub">' + taken + ' taken on the evidence' + (differ.length ? ' · ' + differ.length + ' overruled' : '') +
+      '<p class="rlab">' + (yTotal - yDone) + (focus() ? ' of the ' + MLIST.length + ' still need you' : ' left that only you can answer') + '</p>' +
+      '<p class="rsub">' + (focus() ? (Q.length - VIS().length) + ' other cards hidden' : taken + ' taken on the evidence') +
+        (differ.length ? ' · ' + differ.length + ' overruled' : '') +
         (reopened.length ? ' · ' + reopened.length + ' re-opened' : '') + '</p>' +
       (up ? '<button class="rbtn" data-q="' + esc(up.id) + '">Go to the next open card</button>' : '') +
       (ro.length ? '<button class="rbtn' + (up ? ' ghost' : '') + '" data-ov="1">' + ro.length + ' decision' + (ro.length === 1 ? '' : 's') + ' open on the overview</button>' : '') +
@@ -400,8 +436,10 @@
   }
   function railFor(q, idx, pick) {
     var h = railCommon(q.id, idx);
+    var V = VIS(), vin = V.indexOf(q) > -1;
     h += '<div class="rsec"><div class="rh">This decision</div>' +
-      '<div class="rrow"><span>Position</span><b>' + (idx + 1) + ' of ' + Q.length + '</b></div>' +
+      '<div class="rrow"><span>Position</span><b>' + (focus() && MEETN[q.id] ? 'question ' + MEETN[q.id] + ' of ' + MLIST.length :
+        (idx + 1) + ' of ' + (vin ? V.length : Q.length)) + '</b></div>' +
       '<div class="rrow"><span>Weight</span><b>' + esc(q.weight || 'none') + '</b></div>' +
       '<div class="rrow"><span>Area</span><b>' + esc(q.cat) + '</b></div>' +
       '<div class="rrow"><span>Status</span><b style="color:var(--' + (isDone(q.id) ? 'good' : 'high') + ')">' +
@@ -433,7 +471,10 @@
 
   var DETAIL = { low: 'Low', med: 'Medium', high: 'High' };
   function renderQ(q) {
-    var idx = Q.indexOf(q), prev = Q[idx - 1], next = Q[idx + 1], pick = state.picks[q.id];
+    /* The pager runs over what is visible: the meeting set in its numbered order in focus,
+       every card otherwise. A hidden card opened from its link pages through everything. */
+    var list = VIS(); if (list.indexOf(q) < 0) list = Q;
+    var idx = list.indexOf(q), prev = list[idx - 1], next = list[idx + 1], pick = state.picks[q.id];
     var wc = q.weight === 'critical' ? 'crit' : q.weight === 'high' ? 'high' : '';
     var inCat = Q.filter(function (x) { return x.cat === q.cat; });
     var catIdx = inCat.indexOf(q) + 1;
@@ -449,7 +490,8 @@
     var h = '';
 
     h += '<div class="card-q w-' + esc(q.weight || 'medium') + '">';
-    h += '<div class="pos"><span class="eyebrow">Decision ' + (idx + 1) + ' of ' + Q.length + '</span>' +
+    h += '<div class="pos"><span class="eyebrow">' + (focus() && MEETN[q.id] ? 'Question ' + MEETN[q.id] + ' of ' + MLIST.length :
+        'Decision ' + (idx + 1) + ' of ' + list.length) + '</span>' +
       '<span class="dotsep">\u00b7</span><span class="eyebrow">' + esc(q.cat) + ' ' + catIdx + '/' + inCat.length + '</span></div>';
     h += '<div class="qhead">' + (MEETN[q.id] ? '<span class="pill meet">Question ' + MEETN[q.id] + ' of ' + MLIST.length + '</span>' : '') +
       '<span class="pill id">' + esc(q.id) + '</span>' +
@@ -625,7 +667,7 @@
     $('#main').scrollTop = 0;
 
     $('#aside').innerHTML = railFor(q, idx, pick);
-    $('#abarPos').innerHTML = '<b>' + esc(q.id) + '</b>' + (idx + 1) + ' of ' + Q.length;
+    $('#abarPos').innerHTML = '<b>' + esc(q.id) + '</b>' + (focus() && MEETN[q.id] ? MEETN[q.id] + ' of ' + MLIST.length : (idx + 1) + ' of ' + list.length);
     $('#abarPrev').disabled = !prev; $('#abarNext').disabled = !next;
   }
 
@@ -639,24 +681,48 @@
     var factsOpen = FACTS.filter(function (id) { return QBY[id] && !state.picks[id]; });
     var taken = countOf(Q, 'taken'), over = countOf(Q, 'overruled');
     var yours = ro.length + factsOpen.length + reopened.length;
-    var h = '<div class="hero"><span class="eyebrow">Studio Zephyrus · frontmatter</span>' +
-      '<h1>' + ROOTS.length + ' decisions and ' + FACTS.length + ' facts</h1>' +
-      '<p>That is what is yours. The other ' + (Q.length - FACTS.length) + ' cards are taken on the evidence already ' +
-      'on them, each with its reason, and any one can be overruled. A taken card re-opens by itself when an ' +
-      'answer it assumed changes, so nothing stays quietly settled on a premise you have moved. ' +
-      (MLIST.length ? 'The ' + MLIST.length + ' critical product and business calls are numbered on every screen. ' : '') +
-      'Answers stay in this browser. ' +
-      '<a class="gallerylink" href="mockups.html" target="_blank" rel="noopener">See the screen iterations</a></p></div>';
-    h += '<div class="kpis">' +
-      '<div class="kpi acc"><div class="kn">Yours, still open</div><div class="kv">' + yours + '</div>' +
-        '<div class="kn">' + ro.length + ' decision' + (ro.length === 1 ? '' : 's') + ', ' + factsOpen.length + ' fact' + (factsOpen.length === 1 ? '' : 's') +
-        (reopened.length ? ', ' + reopened.length + ' re-opened' : '') + '</div></div>' +
-      '<div class="kpi"><div class="kn">Taken</div><div class="kv">' + taken + '</div>' +
-        '<div class="kn">on the evidence, overrulable</div></div>' +
-      '<div class="kpi' + (over ? ' crit' : '') + '"><div class="kn">Overruled</div><div class="kv">' + over + '</div>' +
-        '<div class="kn">by you, against the take</div></div>' +
-      '<div class="kpi"><div class="kn">Evidence</div><div class="kv">' + ev + '</div>' +
-        '<div class="kn">exhibits behind them</div></div></div>';
+    var fo = focus(), h;
+    var toggle = MLIST.length ? '<p class="ovtoggle">' + (fo
+      ? (Q.length - VIS().length) + ' other cards are answered on their recommendation and hidden. <button class="tlink" data-action="toggleall">Show all ' + Q.length + '</button>'
+      : 'Showing all ' + Q.length + ' cards. <button class="tlink" data-action="toggleall">Show only the ' + MLIST.length + ' for the meeting</button>') + '</p>' : '';
+    if (fo) {
+      var mDone = meetAnswered(), mRootsOpen = ro.length;
+      var mFacts = MLIST.filter(function (id) { return isFact(id); }).length;
+      var mTaken = MLIST.filter(function (id) { return QBY[id] && STATUS[id] === 'taken'; }).length;
+      var mOver = MLIST.filter(function (id) { return STATUS[id] === 'overruled'; }).length;
+      var mTakenAll = MLIST.length - ROOTS.length - mFacts;
+      h = '<div class="hero"><span class="eyebrow">Studio Zephyrus · frontmatter</span>' +
+        '<h1>' + MLIST.length + ' questions for the meeting</h1>' +
+        '<p>' + ROOTS.length + ' decisions, ' + mFacts + ' facts, and ' + mTakenAll + ' cards taken on the evidence, each waiting for you ' +
+        'to confirm or overrule. Every one is numbered, here and on its card. Answers stay in this browser. ' +
+        '<a class="gallerylink" href="mockups.html" target="_blank" rel="noopener">See the screen iterations</a></p></div>';
+      h += '<div class="kpis">' +
+        '<div class="kpi acc"><div class="kn">Answered by you</div><div class="kv">' + mDone + '</div><div class="kn">of ' + MLIST.length + '</div></div>' +
+        '<div class="kpi' + (mRootsOpen ? ' crit' : '') + '"><div class="kn">Decisions open</div><div class="kv">' + mRootsOpen + '</div><div class="kn">of ' + ROOTS.length + ', below</div></div>' +
+        '<div class="kpi"><div class="kn">To confirm</div><div class="kv">' + mTaken + '</div><div class="kn">taken, not yet yours</div></div>' +
+        '<div class="kpi"><div class="kn">Overruled</div><div class="kv">' + mOver + '</div><div class="kn">by you, against the take</div></div></div>';
+      h += toggle;
+    } else {
+      h = '<div class="hero"><span class="eyebrow">Studio Zephyrus · frontmatter</span>' +
+        '<h1>' + ROOTS.length + ' decisions and ' + FACTS.length + ' facts</h1>' +
+        '<p>That is what is yours. The other ' + (Q.length - FACTS.length) + ' cards are taken on the evidence already ' +
+        'on them, each with its reason, and any one can be overruled. A taken card re-opens by itself when an ' +
+        'answer it assumed changes, so nothing stays quietly settled on a premise you have moved. ' +
+        (MLIST.length ? 'The ' + MLIST.length + ' critical product and business calls are numbered on every screen. ' : '') +
+        'Answers stay in this browser. ' +
+        '<a class="gallerylink" href="mockups.html" target="_blank" rel="noopener">See the screen iterations</a></p></div>';
+      h += '<div class="kpis">' +
+        '<div class="kpi acc"><div class="kn">Yours, still open</div><div class="kv">' + yours + '</div>' +
+          '<div class="kn">' + ro.length + ' decision' + (ro.length === 1 ? '' : 's') + ', ' + factsOpen.length + ' fact' + (factsOpen.length === 1 ? '' : 's') +
+          (reopened.length ? ', ' + reopened.length + ' re-opened' : '') + '</div></div>' +
+        '<div class="kpi"><div class="kn">Taken</div><div class="kv">' + taken + '</div>' +
+          '<div class="kn">on the evidence, overrulable</div></div>' +
+        '<div class="kpi' + (over ? ' crit' : '') + '"><div class="kn">Overruled</div><div class="kv">' + over + '</div>' +
+          '<div class="kn">by you, against the take</div></div>' +
+        '<div class="kpi"><div class="kn">Evidence</div><div class="kv">' + ev + '</div>' +
+          '<div class="kn">exhibits behind them</div></div></div>';
+      h += toggle;
+    }
     if (MLIST.length) {
       /* The meeting set, numbered. A row per question: its number, its id, the question,
          the answer it currently carries, and whether that answer is the founders' or a
@@ -714,7 +780,7 @@
           '</div>';
       });
     }
-    if (FACTS.length) {
+    if (FACTS.length && !fo) {
       h += '<h2 class="sech">' + esc(FINAL.facts.title) + '</h2><p class="secn">' + esc(FINAL.facts.note) + '</p><div class="qlist">' +
         FACTS.map(function (id) {
           var q = QBY[id]; if (!q) return '';
@@ -736,7 +802,7 @@
             '<span class="qc">' + esc(q.cat) + '</span></button>';
         }).join('') + '</div>';
     }
-    if (tagged.length) {
+    if (tagged.length && !fo) {
       /* Each card is tagged with the point at which its answer is needed. With the takes in
          place this reads as a build sequence rather than a backlog: what each stage assumes
          is settled, and whether anything in it has re-opened. */
@@ -752,7 +818,7 @@
           '<div class="cbar"><i style="width:' + (done / qs.length) * 100 + '%"></i></div></button>';
       }).join('') + '</div>';
     }
-    if (CHORES.length) {
+    if (CHORES.length && !fo) {
       h += '<h2 class="sech">' + CHORES.length + ' chores, not decisions</h2>' +
         '<p class="secn">Each of these has one sensible answer and somebody just has to do it. ' +
         'They are here so they are not forgotten, and out of the count so they do not look ' +
@@ -764,15 +830,17 @@
           (rec ? '<span class="chr">' + esc(rec.label) + '</span>' : '') + '</li>';
       }).join('') + '</ul>';
     }
-    h += '<h2 class="sech">By area</h2><p class="secn">Ordered the way the plan reads, not the way they were found.</p>';
-    h += '<div class="grid">' + groups.map(function (g) {
-      var ga = answered(g.qs), gc = crit(g.qs), pct = g.qs.length ? (ga / g.qs.length) * 100 : 0;
-      return '<button class="cat" data-cat="' + esc(g.cat) + '">' +
-        '<div class="ct">' + esc(g.cat) + '</div>' +
-        '<div class="cs"><span>' + ga + ' of ' + g.qs.length + '</span>' +
-        (gc ? '<span class="cc">' + gc + ' critical</span>' : '') + '</div>' +
-        '<div class="cbar"><i style="width:' + pct + '%"></i></div></button>';
-    }).join('') + '</div>';
+    if (!fo) {
+      h += '<h2 class="sech">By area</h2><p class="secn">Ordered the way the plan reads, not the way they were found.</p>';
+      h += '<div class="grid">' + groups.map(function (g) {
+        var ga = answered(g.qs), gc = crit(g.qs), pct = g.qs.length ? (ga / g.qs.length) * 100 : 0;
+        return '<button class="cat" data-cat="' + esc(g.cat) + '">' +
+          '<div class="ct">' + esc(g.cat) + '</div>' +
+          '<div class="cs"><span>' + ga + ' of ' + g.qs.length + '</span>' +
+          (gc ? '<span class="cc">' + gc + ' critical</span>' : '') + '</div>' +
+          '<div class="cbar"><i style="width:' + pct + '%"></i></div></button>';
+      }).join('') + '</div>';
+    }
     /* Start here: the earliest stage that still has open cards, critical first. Untagged sets keep
        the old list of critical open cards. */
     var stage = null, openCrit;
@@ -784,7 +852,7 @@
     } else {
       openCrit = Q.filter(function (q) { return q.weight === 'critical' && isOpen(q.id); }).slice(0, 10);
     }
-    if (openCrit.length) {
+    if (openCrit.length && !fo) {
       h += stage
         ? '<h2 class="sech">Open cards: ' + esc(WHEN[stage].charAt(0).toLowerCase() + WHEN[stage].slice(1)) +
           '</h2><p class="secn">Facts and re-opened cards, critical first.</p><div class="qlist">'
@@ -803,7 +871,7 @@
       '<div class="rrow"><span>Next / previous</span><b class="mono">j k</b></div>' +
       '<div class="rrow"><span>Choose an option</span><b class="mono">a–d</b></div>' +
       '<div class="rrow"><span>Search</span><b class="mono">/</b></div></div>';
-    $('#abarPos').innerHTML = '<b>' + yours + '</b>yours open';
+    $('#abarPos').innerHTML = fo ? '<b>' + meetAnswered() + ' / ' + MLIST.length + '</b>answered by you' : '<b>' + yours + '</b>yours open';
   }
 
   /* ── one area: every question in it, with its state ──────────────────────
@@ -1103,6 +1171,13 @@
       var g = Q.filter(function (x) { return x.cat === view.cat; });
       here = '<span class="pcat">' + esc(view.cat) + ' ' + answered(g) + '/' + g.length + '</span>';
     }
+    if (focus()) {
+      var md_ = meetAnswered();
+      $('#prog').style.width = (md_ / MLIST.length) * 100 + '%';
+      $('#progCrit').style.width = (rootsOpen().length / MLIST.length) * 100 + '%';
+      $('#progtxt').innerHTML = '<b>' + md_ + '</b> / ' + MLIST.length + ' answered by you';
+      return;
+    }
     $('#progtxt').innerHTML = here + '<b>' + y + '</b> yours open · ' + a + ' / ' + Q.length + ' settled' +
       (c ? ' · <b style="color:var(--crit)">' + c + '</b> critical' : '');
   }
@@ -1141,6 +1216,7 @@
     if (act === 'expjson') { download('frontmatter-decisions.json', JSON.stringify(state, null, 2), 'application/json'); return; }
     if (act === 'impjson') { restoreAnswers(); return; }
     if (act === 'toggletaken') { state.showTaken = !state.showTaken; save(); navShape = null; paintNav(); return; }
+    if (act === 'toggleall') { state.showAll = !state.showAll; save(); navShape = null; go({}); toast(state.showAll ? 'Showing all ' + Q.length : 'Showing the ' + MLIST.length); return; }
     if (t.id === 'mdgo') { doImport(); return; }
     if (t.id === 'mdsample') { $('#mdin').value = $('#mdin').placeholder; doImport(); return; }
     if (t.id === 'abarPrev' || t.id === 'abarNext') { step(t.id === 'abarNext' ? 1 : -1); return; }
@@ -1181,9 +1257,15 @@
   });
 
   function step(d) {
-    var i = Q.findIndex(function (x) { return x.id === view.id; });
-    if (i < 0) { if (Q.length) go({ mode: 'q', id: Q[0].id }); return; }
-    var n = Q[i + d]; if (n) go({ mode: 'q', id: n.id });
+    var V = VIS(), i = V.findIndex(function (x) { return x.id === view.id; });
+    if (i < 0) {
+      /* Off the visible list: page through everything from here, or start at the top. */
+      var j = Q.findIndex(function (x) { return x.id === view.id; });
+      if (j < 0) { if (V.length) go({ mode: 'q', id: V[0].id }); return; }
+      var m = Q[j + d]; if (m) go({ mode: 'q', id: m.id });
+      return;
+    }
+    var n = V[i + d]; if (n) go({ mode: 'q', id: n.id });
   }
   document.addEventListener('keydown', function (e) {
     if (/^(INPUT|TEXTAREA)$/.test(e.target.tagName) || e.metaKey || e.ctrlKey) return;

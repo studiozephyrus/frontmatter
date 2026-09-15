@@ -2,7 +2,7 @@
  "note": "The compact set, written 2026-09-15. Three decisions only the founders can take, five facts only they know, and every other card taken on its own recommendation with the reason on the card. A taken card re-opens when an answer it assumed changes; deps lists what each one assumes, as [card or decision, the answer assumed].",
  "decisions": [
   {
-   "id": "D1",
+   "id": "K1",
    "title": "What it is",
    "q": "What is frontmatter, in one sentence?",
    "options": [
@@ -57,7 +57,7 @@
    ]
   },
   {
-   "id": "D2",
+   "id": "K2",
    "title": "Which bytes we hold",
    "q": "Which document bytes do we ever hold on our servers, and from which phase?",
    "options": [
@@ -114,7 +114,7 @@
    ]
   },
   {
-   "id": "D3",
+   "id": "K3",
    "title": "The name",
    "q": "Do we keep the word frontmatter, qualify it, coin a name, or make MDMAX the brand?",
    "options": [
@@ -171,7 +171,7 @@
   "title": "The 23 for the meeting",
   "note": "The critical product and business calls, numbered on every screen. Three are open decisions, three are facts, the rest are taken and wait for you to confirm or overrule.",
   "cards": [
-   "D1",
+   "K1",
    "MK4",
    "F35",
    "P26",
@@ -182,7 +182,7 @@
    "FF8",
    "AC20",
    "FL21",
-   "D2",
+   "K2",
    "F36",
    "F19",
    "L6",
@@ -193,19 +193,19 @@
    "B1",
    "B2",
    "G15",
-   "D3"
+   "K3"
   ]
  },
  "deps": {
   "P1": [
    [
-    "D1",
+    "K1",
     "b"
    ]
   ],
   "P2": [
    [
-    "D1",
+    "K1",
     "b"
    ],
    [
@@ -215,19 +215,19 @@
   ],
   "MK4": [
    [
-    "D1",
+    "K1",
     "b"
    ]
   ],
   "F35": [
    [
-    "D1",
+    "K1",
     "b"
    ]
   ],
   "F26": [
    [
-    "D1",
+    "K1",
     "b"
    ],
    [
@@ -237,85 +237,85 @@
   ],
   "F13": [
    [
-    "D1",
+    "K1",
     "b"
    ]
   ],
   "E21": [
    [
-    "D1",
+    "K1",
     "b"
    ]
   ],
   "P26": [
    [
-    "D1",
+    "K1",
     "b"
    ]
   ],
   "F39": [
    [
-    "D1",
+    "K1",
     "b"
    ]
   ],
   "FL21": [
    [
-    "D1",
+    "K1",
     "b"
    ]
   ],
   "FL12": [
    [
-    "D1",
+    "K1",
     "b"
    ]
   ],
   "F27": [
    [
-    "D1",
+    "K1",
     "b"
    ]
   ],
   "P11": [
    [
-    "D1",
+    "K1",
     "b"
    ]
   ],
   "P24": [
    [
-    "D1",
+    "K1",
     "b"
    ]
   ],
   "F34": [
    [
-    "D1",
+    "K1",
     "b"
    ]
   ],
   "PR24": [
    [
-    "D1",
+    "K1",
     "b"
    ]
   ],
   "P25": [
    [
-    "D1",
+    "K1",
     "b"
    ]
   ],
   "MK31": [
    [
-    "D1",
+    "K1",
     "b"
    ]
   ],
   "MK16": [
    [
-    "D1",
+    "K1",
     "b"
    ],
    [
@@ -325,7 +325,7 @@
   ],
   "MK25": [
    [
-    "D1",
+    "K1",
     "b"
    ],
    [
@@ -335,7 +335,7 @@
   ],
   "F1": [
    [
-    "D1",
+    "K1",
     "b"
    ],
    [
@@ -345,13 +345,13 @@
   ],
   "F33": [
    [
-    "D1",
+    "K1",
     "b"
    ]
   ],
   "F3": [
    [
-    "D1",
+    "K1",
     "b"
    ],
    [
@@ -361,13 +361,13 @@
   ],
   "L1": [
    [
-    "D2",
+    "K2",
     "b"
    ]
   ],
   "AC1": [
    [
-    "D2",
+    "K2",
     "b"
    ],
    [
@@ -377,7 +377,7 @@
   ],
   "AC3": [
    [
-    "D2",
+    "K2",
     "b"
    ],
    [
@@ -387,7 +387,7 @@
   ],
   "AC14": [
    [
-    "D2",
+    "K2",
     "b"
    ],
    [
@@ -397,13 +397,13 @@
   ],
   "D13": [
    [
-    "D2",
+    "K2",
     "b"
    ]
   ],
   "F25": [
    [
-    "D2",
+    "K2",
     "b"
    ],
    [
@@ -413,13 +413,13 @@
   ],
   "AC13": [
    [
-    "D2",
+    "K2",
     "b"
    ]
   ],
   "F10": [
    [
-    "D2",
+    "K2",
     "b"
    ],
    [
@@ -433,13 +433,13 @@
   ],
   "F36": [
    [
-    "D2",
+    "K2",
     "b"
    ]
   ],
   "L6": [
    [
-    "D2",
+    "K2",
     "b"
    ],
    [
@@ -449,7 +449,7 @@
   ],
   "G12": [
    [
-    "D2",
+    "K2",
     "b"
    ],
    [
@@ -463,7 +463,7 @@
   ],
   "PR2": [
    [
-    "D2",
+    "K2",
     "b"
    ],
    [
@@ -473,7 +473,7 @@
   ],
   "PR21": [
    [
-    "D2",
+    "K2",
     "b"
    ],
    [
@@ -487,19 +487,19 @@
   ],
   "AC22": [
    [
-    "D2",
+    "K2",
     "b"
    ]
   ],
   "AC21": [
    [
-    "D2",
+    "K2",
     "b"
    ]
   ],
   "L4": [
    [
-    "D2",
+    "K2",
     "b"
    ],
    [
@@ -509,7 +509,7 @@
   ],
   "L7": [
    [
-    "D2",
+    "K2",
     "b"
    ],
    [
@@ -523,7 +523,7 @@
   ],
   "L12": [
    [
-    "D2",
+    "K2",
     "b"
    ],
    [
@@ -533,19 +533,19 @@
   ],
   "L14": [
    [
-    "D2",
+    "K2",
     "b"
    ]
   ],
   "L16": [
    [
-    "D2",
+    "K2",
     "b"
    ]
   ],
   "L17": [
    [
-    "D2",
+    "K2",
     "b"
    ],
    [
@@ -555,7 +555,7 @@
   ],
   "B14": [
    [
-    "D2",
+    "K2",
     "b"
    ],
    [
@@ -569,13 +569,13 @@
   ],
   "AC20": [
    [
-    "D2",
+    "K2",
     "b"
    ]
   ],
   "PL12": [
    [
-    "D2",
+    "K2",
     "b"
    ],
    [
@@ -585,7 +585,7 @@
   ],
   "F19": [
    [
-    "D2",
+    "K2",
     "b"
    ],
    [
@@ -599,7 +599,7 @@
   ],
   "N1": [
    [
-    "D3",
+    "K3",
     "c"
    ],
    [
@@ -609,7 +609,7 @@
   ],
   "N2": [
    [
-    "D3",
+    "K3",
     "c"
    ],
    [
@@ -619,7 +619,7 @@
   ],
   "N3": [
    [
-    "D3",
+    "K3",
     "c"
    ],
    [
@@ -629,43 +629,43 @@
   ],
   "N4": [
    [
-    "D3",
+    "K3",
     "c"
    ]
   ],
   "N5": [
    [
-    "D3",
+    "K3",
     "c"
    ]
   ],
   "N6": [
    [
-    "D3",
+    "K3",
     "c"
    ]
   ],
   "N9": [
    [
-    "D3",
+    "K3",
     "c"
    ]
   ],
   "N11": [
    [
-    "D3",
+    "K3",
     "c"
    ]
   ],
   "FF5": [
    [
-    "D3",
+    "K3",
     "c"
    ]
   ],
   "FF11": [
    [
-    "D3",
+    "K3",
     "c"
    ]
   ],
