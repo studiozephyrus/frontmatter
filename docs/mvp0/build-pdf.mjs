@@ -70,6 +70,10 @@ const render = (md) => {
   // Keep a screen block (heading + shot + the note under it) on one page.
   h = h.replace(/<h3>(S\d\d\.[\s\S]*?)(?=<h3>|$)/g, (m) => `<div class="sblock">${m}</div>`)
   // Wrap tables so a wide one can scroll/shrink instead of blowing the page box.
+  h = h.replace(/<(ol|ul)>[\s\S]*?<\/\1>/g, (lst) => {
+    const items = (lst.match(/<li>/g) || []).length
+    return items > 8 ? lst.replace(/^<(ol|ul)>/, (m, tag) => `<${tag} class="long">`) : lst
+  })
   h = h.replace(/<table>[\s\S]*?<\/table>/g, (tbl) => {
     const rows = (tbl.match(/<tr>/g) || []).length
     return `<div class="tw${rows > 14 ? ' tall' : ''}">${tbl}</div>`
@@ -160,7 +164,7 @@ figcaption{font:400 7.4pt/1.4 var(--mono);color:var(--ink3);margin-top:1.4mm}
 <h1>${coverTitle || h1}</h1>
 <p class="lede">${coverLede || ''}</p>
 <div class="intro">${intro}</div></div>
-<div class="cmeta"><div><b>${chunks.length}</b>sections</div><div><b>${(words / 1000).toFixed(1)}k</b>words</div><div><b>22</b>screen designs</div><div><b>v3</b>16 Sep 2026</div></div></div>
+<div class="cmeta"><div><b>${chunks.length}</b>sections</div><div><b>${(words / 1000).toFixed(1)}k</b>words</div><div><b>22</b>screens</div><div><b>print</b>16 Sep 2026</div></div></div>
 
 <section class="toc"><h2>Contents</h2>${toc}</section>${body}</body></html>`
 
