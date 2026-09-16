@@ -12,7 +12,7 @@ const files = fs.readdirSync(HERE).filter(f => /^s\d\d-.*\.html$/.test(f) && (!o
 
 function shoot(html) {
   const png = path.join(HERE, html.replace(/\.html$/, '.png'));
-  const mobile = /mobile/.test(html);
+  const mobile = /-phone\.html$/.test(html);
   const [w, h] = mobile ? [390, 844] : [1440, 900];
   return new Promise((res, rej) => {
     fs.rmSync(png, { force: true });

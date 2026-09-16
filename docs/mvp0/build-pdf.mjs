@@ -17,7 +17,7 @@ import remarkGfm from 'remark-gfm'
 import remarkRehype from 'remark-rehype'
 import rehypeStringify from 'rehype-stringify'
 
-const [input, outBase, coverTitle, coverLede] = process.argv.slice(2)
+const [input, outBase, coverTitle, coverLede, kicker] = process.argv.slice(2)
 if (!input || !outBase) {
   console.error('usage: node docs/mvp0/build-pdf.mjs <input.md> <output-basename> ["title"] ["lede"]')
   process.exit(2)
@@ -98,6 +98,8 @@ chunks.forEach((c, i) => {
 })
 
 const words = src.split(/\s+/).filter(Boolean).length
+const screensCount = (src.match(/^### S\d\d\./gm) || []).length
+const printDate = new Intl.DateTimeFormat('en-GB', { timeZone: 'Asia/Kolkata', day: 'numeric', month: 'short', year: 'numeric' }).format(new Date())
 const html = `<!doctype html><html lang="en"><head><meta charset="utf-8"><title>${h1}</title><style>
 ${FONTCSS}
 @page{size:A4;margin:15mm 15mm 14mm}
@@ -152,6 +154,14 @@ figure{margin:2.5mm 0 3mm;break-inside:avoid}
 figure img{display:block;max-width:137mm;max-height:82mm;width:auto;height:auto;border:.4pt solid var(--hair);border-radius:1.2mm}
 figcaption{font:400 7.4pt/1.4 var(--mono);color:var(--ink3);margin-top:1.4mm}
 .shot{break-inside:avoid}
+.pair{display:flex;gap:3mm;align-items:flex-start;margin:2mm 0 2.4mm;break-inside:avoid}
+.pair img{display:block;border:.4pt solid var(--hair);border-radius:1.2mm}
+.pair img:first-child{width:132mm}
+.pair img:last-child{width:34mm}
+.pair.solo img:first-child{width:132mm}
+.onit{margin:0 0 1.5mm;font-size:8.8pt}
+.onit li{margin:0 0 .7mm}
+.why{font-size:8.6pt;color:var(--ink2);margin:0 0 3mm}
 .sblock{break-inside:avoid;margin:0 0 1mm}
 .two{display:grid;grid-template-columns:1fr 1fr;gap:4mm}
 .note{border:.4pt solid var(--hair);border-left:1.2pt solid var(--blue);background:var(--bg2);padding:2.5mm 3.5mm;margin:3.5mm 0;font-size:9pt}
@@ -160,11 +170,11 @@ figcaption{font:400 7.4pt/1.4 var(--mono);color:var(--ink3);margin-top:1.4mm}
 .kv b{display:block;font:700 13pt/1.1 var(--disp);color:var(--blue)}
 .kv span{font-size:8pt;color:var(--ink3)}
 </style></head><body>
-<div class="cover"><div class="ctop"><p class="k">Studio Zephyrus · frontmatter · MVP 0</p>
+<div class="cover"><div class="ctop"><p class="k">${kicker || 'Studio Zephyrus · frontmatter · MVP 0'}</p>
 <h1>${coverTitle || h1}</h1>
 <p class="lede">${coverLede || ''}</p>
 <div class="intro">${intro}</div></div>
-<div class="cmeta"><div><b>${chunks.length}</b>sections</div><div><b>${(words / 1000).toFixed(1)}k</b>words</div><div><b>22</b>screens</div><div><b>print</b>16 Sep 2026</div></div></div>
+<div class="cmeta"><div><b>${chunks.length}</b>sections</div><div><b>${(words / 1000).toFixed(1)}k</b>words</div><div><b>${screensCount}</b>screens</div><div><b>print</b>${printDate}</div></div></div>
 
 <section class="toc"><h2>Contents</h2>${toc}</section>${body}</body></html>`
 
