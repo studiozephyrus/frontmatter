@@ -891,7 +891,7 @@ phone({ mode: 'Live', title: 'AGENTS.md', bottom: 'more_horiz', body: `${pmodeba
 // ---------------------------------------------------------------------------
 // S12 ideas: the list on the left, the idea, the depth chooser
 const IDEAS = [
-  { n: 'Zephyrus booking', e: 'Blueprint v1 · 11 files', on: 1 }, { n: 'Salon loyalty stamps', e: 'Low · 9 of 12 decided' }, { n: 'Clinic reminders over WhatsApp', e: 'Draft' },
+  { n: 'Zephyrus booking', e: 'Blueprint v1 · 14 files', on: 1 }, { n: 'Salon loyalty stamps', e: 'Low · 9 of 12 decided' }, { n: 'Clinic reminders over WhatsApp', e: 'Draft' },
 ];
 function ideasTree() {
   return `<aside class="side ideas"><div class="sidehead">${ic('lightbulb', 16)} Ideas<span class="sp"></span><span class="pill">${ic('add', 14)} new</span></div>
@@ -967,7 +967,7 @@ ${ideasTree()}
 phone({ title: 'Ideas · Decide', bottom: 'auto_awesome', body: `<div class="modebar"><span class="steps"><b>2 Decide</b> · 4 of 24</span><span class="right"><span class="pill pro">${ic('insights', 13)} Medium</span></span></div><div class="pdoc" style="padding:12px 12px 0"><div style="font-size:13px">${DCARD.replace('<div class="dcard">', '<div class="dcard" style="padding:12px 12px">').replace('style="display:flex;gap:8px;margin-top:14px;align-items:center"', 'style="display:flex;flex-direction:column;gap:6px;margin-top:12px"')}</div></div>` }));
 
 // S15 blueprint ready
-const KITLIST = [['SKILL.md', 0, 'Loaded first'], ['AGENTS.md', 0, 'Every agent reads it'], ['00-BRIEF.md', 0], ['01-PRODUCT.md', 0], ['02-DATA-AND-API.md', 0], ['03-ARCHITECTURE.md', 0], ['04-SETUP.md', 0], ['specs/', 1], ['booking.md', 2], ['payments.md', 2], ['DECISIONS.md', 0, '12 decisions'], ['MAP.md', 0], ['MANIFEST.json', 0], ['SHA256SUMS', 0]];
+const KITLIST = [['SKILL.md', 0, 'Loaded first'], ['AGENTS.md', 0, 'Every agent reads it'], ['00-BRIEF.md', 0], ['01-PRODUCT.md', 0], ['02-DATA-AND-API.md', 0], ['03-ARCHITECTURE.md', 0], ['04-SETUP.md', 0], ['specs/', 1], ['booking.md', 2], ['payments.md', 2], ['DECISIONS.md', 0, '12 decisions'], ['MAP.md', 0], ['graph.json', 0, 'For the agent'], ['MANIFEST.json', 0], ['SHA256SUMS', 0]];
 const KIT_RAIL = `<div class="rsec"><div class="rh">${ic('rocket_launch', 14)} Blueprint<span class="sp"></span><span class="pill">v1</span></div>
 <div class="kit">${KITLIST.map(f => `<div class="file${f[1] === 2 ? ' d2' : ''}">${ic(f[1] === 1 ? 'folder' : 'description', 14)}<span class="sp">${f[0]}</span>${f[2] ? `<em class="hint">${f[2]}</em>` : ic('check', 14, 'ok')}</div>`).join('')}</div>
 <div style="font-size:12px;color:var(--fg-muted);margin-top:8px">A skill folder, so any agent that follows the standard can install it. SKILL.md loads first; the rest only when the agent needs them.</div>
