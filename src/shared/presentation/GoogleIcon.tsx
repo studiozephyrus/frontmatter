@@ -55,9 +55,7 @@ export function GoogleIcon({
     ...style,
   };
   if (d === undefined) {
-    if (process.env.NODE_ENV !== "production") {
-      console.warn(`GoogleIcon: no path for "${name}"; add it to material-symbol-paths.ts`);
-    }
+    console.warn(`GoogleIcon: no path for "${name}"; add it to material-symbol-paths.ts`);
     return <span aria-hidden="true" className={className} style={composed} />;
   }
   return (
