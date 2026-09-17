@@ -460,7 +460,7 @@ No advantage here is free. The right column is the price of the left one, and it
 Advantage | Why it holds against the field | What it costs us
 The file stays yours | The paid half of the market keeps the document in its own store, so ownership there is a promise; here it is the storage format | We cannot charge for lock-in, so we charge for quantity instead, section 30
 Both halves on one account | Local-first peers have no web; web peers do not own the file. Nothing in the sweep does both | Sync is real engineering, phases E and F, and it is where the calendar goes
-Every feature free, quantity capped | Not one of the forty pricing pages examined caps documents at five; the floor is fifty | Free users cost real model money, and section 32 shows the loss below about five percent conversion
+Every editing feature free, quantity capped | Not one of the forty pricing pages examined caps documents at five; the floor is fifty | Free users cost real model money, and section 32 shows the loss below about five percent conversion
 Doc mode on a real markdown file | Google Docs converts markdown; nobody edits both ways on one file | Twenty-nine of sixty-four Google Docs features can never work, and section 14 lists them rather than hiding them
 Refusal over guessing | Every competitor's AI rewrites the whole document | The product feels less magical in a demo, and feels trustworthy only after the second week
 A blueprint at a URL with a hash | CodeGuide is closest, is not markdown-native, and does not state whether its kit sits at a plain URL | The twenty hand-made kits of phase 0 gate the whole feature, which costs founder weeks before any code

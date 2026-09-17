@@ -135,7 +135,10 @@ chunks.forEach((c, i) => {
   if (c.part) toc += `<div class="tpart">${c.part}</div>`
   toc += `<div class="tr"><span class="tn">${String(label).padStart(2, '0')}</span><a href="#sec-${label}">${title}</a></div>`
   const part = c.part ? `<div class="part">${c.part}</div>` : ''
-  body += `<section class="chap${c.part ? ' newpage' : ''}" id="sec-${label}">${part}<div class="chead"><span class="cn">§${label}</span><h2>${title}</h2></div>${render(c.body.join('\n'))}</section>`
+  // The part label, its rule and the section heading travel as one unbreakable block.
+  // As separate siblings the label could stay at the foot of a page while the heading
+  // moved on, which a printed screens sheet showed on its third page.
+  body += `<section class="chap${c.part ? ' newpage' : ''}" id="sec-${label}"><div class="chop${c.part ? ' parted' : ''}">${part}<div class="chead"><span class="cn">§${label}</span><h2>${title}</h2></div></div>${render(c.body.join('\n'))}</section>`
 })
 
 const words = src.split(/\s+/).filter(Boolean).length
@@ -188,8 +191,10 @@ hr{border:0;border-top:.4pt solid var(--hair);margin:6mm 0}
 .tn{font:400 8pt var(--mono);color:var(--blue);min-width:8mm}
 .tr a{flex:1;color:var(--ink);font-size:9.5pt}
 .chap{break-before:auto;margin-top:6mm}
-.chap.newpage{break-before:auto;margin-top:7mm;border-top:1.2pt solid var(--ink);padding-top:3.5mm}
-.part{font:700 9pt/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin:0 0 3mm}
+.chap.newpage{break-before:auto;margin-top:7mm}
+.chop{break-inside:avoid;break-after:avoid}
+.chop.parted{border-top:1.2pt solid var(--ink);padding-top:3.5mm}
+.part{font:700 9pt/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin:0 0 3mm;break-after:avoid}
 .tpart{font:700 8pt/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--ink3);margin:3.5mm 0 1mm}
 .chead{display:flex;align-items:baseline;gap:3mm;border-bottom:1.2pt solid var(--blue);padding-bottom:2mm;margin-bottom:4mm;break-after:avoid}
 .cn{font:700 15pt/1 var(--disp);color:var(--blue)}
