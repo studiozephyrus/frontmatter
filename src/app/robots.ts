@@ -16,7 +16,10 @@ export default function robots(): MetadataRoute.Robots {
       {
         userAgent: "*",
         allow: ["/", "/login"],
-        disallow: ["/api/", "/_next/", "/(vault)"],
+        // `/p/` is the legacy published-page path; the plan says published
+        // pages are not indexed (plan v5, sharing). The root slug stays as it
+        // was until the founders decide the indexing question (A10).
+        disallow: ["/api/", "/_next/", "/(vault)", "/p/"],
       },
     ],
     sitemap: `${SITE}/sitemap.xml`,

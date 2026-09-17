@@ -53,7 +53,7 @@ const config = [
   // They are not part of the Next.js bundle, so the browser-strict
   // `no-undef` defaults don't apply.
   {
-    files: ["specs/**/*.mjs", "scripts/**/*.{mjs,js}", "docs/**/build/**/*.{mjs,js}"],
+    files: ["specs/**/*.mjs", "scripts/**/*.{mjs,js}", "docs/**/build/**/*.{mjs,js}", "docs/mvp0/**/*.mjs"],
     languageOptions: {
       globals: {
           // page.evaluate() callbacks run in a browser context

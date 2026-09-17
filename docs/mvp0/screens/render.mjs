@@ -27,12 +27,12 @@ function shoot(html) {
         const sz = fs.statSync(png).size;
         const fd = fs.openSync(png, 'r'); const b = Buffer.alloc(12); fs.readSync(fd, b, 0, 12, sz - 12); fs.closeSync(fd);
         if (b.includes(Buffer.from('IEND'))) {
-          clearInterval(iv); try { process.kill(-p.pid, 'SIGKILL'); } catch {}
+          clearInterval(iv); try { process.kill(-p.pid, 'SIGKILL'); } catch { /* already gone */ }
           fs.rmSync(profile, { recursive: true, force: true });
           return res(`${html} -> ${(sz / 1024).toFixed(0)} KB`);
         }
       }
-      if (Date.now() - t0 > 60000) { clearInterval(iv); try { process.kill(-p.pid, 'SIGKILL'); } catch {} rej(new Error(html + ' timeout')); }
+      if (Date.now() - t0 > 60000) { clearInterval(iv); try { process.kill(-p.pid, 'SIGKILL'); } catch { /* already gone */ } rej(new Error(html + ' timeout')); }
     }, 300);
   });
 }

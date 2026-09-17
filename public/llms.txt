@@ -1,0 +1,15 @@
+# frontmatter
+
+> A markdown editor for people whose documents are increasingly written with, and for, AI agents. Web, desktop and phone on one account. The file on disk is the only source of truth; every view is a projection of it.
+
+## Pages
+
+- [Privacy notice](https://frontmatter.in/privacy): what is stored and how to have it deleted (text pending)
+- [Terms of service](https://frontmatter.in/terms): the agreement, the age floor, published pages, the grievance officer (text pending)
+- [Pricing](https://frontmatter.in/pricing): Free and Pro with every cap and price (text pending)
+- [Refunds and cancellation](https://frontmatter.in/refunds): (text pending)
+
+## Notes
+
+- Published pages carry a markdown twin at the same path with a `.md` suffix once publishing ships.
+- Nothing behind the sign-in is reachable without an account.

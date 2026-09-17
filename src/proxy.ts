@@ -64,6 +64,12 @@ export function isPublicPath(pathname: string): boolean {
     // and lets the layout own the auth-state decision.
     pathname === "/" ||
     pathname === "/login" ||
+    // Legal and commercial pages a stranger must be able to read before signing in.
+    // Placeholders until the texts are written (plan v5, the legal section).
+    pathname === "/privacy" ||
+    pathname === "/terms" ||
+    pathname === "/pricing" ||
+    pathname === "/refunds" ||
     // Public shared notes:
     //   • Modern URL: /<slug>   (one segment, reserved-list filtered).
     //   • Legacy URL: /p/<slug> (301 redirected by the handler — kept

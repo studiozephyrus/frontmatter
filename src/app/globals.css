@@ -1,5 +1,7 @@
 @import "tailwindcss";
-@import "material-symbols/rounded.css";
+/* Icons are Material Symbols delivered as inline SVG (src/shared/presentation/GoogleIcon.tsx).
+   The web-font import that lived here was removed on 17 September 2026: the ligature
+   text shows as words when the font fails to load, which the icon rule bans. */
 
 /* Google Sans is wired through `next/font/google` in src/app/layout.tsx
    — that injects the `--font-sans-google` CSS variable on <html>. The
