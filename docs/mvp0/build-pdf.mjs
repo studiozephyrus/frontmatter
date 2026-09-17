@@ -2,7 +2,7 @@
 //
 // Generic version of docs/mdmax/build/build-pdf.mjs: that one concatenates a tree of
 // section files, this one takes ONE markdown file and paginates it by H2. Same type
-// scale, same blue, same Mosvita display face, so the two documents sit together.
+// scale, same blue, and Google Sans as the display face, so the two documents sit together.
 //
 //   node docs/build/build-plan-pdf.mjs <input.md> <output-basename> ["Cover title"] ["Lede"]
 //
@@ -23,13 +23,12 @@ if (!input || !outBase) {
   process.exit(2)
 }
 
-const FONTS = path.join(process.env.HOME, 'Library/Fonts')
-const face = (file, weight) => {
-  const p = path.join(FONTS, file)
-  if (!fs.existsSync(p)) return ''
-  return `@font-face{font-family:Mosvita;font-weight:${weight};font-display:block;src:url(data:font/otf;base64,${fs.readFileSync(p).toString('base64')}) format("opentype")}`
-}
-const FONTCSS = [face('Mosvita-Regular.otf', 400), face('Mosvita-Bold.otf', 700), face('Mosvita-Black.otf', 900)].join('')
+// The display and text face is Google Sans, embedded as base64 in the screens' fonts.css
+// (with Google Sans Code for code), both under the SIL Open Font License; see
+// THIRD-PARTY-NOTICES.md. Mosvita was dropped on 17 September 2026 because no licence for
+// it could be produced (audit finding F070).
+const HERE = path.dirname(new URL(import.meta.url).pathname)
+const FONTCSS = fs.readFileSync(path.join(HERE, 'screens', 'fonts.css'), 'utf8')
 
 const raw = fs.readFileSync(input, 'utf8')
 // Strip YAML frontmatter — it is metadata for the vault, not for the printed page.
@@ -105,10 +104,10 @@ ${FONTCSS}
 @page{size:A4;margin:15mm 15mm 14mm}
 *,*::before,*::after{box-sizing:border-box}
 :root{--blue:#1a5cff;--ink:#111318;--ink2:#4a5160;--ink3:#7b8393;--hair:#e4e7ec;--bg2:#fafbfc;
- --mono:ui-monospace,SFMono-Regular,Menlo,monospace;--sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;--disp:Mosvita,var(--sans)}
+ --mono:"Google Sans Code",ui-monospace,SFMono-Regular,Menlo,monospace;--sans:"Google Sans",-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;--disp:"Google Sans",var(--sans)}
 body{margin:0;color:var(--ink);font:400 9.6pt/1.6 var(--sans);orphans:3;widows:3}
 a{color:var(--blue);text-decoration:none}
-h1{font:900 30pt/1.05 var(--disp);letter-spacing:-.02em;margin:0 0 8mm}
+h1{font:700 30pt/1.05 var(--disp);letter-spacing:-.02em;margin:0 0 8mm}
 h2{font:700 15pt/1.15 var(--disp);margin:0}
 h3{font:700 11.5pt/1.25 var(--sans);margin:4.5mm 0 1.6mm;break-after:avoid}
 .sblock h3{margin-top:2.5mm}
@@ -136,19 +135,19 @@ hr{border:0;border-top:.4pt solid var(--hair);margin:6mm 0}
 .cover .intro{font-size:8.6pt;line-height:1.55;color:var(--ink2);max-width:150mm;margin:7mm 0 0;border-top:.4pt solid var(--hair);padding-top:5mm}
 .cover .intro p{margin:0 0 2mm}
 .cmeta{display:flex;gap:8mm;flex-wrap:wrap;font:400 8pt/1.6 var(--mono);color:var(--ink3);border-top:.4pt solid var(--hair);padding-top:5mm}
-.cmeta b{display:block;font:900 16pt/1 var(--disp);color:var(--blue);margin-bottom:1.5mm}
+.cmeta b{display:block;font:700 16pt/1 var(--disp);color:var(--blue);margin-bottom:1.5mm}
 .toc{break-after:page}
-.toc h2{font:900 18pt/1.1 var(--disp)}
+.toc h2{font:700 18pt/1.1 var(--disp)}
 .toc h2{margin:0 0 6mm}
 .tr{display:flex;align-items:baseline;gap:3mm;padding:1.5mm 0;border-bottom:.4pt solid var(--hair)}
 .tn{font:400 8pt var(--mono);color:var(--blue);min-width:8mm}
 .tr a{flex:1;color:var(--ink);font-size:9.5pt}
 .chap{break-before:auto;margin-top:6mm}
 .chap.newpage{break-before:auto;margin-top:7mm;border-top:1.2pt solid var(--ink);padding-top:3.5mm}
-.part{font:900 9pt/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin:0 0 3mm}
+.part{font:700 9pt/1 var(--mono);letter-spacing:.14em;text-transform:uppercase;color:var(--blue);margin:0 0 3mm}
 .tpart{font:700 8pt/1 var(--mono);letter-spacing:.12em;text-transform:uppercase;color:var(--ink3);margin:3.5mm 0 1mm}
 .chead{display:flex;align-items:baseline;gap:3mm;border-bottom:1.2pt solid var(--blue);padding-bottom:2mm;margin-bottom:4mm;break-after:avoid}
-.cn{font:900 15pt/1 var(--disp);color:var(--blue)}
+.cn{font:700 15pt/1 var(--disp);color:var(--blue)}
 .intro{margin-bottom:5mm;padding-bottom:4mm;border-bottom:.4pt solid var(--hair);font-size:9pt}
 figure{margin:2.5mm 0 3mm;break-inside:avoid}
 figure img{display:block;max-width:137mm;max-height:82mm;width:auto;height:auto;border:.4pt solid var(--hair);border-radius:1.2mm}
