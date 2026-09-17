@@ -1544,7 +1544,7 @@ The routing | Sonnet for everything turns every row negative
 The free caps | 5 edits instead of 10 cuts the free line by a third
 Prompt caching | Not counted anywhere here
 
-**Break-even Pro users against fixed costs alone.** At full use, $54.50 / $0.58 margin = 94. At half use, $54.50 / $1.57 = 35.
+**Break-even Pro users against fixed costs alone**, at the new $29.50. At full use, $29.50 / $0.58 margin = 51. At half use, $29.50 / $1.57 = 19. Revision 5 needed 94 and 35 against $54.50.
 
 **What is not in any of these lines.** The founders' time. At ₹1,500 an hour, 1.2 days a week is about ₹62,000 a month.
 
@@ -1614,15 +1614,15 @@ The image proxy and the delimited data block | revision 3 security | Restored, s
 The dev plan follows approval. Its shape, in fixed-time phases with variable scope `[M]` Shape Up. Question 1 decides the pace and therefore which phases are Later.
 
 Phase | Appetite | What ships
-0. Before code | 2 weeks | The legal floor's first rows; the accounts moved; the public pages written; the pace published every Friday; the `GITHUB_REPO` default fixed; the format specifications drafted; twenty blueprints made by hand for twenty people outside the studio, watched for whether five run the kickoff and two of ten edit a kit again
-A. The door and the home | 3 weeks | Sign-in through Firebase Auth and Auth.js as already shipped, firestore.rules hardened from prototype to product, the local drafts migrated; Home, settings, plan page; the entitlements layer, the usage ledger and the configuration panel of section 30; Firestore and R2 adapters
-B. The editor as shipped, plus Doc mode | 4 weeks | The workspace on the new stack; the two engine defects and the audit's third fixed with red proofs; Doc mode with the 20 and the 15; problems and formatter; the AI box and menu on the free chain with the breaker; the `--ai` token and the code face in globals.css; bring-your-own key if question 10 says so
-C. Ideas | 4 weeks | The ideas tab, Low, the fifteen-file blueprint, the consistency check, the unlisted link, the kickoff prompt with the out-of-band hash, the map; gated on Phase 0's result
-D. Sharing | 3 weeks | People with the matrix, links with expiry, published pages with the `.md` twin, the footer and the grievance route; the change queue; history; live editing on Durable Objects under section 15's rule, or Later if question 8 says so; the Zed rebuttal written
-E. In and out | 3 weeks | Folder upload, Obsidian and Notion import, Google Docs and Word with the 10 MB refusal, the GitHub App, Google Drive sync at a five-minute poll
-F. Everywhere | 3 weeks | Offline in the browser, the desktop app on the new stack built on per-platform CI runners, signed for macOS at 99 USD a year, the phone layouts, quick capture, dark mode
-G. Views and blocks | 3 weeks | Flow, slides, mind map, Excalidraw, Mermaid types, KaTeX, templates, tasks, calendar
-H. Pro | 2 weeks | Razorpay with the mandate rules, Medium and High, the Claude routing of section 14, password links, 90-day history
+0 · Before code | 2 weeks | The legal floor's first rows; the accounts moved; the public pages written; the pace published every Friday; the `GITHUB_REPO` default fixed; the format specifications drafted; twenty blueprints made by hand for twenty people outside the studio, watched for whether five run the kickoff and two of ten edit a kit again
+A · The door and the home | 3 weeks | Sign-in through Firebase Auth and Auth.js as already shipped, firestore.rules hardened from prototype to product, the local drafts migrated; Home, settings, plan page; the entitlements layer, the usage ledger and the configuration panel of section 30; Firestore and R2 adapters
+B · The editor as shipped, plus Doc mode | 4 weeks | The workspace on the new stack; the two engine defects and the audit's third fixed with red proofs; Doc mode with the 20 and the 15; problems and formatter; the AI box and menu on the free chain with the breaker; the `--ai` token and the code face in globals.css; bring-your-own key if question 10 says so
+C · Ideas | 4 weeks | The ideas tab, Low, the fifteen-file blueprint, the consistency check, the unlisted link, the kickoff prompt with the out-of-band hash, the map; gated on Phase 0's result
+D · Sharing | 3 weeks | People with the matrix, links with expiry, published pages with the `.md` twin, the footer and the grievance route; the change queue; history; live editing on Durable Objects under section 15's rule, or Later if question 8 says so; the Zed rebuttal written
+E · In and out | 3 weeks | Folder upload, Obsidian and Notion import, Google Docs and Word with the 10 MB refusal, the GitHub App, Google Drive sync at a five-minute poll
+F · Everywhere | 3 weeks | Offline in the browser, the desktop app on the new stack built on per-platform CI runners, signed for macOS at 99 USD a year, the phone layouts, quick capture, dark mode
+G · Views and blocks | 3 weeks | Flow, slides, mind map, Excalidraw, Mermaid types, KaTeX, templates, tasks, calendar
+H · Pro | 2 weeks | Razorpay with the mandate rules, Medium and High, the Claude routing of section 14, password links, 90-day history
 Later | | Kanban and table-to-chart blocks, the portfolio, the MCP server and API with the agents card, Team, Max, the community, a custom domain, Notion API import, a signed Windows build
 
 **Twenty-seven weeks of appetite at full time**, one more than revision 5. Phase A grew by a week for the configuration panel, and shrank by the Supabase migration it no longer has to do.
@@ -1735,13 +1735,13 @@ Google Docs writers | 5 | Write there and share by link
 **What the panel cannot absorb, and still gates the build.**
 
 Question | Why a setting cannot hold it
-6. Which bytes we hold, and from which phase | It is an architecture, not a value
-5. The one-sentence definition | It decides build order
-1. The pace | It decides which phases are Later
-14. The twenty-kit gate | It is a gate on phase C, not a switch
-11. The desktop's timing | It reorders phases E and F
-7. The name | It changes the domain and every published URL
-13. The accounts that move to the company | It is ownership, not configuration
+6 · Which bytes we hold, and from which phase | It is an architecture, not a value
+5 · The one-sentence definition | It decides build order
+1 · The pace | It decides which phases are Later
+14 · The twenty-kit gate | It is a gate on phase C, not a switch
+11 · The desktop's timing | It reorders phases E and F
+7 · The name | It changes the domain and every published URL
+13 · The accounts that move to the company | It is ownership, not configuration
 
 **The eighteen, in order.** The first sixteen are in `docs/mvp0/DECISIONS-FOR-FOUNDERS-2026-09-17.md`, each with a default this revision is written to.
 

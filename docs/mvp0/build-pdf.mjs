@@ -91,6 +91,14 @@ const gfmTables = (md) => {
       continue
     }
     if (w === 0) inTable = false
+    // A row like "0. Before code | 2 weeks | …" is an ordered-list item to markdown,
+    // which silently ends the table and drops every row after it. Escaping the stop
+    // keeps it a table row and renders identically. Found by a pre-print check after
+    // two whole table bodies vanished from a built PDF.
+    if (inTable && /^\s*\d+[.)]\s/.test(l)) {
+      out.push(l.replace(/^(\s*\d+)([.)])/, '$1\\$2'))
+      continue
+    }
     out.push(l)
   }
   return out.join('\n')

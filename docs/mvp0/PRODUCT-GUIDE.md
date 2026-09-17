@@ -34,6 +34,8 @@ Signal | What it means
 `[L]` | A constraint, with no choice in it
 `[P]` | Follows from another decision
 
+**What stands behind it.** The plan this guide is built from was audited independently on 17 September 2026: 77 findings, every one answered in `verify/2026-09-17/RESPONSE.jsonl`, and the corrections carried into the text here. Section 40 lists what changed.
+
 **What this document does not do.** It does not pretend the plan has been tested.
 
 - No customer has been interviewed.
@@ -121,7 +123,7 @@ Three groups, in the order the plan builds for them `[R]`. The research never in
 
 - The editor treats it as prose.
 - The agent treats it as instructions.
-- Git treats it as bytes, and is the only one of the three that is right.
+- Git treats it as bytes, which is the only one of the three readings the file itself supports.
 
 **What breaks, from the reviews we counted** `[O]`. Across 156 phone-app reviews the complaints ranked:
 
@@ -131,14 +133,14 @@ Sync | 26
 Slow start | 13
 Lost data | 13
 
-Praise went to design at 35 and simplicity at 34, which is the shape of a market where people like the idea and resent the execution.
+Praise went to design at 35 and simplicity at 34, so the complaints are about how these products run rather than what they are for.
 
 **The four failures this product exists to remove** `[Z]` `[R]`.
 
-1. **The rewrite nobody asked for.** An agent is handed a file, and hands back a different file. Nothing marks what changed or why. The change queue of S20 is the answer, and section 4 is the law behind it.
-2. **The file that stops being a file.** The moment a tool stores the document in its own database, the person's ownership becomes a promise instead of a fact. The projection law is the answer.
+1. **The rewrite nobody asked for.** An agent is handed a file, and hands back a different file. Nothing marks what changed or why. S20 puts every change in a queue the owner clears one item at a time, on the law in section 4.
+2. **The file that stops being a file.** The moment a tool stores the document in its own database, the person's ownership becomes a promise instead of a fact. The projection law keeps the bytes on disk the only record.
 3. **The half a person cannot reach.** Local-first tools own the file and have no web. Web tools have the web and own the database. Nobody has both halves for one account.
-4. **The idea that never becomes a brief.** People describe what they want in chat, and the description dies there. Ideas and the blueprint are the answer, and the twenty hand-made kits of phase 0 are the test of whether that is true.
+4. **The idea that never becomes a brief.** People describe what they want in chat, and the description dies there. Ideas turns that description into fifteen files an agent can build from, and the twenty hand-made kits of phase 0 test whether anyone wants it.
 
 **What we are not claiming.** None of the four was measured with a customer. Section 6 lists what the research never did, and the pilot of section 37 exists to close exactly that gap.
 
@@ -163,7 +165,7 @@ Three rules decide every argument about the product. Each one forbids something,
 - Attribution survives in the version record, not in a sidecar the editor has to keep in step.
 - **It forbids** the silent apply, and it replaced the per-span read state of the earlier plan, which failed its own adversarial round on 8 September and which Almanac had already shipped and shut down `[R]`.
 
-**Why three and not ten.** A law a founder cannot recite is a preference. These three settle the arguments that actually recur: where the truth lives, who may change it, and what happens when a change is uncertain.
+**Why three and not ten.** Three is the number a founder can hold in their head during an argument. These three settle the ones that keep recurring: where the truth lives, who may change it, and what happens when a change is uncertain.
 
 ## 5. The journeys
 
@@ -350,7 +352,7 @@ Kiro | "KIRO FREE $0 per month 50 credits"; "PRO $20" | Spec tasks in an IDE | A
 
 - Every one of these shipped the same two things this year: an AI assistant, and a Model Context Protocol server.
 - Bear, Simplenote, Slite, Capacities, Inkdrop, Joplin and Docmost all added MCP between July and September 2026.
-- **So the plumbing is now expected.** It is not a differentiator, and the plan does not treat it as one.
+- **So the plumbing is now expected.** Shipping it earns no credit, and the plan does not count it as an advantage.
 
 ## 8. Where the market splits
 
@@ -375,7 +377,7 @@ Owns the files | Leaves markdown on your disk, charges for sync or nothing | Fre
 
 - Only one product in the sweep rendered a price in rupees at all: Superhuman Docs, at "₹ 983 / month".
 - Notion states "Price in USD".
-- **So ₹299 is not a discount against the field.** It is a different currency conversation, and most of the field is not having it.
+- **So ₹299 is not a discount against the field.** It is a price quoted in a currency most of the field does not use.
 
 ## 9. What nobody has shipped
 
@@ -398,7 +400,7 @@ Five gaps found by opening pages, each with what was actually seen `[M]`.
 - Almanac shipped this exact feature set, including read receipts, raised $45M, and shut down on 31 January 2025 `[R]`.
 - Docmost lists "Read confirmation" as "Coming soon".
 - Slite has a "Doc verification workflow", which verifies the document, not the reader.
-- This is why the plan carries a change queue and not a read sidecar. The graveyard is the evidence.
+- That record is why the plan carries a change queue and not a read sidecar.
 
 **Four. A document kit at a plain URL.** CodeGuide is closest and is not markdown-native.
 
@@ -423,7 +425,7 @@ Written against the evidence in this document, not against ambition `[Z]` `[O]`.
 - The editor already runs. A person can use it today, which most plans at this stage cannot say.
 - Markdown files the person owns, which the entire paid half of the market cannot offer.
 - An engine that refuses rather than guesses, which is testable and therefore provable.
-- Two founders, no investor clock, no burn to outrun. The pace can be honest.
+- Two founders, no investor clock and no burn to outrun, so section 35 can publish the measured pace rather than a promised one.
 - ₹299 in a market that mostly quotes dollars, for a country whose card rails we already know.
 
 **Weaknesses.**
@@ -444,12 +446,12 @@ Written against the evidence in this document, not against ambition `[Z]` `[O]`.
 
 **Threats.**
 
-- Almanac shipped this feature set, raised $45M and shut down. That is the single most important fact in this document.
+- Almanac shipped this feature set, raised $45M and shut down on 31 January 2025. Nothing else on this list is as close a precedent.
 - Bear shipped Lettera on 18 June 2026: a standalone native markdown editor with "Folder as workspace" from an established studio with an existing audience.
 - Zed Delta stakes span-level attribution on CRDTs in public, against our settled position, and the written rebuttal is still owed.
 - Free is the competing price on our half of the market. Conversion to ₹299 is entirely unproven.
 - CodeGuide claims "41,450+ Developers" for the kit flow we plan to enter.
-- Every competitor can add markdown export in a sprint. Nobody can add the projection law in a sprint, which is why sections 3 and 4 matter commercially and not just technically.
+- A competitor can add markdown export in a sprint. Moving where the truth lives is a rebuild, which is what sections 3 and 4 describe, and it is why they are a commercial fact as much as a technical one.
 
 ## 11. Our advantages, and what each one costs
 
@@ -464,7 +466,7 @@ Refusal over guessing | Every competitor's AI rewrites the whole document | The 
 A blueprint at a URL with a hash | CodeGuide is closest, is not markdown-native, and does not state whether its kit sits at a plain URL | The twenty hand-made kits of phase 0 gate the whole feature, which costs founder weeks before any code
 India-first pricing and rails | ₹15,000 per mandate and one payment attempt on Indian cards are constraints most competitors never model | The whole billing surface is built for a market the field prices in dollars
 
-**The one advantage we do not claim** `[L]`. Being first. Almanac was first at review, and Almanac is gone. Section 10 keeps that at the top of the threat list for exactly this reason.
+**The one advantage we do not claim** `[L]`: being first. Almanac reached review before anyone and shut down in January 2025, so arriving first has not protected anyone in this category. Section 10 keeps it at the top of the threat list.
 
 # Part three. The product in full
 
@@ -1794,7 +1796,7 @@ The routing | Sonnet for everything turns every row negative
 The free caps | 5 edits instead of 10 cuts the free line by a third
 Prompt caching | Not counted anywhere here
 
-**Break-even Pro users against fixed costs alone.** At full use, $54.50 / $0.58 margin = 94. At half use, $54.50 / $1.57 = 35.
+**Break-even Pro users against fixed costs alone**, at the new $29.50. At full use, $29.50 / $0.58 margin = 51. At half use, $29.50 / $1.57 = 19. Revision 5 needed 94 and 35 against $54.50.
 
 **What is not in any of these lines.** The founders' time. At ₹1,500 an hour, 1.2 days a week is about ₹62,000 a month.
 
@@ -1848,15 +1850,15 @@ Intellectual property between the founders | unverified | a written agreement | 
 The dev plan follows approval. Its shape, in fixed-time phases with variable scope `[M]` Shape Up. Question 1 decides the pace and therefore which phases are Later.
 
 Phase | Appetite | What ships
-0. Before code | 2 weeks | The legal floor's first rows; the accounts moved; the public pages written; the pace published every Friday; the `GITHUB_REPO` default fixed; the format specifications drafted; twenty blueprints made by hand for twenty people outside the studio, watched for whether five run the kickoff and two of ten edit a kit again
-A. The door and the home | 3 weeks | Sign-in through Firebase Auth and Auth.js as already shipped, firestore.rules hardened from prototype to product, the local drafts migrated; Home, settings, plan page; the entitlements layer, the usage ledger and the configuration panel of section 31; Firestore and R2 adapters
-B. The editor as shipped, plus Doc mode | 4 weeks | The workspace on the new stack; the two engine defects and the audit's third fixed with red proofs; Doc mode with the 20 and the 15; problems and formatter; the AI box and menu on the free chain with the breaker; the `--ai` token and the code face in globals.css; bring-your-own key if question 10 says so
-C. Ideas | 4 weeks | The ideas tab, Low, the fifteen-file blueprint, the consistency check, the unlisted link, the kickoff prompt with the out-of-band hash, the map; gated on Phase 0's result
-D. Sharing | 3 weeks | People with the matrix, links with expiry, published pages with the `.md` twin, the footer and the grievance route; the change queue; history; live editing on Durable Objects under section 25's rule, or Later if question 8 says so; the Zed rebuttal written
-E. In and out | 3 weeks | Folder upload, Obsidian and Notion import, Google Docs and Word with the 10 MB refusal, the GitHub App, Google Drive sync at a five-minute poll
-F. Everywhere | 3 weeks | Offline in the browser, the desktop app on the new stack built on per-platform CI runners, signed for macOS at 99 USD a year, the phone layouts, quick capture, dark mode
-G. Views and blocks | 3 weeks | Flow, slides, mind map, Excalidraw, Mermaid types, KaTeX, templates, tasks, calendar
-H. Pro | 2 weeks | Razorpay with the mandate rules, Medium and High, the Claude routing of section 20, password links, 90-day history
+0 · Before code | 2 weeks | The legal floor's first rows; the accounts moved; the public pages written; the pace published every Friday; the `GITHUB_REPO` default fixed; the format specifications drafted; twenty blueprints made by hand for twenty people outside the studio, watched for whether five run the kickoff and two of ten edit a kit again
+A · The door and the home | 3 weeks | Sign-in through Firebase Auth and Auth.js as already shipped, firestore.rules hardened from prototype to product, the local drafts migrated; Home, settings, plan page; the entitlements layer, the usage ledger and the configuration panel of section 31; Firestore and R2 adapters
+B · The editor as shipped, plus Doc mode | 4 weeks | The workspace on the new stack; the two engine defects and the audit's third fixed with red proofs; Doc mode with the 20 and the 15; problems and formatter; the AI box and menu on the free chain with the breaker; the `--ai` token and the code face in globals.css; bring-your-own key if question 10 says so
+C · Ideas | 4 weeks | The ideas tab, Low, the fifteen-file blueprint, the consistency check, the unlisted link, the kickoff prompt with the out-of-band hash, the map; gated on Phase 0's result
+D · Sharing | 3 weeks | People with the matrix, links with expiry, published pages with the `.md` twin, the footer and the grievance route; the change queue; history; live editing on Durable Objects under section 25's rule, or Later if question 8 says so; the Zed rebuttal written
+E · In and out | 3 weeks | Folder upload, Obsidian and Notion import, Google Docs and Word with the 10 MB refusal, the GitHub App, Google Drive sync at a five-minute poll
+F · Everywhere | 3 weeks | Offline in the browser, the desktop app on the new stack built on per-platform CI runners, signed for macOS at 99 USD a year, the phone layouts, quick capture, dark mode
+G · Views and blocks | 3 weeks | Flow, slides, mind map, Excalidraw, Mermaid types, KaTeX, templates, tasks, calendar
+H · Pro | 2 weeks | Razorpay with the mandate rules, Medium and High, the Claude routing of section 20, password links, 90-day history
 Later | | Kanban and table-to-chart blocks, the portfolio, the MCP server and API with the agents card, Team, Max, the community, a custom domain, Notion API import, a signed Windows build
 
 **Twenty-seven weeks of appetite at full time**, one more than revision 5. Phase A grew by a week for the configuration panel, and shrank by the Supabase migration it no longer has to do.
@@ -1987,13 +1989,13 @@ The image proxy and the delimited data block | revision 3 security | Restored, s
 **What the panel cannot absorb, and still gates the build.**
 
 Question | Why a setting cannot hold it
-6. Which bytes we hold, and from which phase | It is an architecture, not a value
-5. The one-sentence definition | It decides build order
-1. The pace | It decides which phases are Later
-14. The twenty-kit gate | It is a gate on phase C, not a switch
-11. The desktop's timing | It reorders phases E and F
-7. The name | It changes the domain and every published URL
-13. The accounts that move to the company | It is ownership, not configuration
+6 · Which bytes we hold, and from which phase | It is an architecture, not a value
+5 · The one-sentence definition | It decides build order
+1 · The pace | It decides which phases are Later
+14 · The twenty-kit gate | It is a gate on phase C, not a switch
+11 · The desktop's timing | It reorders phases E and F
+7 · The name | It changes the domain and every published URL
+13 · The accounts that move to the company | It is ownership, not configuration
 
 **The eighteen, in order.** The first sixteen are in `docs/mvp0/DECISIONS-FOR-FOUNDERS-2026-09-17.md`, each with a default this revision is written to.
 
