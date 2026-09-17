@@ -64,8 +64,40 @@ for (const line of lines) {
 }
 if (cur) chunks.push(cur)
 
+// The corpus writes tables as bare pipe rows with no GFM delimiter line, so markdown
+// parsed them as ONE run-on paragraph and every table in every PDF built before this
+// was prose with pipes in it. Insert the delimiter: a run is two or more consecutive
+// lines carrying the same number of " | " separators, outside a fence, not a bullet.
+const gfmTables = (md) => {
+  const L = md.split('\n')
+  const out = []
+  let fence = false
+  let inTable = false
+  const width = (s) => {
+    if (s === undefined) return 0
+    if (/^\s*(```|[-*>+]\s|\||#)/.test(s)) return 0
+    if (!s.includes(' | ')) return 0
+    return s.split(' | ').length
+  }
+  for (let i = 0; i < L.length; i++) {
+    const l = L[i]
+    if (/^\s*```/.test(l)) { fence = !fence; inTable = false; out.push(l); continue }
+    if (fence) { out.push(l); continue }
+    const w = width(l)
+    if (w >= 2 && !inTable && width(L[i + 1]) === w) {
+      out.push(l)
+      out.push(Array(w).fill('---').join(' | '))
+      inTable = true
+      continue
+    }
+    if (w === 0) inTable = false
+    out.push(l)
+  }
+  return out.join('\n')
+}
+
 const render = (md) => {
-  let h = String(proc.processSync(md))
+  let h = String(proc.processSync(gfmTables(md)))
   // Keep a screen block (heading + shot + the note under it) on one page.
   h = h.replace(/<h3>(S\d\d\.[\s\S]*?)(?=<h3>|$)/g, (m) => `<div class="sblock">${m}</div>`)
   // Wrap tables so a wide one can scroll/shrink instead of blowing the page box.
@@ -150,14 +182,14 @@ hr{border:0;border-top:.4pt solid var(--hair);margin:6mm 0}
 .cn{font:700 15pt/1 var(--disp);color:var(--blue)}
 .intro{margin-bottom:5mm;padding-bottom:4mm;border-bottom:.4pt solid var(--hair);font-size:9pt}
 figure{margin:2.5mm 0 3mm;break-inside:avoid}
-figure img{display:block;max-width:137mm;max-height:82mm;width:auto;height:auto;border:.4pt solid var(--hair);border-radius:1.2mm}
+figure img{display:block;max-width:180mm;max-height:92mm;width:auto;height:auto;border:.4pt solid var(--hair);border-radius:1.2mm}
 figcaption{font:400 7.4pt/1.4 var(--mono);color:var(--ink3);margin-top:1.4mm}
 .shot{break-inside:avoid}
 .pair{display:flex;gap:3mm;align-items:flex-start;margin:2mm 0 2.4mm;break-inside:avoid}
 .pair img{display:block;border:.4pt solid var(--hair);border-radius:1.2mm}
-.pair img:first-child{width:132mm}
-.pair img:last-child{width:34mm}
-.pair.solo img:first-child{width:132mm}
+.pair img:first-child{width:137mm}
+.pair img:last-child{width:39.6mm}
+.pair.solo img:first-child{width:180mm}
 .onit{margin:0 0 1.5mm;font-size:8.8pt}
 .onit li{margin:0 0 .7mm}
 .why{font-size:8.6pt;color:var(--ink2);margin:0 0 3mm}
