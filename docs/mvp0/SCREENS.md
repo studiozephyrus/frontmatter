@@ -1,12 +1,12 @@
 ---
 title: frontmatter, the screens
-version: v5, 17 September 2026
-status: companion to the product plan, revised after the independent audit
+version: v6, 17 September 2026
+status: companion to the product plan, final for the build
 ---
 
 # frontmatter, the screens
 
-Thirty-four screens, each on desktop and on the phone, and what is on every one of them. The argument for each decision is in the product plan. This sheet is the product as a person will meet it: sign in, write, decide, share, bring things in, and use it everywhere.
+Thirty-eight screens, each on desktop and on the phone, and what is on every one of them. Thirty-four are the product. The last four are the configuration panel, which only a founder sees. The argument for each decision is in the product plan. This sheet is the product as a person will meet it: sign in, write, decide, share, bring things in, and use it everywhere.
 
 # Part one. What is in the product
 
@@ -23,6 +23,7 @@ Ideas | A separate tab. Ideas listed with their state. An industry template. Thr
 Sharing | People with roles. Links that expire, and on Pro need a password. Published pages with a markdown twin. Live editing with three people on Free. A review queue for every change by a person, an AI edit or an agent. Document history
 In and out | Drop files or a whole folder. Import from Obsidian, Notion, Google Docs or Word. Connect GitHub as an app and Google Drive as two-way sync. Export to markdown, HTML, Word or PDF
 Everywhere | Offline in the browser. The desktop app with files on disk and no document limit. The phone with a bottom bar, drawers, quick capture and the share sheet
+Configuration | What each plan allows, the model routing, the provider chain and four feature flags, all set from a panel rather than from the source. Founders only
 Money | Free: 50 cloud documents, 1 GB of uploads, 5 published pages, 3 live collaborators, 7-day history, 1 repository with 20 pushes, 1 Low blueprint plus 10 AI edits a month. Pro at ₹299 a month: unlimited, 90-day history, password links, Medium and High, 100 edits and 5 blueprints on Claude, the portfolio
 Later | The portfolio at frontmatter.in/@handle, the MCP server and API, Team, a custom domain, kanban and chart blocks
 
@@ -349,4 +350,42 @@ Each screen shows the desktop at 1,440 by 900 and the phone at 390 by 844, rende
 
 - The Ideas tab before the first idea: what a blueprint is in one line, the three depths in one line each, and one box to start.
 - One hand-made example kit to open and read, so the person sees the fifteen files before spending a credit.
+
+
+## 11. The configuration panel, which only a founder sees
+
+### S35. Configuration, plans and limits
+
+<div class="pair"><img src="screens/s35-config-plans.png"><img src="screens/s35-config-plans-phone.png"></div>
+
+- Every limit in one table, Free against Pro, each cell editable. This row is what the product reads; there is no second copy in the source.
+- Saving says how many accounts the change moves over their cap, and names them, before it writes.
+- Each row carries its own last change: who, from what, to what, and when.
+
+
+### S36. Configuration, models and providers
+
+<div class="pair"><img src="screens/s36-config-models.png"><img src="screens/s36-config-models-phone.png"></div>
+
+- The free chain in fallback order, each provider on or off, with what is left of today's pool beside it.
+- Routing per call type and per plan: an edit, a document, a blueprint, each naming its model and what one call costs.
+- A provider whose terms nobody has opened cannot be switched on. The control is disabled and says so on the row.
+
+
+### S37. Configuration, features and flags
+
+<div class="pair"><img src="screens/s37-config-flags.png"><img src="screens/s37-config-flags-phone.png"></div>
+
+- Four flags: live editing, bring-your-own key, the email magic link, and whether a published page is indexed by default.
+- Each flag names the screens it turns on or off and the plans it reaches, so nobody has to guess what a switch does.
+- Two rows are shown and locked: the training promise and the age floor. The reason sits on the row rather than in a document nobody opens.
+
+
+### S38. Configuration, accounts and usage
+
+<div class="pair"><img src="screens/s38-config-accounts.png"><img src="screens/s38-config-accounts-phone.png"></div>
+
+- Find one account, see it against every limit, and grant a time-boxed exception without moving the plan for everyone else.
+- That account's ledger: what it spent, on which model, and what it cost us.
+- The audit log across every setting, newest first, read-only in the panel.
 

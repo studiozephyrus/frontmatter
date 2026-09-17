@@ -227,6 +227,43 @@ u{text-decoration-thickness:1px;text-underline-offset:2px}
 .plan li .ic{color:var(--success);margin-top:2px}
 .plan li.no{color:var(--muted)}.plan li.no .ic{color:var(--muted)}
 .usage{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;max-width:920px;margin:0 0 22px}
+/* configuration panel, founders only */
+.cfgt{width:100%;border-collapse:collapse;font-size:13px;max-width:900px}
+.cfgt th{text-align:left;font:500 11px/1 var(--font-mono);letter-spacing:.07em;text-transform:uppercase;color:var(--muted);padding:0 12px 9px;border-bottom:1px solid var(--border)}
+.cfgt td{padding:9px 12px;border-bottom:1px solid var(--border);vertical-align:middle}
+.cfgt tr:hover td{background:var(--panel)}
+.cfgt .lim{color:var(--fg)}
+.cfgt .was{display:block;font-size:11px;color:var(--muted);margin-top:2px}
+.cfgv{display:inline-flex;align-items:center;justify-content:flex-end;min-width:74px;height:28px;padding:0 9px;border:1px solid var(--border);border-radius:7px;background:var(--bg);font-family:var(--font-mono);font-size:12.5px;color:var(--fg)}
+.cfgv.ed{border-color:var(--accent);color:var(--accent);background:color-mix(in srgb,var(--accent) 7%,var(--bg))}
+.cfgv.inf{color:var(--muted);font-family:var(--font-ui)}
+.cfgbar{position:absolute;left:0;right:0;bottom:0;display:flex;align-items:center;gap:12px;padding:12px 56px;border-top:1px solid var(--border);background:var(--panel);font-size:12.5px}
+.cfgbar .sp{flex:1}
+.cfgbar b{font-weight:600}
+.cfgwarn{color:#b8791b}
+.cfgprov{display:flex;align-items:center;gap:10px;padding:10px 12px;border:1px solid var(--border);border-radius:9px;background:var(--panel);margin-bottom:8px;font-size:13px;max-width:900px}
+.cfgprov .hd{color:var(--muted);font-family:var(--font-mono);font-size:11px;width:14px}
+.cfgprov .nm{font-weight:500}
+.cfgprov .sp{flex:1}
+.cfgprov.off{opacity:.55}
+.cfgsw{width:34px;height:20px;border-radius:999px;background:var(--panel-2);border:1px solid var(--border);position:relative;flex-shrink:0}
+.cfgsw i{position:absolute;top:2px;left:2px;width:14px;height:14px;border-radius:50%;background:var(--muted);display:block}
+.cfgsw.on{background:color-mix(in srgb,var(--accent) 22%,var(--bg));border-color:var(--accent)}
+.cfgsw.on i{left:auto;right:2px;background:var(--accent)}
+.cfgflag{display:flex;gap:12px;align-items:flex-start;padding:13px 14px;border:1px solid var(--border);border-radius:10px;background:var(--panel);margin-bottom:9px;max-width:900px}
+.cfgflag .b{flex:1}
+.cfgflag .t{font-size:13.5px;font-weight:500}
+.cfgflag .d{font-size:12px;color:var(--fg-muted);margin-top:3px;line-height:1.45}
+.cfgflag.lock{background:var(--panel-2);border-style:dashed}
+.cfgflag.lock .t{color:var(--fg-muted)}
+.cfglog{font-size:12px;max-width:900px}
+.cfglog .l{display:flex;gap:10px;padding:7px 12px;border-bottom:1px solid var(--border);color:var(--fg-muted)}
+.cfglog .l .w{font-family:var(--font-mono);font-size:11px;color:var(--muted);white-space:nowrap}
+.cfglog .l b{color:var(--fg);font-weight:500}
+.cfgsec{font:500 11px/1 var(--font-mono);letter-spacing:.07em;text-transform:uppercase;color:var(--muted);margin:22px 0 10px}
+.cfgsec:first-child{margin-top:0}
+.cfgacc{display:flex;align-items:center;gap:10px;padding:12px 14px;border:1px solid var(--border);border-radius:10px;background:var(--panel);max-width:900px;margin-bottom:14px}
+
 .ucard{border:1px solid var(--border);border-radius:12px;padding:14px 16px;background:var(--panel)}
 .ucard .k{font-size:12px;color:var(--muted)}
 .ucard .v{font-size:22px;font-weight:650;letter-spacing:-.02em;margin:2px 0 8px}
@@ -1400,6 +1437,105 @@ ${top({ tabs: [{ n: 'Ideas', c: 'blue', on: 1 }] })}
 <main class="main"><div class="modebar"><span class="steps"><b>1 Describe</b> ${ic('chevron_right', 14)} 2 Decide ${ic('chevron_right', 14)} 3 Write ${ic('chevron_right', 14)} 4 Hand off</span></div>
 <div class="doc" style="padding:40px 48px">${IDEAS_EMPTY}</div></main></div></div>`,
 phone({ title: 'Ideas', bottom: 'auto_awesome', body: `<div class="pdoc" style="padding:14px 14px 0">${IDEAS_EMPTY.replace('<div style="max-width:640px;margin:0 auto">', '<div>')}</div>` }));
+
+
+// ---------------------------------------------------------------- S35 to S38
+// The configuration panel. Only a founder sees these; plan section 30 says what
+// it may and may not set, and why two rows are locked.
+const CFG_NAV = ['Plans and limits', 'Models and providers', 'Features and flags', 'Accounts and usage', 'Audit log'];
+const CFG_ICON = { 'Plans and limits': 'tune', 'Models and providers': 'auto_awesome', 'Features and flags': 'toggle_on', 'Accounts and usage': 'account_circle', 'Audit log': 'history' };
+const cfgNav = (on) => `<aside class="side setnav" style="padding:14px 8px">${CFG_NAV.map(s => `<div class="row${s === on ? ' on' : ''}">${ic(CFG_ICON[s], 15)}<span class="n">${s}</span></div>`).join('')}</aside>`;
+const cfgTop = `${top({ tabs: [{ n: 'Configuration', c: 'grey', on: 1 }], share: false })}`;
+const cfgSw = (on) => `<span class="cfgsw${on ? ' on' : ''}"><i></i></span>`;
+
+const LIMITS = [
+  ['Documents in the cloud', String(CAPS.docs), 'Unlimited', 'Sagnik · 50 from 25 · 14 Sep'],
+  ['Published pages', String(CAPS.pub), 'Unlimited', ''],
+  ['Live collaborators', String(CAPS.collab), 'Unlimited', ''],
+  ['Document history', `${CAPS.history} days`, '90 days', ''],
+  ['Uploads', `${CAPS.uploads} · 5 MB a file`, '10 GB · 25 MB a file', ''],
+  ['AI edits a month', String(CAPS.edits), '100', 'Amit · 10 from 15 · 2 Sep'],
+  ['Blueprints a month', `${CAPS.kits} · Low only`, '5 · any depth', ''],
+  ['GitHub repositories', String(CAPS.repos), 'Unlimited', ''],
+  ['GitHub pushes a month', String(CAPS.pushes), 'Unlimited', ''],
+];
+const CFG_TABLE = `<table class="cfgt"><thead><tr><th style="width:38%">Limit</th><th>Free</th><th>Pro</th><th style="width:26%">Last change</th></tr></thead><tbody>
+${LIMITS.map(([k, f, p, w], i) => `<tr><td class="lim">${k}</td><td><span class="cfgv${i === 5 ? ' ed' : ''}">${f}</span></td><td><span class="cfgv inf">${p}</span></td><td style="font-size:11.5px;color:var(--muted)">${w || '—'}</td></tr>`).join('\n')}
+</tbody></table>`;
+screen('s35-config-plans', 'Configuration, plans and limits', `<div class="app">
+${cfgTop}
+<div class="body noright" style="grid-template-columns:220px minmax(0,1fr)">
+${cfgNav('Plans and limits')}
+<main class="main" style="position:relative"><div class="page" style="padding:30px 40px 70px"><h1>Plans and limits</h1><p class="sub">What each plan allows. The product reads this table and nothing else; there is no copy of these numbers in the source.</p>${CFG_TABLE}</div>
+<div class="cfgbar">${ic('edit', 15)} <b>1 change</b> · AI edits on Free, 15 to 10<span class="cfgwarn">${ic('warning', 14)} 2 accounts go over their cap</span><span class="sp"></span><span class="btn sm ghost">See who</span><span class="btn sm">Discard</span><span class="btn sm primary">Review and save</span></div>
+</main></div></div>`,
+phone({ title: 'Plans and limits', bottom: 'more_horiz', body: `<div class="pdoc" style="padding:10px 14px 0">${LIMITS.slice(0, 6).map(([k, f, p]) => `<div style="padding:9px 0;border-bottom:1px solid var(--border)"><div style="font-size:13px">${k}</div><div style="display:flex;gap:8px;margin-top:5px"><span class="cfgv" style="min-width:0;flex:1">Free ${f}</span><span class="cfgv inf" style="min-width:0;flex:1">Pro ${p}</span></div></div>`).join('')}<div style="margin-top:12px;font-size:12px;color:var(--muted)">Editing is on the desktop. The phone shows what is set.</div></div>` }));
+
+const PROVIDERS = [
+  ['Groq', 'gpt-oss-120b · no training stated', '14,200 tokens left today', 1],
+  ['Cloudflare Workers AI', 'qwen3-30b · no training stated', '6,410 of 10,000 neurons left', 1],
+  ['Cerebras', 'trial ends 12 Oct', 'trial', 1],
+  ['SambaNova', 'production models · no training stated', 'ready', 1],
+  ['OpenRouter, Nvidia', 'terms never opened', 'cannot enable', 0],
+];
+const ROUTING = `<table class="cfgt"><thead><tr><th style="width:26%">Call</th><th>Free</th><th>Pro</th><th style="width:22%">One call costs</th></tr></thead><tbody>
+<tr><td class="lim">An edit</td><td><span class="cfgv inf">The free chain</span></td><td><span class="cfgv">Haiku 4.5</span></td><td style="font-family:var(--font-mono);font-size:12px;color:var(--muted)">₹0.68</td></tr>
+<tr><td class="lim">A document</td><td><span class="cfgv inf">The free chain</span></td><td><span class="cfgv">Haiku 4.5</span></td><td style="font-family:var(--font-mono);font-size:12px;color:var(--muted)">₹1.20</td></tr>
+<tr><td class="lim">A blueprint</td><td><span class="cfgv inf">The free chain</span></td><td><span class="cfgv ed">Sonnet 5, batch</span></td><td style="font-family:var(--font-mono);font-size:12px;color:var(--muted)">₹31.40</td></tr>
+</tbody></table>`;
+screen('s36-config-models', 'Configuration, models and providers', `<div class="app">
+${cfgTop}
+<div class="body noright" style="grid-template-columns:220px minmax(0,1fr)">
+${cfgNav('Models and providers')}
+<main class="main"><div class="page" style="padding:30px 40px"><h1>Models and providers</h1><p class="sub">The free chain in fallback order, and which model serves which call on each plan.</p>
+<div class="cfgsec">The free chain, in order</div>
+${PROVIDERS.map(([nm, note, right, on], i) => `<div class="cfgprov${on ? '' : ' off'}"><span class="hd">${on ? i + 1 : '·'}</span>${ic('drag_indicator', 15)}<span class="nm">${nm}</span><span style="color:var(--muted);font-size:12px">${note}</span><span class="sp"></span><span style="font-family:var(--font-mono);font-size:11.5px;color:var(--muted)">${right}</span>${cfgSw(on)}</div>`).join('')}
+<div style="font-size:12px;color:var(--muted);margin:-2px 0 0;max-width:900px">A provider whose terms nobody has opened cannot be switched on. The sign-in page promises we never train on documents, and that promise is only as true as this list.</div>
+<div class="cfgsec">Routing, per call and per plan</div>
+${ROUTING}</div></main></div></div>`,
+phone({ title: 'Models', bottom: 'more_horiz', body: `<div class="pdoc" style="padding:10px 14px 0"><div class="cfgsec">The free chain</div>${PROVIDERS.map(([nm, , right, on]) => `<div class="cfgprov${on ? '' : ' off'}" style="padding:9px 10px"><span class="nm" style="font-size:12.5px">${nm}</span><span class="sp"></span><span style="font-family:var(--font-mono);font-size:10.5px;color:var(--muted)">${right}</span>${cfgSw(on)}</div>`).join('')}</div>` }));
+
+const FLAGS = [
+  ['Live editing', 'Two people in one document at once. Turns S19 on. Free up to ' + CAPS.collab + ', unlimited on Pro.', 1, 0],
+  ['Bring your own key', 'A key field in Settings AI. A person\'s own calls run on their key. Both plans.', 1, 0],
+  ['Email magic link', 'A third way in, beside Google and GitHub. Changes S01.', 0, 0],
+  ['Index published pages', 'Off means every published page stays out of search. Changes robots and S17.', 0, 0],
+  ['We never train on your documents', 'A promise on the sign-in page, not a setting. It changes only when the provider list does.', 1, 1],
+  ['Age floor, eighteen', 'In the terms people already accepted. Changing it needs new consent, not a switch.', 1, 1],
+];
+screen('s37-config-flags', 'Configuration, features and flags', `<div class="app">
+${cfgTop}
+<div class="body noright" style="grid-template-columns:220px minmax(0,1fr)">
+${cfgNav('Features and flags')}
+<main class="main"><div class="page" style="padding:30px 40px"><h1>Features and flags</h1><p class="sub">Four switches, and two rows that look like switches and are not.</p>
+<div class="cfgsec">Flags</div>
+${FLAGS.filter(f => !f[3]).map(([t, d, on]) => `<div class="cfgflag"><div class="b"><div class="t">${t}</div><div class="d">${d}</div></div>${cfgSw(on)}</div>`).join('')}
+<div class="cfgsec">Locked, and why</div>
+${FLAGS.filter(f => f[3]).map(([t, d]) => `<div class="cfgflag lock"><div class="b"><div class="t">${ic('lock', 14)} ${t}</div><div class="d">${d}</div></div><span class="pill">locked</span></div>`).join('')}
+</div></main></div></div>`,
+phone({ title: 'Flags', bottom: 'more_horiz', body: `<div class="pdoc" style="padding:10px 14px 0">${FLAGS.map(([t, d, on, lock]) => `<div class="cfgflag${lock ? ' lock' : ''}" style="padding:11px 12px"><div class="b"><div class="t" style="font-size:12.5px">${lock ? ic('lock', 13) + ' ' : ''}${t}</div><div class="d" style="font-size:11.5px">${d}</div></div>${lock ? '<span class="pill">locked</span>' : cfgSw(on)}</div>`).join('')}</div>` }));
+
+const ACC_USAGE = `<div class="usage" style="grid-template-columns:repeat(4,1fr);margin-bottom:18px">
+<div class="ucard"><div class="k">Documents</div><div class="v">48 <small>of ${CAPS.docs}</small></div><div class="meter"><i style="width:96%;background:var(--accent)"></i></div></div>
+<div class="ucard"><div class="k">AI edits this month</div><div class="v">10 <small>of ${CAPS.edits}</small></div><div class="meter"><i style="width:100%"></i></div></div>
+<div class="ucard"><div class="k">Blueprints</div><div class="v">1 <small>of ${CAPS.kits}</small></div><div class="meter"><i style="width:100%"></i></div></div>
+<div class="ucard"><div class="k">Spent on us</div><div class="v">₹19.40 <small>this month</small></div><div class="meter"><i style="width:34%;background:var(--success)"></i></div></div></div>`;
+const LEDGER = `<table class="cfgt"><thead><tr><th style="width:22%">When</th><th>What</th><th>Model</th><th style="width:16%">Cost</th></tr></thead><tbody>
+<tr><td style="font-family:var(--font-mono);font-size:12px;color:var(--muted)">17 Sep 14:02</td><td class="lim">Tighten a paragraph</td><td>groq gpt-oss-120b</td><td style="font-family:var(--font-mono);font-size:12px">₹0.00</td></tr>
+<tr><td style="font-family:var(--font-mono);font-size:12px;color:var(--muted)">17 Sep 11:20</td><td class="lim">Blueprint, Low, 15 files</td><td>cloudflare qwen3-30b</td><td style="font-family:var(--font-mono);font-size:12px">₹0.00</td></tr>
+<tr><td style="font-family:var(--font-mono);font-size:12px;color:var(--muted)">16 Sep 19:44</td><td class="lim">Rewrite a section</td><td>groq gpt-oss-120b</td><td style="font-family:var(--font-mono);font-size:12px">₹0.00</td></tr>
+</tbody></table>`;
+screen('s38-config-accounts', 'Configuration, accounts and usage', `<div class="app">
+${cfgTop}
+<div class="body noright" style="grid-template-columns:220px minmax(0,1fr)">
+${cfgNav('Accounts and usage')}
+<main class="main"><div class="page" style="padding:30px 40px"><h1>Accounts and usage</h1><p class="sub">One account against every limit. An exception here moves one person, never the plan.</p>
+<div class="cfgacc">${ic('search', 16)}<span style="color:var(--muted);font-size:13px">priya@</span><span style="font-weight:500">priya@studio.in</span><span class="pill">Free</span><span style="color:var(--muted);font-size:12px">joined 2 Aug · 48 documents</span><span class="sp"></span><span class="btn sm">${ic('add', 14)} Grant an exception</span></div>
+${ACC_USAGE}
+<div style="font-size:12px;color:var(--muted);margin:-6px 0 0;max-width:900px">An exception carries an expiry. When it lapses the account returns to its plan, and if it is over the cap it meets S33: everything readable, nothing new created.</div>
+<div class="cfgsec">This account's ledger</div>
+${LEDGER}</div></main></div></div>`,
+phone({ title: 'Accounts', bottom: 'more_horiz', body: `<div class="pdoc" style="padding:10px 14px 0"><div class="cfgacc" style="padding:10px 12px;margin-bottom:12px">${ic('search', 15)}<span style="font-weight:500;font-size:12.5px">priya@studio.in</span><span class="pill">Free</span></div>${ACC_USAGE.replace('grid-template-columns:repeat(4,1fr)', 'grid-template-columns:1fr 1fr')}</div>` }));
 
 for (const [name, html] of Object.entries(screens)) {
   fs.writeFileSync(path.join(HERE, name + '.html'), html);

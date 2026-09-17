@@ -1,14 +1,23 @@
 ---
 title: frontmatter, the product plan
-version: v5, 17 September 2026
-status: revised after the independent audit; for founder decision, then the dev plan
+version: v6, 17 September 2026
+status: final for the build, after the founders' stack and configuration decisions
 ---
 
 # frontmatter, the product plan
 
-This is the plan to approve before anything is built. Revision 5 follows the independent audit of revision 4 (verify/2026-09-17/CLAUDE-AUDIT-REPORT.md, 77 findings) and answers every one of them in verify/2026-09-17/RESPONSE.jsonl. What did not change: the product, the sign-in-first door, the screens' shape, the engine. What changed is in section 0. Every decision still carries its signal: `[Z]` founders decided, `[M]` a market or standards page opened and quoted, `[R]` our own earlier research, `[O]` measured this session, `[L]` a constraint, `[P]` follows from another decision. Sixteen decisions the plan cannot take are in docs/mvp0/DECISIONS-FOR-FOUNDERS-2026-09-17.md, each with a default; this revision is written to those defaults.
+This is the plan the build follows. Revision 6 records two founder decisions taken on 17 September after revision 5 was read: the stack is the Next.js app we already run with Cloudflare R2 and Firestore, not Supabase, and tier contents are set from a configuration panel rather than from constants in the source. Revision 5, which this keeps in full, followed the independent audit of revision 4 (verify/2026-09-17/CLAUDE-AUDIT-REPORT.md, 77 findings) and answers every one of them in verify/2026-09-17/RESPONSE.jsonl. What did not change: the product, the sign-in-first door, the screens' shape, the engine. What changed is in section 0. Every decision still carries its signal: `[Z]` founders decided, `[M]` a market or standards page opened and quoted, `[R]` our own earlier research, `[O]` measured this session, `[L]` a constraint, `[P]` follows from another decision. Sixteen decisions the plan cannot take are in docs/mvp0/DECISIONS-FOR-FOUNDERS-2026-09-17.md, each with a default; this revision is written to those defaults.
 
-## 0. What changed from revision 4, and why
+## 0. What changed, and why
+
+**Revision 6, the founders' two decisions.** Both were taken on 17 September, after revision 5 was read end to end.
+
+- **The stack is Next.js, Cloudflare R2 and Firestore** `[Z]`. Revision 5 recommended Supabase Pro for records and auth, and the founders chose otherwise. It is the cheaper of the two rows section 15 costed, $43.07 a month against $65.19 at 1,000 users, and it is what the shipped code already runs, so phase A stops being a migration and becomes a hardening. The structural objections revision 5 raised are carried as build constraints in sections 15 and 18, not as arguments to reopen. Two consequences: the fixed monthly cost falls from $54.50 to $29.50, recomputed through section 22, and the proposal to delete `firestore.rules` (F045) is withdrawn, because that file is now live work.
+- **Tier contents are set from a configuration panel** `[Z]`, which is the new section 30 and screens S35 to S38. Eleven of the eighteen founder questions stop being decisions before the build and become rows in a table the panel edits. What a panel cannot hold is named there too: a promise made on the sign-in page, an age floor someone has already signed up under, and whether bytes are held at all.
+
+**Deferred on purpose, to be settled during the build** `[Z]`: the tagline, the positioning and the product-market read. None of them blocks a phase, none of them changes a screen, and each is better answered with twenty people using the thing than with another research round now.
+
+**What revision 5 changed from revision 4**, kept here because the audit's corrections still stand.
 
 The three blockers first.
 
@@ -79,7 +88,7 @@ Doc mode | A Google-Docs-shaped surface inside Live. Ships the 20 lossless featu
 Sharing | Expiring links are free. Password links are Pro. Every published page carries Report, Privacy and Terms | `[M]` Dropbox, Figma and Loom sell passwords; Bitwarden gives free expiry with a 7-day default. `[L]` the intermediary duties in section 23
 GitHub | Free with a quota, unlimited on Pro, as a GitHub App with the Contents permission, which GitHub grants for the whole repository; frontmatter writes only under docs/ by its own rule, tested | `[M]` HackMD's exact model. `[M]` GitHub: "select the minimum permissions required for the app" (F034)
 Google Drive | Free. Two-way sync of the files the app created or you picked, with the `drive.file` scope, polled every five minutes | `[M]` the scope is non-sensitive; at a five-minute poll one project serves 13,201 connected users (F027)
-Stack | R2 for bytes, Postgres on Supabase Pro in Mumbai for records, ledger and auth, Durable Objects with hibernation for live sessions, Vercel Pro for the app. Supabase is the default in every section of this plan; question 3 confirms it | `[M]` costed in section 15 (F016)
+Stack | The Next.js app on Vercel, Cloudflare R2 for bytes, Firestore for records and the ledger, Firebase Auth for sign-in, Durable Objects with hibernation for live sessions. Decided by the founders on 17 September, and already what the shipped code runs | `[Z]` costed in section 15 (F016)
 AI for the pilot | Free providers whose no-training clause was opened and quoted, in a fallback chain: Groq, Cloudflare Workers AI, Cerebras while its trial lasts, SambaNova. No OpenRouter endpoint. Claude for Pro from day one | `[M]` Groq, Cloudflare and SambaNova state no training. Gemini's free tier and Mistral's free plan train. OpenRouter's free endpoints carry their providers' terms, unopened (F006)
 Review | The change queue on S20 replaces the review-state sidecar of the 9 September plan. Attribution stays as a mark in the version record | `[Z]` the 13 September reset. `[R]` section 25 closes the earlier claim (F058)
 Plugins | No in-process plugin system in year one. An API and an MCP server instead, in Later | `[M]` Obsidian: "cannot reliably restrict plugins to specific permissions". VS Code: "the same permissions as VS Code itself"
@@ -108,7 +117,7 @@ Later, named | A Max tier above Pro; a community as an opt-in index plus GitHub 
 
 ## 5. The screens
 
-Thirty-four screens, each on desktop and on the phone. The phone follows the shipped code: a 52 px bar, the editor full width, and the tree and the right pane as drawers. The bottom bar is new. Every screen names what is on it and why, and the finding it answers where it changed in this revision. The screens use two tokens the shipped app does not have yet, an `--ai` blue and the Google Sans Code face; phase B adds both to globals.css (F044).
+Thirty-eight screens, each on desktop and on the phone. Thirty-four are the product; the last four are the configuration panel of section 30, which only a founder sees. The phone follows the shipped code: a 52 px bar, the editor full width, and the tree and the right pane as drawers. The bottom bar is new. Every screen names what is on it and why, and the finding it answers where it changed in this revision. The screens use two tokens the shipped app does not have yet, an `--ai` blue and the Google Sans Code face; phase B adds both to globals.css (F044).
 
 ### S01. Sign in
 
@@ -447,6 +456,48 @@ Thirty-four screens, each on desktop and on the phone. The phone follows the shi
 
 **Why.** `[M]` Nielsen: "Do not default to totally empty states." `[R]` the example kit is one of the twenty hand-made ones from Phase 0.
 
+## 5b. The configuration panel, which only a founder sees
+
+### S35. Configuration, plans and limits
+
+<div class="pair"><img src="screens/s35-config-plans.png"><img src="screens/s35-config-plans-phone.png"></div>
+
+- Every limit in one table, Free against Pro, each cell editable. This row is what the product reads; there is no second copy in the source.
+- Saving says how many accounts the change moves over their cap, and names them, before it writes.
+- Each row carries its own last change: who, from what, to what, and when.
+
+**Why.** `[Z]` the founders' decision of 17 September. `[P]` section 30 names one read path, `limitsFor(account)`, so a cap that appears anywhere else in the product is a defect the architecture gate should fail on.
+
+### S36. Configuration, models and providers
+
+<div class="pair"><img src="screens/s36-config-models.png"><img src="screens/s36-config-models-phone.png"></div>
+
+- The free chain in fallback order, each provider on or off, with what is left of today's pool beside it.
+- Routing per call type and per plan: an edit, a document, a blueprint, each naming its model and what one call costs.
+- A provider whose terms nobody has opened cannot be switched on. The control is disabled and says so on the row.
+
+**Why.** `[Z]` question 3 turns on keeping the sign-in promise true. `[L]` a provider list anyone can extend without reading terms is exactly how that promise breaks quietly.
+
+### S37. Configuration, features and flags
+
+<div class="pair"><img src="screens/s37-config-flags.png"><img src="screens/s37-config-flags-phone.png"></div>
+
+- Four flags: live editing, bring-your-own key, the email magic link, and whether a published page is indexed by default.
+- Each flag names the screens it turns on or off and the plans it reaches, so nobody has to guess what a switch does.
+- Two rows are shown and locked: the training promise and the age floor. The reason sits on the row rather than in a document nobody opens.
+
+**Why.** `[Z]` questions 8, 10, 17 and 18 become flags instead of decisions the build waits on. `[L]` section 30 says why the locked two cannot be flags: one is a promise, the other has already been consented to.
+
+### S38. Configuration, accounts and usage
+
+<div class="pair"><img src="screens/s38-config-accounts.png"><img src="screens/s38-config-accounts-phone.png"></div>
+
+- Find one account, see it against every limit, and grant a time-boxed exception without moving the plan for everyone else.
+- That account's ledger: what it spent, on which model, and what it cost us.
+- The audit log across every setting, newest first, read-only in the panel.
+
+**Why.** `[P]` the ledger of section 18 is the counter every cap check reads, so this screen is a view of it rather than a second store. `[Z]` an exception is the honest answer to one support mail, and section 30 requires it to expire.
+
 ## 6. Built in by default, so nobody needs a plugin
 
 The rule: if a capability is a top add-on in three or more of the ecosystems we counted, it ships built in. Twenty pass `[M]`.
@@ -681,19 +732,27 @@ R2 plus Firestore in Mumbai, Firebase Auth, Durable Objects, Vercel Pro | $43.07
 R2 plus Supabase Pro in Mumbai for records, ledger and auth, Durable Objects, Vercel Pro | $65.19 | Supabase Pro is $25 from day one; its Free tier pauses "after 1 week of inactivity" and holds 1 GB of files | 8 GB disk then $0.125 a GB, 100 GB of files included, 100,000 monthly active users
 Cloudflare only: R2, D1, Durable Objects, Workers | $1.49 to $6.49, plus $40 if the app stays on Vercel | Workers Paid at $5 for any splice over 10 ms of CPU | D1 is 10 GB per database and single-threaded, so tenants shard from the start, and Next.js would have to move to Workers
 
-**The verdict, and the default** `[M]` (F016). R2 is right for the bytes on every stack: $0.015 a GB-month, free egress, no minimum, and the 1,000-user workload never leaves its free operation tiers. Firestore is the weak piece. Its cost at this scale is under $2 a month, so cost is not the objection. The objections are structural: it needs a Blaze billing account, and Google's own FAQ links a page for when an Indian card is not accepted; a record cannot exceed 1 MiB, so content and large diffs can never live in one; its free quota resets at midnight Pacific rather than at midnight in India; and a credits ledger plus version history are relational, transactional data that our other repositories already model in Postgres. Supabase Pro at $25 buys a Mumbai Postgres, 100 GB of object storage, auth for 100,000 users, daily backups and Realtime. The gap of about $22 a month is the price of one database the team already knows instead of two services it does not. **Supabase is the default in every section of this plan.** Question 3 confirms it.
+**The verdict, and the decision** `[Z]` (F016). R2 is right for the bytes on every stack: $0.015 a GB-month, free egress, no minimum, and the 1,000-user workload never leaves its free operation tiers. On the database revision 5 recommended Supabase Pro, and on 17 September the founders decided otherwise. **The stack is the Next.js app we already run, Cloudflare R2 for bytes, and Firestore for records, with Firebase Auth for sign-in.** It is the cheaper row above, $43.07 against $65.19 at 1,000 users, and it is what the shipped code already initialises, so phase A stops being a migration.
 
-**So: R2 for bytes, Supabase Pro in Mumbai for records, ledger and auth, Durable Objects with the Hibernation API for live sessions, Vercel Pro for the app.** The first bill is $20 for one Vercel seat plus $25 for Supabase. It is not free to start, because Vercel writes: "Our Hobby plan is for personal, non-commercial use." A product that charges through Razorpay is commercial from its first rupee.
+The objections revision 5 raised against Firestore do not disappear. They are carried as build constraints, each with the place it is handled, and none of them is an argument to reopen the decision:
 
-**What the code runs today, and what phase A removes** `[O]` (F031). The shipped app signs in through GitHub with Auth.js and through Google with Firebase Auth, and initialises a Firestore client; a prototype firestore.rules designs document holding in Firestore. Phase A retires Firebase Auth and the Firestore client in favour of Supabase Auth, keeps or drops Auth.js in the same decision, deletes the rules file, and migrates the local drafts the shipped app already holds under its legacy keys into the signed-in account (section 25, A33). Removing firestore.rules is proposed to the founders in the response report rather than done on the branch.
+Objection | How the build handles it
+A Blaze billing account is required, and Google's FAQ links a page for when an Indian card is not accepted | Phase 0, with the company card, before any code depends on it
+A document cannot exceed 1 MiB | Document bytes live in R2 and never in Firestore; a Firestore document holds only metadata and a content hash, section 18
+The free quota resets at midnight Pacific, not midnight in India | The caps the product enforces are ours, in the ledger, not Google's; Google's quota is a floor we stay well under, and the panel of section 30 can lower a limit if it is ever approached
+A credits ledger wants transactional writes | Ledger entries are append-only and never updated, so the balance is a sum over a collection rather than a row that two writers race for, section 18
+
+**So: the Next.js app on Vercel, R2 for bytes, Firestore for records and the ledger, Firebase Auth for sign-in, Durable Objects with the Hibernation API for live sessions.** The first bill is $20 for one Vercel seat, plus Firestore and R2 usage, which at 1,000 users is about $2 and under $1. It is not free to start, because Vercel writes: "Our Hobby plan is for personal, non-commercial use." A product that charges through Razorpay is commercial from its first rupee.
+
+**What the code runs today, and what phase A keeps** `[O]` (F031). The shipped app signs in through GitHub with Auth.js and through Google with Firebase Auth, and initialises a Firestore client; a prototype firestore.rules designs document holding in Firestore. Under the founders' decision all of that stays. Phase A hardens firestore.rules from a prototype into the rules the product runs on, keeps both sign-in paths, and migrates the local drafts the shipped app already holds under its legacy keys into the signed-in account (section 25, A33). The audit's proposal to delete firestore.rules (F045) is withdrawn: the file is live work now, not dead code. This is the one place where a founder decision made the build smaller rather than larger.
 
 **Live editing without reopening the settled decision** `[R]` (F055). The document of record stays markdown bytes, one version per save. A live session is a shared document in a Durable Object that exists only while two people have the file open. Yjs holds that shared state and nothing else: every save writes a new version through the splice engine, the session's state is discarded when the last person leaves, and no CRDT state is ever persisted or merged into a file. That is the exception the record already allowed, and the written rebuttal to Zed Delta that the settled position owes is due before phase D. Whether to keep live editing at all is question 8.
 
 **Where the objects live** `[M]` (F041). Durable Objects offer jurisdictions for the EU and the US only; the apac hint is "a best effort and not a guarantee", and an object does not move after creation. R2 likewise takes only an apac hint. So a session object is created from the first participant's request with the apac hint, its round trip from Mumbai is measured in the pilot, and the plan says plainly that the bytes sit under an apac hint, not in India.
 
-**Constraints the plan must respect whichever stack is chosen** `[M]`: budget a Vercel seat from day one; use the Durable Object Hibernation API, because without it live sessions are the largest line at $42.50 and the free plan fails at 28 sessions a day; send 100 MB uploads straight to R2 with a presigned URL, because Workers cap a request body at 100 MB; store deltas or deduplicate versions, because full-copy saves grow 18 GB a month per 1,000 users and that is the only line that compounds; keep an append-only security log for 180 days in Indian jurisdiction, which Sentry's and PostHog's free tiers may not pin to India, so the log store is its own line at Supabase or R2 in Mumbai (F069).
+**Constraints the plan must respect whichever stack is chosen** `[M]`: budget a Vercel seat from day one; use the Durable Object Hibernation API, because without it live sessions are the largest line at $42.50 and the free plan fails at 28 sessions a day; send 100 MB uploads straight to R2 with a presigned URL, because Workers cap a request body at 100 MB; store deltas or deduplicate versions, because full-copy saves grow 18 GB a month per 1,000 users and that is the only line that compounds; keep an append-only security log for 180 days in Indian jurisdiction, which Sentry's and PostHog's free tiers may not pin to India, so the log store is its own line at R2 in Mumbai (F069).
 
-**The rest of the stack** `[M]`. Auth through Supabase, with Google and GitHub as providers and an email magic link as the fallback sign-in the founders decide on (A50). Email through Resend, 3,000 a month free, for the 24-hour notices Razorpay mandates need. Errors through Sentry's free 5,000 a month. Analytics through PostHog's free million events. Search in Postgres full text first, Typesense later. Live editing through Yjs on Durable Objects, with Liveblocks as the fallback if we want a vendor, at 10 connections a room free.
+**The rest of the stack** `[M]`. Auth through Firebase Auth for Google and Auth.js for GitHub, both already shipped, with an email magic link as the fallback sign-in the founders decide on (A50). Email through Resend, 3,000 a month free, for the 24-hour notices Razorpay mandates need. Errors through Sentry's free 5,000 a month. Analytics through PostHog's free million events. Search in the browser across the open workspace first, because Firestore has no full-text index, and Typesense when a server-side index is needed. Live editing through Yjs on Durable Objects, with Liveblocks as the fallback if we want a vendor, at 10 connections a room free.
 
 ## 16. Principles, applied
 
@@ -710,7 +769,7 @@ Every rule below is quoted from the page it came from, and each names the screen
 - **Phone.** Material, read in a rendered browser on 17 September because the site is a script shell to curl: a navigation bar with three to five destinations under 600 dp, "Don't use navigation bars for desktop layouts", and the 600 dp compact breakpoint confirmed on developer.android.com (F043). Apple: "show no more than two levels of hierarchy in a sidebar", and do not hide it by default on desktop.
 - **Accessibility.** WCAG 2.2 AA is the plan's target for every screen; the muted, danger and success tokens are retuned to 4.5:1 and the generator asserts it (F030). Whether the Rights of Persons with Disabilities Act 2016 section 46 reaches a private browser product turns on rule 15 of its rules, which is a counsel question in section 23 (F075). The draft amendment of 23 July 2026 would settle it the wide way: IS 17802 for every website, app or piece of software offered to persons in India, with a published conformance report. So the plan tests to IS 17802 alongside WCAG from the first screen rather than waiting for the rule to land.
 - **Appetite, not estimate.** Shape Up: "Appetites start with a number and end with a design." Each phase in section 26 carries an appetite in weeks.
-- **SOLID, as it applies here.** Martin: "Gather together the things that change for the same reasons." Each block kind is its own module. Adding a block or an AI verb is a registration, never an edit to the splicer. Every block honours one contract: parse a byte range, render, serialise byte-exact, report its splice range. Ports are small and client-specific. The engine depends on abstract ports for storage, the model and the review sidecar, and the R2, Supabase, GitHub and model adapters depend on those ports, which is the repository's existing rule.
+- **SOLID, as it applies here.** Martin: "Gather together the things that change for the same reasons." Each block kind is its own module. Adding a block or an AI verb is a registration, never an edit to the splicer. Every block honours one contract: parse a byte range, render, serialise byte-exact, report its splice range. Ports are small and client-specific. The engine depends on abstract ports for storage, the model and the change queue, and the R2, Firestore, GitHub and model adapters depend on those ports, which is the repository's existing rule.
 
 ## 17. The engine baseline
 
@@ -727,7 +786,7 @@ Two measured defects are fixed before any public claim `[O]`: a column-zero list
 The entities the features imply, where each lives, and its rules `[P]`. Sizes are per record; retention is what the person can rely on; deletion is what happens on account deletion.
 
 Entity | Lives in | Size and limit | Retention | On account deletion | Who can read
-Account | Supabase auth and a profile row | one | until deleted | removed within 30 days | the person
+Account | Firebase Auth and a profile document | one | until deleted | removed within 30 days | the person
 Workspace and project | Postgres rows | 50 cloud documents on Free | until deleted | removed | owner and members by role
 Document head | Postgres row pointing at the current version key | one per document | until deleted; 30 days in trash | removed | by role
 Version | R2 object keyed by document id and content hash | 5 MB a file on Free, 25 MB on Pro | 7 days on Free, 90 on Pro, then pruned to the head | removed | by role
@@ -802,24 +861,24 @@ Durable Object round trip from Mumbai | measured in the pilot; over 250 ms is a 
 
 Every price read from the provider's page on 17 September; every line shows its arithmetic. SIMULATED: computed from the caps and list prices, not from live usage `[O]` `[M]`.
 
-**Inputs.** Pro gross ₹299, GST 18 percent: 299 / 1.18 = ₹253.39. Razorpay 2 percent plus GST on the fee, 2.36 percent of ₹299 = ₹7.06. Net ₹246.33, which is $2.57. Annual ₹2,499 nets ₹171.57 a month. A Pro user at full caps costs $1.99 in model fees on the default routing (section 14). A free user at full caps costs $0.0194 on paid Cloudflare neurons once the free pools are exhausted, and nothing before. Fixed a month: one Vercel seat $20, Supabase Pro $25, the domain at $15 a year and Apple at $99 a year, together $54.50; a second Vercel seat adds $20; the Windows certificate is unpriced.
+**Inputs.** Pro gross ₹299, GST 18 percent: 299 / 1.18 = ₹253.39. Razorpay 2 percent plus GST on the fee, 2.36 percent of ₹299 = ₹7.06. Net ₹246.33, which is $2.57. Annual ₹2,499 nets ₹171.57 a month. A Pro user at full caps costs $1.99 in model fees on the default routing (section 14). A free user at full caps costs $0.0194 on paid Cloudflare neurons once the free pools are exhausted, and nothing before. Fixed a month: one Vercel seat $20, the domain at $15 a year and Apple at $99 a year, together $29.50; a second Vercel seat adds $20; the Windows certificate is unpriced. Firestore and R2 are usage rather than subscription, about $2 and under $1 at 1,000 users, and sit outside this line as they always did. Revision 5 carried $54.50 here because Supabase Pro was $25 of it; the stack decision removes that subscription, and every row below is recomputed.
 
 **Monthly result at full-cap use, one seat, default routing.**
 
 Signed-in users | Pro at 1 percent | Pro at 2 percent | Pro at 5 percent
-1,000 | 10 Pro: $25.67 revenue, $19.90 Pro AI, $19.21 free AI, $54.50 fixed, result −$67.94 | 20 Pro: $51.34 − $39.80 − $19.01 − $54.50 = −$61.97 | 50 Pro: $128.35 − $99.50 − $18.43 − $54.50 = −$44.08
-10,000 | 100 Pro: $256.70 − $199.00 − $192.06 − $54.50 = −$188.86 | 200 Pro: $513.40 − $398.00 − $190.12 − $54.50 = −$129.22 | 500 Pro: $1,283.50 − $995.00 − $184.30 − $54.50 = +$49.70
-100,000 | 1,000 Pro: $2,567 − $1,990 − $1,920.60 − $54.50 = −$1,398.10 | 2,000 Pro: $5,134 − $3,980 − $1,901.20 − $54.50 = −$801.70 | 5,000 Pro: $12,835 − $9,950 − $1,843 − $54.50 = +$987.50
+1,000 | 10 Pro: $25.67 revenue, $19.90 Pro AI, $19.21 free AI, $29.50 fixed, result −$42.94 | 20 Pro: $51.34 − $39.80 − $19.01 − $29.50 = −$36.97 | 50 Pro: $128.35 − $99.50 − $18.43 − $29.50 = −$19.08
+10,000 | 100 Pro: $256.70 − $199.00 − $192.06 − $29.50 = −$163.86 | 200 Pro: $513.40 − $398.00 − $190.12 − $29.50 = −$104.22 | 500 Pro: $1,283.50 − $995.00 − $184.30 − $29.50 = +$74.70
+100,000 | 1,000 Pro: $2,567 − $1,990 − $1,920.60 − $29.50 = −$1,373.10 | 2,000 Pro: $5,134 − $3,980 − $1,901.20 − $29.50 = −$776.70 | 5,000 Pro: $12,835 − $9,950 − $1,843 − $29.50 = +$1,012.50
 
-**The same at half use** (Pro AI $1.00, free AI $0.0097): 1,000 users at 2 percent, −$32.68; 10,000 at 2 percent, +$163.88; 10,000 at 5 percent, +$636.50; 100,000 at 2 percent, +$2,164.
+**The same at half use** (Pro AI $1.00, free AI $0.0097), re-derived line by line at the new fixed cost: 1,000 users at 2 percent, $51.34 − $20.00 − $9.51 − $29.50 = −$7.67; 10,000 at 2 percent, +$188.84; 10,000 at 5 percent, +$661.85; 100,000 at 2 percent, +$2,153.90.
 
-**What the table says** `[O]`. At full-cap use the product loses money below about 5 percent conversion at any scale, and the loss is the free users' model cost, not the fixed costs. At half use it breaks even around 10,000 signed-in users at 2 percent. Three levers move it: the routing (Sonnet for everything turns every row negative), the free caps (5 edits instead of 10 cuts the free line by a third), and prompt caching, which is not counted. Break-even Pro users against fixed costs alone: $54.50 / $0.58 margin at full use = 94; at half use $54.50 / $1.57 = 35. The founders' time is not in these lines; at ₹1,500 an hour, 1.2 days a week is about ₹62,000 a month.
+**What the table says** `[O]`. At full-cap use the product loses money below about 5 percent conversion at any scale, and the loss is the free users' model cost, not the fixed costs. At half use it breaks even around 1,350 signed-in users at 2 percent: each such user nets $0.021834 a month, and $29.50 / $0.021834 = 1,351. The stack decision moved that point, because revision 5 needed 2,496 users to clear $54.50. Three levers move it: the routing (Sonnet for everything turns every row negative), the free caps (5 edits instead of 10 cuts the free line by a third), and prompt caching, which is not counted. Break-even Pro users against fixed costs alone: $54.50 / $0.58 margin at full use = 94; at half use $54.50 / $1.57 = 35. The founders' time is not in these lines; at ₹1,500 an hour, 1.2 days a week is about ₹62,000 a month.
 
 **A High blueprint** adds an assumed research pass of 150,000 tokens in and 40,000 out on Sonnet, $0.70 (₹67) on top of the blueprint; five High a month is ₹504 of model cost against 15 credits, three top-ups at ₹149 = ₹447 gross. High is priced under its cost at list; the batch API halves it, and the credits price is a founder question if High ships before the pilot measures it.
 
 ## 23. The legal floor
 
-Holding documents, publishing strangers' pages and taking money bring this in before the first stranger and the first rupee `[L]`. Each row has an owner and a date. Statutory details are marked unverified where no primary page could be opened from this network on 17 September; the audit's readings are given with their URLs in section 30. Placeholder pages for the four public routes serve on this branch and say the text is pending and due by 15 October 2026.
+Holding documents, publishing strangers' pages and taking money bring this in before the first stranger and the first rupee `[L]`. Each row has an owner and a date. Statutory details are marked unverified where no primary page could be opened from this network on 17 September; the audit's readings are given with their URLs in section 31. Placeholder pages for the four public routes serve on this branch and say the text is pending and due by 15 October 2026.
 
 Due | What | Owner | Date | Verified
 Before the first stranger | Privacy notice, terms, consent wording; the age floor stated (default eighteen, founder question 12) | Sagnik | 15 Oct 2026 | DPDP Act 2023 section 9 read by the audit on indiacode. Commencement opened by this revision from the Gazette: G.S.R. 843(E) of 13 November 2025, CG-DL-E-14112025-267647, brings sections 7 to 10, section 9 among them, into force "eighteen months from the date of publication of this gazette", published 14 November 2025, so 14 May 2027. The Rules, G.S.R. 846(E), CG-DL-E-14112025-267650, rule 1: rules 1, 2 and 17 to 21 at once, rule 4 after one year, rules 3, 5 to 16, 22 and 23 after eighteen months. The pilot runs before the duty bites; the terms carry the floor from day one
@@ -827,7 +886,7 @@ Before the first stranger | Named grievance officer with a published address on 
 Before the first deploy that holds a document | Breach contact filed; a six-hour incident runbook; an append-only security log kept 180 days in Indian jurisdiction | Amit | 15 Oct 2026 | CERT-In directions of 28 April 2022 as the audit read them; not re-opened
 Before the first rupee | GST position confirmed by a chartered accountant; the price shown GST inclusive; invoice lines | Sagnik | 31 Oct 2026 | Opened by this revision on CBIC's tax information portal, since cbic-gst.gov.in refused curl: Notification 11/2017-Central Tax (Rate) of 28 June 2017, serial 22, "Heading 9984 Telecommunications, broadcasting and information supply services", central tax 9, so 18 percent with the state half; the two 2025 amendments, 05/2025 of 16 January and 15/2025 of 17 September, carry no entry for heading 9984. The single 2026 rate notification and the chartered accountant's reading of which heading a subscription editor falls under remain open
 Before the first rupee | Razorpay mandates under ₹15,000 and one attempt on Indian cards; refund and cancellation page | Amit | 31 Oct 2026 | RBI/2022-23/73 of 16 June 2022 re-opened by this revision
-Before the first rupee | Processor agreements: Cloudflare, Supabase, Google, Anthropic, Razorpay; each provider's terms for commercial use read | Amit | 31 Oct 2026 | Opened by this revision, not a lawyer's reading. Cloudflare's self-serve agreement, clause 2.2.1(h): you may not "process or collect personal or business credit card information on any web property that is receiving Free Services", so card entry stays on Razorpay's own checkout or the zone moves to a paid plan; its developer platform terms: "Unless otherwise agreed, Cloudflare does not use any Customer Content to train generative AI tools". Supabase's terms restrict reselling the Services themselves, not building a paid product on them. The GitHub Marketplace Developer Agreement "sets forth the terms that govern a Developer publishing Listings on GitHub Marketplace", and the plan lists nothing there. Firebase's terms page did not render outside a browser, and Firebase leaves the stack in phase A
+Before the first rupee | Processor agreements: Cloudflare, Google for Firebase Auth and Firestore, Anthropic, Razorpay; each provider's terms for commercial use read | Amit | 31 Oct 2026 | Opened by this revision, not a lawyer's reading. Cloudflare's self-serve agreement, clause 2.2.1(h): you may not "process or collect personal or business credit card information on any web property that is receiving Free Services", so card entry stays on Razorpay's own checkout or the zone moves to a paid plan; its developer platform terms: "Unless otherwise agreed, Cloudflare does not use any Customer Content to train generative AI tools". Supabase's terms restrict reselling the Services themselves, not building a paid product on them. The GitHub Marketplace Developer Agreement "sets forth the terms that govern a Developer publishing Listings on GitHub Marketplace", and the plan lists nothing there. Firebase's terms page did not render outside a browser, and Firebase leaves the stack in phase A
 Before the first stranger | Accounts moved to the company: the Cloudflare zone, the domain, Razorpay | Sagnik | 15 Oct 2026 | section 24
 Before Razorpay goes live | A trademark search for "frontmatter" on the Indian register by a founder (it needs an OTP login); the Front Matter CMS collision at 82,819 installs recorded | Sagnik | 31 Oct 2026 | Unverified; question 7
 Before the pilot | EU sign-ups blocked, or a representative engaged | Sagnik | 15 Oct 2026 | carried from revision 3
@@ -863,7 +922,7 @@ The extension form factor | earlier plans | Not planned
 Bring-your-own key | card F10 | Founder question 10 (F056)
 The community | revision 3 | Later, named (F023)
 The Max tier | revision 3 | Later, named (F023)
-The 8 September gap register's Firestore contradiction | GAPS-2026-09-08 | Supabase is the default; firestore.rules removal proposed (F045)
+The 8 September gap register's Firestore contradiction | GAPS-2026-09-08 | Settled by the founders on 17 September: Firestore is the database, and firestore.rules is live work, so the removal proposed as F045 is withdrawn
 The shipped app's local drafts under legacy keys | AGENTS.md section 8 | Migrated in phase A, section 15 (A33)
 The image proxy and the delimited data block | revision 3 security | Restored, section 14
 
@@ -873,7 +932,7 @@ The dev plan follows approval. Its shape, in fixed-time phases with variable sco
 
 Phase | Appetite | What ships
 0. Before code | 2 weeks | The legal floor's first rows; the accounts moved; the public pages written; the pace published every Friday; the `GITHUB_REPO` default fixed; the format specifications drafted; twenty blueprints made by hand for twenty people outside the studio, watched for whether five run the kickoff and two of ten edit a kit again
-A. The door and the home | 2 weeks | Sign-in through Supabase Auth, Firebase Auth and the Firestore client retired, the local drafts migrated; Home, settings, plan page, the free caps and the ledger; Supabase and R2 adapters
+A. The door and the home | 3 weeks | Sign-in through Firebase Auth and Auth.js as already shipped, firestore.rules hardened from prototype to product, the local drafts migrated; Home, settings, plan page; the entitlements layer, the usage ledger and the configuration panel of section 30; Firestore and R2 adapters
 B. The editor as shipped, plus Doc mode | 4 weeks | The workspace on the new stack; the two engine defects and the audit's third fixed with red proofs; Doc mode with the 20 and the 15; problems and formatter; the AI box and menu on the free chain with the breaker; the `--ai` token and the code face in globals.css; bring-your-own key if question 10 says so
 C. Ideas | 4 weeks | The ideas tab, Low, the fifteen-file blueprint, the consistency check, the unlisted link, the kickoff prompt with the out-of-band hash, the map; gated on Phase 0's result
 D. Sharing | 3 weeks | People with the matrix, links with expiry, published pages with the `.md` twin, the footer and the grievance route; the change queue; history; live editing on Durable Objects under section 15's rule, or Later if question 8 says so; the Zed rebuttal written
@@ -883,7 +942,7 @@ G. Views and blocks | 3 weeks | Flow, slides, mind map, Excalidraw, Mermaid type
 H. Pro | 2 weeks | Razorpay with the mandate rules, Medium and High, the Claude routing of section 14, password links, 90-day history
 Later | | Kanban and table-to-chart blocks, the portfolio, the MCP server and API with the agents card, Team, Max, the community, a custom domain, Notion API import, a signed Windows build
 
-Twenty-six weeks of appetite at full time. At the measured pace, which the audit recomputed at 0.93 to 1.21 days a week, that is 99 to 129 calendar weeks. The default in question 1: phases 0, A, B, D and H at the measured pace with dates published every Friday; E, F and G Later; a contractor for D and F if the pace has not doubled by the pilot. Content is costed too: the seven templates with their question banks, the consistency checks, the kickoff prompts, help text and empty states are about thirty days of writing the earlier plan did not count (A44).
+Twenty-seven weeks of appetite at full time, one more than revision 5: phase A grew by a week for the configuration panel, and shrank by the Supabase migration it no longer has to do. At the measured pace, which the audit recomputed at 0.93 to 1.21 days a week, that is 99 to 129 calendar weeks. The default in question 1: phases 0, A, B, D and H at the measured pace with dates published every Friday; E, F and G Later; a contractor for D and F if the pace has not doubled by the pilot. Content is costed too: the seven templates with their question banks, the consistency checks, the kickoff prompts, help text and empty states are about thirty days of writing the earlier plan did not count (A44).
 
 ## 27. Risks
 
@@ -916,11 +975,46 @@ The scope is too large for the pace | The Later column is the release valve. Not
 
 ## 29. Questions for the founders
 
+**Decided on 17 September, and written into this revision** `[Z]`: the stack is Next.js with R2 and Firestore, section 15; tier contents are set from the configuration panel, section 30. **Deferred on purpose**: the tagline, the positioning and the product-market read, to be settled while phase A is built rather than before it.
+
+**What the configuration panel absorbs.** Eleven of the eighteen below stop being decisions the build waits on, because the panel sets them at run time: the Pro price and routing, the provider chain, the free caps, the age floor's number, the pilot thresholds, the grievance officer's name, the indexing default, and the four feature flags. They still need answers before the pilot meets a stranger. They no longer need answers before phase A starts.
+
+**What the panel cannot absorb, and still gates the build**: which bytes we hold and from which phase, question 6, because it is an architecture; the one-sentence definition, question 5, because it decides build order; the pace, question 1; the twenty-kit gate, question 14; the desktop's timing, question 11; the name, question 7; and the accounts that move to the company, question 13.
+
 The sixteen in docs/mvp0/DECISIONS-FOR-FOUNDERS-2026-09-17.md, each with a default this revision is written to. In order: the pace and which phases are Later; the Pro price and routing; the free chain and the sign-in promise; the legal floor and the grievance officer; K1, what the product is in one sentence; K2, which bytes we hold and from which phase; K3, the name; live editing and the CRDT ban; the free caps and the downgrade; bring-your-own key; desktop before or after sync and who signs Windows; the age floor; the accounts that move to the company; the twenty hand-made kits; the pilot's stop and continue lines; which earlier positions stand. And one more, from the audit's growth angle: whether published pages should be indexed, since not indexing removes search as a channel and the plan has no other.
 
 **Where this revision narrowed a founder ask, and says so** `[Z]`. "Every feature free, quantities capped" became "every editing feature free; password links, Medium and High, the portfolio and branding removal are Pro" (F003). The free caps are the market's 50, 5 and 3, not the candidates' 5, 2 and 1. K1, K2 and K3 were taken implicitly by revision 4 and are now defaults with the cards' recommendations beside them: K1 rec b, K2 rec b, K3 rec c in decisions/v2.
 
-## 30. Sources
+## 30. The configuration panel
+
+**Why it exists** `[Z]`. The founders decided on 17 September that what a tier allows is set from a panel, not from constants in the source. That turns most of the open questions from decisions before the build into settings after it: eleven of the eighteen on the decision sheet become rows in a table this panel edits. It is built in phase A, before the features that read it, because retrofitting it later means finding every hard-coded cap in the product.
+
+**What it sets** `[P]`. Every row is read at run time. Nothing here needs a deploy.
+
+Setting | What it holds | Read by
+Plan limits | Documents, published pages, live collaborators, history days, upload size and total, AI edits, blueprints, repositories, pushes, per plan | Every cap check, through one function
+Prices | The monthly and annual price, per plan, and the top-up prices | The plan page and the Razorpay call
+Model routing | Which model serves edits, documents and blueprints, per plan | The AI router of section 14
+Provider chain | The free chain's order, and whether each provider is enabled | The free-tier router
+Feature flags | Live editing, bring-your-own key, the email magic link, the indexing default | The feature gate
+Pilot thresholds | The stop and continue lines of section 28 | The measurement dashboard
+Exceptions | A temporary limit granted to one account, with an expiry | The same cap check
+
+**One read path** `[P]`. A single function, `limitsFor(account)`, resolves a plan row plus any exception into the limit set. Nothing else in the product reads a cap. A number that appears anywhere else is a defect, and the architecture gate of `npm run arch` is the place to catch it, the same way it already catches a `process.env` read outside config and infrastructure. The usage ledger of section 18 is the counter each check runs against.
+
+**A limit that falls is a downgrade** `[L]`. Raising a limit takes effect on the next read and nobody notices. Lowering one below what an account already holds puts that account into the over-cap state of S33: everything stays readable and exportable, nothing new is created until it is under the cap. The panel says how many accounts a change puts over the line, and names them, before it saves.
+
+**What the panel cannot do** `[L]`. Three things stay outside it, because a setting cannot undo a promise:
+
+- **The training promise.** The sign-in page says we never train on documents. That is a claim about which providers are in the chain, not a number, and adding a provider whose terms permit training changes the sentence, not a row. Question 3 on the decision sheet.
+- **The age floor, once someone has signed up under it.** The panel can hold the number. It cannot re-consent the people who accepted the old terms. Question 12.
+- **Whether bytes are held at all.** That is section 18's architecture and phase A's shape, not a setting. Question 6.
+
+**Who holds it** `[Z]`. Super admin is a flag on an account, not a plan, and both founders hold it. It is checked server-side on every write, never in the browser. Every change writes an audit row: who, which setting, from what, to what, when, and how many accounts it moved. That log is read-only in the panel and kept as long as the security log of section 23.
+
+**Screens** S35 to S38.
+
+## 31. Sources
 
 Every page below was opened on the date shown and quoted verbatim in this plan. Pages this revision opened on 17 September to confirm a finding are marked so.
 
