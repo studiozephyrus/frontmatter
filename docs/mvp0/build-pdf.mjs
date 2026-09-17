@@ -118,6 +118,8 @@ const render = (md) => {
     return `<div class="tw${rows > 14 ? ' tall' : ''}">${tbl}</div>`
   })
   h = h.replace(/<(h[34])>([\s\S]*?)<\/\1>/g, (m, t, i) => `<${t} id="${slug(i.replace(/<[^>]+>/g, ''))}">${i}</${t}>`)
+  // A lead-in paragraph must not be left at the foot of a page while its list moves on.
+  h = h.replace(/<p>((?:(?!<\/p>)[\s\S])*)<\/p>(\s*)<(ul|ol)\b/g, '<p class="leadin">$1</p>$2<$3')
   return h
 }
 
@@ -154,8 +156,10 @@ h3{font:700 11.5pt/1.25 var(--sans);margin:4.5mm 0 1.6mm;break-after:avoid}
 h4{font:600 9.6pt/1.3 var(--sans);margin:3.4mm 0 1.4mm;break-after:avoid}
 p{margin:0 0 2.8mm;orphans:3;widows:3}
 ul{margin:0 0 3mm;padding-left:5mm;break-inside:avoid}
+ul.long,ol.long{break-inside:auto}
 ol{margin:0 0 3mm;padding-left:8mm;break-inside:avoid}
 li{margin:0 0 1.4mm;orphans:2;widows:2}
+p.leadin{break-after:avoid}
 strong{font-weight:700}
 code{font:400 .86em var(--mono);background:var(--bg2);border:.4pt solid var(--hair);padding:.3mm 1mm}
 pre{background:var(--bg2);border:.4pt solid var(--hair);padding:3mm;margin:3.5mm 0;break-inside:avoid}
@@ -169,11 +173,12 @@ th,td{padding:.85mm 1.5mm;text-align:left;border-bottom:.4pt solid var(--hair);v
 th{font:400 7pt var(--mono);letter-spacing:.06em;text-transform:uppercase;color:var(--ink3);background:var(--bg2)}
 blockquote{margin:3.5mm 0;padding-left:4mm;border-left:1.2pt solid var(--blue);color:var(--ink2)}
 hr{border:0;border-top:.4pt solid var(--hair);margin:6mm 0}
-.cover{height:255mm;display:flex;flex-direction:column;justify-content:space-between;break-after:page}
+.cover{height:255mm;overflow:hidden;display:flex;flex-direction:column;justify-content:space-between;break-after:page}
 .ctop .k{font:400 8pt var(--mono);letter-spacing:.2em;text-transform:uppercase;color:var(--blue)}
 .cover .lede{font:400 12pt/1.5 var(--sans);color:var(--ink2);max-width:126mm;margin:5mm 0 0}
-.cover .intro{font-size:8.6pt;line-height:1.55;color:var(--ink2);max-width:150mm;margin:7mm 0 0;border-top:.4pt solid var(--hair);padding-top:5mm}
-.cover .intro p{margin:0 0 2mm}
+.lead{break-after:page}
+.lead h2{font:700 18pt/1.1 var(--disp);margin:0 0 6mm}
+.lead p,.lead ul,.lead ol{max-width:150mm}
 .cmeta{display:flex;gap:8mm;flex-wrap:wrap;font:400 8pt/1.6 var(--mono);color:var(--ink3);border-top:.4pt solid var(--hair);padding-top:5mm}
 .cmeta b{display:block;font:700 16pt/1 var(--disp);color:var(--blue);margin-bottom:1.5mm}
 .toc{break-after:page}
@@ -211,11 +216,11 @@ figcaption{font:400 7.4pt/1.4 var(--mono);color:var(--ink3);margin-top:1.4mm}
 </style></head><body>
 <div class="cover"><div class="ctop"><p class="k">${kicker || 'Studio Zephyrus · frontmatter · MVP 0'}</p>
 <h1>${coverTitle || h1}</h1>
-<p class="lede">${coverLede || ''}</p>
-<div class="intro">${intro}</div></div>
+<p class="lede">${coverLede || ''}</p></div>
 <div class="cmeta"><div><b>${chunks.length}</b>sections</div><div><b>${(words / 1000).toFixed(1)}k</b>words</div><div><b>${screensCount}</b>screens</div><div><b>print</b>${printDate}</div></div></div>
 
-<section class="toc"><h2>Contents</h2>${toc}</section>${body}</body></html>`
+<section class="toc"><h2>Contents</h2>${toc}</section>
+${intro.trim() ? `<section class="lead"><h2>How to read this guide</h2>${intro}</section>` : ''}${body}</body></html>`
 
 const dir = path.resolve(path.dirname(input))
 const htmlPath = path.join(dir, `${outBase}.print.html`)
