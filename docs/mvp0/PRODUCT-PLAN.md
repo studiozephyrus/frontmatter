@@ -6,7 +6,28 @@ status: final for the build, after the founders' stack and configuration decisio
 
 # frontmatter, the product plan
 
-This is the plan the build follows. Revision 6 records two founder decisions taken on 17 September after revision 5 was read: the stack is the Next.js app we already run with Cloudflare R2 and Firestore, not Supabase, and tier contents are set from a configuration panel rather than from constants in the source. Revision 5, which this keeps in full, followed the independent audit of revision 4 (verify/2026-09-17/CLAUDE-AUDIT-REPORT.md, 77 findings) and answers every one of them in verify/2026-09-17/RESPONSE.jsonl. What did not change: the product, the sign-in-first door, the screens' shape, the engine. What changed is in section 0. Every decision still carries its signal: `[Z]` founders decided, `[M]` a market or standards page opened and quoted, `[R]` our own earlier research, `[O]` measured this session, `[L]` a constraint, `[P]` follows from another decision. Sixteen decisions the plan cannot take are in docs/mvp0/DECISIONS-FOR-FOUNDERS-2026-09-17.md, each with a default; this revision is written to those defaults.
+**This is the plan the build follows.**
+
+**Revision 6 records two founder decisions**, both taken on 17 September after revision 5 was read.
+
+- The stack is the Next.js app we already run, with Cloudflare R2 and Firestore, not Supabase.
+- Tier contents are set from a configuration panel, not from constants in the source.
+
+**Revision 5, which this keeps in full**, followed the independent audit of revision 4 (`verify/2026-09-17/CLAUDE-AUDIT-REPORT.md`, 77 findings) and answers every one of them in `verify/2026-09-17/RESPONSE.jsonl`.
+
+**What did not change:** the product, the sign-in-first door, the screens' shape, the engine. What changed is in section 0.
+
+**Every decision carries its signal.**
+
+Signal | What it means
+`[Z]` | The founders decided it
+`[M]` | A market or standards page was opened and quoted
+`[R]` | Our own earlier research
+`[O]` | Measured this session
+`[L]` | A constraint, with no choice in it
+`[P]` | Follows from another decision
+
+**Sixteen decisions the plan cannot take** are in `docs/mvp0/DECISIONS-FOR-FOUNDERS-2026-09-17.md`, each with a default. This revision is written to those defaults.
 
 ## 0. What changed, and why
 
@@ -15,7 +36,11 @@ This is the plan the build follows. Revision 6 records two founder decisions tak
 - **The stack is Next.js, Cloudflare R2 and Firestore** `[Z]`. Revision 5 recommended Supabase Pro for records and auth, and the founders chose otherwise. It is the cheaper of the two rows section 15 costed, $43.07 a month against $65.19 at 1,000 users, and it is what the shipped code already runs, so phase A stops being a migration and becomes a hardening. The structural objections revision 5 raised are carried as build constraints in sections 15 and 18, not as arguments to reopen. Two consequences: the fixed monthly cost falls from $54.50 to $29.50, recomputed through section 22, and the proposal to delete `firestore.rules` (F045) is withdrawn, because that file is now live work.
 - **Tier contents are set from a configuration panel** `[Z]`, which is the new section 30 and screens S35 to S38. Eleven of the eighteen founder questions stop being decisions before the build and become rows in a table the panel edits. What a panel cannot hold is named there too: a promise made on the sign-in page, an age floor someone has already signed up under, and whether bytes are held at all.
 
-**Deferred on purpose, to be settled during the build** `[Z]`: the tagline, the positioning and the product-market read. None of them blocks a phase, none of them changes a screen, and each is better answered with twenty people using the thing than with another research round now.
+**Deferred on purpose, to be settled during the build** `[Z]`: the tagline, the positioning and the product-market read.
+
+- None of them blocks a phase.
+- None of them changes a screen.
+- Each is better answered with twenty people using the thing than with another research round now.
 
 **What revision 5 changed from revision 4**, kept here because the audit's corrections still stand.
 
@@ -25,17 +50,61 @@ The three blockers first.
 - **The free chain carried a link whose data terms were never opened** (F006, F005, F007). OpenRouter's free endpoints are out of the chain until their providers' terms are opened and quoted. Cerebras is named as the 30-day trial it is. The three pools are stated as one shared budget each, and the number of active free users the chain can serve is computed: about 200 after the trial.
 - **The legal floor revision 3 carried had been dropped without a word** (F008, F054, F068, F069, F077). It is back as section 23 with an owner and a date per row. The live site sent /privacy, /terms, /pricing and /refunds to the sign-in wall; placeholder pages now serve on the branch and a public-face section names who writes them. The name question is back in section 29.
 
-Then the numbers the fact check marked mismatch or stale, each corrected where it appears: the Doc mode split is 20, 15 and 29 of 64 classified features, with the table in section 7 (F002); Notion's blocks are 27 covered of 32 (F011); the Obsidian request arithmetic is four ship or by design, eleven small, one medium (F012); the research rounds are listed by date and the source count is 244 unique pages (F013); the Drive quota is re-derived with polling included (F027); Craft, Docmost and the cheaper note apps are on the pricing ladder (F004, F059); the slides signal belongs to slides-from-markdown, not to Marp (F061); the Semantic Scholar clause is gone and four API conditions are added (F062); the Model Context Protocol is "a Series of LF Projects, LLC" (F064); the decision cards number 210 (F065); the blueprint is fifteen files and its token cost is re-derived for fifteen (F017, F025); two shortened quotations are quoted in full (F042).
+**Then the numbers the fact check marked mismatch or stale**, each corrected where it appears.
 
-Then the sections the audit said were missing, added: a data model (section 18), a permission matrix (section 19), the format specifications (section 20), performance targets (section 21), the financial model (section 22), the legal floor (section 23), ownership and accounts (section 24), closure of the earlier findings (section 25), the pilot with its stop and continue lines and the metric definitions (section 28). Phase 0 with the twenty hand-made kits is back (F009). Review state is declared dropped in favour of the change queue (F058). The Yjs exception paragraph is restored beside the no-CRDT rule (F055). Obsidian Multiplayer and Obsidian for Work have risk rows (F060). Max and community are named as Later (F023). Four screens are added: the conflict screen, the AI box with every provider down, the over-cap wall, the Ideas empty state. Every screen change is in section 5 with its finding id.
+Correction | Finding
+Doc mode splits 20, 15 and 29 of 64 classified features, with the table in section 7 | F002
+Notion's blocks are 27 covered of 32 | F011
+The Obsidian request arithmetic is four ship or by design, eleven small, one medium | F012
+The research rounds are listed by date, and the source count is 244 unique pages | F013
+The Drive quota is re-derived with polling included | F027
+Craft, Docmost and the cheaper note apps join the pricing ladder | F004, F059
+The slides signal belongs to slides-from-markdown, not to Marp | F061
+The Semantic Scholar clause is gone, and four API conditions are added | F062
+The Model Context Protocol is "a Series of LF Projects, LLC" | F064
+The decision cards number 210 | F065
+The blueprint is fifteen files, and its token cost is re-derived for fifteen | F017, F025
+Two shortened quotations are quoted in full | F042
+
+**Then the sections the audit said were missing**, all added.
+
+- A data model, section 18.
+- A permission matrix, section 19.
+- The format specifications, section 20.
+- Performance targets, section 21.
+- The financial model, section 22.
+- The legal floor, section 23.
+- Ownership and accounts, section 24.
+- Closure of the earlier findings, section 25.
+- The pilot, with its stop and continue lines and the metric definitions, section 28.
+
+**And these positions were restored or declared.**
+
+- Phase 0, with the twenty hand-made kits, is back (F009).
+- Review state is declared dropped in favour of the change queue (F058).
+- The Yjs exception paragraph is restored beside the no-CRDT rule (F055).
+- Obsidian Multiplayer and Obsidian for Work have risk rows (F060).
+- Max and community are named as Later (F023).
+
+**Four screens were added:** the conflict screen, the AI box with every provider down, the over-cap wall, and the Ideas empty state. Every screen change is in section 5 with its finding id.
 
 # Part one. What we are building, and how we got here
 
 ## 1. The product in one page
 
-frontmatter is a markdown editor for people whose documents are increasingly written with, and for, AI agents. It is a web app, a desktop app and a phone app on one account. A document is a markdown file that stays the person's own. The editor is the thing we sell. The files never are. That sentence is K1, and the founders confirm or replace it in section 29 `[Z]`.
+**frontmatter is a markdown editor for people whose documents are increasingly written with, and for, AI agents.**
 
-**The promise, in the founders' words.** No captchas, no puzzles, no tour. A simple tool with a great editor that feels like home `[Z]`. The acceptance test for every screen is that a person who knows Google Docs or Obsidian needs nothing explained.
+- A web app, a desktop app and a phone app, on one account.
+- A document is a markdown file that stays the person's own.
+- **The editor is the thing we sell. The files never are.**
+
+That sentence is K1, and the founders confirm or replace it in section 29 `[Z]`.
+
+**The promise, in the founders' words** `[Z]`.
+
+- No captchas, no puzzles, no tour.
+- A simple tool with a great editor that feels like home.
+- **The acceptance test for every screen:** a person who knows Google Docs or Obsidian needs nothing explained.
 
 **What it does, in six sentences.**
 
@@ -46,23 +115,110 @@ frontmatter is a markdown editor for people whose documents are increasingly wri
 5. You bring in a folder, a Google Doc, a Word file, a Notion export or an Obsidian vault, and push documents to GitHub or keep them in Google Drive.
 6. It works offline in the browser, without limits on the desktop, and from the phone's share sheet.
 
-**Who it is for.** Founders, product people and developers who brief agents. Writers who want Google Docs comfort with markdown files. Obsidian and Notion people who want their notes on the web, shared, and readable by their agents. The audit's reading of the evidence is that only the third group is proven to pay today; section 28's pilot recruits ten of them out of twenty.
+**Who it is for.**
 
-**What it is not.** Not a new format, not a plugin platform in year one, not a chat app with a document attached. Those three were decided and the reasons are in sections 6, 8 and 17. And not the review-state product of the 9 September plan: the change queue on S20 replaces the per-span read state, and section 17 says so.
+- **Founders, product people and developers** who brief agents.
+- **Writers** who want Google Docs comfort with markdown files.
+- **Obsidian and Notion people** who want their notes on the web, shared, and readable by their agents.
+
+**The audit's reading of the evidence** is that only the third group is proven to pay today. Section 28's pilot recruits ten of them out of twenty.
+
+**What it is not.**
+
+- **Not a new format.**
+- **Not a plugin platform** in year one.
+- **Not a chat app** with a document attached.
+
+Those three were decided, and the reasons are in sections 6, 8 and 17.
+
+**And not the review-state product of the 9 September plan.** The change queue on S20 replaces the per-span read state, and section 17 says so.
 
 ## 2. What we researched, and what it found
 
-The research rounds, by date, all read from the pages named and none from memory `[O]`: 29 August (the technical PRD, twelve rounds of its own), 6 to 8 September (the pilot reshape and the adversarial round), 9 September (nine lenses), 13 September (the reset, three rounds), 15 and 16 September (twelve agents), 17 September (nine branches). Section 30 lists 244 unique pages.
+The rounds, by date, every one read from the pages named and none from memory `[O]`.
 
-**Why anyone would switch** `[O]`. Obsidian's forum lists 6,051 feature requests. Of its 30 most-liked open requests, frontmatter answers 16: four ship today or are true by design (a web version, a visual editor, one settings set on the account, server-side sync), eleven are small builds and one is medium. Its third most-liked request is a web version, at 949 hearts, and it is absent from Obsidian's published roadmap. Its most-liked request, editing an embedded note in place at 1,078 hearts, is an extension of the Live mode we already ship. Global search and replace, 650 hearts, still does not exist in Obsidian. The plugin registry lists 7,638 plugins with 147,920,815 downloads. Sixty plugins take 59.2 percent of them, and the plan builds those capabilities in. The single fastest-growing plugin is Claudian, an agent panel: 2,112,607 downloads since 5 December 2025. Obsidian's chief executive publishes an agent-skills repository with 48,440 stars since 2 January 2026. And Obsidian's roadmap now lists Multiplayer as Planned and Obsidian for Work as Active `[M]`, which section 27 carries as risks.
+Date | What ran
+29 August | The technical PRD, twelve rounds of its own
+6 to 8 September | The pilot reshape, and the adversarial round
+9 September | Nine lenses
+13 September | The reset, three rounds
+15 and 16 September | Twelve agents
+17 September | Nine branches
 
-**What people love and lack** `[O]`. Across the phone-app reviews we counted, clumsy editing was the top complaint at 35 of 156, then sync at 26, slow start at 13 and lost data at 13. Praise went to design at 35, simplicity at 34 and sync at 18. In the lowest-rated Notion reviews, unwanted AI appeared 13 times in 33. The ten switching drivers, by mentions across sources: own files 28, setup burden 24, databases and migration 23, AI edits you cannot switch off 21, price and metering 20, sync 19, speed 19, offline and longevity 19, open source 17, teams 16.
+Section 30 lists 244 unique pages.
 
-**The market split** `[O]`. Everything that stores a person's knowledge for an agent and charges for it keeps the data in its own database, at $8 to $375 a month. Everything that keeps knowledge in files the person owns is free and open source. Nobody sells the writing surface.
+**Why anyone would switch** `[O]`. Obsidian's own forum is the clearest statement of demand anyone has published.
 
-**The standards** `[M]`. AGENTS.md is used by over 60,000 projects. Claude Code does not read it and needs a one-line import in CLAUDE.md. The Model Context Protocol is "a Series of LF Projects, LLC" with a current specification dated 2026-07-28. The skills guide asks for a SKILL.md under 500 lines. These are the formats the blueprint ships in, and none of them is ours to invent.
+**The requests.** 6,051 feature requests are open. Of the thirty most-liked, frontmatter answers sixteen.
 
-**What the research never did** `[O]`. No customer was interviewed. No prototype was tested with a user. No price was tested. No legal review, no accessibility audit, no security test, no performance measurement of the shipped editor. Section 28's pilot and Phase 0's twenty hand-made kits are the first of those.
+- Four ship today or are true by design: a web version, a visual editor, one settings set on the account, server-side sync.
+- Eleven are small builds. One is medium.
+
+**The three that matter most.**
+
+Request | Hearts | Where it stands
+A web version | 949 | Absent from Obsidian's published roadmap
+Editing an embedded note in place | 1,078 | Their most-liked; an extension of the Live mode we already ship
+Global search and replace | 650 | Still does not exist in Obsidian
+
+**What the plugin registry says.**
+
+- 7,638 plugins, 147,920,815 downloads.
+- Sixty plugins take 59.2 percent of all downloads, and the plan builds those capabilities in.
+- The fastest-growing plugin is Claudian, an agent panel: 2,112,607 downloads since 5 December 2025.
+- Obsidian's chief executive publishes an agent-skills repository with 48,440 stars since 2 January 2026.
+
+**What they are building back** `[M]`. The roadmap now lists Multiplayer as Planned and Obsidian for Work as Active. Section 27 carries both as risks.
+
+**What people love and lack** `[O]`.
+
+**Complaints, across 156 phone-app reviews.**
+
+Complaint | Count
+Clumsy editing | 35
+Sync | 26
+Slow start | 13
+Lost data | 13
+
+**Praise, in the same set.** Design 35, simplicity 34, sync 18.
+
+**In the lowest-rated Notion reviews**, unwanted AI appeared 13 times in 33.
+
+**The ten switching drivers**, by mentions across every source.
+
+Driver | Mentions
+Own files | 28
+Setup burden | 24
+Databases and migration | 23
+AI edits you cannot switch off | 21
+Price and metering | 20
+Sync | 19
+Speed | 19
+Offline and longevity | 19
+Open source | 17
+Teams | 16
+
+**The market split** `[O]`.
+
+- Everything that stores a person's knowledge for an agent, and charges for it, keeps the data in its own database at $8 to $375 a month.
+- Everything that keeps knowledge in files the person owns is free and open source.
+- **Nobody sells the writing surface.**
+
+**The standards** `[M]`. These are the formats the blueprint ships in, and not one of them is ours to invent.
+
+- **AGENTS.md** is used by over 60,000 projects. Claude Code does not read it, and needs a one-line import in CLAUDE.md.
+- **The Model Context Protocol** is "a Series of LF Projects, LLC", with a current specification dated 2026-07-28.
+- **The skills guide** asks for a SKILL.md under 500 lines.
+
+**What the research never did** `[O]`. Read this list before trusting anything above it.
+
+- No customer was interviewed.
+- No prototype was tested with a user.
+- No price was tested.
+- No legal review, no accessibility audit, no security test.
+- No performance measurement of the shipped editor.
+
+Section 28's pilot and Phase 0's twenty hand-made kits are the first of those.
 
 **This round, nine branches, each from primary pages opened on 17 September** `[M]`:
 
@@ -103,11 +259,34 @@ Later, named | A Max tier above Pro; a community as an opt-in index plus GitHub 
 
 ## 4. The journeys
 
-**The first five minutes.** Sign in with one tap. Land on Home with five ways to start and nothing else. Type in a blank document, or describe an idea, or drop a folder. The document saves as you type. No tour appears. A tip appears only the first time you hover a control you have not used `[M]` Nielsen: "Tutorials interrupt users, don't necessarily improve task performance, and are quickly forgotten."
+**The first five minutes.**
 
-**Writing.** Markdown mode for people who type markdown. Doc mode for people who type in Google Docs. One switch in the Live toolbar. Edit, Live, Reading and Split stay as they are today. The AI box on an empty document, the AI menu on a selection, the problems panel and the instruction-file health panel are the four places the editor helps.
+1. Sign in with one tap.
+2. Land on Home, with five ways to start and nothing else.
+3. Type in a blank document, describe an idea, or drop a folder.
+4. The document saves as you type.
 
-**Ideas.** A separate tab. Ideas are listed on the left with their state. The idea, its attachments and the industry template sit in the middle. Choose a depth. Answer. The blueprint is written, checked for consistency, and published at an unlisted link with a kickoff prompt that verifies the kit's hash before it unpacks anything.
+**No tour appears.** A tip appears only the first time you hover a control you have not used. `[M]` Nielsen: "Tutorials interrupt users, don't necessarily improve task performance, and are quickly forgotten."
+
+**Writing.**
+
+- **Markdown mode** for people who type markdown. **Doc mode** for people who type in Google Docs. One switch in the Live toolbar.
+- Edit, Live, Reading and Split stay as they are today.
+
+**The editor helps in exactly four places.**
+
+1. The AI box on an empty document.
+2. The AI menu on a selection.
+3. The problems panel.
+4. The instruction-file health panel.
+
+**Ideas.** A separate tab.
+
+- Ideas are listed on the left, with their state.
+- The idea, its attachments and the industry template sit in the middle.
+- **Choose a depth. Answer.**
+- The blueprint is written, checked for consistency, and published at an unlisted link.
+- The kickoff prompt verifies the kit's hash before it unpacks anything.
 
 **Sharing.** People, a link, a published page. The link can expire, or need a password on Pro. A published page reads without an account, carries a `.md` twin for agents, and carries Report, Privacy and Terms in its footer.
 
@@ -117,7 +296,17 @@ Later, named | A Max tier above Pro; a community as an opt-in index plus GitHub 
 
 ## 5. The screens
 
-Thirty-eight screens, each on desktop and on the phone. Thirty-four are the product; the last four are the configuration panel of section 30, which only a founder sees. The phone follows the shipped code: a 52 px bar, the editor full width, and the tree and the right pane as drawers. The bottom bar is new. Every screen names what is on it and why, and the finding it answers where it changed in this revision. The screens use two tokens the shipped app does not have yet, an `--ai` blue and the Google Sans Code face; phase B adds both to globals.css (F044).
+**Thirty-eight screens, each on desktop and on the phone.** Thirty-four are the product. The last four are the configuration panel of section 30, which only a founder sees.
+
+**The phone follows the shipped code.**
+
+- A 52 px bar, the editor full width.
+- The tree and the right pane as drawers.
+- The bottom bar is the one new thing.
+
+**How to read each entry.** Every screen names what is on it, why, and the finding it answers where it changed in this revision.
+
+**Two tokens are not in the shipped app yet**, an `--ai` blue and the Google Sans Code face. Phase B adds both to globals.css (F044).
 
 ### S01. Sign in
 
@@ -127,7 +316,12 @@ Thirty-eight screens, each on desktop and on the phone. Thirty-four are the prod
 - The fine print says what we do not do: no password, no puzzle, no tour, no training on documents, and links the provider list that makes that true.
 - Privacy and Terms link to pages that serve without an account (F054). The right half shows the editor once, so the page is not a wall.
 
-**Why.** `[Z]` sign-in first. `[M]` Apple: "People often abandon apps when they're forced to sign in before they can do anything useful", so the sign-in is one tap and the page shows the product behind it. `[L]` no captcha, ever. The muted text token is retuned to 4.5:1 on every screen (F030).
+**Why.**
+
+- `[Z]` Sign-in first.
+- `[M]` Apple: "People often abandon apps when they're forced to sign in before they can do anything useful". So the sign-in is one tap, and the page shows the product behind it.
+- `[L]` No captcha, ever.
+- The muted text token is retuned to 4.5:1 on every screen (F030).
 
 ### S02. Home, first time
 
@@ -197,7 +391,11 @@ Thirty-eight screens, each on desktop and on the phone. Thirty-four are the prod
 - The left pane states what each block becomes elsewhere: GitHub, Obsidian, VS Code.
 - The phone shows the rendered side.
 
-**Why.** `[R]` settled: callouts for prose, fences for data. `[M]` the table-to-chart pattern exists in the wild in obsidian-charts, whose block points at a block id on the table so the table stays a plain table. The shape is copied, the code is not, because that plugin is AGPL (F063).
+**Why.**
+
+- `[R]` Settled: callouts for prose, fences for data.
+- `[M]` The table-to-chart pattern exists in the wild in obsidian-charts, whose block points at a block id on the table, so the table stays a plain table.
+- **The shape is copied, the code is not**, because that plugin is AGPL (F063).
 
 ### S09. Flow view
 
@@ -267,7 +465,11 @@ Thirty-eight screens, each on desktop and on the phone. Thirty-four are the prod
 - A consistency check ran before you saw it. An unlisted link. A kickoff prompt for Claude Code, Cursor or Codex that verifies the tarball against the hash printed on this page before it unpacks, and reads before it builds (F028).
 - Edit, then publish v2.
 
-**Why.** `[Z]` the kit is a skill-shaped folder. `[M]` SKILL.md and AGENTS.md are the two formats agents read today. `[P]` a checksum file inside the tarball it verifies proves only that the transfer was intact; the out-of-band hash proves the kit is the one we published.
+**Why.**
+
+- `[Z]` The kit is a skill-shaped folder.
+- `[M]` SKILL.md and AGENTS.md are the two formats agents read today.
+- `[P]` A checksum file inside the tarball it verifies proves only that the transfer was intact. **The out-of-band hash proves the kit is the one we published.**
 
 ### S16. The map
 
@@ -317,7 +519,11 @@ Thirty-eight screens, each on desktop and on the phone. Thirty-four are the prod
 - Accept, Reject and Reply of equal weight. Accept all applies only to a named person's edits and asks you to confirm the count first; AI and agent items are accepted one by one with the diff shown (F029).
 - Changed spans highlighted in the document.
 
-**Why.** `[R]` the proposal is a first-class object: agents propose, people accept. `[M]` Buçinca 2021, Jakesch 2023, Doshi and Hauser 2024 and Draxler 2023 on over-acceptance of AI text, in the note-research report. `[M]` iA Writer now leads with authorship display, so the market has caught up with the need.
+**Why.**
+
+- `[R]` The proposal is a first-class object: agents propose, people accept.
+- `[M]` Buçinca 2021, Jakesch 2023, Doshi and Hauser 2024, and Draxler 2023, on over-acceptance of AI text, in the note-research report.
+- `[M]` iA Writer now leads with authorship display, so the market has caught up with the need.
 
 ### S21. Document history
 
@@ -496,7 +702,10 @@ Thirty-eight screens, each on desktop and on the phone. Thirty-four are the prod
 - That account's ledger: what it spent, on which model, and what it cost us.
 - The audit log across every setting, newest first, read-only in the panel.
 
-**Why.** `[P]` the ledger of section 18 is the counter every cap check reads, so this screen is a view of it rather than a second store. `[Z]` an exception is the honest answer to one support mail, and section 30 requires it to expire.
+**Why.**
+
+- `[P]` The ledger of section 18 is the counter every cap check reads, so this screen is a view of it rather than a second store.
+- `[Z]` An exception is the honest answer to one support mail, and section 30 requires it to expire.
 
 ## 6. Built in by default, so nobody needs a plugin
 
@@ -524,15 +733,51 @@ Drawing | Joplin, Craft, Bear, Obsidian 7,974,073 | The Excalidraw block
 Version history and diff | Joplin, Craft, Notion, Docs | Document history
 Citations | Logseq, Docs, VS Code | A DOI lookup in the slash menu
 
-**What the earlier plan did not mention, now placed** `[O]`: a table of contents marker, footnotes, emoji input, link previews for external links, OCR search inside images and PDFs through Tesseract.js, a formatter, an accessibility check on the document, and a stated API rate limit. Meeting notes and a sandboxed HTML block are refused, the second because the plan bans third-party scripts on published pages.
+**What the earlier plan did not mention, now placed** `[O]`.
 
-**Notion's block inventory as a checklist** `[M]`. Notion's API enum lists 32 block types; Code is documented outside the enum. frontmatter covers 27 of the 32 in plain markdown or a shipped block: paragraph, headings 1 to 4, bulleted and numbered items, to-do, toggle as a details block, quote, callout, divider, table and rows, image, video and file as links, PDF as a link, bookmark and link preview as previews, equation, table of contents, breadcrumb from the tree, child page and child database as links, embed as a link, template as a template, plus code as a fence. Not covered on purpose: column list, column, synced block, transcription, and the unsupported type, because none survives a plain markdown reader (F011).
+- A table of contents marker, footnotes, emoji input.
+- Link previews for external links.
+- OCR search inside images and PDFs, through Tesseract.js.
+- A formatter, an accessibility check on the document, and a stated API rate limit.
 
-**Obsidian's plugins.** The parity table of revision 3 stands: 15 plugin capabilities already ship, 21 are built in MVP 0, 8 in MVP 1. The Excalidraw block, templates, tasks, calendar, quick capture, ranked search and the importer are the big six.
+**Two are refused.** Meeting notes, and a sandboxed HTML block. The second because the plan bans third-party scripts on published pages.
+
+**Notion's block inventory as a checklist** `[M]`. Notion's API enum lists 32 block types, and Code is documented outside the enum. **frontmatter covers 27 of the 32**, in plain markdown or a shipped block.
+
+Notion block | How we carry it
+Paragraph, headings 1 to 4, bulleted and numbered items, to-do, quote, divider | Plain markdown
+Toggle | A details block
+Callout | A callout block
+Table and rows | A markdown table
+Image, video, file, PDF, embed, child page, child database | Links
+Bookmark, link preview | Previews
+Equation | KaTeX
+Table of contents | A marker
+Breadcrumb | From the tree
+Template | A template
+Code | A fence
+
+**Not covered, on purpose:** column list, column, synced block, transcription, and the unsupported type. None of them survives a plain markdown reader (F011).
+
+**Obsidian's plugins.** The parity table of revision 3 stands.
+
+When | Plugin capabilities
+Already ship | 15
+Built in MVP 0 | 21
+MVP 1 | 8
+
+**The big six:** the Excalidraw block, templates, tasks, calendar, quick capture, ranked search and the importer.
 
 ## 7. Doc mode, the honest scope
 
-The research classified 64 Google Docs features, one row each, from Google's own help pages `[M]`. Twenty are plain markdown, fifteen need an extension, twenty-nine cannot live in a text file. The table is the specification a contractor builds from (F002).
+**The research classified 64 Google Docs features**, one row each, from Google's own help pages `[M]`.
+
+Verdict | Count
+Plain markdown | 20
+Needs an extension | 15
+Cannot live in a text file | 29
+
+The table below is the specification a contractor builds from (F002).
 
 Feature | Column | Carrier or reason
 Bold, italic | N | CommonMark
@@ -604,7 +849,14 @@ Publish to web | X | Hosting state
 
 **The refusal rule** `[P]`. Doc mode carries a feature only if a stranger's plain markdown parser, with no editor and no export theme, still shows the author's meaning from the bytes on disk.
 
-**What the rich editors admit** `[M]`. Tiptap's markdown extension is "a early release" and says "Comments are not supported yet". Typora: "Custom fonts in Typora are set by CSS." Google's markdown export: "Font colors, highlights, and text alignment are removed." We are not inventing a limit. We are naming the one every tool has.
+**What the rich editors admit** `[M]`.
+
+Tool | What its own page says
+Tiptap's markdown extension | "a early release", and "Comments are not supported yet"
+Typora | "Custom fonts in Typora are set by CSS."
+Google's markdown export | "Font colors, highlights, and text alignment are removed."
+
+**We are not inventing a limit. We are naming the one every tool has.**
 
 ## 8. What a document can become
 
@@ -621,7 +873,14 @@ Maths | KaTeX, 18,887,573 weekly downloads | MIT | Universal | Ships today
 Music | abcjs | MIT | HackMD renders it | Later
 PDF and print | Paged.js for the browser, Pandoc on the server | MIT, GPL | Universal | MVP 0
 
-Two things we will not embed `[M]`: tldraw, whose licence forbids production use without a key and phones home, and D2, which is MPL and duplicates Mermaid. Database views over front matter, as Obsidian's Bases, have no open renderer and wait. The kanban and chart blocks copy the shape of obsidian-kanban and obsidian-charts and none of their code, because the first is GPL and the second AGPL, and both are unmaintained (F063).
+**Two things we will not embed** `[M]`.
+
+- **tldraw**, whose licence forbids production use without a key, and which phones home.
+- **D2**, which is MPL and duplicates Mermaid.
+
+**One thing that waits.** Database views over front matter, as Obsidian's Bases, have no open renderer.
+
+**Two things we copy the shape of, and none of the code.** The kanban and chart blocks follow obsidian-kanban and obsidian-charts. The first is GPL, the second AGPL, and both are unmaintained (F063).
 
 ## 9. Idea mode, three depths
 
@@ -630,47 +889,185 @@ Low | Free | 10 to 15 | A recommendation and one line of reason; Not sure record
 Medium | Pro | 20 to 30 | Where it stands, what forces the choice, options with gains and costs, evidence from the person's own documents and the template's sources, dated when the template last checked them | The same calls on Sonnet through the batch API, plus a retrieval pass over the project
 High | Pro, 3 blueprint credits | 20 to 30 | Medium, plus a research pass before the questions: sources opened, dated and quoted, a decision record you can publish | A background job of about an hour, with web fetches; about 150,000 tokens in and 40,000 out on Sonnet, assumed until measured
 
-**The blueprint** `[Z]` `[P]`. Fifteen files in a skill folder: SKILL.md, AGENTS.md, 00-BRIEF.md, 01-PRODUCT.md, 02-DATA-AND-API.md, 03-ARCHITECTURE.md, 04-SETUP.md, 05-FRONTEND-SPEC.md, specs/booking.md, specs/payments.md, DECISIONS.md, MAP.md, graph.json, MANIFEST.json, SHA256SUMS. Twelve are markdown documents, three are data files. The frontend spec is the founders' ask 4 and the file S12 promises (F025). Its cost model, assumed until measured (F017): one call per file at 5,455 tokens in and 2,091 out, so 81,825 in and 31,365 out per blueprint.
+**The blueprint** `[Z]` `[P]`. Fifteen files in a skill folder: twelve markdown documents and three data files.
 
-**Templates** `[Z]`. Seven industry templates ship: local service business, SaaS, marketplace, internal tool, mobile app, content site, agency. Each carries its question bank, its comparables and its sources. Generate one for my industry writes a new template from the idea and marks it as generated. Section 26 costs the writing.
+Kind | Files
+Markdown | SKILL.md, AGENTS.md, 00-BRIEF.md, 01-PRODUCT.md, 02-DATA-AND-API.md, 03-ARCHITECTURE.md, 04-SETUP.md, 05-FRONTEND-SPEC.md, specs/booking.md, specs/payments.md, DECISIONS.md, MAP.md
+Data | graph.json, MANIFEST.json, SHA256SUMS
 
-**What a template holds** `[R]`. The question order, the recommendation rules, the file list, the consistency checks, and the sources a Medium answer may cite. Templates are markdown files in a folder, so a person can read, edit and share them.
+**The frontend spec** is the founders' ask 4, and the file S12 promises (F025).
 
-**The rule that keeps it honest** `[P]`. Low never shows evidence it did not read. Medium cites only the person's documents and the template, and says when the template last checked a source. High cites only pages it opened, with the date. A recommendation is never a percentage `[M]` PAIR: do not show confidence when "The confidence level isn't impactful". Not sure is never written as the founder's decision.
+**Its cost model, assumed until measured** (F017): one call per file at 5,455 tokens in and 2,091 out, so 81,825 in and 31,365 out per blueprint.
+
+**Templates** `[Z]`. Seven industry templates ship.
+
+- Local service business, SaaS, marketplace, internal tool, mobile app, content site, agency.
+- Each carries its question bank, its comparables and its sources.
+- **Generate one for my industry** writes a new template from the idea, and marks it as generated.
+- Section 26 costs the writing.
+
+**What a template holds** `[R]`.
+
+- The question order.
+- The recommendation rules.
+- The file list, and the consistency checks.
+- The sources a Medium answer may cite.
+
+**Templates are markdown files in a folder**, so a person can read, edit and share them.
+
+**The rule that keeps it honest** `[P]`.
+
+Depth | What it may cite
+Low | Never shows evidence it did not read
+Medium | Only the person's documents and the template, and says when the template last checked a source
+High | Only pages it opened, with the date
+
+- **A recommendation is never a percentage.** `[M]` PAIR: do not show confidence when "The confidence level isn't impactful".
+- **Not sure is never written as the founder's decision.**
 
 ## 10. Sharing, publishing, portfolio
 
-**The four ways out.** People with a role from section 19. A link with read or edit, an expiry, and on Pro a password. A published page at frontmatter.in/p/slug with a `.md` twin, a Made with frontmatter line on Free, and Report, Privacy and Terms in its footer. The portfolio at frontmatter.in/@handle on Pro.
+**The four ways out.**
 
-**Password links** `[M]`. Dropbox: "add a password to a shared link" on Professional and above, not on Basic or Plus. Figma: "Available on all paid plans". Loom: "Business, Business + AI, or Enterprise". Notion: "Can I password protect a page? Unfortunately, not at the moment." We store a hash, ask once per browser, and put it on Pro.
+1. **People**, with a role from section 19.
+2. **A link**, read or edit, with an expiry, and on Pro a password.
+3. **A published page** at frontmatter.in/p/slug, with a `.md` twin, a Made with frontmatter line on Free, and Report, Privacy and Terms in its footer.
+4. **The portfolio** at frontmatter.in/@handle, on Pro.
+
+**Password links** `[M]`. Every one of these is paid, or absent.
+
+Product | What its page says
+Dropbox | "add a password to a shared link" on Professional and above, not on Basic or Plus
+Figma | "Available on all paid plans"
+Loom | "Business, Business + AI, or Enterprise"
+Notion | "Can I password protect a page? Unfortunately, not at the moment."
+
+**Ours:** we store a hash, ask once per browser, and put it on Pro.
 
 **Expiring links** `[M]`. Bitwarden gives every user a deletion date with a default of seven days. Google Drive allows expiry only on Workspace editions and never on anyone-with-the-link. Ours is free, with a seven-day default and no upper bound.
 
-**Published pages** `[M]`. No product opened caps public pages at a small number. Notion says "Unlimited published pages" and gates one custom domain. The market's gate is the domain and the branding. Ours is five pages on Free with the line, unlimited and unbranded on Pro, and a custom domain later. Pages are not indexed today; whether they should be is an open question in section 29, because the audit is right that not indexing removes search as a channel.
+**Published pages** `[M]`.
 
-**Portfolio** `[M]`. sayak.dev is a Quarto project: one `.qmd` per page, a `_quarto.yml`, a build, GitHub Pages. Astro wants a content folder and a schema. We serve the stored file. The front matter keys are name, handle, title, links, projects, writing and theme, all ignorable by any other tool, so the file stays portable. Section 20 specifies them.
+- **No product opened caps public pages at a small number.** Notion says "Unlimited published pages", and gates one custom domain instead.
+- **The market's gate is the domain and the branding**, not the count.
+- **Ours:** five pages on Free with the line, unlimited and unbranded on Pro, and a custom domain later.
+- **Pages are not indexed today.** Whether they should be is an open question in section 29, because the audit is right that not indexing removes search as a channel.
+
+**Portfolio** `[M]`.
+
+- **What the reference sites need.** sayak.dev is a Quarto project: one `.qmd` per page, a `_quarto.yml`, a build, GitHub Pages. Astro wants a content folder and a schema.
+- **What we do instead.** We serve the stored file.
+- **The front matter keys** are name, handle, title, links, projects, writing and theme.
+- All of them are ignorable by any other tool, **so the file stays portable**. Section 20 specifies them.
 
 ## 11. Bringing things in and out
 
-**Folder upload** `[M]`. The folder input works in Chrome 7, Edge 13, Firefox 50, Safari 11.1, iOS Safari 18.4 and Android Chrome 132. Drag-and-drop of a folder works on desktop through the entries API. Writing back to the person's own folder works only in Chrome and Edge through the directory picker, and MDN marks that API as not baseline. So: every browser imports, Chromium browsers can keep a live folder, and everyone else gets Drive, GitHub or a download for the way back. An Obsidian vault imports as it is. Its `.obsidian` folder is read for the daily-note path and the templates folder and nothing else.
+**Folder upload** `[M]`.
 
-**Google Drive** `[M]`. The `drive.file` scope covers files the app created or the person picked, and needs only basic verification. `changes.list` and `files.watch` accept it. A change channel lasts a week at most, with no automatic renewal, and carries no content, so the app polls the change list from a stored page token. The cost, re-derived with the poll included (F027): 30 saves a day at 50 units is 1,500 units; a poll every five minutes at 100 units is 288 × 100 = 28,800; 30,300 units per user per day. The daily project threshold of 400,000,000 units covers 400,000,000 / 30,300 = 13,201 connected users before Google's quota increase, which the limits page now says is billed. A one-minute poll would cost 145,500 units a day and serve 2,749 users, so S23 promises "within a few minutes". Conflicts are never merged silently. Both versions are kept and the person chooses on S31.
+- **Reading a folder in** works in Chrome 7, Edge 13, Firefox 50, Safari 11.1, iOS Safari 18.4 and Android Chrome 132.
+- **Dragging a folder in** works on desktop through the entries API.
+- **Writing back to the person's own folder** works only in Chrome and Edge, through the directory picker, and MDN marks that API as not baseline.
 
-**GitHub** `[M]`. A GitHub App, not a personal token. It asks for the Contents permission, read and write, and nothing else; GitHub grants that for the whole repository, so the promise to write only under docs/ is frontmatter's own rule, enforced server-side and tested (F034). Installation tokens expire after an hour and carry their own 5,000 requests an hour. Every update sends the file's blob sha and treats a 409 as a re-read, which is the splice engine's compare-and-swap rule in GitHub's words. Free: one repository and 20 pushes a month. Pro: unlimited.
+**So:** every browser imports, Chromium browsers can keep a live folder, and everyone else gets Drive, GitHub or a download for the way back.
 
-**Google Docs and Word** `[M]`. Drive exports a Google Doc as `text/markdown`, and "Exported content is limited to 10 MB", which S22 states when it refuses (F024). Word converts in the browser with mammoth, so the file never leaves the machine. Google's own loss statement applies to both: colours, highlights and alignment are removed.
+**An Obsidian vault imports as it is.** Its `.obsidian` folder is read for the daily-note path and the templates folder, and for nothing else.
+
+**Google Drive** `[M]`.
+
+**The scope.** `drive.file` covers files the app created or the person picked, and needs only basic verification. Both `changes.list` and `files.watch` accept it.
+
+**Why we poll rather than subscribe.** A change channel lasts a week at most, has no automatic renewal, and carries no content. So the app polls the change list from a stored page token.
+
+**The cost per user per day, re-derived with the poll included** (F027).
+
+Item | Working | Units
+30 saves a day | 30 × 50 | 1,500
+A poll every five minutes | 288 × 100 | 28,800
+Total | | 30,300
+
+**What that buys.**
+
+- Google's daily project threshold is 400,000,000 units, so 400,000,000 / 30,300 = **13,201 connected users** before the quota increase, which the limits page now says is billed.
+- A one-minute poll would cost 145,500 units a day and serve 2,749 users. That is why S23 promises "within a few minutes".
+
+**Conflicts are never merged silently.** Both versions are kept, and the person chooses on S31.
+
+**GitHub** `[M]`. A GitHub App, not a personal token.
+
+- **It asks for the Contents permission, read and write, and nothing else.**
+- GitHub grants that for the whole repository, so the promise to write only under `docs/` is frontmatter's own rule, enforced server-side and tested (F034).
+- Installation tokens expire after an hour and carry their own 5,000 requests an hour.
+- Every update sends the file's blob sha and treats a 409 as a re-read. That is the splice engine's compare-and-swap rule, in GitHub's words.
+- **Free:** one repository, 20 pushes a month. **Pro:** unlimited.
+
+**Google Docs and Word** `[M]`.
+
+- **Google Docs.** Drive exports as `text/markdown`, and "Exported content is limited to 10 MB", which S22 states when it refuses (F024).
+- **Word.** Converts in the browser with mammoth, so the file never leaves the machine.
+- **Both lose the same things**, in Google's own words: colours, highlights and alignment are removed.
 
 **Notion** `[M]`. The export zip imports as a project. The API allows 180 requests a minute on a non-business workspace, which is enough to pull a workspace page by page as a later feature.
 
-**The twenty public APIs worth using** `[M]`. Seven run entirely in the browser with no key and send no text anywhere: KaTeX, Mermaid, Tesseract.js for OCR, pdf.js and pdf-lib, the DiceBear library, and self-hosted Google Fonts. Key-less and remote, sending only the query: Wikipedia and Wiktionary at 200 requests a minute with a user agent, the Free Dictionary, Datamuse at 100,000 requests a day until 1 January 2027, after which a key is mandatory, and customer-facing use needs prior contact, Crossref and OpenAlex for a DOI, Open Library for an ISBN, arXiv at one request every three seconds, Frankfurter for currency. Behind our proxy because they need a secret: Unsplash at 50 an hour in demo and 1,000 after approval with attribution and a download ping, Pexels at 200 an hour and 20,000 a month, DeepL's developer plan at a million characters, iframely at 2,000 hits a month, billed once an hour per URL. Never sent document text: LanguageTool's public endpoint, which says "Do not send automated requests" and caps a request at 20 KB and an address at 20 requests and 75 KB a minute (F062). Grammar beyond spelling waits for a self-hosted LanguageTool. Semantic Scholar receives DOIs and titles only, as good practice; its licence page carries no clause about training on what is sent, and the earlier sentence that said so is withdrawn (F062).
+**The twenty public APIs worth using** `[M]`. Grouped by what leaves the machine, because that is the only grouping that matters here.
+
+**Seven run entirely in the browser, with no key, and send no text anywhere.** KaTeX, Mermaid, Tesseract.js for OCR, pdf.js, pdf-lib, the DiceBear library, and self-hosted Google Fonts.
+
+**Key-less and remote, sending only the query.**
+
+Service | Limit on the page
+Wikipedia and Wiktionary | 200 requests a minute, with a user agent
+The Free Dictionary | none stated
+Datamuse | 100,000 a day until 1 January 2027, then a key is mandatory; customer-facing use needs prior contact
+Crossref and OpenAlex | for a DOI
+Open Library | for an ISBN
+arXiv | one request every three seconds
+Frankfurter | for currency
+
+**Behind our proxy, because they need a secret.**
+
+Service | Limit on the page
+Unsplash | 50 an hour in demo, 1,000 after approval, with attribution and a download ping
+Pexels | 200 an hour, 20,000 a month
+DeepL, developer plan | a million characters
+iframely | 2,000 hits a month, billed once an hour per URL
+
+**Never sent document text.**
+
+- **LanguageTool's public endpoint** says "Do not send automated requests" and caps a request at 20 KB, an address at 20 requests and 75 KB a minute (F062). Grammar beyond spelling waits for a self-hosted LanguageTool.
+- **Semantic Scholar** receives DOIs and titles only, as good practice. Its licence page carries no clause about training on what is sent, and the earlier sentence that said so is withdrawn (F062).
 
 ## 12. Offline, desktop, phone
 
-**In the browser** `[M]`. Every keystroke goes to IndexedDB or the origin private file system, which has been baseline since March 2023. Chrome allows an origin about 60 percent of the disk. Firefox allows the smaller of 10 percent or 10 GiB. Safari allows about 60 percent since macOS 14 and iOS 17, and deletes all script-writable storage after seven days of Safari use without a visit, unless the app is on the home screen. Background sync and the share target exist only in Chromium. The one rule: never let the browser be the only copy. Persist is requested inside a user gesture, and the first connection pushes everything to the server.
+**In the browser** `[M]`. Every keystroke goes to IndexedDB or the origin private file system, which has been baseline since March 2023.
 
-**The desktop app** `[Z]` `[M]`. Files on disk, no document limit, fully offline, agents can read the folder. It is the one we promote, and the web app stays. Each target builds on its own runner in CI: Tauri says cross-compiling Windows from macOS is "a last resort" and signing it needs an external tool (F072). Signing: macOS on the Apple programme at 99 USD a year; Linux unsigned by choice; Windows shown as coming until a commercial certificate is priced, because Azure Artifact Signing's public trust is closed to organisations in India (F071).
+Browser | What it allows
+Chrome | About 60 percent of the disk, per origin
+Firefox | The smaller of 10 percent or 10 GiB
+Safari | About 60 percent since macOS 14 and iOS 17, but deletes all script-writable storage after seven days of Safari use without a visit, unless the app is on the home screen
 
-**The phone** `[M]`. Material: under 600 dp use a navigation bar with three to five destinations and one pane, confirmed on developer.android.com. Ours has five: Home, Search, AI, Outline, More. The tree and the right pane are drawers, as the shipped code does. Targets are large and spaced, which is Fitts's law; the number is Material's, not Fitts's (F015).
+**Background sync and the share target exist only in Chromium.**
+
+**The one rule: never let the browser be the only copy.** Persist is requested inside a user gesture, and the first connection pushes everything to the server.
+
+**The desktop app** `[Z]` `[M]`.
+
+- **What it gives.** Files on disk, no document limit, fully offline, and agents can read the folder.
+- **It is the one we promote**, and the web app stays.
+- **Each target builds on its own runner in CI.** Tauri says cross-compiling Windows from macOS is "a last resort", and signing it needs an external tool (F072).
+
+**Signing, per platform.**
+
+Platform | What we do | Why
+macOS | Signed on the Apple programme, 99 USD a year | Available to us
+Linux | Unsigned, by choice | Nothing to gain
+Windows | Shown as coming, until a commercial certificate is priced | Azure Artifact Signing's public trust is closed to organisations in India (F071)
+
+**The phone** `[M]`.
+
+- **Material's rule**, confirmed on developer.android.com: under 600 dp use a navigation bar with three to five destinations, and one pane.
+- **Ours has five:** Home, Search, AI, Outline, More.
+- **The tree and the right pane are drawers**, as the shipped code already does.
+- **Targets are large and spaced**, which is Fitts's law. The number is Material's, not Fitts's (F015).
 
 ## 13. Free and Pro
 
@@ -688,13 +1085,53 @@ Password links | asked for | Paid at Dropbox, Figma and Loom. None at Notion | P
 Google Drive | asked for | Notion gates Drive to Plus at $10. It is the person's own storage and costs us nothing | Free
 Downgrade | not stated | Figma keeps files readable over the cap | Every document stays readable and exportable; nothing new is created until under the cap (S33)
 
-**Pricing** `[Z]` `[M]`. Free at ₹0. Pro at ₹299 a month or ₹2,499 a year, both GST inclusive, which is ₹253.39 before GST and about ₹246 after Razorpay's fee, section 22. That is about $3.12 at ₹95.96 to the dollar. The first paid tier across peers, corrected this revision (F004, F059): UpNote $1.99, Bear $2.99, Joplin Cloud 2.99 euro, Obsidian Sync $4, Anytype $4, HackMD $5, Craft ₹526.7 a month on its India page, Confluence $5.42, AFFiNE $6.75, Standard Notes $7.50, Nuclino $8, Mem $9, Capacities $9.99, then Notion, Slite, Outline, Linear and Reflect at $10; Docmost is $6 a seat with a ten-seat minimum, so $60 a month; Notesnook's India page, as the audit read it, is below ₹299, and it could not be re-opened by this revision. AI-forward tools sit at $15 to $20. So: under every collaboration and AI tool, above the single-user note apps, with more in the box than either. Top-ups: 50 edits for ₹99, 3 blueprints for ₹149. Team, with seats and one bill, after Pro. Enterprise later. Max, a tier above Pro with more credits, later and unpriced (F023). No student tier `[Z]`.
+**Pricing** `[Z]` `[M]`.
+
+- **Free at ₹0.**
+- **Pro at ₹299 a month, or ₹2,499 a year**, both GST inclusive. That is ₹253.39 before GST and about ₹246 after Razorpay's fee, section 22, or about $3.12 at ₹95.96 to the dollar.
+
+**The first paid tier across peers**, corrected this revision (F004, F059).
+
+Product | First paid tier
+UpNote | $1.99
+Bear | $2.99
+Joplin Cloud | 2.99 euro
+Obsidian Sync, Anytype | $4
+HackMD | $5
+Craft | ₹526.7 a month, on its India page
+Confluence | $5.42
+AFFiNE | $6.75
+Standard Notes | $7.50
+Nuclino | $8
+Mem | $9
+Capacities | $9.99
+Notion, Slite, Outline, Linear, Reflect | $10
+Docmost | $6 a seat, ten-seat minimum, so $60 a month
+AI-forward tools | $15 to $20
+
+**One the audit read and this revision could not re-open:** Notesnook's India page sits below ₹299.
+
+**So ₹299 sits under every collaboration and AI tool, above the single-user note apps, with more in the box than either.**
+
+**The rest of the ladder.**
+
+- **Top-ups:** 50 edits for ₹99, 3 blueprints for ₹149.
+- **Team**, with seats and one bill, after Pro. **Enterprise** later.
+- **Max**, a tier above Pro with more credits, later and unpriced (F023).
+- **No student tier** `[Z]`.
 
 **What Pro buys, in one line** `[P]`. Unlimited documents, pages and collaborators, 10 GB, 90-day history, password links, Medium and High ideas, 100 edits and 5 blueprints on Claude, the portfolio, no branding.
 
 ## 14. AI for the pilot, and after
 
-**The three tasks** `[R]` `[P]`. An edit on a selection is about 4,000 tokens in and 800 out. A document is 2,000 in and 1,500 out. A blueprint is fifteen calls, 81,825 in and 31,365 out in total, assumed until measured (F017).
+**The three tasks** `[R]` `[P]`.
+
+Task | Tokens in | Tokens out
+An edit on a selection | about 4,000 | 800
+A document | 2,000 | 1,500
+A blueprint, fifteen calls | 81,825 | 31,365
+
+The blueprint figures are assumed until measured (F017).
 
 **Who allows a free pilot, verbatim from their pages** `[M]`.
 
@@ -709,30 +1146,111 @@ Mistral Free | $10 a month of credit | In the admin panel only | The free plan's
 GitHub Models | none | "fully retired" on 30 July 2026 | n/a | No
 Ollama on the desktop | llama3.2:3b at 2.0 GB, qwen3:4b at 2.5 GB, gemma3:4b at 3.3 GB, qwen3:8b at 5.2 GB fit an 8 GB machine | None | No: runs locally | Yes, desktop only
 
-**The routing** `[P]`. Edits go to Groq gpt-oss-120b first, then Cloudflare qwen3-30b, then Cerebras while the trial lasts, then SambaNova. Documents go to Cloudflare first, then Groq. Blueprints go to Cerebras while the trial lasts, then Cloudflare, then paid Cloudflare neurons. The desktop app offers a local model for edits, with nothing leaving the machine. Never in the chain: Gemini's unpaid tier, Mistral Free, any OpenRouter endpoint, and anything whose terms were not opened. The founders confirm the chain's shape as question 3.
+**The routing** `[P]`.
 
-**What the free pools carry, as one shared budget each, SIMULATED from the caps** `[O]` (F007). At the caps a free user uses 10 edits and 1 blueprint a month. Per user per day: a third of an edit and a thirtieth of a blueprint. On Cloudflare, an edit costs 42.9 neurons and a blueprint 1,334 (81,825 × 4,625 / 1e6 + 31,365 × 30,475 / 1e6), so a user costs 14.3 + 44.5 = 58.8 neurons a day and 10,000 neurons serve 170 users. On Groq, a user costs 1,600 + 3,773 = 5,373 tokens a day and 200,000 tokens serve 37, though Groq's 8,000 tokens a minute make a blueprint a fourteen-minute job there. On Cerebras, 1,000,000 tokens a day serve 186 while the trial lasts. SambaNova's 20 requests a day are a smoke test. So the free chain carries about 200 active free users at the caps once the Cerebras trial ends, and about 390 while it lasts. Past that, the cheapest paid step is Cloudflare's overage at $0.011 per 1,000 neurons: $0.0194 (₹1.86) per free user per month at full caps.
+Call | Order it tries
+An edit | Groq gpt-oss-120b, then Cloudflare qwen3-30b, then Cerebras while the trial lasts, then SambaNova
+A document | Cloudflare first, then Groq
+A blueprint | Cerebras while the trial lasts, then Cloudflare, then paid Cloudflare neurons
+On the desktop | A local model for edits, with nothing leaving the machine
 
-**Cost when the free pools are gone, 1,000 free users at their caps, per month, SIMULATED** `[M]`. Input 1,000 × (10 × 4,000 + 81,825) = 121.8 million tokens, output 1,000 × (10 × 800 + 31,365) = 39.4 million. Cloudflare qwen3-30b at $0.051 and $0.335: $6.21 + $13.19 = $19.40. Groq gpt-oss-20b at $0.075 and $0.30: $9.14 + $11.81 = $20.95. gpt-oss-120b on Groq or Together at $0.15 and $0.60: $18.27 + $23.62 = $41.89. Anthropic Haiku 4.5 at $1 and $5: $121.83 + $196.83 = $318.66. Sonnet 5 at $2 and $10: $243.65 + $393.65 = $637.30, or half with batch processing.
+**Never in the chain.** Gemini's unpaid tier, Mistral Free, any OpenRouter endpoint, and anything whose terms were not opened. The founders confirm the chain's shape as question 3.
 
-**Pro's model cost, re-derived with the working shown, SIMULATED** `[O]` (F001). At the Pro caps, 100 edits and 5 blueprints. Sonnet 5 for everything: an edit is 4,000 × $2 / 1e6 + 800 × $10 / 1e6 = $0.016, so 100 edits are $1.60; a blueprint is 81,825 × $2 / 1e6 + 31,365 × $10 / 1e6 = $0.164 + $0.314 = $0.477, so 5 are $2.39; the total is $3.99, which is ₹383 at ₹95.96, against ₹246 net of GST and Razorpay. That loses ₹137 on every fully active Pro user, which is why revision 4's "about ₹120" was wrong and is withdrawn. The default routing now: Haiku 4.5 for edits at 4,000 × $1 / 1e6 + 800 × $5 / 1e6 = $0.008, so $0.80 for 100; Sonnet 5 through the batch API for blueprints at half price, $0.239 each, so $1.19 for 5; the total is $1.99, ₹191, leaving about ₹55 on a fully active Pro user before fixed costs. Haiku for everything is the same ₹191. Prompt caching is measured in week one and is not counted here. The price and the routing are founder question 2.
+**What the free pools carry, as one shared budget each, SIMULATED from the caps** `[O]` (F007).
 
-**Work that never touches a model** `[P]`. Structural checks, the formatter, search, the map, table-to-chart, word counts, spellcheck, OCR, dictionary, citations, currency, link previews, folder import and every representation. That is most of what the editor does in a day, and it costs nothing per use.
+**The unit.** At the caps a free user takes 10 edits and 1 blueprint a month, which is a third of an edit and a thirtieth of a blueprint a day.
 
-**Security** `[R]` `[M]`. We render untrusted markdown, run a model over private documents, and write to GitHub. A memory vendor said it this month: "Persistent memory makes prompt injection durable." Eight controls ship, the last two restored from revision 3 at the audit's finding (A21): no third-party scripts on published pages; agent tokens that may propose but never apply; a per-account budget and breaker on every model call; every model call attributed and logged; documents sent to a model only when the person asks, with ghost text off by default; the change queue, so every agent change is read before it lands; document text reaches a model inside a delimited data block with a standing rule that content inside it is data; remote images in a shared document are proxied or click-to-load. And the kickoff prompt verifies the kit's tarball against a hash printed on the published page before it unpacks anything, and tells the agent to read before it builds (F028). Logs: an append-only log store in India, section 15 and section 23 (F069).
+Provider | Cost per user a day | Users the free pool serves
+Cloudflare | 14.3 + 44.5 = 58.8 neurons | 170, from 10,000 neurons
+Groq | 1,600 + 3,773 = 5,373 tokens | 37, from 200,000 tokens
+Cerebras | same shape | 186, while the trial lasts
+SambaNova | 20 requests a day | a smoke test, not a tier
+
+**The Cloudflare working.** An edit costs 42.9 neurons, a blueprint 1,334, from 81,825 × 4,625 / 1e6 + 31,365 × 30,475 / 1e6.
+
+**A caveat on Groq.** Its 8,000 tokens a minute make a blueprint a fourteen-minute job there.
+
+**So the chain carries about 200 active free users** at the caps once the Cerebras trial ends, and about 390 while it lasts.
+
+**Past that**, the cheapest paid step is Cloudflare's overage at $0.011 per 1,000 neurons, which is $0.0194 (₹1.86) per free user a month at full caps.
+
+**Cost when the free pools are gone, 1,000 free users at their caps, per month, SIMULATED** `[M]`.
+
+**The volume.** Input is 1,000 × (10 × 4,000 + 81,825) = 121.8 million tokens. Output is 1,000 × (10 × 800 + 31,365) = 39.4 million.
+
+Model | In, per 1M | Out, per 1M | The month
+Cloudflare qwen3-30b | $0.051 | $0.335 | $6.21 + $13.19 = $19.40
+Groq gpt-oss-20b | $0.075 | $0.30 | $9.14 + $11.81 = $20.95
+gpt-oss-120b, Groq or Together | $0.15 | $0.60 | $18.27 + $23.62 = $41.89
+Anthropic Haiku 4.5 | $1 | $5 | $121.83 + $196.83 = $318.66
+Sonnet 5 | $2 | $10 | $243.65 + $393.65 = $637.30, or half with batch
+
+**Pro's model cost, re-derived with the working shown, SIMULATED** `[O]` (F001). At the Pro caps that is 100 edits and 5 blueprints a month.
+
+**Sonnet 5 for everything, which is what revision 4 assumed.**
+
+- An edit: 4,000 × $2 / 1e6 + 800 × $10 / 1e6 = $0.016, so 100 edits are $1.60.
+- A blueprint: 81,825 × $2 / 1e6 + 31,365 × $10 / 1e6 = $0.164 + $0.314 = $0.477, so 5 are $2.39.
+- **Total $3.99**, which is ₹383 at ₹95.96, against ₹246 net of GST and Razorpay.
+- **That loses ₹137 on every fully active Pro user.** Revision 4's "about ₹120" was wrong and is withdrawn.
+
+**The default routing now.**
+
+- Haiku 4.5 for edits: 4,000 × $1 / 1e6 + 800 × $5 / 1e6 = $0.008, so $0.80 for 100.
+- Sonnet 5 through the batch API for blueprints at half price: $0.239 each, so $1.19 for 5.
+- **Total $1.99**, ₹191, leaving about ₹55 on a fully active Pro user before fixed costs.
+- Haiku for everything comes to the same ₹191.
+
+**Two notes.** Prompt caching is measured in week one and is not counted here. The price and the routing are founder question 2.
+
+**Work that never touches a model** `[P]`. This is most of what the editor does in a day, and it costs nothing per use.
+
+- Structural checks, the formatter, search, the map.
+- Table-to-chart, word counts, spellcheck, OCR, the dictionary.
+- Citations, currency, link previews, folder import, and every representation.
+
+**Security** `[R]` `[M]`. We render untrusted markdown, run a model over private documents, and write to GitHub. A memory vendor put the risk plainly this month: "Persistent memory makes prompt injection durable."
+
+**Eight controls ship.** The last two were restored from revision 3 at the audit's finding (A21).
+
+1. No third-party scripts on published pages.
+2. Agent tokens that may propose but never apply.
+3. A per-account budget and breaker on every model call.
+4. Every model call attributed and logged.
+5. Documents sent to a model only when the person asks, with ghost text off by default.
+6. The change queue, so every agent change is read before it lands.
+7. Document text reaches a model inside a delimited data block, under a standing rule that content inside it is data.
+8. Remote images in a shared document are proxied or click-to-load.
+
+**Two more, outside the eight.**
+
+- The kickoff prompt verifies the kit's tarball against a hash printed on the published page before it unpacks anything, and tells the agent to read before it builds (F028).
+- Logs go to an append-only store in India, section 15 and section 23 (F069).
 
 ## 15. The stack, costed
 
 **The question** `[Z]`. Cloudflare R2 with a Firestore database: is it free to start, does it scale, and what is the perfect stack?
 
-**Three stacks at 1,000 users, per month, SIMULATED** `[M]`. Assumptions: 10 documents of 20 KB each, 30 saves a day stored as full immutable copies, 100 MB of uploads each, 200 live sessions a day of an hour with two people, two developer seats on Vercel.
+**Three stacks at 1,000 users, per month, SIMULATED** `[M]`. Every figure below rests on these assumptions.
+
+- 10 documents of 20 KB each.
+- 30 saves a day, stored as full immutable copies.
+- 100 MB of uploads each.
+- 200 live sessions a day, of an hour, with two people.
+- Two developer seats on Vercel.
 
 Stack | Month one | Where it stops being free | Hard limits
 R2 plus Firestore in Mumbai, Firebase Auth, Durable Objects, Vercel Pro | $43.07 with WebSocket hibernation, $85.57 without, on the research's Mumbai prices; about $43.15 on the audit's | R2 at 100 users, Firestore at 333 users and then only on a Blaze billing account | 1 MiB per Firestore document, quotas reset at midnight Pacific; Mumbai storage $0.165 a GiB-month by the research's reading of the page, $0.104 by the audit's, and the page is a script shell to curl so neither can be reproduced (F040)
 R2 plus Supabase Pro in Mumbai for records, ledger and auth, Durable Objects, Vercel Pro | $65.19 | Supabase Pro is $25 from day one; its Free tier pauses "after 1 week of inactivity" and holds 1 GB of files | 8 GB disk then $0.125 a GB, 100 GB of files included, 100,000 monthly active users
 Cloudflare only: R2, D1, Durable Objects, Workers | $1.49 to $6.49, plus $40 if the app stays on Vercel | Workers Paid at $5 for any splice over 10 ms of CPU | D1 is 10 GB per database and single-threaded, so tenants shard from the start, and Next.js would have to move to Workers
 
-**The verdict, and the decision** `[Z]` (F016). R2 is right for the bytes on every stack: $0.015 a GB-month, free egress, no minimum, and the 1,000-user workload never leaves its free operation tiers. On the database revision 5 recommended Supabase Pro, and on 17 September the founders decided otherwise. **The stack is the Next.js app we already run, Cloudflare R2 for bytes, and Firestore for records, with Firebase Auth for sign-in.** It is the cheaper row above, $43.07 against $65.19 at 1,000 users, and it is what the shipped code already initialises, so phase A stops being a migration.
+**The verdict, and the decision** `[Z]` (F016).
+
+- **R2 is right for the bytes on every stack.** $0.015 a GB-month, free egress, no minimum, and the 1,000-user workload never leaves its free operation tiers.
+- **On the database, revision 5 recommended Supabase Pro, and on 17 September the founders decided otherwise.**
+- **The stack is the Next.js app we already run, Cloudflare R2 for bytes, and Firestore for records, with Firebase Auth for sign-in.**
+- It is the cheaper row above: $43.07 against $65.19 at 1,000 users.
+- It is what the shipped code already initialises, so phase A stops being a migration.
 
 The objections revision 5 raised against Firestore do not disappear. They are carried as build constraints, each with the place it is handled, and none of them is an argument to reopen the decision:
 
@@ -742,17 +1260,68 @@ A document cannot exceed 1 MiB | Document bytes live in R2 and never in Firestor
 The free quota resets at midnight Pacific, not midnight in India | The caps the product enforces are ours, in the ledger, not Google's; Google's quota is a floor we stay well under, and the panel of section 30 can lower a limit if it is ever approached
 A credits ledger wants transactional writes | Ledger entries are append-only and never updated, so the balance is a sum over a collection rather than a row that two writers race for, section 18
 
-**So: the Next.js app on Vercel, R2 for bytes, Firestore for records and the ledger, Firebase Auth for sign-in, Durable Objects with the Hibernation API for live sessions.** The first bill is $20 for one Vercel seat, plus Firestore and R2 usage, which at 1,000 users is about $2 and under $1. It is not free to start, because Vercel writes: "Our Hobby plan is for personal, non-commercial use." A product that charges through Razorpay is commercial from its first rupee.
+**So: the Next.js app on Vercel, R2 for bytes, Firestore for records and the ledger, Firebase Auth for sign-in, Durable Objects with the Hibernation API for live sessions.**
 
-**What the code runs today, and what phase A keeps** `[O]` (F031). The shipped app signs in through GitHub with Auth.js and through Google with Firebase Auth, and initialises a Firestore client; a prototype firestore.rules designs document holding in Firestore. Under the founders' decision all of that stays. Phase A hardens firestore.rules from a prototype into the rules the product runs on, keeps both sign-in paths, and migrates the local drafts the shipped app already holds under its legacy keys into the signed-in account (section 25, A33). The audit's proposal to delete firestore.rules (F045) is withdrawn: the file is live work now, not dead code. This is the one place where a founder decision made the build smaller rather than larger.
+- The first bill is $20 for one Vercel seat, plus Firestore and R2 usage, which at 1,000 users is about $2 and under $1.
+- **It is not free to start.** Vercel writes: "Our Hobby plan is for personal, non-commercial use."
+- A product that charges through Razorpay is commercial from its first rupee.
 
-**Live editing without reopening the settled decision** `[R]` (F055). The document of record stays markdown bytes, one version per save. A live session is a shared document in a Durable Object that exists only while two people have the file open. Yjs holds that shared state and nothing else: every save writes a new version through the splice engine, the session's state is discarded when the last person leaves, and no CRDT state is ever persisted or merged into a file. That is the exception the record already allowed, and the written rebuttal to Zed Delta that the settled position owes is due before phase D. Whether to keep live editing at all is question 8.
+**What the code runs today, and what phase A keeps** `[O]` (F031).
 
-**Where the objects live** `[M]` (F041). Durable Objects offer jurisdictions for the EU and the US only; the apac hint is "a best effort and not a guarantee", and an object does not move after creation. R2 likewise takes only an apac hint. So a session object is created from the first participant's request with the apac hint, its round trip from Mumbai is measured in the pilot, and the plan says plainly that the bytes sit under an apac hint, not in India.
+**The shipped app already:**
 
-**Constraints the plan must respect whichever stack is chosen** `[M]`: budget a Vercel seat from day one; use the Durable Object Hibernation API, because without it live sessions are the largest line at $42.50 and the free plan fails at 28 sessions a day; send 100 MB uploads straight to R2 with a presigned URL, because Workers cap a request body at 100 MB; store deltas or deduplicate versions, because full-copy saves grow 18 GB a month per 1,000 users and that is the only line that compounds; keep an append-only security log for 180 days in Indian jurisdiction, which Sentry's and PostHog's free tiers may not pin to India, so the log store is its own line at R2 in Mumbai (F069).
+- Signs in through GitHub with Auth.js, and through Google with Firebase Auth.
+- Initialises a Firestore client.
+- Carries a prototype firestore.rules that designs document holding in Firestore.
 
-**The rest of the stack** `[M]`. Auth through Firebase Auth for Google and Auth.js for GitHub, both already shipped, with an email magic link as the fallback sign-in the founders decide on (A50). Email through Resend, 3,000 a month free, for the 24-hour notices Razorpay mandates need. Errors through Sentry's free 5,000 a month. Analytics through PostHog's free million events. Search in the browser across the open workspace first, because Firestore has no full-text index, and Typesense when a server-side index is needed. Live editing through Yjs on Durable Objects, with Liveblocks as the fallback if we want a vendor, at 10 connections a room free.
+**Under the founders' decision all of that stays.** Phase A then:
+
+- Hardens firestore.rules from a prototype into the rules the product runs on.
+- Keeps both sign-in paths.
+- Migrates the local drafts the shipped app holds under its legacy keys into the signed-in account (section 25, A33).
+
+**The audit's proposal to delete firestore.rules (F045) is withdrawn.** The file is live work now, not dead code. This is the one place where a founder decision made the build smaller rather than larger.
+
+**Live editing without reopening the settled decision** `[R]` (F055).
+
+- The document of record stays markdown bytes, one version per save.
+- A live session is a shared document in a Durable Object, and it exists only while two people have the file open.
+- Yjs holds that shared state and nothing else.
+- Every save writes a new version through the splice engine.
+- The session's state is discarded when the last person leaves.
+- **No CRDT state is ever persisted, or merged into a file.**
+
+That is the exception the record already allowed. The written rebuttal to Zed Delta is due before phase D, and whether to keep live editing at all is question 8.
+
+**Where the objects live** `[M]` (F041).
+
+- Durable Objects offer jurisdictions for the EU and the US only.
+- The apac hint is "a best effort and not a guarantee", and an object does not move after creation.
+- R2 likewise takes only an apac hint.
+
+**So:**
+
+- A session object is created from the first participant's request, with the apac hint.
+- Its round trip from Mumbai is measured in the pilot.
+- **The plan says plainly that the bytes sit under an apac hint, not in India.**
+
+**Constraints the plan must respect whichever stack is chosen** `[M]`.
+
+- **Budget a Vercel seat from day one.**
+- **Use the Durable Object Hibernation API.** Without it, live sessions are the largest line at $42.50, and the free plan fails at 28 sessions a day.
+- **Send 100 MB uploads straight to R2 with a presigned URL**, because Workers cap a request body at 100 MB.
+- **Store deltas, or deduplicate versions.** Full-copy saves grow 18 GB a month per 1,000 users, and that is the only line that compounds.
+- **Keep an append-only security log for 180 days in Indian jurisdiction.** Sentry's and PostHog's free tiers may not pin to India, so the log store is its own line at R2 in Mumbai (F069).
+
+**The rest of the stack** `[M]`.
+
+Need | What serves it | The free allowance
+Auth | Firebase Auth for Google, Auth.js for GitHub, both already shipped | an email magic link is the fallback the founders decide on (A50)
+Email | Resend | 3,000 a month, for the 24-hour notices Razorpay mandates need
+Errors | Sentry | 5,000 a month
+Analytics | PostHog | a million events
+Search | The browser, across the open workspace, because Firestore has no full-text index | Typesense when a server-side index is needed
+Live editing | Yjs on Durable Objects | Liveblocks as the fallback if we want a vendor, 10 connections a room free
 
 ## 16. Principles, applied
 
@@ -773,13 +1342,47 @@ Every rule below is quoted from the page it came from, and each names the screen
 
 ## 17. The engine baseline
 
-The twelve invariants of revision 3 stand `[R]`. The file is the record. Splice-only writes that refuse when a range is ambiguous. Content-addressed versions. Every change carries an author and an intent. A proposal is a first-class object. Everything has a stable address. Machine-readable exits: `Accept: text/markdown`, a `.md` twin, a manifest and checksums. A capability surface, not a screen surface, so the MCP server, the command line and the API are thin adapters. Permissions attach to the operation. Budgets and breakers sit at the operation layer. Deterministic rendering, and any block we invent degrades to readable text. No silent merge, ever.
+**The twelve invariants of revision 3 stand** `[R]`.
 
-Two measured defects are fixed before any public claim `[O]`: a column-zero list item in front matter refuses 83 percent of real vaults, about four days of work, and a trailing comment is deleted on a set. The audit read the engine and confirmed both, and names a third, unlabelled defect in its A16; section 25 carries it.
+1. The file is the record.
+2. Splice-only writes, which refuse when a range is ambiguous.
+3. Content-addressed versions.
+4. Every change carries an author and an intent.
+5. A proposal is a first-class object.
+6. Everything has a stable address.
+7. Machine-readable exits: `Accept: text/markdown`, a `.md` twin, a manifest and checksums.
+8. A capability surface, not a screen surface, so the MCP server, the command line and the API are thin adapters.
+9. Permissions attach to the operation.
+10. Budgets and breakers sit at the operation layer.
+11. Deterministic rendering, and any block we invent degrades to readable text.
+12. **No silent merge, ever.**
 
-**Review state is dropped** `[Z]` (F058). The 9 September plan's headline was a per-span read state in a sidecar, `.frontmatter/review.jsonl`, that never existed in the code and failed an adversarial round. The 13 September reset replaced the product, and this plan's S20 is a change queue: who changed what, accept or reject, one by one. Attribution survives as a mark in the version record, section 20. CLAUDE.md's "Review state" paragraph is rewritten on this branch to say so. Almanac, which shipped read receipts and shut down, is the precedent section 25 records.
+**Two measured defects are fixed before any public claim** `[O]`.
 
-**What this makes the product** `[P]`. The vault is the agent's memory. The map is its index. The instruction file is its policy. The blueprint is its brief. The change queue is how it is supervised. Doc mode, the flow view, the portfolio and Drive sync are all projections and adapters over the same bytes, which is why none of them needed a new format.
+- **A column-zero list item in front matter** refuses 83 percent of real vaults. About four days of work.
+- **A trailing comment is deleted on a set.**
+
+The audit read the engine and confirmed both, and names a third, unlabelled defect in its A16. Section 25 carries it.
+
+**Review state is dropped** `[Z]` (F058).
+
+- The 9 September plan's headline was a per-span read state in a sidecar, `.frontmatter/review.jsonl`.
+- **It never existed in the code, and it failed an adversarial round.**
+- The 13 September reset replaced the product, and this plan's S20 is a change queue instead: who changed what, accept or reject, one by one.
+- Attribution survives as a mark in the version record, section 20.
+- CLAUDE.md's "Review state" paragraph is rewritten on this branch to say so.
+- **Almanac, which shipped read receipts and shut down, is the precedent** section 25 records.
+
+**What this makes the product** `[P]`.
+
+Piece | What it is to an agent
+The vault | Its memory
+The map | Its index
+The instruction file | Its policy
+The blueprint | Its brief
+The change queue | How it is supervised
+
+Doc mode, the flow view, the portfolio and Drive sync are all projections and adapters over the same bytes. That is why none of them needed a new format.
 
 ## 18. The data model
 
@@ -805,7 +1408,14 @@ Plan and invoice | Postgres rows and Razorpay's records | one per period | as th
 Security log | an append-only store in Mumbai | one line per event | 180 days rolling | kept for the period | the operators
 Local draft | IndexedDB or the origin private file system, and the desktop folder | the device's quota | until synced or evicted | not ours | the device
 
-**Export.** Everything under Documents, Ideas and Settings exports as files a stranger's tool reads: markdown, the uploads, the versions as a folder of files, comments and change-queue items as a JSON file beside each document, decisions and blueprints as they are. Section 25 records that the review sidecar of the earlier plan is not among them, because it does not exist.
+**Export.** Everything under Documents, Ideas and Settings leaves as files a stranger's tool reads.
+
+- Markdown, and the uploads.
+- The versions, as a folder of files.
+- Comments and change-queue items, as a JSON file beside each document.
+- Decisions and blueprints, as they are.
+
+**One thing is not among them.** Section 25 records that the review sidecar of the earlier plan does not exist, so it cannot be exported.
 
 ## 19. Permissions and roles
 
@@ -819,11 +1429,23 @@ Link, edit | yes | yes | yes | yes | yes | no | no | yes | no | no | no
 Published-page reader | yes | no | no | no | no | no | no | own copy | no | no | no
 Agent token | yes | no | yes | never | no | no | never | yes | yes | no | no
 
-A collaborator on Free sharing a Pro owner's document has the owner's limits, not their own. Ownership transfers to another account on request, never by an agent. A revoked collaborator keeps nothing but the exports they already made. Sharing a project shares every document in it at the same role; sharing a document shares that document alone.
+**Four rules the table does not show.**
+
+- A collaborator on Free sharing a Pro owner's document has **the owner's limits, not their own**.
+- Ownership transfers to another account on request, **never by an agent**.
+- A revoked collaborator keeps nothing but the exports they already made.
+- Sharing a project shares every document in it at the same role. Sharing a document shares that document alone.
 
 ## 20. Format specifications
 
-Every format the plan invents or adopts, with a version field, a rule for unknown fields, a stated degradation in a plain markdown reader, and a test `[P]` (A34, F050). The full text of each lives in `specs/formats/` from phase A.
+**Every format the plan invents or adopts carries four things** `[P]` (A34, F050).
+
+- A version field.
+- A rule for unknown fields.
+- A stated degradation in a plain markdown reader.
+- A test.
+
+The full text of each lives in `specs/formats/` from phase A.
 
 Format | Version field | Unknown fields | In a plain reader | Test
 `fm-chart`, `fm-flow`, `fm-draw` and any `fm-` block | the info string, `fm-chart@1` | ignored, kept | a code block; the table above a chart stays a table | a fixture per block, byte-exact round trip
@@ -838,7 +1460,13 @@ The AI mark | in the version record: `author`, `source` (person, ai, agent), `mo
 The portfolio front matter | `portfolio: 1` | ignored | front matter; the page still renders as a document | a fixture
 The kit tarball | `MANIFEST.json` version | n/a | a folder | the kickoff test in section 28
 
-When a specification changes after kits exist, the version field rises, the old version is still read, and the map shows which version a kit carries. SKILL.md follows the skills guide's size limits and AGENTS.md follows agents.md; both are checked by the health panel.
+**When a specification changes after kits exist.**
+
+- The version field rises.
+- The old version is still read.
+- The map shows which version a kit carries.
+
+**Two formats are not ours.** SKILL.md follows the skills guide's size limits, AGENTS.md follows agents.md, and both are checked by the health panel.
 
 ## 21. Performance and reliability targets
 
@@ -861,7 +1489,32 @@ Durable Object round trip from Mumbai | measured in the pilot; over 250 ms is a 
 
 Every price read from the provider's page on 17 September; every line shows its arithmetic. SIMULATED: computed from the caps and list prices, not from live usage `[O]` `[M]`.
 
-**Inputs.** Pro gross ₹299, GST 18 percent: 299 / 1.18 = ₹253.39. Razorpay 2 percent plus GST on the fee, 2.36 percent of ₹299 = ₹7.06. Net ₹246.33, which is $2.57. Annual ₹2,499 nets ₹171.57 a month. A Pro user at full caps costs $1.99 in model fees on the default routing (section 14). A free user at full caps costs $0.0194 on paid Cloudflare neurons once the free pools are exhausted, and nothing before. Fixed a month: one Vercel seat $20, the domain at $15 a year and Apple at $99 a year, together $29.50; a second Vercel seat adds $20; the Windows certificate is unpriced. Firestore and R2 are usage rather than subscription, about $2 and under $1 at 1,000 users, and sit outside this line as they always did. Revision 5 carried $54.50 here because Supabase Pro was $25 of it; the stack decision removes that subscription, and every row below is recomputed.
+**Inputs.**
+
+**What ₹299 actually becomes.**
+
+Step | Working | Result
+Gross | ₹299 | ₹299
+Less GST at 18 percent | 299 / 1.18 | ₹253.39
+Less Razorpay, 2 percent plus GST on the fee | 2.36 percent of ₹299 | ₹7.06
+**Net** | | **₹246.33**, which is $2.57
+
+The annual plan at ₹2,499 nets ₹171.57 a month.
+
+**What a user costs.**
+
+- **A Pro user at full caps:** $1.99 in model fees on the default routing (section 14).
+- **A free user at full caps:** $0.0194 on paid Cloudflare neurons once the free pools are exhausted, and nothing before.
+
+**Fixed a month, $29.50.**
+
+- One Vercel seat, $20.
+- The domain at $15 a year and Apple at $99 a year, together $9.50.
+- A second Vercel seat would add $20. The Windows certificate is unpriced.
+
+**Outside that line.** Firestore and R2 are usage rather than subscription, about $2 and under $1 at 1,000 users, as they always were.
+
+**Why the number moved.** Revision 5 carried $54.50 here because Supabase Pro was $25 of it. The stack decision removes that subscription, and every row below is recomputed.
 
 **Monthly result at full-cap use, one seat, default routing.**
 
@@ -870,15 +1523,45 @@ Signed-in users | Pro at 1 percent | Pro at 2 percent | Pro at 5 percent
 10,000 | 100 Pro: $256.70 − $199.00 − $192.06 − $29.50 = −$163.86 | 200 Pro: $513.40 − $398.00 − $190.12 − $29.50 = −$104.22 | 500 Pro: $1,283.50 − $995.00 − $184.30 − $29.50 = +$74.70
 100,000 | 1,000 Pro: $2,567 − $1,990 − $1,920.60 − $29.50 = −$1,373.10 | 2,000 Pro: $5,134 − $3,980 − $1,901.20 − $29.50 = −$776.70 | 5,000 Pro: $12,835 − $9,950 − $1,843 − $29.50 = +$1,012.50
 
-**The same at half use** (Pro AI $1.00, free AI $0.0097), re-derived line by line at the new fixed cost: 1,000 users at 2 percent, $51.34 − $20.00 − $9.51 − $29.50 = −$7.67; 10,000 at 2 percent, +$188.84; 10,000 at 5 percent, +$661.85; 100,000 at 2 percent, +$2,153.90.
+**The same at half use**, where Pro AI is $1.00 and free AI $0.0097, re-derived line by line at the new fixed cost.
 
-**What the table says** `[O]`. At full-cap use the product loses money below about 5 percent conversion at any scale, and the loss is the free users' model cost, not the fixed costs. At half use it breaks even around 1,350 signed-in users at 2 percent: each such user nets $0.021834 a month, and $29.50 / $0.021834 = 1,351. The stack decision moved that point, because revision 5 needed 2,496 users to clear $54.50. Three levers move it: the routing (Sonnet for everything turns every row negative), the free caps (5 edits instead of 10 cuts the free line by a third), and prompt caching, which is not counted. Break-even Pro users against fixed costs alone: $54.50 / $0.58 margin at full use = 94; at half use $54.50 / $1.57 = 35. The founders' time is not in these lines; at ₹1,500 an hour, 1.2 days a week is about ₹62,000 a month.
+Users | Conversion | Result
+1,000 | 2 percent | $51.34 − $20.00 − $9.51 − $29.50 = −$7.67
+10,000 | 2 percent | +$188.84
+10,000 | 5 percent | +$661.85
+100,000 | 2 percent | +$2,153.90
 
-**A High blueprint** adds an assumed research pass of 150,000 tokens in and 40,000 out on Sonnet, $0.70 (₹67) on top of the blueprint; five High a month is ₹504 of model cost against 15 credits, three top-ups at ₹149 = ₹447 gross. High is priced under its cost at list; the batch API halves it, and the credits price is a founder question if High ships before the pilot measures it.
+**What the table says** `[O]`.
+
+- **At full-cap use the product loses money below about 5 percent conversion, at any scale.** The loss is the free users' model cost, not the fixed costs.
+- **At half use it breaks even around 1,350 signed-in users at 2 percent.** Each such user nets $0.021834 a month, and $29.50 / $0.021834 = 1,351.
+- **The stack decision moved that point**, because revision 5 needed 2,496 users to clear $54.50.
+
+**Three levers move it.**
+
+Lever | Effect
+The routing | Sonnet for everything turns every row negative
+The free caps | 5 edits instead of 10 cuts the free line by a third
+Prompt caching | Not counted anywhere here
+
+**Break-even Pro users against fixed costs alone.** At full use, $54.50 / $0.58 margin = 94. At half use, $54.50 / $1.57 = 35.
+
+**What is not in any of these lines.** The founders' time. At ₹1,500 an hour, 1.2 days a week is about ₹62,000 a month.
+
+**A High blueprint.**
+
+- It adds an assumed research pass of 150,000 tokens in and 40,000 out on Sonnet: $0.70, or ₹67, on top of the blueprint.
+- Five High a month is ₹504 of model cost, against 15 credits, which is three top-ups at ₹149 for ₹447 gross.
+- **So High is priced under its cost at list.** The batch API halves it.
+- The credits price is a founder question if High ships before the pilot measures it.
 
 ## 23. The legal floor
 
-Holding documents, publishing strangers' pages and taking money bring this in before the first stranger and the first rupee `[L]`. Each row has an owner and a date. Statutory details are marked unverified where no primary page could be opened from this network on 17 September; the audit's readings are given with their URLs in section 31. Placeholder pages for the four public routes serve on this branch and say the text is pending and due by 15 October 2026.
+**Three things bring this in before the first stranger and the first rupee** `[L]`: holding documents, publishing strangers' pages, and taking money.
+
+- Each row below has an owner and a date.
+- Statutory details are marked unverified where no primary page could be opened from this network on 17 September. The audit's readings are given with their URLs in section 31.
+- Placeholder pages for the four public routes serve on this branch, and say the text is pending and due by 15 October 2026.
 
 Due | What | Owner | Date | Verified
 Before the first stranger | Privacy notice, terms, consent wording; the age floor stated (default eighteen, founder question 12) | Sagnik | 15 Oct 2026 | DPDP Act 2023 section 9 read by the audit on indiacode. Commencement opened by this revision from the Gazette: G.S.R. 843(E) of 13 November 2025, CG-DL-E-14112025-267647, brings sections 7 to 10, section 9 among them, into force "eighteen months from the date of publication of this gazette", published 14 November 2025, so 14 May 2027. The Rules, G.S.R. 846(E), CG-DL-E-14112025-267650, rule 1: rules 1, 2 and 17 to 21 at once, rule 4 after one year, rules 3, 5 to 16, 22 and 23 after eighteen months. The pilot runs before the duty bites; the terms carry the floor from day one
@@ -942,7 +1625,17 @@ G. Views and blocks | 3 weeks | Flow, slides, mind map, Excalidraw, Mermaid type
 H. Pro | 2 weeks | Razorpay with the mandate rules, Medium and High, the Claude routing of section 14, password links, 90-day history
 Later | | Kanban and table-to-chart blocks, the portfolio, the MCP server and API with the agents card, Team, Max, the community, a custom domain, Notion API import, a signed Windows build
 
-Twenty-seven weeks of appetite at full time, one more than revision 5: phase A grew by a week for the configuration panel, and shrank by the Supabase migration it no longer has to do. At the measured pace, which the audit recomputed at 0.93 to 1.21 days a week, that is 99 to 129 calendar weeks. The default in question 1: phases 0, A, B, D and H at the measured pace with dates published every Friday; E, F and G Later; a contractor for D and F if the pace has not doubled by the pilot. Content is costed too: the seven templates with their question banks, the consistency checks, the kickoff prompts, help text and empty states are about thirty days of writing the earlier plan did not count (A44).
+**Twenty-seven weeks of appetite at full time**, one more than revision 5. Phase A grew by a week for the configuration panel, and shrank by the Supabase migration it no longer has to do.
+
+**At the measured pace**, which the audit recomputed at 0.93 to 1.21 days a week, that is 99 to 129 calendar weeks.
+
+**The default in question 1.**
+
+- Phases 0, A, B, D and H at the measured pace, with dates published every Friday.
+- E, F and G Later.
+- A contractor for D and F if the pace has not doubled by the pilot.
+
+**Content is costed too.** The seven templates with their question banks, the consistency checks, the kickoff prompts, the help text and the empty states are about thirty days of writing the earlier plan did not count (A44).
 
 ## 27. Risks
 
@@ -963,31 +1656,127 @@ The scope is too large for the pace | The Later column is the release valve. Not
 
 ## 28. What we measure, and the pilot
 
-**Definitions** `[P]` (F067). An active user opened a document they own on two distinct days in seven. A finished blueprint reached Hand off with all fifteen files present and the consistency check passing. A conversion is a Razorpay mandate approved, not a click on Pro. An accepted proposal is an item accepted individually in the change queue; Accept all counts separately. An imported file counts as byte-exact only when the bytes compare equal after a round trip.
+**Definitions** `[P]` (F067). Each one is written so two people counting cannot disagree.
 
-**Measures.** Signed in to first save under two minutes. Documents per active user. Blueprints started and finished, by depth, and edited again within seven days. Imported vaults, and the share of files that imported byte for byte. Published pages and the sign-ups they bring. Free to Pro conversion, and which cap tripped first. Proposals accepted against rejected, individually against Accept all. Model spend per active user against the pools. Sync conflicts shown against merges attempted, which must be zero.
+Term | What counts
+An active user | Opened a document they own on two distinct days in seven
+A finished blueprint | Reached Hand off with all fifteen files present and the consistency check passing
+A conversion | A Razorpay mandate approved, not a click on Pro
+An accepted proposal | An item accepted individually in the change queue; Accept all counts separately
+A byte-exact import | The bytes compare equal after a round trip
 
-**The pilot.** Twenty people: ten Obsidian users with a vault of at least 200 files who have posted in the web-version or sync threads, five founders or product people who have run Claude Code, Cursor or Codex on a project in the last month, five people who write in Google Docs and share by link. Recruited by a founder's own posts and the studio's network; each receives a hand-made kit for a real idea of theirs, which is the offer that earns the hour. The first five minutes are scripted: sign in, import a vault or write a document, share it by link, run one AI edit and accept or reject it; group one fetches the kit and runs the kickoff. The first week is open with three prompts on days 2, 4 and 7.
+**Measures.**
 
-**Stop.** Fewer than four of twenty active in week two. Fewer than two of ten kit recipients run the kickoff. Fewer than three of twenty name the problem the product solves without being prompted. Any one of the three stops the next phase.
+- Signed in to first save, under two minutes.
+- Documents per active user.
+- Blueprints started and finished, by depth, and edited again within seven days.
+- Imported vaults, and the share of files that imported byte for byte.
+- Published pages, and the sign-ups they bring.
+- Free to Pro conversion, and which cap tripped first.
+- Proposals accepted against rejected, individually against Accept all.
+- Model spend per active user, against the pools.
+- Sync conflicts shown against merges attempted, **which must be zero**.
 
-**Continue.** Six of twenty active in week two. Three of ten run the kickoff and edit the kit again. One person asks how to pay before being told the price. All three justify phase C and the Pro build; two of three justify phase C alone.
+**The pilot, twenty people.**
+
+Who | How many | Qualifier
+Obsidian users | 10 | A vault of at least 200 files, and a post in the web-version or sync threads
+Founders and product people | 5 | Have run Claude Code, Cursor or Codex on a project in the last month
+Google Docs writers | 5 | Write there and share by link
+
+**How they are recruited.** A founder's own posts and the studio's network. Each receives a hand-made kit for a real idea of theirs, which is the offer that earns the hour.
+
+**The first five minutes are scripted.**
+
+1. Sign in.
+2. Import a vault, or write a document.
+3. Share it by link.
+4. Run one AI edit, and accept or reject it.
+5. Group one fetches the kit and runs the kickoff.
+
+**The first week is open**, with three prompts on days 2, 4 and 7.
+
+**Stop.** Any one of these three stops the next phase.
+
+- Fewer than four of twenty active in week two.
+- Fewer than two of ten kit recipients run the kickoff.
+- Fewer than three of twenty name the problem the product solves, without being prompted.
+
+**Continue.**
+
+- Six of twenty active in week two.
+- Three of ten run the kickoff and edit the kit again.
+- One person asks how to pay before being told the price.
+
+**Reading it.** All three justify phase C and the Pro build. Two of three justify phase C alone.
 
 ## 29. Questions for the founders
 
-**Decided on 17 September, and written into this revision** `[Z]`: the stack is Next.js with R2 and Firestore, section 15; tier contents are set from the configuration panel, section 30. **Deferred on purpose**: the tagline, the positioning and the product-market read, to be settled while phase A is built rather than before it.
+**Decided on 17 September, and written into this revision** `[Z]`.
 
-**What the configuration panel absorbs.** Eleven of the eighteen below stop being decisions the build waits on, because the panel sets them at run time: the Pro price and routing, the provider chain, the free caps, the age floor's number, the pilot thresholds, the grievance officer's name, the indexing default, and the four feature flags. They still need answers before the pilot meets a stranger. They no longer need answers before phase A starts.
+- **The stack** is Next.js with R2 and Firestore, section 15.
+- **Tier contents** are set from the configuration panel, section 30.
 
-**What the panel cannot absorb, and still gates the build**: which bytes we hold and from which phase, question 6, because it is an architecture; the one-sentence definition, question 5, because it decides build order; the pace, question 1; the twenty-kit gate, question 14; the desktop's timing, question 11; the name, question 7; and the accounts that move to the company, question 13.
+**Deferred on purpose**, to be settled while phase A is built rather than before it: the tagline, the positioning and the product-market read.
 
-The sixteen in docs/mvp0/DECISIONS-FOR-FOUNDERS-2026-09-17.md, each with a default this revision is written to. In order: the pace and which phases are Later; the Pro price and routing; the free chain and the sign-in promise; the legal floor and the grievance officer; K1, what the product is in one sentence; K2, which bytes we hold and from which phase; K3, the name; live editing and the CRDT ban; the free caps and the downgrade; bring-your-own key; desktop before or after sync and who signs Windows; the age floor; the accounts that move to the company; the twenty hand-made kits; the pilot's stop and continue lines; which earlier positions stand. And one more, from the audit's growth angle: whether published pages should be indexed, since not indexing removes search as a channel and the plan has no other.
+**What the configuration panel absorbs.** Eleven of the eighteen below stop being decisions the build waits on, because the panel sets them at run time.
 
-**Where this revision narrowed a founder ask, and says so** `[Z]`. "Every feature free, quantities capped" became "every editing feature free; password links, Medium and High, the portfolio and branding removal are Pro" (F003). The free caps are the market's 50, 5 and 3, not the candidates' 5, 2 and 1. K1, K2 and K3 were taken implicitly by revision 4 and are now defaults with the cards' recommendations beside them: K1 rec b, K2 rec b, K3 rec c in decisions/v2.
+- The Pro price and the model routing.
+- The provider chain.
+- The free caps.
+- The age floor's number.
+- The pilot thresholds.
+- The grievance officer's name.
+- The indexing default.
+- The four feature flags.
+
+**They still need answers before the pilot meets a stranger.** They no longer need answers before phase A starts.
+
+**What the panel cannot absorb, and still gates the build.**
+
+Question | Why a setting cannot hold it
+6. Which bytes we hold, and from which phase | It is an architecture, not a value
+5. The one-sentence definition | It decides build order
+1. The pace | It decides which phases are Later
+14. The twenty-kit gate | It is a gate on phase C, not a switch
+11. The desktop's timing | It reorders phases E and F
+7. The name | It changes the domain and every published URL
+13. The accounts that move to the company | It is ownership, not configuration
+
+**The eighteen, in order.** The first sixteen are in `docs/mvp0/DECISIONS-FOR-FOUNDERS-2026-09-17.md`, each with a default this revision is written to.
+
+1. The pace, and which phases are Later.
+2. The Pro price and the routing.
+3. The free chain and the sign-in promise.
+4. The legal floor and the grievance officer.
+5. K1, what the product is in one sentence.
+6. K2, which bytes we hold, and from which phase.
+7. K3, the name.
+8. Live editing and the CRDT ban.
+9. The free caps and the downgrade.
+10. Bring-your-own key.
+11. Desktop before or after sync, and who signs Windows.
+12. The age floor.
+13. The accounts that move to the company.
+14. The twenty hand-made kits.
+15. The pilot's stop and continue lines.
+16. Which earlier positions stand.
+17. Whether published pages are indexed. Added from the audit's growth angle, because not indexing removes search as a channel and the plan has no other.
+18. The fallback sign-in beside Google and GitHub.
+
+**Where this revision narrowed a founder ask, and says so** `[Z]`.
+
+- **"Every feature free, quantities capped"** became "every editing feature free; password links, Medium and High, the portfolio and branding removal are Pro" (F003).
+- **The free caps** are the market's 50, 5 and 3, not the candidates' 5, 2 and 1.
+- **K1, K2 and K3** were taken implicitly by revision 4. They are now defaults, with the cards' recommendations beside them: K1 rec b, K2 rec b, K3 rec c in `decisions/v2`.
 
 ## 30. The configuration panel
 
-**Why it exists** `[Z]`. The founders decided on 17 September that what a tier allows is set from a panel, not from constants in the source. That turns most of the open questions from decisions before the build into settings after it: eleven of the eighteen on the decision sheet become rows in a table this panel edits. It is built in phase A, before the features that read it, because retrofitting it later means finding every hard-coded cap in the product.
+**Why it exists** `[Z]`.
+
+- The founders decided on 17 September that what a tier allows is set from a panel, not from constants in the source.
+- **That turns most of the open questions from decisions before the build into settings after it.** Eleven of the eighteen on the decision sheet become rows in a table this panel edits.
+- **It is built in phase A**, before the features that read it, because retrofitting it later means finding every hard-coded cap in the product.
 
 **What it sets** `[P]`. Every row is read at run time. Nothing here needs a deploy.
 
@@ -1000,9 +1789,18 @@ Feature flags | Live editing, bring-your-own key, the email magic link, the inde
 Pilot thresholds | The stop and continue lines of section 28 | The measurement dashboard
 Exceptions | A temporary limit granted to one account, with an expiry | The same cap check
 
-**One read path** `[P]`. A single function, `limitsFor(account)`, resolves a plan row plus any exception into the limit set. Nothing else in the product reads a cap. A number that appears anywhere else is a defect, and the architecture gate of `npm run arch` is the place to catch it, the same way it already catches a `process.env` read outside config and infrastructure. The usage ledger of section 18 is the counter each check runs against.
+**One read path** `[P]`.
 
-**A limit that falls is a downgrade** `[L]`. Raising a limit takes effect on the next read and nobody notices. Lowering one below what an account already holds puts that account into the over-cap state of S33: everything stays readable and exportable, nothing new is created until it is under the cap. The panel says how many accounts a change puts over the line, and names them, before it saves.
+- A single function, `limitsFor(account)`, resolves a plan row plus any exception into the limit set.
+- **Nothing else in the product reads a cap.**
+- A number that appears anywhere else is a defect. The architecture gate of `npm run arch` is the place to catch it, the same way it already catches a `process.env` read outside config and infrastructure.
+- The usage ledger of section 18 is the counter each check runs against.
+
+**A limit that falls is a downgrade** `[L]`.
+
+- **Raising** a limit takes effect on the next read, and nobody notices.
+- **Lowering** one below what an account already holds puts that account into the over-cap state of S33: everything stays readable and exportable, nothing new is created until it is under the cap.
+- **So the panel says how many accounts a change puts over the line, and names them, before it saves.**
 
 **What the panel cannot do** `[L]`. Three things stay outside it, because a setting cannot undo a promise:
 
@@ -1010,7 +1808,12 @@ Exceptions | A temporary limit granted to one account, with an expiry | The same
 - **The age floor, once someone has signed up under it.** The panel can hold the number. It cannot re-consent the people who accepted the old terms. Question 12.
 - **Whether bytes are held at all.** That is section 18's architecture and phase A's shape, not a setting. Question 6.
 
-**Who holds it** `[Z]`. Super admin is a flag on an account, not a plan, and both founders hold it. It is checked server-side on every write, never in the browser. Every change writes an audit row: who, which setting, from what, to what, when, and how many accounts it moved. That log is read-only in the panel and kept as long as the security log of section 23.
+**Who holds it** `[Z]`.
+
+- Super admin is a flag on an account, not a plan, and both founders hold it.
+- It is checked server-side on every write, never in the browser.
+- **Every change writes an audit row:** who, which setting, from what, to what, when, and how many accounts it moved.
+- That log is read-only in the panel, and kept as long as the security log of section 23.
 
 **Screens** S35 to S38.
 
@@ -1018,26 +1821,309 @@ Exceptions | A temporary limit granted to one account, with an expiry | The same
 
 Every page below was opened on the date shown and quoted verbatim in this plan. Pages this revision opened on 17 September to confirm a finding are marked so.
 
-**Re-opened by this revision, 17 September.** [Craft pricing](https://www.craft.do/pricing) · [Docmost pricing](https://docmost.com/pricing) · [Obsidian roadmap](https://obsidian.md/roadmap) · [GitHub App permissions](https://docs.github.com/en/apps/creating-github-apps/registering-a-github-app/choosing-permissions-for-a-github-app) · [GitHub installation tokens](https://docs.github.com/en/apps/creating-github-apps/authenticating-with-a-github-app/generating-an-installation-access-token-for-a-github-app) · [RBI circular RBI/2022-23/73](https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=12341&Mode=0) · [Google Sans Code OFL](https://raw.githubusercontent.com/google/fonts/main/ofl/googlesanscode/OFL.txt) · [Google Sans Flex OFL](https://raw.githubusercontent.com/google/fonts/main/ofl/googlesansflex/OFL.txt) · [OpenRouter privacy and logging](https://openrouter.ai/docs/features/privacy-and-logging) · [OpenRouter endpoints API](https://openrouter.ai/api/v1/models/nvidia/nemotron-3-super-120b-a12b:free/endpoints) · [DiceBear HTTP API](https://www.dicebear.com/how-to-use/http-api/) · [Cloudflare website terms](https://www.cloudflare.com/website-terms/) · [Supabase terms](https://supabase.com/terms) · [Firebase terms](https://firebase.google.com/terms) · [frontmatter.in/privacy](https://frontmatter.in/privacy) and the three sibling paths, 307 to /login on the deployed app
+**Re-opened by this revision, 17 September.**
 
-**Opened by the audit, 17 September, not re-opened here.** [IT Rules 2021, MeitY](https://www.meity.gov.in/static/uploads/2024/02/Information-Technology-Intermediary-Guidelines-and-Digital-Media-Ethics-Code-Rules-2021-updated-06.04.2023-.pdf) · [CERT-In directions, 28 April 2022](https://www.cert-in.org.in/PDF/CERT-In_Directions_70B_28.04.2022.pdf) · [Rights of Persons with Disabilities Act 2016](https://www.indiacode.nic.in/bitstream/123456789/15939/1/the_rights_of_persons_with_disabilities_act,_2016.pdf) · [Azure Artifact Signing quickstart](https://learn.microsoft.com/en-us/azure/artifact-signing/quickstart) · [Apple Developer Program](https://developer.apple.com/programs/) · [Tauri Windows installer](https://v2.tauri.app/distribute/windows-installer/) · [Durable Objects data location](https://developers.cloudflare.com/durable-objects/reference/data-location/) · [R2 data location](https://developers.cloudflare.com/r2/reference/data-location/) · [Semantic Scholar licence](https://api.semanticscholar.org/license) · [MCP governance](https://modelcontextprotocol.io/community/governance) · [Notesnook pricing](https://notesnook.com/pricing)
+- [Craft pricing](https://www.craft.do/pricing)
+- [Docmost pricing](https://docmost.com/pricing)
+- [Obsidian roadmap](https://obsidian.md/roadmap)
+- [GitHub App permissions](https://docs.github.com/en/apps/creating-github-apps/registering-a-github-app/choosing-permissions-for-a-github-app)
+- [GitHub installation tokens](https://docs.github.com/en/apps/creating-github-apps/authenticating-with-a-github-app/generating-an-installation-access-token-for-a-github-app)
+- [RBI circular RBI/2022-23/73](https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=12341&Mode=0)
+- [Google Sans Code OFL](https://raw.githubusercontent.com/google/fonts/main/ofl/googlesanscode/OFL.txt)
+- [Google Sans Flex OFL](https://raw.githubusercontent.com/google/fonts/main/ofl/googlesansflex/OFL.txt)
+- [OpenRouter privacy and logging](https://openrouter.ai/docs/features/privacy-and-logging)
+- [OpenRouter endpoints API](https://openrouter.ai/api/v1/models/nvidia/nemotron-3-super-120b-a12b:free/endpoints)
+- [DiceBear HTTP API](https://www.dicebear.com/how-to-use/http-api/)
+- [Cloudflare website terms](https://www.cloudflare.com/website-terms/)
+- [Supabase terms](https://supabase.com/terms)
+- [Firebase terms](https://firebase.google.com/terms)
+- [frontmatter.in/privacy](https://frontmatter.in/privacy) and the three sibling paths, 307 to /login on the deployed app
 
-**Free tiers and metering, 17 September.** [Google Docs](https://workspace.google.com/products/docs) · [Google storage](https://support.google.com/drive/answer/2375123) · [Notion pricing](https://www.notion.com/pricing) · [Superhuman Docs](https://superhuman.com/plans/docs) · [Bear](https://bear.app) · [Obsidian](https://obsidian.md/pricing) · [HackMD](https://hackmd.io/pricing) · [Dropbox Paper](https://help.dropbox.com/organize/dropbox-paper-faqs) · [Slite](https://slite.com/pricing) · [Nuclino](https://www.nuclino.com/pricing) · [Outline](https://www.getoutline.com/pricing) · [GitBook](https://www.gitbook.com/pricing) · [Confluence](https://www.atlassian.com/software/confluence/pricing) · [Anytype](https://anytype.io/pricing) · [AFFiNE](https://affine.pro/pricing) · [Notesnook](https://notesnook.com) · [Joplin Cloud](https://joplinapp.org/plans) · [Simplenote](https://simplenote.com) · [Standard Notes](https://standardnotes.com/plans) · [Capacities](https://capacities.io/pricing) · [Mem](https://get.mem.ai/pricing) · [Tana](https://tana.inc/pricing) · [Reflect](https://reflect.app) · [UpNote](https://getupnote.com) · [Evernote](https://evernote.com/compare-plans) · [Tolaria](https://tolaria.md) · [CodeGuide](https://codeguide.dev/pricing) · [ChatPRD](https://www.chatprd.ai/pricing) · [Kiro](https://kiro.dev/pricing) · [Cursor](https://cursor.com/pricing) · [Claude](https://claude.com/pricing) · [ChatGPT](https://chatgpt.com/pricing) · [Canva](https://www.canva.com/pricing) · [Figma](https://www.figma.com/pricing) · [Linear](https://linear.app/pricing) · [Vercel](https://vercel.com/pricing) · [Loom](https://www.loom.com/pricing)
+**Opened by the audit, 17 September, not re-opened here.**
 
-**The stack, 17 September.** [R2 pricing](https://developers.cloudflare.com/r2/pricing/) · [D1 pricing](https://developers.cloudflare.com/d1/platform/pricing/) · [Durable Objects pricing](https://developers.cloudflare.com/durable-objects/platform/pricing/) · [Workers pricing](https://developers.cloudflare.com/workers/platform/pricing/) · [Firestore pricing](https://cloud.google.com/firestore/pricing) · [Firestore quotas](https://firebase.google.com/docs/firestore/quotas) · [Firebase pricing](https://firebase.google.com/pricing) · [Supabase pricing](https://supabase.com/pricing) · [Supabase regions](https://supabase.com/docs/guides/platform/regions) · [Neon](https://neon.tech/pricing) · [Turso](https://turso.tech/pricing) · [PlanetScale](https://planetscale.com/pricing) · [Vercel Hobby](https://vercel.com/docs/plans/hobby) · [Vercel Blob](https://vercel.com/docs/vercel-blob/usage-and-pricing) · [Clerk](https://clerk.com/pricing) · [Auth.js](https://authjs.dev) · [Liveblocks](https://liveblocks.io/pricing) · [PartyKit](https://www.partykit.io) · [Algolia](https://www.algolia.com/pricing) · [Meilisearch](https://www.meilisearch.com/pricing) · [Typesense](https://cloud.typesense.org/pricing) · [Resend](https://resend.com/pricing) · [Sentry](https://sentry.io/pricing/) · [PostHog](https://posthog.com/pricing)
+- [IT Rules 2021, MeitY](https://www.meity.gov.in/static/uploads/2024/02/Information-Technology-Intermediary-Guidelines-and-Digital-Media-Ethics-Code-Rules-2021-updated-06.04.2023-.pdf)
+- [CERT-In directions, 28 April 2022](https://www.cert-in.org.in/PDF/CERT-In_Directions_70B_28.04.2022.pdf)
+- [Rights of Persons with Disabilities Act 2016](https://www.indiacode.nic.in/bitstream/123456789/15939/1/the_rights_of_persons_with_disabilities_act,_2016.pdf)
+- [Azure Artifact Signing quickstart](https://learn.microsoft.com/en-us/azure/artifact-signing/quickstart)
+- [Apple Developer Program](https://developer.apple.com/programs/)
+- [Tauri Windows installer](https://v2.tauri.app/distribute/windows-installer/)
+- [Durable Objects data location](https://developers.cloudflare.com/durable-objects/reference/data-location/)
+- [R2 data location](https://developers.cloudflare.com/r2/reference/data-location/)
+- [Semantic Scholar licence](https://api.semanticscholar.org/license)
+- [MCP governance](https://modelcontextprotocol.io/community/governance)
+- [Notesnook pricing](https://notesnook.com/pricing)
 
-**Model providers, 17 September.** [Groq rate limits](https://console.groq.com/docs/rate-limits) · [Groq models](https://console.groq.com/docs/models) · [Groq data](https://console.groq.com/docs/your-data) · [Groq services agreement](https://console.groq.com/docs/legal/services-agreement) · [Gemini rate limits](https://ai.google.dev/gemini-api/docs/rate-limits) · [Gemini pricing](https://ai.google.dev/gemini-api/docs/pricing) · [Gemini terms](https://ai.google.dev/gemini-api/terms) · [OpenRouter limits](https://openrouter.ai/docs/api-reference/limits) · [OpenRouter models](https://openrouter.ai/api/v1/models) · [OpenRouter privacy](https://openrouter.ai/privacy) · [GitHub Models](https://docs.github.com/en/github-models) · [NVIDIA build](https://build.nvidia.com) · [NVIDIA terms](https://developer.nvidia.com/legal/terms) · [Cerebras rate limits](https://inference-docs.cerebras.ai/support/rate-limits) · [Cerebras terms](https://cerebras.ai/terms-of-service) · [Together pricing](https://www.together.ai/pricing) · [Together privacy](https://www.together.ai/privacy) · [Mistral pricing](https://mistral.ai/pricing) · [Mistral usage limits](https://docs.mistral.ai/admin/billing-usage/usage-limits) · [Mistral terms](https://legal.mistral.ai/terms/commercial-terms-of-service) · [Hugging Face providers](https://huggingface.co/docs/inference-providers/pricing) · [Workers AI pricing](https://developers.cloudflare.com/workers-ai/platform/pricing/) · [Workers AI limits](https://developers.cloudflare.com/workers-ai/platform/limits/) · [Workers AI data](https://developers.cloudflare.com/workers-ai/platform/data-usage/) · [SambaNova rate limits](https://docs.sambanova.ai/docs/en/models/rate-limits) · [SambaNova pricing](https://cloud.sambanova.ai/plans/pricing) · [Anthropic pricing](https://claude.com/pricing) · [Anthropic rate limits](https://platform.claude.com/docs/en/api/rate-limits) · [Ollama](https://ollama.com) · [Ollama FAQ](https://docs.ollama.com/faq)
+**Free tiers and metering, 17 September.**
 
-**Doc mode, 17 September.** [Google Docs help](https://support.google.com/docs/topic/9046002) · [Google Docs formatting not supported in Markdown](https://support.google.com/docs/answer/18289341) · [CommonMark 0.31.2](https://spec.commonmark.org/0.31.2/) · [GFM](https://github.github.com/gfm/) · [Pandoc manual](https://pandoc.org/MANUAL.html) · [Tiptap extensions](https://tiptap.dev/docs/editor/extensions) · [Tiptap markdown](https://tiptap.dev/docs/editor/markdown) · [Typora support](https://support.typora.io) · [Bear Lettera](https://lettera.md) · [Milkdown](https://github.com/Milkdown/milkdown) · [tui.editor](https://github.com/nhn/tui.editor) · [Obsidian editing modes](https://help.obsidian.md/edit-and-read)
+- [Google Docs](https://workspace.google.com/products/docs)
+- [Google storage](https://support.google.com/drive/answer/2375123)
+- [Notion pricing](https://www.notion.com/pricing)
+- [Superhuman Docs](https://superhuman.com/plans/docs)
+- [Bear](https://bear.app)
+- [Obsidian](https://obsidian.md/pricing)
+- [HackMD](https://hackmd.io/pricing)
+- [Dropbox Paper](https://help.dropbox.com/organize/dropbox-paper-faqs)
+- [Slite](https://slite.com/pricing)
+- [Nuclino](https://www.nuclino.com/pricing)
+- [Outline](https://www.getoutline.com/pricing)
+- [GitBook](https://www.gitbook.com/pricing)
+- [Confluence](https://www.atlassian.com/software/confluence/pricing)
+- [Anytype](https://anytype.io/pricing)
+- [AFFiNE](https://affine.pro/pricing)
+- [Notesnook](https://notesnook.com)
+- [Joplin Cloud](https://joplinapp.org/plans)
+- [Simplenote](https://simplenote.com)
+- [Standard Notes](https://standardnotes.com/plans)
+- [Capacities](https://capacities.io/pricing)
+- [Mem](https://get.mem.ai/pricing)
+- [Tana](https://tana.inc/pricing)
+- [Reflect](https://reflect.app)
+- [UpNote](https://getupnote.com)
+- [Evernote](https://evernote.com/compare-plans)
+- [Tolaria](https://tolaria.md)
+- [CodeGuide](https://codeguide.dev/pricing)
+- [ChatPRD](https://www.chatprd.ai/pricing)
+- [Kiro](https://kiro.dev/pricing)
+- [Cursor](https://cursor.com/pricing)
+- [Claude](https://claude.com/pricing)
+- [ChatGPT](https://chatgpt.com/pricing)
+- [Canva](https://www.canva.com/pricing)
+- [Figma](https://www.figma.com/pricing)
+- [Linear](https://linear.app/pricing)
+- [Vercel](https://vercel.com/pricing)
+- [Loom](https://www.loom.com/pricing)
 
-**Representations, 17 September.** [Marp core](https://github.com/marp-team/marp-core) · [Marpit markdown](https://github.com/marp-team/marpit/blob/main/docs/markdown.md) · [reveal.js markdown](https://revealjs.com/markdown/) · [Slidev](https://sli.dev/guide/syntax) · [markmap](https://markmap.js.org/docs/markmap) · [Mermaid](https://mermaid.js.org/intro/) · [Mermaid kanban](https://mermaid.js.org/syntax/kanban.html) · [D2](https://github.com/terrastruct/d2) · [obsidian-kanban](https://github.com/community-archive/obsidian-kanban) · [vis-timeline](https://github.com/visjs/vis-timeline) · [Chart.js](https://github.com/chartjs/Chart.js) · [Vega-Lite](https://github.com/vega/vega-lite) · [obsidian-charts](https://github.com/phibr0/obsidian-charts) · [JSON Canvas](https://jsoncanvas.org/spec/1.0/) · [tldraw licence](https://github.com/tldraw/tldraw/blob/main/LICENSE.md) · [Excalidraw](https://github.com/excalidraw/excalidraw) · [Obsidian Bases](https://help.obsidian.md/bases) · [Astro content collections](https://docs.astro.build/en/guides/content-collections/) · [sayak.dev](https://sayak.dev/) · [sayakpaul/portfolio](https://github.com/sayakpaul/portfolio) · [Quarto](https://github.com/quarto-dev/quarto-cli) · [Pandoc](https://github.com/jgm/pandoc) · [Paged.js](https://github.com/pagedjs/pagedjs) · [Typst](https://github.com/typst/typst) · [abcjs](https://github.com/paulrosen/abcjs) · [KaTeX](https://github.com/KaTeX/KaTeX) · [HackMD features](https://hackmd.io/s/features) · [marp-vscode](https://marketplace.visualstudio.com/items?itemName=marp-team.marp-vscode)
+**The stack, 17 September.**
 
-**Public APIs, 17 September.** [public-apis](https://github.com/public-apis/public-apis) · [free-apis](https://free-apis.github.io/) · [Unsplash](https://unsplash.com/documentation) · [Pexels](https://www.pexels.com/api/documentation/) · [Openverse](https://api.openverse.org/v1/) · [Pixabay](https://pixabay.com/api/docs/) · [Wikimedia rate limits](https://www.mediawiki.org/wiki/Wikimedia_APIs/Rate_limits) · [Free Dictionary](https://dictionaryapi.dev) · [Datamuse](https://www.datamuse.com/api/) · [LanguageTool API](https://dev.languagetool.org/public-http-api) · [DeepL](https://developers.deepl.com/docs/api-reference/usage-and-quota) · [LibreTranslate](https://libretranslate.com) · [Crossref](https://github.com/CrossRef/rest-api-doc) · [OpenAlex](https://github.com/ourresearch/openalex-docs) · [Open Library](https://openlibrary.org/developers/api) · [arXiv terms](https://info.arxiv.org/help/api/tou.html) · [Semantic Scholar](https://www.semanticscholar.org/product/api) · [Zotero](https://www.zotero.org/support/dev/web_api/v3/basics) · [Google Fonts](https://developers.google.com/fonts/docs/developer_api) · [Gravatar](https://docs.gravatar.com/api/avatars/) · [Frankfurter](https://frankfurter.dev) · [OSM policies](https://operations.osmfoundation.org/policies/) · [OCR.space](https://ocr.space/ocrapi) · [Tesseract.js](https://github.com/naptha/tesseract.js) · [QuickChart](https://quickchart.io/documentation/faq/) · [iframely](https://iframely.com/pricing) · [Google Docs API](https://developers.google.com/workspace/docs/api/how-tos/overview) · [Google Docs API limits](https://developers.google.com/workspace/docs/api/limits) · [Notion request limits](https://developers.notion.com/reference/request-limits) · [Confluence REST v2](https://developer.atlassian.com/cloud/confluence/rest/v2/intro/)
+- [R2 pricing](https://developers.cloudflare.com/r2/pricing/)
+- [D1 pricing](https://developers.cloudflare.com/d1/platform/pricing/)
+- [Durable Objects pricing](https://developers.cloudflare.com/durable-objects/platform/pricing/)
+- [Workers pricing](https://developers.cloudflare.com/workers/platform/pricing/)
+- [Firestore pricing](https://cloud.google.com/firestore/pricing)
+- [Firestore quotas](https://firebase.google.com/docs/firestore/quotas)
+- [Firebase pricing](https://firebase.google.com/pricing)
+- [Supabase pricing](https://supabase.com/pricing)
+- [Supabase regions](https://supabase.com/docs/guides/platform/regions)
+- [Neon](https://neon.tech/pricing)
+- [Turso](https://turso.tech/pricing)
+- [PlanetScale](https://planetscale.com/pricing)
+- [Vercel Hobby](https://vercel.com/docs/plans/hobby)
+- [Vercel Blob](https://vercel.com/docs/vercel-blob/usage-and-pricing)
+- [Clerk](https://clerk.com/pricing)
+- [Auth.js](https://authjs.dev)
+- [Liveblocks](https://liveblocks.io/pricing)
+- [PartyKit](https://www.partykit.io)
+- [Algolia](https://www.algolia.com/pricing)
+- [Meilisearch](https://www.meilisearch.com/pricing)
+- [Typesense](https://cloud.typesense.org/pricing)
+- [Resend](https://resend.com/pricing)
+- [Sentry](https://sentry.io/pricing/)
+- [PostHog](https://posthog.com/pricing)
 
-**Ecosystems, 17 September.** [Notion integrations](https://www.notion.com/integrations) · [Notion templates](https://www.notion.com/templates) · [Notion API](https://developers.notion.com/) · [Notion blocks](https://developers.notion.com/reference/block) · [Workspace Marketplace](https://workspace.google.com/marketplace) · [VS Code marketplace](https://marketplace.visualstudio.com/) · [Logseq marketplace](https://github.com/logseq/marketplace) · [Joplin plugins](https://joplinapp.org/plugins/) · [Craft](https://www.craft.do) · [Typora](https://typora.io) · [iA Writer](https://ia.net/writer) · [Obsidian plugin security](https://help.obsidian.md/plugin-security) · [VS Code extension host](https://code.visualstudio.com/api/advanced-topics/extension-host) · [Figma plugin sandbox](https://www.figma.com/plugin-docs/how-plugins-run/) · [Cloudflare isolates](https://developers.cloudflare.com/workers/reference/security-model/) · [Deno permissions](https://docs.deno.com/runtime/fundamentals/security/)
+**Model providers, 17 September.**
 
-**Principles, 17 September.** [Progressive disclosure](https://www.nngroup.com/articles/progressive-disclosure/) · [Ten heuristics](https://www.nngroup.com/articles/ten-usability-heuristics/) · [Empty states](https://www.nngroup.com/articles/empty-state-interface-design/) · [Onboarding tutorials](https://www.nngroup.com/articles/onboarding-tutorials/) · [Direct manipulation](https://www.nngroup.com/articles/direct-manipulation/) · [Response times](https://www.nngroup.com/articles/response-times-3-important-limits/) · [Laws of UX](https://lawsofux.com/) · [Apple HIG](https://developer.apple.com/design/human-interface-guidelines/) · [Material breakpoints](https://m3.material.io/foundations/layout/breakpoints/overview) · [Material navigation bar](https://m3.material.io/components/navigation-bar/guidelines) · [Android window size classes](https://developer.android.com/develop/ui/compose/layouts/adaptive/use-window-size-classes) · [Web Vitals](https://web.dev/articles/vitals) · [Shape Up](https://basecamp.com/shapeup/1.2-chapter-03) · [Jobs to be done](https://www.christenseninstitute.org/theory/jobs-to-be-done/) · [PAIR explainability](https://pair.withgoogle.com/chapter/explainability-trust/) · [PAIR feedback and controls](https://pair.withgoogle.com/chapter/feedback-controls/) · [PAIR errors](https://pair.withgoogle.com/chapter/errors-failing/) · [Principles of OOD](http://butunclebob.com/ArticleS.UncleBob.PrinciplesOfOod) · [SOLID relevance](https://blog.cleancoder.com/uncle-bob/2020/10/18/Solid-Relevance.html)
+- [Groq rate limits](https://console.groq.com/docs/rate-limits)
+- [Groq models](https://console.groq.com/docs/models)
+- [Groq data](https://console.groq.com/docs/your-data)
+- [Groq services agreement](https://console.groq.com/docs/legal/services-agreement)
+- [Gemini rate limits](https://ai.google.dev/gemini-api/docs/rate-limits)
+- [Gemini pricing](https://ai.google.dev/gemini-api/docs/pricing)
+- [Gemini terms](https://ai.google.dev/gemini-api/terms)
+- [OpenRouter limits](https://openrouter.ai/docs/api-reference/limits)
+- [OpenRouter models](https://openrouter.ai/api/v1/models)
+- [OpenRouter privacy](https://openrouter.ai/privacy)
+- [GitHub Models](https://docs.github.com/en/github-models)
+- [NVIDIA build](https://build.nvidia.com)
+- [NVIDIA terms](https://developer.nvidia.com/legal/terms)
+- [Cerebras rate limits](https://inference-docs.cerebras.ai/support/rate-limits)
+- [Cerebras terms](https://cerebras.ai/terms-of-service)
+- [Together pricing](https://www.together.ai/pricing)
+- [Together privacy](https://www.together.ai/privacy)
+- [Mistral pricing](https://mistral.ai/pricing)
+- [Mistral usage limits](https://docs.mistral.ai/admin/billing-usage/usage-limits)
+- [Mistral terms](https://legal.mistral.ai/terms/commercial-terms-of-service)
+- [Hugging Face providers](https://huggingface.co/docs/inference-providers/pricing)
+- [Workers AI pricing](https://developers.cloudflare.com/workers-ai/platform/pricing/)
+- [Workers AI limits](https://developers.cloudflare.com/workers-ai/platform/limits/)
+- [Workers AI data](https://developers.cloudflare.com/workers-ai/platform/data-usage/)
+- [SambaNova rate limits](https://docs.sambanova.ai/docs/en/models/rate-limits)
+- [SambaNova pricing](https://cloud.sambanova.ai/plans/pricing)
+- [Anthropic pricing](https://claude.com/pricing)
+- [Anthropic rate limits](https://platform.claude.com/docs/en/api/rate-limits)
+- [Ollama](https://ollama.com)
+- [Ollama FAQ](https://docs.ollama.com/faq)
 
-**Sharing, upload, Drive and GitHub, 17 September.** [Dropbox link permissions](https://help.dropbox.com/share/set-link-permissions) · [Drive sharing](https://developers.google.com/workspace/drive/api/guides/manage-sharing) · [Drive permissions](https://developers.google.com/workspace/drive/api/reference/rest/v3/permissions) · [Notion public pages](https://www.notion.com/help/public-pages-and-web-publishing) · [Figma link passwords](https://help.figma.com/hc/en-us/articles/5726720100247) · [Loom passwords](https://support.loom.com/hc/en-us/articles/360002235698) · [HackMD permissions](https://hackmd.io/@docs/note-permission-en) · [Craft sharing](https://support.craft.do/hc/en-us/articles/360019332337) · [Bitwarden Send](https://bitwarden.com/help/create-send/) · [webkitdirectory](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/webkitdirectory) · [webkitGetAsEntry](https://developer.mozilla.org/en-US/docs/Web/API/DataTransferItem/webkitGetAsEntry) · [showDirectoryPicker](https://developer.mozilla.org/en-US/docs/Web/API/Window/showDirectoryPicker) · [caniuse directory input](https://caniuse.com/input-file-directory) · [caniuse file system access](https://caniuse.com/native-filesystem-api) · [OPFS](https://developer.mozilla.org/en-US/docs/Web/API/File_System_API/Origin_private_file_system) · [StorageManager](https://developer.mozilla.org/en-US/docs/Web/API/StorageManager) · [Storage for the web](https://web.dev/articles/storage-for-the-web) · [Storage quotas](https://developer.mozilla.org/en-US/docs/Web/API/Storage_API/Storage_quotas_and_eviction_criteria) · [WebKit seven days](https://webkit.org/blog/10218/full-third-party-cookie-blocking-and-more/) · [Background Sync](https://developer.mozilla.org/en-US/docs/Web/API/Background_Synchronization_API) · [share_target](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Manifest/Reference/share_target) · [Drive push](https://developers.google.com/workspace/drive/api/guides/push) · [Drive changes](https://developers.google.com/workspace/drive/api/guides/manage-changes) · [Drive scopes](https://developers.google.com/workspace/drive/api/guides/api-specific-auth) · [Drive limits](https://developers.google.com/workspace/drive/api/guides/limits) · [Drive Picker](https://developers.google.com/workspace/drive/picker/reference/picker.docsview) · [GitHub Apps](https://docs.github.com/en/apps/creating-github-apps/about-creating-github-apps/about-creating-github-apps) · [GitHub App rate limits](https://docs.github.com/en/rest/using-the-rest-api/rate-limits-for-the-rest-api) · [Contents API](https://docs.github.com/en/rest/repos/contents) · [Notion settings](https://www.notion.com/help/account-settings) · [Obsidian settings](https://help.obsidian.md/settings)
+**Doc mode, 17 September.**
 
-**Carried from revision 3, opened 15 and 16 September.** [Obsidian feature requests](https://forum.obsidian.md/c/feature-requests/8) · [Obsidian plugin stats](https://github.com/obsidianmd/obsidian-releases) · [Obsidian sync help](https://help.obsidian.md/sync) · [kepano/obsidian-skills](https://github.com/kepano/obsidian-skills) · [Claudian](https://github.com/YishenTu/claudian) · [Tolaria](https://github.com/refactoringhq/tolaria) · [AGENTS.md](https://agents.md/) · [MCP specification](https://modelcontextprotocol.io/specification/2026-07-28) · [Skills guide](https://docs.claude.com/en/docs/agents-and-tools/agent-skills) · [llms.txt](https://llmstxt.org/) · [mem0 pricing](https://mem0.ai/pricing) · [Zep pricing](https://www.getzep.com/pricing) · [Anthropic API pricing](https://claude.com/pricing) · [Razorpay pricing](https://razorpay.com/pricing/) · [Razorpay subscriptions and mandates](https://razorpay.com/docs/payments/subscriptions/) · [mammoth](https://www.npmjs.com/package/mammoth) · [Drive export formats](https://developers.google.com/workspace/drive/api/guides/ref-export-formats) · [decisions/questions.js, 210 cards](https://frontmatter-decisions-sagnik.vercel.app)
+- [Google Docs help](https://support.google.com/docs/topic/9046002)
+- [Google Docs formatting not supported in Markdown](https://support.google.com/docs/answer/18289341)
+- [CommonMark 0.31.2](https://spec.commonmark.org/0.31.2/)
+- [GFM](https://github.github.com/gfm/)
+- [Pandoc manual](https://pandoc.org/MANUAL.html)
+- [Tiptap extensions](https://tiptap.dev/docs/editor/extensions)
+- [Tiptap markdown](https://tiptap.dev/docs/editor/markdown)
+- [Typora support](https://support.typora.io)
+- [Bear Lettera](https://lettera.md)
+- [Milkdown](https://github.com/Milkdown/milkdown)
+- [tui.editor](https://github.com/nhn/tui.editor)
+- [Obsidian editing modes](https://help.obsidian.md/edit-and-read)
+
+**Representations, 17 September.**
+
+- [Marp core](https://github.com/marp-team/marp-core)
+- [Marpit markdown](https://github.com/marp-team/marpit/blob/main/docs/markdown.md)
+- [reveal.js markdown](https://revealjs.com/markdown/)
+- [Slidev](https://sli.dev/guide/syntax)
+- [markmap](https://markmap.js.org/docs/markmap)
+- [Mermaid](https://mermaid.js.org/intro/)
+- [Mermaid kanban](https://mermaid.js.org/syntax/kanban.html)
+- [D2](https://github.com/terrastruct/d2)
+- [obsidian-kanban](https://github.com/community-archive/obsidian-kanban)
+- [vis-timeline](https://github.com/visjs/vis-timeline)
+- [Chart.js](https://github.com/chartjs/Chart.js)
+- [Vega-Lite](https://github.com/vega/vega-lite)
+- [obsidian-charts](https://github.com/phibr0/obsidian-charts)
+- [JSON Canvas](https://jsoncanvas.org/spec/1.0/)
+- [tldraw licence](https://github.com/tldraw/tldraw/blob/main/LICENSE.md)
+- [Excalidraw](https://github.com/excalidraw/excalidraw)
+- [Obsidian Bases](https://help.obsidian.md/bases)
+- [Astro content collections](https://docs.astro.build/en/guides/content-collections/)
+- [sayak.dev](https://sayak.dev/)
+- [sayakpaul/portfolio](https://github.com/sayakpaul/portfolio)
+- [Quarto](https://github.com/quarto-dev/quarto-cli)
+- [Pandoc](https://github.com/jgm/pandoc)
+- [Paged.js](https://github.com/pagedjs/pagedjs)
+- [Typst](https://github.com/typst/typst)
+- [abcjs](https://github.com/paulrosen/abcjs)
+- [KaTeX](https://github.com/KaTeX/KaTeX)
+- [HackMD features](https://hackmd.io/s/features)
+- [marp-vscode](https://marketplace.visualstudio.com/items?itemName=marp-team.marp-vscode)
+
+**Public APIs, 17 September.**
+
+- [public-apis](https://github.com/public-apis/public-apis)
+- [free-apis](https://free-apis.github.io/)
+- [Unsplash](https://unsplash.com/documentation)
+- [Pexels](https://www.pexels.com/api/documentation/)
+- [Openverse](https://api.openverse.org/v1/)
+- [Pixabay](https://pixabay.com/api/docs/)
+- [Wikimedia rate limits](https://www.mediawiki.org/wiki/Wikimedia_APIs/Rate_limits)
+- [Free Dictionary](https://dictionaryapi.dev)
+- [Datamuse](https://www.datamuse.com/api/)
+- [LanguageTool API](https://dev.languagetool.org/public-http-api)
+- [DeepL](https://developers.deepl.com/docs/api-reference/usage-and-quota)
+- [LibreTranslate](https://libretranslate.com)
+- [Crossref](https://github.com/CrossRef/rest-api-doc)
+- [OpenAlex](https://github.com/ourresearch/openalex-docs)
+- [Open Library](https://openlibrary.org/developers/api)
+- [arXiv terms](https://info.arxiv.org/help/api/tou.html)
+- [Semantic Scholar](https://www.semanticscholar.org/product/api)
+- [Zotero](https://www.zotero.org/support/dev/web_api/v3/basics)
+- [Google Fonts](https://developers.google.com/fonts/docs/developer_api)
+- [Gravatar](https://docs.gravatar.com/api/avatars/)
+- [Frankfurter](https://frankfurter.dev)
+- [OSM policies](https://operations.osmfoundation.org/policies/)
+- [OCR.space](https://ocr.space/ocrapi)
+- [Tesseract.js](https://github.com/naptha/tesseract.js)
+- [QuickChart](https://quickchart.io/documentation/faq/)
+- [iframely](https://iframely.com/pricing)
+- [Google Docs API](https://developers.google.com/workspace/docs/api/how-tos/overview)
+- [Google Docs API limits](https://developers.google.com/workspace/docs/api/limits)
+- [Notion request limits](https://developers.notion.com/reference/request-limits)
+- [Confluence REST v2](https://developer.atlassian.com/cloud/confluence/rest/v2/intro/)
+
+**Ecosystems, 17 September.**
+
+- [Notion integrations](https://www.notion.com/integrations)
+- [Notion templates](https://www.notion.com/templates)
+- [Notion API](https://developers.notion.com/)
+- [Notion blocks](https://developers.notion.com/reference/block)
+- [Workspace Marketplace](https://workspace.google.com/marketplace)
+- [VS Code marketplace](https://marketplace.visualstudio.com/)
+- [Logseq marketplace](https://github.com/logseq/marketplace)
+- [Joplin plugins](https://joplinapp.org/plugins/)
+- [Craft](https://www.craft.do)
+- [Typora](https://typora.io)
+- [iA Writer](https://ia.net/writer)
+- [Obsidian plugin security](https://help.obsidian.md/plugin-security)
+- [VS Code extension host](https://code.visualstudio.com/api/advanced-topics/extension-host)
+- [Figma plugin sandbox](https://www.figma.com/plugin-docs/how-plugins-run/)
+- [Cloudflare isolates](https://developers.cloudflare.com/workers/reference/security-model/)
+- [Deno permissions](https://docs.deno.com/runtime/fundamentals/security/)
+
+**Principles, 17 September.**
+
+- [Progressive disclosure](https://www.nngroup.com/articles/progressive-disclosure/)
+- [Ten heuristics](https://www.nngroup.com/articles/ten-usability-heuristics/)
+- [Empty states](https://www.nngroup.com/articles/empty-state-interface-design/)
+- [Onboarding tutorials](https://www.nngroup.com/articles/onboarding-tutorials/)
+- [Direct manipulation](https://www.nngroup.com/articles/direct-manipulation/)
+- [Response times](https://www.nngroup.com/articles/response-times-3-important-limits/)
+- [Laws of UX](https://lawsofux.com/)
+- [Apple HIG](https://developer.apple.com/design/human-interface-guidelines/)
+- [Material breakpoints](https://m3.material.io/foundations/layout/breakpoints/overview)
+- [Material navigation bar](https://m3.material.io/components/navigation-bar/guidelines)
+- [Android window size classes](https://developer.android.com/develop/ui/compose/layouts/adaptive/use-window-size-classes)
+- [Web Vitals](https://web.dev/articles/vitals)
+- [Shape Up](https://basecamp.com/shapeup/1.2-chapter-03)
+- [Jobs to be done](https://www.christenseninstitute.org/theory/jobs-to-be-done/)
+- [PAIR explainability](https://pair.withgoogle.com/chapter/explainability-trust/)
+- [PAIR feedback and controls](https://pair.withgoogle.com/chapter/feedback-controls/)
+- [PAIR errors](https://pair.withgoogle.com/chapter/errors-failing/)
+- [Principles of OOD](http://butunclebob.com/ArticleS.UncleBob.PrinciplesOfOod)
+- [SOLID relevance](https://blog.cleancoder.com/uncle-bob/2020/10/18/Solid-Relevance.html)
+
+**Sharing, upload, Drive and GitHub, 17 September.**
+
+- [Dropbox link permissions](https://help.dropbox.com/share/set-link-permissions)
+- [Drive sharing](https://developers.google.com/workspace/drive/api/guides/manage-sharing)
+- [Drive permissions](https://developers.google.com/workspace/drive/api/reference/rest/v3/permissions)
+- [Notion public pages](https://www.notion.com/help/public-pages-and-web-publishing)
+- [Figma link passwords](https://help.figma.com/hc/en-us/articles/5726720100247)
+- [Loom passwords](https://support.loom.com/hc/en-us/articles/360002235698)
+- [HackMD permissions](https://hackmd.io/@docs/note-permission-en)
+- [Craft sharing](https://support.craft.do/hc/en-us/articles/360019332337)
+- [Bitwarden Send](https://bitwarden.com/help/create-send/)
+- [webkitdirectory](https://developer.mozilla.org/en-US/docs/Web/API/HTMLInputElement/webkitdirectory)
+- [webkitGetAsEntry](https://developer.mozilla.org/en-US/docs/Web/API/DataTransferItem/webkitGetAsEntry)
+- [showDirectoryPicker](https://developer.mozilla.org/en-US/docs/Web/API/Window/showDirectoryPicker)
+- [caniuse directory input](https://caniuse.com/input-file-directory)
+- [caniuse file system access](https://caniuse.com/native-filesystem-api)
+- [OPFS](https://developer.mozilla.org/en-US/docs/Web/API/File_System_API/Origin_private_file_system)
+- [StorageManager](https://developer.mozilla.org/en-US/docs/Web/API/StorageManager)
+- [Storage for the web](https://web.dev/articles/storage-for-the-web)
+- [Storage quotas](https://developer.mozilla.org/en-US/docs/Web/API/Storage_API/Storage_quotas_and_eviction_criteria)
+- [WebKit seven days](https://webkit.org/blog/10218/full-third-party-cookie-blocking-and-more/)
+- [Background Sync](https://developer.mozilla.org/en-US/docs/Web/API/Background_Synchronization_API)
+- [share_target](https://developer.mozilla.org/en-US/docs/Web/Progressive_web_apps/Manifest/Reference/share_target)
+- [Drive push](https://developers.google.com/workspace/drive/api/guides/push)
+- [Drive changes](https://developers.google.com/workspace/drive/api/guides/manage-changes)
+- [Drive scopes](https://developers.google.com/workspace/drive/api/guides/api-specific-auth)
+- [Drive limits](https://developers.google.com/workspace/drive/api/guides/limits)
+- [Drive Picker](https://developers.google.com/workspace/drive/picker/reference/picker.docsview)
+- [GitHub Apps](https://docs.github.com/en/apps/creating-github-apps/about-creating-github-apps/about-creating-github-apps)
+- [GitHub App rate limits](https://docs.github.com/en/rest/using-the-rest-api/rate-limits-for-the-rest-api)
+- [Contents API](https://docs.github.com/en/rest/repos/contents)
+- [Notion settings](https://www.notion.com/help/account-settings)
+- [Obsidian settings](https://help.obsidian.md/settings)
+
+**Carried from revision 3, opened 15 and 16 September.**
+
+- [Obsidian feature requests](https://forum.obsidian.md/c/feature-requests/8)
+- [Obsidian plugin stats](https://github.com/obsidianmd/obsidian-releases)
+- [Obsidian sync help](https://help.obsidian.md/sync)
+- [kepano/obsidian-skills](https://github.com/kepano/obsidian-skills)
+- [Claudian](https://github.com/YishenTu/claudian)
+- [Tolaria](https://github.com/refactoringhq/tolaria)
+- [AGENTS.md](https://agents.md/)
+- [MCP specification](https://modelcontextprotocol.io/specification/2026-07-28)
+- [Skills guide](https://docs.claude.com/en/docs/agents-and-tools/agent-skills)
+- [llms.txt](https://llmstxt.org/)
+- [mem0 pricing](https://mem0.ai/pricing)
+- [Zep pricing](https://www.getzep.com/pricing)
+- [Anthropic API pricing](https://claude.com/pricing)
+- [Razorpay pricing](https://razorpay.com/pricing/)
+- [Razorpay subscriptions and mandates](https://razorpay.com/docs/payments/subscriptions/)
+- [mammoth](https://www.npmjs.com/package/mammoth)
+- [Drive export formats](https://developers.google.com/workspace/drive/api/guides/ref-export-formats)
+- [decisions/questions.js, 210 cards](https://frontmatter-decisions-sagnik.vercel.app)
