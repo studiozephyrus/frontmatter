@@ -6,6 +6,12 @@
       "runtimeExecutable": "python3",
       "runtimeArgs": ["-m", "http.server", "8732", "--directory", "decisions", "--bind", "127.0.0.1"],
       "port": 8732
+    },
+    {
+      "name": "decisions-founders-static",
+      "runtimeExecutable": "python3",
+      "runtimeArgs": ["-m", "http.server", "8733", "--directory", "decisions-founders", "--bind", "127.0.0.1"],
+      "port": 8733
     }
   ]
 }

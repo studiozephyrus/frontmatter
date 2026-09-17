@@ -1,0 +1,688 @@
+{
+ "cat": "Can wait for the build",
+ "questions": [
+  {
+   "id": "FD4",
+   "cat": "Can wait for the build",
+   "sub": "Legal",
+   "weight": "high",
+   "q": "Who is the grievance officer of record while the legal pages are still placeholders?",
+   "lede": "All four public legal pages answered 307 to the sign-in wall until this branch shipped placeholders that say the text is pending.",
+   "visual": {
+    "kind": "compare",
+    "labelWidth": 170,
+    "cols": [
+     {
+      "title": "Sagnik",
+      "tone": "accent"
+     },
+     {
+      "title": "Amit"
+     },
+     {
+      "title": "Counsel"
+     }
+    ],
+    "rows": [
+     {
+      "label": "Named on the public pages",
+      "cells": [
+       "Yes, today",
+       "If chosen",
+       "If engaged"
+      ]
+     },
+     {
+      "label": "Legal-row dates move with",
+      "cells": [
+       "Sagnik's calendar",
+       "Amit's calendar",
+       "Counsel's engagement"
+      ]
+     }
+    ],
+    "caption": "Someone has to be named before a stranger reaches these pages."
+   },
+   "stakes": "Nothing publishes to a stranger until this apparatus exists, and the apparatus starts with a name.",
+   "state": [
+    "curl confirmed on 17 September 2026: /privacy, /terms, /pricing and /refunds each answered 307 to /login.",
+    "Placeholder public pages now ship on this branch and say the text is pending.",
+    "The legal section carries an owner and a date on every row."
+   ],
+   "tension": [
+    "Naming an officer now is a small commitment; naming the wrong one moves every date in the legal section.",
+    "Counsel as the owner adds a real engagement cost the plan has not priced."
+   ],
+   "options": [
+    {
+     "k": "a",
+     "label": "Sagnik is the officer of record",
+     "gains": [
+      "No new engagement needed."
+     ],
+     "costs": [
+      "Adds a duty to one founder's existing load."
+     ],
+     "system": "No change.",
+     "screens": "The public pages name Sagnik.",
+     "money": "No change."
+    },
+    {
+     "k": "b",
+     "label": "Amit is the officer of record",
+     "gains": [
+      "Splits founder duties differently."
+     ],
+     "costs": [
+      "The legal-row dates move to Amit's calendar."
+     ],
+     "system": "No change.",
+     "screens": "The public pages name Amit.",
+     "money": "No change."
+    },
+    {
+     "k": "c",
+     "label": "Counsel is engaged and named",
+     "gains": [
+      "A professional handles grievance response."
+     ],
+     "costs": [
+      "A new, unpriced engagement."
+     ],
+     "system": "No change.",
+     "screens": "The public pages name counsel.",
+     "money": "Counsel's fee, not yet priced."
+    }
+   ],
+   "rec": "a",
+   "recCase": [
+    "Sagnik is already named in the branch that shipped the placeholders.",
+    "Changing it later is a one-line edit, not a rebuild."
+   ],
+   "flip": "Counsel accepting the role at a priced, acceptable fee would move this to option c.",
+   "sources": [
+    "docs/mvp0/DECISIONS-FOR-FOUNDERS-2026-09-17.md, question 4",
+    "verify/2026-09-17/RESPONSE.jsonl, F008"
+   ]
+  },
+  {
+   "id": "FD7",
+   "cat": "Can wait for the build",
+   "sub": "What the product is",
+   "weight": "medium",
+   "q": "Does 'frontmatter' stay, given a store listing with 82,819 installs already holds the name?",
+   "lede": "The Indian trademark register needs an OTP login by a founder before this can be checked properly.",
+   "visual": {
+    "kind": "compare",
+    "labelWidth": 170,
+    "cols": [
+     {
+      "title": "frontmatter",
+      "tone": "accent"
+     },
+     {
+      "title": "A new name"
+     }
+    ],
+    "rows": [
+     {
+      "label": "Store collision",
+      "cells": [
+       "Front Matter CMS, 82,819 installs",
+       "None found yet"
+      ]
+     },
+     {
+      "label": "Domain and portfolio path",
+      "cells": [
+       "Unchanged",
+       "frontmatter.in and every @handle change"
+      ]
+     },
+     {
+      "label": "Screens affected",
+      "cells": [
+       "None",
+       "Every screen with the wordmark, in a day"
+      ]
+     }
+    ],
+    "caption": "82,819 installs already sit on a name close enough to collide."
+   },
+   "stakes": "A name change late costs a day of screens; a collision found late after Razorpay goes live costs more.",
+   "state": [
+    "Front Matter CMS holds the store name with 82,819 installs.",
+    "The Indian trademark register needs an OTP login by a founder; it was not checked this session.",
+    "The plan carries the collision as a named risk."
+   ],
+   "tension": [
+    "Waiting for the register search delays certainty; running it now costs one founder's time.",
+    "A name change is cheap in screens and expensive in already-shared links and a portfolio path."
+   ],
+   "options": [
+    {
+     "k": "a",
+     "label": "Keep 'frontmatter'; a founder runs the register search before Razorpay goes live",
+     "gains": [
+      "Nothing changes today."
+     ],
+     "costs": [
+      "Carries the collision as a live risk until checked."
+     ],
+     "system": "No change.",
+     "screens": "No change.",
+     "money": "No change."
+    },
+    {
+     "k": "b",
+     "label": "Choose a new name now",
+     "gains": [
+      "Clears the collision before it can bite."
+     ],
+     "costs": [
+      "The domain, the published-page URLs and the portfolio path all change."
+     ],
+     "system": "No change.",
+     "screens": "Every screen with the wordmark changes, in about a day.",
+     "money": "A new domain purchase."
+    }
+   ],
+   "rec": "a",
+   "recCase": [
+    "The register search costs one OTP login, not a rebuild.",
+    "No collision has actually been confirmed yet, only the store listing."
+   ],
+   "flip": "A confirmed trademark on the register in the same class would force a new name regardless of preference.",
+   "sources": [
+    "docs/mvp0/DECISIONS-FOR-FOUNDERS-2026-09-17.md, question 7",
+    "verify/2026-09-17/RESPONSE.jsonl, F008"
+   ]
+  },
+  {
+   "id": "FD10",
+   "cat": "Can wait for the build",
+   "sub": "AI",
+   "weight": "medium",
+   "q": "Does Settings gain a bring-your-own-key field in phase B, or does every call stay operator-paid?",
+   "lede": "An earlier research round rated a key field as evidence-backed; a later revision dropped it without a record.",
+   "visual": {
+    "kind": "flow",
+    "nodes": [
+     {
+      "label": "Settings, AI",
+      "tone": "sunk"
+     },
+     {
+      "label": "Key present?",
+      "tone": "warn"
+     },
+     {
+      "label": "Calls run on your key"
+     },
+     {
+      "label": "Calls run on the operator chain",
+      "tone": "accent"
+     }
+    ],
+    "note": "The operator chain is always the fallback.",
+    "caption": "Where a call goes, with or without a personal key."
+   },
+   "stakes": "A key field shifts some abuse risk off the free pools and onto whoever brings their own key, for free.",
+   "state": [
+    "An earlier research round rated a key field as evidence-backed.",
+    "A later revision dropped the field with no record of why.",
+    "Today, the abuse risk of the free chain is carried by the sign-in wall alone."
+   ],
+   "tension": [
+    "A key field is a small phase-B addition against an abuse surface that has never been priced.",
+    "Operator-paid only keeps the breaker simple, at the cost of dropping an evidence-backed feature."
+   ],
+   "options": [
+    {
+     "k": "a",
+     "label": "Add a bring-your-own-key field in Settings, phase B",
+     "what": "For Anthropic and any OpenAI-compatible endpoint.",
+     "gains": [
+      "A person's own calls run through their key when present."
+     ],
+     "costs": [
+      "A new field to secure and support."
+     ],
+     "system": "A key field, encrypted at rest.",
+     "screens": "Settings AI gains one field.",
+     "money": "Shifts some cost off the operator's free pools."
+    },
+    {
+     "k": "b",
+     "label": "Operator-paid only",
+     "gains": [
+      "The per-account breaker stays simple."
+     ],
+     "costs": [
+      "Drops a feature the research already rated evidence-backed."
+     ],
+     "system": "No change.",
+     "screens": "No change.",
+     "money": "No change."
+    }
+   ],
+   "rec": "a",
+   "recCase": [
+    "The research already rated this evidence-backed once; nothing has reversed that.",
+    "A key field is contained scope for phase B, not a new phase."
+   ],
+   "flip": "A security review finding key storage cannot be done safely at this stage would move this to option b.",
+   "sources": [
+    "docs/mvp0/DECISIONS-FOR-FOUNDERS-2026-09-17.md, question 10",
+    "verify/2026-09-17/RESPONSE.jsonl, F056"
+   ]
+  },
+  {
+   "id": "FD12",
+   "cat": "Can wait for the build",
+   "sub": "Legal",
+   "weight": "high",
+   "q": "Is the stated age floor eighteen, or thirteen with a consent path built before the law requires it?",
+   "lede": "The DPDP Rules' consent section comes into force 14 May 2027, eighteen months after the Act's commencement notice.",
+   "visual": {
+    "kind": "timeline",
+    "items": [
+     {
+      "when": "13 Nov 2025",
+      "label": "DPDP Rules 2025 gazetted",
+      "tone": "sunk"
+     },
+     {
+      "when": "14 Nov 2025",
+      "label": "Commencement notice published",
+      "tone": "sunk"
+     },
+     {
+      "when": "17 Sep 2026",
+      "label": "Plan states no age; default set to 18",
+      "tone": "accent"
+     },
+     {
+      "when": "14 May 2027",
+      "label": "Section 9, parental consent, in force",
+      "tone": "warn"
+     }
+    ],
+    "note": "Eighteen months from the commencement notice's own publication date.",
+    "caption": "A real date for the consent duty; the plan's answer need not wait for it."
+   },
+   "stakes": "Choosing thirteen now means building a verifiable-consent path on a schedule the law sets, not one the studio picks.",
+   "state": [
+    "DPDP section 9 requires verifiable parental consent for anyone under eighteen.",
+    "Gazette CG-DL-E-14112025-267647, G.S.R. 843(E): section 9 comes into force eighteen months after 14 November 2025, so 14 May 2027.",
+    "The plan states no age floor today."
+   ],
+   "tension": [
+    "The pilot itself runs and ends before the section is even in force.",
+    "Thirteen widens the reachable audience today, at the cost of a consent path that has to exist by the same date."
+   ],
+   "options": [
+    {
+     "k": "a",
+     "label": "Eighteen, stated in the terms and the sign-in fine print",
+     "gains": [
+      "No consent path to build before the pilot."
+     ],
+     "costs": [
+      "Narrows the reachable audience."
+     ],
+     "system": "No change.",
+     "screens": "S01 fine print states the floor.",
+     "money": "No change."
+    },
+    {
+     "k": "b",
+     "label": "Thirteen, with a consent path built before 14 May 2027",
+     "gains": [
+      "A wider reachable audience from day one."
+     ],
+     "costs": [
+      "A verifiable-consent flow, confirmed by counsel, has to ship before that date."
+     ],
+     "system": "A parental-consent flow, new build.",
+     "screens": "Sign-in gains an age check and a consent step.",
+     "money": "No change named."
+    }
+   ],
+   "rec": "a",
+   "recCase": [
+    "The pilot ends before section 9 is even in force, so nothing forces this yet.",
+    "Eighteen needs zero new engineering before the first stranger signs in."
+   ],
+   "flip": "A pilot cohort skewing markedly younger than expected would argue for building the consent path early instead of waiting.",
+   "sources": [
+    "docs/mvp0/DECISIONS-FOR-FOUNDERS-2026-09-17.md, question 12",
+    "Gazette CG-DL-E-14112025-267647 and CG-DL-E-14112025-267650, read 17 September 2026"
+   ]
+  },
+  {
+   "id": "FD13",
+   "cat": "Can wait for the build",
+   "sub": "Ownership",
+   "weight": "medium",
+   "q": "Which accounts move to the company before the first rupee, and which stay personal by choice?",
+   "lede": "The Cloudflare zone sits on a personal account by choice; the domain, Razorpay, Apple and the provider accounts were otherwise unnamed.",
+   "visual": {
+    "kind": "state",
+    "states": [
+     {
+      "label": "Personal today",
+      "meta": "the zone, by choice",
+      "tone": "warn"
+     },
+     {
+      "label": "Company, first rupee",
+      "via": "zone, domain, Razorpay",
+      "tone": "accent"
+     },
+     {
+      "label": "Company, phase F",
+      "via": "Apple, providers",
+      "tone": "good"
+     }
+    ],
+    "note": "The zone's split is deliberate; the rest was simply never named.",
+    "caption": "What moves when, under the plan's own ownership table."
+   },
+   "stakes": "An account still on a founder's personal name when Razorpay goes live is a real business risk, not a paperwork one.",
+   "state": [
+    "AGENTS.md records the Cloudflare zone on a personal account as a deliberate split.",
+    "The domain, Razorpay, Apple and the provider accounts were unnamed in the plan until this revision.",
+    "An ownership table now exists, with a mover and a date on every row."
+   ],
+   "tension": [
+    "Moving everything before the first rupee is the safest reading, and the slowest one.",
+    "Naming exceptions honestly costs nothing except admitting a founder's name is still on record somewhere."
+   ],
+   "options": [
+    {
+     "k": "a",
+     "label": "Move zone, domain and Razorpay now; Apple and providers at phase F",
+     "gains": [
+      "Matches the ownership table already in the plan."
+     ],
+     "costs": [
+      "Some accounts wait until phase F to move."
+     ],
+     "system": "No change.",
+     "screens": "No change.",
+     "money": "No change."
+    },
+    {
+     "k": "b",
+     "label": "Name which accounts stay personal, and why",
+     "gains": [
+      "Honest about what will not move."
+     ],
+     "costs": [
+      "A named risk row for each exception."
+     ],
+     "system": "No change.",
+     "screens": "No change.",
+     "money": "No change."
+    }
+   ],
+   "rec": "a",
+   "recCase": [
+    "This is the plan's own table, not a new proposal.",
+    "Money-handling accounts move first; everything else follows at a named phase."
+   ],
+   "flip": "A founder wanting to keep the domain personally, for tax or other reasons, would move this to option b, named.",
+   "sources": [
+    "docs/mvp0/DECISIONS-FOR-FOUNDERS-2026-09-17.md, question 13",
+    "docs/mvp0/PRODUCT-PLAN.md, section 24, ownership and accounts"
+   ]
+  },
+  {
+   "id": "FD15",
+   "cat": "Can wait for the build",
+   "sub": "The pilot",
+   "weight": "medium",
+   "q": "Do the audit's stop and continue lines hold for the twenty-person pilot, or do the founders set their own?",
+   "lede": "An earlier revision's pilot section listed measures with no thresholds at all.",
+   "visual": {
+    "kind": "compare",
+    "labelWidth": 210,
+    "cols": [
+     {
+      "title": "Stop",
+      "tone": "stop"
+     },
+     {
+      "title": "Continue",
+      "tone": "good"
+     }
+    ],
+    "rows": [
+     {
+      "label": "Active in week two",
+      "cells": [
+       "Fewer than 4 of 20",
+       "6 of 20 or more"
+      ]
+     },
+     {
+      "label": "Kit recipients who run the kickoff",
+      "cells": [
+       "Fewer than 2 of 10",
+       "3 of 10 or more"
+      ]
+     },
+     {
+      "label": "Name the problem unprompted",
+      "cells": [
+       "Fewer than 3 of 20",
+       "One person asks how to pay"
+      ]
+     }
+    ],
+    "caption": "The same twenty-person pilot, read for a reason to stop or continue."
+   },
+   "stakes": "A pilot with no numbers attached to it cannot fail, and a plan that cannot fail is not being tested.",
+   "state": [
+    "An earlier revision listed pilot measures with no thresholds.",
+    "The audit's design sizes both lines to the same twenty-person pilot and ten kit recipients."
+   ],
+   "tension": [
+    "Any threshold the founders pick is at least as defensible as the audit's; the only failure is picking none.",
+    "Setting the bar too low makes a weak pilot look like a pass."
+   ],
+   "options": [
+    {
+     "k": "a",
+     "label": "Adopt the audit's stop and continue lines",
+     "gains": [
+      "A number exists before the pilot starts, not after."
+     ],
+     "costs": [
+      "Not the founders' own judgement call."
+     ],
+     "system": "No change.",
+     "screens": "No change.",
+     "money": "No change."
+    },
+    {
+     "k": "b",
+     "label": "Set different numbers",
+     "gains": [
+      "Reflects the founders' own risk appetite."
+     ],
+     "costs": [
+      "Needs deciding before the pilot, not during it."
+     ],
+     "system": "No change.",
+     "screens": "No change.",
+     "money": "No change."
+    }
+   ],
+   "rec": "a",
+   "recCase": [
+    "The lines are sized to the pilot the plan already describes.",
+    "Adopting a number now is strictly better than the section that had none."
+   ],
+   "flip": "A founder judging four of twenty active as too easy a bar would justify tightening it before the pilot starts.",
+   "sources": [
+    "docs/mvp0/DECISIONS-FOR-FOUNDERS-2026-09-17.md, question 15",
+    "docs/mvp0/PRODUCT-PLAN.md, section 28, what we measure"
+   ]
+  },
+  {
+   "id": "FD16",
+   "cat": "Can wait for the build",
+   "sub": "Product history",
+   "weight": "medium",
+   "q": "Does the Zed rebuttal, the dropped review sidecar, and the deferred extension, community and Max tier all stand as this revision has them?",
+   "lede": "Zed Delta now stakes span-level attribution on CRDTs in public, against the plan's own settled sync position.",
+   "visual": {
+    "kind": "state",
+    "states": [
+     {
+      "label": "Review sidecar",
+      "meta": "dropped",
+      "tone": "stop"
+     },
+     {
+      "label": "Change queue",
+      "meta": "adopted instead",
+      "via": "17 Sep 2026",
+      "tone": "accent"
+     },
+     {
+      "label": "Zed rebuttal",
+      "meta": "owed",
+      "via": "before phase D",
+      "tone": "warn"
+     }
+    ],
+    "note": "The extension, community and the Max tier stay deferred, named, not decided.",
+    "caption": "What changed, what is owed, and what stays deferred."
+   },
+   "stakes": "Leaving the Zed rebuttal unwritten leaves the plan's sync position undefended in public against a named competitor.",
+   "state": [
+    "Review state is dropped in favour of the change queue, and the plan now says so.",
+    "The extension form factor, the community and the Max tier are deferred and named, not decided.",
+    "The written rebuttal to Zed Delta's public CRDT bet is still owed."
+   ],
+   "tension": [
+    "Writing the rebuttal before phase D is cheap; not writing it leaves the sync position looking undefended.",
+    "Bringing any deferred item back now competes with everything already sequenced."
+   ],
+   "options": [
+    {
+     "k": "a",
+     "label": "As this revision has them: rebuttal before D, sidecar dropped, rest deferred",
+     "gains": [
+      "Matches the plan as written today."
+     ],
+     "costs": [
+      "The rebuttal is a real, unscheduled piece of writing."
+     ],
+     "system": "No change.",
+     "screens": "No change.",
+     "money": "No change."
+    },
+    {
+     "k": "b",
+     "label": "Bring one deferred item back now",
+     "gains": [
+      "Whichever item returns gets a real phase."
+     ],
+     "costs": [
+      "The phase table absorbs whatever comes back."
+     ],
+     "system": "Depends on which item.",
+     "screens": "Depends on which item.",
+     "money": "No change named."
+    }
+   ],
+   "rec": "a",
+   "recCase": [
+    "Nothing in this revision's evidence argues for reviving a deferred item early.",
+    "The rebuttal is the one open item with an actual deadline: before phase D."
+   ],
+   "flip": "A customer naming Zed Delta by name as a reason not to choose frontmatter would move the rebuttal from owed to urgent.",
+   "sources": [
+    "docs/mvp0/DECISIONS-FOR-FOUNDERS-2026-09-17.md, question 16",
+    "CLAUDE.md, settled positions, the sync caveat"
+   ]
+  },
+  {
+   "id": "FD18",
+   "cat": "Can wait for the build",
+   "sub": "Account",
+   "weight": "medium",
+   "q": "Does an email magic link sit beside Google and GitHub as the fallback sign-in, or do the two providers stand alone?",
+   "lede": "The stack section names Google and GitHub as providers and leaves the fallback sign-in for the founders to decide.",
+   "visual": {
+    "kind": "flow",
+    "nodes": [
+     {
+      "label": "Google"
+     },
+     {
+      "label": "GitHub"
+     },
+     {
+      "label": "Email magic link",
+      "dashed": true,
+      "note": "the fallback in question",
+      "tone": "warn"
+     }
+    ],
+    "caption": "Two providers are settled; the third path is the open question."
+   },
+   "stakes": "Without a fallback, anyone without a Google or GitHub account has no way to sign in at all.",
+   "state": [
+    "The stack section names Google and GitHub as sign-in providers.",
+    "An email magic link is named as the founders' fallback candidate, not yet decided."
+   ],
+   "tension": [
+    "A fallback reaches people with neither account; it also adds one more sign-in path to secure and support.",
+    "Two providers alone is simpler, and excludes anyone who uses neither."
+   ],
+   "options": [
+    {
+     "k": "a",
+     "label": "Add an email magic link beside Google and GitHub",
+     "gains": [
+      "Reaches people with neither account."
+     ],
+     "costs": [
+      "One more sign-in path to secure and support."
+     ],
+     "system": "A magic-link flow through the auth provider.",
+     "screens": "S01 gains a third sign-in option.",
+     "money": "No change."
+    },
+    {
+     "k": "b",
+     "label": "Google and GitHub only",
+     "gains": [
+      "Two providers, nothing else to secure."
+     ],
+     "costs": [
+      "Excludes anyone with neither account."
+     ],
+     "system": "No change.",
+     "screens": "No change.",
+     "money": "No change."
+    }
+   ],
+   "rec": "a",
+   "recCase": [
+    "The plan's own stack section already names this as the founders' candidate.",
+    "A locked-out sign-up is the more expensive failure to leave open."
+   ],
+   "flip": "Evidence that the pilot's twenty people all already hold a Google or GitHub account would remove the need.",
+   "sources": [
+    "docs/mvp0/DECISIONS-FOR-FOUNDERS-2026-09-17.md, question 18",
+    "docs/mvp0/PRODUCT-PLAN.md, section 15, the stack"
+   ]
+  }
+ ]
+}

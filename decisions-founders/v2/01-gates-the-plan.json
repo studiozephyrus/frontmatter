@@ -1,0 +1,1008 @@
+{
+ "cat": "Gates the plan",
+ "questions": [
+  {
+   "id": "FD1",
+   "cat": "Gates the plan",
+   "sub": "Pace & delivery",
+   "weight": "critical",
+   "q": "Do we ship at the measured pace, go full time, or bring in a contractor?",
+   "lede": "One author touched every commit in 90 days; 24 weeks of appetite is 99 to 129 calendar weeks at the measured rate.",
+   "visual": {
+    "kind": "compare",
+    "labelWidth": 200,
+    "cols": [
+     {
+      "title": "Measured pace",
+      "tone": "accent"
+     },
+     {
+      "title": "Both founders full time"
+     },
+     {
+      "title": "A contractor from day one"
+     }
+    ],
+    "rows": [
+     {
+      "label": "Calendar length for 24 weeks of appetite",
+      "cells": [
+       "99 to 129 weeks, at 1.21 commits a week",
+       "24 weeks, as written",
+       "About 8 weeks less than measured"
+      ]
+     },
+     {
+      "label": "Which phases run now",
+      "cells": [
+       "0, A, B, D, H; E, F, G move to Later",
+       "Every phase as written",
+       "A and B run alongside D"
+      ]
+     },
+     {
+      "label": "Who ships D and F",
+      "cells": [
+       "A contractor, if pace has not doubled",
+       "Sagnik and Amit",
+       "A contractor, from the start"
+      ]
+     }
+    ],
+    "note": "One author touched every commit in the last 90 days.",
+    "caption": "Three ways to spend the same 24 weeks of appetite."
+   },
+   "stakes": "Every date in the plan, and whether E, F and G survive as Later, depends on this one answer.",
+   "state": [
+    "10 distinct commit days in the last 58 days, 1.21 a week.",
+    "Since 1 September, 3 commits touched code and 111 touched documents.",
+    "One author on every commit in the last 90 days."
+   ],
+   "tension": [
+    "The plan's 24-week appetite assumes a pace nobody has measured against it yet.",
+    "A contractor moves the pilot forward by about eight weeks, at a cost the plan has not priced."
+   ],
+   "options": [
+    {
+     "k": "a",
+     "label": "Ship at the measured pace, publish dates every Friday",
+     "gains": [
+      "Dates match what is actually happening."
+     ],
+     "costs": [
+      "Phases E, F and G move to Later."
+     ],
+     "system": "No change.",
+     "screens": "No change.",
+     "money": "No change."
+    },
+    {
+     "k": "b",
+     "label": "Both founders go full time",
+     "gains": [
+      "The phase table stands as written."
+     ],
+     "costs": [
+      "Needs income to cover both, unpriced here."
+     ],
+     "system": "No change.",
+     "screens": "No change.",
+     "money": "None named in this plan."
+    },
+    {
+     "k": "c",
+     "label": "Engage a contractor for phases D and F",
+     "gains": [
+      "Phases A and B run alongside D.",
+      "The pilot comes forward about eight weeks."
+     ],
+     "costs": [
+      "A contractor's cost is not yet quoted."
+     ],
+     "system": "No change.",
+     "screens": "No change.",
+     "money": "A contractor's fee, not yet quoted."
+    }
+   ],
+   "rec": "a",
+   "recCase": [
+    "The measured pace is the only one with evidence behind it.",
+    "Dates published every Friday keep the promise honest either way."
+   ],
+   "flip": "Two full months of commits at double today's rate would justify the full-time table without a contractor.",
+   "sources": [
+    "docs/mvp0/DECISIONS-FOR-FOUNDERS-2026-09-17.md, question 1",
+    "git log on this repository, read 17 September 2026"
+   ]
+  },
+  {
+   "id": "FD2",
+   "cat": "Gates the plan",
+   "sub": "Pricing & AI cost",
+   "weight": "critical",
+   "q": "Does Pro's ₹299 price stay, and which model runs the edits and the blueprints?",
+   "lede": "Sonnet 5 for everything costs ₹321 to ₹367 a Pro month against ₹246 net of tax and the payment fee.",
+   "visual": {
+    "kind": "compare",
+    "labelWidth": 210,
+    "cols": [
+     {
+      "title": "Split routing, ₹299",
+      "tone": "accent"
+     },
+     {
+      "title": "Sonnet everywhere, price up"
+     },
+     {
+      "title": "Sonnet everywhere, ₹299 kept"
+     }
+    ],
+    "rows": [
+     {
+      "label": "Net cost per Pro user a month",
+      "cells": [
+       "About ₹184",
+       "₹321 to ₹367",
+       "₹321 to ₹367"
+      ]
+     },
+     {
+      "label": "Price to the customer",
+      "cells": [
+       "₹299, unchanged",
+       "₹499 or more, or caps cut",
+       "₹299, unchanged"
+      ]
+     },
+     {
+      "label": "Margin before fixed costs",
+      "cells": [
+       "About ₹60",
+       "Positive, at the higher price",
+       "About minus ₹120"
+      ]
+     }
+    ],
+    "note": "₹246.33 is ₹299 net of 18% GST and Razorpay's fee.",
+    "caption": "Three ways to close the gap between ₹299 and the model bill."
+   },
+   "stakes": "Every Pro user either earns the studio about ₹60 or costs it about ₹120, on one routing choice.",
+   "state": [
+    "At the caps, Sonnet 5 for everything costs ₹321.47 on the eleven-file blueprint, ₹367 on the fourteen-file one.",
+    "₹299 nets ₹246.33 after 18% GST and Razorpay's 2.36% fee.",
+    "Haiku 4.5 for edits and Sonnet 5 batch for blueprints costs about ₹184."
+   ],
+   "tension": [
+    "Every twelve-month scenario on Sonnet-for-everything loses money at ₹299.",
+    "Raising the price or cutting the caps both change what was already promised to the first users."
+   ],
+   "options": [
+    {
+     "k": "a",
+     "label": "Split routing: Haiku for edits, Sonnet batch for blueprints",
+     "gains": [
+      "Keeps ₹299.",
+      "About ₹60 margin a Pro user."
+     ],
+     "costs": [
+      "Two models to maintain and monitor."
+     ],
+     "system": "A routing rule per call type.",
+     "screens": "No change.",
+     "money": "About ₹60 margin per Pro user a month."
+    },
+    {
+     "k": "b",
+     "label": "Sonnet 5 for everything, price to ₹499 or more",
+     "gains": [
+      "One model, simpler support."
+     ],
+     "costs": [
+      "₹200 higher than the plan promised."
+     ],
+     "system": "No change.",
+     "screens": "S29 price line changes.",
+     "money": "Margin turns positive at the higher price."
+    },
+    {
+     "k": "c",
+     "label": "Sonnet 5 for everything at ₹299, caps cut to 50 edits and 3 blueprints",
+     "gains": [
+      "One model, simpler support."
+     ],
+     "costs": [
+      "A visible downgrade to the free-to-Pro promise."
+     ],
+     "system": "No change.",
+     "screens": "S29 caps line changes.",
+     "money": "Margin recovers as usage falls."
+    },
+    {
+     "k": "d",
+     "label": "Keep ₹299, the caps and Sonnet, and absorb the loss",
+     "gains": [
+      "Nothing changes for a user."
+     ],
+     "costs": [
+      "About ₹120 lost per active Pro user a month."
+     ],
+     "system": "No change.",
+     "screens": "No change.",
+     "money": "About minus ₹120 per active Pro user a month."
+    }
+   ],
+   "rec": "a",
+   "recCase": [
+    "Split routing is the only option that keeps every promise already made.",
+    "The margin is thin but positive, and caching is still unmeasured."
+   ],
+   "flip": "A week of real caching data showing Sonnet's cost after cache hits would reopen this.",
+   "sources": [
+    "docs/mvp0/DECISIONS-FOR-FOUNDERS-2026-09-17.md, question 2",
+    "docs/mvp0/PRODUCT-PLAN.md, section 22, the financial model"
+   ]
+  },
+  {
+   "id": "FD3",
+   "cat": "Gates the plan",
+   "sub": "Pricing & AI cost",
+   "weight": "high",
+   "q": "Does the free AI chain add a provider that trains on documents, or hold the line at four?",
+   "lede": "The sign-in page promises 'We never train on your documents'; one candidate provider's terms were never opened to check that.",
+   "visual": {
+    "kind": "flow",
+    "perRow": 5,
+    "nodes": [
+     {
+      "label": "Groq",
+      "note": "free tier, no training stated",
+      "tone": "accent"
+     },
+     {
+      "label": "Cloudflare Workers AI",
+      "note": "10,000 neurons a day",
+      "tone": "accent"
+     },
+     {
+      "label": "Cerebras",
+      "note": "30-day trial",
+      "tone": "warn"
+     },
+     {
+      "label": "SambaNova",
+      "note": "production models",
+      "tone": "accent"
+     },
+     {
+      "label": "Local model",
+      "note": "desktop app only",
+      "tone": "sunk"
+     }
+    ],
+    "note": "No OpenRouter endpoint until its terms are opened and quoted.",
+    "caption": "The free chain in fallback order, as the plan runs it today."
+   },
+   "stakes": "The sign-in page's promise is only as true as the weakest provider in the fallback chain.",
+   "state": [
+    "Groq, Cloudflare Workers AI and SambaNova's production models state no training in pages opened by research.",
+    "Cerebras is a 30-day trial behind a payment method.",
+    "OpenRouter's Nvidia-served endpoint carried an unverified training flag; its terms were never opened."
+   ],
+   "tension": [
+    "About 260 active free users is where Cloudflare's free neurons run out and start costing money.",
+    "Adding a training-permitted provider means rewriting the sign-in promise, not just the chain."
+   ],
+   "options": [
+    {
+     "k": "a",
+     "label": "Hold the chain at Groq, Cloudflare, Cerebras and SambaNova",
+     "gains": [
+      "The sign-in promise stays true as written."
+     ],
+     "costs": [
+      "Paid Cloudflare neurons from about 260 active free users."
+     ],
+     "system": "No change.",
+     "screens": "No change.",
+     "money": "Cloudflare overage from about 260 free users."
+    },
+    {
+     "k": "b",
+     "label": "Add OpenRouter once its terms are opened and quoted with no training",
+     "gains": [
+      "A wider free pool."
+     ],
+     "costs": [
+      "Blocks on someone actually opening those terms."
+     ],
+     "system": "One more provider adapter.",
+     "screens": "No change.",
+     "money": "Depends on the provider's own free tier."
+    },
+    {
+     "k": "c",
+     "label": "Add a provider that trains, and change the sign-in promise",
+     "gains": [
+      "A wider free pool immediately."
+     ],
+     "costs": [
+      "The line becomes conditional: some providers may train."
+     ],
+     "system": "One more provider adapter.",
+     "screens": "S01 fine print changes.",
+     "money": "Depends on the provider's own free tier."
+    }
+   ],
+   "rec": "a",
+   "recCase": [
+    "This is the only option that needs nobody to check anything first.",
+    "The promise on the sign-in page stays literally true."
+   ],
+   "flip": "OpenRouter's terms being opened and read as no-training adds it back with no promise to rewrite.",
+   "sources": [
+    "docs/mvp0/DECISIONS-FOR-FOUNDERS-2026-09-17.md, question 3",
+    "docs/mvp0/PRODUCT-PLAN.md, section 14, AI for the pilot"
+   ]
+  },
+  {
+   "id": "FD5",
+   "cat": "Gates the plan",
+   "sub": "What the product is",
+   "weight": "critical",
+   "q": "Is frontmatter a markdown editor for the agent era, or the best markdown app in the world?",
+   "lede": "The plan took this sentence implicitly; the decision set reserved it for the founders to state.",
+   "visual": {
+    "kind": "compare",
+    "labelWidth": 170,
+    "cols": [
+     {
+      "title": "The plan's sentence",
+      "tone": "accent"
+     },
+     {
+      "title": "Best markdown app"
+     }
+    ],
+    "rows": [
+     {
+      "label": "Customer group",
+      "cells": [
+       "People whose documents are increasingly agent-written",
+       "Every note-taker, a much larger group"
+      ]
+     },
+     {
+      "label": "Where Ideas sits",
+      "cells": [
+       "Its own tab, ahead of the editor",
+       "Moves behind the editor, every phase"
+      ]
+     },
+     {
+      "label": "Competing set named",
+      "cells": [
+       "CodeGuide, HackMD, docs-as-code tools",
+       "Obsidian, Notion, every note app"
+      ]
+     }
+    ],
+    "caption": "The sentence decides who the product is competing against."
+   },
+   "stakes": "Every phase's build order, and the two competitors already named in the plan, follow from which sentence wins.",
+   "state": [
+    "Revision 4 took K1 implicitly; the audit flagged it as reserved to the founders.",
+    "The plan's current sentence: a markdown editor for people whose documents are increasingly written with, and for, AI agents."
+   ],
+   "tension": [
+    "The wider sentence reaches more people today, at the cost of the agent-era focus already built toward.",
+    "Changing K1 late moves Ideas in every phase, not just the home screen."
+   ],
+   "options": [
+    {
+     "k": "a",
+     "label": "Keep the plan's sentence",
+     "gains": [
+      "Matches everything already built and screened."
+     ],
+     "costs": [
+      "A smaller starting customer group."
+     ],
+     "system": "No change.",
+     "screens": "No change.",
+     "money": "No change."
+    },
+    {
+     "k": "b",
+     "label": "Adopt 'the best markdown note-taking app in the world'",
+     "gains": [
+      "A much larger addressable group from day one."
+     ],
+     "costs": [
+      "Ideas moves behind the editor in every phase."
+     ],
+     "system": "No change.",
+     "screens": "Every screen's ordering of Ideas changes.",
+     "money": "No change named."
+    },
+    {
+     "k": "c",
+     "label": "Write a different sentence",
+     "gains": [
+      "Fits a candidate not yet on the table."
+     ],
+     "costs": [
+      "Every downstream section needs a fresh pass."
+     ],
+     "system": "No change.",
+     "screens": "Depends on the sentence.",
+     "money": "No change."
+    }
+   ],
+   "rec": "a",
+   "recCase": [
+    "The plan, the screens and the research already argue for the agent-era sentence.",
+    "Nothing in the corpus argues the wider claim; adopting it would be asserted, not evidenced."
+   ],
+   "flip": "Twenty kit recipients naming general note-taking, not agent workflows, as their reason to stay would overturn this.",
+   "sources": [
+    "docs/mvp0/DECISIONS-FOR-FOUNDERS-2026-09-17.md, question 5",
+    "docs/mvp0/PRODUCT-PLAN.md, section 1"
+   ]
+  },
+  {
+   "id": "FD6",
+   "cat": "Gates the plan",
+   "sub": "What the product is",
+   "weight": "critical",
+   "q": "Do we hold every cloud document from phase A, or carry the pilot on the desktop and hold only shared pages?",
+   "lede": "Card K2 said hold as little as possible for as little time as possible; sign-in-first with cloud documents on Free makes that hard to keep.",
+   "visual": {
+    "kind": "compare",
+    "labelWidth": 200,
+    "cols": [
+     {
+      "title": "Hold from phase A",
+      "tone": "accent"
+     },
+     {
+      "title": "Desktop-first pilot"
+     }
+    ],
+    "rows": [
+     {
+      "label": "Where phase F, the desktop app, sits",
+      "cells": [
+       "After Drive sync, later in the sequence",
+       "Moves before phase A"
+      ]
+     },
+     {
+      "label": "What the free caps mean before sync ships",
+      "cells": [
+       "Meaningful from day one",
+       "Nothing, until sync exists"
+      ]
+     },
+     {
+      "label": "Data held",
+      "cells": [
+       "Every cloud document, from the first sign-in",
+       "Only what a person chooses to share"
+      ]
+     }
+    ],
+    "caption": "Sign-in first collides with holding as little as possible."
+   },
+   "stakes": "This decides whether phase F, the desktop app, comes before or after phase A, the door.",
+   "state": [
+    "The plan holds every document on R2 and Supabase from day one.",
+    "Card K2 recommended holding as little as possible, for as little time as possible.",
+    "Sign-in first and cloud documents on Free make holding from phase A close to unavoidable."
+   ],
+   "tension": [
+    "A desktop-first pilot delays the free caps having any meaning until sync ships.",
+    "Holding from phase A needs the deletion, export and retention rules written before a stranger signs in."
+   ],
+   "options": [
+    {
+     "k": "a",
+     "label": "Hold every cloud document from phase A, under stated retention rules",
+     "gains": [
+      "The plan's build order stays as sequenced."
+     ],
+     "costs": [
+      "More data held, sooner, than K2's own recommendation."
+     ],
+     "system": "Deletion, export and retention rules ship with phase A.",
+     "screens": "No change.",
+     "money": "No change."
+    },
+    {
+     "k": "b",
+     "label": "Desktop carries the pilot; the web holds only shared pages until sync exists",
+     "gains": [
+      "Matches K2's instinct to hold little, for a while."
+     ],
+     "costs": [
+      "Phase F moves before phase A."
+     ],
+     "system": "Sync becomes a phase-A dependency instead of phase F's.",
+     "screens": "S25, desktop, moves earlier in the flow.",
+     "money": "No change."
+    }
+   ],
+   "rec": "a",
+   "recCase": [
+    "Sign-in first was already decided, and it makes minimal holding impractical.",
+    "The retention rules the audit asked for now exist in the data model section."
+   ],
+   "flip": "A founder deciding sign-in-first was itself the wrong call reopens this from the other end.",
+   "sources": [
+    "docs/mvp0/DECISIONS-FOR-FOUNDERS-2026-09-17.md, question 6",
+    "docs/mvp0/PRODUCT-PLAN.md, section 18, the data model"
+   ]
+  },
+  {
+   "id": "FD8",
+   "cat": "Gates the plan",
+   "sub": "Engine",
+   "weight": "high",
+   "q": "Does live editing stay in phase D on the CRDT exception, or move to Later?",
+   "lede": "Yjs is a CRDT; the plan says never a CRDT and uses Yjs elsewhere, so the exception has to be written down, not assumed.",
+   "visual": {
+    "kind": "state",
+    "states": [
+     {
+      "label": "File on disk",
+      "meta": "only source of truth",
+      "tone": "sunk"
+     },
+     {
+      "label": "Two open it",
+      "via": "live session starts",
+      "tone": "warn"
+     },
+     {
+      "label": "Yjs holds it",
+      "meta": "in memory only",
+      "via": "while both stay open",
+      "tone": "accent"
+     },
+     {
+      "label": "Save is a splice",
+      "meta": "session state gone",
+      "via": "either side saves",
+      "tone": "good"
+     }
+    ],
+    "note": "Nothing from the session persists past the save.",
+    "caption": "The exception: session state never reaches disk."
+   },
+   "stakes": "This is the one place the plan's own sync rule and its live-editing feature can look like they contradict each other.",
+   "state": [
+    "Yjs is a CRDT by construction.",
+    "The exception: session state lives only while two people have the file open; every save is a splice.",
+    "Revision 3 carried this exception paragraph; revision 4 dropped it; revision 5 restores it."
+   ],
+   "tension": [
+    "A CRDT ban with a live CRDT feature reads as a contradiction unless the exception is on the record.",
+    "Cutting live editing removes the only feature the three-collaborator cap actually measures live."
+   ],
+   "options": [
+    {
+     "k": "a",
+     "label": "Keep live editing in phase D, on the written exception",
+     "gains": [
+      "The three-collaborator cap keeps its live meaning."
+     ],
+     "costs": [
+      "The exception has to hold under scrutiny."
+     ],
+     "system": "No change; Yjs stays session-only, never persisted.",
+     "screens": "No change.",
+     "money": "No change."
+    },
+    {
+     "k": "b",
+     "label": "Cut live editing to Later",
+     "gains": [
+      "No exception to defend."
+     ],
+     "costs": [
+      "The three-collaborator cap becomes a sharing cap, not a live one."
+     ],
+     "system": "Phase D loses its Yjs dependency, shrinks by about a week.",
+     "screens": "S19, live collaboration, moves to Later.",
+     "money": "No change."
+    }
+   ],
+   "rec": "a",
+   "recCase": [
+    "The exception is real and narrow: nothing from the session ever reaches disk.",
+    "Cutting a shipped-feeling feature to defend a rule against a hypothetical reading costs more than keeping it."
+   ],
+   "flip": "A working session surviving a crash with state intact would mean Yjs is persisting something, and the exception would no longer hold.",
+   "sources": [
+    "docs/mvp0/DECISIONS-FOR-FOUNDERS-2026-09-17.md, question 8",
+    "docs/mvp0/PRODUCT-PLAN.md, section 21, sync"
+   ]
+  },
+  {
+   "id": "FD9",
+   "cat": "Gates the plan",
+   "sub": "Free & Pro",
+   "weight": "high",
+   "q": "Are the free caps 50 documents, 5 pages and 3 collaborators, or the founders' original 5, 2 and 1?",
+   "lede": "A blueprint alone is fifteen files; the market floor across the forty pricing pages examined is 50 documents.",
+   "visual": {
+    "kind": "compare",
+    "labelWidth": 160,
+    "cols": [
+     {
+      "title": "50 / 5 / 3",
+      "tone": "accent"
+     },
+     {
+      "title": "5 / 2 / 1"
+     }
+    ],
+    "rows": [
+     {
+      "label": "Cloud documents",
+      "cells": [
+       "50",
+       "5"
+      ]
+     },
+     {
+      "label": "Published pages",
+      "cells": [
+       "5",
+       "2"
+      ]
+     },
+     {
+      "label": "Live collaborators",
+      "cells": [
+       "3",
+       "1"
+      ]
+     },
+     {
+      "label": "One blueprint alone",
+      "cells": [
+       "Fits inside the cap",
+       "Blows past the cap on its own"
+      ]
+     }
+    ],
+    "caption": "The founders' original numbers do not fit one blueprint."
+   },
+   "stakes": "A cap a single blueprint cannot fit inside blocks the idea funnel on day one, for every free user.",
+   "state": [
+    "The market floor across forty pricing pages examined is 50 free documents; nobody caps public pages by count.",
+    "A blueprint is fifteen files by itself.",
+    "A downgraded account keeps every document readable and exportable, and cannot create new ones until under the cap."
+   ],
+   "tension": [
+    "5 documents blocks the import funnel and the idea funnel on day one.",
+    "50 is generous against the market floor, which argues the studio should say why, not just what."
+   ],
+   "options": [
+    {
+     "k": "a",
+     "label": "50 documents, 5 published pages, 3 live collaborators",
+     "gains": [
+      "A blueprint fits inside the free cap.",
+      "Sits at the market floor, not below it."
+     ],
+     "costs": [
+      "Higher than the founders' first candidates."
+     ],
+     "system": "No change.",
+     "screens": "S33, over cap, uses these numbers.",
+     "money": "No change."
+    },
+    {
+     "k": "b",
+     "label": "5 documents, 2 published pages, 1 live collaborator",
+     "gains": [
+      "Matches the founders' original candidates."
+     ],
+     "costs": [
+      "Blocks the import and idea funnels on day one."
+     ],
+     "system": "No change.",
+     "screens": "S33 and the idea screens change their blocking point.",
+     "money": "No change."
+    }
+   ],
+   "rec": "a",
+   "recCase": [
+    "No blueprint can be tried at all under the founders' original numbers.",
+    "Fifty sits exactly at the floor forty pricing pages already set, not above it."
+   ],
+   "flip": "Evidence that free users at 50 documents never convert would argue for a tighter cap.",
+   "sources": [
+    "docs/mvp0/DECISIONS-FOR-FOUNDERS-2026-09-17.md, question 9",
+    "docs/mvp0/PRODUCT-PLAN.md, section 13, free and Pro"
+   ]
+  },
+  {
+   "id": "FD11",
+   "cat": "Gates the plan",
+   "sub": "Everywhere",
+   "weight": "medium",
+   "q": "Does the desktop app ship after Drive sync, or first, and who signs the Windows build?",
+   "lede": "Azure Artifact Signing excludes Indian entities; an Apple developer programme seat is 99 US dollars a year.",
+   "visual": {
+    "kind": "compare",
+    "labelWidth": 140,
+    "cols": [
+     {
+      "title": "After Drive sync",
+      "tone": "accent"
+     },
+     {
+      "title": "Desktop first"
+     }
+    ],
+    "rows": [
+     {
+      "label": "macOS",
+      "cells": [
+       "Signed, on the Apple programme",
+       "Signed, on the Apple programme"
+      ]
+     },
+     {
+      "label": "Linux",
+      "cells": [
+       "Unsigned, by choice",
+       "Unsigned, by choice"
+      ]
+     },
+     {
+      "label": "Windows",
+      "cells": [
+       "Shown as coming, certificate unpriced",
+       "Answered before the app ships"
+      ]
+     },
+     {
+      "label": "Phase order",
+      "cells": [
+       "F after E, as sequenced",
+       "F moves before E"
+      ]
+     }
+    ],
+    "caption": "The Windows question is the same either way; only its timing changes."
+   },
+   "stakes": "Shipping Windows unsigned trades a security warning on every install for skipping a certificate cost nobody has priced.",
+   "state": [
+    "Azure Artifact Signing, Microsoft's own signing route, excludes Indian entities.",
+    "An Apple Developer Programme seat is 99 US dollars a year, and covers macOS signing.",
+    "A commercial Windows certificate has not been priced in this plan."
+   ],
+   "tension": [
+    "Shipping first without a Windows answer forces the real decision mid-build instead of before it.",
+    "Waiting for Drive sync delays every desktop-only user by however long sync takes."
+   ],
+   "options": [
+    {
+     "k": "a",
+     "label": "Ship after Drive sync, macOS signed, Windows shown as coming",
+     "gains": [
+      "Follows the sequence already argued in the plan."
+     ],
+     "costs": [
+      "A Windows user waits with no signed build."
+     ],
+     "system": "No change.",
+     "screens": "S25 keeps its current place.",
+     "money": "A Windows certificate, priced before it is needed."
+    },
+    {
+     "k": "b",
+     "label": "Ship the desktop app first, answer Windows before, not after",
+     "gains": [
+      "Desktop-only users are not waiting on sync."
+     ],
+     "costs": [
+      "A certificate decision is forced now, not later."
+     ],
+     "system": "Phase F moves ahead of phase E.",
+     "screens": "S25 moves earlier in the flow.",
+     "money": "A Windows certificate, priced now."
+    }
+   ],
+   "rec": "a",
+   "recCase": [
+    "Nothing in the pace evidence argues for reordering the phases yet.",
+    "A Windows certificate is a cost to shop for, not to decide under pressure."
+   ],
+   "flip": "A pilot cohort skewed heavily toward desktop-only Windows users would argue for moving the phase and the certificate up.",
+   "sources": [
+    "docs/mvp0/DECISIONS-FOR-FOUNDERS-2026-09-17.md, question 11",
+    "docs/mvp0/PRODUCT-PLAN.md, section 12, offline, desktop, phone"
+   ]
+  },
+  {
+   "id": "FD14",
+   "cat": "Gates the plan",
+   "sub": "Phase 0",
+   "weight": "high",
+   "q": "Does phase 0 return with twenty hand-made kits before phase C, or does Ideas ship on conviction?",
+   "lede": "An earlier revision gated everything on twenty hand-made kits; a later one dropped the gate without a record.",
+   "visual": {
+    "kind": "funnel",
+    "steps": [
+     {
+      "label": "Kits made by hand",
+      "n": 20,
+      "unit": "people",
+      "tone": "accent"
+     },
+     {
+      "label": "Run the kickoff prompt",
+      "n": 5,
+      "unit": "of 20",
+      "tone": "warn"
+     },
+     {
+      "label": "Edit the kit again",
+      "n": 2,
+      "unit": "of 10",
+      "tone": "stop"
+     }
+    ],
+    "note": "The stop and continue lines in question 15 are read off this same funnel.",
+    "caption": "What happens to twenty hand-made kits, if the gate returns."
+   },
+   "stakes": "Building on conviction instead of this funnel is exactly what the 13 September reset and the earlier revision both existed to stop.",
+   "state": [
+    "An earlier plan gated Ideas on twenty hand-made kits for people outside the studio.",
+    "A later revision dropped the gate with no note explaining why.",
+    "Five of twenty running the kickoff prompt, two of ten editing the kit again, are the pass line."
+   ],
+   "tension": [
+    "Twenty kits by hand is real founder time before any code for phase C is written.",
+    "Shipping on conviction risks repeating whatever made the studio reverse an earlier cut in the first place."
+   ],
+   "options": [
+    {
+     "k": "a",
+     "label": "Phase 0 returns: twenty hand-made kits before phase C starts",
+     "gains": [
+      "The gate that reversed an earlier cut is back in force."
+     ],
+     "costs": [
+      "Founder time on kits instead of code."
+     ],
+     "system": "No change.",
+     "screens": "No change; phase C waits on this gate.",
+     "money": "No change."
+    },
+    {
+     "k": "b",
+     "label": "Ideas ships on conviction; the kill line moves to the pilot",
+     "gains": [
+      "Phase C starts sooner."
+     ],
+     "costs": [
+      "No outside-the-studio signal before building it."
+     ],
+     "system": "No change.",
+     "screens": "No change.",
+     "money": "No change."
+    }
+   ],
+   "rec": "a",
+   "recCase": [
+    "This exact gate is why the generator and kickoff prompt exist in the plan at all.",
+    "Twenty kits by hand is a small cost against building Ideas on nothing but conviction."
+   ],
+   "flip": "A founder judging the earlier reversal to have been wrong reopens this from the root.",
+   "sources": [
+    "docs/mvp0/DECISIONS-FOR-FOUNDERS-2026-09-17.md, question 14",
+    "docs/mvp0/PRODUCT-PLAN.md, section 26, the build in appetites"
+   ]
+  },
+  {
+   "id": "FD17",
+   "cat": "Gates the plan",
+   "sub": "Growth",
+   "weight": "medium",
+   "q": "Should a published page be indexed by search engines, kept out always, or switched on by its author?",
+   "lede": "The plan names no growth channel other than search, and the shipped code keeps every published page out of it.",
+   "visual": {
+    "kind": "flow",
+    "perRow": 5,
+    "nodes": [
+     {
+      "label": "A page is published",
+      "tone": "sunk"
+     },
+     {
+      "label": "robots.ts disallows /p/",
+      "note": "today's default",
+      "tone": "warn"
+     },
+     {
+      "label": "Indexed by default"
+     },
+     {
+      "label": "Never indexed"
+     },
+     {
+      "label": "Author switches it on"
+     }
+    ],
+    "note": "The last three are the three options, not a sequence.",
+    "caption": "Today's default, and the three ways to change it."
+   },
+   "stakes": "This decides whether the product has a second growth channel beyond word of mouth, or has to name one.",
+   "state": [
+    "robots.ts disallows /p/, so every published page is out of search today.",
+    "The plan names no growth channel other than search.",
+    "No default was carried into this revision; the audit raised it from the growth angle alone."
+   ],
+   "tension": [
+    "Indexing by default trades a stranger's privacy expectation for a channel the plan currently lacks.",
+    "Staying unindexed means the plan still needs another answer to how anyone finds frontmatter."
+   ],
+   "options": [
+    {
+     "k": "a",
+     "label": "Index published pages by default, with an unlisted switch",
+     "gains": [
+      "A working growth channel from day one."
+     ],
+     "costs": [
+      "A published page is public-by-default, not private-by-default."
+     ],
+     "system": "robots.ts allows /p/; an unlisted flag per page.",
+     "screens": "S17, share, gains a visibility toggle.",
+     "money": "No change."
+    },
+    {
+     "k": "b",
+     "label": "Never index; the plan names another channel",
+     "gains": [
+      "A published page stays private unless shared directly."
+     ],
+     "costs": [
+      "The plan still needs a real answer for growth."
+     ],
+     "system": "No change.",
+     "screens": "No change.",
+     "money": "No change."
+    },
+    {
+     "k": "c",
+     "label": "Unlisted by default, indexed only when the author switches it on",
+     "gains": [
+      "Privacy by default, a channel for whoever wants it."
+     ],
+     "costs": [
+      "Most authors never find the switch."
+     ],
+     "system": "robots.ts allows only switched-on paths.",
+     "screens": "S17 gains a visibility toggle, off by default.",
+     "money": "No change."
+    }
+   ],
+   "rec": "c",
+   "recCase": [
+    "No other card in this set has to name a growth channel from scratch; this one does.",
+    "Unlisted by default costs no privacy and still lets an author opt into search."
+   ],
+   "flip": "A pilot with zero organic sign-ups by week four would argue for indexing by default instead.",
+   "sources": [
+    "docs/mvp0/PRODUCT-PLAN.md, section 29, questions for the founders",
+    "src/app/robots.ts, read 17 September 2026"
+   ]
+  }
+ ]
+}
