@@ -30,15 +30,15 @@ function ic(name, size = 18, cls = '') {
 const CSS = `
 ${FONTS}
 :root{
-  --bg:#fafafa;--bg-subtle:#fafafa;--panel:#fafafa;--panel-2:rgba(10,10,10,.025);--fg:#18181b;--fg-muted:#6b6b73;--muted:#9b9ba3;
+  --bg:#fafafa;--bg-subtle:#fafafa;--panel:#fafafa;--panel-2:rgba(10,10,10,.025);--fg:#18181b;--fg-muted:#6b6b73;--muted:#73737b;
   --border:rgba(10,10,10,.06);--border-strong:rgba(10,10,10,.10);--accent:#18181b;--accent-hover:#0a0a0a;--accent-fg:#fafafa;
   --accent-soft:rgba(10,10,10,.04);--hover:rgba(10,10,10,.04);--active:rgba(10,10,10,.05);--selected:rgba(10,10,10,.09);
-  --ring:rgba(91,33,182,.40);--link:#0044cc;--link-hover:#0055ff;--danger:#b2625e;--success:#4f8b6b;--ai:#0055ff;
+  --ring:rgba(91,33,182,.40);--link:#0044cc;--link-hover:#0055ff;--danger:#aa5e5a;--success:#487d60;--ai:#0055ff;
   --radius-sm:6px;--radius:8px;--radius-lg:12px;
   --font-sans:"Google Sans","Roboto",ui-sans-serif,-apple-system,BlinkMacSystemFont,"Segoe UI",Helvetica,Arial,sans-serif;
   --font-mono:"Google Sans Code","JetBrains Mono",ui-monospace,SFMono-Regular,Menlo,monospace;
 }
-.dark{--bg:#1a1a1a;--bg-subtle:#161616;--panel:#1a1a1a;--panel-2:rgba(255,255,255,.035);--fg:#ededed;--fg-muted:rgba(237,237,237,.62);--muted:rgba(237,237,237,.40);
+.dark{--bg:#1a1a1a;--bg-subtle:#161616;--panel:#1a1a1a;--panel-2:rgba(255,255,255,.035);--fg:#ededed;--fg-muted:rgba(237,237,237,.62);--muted:rgba(237,237,237,0.50);
   --border:rgba(255,255,255,.09);--border-strong:rgba(255,255,255,.14);--accent:#ededed;--accent-hover:#fff;--accent-fg:#1a1a1a;
   --accent-soft:rgba(255,255,255,.05);--hover:rgba(255,255,255,.04);--active:rgba(255,255,255,.05);--selected:rgba(255,255,255,.12);
   --link:#5b9eff;--link-hover:#80b6ff;--danger:#d49391;--success:#7fb09a;--ai:#5b9eff}
@@ -464,6 +464,16 @@ u{text-decoration-thickness:1px;text-underline-offset:2px}
 
 const SW = { blue: '#5b8cff', green: '#4f8b6b', red: '#b2625e', amber: '#b8791b', grey: '#9b9ba3' };
 
+// WCAG 2.x contrast, asserted at generation so a token change cannot ship below 4.5:1 (F030).
+function lum(hex) {
+  const c = [1, 3, 5].map(i => parseInt(hex.slice(i, i + 2), 16) / 255).map(v => v <= 0.03928 ? v / 12.92 : ((v + 0.055) / 1.055) ** 2.4);
+  return 0.2126 * c[0] + 0.7152 * c[1] + 0.0722 * c[2];
+}
+function contrast(a, b) { const [x, y] = [lum(a), lum(b)]; return (Math.max(x, y) + 0.05) / (Math.min(x, y) + 0.05); }
+for (const [fg, bg] of [['#73737b', '#fafafa'], ['#aa5e5a', '#fafafa'], ['#487d60', '#fafafa'], ['#d49391', '#1a1a1a'], ['#7fb09a', '#1a1a1a']]) {
+  if (contrast(fg, bg) < 4.5) throw new Error(`contrast ${fg} on ${bg} is ${contrast(fg, bg).toFixed(2)}, below 4.5`);
+}
+
 function top({ tabs, share = true, presence = null, extra = '' }) {
   // Header mirrors src/app/(vault)/layout.tsx: 52px, --panel, 0 14px padding,
   // a 26px/7px mark, the wordmark, then the icon cluster, a 1px divider and
@@ -519,7 +529,7 @@ function modebar(mode = 'Live', right = '', stats = '412 words · 3 min', { docS
   return `<div class="modebar">
   <span class="tools">${tools.map(x => x[1] === 'h' ? `<span class="tool h">${x[0]}</span>` : `<span class="tool">${ic(x[0], 18)}</span>`).join('')}</span>
   <span class="right">${stats ? `<span>${stats}</span>` : ''}${right}
-    <span class="tool">${ic('bookmark', 18)}</span><span class="tool">${ic('search', 18)}</span><span class="tool">${ic('history', 18)}</span><span class="tool">${ic('more_horiz', 18)}</span>
+    <span class="tool" title="Bookmark, find, history">${ic('more_horiz', 18)}</span>
     ${sw}<span class="seg">${modes.map(m => `<span class="${m === mode ? 'on' : ''}">${m}</span>`).join('')}</span>
   </span></div>`;
 }
@@ -530,29 +540,28 @@ function docbar() {
   const t = (h) => `<span class="tool">${h}</span>`;
   return `<div class="docbar">
   <span class="tools">
-    <span class="tool txt">Normal text ${ic('arrow_drop_down', 16)}</span>
-    <span class="tool txt">Google Sans ${ic('arrow_drop_down', 16)}</span>
-    <span class="tool txt">15 ${ic('arrow_drop_down', 16)}</span><i class="tsep"></i>
-    ${t(ic('format_bold', 18))}${t(ic('format_italic', 18))}${t(ic('format_underlined', 18))}${t(ic('format_strikethrough', 18))}${t(ic('format_color_text', 18))}${t(ic('format_paint', 18))}<i class="tsep"></i>
-    ${t(ic('format_align_left', 18))}${t(ic('format_list_numbered', 18))}${t(ic('format_list_bulleted', 18))}${t(ic('check_box', 18))}<i class="tsep"></i>
-    ${t(ic('image', 18))}${t(ic('table_chart', 18))}${t(ic('link', 18))}${t(ic('comment', 18))}${t(ic('insert_page_break', 18))}
+    <span class="tool txt">Normal text ${ic('arrow_drop_down', 16)}</span><i class="tsep"></i>
+    ${t(ic('format_bold', 18))}${t(ic('format_italic', 18))}${t(ic('format_underlined', 18))}${t(ic('format_strikethrough', 18))}<i class="tsep"></i>
+    ${t(ic('format_list_numbered', 18))}${t(ic('format_list_bulleted', 18))}${t(ic('check_box', 18))}<i class="tsep"></i>
+    ${t(ic('image', 18))}${t(ic('table_chart', 18))}${t(ic('link', 18))}${t(ic('comment', 18))}${t(ic('insert_page_break', 18))}<i class="tsep"></i>
+    <span class="tool txt" title="Font, size, colour, highlight, alignment: render here, export to PDF, plain elsewhere">${ic('more_horiz', 18)} More</span>
   </span>
   <span class="right"><span class="pill ai">${ic('edit', 13)} Suggesting</span>
     <span class="seg tight"><span>MD</span><span class="on">Doc</span></span>
     <span class="seg"><span>Edit</span><span class="on">Live</span><span>Reading</span><span>Split</span></span></span></div>`;
 }
 
-function rail({ outline, extra = '', showFoot = true, credits = [7, CAPS.edits], counts = [4, 2, 3] }) {
+function rail({ outline, extra = '', showFoot = true, credits = [7, CAPS.edits], counts = [4, 2, 3], history = `${CAPS.history} days`, aiOff = '' }) {
   const cnt = (n) => n == null ? '' : `<span class="cnt">${n}</span>`;
   return `<aside class="rail">
   <div class="rsec grow"><div class="rh">${ic('format_list_bulleted', 14)} Outline<span class="sp"></span></div><div class="ol">${outline}</div></div>
   ${extra}
   <div class="rrow">${ic('sell', 16)} Tags and bookmarks<span class="sp"></span>${cnt(counts[0])}${ic('chevron_right', 16)}</div>
   <div class="rrow">${ic('link', 16)} Backlinks<span class="sp"></span>${cnt(counts[1])}${ic('chevron_right', 16)}</div>
-  <div class="rrow">${ic('history', 16)} Document history<span class="sp"></span><span class="pill">Pro</span>${ic('chevron_right', 16)}</div>
+  <div class="rrow">${ic('history', 16)} Document history<span class="sp"></span><span class="cnt">${history}</span>${ic('chevron_right', 16)}</div>
   <div class="rrow">${ic('comment', 16)} Comments<span class="sp"></span>${cnt(counts[2])}${ic('chevron_right', 16)}</div>
   ${showFoot ? `<div class="railfoot"><div class="two"><span class="btn">${ic('note_add', 16)} Add file</span><span class="btn">${ic('keyboard', 16)} Shortcuts</span></div>
-  <span class="btn ai">${ic('auto_awesome', 16)} AI edit</span>
+  ${aiOff ? `<span class="btn" style="opacity:.55;cursor:default">${ic('auto_awesome', 16)} AI edit</span><div style="font-size:11.5px;color:var(--muted)">${aiOff}</div>` : `<span class="btn ai">${ic('auto_awesome', 16)} AI edit</span>`}
   <div class="credits">${ic('auto_awesome', 13)} ${credits[0]} of ${credits[1]} edits left <span class="meter"><i style="width:${Math.round(100 * credits[0] / credits[1])}%"></i></span></div></div>` : ''}
   </aside>`;
 }
@@ -604,12 +613,14 @@ const DOC_BRIEF_SHORT = `<h1>Zephyrus booking, in one page</h1>
 const PROJECTS_MAIN = [
   { n: 'Zephyrus booking', icon: 'rocket_launch', rows: [
     { n: 'SKILL.md', f: 1 }, { n: 'AGENTS.md', f: 1 },
-    { n: '00-BRIEF.md', f: 1, on: 1 }, { n: '01-PRODUCT.md', f: 1 }, { n: '02-DATA-AND-API.md', f: 1 }, { n: '03-ARCHITECTURE.md', f: 1 }, { n: '04-SETUP.md', f: 1 },
-    { n: 'specs', d: 1 }, { n: 'booking.md', f: 1, d: 2 }, { n: 'payments.md', f: 1, d: 2 }, { n: 'MANIFEST.json', f: 1 } ] },
+    { n: '00-BRIEF.md', f: 1, on: 1 }, { n: '01-PRODUCT.md', f: 1 }, { n: '02-DATA-AND-API.md', f: 1 }, { n: '03-ARCHITECTURE.md', f: 1 }, { n: '04-SETUP.md', f: 1 }, { n: '05-FRONTEND-SPEC.md', f: 1 },
+    { n: 'specs', d: 1 }, { n: 'booking.md', f: 1, d: 2 }, { n: 'payments.md', f: 1, d: 2 }, { n: 'DECISIONS.md', f: 1 }, { n: 'MAP.md', f: 1 }, { n: 'graph.json', f: 1 }, { n: 'MANIFEST.json', f: 1 }, { n: 'SHA256SUMS', f: 1 } ] },
   { n: 'Notes', rows: [ { n: 'meeting-16-sep.md', f: 1, b: '2 new' }, { n: 'ideas.md', f: 1 } ] },
 ];
 const TABS_MAIN = [{ n: '00-BRIEF.md', c: 'blue', on: 1 }, { n: 'specs/booking.md', c: 'blue' }, { n: 'meeting-16-sep.md', c: 'green' }, { n: 'ideas.md', c: 'green' }];
+// The phone's tree drawer, used by the drawer screens below.
 const PHONE_TREE = `<div class="sidehead">${ic('chevron_right', 16)} Tree<span class="sp"></span><span class="pill">${ic('add', 14)} project</span></div>${treeRows(PROJECTS_MAIN)}<div class="sidefoot">${ic('sync', 14)} Synced 2 min ago</div>`;
+void PHONE_TREE;
 
 function page(title, body, cls = '') {
   return `<!doctype html><html lang="en" class="${cls}"><head><meta charset="utf-8"><title>${title}</title><style>${CSS}</style></head><body>${body}</body></html>`;
@@ -628,7 +639,7 @@ const GATE_CARD = `<div class="cardx"><span class="mark lg">fm</span>
 <h1>Sign in to frontmatter</h1>
 <p class="lede">Your documents, your ideas and your agents' briefs, in one place. Same account on the web, the desktop app and your phone.</p>
 <div class="stack"><span class="btn primary">${ic('public', 18)} Continue with Google</span><span class="btn">${ic('terminal', 18)} Continue with GitHub</span></div>
-<p class="fine">No password, no puzzle, no tour. We never train on your documents. <u>Privacy</u> · <u>Terms</u></p></div>`;
+<p class="fine">No password, no puzzle, no tour. We never train on your documents, and <u>here are the providers</u> that keep that true. <u>Privacy</u> · <u>Terms</u></p></div>`;
 screen('s01-sign-in', 'Sign in', `<div class="gate">
 <div class="left">${GATE_CARD}</div>
 <div class="right"><div><div class="preview"><header class="top"><span class="topleft"><span class="mark">fm</span><span class="wordmark">frontmatter</span></span><span class="topright"><span class="seg tight"><span>Edit</span><span class="on">Live</span><span>Reading</span></span></span></header>
@@ -706,7 +717,7 @@ ${tree({ projects: PROJECTS_MAIN, foot: `${ic('sync', 14)} Synced 2 min ago` })}
 <main class="main">${docbar()}<div class="ruler">1 · 2 · 3 · 4 · 5 · 6 · 7 · 8 · 9 · 10 · 11 · 12 · 13 · 14 · 15 · 16</div>
 <div class="doc" style="padding:22px 48px 0;background:var(--bg-subtle)"><div class="paper"><div class="md docmode">${DOC_DOCMODE}</div></div>
 <div class="cmtbox"><div class="who"><span class="avatar" style="width:16px;height:16px;font-size:8px;background:#b2625e">AM</span> Amit · 10 min ago</div>Is this still true after the laptop they bought in August?<div class="rep">Reply</div></div></div>
-<div class="toast">${ic('description', 15)} <span>Doc mode is a view. The file is still <b>00-BRIEF.md</b>: fonts, colours and page setup live in its front matter and travel with it.</span></div>
+<div class="toast">${ic('description', 15)} <span>Doc mode is a view. The file is still <b>00-BRIEF.md</b>. Page setup lives in its front matter; colours and fonts render here and export to PDF only.</span></div>
 </main>
 </div></div>`,
 phone({ mode: 'Live', title: '00-BRIEF.md', body: `${pmodebar('Live', 'Doc')}<div class="pdoc" style="background:var(--bg-subtle);padding:12px"><div class="paper" style="padding:26px 22px"><div class="md docmode" style="font-size:14px">${DOC_DOCMODE}</div></div></div>` }));
@@ -723,7 +734,7 @@ ${tree({ projects: [PROJECTS_MAIN[0], { n: 'Notes', rows: [{ n: 'meeting-16-sep.
 <div class="chips alt"><span class="lbl">Or start from</span><span class="chip">${ic('code', 14)} Open from GitHub</span><span class="chip">${ic('upload', 14)} Drop a file or folder</span><span class="chip">${ic('table_view', 14)} A template</span></div>
 <div class="foot">${ic('auto_awesome', 12)} A document uses 1 edit credit. This month: 7 of ${CAPS.edits} edits left. <u>Get more</u></div></div>
 </main>
-${rail({ outline: '<div style="color:var(--muted)">Nothing yet.</div>' })}
+${rail({ outline: '<div style="color:var(--muted)">Nothing yet.</div>', counts: [0, 0, 0] })}
 </div></div>`,
 phone({ mode: 'Live', title: 'Untitled.md', bottom: 'auto_awesome', body: `${pmodebar('Live')}<div class="pdoc"><div class="md"><h1 style="color:var(--muted);border:0">Untitled</h1></div></div>
 <div class="aibox"><div class="in">${ic('auto_awesome', 18)} A booking page for small salons…<span class="go">${ic('arrow_forward', 16)}</span></div>
@@ -836,17 +847,24 @@ phone({ mode: 'Reading', title: 'execution-flow.md', body: `${pmodebar('Reading'
 <div class="flow">${flowCols(FLOW.slice(0, 2)).replace('· 6 steps', '· 6 steps')}</div>` }));
 
 // S10 problems panel
-const PROBS = `<div class="prob"><i class="dot err"></i><div><b>Link goes nowhere</b><em>[[03-ARCHITECTURE]] does not exist in this project</em></div><span class="ln">L12</span></div>
-<div class="prob"><i class="dot warn"></i><div><b>Heading level skips</b><em>H1 to H3 with no H2 between them</em></div><span class="ln">L28</span></div>
-<div class="prob"><i class="dot warn"></i><div><b>Image has no alt text</b><em>Screen readers and exports will show nothing</em></div><span class="ln">L34</span></div>
-<div class="prob"><i class="dot warn"></i><div><b>Table row has 4 cells, header has 3</b><em>It will render wrong on GitHub</em></div><span class="ln">L41</span></div>
-<div class="prob"><i class="dot info"></i><div><b>Sentence is 68 words</b><em>Longer than anything else you have written. Split it, or add the "because" that earns it</em></div><span class="ln">L19</span></div>`;
+const PROBS = `<div class="prob"><i class="dot err"></i><div><b>Link goes nowhere</b><em>[[06-BACKEND-SPEC]] does not exist in this project</em></div><span class="ln">L9</span></div>
+<div class="prob"><i class="dot warn"></i><div><b>Heading level skips</b><em>H1 to H3 with no H2 between them</em></div><span class="ln">L11</span></div>
+<div class="prob"><i class="dot warn"></i><div><b>Image has no alt text</b><em>Screen readers and exports will show nothing</em></div><span class="ln">L13</span></div>
+<div class="prob"><i class="dot warn"></i><div><b>Table row has 3 cells, header has 2</b><em>It will render wrong on GitHub</em></div><span class="ln">L18</span></div>
+<div class="prob"><i class="dot info"></i><div><b>Sentence is 61 words</b><em>Longer than anything else you have written. Split it, or add the "because" that earns it</em></div><span class="ln">L7</span></div>`;
+const DOC_PROBLEMS = `<h1>Zephyrus booking, in one page</h1>
+<p>A booking page for small studios that take appointments by WhatsApp today. One link, a calendar of open slots, a deposit, and a reminder the day before.</p>
+<p>The owner of a two-chair salon in Kolkata loses about four bookings a week to double-booking and no-shows because the diary is on paper and the deposits arrive by UPI with no name attached, so the plan is to put one link in the Instagram bio that shows open slots, takes a deposit and sends a reminder the day before, and to measure whether no-shows fall.</p>
+<p>The payments flow is in [[06-BACKEND-SPEC]].</p>
+<h3>Deposits</h3>
+<p><img src="deposit-flow.png"></p>
+<table><tr><th>Channel</th><th>Bookings</th></tr><tr><td>Instagram</td><td>312</td><td>52%</td></tr><tr><td>WhatsApp</td><td>186</td></tr></table>`;
 screen('s10-problems', 'Problems', `<div class="app">
 ${top({ tabs: TABS_MAIN })}
 <div class="body">
 ${tree({ projects: PROJECTS_MAIN })}
 <main class="main">${modebar('Live', '<span class="pill">' + ic('warning', 13) + ' 5 problems</span>')}
-<div class="doc"><div class="md">${DOC_BRIEF}</div></div>
+<div class="doc"><div class="md">${DOC_PROBLEMS}</div></div>
 </main>
 <aside class="rail"><div class="rsec grow"><div class="rh">${ic('warning', 14)} Problems<span class="sp"></span><span class="pill">5</span></div>
 ${PROBS}
@@ -856,7 +874,7 @@ ${PROBS}
 <div class="railfoot"><div class="two"><span class="btn">${ic('check', 16)} Fix all safe</span><span class="btn">${ic('settings', 16)} Rules</span></div>
 <span class="btn ai">${ic('auto_awesome', 16)} AI edit</span></div>
 </aside></div></div>`,
-phone({ mode: 'Live', title: '00-BRIEF.md', bottom: 'more_horiz', body: `${pmodebar('Live')}<div class="pdoc"><div class="md">${DOC_BRIEF}</div></div>`, overlay: pdrawer(`<div class="rsec grow"><div class="rh">${ic('warning', 14)} Problems<span class="sp"></span><span class="pill">5</span></div>${PROBS}</div><div class="railfoot"><span class="btn">${ic('check', 16)} Fix all safe</span></div>`, 'right') }));
+phone({ mode: 'Live', title: '00-BRIEF.md', bottom: 'more_horiz', body: `${pmodebar('Live')}<div class="pdoc"><div class="md">${DOC_PROBLEMS}</div></div>`, overlay: pdrawer(`<div class="rsec grow"><div class="rh">${ic('warning', 14)} Problems<span class="sp"></span><span class="pill">5</span></div>${PROBS}</div><div class="railfoot"><span class="btn">${ic('check', 16)} Fix all safe</span></div>`, 'right') }));
 
 // S11 instruction files: AGENTS.md with a health panel
 const DOC_AGENTS = `<h1>AGENTS.md</h1>
@@ -878,7 +896,7 @@ const AGENTS_HEALTH = `<div class="rsec"><div class="rh">${ic('verified', 14)} I
 screen('s11-instruction-files', 'Instruction files', `<div class="app">
 ${top({ tabs: [{ n: 'AGENTS.md', c: 'amber', on: 1 }, { n: '00-BRIEF.md', c: 'blue' }, { n: 'ideas.md', c: 'green' }] })}
 <div class="body">
-${tree({ projects: [{ n: 'Zephyrus booking', icon: 'rocket_launch', rows: [{ n: 'AGENTS.md', f: 1, on: 1 }, { n: 'SKILL.md', f: 1 }, { n: '00-BRIEF.md', f: 1 }, { n: 'specs', d: 1 }, { n: 'booking.md', f: 1, d: 2 }] }, PROJECTS_MAIN[1]], foot: `${ic('verified', 14)} 1 instruction file, no duplicate` })}
+${tree({ projects: [{ ...PROJECTS_MAIN[0], rows: PROJECTS_MAIN[0].rows.map(r => ({ ...r, on: r.n === 'AGENTS.md' ? 1 : 0 })) }, PROJECTS_MAIN[1]], foot: `${ic('verified', 14)} 1 instruction file, no duplicate` })}
 <main class="main">${modebar('Live', '<span class="pill ok">' + ic('check', 13) + ' Saved</span>')}
 <div class="doc"><div class="md">${DOC_AGENTS}</div></div>
 </main>
@@ -891,7 +909,7 @@ phone({ mode: 'Live', title: 'AGENTS.md', bottom: 'more_horiz', body: `${pmodeba
 // ---------------------------------------------------------------------------
 // S12 ideas: the list on the left, the idea, the depth chooser
 const IDEAS = [
-  { n: 'Zephyrus booking', e: 'Blueprint v1 · 14 files', on: 1 }, { n: 'Salon loyalty stamps', e: 'Low · 9 of 12 decided' }, { n: 'Clinic reminders over WhatsApp', e: 'Draft' },
+  { n: 'Zephyrus booking', e: 'Blueprint v1 · 15 files', on: 1 }, { n: 'Salon loyalty stamps', e: 'Low · 9 of 12 decided' }, { n: 'Clinic reminders over WhatsApp', e: 'Draft' },
 ];
 function ideasTree() {
   return `<aside class="side ideas"><div class="sidehead">${ic('lightbulb', 16)} Ideas<span class="sp"></span><span class="pill">${ic('add', 14)} new</span></div>
@@ -926,8 +944,8 @@ phone({ title: 'Ideas', bottom: 'auto_awesome', body: `<div class="pdoc" style="
 
 // S13 idea mode, Low: questions with recommendations
 const QCARDS = [
-  { q: '1. Who is the first user?', opts: [['a', 'A solo studio owner working from a phone', 'Fastest to reach; deposits matter most', 1], ['b', 'A small chain with a front desk', 'Bigger ticket, slower sale'], ['c', 'Not sure', 'Takes the recommendation']] },
-  { q: '2. What ships first?', opts: [['a', 'Booking link, calendar, deposit, reminder', 'The four things the brief names', 1], ['b', 'Booking link and calendar only', 'Cheaper, but the deposit is the point'], ['c', 'Not sure', 'Takes the recommendation']] },
+  { q: '1. Who is the first user?', opts: [['a', 'A solo studio owner working from a phone', 'Fastest to reach; deposits matter most', 1], ['b', 'A small chain with a front desk', 'Bigger ticket, slower sale'], ['c', 'Not sure, keep it open', 'Takes the recommendation for now; DECISIONS.md records it as open']] },
+  { q: '2. What ships first?', opts: [['a', 'Booking link, calendar, deposit, reminder', 'The four things the brief names', 1], ['b', 'Booking link and calendar only', 'Cheaper, but the deposit is the point'], ['c', 'Not sure, keep it open', 'Takes the recommendation for now; DECISIONS.md records it as open']] },
   { q: '3. Where does it run?', opts: [['a', 'A web page, no app', 'One link in the bio', 1], ['b', 'A web page and a WhatsApp bot', 'Two surfaces on day one']] },
 ];
 const QHTML = QCARDS.map(c => `<div class="qcard"><div class="q">${c.q}</div>${c.opts.map(o => `<div class="opt${o[3] ? ' rec' : ''}"><span class="k">${o[0]}</span><span>${o[1]}${o[3] ? '<span class="rec-tag">recommended</span>' : ''}<small>${o[2]}</small></span></div>`).join('')}</div>`).join('');
@@ -938,8 +956,8 @@ ${ideasTree()}
 <main class="main"><div class="modebar"><span class="steps">1 Describe ${ic('chevron_right', 14)} <b>2 Decide</b> ${ic('chevron_right', 14)} 3 Write ${ic('chevron_right', 14)} 4 Hand off</span><span class="right"><span class="pill">${ic('bolt', 13)} Low · 3 of 12</span><span class="pill ai">${ic('auto_awesome', 13)} 1 blueprint credit</span></span></div>
 <div class="doc" style="padding:28px 48px"><div style="display:grid;grid-template-columns:1fr 1fr;gap:28px;max-width:1040px;margin:0 auto">
 <div><div class="rh">Your idea</div><div class="md" style="font-size:14px"><p>A booking page for small salons that take appointments on WhatsApp today. One link for the Instagram bio, a calendar of open slots, a UPI deposit, and a reminder the day before. The owner runs everything from a phone.</p></div>
-<div class="rh" style="margin-top:22px">What the blueprint will hold</div><div class="kit">${['SKILL.md and AGENTS.md', '00-BRIEF.md', '01-PRODUCT.md', '02-DATA-AND-API.md', '03-ARCHITECTURE.md', '04-SETUP.md', 'specs/booking.md, specs/payments.md', 'MAP.md and graph.json', 'MANIFEST.json and SHA256SUMS'].map(f => `<div class="file">${ic('description', 15)}<span class="sp">${f}</span></div>`).join('')}</div></div>
-<div><div class="rh">Twelve decisions, then it writes. <span style="text-transform:none;letter-spacing:0;font-weight:400">Not sure takes the recommendation.</span></div>
+<div class="rh" style="margin-top:22px">What the blueprint will hold</div><div class="kit">${['SKILL.md and AGENTS.md', '00-BRIEF.md', '01-PRODUCT.md', '02-DATA-AND-API.md', '03-ARCHITECTURE.md', '04-SETUP.md', '05-FRONTEND-SPEC.md', 'specs/booking.md, specs/payments.md', 'DECISIONS.md', 'MAP.md and graph.json', 'MANIFEST.json and SHA256SUMS'].map(f => `<div class="file">${ic('description', 15)}<span class="sp">${f}</span></div>`).join('')}</div></div>
+<div><div class="rh">Twelve decisions, then it writes. <span style="text-transform:none;letter-spacing:0;font-weight:400">Not sure stays open in DECISIONS.md.</span></div>
 ${QHTML}
 <div style="display:flex;gap:8px;justify-content:flex-end"><span class="btn">Back</span><span class="btn primary">Next: three more ${ic('arrow_forward', 14)}</span></div></div>
 </div></div></main></div></div>`,
@@ -954,8 +972,8 @@ const DCARD = `<div class="dcard"><div class="dq">4. Deposit before the booking 
 <div class="dopt"><b>Deposit after, within 24 hours</b><span class="g">Gains</span>: more bookings start.<br><span class="c">Costs</span>: a second message, a second chance to vanish; the diary is provisional for a day.</div></div>
 <div class="dsec">Evidence</div>
 <div class="ev">${ic('description', 14)}<span>Your 00-BRIEF: "loses about four bookings a week to double-booking and no-shows"</span><span class="src">00-BRIEF.md:6</span></div>
-<div class="ev">${ic('public', 14)}<span>RBI: UPI AutoPay mandates need a 24-hour pre-debit notice; ₹15,000 is the cap per transaction</span><span class="src">rbi.org.in · opened 16 Sep</span></div>
-<div class="ev">${ic('public', 14)}<span>Razorpay: 2% plus GST a transaction on the standard plan</span><span class="src">razorpay.com/pricing · 16 Sep</span></div>
+<div class="ev">${ic('public', 14)}<span>RBI: UPI AutoPay mandates need a 24-hour pre-debit notice; ₹15,000 is the cap per transaction</span><span class="src">template source · last checked 16 Sep</span></div>
+<div class="ev">${ic('public', 14)}<span>Razorpay: 2% plus GST a transaction on the standard plan</span><span class="src">template source · last checked 16 Sep</span></div>
 <div style="display:flex;gap:8px;margin-top:14px;align-items:center"><span class="btn primary">${ic('check', 14)} Deposit before</span><span class="btn">Deposit after</span><span class="btn ghost">Not sure, take the recommendation</span><span style="margin-left:auto;font-size:11.5px;color:var(--muted)">Recorded in DECISIONS.md with the evidence</span></div></div>`;
 screen('s14-idea-medium', 'Idea mode, Medium and High', `<div class="app">
 ${top({ tabs: [{ n: 'Ideas', c: 'blue', on: 1 }] })}
@@ -963,27 +981,28 @@ ${top({ tabs: [{ n: 'Ideas', c: 'blue', on: 1 }] })}
 ${ideasTree()}
 <main class="main"><div class="modebar"><span class="steps">1 Describe ${ic('chevron_right', 14)} <b>2 Decide</b> ${ic('chevron_right', 14)} 3 Write ${ic('chevron_right', 14)} 4 Hand off</span><span class="right"><span class="pill pro">${ic('insights', 13)} Medium · 4 of 24</span><span class="pill ai">${ic('auto_awesome', 13)} Pro</span></span></div>
 <div class="doc" style="padding:26px 48px"><div style="max-width:860px;margin:0 auto">${DCARD}
-<div style="font-size:12px;color:var(--muted);margin-top:14px">High adds a research pass before this step: the sources are opened fresh, dated, and quoted. Medium uses your documents and the template’s sources.</div></div></div></main></div></div>`,
+<div style="font-size:12px;color:var(--muted);margin-top:14px">Medium cites your documents and the template’s sources, with the date the template last checked them. Only High opens pages, and it dates and quotes each one.</div></div></div></main></div></div>`,
 phone({ title: 'Ideas · Decide', bottom: 'auto_awesome', body: `<div class="modebar"><span class="steps"><b>2 Decide</b> · 4 of 24</span><span class="right"><span class="pill pro">${ic('insights', 13)} Medium</span></span></div><div class="pdoc" style="padding:12px 12px 0"><div style="font-size:13px">${DCARD.replace('<div class="dcard">', '<div class="dcard" style="padding:12px 12px">').replace('style="display:flex;gap:8px;margin-top:14px;align-items:center"', 'style="display:flex;flex-direction:column;gap:6px;margin-top:12px"')}</div></div>` }));
 
 // S15 blueprint ready
-const KITLIST = [['SKILL.md', 0, 'Loaded first'], ['AGENTS.md', 0, 'Every agent reads it'], ['00-BRIEF.md', 0], ['01-PRODUCT.md', 0], ['02-DATA-AND-API.md', 0], ['03-ARCHITECTURE.md', 0], ['04-SETUP.md', 0], ['specs/', 1], ['booking.md', 2], ['payments.md', 2], ['DECISIONS.md', 0, '12 decisions'], ['MAP.md', 0], ['graph.json', 0, 'For the agent'], ['MANIFEST.json', 0], ['SHA256SUMS', 0]];
+const KITLIST = [['SKILL.md', 0, 'Loaded first'], ['AGENTS.md', 0, 'Every agent reads it'], ['00-BRIEF.md', 0], ['01-PRODUCT.md', 0], ['02-DATA-AND-API.md', 0], ['03-ARCHITECTURE.md', 0], ['04-SETUP.md', 0], ['05-FRONTEND-SPEC.md', 0, 'From the drawing'], ['specs/', 1], ['booking.md', 2], ['payments.md', 2], ['DECISIONS.md', 0, '12 decisions, 2 open'], ['MAP.md', 0], ['graph.json', 0, 'For the agent'], ['MANIFEST.json', 0], ['SHA256SUMS', 0]];
 const KIT_RAIL = `<div class="rsec"><div class="rh">${ic('rocket_launch', 14)} Blueprint<span class="sp"></span><span class="pill">v1</span></div>
 <div class="kit">${KITLIST.map(f => `<div class="file${f[1] === 2 ? ' d2' : ''}">${ic(f[1] === 1 ? 'folder' : 'description', 14)}<span class="sp">${f[0]}</span>${f[2] ? `<em class="hint">${f[2]}</em>` : ic('check', 14, 'ok')}</div>`).join('')}</div>
 <div style="font-size:12px;color:var(--fg-muted);margin-top:8px">A skill folder, so any agent that follows the standard can install it. SKILL.md loads first; the rest only when the agent needs them.</div>
 <div style="font-size:12px;color:var(--fg-muted);margin-top:6px">Consistency check: every name in 02-DATA-AND-API appears in specs. Two names were fixed before you saw them.</div></div>
 <div class="rsec"><div class="rh">${ic('link', 14)} Link, unlisted</div><div class="linkbox">${ic('public', 14)} frontmatter.in/k/7f3a…c91e/<span style="margin-left:auto">${ic('content_copy', 14)}</span></div>
-<div style="font-size:11.5px;color:var(--muted)">Anyone with the link can read it. Not indexed. Revoke any time.</div></div>
+<div class="linkbox">${ic('fingerprint', 14)} sha256 9c1e…4b7a<span style="margin-left:auto">${ic('content_copy', 14)}</span></div>
+<div style="font-size:11.5px;color:var(--muted)">Anyone with the link can read it. Not indexed. Revoke any time. The hash is printed here so an agent can check the kit before it unpacks it.</div></div>
 <div class="rsec"><div class="rh">${ic('terminal', 14)} Kickoff prompt<span class="sp"></span></div><div style="margin:-2px 0 8px"><span class="seg" style="padding:2px"><span class="on" style="padding:2px 9px">Claude Code</span><span style="padding:2px 9px">Cursor</span><span style="padding:2px 9px">Codex</span></span></div>
-<div class="prompt">The documents for this project are at https://frontmatter.in/k/7f3a…c91e/ (version 1).
-1. mkdir -p docs/kit && curl -sL …/v1/kit.tar.gz | tar xz -C docs/kit
-2. cd docs/kit && shasum -a 256 -c SHA256SUMS  (stop if any line fails)
-3. Read 00-BRIEF.md, then the rest in order. Build against specs/*.md.</div>
+<div class="prompt">The documents for this project are at https://frontmatter.in/k/7f3a…c91e/ (version 1). Their hash is sha256 9c1e…4b7a.
+1. curl -sL …/v1/kit.tar.gz -o kit.tar.gz && shasum -a 256 kit.tar.gz   (stop unless it prints 9c1e…4b7a)
+2. mkdir -p docs/kit && tar xzf kit.tar.gz -C docs/kit
+3. Read 00-BRIEF.md, then the rest in order. Do not build until you have read them. Build against specs/*.md.</div>
 <span class="btn primary" style="width:100%">${ic('content_copy', 15)} Copy the kickoff prompt</span></div>`;
 screen('s15-blueprint-ready', 'Blueprint ready', `<div class="app">
 ${top({ tabs: TABS_MAIN })}
 <div class="body wide">
-${tree({ projects: PROJECTS_MAIN, foot: `${ic('verified', 14)} Blueprint v1 · 14 files` })}
+${tree({ projects: PROJECTS_MAIN, foot: `${ic('verified', 14)} Blueprint v1 · 15 files` })}
 <main class="main">${modebar('Reading', '<span class="pill ok">' + ic('verified', 13) + ' Files agree</span>')}
 <div class="doc"><div class="md">${DOC_BRIEF}</div></div>
 </main>
@@ -996,8 +1015,12 @@ const MAPNODES = [
   { n: '00-BRIEF', x: 386, y: 74, k: 'doc' }, { n: '01-PRODUCT', x: 190, y: 176, k: 'doc' }, { n: '02-DATA-AND-API', x: 386, y: 198, k: 'doc' }, { n: '03-ARCHITECTURE', x: 600, y: 176, k: 'doc' },
   { n: 'specs/booking', x: 262, y: 318, k: 'spec' }, { n: 'specs/payments', x: 470, y: 330, k: 'spec' }, { n: '04-SETUP', x: 652, y: 306, k: 'doc' },
   { n: 'Deposit before booking', x: 120, y: 258, k: 'why' }, { n: 'UPI, not cards', x: 578, y: 428, k: 'why' }, { n: 'AGENTS.md', x: 386, y: 432, k: 'agent' },
+  { n: 'SKILL.md', x: 160, y: 74, k: 'agent' },
+  { n: '05-FRONTEND-SPEC', x: 690, y: 250, k: 'doc' },
+  { n: 'DECISIONS', x: 250, y: 470, k: 'doc' },
+  { n: 'MAP', x: 640, y: 480, k: 'doc' },
 ];
-const MAPEDGES = [[0, 1], [0, 2], [0, 3], [1, 4], [2, 4], [2, 5], [3, 6], [7, 1], [8, 5], [4, 9], [5, 9], [6, 9]];
+const MAPEDGES = [[0, 1], [0, 2], [0, 3], [1, 4], [2, 4], [2, 5], [3, 6], [7, 1], [8, 5], [4, 9], [5, 9], [6, 9], [10, 0], [3, 11], [11, 4], [7, 12], [8, 12], [12, 9], [13, 0]];
 const KCOL = { doc: 'var(--fg)', spec: 'var(--link)', why: 'var(--success)', agent: 'var(--accent)' };
 function mapSvg(style = 'width:100%;height:100%;max-height:640px') {
   return `<svg viewBox="0 0 780 500" style="${style}">
@@ -1006,22 +1029,22 @@ ${MAPNODES.map(n => { const w = Math.max(96, n.n.length * 7.2 + 26); return `<g>
 }
 const MAP_RAIL = `<div class="rsec"><div class="rh">${ic('link', 14)} The map<span class="sp"></span><span class="pill">v1</span></div>
 <div style="font-size:12.5px;color:var(--fg-muted);margin-bottom:10px">What an agent reads before it writes anything: the documents, what each one governs, and the decision behind it.</div>
-<div class="chk">${ic('description', 15)}<div>10 documents<em>Every one reachable from 00-BRIEF</em></div></div>
-<div class="chk">${ic('link', 15)}<div>12 links, 0 orphans<em>Nothing in specs names an entity 02-DATA-AND-API does not define</em></div></div>
+<div class="chk">${ic('description', 15)}<div>12 documents, 3 data files<em>Every document reachable from 00-BRIEF; graph.json, MANIFEST.json and SHA256SUMS are not nodes</em></div></div>
+<div class="chk">${ic('link', 15)}<div>19 links, 0 orphans<em>Nothing in specs names an entity 02-DATA-AND-API does not define</em></div></div>
 <div class="chk">${ic('check', 15, 'ok')}<div>2 decisions carried through<em>"Deposit before booking" and "UPI, not cards" each point at the spec they explain</em></div></div>
 <div class="chk">${ic('code', 15)}<div>Rebuilt on every save<em>Structure is read from the files, so it costs no credits</em></div></div></div>
 <div class="rsec"><div class="rh">${ic('terminal', 14)} In the kit</div>
 <div class="kit">${[['MAP.md', 'Readable'], ['graph.json', 'For the agent']].map(f => `<div class="file">${ic('description', 14)}<span class="sp">${f[0]}</span><em class="hint">${f[1]}</em></div>`).join('')}</div>
-<div style="font-size:11.5px;color:var(--muted);margin-top:8px">Both ship inside the blueprint, so the agent can ask "what governs payments" instead of reading all ten files.</div></div>`;
+<div style="font-size:11.5px;color:var(--muted);margin-top:8px">Both ship inside the blueprint, so the agent can ask "what governs payments" instead of reading all twelve documents.</div></div>`;
 screen('s16-map', 'The map', `<div class="app">
 ${top({ tabs: TABS_MAIN })}
 <div class="body">
-${tree({ projects: PROJECTS_MAIN, foot: `${ic('verified', 14)} 10 documents, 12 links, 0 orphans` })}
-<main class="main">${modebar('Reading', `<span class="tool txt on">${ic('hub', 16)} View as: Map ${ic('arrow_drop_down', 16)}</span>`, '10 docs · 12 links · 0 orphans')}
+${tree({ projects: PROJECTS_MAIN, foot: `${ic('verified', 14)} 12 documents, 19 links, 0 orphans` })}
+<main class="main">${modebar('Reading', `<span class="tool txt on">${ic('hub', 16)} View as: Map ${ic('arrow_drop_down', 16)}</span>`, '12 documents · 19 links · 0 orphans')}
 <div class="doc" style="padding:20px 28px 0">${mapSvg()}</div>
 </main>
 <aside class="rail">${MAP_RAIL}</aside></div></div>`,
-phone({ title: 'Zephyrus booking · Map', bottom: 'more_horiz', body: `<div style="display:flex;gap:6px;padding:8px 14px;overflow:hidden;border-bottom:1px solid var(--border)"><span class="chip">Page</span><span class="chip on">Map</span><span class="chip">Flow</span><span class="chip">Outline</span></div><div style="padding:10px">${mapSvg('width:100%;height:auto')}</div><div style="padding:0 14px;font-size:12px;color:var(--fg-muted)">10 documents · 12 links · 0 orphans. Tap a node to open it.</div>` }));
+phone({ title: 'Zephyrus booking · Map', bottom: 'more_horiz', body: `<div style="display:flex;gap:6px;padding:8px 14px;overflow:hidden;border-bottom:1px solid var(--border)"><span class="chip">Page</span><span class="chip on">Map</span><span class="chip">Flow</span><span class="chip">Outline</span></div><div style="padding:10px">${mapSvg('width:100%;height:auto')}</div><div style="padding:0 14px;font-size:12px;color:var(--fg-muted)">12 documents · 19 links · 0 orphans. Tap a node to open it.</div>` }));
 
 // ---------------------------------------------------------------------------
 // S17 share: people, link with password and expiry, publish
@@ -1054,15 +1077,16 @@ phone({ mode: 'Live', title: '00-BRIEF.md', bottom: 'more_horiz', body: `${pmode
 screen('s18-public-view', 'Published page', `<div class="pub">
 <header class="pubtop"><span class="mark">fm</span><span class="t">Zephyrus booking, in one page</span><span class="pill" style="margin-left:6px">Published 16 Sep</span>
 <span class="r"><span class="btn ghost">${ic('download', 16)} Download .md</span><span class="btn primary">${ic('open_in_new', 15)} Open in frontmatter</span></span></header>
-<div class="pubbody"><div class="md">${DOC_BRIEF}<h2>The kickoff prompt</h2><p>Copy this into Claude Code, Cursor or Codex and it builds from these documents.</p><pre>mkdir -p docs/kit && curl -sL https://frontmatter.in/k/7f3a…c91e/v1/kit.tar.gz | tar xz -C docs/kit
-cd docs/kit && shasum -a 256 -c SHA256SUMS</pre></div>
+<div class="pubbody"><div class="md">${DOC_BRIEF}<h2>The kickoff prompt</h2><p>Copy this into Claude Code, Cursor or Codex and it builds from these documents.</p><pre>curl -sL https://frontmatter.in/k/7f3a…c91e/v1/kit.tar.gz -o kit.tar.gz
+shasum -a 256 kit.tar.gz   # must print 9c1e…4b7a, the hash on this page
+mkdir -p docs/kit && tar xzf kit.tar.gz -C docs/kit</pre></div>
 <div class="card"><h3>Read this properly in frontmatter</h3><p>Outline, dark mode, comments and a copy you can edit. Free, no card.</p><div class="acts"><span class="btn primary">${ic('public', 15)} Sign in with Google</span><span class="btn ghost">Not now</span></div></div>
-<div style="position:absolute;left:24px;bottom:18px;font-size:11.5px;color:var(--muted)">Made with frontmatter · also at <u>frontmatter.in/p/zephyrus-booking-brief.md</u></div></div></div>`,
+<div style="position:absolute;left:24px;right:24px;bottom:18px;font-size:11.5px;color:var(--fg-muted);display:flex;gap:14px">Made with frontmatter <span>·</span> <u>Report this page</u> <span>·</span> <u>Privacy</u> <span>·</span> <u>Terms</u> <span style="margin-left:auto">also at <u>frontmatter.in/p/zephyrus-booking-brief.md</u></span></div></div></div>`,
 `<div class="phone"><div class="iosbar"><span>9:41</span><span style="font-family:var(--font-mono);font-size:11px">●●●</span></div>
 <header class="top"><span class="mark">fm</span><span class="ttl">Shared document</span></header>
 <div class="pbody" style="display:grid;place-items:center;padding:24px"><div style="width:100%"><div style="display:grid;place-items:center;margin-bottom:14px">${ic('password', 40)}</div><h2 style="margin:0 0 6px;font-size:18px;text-align:center">This link needs a password</h2><p style="color:var(--fg-muted);font-size:13px;text-align:center;margin:0 0 16px">Sagnik shared <b>00-BRIEF.md</b> with a password. Ask them for it.</p>
 <div class="search" style="height:42px;font-size:14px;margin-bottom:8px">${ic('key', 18)} Password</div><span class="btn primary lg" style="width:100%">Open</span>
-<p style="font-size:11.5px;color:var(--muted);text-align:center;margin-top:12px">Link expires in 6 days. No account needed to read.</p></div></div>
+<p style="font-size:11.5px;color:var(--fg-muted);text-align:center;margin-top:12px">Link expires in 6 days. No account needed to read.</p><p style="font-size:11.5px;color:var(--fg-muted);text-align:center;margin-top:18px"><u>Report</u> · <u>Privacy</u> · <u>Terms</u></p></div></div>
 <div class="homeind"><i></i></div></div>`);
 
 // S19 live collaboration
@@ -1092,10 +1116,10 @@ const REVIEW_DOC = `<h1>Zephyrus booking, in one page</h1>
 <ul><li>Books from WhatsApp messages, by hand, into a paper diary</li><li><span class="chg">Takes deposits by UPI, then reconciles them on Sunday night</span></li><li>Wants a link to put in the Instagram bio</li></ul>
 <h2>The one metric</h2><p><span class="chg">No-shows per hundred bookings, measured for four weeks before the deposit step and four after.</span></p>`;
 const REVIEW_LIST = `<div class="chg-list">
-<div class="it"><div class="who"><span class="avatar" style="width:16px;height:16px;font-size:8px;background:#b2625e">AM</span> Amit · 10 min ago</div><div class="q">Changed "a deposit" to "a refundable deposit" in the summary.</div><div class="acts"><span class="btn primary">${ic('check', 13)} Accept</span><span class="btn">Reject</span><span class="btn ghost">Reply</span></div></div>
-<div class="it"><div class="who">${ic('auto_awesome', 13)} AI edit · you asked to tighten · 25 min ago</div><div class="q">Rewrote the deposit bullet to say when reconciliation happens.</div><div class="acts"><span class="btn primary">${ic('check', 13)} Accept</span><span class="btn">Reject</span></div></div>
-<div class="it"><div class="who">${ic('terminal', 13)} Claude Code · via the API · 1 h ago</div><div class="q">Metric now says how long it is measured for.</div><div class="acts"><span class="btn primary">${ic('check', 13)} Accept</span><span class="btn">Reject</span><span class="btn ghost">Reply</span></div></div>
-</div><div style="margin-top:12px"><span class="btn" style="width:100%">Accept all three</span></div>`;
+<div class="it"><div class="who"><span class="avatar" style="width:16px;height:16px;font-size:8px;background:#b2625e">AM</span> Amit · 10 min ago</div><div class="q">Changed "a deposit" to "a refundable deposit" in the summary.</div><div class="acts"><span class="btn">${ic('check', 13)} Accept</span><span class="btn">${ic('close', 13)} Reject</span><span class="btn">${ic('comment', 13)} Reply</span></div></div>
+<div class="it"><div class="who">${ic('auto_awesome', 13)} AI edit · you asked to tighten · 25 min ago</div><div class="q">Rewrote the deposit bullet to say when reconciliation happens.</div><div class="diff" style="margin:6px 0;font-size:11px"><div class="del">-Takes deposits by UPI, then forgets who paid</div><div class="add">+Takes deposits by UPI, then reconciles them on Sunday night</div></div><div class="acts"><span class="btn">${ic('check', 13)} Accept</span><span class="btn">${ic('close', 13)} Reject</span></div></div>
+<div class="it"><div class="who">${ic('terminal', 13)} Claude Code · edited the file on disk · 1 h ago</div><div class="q">Metric now says how long it is measured for.</div><div class="acts"><span class="btn">${ic('visibility', 13)} Show diff first</span><span class="btn">${ic('close', 13)} Reject</span></div></div>
+</div><div style="margin-top:12px"><span class="btn" style="width:100%">Accept Amit’s 1 change</span><div style="font-size:11px;color:var(--muted);margin-top:6px;text-align:center">Asks you to confirm the count. AI and agent items are accepted one at a time.</div></div>`;
 screen('s20-review', 'Document review', `<div class="app">
 ${top({ tabs: TABS_MAIN, presence: [{ i: 'AM', c: '#b2625e' }, { i: 'SM', c: '#18181b' }] })}
 <div class="body">
@@ -1105,7 +1129,7 @@ ${tree({ projects: PROJECTS_MAIN })}
 </main>
 <aside class="rail"><div class="rsec grow"><div class="rh">${ic('checklist', 14)} Review<span class="sp"></span><span class="cnt">3 waiting</span></div>${REVIEW_LIST}</div>
 <div class="rrow">${ic('comment', 16)} Comments<span class="sp"></span><span class="cnt">2 open</span>${ic('chevron_right', 16)}</div>
-<div class="rrow">${ic('history', 16)} Document history<span class="sp"></span><span class="pill">Pro</span>${ic('chevron_right', 16)}</div>
+<div class="rrow">${ic('history', 16)} Document history<span class="sp"></span><span class="cnt">${CAPS.history} days</span>${ic('chevron_right', 16)}</div>
 <div class="railfoot"><span class="btn ai">${ic('auto_awesome', 16)} AI edit</span></div></aside>
 </div></div>`,
 phone({ mode: 'Reading', title: '00-BRIEF.md', bottom: 'more_horiz', body: `${pmodebar('Reading')}<div class="pdoc"><div class="md">${REVIEW_DOC}</div></div>`, overlay: pdrawer(`<div class="rsec grow"><div class="rh">${ic('checklist', 14)} Review<span class="sp"></span><span class="cnt">3 waiting</span></div>${REVIEW_LIST}</div>`, 'right') }));
@@ -1136,6 +1160,7 @@ const IMPORT_PROGRESS = `<div class="rsec"><div class="rh">${ic('folder_open', 1
 <div class="chk">${ic('check', 15, 'ok')}<div>131 markdown files<em>Front matter kept byte for byte</em></div></div>
 <div class="chk">${ic('check', 15, 'ok')}<div>24 images, 3 PDFs<em>Uploaded to the project’s attachments</em></div></div>
 <div class="chk">${ic('warning', 15)}<div>3 files need a look<em>Two wikilinks point at notes that are not in the folder; one file is not UTF-8</em></div></div>
+<div class="chk">${ic('block', 15)}<div>1 Google Doc refused<em>Google exports up to 10 MB; this one is 14 MB. Split it in Docs and try again</em></div></div>
 <div class="chk">${ic('description', 15)}<div>Obsidian settings found<em>Daily-note path and templates folder read from .obsidian, nothing else touched</em></div></div></div>`;
 screen('s22-import', 'Import', `<div class="app">
 ${top({ tabs: [{ n: 'Import', c: 'grey', on: 1 }, { n: '00-BRIEF.md', c: 'blue' }] })}
@@ -1144,20 +1169,20 @@ ${tree({ projects: [{ n: 'notes', icon: 'folder', rows: [{ n: 'journal', d: 1 },
 <main class="main"><div class="page" style="padding:30px 48px"><h1>Bring your documents in</h1><p class="sub">Nothing is converted unless it has to be. Markdown stays markdown, byte for byte.</p>${IMPORT_BODY}</div></main>
 <aside class="rail">${IMPORT_PROGRESS}<div class="railfoot"><span class="btn">${ic('folder', 15)} Open the project</span></div></aside>
 </div></div>`,
-phone({ title: 'Import', bottom: 'home', body: `<div class="page"><h1>Bring your documents in</h1><p class="sub">Markdown stays markdown, byte for byte.</p><div class="drop" style="padding:18px">${ic('upload', 30)}<b>Choose files or a folder</b>Or share to frontmatter from any app.</div><div class="sources">${SOURCES.slice(0, 4).map(s => `<div class="srcb">${ic(s[0], 22)}<div><b>${s[1]}</b><span>${s[2]}</span></div></div>`).join('')}</div></div>` }));
+phone({ title: 'Import', bottom: 'home', body: `<div class="page"><h1>Bring your documents in</h1><p class="sub">Markdown stays markdown, byte for byte.</p><div class="drop" style="padding:18px">${ic('upload', 30)}<b>Choose files or a folder</b>On Android, after you add frontmatter to your home screen, you can also share from any app. iOS has no share sheet for web apps.</div><div class="sources">${SOURCES.slice(0, 4).map(s => `<div class="srcb">${ic(s[0], 22)}<div><b>${s[1]}</b><span>${s[2]}</span></div></div>`).join('')}</div></div>` }));
 
 // S23 connections: Google Drive and GitHub, what each is allowed to do
 const CONN_DRIVE = `<div class="conn"><div class="ch">${ic('add_to_drive', 22)}<b>Google Drive</b><span class="pill ok">${ic('check', 13)} Connected · sagnik@…</span></div>
-<div class="cl">${ic('folder', 15)}<span>Folder: <b>My Drive / frontmatter</b>. Every save writes the .md there; a change made in Drive shows up here within a minute.</span></div>
+<div class="cl">${ic('folder', 15)}<span>Folder: <b>My Drive / frontmatter</b>. Every save writes the .md there; a change made in Drive shows up here within a few minutes.</span></div>
 <div class="cl">${ic('lock', 15)}<span>Scope: only files this app created or you picked. We cannot see the rest of your Drive.</span></div>
 <div class="cl">${ic('sync', 15)}<span>Conflicts are never merged silently. Both versions are kept and you choose.</span></div>
 <div class="acts"><span class="btn">Change folder</span><span class="btn">Pause sync</span><span class="btn ghost">Disconnect</span></div></div>`;
 const CONN_GH = `<div class="conn"><div class="ch">${ic('code', 22)}<b>GitHub</b><span class="pill ok">${ic('check', 13)} Installed on 1 repository</span></div>
-<div class="cl">${ic('description', 15)}<span><b>studiozephyrus/frontmatter</b> · reads and writes <code>docs/</code> only. Commits are made as you, with the message you type.</span></div>
+<div class="cl">${ic('description', 15)}<span><b>studiozephyrus/frontmatter</b>. GitHub grants this app the whole repository; frontmatter only ever writes under <code>docs/</code>, and that rule is tested. Commits are made as you, with the message you type.</span></div>
 <div class="cl">${ic('bolt', 15)}<span>${CAPS.pushes} pushes a month on Free, 14 used. Pull is unlimited.</span></div>
 <div class="cl">${ic('lock', 15)}<span>A GitHub App, not a personal token: you chose the repositories, and you can revoke it on GitHub at any time.</span></div>
 <div class="acts"><span class="btn">Add a repository</span><span class="btn ghost">Manage on GitHub</span></div></div>`;
-const CONN_MCP = `<div class="conn"><div class="ch">${ic('terminal', 22)}<b>Your agents</b><span class="pill">2 tokens</span></div>
+const CONN_MCP = `<div class="conn" style="opacity:.6"><div class="ch">${ic('terminal', 22)}<b>Your agents</b><span class="pill">Later · with the MCP server</span></div>
 <div class="cl">${ic('key', 15)}<span><b>Claude Code on this Mac</b> · may read and propose · never applies or publishes · last used today 14:02</span></div>
 <div class="cl">${ic('key', 15)}<span><b>Cursor</b> · may read · created 12 Sep</span></div>
 <div class="acts"><span class="btn">New token</span><span class="btn ghost">Show the MCP setup</span></div></div>`;
@@ -1178,9 +1203,9 @@ ${tree({ projects: PROJECTS_MAIN, foot: `${ic('cloud_off', 14)} Offline · 2 cha
 <main class="main"><div class="banner">${ic('cloud_off', 16)} <span>You are offline. Everything you type is saved on this device and syncs when you are back.</span><span class="sp"></span><span class="pill">Last synced 14:02</span></div>
 ${modebar('Live')}
 <div class="doc"><div class="md">${DOC_BRIEF}</div></div>
-<div class="card"><h3>frontmatter for Mac</h3><p>Keeps every document as a file on disk, works fully offline, no document limit. Same account, same documents.</p><div class="acts"><span class="btn primary">${ic('download', 15)} Download for Mac</span><span class="btn ghost">Remind me later</span></div></div>
+<div class="card"><h3>frontmatter for Mac</h3><p>Keeps every document as a file on disk, works fully offline with a local model for edits, no document limit. Same account, same documents.</p><div class="acts"><span class="btn primary">${ic('download', 15)} Download for Mac</span><span class="btn ghost">Remind me later</span></div></div>
 </main>
-${rail({ outline: OUTLINE_BRIEF })}
+${rail({ outline: OUTLINE_BRIEF, aiOff: 'Needs a connection. The desktop app has a local model.' })}
 </div></div>`,
 phone({ mode: 'Live', title: '00-BRIEF.md', body: `<div class="banner">${ic('cloud_off', 16)} <span>Offline. Saved on this phone, syncs when you are back.</span></div>${pmodebar('Live')}<div class="pdoc"><div class="md">${DOC_BRIEF}</div></div>` }));
 
@@ -1199,7 +1224,7 @@ ${rail({ outline: OUTLINE_BRIEF })}
 </div></div></div>`,
 phone({ title: 'frontmatter', bottom: 'home', bar: true, body: `<div class="page"><h1>Get the desktop app</h1><p class="sub">Every document as a file on disk. Fully offline. No document limit. Your agents can read the folder directly.</p>
 <div class="srcb" style="margin-bottom:8px">${ic('desktop_mac', 22)}<div><b>Mac</b><span>Apple silicon and Intel · notarised</span></div></div>
-<div class="srcb" style="margin-bottom:8px">${ic('devices', 22)}<div><b>Windows</b><span>Signed installer</span></div></div>
+<div class="srcb" style="margin-bottom:8px;opacity:.6">${ic('devices', 22)}<div><b>Windows</b><span>Coming. A signing certificate an Indian company can buy is being priced</span></div></div>
 <div class="srcb" style="margin-bottom:14px">${ic('terminal', 22)}<div><b>Linux</b><span>AppImage and .deb</span></div></div>
 <span class="btn primary lg" style="width:100%">${ic('mail', 16)} Email me the link</span><p style="font-size:12px;color:var(--muted);margin-top:10px;text-align:center">The web app and this phone stay in sync with it. Same account.</p></div>` }));
 
@@ -1239,15 +1264,16 @@ const SET_EDITOR = `<h2>Editor</h2>
 ${srow('Default mode', 'How a document opens', SEL('Live'))}
 ${srow('Doc mode by default in Live', 'Off shows plain markdown; on shows the Doc surface', TOG(false))}
 ${srow('Line width', 'Characters per line in the writing area', SEL('65'))}
-${srow('Spellcheck', 'Runs in the browser, sends nothing anywhere', TOG(true))}
+${srow('Spellcheck', 'Your browser’s own. Where your browser sends text to its vendor, that is your browser’s setting', TOG(true))}
 ${srow('Vim keys', 'Modal editing in Edit mode', TOG(false))}
 <h2>Writing checks</h2>
 ${srow('Structural problems', 'Broken links, heading skips, table shape, missing alt text', TOG(true))}
 ${srow('Plain-language notes', 'Long sentences and ornamental words. Advisory, never blocks', TOG(true))}
 <h2>AI</h2>
 ${srow('Model for edits', 'Free uses a free provider this month; Pro uses Claude', SEL('Automatic'))}
-${srow('Send documents to AI only when I ask', 'Ghost text and suggestions need this on', TOG(true))}
-${srow('Mark AI text in the file', 'Every accepted AI edit is recorded with the model and the ask', TOG(true))}`;
+${srow('AI on a selection and in the box', 'Sends only the text you select or type into the box, when you ask', TOG(true))}
+${srow('Ghost text as I type', 'Sends what you are typing to the model as you go. Off by default', TOG(false))}
+${srow('Mark AI text', 'Every accepted AI edit is recorded in the version record with the model and the ask. Inline marks in the file are off by default', TOG(true))}`;
 screen('s28-settings', 'Settings', `<div class="app">
 ${top({ tabs: [{ n: 'Settings', c: 'grey', on: 1 }], share: false })}
 <div class="body noright" style="grid-template-columns:220px minmax(0,1fr)">
@@ -1263,7 +1289,7 @@ const USAGE = `<div class="usage"><div class="ucard"><div class="k">AI edits</di
 <div class="ucard"><div class="k">Published pages</div><div class="v">3 <small>of ${CAPS.pub}</small></div><div class="meter"><i style="width:60%;background:var(--accent)"></i></div></div></div>`;
 const PLANS = `<div class="plans"><div class="plan"><div class="nm">Free</div><div class="pr">₹0</div><ul>
 <li>${ic('check', 15)} Every feature: the editor, Doc mode, offline in the browser, every export, every view</li><li>${ic('check', 15)} ${CAPS.docs} documents in the cloud, ${CAPS.pub} published pages, ${CAPS.uploads} of uploads</li><li>${ic('check', 15)} ${CAPS.kits} blueprint at Low and ${CAPS.edits} AI edits a month</li><li>${ic('check', 15)} ${CAPS.collab} live collaborators per document · ${CAPS.repos} GitHub repository, ${CAPS.pushes} pushes a month · Google Drive sync</li><li>${ic('check', 15)} Document history, ${CAPS.history} days · expiring links · the desktop app with unlimited documents on disk</li><li class="no">${ic('close', 15)} Password on links · Medium and High ideas · portfolio</li></ul><span class="btn" style="width:100%">Current plan</span></div>
-<div class="plan pro"><div class="nm">Pro</div><div class="pr">₹299 <small>a month, or ₹2,499 a year</small></div><ul>
+<div class="plan pro"><div class="nm">Pro</div><div class="pr">₹299 <small>a month incl. GST, or ₹2,499 a year</small></div><ul>
 <li>${ic('check', 15)} Unlimited documents, published pages and collaborators</li><li>${ic('check', 15)} 5 blueprints at any depth and 100 AI edits a month, on Claude</li><li>${ic('check', 15)} Document history, 90 days · unlimited repositories and pushes</li><li>${ic('check', 15)} Password and expiry on every link · no "made with" line</li><li>${ic('check', 15)} Your portfolio at frontmatter.in/@you</li></ul><span class="btn primary" style="width:100%">Upgrade to Pro</span>
 <div style="margin-top:10px;font-size:11.5px;color:var(--muted)">UPI, cards. Cancel any time. Top-up: 50 edits for ₹99, 3 blueprints for ₹149.</div></div></div>
 <div class="soon"><div><b>Team</b> · seats, shared workspaces, one bill · after Pro</div><div><b>Enterprise</b> · later · talk to us</div></div>`;
@@ -1271,7 +1297,7 @@ screen('s29-plan-usage', 'Plan and usage', `<div class="app">
 ${top({ tabs: [{ n: 'Settings', c: 'grey', on: 1 }], share: false })}
 <div class="body noright" style="grid-template-columns:220px minmax(0,1fr)">
 <aside class="side setnav" style="padding:14px 8px">${SET_NAV.map(s => `<div class="row${s === 'Plan and usage' ? ' on' : ''}">${ic(SET_ICON[s], 15)}<span class="n">${s}</span></div>`).join('')}</aside>
-<main class="main"><div class="page" style="padding:30px 40px"><h1>Plan and usage</h1><p class="sub">Free plan · Sagnik Mitra · Renews 1 October</p>${USAGE}${PLANS}</div></main></div></div>`,
+<main class="main"><div class="page" style="padding:30px 40px"><h1>Plan and usage</h1><p class="sub">Free plan · Sagnik Mitra · Allowances reset 1 October</p>${USAGE}${PLANS}</div></main></div></div>`,
 phone({ title: 'Plan and usage', bottom: 'more_horiz', body: `<div class="page">${USAGE}${PLANS.replace('<div class="soon">', '<div class="soon" style="grid-template-columns:1fr;gap:8px">')}</div>` }));
 
 // S30 portfolio (Pro, late): one markdown file, a public page
@@ -1285,7 +1311,8 @@ ${tree({ projects: [{ n: 'Personal', icon: 'person', rows: [{ n: 'portfolio.md',
 <main class="main">${modebar('Split', `<span class="pill pro">${ic('public', 13)} Published · frontmatter.in/@sagnik</span>`, '')}
 <div class="split"><div class="pane"><div class="src">---
 name: Sagnik Mitra
-role: Builds small software for small businesses. Kolkata.
+handle: sagnik
+title: Builds small software for small businesses. Kolkata.
 links:
   site: https://sgnk.ai
   github: sagnikmitra
@@ -1305,8 +1332,74 @@ Small software, shipped weekly. Reach me by email.</div>
 <div class="pane" style="padding:0;overflow:hidden;background:var(--bg)">${PF_PAGE.replace('class="pf"', 'class="pf" style="padding:30px 28px 0"')}</div></div>
 </main></div></div>`,
 `<div class="phone"><div class="iosbar"><span>9:41</span><span style="font-family:var(--font-mono);font-size:11px">●●●</span></div>
-<header class="top"><span class="mark">fm</span><span class="ttl">frontmatter.in/@sagnik</span><span class="btn sm">Follow</span></header>
+<header class="top"><span class="mark">fm</span><span class="ttl">frontmatter.in/@sagnik</span></header>
 <div class="pbody"><div class="pdoc" style="padding:0">${PF_PAGE}</div></div><div class="homeind"><i></i></div></div>`);
+
+// S31 conflict: two versions kept, the person chooses (no silent merge)
+const CONFLICT_L = `<div class="md" style="max-width:none;font-size:13.5px"><h2 style="margin-top:0">The first user</h2><p>A two-chair salon in Kolkata that loses about four bookings a week to double-booking and no-shows. <span class="chg">The owner runs everything from a phone and has never used a laptop for the business.</span></p></div>`;
+const CONFLICT_R = `<div class="md" style="max-width:none;font-size:13.5px"><h2 style="margin-top:0">The first user</h2><p>A two-chair salon in Kolkata that loses about four bookings a week to double-booking and no-shows. <span class="chg">The owner runs everything from a phone, and the front desk closes at eight.</span></p></div>`;
+screen('s31-conflict', 'Conflict', `<div class="app">
+${top({ tabs: TABS_MAIN })}
+<div class="body noright">
+${tree({ projects: PROJECTS_MAIN, foot: `${ic('warning', 14)} 1 conflict to resolve` })}
+<main class="main"><div class="banner">${ic('warning', 16)} <span>Two versions of <b>00-BRIEF.md</b> changed the same paragraph while one of them was offline. Nothing was merged. Choose one, or keep both.</span></div>
+<div class="split"><div class="pane"><div class="rh">${ic('devices', 14)} This browser · you · today 14:02</div>${CONFLICT_L}<div style="margin-top:14px"><span class="btn primary">${ic('check', 15)} Keep this one</span></div></div><div class="gut"></div>
+<div class="pane"><div class="rh">${ic('add_to_drive', 14)} Google Drive · Amit · today 14:05</div>${CONFLICT_R}<div style="margin-top:14px"><span class="btn primary">${ic('check', 15)} Keep this one</span></div></div></div>
+<div style="padding:10px 28px 16px;display:flex;gap:10px;align-items:center;border-top:1px solid var(--border)"><span class="btn">${ic('content_copy', 15)} Keep both as two files</span><span style="font-size:12px;color:var(--fg-muted)">Whichever you choose, the other version stays in history. The same screen appears for a desktop edit against a GitHub change.</span></div>
+</main></div></div>`,
+phone({ mode: 'Reading', title: '00-BRIEF.md', body: `<div class="banner">${ic('warning', 16)} <span>Two versions changed the same paragraph. Nothing was merged.</span></div>
+<div class="pdoc" style="padding:12px 14px 0"><div class="rh">${ic('devices', 14)} This phone · you · 14:02</div>${CONFLICT_L}<span class="btn primary" style="width:100%;margin:8px 0 16px">${ic('check', 15)} Keep this one</span>
+<div class="rh">${ic('add_to_drive', 14)} Google Drive · Amit · 14:05</div>${CONFLICT_R}<span class="btn primary" style="width:100%;margin:8px 0 10px">${ic('check', 15)} Keep this one</span>
+<span class="btn" style="width:100%">${ic('content_copy', 15)} Keep both as two files</span><div style="font-size:12px;color:var(--fg-muted);margin-top:8px">The other version stays in history.</div></div>` }));
+
+// S32 AI unavailable: every provider in the chain refused or timed out
+const AI_DOWN = `<div class="aibox" style="border-color:var(--danger)"><div class="in" style="color:var(--fg)">${ic('cloud_off', 18)} AI is unavailable right now. Your document is untouched and nothing was charged.<span class="go" style="background:var(--panel-2);color:var(--fg-muted)">${ic('refresh', 16)}</span></div>
+<div class="kit" style="margin-top:10px">${[['Groq', 'rate limit, resets in 41 s'], ['Cloudflare Workers AI', 'daily pool used, resets 00:00 UTC'], ['Cerebras', 'trial ended 12 Oct'], ['SambaNova', 'timed out']].map(r => `<div class="file">${ic('close', 14)}<span class="sp">${r[0]}</span><em class="hint">${r[1]}</em></div>`).join('')}</div>
+<div class="chips" style="margin-top:10px"><span class="chip">${ic('refresh', 14)} Try again in a minute</span><span class="chip">${ic('desktop_mac', 14)} Use the local model on the desktop app</span><span class="chip">${ic('key', 14)} Use my own key</span></div>
+<div class="foot">${ic('auto_awesome', 12)} Your 7 remaining edits are still yours. Nothing is deducted for a failed call.</div></div>`;
+screen('s32-ai-unavailable', 'AI unavailable', `<div class="app">
+${top({ tabs: TABS_MAIN })}
+<div class="body">
+${tree({ projects: PROJECTS_MAIN })}
+<main class="main">${modebar('Live')}
+<div class="doc"><div class="md">${DOC_BRIEF}</div></div>
+${AI_DOWN}
+</main>
+${rail({ outline: OUTLINE_BRIEF, aiOff: 'Every provider is down. Try again in a minute.' })}
+</div></div>`,
+phone({ mode: 'Live', title: '00-BRIEF.md', bottom: 'auto_awesome', body: `${pmodebar('Live')}<div class="pdoc"><div class="md">${DOC_BRIEF_SHORT}</div></div>${AI_DOWN}` }));
+
+// S33 over the cap: what happened, what still works, what to do
+const OVERCAP = `<div class="modal" style="width:520px"><h2>That is your 50th cloud document</h2><p>Free keeps 50 documents in the cloud. Everything you have still opens, edits and exports. Nothing is deleted.</p>
+<div class="kit"><div class="file">${ic('check', 14, 'ok')}<span class="sp">Open, edit and export every document</span></div><div class="file">${ic('check', 14, 'ok')}<span class="sp">Share and publish what you have</span></div><div class="file">${ic('close', 14)}<span class="sp">Create a new cloud document until you are under 50</span></div></div>
+<div class="stack" style="margin-top:14px"><span class="btn">${ic('delete', 18)} Delete or export something</span><span class="btn">${ic('desktop_mac', 18)} Use the desktop app, which has no cap</span><span class="btn primary">${ic('bolt', 18)} Move to Pro, ₹299 a month incl. GST</span></div>
+<p class="fine">A downgraded account meets this same screen: nothing is removed, nothing new is created until it is under the cap.</p></div>`;
+screen('s33-over-cap', 'Over the cap', `<div class="app">
+${top({ tabs: TABS_MAIN })}
+<div class="body">
+${tree({ projects: PROJECTS_MAIN, foot: `${ic('cloud_done', 14)} 50 of 50 cloud documents` })}
+<main class="main">${modebar('Live')}
+<div class="doc"><div class="md">${DOC_BRIEF}</div></div>
+<div class="dim">${OVERCAP}</div>
+</main>
+${rail({ outline: OUTLINE_BRIEF })}
+</div></div>`,
+phone({ mode: 'Live', title: '00-BRIEF.md', body: `${pmodebar('Live')}<div class="pdoc"><div class="md">${DOC_BRIEF_SHORT}</div></div>`, overlay: psheet(OVERCAP.replace('<div class="modal" style="width:520px">', '<div>').replace(/<\/div>$/, '')) }));
+
+// S34 ideas, empty: what a blueprint is, the three depths, one box, one example kit
+const IDEAS_EMPTY = `<div style="max-width:640px;margin:0 auto"><div class="rh">Ideas</div>
+<div class="md" style="font-size:14px"><p>Describe an idea. Answer a few questions. Get a brief and a blueprint of fifteen files that an agent can build from, checked for consistency, at a link you can hand to Claude Code, Cursor or Codex.</p></div>
+<div class="kit" style="margin:10px 0 16px"><div class="file">${ic('bolt', 14)}<span class="sp">Low, free: 10 to 15 questions with a recommendation each</span></div><div class="file">${ic('insights', 14)}<span class="sp">Medium, Pro: 20 to 30 questions, each with where it stands and what forces the choice</span></div><div class="file">${ic('psychology', 14)}<span class="sp">High, Pro: Medium plus a research pass with sources opened and dated</span></div></div>
+<div class="aibox" style="margin:0"><div class="in">${ic('lightbulb', 18)} What are you building, and for whom?<span class="go">${ic('arrow_forward', 16)}</span></div>
+<div class="chips"><span class="chip">${ic('description', 14)} Open the example: a booking page for salons</span><span class="chip">${ic('table_view', 14)} Pick an industry template</span></div>
+<div class="foot">${ic('auto_awesome', 12)} The example is a real kit, made by hand, so you can read all fifteen files before spending your blueprint credit.</div></div></div>`;
+screen('s34-ideas-empty', 'Ideas, empty', `<div class="app">
+${top({ tabs: [{ n: 'Ideas', c: 'blue', on: 1 }] })}
+<div class="body noright">
+<aside class="side ideas"><div class="sidehead">${ic('lightbulb', 16)} Ideas<span class="sp"></span><span class="pill">${ic('add', 14)} new</span></div><div style="padding:10px 8px;font-size:12.5px;color:var(--muted)">Your ideas will be listed here with where each one stands.</div><div class="sidefoot">${ic('auto_awesome', 14)} 1 blueprint credit this month</div></aside>
+<main class="main"><div class="modebar"><span class="steps"><b>1 Describe</b> ${ic('chevron_right', 14)} 2 Decide ${ic('chevron_right', 14)} 3 Write ${ic('chevron_right', 14)} 4 Hand off</span></div>
+<div class="doc" style="padding:40px 48px">${IDEAS_EMPTY}</div></main></div></div>`,
+phone({ title: 'Ideas', bottom: 'auto_awesome', body: `<div class="pdoc" style="padding:14px 14px 0">${IDEAS_EMPTY.replace('<div style="max-width:640px;margin:0 auto">', '<div>')}</div>` }));
 
 for (const [name, html] of Object.entries(screens)) {
   fs.writeFileSync(path.join(HERE, name + '.html'), html);
