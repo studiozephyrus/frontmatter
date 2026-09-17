@@ -21,10 +21,12 @@ Three things are load-bearing:
 - **Splice-only writing.** The engine locates a byte range and replaces exactly those bytes.
   It never rewrites a whole file, and it **refuses** rather than guess when a range is
   ambiguous.
-- **Review state.** A sidecar at `.frontmatter/review.jsonl` records which spans a person has
-  read, keyed by content hash. This is the headline claim and it is **under test, not proven**
-  — it failed an adversarial round on 2026-09-08 and the market moved against it again on
-  2026-09-09.
+- **The change queue.** Every change by a person, an AI edit or an agent enters a queue where
+  the owner accepts or rejects it one by one (plan v5, S20). The earlier headline, a per-span
+  read state in a `.frontmatter/review.jsonl` sidecar, was **dropped on 2026-09-17**: it never
+  existed in the code, it failed an adversarial round on 2026-09-08, and Almanac shipped the
+  same read receipts and shut down. Attribution survives as a mark in the version record
+  (plan v5, section 20).
 
 ## Read these before proposing anything
 
