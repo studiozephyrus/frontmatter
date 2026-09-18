@@ -163,6 +163,19 @@ in the chain with the sentence each one publishes about training. Until that pag
 `K.promise.notraining` goes nowhere, which would make the promise unverifiable by the person it is
 made to.
 
+**Ids cited by `12-screens/S01.md`, reconciled 18 September.**
+
+id | screen | string | tone | budget | notes
+`K.s01.heading` | S01 | (uses `K.s01.title`) | `plain` | `title` | Alias. The screen spec's name for the heading; the string lives in `K.s01.title`.
+`K.s01.promise` | S01 | (uses `K.s01.lede`) | `plain` | `lede` | Alias. The screen spec calls the line under the heading the promise; the string lives in `K.s01.lede`.
+`K.s01.fineprint` | S01 | (uses `K.s01.fine`) | `promise` | `lede` | Alias of `K.s01.fine`, which is itself `K.promise.nopassword` then `K.promise.notraining`.
+`K.s01.providerlist` | S01 | here are the providers | `label` | `label`, 22 | `[gen]` `docs/mvp0/screens/gen.mjs:811`. The link text inside `K.promise.notraining`. Its destination page is not written; see the note just above this block.
+`K.s01.value.write` | S01 | (uses `K.s01.write` then `K.s01.writeline`) | `plain` | `lede` | Alias. One value cell: the label, then its line.
+`K.s01.value.decide` | S01 | (uses `K.s01.decide` then `K.s01.decideline`) | `plain` | `lede` | Alias. One value cell: the label, then its line.
+`K.s01.value.ship` | S01 | (uses `K.s01.ship` then `K.s01.shipline`) | `plain` | `lede` | Alias. One value cell: the label, then its line.
+`K.s01.busy` | S01 | Signing in | `plain` | `button`, 10 | `[new]` proposed. The accessible name of the spinner on the tapped button while the provider popup is open. Both buttons are disabled in this state.
+`K.s01.cancelled` | S01 | (no string: a cancelled sign-in returns to the card and says nothing) | `plain` | `body` | `[new]`. The S01 spec is explicit that a cancelled sign-in is not an error and nothing is said beyond the card's own copy. The id exists so a builder does not add a message.
+
 ---
 
 ## 4. S02 Home, first time, and S03 Home
@@ -190,6 +203,37 @@ id | screen | string | tone | budget | notes
 `K.s03.col.opened` | S03 | Opened | `label` | `label`, 10 | `[gen]` `docs/mvp0/screens/gen.mjs:855`.
 `K.s03.col.owner` | S03 | Owner | `label` | `label`, 10 | `[gen]` `docs/mvp0/screens/gen.mjs:855`.
 
+**Ids cited by `12-screens/S02.md`, reconciled 18 September.**
+
+id | screen | string | tone | budget | notes
+`K.s02.tab.documents` | S02 | (uses the first label of `K.common.tabs`) | `label` | `label` | Alias. Documents, `[gen]` `docs/mvp0/screens/gen.mjs:838`.
+`K.s02.tab.ideas` | S02 | (uses the second label of `K.common.tabs`) | `label` | `label` | Alias. Ideas, `[gen]` `docs/mvp0/screens/gen.mjs:838`.
+`K.s02.tab.shared` | S02 | (uses the third label of `K.common.tabs`) | `label` | `label` | Alias. Shared with me; the phone shortens it to Shared (`docs/mvp0/screens/gen.mjs:842`).
+`K.s02.recent.head` | S02 | (uses `K.s03.col.recent`, `K.s03.col.project`, `K.s03.col.opened`, `K.s03.col.owner`) | `label` | `label` | Alias. The table head is drawn on S02 as well, `[gen]` `docs/mvp0/screens/gen.mjs:840`. Dropped on the phone.
+`K.s02.search` | S02 | (uses `K.common.searchlong` with `K.common.searchkbd`) | `label` | `label` | Alias. The wide search field of the home header.
+`K.s02.desktop.note` | S02 | Documents on this computer have no cap. | `plain` | `lede`, 39 | `[new]` proposed. The line the desktop build adds under `K.s02.empty`; the S02 spec asks for it and gen.mjs does not draw it. The web form of the same fact is the last sentence of `K.s02.caps`.
+
+**Ids cited by `12-screens/S03.md`, reconciled 18 September.**
+
+id | screen | string | tone | budget | notes
+`K.s03.greeting` | S03 | (uses `K.s02.greeting`) | `plain` | `title` | Alias. The same greeting on the returning home.
+`K.s03.usage` | S03 | (uses `K.s03.usedpill`) | `plain` | `label` | Alias. The usage pill on the right of the greeting row.
+`K.s03.tab.documents` | S03 | (uses the first label of `K.common.tabs`) | `label` | `label` | Alias.
+`K.s03.tab.ideas` | S03 | (uses `K.s03.ideascount`) | `label` | `label` | Alias. The count form of the Ideas tab.
+`K.s03.tab.shared` | S03 | (uses `K.s03.sharedcount`) | `label` | `label` | Alias. The phone shortens it to Shared · {n} (`docs/mvp0/screens/gen.mjs:857`).
+`K.s03.recent.head.name` | S03 | (uses `K.s03.col.recent`) | `label` | `label` | Alias. The name column is headed Recent.
+`K.s03.recent.head.project` | S03 | (uses `K.s03.col.project`) | `label` | `label` | Alias.
+`K.s03.recent.head.opened` | S03 | (uses `K.s03.col.opened`) | `label` | `label` | Alias.
+`K.s03.recent.head.owner` | S03 | (uses `K.s03.col.owner`) | `label` | `label` | Alias.
+`K.s03.row.rename` | S03 | Rename | `label` | `button`, 6 | `[new]` proposed. Row menu. gen.mjs draws the menu button only (`docs/mvp0/screens/gen.mjs:856`).
+`K.s03.row.duplicate` | S03 | Duplicate | `label` | `button`, 9 | `[new]` proposed. Row menu.
+`K.s03.row.export` | S03 | Export | `label` | `button`, 6 | `[new]` proposed. Row menu, a single-file export.
+`K.s03.row.trash` | S03 | Move to trash | `label` | `button`, 13 | `[new]` proposed. Row menu. **Never Delete**: trash holds a document for 30 days (S03 spec, Actions).
+`K.s03.empty.documents` | S03 | No documents yet. Start one above. | `plain` | `lede`, 34 | `[new]` proposed. A tab's own empty line, inside the table frame. Follows `K.s02.empty.phone`.
+`K.s03.empty.shared` | S03 | Nothing has been shared with you yet. | `plain` | `lede`, 37 | `[new]` proposed. The Shared with me tab when it has no rows.
+`K.s03.offline` | S03 | Offline. Showing the list saved on this device. | `caution` | `lede`, 47 | `[new]` proposed. The list comes from the device cache and is marked as such (S03 spec, States).
+`K.s03.noproject` | S03 | - | `plain` | `button`, 1 | `[new]` proposed. A loose file shows its project as a hyphen, never as blank (S03 spec, Columns).
+
 ---
 
 ## 5. S04 Workspace, and S27 dark
@@ -211,6 +255,40 @@ id | string | tone | budget | notes
 `K.s04.more.tip` | Bookmark, find, history | `help` | `label`, 26 | `[gen]` `docs/mvp0/screens/gen.mjs:690`.
 `K.s04.wordcount` | {words} words · {mins} min | `plain` | `label`, 22 | `[gen]` `docs/mvp0/screens/gen.mjs:674`. Hidden in Live, where the mode switch takes the room.
 
+**Ids cited by `12-screens/S04.md`, reconciled 18 September.**
+
+id | screen | string | tone | budget | notes
+`K.s04.tree.head` | S04 | (uses `K.common.tree`) | `label` | `label` | Alias. The tree head, `[gen]` `docs/mvp0/screens/gen.mjs:662`.
+`K.s04.tree.addproject` | S04 | (uses `K.s04.newproject`) | `label` | `button` | Alias. The add-project pill in the tree head.
+`K.s04.addfile.uploadfiles` | S04 | (uses `K.s04.addfile.upload`) | `label` | `button` | Alias. Second row of the Add file menu.
+`K.s04.addfile.uploadfolder` | S04 | (uses `K.s04.addfile.folder`) | `label` | `button` | Alias. Third row of the Add file menu.
+`K.s04.addfile.importfrom` | S04 | (uses `K.s04.addfile.import`) | `label` | `button` | Alias. Fourth row of the Add file menu.
+`K.s04.ideas` | S04 | (uses `K.s04.ideassection`) | `label` | `label` | Alias. The collapsed Ideas section at the foot of the tree.
+`K.s04.sync` | S04 | (uses `K.common.synced`) | `plain` | `label` | Alias. The sync foot of the tree, `[gen]` `docs/mvp0/screens/gen.mjs:865`.
+`K.s04.saved` | S04 | (uses `K.common.saved`) | `plain` | `label` | Alias. The saved pill in the mode bar, `[gen]` `docs/mvp0/screens/gen.mjs:866`.
+`K.s04.rail.tags` | S04 | (uses `K.common.tags`) | `label` | `label` | Alias. Right rail, first collapsible row.
+`K.s04.rail.backlinks` | S04 | (uses `K.common.backlinks`) | `label` | `label` | Alias. Right rail.
+`K.s04.rail.history` | S04 | (uses `K.common.history`) | `label` | `label` | Alias. Right rail.
+`K.s04.rail.comments` | S04 | (uses `K.common.comments`) | `label` | `label` | Alias. Right rail.
+`K.s04.rail.outline` | S04 | (uses `K.common.outline`) | `label` | `label` | Alias. Right rail, the section that grows.
+`K.s04.aiedit` | S04 | (uses `K.common.aiedit`) | `label` | `button` | Alias. Rail foot.
+`K.s04.credits` | S04 | (uses `K.common.editsleft`) | `cost` | `label` | Alias. The credit meter in the rail foot. Both numbers come from the ledger.
+`K.s04.newtab` | S04 | New tab | `label` | `button`, 7 | `[new]` proposed. The accessible name of the add control that ends the tab strip; gen.mjs draws the icon only (`docs/mvp0/screens/gen.mjs:631`).
+`K.s04.closedirty` | S04 | {file} has changes that are not saved yet. Save them before you close it? | `caution` | `body`, 69 | `[new]` proposed. Asked when a dirty tab is closed (S04 spec, Actions). The two answers need their own ids: Save and close, and Close without saving. Neither is written yet.
+`K.s04.offline` | S04 | (uses `K.s24.banner`, `K.s24.lastsync` and `K.s24.pending`) | `caution` | `body` | Alias. The S04 offline state is a banner, the last sync time and the queue depth, which is exactly what S24 draws.
+`K.s04.share` | S04 | Share | `label` | `button`, 5 | `[gen]` `docs/mvp0/screens/gen.mjs:640`, the title attribute on the share icon. Also its accessible name. Not a visible label.
+
+**Ids cited by `12-screens/S27.md`, reconciled 18 September.**
+
+id | screen | string | tone | budget | notes
+`K.s27.togglelight` | S27 | Switch to light theme | `label` | `button`, 21 | `[new]` proposed. Label and tooltip of the header theme button when pressing it would give the light theme. gen.mjs draws the icon with no title (`docs/mvp0/screens/gen.mjs:645`).
+`K.s27.toggledark` | S27 | Switch to dark theme | `label` | `button`, 20 | `[new]` proposed. The same button when pressing it would give the dark theme.
+`K.s27.appearance.heading` | S27 | (uses `K.s28.nav.appearance`) | `label` | `label` | Alias. The Appearance section heading on S28 is the same word as its nav row.
+`K.s27.appearance.system` | S27 | Match this device | `label` | `button`, 17 | `[new]` proposed. First of three choices, the one that follows the operating system.
+`K.s27.appearance.light` | S27 | Light | `label` | `button`, 5 | `[new]` proposed.
+`K.s27.appearance.dark` | S27 | Dark | `label` | `button`, 4 | `[new]` proposed.
+`K.s27.appearance.help` | S27 | Your choice is saved to your account, so every device you sign in on uses it. | `help` | `help`, 77 | `[new]` proposed. Echoes `K.s28.lede`, which says settings live on the account.
+
 ---
 
 ## 6. S05 Doc mode
@@ -223,6 +301,20 @@ id | string | tone | budget | notes
 `K.s05.more.tip` | Font, size, colour, highlight, alignment: render here, export to PDF, plain elsewhere | `help` | `help` | `[gen]` `docs/mvp0/screens/gen.mjs:707`. **This is a refusal in a tooltip.** `[M]` Google's own rule, quoted at `docs/mvp0/PRODUCT-PLAN.md` section 7.
 `K.s05.suggesting` | Suggesting | `label` | `label`, 14 | `[gen]` `docs/mvp0/screens/gen.mjs:709`.
 `K.s05.toast` | Doc mode is a view. The file is still {file}. Page setup lives in its front matter; colours and fonts render here and export to PDF only. | `plain` | `body` | `[gen]` `docs/mvp0/screens/gen.mjs:889`. **Shown once, ever.** Not a tour (`docs/mvp0/PRODUCT-PLAN.md` section 4).
+
+**Ids cited by `12-screens/S05.md`, reconciled 18 September.**
+
+id | screen | string | tone | budget | notes
+`K.s05.face.googlesans` | S05 | (uses `K.s05.font`) | `label` | `button` | Alias. Google Sans, the first of the four faces, `[gen]` `docs/mvp0/screens/gen.mjs:702`.
+`K.s05.face.serif` | S05 | Serif | `label` | `button`, 5 | `[new]` proposed. The second face named in `K.s05.font.tip`. Which serif is not specified, so the menu names the class rather than a family.
+`K.s05.face.mono` | S05 | Mono | `label` | `button`, 4 | `[new]` proposed. The third face named in `K.s05.font.tip`.
+`K.s05.face.system` | S05 | System | `label` | `button`, 6 | `[new]` proposed. The fourth face named in `K.s05.font.tip`: the device's own face.
+`K.s05.size` | S05 | Font size | `label` | `button`, 9 | `[new]` proposed. Accessible name of the size stepper. gen.mjs draws a minus, the number and a plus with no label (`docs/mvp0/screens/gen.mjs:703`); the number is `{size}`, not a string.
+`K.s05.comment.reply` | S05 | (uses `K.common.reply`) | `label` | `button` | Alias. The Reply on a margin comment, `[gen]` `docs/mvp0/screens/gen.mjs:888`.
+`K.s05.properties.head` | S05 | Properties | `label` | `label`, 10 | `[new]` proposed. Heading of the front matter panel, which is specified, not built (S05 spec, open decision D14).
+`K.s05.properties.invalid` | S05 | This is not valid YAML, so it was not saved. The front matter you had before is unchanged. Fix the line shown and try again. | `refusal` | `body`, 124 | `[new]` proposed. **A refusal.** What will not happen, why, what to do, in that order (rule 6). The S05 spec: refuse invalid YAML and leave the old block.
+`K.s05.readonly` | S05 | You can comment on this document but not edit it. | `plain` | `lede`, 49 | `[new]` proposed. Shown when the role is Commenter or Viewer; the page is read-only and the margin stays live. A Viewer who cannot comment needs a second string, and none is written.
+`K.s05.nocarrier` | S05 | Doc mode cannot show {feature}, so it appears as plain text here. The file is unchanged. Switch to MD to see it as written. | `refusal` | `body`, 116 | `[new]` proposed. **A refusal**, shown once in the toast when a feature in the file has no carrier in Doc mode (S05 spec, degraded state). `{feature}` names it in plain words.
 
 ---
 
@@ -245,6 +337,29 @@ id | string | tone | budget | notes
 `K.s06.cost` | A document uses 1 edit credit. This month: {left} of {edits} edits left. | `cost` | `body` | `[gen]` `docs/mvp0/screens/gen.mjs:905`. **Before the click**, rule 7.
 `K.s06.cost.phone` | 1 edit credit · {left} of {edits} left | `cost` | `label`, 30 | `[gen]` `docs/mvp0/screens/gen.mjs:913`.
 `K.s06.railempty` | Nothing yet. | `plain` | `label`, 16 | `[gen]` `docs/mvp0/screens/gen.mjs:907`.
+
+**Ids cited by `12-screens/S06.md`, reconciled 18 September.**
+
+id | screen | string | tone | budget | notes
+`K.s06.target.writing` | S06 | (uses `K.s06.target.new`) | `plain` | `label` | Alias. The Writing form of the target line.
+`K.s06.target.editing` | S06 | (uses `K.s06.target.edit`) | `plain` | `label` | Alias. The Editing form of the target line.
+`K.s06.target.range` | S06 | Selected: {count} {unit} | `plain` | `label`, 15 | `[new]` proposed. Appended to `K.s06.target.edit` when there is a selection, so a person sees what they selected before they spend a credit (S06 spec). `{unit}` is paragraphs, lines or words, pluralised by rule.
+`K.s06.change` | S06 | (uses `K.s06.target.swap`) | `label` | `button` | Alias. Change, on the target line.
+`K.s06.send` | S06 | Send | `label` | `button`, 4 | `[new]` proposed. Accessible name of the arrow control at the end of the prompt field; gen.mjs draws the icon only (`docs/mvp0/screens/gen.mjs:902`). Command Enter does the same.
+`K.s06.chip.onedoc` | S06 | (uses `K.s06.chip.one`) | `label` | `button` | Alias.
+`K.s06.chip.toideas` | S06 | (uses `K.s06.chip.ideas`) | `label` | `label` | Alias.
+`K.s06.chip.cleanpaste` | S06 | (uses `K.s06.chip.paste`) | `label` | `button` | Alias.
+`K.s06.chip.plannotes` | S06 | (uses `K.s06.chip.plan`) | `label` | `button` | Alias.
+`K.s06.startfrom.label` | S06 | (uses `K.s06.orstart`) | `label` | `label` | Alias.
+`K.s06.startfrom.github` | S06 | (uses `K.s06.chip.gh`) | `label` | `button` | Alias.
+`K.s06.startfrom.drop` | S06 | (uses `K.s06.chip.drop`) | `label` | `button` | Alias.
+`K.s06.startfrom.template` | S06 | (uses `K.s06.chip.template`) | `label` | `button` | Alias.
+`K.s06.getmore` | S06 | (uses `K.common.getmore`) | `label` | `button` | Alias. The link at the end of `K.s06.cost`.
+`K.s06.accept` | S06 | (uses `K.common.accept`) | `label` | `button` | Alias. Equal weight with Reject.
+`K.s06.reject` | S06 | (uses `K.common.reject`) | `label` | `button` | Alias.
+`K.s06.untouched` | S06 | (uses `K.promise.untouched`) | `promise` | `label` | Alias. Every failure state of the box, and S07 and S32, say this sentence and no other version of it (S06 spec, States).
+`K.s06.firstrun` | S06 | Each answer the box gives uses 1 edit credit, and only when it succeeds. Nothing is deducted for a failed call. | `cost` | `body`, 111 | `[new]` proposed. The one line shown the first time the box opens on an account, saying what a credit is. The second sentence is `K.promise.nocharge` verbatim. The 1 is the per-document price from `K.s06.cost`; if the price becomes configurable it becomes `{cost}`.
+`K.s06.provider` | S06 | Running on {provider} | `plain` | `label`, 13 | `[new]` proposed. The foot names the provider when the chain is on a fallback (S06 spec, degraded state): slower, not worse. Never a model's confidence (rule 5).
 
 ---
 
@@ -271,6 +386,30 @@ id | string | tone | budget | notes
 `K.s07.cost` | 1 credit each · {left} left · runs on a free model this month | `cost` | `help` | `[gen]` `docs/mvp0/screens/gen.mjs:921`. On Pro the tail reads "runs on Claude".
 `K.s07.sheet.title` | AI edit the selection | `label` | `title`, 24 | `[gen]` `docs/mvp0/screens/gen.mjs:932`. Phone only.
 
+**Ids cited by `12-screens/S07.md`, reconciled 18 September.**
+
+id | screen | string | tone | budget | notes
+`K.s07.verb.refine` | S07 | (uses `K.s07.refine`) | `label` | `button` | Alias. The screen spec added `verb.` to the deck's ids.
+`K.s07.verb.refine.sub` | S07 | (uses `K.s07.refine.sub`) | `help` | `help` | Alias.
+`K.s07.verb.expand` | S07 | (uses `K.s07.expand`) | `label` | `button` | Alias.
+`K.s07.verb.expand.sub` | S07 | (uses `K.s07.expand.sub`) | `help` | `help` | Alias.
+`K.s07.verb.shorten` | S07 | (uses `K.s07.shorten`) | `label` | `button` | Alias.
+`K.s07.verb.shorten.sub` | S07 | (uses `K.s07.shorten.sub`) | `help` | `help` | Alias.
+`K.s07.verb.tone` | S07 | (uses `K.s07.tone`) | `label` | `button` | Alias.
+`K.s07.verb.tone.sub` | S07 | (uses `K.s07.tone.sub`) | `help` | `help` | Alias.
+`K.s07.verb.translate` | S07 | (uses `K.s07.translate`) | `label` | `button` | Alias.
+`K.s07.verb.translate.sub` | S07 | (uses `K.s07.translate.sub`) | `help` | `help` | Alias.
+`K.s07.verb.callout` | S07 | (uses `K.s07.summarise`) | `label` | `label` | Alias. The screen calls this verb callout; the deck's id is summarise.
+`K.s07.verb.callout.sub` | S07 | (uses `K.s07.summarise.sub`) | `help` | `help` | Alias.
+`K.s07.verb.links` | S07 | (uses `K.s07.links`) | `label` | `button` | Alias.
+`K.s07.verb.links.sub` | S07 | (uses `K.s07.links.sub`) | `help` | `help` | Alias.
+`K.s07.foot` | S07 | (uses `K.s07.cost`) | `cost` | `help` | Alias. The menu foot: one credit each, how many are left, which provider this month.
+`K.s07.accept` | S07 | (uses `K.common.accept`) | `label` | `button` | Alias.
+`K.s07.reject` | S07 | (uses `K.common.reject`) | `label` | `button` | Alias.
+`K.s07.suggesting` | S07 | (uses `K.s05.suggesting`) | `label` | `label` | Alias. The toolbar pill while a proposal is live, `[gen]` `docs/mvp0/screens/gen.mjs:926`.
+`K.s07.unchanged` | S07 | The model found nothing to change, so your text is as it was. | `plain` | `lede`, 61 | `[new]` proposed. Returning the input unchanged is a correct outcome and is not apologised for (S07 spec, Actions). Whether a credit is spent on it is not settled in the spec, so the string says nothing about cost.
+`K.s07.refused` | S07 | This text changed while the suggestion was being made, so nothing was written. Select it again and ask again. | `refusal` | `body`, 109 | `[new]` proposed. **A refusal**, shown in place of Accept and Reject, never as a toast. The engine refuses rather than guess a moved range (S07 spec, States). What, why, what to do.
+
 ---
 
 ## 9. S08 Custom blocks
@@ -279,6 +418,21 @@ id | string | tone | budget | notes
 `K.s08.elsewhere` | Elsewhere | `label` | `label`, 12 | `[gen]` `docs/mvp0/screens/gen.mjs:982`.
 `K.s08.elsewhere.body` | (GitHub, Obsidian, VS Code): the table is still a table, and the chart block is a two-line code block under it. Mermaid renders on GitHub, GitLab and in Obsidian. The callout renders on GitHub as a note. Math renders on GitHub. | `plain` | `body` | `[gen]` `docs/mvp0/screens/gen.mjs:982`. **The degradation statement**, which `docs/mvp0/PRODUCT-PLAN.md` section 20 requires of every format we invent.
 `K.s08.tablefolded` | Table folded. Click to show the three rows. | `plain` | `label`, 44 | `[gen]` `docs/mvp0/screens/gen.mjs:972`. `{n}` rows.
+
+**Ids cited by `12-screens/S08.md`, reconciled 18 September.**
+
+id | screen | string | tone | budget | notes
+`K.s08.table.folded` | S08 | (uses `K.s08.tablefolded`) | `plain` | `label` | Alias. The screen spec added a dot to the deck's id.
+`K.s08.chart.notable` | S08 | This chart has no table above it to read from, so it is shown as its source. Put the table directly above the chart block. | `refusal` | `body`, 122 | `[new]` proposed. **A block that cannot render shows its source, never an empty space** (S08 spec, Actions). Shown beside the fenced text.
+`K.s08.chart.nonumbers` | S08 | The table above has no column of numbers, so there is nothing to chart. The block is shown as its source. | `refusal` | `body`, 105 | `[new]` proposed. Same rule: the source in place, the reason beside it.
+`K.s08.chart.kind` | S08 | This version cannot draw a {kind} chart, so the block is shown as its source. | `refusal` | `body`, 73 | `[new]` proposed. `{kind}` is the value the block names. `UNVERIFIED:` the list of supported kinds is not written in the plan; when it is, the string should name them.
+`K.s08.mermaid.failed` | S08 | This diagram could not be drawn: {reason}. Its text is shown instead and nothing in the file changed. | `refusal` | `body`, 95 | `[new]` proposed. `{reason}` is the parser's line and column in plain words, never a raw stack.
+`K.s08.maths.failed` | S08 | This maths could not be drawn: {reason}. Its text is shown instead and nothing in the file changed. | `refusal` | `body`, 93 | `[new]` proposed. Same shape as `K.s08.mermaid.failed`.
+`K.s08.callout.unknown` | S08 | {kind} is not a callout kind we know, so it is shown as a plain quote. | `plain` | `lede`, 66 | `[new]` proposed. An unknown callout kind falls back to a plain blockquote (S08 spec, Actions).
+`K.s08.fence.unclosed` | S08 | This block has no closing fence, so it runs to the end of the document. Add the closing line to end it. | `caution` | `body`, 103 | `[new]` proposed. An unclosed fence swallows the document, which is why the render carrier for prose is a callout (CLAUDE.md, settled).
+`K.s08.drawing.missing` | S08 | The drawing file for this block could not be found, so nothing is drawn here. The block in your document is unchanged. | `caution` | `body`, 118 | `[new]` proposed. Also shown offline when the drawing is not cached on this device.
+`K.s08.table.shape` | S08 | Row {row} has {cells} cells and the header has {cols}. Nothing was written. Match the header, then try again. | `refusal` | `body`, 97 | `[new]` proposed. **A refusal**: the edit is not spliced while the row width does not match the header (S08 spec, Actions).
+`K.s08.gutter` | S08 | Drag to resize the two panes | `help` | `label`, 28 | `[new]` proposed. Accessible name and tooltip of the gutter between the source and the render. The position is remembered.
 
 ---
 
@@ -303,6 +457,17 @@ id | string | tone | budget | notes
 
 **S09 is deferred.** `[Z]` `docs/mvp0/SCREEN-CHANGES-2026-09-18.md:75`: noted, not built now. These
 strings are kept so the deferral does not cost the wording.
+
+**Ids cited by `12-screens/S09.md`, reconciled 18 September.**
+
+id | screen | string | tone | budget | notes
+`K.s09.convention` | S09 | (uses `K.s09.legend`) | `help` | `body` | Alias. The screen spec names the convention sentence separately; in the drawn screen it is the tail of the legend: a phase is an H2, a step is an H3, the tag is the first word in brackets.
+`K.s09.counts` | S09 | (uses `K.s09.count`) | `plain` | `label` | Alias.
+`K.s09.nophases` | S09 | This document has no H2 headings, so there are no phases to draw. Add a heading, or read it in Page view. | `refusal` | `body`, 105 | `[new]` proposed. The empty state offers Page view (S09 spec, States). Deferred screen; kept so the wording survives.
+`K.s09.orphanstep` | S09 | This step has no phase above it, so it is shown in a column of its own. Give it an H2 above to place it. | `caution` | `body`, 104 | `[new]` proposed. The step sits in a leading column with the reason beside it.
+`K.s09.toolarge` | S09 | Showing the first {shown} phases. The rest draw as you scroll, or switch to Outline. | `plain` | `lede`, 79 | `[new]` proposed. `{shown}` is a render limit and is read from configuration, never typed here.
+`K.s09.badref` | S09 | This reference points to nothing in this project. | `caution` | `lede`, 49 | `[new]` proposed. Beside a reference that resolves to nothing. Same finding as `K.s10.link.sub`, worded for a card.
+`K.s09.notatthiswidth` | S09 | This view needs a wider screen. Try Outline or Page on a phone. | `refusal` | `lede`, 63 | `[new]` proposed. **A refusal**: some views are unavailable at phone width (S09 spec, Actions).
 
 ---
 
@@ -330,6 +495,25 @@ id | string | tone | budget | notes
 `K.s10.fixall` | Fix all safe | `label` | `button`, 16 | `[gen]` `docs/mvp0/screens/gen.mjs:1045`. **Safe means the fix is byte-determined.** Anything needing a judgement is not in this action.
 `K.s10.rules` | Rules | `label` | `button`, 8 | `[gen]` `docs/mvp0/screens/gen.mjs:1045`.
 `K.s10.count` | {n} problems | `plain` | `label`, 14 | `[gen]` `docs/mvp0/screens/gen.mjs:1037`.
+
+**Ids cited by `12-screens/S10.md`, reconciled 18 September.**
+
+id | screen | string | tone | budget | notes
+`K.s10.costnote` | S10 | (uses `K.s10.never`) | `promise` | `body` | Alias. The sales line: checks on the device cost nothing, the writing note is advisory and never blocks.
+`K.s10.fixallsafe` | S10 | (uses `K.s10.fixall`) | `label` | `button` | Alias.
+`K.s10.fixallsafe.count` | S10 | Fix {n} problems that each have one exact fix? You can undo this in one step. | `cost` | `lede`, 76 | `[new]` proposed. The count is stated before the batch splice (S10 spec, Actions), per rule 7. Needs a plural rule for one problem.
+`K.s10.fixallsafe.none` | S10 | None of these has a fix that is certain, so nothing was changed. Fix them one at a time. | `refusal` | `lede`, 88 | `[new]` proposed. **A refusal**: safe means byte-determined, and anything needing a judgement is not in this action.
+`K.s10.clean` | S10 | No problems found in this document. | `plain` | `lede`, 35 | `[new]` proposed. The empty state, with the filter still visible.
+`K.s10.check.brokenlink` | S10 | (uses `K.s10.link` then `K.s10.link.sub`) | `caution` | `label` | Alias.
+`K.s10.check.headingskip` | S10 | (uses `K.s10.heading` then `K.s10.heading.sub`) | `caution` | `label` | Alias.
+`K.s10.check.noalt` | S10 | (uses `K.s10.alt` then `K.s10.alt.sub`) | `caution` | `label` | Alias.
+`K.s10.check.tableshape` | S10 | (uses `K.s10.table` then `K.s10.table.sub`) | `caution` | `label` | Alias.
+`K.s10.check.spelling` | S10 | Possible misspelling: {word} | `caution` | `label`, 24 | `[new]` proposed. A spelling row. Its action is `K.s10.adddictionary`.
+`K.s10.check.frontmatter` | S10 | Front matter key {key} does not match this project's schema | `caution` | `help`, 56 | `[new]` proposed. When the schema file is missing the check is skipped and says so, rather than flooding the list.
+`K.s10.writing.longsentence` | S10 | (uses `K.s10.sentence` then `K.s10.sentence.sub`) | `plain` | `label` | Alias. The one advisory row.
+`K.s10.adddictionary` | S10 | Add to dictionary | `label` | `button`, 17 | `[new]` proposed. Appends the word to the project dictionary.
+`K.s10.offline.writing` | S10 | Writing notes need a connection. Checks still work on this device. | `plain` | `lede`, 66 | `[new]` proposed. Offline, everything in Checks works and Writing says it is unavailable (S10 spec, States).
+`K.s10.check.failed` | S10 | The {check} check could not run, so its findings are missing. The other checks ran as usual. | `caution` | `lede`, 87 | `[new]` proposed. **A failed check never removes the other checks' findings.**
 
 ---
 
@@ -368,6 +552,27 @@ id | string | tone | budget | notes
 `K.s11.tidy` | Tidy this file | `label` | `button`, 18 | `[gen]` `docs/mvp0/screens/gen.mjs:1095`. One credit.
 `K.s11.treefoot` | {n} instruction files, {d} drifted | `plain` | `label`, 34 | `[gen]` `docs/mvp0/screens/gen.mjs:1090`.
 
+**Ids cited by `12-screens/S11.md`, reconciled 18 September.**
+
+id | screen | string | tone | budget | notes
+`K.s11.head` | S11 | (uses `K.s11.title` then `K.s11.count`) | `label` | `label` | Alias. The panel head: the title, then the in-step count.
+`K.s11.rel.source` | S11 | (uses `K.s11.state.source`) | `plain` | `label` | Alias. The screen spec calls the relation `rel`; the deck calls it `state`.
+`K.s11.rel.import` | S11 | (uses `K.s11.state.import`) | `plain` | `label` | Alias.
+`K.s11.rel.copy` | S11 | (uses `K.s11.state.instep`) | `plain` | `label` | Alias. A copy that is in step with the source.
+`K.s11.rel.copydrifted` | S11 | (uses `K.s11.state.drifted`) | `caution` | `label` | Alias.
+`K.s11.rel.missing` | S11 | (uses `K.s11.state.missing`) | `plain` | `label` | Alias.
+`K.s11.drift.head` | S11 | (uses `K.s11.drift.title`) | `caution` | `label` | Alias.
+`K.s11.regenerate` | S11 | (uses `K.s11.regen`) | `label` | `button` | Alias.
+`K.s11.regenerate.confirm` | S11 | Replace {file} with a fresh copy of {source}? Anything written only in {file} will be lost. | `caution` | `body`, 77 | `[new]` proposed. Asked before a copy is regenerated. When the copy has hand edits the action refuses instead, and that refusal has no string yet: it needs its own id.
+`K.s11.check.size` | S11 | (uses `K.s11.size` then `K.s11.size.sub`) | `plain` | `label` | Alias.
+`K.s11.check.setup` | S11 | (uses `K.s11.setup` then `K.s11.setup.sub`) | `plain` | `label` | Alias.
+`K.s11.check.unverified` | S11 | (uses `K.s11.stale` then `K.s11.stale.sub`) | `caution` | `label` | Alias.
+`K.s11.check.lintduplicate` | S11 | (uses `K.s11.linted` then `K.s11.linted.sub`) | `caution` | `label` | Alias.
+`K.s11.honesty` | S11 | (uses `K.s11.honest`) | `promise` | `body` | Alias. **Cannot be cut for space** (S11 spec, Copy).
+`K.s11.tidy.cost` | S11 | Uses 1 edit credit. The result arrives in your change queue for you to accept or reject. | `cost` | `lede`, 88 | `[new]` proposed. Stated before the click (rule 7). Nothing is written until accepted, per the change queue.
+`K.s11.capunknown` | S11 | Size limit unknown for {tool} | `caution` | `label`, 25 | `[new]` proposed. **Never marked ok when the cap is unknown** (S11 spec, Actions). When the caps table is old the row also needs a line giving the table's date, which is not written. Length counted with each variable as two characters.
+`K.s11.orphan` | S11 | Copy of a missing source | `caution` | `label`, 24 | `[new]` proposed. The source is missing and copies exist, so they are listed as orphans rather than as ok. Offer: promote one to the source, or create it.
+
 ---
 
 ## 13. S12 to S16, the ideas flow
@@ -397,6 +602,27 @@ id | string | tone | budget | notes
 `K.s12.rail.new` | new | `label` | `button`, 6 | `[gen]` `docs/mvp0/screens/gen.mjs:1113`.
 `K.s12.rail.credit` | {n} blueprint credit left this month | `cost` | `label`, 40 | `[gen]` `docs/mvp0/screens/gen.mjs:1115`.
 
+**Ids cited by `12-screens/S12.md`, reconciled 18 September.**
+
+id | screen | string | tone | budget | notes
+`K.s12.head.sub` | S12 | (uses `K.s12.sub`) | `plain` | `lede` | Alias. The phone form is `K.s12.sub.phone`.
+`K.s12.placeholder` | S12 | A booking page for small salons that take appointments on WhatsApp today. One link for the Instagram bio, a calendar of open slots, a deposit, and a reminder the day before. | `plain` | `body`, 173 | `[gen]` `docs/mvp0/screens/gen.mjs:1127`, the drawn example idea. Like `K.s06.placeholder` it is an example and should vary by template rather than ship as the one text every person sees.
+`K.s12.depth.suffix` | S12 | depth | `label` | `button`, 5 | `[gen]` `docs/mvp0/screens/gen.mjs:1120`. The muted word after the depth name in the pill. `K.s12.depth.pill` is the whole.
+`K.s12.attach.drawing` | S12 | (uses `K.s12.attach.image`) | `help` | `help` | Alias.
+`K.s12.attach.document` | S12 | (uses `K.s12.attach.doc`) | `help` | `help` | Alias.
+`K.s12.attach.used` | S12 | (uses `K.s12.attached`) | `plain` | `body` | Alias. The attachment chip says what the attachment will be used for, in the kit's own words.
+`K.s12.templates.label` | S12 | (uses `K.s12.startfrom`) | `label` | `label` | Alias.
+`K.s12.template.localservice` | S12 | Local service business | `label` | `button`, 22 | `[gen]` `docs/mvp0/screens/gen.mjs:1152`. The phone shortens it to Local service (`docs/mvp0/screens/gen.mjs:1158`).
+`K.s12.template.saas` | S12 | SaaS | `label` | `button`, 4 | `[gen]` `docs/mvp0/screens/gen.mjs:1152`.
+`K.s12.template.marketplace` | S12 | Marketplace | `label` | `button`, 11 | `[gen]` `docs/mvp0/screens/gen.mjs:1152`.
+`K.s12.template.internal` | S12 | Internal tool | `label` | `button`, 13 | `[gen]` `docs/mvp0/screens/gen.mjs:1152`. The plan lists seven templates and the screen draws four; the other three have no strings (S12 spec, D34a).
+`K.s12.template.generate` | S12 | (uses `K.s12.template.own`) | `label` | `button` | Alias. One for my industry.
+`K.s12.credits` | S12 | (uses `K.s12.rail.credit`) | `cost` | `label` | Alias. The rail foot.
+`K.s12.state.draft` | S12 | Draft | `plain` | `label`, 5 | `[gen]` `docs/mvp0/screens/gen.mjs:1110`. An idea typed and never sent.
+`K.s12.state.answered` | S12 | {answered} of {questions} answered | `plain` | `label`, 17 | `[gen]` `docs/mvp0/screens/gen.mjs:1109`, drawn as 9 of 12 answered. Length counted with each variable as two characters.
+`K.s12.state.blueprint` | S12 | Blueprint v{version} · {files} files | `plain` | `label`, 24 | `[gen]` `docs/mvp0/screens/gen.mjs:1108`, drawn as Blueprint v1 · 15 files. Length counted with each variable as two characters.
+`K.s12.send` | S12 | (uses `K.s06.send`) | `label` | `button` | Alias. The arrow at the end of the idea input has the same accessible name as the writing box's.
+
 ### 13.2 S13 Idea mode, Low
 
 id | string | tone | budget | notes
@@ -411,6 +637,26 @@ id | string | tone | budget | notes
 `K.s13.skipall` | Skip all remaining | `label` | `button`, 20 | `[gen]` `docs/mvp0/screens/gen.mjs:1181`. Page two onward only.
 `K.s13.next` | Next | `label` | `button`, 8 | `[gen]` `docs/mvp0/screens/gen.mjs:1182`.
 `K.s13.foot` | Anything you skip stays open in DECISIONS.md, and the blueprint says it is open rather than guessing. | `promise` | `body` | `[gen]` `docs/mvp0/screens/gen.mjs:1194`. **A refusal wearing plain clothes:** the product will not record a guess as a decision.
+
+**Ids cited by `12-screens/S13.md`, reconciled 18 September.**
+
+id | screen | string | tone | budget | notes
+`K.s13.progress.page` | S13 | (uses `K.s13.progress`) | `plain` | `label` | Alias. Page {p} of {total}.
+`K.s13.progress.count` | S13 | (uses `K.s13.progress.q`) | `plain` | `label` | Alias.
+`K.s13.recommendation` | S13 | (uses `K.s13.choose`) | `label` | `button` | Alias. The navigation control; the phone form is `K.s13.choose.phone`.
+`K.s13.rec.tag` | S13 | (uses `K.s13.recommended`) | `label` | `label` | Alias. The lower-case tag on the recommended option.
+`K.s13.rewrite.cause` | S13 | (uses `K.s13.rewriting`) | `plain` | `body` | Alias. **A template with the answer substituted, never a generic sentence** (S13 spec, Copy).
+`K.s13.rewrite.working` | S13 | Updating this question | `plain` | `label`, 22 | `[new]` proposed. The status on each blurred card while a rewrite runs. Only the affected cards carry it, and only when a rewrite actually fires.
+`K.s13.rewrite.capped` | S13 | This blueprint has used its {rewrites} question rewrites on Free, so the later questions stay as planned. Your answer is recorded. | `refusal` | `body`, 122 | `[new]` proposed. **A refusal**: at the cap no rewrite fires (S13 spec, The rewrite). `{rewrites}` is the Free cap, read from the configuration panel and drawn nowhere as a typed number.
+`K.s13.rewrite.failed` | S13 | The later questions could not be rewritten, so they stay as planned. Your answer is recorded. Nothing is deducted for a failed call. | `caution` | `body`, 132 | `[new]` proposed. The last sentence is `K.promise.nocharge` verbatim. **No failure on this screen loses an answer.**
+`K.s13.skipall.line1` | S13 | (uses `K.s14.skipall.title` then `K.s14.skipall.body1`) | `caution` | `long` | Alias. The skip-all modal is one component on S13 and S14, and gen.mjs draws it once (`docs/mvp0/screens/gen.mjs:1226` to `:1229`). Its first sentence says every remaining question takes its recommended answer, which is the founders' first point (`docs/mvp0/SCREEN-CHANGES-2026-09-18.md:122`).
+`K.s13.skipall.line2` | S13 | (uses `K.s14.skipall.body2`) | `caution` | `body` | Alias. Says the brief, the blueprint and the kickoff prompt come from those defaults, which covers the founders' second and third points in one sentence.
+`K.s13.skipall.line3` | S13 | (uses `K.s14.skipall.body2`) | `caution` | `body` | Alias. **Disagreement recorded:** the S13 spec wants three sentences and the drawn modal has two, because `K.s14.skipall.body2` names the plan and the kickoff prompt together. The drawn wording is kept; the founders' three points are all present.
+`K.s13.skipall.confirm` | S13 | (uses `K.s14.skipall.go`) | `label` | `button` | Alias. The other control is `K.s14.skipall.keep`.
+`K.s13.standardset` | S13 | Use a standard question set | `label` | `label`, 27 | `[plan]` `[Z]` `docs/mvp0/SCREEN-CHANGES-2026-09-18.md:359`, the toggle's words. **Dynamic is the default**; this is the fallback, not a paywall.
+`K.s13.standardset.why` | S13 | A fixed set of questions for this template. It needs no model, so it works when AI is unavailable or your allowance is used up. | `help` | `help`, 127 | `[new]` proposed. Says why the toggle exists: the graceful-degradation path S32 offers instead of an apology.
+`K.s13.files.head` | S13 | The {files} files in your blueprint | `plain` | `title`, 30 | `[new]` proposed. Heading of the file list shown before any credit is spent. `{files}` is the template's count, drawn as fifteen.
+`K.s13.files.beforecredit` | S13 | Nothing has been spent yet. Your blueprint credit is used only when you continue from this list. | `cost` | `lede`, 96 | `[new]` proposed. **Never spend a blueprint credit before the files have been listed** (S13 spec). Rule 7, the cost before the click.
 
 ### 13.3 S14 Idea mode, Medium and High
 
@@ -430,6 +676,12 @@ id | string | tone | budget | notes
 `K.s14.skipall.body2` | The brief, the blueprint and the kickoff prompt are all generated from those defaults. | `caution` | `body` | `[gen]` `docs/mvp0/screens/gen.mjs:1228`. `[Z]` The modal must say this plainly (`docs/mvp0/SCREEN-CHANGES-2026-09-18.md:122`).
 `K.s14.skipall.keep` | Keep answering | `label` | `button`, 18 | `[gen]` `docs/mvp0/screens/gen.mjs:1229`.
 `K.s14.skipall.go` | Use the recommendations | `label` | `button`, 26 | `[gen]` `docs/mvp0/screens/gen.mjs:1229`.
+
+**Ids cited by `12-screens/S14.md`, reconciled 18 September.**
+
+id | screen | string | tone | budget | notes
+`K.s14.src.opened` | S14 | opened {date} · {source} | `plain` | `label`, 14 | `[new]` proposed. Attribution on a High row: the page opened by the research pass and the date it was opened. Follows the shape of `K.s14.src.template`. `{source}` is the page's title or domain, never a guess.
+`K.s14.researchdone` | S14 | The research for {idea} is finished. Your questions are ready. | `plain` | `lede`, 58 | `[new]` proposed. The notice when a background High research pass finishes.
 
 ### 13.4 S15 Blueprint ready
 
@@ -451,6 +703,13 @@ id | string | tone | budget | notes
 `K.s15.agree` | Files agree | `plain` | `label`, 14 | `[gen]` `docs/mvp0/screens/gen.mjs:1256`.
 `K.s15.treefoot` | Blueprint v{n} · {files} files | `plain` | `label`, 28 | `[gen]` `docs/mvp0/screens/gen.mjs:1255`.
 
+**Ids cited by `12-screens/S15.md`, reconciled 18 September.**
+
+id | screen | string | tone | budget | notes
+`K.s15.checknotrun` | S15 | Check did not run | `caution` | `label`, 17 | `[new]` proposed. **The third state of the files-agree pill.** A check that did not run is never drawn as one that passed (S15 spec, States). The other two states are `K.s15.agree` and findings remaining.
+`K.s15.revoked` | S15 | This link was turned off by its owner. Ask them for a new one. | `refusal` | `lede`, 62 | `[new]` proposed. What a reader meets on a revoked kit link. Says nothing about the kit's contents.
+`K.s15.kickoff.copied` | S15 | Copied. Paste it into your agent. | `plain` | `lede`, 33 | `[new]` proposed. Confirmation after `K.s15.kickoff.copy`.
+
 ### 13.5 S16 The map
 
 id | string | tone | budget | notes
@@ -467,6 +726,12 @@ id | string | tone | budget | notes
 `K.s16.readable` | Readable | `plain` | `label`, 12 | `[gen]` `docs/mvp0/screens/gen.mjs:1287`.
 `K.s16.inkit.note` | Both ship inside the blueprint, so the agent can ask "what governs payments" instead of reading all twelve documents. | `plain` | `body` | `[gen]` `docs/mvp0/screens/gen.mjs:1288`.
 `K.s16.phone` | {docs} documents · {links} links · {orphans} orphans. Tap a node to open it. | `plain` | `body` | `[gen]` `docs/mvp0/screens/gen.mjs:1297`.
+
+**Ids cited by `12-screens/S16.md`, reconciled 18 September.**
+
+id | screen | string | tone | budget | notes
+`K.s16.node.kind` | S16 | Document · Spec · Decision · Agent file | `label` | `label`, 10 | `[new]` proposed. Four separate labels, one per node kind (`doc`, `spec`, `why`, `agent` in `KCOL`, `docs/mvp0/screens/gen.mjs:1274`). Used in each node's accessible name, because colour is never the only signal. The budget is per label; the longest, Agent file, is 10.
+`K.s16.stale` | S16 | Showing the map from before the last change. It could not be rebuilt. | `caution` | `lede`, 69 | `[new]` proposed. The marker on a graph kept from before a failed rebuild. The files themselves are unaffected.
 
 ---
 
@@ -495,6 +760,13 @@ id | string | tone | budget | notes
 `K.s17.publish` | Publish | `label` | `label`, 10 | `[gen]` `docs/mvp0/screens/gen.mjs:1312`.
 `K.s17.publish.page` | Published page | `label` | `label`, 18 | `[gen]` `docs/mvp0/screens/gen.mjs:1313`.
 `K.s17.publish.sub` | {url} · {used} of {pages} free published pages used | `plain` | `help` | `[gen]` `docs/mvp0/screens/gen.mjs:1313`.
+
+**Ids cited by `12-screens/S17.md`, reconciled 18 September.**
+
+id | screen | string | tone | budget | notes
+`K.s17.invite.sent` | S17 | Invite sent to {email}. You both get the credits when they first sign in. | `plain` | `lede`, 68 | `[new]` proposed. The credits land at the invited person's first sign-in, not when the invite is sent (S17 spec). `{credits}` is not repeated here because `K.s17.invite.body` already stated it.
+`K.s17.referral.title` | S17 | Invite someone to frontmatter | `plain` | `title`, 29 | `[new]` proposed. Heading when the same invite block is opened as a referral. Same terms as `K.s17.invite.body`.
+`K.s17.lookup.failed` | S17 | We could not check whether {email} has an account. You can send an invite anyway. | `caution` | `lede`, 76 | `[new]` proposed. The directory lookup failed, and the invite is offered regardless (S17 spec, Actions).
 
 ---
 
@@ -530,6 +802,12 @@ id | string | tone | budget | notes
 never gated, never redirected and never given an interstitial
 (`docs/mvp0/SCREEN-CHANGES-2026-09-18.md:325`). **A string added to either is a defect.**
 
+**Ids cited by `12-screens/S18.md`, reconciled 18 September.**
+
+id | screen | string | tone | budget | notes
+`K.s18.notfound` | S18 | Nothing is published at this address. | `plain` | `title`, 37 | `[new]` proposed. The page, and the plain-text answer on the other routes, for an unpublished or unknown slug. **Never says whether it once existed**, the same rule as `K.s18.pw.body`.
+`K.s18.empty` | S18 | This page has no content yet. | `plain` | `lede`, 29 | `[new]` proposed. A published document with no body.
+
 ---
 
 ## 14c. S19 Live collaboration
@@ -539,6 +817,15 @@ id | string | tone | budget | notes
 `K.s19.editing` | {name} is editing this document | `plain` | `label`, 34 | `[gen]` `docs/mvp0/screens/gen.mjs:1355`.
 `K.s19.toast` | Free includes {collab} live collaborators per document. | `plain` | `body` | `[gen]` `docs/mvp0/screens/gen.mjs:1359`. **Once**, not on every join. Same defect and disagreement as `K.s17.collab.limit`.
 `K.s19.invitemore` | Invite more with Pro | `label` | `button`, 24 | `[gen]` `docs/mvp0/screens/gen.mjs:1359`.
+
+**Ids cited by `12-screens/S19.md`, reconciled 18 September.**
+
+id | screen | string | tone | budget | notes
+`K.s19.slow` | S19 | Slow | `caution` | `label`, 4 | `[new]` proposed. The marker on the live pill when the round trip is long enough to feel. Editing stays local-first and does not wait.
+`K.s19.highlight` | S19 | Text another person types is highlighted as it arrives, then fades. Nothing is added to the file. | `help` | `lede`, 97 | `[new]` proposed. Shown once, on the first live session. **Presence is chrome, never content** (S19 spec).
+`K.s19.dropped` | S19 | The live session stopped. You are editing on your own now, and nothing is lost. | `caution` | `lede`, 79 | `[new]` proposed. The editor falls back to a normal single-person edit with a local queue.
+`K.s19.queued` | S19 | Offline. Your changes are saved on this device and sync when you are back. | `plain` | `lede`, 74 | `[new]` proposed. Worded to match `K.s24.banner.phone` and `K.s24.banner`.
+`K.s19.unshared` | S19 | You no longer have access to this document. Your copy on this device stays readable and can be exported. | `refusal` | `body`, 104 | `[new]` proposed. **A refusal**: access was removed under an open session. The local copy stays readable, in line with `K.promise.readable`.
 
 ---
 
@@ -562,6 +849,14 @@ id | string | tone | budget | notes
 `K.s20.acceptall.note` | Asks you to confirm the count. AI and agent items are accepted one at a time. | `promise` | `body` | `[gen]` `docs/mvp0/screens/gen.mjs:1376`. `[M]` The over-acceptance literature, cited at `docs/mvp0/PRODUCT-PLAN.md` section 5.
 `K.s20.comments.open` | {n} open | `plain` | `label`, 12 | `[gen]` `docs/mvp0/screens/gen.mjs:1385`.
 
+**Ids cited by `12-screens/S20.md`, reconciled 18 September.**
+
+id | screen | string | tone | budget | notes
+`K.s20.firstrun` | S20 | Nothing here is applied to the file until you accept it. | `promise` | `lede`, 56 | `[new]` proposed. Shown once, the first time a change is queued on the account. The change queue's one rule, said to the person.
+`K.s20.stale` | S20 | Could not be placed. The text around it changed, so the original is kept here. | `caution` | `lede`, 78 | `[new]` proposed. The marker on an item whose span can no longer be placed. **The original text of a stale item is never lost.**
+`K.s20.confirm.bulk` | S20 | Accept all {n} changes from {name}? You can undo this in one step. | `caution` | `lede`, 61 | `[new]` proposed. **Names the person and the exact count**, and applies only to a named person's edits (see `K.s20.acceptall.note`). Plural rule on `{n}`.
+`K.s20.readonly` | S20 | Your role on this document can read and reply, but not accept changes. | `refusal` | `lede`, 70 | `[new]` proposed. Why Accept is absent for this role; Reply stays.
+
 ---
 
 ## 14e. S21 Document history
@@ -576,6 +871,14 @@ id | string | tone | budget | notes
 `K.s21.author.ai` | AI edit, accepted by you | `plain` | `label`, 26 | `[gen]` `docs/mvp0/screens/gen.mjs:1393`. **Attribution survives here**, which is what replaced review state (`docs/mvp0/PRODUCT-PLAN.md` section 17).
 `K.s21.author.blueprint` | Blueprint v{n} written | `plain` | `label`, 26 | `[gen]` `docs/mvp0/screens/gen.mjs:1393`.
 `K.s21.author.created` | Created | `plain` | `label`, 10 | `[gen]` `docs/mvp0/screens/gen.mjs:1393`.
+
+**Ids cited by `12-screens/S21.md`, reconciled 18 September.**
+
+id | screen | string | tone | budget | notes
+`K.s21.window.end` | S21 | Your plan keeps {history} days of versions. Older versions are outside that window. | `plain` | `lede`, 76 | `[new]` proposed. The line at the end of the list. `{history}` comes from `limits.history.days`.
+`K.s21.outofwindow` | S21 | Outside your plan's {history}-day window. Not deleted yet. | `caution` | `lede`, 51 | `[new]` proposed. **Named as out of window, never as deleted**, until pruning runs (S21 spec, over-cap state). Pro keeps longer.
+`K.s21.restored` | S21 | Restored. The version from {time} is now the latest, and nothing before it was removed. | `plain` | `lede`, 83 | `[new]` proposed. The old bytes are written forward as a new version, attributed to you.
+`K.s21.redrawn` | S21 | The document changed while you were looking, so this comparison was redrawn against the latest version. | `caution` | `body`, 103 | `[new]` proposed. The conflict state of history.
 
 ---
 
@@ -614,6 +917,13 @@ id | string | tone | budget | notes
 `K.s22.phone.drop` | Choose files or a folder | `label` | `button`, 28 | `[gen]` `docs/mvp0/screens/gen.mjs:1426`.
 `K.s22.phone.share` | On Android, after you add frontmatter to your home screen, you can also share from any app. iOS has no share sheet for web apps. | `plain` | `long` | `[gen]` `docs/mvp0/screens/gen.mjs:1426`. **Names the platform that cannot do it**, rather than hiding the control.
 
+**Ids cited by `12-screens/S22.md`, reconciled 18 September.**
+
+id | screen | string | tone | budget | notes
+`K.s22.nofolderinput` | S22 | This browser cannot open a whole folder. Choose the files instead, or drop the folder onto this page. | `refusal` | `lede`, 101 | `[new]` proposed. **A refusal with the way round it**: file selection is offered instead (S22 spec, Actions).
+`K.s22.collision` | S22 | {path} already existed, so both were kept. The new one is {newpath}. | `plain` | `lede`, 57 | `[new]` proposed. **An import never overwrites.** The newcomer is the one suffixed, and the string names it.
+`K.s22.cancelled` | S22 | Import stopped. The {done} files already brought in are kept. | `plain` | `lede`, 57 | `[new]` proposed. Cancel keeps whatever already landed. Plural rule on `{done}`.
+
 ---
 
 ## 14g. S23 Connections
@@ -639,6 +949,14 @@ id | string | tone | budget | notes
 `K.s23.agents.row` | {name} · may read and propose · never applies or publishes · last used {ago} | `promise` | `long` | `[gen]` `docs/mvp0/screens/gen.mjs:1440`. **"never applies or publishes" is the permission matrix said aloud** (`docs/mvp0/PRODUCT-PLAN.md` section 19).
 `K.s23.agents.new` | New token | `label` | `button`, 12 | `[gen]` `docs/mvp0/screens/gen.mjs:1442`.
 `K.s23.agents.setup` | Show the MCP setup | `label` | `button`, 22 | `[gen]` `docs/mvp0/screens/gen.mjs:1442`.
+
+**Ids cited by `12-screens/S23.md`, reconciled 18 September.**
+
+id | screen | string | tone | budget | notes
+`K.s23.drive.connect` | S23 | Connect Google Drive | `label` | `button`, 20 | `[new]` proposed. Opens the provider's consent screen, then the folder picker. The card's claims are visible before it is pressed.
+`K.s23.drive.paused` | S23 | Paused. Nothing syncs until you resume, and nothing is deleted at either end. | `plain` | `lede`, 77 | `[new]` proposed. The pill on a paused connection and what paused means (S23 spec, Actions).
+`K.s23.gh.revoked` | S23 | frontmatter was removed from this repository on GitHub, so nothing can be pushed. Reinstall the app on GitHub to reconnect. | `refusal` | `body`, 123 | `[new]` proposed. **A refusal**: says where it was revoked and how to reinstall. Nothing already in the workspace is touched.
+`K.s23.lastknown` | S23 | Last known state. You are offline, so these cannot be changed right now. | `caution` | `lede`, 72 | `[new]` proposed. Every control is disabled offline with this one reason.
 
 ---
 
@@ -674,6 +992,30 @@ id | screen | string | tone | budget | notes
 `K.s26.install.title` | S26 | Add frontmatter to your home screen | `plain` | `title`, 38 | `[gen]` `docs/mvp0/screens/gen.mjs:1495`.
 `K.s26.install.body` | S26 | Opens like an app and keeps working offline. | `plain` | `lede` | `[gen]` `docs/mvp0/screens/gen.mjs:1495`.
 `K.s26.install.go` | S26 | Install | `label` | `button`, 10 | `[gen]` `docs/mvp0/screens/gen.mjs:1495`.
+
+**Ids cited by `12-screens/S24.md`, reconciled 18 September.**
+
+id | screen | string | tone | budget | notes
+`K.s24.storage.full` | S24 | This device has run out of room, so what you type now is not being kept. Sync, or free up space, before you type more. | `caution` | `body`, 118 | `[new]` proposed. **The one interruption allowed on the offline screen.** New keystrokes still render, and the person is told plainly they are not being kept (S24 spec, Actions).
+`K.s24.storage.low` | S24 | {free} left on this device for offline edits | `plain` | `lede`, 40 | `[new]` proposed. A quiet line in the banner. `{free}` is a size with its unit.
+`K.s24.persist.refused` | S24 | This browser may clear offline edits if it runs low on space. | `caution` | `lede`, 61 | `[new]` proposed. The browser refused to promise to keep this site's storage. Said once, in one line, and never nagged.
+
+**Ids cited by `12-screens/S25.md`, reconciled 18 September.**
+
+id | screen | string | tone | budget | notes
+`K.s25.addfolder` | S25 | Add a folder from this computer to write in it here. | `plain` | `lede`, 52 | `[new]` proposed. The one line on a first launch, beside the add control.
+`K.s25.group.cloud` | S25 | Cloud · {project} | `label` | `label`, 10 | `[gen]` `docs/mvp0/screens/gen.mjs:1467`, drawn as Cloud · Zephyrus booking.
+`K.s25.group.local` | S25 | On this Mac · {path} | `label` | `label`, 16 | `[gen]` `docs/mvp0/screens/gen.mjs:1467`, drawn as On this Mac · ~/Documents/notes. On Windows and Linux the words need their own form; none is written.
+`K.s25.update.refused` | S25 | An update was found but its signature did not check out, so it was not installed. You are still on version {version}. | `refusal` | `body`, 110 | `[new]` proposed. **Refuses rather than warns**: never offered with a warning (S25 spec, Actions).
+
+**Ids cited by `12-screens/S26.md`, reconciled 18 September.**
+
+id | screen | string | tone | budget | notes
+`K.s26.source` | S26 | From {app} · {time} | `plain` | `label`, 12 | `[new]` proposed. Where the shared text came from, and when, kept on the phone sheet.
+`K.s26.queued` | S26 | Saved on this device. It is added to {file} when you are back online. | `plain` | `lede`, 65 | `[new]` proposed. The box still closes; the queued count appears in the workspace (S24).
+`K.s26.shortcut.taken` | S26 | {chord} is already used by another app, so quick capture has no shortcut. Choose another in Settings. | `caution` | `lede`, 96 | `[new]` proposed. Shown at launch, naming the chord. The default chord is drawn as ⌘⇧Space (`docs/mvp0/screens/gen.mjs:1486`).
+`K.s26.ios.absent` | S26 | iOS does not let web apps receive shared text. Open frontmatter and paste instead. | `refusal` | `lede`, 82 | `[new]` proposed. Named as absent, with no control that would fail. Consistent with the last sentence of `K.s22.phone.share`.
+`K.s26.append.failed` | S26 | This could not be added to {file}. Your text is still here. Try again, or copy it. | `caution` | `lede`, 78 | `[new]` proposed. **The text stays in the box rather than being lost** (S26 spec, States).
 
 ---
 
@@ -717,6 +1059,27 @@ id | string | tone | budget | notes
 `K.s28.signedin` | Signed in as {account} | `plain` | `label`, 28 | `[gen]` `docs/mvp0/screens/gen.mjs:1537`.
 `K.s28.signout` | Sign out | `label` | `button`, 12 | `[gen]` `docs/mvp0/screens/gen.mjs:1537`.
 
+**Ids cited by `12-screens/S28.md`, reconciled 18 September.**
+
+id | screen | string | tone | budget | notes
+`K.s28.sub` | S28 | (uses `K.s28.lede`) | `promise` | `long` | Alias.
+`K.s28.editor.defaultmode` | S28 | (uses `K.s28.defaultmode` then `K.s28.defaultmode.sub`) | `label` | `label` | Alias. Label, then help.
+`K.s28.editor.docdefault` | S28 | (uses `K.s28.docdefault` then `K.s28.docdefault.sub`) | `label` | `label` | Alias.
+`K.s28.editor.linewidth` | S28 | (uses `K.s28.linewidth` then `K.s28.linewidth.sub`) | `label` | `label` | Alias.
+`K.s28.editor.spellcheck` | S28 | (uses `K.s28.spellcheck` then `K.s28.spellcheck.sub`) | `label` | `label` | Alias. The help says whose spellchecker it is and where the text goes.
+`K.s28.editor.vim` | S28 | (uses `K.s28.vim` then `K.s28.vim.sub`) | `label` | `label` | Alias.
+`K.s28.writing.structural` | S28 | (uses `K.s28.checks` then `K.s28.checks.sub`) | `label` | `label` | Alias.
+`K.s28.writing.plain` | S28 | (uses `K.s28.plain` then `K.s28.plain.sub`) | `label` | `label` | Alias. The help says the notes never block.
+`K.s28.ai.model` | S28 | (uses `K.s28.model` then `K.s28.model.sub`) | `label` | `label` | Alias. The help says what Automatic means on each plan.
+`K.s28.ai.selection` | S28 | (uses `K.s28.aiselection` then `K.s28.aiselection.sub`) | `label` | `label` | Alias.
+`K.s28.ai.ghost` | S28 | (uses `K.s28.ghost` then `K.s28.ghost.sub`) | `label` | `label` | Alias. Off by default.
+`K.s28.ai.mark` | S28 | (uses `K.s28.markai` then `K.s28.markai.sub`) | `label` | `label` | Alias.
+`K.s28.account.signedin` | S28 | (uses `K.s28.signedin`) | `plain` | `label` | Alias. The phone footer.
+`K.s28.account.signout` | S28 | (uses `K.s28.signout`) | `label` | `button` | Alias.
+`K.s28.account.delete` | S28 | Delete account. Everything is removed 30 days after you confirm. | `caution` | `lede`, 64 | `[new]` proposed. The visible control reads the first two words; the sentence sits beside it. **Never deletes on one click**: a typed confirmation comes first, and the 30-day window follows (S28 spec, Actions). Whether 30 is a configurable number is not settled; if it is, it becomes a variable.
+`K.s28.offline` | S28 | Needs a connection. Your other settings still work. | `plain` | `lede`, 51 | `[new]` proposed. On a row that needs the network. First sentence matches `K.s24.aioff`.
+`K.s28.degraded` | S28 | Settings are not saving right now. Keep working, nothing is lost on this device. | `caution` | `lede`, 80 | `[new]` proposed. **One persistent line in the page heading, not one per row** (S28 spec, States).
+
 ---
 
 ## 14j. S29 Plan and usage
@@ -755,6 +1118,28 @@ and a mandate is capped at ₹15,000 (`docs/mvp0/PRODUCT-PLAN.md` section 5). **
 a string that says so**, or the person will assume the card is bad. It is `E`-numbered in `17` and
 has no words yet.
 
+**Ids cited by `12-screens/S29.md`, reconciled 18 September.**
+
+id | screen | string | tone | budget | notes
+`K.s29.sub` | S29 | (uses `K.s29.lede`) | `plain` | `lede` | Alias. Plan, account name, and the date allowances reset.
+`K.s29.meter.blueprints` | S29 | (uses `K.s29.meter.kits` then `K.s29.meter.kits.val`) | `cost` | `label` | Alias. The value carries the depth the allowance is limited to.
+`K.s29.plan.free.name` | S29 | (uses `K.common.free`) | `label` | `label` | Alias.
+`K.s29.plan.free.includes` | S29 | (uses `K.s29.free.everything`, `K.s29.free.caps`, `K.s29.free.ai`, `K.s29.free.collab`, `K.s29.free.history`) | `plain` | `long` | Alias. The five list rows of the Free card, in that order.
+`K.s29.plan.free.excludes` | S29 | (uses `K.s29.free.not`) | `plain` | `body` | Alias. The one line naming what Free does not have.
+`K.s29.plan.free.current` | S29 | (uses `K.s29.current`) | `label` | `button` | Alias. A state, not an action.
+`K.s29.plan.pro.name` | S29 | (uses `K.common.pro`) | `label` | `label` | Alias.
+`K.s29.plan.pro.price` | S29 | (uses `K.s29.pro.price` then `K.s29.pro.price.sub`) | `cost` | `label` | Alias. **Carries the GST-inclusive wording on the price itself.**
+`K.s29.plan.pro.includes` | S29 | (uses `K.s29.pro.unlimited`, `K.s29.pro.ai`, `K.s29.pro.history`, `K.s29.pro.links`, `K.s29.pro.portfolio`) | `plain` | `long` | Alias. The five list rows of the Pro card.
+`K.s29.plan.pro.cta` | S29 | (uses `K.s29.upgrade`) | `label` | `button` | Alias.
+`K.s29.payment.methods` | S29 | (uses the first sentence of `K.s29.payment`) | `cost` | `label` | Alias. UPI, cards.
+`K.s29.payment.cancel` | S29 | (uses the second sentence of `K.s29.payment`) | `plain` | `label` | Alias. Cancel any time.
+`K.s29.payment.topups` | S29 | (uses the third sentence of `K.s29.payment`) | `cost` | `body` | Alias. The two top-up offers. **The prices in the drawn sentence are typed numbers**, which section 0 calls a defect: they belong in the configuration panel.
+`K.s29.soon.team` | S29 | (uses `K.s29.team`) | `plain` | `body` | Alias. Named, not purchasable.
+`K.s29.soon.enterprise` | S29 | (uses `K.s29.enterprise`) | `plain` | `body` | Alias.
+`K.s29.reset` | S29 | Your allowances reset on {date}. | `plain` | `lede`, 28 | `[new]` proposed. The standalone form of the reset date in `K.s29.lede`, for places where the heading is not in view. **The date is stated, never left to be guessed.**
+`K.s29.pastdue` | S29 | Your payment on {date} did not go through. Nothing has been removed or locked. Pay again to keep Pro. | `caution` | `body`, 97 | `[new]` proposed. A failed mandate: one control to pay again (S29 spec, States). Related to, and not the same as, the gap noted under the S29 table: that one is a failed first payment attempt, which still has no string.
+`K.s29.pending` | S29 | Confirming your payment, started at {time}. There is nothing more to do here. | `plain` | `lede`, 73 | `[new]` proposed. **Says the payment is being confirmed rather than claiming it failed** when the webhook is late (S29 spec, Actions).
+
 ---
 
 ## 14k. S30 Portfolio
@@ -766,6 +1151,20 @@ id | string | tone | budget | notes
 `K.s30.onefile.body` | The front matter is the profile, the folder is the writing. Nothing here is a second format: the same file renders as a page in any markdown tool. | `promise` | `long` | `[gen]` `docs/mvp0/screens/gen.mjs:1585`.
 `K.s30.projects` | Projects | `label` | `label`, 12 | `[gen]` `docs/mvp0/screens/gen.mjs:1559`.
 `K.s30.writing` | Writing | `label` | `label`, 10 | `[gen]` `docs/mvp0/screens/gen.mjs:1560`.
+
+**Ids cited by `12-screens/S30.md`, reconciled 18 September.**
+
+id | screen | string | tone | budget | notes
+`K.s30.explainer` | S30 | (uses `K.s30.onefile` then the first sentence of `K.s30.onefile.body`) | `promise` | `body` | Alias. The front matter is the profile, the folder is the writing.
+`K.s30.portable` | S30 | (uses the second sentence of `K.s30.onefile.body`) | `promise` | `body` | Alias. The same file renders as a page in any markdown tool.
+`K.s30.handle.claim` | S30 | Your handle, as in frontmatter.in/@you | `label` | `lede`, 38 | `[new]` proposed. The field's label. `UNVERIFIED:` the shape a handle accepts is not written in the plan or the S30 spec beyond being case-folded, so the string does not state one. When it is decided, add it here.
+`K.s30.handle.taken` | S30 | @{handle} is already taken. Try another. | `refusal` | `lede`, 34 | `[new]` proposed. **Nothing is written** when the handle is held (S30 spec, Actions).
+`K.s30.publish` | S30 | Publish portfolio | `label` | `button`, 17 | `[new]` proposed. The publish control.
+`K.s30.unpublish` | S30 | Unpublish. The page goes offline and @{handle} stays reserved for you for {days} days. | `caution` | `lede`, 76 | `[new]` proposed. The control and its consequence. `{days}` is the stated interval, which the spec requires and does not give; it belongs in the configuration panel.
+`K.s30.templates.heading` | S30 | Start from a template | `label` | `label`, 21 | `[new]` proposed. The heading over the few starting files. A template **never overwrites** an existing `portfolio.md`.
+`K.s30.madewith` | S30 | (uses `K.s18.made`) | `plain` | `label` | Alias. Free footer only; Pro removes it.
+`K.s30.proonly` | S30 | Your portfolio is part of Pro. | `plain` | `lede`, 30 | `[new]` proposed. Stated plainly on Free; the same fact appears on the Free card as `K.s29.free.not`.
+`K.s30.writing.empty` | S30 | Nothing in your writing folder yet. Whatever you add there appears here. | `plain` | `lede`, 72 | `[new]` proposed.
 
 ---
 
@@ -786,6 +1185,18 @@ id | string | tone | budget | notes
 **`K.s31.letai` needs a second string that does not exist.** `[new]` When the proposal arrives in the
 queue it needs a row that says it came from a merge attempt and is a proposal, not a result. Without
 it the screen's promise and the queue's behaviour are only connected in a document.
+
+**Ids cited by `12-screens/S31.md`, reconciled 18 September.**
+
+id | screen | string | tone | budget | notes
+`K.s31.origin.browser` | S31 | This browser · {who} · {time} | `plain` | `label`, 22 | `[gen]` `docs/mvp0/screens/gen.mjs:1600`, drawn as This browser · you · today 14:02. An instance of `K.s31.side`. The phone reads This phone (`docs/mvp0/screens/gen.mjs:1605`).
+`K.s31.origin.drive` | S31 | Google Drive · {who} · {time} | `plain` | `label`, 22 | `[gen]` `docs/mvp0/screens/gen.mjs:1601`, drawn as Google Drive · Amit · today 14:05.
+`K.s31.origin.desktop` | S31 | Desktop app · {who} · {time} | `plain` | `label`, 21 | `[new]` proposed. The same shape. Not drawn; the S31 spec names the desktop as an origin.
+`K.s31.origin.github` | S31 | GitHub · {who} · {time} | `plain` | `label`, 16 | `[new]` proposed. The same shape. Not drawn.
+`K.s31.letai.explain` | S31 | AI proposes a merge. Nothing is written to the file: each change goes to your change queue for you to accept or reject. | `promise` | `body`, 119 | `[new]` proposed. **It proposes and never writes**, reviewed span by span (S31 spec, Actions). Partly fills the gap noted just above this block.
+`K.s31.consequence` | S31 | (uses the first sentence of `K.s31.note`) | `promise` | `lede` | Alias. Whichever you choose, the other version stays in history.
+`K.s31.aidown` | S31 | No AI provider is answering, so this is unavailable. The other choices still work and nothing was spent. | `refusal` | `lede`, 104 | `[new]` proposed. On the disabled Let AI decide control. The four other resolutions stay available (S31 spec, Actions).
+`K.s31.readonly` | S31 | You can see this conflict but not resolve it. The document's owner or an editor can choose. | `refusal` | `lede`, 91 | `[new]` proposed. For a role that may read the conflict and may not resolve it.
 
 ---
 
@@ -815,6 +1226,21 @@ the idea flow falls back to a standard question set rather than an apology
 (`docs/mvp0/PRODUCT-PLAN.md` section 14). `[new]` That string does not exist yet: something in the register
 of "Use a standard question set", plus one line saying the questions will be good and not tailored.
 
+**Ids cited by `12-screens/S32.md`, reconciled 18 September.**
+
+id | screen | string | tone | budget | notes
+`K.s32.chain.heading` | S32 | Providers tried | `label` | `label`, 15 | `[new]` proposed. The label over the provider list. **The list is shown on purpose**, so a person can see the fault is not their document.
+`K.s32.reason.exhausted` | S32 | free allowance used | `plain` | `label`, 19 | `[new]` proposed. For a provider whose pool is finished and which states no reset, such as Cerebras, whose quota refills continuously (S32 spec, the provider table). Where a reset is stated, the row uses `K.s32.reason.pool` instead. **Never a reset the provider did not give.**
+`K.s32.reason.transient` | S32 | busy right now | `plain` | `label`, 14 | `[new]` proposed. A provider that was busy and gave no wait. Where it gives the seconds, the row uses `K.s32.reason.rate` instead. **Never the same words as exhausted**: a Cloudflare 3036 and a 3040 must read differently (S32 spec, Acceptance).
+`K.s32.reason.trialended` | S32 | (uses `K.s32.reason.trial`) | `plain` | `label` | Alias.
+`K.s32.reason.unknown` | S32 | declined, and gave no reason | `plain` | `label`, 28 | `[new]` proposed. Said as such, rather than guessed.
+`K.s32.chip.retry` | S32 | (uses `K.s32.try`) | `label` | `button` | Alias.
+`K.s32.chip.local` | S32 | (uses `K.s32.local`) | `label` | `label` | Alias.
+`K.s32.chip.byok` | S32 | (uses `K.s32.ownkey`) | `label` | `button` | Alias. Not shown at all when the bring-your-own-key flag is off in S37.
+`K.s32.chip.standardset` | S32 | (uses `K.s13.standardset` then `K.s13.standardset.why`) | `label` | `label` | Alias. In idea mode only. This, with `K.s13.standardset.why`, answers the gap the note under this section's table records.
+`K.s32.rail` | S32 | (uses `K.s32.aioff`) | `refusal` | `body` | Alias. The line on the disabled AI control in the right rail, `[gen]` `docs/mvp0/screens/gen.mjs:1622`.
+`K.s32.offline` | S32 | You are offline, so AI cannot be reached. The providers did not refuse. Reconnect, or use the local model on the desktop app. | `caution` | `body`, 125 | `[new]` proposed. **A different line from the refusal**, because being offline is the person's to fix and a provider refusal is not (S32 spec, States). Your document is untouched either way.
+
 ---
 
 ## 14n. S33 Over the cap
@@ -833,6 +1259,17 @@ id | string | tone | budget | notes
 
 **`K.s33.title` needs an ordinal rule.** "50th" is drawn; 1st, 2nd, 3rd, 11th, 21st and 101st all
 differ. **A naive suffix is a defect.**
+
+**Ids cited by `12-screens/S33.md`, reconciled 18 September.**
+
+id | screen | string | tone | budget | notes
+`K.s33.exit.free` | S33 | (uses `K.s33.do.delete`) | `label` | `label` | Alias. First way out.
+`K.s33.exit.desktop` | S33 | (uses `K.s33.do.desktop`) | `label` | `lede` | Alias. Second way out. Shown for the document cap, which the desktop app does not have.
+`K.s33.exit.pro` | S33 | (uses `K.s33.do.pro`) | `label` | `lede` | Alias. **GST inclusive on the price.** The drawn string types the price, where rule 0 of this deck wants a variable from the configuration panel.
+`K.s33.exit.wait` | S33 | Wait for the reset on {date} | `label` | `label`, 24 | `[new]` proposed. Shown only for a monthly allowance, and **omitted, not guessed**, when the reset date could not be read (S33 spec, partial state).
+`K.s33.lowered` | S33 | This limit was lowered on {date}. Your usage did not change, and nothing you have was removed. | `plain` | `lede`, 90 | `[new]` proposed. The limit changed on the plan, not the person's usage (S33 spec, degraded state).
+`K.s33.exception.lapsed` | S33 | The extra allowance on your account ended on {date}, so your plan's usual limit applies again. | `plain` | `lede`, 90 | `[new]` proposed. A time-boxed exception from S38 has expired.
+`K.s33.offline` | S33 | This needs a connection. You are offline, not over your limit. You can keep writing on this device. | `refusal` | `lede`, 99 | `[new]` proposed. **The offline reason, not the cap reason** (S33 spec, offline state).
 
 ---
 
@@ -853,6 +1290,22 @@ id | string | tone | budget | notes
 `K.s34.step2` | 2 Decide | `label` | `label`, 12 | `[gen]` `docs/mvp0/screens/gen.mjs:1654`.
 `K.s34.step3` | 3 Write | `label` | `label`, 10 | `[gen]` `docs/mvp0/screens/gen.mjs:1654`.
 `K.s34.step4` | 4 Hand off | `label` | `label`, 14 | `[gen]` `docs/mvp0/screens/gen.mjs:1654`.
+
+**Ids cited by `12-screens/S34.md`, reconciled 18 September.**
+
+id | screen | string | tone | budget | notes
+`K.s34.standing` | S34 | (uses `K.s34.railempty`) | `plain` | `body` | Alias.
+`K.s34.what` | S34 | (uses `K.s34.lede`) | `plain` | `long` | Alias. What a blueprint is and what comes out of it.
+`K.s34.depth.low` | S34 | (uses `K.s34.low`) | `plain` | `body` | Alias.
+`K.s34.depth.medium` | S34 | (uses `K.s34.medium`) | `plain` | `body` | Alias.
+`K.s34.depth.high` | S34 | (uses `K.s34.high`) | `plain` | `body` | Alias.
+`K.s34.box.prompt` | S34 | (uses `K.s34.prompt`) | `plain` | `title` | Alias.
+`K.s34.chip.example` | S34 | (uses `K.s34.example`) | `label` | `label` | Alias.
+`K.s34.chip.template` | S34 | (uses `K.s34.template`) | `label` | `button` | Alias.
+`K.s34.credits` | S34 | (uses `K.s34.credit`) | `cost` | `label` | Alias.
+`K.s34.steps` | S34 | (uses `K.s34.step1`, `K.s34.step2`, `K.s34.step3`, `K.s34.step4`) | `label` | `label` | Alias. The four step names.
+`K.s34.offline` | S34 | An idea needs a connection to write its questions. What you type here is kept until you are back. | `plain` | `lede`, 97 | `[new]` proposed. The static half of the screen still renders from the cache.
+`K.s34.overcap` | S34 | Your blueprint allowance for this month is used. If you start now, the standard question set is used, or you can wait for the reset on {date}. The example is always free to read. | `cost` | `body`, 174 | `[new]` proposed. **Says what happens if you start anyway** (S34 spec, over-cap state).
 
 ---
 
@@ -913,6 +1366,121 @@ id | screen | string | tone | budget | notes
 `K.s38.spent` | S38 | Spent on us | `label` | `label`, 14 | `[gen]` `docs/mvp0/screens/gen.mjs:1739`.
 `K.s38.expiry` | S38 | An exception carries an expiry. When it lapses the account returns to its plan, and if it is over the cap it meets the over-cap screen: everything readable, nothing new created. | `plain` | `long` | `[gen]` `docs/mvp0/screens/gen.mjs:1752`, with the screen id replaced; see section 15 D4.
 `K.s38.ledger` | S38 | This account's ledger | `label` | `label`, 24 | `[gen]` `docs/mvp0/screens/gen.mjs:1753`.
+
+**Ids cited by `12-screens/S35.md`, reconciled 18 September.**
+
+id | screen | string | tone | budget | notes
+`K.s35.col.free` | S35 | (uses `K.common.free`) | `label` | `label` | Alias. The Free column heading, `[gen]` `docs/mvp0/screens/gen.mjs:1679`.
+`K.s35.col.pro` | S35 | (uses `K.common.pro`) | `label` | `label` | Alias. The Pro column heading.
+`K.s35.invariant` | S35 | (uses the second sentence of `K.s35.lede`) | `promise` | `long` | Alias. The product reads this table and nothing else; there is no second copy of these numbers in the source.
+`K.s35.lastchange` | S35 | {who} · {to} from {from} · {date} | `plain` | `label`, 20 | `[gen]` `docs/mvp0/screens/gen.mjs:1669`, drawn as Sagnik · 50 from 25 · 14 Sep. The new value comes first.
+`K.s35.pending.count` | S35 | (uses `K.s35.bar.change`) | `plain` | `label` | Alias.
+`K.s35.pending.impact` | S35 | (uses `K.s35.bar.warn`) | `caution` | `label` | Alias. Said before the save, with the count.
+`K.s35.pending.seewho` | S35 | (uses `K.s35.bar.seewho`) | `label` | `button` | Alias.
+`K.s35.pending.discard` | S35 | (uses `K.s35.bar.discard`) | `label` | `button` | Alias.
+`K.s35.pending.save` | S35 | (uses `K.s35.bar.save`) | `label` | `button` | Alias. Never a bare Save.
+`K.s35.confirm.lower` | S35 | This lowers {limit} on {plan} from {from} to {to}. {n} accounts will be over their cap. Nothing of theirs is removed, and they cannot create more until they are under it. | `caution` | `body`, 154 | `[new]` proposed. **Names the count before the save.** The consequence is the over-cap rule of S33: everything stays readable, nothing new is created.
+`K.s35.impact.unknown` | S35 | The number of accounts this would affect could not be worked out, so it cannot be saved yet. Try again in a moment. | `refusal` | `body`, 115 | `[new]` proposed. **A refusal**: the save is blocked rather than made blind (S35 spec).
+`K.s35.phone.readonly` | S35 | (uses `K.s35.phone.note`) | `refusal` | `body` | Alias.
+
+**Ids cited by `12-screens/S36.md`, reconciled 18 September.**
+
+id | screen | string | tone | budget | notes
+`K.s36.sub` | S36 | (uses `K.s36.lede`) | `plain` | `lede` | Alias.
+`K.s36.sec.chain` | S36 | (uses `K.s36.chain`) | `label` | `label` | Alias.
+`K.s36.sec.routing` | S36 | (uses `K.s36.routing`) | `label` | `label` | Alias.
+`K.s36.sec.local` | S36 | Desktop models | `label` | `label`, 14 | `[new]` proposed. The label over the block of local models the desktop app runs. Not drawn.
+`K.s36.terms.missing` | S36 | (uses `K.s36.note.unopened` then `K.s36.cannotenable`) | `refusal` | `label` | Alias. The reason, then the disabled switch's state.
+`K.s36.terms.record` | S36 | Record the terms: the page, the date you opened it, and what it says about training | `help` | `help`, 83 | `[new]` proposed. The control and its fields. Opening the page is what lets the provider be switched on, which keeps `K.promise.notraining` true.
+`K.s36.pool.known` | S36 | {left} left today | `plain` | `label`, 13 | `[new]` proposed. Only where our own ledger can state it. **Never learned by a probe call** (S36 spec, Data contract).
+`K.s36.pool.unknown` | S36 | Not known until it runs out | `plain` | `label`, 27 | `[new]` proposed. For a provider whose remaining pool cannot be known before spending it. Said as such, never estimated.
+`K.s36.trial.ends` | S36 | (uses `K.s36.note.trial`) | `plain` | `label` | Alias.
+`K.s36.cost.percall` | S36 | (uses `K.s36.col.cost`) | `label` | `label` | Alias. **The figure in the cell is computed from the price table, never typed** (S36 spec).
+`K.s36.phone.readonly` | S36 | (uses `K.s35.phone.note`) | `refusal` | `body` | Alias. The same line as S35.
+
+**Ids cited by `12-screens/S37.md`, reconciled 18 September.**
+
+id | screen | string | tone | budget | notes
+`K.s37.sub` | S37 | (uses `K.s37.lede`) | `plain` | `lede` | Alias.
+`K.s37.sec.flags` | S37 | (uses `K.s37.flags`) | `label` | `label` | Alias.
+`K.s37.sec.locked` | S37 | (uses `K.s37.locked`) | `label` | `label` | Alias.
+`K.s37.flag.live.title` | S37 | (uses `K.s37.flag.live`) | `label` | `label` | Alias.
+`K.s37.flag.live.desc` | S37 | Two people in one document at once. Turns on live collaboration. Free up to {collab}, unlimited on Pro. | `help` | `help`, 97 | `[gen]` `docs/mvp0/screens/gen.mjs:1716`, with one change: the drawn string names a screen id, which rule 4 of this deck forbids, so it reads live collaboration here.
+`K.s37.flag.byok.title` | S37 | (uses `K.s37.flag.byok`) | `label` | `label` | Alias.
+`K.s37.flag.byok.desc` | S37 | A key field in Settings AI. A person's own calls run on their key. Both plans. | `help` | `help`, 78 | `[gen]` `docs/mvp0/screens/gen.mjs:1717`.
+`K.s37.flag.magiclink.title` | S37 | (uses `K.s37.flag.magic`) | `label` | `label` | Alias.
+`K.s37.flag.magiclink.desc` | S37 | A third way in, beside Google and GitHub. Changes the sign-in page. | `help` | `help`, 67 | `[gen]` `docs/mvp0/screens/gen.mjs:1718`, with the screen id replaced by its name under rule 4.
+`K.s37.flag.indexing.title` | S37 | (uses `K.s37.flag.index`) | `label` | `label` | Alias.
+`K.s37.flag.indexing.desc` | S37 | Off means every published page stays out of search. Changes robots and the share dialog. | `help` | `help`, 88 | `[gen]` `docs/mvp0/screens/gen.mjs:1719`, with the screen id replaced by its name under rule 4. Whether this stays off is an open founders' question; see `K.promise.noindex`.
+`K.s37.locked.training.title` | S37 | (uses `K.s37.lock.training`) | `promise` | `label` | Alias. The same words as the sign-in page.
+`K.s37.locked.training.reason` | S37 | (uses `K.s37.lock.training.sub`) | `promise` | `long` | Alias.
+`K.s37.locked.agefloor.title` | S37 | (uses `K.s37.lock.age`) | `legal` | `label` | Alias.
+`K.s37.locked.agefloor.reason` | S37 | (uses `K.s37.lock.age.sub`) | `legal` | `long` | Alias.
+`K.s37.off.explains` | S37 | This is not available yet. Nothing is wrong with your account or your documents. | `plain` | `lede`, 80 | `[new]` proposed. What a screen shows when its flag is off, **rather than a not-found page** (S37 spec).
+
+**Ids cited by `12-screens/S38.md`, reconciled 18 September.**
+
+id | screen | string | tone | budget | notes
+`K.s38.sub` | S38 | (uses `K.s38.lede`) | `plain` | `lede` | Alias.
+`K.s38.search.placeholder` | S38 | Find an account by email | `label` | `label`, 24 | `[new]` proposed. The field's prompt. There is no account list on this screen, on purpose.
+`K.s38.search.nomatch` | S38 | No account matches {query}. | `plain` | `label`, 22 | `[new]` proposed. **No near matches and no suggestions**, because a wrong account is worse than none (S38 spec, States).
+`K.s38.meter.spend` | S38 | (uses `K.s38.spent`, then this month) | `label` | `label` | Alias. The period is drawn as this month (`docs/mvp0/screens/gen.mjs:1739`); those two words have no id of their own yet.
+`K.s38.grant.limit` | S38 | Limit to lift | `label` | `label`, 13 | `[new]` proposed. Field label.
+`K.s38.grant.value` | S38 | New value | `label` | `label`, 9 | `[new]` proposed. Field label.
+`K.s38.grant.expiry` | S38 | Expires (required) | `label` | `label`, 18 | `[new]` proposed. **An exception always carries an expiry.**
+`K.s38.grant.reason` | S38 | Why (kept in the audit log) | `label` | `label`, 27 | `[new]` proposed. The reason is written into the audit row.
+`K.s38.exception.note` | S38 | (uses `K.s38.expiry`) | `plain` | `long` | Alias.
+`K.s38.exception.held` | S38 | {who} granted an exception on {date}: {reason}. It expires {expiry}. | `plain` | `lede`, 49 | `[new]` proposed. On an account that already holds one.
+`K.s38.exception.lapsed` | S38 | The exception ended on {date}. This account is back on its plan's limits. | `plain` | `lede`, 69 | `[new]` proposed. The account-side form of `K.s33.exception.lapsed`.
+`K.s38.ledger.heading` | S38 | (uses `K.s38.ledger`) | `label` | `label` | Alias.
+`K.s38.audit.heading` | S38 | Audit log | `label` | `label`, 9 | `[gen]` `docs/mvp0/screens/gen.mjs:1662`, the fifth entry of the configuration panel's navigation.
+`K.s38.audit.row` | S38 | {who} · {setting} · {from} to {to} · {when} · {n} accounts moved | `plain` | `body`, 43 | `[new]` proposed. One audit line.
+
+---
+
+## 14q. Namespaces and families the screens cite
+
+**These tokens are not strings and never get one.** A screen writes `K.s04.*` to mean every row in
+its namespace, or `K.s28.nav.<slug>` to mean one row per slug. The validator reads each as an id,
+so this section is where each is recorded as what it is. Reconciled on 18 September; the working
+file is `docs/pack/tools/copy-reconciliation.md`.
+
+**Twenty-five screen namespaces**, then seven templates and the error namespace. None is a string.
+
+family | kind | what it stands for | members in this deck
+`K.s01` | namespace, `K.s01.*` | every row for S01 | section 3
+`K.s02` | namespace, `K.s02.*` | every row for S02 | section 4
+`K.s03` | namespace, `K.s03.*` | every row for S03 | section 4
+`K.s04` | namespace, `K.s04.*` | every row for S04 | section 5
+`K.s05` | namespace, `K.s05.*` | every row for S05 | section 6
+`K.s06` | namespace, `K.s06.*` | every row for S06 | section 7
+`K.s07` | namespace, `K.s07.*` | every row for S07 | section 8
+`K.s08` | namespace, `K.s08.*` | every row for S08 | section 9
+`K.s09` | namespace, `K.s09.*` | every row for S09 | section 10
+`K.s10` | namespace, `K.s10.*` | every row for S10 | section 11
+`K.s11` | namespace, `K.s11.*` | every row for S11 | section 12
+`K.s12` | namespace, `K.s12.*` | every row for S12 | section 13.1
+`K.s13` | namespace, `K.s13.*` | every row for S13 | section 13.2
+`K.s27` | namespace, `K.s27.*` | every row for S27 | section 5
+`K.s28` | namespace, `K.s28.*` | every row for S28 | section 14i
+`K.s29` | namespace, `K.s29.*` | every row for S29 | section 14j
+`K.s30` | namespace, `K.s30.*` | every row for S30 | section 14k
+`K.s31` | namespace, `K.s31.*` | every row for S31 | section 14l
+`K.s32` | namespace, `K.s32.*` | every row for S32 | section 14m
+`K.s33` | namespace, `K.s33.*` | every row for S33 | section 14n
+`K.s34` | namespace, `K.s34.*` | every row for S34 | section 14o
+`K.s35` | namespace, `K.s35.*` | every row for S35 | section 14p
+`K.s36` | namespace, `K.s36.*` | every row for S36 | section 14p
+`K.s37` | namespace, `K.s37.*` | every row for S37 | section 14p
+`K.s38` | namespace, `K.s38.*` | every row for S38 | section 14p
+`K.s28.nav` | template, `K.s28.nav.<slug>` | one label per settings section | all ten, `K.s28.nav.account` to `K.s28.nav.plan`, matching the slugs in the S28 spec
+`K.s30.templates` | template, `K.s30.templates.<slug>` | one name and one line per portfolio template | **none written.** The templates themselves are not chosen
+`K.s33.heading` | template, `K.s33.heading.<entitlement>` | one heading per cap, naming the limit and the number | only the documents cap, as `K.s33.title`. The other caps have no heading yet
+`K.s33.blocked` | template, `K.s33.blocked.<entitlement>` | the one not-allowed row, per cap | only the documents cap, as `K.s33.not.create`
+`K.s35.row` | template, `K.s35.row.<entitlement>` | one label per limit row | all nine, `K.s35.row.docs` to `K.s35.row.pushes`
+`K.s36.routing.col` | template, `K.s36.routing.col.<plan>` | one heading per plan column | the two plans, as `K.common.free` and `K.common.pro`
+`K.s38.meter` | template, `K.s38.meter.<entitlement>` | one label per usage meter | only `K.s38.meter.spend`. gen.mjs draws Documents, AI edits this month and Blueprints (`docs/mvp0/screens/gen.mjs:1736` to `:1738`) with no ids yet
+`K.err` | namespace, `K.err.*` | the words for every row of `17-ERROR-AND-REFUSAL-CATALOGUE.md` | **none written.** Named at `17-ERROR-AND-REFUSAL-CATALOGUE.md` lines 144 and 389, and owned there
 
 ---
 
