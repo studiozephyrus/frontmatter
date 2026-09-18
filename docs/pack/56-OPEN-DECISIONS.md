@@ -86,6 +86,30 @@ The earlier record, kept as written:
 - **The founder asked for the industry benchmark before deciding.** It is in
   `docs/research/2026-09-18-storage/STORAGE-BENCHMARK.md`, awaiting his decision.
 
+### D04 to D14, answered later on 18 September
+
+`[Z]` throughout. Each overrides the recommendation printed for it below, where they differ.
+
+- **D04, yes.** The MCP server reads and proposes, never writes, and is the Max tier.
+- **D05, keep frontmatter now.** The trademark search is no longer a precondition. `INFERENCE:` it is
+  still worth running before money is spent on the domain or brand.
+- **D06, yes.** Stamp `verified: [{by, at}]` into front matter when a person accepts a change.
+- **D07, keep the twenty-kit gate.**
+- **D08, a one-month Pro trial.** Reminders before it ends at 15, 10, 5, 3 and 2 days. If unpaid,
+  editing locks, and **copy and export lock too**; reading stays.
+  - Consequence: the standing promise "every document stays readable and exportable" must be
+    reworded wherever it appears (`16-COPY-DECK.md`, S01, S33, the plan).
+  - Consequence: under D03 every document is already mirrored to the person's own GitHub or Drive,
+    so an export lock inside the app does not stop them having the file.
+  - `UNVERIFIED:` needs a legal opinion on blocking export against data-portability rights under the
+    DPDP Act 2023 and GDPR Article 20.
+- **D09, desktop early**, alongside the web editor, not after sync. `UNVERIFIED:` the Windows signing
+  certificate is still unpriced, and is now needed sooner.
+- **D12, yes.** Editing through a link needs the one-tap sign-in; reading needs nothing.
+- **D13, build database views over front matter early**, not deferred.
+- **D14, keep voice typing** in Doc mode.
+- Consequence for the roadmap: D09 and D13 move work earlier in `50-ROADMAP.md`.
+
 ### D10, answered: all of them
 
 Every account in `docs/mvp0/PRODUCT-PLAN.md` section 24 moves to the company before the first
@@ -97,17 +121,17 @@ Id | Decision | Blocks | Recommendation
 `D01` | **What the product is, in one sentence.** And the contradiction in our own documents about which answer we took | Build order, and 23 other decision cards | **Decided 18 September `[Z]`: the broad editor, option a, sharpened.** See section 0
 `D02` | The pace, and which phases sit in Later | Every calendar date | **Decided 18 September `[Z]`: everything, built in batches**, each used internally before the next. See section 0
 `D03` | Which bytes we hold, and from which phase | The architecture of phase A | **Decided 18 September `[Z]`: our copy is canonical, the person's GitHub or Drive holds a full mirror.** See section 0
-`D04` | **Whether the Model Context Protocol server moves out of Later** and becomes the Max tier | The Max tier's existence | **Move it.** Ship a read-and-propose server in phase D
-`D05` | The name | The domain and every published URL | Run the trademark search first, then decide. Do not decide before the search
-`D06` | **Whether to reopen authorship marking**, now that Google's Open Knowledge Format defines `generated` and `verified` | A small amount of phase D | **Reopen it**, and stamp front matter on accept
-`D07` | The twenty-kit gate | Phase C | Keep the gate. It is cheap and it is the only real test of the funnel
-`D08` | Trial and dunning behaviour | Phase H | No trial. The free tier is the trial. Dunning as specified in `53`
-`D09` | The desktop's timing, and who signs Windows | The order of phases E and F | Desktop after sync. Price a Windows certificate before phase F
+`D04` | **Whether the Model Context Protocol server moves out of Later** and becomes the Max tier | The Max tier's existence | **Decided 18 September `[Z]`: yes.** A read-and-propose MCP server, never writing directly, becomes the Max tier
+`D05` | The name | The domain and every published URL | **Decided 18 September `[Z]`: keep frontmatter now**, without waiting for the trademark search
+`D06` | **Whether to reopen authorship marking**, now that Google's Open Knowledge Format defines `generated` and `verified` | A small amount of phase D | **Decided 18 September `[Z]`: yes.** Stamp `verified: [{by, at}]` into front matter on accept
+`D07` | The twenty-kit gate | Phase C | **Decided 18 September `[Z]`: keep the twenty-kit gate**
+`D08` | Trial and dunning behaviour | Phase H | **Decided 18 September `[Z]`: a one-month Pro trial**, countdown reminders, and editing, copy and export locked if unpaid. See section 0
+`D09` | The desktop's timing, and who signs Windows | The order of phases E and F | **Decided 18 September `[Z]`: desktop early**, alongside the web editor. The Windows certificate is still unpriced
 `D10` | Which accounts move to the company | Phase 0 | **Decided 18 September `[Z]`: all of them**, before the first stranger
 `D11` | **The free document cap against the pilot cohort.** 50 documents, and a qualifying vault is 200 files | The pilot, before it recruits anybody | **Decided 18 September `[Z]`: set from the configuration panel and A/B tested on real accounts before it is fixed.** See `28-CONFIGURATION-PANEL-SPEC.md` section 10.3
-`D12` | **Whether a link-edit holder needs an account.** The front door forbids anonymous editing and the permission matrix grants it | Phase D | Require an account. It is the front door's rule and the matrix is wrong
-`D13` | **Database views over front matter.** Table stakes in one round, deferred in the plan | Phase G | State the test. Keep the deferral, and say why in one line
-`D14` | **Voice typing.** A shipped Doc mode row, and the research's clearest negative | Phase B, one contractor row | Drop it. The operating system does it free
+`D12` | **Whether a link-edit holder needs an account.** The front door forbids anonymous editing and the permission matrix grants it | Phase D | **Decided 18 September `[Z]`: yes, sign in to edit.** Reading a link needs nothing
+`D13` | **Database views over front matter.** Table stakes in one round, deferred in the plan | Phase G | **Decided 18 September `[Z]`: build views early**
+`D14` | **Voice typing.** A shipped Doc mode row, and the research's clearest negative | Phase B, one contractor row | **Decided 18 September `[Z]`: keep voice typing** in Doc mode
 `D15` | **The data model says Postgres and the stack decision says Firestore** | Phase A, all of it | **Closed 18 September.** Section 18 now names Firestore collections and points at `21-DATA-MODEL.md`
 
 ---
