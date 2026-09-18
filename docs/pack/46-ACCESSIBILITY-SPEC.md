@@ -34,8 +34,8 @@ delete a section from either file.
 ## 2. The target
 
 Standard | Level | Why
-WCAG 2.2 | **AA**, every screen | The plan's target, at `docs/mvp0/PRODUCT-PLAN.md:1390`
-IS 17802 Part 1 of 2021, tested to Part 2 of 2022 | the standard named by the draft Indian rule | Also `docs/mvp0/PRODUCT-PLAN.md:1390`, and the reason is in the plan's legal section
+WCAG 2.2 | **AA**, every screen | The plan's target, at `docs/mvp0/PRODUCT-PLAN.md` section 16
+IS 17802 Part 1 of 2021, tested to Part 2 of 2022 | the standard named by the draft Indian rule | Also `docs/mvp0/PRODUCT-PLAN.md` section 16, and the reason is in the plan's legal section
 
 **Why two standards and not one.** The plan's legal section records a draft amendment to the Rights of
 Persons with Disabilities Rules, dated 23 July 2026, which would require IS 17802 for any website or
@@ -138,7 +138,7 @@ sees.
 
 ### 3.5 What the plan currently claims, and why it needs correcting
 
-`docs/mvp0/PRODUCT-PLAN.md:1390` says the muted, danger and success tokens are retuned to 4.5 to 1 and
+`docs/mvp0/PRODUCT-PLAN.md` section 16 says the muted, danger and success tokens are retuned to 4.5 to 1 and
 the generator asserts it. **The generator asserts it about a retuned palette that the application does
 not ship.** The claim should be narrowed to name the file the tokens were retuned in, which is the
 screen generator, until `src/app/globals.css` matches. This is recorded as `TD-017`.

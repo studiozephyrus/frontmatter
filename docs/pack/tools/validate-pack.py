@@ -93,7 +93,11 @@ def expand(ids):
     return out
 
 
-files = sorted(p for p in PACK.rglob('*.md') if 'tools/' not in str(p.relative_to(PACK)))
+# graphify-out is a third-party tool's output, not a pack document, so it is not held
+# to the pack's contract. It rebuilds from graph.json and carries its own provenance.
+EXCLUDE = ('tools/', 'graphify-out/')
+files = sorted(p for p in PACK.rglob('*.md')
+               if not any(x in str(p.relative_to(PACK)) for x in EXCLUDE))
 for path in files:
     rel = path.relative_to(ROOT)
     text = path.read_text(encoding='utf-8')

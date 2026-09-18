@@ -7,7 +7,7 @@ status: living
 updated: 2026-09-18
 owner: sagnik
 verified_against: 0af3c90
-covers: [tokens, typography, contrast, components, icons, layout]
+covers: [tokens, typography, type-scale, components, icons, layout]
 ---
 
 # 58. Design system
@@ -161,7 +161,8 @@ ratio = (max(L1, L2) + 0.05) / (min(L1, L2) + 0.05)
 ```
 
 **The target is WCAG 2.2 AA**, plus IS 17802 tested alongside it. See
-`54-COMPLIANCE-AND-LEGAL.md` section 6 for why both.
+`54-COMPLIANCE-AND-LEGAL.md` section 6 for why both, and **`46-ACCESSIBILITY-SPEC.md` for the
+requirement itself.** This file owns the token values and the maths on them, never the standard.
 
 ---
 

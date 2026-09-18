@@ -363,8 +363,18 @@ Order | Add | Catches
   is unknown to this file. `AGENTS.md:120` records that `build` is stricter than `typecheck`, so a
   green `typecheck` would not settle it either.
 - **The Tauri build.** `npm run tauri:build` has no test layer described here and none was found.
-- **CI.** No continuous-integration configuration was inspected, so whether any of these gates runs
-  on a push is unknown to this file.
+
+**And one thing that was assessed, after this section was first written, because it changes how to
+read every layer above.**
+
+**There is no continuous integration.** `.github/` does not exist, checked with `ls -a .github`, which
+returns a non-zero exit. No workflow file exists anywhere in the repository. The only automated step
+on a push is `scripts/vercel-ignore-build.sh`, which decides whether the deployment platform rebuilds
+and runs none of these gates.
+
+So **every gate in this file runs only when a person remembers to run it**, and a commit that breaks
+any of them reaches the default branch unchallenged. Section 7's ordering assumes gates are enforced
+somewhere. Until continuous integration exists, they are a checklist.
 
 **What could not be verified.**
 

@@ -51,9 +51,11 @@ Id | Title | Effort | Status
 `TD-020` | The published page prints the legacy url in its own header | S | open
 `TD-021` | No coverage tool is configured | M | open
 `TD-022` | The screens hold hand-written numbers beside a constants table | M | open
+`TD-023` | There is no continuous integration, so no gate runs on a push | M | open
 
-**Twenty-one open, one fixed.** Nine of the twenty-one are `S`, and eight of those nine are one line
-each. Section 13 sequences them.
+**Twenty-two open, one fixed.** Nine of the twenty-two are `S`, and eight of those nine are one line
+each. Section 13 sequences them. **`TD-023` is the one to read first**, because it decides whether any
+of the others can be held once fixed.
 
 ## TD-001
 
@@ -440,11 +442,35 @@ into the phrase "1 live collaborators".
 one reads correctly. Then decide whether `CAPS` or the plan is the source, because right now the
 generator has a copy and `65-CONVENTIONS.md` section 1 says one fact has one home.
 
+## TD-023
+
+**There is no continuous integration, so no gate runs on a push. Effort M. Status open.**
+
+**Evidence.** `ls -a .github` exits non-zero: the directory does not exist. There is no workflow file
+anywhere in the repository. The only automated step on a push is
+`scripts/vercel-ignore-build.sh`, and its own header says what it does: it decides whether the
+deployment platform rebuilds, by diffing the commit range against a list of watched paths. **It runs
+none of the gates.**
+
+**So every gate named in this pack is a checklist.** `npm run verify`, `npm run corpus`,
+`npm run spec`, `npm run arch`, the writing gate and the pack validator all run when a person
+remembers. A commit that breaks any of them reaches the default branch, which is auto-deployed,
+unchallenged.
+
+**Why this entry outranks most of the others.** Fixing `TD-006`, `TD-007` and `TD-011` adds checks to
+commands nothing runs. Each of those is still worth doing, and none of them holds until this one is
+done.
+
+**Fix.** One workflow on push and on pull request, running `npm run verify` and `npm run corpus`. Add
+the pack validator and the writing gate once they are stable. Start with the gates that are green
+today, so the first run passes and the workflow is trusted rather than muted.
+
 ## 13. The order to work through them
 
 Not by severity. By what unblocks what, and by what is nearly free.
 
 Order | Ids | Why together
+0 | `TD-023` | Nothing below can be held without it
 1 | `TD-006`, `TD-007`, `TD-008`, `TD-009` | Four gate and wiring fixes, all one line or close to it, all of them making a later regression visible
 2 | `TD-016`, `TD-018`, `TD-019`, `TD-020` | Four visible defects, each a small change, each currently on a surface somebody looks at
 3 | `TD-017`, `TD-022` | Both are the same shape: a number restated instead of read. Fix the mechanism once
