@@ -33,15 +33,15 @@ Tier | Who writes it | How it stays true | Freshness review
 `archive` | Nobody, any more | It was true then | **Never.** Editing it destroys the record
 `superseded` | Nobody, any more | It says what replaced it | **Never**
 
-**Counted at write time** `[O]`, across 97 files in `docs/pack/` including `12-screens/`:
+**Counted at write time** `[O]`, across 102 files in `docs/pack/` including `12-screens/`:
 
 ```
-tier: canonical  95
-tier: derived     2
-mode: reference  74, explanation 13, how-to 9, tutorial 1
+tier: canonical  100
+tier: derived      2
+mode: reference   76, explanation 15, how-to 10, tutorial 1
 ```
 
-**That ratio is the finding.** **95 canonical against 2 derived** means the pack is almost
+**That ratio is the finding.** **100 canonical against 2 derived** means the pack is almost
 entirely hand-written, and almost every claim in it has to be re-checked by a person rather than
 re-run by a script. Section 5 says which of those should become derived and why the rest cannot.
 
@@ -66,7 +66,7 @@ teaches nobody anything.
 
 ```
 node docs/pack/tools/gen-codemap.mjs --check
-# codemap up to date: 1,148 files
+# codemap up to date: <n> files
 # or
 # codemap is STALE. Run: node docs/pack/tools/gen-codemap.mjs
 ```

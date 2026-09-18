@@ -44,7 +44,7 @@ Id | Decision | Blocks | Recommendation
 `D12` | **Whether a link-edit holder needs an account.** The front door forbids anonymous editing and the permission matrix grants it | Phase D | Require an account. It is the front door's rule and the matrix is wrong
 `D13` | **Database views over front matter.** Table stakes in one round, deferred in the plan | Phase G | State the test. Keep the deferral, and say why in one line
 `D14` | **Voice typing.** A shipped Doc mode row, and the research's clearest negative | Phase B, one contractor row | Drop it. The operating system does it free
-`D15` | **The data model says Postgres and the stack decision says Firestore** | Phase A, all of it | Rewrite section 18's storage column. This is the largest unflagged inconsistency in the plan
+`D15` | **The data model says Postgres and the stack decision says Firestore** | Phase A, all of it | **Closed 18 September.** Section 18 now names Firestore collections and points at `21-DATA-MODEL.md`
 
 ---
 
@@ -61,6 +61,8 @@ decision cards were closed on the strength of the answer.
 - `docs/mvp0/PRODUCT-PLAN.md` section 1 carries the sentence: a markdown editor for people whose
   documents are increasingly written with, and for, AI agents. **That is option a.**
 - `docs/mvp0/PRODUCT-PLAN.md` section 29 says the plan is written to **recommendation b**.
+- `decisions/v2/_final.json:11` is option a: "A markdown editor, with a document kit as the way
+  in", which is what the plan's sentence says.
 - `decisions/v2/_final.json:16` is option b: "Where you write, review and keep current the files
   your agents obey", scoped to AGENTS.md, CLAUDE.md and rules files.
 - The card's own reasoning at `decisions/v2/_final.json:31` rejects option a by name: "Options a
@@ -330,6 +332,10 @@ Reopen the stack decision | Reverses a founders' decision of 17 September on a d
 **Recommendation: rewrite section 18.** This is a defect in a document rather than a decision, and
 it is listed here only because it is the kind of thing that survives unnoticed until somebody
 builds from it.
+
+**Status: closed on 18 September 2026.** Section 18 was rewritten to the Firestore collections of
+`21-DATA-MODEL.md`, and its collaborator row now says 1 live on Free, which the old table had as 3.
+Check with `grep -ci postgres docs/mvp0/PRODUCT-PLAN.md`, which prints 1: the line recording the fix.
 
 ---
 

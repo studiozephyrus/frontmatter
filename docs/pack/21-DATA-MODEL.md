@@ -14,6 +14,10 @@ covers: [data-model, firestore, r2, indexeddb, retention]
 
 ## 21.1 Open with the contradiction, because it blocks phase A
 
+**Closed on 18 September 2026.** `docs/mvp0/PRODUCT-PLAN.md` section 18 now names the Firestore
+collections below and points here as the home for the schema. The rest of this section is kept as
+the record of why the rewrite was needed. See `56-OPEN-DECISIONS.md`, `D15`.
+
 The plan of record disagrees with itself about where records live, and the disagreement is not a
 wording slip. It is two different databases.
 

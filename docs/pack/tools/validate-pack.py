@@ -188,6 +188,55 @@ for path in files:
             except OSError:
                 pass
 
+# Every id cited anywhere in the pack must exist in its register. Two writers working in
+# parallel invented ids independently once, and 819 references ended up pointing at nothing:
+# a developer looking one up found either silence or a different thing wearing the same id.
+# The second is worse, because it looks right.
+REGISTERS = [
+    ('C', r'\bC\d{3}\b', '14-COMPONENT-INVENTORY.md'),
+    ('K', r'\bK\.[a-z0-9.]*[a-z0-9]', '16-COPY-DECK.md'),
+    ('E', r'\bE\d{3}\b', '17-ERROR-AND-REFUSAL-CATALOGUE.md'),
+    ('A', r'\bA\d{3}\b', '19-ACCEPTANCE-CRITERIA.md'),
+    ('F', r'\bF(?:[1-9]\d\d)\b', '10-FEATURE-REGISTER.md'),
+    # F001 to F099 are the findings of the 17 September audit, not features (10-FEATURE-REGISTER.md
+    # section 4.1). Their home is the audit report, where each is the first cell of a table row.
+    ('F', r'\bF0\d\d\b', '../../verify/2026-09-17/CLAUDE-AUDIT-REPORT.md'),
+]
+
+
+def defined_in(text, pat):
+    """An id is defined only where it opens a table row or sits in a heading. A passing mention
+    inside a register's prose is not a home, and counting it as one hides exactly the orphan
+    this check exists to find."""
+    out = set()
+    for line in text.splitlines():
+        head = re.match(r'^\s*(?:\|\s*)?`?(' + pat.replace('\\b', '') + r')`?\s*(?:\||$)', line)
+        if head:
+            out.add(head.group(1))
+        elif line.startswith('#'):
+            out.update(re.findall(pat, line))
+    return out
+
+
+for kind, pat, home_name in REGISTERS:
+    home = (PACK / home_name).resolve()
+    if not home.exists():
+        problems.append(f'{home_name}: the home register for {kind} ids is missing')
+        continue
+    defined = defined_in(home.read_text(encoding='utf-8'), pat)
+    used = {}
+    for f in files:
+        if f.resolve() == home:
+            continue
+        for i in set(re.findall(pat, f.read_text(encoding='utf-8'))):
+            used.setdefault(i, f.relative_to(ROOT))
+    orphans = sorted(set(used) - defined)
+    if orphans:
+        where = sorted({str(used[o]) for o in orphans})[:3]
+        problems.append(
+            f'{home_name}: {len(orphans)} {kind} id(s) are cited but have no home here, '
+            f'first {orphans[:4]}, seen in {where}')
+
 if not QUIET:
     print(f'pack: {len(files)} files, {len(covers_seen)} covered ids')
 for p in problems:

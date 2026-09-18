@@ -15,7 +15,7 @@ covers: [files, sizes, purpose]
 **Generated. Do not hand-edit.** Run the command in `generated_by` and commit the result.
 A hand edit is reverted by the next run.
 
-**Commit:** `f237ece`, dated 2026-09-18.
+**Commit:** `c2b51ea`, dated 2026-09-18.
 
 ## 1. What is counted
 
@@ -23,11 +23,11 @@ A hand edit is reverted by the next run.
 (`node_modules`) or is build output (`.next`, `target`).
 
 Measure | Value
-Files listed | **1,148**
-Total size | **59.5 MB**
-Directories | 186
-Purpose read from the file itself | 931
-Purpose derived from the path, marked `~` | 217
+Files listed | **1,196**
+Total size | **60.4 MB**
+Directories | 187
+Purpose read from the file itself | 975
+Purpose derived from the path, marked `~` | 221
 
 ## 2. What is excluded, and why
 
@@ -56,11 +56,11 @@ a lockfile, not read by a person | 1
 
 ### `(repository root)`
 
-23 files, 327.7 KB.
+23 files, 327.8 KB.
 
 File | Size | Purpose
 `.firebaserc` | 56 B | ~ which Firebase project the tooling points at.
-`.gitignore` | 1.6 KB | ~ what git ignores.
+`.gitignore` | 1.7 KB | ~ what git ignores.
 `.nvmrc` | 3 B | ~ the node version this repository builds on.
 `.vercelignore` | 21 B | ~ what the deploy leaves out.
 `CLAUDE.md` | 6.5 KB | "CLAUDE.md frontmatter".
@@ -483,7 +483,7 @@ File | Size | Purpose
 
 ### `docs/mvp0`
 
-10 files, 542.8 KB.
+10 files, 543.6 KB.
 
 File | Size | Purpose
 `build-pdf.mjs` | 14.2 KB | "Render a single markdown plan document to a paginated A4 PDF in the sgnk design system. Generic version ...".
@@ -493,7 +493,7 @@ File | Size | Purpose
 `MVP0-PLAN-print.md` | 47.1 KB | "frontmatter MVP 0: the build sheet".
 `MVP0-PLAN-v3.md` | 69.1 KB | "frontmatter: the MVP 0 plan".
 `PRODUCT-GUIDE.md` | 156.7 KB | "frontmatter, the product guide".
-`PRODUCT-PLAN.md` | 146.2 KB | "frontmatter, the product plan".
+`PRODUCT-PLAN.md` | 147.0 KB | "frontmatter, the product plan".
 `SCREEN-CHANGES-2026-09-18.md` | 16.2 KB | "Screen change register, 18 September 2026".
 `SCREENS.md` | 23.5 KB | "frontmatter, the screens".
 
@@ -517,10 +517,10 @@ File | Size | Purpose
 
 ### `docs/pack`
 
-39 files, 894.8 KB.
+64 files, 1.5 MB.
 
 File | Size | Purpose
-`00-README.md` | 6.9 KB | "00. Start here".
+`00-README.md` | 13.8 KB | "00. Start here".
 `01-EXECUTIVE-SUMMARY.md` | 15.4 KB | "01. Executive summary".
 `02-PRODUCT-AND-DOMAIN.md` | 12.0 KB | "02. The product and its domain".
 `03-GLOSSARY.md` | 12.7 KB | "03. Glossary".
@@ -529,18 +529,26 @@ File | Size | Purpose
 `06-COMPETITIVE-LANDSCAPE.md` | 18.4 KB | "06. Competitive landscape".
 `07-CLAIMS-REGISTER.md` | 12.4 KB | "07. Claims register".
 `08-ECOSYSTEM.md` | 13.1 KB | "08. Ecosystem".
-`10-FEATURE-REGISTER.md` | 51.9 KB | "10. Feature register".
-`11-SCREEN-INDEX.md` | 13.9 KB | "11. Screen index".
+`09-CHANGELOG.md` | 14.7 KB | "09. Changelog".
+`10-FEATURE-REGISTER.md` | 52.0 KB | "10. Feature register".
+`11-SCREEN-INDEX.md` | 14.0 KB | "11. Screen index".
 `13-SCREEN-STATE-MATRIX.md` | 20.3 KB | "13. Screen state matrix".
-`15-INTERACTION-AND-KEYBOARD.md` | 24.5 KB | "15. Interaction and keyboard".
-`16-COPY-DECK.md` | 91.1 KB | "16. Copy deck".
+`14-COMPONENT-INVENTORY.md` | 42.2 KB | "14. Component inventory".
+`15-INTERACTION-AND-KEYBOARD.md` | 24.6 KB | "15. Interaction and keyboard".
+`16-COPY-DECK.md` | 96.8 KB | "16. Copy deck".
 `17-ERROR-AND-REFUSAL-CATALOGUE.md` | 28.0 KB | "17. Error and refusal catalogue".
+`18-FIRST-RUN-AND-EMPTY.md` | 18.0 KB | "18. First run and empty states".
+`19-ACCEPTANCE-CRITERIA.md` | 34.6 KB | "19. Acceptance criteria".
 `20-ARCHITECTURE.md` | 15.5 KB | "20. Architecture".
-`21-DATA-MODEL.md` | 36.1 KB | "21. Data model".
+`21-DATA-MODEL.md` | 36.3 KB | "21. Data model".
 `22-API-REFERENCE.md` | 34.1 KB | "22. API reference".
 `23-WEB-APP-SPEC.md` | 16.8 KB | "23. Web app specification".
-`27-MODEL-ROUTING-SPEC.md` | 84.3 KB | "27. The model routing layer".
-`28-CONFIGURATION-PANEL-SPEC.md` | 39.2 KB | "28. The configuration panel".
+`24-SERVER-SPEC.md` | 21.0 KB | "24. Server specification".
+`25-ENGINE-SPEC.md` | 27.4 KB | "25. Engine specification".
+`26-ENGINE-REFUSAL-CATALOGUE.md` | 17.5 KB | "26. Engine refusal catalogue".
+`27-MODEL-ROUTING-SPEC.md` | 84.4 KB | "27. The model routing layer".
+`28-CONFIGURATION-PANEL-SPEC.md` | 39.4 KB | "28. The configuration panel".
+`29-PLATFORM-AND-DESKTOP-SPEC.md` | 25.8 KB | "29. Platform, desktop and phone".
 `30-ENVIRONMENT-AND-CONFIG.md` | 22.5 KB | "30. Environment and configuration".
 `31-LOCAL-SETUP.md` | 18.1 KB | "31. Local setup".
 `32-DEPLOYMENT-AND-OPS.md` | 17.4 KB | "32. Deployment and operations".
@@ -548,21 +556,38 @@ File | Size | Purpose
 `34-INTEGRATIONS.md` | 25.6 KB | "34. Integrations".
 `35-RELEASE-AND-VERSIONING.md` | 15.0 KB | "35. Release and versioning".
 `36-DATA-MIGRATION-PLAN.md` | 15.7 KB | "36. Data migration plan".
-`40-TESTING-STRATEGY.md` | 15.7 KB | "40. Testing strategy".
+`37-BACKUP-AND-RECOVERY.md` | 22.1 KB | "37. Backup and recovery".
+`38-INCIDENT-AND-SEVERITY.md` | 18.7 KB | "38. Incident and severity".
+`39-SHARING-A-BUILD.md` | 14.3 KB | "39. Sharing a build".
+`40-TESTING-STRATEGY.md` | 16.2 KB | "40. Testing strategy".
 `41-FIXTURE-REGISTER.md` | 16.2 KB | "41. Fixture register".
 `42-SECURITY-REVIEW.md` | 41.4 KB | "42. Security review".
+`43-THREAT-MODEL.md` | 17.1 KB | "43. Threat model".
+`44-TECH-DEBT-REGISTER.md` | 24.0 KB | "44. Technical debt register".
+`45-UX-AUDIT.md` | 19.7 KB | "45. Screens audit".
+`46-ACCESSIBILITY-SPEC.md` | 20.0 KB | "46. Accessibility specification".
+`47-PERFORMANCE-BUDGET.md` | 14.8 KB | "47. Performance budget".
+`48-PRODUCT-MATURITY.md` | 21.4 KB | "48. Product maturity".
 `50-ROADMAP.md` | 16.4 KB | "50. Roadmap".
 `51-PRODUCT-PLAN.md` | 18.1 KB | "51. Product plan".
 `52-MARKET-RESEARCH.md` | 19.4 KB | "52. Market research".
 `53-PRICING-AND-ENTITLEMENTS.md` | 15.2 KB | "53. Pricing and entitlements".
 `54-COMPLIANCE-AND-LEGAL.md` | 21.1 KB | "54. Compliance and legal".
 `55-MEASUREMENT-AND-EVENTS.md` | 22.9 KB | "55. Measurement and events".
+`56-OPEN-DECISIONS.md` | 22.4 KB | "56. Open decisions".
+`57-SUPPORT-AND-LIFECYCLE.md` | 13.5 KB | "57. Support and lifecycle".
+`58-DESIGN-SYSTEM.md` | 19.1 KB | "58. Design system".
+`59-CODEMAP.md` | 119.6 KB | "59. Codemap".
+`60-TRACEABILITY.md` | 20.4 KB | "60. Traceability".
+`61-DOCUMENTATION-PRACTICE.md` | 15.0 KB | "61. Documentation practice".
 `62-DOC-SCHEMA.md` | 4.6 KB | "62. The front matter contract".
+`63-AGENT-CONTRACT.md` | 16.9 KB | "63. Agent contract".
+`64-PORTABILITY-AND-HANDOVER.md` | 20.3 KB | "64. Portability and handover".
 `65-CONVENTIONS.md` | 5.3 KB | "65. Conventions".
 
 ### `docs/pack/12-screens`
 
-20 files, 301.6 KB.
+38 files, 595.9 KB.
 
 File | Size | Purpose
 `S01.md` | 13.2 KB | "S01. Sign in".
@@ -573,29 +598,58 @@ File | Size | Purpose
 `S06.md` | 16.4 KB | "S06. AI writing box".
 `S07.md` | 14.6 KB | "S07. AI edit".
 `S08.md` | 13.4 KB | "S08. Custom blocks".
-`S14.md` | 17.9 KB | "S14. Idea mode, Medium and High".
-`S15.md` | 14.8 KB | "S15. Blueprint ready".
-`S16.md` | 12.7 KB | "S16. The map".
-`S17.md` | 15.7 KB | "S17. Share".
-`S18.md` | 16.3 KB | "S18. Published page".
-`S19.md` | 13.6 KB | "S19. Live collaboration".
-`S27.md` | 12.2 KB | "S27. Dark mode".
-`S28.md` | 15.6 KB | "S28. Settings".
-`S29.md` | 14.6 KB | "S29. Plan and usage".
-`S30.md` | 13.6 KB | "S30. Portfolio".
-`S31.md` | 15.9 KB | "S31. Conflict".
-`S32.md` | 18.8 KB | "S32. AI unavailable".
+`S09.md` | 12.8 KB | "S09. Flow view".
+`S10.md` | 15.8 KB | "S10. Problems".
+`S11.md` | 16.4 KB | "S11. Instruction files".
+`S12.md` | 15.7 KB | "S12. Ideas".
+`S13.md` | 19.2 KB | "S13. Idea mode, Low".
+`S14.md` | 18.1 KB | "S14. Idea mode, Medium and High".
+`S15.md` | 15.2 KB | "S15. Blueprint ready".
+`S16.md` | 12.8 KB | "S16. The map".
+`S17.md` | 17.0 KB | "S17. Share".
+`S18.md` | 16.6 KB | "S18. Published page".
+`S19.md` | 13.8 KB | "S19. Live collaboration".
+`S20.md` | 16.8 KB | "S20. Document review".
+`S21.md` | 13.5 KB | "S21. Document history".
+`S22.md` | 16.8 KB | "S22. Import".
+`S23.md` | 18.2 KB | "S23. Connections".
+`S24.md` | 13.9 KB | "S24. Offline".
+`S25.md` | 14.6 KB | "S25. Desktop app".
+`S26.md` | 14.0 KB | "S26. Quick capture".
+`S27.md` | 12.6 KB | "S27. Dark mode".
+`S28.md` | 16.2 KB | "S28. Settings".
+`S29.md` | 15.2 KB | "S29. Plan and usage".
+`S30.md` | 14.3 KB | "S30. Portfolio".
+`S31.md` | 16.6 KB | "S31. Conflict".
+`S32.md` | 19.5 KB | "S32. AI unavailable".
+`S33.md` | 15.7 KB | "S33. Over the cap".
+`S34.md` | 16.1 KB | "S34. Ideas, empty".
+`S35.md` | 18.9 KB | "S35. Configuration, plans and limits".
+`S36.md` | 18.0 KB | "S36. Configuration, models and providers".
+`S37.md` | 15.8 KB | "S37. Configuration, features and flags".
+`S38.md` | 15.6 KB | "S38. Configuration, accounts and usage".
 
 ### `docs/pack/tools`
 
-5 files, 33.3 KB.
+9 files, 58.9 KB.
 
 File | Size | Purpose
 `AUTHOR-BRIEF.md` | 4.7 KB | "Brief for anyone writing a file in this pack".
 `fix-pack.py` | 2.3 KB | ~ this pack.
-`gen-api-reference.mjs` | 16.8 KB | "gen-api-reference.mjs - generates docs/pack/22-API-REFERENCE.md from the source tree. A hand-written API r ...".
+`gen-api-reference.mjs` | 17.5 KB | "gen-api-reference.mjs - generates docs/pack/22-API-REFERENCE.md from the source tree. A hand-written API r ...".
+`gen-codemap.mjs` | 13.6 KB | "gen-codemap.mjs Regenerates docs/pack/59-CODEMAP.md from the working tree. One row per first-party file: i ...".
+`gen-index.py` | 2.7 KB | ~ this pack.
 `SCREEN-TEMPLATE.md` | 2.4 KB | "SNN. Name".
-`validate-pack.py` | 7.0 KB | ~ this pack.
+`stabilise-citations.py` | 3.6 KB | ~ this pack.
+`state-coverage.py` | 2.2 KB | ~ this pack.
+`validate-pack.py` | 10.0 KB | ~ this pack.
+
+### `docs/pack/tools/__pycache__`
+
+1 file, 4.4 KB.
+
+File | Size | Purpose
+`state-coverage.cpython-314.pyc` | 4.4 KB | ~ this pack.
 
 ### `docs/prototype`
 
@@ -2324,7 +2378,7 @@ File | Size | Purpose
 nothing imports looks exactly like one every screen depends on.
 
 **What could not be verified.** A purpose marked `~` was derived from the path and is a
-label rather than a description. There are 217 of them.
+label rather than a description. There are 221 of them.
 
 **What would falsify it.** A file whose leading comment describes something it no longer
 does. The generator reads the comment and cannot know it is stale.

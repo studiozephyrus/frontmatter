@@ -1439,23 +1439,28 @@ Doc mode, the flow view, the portfolio and Drive sync are all projections and ad
 
 The entities the features imply, where each lives, and its rules `[P]`. Sizes are per record; retention is what the person can rely on; deletion is what happens on account deletion.
 
+**Records live in Firestore and bytes in R2** `[Z]`, the stack decision of 17 September.
+
+- Revision 6 still said Postgres in this table. It was corrected on 18 September.
+- The full collection tree, field caps and indexes are in `docs/pack/21-DATA-MODEL.md`. That file is the home for the schema, and this table is its summary.
+
 Entity | Lives in | Size and limit | Retention | On account deletion | Who can read
 Account | Firebase Auth and a profile document | one | until deleted | removed within 30 days | the person
-Workspace and project | Postgres rows | 50 cloud documents on Free | until deleted | removed | owner and members by role
-Document head | Postgres row pointing at the current version key | one per document | until deleted; 30 days in trash | removed | by role
+Workspace and project | Firestore `vaults/{vaultId}` | 50 cloud documents on Free | until deleted | removed | owner and members by role
+Document head | Firestore `vaults/{vaultId}/docs/{docId}`, pointing at the current version key in R2 | one per document | until deleted; 30 days in trash | removed | by role
 Version | R2 object keyed by document id and content hash | 5 MB a file on Free, 25 MB on Pro | 7 days on Free, 90 on Pro, then pruned to the head | removed | by role
 Upload | R2 object under the document | 1 GB an account on Free, 10 GB on Pro | with the document | removed | by role
-Share link | Postgres row: token, role, expiry, password hash | one per link | until expiry or revocation | removed | anyone with the token
-Published page | Postgres row and a rendered R2 object | 5 on Free | until unpublished | removed and the URL goes dark | anyone
-Collaborator | Postgres row: account, document, role | 3 live on Free | until removed | their rows removed, documents stay with the owner | owner
-Comment | Postgres row keyed by document and content hash | text only | with the document | removed | by role
-Change queue item | Postgres row: author, source, span, proposed bytes | one per proposal | until accepted or rejected, then a version | removed | by role
-Idea, decision, blueprint | markdown files in the project, plus a Postgres row for state | fifteen files a blueprint | as documents | removed | by role
+Share link | Firestore `shares/{slug}`: token, role, expiry, password hash | one per link | until expiry or revocation | removed | anyone with the token
+Published page | Firestore `shares/{slug}` and a rendered R2 object | 5 on Free | until unpublished | removed and the URL goes dark | anyone
+Collaborator | Firestore `vaults/{vaultId}/members/{uid}`, mirrored in the vault's `memberUids` array because Firestore has no join | 1 live on Free, capped at 100 members a vault | until removed | their rows removed, documents stay with the owner | owner
+Comment | Firestore `.../docs/{docId}/comments/{commentId}`, keyed by document and content hash | text only | with the document | removed | by role
+Change queue item | Firestore `.../docs/{docId}/queue/{itemId}`: author, source, span; proposed bytes inline up to 64 KiB, otherwise an R2 key, because a Firestore document is capped at 1 MiB | one per proposal | until accepted or rejected, then a version | removed | by role
+Idea, decision, blueprint | markdown files in the project, plus a Firestore record for state | fifteen files a blueprint | as documents | removed | by role
 Template | markdown files, ours or the person's | one folder | ours forever, theirs as documents | theirs removed | the person, or anyone for ours
-Connection | Postgres row with the encrypted OAuth or installation token | one per provider | until disconnected | revoked at the provider and removed | the person
-Agent token | Postgres row with a hash and a scope | many | until revoked | revoked | the person
-Ledger entry | Postgres row: account, kind, delta, model, cost | one per call or grant | 180 days, then aggregated | aggregates kept without the account id | the person
-Plan and invoice | Postgres rows and Razorpay's records | one per period | as the accountant requires, at least the statutory period | kept as the law requires, unlinked from the profile | the person
+Connection | Firestore `users/{uid}/connections/{provider}` with the encrypted OAuth or installation token | one per provider | until disconnected | revoked at the provider and removed | the person
+Agent token | Firestore `agentTokens/{tokenId}` with a hash and a scope | many | until revoked | revoked | the person
+Ledger entry | Firestore `usage/{uid}/ledger/{entryId}`: account, kind, delta, model, cost; the balance is a sharded counter, because Firestore has no trusted SUM | one per call or grant | 180 days, then aggregated | aggregates kept without the account id | the person
+Plan and invoice | Firestore `billing/{uid}` and Razorpay's records | one per period | as the accountant requires, at least the statutory period | kept as the law requires, unlinked from the profile | the person
 Security log | an append-only store in Mumbai | one line per event | 180 days rolling | kept for the period | the operators
 Local draft | IndexedDB or the origin private file system, and the desktop folder | the device's quota | until synced or evicted | not ours | the device
 
