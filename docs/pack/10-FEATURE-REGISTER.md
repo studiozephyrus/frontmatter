@@ -27,10 +27,12 @@ Four things, and the first one is a correction to what this file was commissione
 2. **`status: shipped` means the code exists at commit `0af3c90`**, which is the prototype on a
    single GitHub repository. It does not mean the feature is finished against the plan. Most
    shipped rows are rebuilt on the new stack in phases A, B and D of `docs/mvp0/PRODUCT-PLAN.md` section 25.
-3. **The acceptance column is joined to `19-ACCEPTANCE-CRITERIA.md`, and 43 rows have no criterion.**
-   That file was written in parallel against provisional slugs such as `F-signin`, and its section
-   0.2 asked this register to swap in the numeric ids. Section 7 below is that swap. Where no
-   criterion covers a feature the cell reads `none yet`, which is a hole a validator should count.
+3. **The acceptance column is joined to `19-ACCEPTANCE-CRITERIA.md`, and every row now has a
+   criterion.** That file was written in parallel against provisional slugs such as `F-signin`, and
+   its section 0.2 asked this register to swap in the numeric ids. Section 7 below is that swap. On
+   18 September 43 cells still read `none yet`. They now point at `19` section 12a, where 21 were
+   already covered, or at `19` section 12b, written for the other 22. `none yet` stays the marker for
+   a hole, and a validator should count it.
 4. **Some `spec file` cells point at a screen file that is not written yet.** `12-screens/` was
    filling while this register was being made, from none to thirty-five inside two hours, so no
    count here would survive the afternoon. Check with
@@ -64,11 +66,11 @@ id | name | one line | plan | screens | spec file | acceptance | status
 `F103` | The no-friction promise | No password, no puzzle, no tour, stated in the fine print and held everywhere | Free+Pro | S01 | 12-screens/S01.md | A001-A007 | building
 `F104` | Public legal pages | Privacy, Terms, Pricing and Refunds serve without an account | Free+Pro | S01, S18 | 12-screens/S01.md | A001-A007, A205, A206 | building
 `F105` | Home, first run | Five ways to start, the free caps named once, and a drop hint | Free | S02 | 12-screens/S02.md | A008, A200 | planned
-`F106` | Home, returning | Recent documents with project, opened and owner, and a usage pill | Free+Pro | S03 | 12-screens/S03.md | none yet | planned
-`F107` | The three home tabs | Documents, Ideas and Shared with me, with a count on Ideas | Free+Pro | S02, S03 | 12-screens/S03.md | none yet | planned
-`F108` | Account settings | Ten sections, stored on the account so every device agrees | Free+Pro | S28 | 12-screens/S28.md | none yet | shipped
-`F109` | Appearance and dark mode | One header toggle on the dark tokens in globals.css, remembered on the account | Free+Pro | S27, S28 | 12-screens/S27.md | none yet | shipped
-`F110` | Roles and permissions | The role matrix of plan section 19, applied to every shared document | Free+Pro | S17, S20 | 12-screens/S17.md | none yet | planned
+`F106` | Home, returning | Recent documents with project, opened and owner, and a usage pill | Free+Pro | S03 | 12-screens/S03.md | A519-A522, A524, A525 | planned
+`F107` | The three home tabs | Documents, Ideas and Shared with me, with a count on Ideas | Free+Pro | S02, S03 | 12-screens/S03.md | A522 | planned
+`F108` | Account settings | Ten sections, stored on the account so every device agrees | Free+Pro | S28 | 12-screens/S28.md | A663-A667 | shipped
+`F109` | Appearance and dark mode | One header toggle on the dark tokens in globals.css, remembered on the account | Free+Pro | S27, S28 | 12-screens/S27.md | A656-A662 | shipped
+`F110` | Roles and permissions | The role matrix of plan section 19, applied to every shared document | Free+Pro | S17, S20 | 12-screens/S17.md | A729-A733 | planned
 `F111` | Markdown mode | A CodeMirror surface over the byte-exact file, with vim keys available | Free | S04 | 12-screens/S04.md | A030-A040, A203, A204 | shipped
 `F112` | Doc mode | A Google Docs shaped surface over the same file, with a paper surface and a ruler | Free | S05 | 12-screens/S05.md | A041-A043 | planned
 `F113` | Four view modes | Edit, Live, Reading and Split, from one mode segment | Free | S04, S05 | 12-screens/S04.md | A030-A040 | shipped
@@ -76,16 +78,16 @@ id | name | one line | plan | screens | spec file | acceptance | status
 `F115` | Font controls in Doc mode | A small set of fonts with size, colour, highlight and alignment, all behind More | Free | S05 | 12-screens/S05.md | A041-A043 | planned
 `F116` | Document tabs | Several open documents across the top, with a dirty mark | Free | S04 | 12-screens/S04.md | A030-A040 | shipped
 `F117` | The file tree | Projects and folders on the left, with rename, move, delete and a context menu | Free | S04 | 12-screens/S04.md | A030-A040 | shipped
-`F118` | Add file | One left-rail button opening New document, Upload files, Upload a folder and Import from | Free | S04, S22 | 12-screens/S04.md | none yet | planned
-`F119` | Add idea | The second left-rail button, and the only other one | Free | S04, S12 | 12-screens/S04.md | none yet | planned
-`F120` | Ideas as a tree section | A collapsed section at the foot of the tree, Notes open and Ideas shut | Free | S04, S12 | 12-screens/S04.md | none yet | planned
+`F118` | Add file | One left-rail button opening New document, Upload files, Upload a folder and Import from | Free | S04, S22 | 12-screens/S04.md | A526, A527 | planned
+`F119` | Add idea | The second left-rail button, and the only other one | Free | S04, S12 | 12-screens/S04.md | A526 | planned
+`F120` | Ideas as a tree section | A collapsed section at the foot of the tree, Notes open and Ideas shut | Free | S04, S12 | 12-screens/S04.md | A529 | planned
 `F121` | Drop anywhere | The whole workspace is a drop target for a file or a folder, with the hint always visible | Free | S04, S22 | 12-screens/S22.md | A120-A123 | building
 `F122` | The right rail | Outline, tags, backlinks, bookmarks and comments, every collapsible closed and at the top | Free | S04 | 12-screens/S04.md | A030-A040 | shipped
 `F123` | Outline | Headings of the open document, clickable, with the active heading marked | Free | S04 | 12-screens/S04.md | A030-A040 | shipped
 `F124` | Backlinks | Every document that links to this one, listed with its context | Free | S04 | 12-screens/S04.md | A030-A040 | shipped
-`F125` | Unlinked mentions | Documents that name this one without linking to it | Free | S04 | 12-screens/S04.md | none yet | shipped
-`F126` | Tags | Tags read from front matter and body, with rename and merge | Free | S04 | 12-screens/S04.md | none yet | shipped
-`F127` | Bookmarks | A per-account list of pinned documents | Free | S04 | 12-screens/S04.md | none yet | shipped
+`F125` | Unlinked mentions | Documents that name this one without linking to it | Free | S04 | 12-screens/S04.md | A734, A735 | shipped
+`F126` | Tags | Tags read from front matter and body, with rename and merge | Free | S04 | 12-screens/S04.md | A736-A738 | shipped
+`F127` | Bookmarks | A per-account list of pinned documents | Free | S04 | 12-screens/S04.md | A739, A740 | shipped
 `F128` | Properties panel | The front matter of the open document as an editable panel, nested YAML included | Free | S05 | 12-screens/S05.md | A041-A043 | shipped
 `F129` | Wikilinks | `[[target]]` resolved against the project, with a rename that relinks | Free | S04 | 12-screens/S04.md | A030-A040 | shipped
 `F130` | Transclusion | `![[target]]` renders the other document inline, with a depth guard | Free | S04 | 12-screens/S04.md | A030-A040 | shipped
@@ -93,21 +95,21 @@ id | name | one line | plan | screens | spec file | acceptance | status
 `F132` | Slash commands | A menu at the caret for blocks, templates and the citation lookup | Free | S04 | 12-screens/S04.md | A030-A040 | shipped
 `F133` | Command palette | Every command by name, from the keyboard | Free | S04 | 15-INTERACTION-AND-KEYBOARD.md | A030-A040 | shipped
 `F134` | Ranked search | Full-text search across the project, ranked, with a preview | Free | S04 | 12-screens/S04.md | A030-A040 | shipped
-`F135` | Templates | A template applied on creation, with variables substituted | Free | S02, S04 | 12-screens/S04.md | none yet | shipped
-`F136` | Daily notes and calendar | A month panel and a dated note created on demand | Free | S04 | 12-screens/S04.md | none yet | shipped
+`F135` | Templates | A template applied on creation, with variables substituted | Free | S02, S04 | 12-screens/S04.md | A741-A743 | shipped
+`F136` | Daily notes and calendar | A month panel and a dated note created on demand | Free | S04 | 12-screens/S04.md | A744-A746 | shipped
 `F137` | Tasks and checklists | Checkbox items that toggle from the rendered view and write back | Free | S04, S08 | 12-screens/S08.md | A045, A046 | shipped
-`F138` | Trash | Deletes go to a trash with a 30-day window on both plans | Free+Pro | S04 | 12-screens/S04.md | none yet | shipped
-`F139` | Image paste and resize | Paste an image, resize it, compress it, and store it beside the document | Free | S04 | 12-screens/S04.md | none yet | building
-`F140` | Browser spellcheck | The browser's own spellcheck, named as such in settings | Free | S10, S28 | 12-screens/S28.md | none yet | planned
+`F138` | Trash | Deletes go to a trash with a 30-day window on both plans | Free+Pro | S04 | 12-screens/S04.md | A523 | shipped
+`F139` | Image paste and resize | Paste an image, resize it, compress it, and store it beside the document | Free | S04 | 12-screens/S04.md | A747, A748 | building
+`F140` | Browser spellcheck | The browser's own spellcheck, named as such in settings | Free | S10, S28 | 12-screens/S28.md | A749, A750 | planned
 `F141` | Project dictionary | Words this project accepts, so spelling stops crying wolf | Free | S10 | 12-screens/S10.md | A070-A073 | planned
-`F142` | Table of contents marker | A `[toc]` marker that renders the outline in place | Free | S04 | none yet | none yet | planned
-`F143` | Footnotes | Markdown footnotes rendered and exported | Free | S04 | 12-screens/S04.md | none yet | building
-`F144` | Emoji input | An emoji picker at the caret | Free | S04 | 12-screens/S04.md | none yet | planned
-`F145` | Link previews | A card for an external link, fetched once and cached | Free | S04 | 12-screens/S04.md | none yet | planned
-`F146` | OCR search | Text inside images and PDFs made searchable, on the device | Free | S04 | 12-screens/S04.md | none yet | planned
-`F147` | Citations | A DOI lookup in the slash menu that writes a formatted reference | Free | S04 | 12-screens/S04.md | none yet | planned
+`F142` | Table of contents marker | A `[toc]` marker that renders the outline in place | Free | S04 | 66-FORMAT-SPECIFICATIONS.md | A751, A752 | planned
+`F143` | Footnotes | Markdown footnotes rendered and exported | Free | S04 | 12-screens/S04.md | A753-A755 | building
+`F144` | Emoji input | An emoji picker at the caret | Free | S04 | 12-screens/S04.md | A756, A757 | planned
+`F145` | Link previews | A card for an external link, fetched once and cached | Free | S04 | 12-screens/S04.md | A758-A760 | planned
+`F146` | OCR search | Text inside images and PDFs made searchable, on the device | Free | S04 | 12-screens/S04.md | A761, A762 | planned
+`F147` | Citations | A DOI lookup in the slash menu that writes a formatted reference | Free | S04 | 12-screens/S04.md | A763-A765 | planned
 `F148` | Formatter | One command that normalises the markdown without changing meaning | Free | S10 | specs/engine/splice-writer.md | A070-A073 | planned
-`F149` | Quick capture | A global shortcut, and the phone share sheet, both landing in one inbox note | Free | S26 | 12-screens/S26.md | none yet | planned
+`F149` | Quick capture | A global shortcut, and the phone share sheet, both landing in one inbox note | Free | S26 | 12-screens/S26.md | A647-A653, A655 | planned
 `F150` | The AI writing box | One box on an empty document, with four chips and a second row of ways to start | Free+Pro | S06 | 12-screens/S06.md | A050-A052 | building
 `F151` | The box names its target | The first line says whether it is writing, editing a named document, or working on a named idea | Free+Pro | S06 | 12-screens/S06.md | A050-A052 | planned
 `F152` | The box follows the content | It anchors below the content when there is room and to the right when there is not | Free+Pro | S06 | 12-screens/S06.md | A050-A052 | planned
@@ -122,27 +124,27 @@ id | name | one line | plan | screens | spec file | acceptance | status
 `F161` | AI unavailable | The document untouched, nothing charged, and the status of every provider in the chain | Free+Pro | S32 | 12-screens/S32.md | A057-A059 | planned
 `F162` | Mark AI text | Every AI edit recorded as a mark in the version record, never in the file | Free+Pro | S21, S28 | 12-screens/S21.md | A061, A062 | planned
 `F163` | Local model on the desktop | Medium and High depth and AI edit run on the machine, with nothing leaving it | Free+Pro | S24, S25 | 12-screens/S25.md | A130-A132 | planned
-`F164` | Bring your own key | A person supplies their own model key, behind a flag | Free+Pro | S28, S37 | 12-screens/S37.md | none yet | planned
+`F164` | Bring your own key | A person supplies their own model key, behind a flag | Free+Pro | S28, S37 | 12-screens/S37.md | A766-A770 | planned
 `F165` | The problems panel | Broken links, heading skips, missing alt text and table shape, each true of this document | Free | S10 | 12-screens/S10.md | A070-A073 | building
 `F166` | Checks and writing split | A filter across the top so a deterministic finding and a model's opinion never share a list | Free | S10 | 12-screens/S10.md | A070-A073 | planned
-`F167` | Front matter schema check | The document's front matter checked against the project's schema | Free | S10 | none yet | A070-A073 | planned
+`F167` | Front matter schema check | The document's front matter checked against the project's schema | Free | S10 | 66-FORMAT-SPECIFICATIONS.md | A070-A073 | planned
 `F168` | Fix all safe | One action applying only the fixes that cannot change meaning | Free | S10 | 12-screens/S10.md | A070-A073 | planned
 `F169` | Link doctor | Broken and ambiguous links found and offered a target | Free | S10 | 12-screens/S10.md | A070-A073 | shipped
-`F170` | Accessibility check | The document checked on the device against level AA of WCAG 2.2, and against IS 17802 | Free | S10 | none yet | A201, A202 | planned
+`F170` | Accessibility check | The document checked on the device against level AA of WCAG 2.2, and against IS 17802 | Free | S10 | 46-ACCESSIBILITY-SPEC.md | A201, A202 | planned
 `F171` | The instruction-file set | Every instruction file in the project, not one AGENTS.md, with a health panel each | Free | S11 | 12-screens/S11.md | A074, A075 | planned
 `F172` | Instruction-file health | Imported not copied, size under the 32 KiB cap, setup commands present, claims dated | Free | S11 | 12-screens/S11.md | A074, A075 | planned
-`F173` | Tidy this file | One credit rewrites an instruction file into the shape the health panel wants | Free+Pro | S11 | 12-screens/S11.md | none yet | planned
-`F174` | Mermaid diagrams | A fenced `mermaid` block rendered in every mode and on the published page | Free | S08 | none yet | A045, A046 | shipped
-`F175` | KaTeX maths | Inline and block maths rendered in every mode | Free | S08 | none yet | A045, A046 | shipped
-`F176` | Callouts | A `> [!kind]` callout rendered as a box, and the carrier for every render note | Free | S08 | none yet | A045, A046 | shipped
-`F177` | Details block | A collapsible block, the carrier for Notion's toggle | Free | S08 | none yet | A045, A046 | shipped
-`F178` | Code fences | Fenced code with language highlighting, and the carrier for opaque data | Free | S08 | none yet | A045, A046 | shipped
-`F179` | Excalidraw block | A drawing saved beside the document as JSON Canvas 1.0 | Free | S08, S12 | none yet | none yet | planned
-`F180` | Chart from a table | An `fm-chart` block that points at the table above it | Later | S08 | none yet | none yet | planned
-`F181` | Flow view | An H2 is a phase, an H3 a step, a bracketed first word the tag, a trailing line the reference | Free | S09 | none yet | A044 | planned
-`F182` | Slides view | Marp core, splitting on a horizontal rule, with no new syntax | Free | S09 | none yet | A044 | planned
-`F183` | Mind map view | markmap over the outline, with no new syntax | Free | S09 | none yet | A044 | planned
-`F184` | Kanban view | Headings as columns and task items as cards, the obsidian-kanban shape and none of its code | Later | S09 | none yet | A044 | planned
+`F173` | Tidy this file | One credit rewrites an instruction file into the shape the health panel wants | Free+Pro | S11 | 12-screens/S11.md | A771-A775 | planned
+`F174` | Mermaid diagrams | A fenced `mermaid` block rendered in every mode and on the published page | Free | S08 | 66-FORMAT-SPECIFICATIONS.md | A045, A046 | shipped
+`F175` | KaTeX maths | Inline and block maths rendered in every mode | Free | S08 | 66-FORMAT-SPECIFICATIONS.md | A045, A046 | shipped
+`F176` | Callouts | A `> [!kind]` callout rendered as a box, and the carrier for every render note | Free | S08 | 66-FORMAT-SPECIFICATIONS.md | A045, A046 | shipped
+`F177` | Details block | A collapsible block, the carrier for Notion's toggle | Free | S08 | 66-FORMAT-SPECIFICATIONS.md | A045, A046 | shipped
+`F178` | Code fences | Fenced code with language highlighting, and the carrier for opaque data | Free | S08 | 66-FORMAT-SPECIFICATIONS.md | A045, A046 | shipped
+`F179` | Excalidraw block | A drawing saved beside the document as JSON Canvas 1.0 | Free | S08, S12 | 66-FORMAT-SPECIFICATIONS.md | A776-A778 | planned
+`F180` | Chart from a table | An `fm-chart` block that points at the table above it | Later | S08 | 66-FORMAT-SPECIFICATIONS.md | A554, A555, A558, A559 | planned
+`F181` | Flow view | An H2 is a phase, an H3 a step, a bracketed first word the tag, a trailing line the reference | Free | S09 | 66-FORMAT-SPECIFICATIONS.md | A044 | planned
+`F182` | Slides view | Marp core, splitting on a horizontal rule, with no new syntax | Free | S09 | 66-FORMAT-SPECIFICATIONS.md | A044 | planned
+`F183` | Mind map view | markmap over the outline, with no new syntax | Free | S09 | 66-FORMAT-SPECIFICATIONS.md | A044 | planned
+`F184` | Kanban view | Headings as columns and task items as cards, the obsidian-kanban shape and none of its code | Later | S09 | 66-FORMAT-SPECIFICATIONS.md | A044 | planned
 `F185` | Outline view | The document as headings only | Free | S09 | 12-screens/S09.md | A044 | building
 `F186` | The project map | Documents, what each governs, the decisions behind them and the instruction file, as a graph | Free | S16 | 12-screens/S16.md | A095 | shipped
 `F187` | The map is rebuilt on save | Derived from the files on every save, so it costs no credits | Free | S16 | 12-screens/S16.md | A095 | building
@@ -157,25 +159,25 @@ id | name | one line | plan | screens | spec file | acceptance | status
 `F196` | Not sure stays open | The question is recorded open in DECISIONS.md and the recommendation is taken for now | Free+Pro | S13, S14 | 12-screens/S13.md | A080-A089 | planned
 `F197` | Decision cards | Where it stands, what forces the choice, options with gains and costs, evidence rows, the recommendation | Pro | S14 | 12-screens/S14.md | A080-A089 | planned
 `F198` | High-depth research pass | A background research pass before the questions, opening pages rather than citing a template | Pro | S14 | 12-screens/S14.md | A080-A089 | planned
-`F199` | Industry templates | A template for the industry, or one generated for it | Free+Pro | S12 | 12-screens/S12.md | none yet | planned
-`F200` | Attach to an idea | A drawing, a document or a repository attached as input to the blueprint | Free+Pro | S12 | 12-screens/S12.md | none yet | planned
+`F199` | Industry templates | A template for the industry, or one generated for it | Free+Pro | S12 | 12-screens/S12.md | A779-A781 | planned
+`F200` | Attach to an idea | A drawing, a document or a repository attached as input to the blueprint | Free+Pro | S12 | 12-screens/S12.md | A588 | planned
 `F201` | The fifteen-file blueprint | SKILL.md first, AGENTS.md, the numbered documents including the frontend spec, specs, DECISIONS.md, MAP.md, graph.json, the manifest and checksums | Free+Pro | S15 | 12-screens/S15.md | A090-A094 | planned
 `F202` | Consistency check | The kit checked against itself before the person sees it | Free+Pro | S15 | 12-screens/S15.md | A090-A094 | planned
 `F203` | The unlisted link | The kit served at a link nobody can guess and nothing indexes | Free+Pro | S15 | 12-screens/S15.md | A090-A094 | planned
 `F204` | Out-of-band hash | A SHA256 printed on the page, which the kickoff prompt checks before unpacking | Free+Pro | S15 | 12-screens/S15.md | A090-A094 | planned
 `F205` | The kickoff prompt | A prompt for Claude Code, Cursor or Codex that verifies the tarball, then reads before it builds | Free+Pro | S15 | 12-screens/S15.md | A090-A094 | planned
-`F206` | Blueprint versions | Edit the answers and publish v2, with the earlier version kept | Free+Pro | S15, S21 | 12-screens/S15.md | none yet | planned
+`F206` | Blueprint versions | Edit the answers and publish v2, with the earlier version kept | Free+Pro | S15, S21 | 12-screens/S15.md | A600 | planned
 `F207` | Ideas empty state | What a blueprint is, the three depths in a line each, and one hand-made kit to read first | Free | S34 | 12-screens/S34.md | A200 | planned
 `F208` | People on a document | Added by their frontmatter email address, with a role | Free+Pro | S17 | 12-screens/S17.md | A100-A102 | planned
 `F209` | Invite a non-user | The screen says the address is not an account and offers an invite | Free+Pro | S17 | 12-screens/S17.md | A100-A102 | planned
-`F210` | Invite credits | Both sides get about five AI credits when the invited person first signs in | Free+Pro | S17 | 53-PRICING-AND-ENTITLEMENTS.md | none yet | planned
-`F211` | Referral modal | The same modal reused for referrals once the invited person has an account | Free+Pro | S17 | 12-screens/S17.md | none yet | planned
+`F210` | Invite credits | Both sides get about five AI credits when the invited person first signs in | Free+Pro | S17 | 53-PRICING-AND-ENTITLEMENTS.md | A610 | planned
+`F211` | Referral modal | The same modal reused for referrals once the invited person has an account | Free+Pro | S17 | 12-screens/S17.md | A611 | planned
 `F212` | Read and edit links | A link that reads or edits, free on both plans | Free+Pro | S17 | 12-screens/S17.md | A100-A102 | shipped
 `F213` | Expiring links | A seven-day default with no upper bound, free on both plans | Free+Pro | S17 | 12-screens/S17.md | A100-A102 | planned
 `F214` | Password links | A hash stored, asked once per browser, on Pro | Pro | S17, S18 | 12-screens/S17.md | A100-A102 | planned
 `F215` | Published page | A page at frontmatter.in/p/slug that renders with no gate, no redirect and no probe | Free+Pro | S18 | 12-screens/S18.md | A103-A107 | shipped
-`F216` | The markdown twin | `page.md` beside every published page, never gated and never redirected | Free+Pro | S18 | none yet | A103-A107 | planned
-`F217` | llms.txt | An agent-readable index, under the same absolute no-gate rule as `page.md` | Free+Pro | S18 | none yet | A103-A107 | planned
+`F216` | The markdown twin | `page.md` beside every published page, never gated and never redirected | Free+Pro | S18 | 66-FORMAT-SPECIFICATIONS.md | A103-A107 | planned
+`F217` | llms.txt | An agent-readable index, under the same absolute no-gate rule as `page.md` | Free+Pro | S18 | 66-FORMAT-SPECIFICATIONS.md | A103-A107 | planned
 `F218` | The open-in bar | After first paint, a dismissible offer to open in the app, with dismissal remembered | Free+Pro | S18 | 12-screens/S18.md | A103-A107 | planned
 `F219` | The branding line | A Made with frontmatter line on Free, removed on Pro | Free+Pro | S18, S29 | 53-PRICING-AND-ENTITLEMENTS.md | A103-A107 | planned
 `F220` | The public footer | Report, Privacy, Terms and the `.md` twin on every published page | Free+Pro | S18 | 12-screens/S18.md | A103-A107 | building
@@ -188,7 +190,7 @@ id | name | one line | plan | screens | spec file | acceptance | status
 `F227` | Document history | Every version with its author, including the AI edit and the blueprint write | Free+Pro | S21 | 12-screens/S21.md | A114, A115 | shipped
 `F228` | Diff and restore | A diff against the current version, then restore or copy as a new document | Free+Pro | S21 | 12-screens/S21.md | A114, A115 | shipped
 `F229` | History window | Seven days on Free, ninety on Pro | Free+Pro | S21, S35 | 53-PRICING-AND-ENTITLEMENTS.md | A114, A115 | planned
-`F230` | The portfolio | One `portfolio.md` served at frontmatter.in/@handle with no build step | Pro | S30 | 12-screens/S30.md | none yet | planned
+`F230` | The portfolio | One `portfolio.md` served at frontmatter.in/@handle with no build step | Pro | S30 | 12-screens/S30.md | A673-A678 | planned
 `F231` | Conflict screen | Two versions side by side with author, device and time, and nothing merged | Free+Pro | S31 | 12-screens/S31.md | A128, A129 | building
 `F232` | Keep left, right or both | The three resolutions, with the other version always kept in history | Free+Pro | S31 | 12-screens/S31.md | A128, A129 | building
 `F233` | Let AI decide | Offered beside the others, and its merge enters the change queue rather than the file | Free+Pro | S31 | 12-screens/S31.md | A128, A129 | planned
@@ -203,27 +205,27 @@ id | name | one line | plan | screens | spec file | acceptance | status
 `F242` | GitHub connection | A GitHub App with the Contents permission, writing only under `docs/`, enforced server-side | Free+Pro | S23 | 12-screens/S23.md | A124, A125, A023 | building
 `F243` | GitHub push quota | Twenty pushes and one repository on Free, unlimited on Pro | Free+Pro | S23, S35 | 53-PRICING-AND-ENTITLEMENTS.md | A124, A125 | planned
 `F244` | Google Drive sync | Two-way sync of the files the app created or you picked, on the `drive.file` scope, polled every five minutes | Free | S23 | 12-screens/S23.md | A126, A127 | planned
-`F245` | Connections screen | Each connection with its scope, its conflict rule, and change, pause and disconnect | Free+Pro | S23 | 12-screens/S23.md | none yet | planned
-`F246` | The agents card | The MCP server and the API, named as Later on the connections screen | Later | S23 | 12-screens/S23.md | none yet | planned
+`F245` | Connections screen | Each connection with its scope, its conflict rule, and change, pause and disconnect | Free+Pro | S23 | 12-screens/S23.md | A635-A637 | planned
+`F246` | The agents card | The MCP server and the API, named as Later on the connections screen | Later | S23 | 12-screens/S23.md | A638 | planned
 `F247` | Offline in the browser | Every keystroke to IndexedDB or the origin private file system | Free+Pro | S24 | 12-screens/S24.md | A130-A132 | shipped
 `F248` | The offline banner | Last synced time, changes waiting, and AI edit disabled with a one-line reason | Free+Pro | S24 | 12-screens/S24.md | A130-A132 | planned
-`F249` | Never the only copy | Persist requested inside a user gesture, and the first connection pushes everything up | Free+Pro | S24 | none yet | A130-A132 | planned
+`F249` | Never the only copy | Persist requested inside a user gesture, and the first connection pushes everything up | Free+Pro | S24 | 67-SYNC-AND-CONFLICT.md | A130-A132 | planned
 `F250` | The desktop app | Tauri v2, files on disk, fully offline, no document cap, and the folder readable by agents | Free+Pro | S25 | 12-screens/S25.md | A133 | building
-`F251` | The watched folder | An agent editing a file on disk feeds the change queue | Free+Pro | S20, S25 | 12-screens/S25.md | none yet | planned
-`F252` | Desktop signing | Signed on the Apple programme, Linux unsigned by choice, Windows shown as coming | Free+Pro | S25 | 35-RELEASE-AND-VERSIONING.md | none yet | planned
+`F251` | The watched folder | An agent editing a file on disk feeds the change queue | Free+Pro | S20, S25 | 12-screens/S25.md | A782-A784 | planned
+`F252` | Desktop signing | Signed on the Apple programme, Linux unsigned by choice, Windows shown as coming | Free+Pro | S25 | 35-RELEASE-AND-VERSIONING.md | A645, A646 | planned
 `F253` | The phone layout | A 52 px bar, the editor full width, and the tree and right pane as drawers | Free+Pro | every screen | 12-screens/S04.md | A134, A135 | shipped
 `F254` | The bottom bar | Home, Search, AI, Outline and More, five destinations at thumb height | Free+Pro | every screen | 15-INTERACTION-AND-KEYBOARD.md | A134, A135 | planned
-`F255` | Progressive web app | Installable, with the share target on Android and its absence on iOS said plainly | Free+Pro | S22, S26 | 12-screens/S26.md | none yet | building
-`F256` | Protocol handler | The desktop app registers a handler so the open-in bar can offer it | Free+Pro | S18, S25 | 12-screens/S18.md | none yet | planned
+`F255` | Progressive web app | Installable, with the share target on Android and its absence on iOS said plainly | Free+Pro | S22, S26 | 12-screens/S26.md | A654 | building
+`F256` | Protocol handler | The desktop app registers a handler so the open-in bar can offer it | Free+Pro | S18, S25 | 12-screens/S18.md | A785-A787 | planned
 `F257` | The entitlements layer | One place that answers what this account may do, read from the configuration panel | Free+Pro | S29, S33, S35 | 53-PRICING-AND-ENTITLEMENTS.md | A140-A143 | planned
 `F258` | The usage ledger | Every credit spent, against which model, and what it cost us | Free+Pro | S29, S38 | 53-PRICING-AND-ENTITLEMENTS.md | A149, A150 | planned
 `F259` | Usage meters | Four meters: edits, blueprints, cloud documents and published pages, with the reset date | Free+Pro | S29 | 12-screens/S29.md | A140-A143 | planned
 `F260` | Over the cap | What happened, what still works, and what to do, with nothing deleted | Free+Pro | S33 | 12-screens/S33.md | A140-A143 | planned
 `F261` | Downgrade is safe | Every document stays readable and exportable, and nothing new is created until under the cap | Free+Pro | S33 | 12-screens/S33.md | A140-A143 | planned
-`F262` | Razorpay checkout | UPI and cards, GST inclusive, cancel any time | Pro | S29 | 53-PRICING-AND-ENTITLEMENTS.md | none yet | planned
-`F263` | The mandate ceiling | ₹15,000 a transaction, and one payment attempt on an Indian card | Pro | S29 | 53-PRICING-AND-ENTITLEMENTS.md | none yet | planned
-`F264` | Top-ups | Fifty edits for ₹99 and three blueprints for ₹149 | Pro | S29 | 53-PRICING-AND-ENTITLEMENTS.md | none yet | planned
-`F265` | Plans side by side | Free and Pro on one screen, with Team and Enterprise named as coming | Free+Pro | S29 | 12-screens/S29.md | none yet | planned
+`F262` | Razorpay checkout | UPI and cards, GST inclusive, cancel any time | Pro | S29 | 53-PRICING-AND-ENTITLEMENTS.md | A670, A671 | planned
+`F263` | The mandate ceiling | ₹15,000 a transaction, and one payment attempt on an Indian card | Pro | S29 | 53-PRICING-AND-ENTITLEMENTS.md | A672 | planned
+`F264` | Top-ups | Fifty edits for ₹99 and three blueprints for ₹149 | Pro | S29 | 53-PRICING-AND-ENTITLEMENTS.md | A788-A792 | planned
+`F265` | Plans side by side | Free and Pro on one screen, with Team and Enterprise named as coming | Free+Pro | S29 | 12-screens/S29.md | A793-A796 | planned
 `F266` | Configuration, plans and limits | Every limit in one editable table, and the product reads that row rather than a constant | Founder | S35 | 12-screens/S35.md | A144-A148 | planned
 `F267` | Over-cap impact before save | Saving says how many accounts the change moves over their cap, and names them | Founder | S35 | 12-screens/S35.md | A144-A148 | planned
 `F268` | Per-row change history | Each row carries who changed it, from what, to what, and when | Founder | S35, S36, S37 | 12-screens/S35.md | A144-A148 | planned
@@ -238,7 +240,7 @@ id | name | one line | plan | screens | spec file | acceptance | status
 `F277` | Zero-indent sequence refusal | A refusal rather than a guess on the front matter shape that breaks 83 per cent of foreign vaults | Free+Pro | S22 | specs/engine/nf-001-zero-indent-sequence.md | A021, A022 | shipped
 `F278` | Bare carriage return refusal | A refusal rather than a guess where a lone carriage return inside a fence would destroy a set | Free+Pro | S22 | specs/engine/nf-003-bare-cr-fence.md | A021, A022 | shipped
 `F279` | The projection law | The file on disk is the only source of truth, and every view is a stateless projection of it | Free+Pro | every screen | 20-ARCHITECTURE.md | A010-A020, A024 | shipped
-`F280` | No silent merge | Nothing reaches the file without a person accepting it, in any flow including conflict resolution | Free+Pro | S20, S31 | none yet | A010-A020, A024 | planned
+`F280` | No silent merge | Nothing reaches the file without a person accepting it, in any flow including conflict resolution | Free+Pro | S20, S31 | 67-SYNC-AND-CONFLICT.md | A010-A020, A024 | planned
 
 **Count: 180 features, F101 to F280.** Re-derived at write time with
 `grep -c '^`F[0-9]' docs/pack/10-FEATURE-REGISTER.md`.
@@ -252,8 +254,8 @@ Status | Count | What it means here
 `withdrawn` | 0 | No feature has been withdrawn yet. See section 4 for what was withdrawn as a claim
 
 Coverage | Count | Command
-Has at least one acceptance criterion | **137** | `grep -cE '^`F[0-9]{3}` \|.*\| A[0-9]{3}[^|]*\| (planned\|building\|shipped)$' <this file>`
-Has none | **43** | `grep -cE '^`F[0-9]{3}` \|.*\| none yet \| (planned\|building\|shipped)$' <this file>`
+Has at least one acceptance criterion | **180** | `grep -cE '^`F[0-9]{3}` \|.*\| A[0-9]{3}[^|]*\| (planned\|building\|shipped)$' <this file>`
+Has none | **0** | `grep -cE '^`F[0-9]{3}` \|.*\| none yet \| (planned\|building\|shipped)$' <this file>`
 
 **These counts are derived, not carried.** Re-derive at write time with the command that produced
 them, which matches only the eight-column register rows and not the prose that mentions an id:
@@ -501,24 +503,28 @@ Slug | Criteria | Features it tests
 `grep -oE '^`A[0-9]{3}` \| `F-[a-z0-9-]+`' docs/pack/19-ACCEPTANCE-CRITERIA.md` and from the two
 greps in section 3.
 
-**Forty-three features have no criterion.** They are every row whose acceptance cell reads
-`none yet`. The largest untested groups are money, where F262 to F265 cover Razorpay, the mandate
-ceiling, top-ups and the plan comparison, and identity, where F230 the portfolio has nothing. Both
-are places where a defect costs real money.
+**The 43 features the slugs did not reach now have criteria.** Section 12a of `19` already covered
+21 of them by register id, and section 12b of `19` (`A729` to `A796`) covers the other 22, including
+top-ups (F264) and the plan comparison (F265). The per-feature list is
+`tools/feature-criteria-gap.md`. Five of the new criteria are marked `Not yet checkable`, each naming
+the decision or number it waits on.
 
-## 8. Three pack files this register needs and the pack does not have
+## 8. Three pack files this register needed, and where they now are
 
 Seven `spec file` cells pointed at a pack file that was never written. Four were redirected to a
-file that does exist; three had nowhere to go and now read `none yet`.
+file that does exist. The other three read `none yet` until 18 September, and now point at the file
+written for each subject. **No `spec file` cell reads `none yet` any more**: 18 cells were
+repointed: 15 at the format file, two at the sync file (F249 and F280) and one at accessibility
+(F170).
 
 Was pointed at | Now | Why
 `51-AI-ROUTING.md` | `27-MODEL-ROUTING-SPEC.md` | The same subject, under the pack's number
 `61-RELEASE-AND-SIGNING.md` | `35-RELEASE-AND-VERSIONING.md` | Covers desktop-build and signing
 `40-ARCHITECTURE.md` | `20-ARCHITECTURE.md` | The pack numbers architecture at 20
 `54-BILLING.md` | `53-PRICING-AND-ENTITLEMENTS.md` | Its `covers` list already names billing
-`20-FORMAT-SPECIFICATIONS.md` | **none yet** | Nothing in the pack specifies the block and file formats
-`44-SYNC-AND-CONFLICT.md` | **none yet** | Nothing specifies sync, the splice journal or conflict resolution
-`59-ACCESSIBILITY.md` | **none yet** | Nothing carries WCAG 2.2 or IS 17802 as a contract
+`20-FORMAT-SPECIFICATIONS.md` | `66-FORMAT-SPECIFICATIONS.md` | Numbered 66 because 20 is architecture. Being written on 18 September; it existed, with `covers: [formats, ...]`, when this row was changed
+`44-SYNC-AND-CONFLICT.md` | `67-SYNC-AND-CONFLICT.md` | Numbered 67 because 44 is the tech-debt register. Being written on 18 September and **not yet present** when this row was changed
+`59-ACCESSIBILITY.md` | `46-ACCESSIBILITY-SPEC.md` | Exists, with `covers: [accessibility, contrast, assistive-technology]`
 
 **Checked with** this command, which reads every `covers:` line in the pack and is the test to re-run
 rather than trusting the three rows above:
@@ -529,7 +535,10 @@ grep -h '^covers:' docs/pack/*.md | tr -d '[]' | sed 's/covers: //' \
 ```
 
 **At the time of writing it returned 203 covered ids and none of them was `formats`, `sync` or
-`accessibility`.** The near misses, and why each one does not close the gap:
+`accessibility`.** Re-run on 18 September when the three rows above were changed, it returned 237,
+with `formats` from `66-FORMAT-SPECIFICATIONS.md` and `accessibility` from `46-ACCESSIBILITY-SPEC.md`,
+and still no `sync`, because `67-SYNC-AND-CONFLICT.md` was not yet written. The near misses of the
+first run, and why each one did not close the gap:
 
 - `25-ENGINE-SPEC.md` covers `splice`, `anchors` and `projection-law`. Those are how bytes are
   written, not what a Mermaid block, an `fm-chart` block or a `page.md` twin must contain.

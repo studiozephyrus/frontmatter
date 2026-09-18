@@ -297,8 +297,8 @@ One row per slug used above, saying what the slug is and where the plan defines 
 **The other half of the join is `10-FEATURE-REGISTER.md` section 7**, which lists the numeric
 features each slug reaches. Read the two side by side: this table says what a slug means, that one
 says which features it tests. **Forty-two slugs, and the register records that they reach 137 of its
-180 features**, leaving 43 with no criterion at all. That gap is a hole in this file, not in the
-register, and money is the largest part of it.
+180 features**. The 43 that slugs left uncovered are now all covered: 21 by section 12a and 22 by
+section 12b, and the register's `acceptance` column points at each.
 
 Slug | What it is | Where the plan defines it | Criteria
 `F-signin` | Sign in with Google or GitHub, one tap | §3 front door, `docs/mvp0/PRODUCT-PLAN.md` section 3 | `A001` to `A007`.
@@ -611,6 +611,89 @@ id | feature | given | when | then | test | spec
 `A727` | `F233` | A conflict before Let AI decide, and separately a proposal that arrived only in part | Accept AI suggestion is pressed | The control is disabled with its reason shown, and zero bytes are written | `T727` | `12-screens/S31.md`.
 `A728` | `F233` | A previewed proposal, then the file or the item changed before the accept | Accept AI suggestion is pressed | The accept is refused, zero bytes are written, and the preview is redrawn | `T728` | `12-screens/S31.md`.
 
+## 12b. Criteria for the features that had none, 18 September 2026
+
+`10-FEATURE-REGISTER.md` listed 43 features whose `acceptance` cell read `none yet`. Section 12a
+already covered 21 of them and the register had not caught up. **The other 22 get their criteria
+here.** The working list is `tools/feature-criteria-gap.md`.
+
+- **New ids start at `A729`**, after the highest id in this file. Nothing was renumbered.
+- **The feature column holds register ids**, as in section 12a.
+- **The test column is `T` plus the same three digits**, proposed and not written, as in section 12a.
+- **A `then` marked `Not yet checkable`** says what is missing and what the assertion becomes once it
+  is there.
+- **Where the plan, a screen and the register disagree, the row says so** rather than picking.
+
+id | feature | given | when | then | test | spec
+`A729` | `F110` | A document shared with one principal for each of the eight roles in the plan's section 19 table | Each principal calls the server action behind each of the table's eleven columns once | All 88 allow or refuse results equal the table's cells, compared against a fixture generated from the table, where `own copy` and `never` are their own expected values | `T729` | `docs/mvp0/PRODUCT-PLAN.md` section 19.
+`A730` | `F110` | A pending change-queue item proposed by an agent token | The same token calls apply on that item | The call is refused, the document bytes compare equal before and after, and the item's state is still pending | `T730` | `docs/mvp0/PRODUCT-PLAN.md` section 19.
+`A731` | `F110` | A Pro owner's document shared at edit with an account on Free | The collaborator triggers a limit check on that document | The limit set the resolver returns carries the owner's account id and not the collaborator's | `T731` | `docs/mvp0/PRODUCT-PLAN.md` section 19.
+`A732` | `F110` | A document with one owner and an agent token that can propose on it | The token requests an ownership transfer | The request is refused and the document's owner field is unchanged | `T732` | `docs/mvp0/PRODUCT-PLAN.md` section 19.
+`A733` | `F110` | A project of three documents, and a fourth document in another project | The project is shared at edit with one account, then the fourth document alone is shared at read with the same account | The role resolver returns editor for that account on each of the three and read on the fourth, and the second share changed none of the first three results | `T733` | `docs/mvp0/PRODUCT-PLAN.md` section 19.
+`A734` | `F125` | A vault where note B names note A's title in plain text, note C links `[[A]]`, and note D does not name A | `/api/vault/unlinked` is requested for A's title and path | The response lists exactly one path, B's, and lists neither A, C nor D | `T734` | `12-screens/S04.md`.
+`A735` | `F125` | An open note with the unlinked mentions section collapsed | The right pane renders and stays collapsed | The network log holds zero requests to `/api/vault/unlinked`, and one after the section is expanded | `T735` | `12-screens/S04.md`.
+`A736` | `F126` | One document tagged `draft` in its front matter `tags:` list and again as `#draft` in its body, and a second tagged only `#draft` in its body | The tags panel renders | `draft` appears exactly once, with a count of 2 | `T736` | `12-screens/S04.md`.
+`A737` | `F126` | The same two documents | The tag `draft` is renamed to `review` | Zero tag tokens read `draft`, and in each document the bytes outside the changed tag tokens compare equal before and after | `T737` | `12-screens/S04.md`.
+`A738` | `F126` | Tag `wip` on three documents and tag `draft` on two, one document carrying both | `wip` is merged into `draft` | Zero documents carry `wip`, and the documents tagged `draft` are exactly the union of the two sets before the merge | `T738` | `12-screens/S04.md`.
+`A739` | `F127` | One account signed in on two browsers, with no bookmarks | A document is bookmarked in the first browser and the second is reloaded | The second browser's bookmarks list contains that document's path. **Red proof: today's build fails it**, because `src/modules/editor/presentation/bookmarks.ts` keeps the list in `localStorage` under `sgnk-md-bookmarks`, per browser and not per account as the register says | `T739` | `12-screens/S04.md`.
+`A740` | `F127` | A bookmarked document | Its bookmark is toggled again | The list no longer contains its path, and no path appears in the list more than once | `T740` | `12-screens/S04.md`.
+`A741` | `F135` | The template text `{{title}} {{date}} {{date:YYYY/MM}}`, a title of `Plan`, and a fixed local time of 2026-09-18 10:05 | `substituteTemplateVars` runs | The output equals `Plan 2026-09-18 2026/09` | `T741` | `src/modules/vault/presentation/template-vars.ts`.
+`A742` | `F135` | The template text `{{title}}` and a title containing `$&` and `$1` | `substituteTemplateVars` runs | The output equals the title, byte for byte | `T742` | `src/modules/vault/presentation/template-vars.ts`.
+`A743` | `F135` | A template file and a fixed time and title | A new document is created from that template | The new file's bytes equal `substituteTemplateVars` applied to the template's bytes, and the template file's bytes compare equal before and after | `T743` | `12-screens/S04.md`.
+`A744` | `F136` | A vault with no daily note and a local date of 2026-09-18 | Today's daily note is opened twice | Exactly one file exists at `Daily/2026-09-18.md`, the path `dailyNotePath` returns for that date | `T744` | `src/modules/vault/presentation/daily-notes.ts`.
+`A745` | `F136` | An existing daily note whose bytes differ from the daily template | Today's daily note is opened again | Its bytes compare equal before and after | `T745` | `12-screens/S04.md`.
+`A746` | `F136` | A vault with daily notes on three dates in September 2026 | The month panel renders September 2026 | It renders exactly 30 day cells, and exactly three carry the has-a-note marker, on those three dates | `T746` | `12-screens/S04.md`.
+`A747` | `F139` | An open document and a PNG on the clipboard | The image is pasted | Exactly one new image file exists in the document's folder, the inserted link resolves to it, and its size in bytes is at or under the pasted image's | `T747` | `12-screens/S04.md`.
+`A748` | `F139` | A document holding one image | The image is resized to 320 px wide | The only bytes that change are a `{width=320}` attribute directly after that image, the carrier the plan's section 7 names for a resized image | `T748` | `docs/mvp0/PRODUCT-PLAN.md` section 7.
+`A749` | `F140` | The spellcheck setting on, then off | The editor surface renders after each change | The editable element's `spellcheck` attribute reads `true`, then `false` | `T749` | `12-screens/S28.md`.
+`A750` | `F140` | The Editor section of settings | It renders | The spellcheck row's help text equals the string at `K.s28.editor.spellcheck`, and with spellcheck on, typing 100 characters makes zero requests from the page's own code | `T750` | `12-screens/S28.md`.
+`A751` | `F142` | A document holding a `[toc]` line and five headings at levels 2 and 3 | It renders in Reading mode | The rendered table of contents has exactly five entries in document order, each linking to an id that exists on its heading, and the file's bytes compare equal before and after | `T751` | `66-FORMAT-SPECIFICATIONS.md`.
+`A752` | `F142` | The same document | It is exported as markdown | The export contains the `[toc]` line byte for byte, which is its degradation in a plain reader | `T752` | `66-FORMAT-SPECIFICATIONS.md`.
+`A753` | `F143` | A document with one reference `[^1]` and its definition `[^1]: a note` | It renders in Reading mode | Exactly one footnote reference and one footnote list item render, and each links to an id the other carries | `T753` | `12-screens/S04.md`.
+`A754` | `F143` | The same document | It is exported as HTML and as Word | The HTML contains `a note` exactly once, and the Word file's `word/footnotes.xml` contains it exactly once | `T754` | `12-screens/S04.md`.
+`A755` | `F143` | A reference `[^2]` with no definition | It renders | No footnote list is rendered, the reference shows as its literal text, and the file's bytes compare equal before and after | `T755` | `12-screens/S04.md`.
+`A756` | `F144` | A document and a caret at byte offset `n` | An emoji is chosen from the picker | The file's bytes equal the input's first `n` bytes, then the emoji's UTF-8 bytes, then the rest of the input | `T756` | `docs/mvp0/PRODUCT-PLAN.md` section 7.
+`A757` | `F144` | The emoji picker | It opens and one emoji is chosen | The network log holds zero requests for an image or a font, since the plan's section 7 carries an emoji as Unicode text | `T757` | `docs/mvp0/PRODUCT-PLAN.md` section 7.
+`A758` | `F145` | A document with one external link to a URL on a local test server | The preview card is shown twice, then again after a reload | The test server records exactly one request for that URL | `T758` | `12-screens/S04.md`.
+`A759` | `F145` | A document whose external link has rendered a preview card | The file is read from disk | Its bytes compare equal to the bytes before the preview was fetched | `T759` | `12-screens/S04.md`.
+`A760` | `F145` | An external link whose URL answers 404, and a second whose URL never answers | Previews are attempted for both | Zero preview card elements render, both links render as ordinary links, and the file's bytes compare equal before and after | `T760` | `12-screens/S04.md`.
+`A761` | `F146` | A fixture PNG showing a known string, and a fixture PDF carrying that string only as a scanned image | The string is searched for once OCR has finished | Both files appear in the results, and the network log holds zero requests that carry image bytes, PDF bytes or the extracted text | `T761` | `docs/mvp0/PRODUCT-PLAN.md` section 6.
+`A762` | `F146` | The same two fixtures | OCR finishes | Both files' bytes compare equal before and after, and no document in the vault changed | `T762` | `docs/mvp0/PRODUCT-PLAN.md` section 6.
+`A763` | `F147` | A document, a caret at byte offset `n`, and a DOI answered by a recorded Crossref response | The DOI lookup in the slash menu completes | Exactly one citation in Pandoc's `[@key]` form is inserted at `n`, and every byte outside the insertion compares equal | `T763` | `docs/mvp0/PRODUCT-PLAN.md` section 7.
+`A764` | `F147` | A DOI the recorded provider answers with 404 | The lookup runs | Zero bytes change in the document, and the outgoing request carries the DOI and no other text from the document | `T764` | `docs/mvp0/PRODUCT-PLAN.md` section 11.
+`A765` | `F147` | A completed DOI lookup | The formatted reference is looked for | **Not yet checkable:** the register says the lookup writes a formatted reference, and the plan's section 7 names only Pandoc's citation syntax as the carrier. Nothing says where the reference entry lives: front matter, a bibliography file beside the document, or a references section. Once `66-FORMAT-SPECIFICATIONS.md` names the home, the assertion is that exactly one entry with the key exists there | `T765` | `66-FORMAT-SPECIFICATIONS.md`.
+`A766` | `F164` | `flag.byok` false, then true with `provider.byok.storage` reporting `encrypted` | The AI section of settings renders each time | It holds zero key input elements, then exactly one | `T766` | `28-CONFIGURATION-PANEL-SPEC.md`.
+`A767` | `F164` | A key saved through settings | Settings are reloaded, and the account's files and an account export are read | The key string occurs zero times in the DOM, in any response body sent to the browser, in any file the account's repository or storage prefix holds, and in the export | `T767` | `27-MODEL-ROUTING-SPEC.md` section 7.2.
+`A768` | `F164` | `provider.byok.storage` reporting anything other than `encrypted` | `flag.byok` is turned on in the panel | The write is refused and the stored flag still reads false | `T768` | `28-CONFIGURATION-PANEL-SPEC.md`.
+`A769` | `F164` | A saved key and a recording stub in place of the provider | One AI edit runs | The stub records exactly one call authorised with the person's key, and the account's AI edit allowance reads the same before and after | `T769` | `27-MODEL-ROUTING-SPEC.md` section 7.2.
+`A770` | `F164` | A fresh configuration | `flag.byok` is read | **Not yet checkable:** `28-CONFIGURATION-PANEL-SPEC.md` gives the default as false, and the S37 drawing shows it on. Either value passes one source and fails the other. Once the founders pick, the assertion is that the stored default equals their value | `T770` | `12-screens/S37.md`.
+`A771` | `F173` | An account with credits left and an instruction file open on S11 | The panel renders | The Tidy control's accessible name contains its cost in credits, and zero model calls have been made | `T771` | `12-screens/S11.md`.
+`A772` | `F173` | An account with zero credits left | Tidy is pressed | The control carries `disabled` with its reason shown, zero model calls are made, and `E071` is the reason given | `T772` | `12-screens/S11.md`.
+`A773` | `F173` | An account with credits left | Tidy runs to completion | The ledger holds exactly one debit of one credit for it, and exactly one change-queue item exists for the file | `T773` | `12-screens/S11.md`.
+`A774` | `F173` | A viewer or commenter on the document | S11 renders | The Tidy control is absent from the DOM | `T774` | `12-screens/S11.md`.
+`A775` | `F173` | An account with credits left and every provider in the chain stubbed to refuse | Tidy is pressed | `E080` is shown, the ledger holds zero debits for it, and zero change-queue items are created | `T775` | `12-screens/S11.md`.
+`A776` | `F179` | A document holding one `fm-draw` block that points at a stored drawing | The document is exported as markdown | The block survives as a fenced code block whose info string and body compare equal to the source's, which is its degradation in a plain reader | `T776` | `66-FORMAT-SPECIFICATIONS.md`.
+`A777` | `F179` | The same document | The drawing is edited on its own surface and saved | The markdown file's bytes compare equal before and after, and exactly one other file, the stored drawing, changes | `T777` | `12-screens/S08.md`.
+`A778` | `F179` | A saved drawing | Its stored file is validated | **Not yet checkable:** the register says the drawing is saved as JSON Canvas 1.0, while S08 and the plan's section 20 name an `fm-draw` block pointing at an Excalidraw drawing and give no file format. Once `66-FORMAT-SPECIFICATIONS.md` names one, the assertion is that the stored file validates against that schema | `T778` | `66-FORMAT-SPECIFICATIONS.md`.
+`A779` | `F199` | A fresh deployment | `TemplateReader.listIndustry()` is called | It returns exactly seven descriptors, one for each industry the plan's section 9 names, and each carries a non-empty question bank, comparables list and sources list | `T779` | `docs/mvp0/PRODUCT-PLAN.md` section 9.
+`A780` | `F199` | An idea in the composer and the seven shipped templates | Generate one for my industry completes | Exactly one new template exists, it carries the generated marker, and the seven shipped templates' bytes compare equal before and after | `T780` | `12-screens/S12.md`.
+`A781` | `F199` | Every provider in the chain stubbed to refuse | Generate one for my industry is pressed | `E080` is shown and zero templates are written | `T781` | `12-screens/S12.md`.
+`A782` | `F251` | The desktop build watching a folder that holds a document with an accepted version | Another process rewrites that file on disk | Exactly one change-queue item with source `agent` exists for it, and the document's latest accepted version is unchanged until the owner accepts | `T782` | `12-screens/S25.md`.
+`A783` | `F251` | The same watched folder | Another process writes an unparseable file into it, then edits a second, valid file | `E509` names the first file and its queue item is held, and the second file's change still enters the queue | `T783` | `12-screens/S25.md`.
+`A784` | `F251` | A very large watched folder | Watching starts | **Not yet checkable:** S25 narrows watching to the folders in the tree when the folder is very large, and no threshold is written anywhere. Once a file or byte count is set, the assertion is that above it the watched set equals the tree's folders and the notice renders | `T784` | `12-screens/S25.md`.
+`A785` | `F256` | The desktop app installed | The operating system's handler for the app's scheme is queried | **Not yet checkable:** no scheme is chosen, which is `D41` in S18. Once one is, the assertion is that the query returns the frontmatter app on each signed platform | `T785` | `12-screens/S18.md`.
+`A786` | `F256` | A published page in a browser where no handler is detected | The page loads | The open-in bar holds zero app options and exactly one web option, and zero custom-scheme navigations happen before the load event | `T786` | `12-screens/S18.md`.
+`A787` | `F256` | A registered handler stubbed never to answer | The app option on the bar is pressed | `E803` is logged and the browser ends on the page's web route in the app | `T787` | `12-screens/S18.md`.
+`A788` | `F264` | A Pro account | The 50-edit top-up is bought and the payment webhook lands | The edits meter's remaining value rises by exactly 50, the ledger holds one grant of 50, and the amount charged equals `price.topup.edits.50` | `T788` | `53-PRICING-AND-ENTITLEMENTS.md`.
+`A789` | `F264` | A Pro account | The 3-blueprint top-up is bought and the payment webhook lands | The blueprints meter's remaining value rises by exactly 3, the ledger holds one grant of 3, and the amount charged equals `price.topup.blueprints.3` | `T789` | `53-PRICING-AND-ENTITLEMENTS.md`.
+`A790` | `F264` | A top-up whose checkout returns but whose webhook never lands | The plan route is read | Both meters and the ledger read the same as before the checkout | `T790` | `12-screens/S29.md`.
+`A791` | `F264` | An account on Free | `SubscriptionWriter.startCheckout` is called for a top-up through a direct server call | The call is refused, no hosted checkout URL is returned, and the ledger is unchanged, since the plan's section 13 puts top-ups on Pro | `T791` | `docs/mvp0/PRODUCT-PLAN.md` section 13.
+`A792` | `F264` | The payment provider stubbed to fail | A top-up is clicked | `E754` is shown, zero charges are recorded, and both meters are unchanged | `T792` | `12-screens/S29.md`.
+`A793` | `F265` | The plan route at 1,440 px | It renders | Exactly two plan cards render, Free and Pro, and the coming strip renders the strings at `K.s29.team` and `K.s29.enterprise` | `T793` | `12-screens/S29.md`.
+`A794` | `F265` | The same route | The coming strip's DOM is searched | It holds zero buttons, zero form inputs and zero links to a checkout, and `startCheckout` refuses any plan id other than Pro and the two top-ups | `T794` | `12-screens/S29.md`.
+`A795` | `F265` | The configuration panel's `price.plan.pro.monthly`, `price.plan.pro.annual` and both `price.topup` values changed to test values | The plan route renders | Every price on the page equals the new values, and the route's component source holds no rupee amount as a literal | `T795` | `28-CONFIGURATION-PANEL-SPEC.md`.
+`A796` | `F265` | The plan route at 390 px | It renders | The coming strip is a single column, and `scrollWidth` is at or under `clientWidth` on the scrolling element | `T796` | `12-screens/S29.md`.
+
 ---
 
 ## 13. Counts
@@ -628,10 +711,10 @@ grep -E '^`A[0-9]{3}` \|' docs/pack/19-ACCEPTANCE-CRITERIA.md \
   | grep -cE '\| `(test/|scripts/|docs/mvp0/screens/gen)'
 ```
 
-- **358 criteria**: 129 written first, 226 added in section 12a on 18 September, and 3 more for S31 (`A726` to `A728`) the same day.
+- **426 criteria**: 129 written first, 226 added in section 12a on 18 September, 3 more for S31 (`A726` to `A728`) the same day, and 68 in section 12b (`A729` to `A796`).
 - **12 distinct real test paths.**
-- **19 criteria carry one.** The remaining 339 carry a `T` id and do not exist.
-- **One criterion is marked `Not yet checkable`**, in section 12a.2, because two screens disagree.
+- **19 criteria carry one.** The remaining 407 carry a `T` id and do not exist.
+- **Six criteria are marked `Not yet checkable`**: one in section 12a.2, because two screens disagree, and five in section 12b, each naming what is missing. Counted with `grep -cE '^.A[0-9]{3}. \|.*Not yet checkable' docs/pack/19-ACCEPTANCE-CRITERIA.md`.
 
 **That ratio is the honest state of the product.** The engine has tests; almost nothing else does.
 
@@ -643,20 +726,19 @@ grep -E '^`A[0-9]{3}` \|' docs/pack/19-ACCEPTANCE-CRITERIA.md \
   run; the criteria themselves were not.
 - **What could not be verified.** Every `T` id. Every `spec` cell reading `none yet` or naming a pack
   section that another owner is writing.
-- **What is not established.** The coverage. `10-FEATURE-REGISTER.md` section 7 records that these
-  42 slugs reach 137 of its 180 features, so **43 features have no criterion here at all**. Its
-  largest untested groups are money and the portfolio, and this file did not write for either.
+- **What is not established.** Whether one to five criteria per feature is enough. Every register
+  feature now has at least one, after section 12b, but a feature with one criterion has a definition
+  of done that tests one thing. The thinnest are listed in `tools/feature-criteria-gap.md`.
 - **What would falsify it.** The register changing which features a slug reaches, which is its call
   and not this file's. Or the NF-1 and NF-3 fixes landing, which change `A013`, `A016` and `A017` on
   the day they do.
-- **Section 12a changes the coverage figure above and does not re-derive it.** Its 226 rows cite
-  register ids directly, including the portfolio (`F230`) and the payment rows (`F262`, `F263`), but
-  the register's `acceptance` column does not list `A500` onward yet. The 43 is the register's count
-  from before section 12a, and that file owns the recount.
+- **Section 12a's ids are now joined for the 43 features that had none.** For the other register
+  rows the `acceptance` column still lists the section 0.2 range, not the `A500` onward rows that
+  also cite them. That file owns the join.
 - **Section 12a's rows were drafted from the screens' own wording**, one screen at a time. Where a
   screen's row carried two facts, the second fact's home is named in `tools/acceptance-reconciliation.md`
   section 4, not added to the screen.
-- **One thing a reader must not conclude.** A criterion here is not a passing test. **355 criteria,
+- **One thing a reader must not conclude.** A criterion here is not a passing test. **426 criteria,
   19 of them covered by a real test** is the number that matters, and section 13 gives the commands
   that re-derive it rather than asking anyone to trust this sentence.
 - **The rule this file exists to enforce, restated.** If a criterion cannot be checked by a machine,
