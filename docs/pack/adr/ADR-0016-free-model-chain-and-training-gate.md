@@ -49,7 +49,7 @@ Position | Provider | State in `27`
 2 | Groq | in the plan's chain
 3 | Cerebras | while the trial lasts
 4 | OpenRouter | admitted 18 September
-5 | SambaNova | `UNVERIFIED:` no training sentence opened, so gate B keeps it off
+5 | SambaNova | **Held out of the chain.** Its training sentence is now opened and meets gate B: the cloud licence limits use of customer content to providing the service, "and for no other purposes". But its Free plan now reads "Add a payment method and purchase credits to run your first requests", so it is no longer a no-card free tier `[M]`
 6 | Ollama, desktop only | nothing leaves the machine
 7 | Paid Cloudflare, then Anthropic for Pro | the link that means the chain never runs out
 
@@ -93,5 +93,10 @@ Paid models only, from day one | `INFERENCE:` the pilot's free tier would carry 
 
 ## Limits of this record
 
-- `UNVERIFIED:` Cerebras's free terms, which two readings describe differently, per `27` section 2.4.
-- No provider page was re-opened for this record.
+- Cerebras's free terms, which two readings described differently, are settled: both are true of one
+  offer. Its rate-limits page answers "Is there a permanently free tier?" with "No. The Free Trial
+  is time- and credit-bounded: $5 in credits that expire 30 days after they're granted" `[M]`. So Cerebras sits in the
+  chain only while the trial lasts, as the table says.
+- Three provider pages were re-opened on 18 September 2026 for this record, matching `27`:
+  `https://sambanova.ai/cloud-end-user-license-agreement`, `https://cloud.sambanova.ai/plans` and
+  `https://inference-docs.cerebras.ai/support/rate-limits`. No other provider page was re-opened.

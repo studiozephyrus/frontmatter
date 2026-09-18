@@ -73,8 +73,13 @@ Compete with `mdbase-spec` on the record layer | The handoff at line 349 recomme
 
 ## What would reverse it
 
-- A new markdown dialect reaching a large share of `.md` volume within a few years. `UNVERIFIED:`
-  no such measurement has been rerun since 29 July.
+- A new markdown dialect reaching a large share of `.md` volume within a few years.
+  - `UNVERIFIED:` the share of `.md` volume has not been re-measured since 29 July. needs: the
+    29 July GitHub code search rerun with an authenticated token, which this session did not use.
+  - `[O]` the download half was rerun on 18 September 2026 with
+    `curl -s https://api.npmjs.org/downloads/point/last-week/<package>`, for 10 to 16 September:
+    `@djot/djot` 1,245, `@mdx-js/mdx` 9,844,723, `@markdoc/markdoc` 503,184, and `remark-parse`
+    46,684,670. No dialect has moved towards the reversal line.
 - A founder decision to trade portability for a feature that plain markdown cannot carry at all.
 
 ## Limits of this record

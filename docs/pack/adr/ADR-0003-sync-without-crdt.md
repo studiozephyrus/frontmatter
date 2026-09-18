@@ -57,8 +57,15 @@ restatement.
 - `06-COMPETITIVE-LANDSCAPE.md` section 3 records a public beta from 16 September 2026.
 - `INFERENCE:` from the same section, Zed partitions rather than contradicts. Its CRDT governs the
   live session and git governs the durable artefact. We put a splice journal where they put a CRDT.
-- `06-COMPETITIVE-LANDSCAPE.md` section 3 also adds OpenKnowledge as a second CRDT bet. `UNVERIFIED:` its own pages were not
-  opened.
+- `06-COMPETITIVE-LANDSCAPE.md` section 3 also adds OpenKnowledge as a second CRDT bet. **Confirmed
+  from its own repository on 18 September 2026** `[M]`:
+  - `https://openknowledge.ai/` links `https://github.com/inkeep/open-knowledge`.
+  - `packages/app/package.json`, `packages/core/package.json` and `packages/server/package.json`
+    depend on `yjs` 13.6, and the app and server on `@hocuspocus/server` 4.0.0-rc.1.
+  - The tree carries `packages/app/tests/integration/sync-conflict-resolution-crdt.test.ts` and
+    `packages/server/src/agent-patch-crdt-convergence.test.ts`.
+  - Its home page also says "Everything syncs through git". `INFERENCE:` like Zed, a CRDT for the
+    live session and git for the durable copy.
 
 ## Alternatives rejected and why
 

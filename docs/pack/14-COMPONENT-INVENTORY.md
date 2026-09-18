@@ -160,14 +160,14 @@ C085 | DropHint | vault | primitive | implied by screens, not built | S02, S04, 
 C086 | PhoneFrame | app-shell | composition | implied by screens, not built | every screen, phone only
 C087 | BottomBar | app-shell | composition | implied by screens, not built | every screen, phone only
 C088 | Drawer | app-shell | primitive | implied by screens, not built | every screen, phone only
-C089 | StartCards | unassigned | composition | implied by screens, not built | S02, S03
-C090 | RecentList | unassigned | composition | implied by screens, not built | S02, S03
+C089 | StartCards | app-shell | composition | implied by screens, not built | S02, S03
+C090 | RecentList | app-shell | composition | implied by screens, not built | S02, S03
 C091 | AIBox | ai-tools | composition | implied by screens, not built | S06
 C092 | AITargetLine | ai-tools | primitive | implied by screens, not built | S06
 C093 | InlineSuggestion | editor | composition | implied by screens, not built | S06, S07
 C094 | ProviderStatusList | ai-tools | composition | implied by screens, not built | S32, S36
-C095 | ProblemRow | unassigned | primitive | implied by screens, not built | S10
-C096 | HealthPanel | unassigned | composition | implied by screens, not built | S11
+C095 | ProblemRow | mdmax | primitive | implied by screens, not built | S10
+C096 | HealthPanel | mdmax | composition | implied by screens, not built | S11
 C097 | ViewAsMenu | preview | composition | implied by screens, not built | S09
 C098 | FlowCanvas | preview | composition | implied by screens, not built | S09
 C099 | SlideDeck | preview | composition | implied by screens, not built | S09
@@ -175,27 +175,27 @@ C100 | MindMap | preview | composition | implied by screens, not built | S09
 C101 | KanbanBoard | preview | composition | implied by screens, not built | S09
 C102 | ChartBlock | preview | primitive | implied by screens, not built | S08
 C103 | DrawingBlock | preview | composition | implied by screens, not built | S08, S12
-C104 | IdeaList | unassigned | composition | implied by screens, not built | S04, S12, S13, S14, S15, S34
-C105 | DepthSelector | unassigned | primitive | implied by screens, not built | S12, S13, S14
-C106 | QuestionCard | unassigned | composition | implied by screens, not built | S13, S14
-C107 | RewriteBlur | unassigned | primitive | implied by screens, not built | S13
-C108 | PageNav | unassigned | primitive | implied by screens, not built | S13, S14
-C109 | SkipAllModal | unassigned | composition | implied by screens, not built | S13, S14, S15
-C110 | DecisionCard | unassigned | composition | implied by screens, not built | S14
-C111 | KitFileList | unassigned | composition | implied by screens, not built | S13, S15, S16, S34
-C112 | KickoffPrompt | unassigned | composition | implied by screens, not built | S15
+C104 | IdeaList | ideas | composition | implied by screens, not built | S04, S12, S13, S14, S15, S34
+C105 | DepthSelector | ideas | primitive | implied by screens, not built | S12, S13, S14
+C106 | QuestionCard | ideas | composition | implied by screens, not built | S13, S14
+C107 | RewriteBlur | ideas | primitive | implied by screens, not built | S13
+C108 | PageNav | ideas | primitive | implied by screens, not built | S13, S14
+C109 | SkipAllModal | ideas | composition | implied by screens, not built | S13, S14, S15
+C110 | DecisionCard | ideas | composition | implied by screens, not built | S14
+C111 | KitFileList | ideas | composition | implied by screens, not built | S13, S15, S16, S34
+C112 | KickoffPrompt | ideas | composition | implied by screens, not built | S15
 C113 | ProjectMap | graph | composition | implied by screens, not built | S16
 C114 | PeopleList | share | composition | implied by screens, not built | S17
 C115 | LinkBox | share | composition | implied by screens, not built | S15, S17
 C116 | OpenInBar | share | primitive | implied by screens, not built | S18
 C117 | PasswordGate | share | composition | implied by screens, not built | S18
 C118 | PresenceStrip | share | composition | implied by screens, not built | S19
-C119 | ChangeQueue | unassigned | composition | implied by screens, not built | S20, S31
-C120 | DiffView | unassigned | composition | implied by screens, not built | S20, S21, S31
-C121 | ImportSources | unassigned | composition | implied by screens, not built | S22
-C122 | ConnectionCard | unassigned | composition | implied by screens, not built | S23
-C123 | PlanCards | unassigned | composition | implied by screens, not built | S29, S33
-C124 | ConfigTable | unassigned | composition | implied by screens, not built | S35, S36, S37, S38
+C119 | ChangeQueue | queue | composition | implied by screens, not built | S20, S31
+C120 | DiffView | shared | composition | implied by screens, not built | S20, S21, S31
+C121 | ImportSources | import | composition | implied by screens, not built | S22
+C122 | ConnectionCard | connections | composition | implied by screens, not built | S23
+C123 | PlanCards | billing | composition | implied by screens, not built | S29, S33
+C124 | ConfigTable | config | composition | implied by screens, not built | S35, S36, S37, S38
 C125 | AddFileMenu | vault | composition | implied by screens, not built | S04, S22
 C126 | Select | shared | primitive | implied by screens, not built | S05, S27, S28
 C127 | Stepper | shared | primitive | implied by screens, not built | S05
@@ -205,26 +205,26 @@ C130 | Note | shared | primitive | implied by screens, not built | S01, S08, S10
 C131 | PageHeading | shared | primitive | implied by screens, not built | S01, S02, S03, S12, S22, S23, S25, S28, S29, S35
 C132 | RefusalNotice | editor | primitive | implied by screens, not built | S07
 C133 | StatReadout | shared | primitive | implied by screens, not built | S09, S11
-C134 | ProblemsPanel | unassigned | composition | implied by screens, not built | S10
+C134 | ProblemsPanel | mdmax | composition | implied by screens, not built | S10
 C135 | CheckRow | shared | primitive | implied by screens, not built | S11, S22, S33
 C136 | CentredColumn | shared | primitive | implied by screens, not built | S12, S13
-C137 | AttachmentChip | unassigned | primitive | implied by screens, not built | S12
+C137 | AttachmentChip | ideas | primitive | implied by screens, not built | S12
 C138 | StepProgress | shared | primitive | implied by screens, not built | S13, S14, S34
 C139 | SettingRow | shared | composition | implied by screens, not built | S17, S18, S27, S28
 C140 | SiteFooter | share | primitive | implied by screens, not built | S18, S30
 C141 | SectionNav | shared | composition | implied by screens, not built | S23, S28, S29, S35
 C142 | WindowFrame | app-shell | composition | implied by screens, not built | S25, S26
-C143 | QuickCapture | unassigned | composition | implied by screens, not built | S26
+C143 | QuickCapture | app-shell | composition | implied by screens, not built | S26
 C144 | ThemeInit | unassigned | primitive | exists | S27
 C145 | ThemeTokens | unassigned | primitive | exists | S27
 C146 | SectionLabel | shared | primitive | implied by screens, not built | S28, S36, S37, S38
-C147 | AccountBlock | unassigned | composition | implied by screens, not built | S28
+C147 | AccountBlock | auth | composition | implied by screens, not built | S28
 C148 | ProfilePage | share | composition | implied by screens, not built | S30
-C149 | ConfigShell | unassigned | composition | implied by screens, not built | S35, S36, S37, S38
-C150 | PendingChangesBar | unassigned | composition | implied by screens, not built | S35
-C151 | GrantExceptionDialog | unassigned | composition | implied by screens, not built | S38
-C152 | AuditLog | unassigned | composition | implied by screens, not built | S38
-C153 | HomeScreen | unassigned | composition | implied by screens, not built | S02, S03
+C149 | ConfigShell | config | composition | implied by screens, not built | S35, S36, S37, S38
+C150 | PendingChangesBar | config | composition | implied by screens, not built | S35
+C151 | GrantExceptionDialog | config | composition | implied by screens, not built | S38
+C152 | AuditLog | config | composition | implied by screens, not built | S38
+C153 | HomeScreen | app-shell | composition | implied by screens, not built | S02, S03
 C154 | GitHubSignInButton | auth | primitive | implied by screens, not built | S01
 
 ## 3. The contract
@@ -440,8 +440,20 @@ components close most of the accessibility gap and remove five copies of the sam
 no password, and `F103` in `10-FEATURE-REGISTER.md` carries that promise. The component's own comment
 calls it a fallback for environments where the GitHub callback is unreachable.
 
-**Recorded, not resolved.** Either it goes before the first stranger signs in, or the promise on S01
-is narrowed. It is not for this file to choose.
+**Resolved (proposed 18 Sep, founder review): `C024` is removed before the first stranger signs in.**
+The promise on S01 stays whole.
+
+- Why: ADR-0009 is the founders' rule, "Google or GitHub, one tap, no password" `[Z]`, and `F103`
+  cannot be called shipped while the form is reachable. `[O]` it is rendered at
+  `src/modules/auth/presentation/LoginScreen.tsx:141`.
+- A password field also invites credential stuffing, and the defence that usually follows is a
+  captcha, which ADR-0009 bans.
+- Until then it stays, because the sign-in allowlist admits one login today (`24-SERVER-SPEC.md`
+  section 24.7) and the fallback is that person's way in.
+- Removing it means the component, its render in `LoginScreen.tsx`, and the `sgnk-password` path
+  that 24.7 lists. The row stays in this file, marked withdrawn, because ids are never reused.
+- Rejected: narrowing S01's promise to "no password for most people". It is a footnote on the one
+  sentence the front door is built on.
 
 ### 5.3 Twenty components carry no accessibility contract in code
 
@@ -493,12 +505,24 @@ Counts come from the map, with the script in section 5 of the reconciliation fil
   the screen images and the generator, so a state the screens never drew is not listed. Cross-check
   against `13-SCREEN-STATE-MATRIX.md`, which found 213 unspecified screen states, and expect the
   unbuilt components to grow states as those holes close.
-- **Not established:** the module for 28 components marked `unassigned`, from
-  `grep -c '^C[0-9]\{3\} | [A-Za-z]* | unassigned |' docs/pack/14-COMPONENT-INVENTORY.md`, which
-  returns 30, less `C144` and `C145`, which exist outside `src/modules`. The earlier figure of 22 did
-  not match its own table, which held 19. They belong to features that
-  have no module yet, ideas and review among them. Assigning them is an architecture decision, and
-  `AGENTS.md` section 2 says a new god folder is not the answer.
+- **Resolved (proposed 18 Sep, founder review): a module for the 28 components that had none.**
+  Before this, `grep -c '^C[0-9]\{3\} | [A-Za-z]* | unassigned |'` over this file returned 30; it now
+  returns 2, `C144` and `C145`. Those two stay `unassigned` by design: they are
+  `public/theme-init.js` and `src/app/globals.css`, outside `src/modules`. The index now reads:
+
+  Module | Components | Why there
+  `app-shell` | `C089`, `C090`, `C143`, `C153` | Home and quick capture are shell surfaces, beside `C009` and `C019`
+  `mdmax` | `C095`, `C096`, `C134` | Problems and file health present the engine's own findings. It gains a `presentation/` layer
+  `ideas` | `C104` to `C112`, `C137` | The module S14, S15 and S34 already name as specified, not built
+  `queue` | `C119` | New. The change queue is its own aggregate in `21-DATA-MODEL.md` section 21.4
+  `shared` | `C120` | `DiffView` serves S20, S21 and S31, which sit in three modules
+  `import`, `connections`, `billing`, `config` | `C121`, `C122`, `C123`, and `C124` with `C149` to `C152` | The modules S22, S23, S29 and S35 to S38 already name
+  `auth` | `C147` | The account block shows sign-in identity and deletes the account
+
+  - `INFERENCE:` `C096`, on S11, is the least certain row. Instruction files could sit in `ai-tools`
+    instead. It went to `mdmax` because the health it shows is a check over bytes.
+  - Rejected: one `features` module for everything unbuilt. `AGENTS.md` section 2 bans a god folder.
+  - `queue` is the one module no other file named. The owners of `20` and `21` confirm it.
 - **A proxy, and labelled one:** `source: exists` means a file of that name exports that symbol. It
   does not mean the component matches the screen it is listed against. `C050` is the clearest case:
   it exists, it is listed on S31, and it solves a different problem from the one S31 draws.

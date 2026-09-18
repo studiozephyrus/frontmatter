@@ -30,6 +30,8 @@ here:** 18 September 2026.
   Indian plan auto-renews above it.
 - **An Indian card gets one attempt per cycle.** No retry scheduler is built for Indian cards. A
   failed debit becomes a person asking a person to pay again.
+  **Corrected 18 September, needs founder:** true of Stripe, not of Razorpay. See the second
+  disagreement below.
 - The entitlement check reads our ledger, not the processor, so an outage at Razorpay never lapses
   a paid account.
 
@@ -60,13 +62,38 @@ Source | Instrument cited
 `docs/mvp0/PRODUCT-PLAN.md` section 23 | RBI/2022-23/73, "re-opened by this revision"
 
 - The figure is ₹15,000 in every source, so the decision holds either way.
-- `UNVERIFIED:` whether the 2022 circular is still in force. The citation should be settled by
-  opening the RBI page once. This record does not.
+- **Settled on 18 September 2026 by opening the RBI page** `[M]`
+  (`https://www.rbi.org.in/Scripts/NotificationUser.aspx?Id=13374&Mode=0`): the governing text is
+  the Digital Payments E-mandate Framework, 2026, RBI/DPSS/2026-27/396, 21 April 2026.
+  - Paragraph 8(a): "All recurring transactions may be authorised without AFA up to ₹15,000/- per
+    transaction."
+  - Paragraph 11, Repeal, row 6, lists CO.DPSS.POLC.No.S-518/02.14.003/2022-23 of June 16, 2022,
+    "Processing of e-mandates for recurring transactions", as repealed.
+  - So the PRD is right. `34-INTEGRATIONS.md` section 10, `53-PRICING-AND-ENTITLEMENTS.md`
+    section 5.2 and the plan's section 23 cite a repealed circular, and their owners should cite
+    the 2026 framework instead. `INFERENCE:` RBI/2022-23/73 is the same circular, by date and
+    subject.
 
 **Where the one-attempt rule comes from.** `53-PRICING-AND-ENTITLEMENTS.md` section 5.2 attributes
 it to the same RBI circular. The PRD attributes it to Stripe's documentation.
 
-`UNVERIFIED:` whether Razorpay behaves the same way. Nobody has opened a Razorpay page on retries for this record.
+**Checked on 18 September 2026, and Razorpay does not behave the same way** `[M]`:
+
+- The 2026 RBI framework has no "attempt" or "retry" rule in its text. The one-attempt rule is
+  Stripe's, not the RBI's, so `53` section 5.2's attribution is wrong.
+- Razorpay Subscriptions retry on their own: "We automatically retry the payment on the following
+  day", and "If the payment fails after all retries, the Subscription will move to the halted
+  state". `https://razorpay.com/docs/payments/subscriptions/payment-retries/`.
+- Razorpay's card recurring API does not retry automatically, but allows a manual retry: "You can
+  manually re-initiate a payment for the same order id, repeatedly, every 36 hours, until the
+  payment is successful". `https://razorpay.com/docs/payments/recurring-payments/cards/faqs/`.
+
+**What changes, needs founder.** The second decision bullet, one attempt per cycle, is true of
+Stripe and false of Razorpay, the rail in the plan. The build rule survives in a narrower form:
+**we build no retry scheduler of our own**, because Razorpay Subscriptions carries the retries and
+the `halted` state. Dunning in `53` section 5.2 should start at Razorpay's `subscription.halted`
+webhook, not at the first failure. `CLAUDE.md` lists "one payment attempt" as settled, so the
+founder confirms the narrower form before either file changes.
 
 ## Alternatives rejected and why
 
@@ -90,5 +117,6 @@ A card-on-file trial | `53-PRICING-AND-ENTITLEMENTS.md` section 5.1 infers a fre
 
 ## Limits of this record
 
-- No RBI or Razorpay page was opened for this record. Every fact is carried from the PRD of 29 August
-  and the pack files named above.
+- The RBI framework and two Razorpay pages were opened on 18 September 2026. Everything else is
+  carried from the PRD of 29 August and the pack files named above.
+- No Razorpay retry count or interval beyond the quoted lines was opened.

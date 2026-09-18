@@ -13,8 +13,10 @@ covers: [ADR-0009]
 # ADR-0009. Sign in first, with no captcha and no tour
 
 **Decision id:** ADR-0009. **Decided:** by the founders `[Z]`, carried in `docs/mvp0/PRODUCT-PLAN.md`
-section 3. **Recorded here:** 18 September 2026. `UNVERIFIED:` the exact day the founders first
-chose it. The plan of 17 September carries it as settled.
+section 3. **Recorded here:** 18 September 2026. **First written into the plan:** 17 September 2026,
+commit `7b49f84` ("mvp0: product plan v4"). `[O]` the earliest commit under `docs/` returned by
+`git log --reverse -i -S "Sign in first"` and by the same search for "no captcha". Git dates the
+text; the founders' spoken choice may be earlier and is not recorded anywhere.
 
 ## Context
 

@@ -58,7 +58,17 @@ Rank | Line | Angle
 3 | From rough idea to blueprint. | Ideas to blueprints
 
 - Section 4.1 is the test: five seconds on a plain page, then a next-day recall question.
-- `UNVERIFIED:` the research derived no sample size. It says to fix one before the test starts.
+- The research derived no sample size and says to fix one before the test starts.
+  **Resolved (proposed 18 Sep, founder review): 23 people per line, 69 in all**, fixed now so the
+  result cannot be read to fit a favourite.
+  - `[O]` a two-sided two-proportion test at 5 percent significance and 80 percent power needs 23
+    per line to tell an 80 percent pass rate from a 40 percent one, computed with `python3` from
+    the standard formula. A gap of 30 points nearer the middle, 70 against 40, needs 42.
+  - `INFERENCE:` the 80 and 40 are assumed. A line that clears 80 percent is worth finding, and a
+    smaller gap is not worth a bigger test for a tagline.
+  - If the pilot cohort cannot supply 69 people who have not seen the plan, the test still runs,
+    and the file records that it was underpowered.
+  - Rejected: a handful per line. It can surface misreadings of a line, but it cannot rank three.
 
 ## Alternatives rejected and why
 

@@ -86,4 +86,7 @@ Everything, without the internal use step | The founders asked for each batch to
 ## Limits of this record
 
 - The pace figures, 1.21 and 0.93, are the roadmap's, not re-measured here.
-- `50-ROADMAP.md` section 5.2 marks the 18 September additions to each batch as `UNVERIFIED:`.
+- The 18 September additions to each batch are appetites, a budget set rather than measured.
+  `50-ROADMAP.md` section 2 now says so and points at its section 5.2; it no longer tags them
+  unverified (`grep -c UNVERIFIED docs/pack/50-ROADMAP.md` returned 0 on 18 September). There is
+  nothing to verify until a batch is built.

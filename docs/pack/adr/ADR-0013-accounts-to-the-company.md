@@ -39,12 +39,12 @@ GitHub repository `studiozephyrus/frontmatter` | the studio's user account | bef
 Vercel project | team `zsco` | before the pilot
 Firebase project `frontmatter-md` | a studio Gmail account | retired in phase A
 Cloudflare zone `frontmatter.in` | a founder's personal account, by choice | before the first stranger
-Domain registration | `UNVERIFIED:` in the plan | before the first stranger
+Domain registration | Registrar GoDaddy, registered 2026-06-24, expires 2029-06-24 `[M]`. The registrant is redacted, so `UNVERIFIED:` which account holds it. needs: the GoDaddy account owner to confirm | before the first stranger
 Razorpay | not opened | before the first rupee
 Apple Developer Program | not opened | phase F
 Model provider accounts | not opened | phase B
-Analytics and error accounts | `UNVERIFIED:` in the plan | phase A
-Intellectual property between the founders | `UNVERIFIED:` in the plan | before the first rupee, as a written agreement
+Analytics and error accounts | None in the code `[O]`: no Sentry, PostHog or Vercel Analytics package in `package.json`. Nothing to move yet; each is opened in the company's name when added | phase A
+Intellectual property between the founders | `UNVERIFIED:` no written agreement is in the repository. needs: the founders to confirm whether one exists, which is a legal document this record cannot check | before the first rupee, as a written agreement
 
 - `54-COMPLIANCE-AND-LEGAL.md` carries this as legal row `L03`, widened on 18 September by D10 to
   every account in section 24, due 15 October 2026. `L10` is the founders' agreement on
@@ -78,5 +78,12 @@ Keep the Cloudflare zone personal, by design | `AGENTS.md` section 6b records th
 
 ## Limits of this record
 
-- Three rows of the inventory are unverified in the plan itself, and were not checked here.
+- Three rows of the inventory were unverified in the plan itself. Checked on 18 September 2026:
+  - Domain: `curl -sL https://rdap.org/domain/frontmatter.in` returns the registrar and dates in the
+    table. The registrant is redacted.
+  - Analytics and errors: `grep -i -E '"(@sentry|posthog|@vercel/analytics|@vercel/speed)' package.json`
+    returns nothing. `grep -rli "sentry\|posthog" src` finds two files,
+    `src/instrumentation.ts` and `src/app/error.tsx`, and both only reserve a hook in comments.
+  - Intellectual property: cannot be checked from the repository. It stays unverified, as the
+    table says.
 - Whether the company exists as a legal entity able to hold each account was not checked here.

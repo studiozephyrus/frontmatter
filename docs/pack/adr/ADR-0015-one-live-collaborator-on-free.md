@@ -45,7 +45,7 @@ Every citation below was opened with `sed -n` on 18 September 2026.
 
 Alternative | Why rejected
 Three, the market figure | `53` section 3 cites HackMD's "3 invitees" and AFFiNE's "Up to 3 members". The founders chose cost over parity
-Two | `UNVERIFIED:` the 18 September record names no option of two, so no reason for rejecting it exists
+Two | Never on the table. `[O]` the plan's section 13 table lists the founders' candidate, 1, and the market's figure, 3, and `docs/mvp0/SCREEN-CHANGES-2026-09-18.md:305` confirms 1. No record names two, so there is no reason for rejecting it to cite. `INFERENCE:` the cost argument applies to two as it does to three
 Zero, live editing as Pro only | Not considered in the record. Free would lose the only way to show live editing
 
 ## Consequences
@@ -60,7 +60,8 @@ Zero, live editing as Pro only | Not considered in the record. Free would lose t
 ## What would reverse it
 
 - Durable Object cost at pilot scale turning out small enough that three costs little more than one.
-  `UNVERIFIED:` no per-session cost measurement exists in the pack.
+  `UNVERIFIED:` no per-session cost measurement exists in the pack. needs: Cloudflare's Durable
+  Object duration billing read for the pilot's live sessions, once `flag.collab.live` is on.
 - Pilot evidence that one collaborator stops Free users from trying the product with a colleague.
 
 ## Limits of this record

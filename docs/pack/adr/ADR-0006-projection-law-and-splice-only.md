@@ -13,8 +13,11 @@ covers: [ADR-0006]
 # ADR-0006. The projection law and splice-only writing, refuse rather than guess
 
 **Decision id:** ADR-0006. **Spec of record:** `specs/engine/splice-writer.md`, last updated
-29 August 2026. **Recorded here:** 18 September 2026. `UNVERIFIED:` the date the law was first
-adopted. It predates the PRD v2 and was not traced for this record.
+29 August 2026. **Recorded here:** 18 September 2026. **First written down:** 29 July 2026, in
+commit `5ff90a4` ("docs(engine): markdown-map concept tree + engine plan v0.2"), which adds a
+section 1.2 calling splice-only writing a theorem, and the line "Projections are never stored." `[O]` the earliest commit
+returned by `git log --reverse -i -S "splice-only"` and by the same search for "projection". Git
+dates the text, not the founders' choice, which may be earlier.
 
 ## Context
 

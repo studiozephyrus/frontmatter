@@ -43,9 +43,13 @@ covers: [ADR-0012]
 
 Mechanism | Our R2 canonical | GitHub canonical | Drive canonical
 Refuse when the base is not the head | Local and exact | Holds, a stale `sha` returns 409 | **Breaks.** No write precondition found in the v3 reference
-History, one version per save | Every save | Only as fine as our commits | Drive's own revisions, retention `UNVERIFIED:`
+History, one version per save | Every save | Only as fine as our commits | Drive's own revisions: non-head ones typically kept 30 days, fewer past 100 revisions `[M]`
 Refuse rather than guess | At every step | Possible, because of 409 | Only after a read, with a race window
 
+- The retention cell was checked on 18 September 2026 against
+  `https://developers.google.com/workspace/drive/api/guides/manage-revisions`: "Purgeable revisions
+  are typically preserved for 30 days, but can be purged earlier if a file has 100 revisions". A
+  Drive-canonical history would be 30 days at best, which strengthens the decision.
 - Section 4.4 concludes that the change queue, per-save history, offline and refusal all need one
   place where the head is decided, and it must allow compare-and-swap.
 - Section 6.3 explains the scope: full `drive` would bring a yearly CASA security assessment.
@@ -80,6 +84,7 @@ And one finding would reopen a Drive-canonical design: Drive v3 `files.update` s
 
 ## Limits of this record
 
-- `UNVERIFIED:` whether Drive preserves a markdown upload byte for byte. Test 1 exists to settle it.
+- `UNVERIFIED:` whether Drive preserves a markdown upload byte for byte. needs: falsification test 1,
+  `T-67-drive-byte-roundtrip` in `67-SYNC-AND-CONFLICT.md` section 14.1, run against a test Drive.
 - The mirror cadences in the benchmark's section 6.4 are marked `INFERENCE:` there, proposals for the
   founder. The decision in `56` does not fix them.

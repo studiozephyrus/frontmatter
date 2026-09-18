@@ -391,8 +391,27 @@ The guard is a
 named constant, `MERGE_CELL_BUDGET`, checked for both `B` against `L` and `B` against `H` before
 either diff runs. Over it, step 4 refuses.
 
-`open:` the value of `MERGE_CELL_BUDGET`, and whether the merge moves to a worker. Decided by
-Sagnik after the pilot measures document sizes.
+**Resolved (proposed 18 Sep, founder review): `MERGE_CELL_BUDGET` is 4,000,000 cells per diff, and
+the merge runs in a Web Worker.** The pilot's measured document sizes may move the value; it is one
+constant in `src/config/`.
+
+`[O]` the shipped `merge3` timed on this development Mac, Node v24.6.0, one process per size, with
+`node --experimental-strip-types` over a copy of `src/modules/repository/domain/merge3.ts`:
+
+Lines on each side | Cells per diff | Time for one `merge3` | Resident memory added
+1,000 | 1,000,000 | 51 ms | 36 MiB
+2,000 | 4,000,000 | 123 ms | 101 MiB
+3,000 | 9,000,000 | 313 ms | 254 MiB
+6,000 | 36,000,000 | 1,450 ms | 599 MiB
+
+- The table is `number[][]` (`merge3.ts`, `diffRegions`), so memory grows with the cells, not with
+  the bytes. 4,000,000 is the largest measured size that stays near 100 MiB on a desktop.
+- **The worker** keeps the editor responsive while the table fills. It does not reduce memory.
+- Rejected: no budget, because the shape gate allows 200,000 lines (`MAX_LINES`,
+  `src/modules/mdmax/domain/shape-gate.ts:24`), which is 40,000,000,000 cells.
+- Rejected for now: replacing the table with a linear-space diff. It would remove the budget, but it
+  rewrites a shipped, tested witness, and that is a change to `merge3`, not to sync.
+- `UNVERIFIED:` the figures on a phone. needs: the same script run in a mid-range Android browser.
 
 ### 5.6 Where placement ends and merging begins
 
@@ -416,11 +435,16 @@ This file satisfies both readings as written: `M` never reaches a version, and w
 the person's own splices replayed. But the S31 file's rule "not when only one side changed a
 paragraph" could be read as forbidding even placement.
 
-`open:` whether placement is permitted when the versions in `C` include another author, or only
-when every version in `C` is the same person's from another device. Decided by Sagnik.
+**Resolved (proposed 18 Sep, founder review): the stricter rule is the rule.** Placement happens only
+when every version in `C` has `author` equal to the saver's uid. Anything else raises S31.
 
-**Until decided, build the stricter rule**: placement only when every version in `C` has `author` equal to
-the saver's uid; anything else raises S31.
+- Why: placing one person's splices over another person's version combines two authors' work
+  without either accepting it. Invariant 12 (`docs/mvp0/PRODUCT-PLAN.md` section 17) forbids that
+  `[P]`, and S31's rule reads the same way.
+- Rejected: placement across authors when the two edits touch disjoint regions. It is the one change
+  section 16 names as falsifying this file, and it would make step 3b meaningless.
+- What would reopen it: the pilot's conflict rate between collaborators, measured, proving too high
+  for S31 to carry (section 16).
 
 ### 5.7 Raising S31
 
@@ -452,9 +476,17 @@ Review span by span | Nothing. S20 opens on the item | n/a
 - A keep pressed on the old drawing is refused. That is S31's `stale-preview` state, and `A728`.
 - **The loser is always in history** (`A682`), because both sides are content-addressed versions
   and nothing here deletes a key.
-- `open:` `D65`, three or more diverged versions. A second device's conflict on an already open
-  conflict appends a second side version to the same record. S31 draws two panes, so the screen owner
-  decides how a third is shown.
+- **Resolved (proposed 18 Sep, founder review): `D65` of S31, three or more diverged versions.** A
+  second device's conflict on an already open conflict appends a second side version to the same
+  record's `sideVersionIds[]`. S31 still draws two panes: the head on the left, **one side at a
+  time** on the right, with a plain "side 1 of 2" switch.
+  - Each side is resolved on its own, with the controls above, against the current head.
+  - Resolving one side redraws S31 against the new head with the sides that remain. `conflictOpen`
+    clears only when no side is left.
+  - Why: every write in the table above already compares against the head at render, so one side at
+    a time needs no new write. A third pane does not fit a phone, and the phone view is drawn.
+  - Rejected: three panes, and folding the sides into one before showing them, which is a merge.
+  - S31 owns the drawing. This is the data-side proposal, for S31's owner to adopt or redraw.
 
 ## 7. The mirror, outbound
 
@@ -467,11 +499,16 @@ Review span by span | Nothing. S20 opens on the item | n/a
 - **Paths.** A document at vault path `Projects/HQ/Foo.md` mirrors to `docs/Projects/HQ/Foo.md` in
   the repository and to `frontmatter/Projects/HQ/Foo.md` in Drive.
 
-`open:` D03 says "a full mirror in one repository", and `F242` with `E056` restricts every GitHub
-write to `docs/`. This file keeps `docs/` because it is enforced and tested.
+D03 says "a full mirror in one repository", and `F242` with `E056` restricts every GitHub write to
+`docs/`.
 
-Whether a repository we
-create for the person may drop the prefix is Sagnik's call.
+**Resolved (proposed 18 Sep, founder review): `docs/` stays, in every repository, including one we
+create.** "A full mirror" is read as every document, under one prefix.
+
+- Why: one rule, enforced server-side and tested by `A124`. A repository we create is still the
+  person's, and they may add a README or code beside `docs/` without our worker touching it.
+- Rejected: dropping the prefix for a repository we create. It makes `pathPrefix` depend on who
+  made the repository, and doubles the tests `E056` needs.
 
 ### 7.2 When
 
@@ -483,8 +520,18 @@ Mirror to GitHub | On an explicit push, inside the plan's 20 pushes a month | Ba
 Mirror to Drive | On close of a document, and once a day | Batched, same cadence as GitHub
 Inbound edits | Enter the queue | Enter the queue
 
-`open:` whether an automatic mirror push on Free counts against the 20-push quota of `F243`. If it
-does, Free's "full mirror on both plans" is a mirror that lags by up to a month. Decided by Sagnik.
+**Resolved (proposed 18 Sep, needs founder): Free has no automatic GitHub push, so nothing automatic
+spends the quota.** A Free push happens only when the person presses it, and each one counts
+against the 20 of `F243`.
+
+- Each push carries every changed document, so the mirror is complete and current as of the last
+  push. The plan says the same: `docs/mvp0/PRODUCT-PLAN.md` section 11, marked `INFERENCE:` there.
+- Drive on Free stays automatic, on close and once a day, because Drive has no push quota.
+- The cadence table above is adopted as written, as the benchmark proposed it.
+- Rejected: automatic Free pushes counted against the quota. A busy writer would spend the month's
+  20 in a day, and then the mirror stops without the person having chosen anything.
+- **Needs founder** because it bounds what "a full mirror on both plans" promises a Free person on
+  GitHub: full, but only as fresh as their last push.
 
 ### 7.3 The mirror worker
 
@@ -496,10 +543,25 @@ does, Free's "full mirror on both plans" is a mirror that lags by up to a month.
 - **Skips a record in `conflict`.** Its `conflictItemId` is an open inbound item. Pushing over it
   would overwrite the person's change in their own mirror before they decided on it. When the item
   is decided, the record returns to `pending`.
-- **Where it runs is not decided.** `24-SERVER-SPEC.md` section 24.6: there is no background work on
+- **Where it runs was not decided.** `24-SERVER-SPEC.md` section 24.6: there is no background work on
   the server today, no cron and no queue.
-- `open:` the host for this worker and for section 8's.
-  Decided by Sagnik as part of phase E.
+- **Resolved (proposed 18 Sep, founder review): both workers run as one Cloudflare Durable Object
+  per connection**, keyed `{uid}:{provider}`, with the Durable Object alarm as its clock.
+  - The save transaction marks a record `pending` and pings that object. The alarm runs the batch
+    after `MIRROR_IDLE`, the Drive backstop poll, and channel renewal, from one schedule it keeps
+    in storage.
+  - The webhook routes stay on Vercel. They verify, write `webhookInbox`, reply 2xx, and ping the
+    object.
+  - Why: Durable Objects are already in the stack (ADR-0007). One object per connection makes
+    every write to that repository or folder serial, which GitHub asks for (section 7.4). An alarm
+    retries on its own.
+  - `[M]` "Only one instance of alarm() will ever run at a given time per Durable Object instance",
+    and alarms "have guaranteed at-least-once execution", with automatic retries.
+    `https://developers.cloudflare.com/durable-objects/api/alarms/`, opened 18 September 2026.
+  - At-least-once means a batch can run twice. The create-once ids of section 9.2 and the
+    `cursor` check of 7.4 step 3 already absorb that.
+  - Rejected: Vercel Cron calling a route. It adds a scheduler that knows nothing of per-connection
+    order, and 24.6 records no cron today. Cost is not re-derived here.
 
 ### 7.4 GitHub push
 
@@ -600,8 +662,21 @@ cannot see it because the checksum it reads is our own.
 the file's revisions after the write and look for one between the step-1 revision and ours that we
 did not write.
 
-Whether Drive keeps such a revision is `UNVERIFIED:`, because the revisions guide was
-not opened (`STORAGE-BENCHMARK.md` section 7). Falsification test 2 measures the hole.
+Whether Drive keeps such a revision, checked 18 September 2026 against the revisions guide
+(`https://developers.google.com/workspace/drive/api/guides/manage-revisions`, page last updated
+2026-09-03) `[M]`:
+
+- "The head revision is never auto-purged."
+- "Purgeable revisions are typically preserved for 30 days, but can be purged earlier if a file has
+  100 revisions that aren't designated as "Keep Forever" and a new revision is uploaded."
+- Up to 200 revisions per file can be marked `keepForever`, and they count towards storage.
+
+So an overwritten foreign edit normally survives as a revision for about 30 days, and the worker can
+recover it inside that window. **It is a normal outcome, not a guarantee.** A file with 100 or more
+revisions can lose it at our next upload.
+
+- `UNVERIFIED:` whether every foreign upload makes its own revision, or Drive groups close ones.
+  needs: falsification test 2, which also measures the hole itself.
 
 ```mermaid
 sequenceDiagram
@@ -648,11 +723,15 @@ Queue field | Value for a mirror edit
   same write that creates it. Section 7.3 then skips it until the item is decided.
 - **One item per file per foreign change.** `INFERENCE:` a single prefix-and-suffix span is exact
   and needs no guessing, at the price of one wide span when edits are scattered.
-- `open:` the queue's `source` enum is `person`, `ai`, `agent` (`21-DATA-MODEL.md` section 21.4). A
-  mirror edit may be the person, a collaborator on their repository, or a bot, and we cannot tell.
-- This file proposes a fourth value, `mirror`, with the git author or Drive `lastModifyingUser` kept as a
-  display string, and **treats it like an agent row on S20: diff shown first, never bulk-accepted**.
-  Decided by Sagnik with the owners of 21 and S20.
+- The queue's `source` enum is `person`, `ai`, `agent` (`21-DATA-MODEL.md` section 21.4). A mirror
+  edit may be the person, a collaborator on their repository, or a bot, and we cannot tell.
+- **Resolved (proposed 18 Sep, founder review): a fourth value, `source: "mirror"`**, with the git
+  author or Drive `lastModifyingUser` kept as `externalAuthor`, a display string only. S20 treats it
+  like an agent row: diff shown first, never bulk-accepted.
+  - Why: the enum records who we know wrote it, and for a mirror edit we know only the channel.
+  - Rejected: `person`, which claims an identity we cannot check and would let a bot's edit be
+    bulk-accepted. Rejected: `agent`, which loses the provider S20 needs for its origin line.
+  - The field lands in `21-DATA-MODEL.md` section 21.4 and S20 when their owners adopt section 11.
 
 ### 8.2 GitHub, by webhook
 
@@ -757,9 +836,22 @@ poll. D03, newer and `[Z]`, says the feed is woken by a watch channel.
 at the plan's five minutes as the backstop, so the quota arithmetic of `34-INTEGRATIONS.md` section 8
 still holds as an upper bound.
 
-`open:` whether to lengthen `DRIVE_POLL_INTERVAL`. The plan's five minutes costs 28,800 units a day
-per person (`34-INTEGRATIONS.md` section 8). With a watch channel in front, a longer poll may be
-enough. Decided by Sagnik.
+**Resolved (proposed 18 Sep, founder review): `DRIVE_POLL_INTERVAL` is 60 minutes**, because the
+watch channel now carries the latency and the poll only catches what it missed.
+
+The arithmetic, on `34-INTEGRATIONS.md` section 8's figures of 30 saves at 50 units and a poll call
+at 100 units, against the 400,000,000-unit daily project threshold (`STORAGE-BENCHMARK.md`
+section 2.4):
+
+Poll | Poll units a day per person | With saves | People before the daily threshold
+Five minutes | 288 × 100 = 28,800 | 30,300 | 400,000,000 / 30,300 = about 13,201
+Sixty minutes | 24 × 100 = 2,400 | 3,900 | 400,000,000 / 3,900 = about 102,564
+
+- The cost of the change: an edit whose notification is lost reaches the queue within an hour, not
+  five minutes. A mirror edit is a proposal, so a late one loses nothing.
+- Rejected: keeping five minutes, which spends most of each person's units on a backstop.
+- Rejected: no poll at all. Notifications can be missed and channels can lapse, as above.
+- `34-INTEGRATIONS.md` section 8 and `F244` carry the five-minute figure. Their owners update them.
 
 ```mermaid
 sequenceDiagram
@@ -803,8 +895,15 @@ A rename or move | A delete proposal and a create proposal, paired | A guessed r
   (`STORAGE-BENCHMARK.md` section 2.1). `INFERENCE:` a file the person makes in Drive's own UI, even
   inside our folder, is invisible to us until picked in the Google Picker.
 - The connections screen, S23, must say so.
-- `open:` the queue has no `kind` for create or delete (`21-DATA-MODEL.md` section 21.4 carries a
-  span only). Needs a `kind: "splice" | "create" | "delete"` field. Owner of 21 and S20.
+- The queue has no `kind` for create or delete (`21-DATA-MODEL.md` section 21.4 carries a span
+  only).
+- **Resolved (proposed 18 Sep, founder review): add `kind: "splice" | "create" | "delete"`,
+  defaulting to `splice`**, and a `pairId` shared by the two halves of a rename.
+  - A `create` carries the whole file as its proposed bytes and a path. A `delete` carries no bytes.
+  - S20 shows a paired rename as one row, and accepting it accepts both halves or neither.
+  - Rejected: encoding a delete as a splice over the whole file. Accepting it would leave an empty
+    document, not a deleted one.
+  - Adoption sits with the owners of 21 and S20, through section 11.
 
 ### 8.5 Accepting a mirror item on a moved head
 
@@ -871,17 +970,30 @@ A conflict resolution | `conflictId` plus the left hash drawn | Same
 
 ### 9.4 Named constants
 
-None of these has a value in any source this file could open, so none is given one here.
+Three have a proposed value from 18 September, each with its basis in the section named. The rest
+have no value in any source this file could open, so none is given one here.
 
 Constant | Governs | Decided by
 `SYNC_BACKOFF_BASE`, `SYNC_BACKOFF_CAP` | Section 9.3 | Sagnik, after the pilot
 `SYNC_PLACE_MAX_ROUNDS` | Section 5.3, step 8 | Sagnik
-`MERGE_CELL_BUDGET` | Section 5.5 | Sagnik, after the pilot measures sizes
+`MERGE_CELL_BUDGET` | Section 5.5. Proposed 4,000,000 cells per diff, measured | Sagnik, after the pilot measures sizes
 `MIRROR_IDLE` | Section 7.2 | Sagnik, a pricing choice per `STORAGE-BENCHMARK.md` section 6.4
 `GITHUB_SWEEP_INTERVAL` | Section 8.2 | Sagnik, against the installation's request budget
-`DRIVE_POLL_INTERVAL` | Section 8.3. The plan's current value is five minutes | Sagnik
+`DRIVE_POLL_INTERVAL` | Section 8.3. The plan's five minutes; proposed 60 minutes behind the watch channel | Sagnik
 `DRIVE_WATCH_RENEW_BEFORE` | Section 8.3. Must be shorter than the one-week channel maximum | Sagnik
-`SAVE_INLINE_MAX_BYTES` | When a device sends `bytes` through a presigned R2 upload rather than the request body | Sagnik, against the host's request body limit, `UNVERIFIED:` not opened
+`SAVE_INLINE_MAX_BYTES` | When a device sends `bytes` through a presigned R2 upload rather than the request body. Proposed 3 MiB, below | Sagnik
+
+**`SAVE_INLINE_MAX_BYTES`, resolved (proposed 18 Sep, founder review): 3 MiB, 3,145,728 bytes.**
+
+- `[M]` Vercel: "The maximum payload size for the request body or the response body of a Vercel
+  Function is 4.5 MB", and past it the function returns "413: FUNCTION_PAYLOAD_TOO_LARGE".
+  `https://vercel.com/docs/functions/limitations`, opened 18 September 2026.
+- `[O]` the shape gate allows 4 MiB, 4,194,304 bytes (`MAX_BYTES`,
+  `src/modules/mdmax/domain/shape-gate.ts:23`). As base64 that is about 5,592,405 bytes, over the
+  limit, so a large fallback cannot always ride in the body.
+- 3 MiB as base64 is 4,194,304 bytes, under 4.5 MB whether MB means 4,500,000 or 4.5 MiB, with room
+  for the other fields. Above it, the bytes go to R2 by presigned upload first.
+- Rejected: always presigned. It adds a round trip to every fallback save, most of which are small.
 
 **Every constant lives in the configuration panel or in `src/config/`**, never inline, so a pilot
 measurement changes one value and no code.
@@ -925,7 +1037,7 @@ GitHub or Drive | Revocation failed at disconnect | `E099` | Our copy unaffected
 Drive push | File outside `drive.file` | `E057` | Refused
 Drive push | Project quota | `E094` | Mirror waits
 Drive push | Checksum after write differs from bytes sent | none yet | Mirror paused, reason `fidelity`
-Drive push | Race overwrote a foreign edit | none yet | Recovered from revisions if Drive kept one, `UNVERIFIED:`
+Drive push | Race overwrote a foreign edit | none yet | Recovered from revisions, which Drive typically keeps 30 days, per section 7.5 `[M]`
 Webhook | Bad signature or channel token | none yet, security log only | n/a
 Upload | Over the account's storage | `E074` | Text still saves. Section 10.1
 Queue accept | Create proposal at the document cap | `E070` | Unchanged
@@ -951,9 +1063,22 @@ move uploads to the Drive mirror, or upgrade.
 - Pruning never removes a version that is either side of an open conflict or the base of an open
   queue item.
 
-`open:` "move uploads to the Drive mirror" makes Drive the only home of those uploads, which
-contradicts "our copy is canonical" for them. Whether a moved upload is then a link we no longer
-guarantee is Sagnik's decision.
+"Move uploads to the Drive mirror" makes Drive the only home of those uploads, which contradicts
+"our copy is canonical" for them.
+
+**Resolved (proposed 18 Sep, needs founder): a moved upload becomes a link we no longer guarantee,
+and the person is told so before it moves.**
+
+- The move copies the upload to the Drive folder, checks the returned `sha256Checksum` against our
+  hash, rewrites the markdown link, and only then deletes our R2 key, logging first per 21.8.
+- We keep a small record per moved upload: its hash, its Drive file id and when it moved. A missing
+  Drive file then shows as a named broken link, never a silent one.
+- Our history and recovery promises stop covering it. The confirmation says that in plain words.
+- The move is offered only to a person with a Drive connection. A GitHub-only person has two ways
+  out, since uploads never go to GitHub (section 7.1).
+- Rejected: keeping an R2 copy as well. The person would get no storage back, which is the whole
+  point of the way out.
+- **Needs founder** because it withdraws a guarantee from content a person already stored with us.
 
 ## 11. Data this file needs that the data model does not yet carry
 
@@ -965,7 +1090,7 @@ Where | Addition | Why
 `versions/{versionId}` | Version id equals the `saveId` | Section 3.2 step 2, idempotency
 `versions/{versionId}` | `side: bool`, `deviceId`, `origin` | Section 5.7. A side version is in history but never the head by default
 `docs/{docId}/conflicts/{conflictId}` | `leftVersionIdAtOpen`, `sideVersionIds[]`, `baseVersionId`, `origin`, `state`, `resolution`, `resolvedBy`, `createdAt`, `resolvedAt` | Section 6. S31's `ConflictReader`
-`queue/{itemId}` | `kind: "splice" \| "create" \| "delete"`, `source: "mirror"`, `externalAuthor`, `viaRef` | Section 8
+`queue/{itemId}` | `kind: "splice" \| "create" \| "delete"`, `source: "mirror"`, `externalAuthor`, `viaRef`, `pairId` | Section 8
 `users/{uid}/connections/{provider}` | Drive: `watchTokenHash`, `watchResourceId` | Section 8.3. The token authenticates a notification, and `channels.stop` needs the resource id
 `webhookInbox/{deliveryId}` | provider, received time, raw body key, state | Section 8.2
 
@@ -1015,11 +1140,21 @@ What that gives sync:
 - **A lost device journal loses nothing the server acknowledged.** The journal is a derivative. The
   draft holds the working bytes, and every acknowledged save is a version.
 - **The mirror is not a backup.** `37-BACKUP-AND-RECOVERY.md` section 3 warns that "a zero-lag mirror
-  faithfully replicates your `DELETE`". So a deletion in our copy reaches the mirror only after the
-  30-day trash expires.
+  faithfully replicates your `DELETE`". So a deletion in our copy never reaches the mirror, as
+  resolved below.
 
-`open:` whether a hard deletion in our copy ever deletes the mirror file, or leaves it with the person.
-Decided by Sagnik, because the mirror is also D03's answer to "what survives our shutdown".
+**Resolved (proposed 18 Sep, needs founder): a hard deletion in our copy never deletes the mirror
+file.** When the 30-day trash expires, we delete our mirror record and stop managing the file. The
+file stays in the person's repository or folder, theirs to keep or delete.
+
+- Why: the mirror is D03's answer to "what survives our shutdown", and `37-BACKUP-AND-RECOVERY.md`
+  section 3 warns that a mirror replicating a delete is no protection.
+- The delete confirmation says in one line that the mirror copy stays where it is.
+- The bullet above said a deletion reached the mirror after the trash expired. It now points here.
+- Rejected: deleting the mirror file after 30 days. A mistaken delete would then reach the one copy
+  we do not hold.
+- **Needs founder** because a person may expect "delete" to mean gone everywhere, which is a
+  promise the confirmation copy has to make plainly.
 
 **The two files disagree on the key layout.** `21-DATA-MODEL.md` section 21.8 keys versions
 `v/{vaultId}/{docId}/{sha256}` with the head in Firestore. `37-BACKUP-AND-RECOVERY.md` section 2
@@ -1077,23 +1212,26 @@ run in: a seeded, deterministic network simulator over real markdown.
 
 ## 15. Open points, in one list
 
+The points this file could decide were resolved as proposals on 18 September. The rest belong to
+the owners of other files.
+
 Point | Section | Decided by
-Placement when another author is in the chain | 5.6 | Sagnik. Build the stricter rule until then
-`MERGE_CELL_BUDGET`, and whether merge runs in a worker | 5.5 | Sagnik
-Three or more diverged versions, `D65` | 6 | The owner of S31
-Dropping the `docs/` prefix in a repository we create | 7.1 | Sagnik
-Whether mirror pushes on Free spend the 20-push quota | 7.2 | Sagnik
-The mirror cadence table | 7.2 | Sagnik
-The host for the mirror and inbound workers | 7.3 | Sagnik, phase E
-A `mirror` source on the queue, and its S20 treatment | 8.1 | Sagnik, with the owners of 21 and S20
-A queue `kind` for create and delete | 8.4 | The owners of 21 and S20
+Placement when another author is in the chain | 5.6 | Resolved (proposed 18 Sep, founder review): own uid only
+`MERGE_CELL_BUDGET`, and whether merge runs in a worker | 5.5 | Resolved (proposed 18 Sep, founder review): 4,000,000 cells, in a Web Worker
+Three or more diverged versions, `D65` | 6 | Resolved (proposed 18 Sep, founder review): one side at a time. S31's owner draws it
+Dropping the `docs/` prefix in a repository we create | 7.1 | Resolved (proposed 18 Sep, founder review): kept everywhere
+Whether mirror pushes on Free spend the 20-push quota | 7.2 | Resolved (proposed 18 Sep, needs founder): no automatic Free push
+The mirror cadence table | 7.2 | Resolved (proposed 18 Sep, needs founder): adopted as proposed
+The host for the mirror and inbound workers | 7.3 | Resolved (proposed 18 Sep, founder review): a Durable Object per connection
+A `mirror` source on the queue, and its S20 treatment | 8.1 | Resolved (proposed 18 Sep, founder review). The owners of 21 and S20 adopt it
+A queue `kind` for create and delete | 8.4 | Resolved (proposed 18 Sep, founder review). The owners of 21 and S20 adopt it
 `stale` meaning "cannot be placed" | 8.5 | The owner of 21
 The Drive fields `watchTokenHash` and `watchResourceId` on the connection | 11 | The owner of 21
 The queue additions `conflictOpen`, `side`, the conflict record, the webhook inbox | 11 | The owner of 21
-`DRIVE_POLL_INTERVAL` now that a watch exists | 8.3 | Sagnik
-Every named constant | 9.4 | Sagnik
-Uploads moved to the Drive mirror | 10.1 | Sagnik
-Mirror deletion after a hard delete in our copy | 13 | Sagnik
+`DRIVE_POLL_INTERVAL` now that a watch exists | 8.3 | Resolved (proposed 18 Sep, founder review): 60 minutes
+Every named constant | 9.4 | Sagnik. Three now carry a proposed value
+Uploads moved to the Drive mirror | 10.1 | Resolved (proposed 18 Sep, needs founder): a link we no longer guarantee
+Mirror deletion after a hard delete in our copy | 13 | Resolved (proposed 18 Sep, needs founder): never deleted
 `E115`'s recovery text | 10 | The owner of 17
 The key layout disagreement between 21 and 37 | 13 | The owners of 21 and 37
 `F244` says Drive is "polled every five minutes"; D03 adds the watch | 8.3 | The owner of 10
@@ -1103,8 +1241,8 @@ The key layout disagreement between 21 and 37 | 13 | The owners of 21 and 37
 - **Nothing here has run.** No save route, journal, queue, R2 adapter, App or Drive client exists at
   `96d0e12`. Every sequence above is a specification.
 - **No provider API was called.** GitHub's and Google's behaviour is as documented on the pages cited,
-  fetched 18 September 2026, not as measured. The Drive revisions guide was not opened, so the race
-  recovery in 7.5 is `UNVERIFIED:`.
+  fetched 18 September 2026, not as measured. The Drive revisions guide was opened on 18 September,
+  so the race recovery in 7.5 is documented for about 30 days. It is not tested.
 - **The conflict rate is unmeasured.** The PRD's own counter-argument stands: if conservative
   placement makes conflicts common on real prose, people will read refusal as friction
   (`docs/FRONTMATTER-PRD-v2-2026-08-29.md` section 31.1). The fix it names is finer granularity,

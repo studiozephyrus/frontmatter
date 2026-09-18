@@ -82,8 +82,13 @@ A credits ledger wants transactional writes | Append-only entries, and the balan
 ## What would reverse it
 
 - Firestore's write limits or Mumbai prices turning out far above the plan's simulation at real
-  usage. `UNVERIFIED:` the plan records two readings of the Mumbai storage price, and neither could be
-  reproduced.
+  usage. `UNVERIFIED:` the plan records two readings of the Mumbai storage price, $0.165 and $0.104
+  a GiB-month. Checked 18 September 2026 with `curl -sL --compressed https://cloud.google.com/firestore/pricing`:
+  the prices sit in data the page's script renders, and one embedded table pairs "Stored Data" at
+  "$0.165" with "Document Writes" at "$0.104" "per 100,000 documents". `INFERENCE:` the $0.104
+  reading is the writes row, not storage. Which location that table prices could not be read from
+  the data. needs: the Google Cloud pricing calculator, or the Cloud Billing Catalog API with a key,
+  set to `asia-south1`.
 - The Blaze account being unobtainable on an Indian company card.
 
 ## Limits of this record
