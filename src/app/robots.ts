@@ -19,7 +19,8 @@ export default function robots(): MetadataRoute.Robots {
         // `/p/` is the legacy published-page path; the plan says published
         // pages are not indexed (plan v5, sharing). The root slug stays as it
         // was until the founders decide the indexing question (A10).
-        disallow: ["/api/", "/_next/", "/(vault)", "/p/"],
+        // `/(vault)` was listed here once; it is a route group name, not a URL, so it blocked nothing.
+        disallow: ["/api/", "/_next/", "/p/"],
       },
     ],
     sitemap: `${SITE}/sitemap.xml`,
