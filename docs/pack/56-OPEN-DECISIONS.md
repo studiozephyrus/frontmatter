@@ -42,7 +42,11 @@ not paraphrased into a different decision. `[Z]` throughout.
   become other things, a command line among them.
 - From one markdown file a person can publish, share and use every feature built on it.
 - **Internally the product is called `fmd` from 18 September.** The public name stays frontmatter.
-- **The tagline is not decided.** It is to be researched, along with what fmd stands for.
+- **The tagline is not decided.** Research is in `docs/research/2026-09-18-name/TAGLINE-AND-FMD.md`.
+  The founder chose to test all three shortlisted lines (one file, the editor, idea to blueprint)
+  with the five-second and next-day recall test in its section 4.1, one line per person.
+- **fmd stands for nothing.** It is a bare internal name. The research found it taken as an npm
+  package and as a markdown renderer's command, so no binary, package or public handle uses it.
 - Consequence: the 23 cards in `decisions/v2` that assumed recommendation b re-open, per section 6.
   Files changed: `51-PRODUCT-PLAN.md`, and `docs/mvp0/PRODUCT-PLAN.md` section 29.
 
@@ -62,7 +66,8 @@ not paraphrased into a different decision. `[Z]` throughout.
   "ATR", read here as R2, the object store in the plan's stack. To be confirmed.
 - Open: whether online documents also go to the person's drive or only to our layer, and what
   happens past about 5 GB, where an upgrade was mentioned.
-- **The founder asked for the industry benchmark before deciding.** Research started 18 September.
+- **The founder asked for the industry benchmark before deciding.** It is in
+  `docs/research/2026-09-18-storage/STORAGE-BENCHMARK.md`, awaiting his decision.
 
 ### D10, answered: all of them
 
