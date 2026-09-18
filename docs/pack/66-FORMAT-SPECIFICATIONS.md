@@ -20,7 +20,11 @@ This is the file `10-FEATURE-REGISTER.md` section 8 records as missing.
 State | Meaning
 `built` | Read from the source at `d5cda79` in this session, and in several places run
 `specified, not built` | Required by the plan or a screen spec, and absent from `src/`
-`open:` | Not settled. The row names who decides
+`resolved (proposed 18 Sep, founder review)` | Was open. Decided on the evidence named beside it, for the founder to confirm or reverse. Never `[Z]`
+`needs founder` | A recommendation is written, and only the founder can make it binding
+
+**No open marker remains.** Every earlier one was resolved on 18 September; the log is
+`docs/pack/review/66-formats.md`, one row per item.
 
 **Most of this file is `specified, not built`.** The dialect and front matter sections describe real
 code. The block kinds are half real. The published twin, `llms.txt` and the kit do not exist yet.
@@ -43,20 +47,20 @@ Source | What it gives this file
 so nobody picks silently.
 
 # | What disagrees | Where | This file's position
-1 | A published page's URL: `/p/<slug>` in the plan, `/<slug>` in S18 with `/p/<slug>` as legacy | plan section 10; `12-screens/S18.md` | S18, the newer. `open:` founders confirm
+1 | A published page's URL: `/p/<slug>` in the plan, `/<slug>` in S18 with `/p/<slug>` as legacy | plan section 10; `12-screens/S18.md` | `/<slug>` is canonical. Resolved (proposed 18 Sep, founder review): S18 is newer, the founders passed it "fine as drawn", and both routes already ship that way. Section 5.1
 2 | The twin's name: `page.md` in the plan, `/<slug>.md` in S18 | plan section 5, S18; `12-screens/S18.md` | `/<slug>.md` is the route. "`page.md`" is the plan's name for it
 3 | An unknown callout kind: refused on write (`specs/render/carrier.md`), a plain blockquote (`E503`, S08), a neutral note box (the shipped `callout.tsx`) | section 4.2 | Render as a blockquote. The shipped code is a defect against `A556`
 4 | The drawn chart example writes the info string `fm-chart`, without the version | `docs/mvp0/screens/gen.mjs:1170` | The version is required. The drawing is wrong
-5 | Doc mode's "paragraph borders and shading" use a Pandoc fenced div, `:::`, which the carrier spec forbids on disk | plan section 7; `specs/render/carrier.md` invariant 6 | `open:` Sagnik. Section 4.10
+5 | Doc mode's "paragraph borders and shading" use a Pandoc fenced div, `:::`, which the carrier spec forbids on disk | plan section 7; `specs/render/carrier.md` invariant 6 | Resolved (proposed 18 Sep, founder review): Doc mode drops the div, and a callout is offered instead. Section 4.10
 6 | `F128` is `shipped` with "nested YAML included"; the panel shows nested values read-only | `10-FEATURE-REGISTER.md`; `src/modules/preview/presentation/PropertiesPanel.tsx` | Nested editing is `specified, not built`
 7 | The kit manifest shape in S15 carries `rootHash`, but the root hash is taken over the tarball that contains the manifest | `12-screens/S15.md` | `rootHash` lives in the server record only. Section 6.3
 8 | `F241` exports "every document and attachment"; the shipped vault zip holds `.md` files only and skips `README.md` | `10-FEATURE-REGISTER.md`; `src/modules/vault/application/export-vault-zip.ts` | Section 7 records what ships
-9 | The drawing block: "saved beside the note as JSON Canvas 1.0" in the plan, Excalidraw's own surface in S08 | plan section 8; `12-screens/S08.md` | `open:` D23 in S08. Section 4.5
+9 | The drawing block: "saved beside the note as JSON Canvas 1.0" in the plan, Excalidraw's own surface in S08 | plan section 8; `12-screens/S08.md` | Resolved (proposed 18 Sep, founder review): an Excalidraw scene file, because JSON Canvas cannot hold a drawing. Section 4.5
 10 | The kit was seven files on 13 September and is fifteen now | `docs/MVP-PLAN-2026-09-13.md`; plan section 9 | Fifteen. The seven-file kit is superseded
 11 | The writer promises not to touch blank lines, and deletes one | `25-ENGINE-SPEC.md` section 25.5; section 3.6 below | A defect, measured in this session
-12 | A callout's title: a heading inside the container (`specs/render/carrier.md` invariant 5), or text on the marker line (S08's drawing) | section 4.2 | Both are read. `open:` Sagnik decides which is written
+12 | A callout's title: a heading inside the container (`specs/render/carrier.md` invariant 5), or text on the marker line (S08's drawing) | section 4.2 | Both are read. The heading form is written. Resolved (proposed 18 Sep, founder review): GitHub drops the alert when text follows the marker
 13 | The inline AI mark is "invisible when rendered" in the plan; the carrier spec measured HTML comments printed as text in three of seven engines | plan section 20; `specs/render/carrier.md` | Section 4.9 records both
-14 | PDF by Paged.js and Pandoc in the plan; headless Chromium in the code | plan section 8; `src/app/api/export/pdf/` | `open:` Sagnik. Section 7.1
+14 | PDF by Paged.js and Pandoc in the plan; headless Chromium in the code | plan section 8; `src/app/api/export/pdf/` | Headless Chromium is the target. Resolved (proposed 18 Sep, founder review). Section 7.1
 
 ---
 
@@ -136,8 +140,13 @@ Table of contents marker | `[toc]` on its own line | none; `F142` | no | `specif
 
 - `~x~` subscript collides with GFM strikethrough, which accepts a single tilde by default.
   `[O]` `micromark` with `gfm()` renders `H~2~O` as `<p>H<del>2</del>O</p>` in this session.
-- So the shipped renderer strikes through what Doc mode would mean as a subscript. `open:` Sagnik
-  decides whether Doc mode writes subscript at all.
+- So the shipped renderer strikes through what Doc mode would mean as a subscript.
+- **Resolved (proposed 18 Sep, founder review): Doc mode writes `<sub>` and `<sup>`**, never `~x~`
+  or `^x^`. Both elements are on `SAFE_HTML_ELEMENTS` in `html-policy.ts`, so they render today.
+- `[O]` GitHub's `POST /markdown` API, gfm mode, on 2026-09-18, returned `H<sub>2</sub>O` as a
+  subscript and `H~2~O` as `H<del>2</del>O`. The HTML form survives GitHub; the Pandoc form does not.
+- Rejected: turning off single-tilde strikethrough, which would change how every existing `~x~` in a
+  person's files renders. The Pandoc row above is therefore superseded for these two marks.
 - `[toc]` is an ordinary CommonMark shortcut reference with no definition, so a plain parser shows the
   literal text `[toc]`. That is the degradation, and it passes plan section 7's refusal rule.
 
@@ -147,8 +156,12 @@ Table of contents marker | `[toc]` on its own line | none; `F142` | no | `specif
 does GitHub on a `.md` file. The bytes are untouched, so this is a view difference, not a write.
 
 - A hard-wrapped paragraph therefore looks different in frontmatter and on GitHub.
-- `open:` Sagnik decides whether the published page, the twin's HTML sibling, keeps `remark-breaks`.
-  A published page that wraps differently from GitHub surprises the agents that read both.
+- **Resolved (proposed 18 Sep, founder review): the published page keeps `remark-breaks`**, the same
+  pipeline as the preview. The author must see what the reader sees, and the page is a projection of
+  the same bytes through the same renderer.
+- Agents are not affected: they read the twin, `/<slug>.md`, and apply their own parser to the bytes.
+- Rejected: CommonMark breaks on the published page only. The page would then differ from the preview
+  the author approved, which is the surprise the rule exists to prevent.
 
 ### 2.4 Raw HTML
 
@@ -306,7 +319,20 @@ writes outside the target range, which is invariant 1 of `specs/engine/splice-wr
    then adds one. Two leading LFs become one. Severity `MEDIUM`: rarer, and the body's meaning survives.
 
 **Both need a red proof before a fix**, per `AGENTS.md` section 0 rule 1. The two defect fixtures in
-3.5 are those red proofs. `open:` the owner of `17-ERROR-AND-REFUSAL-CATALOGUE.md` allocates their ids.
+3.5 are those red proofs. `[O]` Both still reproduce at `e0f6f89`, rerun with
+`node --experimental-strip-types` on 18 September.
+
+**Resolved (proposed 18 Sep, founder review): neither gets an `E` id.** An `E` id names a refusal,
+and these are wrong writes, not refusals. The fix makes each a correct write with nothing to show.
+
+- Each is a defect, so it belongs in `44-TECH-DEBT-REGISTER.md` as a `TD-` entry with the fixture as
+  evidence. That file's owner adds the two rows.
+- **The fix for 3.6.1:** the continuation walk stops before a blank line, so blank lines after the
+  key's last continuation line are outside the span and are never rewritten.
+- **The fix for 3.6.2:** the prepended block is followed by exactly one LF, and the body's own bytes,
+  leading blank lines included, follow unchanged.
+- Rejected: new `E` ids. A refusal id for a write that should simply succeed would teach the product
+  to refuse ordinary files.
 
 ### 3.7 `SAFE_KEY` today, and the rule that replaces it
 
@@ -343,7 +369,7 @@ flatten it (`A540`). The contract this file sets for that work:
 are kept byte for byte (`A675`).
 
 Format | Keys | Version key | Value shapes | Source
-Doc mode page setup | `title`, `subtitle`, `page`, `margins` | `frontmatter: 1` | `title`, `subtitle` strings; `page`, `margins` `open:` | plan sections 7 and 20
+Doc mode page setup | `title`, `subtitle`, `page`, `margins` | `frontmatter: 1` | `title`, `subtitle` strings; `page`, `margins` scalar strings, below | plan sections 7 and 20
 Portfolio | `name`, `handle`, `title`, `links`, `projects`, `writing`, `theme` | `portfolio: 1` | `links` a map; `projects` a list of maps with a title and a line; `writing` a folder path; the rest strings | `12-screens/S30.md`
 Decision record | per the kit | `decisions: 1` | section 6.2 | plan section 20
 Project map | per the kit | `graph: 1` | section 6.2 | plan section 20
@@ -352,16 +378,33 @@ Trust stamp | `verified` | none | a list of `{by, at}` | `56-OPEN-DECISIONS.md` 
 **`links` and `projects` are nested**, so the portfolio cannot be edited from the panel until 3.8 is
 built. It can be written in the source pane today.
 
-`open:` the shapes of `page` and `margins`. No source names their units or values. Sagnik decides,
-and the export fixtures in plan section 20 follow from the answer.
+**`page` and `margins`. Resolved (proposed 18 Sep, founder review).** Both are one-line scalars, so
+the writer can emit them today and the panel can edit them without the nested work in 3.8.
+
+Key | Shape | Default | Examples
+`page` | a paper size, then optionally a space and `landscape` | `A4` | `A4`, `Letter landscape`
+`margins` | one to four CSS lengths in `cm`, `mm` or `in`, in CSS shorthand order | `1.6cm` | `2cm`, `2cm 1.5cm`
+
+- **The paper sizes are the ones the PDF engine accepts**: `A3`, `A4`, `A5`, `Letter`, `Legal`,
+  `Tabloid`, matched without regard to case. `[O]` `PaperFormat` in
+  `node_modules/puppeteer-core/lib/types.d.ts` lists those among its values.
+- **The defaults are what ships.** `[O]` The PDF route passes `format: "A4"` and
+  `PRINT_PAGE_MARGIN = "1.6cm"` from `src/modules/export/presentation/print-css.ts`.
+- **A value outside the shape is ignored and the default used.** The bytes are never rewritten, and
+  the problems panel names the key.
+- Rejected: a nested `margins: {top, right, bottom, left}` map, which the writer cannot emit
+  (section 3.4) and which would lock page setup behind the nested-edit work.
 
 ### 3.10 The `verified` stamp
 
-**Status: `open:`.** D06 in `56-OPEN-DECISIONS.md` recommends stamping on accept, in phase D; the
-founders have not decided it.
+**Status: `needs founder`.** D06 in `56-OPEN-DECISIONS.md` is a founder decision and is not among
+the four answered on 18 September. **Recommendation, as D06's: stamp on accept, in phase D.** The
+contract below is written so phase D can build it the day D06 is answered yes.
 
-The shape comes from Google's Open Knowledge Format v0.2, as reported in
-`docs/mvp0/FEATURES-2026-09-18.md` section T5. `UNVERIFIED:` the format's own page was not opened here.
+The shape is Google's Open Knowledge Format v0.2. `[M]` Opened 2026-09-18 at
+https://cloud.google.com/blog/products/data-analytics/okf-v0-2-adds-trust-signals. The page's own
+example writes `verified` as a list of one-line maps, `- { by: human:kliu@acme, at: <RFC 3339> }`.
+It derives a trust tier from `by`: "confirmation by a human:<id> actor is human-reviewed".
 
 If D06 is decided yes, the contract is:
 
@@ -369,19 +412,21 @@ If D06 is decided yes, the contract is:
 ---
 title: Booking flow
 verified:
-  - by: sagnik
-    at: 2026-09-18T10:00:00Z
+  - { by: human:sagnik, at: 2026-09-18T10:00:00Z }
 ---
 ```
 
 - **An accept in the change queue appends one entry** at the end of the `verified` list. Nothing
   else in the block changes.
-- **The list is block form**, two-space indent, so an append is a two-line insertion and a diff
-  reads cleanly.
-- **The writer cannot do this today.** `emitValue` has no map type, so this needs the nested work in
-  3.8 first.
-- `open:` what `by` holds. A uid leaks nothing and means nothing to a reader; a handle or an email is
-  readable and is published with the page. The founders decide, before phase D.
+- **The list is block form, each entry one line**, two-space indent, as OKF's own example writes it.
+  An append is a one-line insertion before the closing fence or the next key, and a diff reads cleanly.
+- **The writer cannot do this today.** `emitValue` has no map type. The narrow addition is an append
+  of one flow-map line to a block list; it does not need the whole of 3.8.
+- **What `by` holds: `needs founder`.** Recommendation: `human:<handle>`, the person's public
+  frontmatter handle. The `human:` prefix is what OKF reads as human-reviewed, and the handle is
+  already public on a portfolio page.
+- Rejected: an email, which would publish an address with every page; and a uid, which leaks nothing
+  but means nothing to a reader. It needs the founder because it is published with the page.
 
 ---
 
@@ -445,7 +490,7 @@ at `callout.tsx` line 5.
 `A556` requires a plain block quote. The test for `A556` will fail against
 `d5cda79`, which makes it its own red proof.
 
-**Titles disagree, and this is open.** The carrier spec requires a title to be a heading inside the
+**Titles disagreed; resolved below.** The carrier spec requires a title to be a heading inside the
 container, because an attribute title is invisible on GitHub. S08 draws the title on the marker line.
 
 ```markdown
@@ -460,8 +505,17 @@ container, because an attribute title is invisible on GitHub. S08 draws the titl
 ```
 
 - **Both are read.** The first is what imported files carry, and the parser above takes it.
-- `open:` which one the product writes, for example from "Summarise into a callout" on S07. Sagnik
-  decides. `UNVERIFIED:` how GitHub renders marker-line text after `[!TIP]` was not checked here.
+- **Resolved (proposed 18 Sep, founder review): the product writes the second form**, the marker
+  alone on its line and the title as `> ### Title`, for example from "Summarise into a callout" on S07.
+  The level is always H3, so the bytes never depend on the headings around the callout.
+- Rejected: the marker-line title S08 draws. On GitHub it loses the callout entirely, below.
+- `[O]` GitHub's `POST /markdown` API, gfm mode, 2026-09-18 17:31 UTC:
+
+Input sent | GitHub returned
+`> [!TIP] Deposits` then `> Body` | a plain `<blockquote>` with the text `[!TIP] Deposits`; no alert
+`> [!TIP]`, `> ### Deposits`, `> Body` | a tip alert, `markdown-alert-tip`, holding an `h3` and the body
+`> [!tip]` then `> Body` | a tip alert, so GitHub matched the lower-case kind; the other four were not sent
+`> [!zzz]` then `> Body` | a plain `<blockquote>`, the same degradation `E503` specifies
 
 **Fixtures.**
 
@@ -507,7 +561,7 @@ close-fence = the same character as the open fence, at least as many, nothing el
 plain table in every other tool (`A045`), and the numbers have one home.
 
 Key | Required | Values in v1 | Meaning
-`kind` | yes | `open:`, see below | which chart to draw
+`kind` | yes | `pie`, `bar` or `line`, see below | which chart to draw
 `table` | yes | `above` | the nearest GFM table above the block, with only blank lines between
 
 **Reading the table** (set here, `[P]` from S08's "no numeric column" refusal):
@@ -541,21 +595,54 @@ A table with no numeric column | same | `E502` | `K.s08.chart.nonumbers`
 `kind` missing, or a kind this version does not draw | same | `E502` | `K.s08.chart.kind`
 A key the renderer does not know, such as `colour: blue` | drawn; the key is kept | none | none
 
-`open:` which kinds v1 draws. The drawing shows `pie` only. S08 raises this as D22, which
-`56-OPEN-DECISIONS.md` does not carry yet. Sagnik decides, before phase G.
+**Which kinds v1 draws. Resolved (proposed 18 Sep, founder review): `pie`, `bar` and `line`.**
+
+- **The renderer translates the block into Mermaid** and draws it through the Mermaid path that
+  already ships (section 4.7): `pie` into a Mermaid `pie`, `bar` and `line` into `xychart-beta`.
+- `[O]` The installed `mermaid` 11.15.0 carries both diagrams:
+  `node_modules/mermaid/dist/chunks/mermaid.core/pieDiagram-4H26LBE5.mjs` and
+  `xychartDiagram-2RQKCTM6.mjs`, whose grammar holds `bar` and `line`.
+- So v1 adds no dependency, and a chart that fails to draw fails the way a diagram does.
+- Rejected: `pie` only, as drawn, which leaves every time series without a chart; and a charting
+  library, which is a second renderer to secure and bundle.
+- S08's D22 is closed by this row. It never reached `56-OPEN-DECISIONS.md`, so no second home forms.
 
 **Never copy obsidian-charts code.** It is AGPL; the shape is public and the source is not ours
 (`A559`).
 
 ### 4.5 `fm-draw@1`
 
-**`specified, not built`, and the least settled block.** It points at a drawing stored beside the
-document.
+**`specified, not built`.** It points at a drawing stored as one of the document's uploads.
 
 - The plan says the drawing is "saved beside the note as JSON Canvas 1.0" (section 8). S08 names
-  Excalidraw's own surface. `UNVERIFIED:` whether Excalidraw writes JSON Canvas was not checked.
-- `open:` the key that names the file, where the file lives in R2, and its format. S08 raises this
-  as D23. Sagnik decides before the block is built.
+  Excalidraw's own surface.
+- **Checked: Excalidraw does not write JSON Canvas, and JSON Canvas cannot hold a drawing.**
+  `[M]` JSON Canvas 1.0 (https://jsoncanvas.org/spec/1.0/, opened 2026-09-18) allows four node types,
+  text, file, link and group, with no strokes. `[M]` Excalidraw's schema
+  (https://raw.githubusercontent.com/excalidraw/excalidraw/master/dev-docs/docs/codebase/json-schema.mdx,
+  opened 2026-09-18) saves a `.excalidraw` JSON file with `"type": "excalidraw"` and an `elements` array.
+  The plan's phrase is wrong, and this section follows Excalidraw.
+- **Resolved (proposed 18 Sep, founder review), closing S08's D23.** The block holds one key:
+
+````markdown
+```fm-draw@1
+file: booking-flow.excalidraw
+```
+````
+
+Key | Required | Rule
+`file` | yes | a path relative to the document, `/` separators, no `..`, ending `.excalidraw`
+
+- **Format:** Excalidraw's own `.excalidraw` JSON, stored exactly as the Excalidraw surface saves it.
+- **Storage:** one of the document's uploads, under the upload key
+  `u/{vaultId}/{docId}/{uploadId}/{filename}` (`21-DATA-MODEL.md` section 21.8), read through
+  `AttachmentReader.get(id)` as S08 names. It sits inside the document's uploads, not beside them.
+- **Every save of a drawing is a new upload**, so no R2 key is ever overwritten (section 21.8's rule).
+  The document's attachment record points `file` at the newest `uploadId`.
+- **In the person's mirror** (D03), the file is written at `file`, beside the note, so a reader of the
+  repository can open it in Excalidraw. The plain-reader degradation is a code block naming it.
+- Rejected: JSON Canvas, which cannot hold strokes; and a separate drawing store, which would give
+  drawings a second key scheme and a second retention rule.
 - **The one rule already fixed:** a missing file renders the block's source with `E042`, and the
   block in the document is never changed (`K.s08.drawing.missing`).
 
@@ -568,7 +655,16 @@ Its version field is none, because the carrier is headings
 (plan section 20). Errors: no H2, `E505`; an H3 before any H2, `E506`.
 
 **`fm-flow` is named once, in the plan's section 20 table, and specified nowhere.** No grammar, no
-keys, no fixture. `open:` Sagnik decides whether it exists. Until then, nobody builds it.
+keys, no fixture.
+
+**Resolved (proposed 18 Sep, founder review): `fm-flow` does not exist.** Nobody builds it, and the
+plan's section 20 row for it is withdrawn.
+
+- Flow view already has a carrier, headings, which every reader shows. A fence would hide the same
+  content from a plain reader and add a second source of truth for it.
+- The founders deferred Flow view itself on 18 September (`docs/mvp0/SCREEN-CHANGES-2026-09-18.md`,
+  S09, `[Z]`), so there is no screen that needs it.
+- Rejected: specifying it now for later. A format written ahead of its screen is a format nobody tests.
 
 ### 4.7 Mermaid
 
@@ -586,7 +682,21 @@ flowchart LR
 
 **One gap on the published page.** `src/modules/export/presentation/pdf-doc.ts` loads Mermaid from
 `cdn.jsdelivr.net`. That is acceptable inside a PDF render. The published page carries no third-party
-script (`A107`), so it must bundle Mermaid or draw the SVG at publish. `open:` Sagnik chooses.
+script (`A107`), so it must bundle Mermaid or draw the SVG at publish.
+
+**Checked first:** the published page does not use the CDN today. `[O]` `PublicNoteView` renders
+through `Markdown` from `@/modules/preview`, and `mermaid-block.tsx` loads `import("mermaid")` from
+our own bundle. So `A107` holds now; the CDN load is in the PDF path only.
+
+**Resolved (proposed 18 Sep, founder review): draw the SVG at publish.** The Mermaid SVG goes into
+the rendered page stored under `renderedKey` (`21-DATA-MODEL.md` section 21.4), so a reader downloads
+no Mermaid code at all.
+
+- A diagram that fails at publish is stored as its source and reason (`E501`), as in the editor.
+- Until publish-time rendering lands, the bundled dynamic import stays. It is first-party and passes
+  `A107`.
+- Rejected: shipping the Mermaid runtime to every reader. It adds a script download to a page view,
+  on the surface that must be fast (`docs/mvp0/SCREEN-CHANGES-2026-09-18.md` section 10.2).
 
 ### 4.8 Maths and tables
 
@@ -612,18 +722,47 @@ The deposit is refundable. <!-- ai: Haiku 4.5, shorten -->
 - **The plan says it is invisible when rendered.** `specs/render/carrier.md` measured an HTML comment
   printed as visible text in three of its seven bench engines, under `html:false`. The plan's claim
   holds for GitHub, not for every reader.
-- `open:` which side of the span the comment sits, and how an `ask` containing `-->` is escaped.
-  Sagnik decides before inline marking is built.
+- **Resolved (proposed 18 Sep, founder review): placement and escaping.**
+
+Rule | Value
+Placement | immediately after the span's last byte, one space, then the comment, on the same line
+Shape | `<!-- ai: {model}, {ask} -->`, one line, nothing else inside
+Escaping | in `{model}` and `{ask}`, `%` becomes `%25`, `<` becomes `%3C`, `>` becomes `%3E`, a line break becomes `%0A`
+
+- **Why this escaping is enough.** `[M]` The HTML standard's comment rule
+  (https://html.spec.whatwg.org/multipage/syntax.html, opened 2026-09-18) forbids comment text that
+  starts with `>` or `->`, or contains `<!--`, `-->` or `--!>`, or ends with `<!-`. Every one of those
+  needs a `<` or a `>`, and neither survives the escaping. It is lossless and reversible.
+- **After, not before**, so the comment never splits a heading marker or a list marker from its text.
+- Rejected: removing `--` from the ask, which is lossy, and a block comment on its own line, which
+  cannot say which span it marks.
+- The full `ask` is written, escaped. The version record holds the same text, so nothing is truncated.
 
 ### 4.10 Directives and Pandoc divs
 
 - **`:::` is accepted on input and never written** (`specs/render/carrier.md` invariant 6). Pasted
   directive text is normalised to a permitted carrier on save.
-- `open:` in the carrier spec itself: normalise silently, or show the person what changed. Silent
+- The carrier spec left open whether to normalise silently or show the person what changed. Silent
   normalisation edits bytes the person did not touch.
+- **Resolved (proposed 18 Sep, founder review): never silently, and never on save.**
+
+Where the `:::` comes from | What happens
+Pasted or typed in this session | converted as it lands, before any save, with a one-line notice naming the carrier and an undo
+Already in a file on disk, or brought in by import | left byte for byte; it renders as the plain text any CommonMark reader shows
+The person wants it converted | the problems panel (S10) offers the conversion as a fix, which enters the change queue
+
+- **A save never rewrites a directive it did not just receive.** Converting on save would edit bytes
+  outside the person's change, which ADR-0006 forbids.
+- Rejected: silent normalisation on save, and a blocking dialog on every paste.
 - **Plan section 7 uses a Pandoc fenced div for paragraph borders and shading.** That div is `:::`
-  on disk, which invariant 6 forbids. `open:` Sagnik decides whether Doc mode drops the feature or the
-  carrier spec gains an exception.
+  on disk, which invariant 6 forbids.
+- **Resolved (proposed 18 Sep, founder review): Doc mode drops the div.** Paragraph borders and
+  shading move from plan section 7's `E` class to its `X` class, beside cell borders and shading, which
+  that table already lists as having no carrier.
+- **The substitute is a callout.** It renders as a bordered, shaded box in the product and as a quote
+  on GitHub, so the author's emphasis survives in a plain reader.
+- Rejected: an exception to invariant 6. ADR-0002 rejects `:::` as an output form, and the carrier
+  bench measured a multi-paragraph `:::` container splitting silently on its closer.
 
 ---
 
@@ -648,8 +787,13 @@ Route | Serves | State
 `src/proxy.ts:50` allows no dot, `PUBLIC_STATIC_RE` at `src/proxy.ts:15` has no `md`, and it matches
 one path segment only. The fix goes in `isPublicPath()`, never as a per-file exception (S18).
 
-`open:` whether `/p/<slug>.md` is also served, for links made before the modern URL. The founders
-decide with row 1 of section 0.
+**`/p/<slug>.md` is not served. Resolved (proposed 18 Sep, founder review).** It returns `404`, like
+any unknown path.
+
+- The twin has never existed at any URL, so no link made before the modern URL can point at
+  `/p/<slug>.md`. There is nothing to keep working.
+- Serving it as a redirect would break the rule that the twin is never redirected (section 5).
+- Rejected: a second copy of the twin at the legacy path, which doubles the surface to keep byte-exact.
 
 ### 5.2 The twin, `/<slug>.md`
 
@@ -673,10 +817,26 @@ user agent, and the owner over the published-page cap, the bytes and the status 
 
 **A gap in the data model.** `shares/{slug}` carries `renderedKey` and `renderedHash` for the page,
 and nothing that names the source version (`21-DATA-MODEL.md` section 21.4). The twin needs one.
-`open:` the owner of `21-DATA-MODEL.md` adds a `sourceHash` field, or names another.
+**Resolved (proposed 18 Sep, founder review): a `sourceHash` field on `shares/{slug}`.** The twin
+reads `v/{vaultId}/{docId}/{sourceHash}`, the version key that already exists.
 
-`open:` whether an inline AI mark (section 4.9) is served in the twin. Plan section 20 strips it on
-export; the twin is not an export. Sagnik decides.
+Field | Type | Cap | Notes
+`sourceHash` | string | 64 chars | SHA-256 of the published version's bytes, lower-case hex. Set at publish, with `renderedHash`
+
+- It doubles as the twin's `ETag`, so the header costs no extra read.
+- The row is for `21-DATA-MODEL.md` section 21.4; that file's owner copies it in, and this file then
+  cites it rather than holding a second home.
+- Rejected: re-deriving the source from `renderedKey`. A rendered page cannot be turned back into
+  the bytes it came from.
+
+**An inline AI mark is served in the twin. Resolved (proposed 18 Sep, founder review).** Plan section
+20 strips it on export, and the twin is not an export: it is the published version's bytes.
+
+- Stripping it would make the twin's bytes differ from the version whose hash is its `ETag`, and the
+  twin would stop being a projection of one file.
+- Inline marking is off by default (section 4.9), so a mark is present only when the author turned it
+  on for that document.
+- Rejected: stripping on serve, which turns the twin into a second format with its own rules.
 
 ### 5.3 The HTML page points at both
 
@@ -711,7 +871,7 @@ with no headings; then H2 sections, each a list of `[name](url)` links with opti
 Field | Rule
 `{title}` | front matter `title` if it is a non-empty string; else the first H1's text; else the slug
 `{description}` | front matter `description` if it is a non-empty string. If absent, the block quote line and the blank line after it are omitted
-`{origin}` | the configured public origin, never a request header. `open:` the domain waits on D05, the name
+`{origin}` | `APP_URL` from `src/config/env.ts`, never a request header. Resolved (proposed 18 Sep, founder review); the live apex today is `frontmatter.in` (`AGENTS.md` section 8), and any rename waits on D05, `needs founder`
 Whitespace | runs of whitespace, line breaks included, collapse to one space; `[`, `]` and `\` in `{title}` are escaped with `\`
 Bytes | UTF-8, no byte-order mark, LF line endings, one trailing LF
 
@@ -788,17 +948,28 @@ Path | Kind | Holds | Front matter version
 **Twelve markdown and three data** (`A090`). The data files are counted as files and drawn as nodes
 nowhere (`A604`).
 
-`open:` the two spec names are the drawn local-service example.
+The two spec names are the drawn local-service example.
 
 A template holds its own file list (plan section 9), so a marketplace kit may need other specs, or
 more than two. If it does, `A090`'s fixed fifteen breaks.
 
-Sagnik decides whether the count is fixed or the template sets it.
+**Resolved (proposed 18 Sep, founder review): the count is fixed at fifteen, and the template names
+the two specs.**
+
+- Plan section 9 marks "Fifteen files in a skill folder" `[Z]`, a founders' decision. A variable
+  count would reverse it, so this file does not.
+- **A template's file list sets only the two paths under `specs/`**: one file per core flow, the
+  template's two most important. A local-service kit writes `specs/booking.md` and
+  `specs/payments.md`; a marketplace template names its own two.
+- A third flow goes inside one of the two specs, or in `01-PRODUCT.md`, never in a sixteenth file.
+- The cost model in plan section 9 assumes one call per file, so a fixed count also keeps the
+  blueprint's cost fixed.
+- Rejected: a template-set count. It breaks `A090`, the `[Z]` count and the cost model together.
 
 ### 6.2 `DECISIONS.md`, `MAP.md` and `graph.json`
 
-**`DECISIONS.md`.** Written by splice, one answer at a time, never whole (`12-screens/S14.md`). Set
-here, `open:` for Sagnik to revise before phase C:
+**`DECISIONS.md`.** Written by splice, one answer at a time, never whole (`12-screens/S14.md`).
+**Resolved (proposed 18 Sep, founder review)** in this shape:
 
 ```markdown
 ---
@@ -821,6 +992,10 @@ Status: open
 - **One H2 per decision**, the question as written.
 - **The first line under it is `Status: decided` or `Status: open`.** Not sure is always `open`,
   never written as the founder's choice (`A087`).
+- **Why a plain line.** It reads as a sentence in every renderer, an agent finds open decisions with
+  `grep -n '^Status: open'`, and a one-line splice flips it.
+- Rejected: a `> [!fm-decision]` callout per decision. It renders as a quote on GitHub, and an answer
+  would then have to keep every body line `>`-prefixed through each later splice.
 
 **`graph.json`.** The in-app graph is `{ nodes, links }` from `buildGraph` in
 `src/modules/graph/presentation/graph-data.ts`, whose nodes carry a `color`. Colour is a view, so the
@@ -830,18 +1005,59 @@ kit's file drops it:
 {
   "graph": 1,
   "nodes": [
-    { "id": "00-BRIEF.md", "label": "Brief", "kind": "document" }
+    { "id": "00-BRIEF.md", "label": "Brief", "kind": "doc" }
   ],
   "links": []
 }
 ```
 
 - **`id` is the kit-relative path** of a file that exists in the kit (`A603`).
-- `open:` the four `kind` values. S16 names four kinds (`K.s16.node.kind`) without listing them.
-  Sagnik decides; `document` above is a placeholder, and the fixture waits on the answer.
+- **The four `kind` values, checked and corrected.** This file said S16 does not list them; it does.
+  `12-screens/S16.md` names `doc`, `spec`, `why` and `agent`, from `KCOL` at
+  `docs/mvp0/screens/gen.mjs:1274`, labelled Document, Spec, Decision and Agent file in `K.s16.node.kind`.
+- **Resolved (proposed 18 Sep, founder review): `graph.json` uses those four ids verbatim**, assigned
+  by path, so the kind is derived and never stored as a choice.
+
+Path | `kind`
+`SKILL.md`, `AGENTS.md` | `agent`
+anything under `specs/` | `spec`
+`DECISIONS.md` | `why`
+every other markdown file, `MAP.md` included | `doc`
+
+- So the example node above is written `"kind": "doc"`, and a real kit has twelve nodes: two
+  `agent`, two `spec`, one `why`, seven `doc`. The three data files are not nodes (`A604`).
+- **`links`** is a list of `{ "source": <path>, "target": <path> }`, the `GraphLink` shape in
+  `graph-data.ts`, sorted by source then target, comparing UTF-8 bytes.
 
 **`MAP.md`** is the same graph as prose, rebuilt from the files on every save, never a second source
-of truth (plan section 5, S16). Its body is not specified by any source. `open:` Sagnik.
+of truth (plan section 5, S16). No source specified its body.
+
+**Resolved (proposed 18 Sep, founder review): `MAP.md` is generated from `graph.json`, and nothing
+else.**
+
+```markdown
+---
+graph: 1
+---
+
+# Map
+
+## Agent files
+
+- [AGENTS.md](AGENTS.md): links to 00-BRIEF.md, 03-ARCHITECTURE.md
+
+## Documents
+
+- [00-BRIEF.md](00-BRIEF.md): no links
+```
+
+- **Four H2 sections in a fixed order**: Agent files, Documents, Specs, Decisions. An empty section
+  is omitted.
+- **One list item per node, sorted by path**, then `: links to` and its targets sorted and joined with
+  `, `, or `: no links`.
+- **Two builds of the same graph write the same bytes**, LF endings, one trailing LF. Any hand edit
+  is overwritten by the next save, which is why the map is never a source of truth.
+- Rejected: prose written by a model. It could disagree with `graph.json`, and it would cost a call.
 
 ### 6.3 `MANIFEST.json`
 
@@ -884,7 +1100,15 @@ A file cannot carry the hash of its own
 container. `rootHash` lives in the server's kit record, `KitStore.manifest(kitId)`, and on the page.
 
 `[P]` The field name `version` follows the plan's section 20. S15's `version` meant the kit's
-revision, which this file names `kitVersion`. `open:` Sagnik confirms the split.
+revision, which this file names `kitVersion`.
+
+**Resolved (proposed 18 Sep, founder review): two fields.** `version` is the format and
+`kitVersion` is the revision, the `v1` in the URL.
+
+- Plan section 20 gives every format a version field that rises only when the format changes. The
+  revision rises on every publish (`F206`). One field cannot do both.
+- Rejected: S15's single `version` for the revision. A reader could not then tell a new format from a
+  new publish, and old kits would become unreadable the day the format changed.
 
 ### 6.4 `SHA256SUMS`
 
@@ -909,8 +1133,16 @@ revision, which this file names `kitVersion`. `open:` Sagnik confirms the split.
 `OK` for each line and exited 0. With one hash changed, `shasum` printed `FAILED` and exited 1.
 
 **Verified on every publish** (plan section 20). The publisher reads the built tarball back, checks
-every line, and publishes nothing if one fails. `open:` no `E` id covers that refusal in
-`17-ERROR-AND-REFUSAL-CATALOGUE.md`. Its owner allocates one.
+every line, and publishes nothing if one fails.
+
+**Resolved (proposed 18 Sep, founder review): the refusal is `E511`**, "An export could not be
+produced", whose recovery is to try again. A kit is an export of the blueprint, and a rebuild is the
+right next step after a failed read-back.
+
+- `17-ERROR-AND-REFUSAL-CATALOGUE.md`'s owner widens that row's trigger to name a kit publish, and
+  its recovery to say nothing was published. No new id is needed.
+- Rejected: a new id. The person's next step is the same as for any failed export, and a new row
+  would be a second message for one situation.
 
 ### 6.5 The tarball, `kit.tar.gz`
 
@@ -934,7 +1166,15 @@ So a kit's tarball is built once, stored, and never re-compressed. `[O]` Node's
 `zlib.gzipSync` wrote a header with flags `00` and mtime `0` in this session.
 
 **Where it lives.** `21-DATA-MODEL.md` section 21.8 has no key for a kit. Following its rule that a
-key never overwrites, `open:` its owner adds one such as `k/{kitId}/{kitVersion}/{rootHash}.tar.gz`.
+key never overwrites: **resolved (proposed 18 Sep, founder review), the kit key is
+`k/{kitId}/{kitVersion}/{rootHash}.tar.gz`.**
+
+- It contains the hash of its own bytes, so it obeys section 21.8's rule: a write either creates a new
+  object or is a no-op on an identical one.
+- `k/` is unused by the prefixes 21.8 already lists (`v/`, `q/`, `u/`, `p/`, `x/`, `log/`).
+- That file's owner copies the row into 21.8; this file then cites it.
+- Rejected: storing kits under the export key `x/`, which is lifecycle-expired. A published kit must
+  stay fetchable (section 6.7).
 
 **The URL and its response.**
 
@@ -988,19 +1228,43 @@ Export the project | a zip | `application/zip` | every vault `.md` file, except 
 **Four gaps between what ships and what is specified.**
 
 - **The HTML export and the PDF load KaTeX's stylesheet from `cdn.jsdelivr.net`.** An exported file
-  opened offline loses its maths styling. `open:` Sagnik decides whether exports inline it.
+  opened offline loses its maths styling. **Resolved (proposed 18 Sep, founder review): exports
+  carry KaTeX themselves.** The HTML and Word exports inline the stylesheet and its WOFF2 fonts as
+  data URIs; the PDF route loads the same files from our own origin, never a CDN.
+  - `[O]` The cost: `katex.min.css` is 23,826 bytes (`wc -c`) and its 20 WOFF2 fonts total 259,792
+    bytes (`cat node_modules/katex/dist/fonts/*.woff2 | wc -c`), from the installed `katex` 0.17.0,
+    the version the export code already pins.
+  - Only a document that contains maths carries them. One without maths gets neither.
+  - Rejected: keeping the CDN link, which fails offline and sends a third-party request from a
+    file the person owns.
 - **The plan names Paged.js in the browser and Pandoc on the server** for PDF (section 8). What ships
-  is headless Chromium. `open:` Sagnik decides which is the target.
+  is headless Chromium. **Resolved (proposed 18 Sep, founder review): headless Chromium is the
+  target.** It ships and already renders Mermaid and KaTeX. Paged.js may later run inside the same
+  Chromium for running heads and page numbers; Pandoc is not used.
+  - Rejected: Pandoc on the server. It is a second rendering engine whose output would differ from
+    the preview, and plan section 8 lists it as GPL.
 - **The PDF ignores front matter page setup.** `page` and `margins` (section 3.9) are honoured by
   export in the plan; the route uses a fixed A4 page and one shared margin. `specified, not built`.
 - **The project zip carries no attachments**, against `F241`'s "every document and attachment".
   The plan's R2 key for it is `x/{uid}/{requestId}.zip` (`21-DATA-MODEL.md` section 21.8).
 
-`UNVERIFIED:` whether Download .md returns a byte-order mark and CRLF endings as they were on disk.
+**Download .md keeps a byte-order mark, and loses CRLF after the first keystroke.** Checked on
+18 September, replacing an unverified line.
 
-
-That depends on how the editor loaded the text, which was not traced. The twin (section 5.2) is
-specified byte-exact; this export should meet the same bar, and a fixture with a BOM and CRLF settles it.
+- `[O]` The file is loaded by `getFile` in `src/shared/infrastructure/github/client.ts` with
+  `Buffer.from(rawBase64, "base64").toString("utf-8")`. Run with `node -e`, that keeps U+FEFF and
+  CRLF, and a `Blob` of the string writes them back as `efbbbf` and `0d0a`.
+- So a download before any edit is byte-exact.
+- `[O]` After an edit, the store holds `view.state.doc.toString()`. With `@codemirror/state` 6.6.0,
+  `EditorState.create({doc: "\uFEFFa\r\nb\r\n"}).doc.toString()` returned `"\uFEFFa\nb\n"`. The mark
+  survives; every CRLF becomes LF.
+- **This is a defect against section 3.1's rule that line endings are kept.** It belongs in
+  `44-TECH-DEBT-REGISTER.md`. The fix is CodeMirror's `EditorState.lineSeparator` facet, set to the
+  file's own ending when it is loaded.
+- `INFERENCE:` a save after an edit reads the same `doc.toString()`, so a saved CRLF file may be
+  rewritten to LF throughout. `UNVERIFIED:` the save path to GitHub was not traced here. needs: a
+  round-trip test that opens a CRLF file, types one character, saves, and compares every other byte.
+- The twin (section 5.2) is specified byte-exact; this export must meet the same bar.
 
 ### 7.2 Import, briefly
 
@@ -1019,30 +1283,49 @@ re-serialises YAML, and a zero-indent sequence is refused on write rather than r
 
 ## 8. Open items, and who decides
 
-Item | Section | Decides
-Which published URL is canonical, `/<slug>` or `/p/<slug>`, and whether `/p/<slug>.md` is served | 0, 5.1 | the founders
-Whether Doc mode writes subscript, given GFM's single-tilde strikethrough | 2.2 | Sagnik
-Whether the published page keeps `remark-breaks` | 2.3 | Sagnik
-The shapes of `page` and `margins` | 3.9 | Sagnik
-Whether to stamp `verified`, and what `by` holds (D06) | 3.10 | the founders
-Ids for the two writer defects, and for a failed publish-time checksum | 3.6, 6.4 | the owner of `17-ERROR-AND-REFUSAL-CATALOGUE.md`
-Which callout title form the product writes | 4.2 | Sagnik
-Which chart kinds v1 draws (S08's D22) | 4.4 | Sagnik
-The drawing block's key, storage and file format (S08's D23) | 4.5 | Sagnik
-Whether `fm-flow` exists at all | 4.6 | Sagnik
-How the published page draws Mermaid without a third-party script | 4.7 | Sagnik
-The AI mark's placement and escaping | 4.9 | Sagnik
-Silent or shown normalisation of `:::`, and the Pandoc div for borders | 4.10 | Sagnik
-A `sourceHash` on `shares/{slug}`, and an R2 key for kits | 5.2, 6.5 | the owner of `21-DATA-MODEL.md`
-Whether the twin serves an inline AI mark | 5.2 | Sagnik
-The public origin, which waits on the name (D05) | 5.4 | the founders
-Whether a kit is always fifteen files | 6.1 | Sagnik
-The `DECISIONS.md` status line, the map's node kinds, and `MAP.md`'s body | 6.2 | Sagnik
-`version` and `kitVersion` as two fields | 6.3 | Sagnik
-Inlined KaTeX in exports, and the PDF engine | 7.1 | Sagnik
+**Every item below was open until 18 September and carries a proposed resolution now.** A row marked
+`needs founder` has a recommendation written beside it, and only the founder can make it binding. Each
+row's reasoning, and the alternative rejected, is in `docs/pack/review/66-formats.md`.
 
-`56-OPEN-DECISIONS.md` carries D01 to D15. **D22 and D23 are S08's own proposals and are not in it
-yet**, so its owner should adopt or renumber them rather than let two homes form.
+Item | Section | Resolution, proposed 18 Sep for founder review | Who confirms | State
+Canonical published URL | 0, 5.1 | `/<slug>`; `/p/<slug>` stays a redirect | the founders | resolved
+Whether `/p/<slug>.md` is served | 5.1 | no; a plain `404` | the founders | resolved
+Subscript in Doc mode | 2.2 | `<sub>` and `<sup>`, never `~x~` or `^x^` | Sagnik | resolved
+`remark-breaks` on the published page | 2.3 | kept; one pipeline for preview and page | Sagnik | resolved
+The shapes of `page` and `margins` | 3.9 | scalar strings; defaults `A4` and `1.6cm` | Sagnik | resolved
+Ids for the two writer defects | 3.6 | none; they are `TD-` rows for `44-TECH-DEBT-REGISTER.md` | the owner of 44 | resolved
+Whether to stamp `verified` (D06) | 3.10 | recommend yes, on accept, in phase D | the founders | `needs founder`
+What `by` holds | 3.10 | recommend `human:<handle>`, OKF's human actor form | the founders | `needs founder`
+Callout title form written | 4.2 | the marker alone, then `> ### Title` | Sagnik | resolved
+Chart kinds in v1 (S08's D22) | 4.4 | `pie`, `bar`, `line`, drawn through Mermaid | Sagnik | resolved
+Drawing key, storage and format (S08's D23) | 4.5 | `file`; an upload under `u/`; `.excalidraw` JSON | Sagnik | resolved
+Whether `fm-flow` exists | 4.6 | no; Flow view keeps headings | Sagnik | resolved
+Mermaid on the published page | 4.7 | SVG drawn at publish into the rendered page | Sagnik | resolved
+The AI mark's placement and escaping | 4.9 | after the span; `%`, `<`, `>`, line breaks percent-encoded | Sagnik | resolved
+Normalising pasted `:::` | 4.10 | converted on paste with a notice and undo; never on save | Sagnik | resolved
+The Pandoc div for borders and shading | 4.10 | dropped; a callout is the substitute | Sagnik | resolved
+A `sourceHash` on `shares/{slug}` | 5.2 | added; the owner of 21 copies the row | the owner of `21-DATA-MODEL.md` | resolved
+Whether the twin serves an inline AI mark | 5.2 | yes, byte for byte | Sagnik | resolved
+The public origin | 5.4 | `APP_URL`; the value waits on the name, D05 | the founders | `needs founder` for the value
+Whether a kit is always fifteen files | 6.1 | fixed at fifteen, `[Z]` in plan section 9; the template names the two specs | Sagnik | resolved
+The `DECISIONS.md` status line | 6.2 | `Status: decided` or `Status: open` under each H2 | Sagnik | resolved
+The map's node kinds | 6.2 | `doc`, `spec`, `why`, `agent`, from S16, assigned by path | Sagnik | resolved
+The body of `MAP.md` | 6.2 | generated from `graph.json`, byte-stable | Sagnik | resolved
+`version` and `kitVersion` | 6.3 | two fields, format and revision | Sagnik | resolved
+An `E` id for a failed publish checksum | 6.4 | `E511`, its trigger widened by the owner of 17 | the owner of `17-ERROR-AND-REFUSAL-CATALOGUE.md` | resolved
+An R2 key for kits | 6.5 | `k/{kitId}/{kitVersion}/{rootHash}.tar.gz` | the owner of `21-DATA-MODEL.md` | resolved
+Inlined KaTeX in exports | 7.1 | inlined, only when the document has maths | Sagnik | resolved
+The PDF engine | 7.1 | headless Chromium; no Pandoc | Sagnik | resolved
+
+**Edits this file hands to other owners.** None of them is made here, since each file has one owner.
+
+- `21-DATA-MODEL.md`: the `sourceHash` field (5.2) and the `k/` kit key (6.5).
+- `17-ERROR-AND-REFUSAL-CATALOGUE.md`: widen `E511` to a kit publish (6.4).
+- `44-TECH-DEBT-REGISTER.md`: the two writer defects (3.6) and the CRLF loss after an edit (7.1).
+- `docs/mvp0/PRODUCT-PLAN.md`: section 7 moves borders and shading to `X` and subscript to raw
+  HTML; section 8's "JSON Canvas 1.0" reads "Excalidraw's own file"; section 20's `fm-flow` row goes.
+
+**D22 and D23 are closed here**, not carried into `56-OPEN-DECISIONS.md`, so no second home forms.
 
 ---
 
@@ -1057,11 +1340,12 @@ yet**, so its owner should adopt or renumber them rather than let two homes form
 
 **Could not be verified in this session.**
 
-- Google's Open Knowledge Format page, which the `verified` stamp rests on. Reported second-hand.
-- How GitHub renders text after `[!TIP]` on the marker line, and whether it matches alert kinds
-  case-insensitively.
-- Whether Excalidraw writes JSON Canvas 1.0.
-- Whether Download .md keeps a byte-order mark and CRLF endings.
+- Whether a save after an edit rewrites a CRLF file to LF. The download half was checked (7.1); the
+  save path to GitHub was not traced.
+
+The four items this list held before 18 September were all checked that day: the Open Knowledge
+Format page (3.10), GitHub's rendering of callout titles and kinds (4.2), Excalidraw's file format
+(4.5), and Download .md's byte-order mark and line endings (7.1).
 
 **Specified here, not by any earlier source.**
 
