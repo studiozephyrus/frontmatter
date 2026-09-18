@@ -217,6 +217,38 @@ u{text-decoration-thickness:1px;text-underline-offset:2px}
 .credits{display:flex;align-items:center;gap:8px;font-size:12px;color:var(--fg-muted)}
 .meter{flex:1;height:6px;border-radius:3px;background:var(--panel-2);border:1px solid var(--border);overflow:hidden}
 .meter i{display:block;height:100%;background:var(--ai)}
+/* The floating AI launcher, Notion-style, bottom right of the document column. */
+.body{position:relative}
+.aifab{position:absolute;right:calc(var(--railw,304px) + 22px);bottom:22px;z-index:4;display:inline-flex;align-items:center;gap:8px;height:38px;padding:0 12px 0 13px;border-radius:999px;background:var(--bg);border:1px solid var(--border-strong);box-shadow:0 8px 28px rgba(17,18,22,.14);font-size:13px;font-weight:500;color:var(--fg)}
+.aifab .ic{color:var(--ai)}
+.aifab kbd{font-family:var(--font-mono);font-size:10px;color:var(--muted);border:1px solid var(--border-strong);border-radius:4px;padding:1px 5px}
+.aifab.off{opacity:.5}.aifab.off .ic{color:var(--muted)}
+.body.wide{--railw:360px}
+/* The AI box open over the workspace: it floats over the document, anchored under the
+   block being worked on, rather than taking a row of the layout. */
+.aifloat{position:absolute;z-index:5;background:var(--bg);border:1px solid var(--border-strong);border-radius:14px;box-shadow:0 18px 60px rgba(17,18,22,.18);overflow:hidden}
+.aifloat .target{display:flex;align-items:center;gap:6px;padding:8px 14px;font-size:12px;color:var(--muted);border-bottom:1px solid var(--border);background:var(--bg-subtle)}
+.aifloat .target b{color:var(--fg);font-weight:600}
+.aifloat .target .sp{flex:1}
+.aifloat .target .swap{color:var(--accent);font-weight:500}
+.aifloat .target.pin{background:color-mix(in srgb,var(--ai) 7%,var(--bg));color:var(--fg-muted)}
+.aifloat .target.pin .ic{color:var(--ai)}
+.aifloat .in{display:flex;align-items:center;gap:10px;min-height:46px;padding:0 12px 0 14px;font-size:14px;color:var(--fg)}
+.aifloat .in .ic{color:var(--ai)}
+.aifloat .in .go{margin-left:auto;width:28px;height:28px;border-radius:7px;background:var(--ai);color:#fff;display:grid;place-items:center;flex:none}
+.aifloat .in .go .ic{color:#fff}
+.aifloat .acts{border-top:1px solid var(--border);padding:6px}
+.aifloat .acts .a{display:flex;align-items:center;gap:10px;padding:6px 8px;border-radius:7px;font-size:13px;color:var(--fg)}
+.aifloat .acts .a.on{background:var(--hover)}
+.aifloat .acts .a .ic{color:var(--fg-muted)}
+.aifloat .acts .a span{margin-left:auto;font-size:11.5px;color:var(--muted)}
+.aifloat .foot{padding:7px 14px;border-top:1px solid var(--border);font-size:11.5px;color:var(--muted);display:flex;gap:6px;align-items:center}
+.addmenu{position:absolute;left:12px;bottom:158px;width:250px;z-index:6}
+.addmenu .mi b{white-space:nowrap}
+.addmenu .mi>.ic:last-child{margin-left:auto}
+.addmenu .mi{flex-direction:row!important;align-items:center;gap:10px}
+.addmenu .mi .ic{color:var(--fg-muted)}
+.addmenu .mi em{font-style:normal;margin-left:auto;font-family:var(--font-mono);font-size:10.5px;color:var(--muted)}
 /* overlays */
 .dim{position:absolute;inset:0;background:rgba(10,10,10,.28);display:grid;place-items:center;z-index:6}
 .modal{width:440px;background:var(--bg);border:1px solid var(--border);border-radius:12px;box-shadow:0 12px 40px rgba(17,18,22,.16);padding:22px 22px 18px}
@@ -790,10 +822,17 @@ function filterseg(items, on = 0) {
     `<span class="${i === on ? 'on' : ''}">${x[0]}${x[1] != null ? `<i>${x[1]}</i>` : ''}</span>`).join('')}</div>`;
 }
 
-function rail({ outline, extra = '', showFoot = true, credits = [7, CAPS.edits], counts = [4, 2, 3], history = `${CAPS.history} days`, aiOff = '' }) {
+function rail({ outline, extra = '', showFoot = true, credits = [7, CAPS.edits], counts = [4, 2, 3], history = `${CAPS.history} days`, aiOff = '', fab = true }) {
   const cnt = (n) => n == null ? '' : `<span class="cnt">${n}</span>`;
   // Every collapsible sits at the top, closed, so the outline gets the height and the
   // AI panel has somewhere to open. Founder instruction, 18 September.
+  // The AI launch is no longer a full-width button in the rail foot. Founder review:
+  // it behaves like Notion's, a small launcher floating over the workspace that opens
+  // the AI box over the document (drawn open on s04-workspace-add-ai). The rail keeps
+  // only the credit meter.
+  const launcher = !fab ? '' : aiOff
+    ? `<div class="aifab off">${ic('auto_awesome', 17)} Ask AI</div>`
+    : `<div class="aifab">${ic('auto_awesome', 17)} Ask AI<kbd>Space</kbd></div>`;
   return `<aside class="rail">
   <div class="rrow">${ic('sell', 16)} Tags and bookmarks<span class="sp"></span>${cnt(counts[0])}${ic('chevron_right', 16)}</div>
   <div class="rrow">${ic('link', 16)} Backlinks<span class="sp"></span>${cnt(counts[1])}${ic('chevron_right', 16)}</div>
@@ -802,9 +841,9 @@ function rail({ outline, extra = '', showFoot = true, credits = [7, CAPS.edits],
   <div class="rsec grow"><div class="rh">${ic('format_list_bulleted', 14)} Outline<span class="sp"></span></div><div class="ol">${outline}</div></div>
   ${extra}
   ${showFoot ? `<div class="railfoot">
-  ${aiOff ? `<span class="btn" style="opacity:.55;cursor:default">${ic('auto_awesome', 16)} AI edit</span><div style="font-size:11.5px;color:var(--muted)">${aiOff}</div>` : `<span class="btn ai">${ic('auto_awesome', 16)} AI edit</span>`}
+  ${aiOff ? `<div style="font-size:11.5px;color:var(--muted)">${ic('cloud_off', 13)} ${aiOff}</div>` : ''}
   <div class="credits">${ic('auto_awesome', 13)} ${credits[0]} of ${credits[1]} edits left <span class="meter"><i style="width:${Math.round(100 * credits[0] / credits[1])}%"></i></span></div></div>` : ''}
-  </aside>`;
+  </aside>${launcher}`;
 }
 
 // Phone frame. Mirrors VaultWorkspace below the lg breakpoint: a 52px bar, the
@@ -957,6 +996,42 @@ ${rail({ outline: OUTLINE_BRIEF })}
 </div></div>`,
 phone({ mode: 'Live', title: '00-BRIEF.md', body: `${pmodebar('Live')}<div class="pdoc"><div class="md">${DOC_BRIEF}</div></div>` }));
 
+// S04, two more frames drawn on the founder's review of 18 September.
+// Frame b: the Add file menu. Upload lives inside it (proposal 8.1), so there are two
+// buttons on the rail and not three.
+const ADD_MENU = [['note_add', 'New document', 'N'], ['upload_file', 'Upload files', ''], ['drive_folder_upload', 'Upload a folder', ''], ['move_to_inbox', 'Import from', '']];
+const ADD_POP = `<div class="pop addmenu">${ADD_MENU.map((m, i) => `<div class="mi${i === 1 ? ' on' : ''}">${ic(m[0], 17)}<b>${m[1]}</b>${m[2] ? `<em>${m[2]}</em>` : ''}${i === 3 ? ic('chevron_right', 15) : ''}</div>`).join('')}<div class="mi" style="border-top:1px solid var(--border);margin-top:4px;padding-top:8px"><span>Or drop files or a folder anywhere on the workspace</span></div></div>`;
+screen('s04-workspace-add', 'Workspace, the Add file menu', `<div class="app">
+${top({ tabs: TABS_MAIN })}
+<div class="body">
+${tree({ projects: PROJECTS_MAIN, foot: `${ic('sync', 14)} Synced 2 min ago` }).replace('</aside>', ADD_POP + '</aside>')}
+<main class="main">${modebar('Live', '<span class="pill ok">' + ic('check', 13) + ' Saved</span>')}
+<div class="doc"><div class="md">${DOC_BRIEF}</div></div>
+</main>
+${rail({ outline: OUTLINE_BRIEF })}
+</div></div>`,
+phone({ mode: 'Live', title: '00-BRIEF.md', body: `${pmodebar('Live')}<div class="pdoc"><div class="md">${DOC_BRIEF_SHORT}</div></div>`, overlay: psheet(`<h2>Add</h2><p>Into Zephyrus booking</p><div class="stack">${ADD_MENU.map(m => `<span class="btn">${ic(m[0], 18)} ${m[1]}</span>`).join('')}<span class="btn">${ic('lightbulb', 18)} Add idea</span></div><div class="fine">A folder keeps its structure.</div>`) }));
+
+// Frame c: the AI box opened the Notion way, floating over the workspace and anchored
+// under the block being worked on, with its target named on its first line.
+const AI_FLOAT = (style, { pin = '', target = `Editing <b>00-BRIEF.md</b> · The first user`, text = 'Make this paragraph say why the deposit matters', acts = true, esc = ' · Esc closes' } = {}) => `<div class="aifloat" style="${style}">
+${pin ? `<div class="target pin">${ic('lightbulb', 14)} Idea: <b>${pin}</b><span class="sp"></span>${ic('push_pin', 13)} pinned</div>` : ''}
+<div class="target">${ic('description', 14)} ${target}<span class="sp"></span><span class="swap">Change</span></div>
+<div class="in">${ic('auto_awesome', 18)} ${text}<span class="go">${ic('arrow_upward', 16)}</span></div>
+${acts ? `<div class="acts"><div class="a on">${ic('edit_note', 16)} Refine this paragraph<span>1 credit</span></div><div class="a">${ic('expand', 16)} Expand<span>1 credit</span></div><div class="a">${ic('short_text', 16)} Shorten<span>1 credit</span></div><div class="a">${ic('lightbulb', 16)} Take it to Ideas<span>a brief and a blueprint</span></div></div>` : ''}
+<div class="foot">${ic('auto_awesome', 12)} 7 of ${CAPS.edits} edits left this month${esc}</div></div>`;
+screen('s04-workspace-ai', 'Workspace, AI opened over it', `<div class="app">
+${top({ tabs: TABS_MAIN })}
+<div class="body">
+${tree({ projects: PROJECTS_MAIN, foot: `${ic('sync', 14)} Synced 2 min ago` })}
+<main class="main">${modebar('Live', '<span class="pill ai">' + ic('auto_awesome', 13) + ' AI open</span>')}
+<div class="doc"><div class="md">${DOC_BRIEF.replace('<p>A two-chair salon', '<p style="background:color-mix(in srgb,var(--ai) 8%,transparent);border-radius:6px;box-shadow:0 0 0 6px color-mix(in srgb,var(--ai) 8%,transparent)">A two-chair salon')}</div>
+${AI_FLOAT('left:74px;right:74px;top:384px')}</div>
+</main>
+${rail({ outline: OUTLINE_BRIEF, fab: false })}
+</div></div>`,
+phone({ mode: 'Live', title: '00-BRIEF.md', bottom: 'auto_awesome', body: `${pmodebar('Live')}<div class="pdoc"><div class="md">${DOC_BRIEF_SHORT}</div></div>`, overlay: `<div class="pdim" style="background:rgba(10,10,10,.12)"></div>${AI_FLOAT('left:10px;right:10px;bottom:10px', { target: 'Editing <b>00-BRIEF.md</b>', text: 'Say why the deposit matters', acts: true, esc: '' })}` }));
+
 // S05 doc mode. Same file, a Google-Docs-shaped surface.
 const DOC_DOCMODE = `<h1 style="border:0;font-size:2em">Zephyrus booking, in one page</h1>
 <p>A booking page for small studios that take appointments by WhatsApp today. One link, a calendar of open slots, a deposit, and a reminder the day before.</p>
@@ -991,13 +1066,35 @@ ${tree({ projects: [PROJECTS_MAIN[0], { n: 'Notes', rows: [{ n: 'meeting-16-sep.
 <div class="chips alt"><span class="lbl">Or start from</span><span class="chip">${ic('code', 14)} Open from GitHub</span><span class="chip">${ic('upload', 14)} Drop a file or folder</span><span class="chip">${ic('table_view', 14)} A template</span></div>
 <div class="foot">${ic('auto_awesome', 12)} A document uses 1 edit credit. This month: 7 of ${CAPS.edits} edits left. <u>Get more</u></div></div>
 </main>
-${rail({ outline: '<div style="color:var(--muted)">Nothing yet.</div>', counts: [0, 0, 0] })}
+${rail({ outline: '<div style="color:var(--muted)">Nothing yet.</div>', counts: [0, 0, 0], fab: false })}
 </div></div>`,
 phone({ mode: 'Live', title: 'Untitled.md', bottom: 'auto_awesome', body: `${pmodebar('Live')}<div class="pdoc"><div class="md"><h1 style="color:var(--muted);border:0">Untitled</h1></div></div>
 <div class="aibox"><div class="target">${ic('description', 14)} Writing <b>Untitled.md</b></div>
 <div class="in">${ic('auto_awesome', 18)} A booking page for small salons…<span class="go">${ic('arrow_forward', 16)}</span></div>
 <div class="chips"><span class="chip on">${ic('description', 14)} One document</span><span class="chip">${ic('lightbulb', 14)} Take it to Ideas</span><span class="chip">${ic('content_copy', 14)} Clean up a paste</span></div>
 <div class="foot">${ic('auto_awesome', 12)} 1 edit credit · 7 of ${CAPS.edits} left</div></div>` }));
+
+// S06, frame b. Two rules from the founder's review drawn at once: the box follows the
+// content, so on a page that already has text it opens to the right of it; and when the
+// work is on an idea, the idea's name is pinned on the box's first line and stays there.
+const IDEA_DOC = `<h1>Salon loyalty stamps</h1>
+<p>A stamp card that lives in WhatsApp. Ten visits, the eleventh is free, and the owner never has to remember who came.</p>
+<h2>What we know</h2>
+<ul><li>Nine of twelve questions answered</li><li>Pays by UPI, like the booking page</li><li>Same salons as Zephyrus booking</li></ul>
+<h2>Open</h2>
+<p>Whether a stamp needs a booking behind it, or any visit counts.</p>`;
+screen('s06-ai-writing-idea', 'AI box, beside the content, on an idea', `<div class="app">
+${top({ tabs: [{ n: '00-BRIEF.md', c: 'blue' }, { n: 'Salon loyalty stamps', c: 'amber', on: 1 }] })}
+<div class="body">
+${tree({ projects: [PROJECTS_MAIN[1], { n: 'Ideas', icon: 'lightbulb', rows: [{ n: 'Zephyrus booking', f: 1 }, { n: 'Salon loyalty stamps', f: 1, on: 1, b: '9 of 12' }, { n: 'Clinic reminders', f: 1 }] }], ideas: false })}
+<main class="main">${modebar('Live', '<span class="pill ai">' + ic('lightbulb', 13) + ' Idea</span>')}
+<div class="doc"><div class="md" style="margin:0;max-width:430px">${IDEA_DOC}</div>
+${AI_FLOAT('right:24px;top:22px;width:350px', { pin: 'Salon loyalty stamps', target: 'Editing <b>brief.md</b>', text: 'Answer the open question from what the salons said', acts: false })}
+<div style="position:absolute;right:24px;top:236px;width:350px;font-size:11.5px;color:var(--muted);line-height:1.5">${ic('info', 13)} Opens beside the text because the page below is full. On an empty page it opens underneath, as S06 shows. The idea line stays pinned while the idea is open, even when the box scrolls.</div></div>
+</main>
+${rail({ outline: '<div class="on">Salon loyalty stamps</div><div class="l2">What we know</div><div class="l2">Open</div>', counts: [0, 1, 0], fab: false })}
+</div></div>`,
+phone({ mode: 'Live', title: 'Salon loyalty stamps', sub: `Idea ${ic('lightbulb', 12)} 9 of 12 answered`, bottom: 'auto_awesome', body: `${pmodebar('Live')}<div class="pdoc"><div class="md">${IDEA_DOC}</div></div>`, overlay: `<div class="pdim" style="background:rgba(10,10,10,.12)"></div>${AI_FLOAT('left:10px;right:10px;bottom:10px', { pin: 'Salon loyalty stamps', target: 'Editing <b>brief.md</b>', text: 'Answer the open question', acts: false, esc: '' })}` }));
 
 // S07 AI edit with inline suggestion
 const DOC_AIEDIT = `<h1>Zephyrus booking, in one page</h1>
@@ -1014,7 +1111,7 @@ ${tree({ projects: PROJECTS_MAIN })}
 <div class="doc"><div class="md">${DOC_AIEDIT}</div>
 <div class="pop" style="top:140px;right:60px">${AI_MENU}</div>
 </div></main>
-${rail({ outline: OUTLINE_BRIEF })}
+${rail({ outline: OUTLINE_BRIEF, fab: false })}
 </div></div>`,
 phone({ mode: 'Edit', title: '00-BRIEF.md', bottom: 'auto_awesome', body: `${pmodebar('Edit')}<div class="pdoc"><div class="md">${DOC_AIEDIT}</div></div>`, overlay: psheet(`<h2>AI edit the selection</h2><div class="pop" style="position:static;box-shadow:none;border:0;padding:0">${AI_MENU}</div>`) }));
 
@@ -1130,8 +1227,8 @@ ${PROBS}
 <div class="rrow">${ic('sell', 16)} Tags and bookmarks<span class="sp"></span><span class="cnt">4</span>${ic('chevron_right', 16)}</div>
 <div class="rrow">${ic('format_list_bulleted', 16)} Outline<span class="sp"></span>${ic('chevron_right', 16)}</div>
 <div class="railfoot"><div class="two"><span class="btn">${ic('check', 16)} Fix all safe</span><span class="btn">${ic('settings', 16)} Rules</span></div>
-<span class="btn ai">${ic('auto_awesome', 16)} AI edit</span></div>
-</aside></div></div>`,
+</div>
+</aside><div class="aifab">${ic('auto_awesome', 17)} Ask AI<kbd>Space</kbd></div></div></div>`,
 phone({ mode: 'Live', title: '00-BRIEF.md', bottom: 'more_horiz', body: `${pmodebar('Live')}<div class="pdoc"><div class="md">${DOC_PROBLEMS}</div></div>`, overlay: pdrawer(`<div class="rsec grow"><div class="rh">${ic('warning', 14)} Problems<span class="sp"></span><span class="pill">5</span></div>${PROBS}</div><div class="railfoot"><span class="btn">${ic('check', 16)} Fix all safe</span></div>`, 'right') }));
 
 // S11 instruction files: AGENTS.md with a health panel
@@ -1471,7 +1568,7 @@ ${tree({ projects: PROJECTS_MAIN })}
 <aside class="rail"><div class="rsec grow"><div class="rh">${ic('checklist', 14)} Review<span class="sp"></span><span class="cnt">3 waiting</span></div>${REVIEW_LIST}</div>
 <div class="rrow">${ic('comment', 16)} Comments<span class="sp"></span><span class="cnt">2 open</span>${ic('chevron_right', 16)}</div>
 <div class="rrow">${ic('history', 16)} Document history<span class="sp"></span><span class="cnt">${CAPS.history} days</span>${ic('chevron_right', 16)}</div>
-<div class="railfoot"><span class="btn ai">${ic('auto_awesome', 16)} AI edit</span></div></aside>
+</aside><div class="aifab">${ic('auto_awesome', 17)} Ask AI<kbd>Space</kbd></div>
 </div></div>`,
 phone({ mode: 'Reading', title: '00-BRIEF.md', bottom: 'more_horiz', body: `${pmodebar('Reading')}<div class="pdoc"><div class="md">${REVIEW_DOC}</div></div>`, overlay: pdrawer(`<div class="rsec grow"><div class="rh">${ic('checklist', 14)} Review<span class="sp"></span><span class="cnt">3 waiting</span></div>${REVIEW_LIST}</div>`, 'right') }));
 
@@ -1546,7 +1643,7 @@ ${modebar('Live')}
 <div class="doc"><div class="md">${DOC_BRIEF}</div></div>
 <div class="card"><h3>frontmatter for Mac</h3><p>Keeps every document as a file on disk, works fully offline with a local model for edits, no document limit. Same account, same documents.</p><div class="acts"><span class="btn primary">${ic('download', 15)} Download for Mac</span><span class="btn ghost">Remind me later</span></div></div>
 </main>
-${rail({ outline: OUTLINE_BRIEF, aiOff: 'Needs a connection. The desktop app has a local model.' })}
+${rail({ outline: OUTLINE_BRIEF, aiOff: 'Needs a connection. The desktop app has a local model.', fab: false })}
 </div></div>`,
 phone({ mode: 'Live', title: '00-BRIEF.md', body: `<div class="banner">${ic('cloud_off', 16)} <span>Offline. Saved on this phone, syncs when you are back.</span></div>${pmodebar('Live')}<div class="pdoc"><div class="md">${DOC_BRIEF}</div></div>` }));
 
@@ -1695,7 +1792,7 @@ phone({ mode: 'Reading', title: '00-BRIEF.md', body: `<div class="banner">${ic('
 
 // S32 AI unavailable: every provider in the chain refused or timed out
 const AI_DOWN = `<div class="aibox" style="border-color:var(--danger)"><div class="in" style="color:var(--fg)">${ic('cloud_off', 18)} AI is unavailable right now. Your document is untouched and nothing was charged.<span class="go" style="background:var(--panel-2);color:var(--fg-muted)">${ic('refresh', 16)}</span></div>
-<div class="kit" style="margin-top:10px">${[['Groq', 'rate limit, resets in 41 s'], ['Cloudflare Workers AI', 'daily pool used, resets 00:00 UTC'], ['Cerebras', 'trial ended 12 Oct'], ['SambaNova', 'timed out']].map(r => `<div class="file">${ic('close', 14)}<span class="sp">${r[0]}</span><em class="hint">${r[1]}</em></div>`).join('')}</div>
+<div class="kit" style="margin-top:10px">${[['Cloudflare Workers AI', 'daily pool used, resets 00:00 UTC'], ['Groq', 'rate limit, resets in 41 s'], ['Cerebras', 'trial ended'], ['OpenRouter', 'free requests for today used']].map(r => `<div class="file">${ic('close', 14)}<span class="sp">${r[0]}</span><em class="hint">${r[1]}</em></div>`).join('')}</div>
 <div class="chips" style="margin-top:10px"><span class="chip">${ic('refresh', 14)} Try again in a minute</span><span class="chip">${ic('desktop_mac', 14)} Use the local model on the desktop app</span><span class="chip">${ic('key', 14)} Use my own key</span></div>
 <div class="foot">${ic('auto_awesome', 12)} Your 7 remaining edits are still yours. Nothing is deducted for a failed call.</div></div>`;
 screen('s32-ai-unavailable', 'AI unavailable', `<div class="app">
@@ -1706,7 +1803,7 @@ ${tree({ projects: PROJECTS_MAIN })}
 <div class="doc"><div class="md">${DOC_BRIEF}</div></div>
 ${AI_DOWN}
 </main>
-${rail({ outline: OUTLINE_BRIEF, aiOff: 'Every provider is down. Try again in a minute.' })}
+${rail({ outline: OUTLINE_BRIEF, aiOff: 'Every provider is down. Try again in a minute.', fab: false })}
 </div></div>`,
 phone({ mode: 'Live', title: '00-BRIEF.md', bottom: 'auto_awesome', body: `${pmodebar('Live')}<div class="pdoc"><div class="md">${DOC_BRIEF_SHORT}</div></div>${AI_DOWN}` }));
 

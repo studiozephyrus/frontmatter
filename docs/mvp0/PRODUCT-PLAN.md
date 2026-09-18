@@ -353,6 +353,15 @@ Later, named | A Max tier above Pro; a community as an opt-in index plus GitHub 
 - **Every collapsible is at the top of the right rail**, closed, so the outline takes the height and the AI panel has room to open below `[Z]`.
 - Shortcuts is gone. The tree shows all fifteen blueprint files (F019). The history row reads "7 days" on Free (F018).
 - The phone keeps the toolbar to seven tools and puts the mode segment in the header.
+- **The AI launch works like Notion's.** A small Ask AI button floats at the bottom right of the document, and Space on an empty line does the same. It opens the AI box over the workspace, anchored under the block being worked on, rather than taking a row of the layout. The rail keeps only the credit meter `[Z]`.
+
+<div class="pair"><img src="screens/s04-workspace-add.png"><img src="screens/s04-workspace-add-phone.png"></div>
+
+- **The Add file menu:** New document, Upload files, Upload a folder, and Import from. On the phone it is a sheet with Add idea at the foot.
+
+<div class="pair"><img src="screens/s04-workspace-ai.png"><img src="screens/s04-workspace-ai-phone.png"></div>
+
+- **The AI box open over the workspace.** The paragraph it will touch is tinted, the first line names the document and the section, and the common verbs sit under the input with their cost.
 
 **Why.** `[Z]` the founder's review of 18 September, in full in `SCREEN-CHANGES-2026-09-18.md`. `[R]` this is md.sgnk.ai as shipped. `[M]` Material: a single pane under 600 dp.
 
@@ -376,6 +385,10 @@ Later, named | A Max tier above Pro; a community as an opt-in index plus GitHub 
 - One box on an empty document. Four chips for the common asks. A second row for the other ways to start.
 - The cost is stated before the click: one edit credit, seven of ten left. The rail counts are zero on an empty document (F022).
 - Taking it to Ideas is a chip, not a second product.
+
+<div class="pair"><img src="screens/s06-ai-writing-idea.png"><img src="screens/s06-ai-writing-idea-phone.png"></div>
+
+- **Beside the content, on an idea.** On a page that already has text the box opens to the right of it. Working on an idea, the first line reads Idea and the idea's name, and it stays pinned while the idea is open. The idea itself is open from the Ideas section of the tree.
 
 **Why.** `[R]` the funnel is the box. `[M]` PAIR: "allow users to adapt the output to their needs, edit it, or turn it off."
 
