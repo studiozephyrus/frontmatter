@@ -359,6 +359,13 @@ Event | When | Extra properties
 `config.change.discarded` |  | `change_count`
 `config.exception.granted` | A per-account exception was created. | `entitlement_id`, `value`, `expires`
 `config.provider.toggled` | A free-chain provider was enabled or disabled. | `provider`, `to`
+`config.experiment.started` | An experiment on a `limits.*` row moved to `running`. `28-CONFIGURATION-PANEL-SPEC.md` section 10.3. | `experiment_id`, `entitlement_id`, `variant_count`
+`config.experiment.ended` | It moved to `ended`. | `experiment_id`, `entitlement_id`, `accounts_moved_over_cap`
+`experiment.assigned` | **The first time `limitsFor` placed an eligible account in a variant.** Once per account per experiment, never again. | `experiment_id`, `variant`, `entitlement_id`
+
+**`experiment.assigned` is the only join between a variant and everything else.** Every other event is
+read against it by `account_id`, so no event carries the variant, and the envelope in section 5 does
+not change.
 
 **`accounts_moved_over_cap` is required on every save.** The panel must name the damage before it
 saves, and the number it named is the number this event records.

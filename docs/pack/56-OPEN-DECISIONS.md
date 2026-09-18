@@ -82,7 +82,7 @@ Id | Decision | Blocks | Recommendation
 `D08` | Trial and dunning behaviour | Phase H | No trial. The free tier is the trial. Dunning as specified in `53`
 `D09` | The desktop's timing, and who signs Windows | The order of phases E and F | Desktop after sync. Price a Windows certificate before phase F
 `D10` | Which accounts move to the company | Phase 0 | **Decided 18 September `[Z]`: all of them**, before the first stranger
-`D11` | **The free document cap against the pilot cohort.** 50 documents, and a qualifying vault is 200 files | The pilot, before it recruits anybody | Exempt an import from the cap, and count imported files separately
+`D11` | **The free document cap against the pilot cohort.** 50 documents, and a qualifying vault is 200 files | The pilot, before it recruits anybody | **Decided 18 September `[Z]`: set from the configuration panel and A/B tested on real accounts before it is fixed.** See `28-CONFIGURATION-PANEL-SPEC.md` section 10.3
 `D12` | **Whether a link-edit holder needs an account.** The front door forbids anonymous editing and the permission matrix grants it | Phase D | Require an account. It is the front door's rule and the matrix is wrong
 `D13` | **Database views over front matter.** Table stakes in one round, deferred in the plan | Phase G | State the test. Keep the deferral, and say why in one line
 `D14` | **Voice typing.** A shipped Doc mode row, and the research's clearest negative | Phase B, one contractor row | Drop it. The operating system does it free

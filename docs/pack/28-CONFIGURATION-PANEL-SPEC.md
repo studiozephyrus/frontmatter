@@ -561,6 +561,69 @@ A Pro account that lapses to Free | All of the above | The same, and the portfol
 same thing from the router's side, and this is the panel side of the same rule. Conflating them
 teaches a person that the product is broken when it is merely full.
 
+### 10.3 Running a limit as an experiment
+
+**Why this exists.** `[Z]` 18 September 2026, closing `D11` in `56-OPEN-DECISIONS.md`: the Free
+document cap, `limits.docs.cloud`, is set from this panel and **A/B tested on real accounts before it
+is fixed**. Any `limits.*` row can run the same way. `specified, not built`.
+
+**The rows.** One experiment is one set of rows under its own id, for example
+`experiment.docs-cap-1`. Who: `founder`. Read by: `limitsFor(account)`, and nothing else.
+
+Key | Type | Bounds the panel enforces | Default
+`experiment.<id>.key` | `string` | Must name an existing `limits.*` row in section 4.1 | none
+`experiment.<id>.plan` | `enum` | `free` or `pro`. One plan per experiment | `free`
+`experiment.<id>.variants` | `list<{name, value, share}>` | At least two. One is named `control` and carries the plan's current value from `53-PRICING-AND-ENTITLEMENTS.md`. Every `value` is inside that row's own bounds. `share` is a whole percentage and the shares sum to 100 | none
+`experiment.<id>.eligible` | `enum` | `new_accounts` only: accounts on the plan created at or after `starts` | `new_accounts`
+`experiment.<id>.starts` | `date` | Today or later | none
+`experiment.<id>.ends` | `date` | After `starts` | none
+`experiment.<id>.measure` | `string` | An event id from `55-MEASUREMENT-AND-EVENTS.md` section 6 | `plan.upgrade.completed`
+`experiment.<id>.state` | `enum` | `draft`, `running`, `ended`. Only forward | `draft`
+
+**Cohort assignment is a stable hash, never a stored random draw.**
+
+```ts
+// src/modules/entitlements/application/experiment-bucket.ts   (specified, not built)
+bucket = parseInt(sha256(experimentId + ':' + accountId).slice(0, 8), 16) % 100;
+// variants take contiguous bucket ranges in list order: control first, then each by its share
+```
+
+- The same account always lands in the same variant, on every request and every device.
+- The experiment id is in the hash, so two experiments never split the same accounts the same way.
+- Nothing is stored to decide the variant. The first read records it, as `experiment.assigned`.
+
+**Where it sits in the one read path.** `limitsFor` of section 9 resolves in this order: the plan row,
+then a running experiment's variant for an eligible account, then any unexpired exception from
+section 7.1. An exception always wins, so support can still fix one account.
+
+**What is locked once `state` is `running`.** The variants, their values and their shares. Moving a
+share would move accounts at the bucket edges between values. To change any of them, end the
+experiment and start a new id.
+
+**How it is measured.** Every event is joined to its variant through `experiment.assigned`, by
+`account_id`. Nothing new goes on the envelope of `55` section 5.
+
+What | Event in `55` | Read as
+The primary measure | `experiment.<id>.measure`, `plan.upgrade.completed` by default | Conversions per variant, by the section 1 definition
+Which cap tripped | `cap.tripped` with `entitlement_id` equal to `experiment.<id>.key` | How often, and how soon, each variant meets its cap
+The guardrail | `doc.created` and the section 1 active user | A variant that converts better and loses active users is not a winner
+The experiment itself | `experiment.assigned`, `config.experiment.started`, `config.experiment.ended` | Who was in which variant, and when it ran
+
+**An account never loses a document when a variant changes, or when the experiment ends.** Section 10
+governs every step:
+
+- Only new accounts are enrolled, so starting an experiment never lowers anybody's cap.
+- Ending it, or fixing the winning value, is a lowering for every account in a variant above that
+  value. It goes through the save flow of 10.1: the count, the named accounts, the second
+  confirmation and the audit row.
+- An account then over the cap is in the 10.2 state. Every document opens, edits and exports. Only a
+  new cloud document is refused.
+- `INFERENCE:` keeping the enrolled accounts on their variant's value, as a 7.1 exception, may be
+  kinder than moving them. That is a founder's choice at the end of each experiment, not a default.
+
+**The audit.** Starting, ending and every edit to an experiment's rows write a section 11 row, with
+`key` set to the experiment row and `accountsMoved` computed as in 10.1.
+
 ---
 
 ## 11. The audit record
@@ -630,6 +693,7 @@ decision.
 Item | State | Evidence
 The panel, any screen of it | `specified, not built` | No route, no module. `src/modules/` has no entitlements module
 `limitsFor(account)` | `specified, not built` |
+Running a limit as an experiment, section 10.3 | `specified, not built` | No experiment rows, no bucket function, no `experiment.assigned` event
 Any `limits.*` value in the source | **none, which is the good case** | There is nothing to migrate, because the caps do not exist in code yet. **This is the cheapest moment to build the panel and it will never be cheaper**
 The usage ledger the caps count against | `specified, not built` |
 The audit collection | `specified, not built` |
