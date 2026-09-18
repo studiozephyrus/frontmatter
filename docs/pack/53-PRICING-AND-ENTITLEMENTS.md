@@ -132,9 +132,10 @@ A blueprint | The free provider chain | **Sonnet 5, batch API** | 31.40 rupees
 
 Read from `docs/mvp0/screens/gen.mjs` at the `ROUTING` table, which is what S36 renders.
 
-**The free chain, in fallback order**: Groq, Cloudflare Workers AI, Cerebras while its trial
-lasts, SambaNova. **No OpenRouter endpoint**, because its free endpoints carry their providers'
-terms and those were never opened.
+**The free chain, in fallback order**, is file 27 section 2.1's to state and S36 draws it: Cloudflare
+Workers AI, Groq, Cerebras while its trial lasts, then OpenRouter. **OpenRouter was admitted on 18
+September** (commit `e532e32`), once its terms were opened. SambaNova stays switched off until
+somebody opens its terms. This line said otherwise until 18 September.
 
 **A provider whose terms nobody has opened cannot be switched on.** The sign-in page promises we
 never train on documents, and that promise is only as true as this list. See

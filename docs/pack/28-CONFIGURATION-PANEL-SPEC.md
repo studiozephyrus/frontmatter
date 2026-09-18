@@ -184,6 +184,8 @@ Key | Type | Bounds | Default | What reads it
 `policy.ai.newaccount.blueprints` | `int` | 0 to 100 | **0** | The same
 `policy.history.graceDays` | `int` | 0 to 365 | **30** | The prune delay of 4.5
 `policy.trash.days` | `int` | 1 to 365 | **30** | The trash sweep
+`policy.invite.credits` | `int` | 0 to 100 | **5** | The invite on S17 and the referral after sign-up. Both sides get it once, on the invited person's first sign-in `[Z]`
+`policy.questions.default` | `enum` | `dynamic`, `standard` | **`dynamic`** | The idea flow on S13. The person's own switch overrides it; `standard` is also the degradation path when the chain is exhausted
 
 ### 4.3 The refill row, and a disagreement worth naming
 
@@ -260,8 +262,8 @@ believing a price change took effect when it did not.
 current drawing is wrong.
 
 **Ten to thirteen is the layout minimum, not the catalogue.** Counted from the chain in file 27
-section 2, the default set is already **17 rows across 7 providers**, and adding OpenRouter's free
-list would take it past 30. The screen has to scroll, group by provider, and stay readable on a
+section 2, the default set is **19 rows across 7 providers**, and adding the rest of OpenRouter's
+free list would take it past 30. The screen has to scroll, group by provider, and stay readable on a
 phone.
 
 ### 5.1 The default model set, so the layout has real rows to hold
@@ -284,9 +286,15 @@ Ollama | `llama3.2:3b` | desktop edit, 2.0 GB | desktop only
 Ollama | `qwen3:4b` | desktop, 2.5 GB | desktop only
 Ollama | `gemma3:4b` | desktop, 3.3 GB | desktop only
 Ollama | `qwen3:8b` | desktop, 5.2 GB | desktop only
+OpenRouter | `z-ai/glm-5.2:free` | edit and document fallback | in the catalogue
+OpenRouter | `qwen/qwen3.8-27b:free` | edit and document fallback | in the catalogue
 
-**SambaNova and OpenRouter carry no model rows today**, because neither has a `termsOpenedOn` date
-for the endpoints we would use. That is gate B of file 27 section 1 doing its job on the screen.
+**SambaNova carries no model rows today**, because nobody has a `termsOpenedOn` date for its
+endpoints. That is gate B of file 27 section 1 doing its job on the screen. **OpenRouter was in the
+same position until 18 September**, when commit `e532e32` opened its terms and admitted it.
+
+`INFERENCE:` `policy.invite.credits` is a grant per new account, so fake accounts can farm it. The
+starting allowance and per-account bucket of file 27 section 9 bound what a farmed credit buys.
 
 ### 5.2 The provider rows
 
