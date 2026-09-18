@@ -16,6 +16,27 @@ strings (all from Cerebras and OpenRouter) contain the source's own em dashes, a
 American spellings (`behavior`, `organization`, `analyzed`). They are left byte-exact rather than
 tidied, because a silently edited quotation is the exact failure this repo was burned by on
 9 September. **My own prose contains no dash of either kind and uses British spelling throughout.**
+In three further places the source joined two clauses with a dash; there the two halves are quoted
+separately and the join is described, rather than the dash being silently swapped for a hyphen.
+
+**Every quoted span in this file was then checked mechanically against the locally saved copy of the
+page it is attributed to**, by splitting the document on backticks, taking the quoted spans of six
+words or more, and requiring each one to appear in an opened source. 258 spans were checked. The
+check found one real defect and it has been fixed: the Firestore single-document quotation in FL3.11
+had two sentences in the wrong order relative to the source. It now follows the page's order.
+
+Twelve spans still do not match byte for byte, and all twelve are one of four declared
+transformations, none of which changes a word:
+1. **The source's own inline code formatting removed.** A doc that writes the `models` parameter with
+   its own backticks cannot keep them inside my backticks. Affects the OpenRouter and Cloudflare
+   prose quotes.
+2. **JSX components rendered to their values.** OpenRouter's pages write 429 as
+   `<StatusCode code={HTTPStatus.S429_Too_Many_Requests} />`; I quote what the page displays.
+3. **Table rows and JSON reflowed onto one line.** Cloudflare's pricing table separates the two
+   prices in a cell with an HTML line break, which I render as a slash; pretty-printed JSON error
+   bodies are collapsed. Values are untouched.
+4. **Two strings are not quotations at all**: the user-facing copy proposed in FL3.19
+   (`That did not finish. Try again.` and the outage line) is my own suggested wording.
 
 Mission: how to build a model layer that never shows a user "AI is unavailable", from a chain of
 free providers with different limits, on Next.js on Vercel with Cloudflare R2 and Firestore.
@@ -244,10 +265,13 @@ tokens.
   fallback if a model request returns an error.` Its example walks Workers AI first, then OpenAI, and
   the page adds `You can add as many fallbacks as you need, just by adding another object in the
   array.`
-- **Which step served the request.** A response header:
-  `cf-aig-step:0 - The first (primary) model was used successfully.`,
-  `cf-aig-step:1 - The request fell back to the second model.`,
-  `cf-aig-step:2 - The request fell back to t[hird]`. Page footer says `Last updated Apr 20, 2026`.
+- **Which step served the request.** A response header. The page's four bullets pair each value with
+  a phrase; quoting the phrases only, because the page joins them with an en dash:
+  `cf-aig-step:0` is `The first (primary) model was used successfully.`,
+  `cf-aig-step:1` is `The request fell back to the second model.`,
+  `cf-aig-step:2` is `The request fell back to the third model.`, and
+  `Subsequent steps` is `Each fallback increments the step number by 1.`
+  Page footer says `Last updated Apr 20, 2026`.
 - **Source:** https://developers.cloudflare.com/ai-gateway/configuration/fallbacks/index.md opened 2026-09-18
 - **Its rate limiting is about protecting you from your own users, not about upstream quota.**
   `Rate limiting controls the traffic that reaches your application, which prevents expensive bills
@@ -300,9 +324,10 @@ tokens.
   `Specify a prioritized list of providers/models. If the primary LLM fails, Portkey automatically
   falls back to the next in line.` and `Available on all Portkey plans.` Fallback triggers are
   configurable: `By default, fallback triggers on any non-2xx status code.` with
-  `"strategy": { "mode": "fallback", "on_status_codes": [429, 503] }`. Strategies nest:
-  `Fallback targets are fully composable - each target can be a load balancer, a conditional router,
-  or another fallback. Any strategy can nest inside any other.`
+  `"strategy": { "mode": "fallback", "on_status_codes": [429, 503] }`. Strategies nest. The page says fallback targets are
+  `fully composable` and that `each target can be a load balancer, a conditional router, or another
+  fallback. Any strategy can nest inside any other.` (the two halves are joined by an em dash on the
+  page, so they are quoted separately here)
 - **Source:** https://portkey.ai/docs/product/ai-gateway/fallbacks opened 2026-09-18
   (page says `Last modified on August 3, 2026`)
 - **The circuit breaker, with the parameter names and their defaults.** The config schema table
@@ -396,9 +421,9 @@ Grouped because none of them changes our design, and two of them no longer exist
   `Cost savings20% +20% +`, `Faster dev cycles2x2x`. It carries an OpenRouter endorsement:
   `We use Not Diamond to power our intelligent routing feature, giving developers the ability to
   automatically use the best model on every input across every leading language model.Alex Atallah
-  CEO and Co-founder, OpenRouter`. Crucially it does not execute:
-  `Integrations are stack agnostic through our secure API - our intelligent recommendations are
-  executed in your model gateway and harness of choice.`
+  CEO and Co-founder, OpenRouter`. Crucially it does not execute. The page says
+  `Integrations are stack agnostic through our secure API` and, after an em dash,
+  `our intelligent recommendations are executed in your model gateway and harness of choice.`
   **Source:** https://www.notdiamond.ai/ opened 2026-09-18.
   It answers **which model is best for this prompt**, never **which provider still has quota**.
   Different question.
@@ -678,9 +703,10 @@ memory, and the pool has to be decremented before the next cold function decides
 **The single-document write rate, and a correction to received wisdom.** The widely repeated figure
 is one sustained write per second to a single document. **Firebase no longer publishes that number.**
 The current best-practices page says instead:
-`The exact maximum rate that an app can update a single document depends highly on the workload. The
-best way to characterize your workload's performance is to perform load testing. Factors include the
-write rate, contention among requests, and the number affected indexes.` and
+`As you design your app, consider how quickly your app updates single documents. The best way to
+characterize your workload's performance is to perform load testing. The exact maximum rate that an
+app can update a single document depends highly on the workload. Factors include the write rate,
+contention among requests, and the number affected indexes.` and
 `A document write operation updates the document and any associated indexes, and Cloud Firestore
 synchronously applies the write operation across a quorum of replicas. At high enough write rates,
 the database will start to encounter contention, higher latency, or other errors.`
@@ -1083,8 +1109,9 @@ plan fee is a number to check before quoting it to anyone.
 Before proposing anything: **there is already a provider chain in this repo**, and it is better than
 nothing and worse than it looks.
 
-- `src/modules/ai/application/ports.ts` defines the port, and it is one method:
-  `generate(input: { prompt, system?, speedFirst? }): Promise<string>`.
+- `src/modules/ai/application/ports.ts` defines the port, and it is one method. Verbatim from the
+  file: `generate(input: {`, `prompt: string;`, `system?: string;`, `speedFirst?: boolean;`,
+  `}): Promise<string>;`. One method, no streaming, no usage returned.
 - `src/modules/ai/infrastructure/gateway-client.ts` builds the chain. Providers join only if their
   key is set (`GOOGLE_GENERATIVE_AI_API_KEY`, `GROQ_API_KEY`, `CEREBRAS_API_KEY`,
   `MISTRAL_API_KEY`, `OPENROUTER_API_KEY`), and two static orders decide the sequence:

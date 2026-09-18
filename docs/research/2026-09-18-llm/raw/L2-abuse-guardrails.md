@@ -980,7 +980,12 @@ Data Fiduciary in accordance with the provisions of this Act and the rules made 
 
 - **Source:** The Digital Personal Data Protection Act, 2023 (No. 22 of 2023), gazette text at
   https://www.meity.gov.in/static/uploads/2024/06/2bf1f0e9f04e6fb4f8fef35e82c42aa5.pdf opened
-  2026-09-18, pages 3 to 7. Quotations copied from the gazette pages.
+  2026-09-18, pages 3 to 7. The PDF's text layer is font-encoded and would not extract, so I read
+  the pages as images and transcribed the sections by hand. Two transcription notes, so nobody is
+  misled: the gazette prints a long dash after "for a lawful purpose," and after "namely:", and I
+  have replaced those with a line break because this document may not contain one; everything else
+  is character for character. Anyone citing these sections in a legal or client document should
+  re-read the gazette page rather than trusting my transcription.
 - **What this means in practice.** To fingerprint devices lawfully in India we would need a clear
   affirmative action from the user, a notice saying what we collect and why, and a withdrawal
   control as easy as the consent was. That is a consent banner, which is a modal on the front door,
@@ -1235,7 +1240,7 @@ continuously replenished up to your maximum limit, rather than being reset at fi
 The pattern across all seven is the same and it is worth naming before the details. **None of them
 gates the free tier on identity. All of them gate it on a hard ceiling, and they buy trust with
 spend history rather than with verification.** That is the single most useful finding in this lens,
-because it is a design the founder's rules permit in full.
+because it is a design the founder's rules allow in full.
 
 ### FL2-23. OpenRouter: the free tier is gated on credits ever purchased, not on who you are
 
@@ -1592,3 +1597,210 @@ contravene our policies.
 - **Action for whoever picks this up:** open the Gemini free-tier limits from a signed-in browser
   before any plan document states a number for pooled Google quota. This is a real hole in the
   research and it sits directly under the 200-concurrent-users assumption.
+
+---
+
+## Part four. The recommendation for frontmatter
+
+### FL2-30. The arithmetic first, because it changes the shape of the answer
+
+Before choosing layers I priced the thing we are defending. Inputs, and I am separating what I
+copied from a page from what I assumed:
+
+**Copied from https://developers.cloudflare.com/workers-ai/platform/pricing/, opened 2026-09-18:**
+
+```
+@cf/meta/llama-3.1-8b-instruct-fp8-fast
+4119 neurons per M input tokens
+34868 neurons per M output tokens
+
+Our free allocation allows anyone to use a total of 10,000 Neurons per day at no charge.
+
+priced at $0.011 per 1,000 Neurons
+```
+
+**Assumed by me, and these are assumptions, not measurements.** One AI edit is 4,000 input tokens
+and 1,000 output tokens, because a splice sends a section plus an instruction and returns a
+replacement span. One blueprint is 8,000 input and 20,000 output, because it returns a document.
+Nobody has measured these on our own traffic, and the first job in phase A is to replace them with
+real numbers.
+
+**The work, computed rather than estimated:**
+
+```
+one AI edit   = 4000/1e6*4119 + 1000/1e6*34868  =    51.34 neurons
+one blueprint = 8000/1e6*4119 + 20000/1e6*34868 =   730.31 neurons
+
+200 users x 10 edits    = 2000 x 51.34   = 102,688 neurons per month
+200 users x 1 blueprint =  200 x 730.31  = 146,062 neurons per month
+total                                    = 248,750 neurons per month
+
+free allowance          = 10,000 x 30    = 300,000 neurons per month equivalent
+utilisation                              = 82.9%
+even daily spread       = 248,750 / 30   = 8,292 neurons per day against 10,000 allowed
+```
+
+**Three conclusions fall straight out of that, and they are the whole recommendation.**
+
+**One. The honest population is nearly free to serve.** At Cloudflare's own list price the entire
+free tier, fully used by all 200 people, costs `248,750 / 1000 * $0.011 = $2.74` a month. That is
+**1.37 cents per free user per month.** The founder's fear is real but it is not a fear about
+honest users; it is entirely a fear about the tail.
+
+**Two. The pooled free quota fits, but only if consumption is spread.** 82.9 per cent utilisation on
+an even spread is fine. On an uneven one it is not, and here is the number that matters most in this
+document: `10,000 / (10 x 51.34 + 730.31) = 8.0`. **Only eight users can spend their whole monthly
+allowance on the same day before the daily wall is hit.** A calendar-month counter permits exactly
+that shape. A token bucket forbids it. FL2-22 therefore is not a refinement, it is what makes the
+plan arithmetic work.
+
+**Three. One uncapped account outweighs the entire honest population.** At a modest one request per
+second, sustained for a day, a single account with no ceiling burns
+`86,400 x 51.34 = 4,436,122` neurons, which is `$48.80` a day at list price and **17.8 times the
+whole honest free tier's monthly consumption**. Using Sysdig's measured burst from FL2-04, 61,000
+requests in three hours is `3,131,984` neurons, `$34.45`, and **12.6 times the honest population's
+whole month**. The gap between the honest user and the abusive one is three orders of magnitude, so
+every rupee of engineering belongs on bounding the tail and none of it on inspecting the head.
+
+`INFERENCE:` this is why the founder's rules cost us nothing here. A captcha inspects the head. A
+budget bounds the tail.
+
+### FL2-31. The layered design, with phases and costs
+
+**Phase A. Build these before the first stranger signs in. Roughly one week of work in total.**
+
+1. **A pre-flight budget check, per account, on a token bucket.** Decrement before the provider call
+   and refuse if the bucket is empty. This is FL2-11 plus FL2-22, and the mechanism to copy is
+   OpenRouter's in-flight hold in FL2-23, not Vercel's polled meter in FL2-28, because a poll is
+   minutes late and FL2-04 says minutes are enough. Bucket holds ten edits and one blueprint,
+   refills at the monthly rate. **Cost: two columns, one function, two days.** Friction: none.
+2. **A service-wide circuit breaker, per hour.** The per-account bucket does not protect the pooled
+   key, because every provider in part three meters at the organisation level, Groq explicitly so in
+   FL2-26. One counter across all free accounts, one hourly ceiling, and when it trips free requests
+   queue rather than fail. **Cost: one counter and one branch, one day.** Friction: none until it
+   trips.
+3. **A usage row per AI call, and a daily alert.** Account, timestamp, model, tokens in, tokens out,
+   computed cost. This is the layer that caught every incident in part one, FL2-17. Pin the field
+   names in one place, because Learned Rule #59 in this workspace records three separate cases where
+   a producer wrote one key, a consumer read another, and a wrong number was published for weeks.
+   **Cost: one table, one scheduled query, one day.** Friction: none.
+4. **A starting allowance that rises with account history, copied from Anthropic's Evaluation tier
+   in FL2-25.** A brand-new account gets less, and it goes up on its own. For GitHub sign-ins the
+   inputs are free and already in the profile we fetch, verified live in FL2-09: `created_at` and
+   `public_repos`. For Google sign-ins we have no age, so the input is our own first-seen date.
+   Suggested shape, and these thresholds are a starting point to tune with the data from layer 3,
+   not a finding: an account under seven days old with no history gets three edits and no blueprint;
+   it reaches the full ten and one at thirty days or after a first accepted change. **Cost: one
+   function over fields we already have, one day.** Friction: none, and no consent screen, because
+   we already hold this data for the sign-in itself.
+5. **Refuse rather than bill, always.** Cloudflare Workers AI in FL2-27 is the model: a free user
+   cannot generate a bill, the wall is a wall, and the reset is a fixed clock. Never attach a
+   metered provider to the free path without a ceiling in front of it. **Cost: a policy decision,
+   zero days.**
+
+**Phase B. After the first hundred real users, and informed by layer 3's data. Two to three weeks.**
+
+6. **Queue the free request instead of refusing it, FL2-21.** Our change queue is already
+   asynchronous, so a free edit that lands in forty seconds is a different experience rather than a
+   broken one, and a paid edit landing immediately becomes a real difference we can describe. **Cost:
+   a job queue and an interface state, one week.**
+7. **Bring your own key, FL2-20.** The answer to a heavy user stops being no. Build it as a secret,
+   not as a settings field, for the reasons in FL2-08. **Cost: three to five days done properly.**
+8. **An invisible challenge on the sign-in route only, FL2-10 and FL2-16.** Either Turnstile in
+   `Invisible` mode, free, or Vercel BotID Basic, free and already on our platform. Never `Managed`
+   mode, because it can show a checkbox. Never on a document route, because a false positive there
+   loses somebody's writing. **Cost: one day.** Show the founder Vercel's own sentence,
+   `Vercel BotID is an invisible CAPTCHA`, and let him decide whether his rule bans the word or the
+   experience.
+9. **An emergency switch that stops new signups without touching existing accounts, FL2-19.** A flag,
+   half a day, and it converts a bad night into a slow morning.
+
+**Never, and write down why so nobody adds them later out of habit.**
+
+- **A captcha or a puzzle.** FL2-07 shows a real operator defeated reCAPTCHA audio, funcaptcha and
+  octocaptcha with a browser extension and a keyboard automation tool. It is paid for by every
+  honest user and it did not stop the one attacker we have a write-up of.
+- **Device fingerprinting.** FL2-14: under the Digital Personal Data Protection Act there is no
+  legitimate-use clause for it, so it needs consent under section 6(1), which means a modal on the
+  front door, which is the thing we are not building.
+- **A card on the free tier.** FL2-18: 119.44 million outstanding credit cards in India as of April
+  2026 against a population well over a billion. It is the most effective control on the list and
+  the wrong one for this market.
+- **A disposable-address detector.** FL2-13: with Google and GitHub sign-in only and `sub` as the
+  key, there is no address field to attack.
+- **An address-based hard block.** FL2-12: the operator in FL2-07 rotated a commercial virtual
+  private network per account, and in India a shared carrier address is not one person.
+
+### FL2-32. The honest answer to "a foolproof model"
+
+There is not one, and saying so is more useful than promising one.
+
+What the evidence in part one supports is narrower and better. Every published incident was found by
+watching usage, not by checking identity. Every provider in part three defends itself with a ceiling
+and a history-based ladder. Not one of them gates its free tier on proving who you are. And the one
+operator we have a full technical write-up of beat the captcha, the email verification and the
+address limits, yet would still have been stopped cold by a per-account ceiling.
+
+So the model to promise the founder is not foolproof, it is **bounded**. We cannot stop somebody
+making a second GitHub account. We can make the second account worth 1.37 cents, make the tenth
+account visible in a daily report, and make the thousandth account impossible to use faster than the
+bucket refills. The loss becomes a number we choose in advance rather than a number we discover in a
+bill. That is what every company in part three actually bought, and none of them needed a captcha to
+buy it.
+
+One last thing worth putting in front of him, because it is the cheapest insight here. The product
+we are building is a poor thing to steal. FL2-04 measured what farmed model access is spent on:
+about 95 per cent roleplay, largely by people banned by their own provider or in sanctioned
+countries. Our AI surface returns structured edits against a file the user supplies. `INFERENCE:` it
+is a bad substitute for a chat endpoint, which lowers the chance of organised farming and raises the
+importance of never shipping a raw completion route. The day we ship one, this whole analysis has to
+be redone.
+
+---
+
+## What I could not reach
+
+- **Google AI Studio and the Gemini free tier.** `https://ai.google.dev/gemini-api/docs/rate-limits`
+  and `https://ai.google.dev/gemini-api/terms` both returned HTTP 302 to an OAuth authorisation URL,
+  with and without `?hl=en`, on 2026-09-18. I have no Gemini numbers and stated none. This is the
+  largest hole in the research and it sits directly under the pooled-quota assumption, so somebody
+  should open it from a signed-in browser before any plan document names a Gemini limit.
+- **OpenAI's usage policy.** `https://openai.com/policies/usage-policies/` returned HTTP 403 to my
+  client on 2026-09-18. I quoted the rate-limit guide instead and nothing from the policy.
+- **Groq's actual numbers.** The rate-limit table at `https://console.groq.com/docs/rate-limits` is
+  drawn by JavaScript and the served markup has empty cells. I have Groq's policy language and none
+  of its figures.
+- **Arkose Labs pricing.** `https://www.arkoselabs.com/pricing/` returned HTTP 404 on 2026-09-18 and
+  I found no page with a published price.
+- **Cloudflare Turnstile's free-usage ceiling.** `https://developers.cloudflare.com/turnstile/concepts/limits/`
+  returned HTTP 404 on 2026-09-18. The product page says free; I could not find the page that says
+  free up to what, so do not write a free-forever claim without checking.
+- **Cloudflare Bot Management's price.** Not published below Enterprise. The plan selector's fourth
+  tab is labelled `Bot Management for Enterprise` and there is no figure.
+- **A primary study behind the credit-card conversion numbers.** Every source I found was a vendor
+  blog citing other vendor blogs. I quoted one and marked it unverified rather than dressing a range
+  as a finding.
+- **The GitGuardian report itself,** as opposed to its blog summary, which is behind a form.
+- **The share of Indian mobile subscribers behind a shared carrier address.** I looked, found only
+  secondary assertions, and left the claim out rather than inventing a figure.
+- **WebFetch, for the whole session.** The local taint gate refused it on the first call and on every
+  call after. Everything here was fetched with `curl`, which was never blocked.
+
+## What surprised me
+
+1. **The published security consensus already agrees with the founder's rule.** None of OWASP's
+   twelve mitigations for LLM10 is a captcha, a puzzle or a human challenge. The whole standard is
+   budgets, limits, timeouts, logging and graceful degradation. He is not trading safety for taste.
+2. **The honest free tier costs 2.74 dollars a month and one abusive account costs 48.80 dollars a
+   day.** I expected the gap to be large. Three orders of magnitude changes where every rupee of
+   engineering should go, and it argues for spending none of it on the front door.
+3. **Only eight of the 200 free users can spend a whole month's allowance on the same day** before
+   the pooled daily allowance is exhausted. That turns the token bucket from a refinement into a
+   precondition, and I did not see it until I did the arithmetic.
+4. **Nobody in part three gates a free tier on identity, and two of them sell trust for ten dollars.**
+   OpenRouter's twenty-fold daily increase for ten credits ever purchased, and OpenAI's tier one at
+   five dollars paid, are both cheaper than any verification vendor on this list and strictly more
+   honest about what they are buying.
+5. **The captcha bypass in FL2-07 is a browser extension called Buster and a keyboard automation
+   tool.** Not a machine-learning model, not a solving farm. The defence the industry spent twenty
+   years on was beaten by two things you can install in a minute.

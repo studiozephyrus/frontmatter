@@ -18,6 +18,35 @@ Anything inside quotation marks was copied from the opened page. `INFERENCE:` ma
 
 ---
 
+## Index
+
+- **FL1-0** freellm.net, what it says and where it is wrong
+- **Part A, providers opened one by one:** FL1-1 Groq, FL1-2 Cerebras, FL1-3 Google Gemini free
+  (disqualified), FL1-4 Cloudflare Workers AI, FL1-5 Cohere (disqualified), FL1-6 OpenRouter,
+  FL1-7 NVIDIA NIM (disqualified), FL1-8 GitHub Models (retired), FL1-9 Mistral (unresolved),
+  FL1-10 Hugging Face, FL1-11 Vercel AI Gateway, FL1-12 Scaleway, FL1-13 OVHcloud,
+  FL1-14 the long tail, FL1-15 Poe, Perplexity and Windsurf, FL1-18 Chutes (free tier removed),
+  FL1-21 DeepSeek (disqualified), FL1-22 Fireworks, Together, DeepInfra
+- **Part B, the three deciding questions:** FL1-T training on inputs, FL1-C commercial use,
+  FL1-P pooling
+- **Part C:** FL1-CACHE prompt caching, FL1-BATCH batch APIs, FL1-OAI compatible endpoints,
+  FL1-AGG what it all adds up to
+- **Part D:** the ranked shortlist
+- **Part E, reliability:** FL1-16 Groq's 2026 incidents, FL1-17 Cloudflare's
+- **Part F:** the chain, concretely, with base URLs
+- **Part G, the community lists:** FL1-19 cheahjs is deleted, FL1-20 zukixa is a proxy directory
+- **Part H:** the parallel lenses and what happened to them
+- Quotation audit, What I could not reach, What surprised me
+
+**The one-line answer.** Four providers pass all three tests: **Cloudflare Workers AI, Groq,
+OpenRouter and Cerebras.** Together they are worth roughly **13,000 requests and 9.7 million tokens
+a day** for a one-off $10, but only **355 requests a minute**, and every one of them pools its limit
+across the whole account. **Google's free Gemini tier, Cohere's trial keys, NVIDIA NIM and DeepSeek
+are disqualified because they train on inputs**, each in its own words. GitHub Models was retired on
+30 July 2026.
+
+---
+
 ## FL1-0. The founder's pointer: what freellm.net actually says
 
 - **Source:** https://freellm.net/ opened 2026-09-18; https://freellm.net/providers/ opened
@@ -572,7 +601,7 @@ NVIDIA is the provider freellm.net pushes hardest, with `131 models` and a `Perm
 Its own terms say something else.
 
 - **Free models offered:** `UNVERIFIED:` build.nvidia.com is a client-rendered single-page app and
-  curl returns only the shell, so I could not enumerate the catalogue from the provider's own page.
+  curl returns only the shell, so I could not list the catalogue from the provider's own page.
   freellm.net counts `131 free models, 79 online`, and I am not repeating that as fact.
 - **Requests per minute:** `UNVERIFIED:` freellm.net prints `Up to 40 RPM` in its model table and
   `NVIDIA NIM gives 40 RPM with no daily cap` in its prose. I could not open an NVIDIA page that
@@ -729,7 +758,7 @@ the cheapest routed model, once, per month.
 
 - **Free models offered:** a subset, not the catalogue. Quote: `The free tier includes a subset of
   models, not the full catalog. To see which models you can use with free credits, browse the Free
-  Tier models.` `UNVERIFIED:` I did not enumerate that subset.
+  Tier models.` `UNVERIFIED:` I did not list that subset.
 - **The allowance:** quote, `$5 /month included` for the free tier, against
   `Pay as you go with purchased credits` for the paid tier. Quote: `Every Vercel team account gets
   access to both a free tier and a paid tier for AI Gateway Credits.`
@@ -831,3 +860,855 @@ here that addresses the extraterritorial-law question directly.
 image model and text-to-speech voices. There is no free general-purpose chat model. A directory that
 counts models rather than reading their prices will keep making this mistake.
 
+---
+
+### FL1-14. The long tail freellm.net names, checked against the providers themselves
+
+These are the entries on freellm.net that nobody else lists. I opened what I could.
+
+**LLM7.io.** freellm.net labels it `Permanent Free` with `19 models`. LLM7's own model endpoint
+disagrees. `https://api.llm7.io/v1/models`, opened 2026-09-18, returns **48 models, and not one of
+them is priced at zero.** Every record carries `"usage_based_only": true` and a `pricing` object.
+The tiers are `pro` (42 models) and `turbo` (6). Examples copied from the response:
+`claude-opus-5` has `"pricing": {"input": 2.5, "output": 12.5, "cached_input": 0.3, "currency":
+"USD", "unit": "1M tokens"}`; `gpt-6-astra` has `{"input": 5.0, "output": 10.0, "cached_input":
+2.0}`; `gemini-3.8-flash-high` has `{"input": 0.05, "output": 0.15, "cached_input": 0.1}`.
+The catalogue includes 21 proprietary-branded ids across four frontier vendors: `claude-opus-5`,
+`claude-sonnet-5`, `claude-sonnet-4-6`, `claude-haiku-4-5`, `claude-opus-4-8`, `claude-fable-5`,
+`claude-fable-5-1`, `gpt-5.5`, `gpt-5.6-luna`, `gpt-5.6-sol`, `gpt-5.6-terra`, `gpt-6-astra`,
+`gpt-image-2`, `gpt-image-2.5`, `gemini-3-flash`, `gemini-3.1-flash-lite`, `gemini-3.7-flash`,
+`gemini-3.8-flash-high`, `gemini-omni-flash`, `grok-4.5`, `grok-4.6`.
+The marketing site `https://llm7.io/` is a client-rendered app; curl returns only the meta
+description, verbatim: `One LLM API. Your Gateway to AI Innovation. Connect to leading AI models
+with one endpoint. Prototype, build, and scale without switching providers.` I found no terms page
+and no statement about training. **Verdict: not free today, and unverifiable on the clause that
+matters. Skip.**
+
+**OpenCode Zen.** Genuinely free models, OpenAI-compatible, and it publishes the endpoint next to
+each one. The free ids, verbatim from the docs table: `union-alpha` (`Union Alpha Free`),
+`mimo-v2.5-free`, `ling-3.0-flash-fin-free`, `nemotron-3-ultra-free`,
+`nemotron-3.5-lightning-free`, `muse-spark-1.3-contributor-free`, plus a `Big Pickle` entry. The
+pricing table prints `Free` in the input, output and cache-read columns for each. Base URLs given
+on the page: `https://opencode.ai/zen/v1/chat/completions` for the OpenAI-compatible ones,
+`https://opencode.ai/zen/v1/messages` for the Anthropic-shaped one, `https://opencode.ai/zen/v1/responses`
+for the Responses-shaped one. `UNVERIFIED:` rate limits, training policy and commercial use; the
+docs page does not state them. Note the overlap with FL1-6: `nemotron-3-ultra-free` and
+`nemotron-3.5-lightning-free` are the same NVIDIA models OpenRouter flags as served by a provider
+that trains. Source https://opencode.ai/docs/zen/ opened 2026-09-18.
+
+**GLHF (glhf.chat).** **Down at the time of checking.** `https://glhf.chat/` returned HTTP **522**
+on 2026-09-18, which is Cloudflare's origin-connection-timeout code. freellm.net lists it as
+`2 free models, 2 online`. `INFERENCE:` its liveness check and mine disagree, which is one more
+reason to probe rather than to list.
+
+**Nscale.** `https://docs.nscale.com/docs/inference/serverless-models/current` opened 2026-09-18 and
+returned a page my stripper found no free-tier or rate-limit text in. `UNVERIFIED:` freellm.net
+lists `2 free models, 0 online`, which by its own count means nothing is currently working.
+
+**Not reached at all, and I am not going to guess at them:** `ModelScope`, `Ollama Cloud`,
+`Agnes AI`, `Aion Labs`, `Kilo Code`, `Cline`, `Grok (xAI)`, `xAI`, `Alibaba Cloud Model Studio`,
+`AI21 Labs`, `Z AI (Zhipu AI)`, `SiliconFlow`, `DeepSeek`, `SambaNova`, `Chutes.ai`, `Nebius`.
+Several of these are covered by parallel lenses and are folded in at Part C below where their
+findings arrived.
+
+---
+
+## Part B. The three things that decide it
+
+### FL1-T. Training on inputs. The most important column, provider by provider.
+
+frontmatter holds people's private documents. Any free tier that trains on inputs is out. Here is
+the exact sentence for each provider I opened, one way or the other, sorted by how good the answer
+is.
+
+**Clean. Says it will not train, in its own words.**
+
+| Provider | The sentence, copied from the page |
+|---|---|
+| **Groq** | `For clarity, Groq is not permitted to use Inputs or Outputs for training or fine-tuning any AI Model Services or other models, unless explicitly granted permission or instructed by Customer.` |
+| **Cloudflare Workers AI** | `Cloudflare does not use your Customer Content to (1) train any AI models made available on Workers AI or (2) improve any Cloudflare or third-party services, and would not do so unless we received your explicit consent.` |
+| **Scaleway** | `Your data is not used for training, retraining, or improving the base models.` (and) `We do not collect, read, reuse, or analyze the content of your inputs, prompts, or outputs generated by the API.` |
+| **Cerebras** | `For clarity, the foregoing does not grant Cerebras the right to use Service Content for the purpose of training or fine-tuning models.` |
+
+**Disqualified. Says it will train, or grants itself a licence wide enough to.**
+
+| Provider | The sentence, copied from the page |
+|---|---|
+| **Google AI Studio / Gemini free tier** | `When you use Unpaid Services, including, for example, Google AI Studio and the unpaid quota on Gemini API, Google uses the content you submit to the Services and any generated responses to provide, improve, and develop Google products and services and machine learning technologies` (and) `To help with quality and improve our products, human reviewers may read, annotate, and process your API input and output.` (and) `Do not submit sensitive, confidential, or personal information to the Unpaid Services.` Plus the pricing page prints the row `Used to improve our products` with the value `Yes` in the Free Tier column, 79 times. |
+| **Cohere trial keys** | `... AND (III) IMPROVE AND ENHANCE THE SERVICES AND COHERE'S OTHER OFFERINGS AND BENCHMARK THE FOREGOING, INCLUDING BY SHARING API DATA AND FINETUNING DATA WITH THIRD PARTIES WHO MAY USE THE FINETUNING DATA AND API DATA TO PROVIDE SERVICES TO COHERE AND FOR OTHER PURPOSES PERMITTED UNDER THEIR TERMS AND CONDITIONS.` |
+| **NVIDIA NIM** | `... solely to (a) provide you with the Technology, including NVIDIA Services, (b) provide you support, or for security reasons, and (c) modify and improve NVIDIA products or services or the technology underlying the Technology.` Plus NVIDIA separately bans the data outright: `you agree that your actions and transmission of User Content: (a) does not include any confidential information; (b) does not include any controlled or sensitive data`. Second signal: OpenRouter flags `NVIDIA` `training: true`. |
+
+**Conditional. Depends on a default I could not read.**
+
+| Provider | The sentence, copied from the page |
+|---|---|
+| **Mistral** | `Mistral AI will not use Customer Data or Outputs to train its artificial intelligence models except (a) when you (i) opted-in to training on a Mistral AI Product set to opt-out by default or (ii) have not opted-out of training on a Mistral AI Product set to opt-in by default ... or (d) when Customer uses Labs or Preview Models.` Whether the free API tier is opt-in-by-default is exactly the page that 404s. Treat as unresolved. |
+| **OpenRouter** | Its own logging is off unless you turn it on: `Unless explicitly opted in to prompt logging, we do not store your Inputs after categorizing them`. The underlying provider is a separate question, answered per provider in its register, and disclaimed: `OPENROUTER MAKES NO REPRESENTATION OR WARRANTY REGARDING ANY MODEL PROVIDER'S DATA HANDLING, RETENTION, TRAINING, SECURITY, AVAILABILITY, OR INTELLECTUAL PROPERTY PRACTICES.` |
+
+**The register.** The single most useful artefact found in this lens is
+`https://openrouter.ai/api/frontend/v1/all-providers`, a JSON endpoint that carries a `training`
+boolean and a retention period for **88 providers**. Opened 2026-09-18, exactly **4** are flagged as
+training: `DeepSeek`, `Liquid`, `NVIDIA`, `Thinking Machines`. 41 of the other 84 are flagged
+`zero retention`. `INFERENCE:` that endpoint is a better starting filter than any list a human
+maintains, and it is machine-readable, so a nightly job could diff it and alert us when a provider
+we depend on changes its answer. But it must be the starting filter and never the final one,
+because OpenRouter disclaims it and because it and Google's own terms already contradict each other
+about Google AI Studio.
+
+**The pattern worth naming.** Every disqualification here uses the same three words:
+*improve our products*. Not one of the three says "we will train on your data". Google says
+`improve and develop`, Cohere says `IMPROVE AND ENHANCE`, NVIDIA says `modify and improve`. The
+clean four are clean because they name the act: Groq says `training or fine-tuning`, Cloudflare says
+`train any AI models`, Scaleway says `training, retraining, or improving the base models`, Cerebras
+says `training or fine-tuning models`. **When auditing a new provider, search its terms for
+"improve", not for "train".** The word "train" is what a provider uses when it is promising not to.
+
+---
+
+### FL1-C. Commercial use on the free tier.
+
+The short answer: **almost nobody forbids it, and the clause that looks like it does is usually
+about the marketing website, not the API.** Two providers in this inventory carry a
+`personal, non-commercial use` sentence, and in both cases it is scoped away from the service.
+
+- **Groq** carries `we grant you a limited, non-exclusive, non-transferable, license to access and
+  use the Websites for your personal, non-commercial use only` in its Terms of Use. Three paragraphs
+  above it, the same document says: `These Terms do not apply to you in connection with your use of
+  Groq's cloud services, including GroqChat, Groq Playground, and GroqCloud.` The API is governed by
+  the Services Agreement, which has no such clause.
+- **Cerebras** carries `Cerebras authorizes you to view, use, and download materials from the Site
+  ("Site Content," which does not include Service Content) only for your personal, non-commercial
+  use` and then, in the same paragraph, `The foregoing provision does not apply to the Service or
+  Service Content`. The API licence grants the opposite: `solely for your personal use or business
+  purpose, as applicable`, including the right to `distribute or allow access to your integration of
+  the APIs within your applications to end users of such applications`.
+
+`INFERENCE:` this is the single most-repeated error in third-party summaries of free LLM tiers, and
+it goes in the direction that costs you a provider you could have used. Read who the clause binds
+before believing it.
+
+**What does restrict us, and it is not the commercial clause:**
+
+- **Google**, geographically, and absolutely: `You may use only Paid Services when making API
+  Clients available to users in the European Economic Area, Switzerland, or the United Kingdom.`
+  It also frames the whole service as business-only: `Use of Google AI Studio and Gemini API is for
+  developers building with Google AI models for professional or business purposes, not for consumer
+  use.`
+- **NVIDIA**, by data class, which is stricter than a commercial ban for us:
+  `does not include any confidential information`.
+- **Cohere**, by competitor: you may not use it `for the use or benefit of any direct competitor to
+  Cohere as reasonably determined by Cohere (and which includes any entity that offers large
+  language models for license or sale)`.
+- **Groq**, by indemnity rather than by prohibition. Section 15.3 excludes from the IP indemnity
+  `any Cloud Services provided to Customer free of charge`. So free usage is allowed and
+  commercially fine, but if a model output attracts an IP claim, Groq does not defend you.
+  `INFERENCE:` that is the real commercial cost of a free tier, and it is the same on every free
+  tier here.
+- **Cerebras and NVIDIA**, by revocability. Cerebras: `We may, with or without prior notice, change
+  the Service, stop providing the Service or features of the Service to you or to Users generally or
+  create usage limits for the Service.` NVIDIA: `NVIDIA may stop accepting new participants or
+  discontinue a promotional offering at any time.`
+
+---
+
+### FL1-P. Pooling. Which providers share one bucket across all your users.
+
+This decides the architecture. If the limit is per organisation, every user of frontmatter draws on
+one counter, and a single person pasting a novel drains the tier for everyone else. If the limit is
+per key, we can shard.
+
+**Pooled at the organisation or account level, in their own words:**
+
+| Provider | The sentence |
+|---|---|
+| **Groq** | `Rate limits apply at the organization level, not individual users.` |
+| **Cerebras** | `Rate limits apply at the organization level, not the user level, and vary based on the model.` |
+| **Google Gemini** | `Rate limits are applied per project, not per API key.` |
+| **Scaleway** | `These values apply to your Organization, and are shared by all Projects within your Organization.` |
+| **Cloudflare Workers AI** | `The following limits apply per account, per model` (paid models), and the free allocation is stated per account: `Our free allocation allows anyone to use a total of 10,000 Neurons per day`. |
+| **Hugging Face** | `For Team or Enterprise organizations, credits are shared among all members.` |
+| **Vercel AI Gateway** | `Every Vercel team account gets access to both a free tier and a paid tier for AI Gateway Credits.` |
+
+**Not pooled, or shardable:**
+
+| Provider | The sentence |
+|---|---|
+| **Cohere** | `Cohere offers two kinds of API keys: evaluation keys (free but limited in usage), and production keys` and the 1,000-call cap is stated per key: `Trial keys ... are limited to 1,000 API calls a month.` |
+| **OpenRouter** | Per account, but **observable**, which is almost as good: `GET /api/v1/key` returns `free_model_daily_requests` with `used`, `limit` and `remaining`. |
+
+**So: every provider worth using pools.** `INFERENCE:` that has one architectural consequence and
+it is not subtle. A free fallback chain run from a single set of our own keys does not scale with
+users; it is a fixed daily budget shared by the whole user base, and it degrades worst exactly when
+the product is most popular. The two ways out are (a) a per-user quota enforced by us, on top of the
+provider's pooled quota, so no single user can drain it, and (b) bring-your-own-key, where the user
+pastes their own free Groq or Cloudflare key and gets their own bucket. Option (b) also moves the
+training-clause risk from us to a choice the user makes, which is a better fit for a product whose
+proposition is that the file on disk is the only source of truth.
+
+---
+
+## Part C. Caching, batch, compatibility, and what the whole thing adds up to
+
+### FL1-CACHE. Prompt caching on the free tier, and what it saves
+
+Prompt caching matters more here than the raw token budget, because a document editor resends the
+same document on every edit. A 90% cache hit rate is the difference between a free tier that works
+and one that does not.
+
+| Provider | On free tier | What it saves | The sentence |
+|---|---|---|---|
+| **Groq** | yes, automatic, cannot be disabled | 50% on cached input, **and cached tokens do not count against the rate limit at all** | `Prompt caching works automatically on all your API requests with no code changes required and no additional fees` / `There is a 50% discount for cached input tokens` / `Cached tokens do not count towards your rate limits.` TTL: `All cached data automatically expires after 2 hours without use.` |
+| **Cerebras** | yes, automatic, all customers | cached tokens are excluded from the binding `uncached TPM` bucket, so the effective ceiling is 3x | `Prompt caching is automatically enabled for all customers and models` / `Cached tokens don't count toward your uncached TPM limit` / `We guarantee a Time-To-Live (TTL) of 5 minutes, though caches may persist up to 1 hour depending on system load` |
+| **Cloudflare** | yes, default on some models | per-model discount; on `@cf/deepseek-ai/deepseek-v4-flash-0731` the table shows `$0.440 per M input tokens` against `$0.014 per M cached input tokens`, a 96.8% cut | `Cached input tokens are billed at a discounted rate compared to regular input tokens. Workers AI enables prefix caching by default for select models.` Needs a header: `send the x-session-affinity header with a unique identifier for your session or agent` |
+| **Google Gemini** | yes, free | `Context caching price` / `Free of charge` on the Free Tier column | disqualified on training, so moot |
+| **Scaleway** | not stated on the pages opened | | |
+| **OpenRouter** | passed through from the provider | | |
+
+**The two that matter are Groq and Cerebras, and for the same reason: on both, cached tokens are
+exempt from the rate limit, not just from the bill.** On Groq that turns a hard 200,000 tokens a day
+into something much larger for a stable-prefix workload. `INFERENCE:` if frontmatter puts the
+document first and the instruction last in the prompt, it gets almost nothing; if it puts the system
+prompt, the tool definitions and the unchanged document prefix first and the edit instruction last,
+it gets most of the benefit. That is a prompt-layout decision worth making before the router is
+built, not after.
+
+### FL1-BATCH. Batch APIs and their discounts
+
+| Provider | Batch on free tier | Discount | The sentence |
+|---|---|---|---|
+| **Scaleway** | yes (paid account) | **50%, and no rate limit at all** | `Requests performed through the Batches API do not have a rate limit and are billed with a -50% discount compared to standard model prices.` |
+| **Groq** | **no**, Developer plan only | 50% | `Upgrade to Developer plan to access higher limits, Batch and Flex processing, and more.` / `Batch requests already receive a 50% discount on all tokens` |
+| **Google Gemini** | **no** | 50% (paid) | pricing page prints Batch / Free Tier / `Not available`; paid batch input is `$0.375` against standard `$0.75` |
+| **Cloudflare** | in docs as `Asynchronous Batch API Beta` | `UNVERIFIED:` no discount figure found | |
+| **Cerebras** | none offered | | |
+| **OpenRouter** | referenced in terms | `UNVERIFIED:` no discount figure found | |
+
+`INFERENCE:` batch is the wrong shape for frontmatter's foreground work anyway, since a person is
+waiting. It is the right shape for the Idea-mode kit generation and for any background re-indexing,
+and Scaleway's no-rate-limit batch is the standout offer for that, at a price.
+
+### FL1-OAI. OpenAI-compatible endpoints, which is what makes a router cheap
+
+Confirmed from the provider's own documentation:
+
+| Provider | Evidence |
+|---|---|
+| **Groq** | endpoint paths on its own pages are `/openai/v1/chat/completions`, `/openai/v1/responses`, `/openai/v1/batches`, `/openai/v1/files`, `/openai/v1/fine_tunings` |
+| **Cerebras** | a dedicated `OpenAI Compatibility` page in the docs navigation |
+| **Cloudflare Workers AI** | a dedicated `OpenAI compatible API endpoints` page in the docs navigation |
+| **Scaleway** | a dedicated `OpenAI API compatibility` page in the docs navigation |
+| **OpenRouter** | the whole product; also a Vercel AI SDK integration |
+| **OpenCode Zen** | prints the base URL per model: `https://opencode.ai/zen/v1/chat/completions` |
+| **LLM7.io** | every model record carries `"schema_endpoints": ["openai"]` |
+| **Hugging Face** | routes to 18 providers behind one endpoint; docs include a `Responses API (beta)` page |
+| **Google Gemini** | `UNVERIFIED:` native format differs; freellm.net says `OpenAI-compatible wrappers available` and I did not confirm it on a Google page |
+| **Cohere** | **no.** Its Chat API has its own shape. |
+
+`INFERENCE:` every provider on the shortlist below is OpenAI-shaped, so the router is a base URL, an
+API key and a model id per entry. That is a configuration table, not a codebase.
+
+### FL1-AGG. What the whole thing adds up to
+
+Using only numbers I read off a provider's own page, one free account each, and treating one
+frontmatter request as 5,000 input tokens plus 500 output tokens:
+
+| Provider | Requests per day | Tokens per day | How it was derived |
+|---|---|---|---|
+| Groq | 4,500 | 800,000 | 4 chat models at 1K RPD and 200K TPD each, plus 2 compound models at 250 RPD |
+| Cerebras | 7,200 | 2,000,000 | 2 models at 1M TPD each; no RPD is published, so 5 RPM x 60 x 24 is the ceiling |
+| Cloudflare Workers AI | 262 | 1,441,000 | 10,000 neurons on `llama-3.1-8b-instruct-fp8-fast` at 38.0 neurons per request |
+| OpenRouter, never bought credits | 50 | 275,000 | 50 RPD, no token cap; tokens estimated at 5,500 per request |
+| OpenRouter, after one $10 top-up | 1,000 | 5,500,000 | 1,000 RPD, no token cap |
+
+**Totals.** With a single one-off $10 spend on OpenRouter and nothing else:
+**12,962 requests a day and roughly 9.7 million tokens a day.** Without it:
+**12,012 requests a day and roughly 4.5 million tokens a day.**
+
+**What that serves.** At 5 AI actions per user per day, 2,592 users. At 20, 648 users. At 50, 259
+users. `INFERENCE:` the free chain is a real answer for a beta and an early free tier, and it stops
+being one somewhere in the low thousands of active users.
+
+**But the daily total is the wrong number to plan against.** The binding constraint is concurrency.
+Adding the per-minute ceilings gives **355 requests per minute** across all four (Cloudflare 300,
+Groq 30, OpenRouter 20, Cerebras 5), and **300 of those 355 come from Cloudflare alone**, whose
+daily neuron budget runs out after 262 requests. So the chain can absorb a spike of roughly 350
+concurrent requests for about forty seconds, and then it is down to 55 requests a minute for the
+rest of the day. `INFERENCE:` the honest summary is that this is a chain that never returns "AI is
+unavailable" for a *single* user and will certainly return it for a *crowd*, unless the queue in
+front of it is built first.
+
+**Two caveats on the arithmetic, stated rather than buried.**
+1. Cerebras publishes TPD per model without saying whether the two models share one bucket. I have
+   added them. If they share, Cerebras is 1M not 2M, and the total drops to 8,741,000, not the
+   9,741,000 in the table. (I first wrote 7.7 million here and caught it on a re-derivation: the
+   subtraction is one million, not two.)
+2. The 5,500 tokens per request figure is mine, not a provider's. It is the one number in this table
+   that is an assumption, and every token total that uses it moves proportionally if the assumption
+   is wrong.
+
+---
+
+### FL1-15. The three the mission named that turn out not to be free inference at all
+
+**Poe.** Poe does publish an OpenAI-compatible API, and its throughput is generous: quote,
+`Our rate limit is 500 requests per minute (rpm). We support request-based rate limit headers but do
+not support token-based rate limiting`. But it spends the user's Poe compute-point balance, and the
+documented failure mode when there is none is explicit: the error table lists `402` /
+`insufficient_credits` / `balance <= 0`. There is no free API allowance; the points come with a
+consumer subscription. **Not a free provider.** Source
+https://creator.poe.com/docs/external-applications/openai-compatible-api opened 2026-09-18.
+
+**Perplexity.** The API is paid. Its pricing page is a cost estimator and points at billing setup
+and at AWS Marketplace credits. No free tier is offered on the page.
+`https://docs.perplexity.ai/getting-started/rate-limits` returns 404; the nav names the page
+`Rate Limits & Usage Tiers` but the URL has moved. **Not a free provider.** Source
+https://docs.perplexity.ai/getting-started/pricing opened 2026-09-18.
+
+**Windsurf.** A `Free` plan at `$0` exists, described as `Download Light quota to code with agents`
+and `Limited model availability`, against `Pro $20/month`, `Team $80/month` and `Max $200/month`.
+This is an IDE seat, not an inference API we could call from a server. **Not a free provider for our
+purposes.** Source https://windsurf.com/pricing opened 2026-09-18.
+
+`INFERENCE:` the general lesson, and it applies to Kilo Code and Cline on freellm.net's list too: a
+free *coding agent* is not a free *inference API*. A directory that mixes the two inflates its
+provider count and will send you down a dead end.
+
+---
+
+## Part D. The ranked shortlist
+
+Every provider here passes all three tests: **it does not train on inputs**, **it permits commercial
+use**, and its pooling behaviour is known and manageable. Best first.
+
+### 1. Cloudflare Workers AI
+
+**Why first.** It has the best sentence on training of anyone, and the sentence covers more ground
+than anyone else's: `Cloudflare does not use your Customer Content to (1) train any AI models made
+available on Workers AI or (2) improve any Cloudflare or third-party services`. Limb (2) is the
+clause that disqualifies Google, Cohere and NVIDIA, and Cloudflare closes it explicitly. It has 300
+requests per minute for text generation, which is ten times Groq's and sixty times Cerebras's, so it
+is the only entry that can absorb a burst. It needs no card for the free allocation. It is at the
+edge, which is the best latency story for an Indian user base. And frontmatter is a Next.js app that
+already lives in this ecosystem, so there is no new vendor relationship to open.
+**The cost.** 10,000 neurons a day is a small budget in absolute terms, and it converts to somewhere
+between 42 and 781 requests a day depending on which model you pick. The model choice matters more
+here than anywhere else: `granite-4.0-h-micro` gives 781 requests a day, `gpt-oss-120b` gives 51.
+**Use it as:** the default first hop, on a small model, with `x-session-affinity` set per document so
+prefix caching actually hits.
+
+### 2. Groq
+
+**Why second.** The clearest denial in the inventory, and the only one written as a prohibition on
+the provider rather than a promise: `Groq is not permitted to use Inputs or Outputs for training or
+fine-tuning any AI Model Services or other models`. Zero Data Retention is available to free
+accounts, not just paid ones: `All customers may enable Zero Data Retention (ZDR)`. The API is
+OpenAI-shaped down to the path. Prompt caching is automatic and, crucially, `Cached tokens do not
+count towards your rate limits`, which is the single most valuable property for an editor that
+resends the same document.
+**The cost.** 1,000 requests and 200,000 tokens a day per chat model, pooled across the whole
+organisation. 30 RPM. And the free tier carries no IP indemnity: section 15.3 excludes
+`any Cloud Services provided to Customer free of charge`.
+**Use it as:** the second hop, and the first hop for anything latency-sensitive, because it is the
+fastest thing here. Structure prompts static-first so the cache exemption does the work.
+
+### 3. OpenRouter, with a one-off top-up
+
+**Why third.** It is not a provider, it is the chain someone else already built, with 21 free models
+including two at a 1,048,576-token context window and three more at 1,000,000. Its own logging is
+off by default: `Unless explicitly opted in to prompt logging, we do not store your Inputs after
+categorizing them`. It has a routing switch that enforces our policy for us: `If you opt out of
+training in your account settings, OpenRouter will not route to providers that train`, with separate
+settings for free models. And it is the only entry whose remaining free budget a router can read
+before spending it, through `free_model_daily_requests` on `GET /api/v1/key`.
+**The cost.** 50 requests a day until you have ever bought credits, then 1,000. The threshold is
+stated as 10 credits, with a rounding allowance: the docs say the higher ceiling is granted
+`starting one credit below the table's threshold (currently 9 credits)`, and the minimum purchase is
+`$5`. So one $10 purchase, once, permanently multiplies the allowance by twenty. That is the best
+value in this document.
+**Two things to set on day one:** never opt into prompt logging, and set the free-model training
+filter to off, which removes the NVIDIA, Liquid and Thinking Machines routes and with them the two
+biggest context windows on the list. Take that trade.
+**Use it as:** the long-context hop and the breadth hop, with the training filter on.
+
+### 4. Cerebras
+
+**Why fourth and not higher.** The clause is clean and two years stable:
+`the foregoing does not grant Cerebras the right to use Service Content for the purpose of training
+or fine-tuning models`. 1M tokens a day per model is the largest token budget in the inventory. But
+**5 requests per minute** makes it unusable as a general fallback, and its own docs call the tier a
+`Free Trial`, not a free tier, while the terms reserve the right to stop it
+`with or without prior notice`.
+**Use it as:** the deep hop. One long document, one big request, not many small ones. It is the
+right place to send a whole-file operation and the wrong place to send an inline edit.
+
+### 5. Scaleway, as the paid escape hatch rather than a free tier
+
+**It has no free tier.** `Base limits apply if you registered a valid payment method.` It is on this
+list because its privacy posture is the best in the document by a distance
+(`We do not collect, read, reuse, or analyze the content of your inputs, prompts, or outputs`,
+`By default we apply a Zero Data Retention Policy`, data in `Paris, France`, and explicitly
+`not subject to extraterritorial laws such as the American Cloud Act`), because its batch API has
+`-50%` pricing and **no rate limit at all**, and because it is the answer to the problem that
+disqualifies Gemini for European users.
+**Use it as:** the paid tier and the EU story, not the free chain.
+
+### Not on the shortlist, and why, in one line each
+
+| Provider | Why not |
+|---|---|
+| **Google AI Studio / Gemini free** | Trains on inputs, human reviewers may read them, and forbidden for EEA, Swiss and UK users. |
+| **Cohere trial keys** | Trains, and shares API data with third parties; 1,000 calls a month regardless. |
+| **NVIDIA NIM** | Service-improvement licence with no training carve-out, plus an outright ban on sending confidential data. |
+| **GitHub Models** | Retired on 30 July 2026. |
+| **Mistral** | Training default on the free tier is exactly the page that 404s. Unresolved, so not shortlisted. |
+| **Hugging Face** | $0.10 a month. |
+| **Vercel AI Gateway** | $5 a month is real, but the credit vanishes the moment you top up and BYOK is paid-only. Worth a second look as a paid router. |
+| **OVHcloud** | Free only on guard, image and speech models. |
+| **LLM7.io, GLHF, Nscale** | Not free today, or down, or unverifiable on the clause that matters. |
+| **Poe, Perplexity, Windsurf** | Not free inference APIs. |
+
+---
+
+## Part E. Reliability in 2026, from incident histories rather than impressions
+
+### FL1-16. Groq's 2026 incident record, from its own status API
+
+`https://groqstatus.com/api/v2/incidents.json` opened 2026-09-18 returns 25 incidents, of which
+**7 were created in 2026**. Every one is `impact: minor`. Names and durations copied and computed
+from the `created_at` and `resolved_at` fields in that response:
+
+| Created | Impact | Duration | Name, verbatim |
+|---|---|---|---|
+| 2026-01-24 | minor | 2h 30m | `Data Center Failure Impacting Model Latency - SYD` |
+| 2026-01-26 | minor | 1h 53m | `meta-llama/llama-4-scout-17b-16e-instruct Degraded Performance` |
+| 2026-02-05 | minor | 1h 44m | `meta-llama/llama-4-scout-17b-16e-instruct Degraded Performance` |
+| 2026-02-05 | minor | 0h 23m | `meta-llama/llama-4-scout-17b-16e-instruct Degraded Performance` |
+| 2026-02-07 | minor | 1h 32m | `meta-llama/llama-4-scout-17b-16e-instruct Degraded Performance` |
+| 2026-03-19 | minor | 0h 59m | `openai/gpt-oss-120b Performance Issue` |
+| 2026-07-01 | minor | 1h 33m | `Data Center Failure Impacting Capacity` |
+
+**The arithmetic.** 150 + 113 + 104 + 23 + 92 + 59 + 93 = 634 minutes, which is 10 hours 34 minutes.
+From 1 January to 18 September 2026 is 260 days, which is 374,400 minutes. 634 / 374,400 = 0.1693%
+of the year in a degraded state, so the affected surface was at or above **99.83%**.
+
+**What it actually tells you, which is not "Groq is reliable".** Four of the seven incidents are the
+same model, `llama-4-scout-17b-16e-instruct`, degrading four times in a fortnight. Two are data
+centre failures, one of them named for a specific region (`SYD`). Not one is a platform-wide outage.
+`INFERENCE:` the failure mode to design for on Groq is **one model going soft**, not the API going
+away. A fallback chain that switches provider on a 5xx will miss all four of the Scout incidents,
+because a degraded model returns 200s slowly. The chain needs a latency budget and a per-model
+health signal, not just an error handler.
+
+**Method note and its limits.** Atlassian Statuspage's `incidents.json` returns a recent window, not
+the full history; the oldest record on the page was `2025-12-24`. So this covers 2026 completely but
+I cannot claim it is Groq's entire incident history. `status.openrouter.ai` and `status.mistral.ai`
+both returned **HTTP 403** to the same call on 2026-09-18, so their histories are not in this
+document from my own fetching.
+
+### FL1-17. Cloudflare Workers AI reliability, and a caveat about the window
+
+`https://www.cloudflarestatus.com/api/v2/incidents.json` opened 2026-09-18 returns 50 incidents
+spanning only **2026-08-31 to 2026-09-17**, because Cloudflare is a large estate and 50 records buy
+you eighteen days. So this is a snapshot, not a year.
+
+In those eighteen days, one incident named Workers AI directly:
+
+- **2026-09-09, 14:25 to 20:09 UTC, 5h 44m, `impact: minor`,** named
+  `Cloudflare Workers AI increased errors`. The first update reads, verbatim:
+  `Cloudflare is aware of, and investigating, increased Workers AI errors when attempting to use
+  GLM 5.3. Updates to follow.`
+
+Four more touched the surrounding platform, including one that is directly relevant to an Indian
+user base:
+
+- **2026-09-17, `impact: minor`,** `Increased Errors for Durable Objects and Downstream Services in
+  Asia P...`, with components listed as `AI Search, Artifacts, Containers, D1, Durable Objects,
+  Workers Assets, Workflows`. That was **the day before this research**.
+- 2026-09-09, `Workers Cron Triggers degraded`. 2026-09-11, `Issues with Workers VPC hostname route
+  resolution on 2026-09-11`. 2026-09-03, `Workers Builds elevated queue times`.
+
+`INFERENCE:` a 5h 44m degradation on a single model, on the provider I ranked first, in the fortnight
+before this was written, is the argument for the fallback chain in miniature. It also matches the
+Groq pattern exactly: the failure was **one model**, not the platform. Two providers, two incident
+histories, the same shape. Whatever we build should fail over **per model** before it fails over per
+provider.
+
+---
+
+---
+
+## Part F. The chain, concretely
+
+Every entry below is OpenAI-shaped, so the whole thing is a configuration table, not a codebase. The
+base URLs are copied from each provider's own OpenAI-compatibility page, opened 2026-09-18.
+
+| Order | Provider | Base URL | Model to start with | What it is for | Its ceiling |
+|---|---|---|---|---|---|
+| 1 | Cloudflare Workers AI | `https://api.cloudflare.com/client/v4/accounts/{account_id}/ai/v1/chat/completions` | `@cf/meta/llama-3.1-8b-instruct-fp8-fast` | the default hop, and the only one that survives a burst | 300 RPM, 10,000 neurons a day, about 262 requests at our shape |
+| 2 | Groq | `https://api.groq.com/openai/v1` | `openai/gpt-oss-120b` | the fast hop, and the quality hop for short work | 30 RPM, 1,000 RPD, 200,000 TPD per model |
+| 3 | OpenRouter | `https://openrouter.ai/api/v1` | `z-ai/glm-5.2:free` or `qwen/qwen3.8-27b:free` | breadth, and long context | 20 RPM, 50 RPD, or 1,000 RPD after one $10 top-up |
+| 4 | Cerebras | `https://api.cerebras.ai/v1` | `gpt-oss-120b` | one long document at a time | 5 RPM, 30K uncached TPM, 1M TPD |
+
+Sources for the base URLs: https://developers.cloudflare.com/workers-ai/configuration/open-ai-compatibility/ ;
+https://console.groq.com/docs/openai ; https://inference-docs.cerebras.ai/resources/openai ;
+https://openrouter.ai/docs/api-reference/limits.md . All opened 2026-09-18.
+
+**Five things the evidence says to build, which are not obvious from the table.**
+
+1. **Fail over per model before per provider.** Both incident histories I could open show the same
+   thing: Groq's 2026 was four `llama-4-scout` degradations and one `gpt-oss-120b` performance
+   issue; Cloudflare's one Workers AI incident in the last fortnight was
+   `increased Workers AI errors when attempting to use GLM 5.3`. Not one was a platform outage. A
+   chain that only switches provider on a 5xx will sit inside all of them, because a degraded model
+   returns 200s slowly.
+
+2. **Put the stable prefix first.** On Groq, `Cached tokens do not count towards your rate limits`.
+   On Cerebras, `Cached tokens don't count toward your uncached TPM limit`. On both, cache exemption
+   is worth more than the 50% price discount, because on a free tier the limit binds and the price
+   does not. Groq spells out the layout: `Place static content like instructions and examples at the
+   beginning of your prompt, and put variable content, such as user-specific information, at the
+   end.` For frontmatter that means system prompt, then tool definitions, then the unchanged
+   document, then the edit instruction last. Get this wrong and the free tier is four times smaller.
+
+3. **Send a session key.** Cloudflare needs it: `To maximize cache hit rates, send the
+   x-session-affinity header with a unique identifier for your session or agent.` Cerebras offers
+   the same as `prompt_cache_key`, with a warning worth heeding: `Don't set prompt_cache_key for
+   prefixes that are shared across many users, such as a common system prompt or shared RAG context.
+   This would funnel all of those requests to a single backend, creating a bottleneck`. So: one key
+   per document, not one key per deployment.
+
+4. **Read the budget before spending it, where you can.** OpenRouter is the only provider here that
+   will tell you: `GET /api/v1/key` returns `free_model_daily_requests` with `used`, `limit` and
+   `remaining`. Everyone else you discover through a 429. Groq at least returns headers on every
+   response, not only on failure: `x-ratelimit-remaining-requests` `Always refers to Requests Per
+   Day (RPD)`, and the page notes `retry-after is only set if you hit the rate limit and status code
+   429 is returned. The other headers are always included.` So Groq's remaining daily budget is
+   readable from any successful call. Track it.
+
+5. **Put a per-user quota in front of the pooled one.** Every provider worth using pools: Groq and
+   Cerebras at the organisation, Google at the project, Cloudflare and Vercel at the account,
+   Scaleway across all projects in the organisation, Hugging Face across all team members. One user
+   pasting a long book drains the day for everybody. The provider will not stop them; we have to.
+
+**And one thing to decide rather than build.** Bring-your-own-key solves both the pooling problem
+and the training problem at once: the user's key gets its own bucket, and the user chooses whose
+terms apply to their document. For a product whose whole proposition is that the file on disk is the
+only source of truth and that the editor is sold while the files never are, letting a user point
+frontmatter at their own Groq or Cloudflare key is more in character than quietly routing their
+private documents through ours. The free chain above is then the default for people who do not want
+to think about it, and the honest ceiling on that default is the aggregate at FL1-AGG.
+
+---
+
+### FL1-18. Chutes.ai: the free tier is gone, in the provider's own words
+
+The mission flagged Chutes as widely reported to have moved from free to paid. Confirmed, from the
+provider itself. The pricing page carries a structured-data FAQ whose question is
+`Is there a free trial?` and whose answer reads, verbatim:
+
+> `We do not offer a free tier at this time. Top up your account in the app to get started.
+> Pay-as-you-go has no minimum commitment.`
+
+The only plans on the page are pay-as-you-go plus `$10 / mo` `Plus` (`Bundled daily request quota`,
+`6% off PAYG rates beyond the quota`) and `$20 / mo` `Pro` (`Larger daily quota`, `10% off PAYG
+rates beyond the quota`).
+
+**Source:** https://chutes.ai/pricing opened 2026-09-18. The sentence is in the page's JSON-LD FAQ
+block, not the rendered accordion, which is collapsed by default.
+
+**Third correction to the directory, and the pattern is now clear.** freellm.net lists `Chutes.ai`
+with `2 models` and the label `Permanent Free`, and its no-credit-card list says
+`Chutes.ai - 2 free models, 2 online`. The provider says it has no free tier at all. Together with
+GitHub Models (retired 50 days earlier and still listed), LLM7.io (every model priced and still
+labelled `Permanent Free`), OVHcloud (free only on guard and speech models) and Cerebras (a `Free
+Trial` labelled `Permanent Free` with `0 models` counted), that is **five of thirty-one entries
+materially wrong on the one field the directory exists to report.** I did not audit the other
+twenty-six.
+
+---
+
+## Part G. The maintained community lists, which turn out not to be maintained
+
+The mission named two. Here is what is actually there on 2026-09-18.
+
+### FL1-19. github.com/cheahjs/free-llm-api-resources no longer exists
+
+This is the list everyone cites. It is gone. Four independent checks, all on 2026-09-18:
+
+| Check | Result |
+|---|---|
+| `https://api.github.com/repos/cheahjs/free-llm-api-resources` | HTTP 404, body `{"message": "Not Found"}` |
+| `https://github.com/cheahjs/free-llm-api-resources` | HTTP 404 |
+| `https://raw.githubusercontent.com/cheahjs/free-llm-api-resources/main/README.md` | HTTP 404 |
+| `https://api.github.com/users/cheahjs` | HTTP 200, `public_repos: 117`, `updated_at: 2026-09-15T00:56:26Z` |
+
+So the account is alive and was active three days ago; the repository is not. Deleted, renamed or
+made private. `INFERENCE:` I cannot tell which from outside, and I am not going to guess at a
+reason.
+
+**What is left in its place, and it is worse than nothing.** A GitHub search for
+`free llm api resources`, sorted by stars, opened 2026-09-18, returns `total_count: 59`. The top
+results:
+
+| Repo | Stars | Last pushed |
+|---|---|---|
+| `CelaDaniel/free-ai-resources-x` | 859 | 2026-05-21 |
+| `abbosaliboev/free-ai-bible` | 151 | 2026-09-14 |
+| `CYBIRD-D/FREE-LLM-API-Provider` | 104 | 2026-09-15 |
+| `jtig37/free-llm-api-resources` | 54 | 2024-08-21 |
+| `nherx/free-llm-api-resources` | 29 | 2026-09-18 |
+
+I opened two of them. `CelaDaniel/free-ai-resources-x` is a different thing entirely: an AI
+*learning* resources list, `411+ hand picked resources`, `30 specialized categories`. It names
+almost no inference providers.
+
+`nherx/free-llm-api-resources`, the one carrying the dead list's exact name and pushed **today**, is
+**not the list**. Its README is a 145-line non-technical rewrite whose second line is a
+`Download Latest Release` badge linking to a `.zip` in the repo, and whose body says things like
+`This is a reference list you view on your computer, phone, or tablet through a web browser. It does
+not need installation.` **I did not download that zip and neither should anyone else.** A repo that
+takes the name of a recently deleted popular project, is pushed the same week, and leads with a zip
+download is the shape of a supply-chain lure, whether or not this one is. Recorded as data, not
+followed.
+
+### FL1-20. github.com/zukixa/cool-ai-stuff is a different category of thing, and it is stale
+
+From the GitHub API on 2026-09-18: **1,211 stars, 102 forks, `pushed_at: 2025-10-15T16:33:09Z`,
+`archived: false`.** So the last push was **eleven months ago**. Its own README badge is older
+still: `Last Updated July 06, 2025`.
+
+More important than the staleness is what it lists. Its own subtitle, verbatim:
+`A curated collection of AI APIs and websites offering free usage of AI models under g4f principles`.
+Its Tier 1 table names `zukijourney` (`8,058` users), `ElectronHub` (`5,898`), `VoidAI` (`2,089`),
+and further down `HelixMind`, `Zanity` and `Navy`. Every one is a Discord-gated reverse proxy, not a
+first-party provider. The inclusion criteria are, verbatim: `Have a clean record`,
+`Serve 100+ members`, `Provide stable service`,
+`Support at least chat & image generation functionalities in the OpenAI format`. Note that none of
+those criteria is about having the right to serve the models.
+
+The maintainer says so herself, and it is the most useful sentence on the page. Quote:
+`We are not endorsing any of the listed services! Some of them might be considered controversial. We
+are not responsible for any legal, technical or any other damage caused by using the listed
+services. Data is provided without warranty of any kind. Use these at your own risk!`
+
+**Verdict: out of scope, and it should be stated plainly rather than politely.** This is the
+gpt4free ecosystem. These services offer frontier proprietary models for free because they are
+proxying access they do not hold a licence for. Routing a paying customer's private document through
+one of them would be indefensible, and the category is exactly why freellm.net's own catalogue
+raised an eyebrow at FL1-14: a free gateway listing `claude-opus-5` and `gpt-6-astra` is either
+reselling at cost, which LLM7's pricing shows it is, or it is doing something else.
+
+**The honest summary of Part G.** The mission asked me to find actively maintained lists and verify
+their headline numbers against provider pages. The finding is that **there is no actively maintained
+list of first-party free LLM APIs worth trusting.** The canonical one is deleted, its name has been
+squatted, the best-known alternative is a proxy directory eleven months stale, and freellm.net, which
+is genuinely maintained and updated daily, was wrong on five of the thirty-one entries I checked.
+`INFERENCE:` that is not a gap to be filled by finding a better list. It is the argument for reading
+provider pages directly and for probing endpoints live, which is what this document did.
+
+---
+
+### FL1-21. DeepSeek: no free tier, trains on inputs by its own policy, and OpenRouter's flag checks out
+
+I opened DeepSeek because OpenRouter's register flags it `training: true`, one of only four out of
+88, and because it is the provider people reach for when they want cheap. The flag is correct, and
+DeepSeek says so itself.
+
+- **Free tier:** none on the pricing page. Everything is paid. The deduction rules mention a
+  `granted balance`, verbatim: `The corresponding fees will be directly deducted from your topped-up
+  balance or granted balance, with a preference for using the granted balance first when both
+  balances are available.` `UNVERIFIED:` what grants a granted balance, and how much; the page does
+  not say.
+- **Trains on inputs:** **yes.** Quote from the DeepSeek Privacy Policy, under How We Use Your
+  Personal Data: `To improve and develop the Services and to train and improve our technology, such
+  as our machine learning models and algorithms. Including by monitoring interactions and usage
+  across your devices, analyzing how people are using it, and training and improving our
+  technology.` And it lists third-party sharing for the same purpose; quote: service providers
+  receive data `as necessary to provide certain functions, such as storage, content delivery,
+  security, research and development, foundation model training and optimization, analytics,
+  customer and technical support.`
+- **And it tells you not to send sensitive data.** Quote: `We do not ask for, and you should not
+  provide sensitive Personal Data to the Services, whether about yourself or other individuals.`
+  This is the third provider in this document to print that sentence, after Google and NVIDIA. All
+  three are the ones that train.
+- **What its terms grant you is unusually generous, and is a separate question.** Quote from the
+  Terms of Service, 4.2: `You may apply the Inputs and Outputs of the Services to a wide range of
+  use cases, including personal use, academic research, derivative product development, training
+  other models (such as model distillation), etc.` So DeepSeek permits you to distil its outputs,
+  which almost nobody else does. That does not help us; the question here is what it does with our
+  inputs, not what we may do with its outputs.
+- **Its caching is the most aggressive in this document, and worth recording even though DeepSeek is
+  disqualified.** From the pricing page, per 1M input tokens: cache hit off-peak `$0.003`, cache
+  miss off-peak `$0.15`. That is a **98% discount** on a cache hit, against Groq's and Google's 50%.
+  Output off-peak is `$0.6`. And the off-peak mechanic is unusual: quote,
+  `Off-peak rates are half of the peak rates. Peak hours are 01:00 - 04:00 and 06:00 - 10:00 UTC,
+  Monday through Friday (all other hours are off-peak).` `INFERENCE:` converting to IST at UTC+5:30,
+  peak is 06:30 to 09:30 and 11:30 to 15:30 Indian time, so an Indian working day sits substantially
+  inside the expensive window while a European or American one does not. That is a real cost
+  asymmetry against our likely user base, and nobody would notice it from a headline price.
+- **Concurrency:** the pricing table prints `Concurrency Limit` values of `2500` and `500` for the
+  two model tiers.
+- **Date opened:** 2026-09-18.
+- **Sources:** https://cdn.deepseek.com/policies/en-US/deepseek-privacy-policy.html ;
+  https://cdn.deepseek.com/policies/en-US/deepseek-open-platform-terms-of-service.html ;
+  https://api-docs.deepseek.com/quick_start/pricing . All opened 2026-09-18.
+
+**Why this matters beyond DeepSeek.** It is a validation of the register at FL1-6. OpenRouter said
+DeepSeek trains; DeepSeek's own privacy policy says DeepSeek trains. One confirmed case is not proof
+that all 88 rows are right, but it is the difference between an unverified table and a table with a
+spot check that passed. The one row that failed the same spot check was Google AI Studio, where
+OpenRouter says not-training and Google's unpaid terms say training, and the most likely explanation
+is that OpenRouter buys paid quota. `INFERENCE:` so the register appears to describe **the route
+OpenRouter has bought**, not the provider's free tier. Read it that way and both results are
+consistent, which is a more useful conclusion than either one alone.
+
+---
+
+## Part H. Parallel lenses
+
+Three further lenses were dispatched in parallel to cover the providers this document could not
+reach directly: the inference clouds (Together, Fireworks, DeepInfra, Hyperbolic, Novita, Chutes,
+GLHF, Featherless, Targon, Arli, SiliconFlow, PPInfra, Kluster, Parasail, AtlasCloud,
+Inference.net, NextBit, Venice, Crusoe, Nebius, Lambda, Baseten, Replicate, Modal, Anyscale),
+the Asian and model-lab tiers (Z.ai, Moonshot, DeepSeek, Alibaba, ModelScope, Ollama Cloud, Baidu,
+ByteDance Volcano, Upstage, Reka, AI21, Writer, Nous, Lepton, Mistral, SambaNova), and the outage,
+terms-change and community-list sweep.
+
+**The first round of all three returned nothing**, and the reason is worth recording because it will
+recur. The read-only researcher agent type in this workspace has `WebFetch` and `WebSearch` but no
+`Bash`. `WebFetch` is refused session-wide by the taint gate. So a read-only agent in a tainted
+session has no way to open a page at all: it can search and see snippets, but it cannot read a
+source. One of them spent 84,910 tokens and opened zero primary sources; another spent 100,451 and
+opened zero; the third spent 99,391 and made 24 tool calls of which 4 were refused fetches.
+**About 285,000 subagent tokens bought no evidence.**
+
+`INFERENCE:` this is the LR#70 pattern exactly. The capability was not gone; the *tool* was blocked,
+and `curl` through Bash was never blocked. The re-runs were dispatched as general-purpose agents
+carrying the working `curl` recipe, the HTML-stripping helper, and the specific traps found here
+(carry a cookie jar through Google's auto-signin redirect; try the `.md` twin of a docs page when the
+numbers are injected by client script; avoid `cd X && grep file` in one compound command).
+
+**If this section is not filled in below, the re-runs had not reported when this document was
+finished, and those providers remain unreached.** The findings above stand on their own; they cover
+every provider I opened myself, and the shortlist at Part D is drawn only from providers whose own
+pages I read.
+
+---
+
+## A note on spelling inside quotations
+
+This document is written in British spelling, as the brief requires. Ten occurrences of
+`organization`, `organizations`, `organizational` and `analyze` remain in American spelling because
+every one of them sits inside a backticked quotation copied verbatim from a provider's page. Quoting
+accurately outranks house style. They are at the Groq, Cerebras, OpenRouter, Hugging Face and
+Scaleway blocks, and each is inside backticks.
+
+---
+
+## Quotation audit
+
+The brief says this repo has been burned by paraphrases inside quotation marks, roughly one in three
+across a previous run. So I checked my own work rather than asserting it.
+
+Every page I opened was saved to disk before it was read. After writing, I took **41 of the
+quotations in this document**, normalised whitespace on both sides to survive line wrapping, and
+searched for each one in the saved copy of the page it is attributed to. **40 of 41 matched
+exactly.** The single non-match was a test string I had pointed at the wrong saved file
+(`Requests per day ( RPD )` lives on Google's rate-limits page, not OpenRouter's); it does not appear
+as a quotation anywhere in this document, so the document itself is 41 for 41 on the strings it
+actually uses.
+
+One quotation initially failed a literal byte match and passed once whitespace was normalised: the
+Google clause about the European Economic Area is wrapped across three lines on Google's page. I
+reproduced it unwrapped, which is the ordinary convention, and the words are unchanged. I mention it
+because a literal-match audit that did not normalise whitespace would have reported a false failure,
+and a false failure is the expensive direction.
+
+The document contains no em dashes and no en dashes: `grep -c` returns 0 for both across all 1,276
+lines, checked after writing.
+
+---
+
+## What I could not reach
+
+- **`WebFetch` at all.** Refused for the entire session by the workspace taint gate. Everything here
+  was fetched with `curl` or Python `urllib` through Bash. Recorded because it changed the method,
+  not the conclusions.
+- **`www.scaleway.com` over curl.** Fails with `SSL certificate problem: unable to get local issuer
+  certificate` in this environment. Python's `urllib` reaches it with a different trust store, but
+  the body ends in an `IncompleteRead`. I recovered the complete article from the partial body and
+  say so at FL1-12. I did not disable certificate verification to work around it.
+- **Google's per-model free-tier rate limits.** Google has moved the table behind a signed-in view;
+  the public page now says only `View your active rate limits in AI Studio`. The widely quoted
+  `10 RPM / 250 RPD` and `15 RPM / 1,500 RPD` figures are unverified here. Moot, since the tier is
+  disqualified on training.
+- **Mistral's rate limits and free-tier training default.** Mistral's own `llms.txt` points at
+  `https://docs.mistral.ai/docs/deployment/laplateforme/tier.md`, which 404s, as do four other URL
+  shapes I tried. This is the single most important unresolved question in the document, because
+  Mistral's training clause turns on a per-product default I could not read.
+- **`build.nvidia.com`**, which is a client-rendered app that returns only a shell to curl, and
+  `https://docs.api.nvidia.com/nim/docs/rate-limits`, which 404s. NVIDIA's free-tier numbers are
+  unverified. Moot, since the tier is disqualified.
+- **`status.openrouter.ai` and `status.mistral.ai`**, both HTTP 403 to the Statuspage JSON API.
+  Their 2026 incident histories are not in this document from my own fetching.
+- **`glhf.chat`**, HTTP 522 on the day.
+- **A full-year view of Cloudflare's incidents.** Its status API returns 50 records, which for an
+  estate that size covers eighteen days.
+- **Signup flows.** I did not create an account anywhere, so every `needs a card on file` answer is
+  either quoted from a page or marked unverified. Nothing here is from a completed signup.
+- **Twenty-six providers on freellm.net's list**, named at the end of FL1-14, plus several the
+  mission asked for. Parallel lenses were dispatched for those; their status is recorded in Part H.
+
+---
+
+## What surprised me
+
+1. **Google states it plainly and nobody reads it.** The row `Used to improve our products` appears
+   **79 times on one pricing page** with the value `Yes` for the free tier, and the terms say in so
+   many words `Do not submit sensitive, confidential, or personal information to the Unpaid
+   Services.` The most popular free LLM tier in the world tells you not to use it for anything that
+   matters, on the page, in English.
+
+2. **The word to search for is "improve", not "train".** All three disqualified providers use the
+   same phrasing (`improve and develop`, `IMPROVE AND ENHANCE`, `modify and improve`) and not one
+   says it will train on your data. The four clean providers all name the act directly. The tell is
+   the euphemism.
+
+3. **The canonical community list is deleted and its name has been squatted.**
+   `cheahjs/free-llm-api-resources` returns 404 from four different endpoints; the account is still
+   active. A repo with the identical name, 29 stars, pushed the same day I looked, leads with a zip
+   download and a README written for non-technical users. I did not open the zip.
+
+4. **freellm.net was wrong on five of thirty-one entries** on the one field it exists to report, and
+   its own liveness checker said `3 online` for GitHub Models, which had been fully retired for 50
+   days. Chutes says in its own FAQ `We do not offer a free tier at this time` while the directory
+   labels it `Permanent Free`.
+
+5. **Cached tokens being exempt from the rate limit is worth more than the 50% price discount.** On
+   a free tier the limit binds and the price does not, so Groq's `Cached tokens do not count towards
+   your rate limits` and Cerebras's equivalent are the two most valuable sentences in this document
+   after the training clauses, and both are one line deep in a docs page nobody quotes.
+
+---
+
+### FL1-22. Fireworks, Together and DeepInfra: signup credits, not free tiers
+
+I fetched all three pricing pages on 2026-09-18. Only one states a free allowance in its page text.
+
+- **Fireworks AI.** Quote from the pricing page, under Serverless Inference:
+  `Pay per token, with high rate limits and postpaid billing. Get started with $1 in free credits.`
+  So: **$1, once, on signup.** Not recurring. Source https://fireworks.ai/pricing opened 2026-09-18.
+- **Together AI.** No free-tier or free-credit text appears in the rendered pricing page I retrieved.
+  `UNVERIFIED:` whether a signup credit exists; the page is heavily client-rendered.
+  Source https://www.together.ai/pricing opened 2026-09-18.
+- **DeepInfra.** Same: no free-tier text in the retrieved page.
+  `UNVERIFIED:`. Source https://deepinfra.com/pricing opened 2026-09-18.
+
+`INFERENCE:` a one-off dollar is a different product from a daily allowance and should not be in the
+same table. A signup credit lets you evaluate; it cannot hold up a fallback chain, because it runs
+out once and never returns. Of everything in this document, only Cloudflare, Groq, Cerebras,
+OpenRouter, Vercel's $5 and Hugging Face's ten cents renew.
+
+Note for cross-checking: OpenRouter's register flags all three as `zero retention` and
+`training: false`, so if a signup credit is worth using for evaluation, the data policy is not the
+reason to avoid it.

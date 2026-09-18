@@ -1167,7 +1167,7 @@ Groq | gpt-oss-120b, gpt-oss-20b, qwen3.8-27b, compound | 30 requests a minute, 
 Cloudflare Workers AI | Any non-gated model, qwen3-30b among them | 10,000 neurons a day, 300 requests a minute | No: "Cloudflare does not use your Customer Content to (1) train any AI models made available on Workers AI or (2) improve any Cloudflare or third-party services" | Yes
 Cerebras | gpt-oss-120b, qwen-3.8-27b | A trial: "$5 in free credits after adding a verified payment method. These credits expire 30 days after they're granted"; 5 requests a minute, 1,000,000 tokens a day | No | While the trial lasts (F005)
 SambaNova | DeepSeek-V3.1, Llama 3.3 70B, gpt-oss-120b | 20 requests a day per model | No | Yes, production models only
-OpenRouter free endpoints | 24 of 444 models at zero, served by other providers | 20 a minute, 50 a day | "Each provider on OpenRouter has its own data handling policies"; the Nvidia-served endpoints' terms were not opened | No, until a provider's terms are opened and quoted (F006)
+OpenRouter free endpoints | 21 ids ending `:free`, plus 3 more at zero, counted from its own `/api/v1/models` on 18 September | 50 requests a day, and **1,000 a day once any credit has been bought**, minimum purchase $5 | Logging is off by default: "Unless explicitly opted in to prompt logging, we do not store your Inputs after categorizing them". And it enforces our own rule for us: "If you opt out of training in your account settings, OpenRouter will not route to providers that train" | **Yes. F006's condition is met**, the terms were opened and quoted on 18 September `[O]`. The chain's shape is still founder question 3
 Gemini API | Ten Flash and Pro models | Per-model numbers not public | Yes: "Google uses the content you submit to the Services and any generated responses to provide, improve, and develop Google products", and "Do not submit sensitive, confidential, or personal information to the Unpaid Services" | No
 Mistral Free | $10 a month of credit | In the admin panel only | The free plan's training row is ticked with no opt-out | No
 GitHub Models | none | "fully retired" on 30 July 2026 | n/a | No
@@ -1181,7 +1181,19 @@ A document | Cloudflare first, then Groq
 A blueprint | Cerebras while the trial lasts, then Cloudflare, then paid Cloudflare neurons
 On the desktop | A local model for edits, with nothing leaving the machine
 
-**Never in the chain.** Gemini's unpaid tier, Mistral Free, any OpenRouter endpoint, and anything whose terms were not opened. The founders confirm the chain's shape as question 3.
+**Never in the chain, and the list grew on 18 September** `[O]`. Gemini's unpaid tier, Mistral Free, and anything whose terms were not opened. **Newly disqualified, each in its own words, for training on inputs: Cohere's trial keys, NVIDIA NIM and DeepSeek.** None of the three was in the earlier chain, and recording them stops somebody reaching for an obvious free provider later. GitHub Models was retired on 30 July 2026.
+
+**OpenRouter comes off that list.** It is not a provider; it routes to 88 of them, and it gives us three things nothing else does.
+
+- A **machine-readable register of which providers train on prompts**, so our own policy becomes a query rather than a reading exercise.
+- A **routing switch that enforces the policy**, quoted in the table above, with a separate setting for free models.
+- **The only free budget a router can read before it spends it**, through `free_model_daily_requests` on `GET /api/v1/key`. Every other provider has to be discovered exhausted by failing a call.
+
+That last one is the answer to the hardest part of the routing problem, so it is worth the $5.
+
+**The whole free chain, aggregated** `[O]`. Roughly **13,000 requests and 9.7 million tokens a day** for a one-off $10. **But only about 355 requests a minute**, and every provider pools its limit across the whole account. The minute rate is the real ceiling, not the token count, and the pooling is why section 14's abuse controls are not optional: one abusive account drains the pool for everybody.
+
+The founders confirm the chain's shape as question 3.
 
 **What the free pools carry, as one shared budget each, SIMULATED from the caps** `[O]` (F007).
 
