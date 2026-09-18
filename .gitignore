@@ -58,3 +58,6 @@ decisions/v2-preview.html
 # The PDF and the PNGs are the record; these two are rebuilt from source.
 docs/**/*.print.html
 docs/mvp0/screens/*.html
+
+# graphify's rendered viewer is large and rebuilds from graph.json
+docs/pack/graphify-out/graph.html

@@ -22,10 +22,10 @@ what breaks?*, *is this thing actually built?*, and *what has no test?*
 **What is authoritative and what is not.**
 
 File | Owns | This file
-`10-FEATURE-REGISTER.md` | Every `F` id, its plan, its screens, its acceptance ids and its status | **Reads them. Never redefines them**
-`11-SCREEN-INDEX.md` and `12-screens/` | Every `S` id and its specification | **Reads them**
-`19-ACCEPTANCE-CRITERIA.md` | Every `A` id | **Reads them**
-`26-ENGINE-REFUSAL-CATALOGUE.md` | Every `nf-` id | **Reads them**
+`10-FEATURE-REGISTER.md` | Every `F` id, its plan, its screens, its acceptance ids and its status | **Reads them. Never redefines them**.
+`11-SCREEN-INDEX.md` and `12-screens/` | Every `S` id and its specification | **Reads them**.
+`19-ACCEPTANCE-CRITERIA.md` | Every `A` id | **Reads them**.
+`26-ENGINE-REFUSAL-CATALOGUE.md` | Every `nf-` id | **Reads them**.
 
 **If a row here disagrees with one of those, they are right and this file is stale.**
 
@@ -67,83 +67,83 @@ section 6.
 ### 2.1 Getting in
 
 S | Features | Route | Module | Port | Adapter | Storage | Spec | Acceptance | Test | Status
-`S01` | `F101` to `F104`, 4 | `/login`, `/privacy`, `/terms`, `/pricing`, `/refunds` | `auth` | `AuthGateway` | `firebase-auth-gateway.ts`, `auth-options.ts` | Firebase Auth | `12-screens/S01.md` | `A001` to `A007` | `auth/firebase-auth-gateway.test.ts`, `auth/auth-options.test.ts`, `auth/allowlist.test.ts` | **building**
-`S02` | 3 | `/` | `app-shell`, `vault` | `VaultReader` | `vault-reader.ts` | GitHub | `12-screens/S02.md` | `A008`, `A200` | none | planned
-`S03` | 2 | `/` | `app-shell`, `vault` | `VaultReader` | `vault-reader.ts` | GitHub | `12-screens/S03.md` | none yet | `vault/get-snapshot.test.ts` | planned
+`S01` | `F101` to `F104`, 4 | `/login`, `/privacy`, `/terms`, `/pricing`, `/refunds` | `auth` | `AuthGateway` | `firebase-auth-gateway.ts`, `auth-options.ts` | Firebase Auth | `12-screens/S01.md` | `A001` to `A007` | `auth/firebase-auth-gateway.test.ts`, `auth/auth-options.test.ts`, `auth/allowlist.test.ts` | **building**.
+`S02` | 3 | `/` | `app-shell`, `vault` | `VaultReader` | `vault-reader.ts` | GitHub | `12-screens/S02.md` | `A008`, `A200` | none | planned.
+`S03` | 2 | `/` | `app-shell`, `vault` | `VaultReader` | `vault-reader.ts` | GitHub | `12-screens/S03.md` | none yet | `vault/get-snapshot.test.ts` | planned.
 
 ### 2.2 Writing
 
 S | Features | Route | Module | Port | Adapter | Storage | Spec | Acceptance | Test | Status
-`S04` | 34 | `/`, `api/vault/*` (14 routes) | `editor`, `vault`, `app-shell`, `graph` | `VaultReader`, `NoteParserFn` | `vault-reader.ts`, `markdown-parser.ts`, `search-index.ts`, `snapshot-cache.ts` | GitHub | `12-screens/S04.md` | `A030` to `A040`, `A203`, `A204` | `editor/*` (7), `vault/*` (16), `graph/graph-data.test.ts` | **partly shipped**
-`S05` | 5 | `/` | `editor`, `preview` | `NoteParserFn` | `markdown-parser.ts` | GitHub | `12-screens/S05.md` | `A041` to `A043` | `preview/frontmatter.test.ts`, `editor/toolbar-transforms.test.ts` | planned
-`S06` | 5 | `api/ai/complete`, `api/ai/generate-doc`, `api/ai/refine` | `ai`, `ai-tools` | `LlmClient` | `gateway-client.ts`, `provider-race.ts` | none, the model is remote | `12-screens/S06.md` | see register | `ai/generate-document.test.ts` | **building**
-`S07` | 6 | `api/ai/refine` | `ai`, `editor` | `LlmClient` | `gateway-client.ts` | none | `12-screens/S07.md` | see register | `editor/ai-suggestion.test.ts` | **building**
-`S08` | 9 | none | `preview` | none | none | GitHub | `12-screens/S08.md` | see register | `preview/callout.test.ts`, `preview/embeds.test.ts` | planned
-`S09` | 5 | none | none | none | none | none | `12-screens/S09.md` | see register | none | **deferred 18 Sep**
-`S10` | 10 | `api/ai/link-doctor` | `ai`, `graph` | `LlmClient` | `gateway-client.ts` | GitHub | `12-screens/S10.md` | see register | `graph/graph-data.test.ts` | planned
-`S11` | 3 | none | none | none | none | GitHub | `12-screens/S11.md` | see register | none | planned
+`S04` | 34 | `/`, `api/vault/*` (14 routes) | `editor`, `vault`, `app-shell`, `graph` | `VaultReader`, `NoteParserFn` | `vault-reader.ts`, `markdown-parser.ts`, `search-index.ts`, `snapshot-cache.ts` | GitHub | `12-screens/S04.md` | `A030` to `A040`, `A203`, `A204` | `editor/*` (7), `vault/*` (16), `graph/graph-data.test.ts` | **partly shipped**.
+`S05` | 5 | `/` | `editor`, `preview` | `NoteParserFn` | `markdown-parser.ts` | GitHub | `12-screens/S05.md` | `A041` to `A043` | `preview/frontmatter.test.ts`, `editor/toolbar-transforms.test.ts` | planned.
+`S06` | 5 | `api/ai/complete`, `api/ai/generate-doc`, `api/ai/refine` | `ai`, `ai-tools` | `LlmClient` | `gateway-client.ts`, `provider-race.ts` | none, the model is remote | `12-screens/S06.md` | see register | `ai/generate-document.test.ts` | **building**.
+`S07` | 6 | `api/ai/refine` | `ai`, `editor` | `LlmClient` | `gateway-client.ts` | none | `12-screens/S07.md` | see register | `editor/ai-suggestion.test.ts` | **building**.
+`S08` | 9 | none | `preview` | none | none | GitHub | `12-screens/S08.md` | see register | `preview/callout.test.ts`, `preview/embeds.test.ts` | planned.
+`S09` | 5 | none | none | none | none | none | `12-screens/S09.md` | see register | none | **deferred 18 Sep**.
+`S10` | 10 | `api/ai/link-doctor` | `ai`, `graph` | `LlmClient` | `gateway-client.ts` | GitHub | `12-screens/S10.md` | see register | `graph/graph-data.test.ts` | planned.
+`S11` | 3 | none | none | none | none | GitHub | `12-screens/S11.md` | see register | none | planned.
 
 ### 2.3 Ideas
 
 S | Features | Route | Module | Port | Adapter | Storage | Spec | Acceptance | Test | Status
-`S12` | 7 | none | none | none | none | none | `12-screens/S12.md` | see register | none | planned
-`S13` | 9 | none | none | `LlmClient` when built | none | none | `12-screens/S13.md` | see register | none | planned
-`S14` | 6 | none | none | `LlmClient` when built | none | none | `12-screens/S14.md` | see register | none | planned
-`S15` | 6 | none | none | none | none | none | `12-screens/S15.md` | `A201` to `A206` | none | planned
-`S16` | 2 | none | `graph` | none | none | GitHub | `12-screens/S16.md` | see register | `graph/graph-data.test.ts` | planned
-`S34` | 2 | none | none | none | none | none | `12-screens/S34.md` | see register | none | planned
+`S12` | 7 | none | none | none | none | none | `12-screens/S12.md` | see register | none | planned.
+`S13` | 9 | none | none | `LlmClient` when built | none | none | `12-screens/S13.md` | see register | none | planned.
+`S14` | 6 | none | none | `LlmClient` when built | none | none | `12-screens/S14.md` | see register | none | planned.
+`S15` | 6 | none | none | none | none | none | `12-screens/S15.md` | `A201` to `A206` | none | planned.
+`S16` | 2 | none | `graph` | none | none | GitHub | `12-screens/S16.md` | see register | `graph/graph-data.test.ts` | planned.
+`S34` | 2 | none | none | none | none | none | `12-screens/S34.md` | see register | none | planned.
 
 ### 2.4 Sharing
 
 S | Features | Route | Module | Port | Adapter | Storage | Spec | Acceptance | Test | Status
-`S17` | 8 | `api/share` | `share` | `ShareWriter`, `ShareSnapshotPort` | `share-writer.ts`, `share-snapshot-port.ts` | GitHub | `12-screens/S17.md` | see register | `share/*` (8), `api/share-route.test.ts` | **partly shipped**
-`S18` | 9 | `/p/[slug]`, `/[slug]`, `api/vault/raw/[...path]` | `share`, `preview` | `ShareSnapshotPort` | `share-snapshot-port.ts` | GitHub, ISR at 60s | `12-screens/S18.md` | `A205`, `A206` | `share/resolve-public-note.test.ts`, `vault/raw-content-type.test.ts`, `vault/snapshot-public-slug.test.ts` | **partly shipped**
-`S19` | 2 | none | none | none | none | Durable Objects, planned | `12-screens/S19.md` | see register | none | planned
-`S20` | 8 | none | none | none | none | none | `12-screens/S20.md` | see register | none | **planned. This is the product**
-`S21` | 5 | `api/vault/history`, `api/vault/version`, `api/vault/restore` | `vault` | `VaultReader` | `vault-reader.ts` | GitHub commits | `12-screens/S21.md` | see register | `vault/get-history.test.ts` | **partly shipped**
-`S30` | 1 | none | none | none | none | none | `12-screens/S30.md` | see register | none | planned
+`S17` | 8 | `api/share` | `share` | `ShareWriter`, `ShareSnapshotPort` | `share-writer.ts`, `share-snapshot-port.ts` | GitHub | `12-screens/S17.md` | see register | `share/*` (8), `api/share-route.test.ts` | **partly shipped**.
+`S18` | 9 | `/p/[slug]`, `/[slug]`, `api/vault/raw/[...path]` | `share`, `preview` | `ShareSnapshotPort` | `share-snapshot-port.ts` | GitHub, ISR at 60s | `12-screens/S18.md` | `A205`, `A206` | `share/resolve-public-note.test.ts`, `vault/raw-content-type.test.ts`, `vault/snapshot-public-slug.test.ts` | **partly shipped**.
+`S19` | 2 | none | none | none | none | Durable Objects, planned | `12-screens/S19.md` | see register | none | planned.
+`S20` | 8 | none | none | none | none | none | `12-screens/S20.md` | see register | none | **planned. This is the product**.
+`S21` | 5 | `api/vault/history`, `api/vault/version`, `api/vault/restore` | `vault` | `VaultReader` | `vault-reader.ts` | GitHub commits | `12-screens/S21.md` | see register | `vault/get-history.test.ts` | **partly shipped**.
+`S30` | 1 | none | none | none | none | none | `12-screens/S30.md` | see register | none | planned.
 
 ### 2.5 In and out
 
 S | Features | Route | Module | Port | Adapter | Storage | Spec | Acceptance | Test | Status
-`S22` | 11 | `api/vault/upload`, `api/vault/create`, `api/vault/folder` | `vault`, `repository` | `RepositoryWriter` | `github-writer.ts` | GitHub | `12-screens/S22.md` | `A120` to `A123` | `repository/upload-attachment.test.ts`, `api/folder-route.test.ts` | **building**
-`S23` | 5 | `api/commit` | `repository` | `RepositoryWriter` | `github-writer.ts` | GitHub | `12-screens/S23.md` | see register | `repository/commit-changes.test.ts`, `repository/github-writer.test.ts`, `shared/github-client.test.ts` | **partly shipped**
+`S22` | 11 | `api/vault/upload`, `api/vault/create`, `api/vault/folder` | `vault`, `repository` | `RepositoryWriter` | `github-writer.ts` | GitHub | `12-screens/S22.md` | `A120` to `A123` | `repository/upload-attachment.test.ts`, `api/folder-route.test.ts` | **building**.
+`S23` | 5 | `api/commit` | `repository` | `RepositoryWriter` | `github-writer.ts` | GitHub | `12-screens/S23.md` | see register | `repository/commit-changes.test.ts`, `repository/github-writer.test.ts`, `shared/github-client.test.ts` | **partly shipped**.
 
 ### 2.6 Everywhere
 
 S | Features | Route | Module | Port | Adapter | Storage | Spec | Acceptance | Test | Status
-`S24` | 4 | none | `drafts` | none | `draft-store.ts` | IndexedDB, `sgnk-md` keys | `12-screens/S24.md` | see register | `drafts/draft-store.test.ts` | **partly shipped**
-`S25` | 5 | none, it is a shell | `src-tauri/` | none | Tauri v2 | the device | `12-screens/S25.md` | see register | none | **partly shipped**
-`S26` | 2 | none | none | none | none | none | `12-screens/S26.md` | see register | none | planned
-`S27` | 1 | `/` | `app-shell` | none | none | the account | `12-screens/S27.md` | see register | none | **shipped**
+`S24` | 4 | none | `drafts` | none | `draft-store.ts` | IndexedDB, `sgnk-md` keys | `12-screens/S24.md` | see register | `drafts/draft-store.test.ts` | **partly shipped**.
+`S25` | 5 | none, it is a shell | `src-tauri/` | none | Tauri v2 | the device | `12-screens/S25.md` | see register | none | **partly shipped**.
+`S26` | 2 | none | none | none | none | none | `12-screens/S26.md` | see register | none | planned.
+`S27` | 1 | `/` | `app-shell` | none | none | the account | `12-screens/S27.md` | see register | none | **shipped**.
 
 ### 2.7 Account and the states
 
 S | Features | Route | Module | Port | Adapter | Storage | Spec | Acceptance | Test | Status
-`S28` | 8 | `/` | `app-shell` | none | none | the account | `12-screens/S28.md` | see register | none | **partly shipped**
-`S29` | 9 | none | none | none | none | none | `12-screens/S29.md` | see register | none | planned
-`S31` | 4 | `api/vault/merge`, `api/share/conflicts` | `repository`, `share` | `RepositoryWriter` | `github-writer.ts` | GitHub | `12-screens/S31.md` | see register | `repository/merge3.test.ts`, `repository/merge-note.test.ts`, `share/list-conflicts.test.ts`, `api/share-conflicts-route.test.ts` | **partly shipped**
-`S32` | 4 | `api/ai/*` | `ai` | `LlmClient` | `provider-race.ts` | none | `12-screens/S32.md` | see register | `ai/provider-race.test.ts` | **building**
-`S33` | 3 | none | none | none | none | the ledger, planned | `12-screens/S33.md` | see register | none | planned
+`S28` | 8 | `/` | `app-shell` | none | none | the account | `12-screens/S28.md` | see register | none | **partly shipped**.
+`S29` | 9 | none | none | none | none | none | `12-screens/S29.md` | see register | none | planned.
+`S31` | 4 | `api/vault/merge`, `api/share/conflicts` | `repository`, `share` | `RepositoryWriter` | `github-writer.ts` | GitHub | `12-screens/S31.md` | see register | `repository/merge3.test.ts`, `repository/merge-note.test.ts`, `share/list-conflicts.test.ts`, `api/share-conflicts-route.test.ts` | **partly shipped**.
+`S32` | 4 | `api/ai/*` | `ai` | `LlmClient` | `provider-race.ts` | none | `12-screens/S32.md` | see register | `ai/provider-race.test.ts` | **building**.
+`S33` | 3 | none | none | none | none | the ledger, planned | `12-screens/S33.md` | see register | none | planned.
 
 ### 2.8 The configuration panel
 
 S | Features | Route | Module | Port | Adapter | Storage | Spec | Acceptance | Test | Status
-`S35` | 8 | none | none | none | none | Firestore, planned | `12-screens/S35.md` | see register | none | planned
-`S36` | 6 | none | none | none | none | Firestore, planned | `12-screens/S36.md` | see register | none | planned
-`S37` | 4 | none | none | none | none | Firestore, planned | `12-screens/S37.md` | see register | none | planned
-`S38` | 3 | none | none | none | none | Firestore, planned | `12-screens/S38.md` | see register | none | planned
+`S35` | 8 | none | none | none | none | Firestore, planned | `12-screens/S35.md` | see register | none | planned.
+`S36` | 6 | none | none | none | none | Firestore, planned | `12-screens/S36.md` | see register | none | planned.
+`S37` | 4 | none | none | none | none | Firestore, planned | `12-screens/S37.md` | see register | none | planned.
+`S38` | 3 | none | none | none | none | Firestore, planned | `12-screens/S38.md` | see register | none | planned.
 
 ### 2.9 The engine, which no screen owns
 
 The engine is `src/modules/mdmax/` and it is a library. **It is reachable from no route.**
 
 Spec | What it is | Module file | Test | Red proof | Status
-`specs/engine/nf-001-zero-indent-sequence.md` | A column-zero list item in front matter | `frontmatter-prepass.ts` | `mdmax/frontmatter-prepass.test.ts` | **`corpus/foreign/nf-001-red-proof.test.ts`** | **defect open**
-`specs/engine/nf-003-bare-cr-fence.md` | A bare carriage return in a fence | `shape-gate.ts` | `mdmax/shape-gate.test.ts` | **`corpus/foreign/nf-003-red-proof.test.ts`** | **defect open**
-`specs/engine/splice-writer.md` | Splice-only writing | `placement.ts`, `offsets.ts` | `mdmax/placement.test.ts`, `mdmax/offsets.test.ts` | none | specified
-`specs/render/carrier.md` | The callout carrier for prose, the fence for data | `preview/` | `preview/callout.test.ts` | none | specified
-`specs/_schema/spec.schema.json` | The shape every spec file takes | `specs/harness/spec-report.mjs` | `npm run spec` | n/a | **enforced**
+`specs/engine/nf-001-zero-indent-sequence.md` | A column-zero list item in front matter | `frontmatter-prepass.ts` | `mdmax/frontmatter-prepass.test.ts` | **`corpus/foreign/nf-001-red-proof.test.ts`** | **defect open**.
+`specs/engine/nf-003-bare-cr-fence.md` | A bare carriage return in a fence | `shape-gate.ts` | `mdmax/shape-gate.test.ts` | **`corpus/foreign/nf-003-red-proof.test.ts`** | **defect open**.
+`specs/engine/splice-writer.md` | Splice-only writing | `placement.ts`, `offsets.ts` | `mdmax/placement.test.ts`, `mdmax/offsets.test.ts` | none | specified.
+`specs/render/carrier.md` | The callout carrier for prose, the fence for data | `preview/` | `preview/callout.test.ts` | none | specified.
+`specs/_schema/spec.schema.json` | The shape every spec file takes | `specs/harness/spec-report.mjs` | `npm run spec` | n/a | **enforced**.
 
 **The two red proofs are the most valuable rows in this file.** A test on a rare fault proves
 nothing until it fails against the unfixed code, and these two do.
@@ -157,19 +157,19 @@ nothing until it fails against the unfixed code, and these two do.
 Change this module, and these screens change.
 
 Module | Files | Screens it serves
-`vault` | 30 | S02, S03, S04, S16, S21, S22
-`editor` | 22 | S04, S05, S07
-`preview` | 21 | S05, S08, S18
-`app-shell` | 21 | S02, S03, S04, S27, S28
-`share` | 16 | S17, S18, S31
-`auth` | 14 | **S01, and every screen behind it**
-`mdmax` | 13 | **none. The engine is not wired to a screen**
-`repository` | 12 | S22, S23, S31
-`ai` | 11 | S06, S07, S10, S32, and S13 to S15 when built
-`export` | 5 | S18, S28
-`graph` | 3 | S04, S10, S16
-`drafts` | 2 | S24
-`ai-tools` | 2 | S06
+`vault` | 30 | S02, S03, S04, S16, S21, S22.
+`editor` | 22 | S04, S05, S07.
+`preview` | 21 | S05, S08, S18.
+`app-shell` | 21 | S02, S03, S04, S27, S28.
+`share` | 16 | S17, S18, S31.
+`auth` | 14 | **S01, and every screen behind it**.
+`mdmax` | 13 | **none. The engine is not wired to a screen**.
+`repository` | 12 | S22, S23, S31.
+`ai` | 11 | S06, S07, S10, S32, and S13 to S15 when built.
+`export` | 5 | S18, S28.
+`graph` | 3 | S04, S10, S16.
+`drafts` | 2 | S24.
+`ai-tools` | 2 | S06.
 
 **The `mdmax` row is the finding.** The engine is 13 files, 10 test files, and no screen. Wiring
 it is phase B.
@@ -177,13 +177,13 @@ it is phase B.
 ### 3.2 Port to adapter to storage
 
 Port | Module | Adapter | Storage today | Storage in the plan
-`AuthGateway` | `auth` | `firebase-auth-gateway.ts` | Firebase Auth | **unchanged**
-`VaultReader` | `vault` | `vault-reader.ts`, `snapshot-cache.ts` | GitHub | **R2 for bytes, Firestore for records**
-`NoteParserFn` | `vault` | `markdown-parser.ts` | n/a, it is pure | unchanged
-`RepositoryWriter` | `repository` | `github-writer.ts` | GitHub | **stays, as a connection rather than as the store**
-`ShareWriter` | `share` | `share-writer.ts` | GitHub | **Firestore**
-`ShareSnapshotPort` | `share` | `share-snapshot-port.ts` | GitHub, ISR at 60s | **R2 plus Firestore**
-`LlmClient` | `ai` | `gateway-client.ts`, `provider-race.ts` | remote | unchanged
+`AuthGateway` | `auth` | `firebase-auth-gateway.ts` | Firebase Auth | **unchanged**.
+`VaultReader` | `vault` | `vault-reader.ts`, `snapshot-cache.ts` | GitHub | **R2 for bytes, Firestore for records**.
+`NoteParserFn` | `vault` | `markdown-parser.ts` | n/a, it is pure | unchanged.
+`RepositoryWriter` | `repository` | `github-writer.ts` | GitHub | **stays, as a connection rather than as the store**.
+`ShareWriter` | `share` | `share-writer.ts` | GitHub | **Firestore**.
+`ShareSnapshotPort` | `share` | `share-snapshot-port.ts` | GitHub, ISR at 60s | **R2 plus Firestore**.
+`LlmClient` | `ai` | `gateway-client.ts`, `provider-race.ts` | remote | unchanged.
 
 **Five of seven ports change their adapter in phase A.** The ports do not change, which is the
 whole point of having them, and it is the strongest argument that phase A is tractable.
@@ -191,12 +191,12 @@ whole point of having them, and it is the strongest argument that phase A is tra
 ### 3.3 Route to module
 
 Route group | Count | Module
-`api/vault/*` | 14 | `vault`, `repository`
-`api/ai/*` | 6 | `ai`
-`api/share/*` | 2 | `share`
-`api/export/*` | 2 | `export`
-`api/auth/[...nextauth]` | 1 | `auth`
-`api/commit` | 1 | `repository`
+`api/vault/*` | 14 | `vault`, `repository`.
+`api/ai/*` | 6 | `ai`.
+`api/share/*` | 2 | `share`.
+`api/export/*` | 2 | `export`.
+`api/auth/[...nextauth]` | 1 | `auth`.
+`api/commit` | 1 | `repository`.
 Pages | 8 | `app-shell`, `share`, `auth`
 
 **Counted at write time** `[O]`: 26 API routes and 8 pages, from
@@ -252,24 +252,24 @@ Layer | What exists | The gap
 **Presentation** | `editor` 22, `preview` 21, `app-shell` 21 | **No change queue, no review surface, no idea mode, no configuration panel**
 **App** | 8 pages, 26 API routes | **19 of 38 screens have no route at all**
 **Container** | 2 files | Fine. It is the one place that changes when the adapters do
-**Specs** | 5 spec files, 7 harness scripts | **3 engine specs against 26 entries in the refusal catalogue**
-**Tests** | **82 files** | See section 5.1
+**Specs** | 5 spec files, 7 harness scripts | **3 engine spec files against 5 `nf-` ids in the catalogue**
+**Tests** | **81 files** | See section 5.1
 
 ### 5.1 Where the tests are, and where they are not
 
 Area | Test files | Reading
-`mdmax`, the engine | **10** | **The best-covered area in the repository, and it is the part no screen uses**
-`vault` | 16 | Good
-`share` | 8 | Good
-`repository` | 9 | Good
-`preview` | 8 | Good
-`editor` | 7 | Good
-`api` | 4 | Thin against 26 routes
-`ai` | 3 | Thin
-`auth` | 3 | Adequate
-`config` | 2 | Adequate
-`corpus/foreign` | **2** | **The two red proofs**
-`drafts`, `graph`, `export`, `shared`, `app-shell`, `proxy` | 1 each | Thin
+`mdmax`, the engine | **10** | **The best-covered area in the repository, and it is the part no screen uses**.
+`vault` | 17 | Good.
+`share` | 8 | Good.
+`repository` | 9 | Good.
+`preview` | 8 | Good.
+`editor` | 7 | Good.
+`api` | 4 | Thin against 26 routes.
+`ai` | 3 | Thin.
+`auth` | 3 | Adequate.
+`config` | 2 | Adequate.
+`corpus/foreign` | **2** | **The two red proofs**.
+`drafts`, `graph`, `export`, `shared`, `app-shell`, `proxy` | 1 each | Thin.
 **Everything in phases C, D, G and H** | **0** | Nothing exists to test
 
 **The shape of that table is the whole project in one picture.** The engine is tested and unused.
@@ -309,7 +309,7 @@ What | Count | Where
 Register rows whose status cell did not parse as `planned`, `building`, `shipped` or `withdrawn` | **88** | `10-FEATURE-REGISTER.md`
 Register rows naming no screen | **92** | The same
 Features with `none yet` in the acceptance column | **43**, by that file's own section 0 | The same
-Engine refusal specs against catalogue entries | **3 against 26** | `specs/engine/` against `26-ENGINE-REFUSAL-CATALOGUE.md`
+Engine refusal specs on disk against `nf-` ids in the catalogue | **3 against 5** | `specs/engine/` against `26-ENGINE-REFUSAL-CATALOGUE.md`
 
 **These are reported, not fixed.** The registers are owned elsewhere and this file is read-only
 against them.
