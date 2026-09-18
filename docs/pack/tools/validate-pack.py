@@ -149,6 +149,15 @@ for path in files:
             problems.append(f'{rel}: {n} em or en dash(es). Plain hyphens only.')
             break
 
+    # A line citation into a living, section-numbered document is stale the next time
+    # somebody inserts a paragraph above it. That already happened once: the plan was
+    # edited on 18 September and 209 citations moved. Cite the section instead.
+    for living in ('docs/mvp0/PRODUCT-PLAN.md', 'docs/mvp0/PRODUCT-GUIDE.md'):
+        n = len(re.findall(re.escape(living) + r':\d+', text))
+        if n:
+            problems.append(f'{rel}: {n} line citation(s) into {living}. '
+                            f'Cite the section instead: run tools/stabilise-citations.py')
+
     # Citations of the form path/file.md:NNN have to point at a line that exists.
     # A bare filename is allowed as a short form, as long as exactly one file in the
     # repository carries that name. Two matches is an ambiguous citation, which is worse

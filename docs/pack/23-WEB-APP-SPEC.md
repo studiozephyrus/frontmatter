@@ -6,7 +6,7 @@ tier: canonical
 status: living
 updated: 2026-09-18
 owner: sagnik
-verified_against: 6271499
+verified_against: f237ece
 covers: [web-app, page-routes, layouts, state, traps]
 ---
 
@@ -40,7 +40,7 @@ which is the founder's standing rule.
 
 ## 23.2 Every page route
 
-`[O]` `node specs/harness/route-inventory.mjs` at `6271499`.
+`[O]` `node specs/harness/route-inventory.mjs` at `f237ece`.
 
 Route | File | Group | Caching directives | Notes
 `/` | `src/app/(vault)/page.tsx` | `(vault)` | none | The editor. Renders the login screen when there is no session.
@@ -53,7 +53,7 @@ Route | File | Group | Caching directives | Notes
 `/refunds` | `src/app/(public)/refunds/page.tsx` | `(public)` | none | Placeholder.
 
 The four placeholders are due by 15 October 2026 and are listed with their owners in
-`docs/mvp0/PRODUCT-PLAN.md:1601`.
+`docs/mvp0/PRODUCT-PLAN.md` section 23.
 
 The 26 API routes are in `22-API-REFERENCE.md`, which is generated and must not be hand-edited.
 
@@ -83,7 +83,7 @@ Store state | Zustand, in the browser | only if a store persists it | no
 Component state | `useState` in a component | no | no
 Draft state | IndexedDB and `localStorage` | yes | no
 
-`[O]` The Zustand stores at `6271499`, found with
+`[O]` The Zustand stores at `f237ece`, found with
 `grep -rln "zustand" src/`:
 
 Store | File | Persisted as | Storage | Owns
@@ -94,7 +94,7 @@ ghost text | `src/modules/editor/presentation/ghost-text.ts` | not persisted | m
 AI suggestion | `src/modules/editor/presentation/ai-suggestion.ts` | not persisted | memory | The pending AI proposal.
 
 **Those three persistence keys keep the legacy `sgnk-md` prefix and may not be renamed.** Renaming
-one silently orphans a person's local settings (`AGENTS.md:183`). The full list, with the IndexedDB
+one silently orphans a person's local settings (`AGENTS.md:186`). The full list, with the IndexedDB
 store and the dirty index, is in `21-DATA-MODEL.md` section 21.9.
 
 **The one rule that keeps this honest.** The file on disk is the record. Every store above is a
@@ -128,7 +128,7 @@ const dirty = useMemo(() => new Set(tabs.filter((t) => t.dirty).map((t) => t.pat
 ```
 
 **How to check.** `grep -rn "useEditorStore((" src/ --include='*.tsx'` and read every selector body.
-A `new `, a `{` or a `[` after the arrow is the bug. At `6271499` the one `new Set(...)` in the
+A `new `, a `{` or a `[` after the arrow is the bug. At `f237ece` the one `new Set(...)` in the
 editor store is inside `reconcileDirtyFlags` at `src/modules/editor/presentation/editor-store.ts:208`,
 which is an action and not a selector, so it is correct.
 
@@ -172,7 +172,7 @@ after N seconds. They contradict each other.
 
 **What the code actually does**, and it does not match what `AGENTS.md` says:
 
-Route | Directives at `6271499`
+Route | Directives at `f237ece`
 `/[slug]` | `revalidate = 60`, `dynamicParams = true`
 `/p/[slug]` | `revalidate = false`, `dynamicParams = true`, and the body is a `permanentRedirect`
 
@@ -231,7 +231,7 @@ not reproduce locally.
 ### Trap 5. The `PUBLIC_STATIC_RE` allowlist, which lives in two places
 
 **What goes wrong.** You drop a file into `public/`, the browser shows a broken image or a failed
-manifest, and the URL 307s to `/login`. `AGENTS.md:53` records this as having burned the team three
+manifest, and the URL 307s to `/login`. `AGENTS.md:45` records this as having burned the team three
 or more times.
 
 **Why.** `src/proxy.ts` redirects any path that is not public to `/login`. Static assets are
@@ -265,11 +265,11 @@ curl -s -o /dev/null -w "%{http_code}\n" http://localhost:3000/<asset>
 # 200 is correct. 307 means the proxy is redirecting and you broke the rule.
 ```
 
-**And check it against the deployment, not only locally.** `CLAUDE.md:104` records that three real
+**And check it against the deployment, not only locally.** `CLAUDE.md:88` records that three real
 defects in the decisions site were invisible locally. Use `curl -sI`, never `curl -sL`, because a
 login page returns 200 after a redirect.
 
-**What is in `public/` today.** `[O]` 14 entries at `6271499`:
+**What is in `public/` today.** `[O]` 14 entries at `f237ece`:
 
 Entry | Covered by
 `favicon.ico`, `favicon.png`, `mdx-dark.png`, `mdx-light.png`, `sgnkai.png`, `sgnkai-light.png` | the regex, `.ico` and `.png`.
@@ -312,8 +312,8 @@ Everything | `npm run verify`
 ## 23.8 Limits of this file
 
 - **What was not assessed.** Rendering behaviour, bundle size and any of the performance targets in
-  `docs/mvp0/PRODUCT-PLAN.md:1512`. `npm run budget` is still an `echo` with no real budget, which
-  `CLAUDE.md:76` records as a known gap.
+  `docs/mvp0/PRODUCT-PLAN.md` section 21. `npm run budget` is still an `echo` with no real budget, which
+  `CLAUDE.md:56` records as a known gap.
 - **What could not be verified.** Anything that only fails in production: the chromium binary in the
   lambda, and whether the enforced Content Security Policy reaches `/[slug]`. Both are flagged above
   rather than assumed.
@@ -322,4 +322,4 @@ Everything | `npm run verify`
 - **What would falsify this file.** A `force-dynamic` appearing in a `page.tsx` beside a
   `revalidate`, a selector returning a fresh collection, or a new `public/` extension added to one
   of the two regexes and not the other.
-- **Freshness.** Pinned to `6271499`. Re-derive every count before quoting it.
+- **Freshness.** Pinned to `f237ece`. Re-derive every count before quoting it.

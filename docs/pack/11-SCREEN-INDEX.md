@@ -23,8 +23,10 @@ that most of them do not exist yet.
 2. **No row says `built` or `verified`.** `docs/pack/65-CONVENTIONS.md:96` gives those two values to the
    harness, and says a hand edit is reverted by the next build. So every row here is `specified` or
    `building`, even where the code is plainly there. That is the convention working, not an error.
-3. **`12-screens/` is empty at `0af3c90`.** Every `spec file` cell is a promise. `ls docs/pack/12-screens`
-   returns nothing.
+3. **Six screen files did not exist when this was written.** `12-screens/` was filling while this
+   index was being made: it held none at the start and thirty-two an hour later. Re-check with
+   `ls docs/pack/12-screens | wc -l` rather than trusting a count in prose. Every `spec file` cell
+   names the file whether or not it is there yet, because the path is the contract.
 
 ## 1. How a row is filled
 
@@ -169,16 +171,18 @@ the route list:
   `DuplicateConflictModal` resolves a **public slug** claimed by two notes, which is a different
   conflict. `merge3` and `/api/vault/merge` exist and handle content conflicts with no screen.
 
-**Where this gets resolved: `49-BUILD-STATUS-AUDIT.md`.** That file drives the running app and
-records what a person can actually reach, which is the only way to settle a count that the source
-tree cannot. Nothing in this index should be read as a claim about what works.
+**Where this gets resolved, and nothing in the pack does it yet.** Settling the count needs somebody
+to drive the running app and record what a person can actually reach, which the source tree cannot
+answer. The nearest file is `01-EXECUTIVE-SUMMARY.md`, whose `covers` list names `state-of-build`,
+but it reads the tree as this file does. **Nothing in this index should be read as a claim about
+what works.**
 
 ## 6. Two places the sources disagree
 
 ### 6.1 The plan and the screens file group S27 differently
 
 `docs/mvp0/SCREENS.md` puts S27 Dark mode under `## 8. Everywhere`. That is what this index follows,
-because the brief says the areas come from that file's headings. `docs/mvp0/PRODUCT-PLAN.md:623`
+because the brief says the areas come from that file's headings. `docs/mvp0/PRODUCT-PLAN.md` section 5
 lists S27 in the same run of screens but the plan has no area headings at all, only `## 5. The
 screens`, so there is nothing to conflict with. **Recorded so nobody 'fixes' it later.**
 
@@ -188,7 +192,7 @@ screens`, so there is nothing to conflict with. **Recorded so nobody 'fixes' it 
 product first." Section 10.1 item 5 of the same file, later the same day, reverses it: "The
 configuration panel ships, with hardcoded defaults." **The later answer wins**, and S35 to S38 are
 indexed as live specified screens rather than as Later. The plan agrees, at
-`docs/mvp0/PRODUCT-PLAN.md:1651`, where phase A carries "the configuration panel of section 30".
+`docs/mvp0/PRODUCT-PLAN.md` section 25, where phase A carries "the configuration panel of section 30".
 
 ## 7. The limits of this index
 

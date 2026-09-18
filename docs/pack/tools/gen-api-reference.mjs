@@ -63,7 +63,8 @@ function routePath(file) {
 
 /** Strip the dashes the writing gate forbids, without touching anything else. */
 function plainDashes(s) {
-  return s.replace(/\s+[—–]\s+/g, ", ").replace(/[—–]/g, "-");
+  // Escapes, not literals, so this file itself carries none of the characters it strips.
+  return s.replace(/\s+[\u2014\u2013]\s+/g, ", ").replace(/[\u2014\u2013]/g, "-");
 }
 
 /** Collapse to one line and make it safe inside a markdown table cell. */

@@ -172,7 +172,7 @@ wrongly.
 
 **State at `0af3c90`.** The shell loads `https://md.sgnk.ai`, builds nothing from this tree, and is
 unsigned. `31-LOCAL-SETUP.md` section 5 has the detail. The phase F rebuild is where this becomes
-real (`docs/mvp0/PRODUCT-PLAN.md:1675`).
+real (`docs/mvp0/PRODUCT-PLAN.md` section 26).
 
 ### 6.1 Building
 
@@ -194,7 +194,7 @@ macOS | **Signed on the Apple programme, 99 USD a year** | Available to us
 Linux | **Unsigned, by choice** | Nothing to gain
 Windows | **Shown as coming**, until a commercial certificate is priced | Azure Artifact Signing's public trust is closed to organisations in India (F071)
 
-**The Apple Developer Program is "not opened"** at `docs/mvp0/PRODUCT-PLAN.md:1626`, due in phase F.
+**The Apple Developer Program is "not opened"** at `docs/mvp0/PRODUCT-PLAN.md` section 24, due in phase F.
 **Until it is, every macOS build is unsigned and Gatekeeper will say so.** `src-tauri/tauri.conf.json`
 has `signingIdentity`, `providerShortName` and `entitlements` all `null`.
 
@@ -255,13 +255,13 @@ silently remove. **Supersede, and name the successor in the old record.**
 
 ### 8.1 A format
 
-`docs/mvp0/PRODUCT-PLAN.md:1503` sets the procedure, and it is short:
+`docs/mvp0/PRODUCT-PLAN.md` section 20 sets the procedure, and it is short:
 
 - **The version field rises.**
 - **The old version is still read.**
 - **The map shows which version a kit carries.**
 
-**Every format carries four things**, without exception (`docs/mvp0/PRODUCT-PLAN.md:1480`): a
+**Every format carries four things**, without exception (`docs/mvp0/PRODUCT-PLAN.md` section 20): a
 version field, a rule for unknown fields, a stated degradation in a plain markdown reader, and a
 test. **Unknown fields are ignored and kept, never dropped**, which is what makes a forward version
 safe to open in an older build.
@@ -294,7 +294,7 @@ and it applies to its own surfaces too.
 ## 9. Cadence, honestly
 
 **The appetite is twenty-seven weeks at full time** across phases 0 to H
-(`docs/mvp0/PRODUCT-PLAN.md:1666`).
+(`docs/mvp0/PRODUCT-PLAN.md` section 26).
 
 **At the measured pace, which the audit recomputed at 0.93 to 1.21 days a week, that is 99 to 129
 calendar weeks** `[R]`.

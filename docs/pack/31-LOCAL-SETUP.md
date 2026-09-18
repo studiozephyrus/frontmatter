@@ -232,7 +232,7 @@ npm run tauri:dev
 **That is the shipped state, not a bug**, and `AGENTS.md` section 8 explains why the identifier
 stays: renaming it orphans a user's local state. But **the desktop build is currently a shell over
 the previous product's domain**, and the plan moves it onto the new stack in phase F
-(`docs/mvp0/PRODUCT-PLAN.md:1670`).
+(`docs/mvp0/PRODUCT-PLAN.md` section 26).
 
 **To point it at your local app**, change `devUrl` to `http://localhost:3000` in
 `src-tauri/tauri.conf.json` and run `npm run dev` in a second terminal. **Do not commit that
@@ -249,7 +249,7 @@ Script | Target
 **Signing is not configured.** `src-tauri/tauri.conf.json` has `"signingIdentity": null`,
 `"providerShortName": null` and `"entitlements": null`. Bundle targets are `dmg` and `app`, and the
 minimum macOS is `11.0`. The Apple Developer Program is "not opened" per
-`docs/mvp0/PRODUCT-PLAN.md:1625`, so a locally built `.dmg` is unsigned and Gatekeeper will say so.
+`docs/mvp0/PRODUCT-PLAN.md` section 24, so a locally built `.dmg` is unsigned and Gatekeeper will say so.
 
 **The capability surface is deliberately small.** `src-tauri/capabilities/default.json` grants
 `core`, `event`, `window`, `webview`, `shell`, `os`, `process`, `dialog`, and clipboard read and
@@ -374,7 +374,7 @@ Script | Command | When you want it
 
 **`npm run budget` is an echo.** It is recorded as a known gap in `docs/PRODUCT-BRIEF.md` section 9,
 and the plan puts a real 250 KB first-load budget behind it
-(`docs/mvp0/PRODUCT-PLAN.md:1524`). **Do not treat a passing `budget` as a passing budget.**
+(`docs/mvp0/PRODUCT-PLAN.md` section 21). **Do not treat a passing `budget` as a passing budget.**
 
 **`mdmax cert` is not among the twenty-six**, despite appearing in older documents. The script that
 exists is `scripts/mdmax-cert.mjs`, run directly with `node`.

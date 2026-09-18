@@ -7,13 +7,17 @@ status: draft
 updated: 2026-09-18
 owner: sagnik
 verified_against: 0af3c90
-covers: [problem, projection-law, splice, change-queue]
+covers: [problem-statement, what-it-is-not, why-byte-exact]
 ---
 
 # 02. The product and its domain
 
 **Why a byte-exact editor exists, written for somebody who does not write code.** If you already
 know what a splice is, skip to section 6.
+
+**This file explains. It does not define.** The canonical home for `splice`, `projection-law`,
+`anchors` and `corpus` is `25-ENGINE-SPEC.md`, and the change queue's shape is the plan's section
+17. Where this file and the engine specification disagree, the specification wins.
 
 ## 1. The problem, in the words of people who have it
 
@@ -33,8 +37,8 @@ issues with it." That is the honest state of the art. A hope, not a test.
 **A second stranger described the failure a queue has to survive.** User `abdullin`, same thread,
 verbatim:
 
-> "There often are a multiple agents rolling out linked changesets to a bunch of documents on
-> behalf of controlling humans. Eg updating compliance policy, and references and change log and
+> "the tricky part there is in scenarios from a few AI Native teams. There often are a multiple
+> agents rolling out linked changesets to a bunch of documents on behalf of controlling humans. Eg updating compliance policy, and references and change log and
 > current procedures at the same time.So changesets have to be atomic across multiple documents and
 > semantic (so that agents can resolve the changes). Weak per-document versioning isn't enough here."
 
@@ -45,11 +49,16 @@ decide what actually matters."
 **And the survey behind all three.** Mintlify's 2026 State of Knowledge Report, published
 2026-09-16 from 329 respondents, verbatim:
 
-> "83% of respondents say AI agents now draft documentation updates for their team. But humans
-> haven't left the loop-only 9% let agents publish without review."
+> "Our survey confirms the trend: 83% of respondents say AI agents now draft documentation updates
+> for their team. But humans haven't left the loop"
 
-That quotation keeps its source punctuation, which is why it carries a long dash our own prose
-never uses.
+and, across a long dash,
+
+> "only 9% let agents publish without review."
+
+**Both fragments are exact and the break is ours.** The source runs them together as one
+sentence, joined by a long dash, which this pack's validator does not allow it to reproduce.
+Read the unbroken string at `docs/research/2026-09-18/raw/H-2026-launches.md`, finding FH8.
 
 **What those four say together.** Machines now write a large share of the documents people own.
 People will not let those documents ship unread. The only working review surface in the whole

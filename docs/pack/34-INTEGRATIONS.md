@@ -73,9 +73,9 @@ than by outage. See `39-SHARING-A-BUILD.md`.
 
 **The risk the plan names.** If the Google OAuth app is suspended, **every Google user is locked
 out**. The named fallback is an email magic link, which is founder question 10 and section 15 of
-the plan (`docs/mvp0/PRODUCT-PLAN.md:1689`).
+the plan (`docs/mvp0/PRODUCT-PLAN.md` section 27).
 
-**Its future.** `docs/mvp0/PRODUCT-PLAN.md:1622` lists the `frontmatter-md` project as **retired in
+**Its future.** `docs/mvp0/PRODUCT-PLAN.md` section 24 lists the `frontmatter-md` project as **retired in
 phase A**, moving to a company-held project. That is an account move, not a technology change.
 
 ---
@@ -122,7 +122,7 @@ Path validation | `validateNotePath()` at `src/modules/repository/application/fi
 **What `validateNotePath` actually enforces**, read at `0af3c90`: not empty, no leading `/`, no
 `..` segment, ends in `.md`. **Four rules, and none of them is a directory restriction.**
 
-**So the plan's promise is not yet true in the code.** `docs/mvp0/PRODUCT-PLAN.md:1035` says GitHub
+**So the plan's promise is not yet true in the code.** `docs/mvp0/PRODUCT-PLAN.md` section 11 says GitHub
 grants the Contents permission for the **whole repository**, so the promise to write only under
 `docs/` is "frontmatter's own rule, enforced server-side and tested (F034)". **`grep -c 'docs'
 src/modules/repository/infrastructure/github-writer.ts` returns `0`** `[O]`. The prefix guard is
@@ -156,7 +156,7 @@ grep -rln 'firebaseAuth()' src/            # two files
 ```
 
 **So a Firestore client is exported and nothing calls it.** The plan describes this exactly: the
-shipped app "Initialises a Firestore client" (`docs/mvp0/PRODUCT-PLAN.md:1298`).
+shipped app "Initialises a Firestore client" (`docs/mvp0/PRODUCT-PLAN.md` section 15).
 
 Aspect | Detail
 Rules | `firestore.rules`, **marked PROTOTYPE in its own header**: "not yet exercised against the emulator or a live client. Harden before taking paid signups"
@@ -164,7 +164,7 @@ Indexes | `firestore.indexes.json`, seven composite indexes over `notes`, `revis
 Collections the rules assume | `users`, `billing`, `usage/{uid}/months`, `vaults`, `vaults/{vaultId}/notes`, `shares`
 Server-owned fields | `plan` on a user document. A client may only ever write `free`. Upgrades go through the billing webhook using the Admin SDK, which bypasses the rules
 
-**Three constraints the plan carries as build rules** (`docs/mvp0/PRODUCT-PLAN.md:1288`):
+**Three constraints the plan carries as build rules** (`docs/mvp0/PRODUCT-PLAN.md` section 15):
 
 - **A Blaze billing account is required.** Phase 0, with the company card.
 - **A document cannot exceed 1 MiB.** So **document bytes live in R2 and never in Firestore**; a
@@ -177,7 +177,7 @@ two writers race for. That is how a credits ledger avoids wanting transactions.
 
 **A contradiction to name, because two sources disagree.** Plan section 15 decides Firestore.
 **Plan section 18's data-model table says "Postgres rows" for eleven of its nineteen entities**
-(`docs/mvp0/PRODUCT-PLAN.md:1432` onward). Section 15 is the founders' decision of 17 September and
+(`docs/mvp0/PRODUCT-PLAN.md` section 18 onward). Section 15 is the founders' decision of 17 September and
 is newer in intent; section 18 was not rewritten to match. **Read "Postgres row" in section 18 as
 "a record in the database", and the database is Firestore.** `36-DATA-MIGRATION-PLAN.md` carries
 this as an open item.
@@ -197,7 +197,7 @@ file `[O]`. There is no client and no dependency.
 
 Aspect | Plan detail
 Why it wins | $0.015 a GB-month, free egress, no minimum. The 1,000-user workload never leaves the free operation tiers
-Region | An **apac hint**, which is a hint. `docs/mvp0/PRODUCT-PLAN.md:1326` says plainly that the bytes sit under an apac hint, **not in India**
+Region | An **apac hint**, which is a hint. `docs/mvp0/PRODUCT-PLAN.md` section 15 says plainly that the bytes sit under an apac hint, **not in India**
 Upload path | **Straight to R2 with a presigned URL**, because Workers cap a request body at 100 MB
 Versions | One object per save, keyed by document id and content hash
 **No object versioning** | **R2 has none.** Disaster recovery is built into the key layout. Settled, and `37-BACKUP-AND-RECOVERY.md` designs around it
@@ -214,9 +214,9 @@ page unless it says so. **Design the refusal, do not let it happen by accident.*
 **Criticality: HIGH once it lands.** Distinct from section 4, which is a personal token.
 
 **State: not built.** The shipped integration is `GITHUB_REPO_TOKEN` against one repository. An App
-is phase E (`docs/mvp0/PRODUCT-PLAN.md:1674`).
+is phase E (`docs/mvp0/PRODUCT-PLAN.md` section 26).
 
-**The four facts that shape the design** (`docs/mvp0/PRODUCT-PLAN.md:1033` onward):
+**The four facts that shape the design** (`docs/mvp0/PRODUCT-PLAN.md` section 11 onward):
 
 - **It asks for the Contents permission, read and write, and nothing else.**
 - **GitHub grants that for the whole repository.** There is no path-scoped permission. **So the
@@ -232,7 +232,7 @@ is phase E (`docs/mvp0/PRODUCT-PLAN.md:1674`).
 
 **When it is down, or suspended.** Write-back to a user's repository dies. The plan's stated
 mitigation is that **exports never need a connection**, so nobody's work is trapped
-(`docs/mvp0/PRODUCT-PLAN.md:1689`).
+(`docs/mvp0/PRODUCT-PLAN.md` section 27).
 
 ---
 
@@ -289,7 +289,7 @@ to keep free-tier usage lean. **Either way a hung provider cannot block the chai
 
 ### 9.2 What the plan routes, which is not this
 
-`docs/mvp0/PRODUCT-PLAN.md:1189` routes differently, and **explicitly excludes two providers the
+`docs/mvp0/PRODUCT-PLAN.md` section 14 routes differently, and **explicitly excludes two providers the
 code includes**:
 
 Call | Order the plan tries
@@ -305,7 +305,7 @@ and anything whose terms were not opened.
 and any generated responses to provide, improve, and develop Google products", and the free plan's
 training row on Mistral is ticked with no opt-out. **This is a promise on the sign-in page, not a
 tuning choice**, and the configuration panel deliberately **cannot** change it
-(`docs/mvp0/PRODUCT-PLAN.md:1843`).
+(`docs/mvp0/PRODUCT-PLAN.md` section 30).
 
 **So the code as shipped can be configured into a state the product's own promise forbids.** Adding
 `GOOGLE_GENERATIVE_AI_API_KEY` or `MISTRAL_API_KEY` in production puts a training-permitted
@@ -326,7 +326,7 @@ Ollama on the desktop | No. It runs locally
 GitHub Models | Not applicable. "fully retired" on 30 July 2026
 
 **Terms are re-read monthly and the date recorded.** That is a standing task, not a one-off
-(`docs/mvp0/PRODUCT-PLAN.md:1687`).
+(`docs/mvp0/PRODUCT-PLAN.md` section 27).
 
 ### 9.4 The pool problem, and what is missing
 
@@ -356,7 +356,7 @@ offers a standard question set rather than an apology.
 
 **Criticality: HIGH once money moves.**
 
-**State: not built.** No dependency, and `docs/mvp0/PRODUCT-PLAN.md:1626` records the account as
+**State: not built.** No dependency, and `docs/mvp0/PRODUCT-PLAN.md` section 24 records the account as
 "not opened". Phase H.
 
 **Four constraints, and they are architectural rather than preferences:**
@@ -386,7 +386,7 @@ PostHog | Analytics | A million events | Not built
 **One constraint applies to all three.** An append-only security log must be kept **180 days in
 Indian jurisdiction** (CERT-In directions of 28 April 2022, as the audit read them). **Sentry's and
 PostHog's free tiers may not pin to India**, so the log store is its own line: R2 in Mumbai
-(`docs/mvp0/PRODUCT-PLAN.md:1345`, F069). **Do not treat an error tracker as the security log.**
+(`docs/mvp0/PRODUCT-PLAN.md` section 15, F069). **Do not treat an error tracker as the security log.**
 
 ---
 

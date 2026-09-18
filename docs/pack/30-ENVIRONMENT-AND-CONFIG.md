@@ -77,7 +77,7 @@ parses `process.env` on **first property access**, never at module load.
 
 **Why it is built that way.** A build-time read makes `next build` fail on a machine that has no
 secrets, and makes a test file that imports one helper drag in every unrelated variable. The
-comment at `src/config/env.ts:66` states the rule: "Never read from process.env at import/build
+comment at `src/config/env.ts:65` states the rule: "Never read from process.env at import/build
 time."
 
 **Three consequences a new reader will hit:**
@@ -150,7 +150,7 @@ Name | Required | Default | Read by | What breaks without it | Where set | Secre
 `:89` records why: it used to default to a sibling product's vault, and this value feeds
 `github-writer.ts`, so a deploy that forgot the variable **wrote into the wrong repository
 silently**. It now fails at first access, loudly. The defect is closed in the plan's section 25 and
-in `docs/mvp0/PRODUCT-PLAN.md:1638`.
+in `docs/mvp0/PRODUCT-PLAN.md` section 25.
 
 **Do not reintroduce a fallback here.** A fallback on a write target is a data-loss bug wearing a
 convenience hat.
@@ -189,12 +189,12 @@ parse failure rather than raising, because "AI is a non-essential enhancement an
 boot". A typo in one key therefore disables **every** AI variable in that schema, silently. Check
 `configuredAiProviders()` before assuming a provider is in the chain.
 
-**The plan's chain is not this chain.** `docs/mvp0/PRODUCT-PLAN.md:1189` routes an edit through
+**The plan's chain is not this chain.** `docs/mvp0/PRODUCT-PLAN.md` section 14 routes an edit through
 Groq, then Cloudflare Workers AI, then Cerebras, then SambaNova, and puts Gemini's unpaid tier and
 Mistral Free explicitly **outside** the chain. The shipped code has no Cloudflare or SambaNova
 adapter, and does include Google and Mistral. **The plan is the target; the code is where it is
 today.** Reconciling the two is phase B work, and the provider order becomes a row in the
-configuration panel rather than a constant (`docs/mvp0/PRODUCT-PLAN.md:1827`).
+configuration panel rather than a constant (`docs/mvp0/PRODUCT-PLAN.md` section 30).
 
 ### 3.5 Firebase, on the client
 
@@ -217,8 +217,8 @@ be swapped in without a code change.
 
 **The consequence for security review.** A leaked `NEXT_PUBLIC_FIREBASE_API_KEY` is not an
 incident. A permissive `firestore.rules` is. That file is marked **PROTOTYPE** in its own header
-(`firestore.rules:6` to `:8`): "not yet exercised against the emulator or a live client. Harden
-before taking paid signups." Hardening it is phase A, `docs/mvp0/PRODUCT-PLAN.md:1310`.
+(`firestore.rules:7` to `:9`): "not yet exercised against the emulator or a live client. Harden
+before taking paid signups." Hardening it is phase A, `docs/mvp0/PRODUCT-PLAN.md` section 15.
 
 ### 3.6 PDF export
 
@@ -296,7 +296,7 @@ API keys. Eleven in total. Everything else is configuration.
 
 **Rotation.** There is no rotation procedure today. `UNVERIFIED:` no schedule, owner or runbook for
 rotating any of the eleven exists in the repository at `0af3c90`. Writing one belongs with the
-phase 0 legal-floor rows in `docs/mvp0/PRODUCT-PLAN.md:1607`, and the trigger list belongs in
+phase 0 legal-floor rows in `docs/mvp0/PRODUCT-PLAN.md` section 23, and the trigger list belongs in
 `38-INCIDENT-AND-SEVERITY.md`.
 
 ---
@@ -304,7 +304,7 @@ phase 0 legal-floor rows in `docs/mvp0/PRODUCT-PLAN.md:1607`, and the trigger li
 ## 6. The configuration that is not an environment variable
 
 **The plan moves most tunable numbers out of the environment entirely** `[Z]`
-(`docs/mvp0/PRODUCT-PLAN.md:1812`). The founders decided on 17 September that what a tier allows is
+(`docs/mvp0/PRODUCT-PLAN.md` section 30). The founders decided on 17 September that what a tier allows is
 set from a panel, read at run time, with no deploy.
 
 What the panel holds | Read by
@@ -331,7 +331,7 @@ src/` returns nothing. The panel is screens S35 to S38 and phase A work.
 - **An environment variable is for a secret, an endpoint, or a value that differs between
   deployments.** Nothing else.
 
-**Three things the panel deliberately cannot set** (`docs/mvp0/PRODUCT-PLAN.md:1841`): the training
+**Three things the panel deliberately cannot set** (`docs/mvp0/PRODUCT-PLAN.md` section 30): the training
 promise, the age floor once somebody has signed up under it, and whether bytes are held at all.
 Those are claims and architecture, not rows.
 

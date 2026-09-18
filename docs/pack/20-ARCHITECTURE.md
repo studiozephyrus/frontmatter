@@ -6,7 +6,7 @@ tier: canonical
 status: living
 updated: 2026-09-18
 owner: sagnik
-verified_against: 0af3c90
+verified_against: f237ece
 covers: [architecture, layering, modules, gates]
 ---
 
@@ -28,7 +28,7 @@ tested without a network, a database or a browser.
 
 ## 20.1 The gate result, run for this file
 
-`[O]` Run on 2026-09-18 at commit `0af3c90`, in `/Users/sagnikmitra/Desktop/GitHub/frontmatter`.
+`[O]` Run on 2026-09-18 at commit `f237ece`, in `/Users/sagnikmitra/Desktop/GitHub/frontmatter`.
 
 ```
 $ npm run arch
@@ -104,7 +104,7 @@ flowchart TB
 
 **How the dashed boxes were decided.** `grep -rln "R2\|S3Client\|aws-sdk" src/` returns one file,
 `src/modules/share/presentation/DuplicateConflictModal.tsx`, and the match there is not an R2 client.
-There is no R2 adapter, no Durable Object and no Razorpay call in `src/` at `0af3c90`.
+There is no R2 adapter, no Durable Object and no Razorpay call in `src/` at `f237ece`.
 
 ## 20.3 C4 level 2, containers
 
@@ -228,7 +228,7 @@ records the workaround: "a gateway reaches a presentation component as a prop or
 
 ## 20.7 The thirteen modules
 
-`[O]` `ls src/modules/` at `0af3c90`, excluding `README.md`. File counts are
+`[O]` `ls src/modules/` at `f237ece`, excluding `README.md`. File counts are
 `find src/modules/<m> -type f \( -name '*.ts' -o -name '*.tsx' \) | wc -l`.
 
 Module | Layers present | Files | Barrel | What it owns
@@ -255,14 +255,14 @@ both for the same symbol:
 - `src/modules/vault/infrastructure/search-index.ts:16`
 
 Both read `import { decodeStrict } from "@/modules/mdmax/domain/shape-gate";`. That is the entire
-wiring of the engine into the product at `0af3c90`.
+wiring of the engine into the product at `f237ece`.
 
 ## 20.8 The module barrel rule
 
 **Cross-module imports go through `@/modules/<name>`, never a deep path.** Add the export to the
 barrel instead of deep-importing, and do it even for a type (`AGENTS.md:81`).
 
-`[O]` Measured at `0af3c90` by walking `src/` and comparing each file's owning module against the
+`[O]` Measured at `f237ece` by walking `src/` and comparing each file's owning module against the
 module it imports from:
 
 Shape | Count
@@ -300,17 +300,17 @@ The ban is enforced in two independent places, which is deliberate:
   `specs/harness/import-boundary-report.mjs` reports the three import kinds separately.
 
 Shared code that genuinely has no owner goes in `src/shared/<layer>/`, which has its own element
-types and its own inward-only rules. At `0af3c90` that is three domain files, an empty
+types and its own inward-only rules. At `f237ece` that is three domain files, an empty
 `application/ports` folder, `infrastructure/firebase/client.ts`, `infrastructure/github/client.ts`
 and three presentation files.
 
 ## 20.10 Where the architecture and the plan disagree
 
-`docs/mvp0/PRODUCT-PLAN.md:1290` decides the stack is "the Next.js app we already run, Cloudflare R2
+`docs/mvp0/PRODUCT-PLAN.md` section 15 decides the stack is "the Next.js app we already run, Cloudflare R2
 for bytes, and Firestore for records, with Firebase Auth for sign-in". The shipped tree is not there
 yet, and a reader should not be told otherwise.
 
-Plan says | Code at `0af3c90` | Status
+Plan says | Code at `f237ece` | Status
 Firestore holds records | `getFirestore` is initialised in `src/shared/infrastructure/firebase/client.ts`, and `firestore.rules` exists at the repository root, 17,304 bytes | **partly built.** No collection is read or written from a use case
 R2 holds document bytes | No R2 adapter in `src/` | **specified, not built.** Bytes live in a GitHub repository today, through `githubVaultReader` and `githubWriter`
 Durable Objects hold live sessions | Nothing | **specified, not built**
@@ -348,4 +348,4 @@ Everything at once | `npm run verify`
 - **What would falsify this file.** `npm run arch` returning a non-zero `total`, `filesScanned`
   dropping below 214 without files being deleted, or the barrel count in `analyze.mjs` moving while
   this file still says 110 and 38.
-- **Freshness.** Every count is pinned to `0af3c90`. Re-derive before quoting, per `AGENTS.md:15`.
+- **Freshness.** Every count is pinned to `f237ece`. Re-derive before quoting, per `AGENTS.md:15`.

@@ -17,8 +17,8 @@ threatens.**
 
 Every quotation is copied from the page named, opened on the date named, by the research round in
 `docs/research/2026-09-18/raw/H-2026-launches.md`, `E-provenance.md`, `G-docs-quality.md` and
-`Z2-position-taken.md`. Four quotations carry long dashes because their sources do. Our own prose
-uses plain hyphens.
+`Z2-position-taken.md`. Where a source joins two clauses with a long dash, this file quotes each side exactly and says
+so, because the validator forbids that character and the repository forbids altering a quotation.
 
 **Read section 6 first if you are in a hurry.** It is the list of claims we can no longer make.
 
@@ -190,15 +190,24 @@ shut down Almanac on January 31, 2025."
 
 **The reason is not the one we recorded.** Verbatim, in order, from the same page:
 
-> "Last year, we saw an opportunity to use our platform to help many more people-small teams without
-> the skills or resources of our larger customers-generate content and grow faster through the magic
-> of AI."
+> "Last year, we saw an opportunity to use our platform to help many more people"
+>
+> "small teams without the skills or resources of our larger customers"
+>
+> "generate content and grow faster through the magic of AI."
 
-> "Our new product, Blaze, has since taken off, growing to tens of thousands of users in a matter of
-> months-and it's consumed all of our small team's time and energy to serve these customers well."
+> "Our new product, Blaze, has since taken off, growing to tens of thousands of users in a matter
+> of months"
+>
+> "and it's consumed all of our small team's time and energy to serve these customers well."
 
 > "Ultimately, we've decided we don't want to offer a product in Almanac whose quality we no longer
 > have the capacity to maintain or improve."
+
+**Every fragment above is exact and the breaks are ours.** The source joins the pieces of the
+first two quotations with long dashes, which this pack's validator does not allow it to
+reproduce. Read the unbroken strings at `docs/research/2026-09-18/raw/H-2026-launches.md`,
+finding FH11. The third quotation is whole.
 
 The same page says Almanac "has been adopted by many of the world's best remote companies".
 Source: `https://get.almanac.io/go-forward` opened 2026-09-18.

@@ -7,7 +7,7 @@ status: living
 updated: 2026-09-18
 owner: sagnik
 verified_against: 0af3c90
-covers: [accounts, repositories, deployments, domains, secrets-by-name]
+covers: [accounts, repositories, domain-ownership, secrets-by-name, ownership-transfer]
 ---
 
 # 08. Ecosystem
@@ -68,16 +68,26 @@ source /Users/sagnikmitra/.config/codex-env/tokens.zsh && GH_TOKEN="$GH_TOKEN_ZE
 **A push failing with "Repository not found" almost always means the token file was not sourced**,
 and the macOS keychain answered with the personal account instead.
 
-**Branch state, measured 2026-09-18** `[O]`.
+**Branch state, measured 2026-09-18 at 07:20 IST** `[O]`. **The branch is being committed to while
+this pack is written**, so re-run every command below rather than quoting these numbers.
 
-Measure | Value | Command
+Measure | Value at 07:20 | Command
 Current branch | `audit-response/2026-09-17` | `git rev-parse --abbrev-ref HEAD`
-Head | `0af3c90` | `git rev-parse HEAD`
-Commits ahead of `origin/main` | **200** | `git rev-list --count origin/main..HEAD`
-Date of the `origin/main` tip | **2026-07-25** | `git log -1 --format='%ci' origin/main`
-Ahead of its own pushed upstream | 16 | `git rev-list --left-right --count origin/audit-response/2026-09-17...HEAD`
+Head | `f237ece` | `git rev-parse HEAD`
+Commits ahead of `origin/main` | **203**, and rising | `git rev-list --count origin/main..HEAD`
+Date of the `origin/main` tip | **2026-07-25**, and stable | `git log -1 --format='%ci' origin/main`
+Ahead of its own pushed upstream | 19, and rising | `git rev-list --left-right --count origin/audit-response/2026-09-17...HEAD`
 
-## 3. Domains, and what each returns today
+**The one number that matters is the second-to-last row.** `origin/main` has not moved since
+2026-07-25, and `main` is what deploys.
+
+## 3. Domains, as an ownership question
+
+**The operational home for domains is `32-DEPLOYMENT-AND-OPS.md` section 4**, which covers the id
+`domains`. This section covers who holds them and what a stranger reaches today, which is the
+ownership half.
+
+### 3.1 What each host returns today
 
 Checked on 2026-09-18 with `curl -sI`, never `curl -sL`, because a login page returns 200 after a
 redirect `[O]`.
@@ -95,7 +105,7 @@ Host or path | Status | Notes
 `https://frontmatter-decisions-sagnik.vercel.app/` | `HTTP/2 200` | The decisions site
 
 **Why the four legal routes redirect.** The pages exist in `src/app/(public)/` on this branch. The
-branch is 200 commits ahead of `origin/main`, whose tip is dated 2026-07-25, and `AGENTS.md`
+branch is over two hundred commits ahead of `origin/main`, whose tip is dated 2026-07-25, and `AGENTS.md`
 section 7 says `main` is the branch that auto-deploys. INFERENCE, not confirmed against the Vercel
 project settings: the deployment serving the apex predates the pages. **The plan's statement that
 placeholder pages serve is true of the branch and false of what a stranger reaches today.**

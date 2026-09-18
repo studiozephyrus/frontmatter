@@ -23,7 +23,7 @@ claims, which is `52-MARKET-RESEARCH.md` and is cited here once rather than repe
 ## 1. Position
 
 **frontmatter is a markdown editor for people whose documents are increasingly written with, and
-for, AI agents.** `docs/mvp0/PRODUCT-PLAN.md:95`
+for, AI agents.** `docs/mvp0/PRODUCT-PLAN.md` section 1
 
 Three sentences carry the whole product.
 
@@ -52,12 +52,12 @@ Founders, product people and developers who brief agents | The brief, and superv
 Writers who want Google Docs comfort with markdown files | Doc mode | Not proven
 Obsidian and Notion people who want notes on the web, shared, agent-readable | Import, sharing, the map | **Yes**, the audit's reading
 
-**The pilot recruits ten of twenty from the third group** `docs/mvp0/PRODUCT-PLAN.md:1722`.
+**The pilot recruits ten of twenty from the third group** `docs/mvp0/PRODUCT-PLAN.md` section 28.
 That is deliberate. It is the only group with a demonstrated wallet.
 
 ### 1.3 The sentence is contested inside our own documents
 
-`docs/mvp0/PRODUCT-PLAN.md:1810` says the plan is written to K1 recommendation **b**. The
+`docs/mvp0/PRODUCT-PLAN.md` section 29 says the plan is written to K1 recommendation **b**. The
 sentence the plan actually carries at `:95` is K1 option **a**. Twenty-three other decision cards
 were closed on the strength of b.
 
@@ -81,7 +81,7 @@ Claim | What demonstrates it | State
 
 ### 2.1 What we may not claim
 
-- **Not that the review surface exists.** It does not. `docs/mvp0/PRODUCT-PLAN.md:1409` records
+- **Not that the review surface exists.** It does not. `docs/mvp0/PRODUCT-PLAN.md` section 17 records
   that review state never existed in the code, and the 9 September product built on it was
   dropped.
 - **Not that the engine is wired.** Wiring it is phase B.
@@ -144,7 +144,7 @@ Records | Firestore | `firestore.rules` exists at the repository root, 17,304 by
 Sign-in | Firebase Auth behind Auth.js | **Built.** `src/modules/auth/infrastructure/firebase-auth-gateway.ts`
 
 `INFERENCE:` phase A is therefore larger than "hardening". Two adapters do not exist at all, and
-the plan's own framing at `docs/mvp0/PRODUCT-PLAN.md:36` calls phase A a hardening rather than a
+the plan's own framing at `docs/mvp0/PRODUCT-PLAN.md` section 0 calls phase A a hardening rather than a
 migration because the *stack decision* did not change. The *adapters* are still new work.
 
 ### 3.4 The gates that run
@@ -154,7 +154,7 @@ Command | What it does | Honest state
 `npm run corpus` | 8,513 byte-pinned files, exits 1 on one changed byte | Runs
 `npm run arch` | The clean-architecture report | Runs
 `npm run spec` | The contract gate | Runs
-`npm run budget` | **An `echo`.** There is no bundle budget | Named as a gap at `docs/mvp0/PRODUCT-PLAN.md:1523`
+`npm run budget` | **An `echo`.** There is no bundle budget | Named as a gap at `docs/mvp0/PRODUCT-PLAN.md` section 21
 `mdmax cert` | Not among the 26 npm scripts | Counted at write time: `node -e "...Object.keys(scripts).length"` returned 26
 
 ---
@@ -210,7 +210,7 @@ important part.
 
 Item | What it is | Why it is not Free or Pro
 **The Model Context Protocol server** | An agent connects to the person's documents over MCP, as a first-class client | Every call is a hosted request. Our compute, our egress
-**Propose scope** | An agent token can read and propose, and can never apply or publish | `docs/mvp0/PRODUCT-PLAN.md:1469` already writes this into the role matrix
+**Propose scope** | An agent token can read and propose, and can never apply or publish | `docs/mvp0/PRODUCT-PLAN.md` section 19 already writes this into the role matrix
 **Agent tokens** | Named, scoped, revocable, one per agent, with a hash rather than a secret at rest | Issuing and checking them is per request
 **Staleness anchors** | A proposal carries the content hash of the range it was written against, and refuses when that range has moved | This is the refusal law applied to time, and it is what makes an asynchronous agent safe
 **The multi-file reviewable change** | Fifteen files proposed together, accepted or rejected as a set or one by one | The blueprint's output shape, and spec-driven development's unsolved problem
@@ -225,7 +225,7 @@ Item | What it is | Why it is not Free or Pro
 - So Max is metered, and the meter is the honest shape. A flat price on an unbounded machine
   workload is a promise we cannot keep.
 
-**Where Max sits today.** `docs/mvp0/PRODUCT-PLAN.md:1665` has the MCP server and the API in
+**Where Max sits today.** `docs/mvp0/PRODUCT-PLAN.md` section 26 has the MCP server and the API in
 Later, behind eight phases. The research argues that is wrong, and
 `56-OPEN-DECISIONS.md` D04 carries the decision with its costs. **This file does not move it.**
 
@@ -286,7 +286,7 @@ Never | Why
 
 ## 6. What the product is to an agent
 
-`docs/mvp0/PRODUCT-PLAN.md:1417` puts it in five rows, and it is the clearest statement of the
+`docs/mvp0/PRODUCT-PLAN.md` section 17 puts it in five rows, and it is the clearest statement of the
 position in any of our documents.
 
 Piece | What it is to an agent

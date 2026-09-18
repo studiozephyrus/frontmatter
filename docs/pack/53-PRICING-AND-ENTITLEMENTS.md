@@ -26,7 +26,7 @@ appears anywhere else in the pack or the product is a defect.
 
 ## 1. The one read path
 
-`docs/mvp0/PRODUCT-PLAN.md:1833` is the architectural rule, and it is the reason this file is a
+`docs/mvp0/PRODUCT-PLAN.md` section 30 is the architectural rule, and it is the reason this file is a
 reference rather than prose.
 
 - A single function, **`limitsFor(account)`**, resolves a plan row plus any exception into the
@@ -105,7 +105,7 @@ Entitlement id | What it allows | `plan.free` | `plan.pro`
 `features.byok` | Bring your own model key | **open** | **open**
 
 **The rule behind that table** `[Z]`, narrowed from the founders' original ask at
-`docs/mvp0/PRODUCT-PLAN.md:1808`:
+`docs/mvp0/PRODUCT-PLAN.md section 29`:
 
 > Every editing feature free; password links, Medium and High, the portfolio and branding removal
 > are Pro.
@@ -157,7 +157,7 @@ Product id | What it grants | Price, inclusive of tax | Net, re-derived `[O]`
 
 ## 4. What a price actually becomes
 
-Every figure re-derived at write time `[O]`, matching `docs/mvp0/PRODUCT-PLAN.md:1535`.
+Every figure re-derived at write time `[O]`, matching `docs/mvp0/PRODUCT-PLAN.md` section 22.
 
 ### 4.1 Monthly
 
@@ -217,7 +217,7 @@ Pre-debit notice | **24 hours** before the debit | Razorpay mandate rules
 
 **What that means in practice.**
 
-- A recurring debit is announced 24 hours ahead. `docs/mvp0/PRODUCT-PLAN.md:1359` budgets Resend
+- A recurring debit is announced 24 hours ahead. `docs/mvp0/PRODUCT-PLAN.md section 15` budgets Resend
   at 3,000 emails a month for exactly those notices.
 - **A failed debit is final for that cycle.** There is no automatic retry ladder, because the rail
   does not give one.
@@ -239,7 +239,7 @@ them.
 
 ### 5.3 Downgrade, which is the behaviour that matters most
 
-**The rule** `docs/mvp0/PRODUCT-PLAN.md:1841`, and it applies to a lapsed subscription and to a
+**The rule** `docs/mvp0/PRODUCT-PLAN.md` section 30, and it applies to a lapsed subscription and to a
 lowered limit in the configuration panel alike.
 
 - **Every document stays readable and exportable.** Always. There is no state in which a person
@@ -248,7 +248,7 @@ lowered limit in the configuration panel alike.
 - **Raising** a limit takes effect on the next read and nobody notices.
 - **Lowering** one below what an account already holds puts that account into the over-cap state.
 
-**So the panel names the damage before it saves.** `docs/mvp0/PRODUCT-PLAN.md:1842`: the panel says
+**So the panel names the damage before it saves.** `docs/mvp0/PRODUCT-PLAN.md` section 30: the panel says
 how many accounts a change puts over the line, and names them, before it saves.
 
 **What the over-cap state allows and forbids.**
@@ -265,7 +265,7 @@ A GitHub push | Refused
 
 ### 5.4 Exceptions
 
-`docs/mvp0/PRODUCT-PLAN.md:1829` gives the panel one more row: **a temporary limit granted to one
+`docs/mvp0/PRODUCT-PLAN.md section 30` gives the panel one more row: **a temporary limit granted to one
 account, with an expiry.**
 
 Field | What it holds

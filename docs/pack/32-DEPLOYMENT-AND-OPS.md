@@ -245,7 +245,7 @@ Domain | Where it points | Status
 
 **The zone is not on the company's account.** `frontmatter.in` is a Cloudflare zone on **Sagnik's
 personal account**, by deliberate choice (`AGENTS.md` section 6b). The plan moves it to the company
-before the first stranger (`docs/mvp0/PRODUCT-PLAN.md:1621`), and records the domain registration
+before the first stranger (`docs/mvp0/PRODUCT-PLAN.md` section 24), and records the domain registration
 itself as **unverified**.
 
 **The six authorised domains for Firebase Auth** are listed in `firebase.json`: `localhost`,
@@ -322,7 +322,7 @@ reaches production if it builds on Vercel, and Vercel only runs `next build`.
 
 **That is the single largest operational gap in this file.** It is not a defect to be fixed in
 passing; it is a decision about where the gates live, and it belongs in `56-OPEN-DECISIONS.md`.
-`docs/mvp0/PRODUCT-PLAN.md:1524` already assumes a continuous-integration measurement for the
+`docs/mvp0/PRODUCT-PLAN.md` section 21 already assumes a continuous-integration measurement for the
 bundle budget, which implies one is coming.
 
 ---
@@ -389,7 +389,7 @@ touches the index only. **Never `git stash` somebody else's dirty tree.**
   invoked, and Vercel's command surface changes between major versions. **Read `vercel promote
   --help` before using section 5.1.**
 - `UNVERIFIED:` the domain registration owner. The plan lists it as unverified too
-  (`docs/mvp0/PRODUCT-PLAN.md:1624`).
+  (`docs/mvp0/PRODUCT-PLAN.md` section 24).
 - The name of the Vercel team holding `frontmatter-decisions`. Only the id appears in the
   repository.
 

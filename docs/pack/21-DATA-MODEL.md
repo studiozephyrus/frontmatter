@@ -6,7 +6,7 @@ tier: canonical
 status: living
 updated: 2026-09-18
 owner: sagnik
-verified_against: 0af3c90
+verified_against: f237ece
 covers: [data-model, firestore, r2, indexeddb, retention]
 ---
 
@@ -18,20 +18,25 @@ The plan of record disagrees with itself about where records live, and the disag
 wording slip. It is two different databases.
 
 Where | What it says | Evidence
-`docs/mvp0/PRODUCT-PLAN.md:1290` | "The stack is the Next.js app we already run, Cloudflare R2 for bytes, and Firestore for records, with Firebase Auth for sign-in." A founders' decision of 17 September | `[Z]`.
-`docs/mvp0/PRODUCT-PLAN.md:1426` onward, section 18 | The entity table assigns twelve entities to **Postgres rows** | `[O]`.
+`docs/mvp0/PRODUCT-PLAN.md`, section 15 | "The stack is the Next.js app we already run, Cloudflare R2 for bytes, and Firestore for records, with Firebase Auth for sign-in." A founders' decision of 17 September | `[Z]`.
+`docs/mvp0/PRODUCT-PLAN.md`, section 18 | The entity table assigns twelve entities to **Postgres rows** | `[O]`.
 
-`[O]` The count was made, not remembered:
+`[O]` The count was made, not remembered. Re-derive it before quoting it:
 
 ```
-$ awk 'NR>=1426 && NR<=1458' docs/mvp0/PRODUCT-PLAN.md | grep -o 'Postgres row' | wc -l
-      12
 $ grep -c 'Postgres' docs/mvp0/PRODUCT-PLAN.md
 12
+$ awk "NR>=$(grep -n '^## 18\.' docs/mvp0/PRODUCT-PLAN.md | cut -d: -f1) && NR<=$(grep -n '^## 19\.' docs/mvp0/PRODUCT-PLAN.md | cut -d: -f1)" \
+    docs/mvp0/PRODUCT-PLAN.md | grep -o 'Postgres row' | wc -l
+      12
 ```
 
 All twelve are inside section 18. The word appears nowhere else in the plan. Section 18 is the
 Supabase model of revision 5, left standing after section 15 changed the database underneath it.
+
+**Why this file cites the plan by section and not by line.** `docs/mvp0/PRODUCT-PLAN.md` was edited
+twice while this file was being written, on 18 September, and every line number after the insertion
+point moved. A section number survives that. Quote the phrase and grep for it.
 
 **Firestore is a document store, so the model has to change and not just the word.** Three of
 section 18's rows cannot be transliterated:
@@ -62,15 +67,15 @@ already do.
 17,304 bytes and its header describes a model where note content lives **in** Firestore:
 
 - `content: string (required, <=900000)` with the comment "under the 1 MiB document ceiling"
-  (`firestore.rules:63`)
+  (`firestore.rules:61`)
 - `storagePath: string|null (optional, <=1024)` with the comment "overflow to Cloud Storage"
-  (`firestore.rules:64`)
+  (`firestore.rules:62`)
 
-That is Firebase Cloud Storage, not R2, and it contradicts `docs/mvp0/PRODUCT-PLAN.md:1298`, which
+That is Firebase Cloud Storage, not R2, and it contradicts `docs/mvp0/PRODUCT-PLAN.md` section 15, which
 says document bytes "live in R2 and never in Firestore". The plan is newer and it is a founders'
 decision, so **the plan wins and `firestore.rules` is the file that changes**. The rules file is
 marked PROTOTYPE in its own first lines, and the plan already schedules it for hardening in phase A
-(`docs/mvp0/PRODUCT-PLAN.md:1657`).
+(`docs/mvp0/PRODUCT-PLAN.md` section 26).
 
 **What this file is.** The Firestore version of section 18, written so that phase A can start. Where
 it departs from section 18 it says so. Where it proposes something neither document decided, it says
@@ -135,7 +140,7 @@ flowchart TB
 ```
 
 Every path above is a **proposal for phase A**, not a shipped schema. Nothing in `src/` reads or
-writes any of it at `0af3c90`. The three collections that exist in the prototype rules under
+writes any of it at `f237ece`. The three collections that exist in the prototype rules under
 different names are mapped in section 21.12.
 
 ## 21.4 Every Firestore collection
@@ -158,10 +163,10 @@ Field | Type | Cap | Notes
 - **Size.** `INFERENCE:` about 400 bytes. Eight fields, two of them capped at 200 and 2,000 chars,
   the rest short. The ceiling if both strings are at their cap is about 2.3 KB.
 - **Retention.** Until deleted.
-- **On account deletion.** Removed within 30 days (`docs/mvp0/PRODUCT-PLAN.md:1431`).
+- **On account deletion.** Removed within 30 days (`docs/mvp0/PRODUCT-PLAN.md` section 18).
 - **Read by.** The person. Nobody else.
 
-The field list is transcribed from the prototype header at `firestore.rules:14` to `firestore.rules:28`.
+The field list is transcribed from the prototype header at `firestore.rules:18` to `firestore.rules:27`.
 
 ### billing/{uid}
 
@@ -172,7 +177,7 @@ Field | Type | Notes
 - **Access.** Owner read only. **No client write at all**, ever. The billing webhook writes with the
   Admin SDK, which bypasses rules.
 - **Retention.** As the accountant requires, at least the statutory period
-  (`docs/mvp0/PRODUCT-PLAN.md:1446`).
+  (`docs/mvp0/PRODUCT-PLAN.md` section 18).
 - **On account deletion.** Kept as the law requires, unlinked from the profile.
 
 ### users/{uid}/connections/{provider}
@@ -188,7 +193,7 @@ Field | Type | Notes
 - **Size.** `INFERENCE:` under 4 KB, dominated by the encrypted token.
 - **Retention.** Until disconnected.
 - **On account deletion.** Revoked at the provider first, then removed
-  (`docs/mvp0/PRODUCT-PLAN.md:1443`).
+  (`docs/mvp0/PRODUCT-PLAN.md` section 18).
 - **Never** readable by a client. Server reads only.
 
 ### agentTokens/{tokenId}
@@ -204,7 +209,7 @@ Field | Type | Notes
 - **Retention.** Until revoked. A revoked row stays, with `revokedAt` set, so the security log can be
   read against it.
 - **Permissions.** An agent token may read, propose and export. It may **never** apply or publish
-  (`docs/mvp0/PRODUCT-PLAN.md:1470`).
+  (`docs/mvp0/PRODUCT-PLAN.md` section 19).
 
 ### vaults/{vaultId}
 
@@ -220,7 +225,7 @@ Field | Type | Cap | Notes
 - **Retention.** Until deleted.
 - **Read by.** Members. Only the owner may change `memberUids` or `ownerUid`.
 
-**The change from the prototype.** `firestore.rules:45` also carries a `roles` map of up to 100 keys
+**The change from the prototype.** `firestore.rules:46` also carries a `roles` map of up to 100 keys
 inside the vault document. That is dropped here, because a role change then rewrites the vault
 document and races every other member change. Roles move to their own subcollection.
 
@@ -236,9 +241,9 @@ Field | Type | Notes
 
 - **Size.** `INFERENCE:` under 200 bytes.
 - **Cap.** 1 live collaborator on Free, decided by the founders on 18 September on cost
-  (`docs/mvp0/PRODUCT-PLAN.md:1106`). Unlimited on Pro.
+  (`docs/mvp0/PRODUCT-PLAN.md` section 13). Unlimited on Pro.
 - **Retention.** Until removed. A revoked collaborator keeps nothing but the exports they already
-  made (`docs/mvp0/PRODUCT-PLAN.md:1476`).
+  made (`docs/mvp0/PRODUCT-PLAN.md` section 19).
 - **On account deletion.** Their member rows are removed. The documents stay with the owner.
 
 ### vaults/{vaultId}/docs/{docId}
@@ -265,14 +270,14 @@ Field | Type | Cap | Notes
 - **Size.** `INFERENCE:` about 8 KB at the caps, dominated by three link arrays of up to 500 entries.
   500 paths of about 40 bytes is 20 KB for one array alone, which is **over a sensible budget**, so
   the caps need re-cutting in phase A. Flagged, not silently reduced.
-- **Retention.** Until deleted, then 30 days in trash (`docs/mvp0/PRODUCT-PLAN.md:1433`).
-- **Cap on Free.** 50 cloud documents (`docs/mvp0/PRODUCT-PLAN.md:1105`).
+- **Retention.** Until deleted, then 30 days in trash (`docs/mvp0/PRODUCT-PLAN.md` section 18).
+- **Cap on Free.** 50 cloud documents (`docs/mvp0/PRODUCT-PLAN.md` section 13).
 
 **Two departures from the prototype, both deliberate.**
 
-- **`content` is gone.** `firestore.rules:63` allows up to 900,000 characters of content inside the
+- **`content` is gone.** `firestore.rules:61` allows up to 900,000 characters of content inside the
   note document. Bytes live in R2. `headKey` and `headHash` replace it.
-- **`frontmatter` becomes `frontmatterKeys`.** `firestore.rules:60` stores the parsed front matter
+- **`frontmatter` becomes `frontmatterKeys`.** `firestore.rules:58` stores the parsed front matter
   map, up to 100 keys of arbitrary user YAML, inside the note document. Storing values here breaks
   the projection law: the file on disk stops being the only source of truth, and a stale map becomes
   a second answer to the same question. Keys alone are enough to drive a filter, and are re-derived
@@ -280,7 +285,7 @@ Field | Type | Cap | Notes
 
 ### vaults/{vaultId}/docs/{docId}/versions/{versionId}
 
-Append-only. No update, no delete, matching `firestore.rules:70`.
+Append-only. No update, no delete, matching `firestore.rules:71`.
 
 Field | Type | Notes
 `key` | string | the R2 key of the bytes.
@@ -288,7 +293,7 @@ Field | Type | Notes
 `size` | number | bytes.
 `parentVersionId` | string or null | Null for the first version.
 `author` | string | uid, or the agent token id.
-`source` | string | one of `person`, `ai`, `agent`. This is the AI mark of `docs/mvp0/PRODUCT-PLAN.md:1503`.
+`source` | string | one of `person`, `ai`, `agent`. This is the AI mark of `docs/mvp0/PRODUCT-PLAN.md` section 20.
 `model` | string or null | when `source` is not `person`.
 `ask` | string or null | the instruction that produced it.
 `acceptedBy` | string or null | uid of whoever accepted it from the queue.
@@ -297,11 +302,11 @@ Field | Type | Notes
 
 - **Size.** `INFERENCE:` about 600 bytes. Eleven short fields, the largest a 300-char message.
 - **Retention.** **7 days on Free, 90 on Pro, then pruned to the head**
-  (`docs/mvp0/PRODUCT-PLAN.md:1434`). Pruning deletes the Firestore version document and the R2
+  (`docs/mvp0/PRODUCT-PLAN.md` section 18). Pruning deletes the Firestore version document and the R2
   object together, and the head version is never pruned.
 - **Growth, and the reason it is capped.** The plan's own arithmetic: full-copy saves grow 18 gigabytes a
   month per 1,000 users, "the only line that compounds"
-  (`docs/mvp0/PRODUCT-PLAN.md:1352`). The instruction there is to store deltas or deduplicate.
+  (`docs/mvp0/PRODUCT-PLAN.md` section 15). The instruction there is to store deltas or deduplicate.
   Content-addressed keys give the deduplication for free: a save that changes nothing writes no new
   object, because the hash is the key.
 
@@ -330,11 +335,11 @@ queue feel instant. 64 KiB leaves a 16-times margin under the field ceiling for 
 any future one, and covers an ordinary paragraph or section rewrite comfortably. Anything larger is
 a document-sized rewrite, and those are exactly the proposals that should cost a fetch.
 
-This does **not** contradict `docs/mvp0/PRODUCT-PLAN.md:1298`. That line says a **document's** bytes
+This does **not** contradict `docs/mvp0/PRODUCT-PLAN.md` section 15. That line says a **document's** bytes
 never sit in Firestore. A pending proposal is not a document, and it becomes one only when it is
 accepted, at which point its bytes are written to R2 as a version.
 
-- **Retention.** Until accepted or rejected, then a version (`docs/mvp0/PRODUCT-PLAN.md:1440`). A
+- **Retention.** Until accepted or rejected, then a version (`docs/mvp0/PRODUCT-PLAN.md` section 18). A
   decided item is kept for the history window of its plan and pruned with the versions.
 - **`stale`.** An item whose `baseHash` no longer matches the head. The engine refuses to apply it
   rather than guessing, which is the rule in `26-ENGINE-REFUSAL-CATALOGUE.md`.
@@ -349,7 +354,7 @@ Field | Type | Cap | Notes
 `createdAt` | timestamp | | Immutable.
 
 - **Size.** `INFERENCE:` up to about 4.2 KB.
-- **Retention.** With the document (`docs/mvp0/PRODUCT-PLAN.md:1439`).
+- **Retention.** With the document (`docs/mvp0/PRODUCT-PLAN.md` section 18).
 
 ### shares/{slug}
 
@@ -362,18 +367,18 @@ Field | Type | Cap | Notes
 `renderedKey` | string | 1,024 chars | the R2 key of the rendered page.
 `renderedHash` | string | 64 chars | SHA-256 of the rendered bytes, hex.
 `visibility` | string | | `public` or `unlisted`.
-`passwordHash` | string or null | | Pro only (`docs/mvp0/PRODUCT-PLAN.md:1113`).
+`passwordHash` | string or null | | Pro only (`docs/mvp0/PRODUCT-PLAN.md` section 13).
 `expiresAt` | timestamp or null | | Null means no expiry.
 `createdAt`, `renderedAt` | timestamp | | `renderedAt` moves on every re-publish.
 
 - **Size.** `INFERENCE:` under 2 KB.
 - **Cap on Free.** 5 published pages with the Made with line
-  (`docs/mvp0/PRODUCT-PLAN.md:1107`).
+  (`docs/mvp0/PRODUCT-PLAN.md` section 13).
 - **Access.** Unauthenticated `get` is allowed when `visibility` is `public`. **`list` is owner
   only**, so a stranger cannot list the share set. That rule is already in the prototype
-  (`firestore.rules:80` onward) and it survives unchanged.
+  (`firestore.rules:84`) and it survives unchanged.
 - **Retention.** Until unpublished or expired. On account deletion the URL goes dark
-  (`docs/mvp0/PRODUCT-PLAN.md:1437`).
+  (`docs/mvp0/PRODUCT-PLAN.md` section 18).
 
 **Changed from the prototype.** `firestore.rules:78` stores a `contentSnapshot` of up to 900,000
 characters inside the share document, so a public reader never touches the vault. The isolation is
@@ -420,7 +425,7 @@ The page states its own two costs, and both matter here:
   must be loaded. The page's own remedy is a roll-up document updated at a slower cadence.
 
 **Applied to the AI quota.** The cap on Free is 10 edits and 1 Low blueprint a month
-(`docs/mvp0/PRODUCT-PLAN.md:1109`).
+(`docs/mvp0/PRODUCT-PLAN.md` section 13).
 
 Path | What it holds
 `usage/{uid}/months/{YYYY-MM}` | `numShards`, and the roll-up fields `aiEdits`, `blueprints`, `bytesUsed`, `rolledUpAt`
@@ -433,10 +438,10 @@ Path | What it holds
   single-document contention. Revisit if a Team tier shares one counter.
 - **The ledger is the evidence, the counter is the fast path.** The plan already says entries are
   append-only and never updated, "so the balance is a sum over a collection rather than a row that
-  two writers race for" (`docs/mvp0/PRODUCT-PLAN.md:1300`). The counter is a cache of that sum. When
+  two writers race for" (`docs/mvp0/PRODUCT-PLAN.md` section 15). The counter is a cache of that sum. When
   they disagree, the ledger is right and the counter is rebuilt from it.
 - **Ledger retention.** 180 days, then aggregated. The aggregates are kept without the account id
-  (`docs/mvp0/PRODUCT-PLAN.md:1445`).
+  (`docs/mvp0/PRODUCT-PLAN.md` section 18).
 - **Size.** `INFERENCE:` a ledger entry is under 300 bytes. A shard document is about 100 bytes.
 
 **No client writes either of them.** The metering is server-side, as the prototype header already
@@ -454,25 +459,25 @@ Collection group | Fields | Serves
 `versions` | `createdAt` desc | The history panel.
 `queue` | `state` asc, `createdAt` asc | The change queue, oldest open item first.
 `comments` | `resolved` asc, `createdAt` asc | The comments panel.
-`ledger` | `createdAt` desc | The usage view of `docs/mvp0/PRODUCT-PLAN.md:729`.
+`ledger` | `createdAt` desc | The usage view of `docs/mvp0/PRODUCT-PLAN.md` section 5b.
 `shares` | `ownerUid` asc, `createdAt` desc | The owner's list of published pages.
 
 **Two limits to respect.** A document may carry at most 40,000 index entries, which an array field
 of 500 entries eats into quickly. And Firestore has **no full-text index**, which the plan already
 records: search runs in the browser across the open workspace, with Typesense held in reserve for a
-server-side index (`docs/mvp0/PRODUCT-PLAN.md:1362`).
+server-side index (`docs/mvp0/PRODUCT-PLAN.md` section 15).
 
 ## 21.7 What goes to R2, and why
 
 Object | Why not Firestore
-A document version, the bytes | Unbounded. A 10 MB document is a stated performance target (`docs/mvp0/PRODUCT-PLAN.md:1521`), and that is ten times the whole Firestore document ceiling
-An upload | 5 MB a file on Free, 25 MB on Pro (`docs/mvp0/PRODUCT-PLAN.md:1435`). Both exceed 1 MiB
+A document version, the bytes | Unbounded. A 10 MB document is a stated performance target (`docs/mvp0/PRODUCT-PLAN.md` section 21), and that is ten times the whole Firestore document ceiling
+An upload | 5 MB a file on Free, 25 MB on Pro (`docs/mvp0/PRODUCT-PLAN.md` section 18). Both exceed 1 MiB
 A rendered published page | Isolation. A public reader must never touch the vault, and a rendered copy is regenerated rather than edited
 A large queue proposal | Over the 64 KiB inline cut of 21.4
 An export bundle | Built on request, read once, then expired
-The security log | Append-only for 180 days in Indian jurisdiction (`docs/mvp0/PRODUCT-PLAN.md:1353`). Its own store, because Sentry's and PostHog's free tiers may not pin to India
+The security log | Append-only for 180 days in Indian jurisdiction (`docs/mvp0/PRODUCT-PLAN.md` section 15). Its own store, because Sentry's and PostHog's free tiers may not pin to India
 
-**Uploads do not pass through the application.** `docs/mvp0/PRODUCT-PLAN.md:1351` requires a
+**Uploads do not pass through the application.** `docs/mvp0/PRODUCT-PLAN.md` section 15 requires a
 presigned URL straight to R2, because a Worker caps a request body at 100 MB. The server issues the
 presigned PUT, the browser uploads to R2, and only then is the Firestore record written. The order
 matters: a record written first would point at an object that may never arrive.
@@ -515,7 +520,7 @@ Security log | `log/{YYYY}/{MM}/{DD}/{hour}-{ulid}.jsonl` | One object per write
 **Two limits, stated rather than assumed.** `UNVERIFIED:` R2's own per-object and per-bucket limits
 were not re-opened in this session; the plan's R2 figures in section 15 carry their own `[M]` tags
 and dates. And R2 takes only an apac location hint, so the plan says plainly that the bytes sit
-under a hint and not in India (`docs/mvp0/PRODUCT-PLAN.md:1345`).
+under a hint and not in India (`docs/mvp0/PRODUCT-PLAN.md` section 15).
 
 The restore drill itself, how often it runs and how it is proved, belongs in
 `37-BACKUP-AND-RECOVERY.md` and is not duplicated here.
@@ -523,9 +528,9 @@ The restore drill itself, how often it runs and how it is proved, belongs in
 ## 21.9 The browser stores, and the legacy keys that may not be renamed
 
 These are per device and per browser. Nothing here is a source of truth, and nothing here is ours on
-account deletion (`docs/mvp0/PRODUCT-PLAN.md:1448`).
+account deletion (`docs/mvp0/PRODUCT-PLAN.md` section 18).
 
-`[O]` Every key below was found in the source at `0af3c90` with
+`[O]` Every key below was found in the source at `f237ece` with
 `grep -rn "sgnk-md" src/`.
 
 Key | Store | Holds | Source
@@ -536,7 +541,7 @@ Key | Store | Holds | Source
 `sgnk-md-editor-settings` | `localStorage`, Zustand persist | Editor preferences | `src/modules/editor/presentation/editor-settings.ts:46`.
 
 **They keep the legacy `sgnk-md` prefix on purpose.** The user-facing brand is `frontmatter`, and
-these five are not renamed with it. `AGENTS.md:183`: renaming any of them "silently orphans a user's
+these five are not renamed with it. `AGENTS.md:186`: renaming any of them "silently orphans a user's
 local drafts and settings". Change them only behind a real migration. The Tauri bundle id
 `ai.sgnk.md` is unchanged for the same reason.
 
@@ -548,7 +553,7 @@ draft (`src/modules/drafts/infrastructure/draft-store.ts`). The IndexedDB store 
 
 **Phase A owes these a migration.** The plan carries it as A33: the local drafts the shipped app
 holds under its legacy keys are migrated into the signed-in account
-(`docs/mvp0/PRODUCT-PLAN.md:1320`, and `docs/mvp0/PRODUCT-PLAN.md:1648`). A migration reads the
+(`docs/mvp0/PRODUCT-PLAN.md` section 15, and `docs/mvp0/PRODUCT-PLAN.md` section 25). A migration reads the
 IndexedDB store and writes versions. It does not rename the keys.
 
 **Quota.** `INFERENCE:` the device's own, and it is evictable. A browser may clear
@@ -573,7 +578,7 @@ Ledger entry | 180 days, then aggregated | Aggregates kept without the account i
 Security log | 180 days rolling, Indian jurisdiction | Kept for the period.
 Local draft, IndexedDB and `localStorage` | Until synced or evicted | Not ours.
 
-Every row is `docs/mvp0/PRODUCT-PLAN.md:1431` to `docs/mvp0/PRODUCT-PLAN.md:1448`, with the store
+Every row is `docs/mvp0/PRODUCT-PLAN.md` section 18, with the store
 corrected from Postgres to Firestore or R2 per this file.
 
 **One rule the table cannot show.** Deleting a Firestore document does **not** delete its
@@ -583,7 +588,7 @@ not a client call.
 
 ## 21.11 What exists in code today
 
-`[O]` At `0af3c90`.
+`[O]` At `f237ece`.
 
 Piece | State
 Firestore client | **Built.** `getFirestore` is exported from `src/shared/infrastructure/firebase/client.ts`, lazily, so importing it costs nothing at build time
@@ -596,7 +601,7 @@ IndexedDB drafts and the four `localStorage` keys | **Built**, and listed with l
 **So the honest summary is one line.** The store that holds the bytes today is GitHub, the store the
 plan chose is R2 and Firestore, and the only part of the chosen pair that is initialised is the
 Firestore client. Phase A is where the gap closes
-(`docs/mvp0/PRODUCT-PLAN.md:1657`).
+(`docs/mvp0/PRODUCT-PLAN.md` section 26).
 
 **The prototype's names, mapped to this file's.** Keep the mapping when hardening the rules, because
 a renamed collection with the old rules attached is an open database.
@@ -640,7 +645,7 @@ The section 18 table | `sed -n '1426,1458p' docs/mvp0/PRODUCT-PLAN.md`
 - **What is not established.** That this model survives the Team tier. Every path here is keyed on a
   vault owned by one uid, and a shared bill across seats is a different ownership shape.
 - **What would falsify this file.** A change-queue proposal that does not fit the inline cut and
-  cannot reach R2 in the latency budget of `docs/mvp0/PRODUCT-PLAN.md:1517`. Or a document head that
+  cannot reach R2 in the latency budget of `docs/mvp0/PRODUCT-PLAN.md` section 21. Or a document head that
   exceeds 1 MiB in practice, which would mean the link-array caps were the wrong place to economise.
 - **The contradiction in 21.1 is not resolved by this file.** It is named. Section 18 of the plan
   still says Postgres, and only the founders can retire that text. Until they do, a reader of the

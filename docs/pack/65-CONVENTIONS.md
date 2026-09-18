@@ -65,7 +65,7 @@ Entitlement | dotted, lower case | `limits.collab.live` | `53-PRICING-AND-ENTITL
 ## 4. Citation
 
 - **A file:** `docs/mvp0/PRODUCT-PLAN.md`
-- **A line:** `docs/mvp0/PRODUCT-PLAN.md:238`, and **check it with `sed -n '238p' <file>` before
+- **A line:** `docs/mvp0/PRODUCT-PLAN.md` section 3, and **check it with `sed -n '238p' <file>` before
   writing it.** Fabricated citations have happened in this repository and are checked mechanically.
 - **A source opened on the web:** the full URL and the date it was opened.
 - **A number:** never carried forward. Re-derive it at write time and say how.

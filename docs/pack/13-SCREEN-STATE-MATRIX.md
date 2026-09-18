@@ -15,10 +15,25 @@ covers: [screen-states]
 **Thirty-eight screens against eleven states. 418 cells.** Every cell says whether that screen has
 been told what to do in that state.
 
-**The value of this file is the holes. There are 213 of them**, and not one screen is free of them.
-Section 5 counts them and section 6 ranks the worst twenty-five.
+**There are two different holes here, and the second one matters more.**
+
+1. **A pack hole.** No file anywhere says what happens. **68 of them**, measured at
+   2026-09-18 01:51 UTC by `docs/pack/tools/state-coverage.py`, and 66 of those sit in six screen
+   files nobody has written yet. This number moves every time a screen file lands, so re-run the
+   tool rather than quoting section 6.
+2. **A provenance hole.** The pack answers the state, and **the plan of record never did**. **213 of
+   them.** Sections 3 and 4 are that matrix, and it does not move, because `docs/mvp0/` is frozen at
+   revision 6. **179 of the 213 now carry an answer in a screen file** that was written by a
+   documentation author rather than decided by a founder. Section 7 ranks the ones to review first.
+
+**The second kind is the one that costs money**, because an invented answer reads exactly like a
+recorded one, and nobody downstream can tell them apart.
 
 ## 1. What a cell means
+
+**Sections 3 and 4 read `docs/mvp0/` only**, never `docs/pack/12-screens/`. That is deliberate. The
+question they answer is what the founders and the plan settled, not what a writer has since put in a
+table. Section 6 is the pack view.
 
 Value | Meaning
 `n/a` | The state cannot occur on this screen. Never a shrug. If it could occur, it is a hole
@@ -51,7 +66,7 @@ A cell is only checkable if the state is. These definitions are this file's, der
 **The id column is bare in the two wide tables below**, without backticks, because twelve columns
 of ticked text is unreadable. Every other file in the pack ticks its ids.
 
-## 3. States a person meets on the way in
+## 3. What the plan answers, on the way in
 
 id | first-run | empty | loading | partial | offline | unauthorised
 S01 | `S01` | n/a | **HOLE** | n/a | **HOLE** | n/a
@@ -93,7 +108,7 @@ S36 | **HOLE** | n/a | **HOLE** | **HOLE** | **HOLE** | **HOLE**
 S37 | **HOLE** | n/a | **HOLE** | n/a | **HOLE** | **HOLE**
 S38 | **HOLE** | **HOLE** | **HOLE** | **HOLE** | **HOLE** | **HOLE**
 
-## 4. States a person meets when something goes wrong
+## 4. What the plan answers, when something goes wrong
 
 id | conflict | over-cap | AI-unavailable | error | degraded
 S01 | n/a | n/a | n/a | **HOLE** | **HOLE**
@@ -135,7 +150,7 @@ S36 | **HOLE** | `S36` | `S36` | **HOLE** | `S36`
 S37 | **HOLE** | n/a | n/a | **HOLE** | `S37`
 S38 | **HOLE** | `S38` | n/a | **HOLE** | **HOLE**
 
-## 5. The count
+## 5. The count against the plan
 
 Kind | Cells | Share
 Total | **418** | 38 screens times 11 states
@@ -183,11 +198,51 @@ Screens | Holes each
 
 **No screen has zero holes.** Not one, including the four drawn as states.
 
-## 6. The twenty-five holes most likely to be hit
+## 6. The count against the pack, which moves
+
+**Measured at 2026-09-18 01:51 UTC** with `python3 docs/pack/tools/state-coverage.py`. Thirty-two of
+the thirty-eight screen files existed at that moment, and more were landing while this was written,
+so **every number in this section is a snapshot and the tool is the source**.
+
+Kind | Cells | Where
+Specified in a screen file | **318** | A `States` row in `12-screens/SNN.md`
+`n/a` in a screen file | **32** | The same rows, answering that the state cannot occur
+No row anywhere | **68** | Six absent files carry 66; S35 and S36 each lack `degraded`
+
+**The six absent screen files** are S13, S24, S25, S26, S37 and S38. Writing them closes 66 of the
+68 holes, which makes this the cheapest outstanding work in the pack.
+
+### 6.1 The join, and the finding
+
+Running the plan matrix of sections 3 and 4 against the pack coverage gives the number this file
+exists to produce.
+
+Of the 213 the plan left open | Count | What it means
+Now answered in a screen file | **179** | A documentation author decided it. **No founder did**
+Now marked `n/a` in a screen file | **1** | Ruled out rather than answered
+Still no row anywhere | **33** | All six absent files: S13 three, S24 five, S25 five, S26 five, S37 six, S38 nine
+
+**179 screen behaviours in this pack have no basis in the plan of record.** They are not wrong, and
+several are obviously right, but they read on the page exactly like the ones a founder settled, and
+nothing distinguishes them. That is the risk, and it is the reason sections 3 and 4 keep reading
+`docs/mvp0/` alone.
+
+**What to do with that number.** Not rewrite them. Review them, worst first, using section 7, and
+mark each reviewed row in `12-screens/SNN.md` with the plan's evidence tag: `[Z]` if a founder
+confirms it, `[P]` if it follows from a decision already taken, and `INFERENCE:` if it is neither.
+A row with no tag is the one to ask about.
+
+## 7. The twenty-five the plan never answered, ranked by how likely a person is to hit them
 
 **Ranked by how likely a person is to meet the state, not by how bad it is.** The ranking is a
-judgement and is marked as one. The state itself, and whether it is specified, are facts from the
-matrix.
+judgement and is marked as one. The state itself, and whether the plan specified it, are facts from
+the matrix.
+
+**All twenty-five now carry an answer in a screen file**, written after this matrix was measured, and
+none of them is marked `n/a`. Checked by joining the list below against
+`docs/pack/tools/state-coverage.py`: 25 answered, 0 ruled out, 0 still open. **So this list is now a
+review queue, not a work queue.** These are the twenty-five invented answers a person is most likely
+to meet, and they are the twenty-five rows in `12-screens/SNN.md` to put in front of a founder first.
 
 ### Tier one. Met on the first day, by almost everybody
 
@@ -206,11 +261,11 @@ Rank | Hole | Why a person lands there
 ### Tier two. Met in the first week
 
 Rank | Hole | Why a person lands there
-11 | `S22` over-cap | `docs/mvp0/PRODUCT-PLAN.md:1099` says an imported vault is hundreds of files against a Free cap of 50. A Free import crossing the cap part way is the expected case, not an edge
+11 | `S22` over-cap | `docs/mvp0/PRODUCT-PLAN.md` section 13 says an imported vault is hundreds of files against a Free cap of 50. A Free import crossing the cap part way is the expected case, not an edge
 12 | `S14` unauthorised | A Free account opening Medium or High. The depth selector is deliberately one control, so reaching a Pro depth from Free is one click
 13 | `S30` unauthorised | A Free account opening the portfolio, which is Pro
 14 | `S04` error | A save that fails. The one state where the projection law is at stake
-15 | `S29` error | A payment that fails, and `docs/mvp0/PRODUCT-PLAN.md:641` says an Indian card gets one attempt
+15 | `S29` error | A payment that fails, and `docs/mvp0/PRODUCT-PLAN.md` section 5 says an Indian card gets one attempt
 16 | `S23` unauthorised | A revoked GitHub or Drive token, which happens without the person doing anything
 17 | `S11` empty | A project with no instruction file, which is most projects
 18 | `S16` empty | A project with one document, so the map is a single dot
@@ -226,9 +281,11 @@ Rank | Hole | Why it matters more than its frequency
 24 | `S15` error | The tarball hash does not match the one printed on the page. The kickoff prompt's only safety check, with no screen behind it
 25 | `S28` conflict | Two devices changing one setting. Settings live on the account, so this is a real race with no rule
 
-## 7. How to close a hole
+## 8. How to close a hole
 
-A hole is closed by writing one row, not by building anything. The steps, in order:
+**Most rows now exist**, so for 179 cells the work below is already done and section 6.1 turns it
+into a review instead. What follows is for the 68 that are still open, and for anyone adding a screen
+file. A hole is closed by writing one row, not by building anything. The steps, in order:
 
 1. Open `12-screens/SNN.md` for the screen, and find its `States` heading.
 2. Write a row: the state, when it happens, what is shown, and what the person can do next.
@@ -237,20 +294,28 @@ A hole is closed by writing one row, not by building anything. The steps, in ord
 4. If the answer is a refusal, give it an error id from `17-ERROR-AND-REFUSAL-CATALOGUE.md`. A
    refusal is a correct outcome for this product, so it deserves a number and a sentence.
 5. If the answer is another screen, name that screen and say what the person sees on the way.
-6. Change the cell in this file from **HOLE** to the place you wrote it, and re-run section 9.
+6. Re-run `python3 docs/pack/tools/state-coverage.py` and update section 6 from what it prints.
+   **Do not edit sections 3 and 4.** They record what the plan answered, and writing a screen row
+   does not change that. Changing them destroys the provenance finding this file exists for.
 
 **A hole may also close by turning out to be `n/a`.** That is a real answer, and it is cheaper than
 a screen. Write the reason on the screen's `States` row rather than deleting the question.
 
-## 8. What this matrix does not settle
+## 9. What this matrix does not settle
 
 - **Not assessed:** severity. A hole is counted the same whether it loses a document or shows a
   blank box. `17-ERROR-AND-REFUSAL-CATALOGUE.md` carries severity.
-- **Could not be verified:** what the shipped code does in these states. Every cell is read from
-  `docs/mvp0/SCREENS.md`, `docs/mvp0/PRODUCT-PLAN.md` and
+- **Could not be verified:** what the shipped code does in these states. Every cell in sections 3
+  and 4 is read from `docs/mvp0/SCREENS.md`, `docs/mvp0/PRODUCT-PLAN.md` and
   `docs/mvp0/SCREEN-CHANGES-2026-09-18.md`. A screen may already handle a state in code without
   anybody having written it down, and this file would still call it a hole. That is deliberate: the
   pack is the specification, and an undocumented behaviour is not a specification.
+- **Not assessed, and it is the obvious next question:** whether the 179 invented answers are any
+  good. This file finds them and ranks them. It does not judge them, and a documentation author is
+  not the right judge of a product decision.
+- **A snapshot, and labelled one:** section 6 was measured at one minute of one day while other
+  writers were still landing screen files. It was already two files out of date between the first
+  run of the tool and the second. Never quote it; run the tool.
 - **Not established:** the `n/a` column. 116 cells say a state cannot occur. Each is a judgement
   made once, in this session, and a reviewer should attack that column first, because a wrong `n/a`
   hides a hole where a wrong `HOLE` only makes work.
@@ -260,7 +325,7 @@ a screen. Write the reason on the screen's `States` row rather than deleting the
   changes a cell must re-emit section 5 from section 9, because a hand-adjusted total is exactly the
   failure `AGENTS.md` rule 3 exists to stop.
 
-## 9. How to re-derive every number here
+## 10. How to re-derive every number here
 
 The matrix was held as one Python dictionary of 38 rows by 11 columns, and everything in sections 3
 to 6 was printed from it. To re-derive, rebuild the dictionary from the tables in sections 3 and 4
@@ -286,3 +351,13 @@ print(collections.Counter(s for s, _ in holes))       # holes by screen
 
 **It printed** `cells 418 holes 213 n/a 116 specified 89` on 18 September 2026. The two counters
 produced the two rankings in section 5 exactly as they are printed there.
+
+**Section 6 has its own tool**, because it reads a moving target:
+
+```bash
+python3 docs/pack/tools/state-coverage.py
+```
+
+It prints one line per screen, then
+`cells 418  specified 318  n/a 32  HOLE 68` and the list of absent screen files. That was the
+reading at 2026-09-18 01:51 UTC, and it will not be the reading when you run it.

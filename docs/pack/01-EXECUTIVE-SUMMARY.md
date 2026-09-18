@@ -30,7 +30,7 @@ Specs written | **4**, all at `state: draft` | `npm run spec`
 Tests | **1,598 pass, 6 expected fail, 100 files** | `npm run test`
 Foreign corpus | **8,513 of 8,513 byte-identical** | `npm run corpus`
 Decision cards in `decisions/v2` | **275**, 0 errors, 5 warnings | `python3 decisions/tools/validate.py decisions/v2`
-Commits ahead of `origin/main` | **200** | `git rev-list --count origin/main..HEAD`
+Commits ahead of `origin/main` | **203** at 07:20, and rising | `git rev-list --count origin/main..HEAD`
 Date of the `origin/main` tip | **2026-07-25** | `git log -1 --format='%ci' origin/main`
 
 **The eight page routes are not eight of the thirty-eight screens.** They are the login page, the

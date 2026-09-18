@@ -30,8 +30,8 @@ The plan carries two totals and they measure different things. Both are quoted h
 quoting one alone misleads.
 
 Number | What it measures | Source
-**27 weeks** | The sum of the phase appetites, at full time | `docs/mvp0/PRODUCT-PLAN.md:1667`
-**99 to 129 calendar weeks** | The same work at the pace actually measured, 0.93 to 1.21 days a week | `docs/mvp0/PRODUCT-PLAN.md:1669`
+**27 weeks** | The sum of the phase appetites, at full time | `docs/mvp0/PRODUCT-PLAN.md` section 26
+**99 to 129 calendar weeks** | The same work at the pace actually measured, 0.93 to 1.21 days a week | `docs/mvp0/PRODUCT-PLAN.md` section 26
 
 **The appetites sum checked at write time** `[O]`. Phase 0 is 2, A is 3, B is 4, C is 4, D is 3,
 E is 3, F is 3, G is 3 and H is 2. That is 27.
@@ -151,7 +151,7 @@ D | H | Password links and 90-day history, both Pro rows
 
 Gate | Where | What it blocks | What passes it
 The twenty kits | Phase 0 | Phase C | Five of ten kit recipients run the kickoff, and two of ten edit a kit again
-The pilot | After H | Everything in Later | `docs/mvp0/PRODUCT-PLAN.md:1738`, three stop lines and three continue lines
+The pilot | After H | Everything in Later | `docs/mvp0/PRODUCT-PLAN.md section 28`, three stop lines and three continue lines
 
 **A gate is not a milestone.** A milestone is passed by doing the work. A gate is passed by the
 world answering, and it can fail.
@@ -160,18 +160,18 @@ world answering, and it can fail.
 
 ## 4. The phases, each with what ships
 
-Taken from `docs/mvp0/PRODUCT-PLAN.md:1655` to `:1665`, with the 18 September additions folded
+Taken from `docs/mvp0/PRODUCT-PLAN.md` section 26 to `:1665`, with the 18 September additions folded
 into the phase they belong to and marked.
 
 ### Phase 0. Before code. 2 weeks
 
 What | Note
 The legal floor's first rows | `54-COMPLIANCE-AND-LEGAL.md`
-The accounts moved to the company | `docs/mvp0/PRODUCT-PLAN.md:1619`
+The accounts moved to the company | `docs/mvp0/PRODUCT-PLAN.md section 24`
 The four public pages written: privacy, terms, pricing, refunds | They currently serve placeholders
 The pace published every Friday | So the measured pace stays measured
 The `GITHUB_REPO` default fixed | It points at a sibling project's vault today
-The format specifications drafted | `docs/mvp0/PRODUCT-PLAN.md:1478`
+The format specifications drafted | `docs/mvp0/PRODUCT-PLAN.md section 20`
 Twenty blueprints made by hand, for twenty people outside the studio | The gate on Phase C
 
 ### Phase A. The door and the home. 3 weeks
@@ -193,7 +193,7 @@ gave it hardcoded defaults instead, which resolves eleven open questions into ro
 What | Note
 The workspace on the new stack | S04
 The two measured engine defects fixed, with red proofs | A column-zero list item in front matter; a trailing comment deleted on a set
-The audit's third, unlabelled defect fixed | `docs/mvp0/PRODUCT-PLAN.md:1424`
+The audit's third, unlabelled defect fixed | `docs/mvp0/PRODUCT-PLAN.md section 17`
 Doc mode | S05, and the 20 lossless plus 15 partial features of section 7
 Problems and the formatter | S10
 The AI box and menu on the free chain, with the breaker | S06, S07
@@ -214,7 +214,7 @@ The map | S16
 ### Phase D. Sharing. 3 weeks
 
 What | Note
-People, with the role matrix | S17, and `docs/mvp0/PRODUCT-PLAN.md:1461`
+People, with the role matrix | S17, and `docs/mvp0/PRODUCT-PLAN.md section 19`
 Links with expiry | S17
 Published pages with the `.md` twin, the footer and the grievance route | S18
 The change queue | S20
@@ -273,7 +273,7 @@ move out of Later and become the Max tier. That is an open decision, D04 in
 
 ## 5. The default the plan is written to
 
-`docs/mvp0/PRODUCT-PLAN.md:1673` states it, and founder question 1 can replace it.
+`docs/mvp0/PRODUCT-PLAN.md` section 26 states it, and founder question 1 can replace it.
 
 - Phases 0, A, B, D and H at the measured pace, with dates published every Friday.
 - E, F and G in Later.
@@ -297,7 +297,7 @@ single largest consequence of the default and it deserves a decision rather than
 
 ## 6. Content is work, and it is not in any appetite
 
-`docs/mvp0/PRODUCT-PLAN.md:1677` costs it at about thirty days of writing the earlier plan did
+`docs/mvp0/PRODUCT-PLAN.md` section 26 costs it at about thirty days of writing the earlier plan did
 not count.
 
 What | Where it appears
@@ -320,7 +320,7 @@ The twenty-kit gate fails | Phase C does not start, and 4 weeks plus the idea re
 The pace doubles | Every calendar figure halves; the appetites do not move
 A contractor joins for D and F | Those two phases parallelise against B rather than queueing behind it
 The MCP server moves out of Later | A new phase between D and H, appetite unset. See `56-OPEN-DECISIONS.md` D04
-Obsidian ships a web version | `docs/mvp0/PRODUCT-PLAN.md:1681` names this; the opening narrows and phase E gets more valuable, not less
+Obsidian ships a web version | `docs/mvp0/PRODUCT-PLAN.md` section 27 names this; the opening narrows and phase E gets more valuable, not less
 
 ---
 

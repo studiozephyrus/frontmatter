@@ -27,7 +27,7 @@ owners and dates intact, and the provider-terms half is extended from
 
 ## 1. The three things that bring the law in
 
-`docs/mvp0/PRODUCT-PLAN.md:1611` states the trigger, and it is worth reading before the rows:
+`docs/mvp0/PRODUCT-PLAN.md` section 23 states the trigger, and it is worth reading before the rows:
 
 - **Holding documents.** Somebody else's private text on our disk.
 - **Publishing strangers' pages.** Content we did not write, served from our domain.
@@ -92,12 +92,12 @@ G.S.R. 843(E) of 13 November 2025, CG-DL-E-14112025-267647 | Brings sections 7 t
 G.S.R. 846(E), CG-DL-E-14112025-267650, rule 1 | Rules 1, 2 and 17 to 21 at once. Rule 4 after one year. Rules 3, 5 to 16, 22 and 23 after eighteen months
 
 **So the pilot runs before the duty bites.** That is a fact about timing, not a permission. **The
-terms carry the floor from day one** `docs/mvp0/PRODUCT-PLAN.md:1618`.
+terms carry the floor from day one** `docs/mvp0/PRODUCT-PLAN.md` section 23.
 
 ### 3.2 The age floor
 
 - **Default eighteen**, founder question 12.
-- **The configuration panel cannot change this retroactively.** `docs/mvp0/PRODUCT-PLAN.md:1859`:
+- **The configuration panel cannot change this retroactively.** `docs/mvp0/PRODUCT-PLAN.md` section 30:
   the panel can hold the number, and it cannot re-consent the people who accepted the old terms.
 - **So the number is a setting and the promise is not.** Raising the floor after somebody has
   signed up under a lower one is a consent problem, not a configuration change.
@@ -119,7 +119,7 @@ one is satisfied automatically.
 
 ### 3.4 Retention and deletion, as promised in the data model
 
-Every row here is a promise made in `docs/mvp0/PRODUCT-PLAN.md:1442` and has to survive contact
+Every row here is a promise made in `docs/mvp0/PRODUCT-PLAN.md` section 18 and has to survive contact
 with a deletion request.
 
 Thing | Retention | On account deletion
@@ -136,7 +136,7 @@ in the privacy notice rather than promising a clean sweep.**
 
 ### 3.5 Where the bytes physically sit
 
-The plan's stack puts storage and compute in Mumbai. `docs/mvp0/PRODUCT-PLAN.md:1620` requires the
+The plan's stack puts storage and compute in Mumbai. `docs/mvp0/PRODUCT-PLAN.md` section 23 requires the
 security log in Indian jurisdiction, so the location is a compliance fact rather than a latency
 one.
 
@@ -152,7 +152,7 @@ reproduced.
 ### 4.1 The promise
 
 **The sign-in page says we never train on documents.** That is not a setting. It is a claim about
-which providers are in the chain, and `docs/mvp0/PRODUCT-PLAN.md:1858` names it as one of the
+which providers are in the chain, and `docs/mvp0/PRODUCT-PLAN.md` section 30 names it as one of the
 three things the configuration panel cannot absorb.
 
 **So the rule is absolute: a provider whose terms nobody has opened cannot be switched on.** S36

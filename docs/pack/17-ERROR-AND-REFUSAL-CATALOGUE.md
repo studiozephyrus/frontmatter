@@ -6,8 +6,8 @@ tier: canonical
 status: living
 updated: 2026-09-18
 owner: sagnik
-verified_against: 0af3c90
-covers: [refusals, errors, recovery, unchanged-input guarantee]
+verified_against: f237ece
+covers: [refusals, errors, recovery, unchanged-input-guarantee]
 ---
 
 # 17. Error and refusal catalogue
@@ -66,7 +66,7 @@ either file.
 Class | What it covers | Who owns the fix
 `engine` | The splice writer and the shape gate refusing to write | The engine
 `validation` | Input the product will not accept | The route or the form
-`permission` | The person or the token may not do this | The permission matrix, `docs/mvp0/PRODUCT-PLAN.md:1461`
+`permission` | The person or the token may not do this | The permission matrix, `docs/mvp0/PRODUCT-PLAN.md` section 19
 `quota` | A cap in `limitsFor(account)` has been reached | The entitlements layer
 `model` | The model layer produced nothing usable | The AI router
 `provider` | A third party refused, expired or ran out | The adapter
@@ -79,7 +79,7 @@ Class | What it covers | Who owns the fix
 
 **This is the half of the catalogue that is already real.** Every trigger below was read from
 `src/modules/share/domain/splice-frontmatter.ts`, `src/modules/mdmax/domain/shape-gate.ts` or
-`specs/engine/` at commit `0af3c90`.
+`specs/engine/` at commit `f237ece`.
 
 id | class | trigger | string | recovery | unchanged | event | test
 `E001` | engine | The key does not match `SAFE_KEY = /^[A-Za-z0-9_.$-]+$/`, so the writer cannot address it | none yet | Rename the key, or edit the front matter by hand | `yes` | `engine.refused` | `test/share/frontmatter-splice.test.ts`.
@@ -183,7 +183,7 @@ id | class | trigger | string | recovery | unchanged | event | test
 `E059` | permission | A configuration write arrives without the super-admin flag | `internal` | None. Checked server-side on every write, never in the browser | `n/a` | `config.refused` | `T037`.
 `E060` | permission | Ownership transfer requested by an agent | none yet | None. **Transfers go to another account on request, never by an agent** | `yes` | `owner.transfer_refused` | `T038`.
 
-**`E051`, `E052` and `E060` are the permission matrix said in code.** `docs/mvp0/PRODUCT-PLAN.md:1469`
+**`E051`, `E052` and `E060` are the permission matrix said in code.** `docs/mvp0/PRODUCT-PLAN.md` section 19
 gives the agent-token row as never for apply and never for publish, and `:1474` gives the ownership
 rule. **These three are the rows an attacker tries first**, so each needs a test before phase D.
 
@@ -193,7 +193,7 @@ rule. **These three are the rows an attacker tries first**, so each needs a test
 
 **Every row here reads a number from `limitsFor(account)` and never from a constant.** A hard-coded
 cap anywhere else is a defect the architecture gate should fail on
-(`docs/mvp0/PRODUCT-PLAN.md:1835`).
+(`docs/mvp0/PRODUCT-PLAN.md` section 30).
 
 id | class | trigger | string | recovery | unchanged | event | test
 `E070` | quota | Creating a cloud document at the document cap | `K.s33.title` | Delete or export something, use the desktop app, or move to Pro | `n/a` | `cap.documents` | `T040`.
@@ -249,7 +249,7 @@ id | class | trigger | string | recovery | unchanged | event | test
 
 **`E095` and `E096` are architectural constants, not our choices.** ₹15,000 per transaction is the
 RBI cap and an Indian card gets one payment attempt
-(`docs/mvp0/PRODUCT-PLAN.md:641`). **`E096` has no string and needs one**, or a person will read a
+(`docs/mvp0/PRODUCT-PLAN.md` section 5). **`E096` has no string and needs one**, or a person will read a
 single decline as a broken card. It is the missing string recorded at the foot of section 14j of
 `16-COPY-DECK.md`.
 
@@ -265,7 +265,7 @@ id | class | trigger | string | recovery | unchanged | event | test
 `E104` | network | Persistent storage was requested and refused by the browser | none yet | None shown. **The first connection pushes everything to the server** | `n/a` | `storage.not_persisted` | `T073`.
 
 **`E104` is the row behind the plan's one rule for offline**: never let the browser be the only copy
-(`docs/mvp0/PRODUCT-PLAN.md:1077`). It is silent on purpose, and the recovery is architectural rather
+(`docs/mvp0/PRODUCT-PLAN.md` section 12). It is silent on purpose, and the recovery is architectural rather
 than a message.
 
 ---
@@ -273,7 +273,7 @@ than a message.
 ## 8. Conflict
 
 **Twelve invariants govern the engine and the twelfth is "No silent merge, ever"**
-(`docs/mvp0/PRODUCT-PLAN.md:1397`). Every row here is that invariant meeting a real case.
+(`docs/mvp0/PRODUCT-PLAN.md` section 17). Every row here is that invariant meeting a real case.
 
 id | class | trigger | string | recovery | unchanged | event | test
 `E110` | conflict | A commit whose base sha no longer matches the remote | `internal` | Re-read and retry. The paths are named | `yes` | `commit.conflict` | `test/api/share-conflicts-route.test.ts`.
@@ -287,7 +287,7 @@ id | class | trigger | string | recovery | unchanged | event | test
 
 ### 8.1 The measure that must be zero
 
-`docs/mvp0/PRODUCT-PLAN.md:1717` lists, among the pilot's measures, "Sync conflicts shown against
+`docs/mvp0/PRODUCT-PLAN.md` section 28 lists, among the pilot's measures, "Sync conflicts shown against
 merges attempted, which must be zero".
 
 **Read the two halves carefully, because they are easy to swap.** Conflicts shown is expected to be
@@ -385,7 +385,7 @@ rare fault proves nothing until it fails against the unfixed code.
 - **What is not established.** Every `none yet` string, every `T` id, and the whole of sections 4
   through 7, which describe a product that is mostly not built.
 - **What would falsify it.** The NF-1 and NF-3 fixes land in phase B
-  (`docs/mvp0/PRODUCT-PLAN.md:1658`), and `E009` and `E011` change on that day. A `16-COPY-DECK.md`
+  (`docs/mvp0/PRODUCT-PLAN.md` section 26), and `E009` and `E011` change on that day. A `16-COPY-DECK.md`
   that gains `K.err.*` ids would fill twenty-two `none yet` cells at once.
 - **One thing a reader should not conclude.** A refusal rate is not a defect rate. `E009` refuses
   83.10 per cent of foreign vaults and every one of those files is intact. **The number to watch is

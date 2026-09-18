@@ -21,6 +21,11 @@ section 9. We cannot stop a person making a second GitHub account. We can make t
 worth 2.23 cents a month, visible in a daily report, and unable to spend faster than a bucket
 refills.
 
+**A note on the line citations in this file.** They were resolved against commit `e532e32` on
+2026-09-18. `docs/mvp0/PRODUCT-PLAN.md` is being edited by other writers in the same pass, and its
+line numbers moved by twelve while this file was being written. **Confirm a citation by the phrase
+rather than by the number** if the two disagree.
+
 **What is built today.** A five-provider chain in `src/modules/ai/infrastructure/gateway-client.ts`
 with two static orders and no memory of a refusal. Everything else in this file is `specified, not
 built`. Section 11 separates the two, line by line.
@@ -49,7 +54,7 @@ Where each gate lives.
 Gate | Enforced in | How it fails
 A | `domain/provider-policy.ts`, the catalogue constant | A provider row carries `trainsOnInputs: true` and the planner refuses to emit it, with a unit test that asserts the refusal
 B | The same catalogue, field `termsOpenedOn: <ISO date> \| null` | A null date means the row cannot be enabled from S36, and the panel disables the control rather than hiding it
-Both | The sign-in promise | `docs/mvp0/PRODUCT-PLAN.md:1846` says the training promise is not a row the panel can edit, because adding a training provider changes the sentence on the sign-in page, not a number
+Both | The sign-in promise | `docs/mvp0/PRODUCT-PLAN.md` section 30 says the training promise is not a row the panel can edit, because adding a training provider changes the sentence on the sign-in page, not a number
 
 **The search term that finds a breach.** Every provider disqualified below uses the same three
 words, and none of them says "we will train on your data". Google writes `improve and develop`,
@@ -70,48 +75,44 @@ type. Every quotation was copied from the provider's own page on 18 September 20
 
 ### 2.1 In the chain
 
-| # | Provider | Free models | Rate limits | Pool is per | Region | State |
-|---|---|---|---|---|---|---|
-| 1 | Cloudflare Workers AI | 32 models carry a neuron price, including `@cf/meta/llama-3.2-3b-instruct`, `@cf/qwen/qwen3-30b-a3b-fp8`, `@cf/openai/gpt-oss-20b` | **300 requests a minute**, 10,000 neurons a day, reset `00:00 UTC` | account | edge, several points of presence in India | in the plan's chain |
-| 2 | Groq | `openai/gpt-oss-120b`, `openai/gpt-oss-20b`, `openai/gpt-oss-safeguard-20b`, `qwen/qwen3.8-27b` | 30 a minute, **1,000 a day and 200,000 tokens a day per model**, 8,000 tokens a minute | organisation | data at rest in `Google Cloud Platform (GCP) buckets located in the United States` | in the plan's chain |
-| 3 | Cerebras | `gpt-oss-120b`, `qwen-3.8-27b` | **5 a minute**, 30,000 uncached tokens a minute, 90,000 total, 1,000,000 a day per model | organisation | administered `from its offices in California` | in the plan's chain while the trial lasts |
-| 4 | OpenRouter | 21 model ids ending `:free`, of 445 listed | 20 a minute; **50 a day, or 1,000 a day after buying 10 credits once** | account, and **readable before spending** | no Asian region; in-region routing is enterprise-only | **in the chain, admitted 18 September. See 2.4** |
-| 5 | SambaNova | DeepSeek-V3.1, Llama 3.3 70B, gpt-oss-120b | 20 requests a day per model | `UNVERIFIED:` not opened by L1 | `UNVERIFIED:` | in the plan's chain, smoke test only |
-| 6 | Ollama, on the desktop only | `llama3.2:3b` at 2.0 GB, `qwen3:4b` at 2.5 GB, `gemma3:4b` at 3.3 GB, `qwen3:8b` at 5.2 GB | none | the machine | the machine | desktop, `specified, not built` |
-| 7 | The paid link | Cloudflare Workers Paid neurons, then Anthropic for Pro | Cloudflare text generation stays at `300 requests per minute` on the paid plan | account | as above | the reason the router cannot run out |
+# | Provider | Free models | Rate limits | Pool is per | Region | State
+1 | Cloudflare Workers AI | 32 models carry a neuron price, including `@cf/meta/llama-3.2-3b-instruct`, `@cf/qwen/qwen3-30b-a3b-fp8`, `@cf/openai/gpt-oss-20b` | **300 requests a minute**, 10,000 neurons a day, reset `00:00 UTC` | account | edge, several points of presence in India | in the plan's chain
+2 | Groq | `openai/gpt-oss-120b`, `openai/gpt-oss-20b`, `openai/gpt-oss-safeguard-20b`, `qwen/qwen3.8-27b` | 30 a minute, **1,000 a day and 200,000 tokens a day per model**, 8,000 tokens a minute | organisation | data at rest in `Google Cloud Platform (GCP) buckets located in the United States` | in the plan's chain
+3 | Cerebras | `gpt-oss-120b`, `qwen-3.8-27b` | **5 a minute**, 30,000 uncached tokens a minute, 90,000 total, 1,000,000 a day per model | organisation | administered `from its offices in California` | in the plan's chain while the trial lasts
+4 | OpenRouter | 21 model ids ending `:free`, of 445 listed | 20 a minute; **50 a day, or 1,000 a day after buying 10 credits once** | account, and **readable before spending** | no Asian region; in-region routing is enterprise-only | **in the chain, admitted 18 September. See 2.4**
+5 | SambaNova | DeepSeek-V3.1, Llama 3.3 70B, gpt-oss-120b | 20 requests a day per model | `UNVERIFIED:` not opened by L1 | `UNVERIFIED:` | in the plan's chain, smoke test only
+6 | Ollama, on the desktop only | `llama3.2:3b` at 2.0 GB, `qwen3:4b` at 2.5 GB, `gemma3:4b` at 3.3 GB, `qwen3:8b` at 5.2 GB | none | the machine | the machine | desktop, `specified, not built`
+7 | The paid link | Cloudflare Workers Paid neurons, then Anthropic for Pro | Cloudflare text generation stays at `300 requests per minute` on the paid plan | account | as above | the reason the router cannot run out
 
 **The base URLs, so the chain is a configuration table rather than a codebase.** Every entry is
 OpenAI-shaped, copied from each provider's own compatibility page, opened 2026-09-18.
 
-| # | Provider | Base URL | Model to start with |
-|---|---|---|---|
-| 1 | Cloudflare Workers AI | `https://api.cloudflare.com/client/v4/accounts/{account_id}/ai/v1/chat/completions` | `@cf/meta/llama-3.1-8b-instruct-fp8-fast` |
-| 2 | Groq | `https://api.groq.com/openai/v1` | `openai/gpt-oss-120b` |
-| 3 | OpenRouter | `https://openrouter.ai/api/v1` | `z-ai/glm-5.2:free` or `qwen/qwen3.8-27b:free` |
-| 4 | Cerebras | `https://api.cerebras.ai/v1` | `gpt-oss-120b` |
+# | Provider | Base URL | Model to start with
+1 | Cloudflare Workers AI | `https://api.cloudflare.com/client/v4/accounts/{account_id}/ai/v1/chat/completions` | `@cf/meta/llama-3.1-8b-instruct-fp8-fast`
+2 | Groq | `https://api.groq.com/openai/v1` | `openai/gpt-oss-120b`
+3 | OpenRouter | `https://openrouter.ai/api/v1` | `z-ai/glm-5.2:free` or `qwen/qwen3.8-27b:free`
+4 | Cerebras | `https://api.cerebras.ai/v1` | `gpt-oss-120b`
 
 So a provider row is a base URL, a key reference and a model id. That is why the whole catalogue
 lives in the configuration panel of file 28 rather than in the source.
 
 **The training clause, quoted, for every provider in the chain.**
 
-| Provider | The sentence, copied from the page |
-|---|---|
-| Cloudflare | `Cloudflare does not use your Customer Content to (1) train any AI models made available on Workers AI or (2) improve any Cloudflare or third-party services, and would not do so unless we received your explicit consent.` |
-| Groq | `For clarity, Groq is not permitted to use Inputs or Outputs for training or fine-tuning any AI Model Services or other models, unless explicitly granted permission or instructed by Customer.` |
-| Cerebras | `For clarity, the foregoing does not grant Cerebras the right to use Service Content for the purpose of training or fine-tuning models.` |
-| OpenRouter | Its own logging is off unless turned on: `Unless explicitly opted in to prompt logging, we do not store your Inputs after categorizing them and do not associate the categorized Inputs with any specific user or organizational accounts.` The upstream is a separate question, answered per provider in its register and disclaimed by OpenRouter. |
-| SambaNova | `UNVERIFIED:` no sentence was opened. Under gate B this row cannot be enabled until one is. |
-| Ollama | Nothing leaves the machine, so the clause does not arise. |
+Provider | The sentence, copied from the page
+Cloudflare | `Cloudflare does not use your Customer Content to (1) train any AI models made available on Workers AI or (2) improve any Cloudflare or third-party services, and would not do so unless we received your explicit consent.`
+Groq | `For clarity, Groq is not permitted to use Inputs or Outputs for training or fine-tuning any AI Model Services or other models, unless explicitly granted permission or instructed by Customer.`
+Cerebras | `For clarity, the foregoing does not grant Cerebras the right to use Service Content for the purpose of training or fine-tuning models.`
+OpenRouter | Its own logging is off unless turned on: `Unless explicitly opted in to prompt logging, we do not store your Inputs after categorizing them and do not associate the categorized Inputs with any specific user or organizational accounts.` The upstream is a separate question, answered per provider in its register and disclaimed by OpenRouter.
+SambaNova | `UNVERIFIED:` no sentence was opened. Under gate B this row cannot be enabled until one is.
+Ollama | Nothing leaves the machine, so the clause does not arise.
 
 **Commercial use on the free tier, quoted.**
 
-| Provider | The position |
-|---|---|
-| Cloudflare | No restriction on the pricing, limits or data-usage pages. `Workers AI is included in both the Free and Paid Workers plans`. One caveat to check per model: `Cloudflare neither creates nor trains the AI models made available on Workers AI. The models constitute Third-Party Services and may be subject to open source or other license terms`. |
-| Groq | Allowed. The `personal, non-commercial use only` sentence binds the marketing website, and Groq says so: `These Terms do not apply to you in connection with your use of Groq's cloud services, including GroqChat, Groq Playground, and GroqCloud.` The cost is the indemnity: section 15.3 excludes `any Cloud Services provided to Customer free of charge`. |
-| Cerebras | Allowed. The same misreading applies and Cerebras closes it in the same paragraph: `The foregoing provision does not apply to the Service or Service Content`, and the API licence grants use `solely for your personal use or business purpose, as applicable`, including the right to `distribute or allow access to your integration of the APIs within your applications to end users of such applications`. |
-| OpenRouter | Allowed, with a data processing agreement written for this case: `If you are part of and represent an organization in entering into these Terms or use the Service for commercial, for-profit purposes, please read the OpenRouter Data Processing Agreement`. |
+Provider | The position
+Cloudflare | No restriction on the pricing, limits or data-usage pages. `Workers AI is included in both the Free and Paid Workers plans`. One caveat to check per model: `Cloudflare neither creates nor trains the AI models made available on Workers AI. The models constitute Third-Party Services and may be subject to open source or other license terms`.
+Groq | Allowed. The `personal, non-commercial use only` sentence binds the marketing website, and Groq says so: `These Terms do not apply to you in connection with your use of Groq's cloud services, including GroqChat, Groq Playground, and GroqCloud.` The cost is the indemnity: section 15.3 excludes `any Cloud Services provided to Customer free of charge`.
+Cerebras | Allowed. The same misreading applies and Cerebras closes it in the same paragraph: `The foregoing provision does not apply to the Service or Service Content`, and the API licence grants use `solely for your personal use or business purpose, as applicable`, including the right to `distribute or allow access to your integration of the APIs within your applications to end users of such applications`.
+OpenRouter | Allowed, with a data processing agreement written for this case: `If you are part of and represent an organization in entering into these Terms or use the Service for commercial, for-profit purposes, please read the OpenRouter Data Processing Agreement`.
 
 **The most repeated error in third-party summaries of free tiers** is reading the website licence as
 if it bound the API. It costs you a provider you could have used. Read who the clause binds before
@@ -119,13 +120,12 @@ believing it.
 
 ### 2.2 Refused under gate A
 
-| Provider | The sentence that disqualifies it |
-|---|---|
-| Google AI Studio, the unpaid Gemini quota | `When you use Unpaid Services, including, for example, Google AI Studio and the unpaid quota on Gemini API, Google uses the content you submit to the Services and any generated responses to provide, improve, and develop Google products and services and machine learning technologies`. Then `To help with quality and improve our products, human reviewers may read, annotate, and process your API input and output.` Then the instruction that settles it for a document editor: `Do not submit sensitive, confidential, or personal information to the Unpaid Services.` The pricing page prints the row `Used to improve our products` with the value `Yes` in the Free Tier column 79 times. |
-| Cohere trial keys | `... AND (III) IMPROVE AND ENHANCE THE SERVICES AND COHERE'S OTHER OFFERINGS AND BENCHMARK THE FOREGOING, INCLUDING BY SHARING API DATA AND FINETUNING DATA WITH THIRD PARTIES`. `API Data` is defined as anything submitted to the API, so this is not limited to fine-tuning uploads. |
-| NVIDIA NIM | The licence grants use to `(c) modify and improve NVIDIA products or services or the technology underlying the Technology`, with no training carve-out. NVIDIA separately bans the data class: `you agree that your actions and transmission of User Content: (a) does not include any confidential information; (b) does not include any controlled or sensitive data`. |
-| DeepSeek | `To improve and develop the Services and to train and improve our technology, such as our machine learning models and algorithms.` It also shares for the same purpose with providers who receive data for `foundation model training and optimization`. Added to the plan's refused list on 18 September. It has no free tier either |
-| Mistral Free | Conditional, and the condition is the page that returns 404. `Mistral AI will not use Customer Data or Outputs to train ... except (a) when you ... (ii) have not opted-out of training on a Mistral AI Product set to opt-in by default ... or (d) when Customer uses Labs or Preview Models.` Unresolved, so refused under gate B as well. |
+Provider | The sentence that disqualifies it
+Google AI Studio, the unpaid Gemini quota | `When you use Unpaid Services, including, for example, Google AI Studio and the unpaid quota on Gemini API, Google uses the content you submit to the Services and any generated responses to provide, improve, and develop Google products and services and machine learning technologies`. Then `To help with quality and improve our products, human reviewers may read, annotate, and process your API input and output.` Then the instruction that settles it for a document editor: `Do not submit sensitive, confidential, or personal information to the Unpaid Services.` The pricing page prints the row `Used to improve our products` with the value `Yes` in the Free Tier column 79 times.
+Cohere trial keys | `... AND (III) IMPROVE AND ENHANCE THE SERVICES AND COHERE'S OTHER OFFERINGS AND BENCHMARK THE FOREGOING, INCLUDING BY SHARING API DATA AND FINETUNING DATA WITH THIRD PARTIES`. `API Data` is defined as anything submitted to the API, so this is not limited to fine-tuning uploads.
+NVIDIA NIM | The licence grants use to `(c) modify and improve NVIDIA products or services or the technology underlying the Technology`, with no training carve-out. NVIDIA separately bans the data class: `you agree that your actions and transmission of User Content: (a) does not include any confidential information; (b) does not include any controlled or sensitive data`.
+DeepSeek | `To improve and develop the Services and to train and improve our technology, such as our machine learning models and algorithms.` It also shares for the same purpose with providers who receive data for `foundation model training and optimization`. Added to the plan's refused list on 18 September. It has no free tier either
+Mistral Free | Conditional, and the condition is the page that returns 404. `Mistral AI will not use Customer Data or Outputs to train ... except (a) when you ... (ii) have not opted-out of training on a Mistral AI Product set to opt-in by default ... or (d) when Customer uses Labs or Preview Models.` Unresolved, so refused under gate B as well.
 
 **A pattern across the four, and it is a cheap test.** Google, NVIDIA and DeepSeek each print a
 sentence telling you not to send them sensitive data. Google: `Do not submit sensitive, confidential,
@@ -145,18 +145,17 @@ design question, and it is item 1 of section 11.
 
 ### 2.3 Refused for other reasons
 
-| Provider | Why |
-|---|---|
-| GitHub Models | Retired. `As of July 30, 2026, GitHub Models has been fully retired. The playground, model catalog, inference API, and bring your own key (BYOK) are no longer available to any customer.` A directory still listed it as live 50 days later, which is the argument for a health probe over a static list. |
-| Hugging Face Inference Providers | The monthly credit for a free user is `$0.10, subject to change`. |
-| Vercel AI Gateway free tier | `$5 /month included` is real, but `Once you purchase credits, your account transitions to the paid tier and the monthly free credit no longer applies`, and bring-your-own-key is `Not available` on free. Keep it as the paid last link, not as a free pool. |
-| OVHcloud AI Endpoints | Free only on guard, image and speech models. No free general chat model. |
-| Chutes.ai | No free tier, in its own words: `We do not offer a free tier at this time. Top up your account in the app to get started.` |
-| Fireworks, Together, DeepInfra | **Signup credits, not free tiers.** Fireworks states `Get started with $1 in free credits`, once, not recurring. The other two state nothing on their pricing pages. A credit that runs out once and never returns cannot hold up a fallback chain |
-| LLM7.io, GLHF, Nscale | Not free today, or returning HTTP 522, or unverifiable on the training clause. |
-| Poe, Perplexity, Windsurf | Not free inference APIs. A free coding agent is not a free inference API. |
-| Scaleway | No free tier at all, and the best privacy wording found anywhere. Hold it as the European paid answer, not as a free link. |
-| Anything from the `gpt4free` ecosystem | Out of scope, and it should be said plainly rather than politely. These are Discord-gated reverse proxies serving frontier models they hold no licence for. Their own best-known directory disclaims them: `We are not endorsing any of the listed services!` Routing a paying customer's private document through one would be indefensible |
+Provider | Why
+GitHub Models | Retired. `As of July 30, 2026, GitHub Models has been fully retired. The playground, model catalog, inference API, and bring your own key (BYOK) are no longer available to any customer.` A directory still listed it as live 50 days later, which is the argument for a health probe over a static list.
+Hugging Face Inference Providers | The monthly credit for a free user is `$0.10, subject to change`.
+Vercel AI Gateway free tier | `$5 /month included` is real, but `Once you purchase credits, your account transitions to the paid tier and the monthly free credit no longer applies`, and bring-your-own-key is `Not available` on free. Keep it as the paid last link, not as a free pool.
+OVHcloud AI Endpoints | Free only on guard, image and speech models. No free general chat model.
+Chutes.ai | No free tier, in its own words: `We do not offer a free tier at this time. Top up your account in the app to get started.`
+Fireworks, Together, DeepInfra | **Signup credits, not free tiers.** Fireworks states `Get started with $1 in free credits`, once, not recurring. The other two state nothing on their pricing pages. A credit that runs out once and never returns cannot hold up a fallback chain
+LLM7.io, GLHF, Nscale | Not free today, or returning HTTP 522, or unverifiable on the training clause.
+Poe, Perplexity, Windsurf | Not free inference APIs. A free coding agent is not a free inference API.
+Scaleway | No free tier at all, and the best privacy wording found anywhere. Hold it as the European paid answer, not as a free link.
+Anything from the `gpt4free` ecosystem | Out of scope, and it should be said plainly rather than politely. These are Discord-gated reverse proxies serving frontier models they hold no licence for. Their own best-known directory disclaims them: `We are not endorsing any of the listed services!` Routing a paying customer's private document through one would be indefensible
 
 **Only six things in the whole inventory renew**: Cloudflare's daily neurons, Groq's daily pool,
 Cerebras's daily tokens, OpenRouter's daily requests, Vercel's `$5` a month and Hugging Face's ten
@@ -247,15 +246,14 @@ provider's failures were platform outages. Both were single models going soft.
 
 **Groq, from its own status API**, 7 incidents created in 2026, every one `impact: minor`:
 
-| Created | Duration | Name, verbatim |
-|---|---|---|
-| 2026-01-24 | 2h 30m | `Data Center Failure Impacting Model Latency - SYD` |
-| 2026-01-26 | 1h 53m | `meta-llama/llama-4-scout-17b-16e-instruct Degraded Performance` |
-| 2026-02-05 | 1h 44m | `meta-llama/llama-4-scout-17b-16e-instruct Degraded Performance` |
-| 2026-02-05 | 0h 23m | `meta-llama/llama-4-scout-17b-16e-instruct Degraded Performance` |
-| 2026-02-07 | 1h 32m | `meta-llama/llama-4-scout-17b-16e-instruct Degraded Performance` |
-| 2026-03-19 | 0h 59m | `openai/gpt-oss-120b Performance Issue` |
-| 2026-07-01 | 1h 33m | `Data Center Failure Impacting Capacity` |
+Created | Duration | Name, verbatim
+2026-01-24 | 2h 30m | `Data Center Failure Impacting Model Latency - SYD`
+2026-01-26 | 1h 53m | `meta-llama/llama-4-scout-17b-16e-instruct Degraded Performance`
+2026-02-05 | 1h 44m | `meta-llama/llama-4-scout-17b-16e-instruct Degraded Performance`
+2026-02-05 | 0h 23m | `meta-llama/llama-4-scout-17b-16e-instruct Degraded Performance`
+2026-02-07 | 1h 32m | `meta-llama/llama-4-scout-17b-16e-instruct Degraded Performance`
+2026-03-19 | 0h 59m | `openai/gpt-oss-120b Performance Issue`
+2026-07-01 | 1h 33m | `Data Center Failure Impacting Capacity`
 
 634 minutes across 260 days is 0.1693 per cent, so the affected surface was at or above **99.83 per
 cent**. **Four of the seven are the same model degrading four times in a fortnight.**
@@ -284,13 +282,12 @@ members have no incident history in this document at all.
 
 **Every provider worth using pools its limit above the user.**
 
-| Provider | The sentence |
-|---|---|
-| Groq | `Rate limits apply at the organization level, not individual users.` |
-| Cerebras | `Rate limits apply at the organization level, not the user level, and vary based on the model.` |
-| Cloudflare | `Our free allocation allows anyone to use a total of 10,000 Neurons per day` |
-| Google Gemini | `Rate limits are applied per project, not per API key.` |
-| Vercel AI Gateway | `Every Vercel team account gets access to both a free tier and a paid tier for AI Gateway Credits.` |
+Provider | The sentence
+Groq | `Rate limits apply at the organization level, not individual users.`
+Cerebras | `Rate limits apply at the organization level, not the user level, and vary based on the model.`
+Cloudflare | `Our free allocation allows anyone to use a total of 10,000 Neurons per day`
+Google Gemini | `Rate limits are applied per project, not per API key.`
+Vercel AI Gateway | `Every Vercel team account gets access to both a free tier and a paid tier for AI Gateway Credits.`
 
 **The consequence, and it is not subtle.** A free chain run from one set of our own keys does not
 scale with users. It is a fixed daily budget shared by the whole user base, and it degrades worst
@@ -301,8 +298,8 @@ of the provider's pooled one, in section 9, and bring-your-own-key, in section 7
 
 ## 3. The routing table
 
-Call types are the five the product makes. Sizes are from `docs/mvp0/PRODUCT-PLAN.md:1156` and
-`:1231`, and the blueprint figures are assumed until measured (F017).
+Call types are the five the product makes. Sizes are from `docs/mvp0/PRODUCT-PLAN.md` section 14 and
+`:1243`, and the blueprint figures are assumed until measured (F017).
 
 Call | Tokens in | Tokens out | Calls | Latency matters
 An edit on a selection | 4,000 | 800 | 1 | yes, a person is watching the cursor
@@ -319,7 +316,7 @@ A document | Cloudflare, Groq, Cerebras, OpenRouter, paid Cloudflare | Cloudflar
 The question set | Cloudflare, Groq, OpenRouter, paid Cloudflare | One call, 4,000 tokens, and page one of the idea flow is blocked on it. Cloudflare's burst headroom is the thing that stops ten people starting an idea at once from queueing
 A question rewrite | Same as the question set, **pinned to whichever provider served the set** | The set and its rewrites share a long prefix. Pinning keeps the prefix cache warm, and a rewrite is a page turn the person is waiting through
 A blueprint | Cerebras, Cloudflare, paid Cloudflare neurons | 15 calls of 7,546 tokens. On Groq that is 14.1 minutes at 8,000 tokens a minute. On Cerebras it is 3.8 minutes. Latency does not matter but wall time does, and Cerebras's 128-token block cache is built for a long shared prefix
-On the desktop | A local Ollama model for edits, with nothing leaving the machine | `docs/mvp0/PRODUCT-PLAN.md:1182`
+On the desktop | A local Ollama model for edits, with nothing leaving the machine | `docs/mvp0/PRODUCT-PLAN.md` section 14
 
 ### 3.2 Pro
 
@@ -333,26 +330,33 @@ A blueprint | Sonnet 5 through the batch API at half price, then Haiku, then the
 **The whole Pro margin depends on this table.** Sonnet 5 for everything is `$3.99` a month against
 `₹246` net of tax and the payment fee, which loses `₹137` on a fully active Pro user. The Haiku and
 batched Sonnet routing is `$1.99`, or about `₹191`, which leaves about `₹55`. Those figures are
-re-derived at `docs/mvp0/PRODUCT-PLAN.md:1222` and `:1228`, and marked SIMULATED there.
+re-derived at `docs/mvp0/PRODUCT-PLAN.md` section 14 and `:1240`, and marked SIMULATED there.
 
 ### 3.3 The rules that sit above the table
 
-1. **Every row is a configuration row, not a constant.** `docs/mvp0/PRODUCT-PLAN.md:1825` puts model
-   routing in the panel, and `:1826` puts the chain order and the per-provider on switch there.
+1. **Every row is a configuration row, not a constant.** `docs/mvp0/PRODUCT-PLAN.md` section 30 puts model
+   routing in the panel, and `:1838` puts the chain order and the per-provider on switch there.
    Section 27 of this pack is the spec; file 28 is the panel that edits it.
 2. **A blueprint pins one provider for all 15 calls.** Pass a stable key so we get OpenRouter's
    sticky routing if we land there (`session_id`, `at most 256 characters`), and the prefix cache if
    we do not. Availability routing and caching want opposite things, and OpenRouter wrote the
    collision down: `Sticky routing is not used when you specify a manual provider order via
    provider.order`.
-3. **Prompt layout is part of the routing decision.** Groq: `Cached tokens do not count towards your
+3. **Send a session key, and scope it per document.** Cloudflare needs one for its prefix cache to
+   hit at all: `To maximize cache hit rates, send the x-session-affinity header with a unique
+   identifier for your session or agent.` Cerebras offers `prompt_cache_key` and warns about the
+   obvious mistake: `Don't set prompt_cache_key for prefixes that are shared across many users, such
+   as a common system prompt or shared RAG context. This would funnel all of those requests to a
+   single backend, creating a bottleneck`. **So: one key per document, never one key per
+   deployment.** OpenRouter's `session_id` is the same idea and is capped at 256 characters.
+4. **Prompt layout is part of the routing decision.** Groq: `Cached tokens do not count towards your
    rate limits.` Cerebras: `Cached tokens don't count toward your uncached TPM limit`. So on both,
    cache hits are capacity rather than only a discount. Put the system prompt, the tool definitions
    and the unchanged document prefix first, and the instruction last. Groq states the failure mode:
    `If you put variable information (like timestamps or user IDs) at the beginning, even identical
    system instructions later in the prompt won't benefit from caching because the prefixes won't
    match.`
-4. **Set `maxRetries: 0` on every inner call.** The AI SDK defaults to 2 and the shipped code sets 1.
+5. **Set `maxRetries: 0` on every inner call.** The AI SDK defaults to 2 and the shipped code sets 1.
    Either way the SDK spends attempts on a pool that is empty until midnight, and our chain should
    own that decision.
 
@@ -402,7 +406,7 @@ carry our own.
 
 ### 4.3 Firestore, the write limit, and the counter pattern
 
-The plan puts records in Firestore (`docs/mvp0/PRODUCT-PLAN.md:1290`). Three facts decide how the
+The plan puts records in Firestore (`docs/mvp0/PRODUCT-PLAN.md` section 15). Three facts decide how the
 ledger sits there.
 
 **One. The free write quota is not the constraint.** Firestore's free tier is `20,000 per day` for
@@ -451,7 +455,7 @@ transaction.** Not a sharded counter.
 
 - At 193 calls a day spread over hours, one document is not hot by any definition.
 - The plan already requires a Firestore transaction discipline elsewhere, and records at
-  `docs/mvp0/PRODUCT-PLAN.md:1300` that ledger entries are append-only so that a balance is a sum
+  `docs/mvp0/PRODUCT-PLAN.md` section 15 that ledger entries are append-only so that a balance is a sum
   rather than a row two writers race for. **The pool counter is the exception to that rule**, because
   a gate has to read the current value before it writes. Say so in the code, next to the transaction.
 - **Move to a Cloudflare Durable Object when a measurement says to, not before.** One named object
@@ -470,24 +474,23 @@ green because nothing in `application` or `domain` imports `infrastructure`.
 
 ### 4.5 A contradiction in the plan that this file has to name
 
-`docs/mvp0/PRODUCT-PLAN.md:1290` decides the stack: `The stack is the Next.js app we already run,
+`docs/mvp0/PRODUCT-PLAN.md` section 15 decides the stack: `The stack is the Next.js app we already run,
 Cloudflare R2 for bytes, and Firestore for records, with Firebase Auth for sign-in.` Section 18's
-data model, at `docs/mvp0/PRODUCT-PLAN.md:1430` onwards, and its ledger row at `:1445`, still writes `Postgres rows` for every
+data model, at `docs/mvp0/PRODUCT-PLAN.md` section 18 onwards, and its ledger row at `:1457`, still writes `Postgres rows` for every
 entity including the ledger entry. **Two sections of the plan of record name two different
 databases.** The section 15 decision is dated and attributed to the founders, so this spec follows
 Firestore and flags the section 18 table as owing a correction.
 
 ### 4.6 What resets when, and in which timezone
 
-| Pool | Resets | Stated where | What our ledger does |
-|---|---|---|---|
-| Cloudflare neurons | `All limits reset daily at 00:00 UTC.` | the pricing page | new `utcDay` key at 00:00 UTC |
-| Groq requests and tokens a day | daily; the reset instant is not stated on the page | `UNVERIFIED:` | assume 00:00 UTC, and correct it the first time the headers disagree |
-| Cerebras | **never.** `We use the token bucketing algorithm for rate limiting, which means your capacity replenishes continuously rather than resetting at fixed intervals.` | the rate-limits page | no reset; the ledger carries a rolling 24-hour window instead of a day key |
-| OpenRouter free requests | `Free-model requests left in the current UTC day` | the limits page | new `utcDay` key at 00:00 UTC, and we can also read it |
-| Vercel AI Gateway daily budget | `Midnight UTC each day` | the budgets page | not used on free |
-| Google Firestore's own quota | `quotas reset at midnight Pacific` | `docs/mvp0/PRODUCT-PLAN.md:1299` | irrelevant to the pools, and named here so nobody confuses the two clocks |
-| **Our own per-account bucket** | continuously, see section 9 | this file | a token bucket, not a calendar month |
+Pool | Resets | Stated where | What our ledger does
+Cloudflare neurons | `All limits reset daily at 00:00 UTC.` | the pricing page | new `utcDay` key at 00:00 UTC
+Groq requests and tokens a day | daily; the reset instant is not stated on the page | `UNVERIFIED:` | assume 00:00 UTC, and correct it the first time the headers disagree
+Cerebras | **never.** `We use the token bucketing algorithm for rate limiting, which means your capacity replenishes continuously rather than resetting at fixed intervals.` | the rate-limits page | no reset; the ledger carries a rolling 24-hour window instead of a day key
+OpenRouter free requests | `Free-model requests left in the current UTC day` | the limits page | new `utcDay` key at 00:00 UTC, and we can also read it
+Vercel AI Gateway daily budget | `Midnight UTC each day` | the budgets page | not used on free
+Google Firestore's own quota | `quotas reset at midnight Pacific` | `docs/mvp0/PRODUCT-PLAN.md` section 15 | irrelevant to the pools, and named here so nobody confuses the two clocks
+**Our own per-account bucket** | continuously, see section 9 | this file | a token bucket, not a calendar month
 
 **Three different clocks are in play**: UTC for the provider pools, Pacific for Firestore's own free
 quota, and India for everything a person sees. The user-facing reset in S29 is stated in the
@@ -495,13 +498,12 @@ person's own time, and the pool reset is never shown to a user at all.
 
 ### 4.7 Reading a pool before we spend it
 
-| Provider | Can we read remaining before the call? | How |
-|---|---|---|
-| OpenRouter | **yes** | `GET /api/v1/key` returns `free_model_daily_requests` with `used`, `limit` and `remaining`, plus `usage_daily`. Poll it every few minutes and cache it. This is the only provider that hands us the ledger rather than making us keep one |
-| Groq | requests yes, daily tokens no | `x-ratelimit-remaining-requests` is present on every response, and `Always refers to Requests Per Day (RPD)`. There is **no** remaining header for tokens per day, and tokens per day is the limit that binds |
-| Cloudflare | no | inferred from our own neuron count, and confirmed by error code `3036` |
-| Cerebras | no | rejection is pre-flight and on its own estimate |
-| Vercel AI Gateway | no | `Limits can change, so this page describes behavior rather than fixed numbers.` |
+Provider | Can we read remaining before the call? | How
+OpenRouter | **yes** | `GET /api/v1/key` returns `free_model_daily_requests` with `used`, `limit` and `remaining`, plus `usage_daily`. Poll it every few minutes and cache it. This is the only provider that hands us the ledger rather than making us keep one
+Groq | requests yes, daily tokens no | `x-ratelimit-remaining-requests` `Always refers to Requests Per Day (RPD)`, and the page says `retry-after is only set if you hit the rate limit and status code 429 is returned. The other headers are always included.` **So Groq's remaining daily request budget is readable from any successful call**, which is nearly as good as OpenRouter's endpoint and costs no extra request. Track it. There is **no** remaining header for tokens per day, and tokens per day is the limit that binds
+Cloudflare | no | inferred from our own neuron count, and confirmed by error code `3036`
+Cerebras | no | rejection is pre-flight and on its own estimate
+Vercel AI Gateway | no | `Limits can change, so this page describes behavior rather than fixed numbers.`
 
 **Groq's hole is the reason the ledger exists.** Groq meters on eight dimensions and reports two of
 them. The 200,000 tokens a day is the one that bites and the one the API will never tell us, so we
@@ -516,10 +518,9 @@ count it ourselves and mark ourselves exhausted without asking.
 **Quota exhaustion and a transient blip arrive as the same HTTP status from three of five
 providers.** Cloudflare is the exception and the model for how this should read.
 
-| Cloudflare error | Internal code | HTTP | The body |
-|---|---|---|---|
-| Account limited | `3036` | `429` | `You have used up your daily free allocation of 10,000 neurons. Please upgrade to Cloudflare's Workers Paid plan if you would like to continue usage.` |
-| Out of capacity | `3040` | `429` | `Capacity temporarily exceeded, please try again. Also returned when rejectIfBusy rejects a request because capacity is unavailable.` |
+Cloudflare error | Internal code | HTTP | The body
+Account limited | `3036` | `429` | `You have used up your daily free allocation of 10,000 neurons. Please upgrade to Cloudflare's Workers Paid plan if you would like to continue usage.`
+Out of capacity | `3040` | `429` | `Capacity temporarily exceeded, please try again. Also returned when rejectIfBusy rejects a request because capacity is unavailable.`
 
 `3036` means stop until 00:00 UTC. `3040` means try again in a second. **If you read only the status
 you cannot tell them apart.** Also relevant: `Model requires Workers Paid plan | 5035 | 403`,
@@ -534,14 +535,13 @@ there is no portable signal.
 classify(providerId, status, headers, body) -> 'exhausted' | 'transient' | 'fatal'
 ```
 
-| Provider | `exhausted` when | `transient` when | Notes |
-|---|---|---|---|
-| Cloudflare | body internal code `3036`. Set `exhaustedUntil` to the next 00:00 UTC | body internal code `3040`, or 408 | Same HTTP 429 for both. Read the body |
-| Groq | 429 with `x-ratelimit-remaining-requests` at 0, or our own `tokensEstimated` crossing the model's 200,000 | 429 carrying `retry-after` with remaining-requests above 0. Honour the header | `retry-after is only set if you hit the rate limit and status code 429 is returned. The other headers are always included.` |
-| Cerebras | **never from the provider.** The bucket refills continuously, so there is nothing to be exhausted until | every 429. The error message names which of the two buckets was exceeded | The 1,000,000 a day is tracked only by our ledger. No `retry-after` and no `x-ratelimit-*` header is documented anywhere |
-| OpenRouter | `402` for credits, carrying `error.metadata.limit_source`. 429 carrying `X-RateLimit-Reset`, exhausted until that instant | 429 carrying `Retry-After` | On success there are no rate-limit headers at all: `Successful inference responses do not include X-RateLimit-* headers.` Upstream cause arrives in `error.metadata.provider_code` |
-| Vercel AI Gateway | `402` with type `quota_for_entity_exceeded` | `429` with type `rate_limit_exceeded` | `Some 429 responses include a retry-after header with the number of seconds to wait. Honor it when it is present.` |
-| Any provider | | | **`400`, `401`, `403`, `413` are `fatal`. Do not fail over.** The next provider fails the same way. This is the case everyone forgets, and it turns one bad prompt into five wasted calls |
+Provider | `exhausted` when | `transient` when | Notes
+Cloudflare | body internal code `3036`. Set `exhaustedUntil` to the next 00:00 UTC | body internal code `3040`, or 408 | Same HTTP 429 for both. Read the body
+Groq | 429 with `x-ratelimit-remaining-requests` at 0, or our own `tokensEstimated` crossing the model's 200,000 | 429 carrying `retry-after` with remaining-requests above 0. Honour the header | `retry-after is only set if you hit the rate limit and status code 429 is returned. The other headers are always included.`
+Cerebras | **never from the provider.** The bucket refills continuously, so there is nothing to be exhausted until | every 429. The error message names which of the two buckets was exceeded | The 1,000,000 a day is tracked only by our ledger. No `retry-after` and no `x-ratelimit-*` header is documented anywhere
+OpenRouter | `402` for credits, carrying `error.metadata.limit_source`. 429 carrying `X-RateLimit-Reset`, exhausted until that instant | 429 carrying `Retry-After` | On success there are no rate-limit headers at all: `Successful inference responses do not include X-RateLimit-* headers.` Upstream cause arrives in `error.metadata.provider_code`
+Vercel AI Gateway | `402` with type `quota_for_entity_exceeded` | `429` with type `rate_limit_exceeded` | `Some 429 responses include a retry-after header with the number of seconds to wait. Honor it when it is present.`
+Any provider | | | **`400`, `401`, `403`, `413` are `fatal`. Do not fail over.** The next provider fails the same way. This is the case everyone forgets, and it turns one bad prompt into five wasted calls
 
 ### 5.3 Groq's headers, in full, because we code against them
 
@@ -581,6 +581,8 @@ Minimum calls before the rate is computed | `100` | `minimum_requests: 10` | not
 Wait in open state | `waitDurationInOpenState 60000 ms` | `cooldown_interval 60000 ms`, floor `min: 30s` | `cooldown_time: 5s` | **15,000 ms** | Between LiteLLM's 5 seconds and Portkey's 60. Long enough to let a hiccup pass, short enough that a recovered provider is back inside one edit
 Probes in half open | `permittedNumberOfCallsInHalfOpenState 10` | not stated | not stated | **1** | One probe, and if it fails the breaker reopens
 Statuses counted as failures | `>500` by default | `failure_status_codes: [401, 429, 500]` | 429 trips immediately | **5xx, 408, and a transport error. Never a 429 classified as `exhausted`, never a 4xx classified as `fatal`** | A provider correctly telling us the pool is empty is not unhealthy, and a bad prompt is not the provider's fault
+Slow call counted as a failure | `slowCallDurationThreshold 60000 ms`, `slowCallRateThreshold 100` | not offered | not offered | **a per-model threshold, and a rate of 50 per cent** | Section 2.5: both opened incident histories are single models degrading, and **a degraded model returns 200s slowly**. Without this row the breaker sits inside every one of them
+What the breaker is keyed on | a deployment | a target | a deployment | **`(provider, model)`** | Section 2.5. Dropping Cloudflare because one model is erroring throws away five healthy ones
 
 **The state machine is uncontroversial and identical everywhere.** Closed, open after the threshold,
 half open after the cooldown, closed again on a successful probe. What none of the published
@@ -702,17 +704,16 @@ dishonest at the same time.
 
 ### 7.1 The ladder
 
-| Rung | Condition | What happens | What the person sees |
-|---|---|---|---|
-| 0 | Normal | First provider serves it | Nothing at all. Text appears |
-| 1 | First provider exhausted or unhealthy | Planner drops it, next candidate serves | Nothing at all. A slightly slower first token |
-| 2 | Every free pool spent | The paid link serves it | Nothing at all. The person is not entitled to know which pool paid |
-| 3 | Service-wide breaker tripped, free traffic only | The call is **queued**, not refused. The change queue is already asynchronous, so a proposal that lands in forty seconds is a different experience rather than a broken one | A queued state on the proposal, with a position, and a line saying it will arrive |
-| 4 | The call is a question rewrite or a question set, and the layer is degraded | **The standard question set is served instead of a generated one.** This is the fallback the plan already names at `docs/mvp0/PRODUCT-PLAN.md:1241`, and it is why the toggle reads *use a standard question set* rather than *enable dynamic questions* | The idea flow continues with fixed questions. One line says the questions are the standard set today |
-| 5 | On the desktop | **The local Ollama model runs the edit**, with nothing leaving the machine | A line naming the local model. This is the desktop app's carrot, not its apology |
-| 6 | The person has a key of their own | **Bring your own key.** Their key, their bucket, our router | Their own provider name on the call |
-| 7 | The person is over their own monthly cap | **A different message entirely, and it must not look like a failure.** Entitlement is not an outage | S33, over the cap: what happened, what still works, what to do |
-| 8 | Genuine total outage, paid link included | One line naming what we know, and the document untouched | `The model providers are not responding. Nothing was changed.` |
+Rung | Condition | What happens | What the person sees
+0 | Normal | First provider serves it | Nothing at all. Text appears
+1 | First provider exhausted or unhealthy | Planner drops it, next candidate serves | Nothing at all. A slightly slower first token
+2 | Every free pool spent | The paid link serves it | Nothing at all. The person is not entitled to know which pool paid
+3 | Service-wide breaker tripped, free traffic only | The call is **queued**, not refused. The change queue is already asynchronous, so a proposal that lands in forty seconds is a different experience rather than a broken one | A queued state on the proposal, with a position, and a line saying it will arrive
+4 | The call is a question rewrite or a question set, and the layer is degraded | **The standard question set is served instead of a generated one.** This is the fallback the plan already names at `docs/mvp0/PRODUCT-PLAN.md` section 14, and it is why the toggle reads *use a standard question set* rather than *enable dynamic questions* | The idea flow continues with fixed questions. One line says the questions are the standard set today
+5 | On the desktop | **The local Ollama model runs the edit**, with nothing leaving the machine | A line naming the local model. This is the desktop app's carrot, not its apology
+6 | The person has a key of their own | **Bring your own key.** Their key, their bucket, our router | Their own provider name on the call
+7 | The person is over their own monthly cap | **A different message entirely, and it must not look like a failure.** Entitlement is not an outage | S33, over the cap: what happened, what still works, what to do
+8 | Genuine total outage, paid link included | One line naming what we know, and the document untouched | `The model providers are not responding. Nothing was changed.`
 
 **Rung 7 is the one most likely to be got wrong.** The router has two reasons to stop and they must
 never share a message. Conflating them is how a free tier teaches people the product is broken.
@@ -743,7 +744,7 @@ GitHub commits in 2025, including `113,000 leaked DeepSeek API keys`, and observ
 ## 8. Capacity arithmetic for 200 users
 
 Every number below was computed in Python on 18 September 2026 and the working is printed. Inputs are
-from `docs/mvp0/PRODUCT-PLAN.md:1156` and `:1231`. The blueprint figures are assumed until measured.
+from `docs/mvp0/PRODUCT-PLAN.md` section 14 and `:1243`. The blueprint figures are assumed until measured.
 
 ### 8.1 The demand
 
@@ -780,13 +781,12 @@ neurons per token = 2,025.0 / 178,690 = 0.011332
 tokens a day from 10,000 neurons = 10,000 / 0.011332 = 882,430
 ```
 
-| Pool | Tokens a day | Reading |
-|---|---|---|
-| Groq | 200,000 | one chat model, which is the plan's reading |
-| Groq | 800,000 | four chat models at 200,000 each, which is L1's reading of the same table |
-| Cerebras | 1,000,000 | one model |
-| Cerebras | 2,000,000 | two models, if they do not share a bucket, which the page does not say |
-| Cloudflare | 882,430 | 10,000 neurons at our mix |
+Pool | Tokens a day | Reading
+Groq | 200,000 | one chat model, which is the plan's reading
+Groq | 800,000 | four chat models at 200,000 each, which is L1's reading of the same table
+Cerebras | 1,000,000 | one model
+Cerebras | 2,000,000 | two models, if they do not share a bucket, which the page does not say
+Cloudflare | 882,430 | 10,000 neurons at our mix
 
 ```
 conservative total   = 2,082,430 a day   cover = 1.75x   users at cap = 350
@@ -800,11 +800,10 @@ ceiling is 350 users against a target of 200.
 
 Volume is not the constraint. The minute is.
 
-| Pool | Requests a minute | Tokens a minute | Concurrent edits a minute | Concurrent blueprint calls a minute |
-|---|---|---|---|---|
-| Groq, main chat models | 30 | 8,000 | min(30, 8,000/4,800) = **1.67** | min(30, 8,000/7,546) = **1.06** |
-| Cerebras Free Trial | 5 | 30,000 uncached | min(5, 6.25) = **5.00** | min(5, 3.98) = **3.98** |
-| Cloudflare Workers AI | **300** | not published | bounded by the day, not the minute | same |
+Pool | Requests a minute | Tokens a minute | Concurrent edits a minute | Concurrent blueprint calls a minute
+Groq, main chat models | 30 | 8,000 | min(30, 8,000/4,800) = **1.67** | min(30, 8,000/7,546) = **1.06**
+Cerebras Free Trial | 5 | 30,000 uncached | min(5, 6.25) = **5.00** | min(5, 3.98) = **3.98**
+Cloudflare Workers AI | **300** | not published | bounded by the day, not the minute | same
 
 **Groq's free tier can serve 1.67 edits a minute.** Two people editing at the same moment is a 429.
 A 15-call blueprint takes 14.1 minutes there against 3.8 on Cerebras.
@@ -819,11 +818,10 @@ looks five times larger.
 busiest day at 3 to 5 times the flat average, and about half of a day's traffic lands in a two-hour
 window.
 
-| Scenario | Tokens on the day | Tokens a minute in the window | Free tokens a minute available |
-|---|---|---|---|
-| flat | 1,191,267 | 4,964 | 38,000 |
-| 3x day | 3,573,800 | 14,891 | 38,000 |
-| 5x day | 5,956,333 | 24,818 | 38,000 |
+Scenario | Tokens on the day | Tokens a minute in the window | Free tokens a minute available
+flat | 1,191,267 | 4,964 | 38,000
+3x day | 3,573,800 | 14,891 | 38,000
+5x day | 5,956,333 | 24,818 | 38,000
 
 **The peak clears the minute and breaks the day.** At 24,818 tokens a minute, Cerebras's whole
 1,000,000 is gone in about 40 minutes and does not come back, because it refills by bucket rather
@@ -847,11 +845,10 @@ than at a reset. Groq's 200,000 follows in another 8 minutes of the same rate.
 
 Applying Cloudflare's published token prices to the monthly totals for 200 users.
 
-| Model | Input | Output | The month | Per user |
-|---|---|---|---|---|
-| `@cf/meta/llama-3.2-1b-instruct` | $0.71 | $1.86 | **$2.58** | $0.0129 |
-| `@cf/meta/llama-3.2-3b-instruct` | $1.35 | $3.11 | **$4.46** | $0.0223 |
-| `@cf/meta/llama-3.1-8b-instruct-fp8-fast` | $1.19 | $3.56 | **$4.75** | $0.0238 |
+Model | Input | Output | The month | Per user
+`@cf/meta/llama-3.2-1b-instruct` | $0.71 | $1.86 | **$2.58** | $0.0129
+`@cf/meta/llama-3.2-3b-instruct` | $1.35 | $3.11 | **$4.46** | $0.0223
+`@cf/meta/llama-3.1-8b-instruct-fp8-fast` | $1.19 | $3.56 | **$4.75** | $0.0238
 
 Cross-checked two ways on the 3b model: 404,995 neurons a month at `$0.011 per 1,000 Neurons` is
 `$4.45`, against `$4.46` by the token route. Subtracting the free 10,000 neurons a day leaves
@@ -899,11 +896,10 @@ Every layer below is scored against that, and a layer that breaks it says so.
 
 ### 9.1 The arithmetic that decides where the engineering goes
 
-| Case | Neurons | At `$0.011 per 1,000 Neurons` | Against the honest tier's whole month |
-|---|---|---|---|
-| 200 honest free users, a whole month | 405,000 | **$4.46**, which is 2.23 cents each | 1x |
-| One uncapped account at 1 request a second for 24 hours | 3,704,832 | **$40.75** | **9.1x** |
-| Sysdig's measured burst, 61,000 requests in 3 hours | 2,615,680 | **$28.77** | **6.5x** |
+Case | Neurons | At `$0.011 per 1,000 Neurons` | Against the honest tier's whole month
+200 honest free users, a whole month | 405,000 | **$4.46**, which is 2.23 cents each | 1x
+One uncapped account at 1 request a second for 24 hours | 3,704,832 | **$40.75** | **9.1x**
+Sysdig's measured burst, 61,000 requests in 3 hours | 2,615,680 | **$28.77** | **6.5x**
 
 **One abusive account outweighs the entire honest population by an order of magnitude.** So every
 rupee of engineering belongs on bounding the tail and none on inspecting the head. A captcha inspects
@@ -919,22 +915,21 @@ Cloudflare daily wall is hit. A token bucket forbids that shape. A monthly count
 Each row says what it stops, what it costs, how much friction it adds, and whether it survives the
 no-captcha rule.
 
-| # | Layer | Stops | Cost to build | Friction | Survives the rule | Phase |
-|---|---|---|---|---|---|---|
-| 1 | **Pre-flight per-account budget on a token bucket** | Everything, eventually. It is the only control that bounds the loss whichever other layer was bypassed | Two columns, one function, about two days | None for anyone inside the limit | **Yes** | A |
-| 2 | **Service-wide circuit breaker, per hour** | A pooled-key drain. The per-account bucket does not protect the shared organisation ceiling | One counter, one branch, about a day | None until it trips, then a queue | **Yes** | A |
-| 3 | **A usage row per model call, and a daily alert** | Nothing by itself. It is the precondition for every other response, and it is what caught every incident in the record | One collection, one scheduled query, about a day | None | **Yes** | A |
-| 4 | **A starting allowance that rises with account history** | The one-week-old empty account, which is what a farm looks like | One function over fields we already hold, about a day | None, and no consent screen | **Yes** | A |
-| 5 | **Refuse rather than bill** | An unbounded bill from a free user | A policy decision, zero days | None | **Yes** | A |
-| 6 | **Queue the free request instead of refusing it** | A burst. Not a patient attacker | A job queue and an interface state, about a week | Low, and proportional to how much the person asks for | **Yes** | B |
-| 7 | **Bring your own key** | Nothing directly. It removes the pressure that makes a small free tier feel mean | Three to five days done as a secret | None | **Yes** | B |
-| 8 | **An invisible challenge on the sign-in route only** | Cheap automated signup | About a day | None visible | **Only in one mode. See 9.4** | B |
-| 9 | **An emergency switch that stops new signups** | A bad night, without touching existing accounts | A flag, half a day | None for existing users | **Yes** | B |
-| 10 | Device fingerprinting | Multi-accounting, in theory | Medium engineering, large legal | A consent modal on the front door | **No. See 9.5** | never |
-| 11 | A card on the free tier | Most casual multi-accounting. The most effective control on this list | Medium, and it drags in a payment provider early | Very high in India | **No. See 9.6** | never |
-| 12 | A disposable-address detector | Nothing we have | None | None | Moot. There is no address field, because there is no signup form | never |
-| 13 | An address-based hard block | Nothing. A farm rotates a commercial virtual private network per account | Small | Real harm to honest users behind a shared carrier address | **No, as a block.** Keep it as one input to a score | never as a block |
-| 14 | A captcha or a puzzle | Not what people think. See 9.7 | Small to build, paid by every honest user | High | **No** | never |
+# | Layer | Stops | Cost to build | Friction | Survives the rule | Phase
+1 | **Pre-flight per-account budget on a token bucket** | Everything, eventually. It is the only control that bounds the loss whichever other layer was bypassed | Two columns, one function, about two days | None for anyone inside the limit | **Yes** | A
+2 | **Service-wide circuit breaker, per hour** | A pooled-key drain. The per-account bucket does not protect the shared organisation ceiling | One counter, one branch, about a day | None until it trips, then a queue | **Yes** | A
+3 | **A usage row per model call, and a daily alert** | Nothing by itself. It is the precondition for every other response, and it is what caught every incident in the record | One collection, one scheduled query, about a day | None | **Yes** | A
+4 | **A starting allowance that rises with account history** | The one-week-old empty account, which is what a farm looks like | One function over fields we already hold, about a day | None, and no consent screen | **Yes** | A
+5 | **Refuse rather than bill** | An unbounded bill from a free user | A policy decision, zero days | None | **Yes** | A
+6 | **Queue the free request instead of refusing it** | A burst. Not a patient attacker | A job queue and an interface state, about a week | Low, and proportional to how much the person asks for | **Yes** | B
+7 | **Bring your own key** | Nothing directly. It removes the pressure that makes a small free tier feel mean | Three to five days done as a secret | None | **Yes** | B
+8 | **An invisible challenge on the sign-in route only** | Cheap automated signup | About a day | None visible | **Only in one mode. See 9.4** | B
+9 | **An emergency switch that stops new signups** | A bad night, without touching existing accounts | A flag, half a day | None for existing users | **Yes** | B
+10 | Device fingerprinting | Multi-accounting, in theory | Medium engineering, large legal | A consent modal on the front door | **No. See 9.5** | never
+11 | A card on the free tier | Most casual multi-accounting. The most effective control on this list | Medium, and it drags in a payment provider early | Very high in India | **No. See 9.6** | never
+12 | A disposable-address detector | Nothing we have | None | None | Moot. There is no address field, because there is no signup form | never
+13 | An address-based hard block | Nothing. A farm rotates a commercial virtual private network per account | Small | Real harm to honest users behind a shared carrier address | **No, as a block.** Keep it as one input to a score | never as a block
+14 | A captcha or a puzzle | Not what people think. See 9.7 | Small to build, paid by every honest user | High | **No** | never
 
 ### 9.3 What a Google or GitHub sign-in actually gives us
 
@@ -1029,7 +1024,7 @@ would not extract.
 
 **Where else the Act touches this layer.** Layer 3's usage row carries an account identifier, which
 is personal data. It is processed for a purpose the person provided it for, and it is retained 180
-days per `docs/mvp0/PRODUCT-PLAN.md:1445`, which is section 18's ledger row. That is inside the
+days per `docs/mvp0/PRODUCT-PLAN.md` section 18, which is section 18's ledger row. That is inside the
 consent the sign-in already takes. A usage row that carried document text would not be, which is why
 section 10 forbids it.
 
@@ -1125,20 +1120,19 @@ the chain is theatre and one provider is doing the work. If it climbs through th
 
 ### 10.3 What we must never log
 
-| Never | Why |
-|---|---|
-| **The prompt, the document, the selection, or any span of the person's bytes** | The product's whole proposition is that the file is theirs. A log that holds document text is a second copy of the document in a place the person cannot see or delete |
-| **The model's output text** | Same reason. The output is a proposed splice of their document |
-| **Any provider API key, ours or the person's**, in any form, including a prefix | A prefix is enough to identify a key in a leak report and gives an attacker a target |
-| **A raw OAuth access token or refresh token** | Section 23's security log is an operational record, not a credential store |
-| **The person's email address in the model-call log** | The account identifier is sufficient, and Google's own guidance says not to key on the address anyway |
-| **A device fingerprint** | Refused in 9.5, so it must not arrive by the back door of a log field |
-| **Anything inside the delimited data block** the document text is sent in | The plan's security control 7 says content inside that block is data. A log that extracts it undoes the control |
+Never | Why
+**The prompt, the document, the selection, or any span of the person's bytes** | The product's whole proposition is that the file is theirs. A log that holds document text is a second copy of the document in a place the person cannot see or delete
+**The model's output text** | Same reason. The output is a proposed splice of their document
+**Any provider API key, ours or the person's**, in any form, including a prefix | A prefix is enough to identify a key in a leak report and gives an attacker a target
+**A raw OAuth access token or refresh token** | Section 23's security log is an operational record, not a credential store
+**The person's email address in the model-call log** | The account identifier is sufficient, and Google's own guidance says not to key on the address anyway
+**A device fingerprint** | Refused in 9.5, so it must not arrive by the back door of a log field
+**Anything inside the delimited data block** the document text is sent in | The plan's security control 7 says content inside that block is data. A log that extracts it undoes the control
 
 **What may be logged about the content**: its size in tokens, its hash, and the document id. Those
 answer every operational question the text would answer, and none of the private ones.
 
-**Retention.** The model-call log is the ledger entry of `docs/mvp0/PRODUCT-PLAN.md:1445`, so 180
+**Retention.** The model-call log is the ledger entry of `docs/mvp0/PRODUCT-PLAN.md` section 18, so 180
 days, then aggregated with the account id dropped. The security log is 180 days rolling in Indian
 jurisdiction per section 23.
 
@@ -1148,23 +1142,22 @@ jurisdiction per section 23.
 
 `[O]` Checked against the repository at commit `0af3c90` on 2026-09-18.
 
-| Item | State | Evidence |
-|---|---|---|
-| A multi-provider chain | **built** | `src/modules/ai/infrastructure/gateway-client.ts` holds `QUALITY_ORDER` and `SPEED_ORDER` |
-| A provider race under a per-attempt timeout | **built** | `src/modules/ai/infrastructure/provider-race.ts`, concurrency 1 and 15,000 ms by default |
-| Providers join only when a key is set | **built** | `GOOGLE_GENERATIVE_AI_API_KEY`, `GROQ_API_KEY`, `CEREBRAS_API_KEY`, `MISTRAL_API_KEY`, `OPENROUTER_API_KEY` |
-| **Gemini first in the default order** | **built, and a defect** | `QUALITY_ORDER` begins `"google"`, and the default model is `gemini-2.5-flash`. Under gate A this provider cannot be in the chain at all |
-| **Mistral in the chain** | **built, and a defect** | Same file. Refused at 2.2 |
-| A quota ledger | `specified, not built` | Nothing in `src/modules/ai/` records that a provider returned a 429 |
-| A failure classifier | `specified, not built` | The chain treats every failure the same |
-| Circuit breaker state | `specified, not built` | |
-| Streaming | `specified, not built` | The port is `generate(...): Promise<string>` in `src/modules/ai/application/ports.ts`. There is no stream method |
-| Usage returned from a call | `specified, not built` | `generateText` returns a `usage` block and the adapter discards it |
-| Per-account budget | `specified, not built` | |
-| Cloudflare Workers AI as a provider | `specified, not built` | There is no Cloudflare provider in the file and no `@ai-sdk` package for it in `package.json` |
-| SambaNova as a provider | `specified, not built` | |
-| `firstChunkMs` | **not available** | `ai@6.0.191` installed; `firstChunkMs` absent from `node_modules/ai/dist/index.d.ts`; `chunkMs` present at line 383; registry `latest` is `7.0.105` |
-| `maxRetries` | **built, set to 1** | The chain should set 0 so it owns the decision |
+Item | State | Evidence
+A multi-provider chain | **built** | `src/modules/ai/infrastructure/gateway-client.ts` holds `QUALITY_ORDER` and `SPEED_ORDER`
+A provider race under a per-attempt timeout | **built** | `src/modules/ai/infrastructure/provider-race.ts`, concurrency 1 and 15,000 ms by default
+Providers join only when a key is set | **built** | `GOOGLE_GENERATIVE_AI_API_KEY`, `GROQ_API_KEY`, `CEREBRAS_API_KEY`, `MISTRAL_API_KEY`, `OPENROUTER_API_KEY`
+**Gemini first in the default order** | **built, and a defect** | `QUALITY_ORDER` begins `"google"`, and the default model is `gemini-2.5-flash`. Under gate A this provider cannot be in the chain at all
+**Mistral in the chain** | **built, and a defect** | Same file. Refused at 2.2
+A quota ledger | `specified, not built` | Nothing in `src/modules/ai/` records that a provider returned a 429
+A failure classifier | `specified, not built` | The chain treats every failure the same
+Circuit breaker state | `specified, not built` |
+Streaming | `specified, not built` | The port is `generate(...): Promise<string>` in `src/modules/ai/application/ports.ts`. There is no stream method
+Usage returned from a call | `specified, not built` | `generateText` returns a `usage` block and the adapter discards it
+Per-account budget | `specified, not built` |
+Cloudflare Workers AI as a provider | `specified, not built` | There is no Cloudflare provider in the file and no `@ai-sdk` package for it in `package.json`
+SambaNova as a provider | `specified, not built` |
+`firstChunkMs` | **not available** | `ai@6.0.191` installed; `firstChunkMs` absent from `node_modules/ai/dist/index.d.ts`; `chunkMs` present at line 383; registry `latest` is `7.0.105`
+`maxRetries` | **built, set to 1** | The chain should set 0 so it owns the decision
 
 **The build order that falls out of this.**
 

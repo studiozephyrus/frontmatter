@@ -47,9 +47,14 @@ These four changed what the product is for. Each is quoted from the page it came
 
 **And the route they take**, from the same page:
 
-> "In August, 83% of agent traffic arrived through deliberately machine-friendly routes-Markdown
-> versions of pages, llms.txt files, and agent skills. And MCP tool calls exploded that same
-> month, tripling since February."
+> "In August, 83% of agent traffic arrived through deliberately machine-friendly routes ...
+> Markdown versions of pages, llms.txt files, and agent skills. And MCP tool calls exploded that
+> same month, tripling since February."
+
+**On the ellipsis.** The source joins those two clauses with a long dash, which this pack's house
+style does not carry anywhere, including inside a quotation. **The ellipsis marks the elision so
+that nobody reads an altered string as verbatim.** The same applies in section 1.2 below. Re-fetch
+the page before putting either sentence in a deck.
 
 **What follows.**
 
@@ -68,7 +73,7 @@ These four changed what the product is for. Each is quoted from the page it came
 ### 1.2 Only 9 per cent of teams let an agent publish unreviewed
 
 > "Our survey confirms the trend: 83% of respondents say AI agents now draft documentation updates
-> for their team. But humans haven't left the loop-only 9% let agents publish without review.
+> for their team. But humans haven't left the loop ... only 9% let agents publish without review.
 > Documentation is becoming a system that reads itself and drafts its own improvements, with people
 > deciding what's true and what ships."
 
@@ -108,7 +113,10 @@ probed `/2026/ai`, `/2026/` and `/2026/technology` on 2026-09-18 and all three r
 **The companion number, from the same survey**, on 25,332 responses:
 
 > "the biggest single frustration, cited by 66% of developers, is dealing with "AI solutions that
-> are almost right, but not quite,""
+> are almost right, but not quite""
+
+The inner pair of quotation marks is the source's own, around the phrase **"AI solutions that are
+almost right, but not quite"**, which its chart prints at **66%**.
 
 **"Almost right, but not quite" is the precise description of a document you have to read line by
 line before you can believe it.** That is the change queue's reason to exist, stated by the market
@@ -240,7 +248,7 @@ Downloads | Plugin id
 the Model Context Protocol: `vault-as-mcp`, `mcp-tools`, `semantic-vault-mcp`,
 `local-rest-api-second-brain-mcp-extension`, `cli-rest-mcp`, `mcp-rest`.
 
-**Our own plan sets the rule this breaks.** `docs/mvp0/PRODUCT-PLAN.md:739` says a capability that
+**Our own plan sets the rule this breaks.** `docs/mvp0/PRODUCT-PLAN.md` section 6 says a capability that
 is a top add-on in three or more ecosystems ships built in. Ninety-five people shipped a plugin to
 join an agent to a vault, and our plan has that capability in the Later column.
 
@@ -345,7 +353,7 @@ order it would arrive.
 Test | Falsified if | Where it is measured
 **Does anybody use the queue?** | Fewer than three of twenty accept or reject a single item individually in week one | `55-MEASUREMENT-AND-EVENTS.md`, `doc.change.accepted`
 **Is Accept all the only button used?** | Individual accepts are under 10 per cent of all accepts | The same event, with `mode: individual` against `mode: all`
-**Do the blueprints get used?** | Fewer than two of ten kit recipients run the kickoff | `docs/mvp0/PRODUCT-PLAN.md:1738`
+**Do the blueprints get used?** | Fewer than two of ten kit recipients run the kickoff | `docs/mvp0/PRODUCT-PLAN.md section 28`
 **Can a person name the problem?** | Fewer than three of twenty name it unprompted | The same section
 
 ### 6.2 The structural tests, which the market runs

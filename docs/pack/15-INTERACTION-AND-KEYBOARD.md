@@ -6,8 +6,8 @@ tier: canonical
 status: living
 updated: 2026-09-18
 owner: sagnik
-verified_against: 0af3c90
-covers: [keyboard, focus order, selection, undo, drag and drop, desktop differences]
+verified_against: f237ece
+covers: [keyboard, focus-order, selection, undo, drag-and-drop, desktop-differences]
 ---
 
 # 15. Interaction and keyboard
@@ -25,7 +25,7 @@ Mark | Meaning | How to check it
 `PROPOSED` | This document is proposing it. Nobody has decided it | Nothing to check; it needs a decision
 `CONFLICT` | Two owners want the same chord, and section 4 says which wins | Section 4 gives the test
 
-**Every `BUILT` row was read from the source tree at commit `0af3c90` on 18 September 2026.** The
+**Every `BUILT` row was read from the source tree at commit `f237ece` on 18 September 2026.** The
 command that produced the list is in section 12.
 
 ---
@@ -39,11 +39,11 @@ command that produced the list is in section 12.
    saying so.
 3. **Escape unwinds one layer, never two.** Section 5 gives the stack.
 4. **Every chord has a visible twin.** No action is reachable only by keyboard. `[M]` Nielsen's
-   direct manipulation rule, quoted at `docs/mvp0/PRODUCT-PLAN.md:1373`.
+   direct manipulation rule, quoted at `docs/mvp0/PRODUCT-PLAN.md` section 16.
 5. **The shortcut sheet is not a screen.** The founders removed it on 18 September:
-   `docs/mvp0/PRODUCT-PLAN.md:354` reads "Shortcuts is gone." Settings keeps a Shortcuts section
+   `docs/mvp0/PRODUCT-PLAN.md` section 5 reads "Shortcuts is gone." Settings keeps a Shortcuts section
    (S28), and that is the only place the list lives.
-6. **No chord is taught by a tour.** `docs/mvp0/PRODUCT-PLAN.md:269`: a tip appears on first hover
+6. **No chord is taught by a tour.** `docs/mvp0/PRODUCT-PLAN.md` section 4: a tip appears on first hover
    of a control, once, and never as a walkthrough.
 
 ---
@@ -112,7 +112,7 @@ Chord | What it does | Package | Verified in
 
 **Find and replace is therefore already in the product.** That matters commercially: the plan counts
 global find and replace as one of the three Obsidian requests worth the most
-(`docs/mvp0/PRODUCT-PLAN.md:162`). What exists today is per-document. Across a project it is a
+(`docs/mvp0/PRODUCT-PLAN.md` section 2). What exists today is per-document. Across a project it is a
 build, not a binding.
 
 ### 3.3 Vim mode
@@ -148,9 +148,9 @@ work, because they are handled on the window.
 
 - **Owners.** The command palette (`src/modules/app-shell/presentation/KnowledgeUI.tsx:57`), and the browser's print dialogue.
 - **Why it matters here.** Export to PDF is a named capability
-  (`docs/mvp0/PRODUCT-PLAN.md:901`), so print is not an idle chord in this product.
+  (`docs/mvp0/PRODUCT-PLAN.md` section 8), so print is not an idle chord in this product.
 - **Resolution.** The palette keeps the chord, because it is what VS Code and Obsidian do and
-  Jakob's law is the plan's stated tie-breaker (`docs/mvp0/PRODUCT-PLAN.md:1372`). The palette then
+  Jakob's law is the plan's stated tie-breaker (`docs/mvp0/PRODUCT-PLAN.md` section 16). The palette then
   carries a Print row, so the capability is never unreachable.
 - **The check.** The palette opens, and typing `print` finds a row that prints.
 - **Severity.** `LOW`.
@@ -211,7 +211,7 @@ Screen | On arrival, focus sits on | Why
 S01 Sign in | Continue with Google | One tap is the promise. `Tab` then reaches GitHub
 S02 Home, first time | The first start card, Blank document | Hick's law, the highlighted choice
 S03 Home | The search field | A returning person is looking for something
-S04 Workspace | The editor, at the caret position the file was left at | Apple's restore-state rule, `docs/mvp0/PRODUCT-PLAN.md:344`
+S04 Workspace | The editor, at the caret position the file was left at | Apple's restore-state rule, `docs/mvp0/PRODUCT-PLAN.md` section 5
 S06 AI box | The prompt field | The box exists to be typed into
 S10 Problems | The first problem row | Arrow keys then walk the list
 S12 Ideas | The idea field | Same reason as S06
@@ -282,11 +282,11 @@ it: the undo stack stays about the person's own keystrokes.
 
 1. **Undo is per document.** Each open tab has its own stack. Switching tabs does not merge them.
 2. **Undo never crosses a save.** A save is a new immutable version
-   (`docs/mvp0/PRODUCT-PLAN.md:1388`), and going further back is History (S21), not undo.
+   (`docs/mvp0/PRODUCT-PLAN.md` section 17), and going further back is History (S21), not undo.
 3. **Undo is not a network operation.** It works offline, on the local buffer.
 4. **An accepted AI edit is one undo step**, not one per changed word.
 5. **A live session does not undo another person's typing.** `PROPOSED`, and it is the hard case:
-   Yjs holds the shared state (`docs/mvp0/PRODUCT-PLAN.md:1329`), so undo must be scoped to the
+   Yjs holds the shared state (`docs/mvp0/PRODUCT-PLAN.md` section 15), so undo must be scoped to the
    local client's own changes. Until that is built and red-proofed, **live editing and undo have
    not been tested together**, and this document says so rather than implying they compose.
 6. **Nothing that leaves the machine is undoable.** Publishing, sharing and pushing to GitHub are
@@ -313,7 +313,7 @@ A change-queue item | Anything | Nothing. Items are not draggable | `PROPOSED` |
    silent merge by another name.
 3. **A folder drop never flattens.** Structure is the reason a person dragged a folder.
 4. **A drop of 2,000 files shows progress past ten seconds** and stays cancellable. The target is in
-   `docs/mvp0/PRODUCT-PLAN.md:1522`: under two minutes, byte-exact.
+   `docs/mvp0/PRODUCT-PLAN.md` section 21: under two minutes, byte-exact.
 5. **Dragging out of frontmatter is an export**, never a move. The copy that leaves is a copy.
 
 ---
@@ -328,7 +328,7 @@ The application menu bar | None | Native, and it is the second home of every cho
 `Cmd/Ctrl + P` | Taken by the palette, C2 | Free, because the shell owns printing | The conflict is web-only
 `Cmd/Ctrl + W`, `Cmd + Q` | The browser's, and unreachable | The window and the application | Never rebind these
 Files | In the cloud, with a local draft | On disk, and the tree shows both roots | S25, `docs/mvp0/screens/gen.mjs:1467`
-Document cap | 50 on Free | None | `docs/mvp0/PRODUCT-PLAN.md:678`
+Document cap | 50 on Free | None | `docs/mvp0/PRODUCT-PLAN.md` section 5
 AI when offline | Disabled, with a reason | A local model runs the edit | S24, `docs/mvp0/screens/gen.mjs:1462`
 Drag from the operating system | Files only, through the browser | Files and folders, including a watched folder | The watched folder is `PROPOSED`; it is named in `docs/mvp0/SCREEN-CHANGES-2026-09-18.md:262`
 Protocol handler | None | Registered, which is what lets S18 offer Open in the app | `docs/mvp0/screens/gen.mjs:1331`
@@ -343,7 +343,7 @@ says which platform it needs rather than showing a dead control.
 
 **No keyboard map.** The phone has a bottom bar of five actions at thumb height: Home, Search, AI,
 Outline, More (`docs/mvp0/screens/gen.mjs:744`). `[M]` Material's rule for compact width, quoted at
-`docs/mvp0/PRODUCT-PLAN.md:1094`.
+`docs/mvp0/PRODUCT-PLAN.md` section 12.
 
 - The tree is a left drawer, the right rail a right drawer (`docs/mvp0/screens/gen.mjs:752`).
 - An external keyboard on a tablet gets the section 3 map, because the editor is the same
@@ -356,7 +356,7 @@ Outline, More (`docs/mvp0/screens/gen.mjs:744`). `[M]` Material's rule for compa
 ## 12. How this file was produced, and how to re-derive it
 
 ```bash
-git rev-parse --short HEAD                                   # 0af3c90
+git rev-parse --short HEAD                                   # f237ece
 grep -rn 'key: "Mod-\|metaKey\|ctrlKey' src/                 # every binding in our own code
 grep -n -A 8 "^const historyKeymap" node_modules/@codemirror/commands/dist/index.js
 grep -n -A 10 "const searchKeymap" node_modules/@codemirror/search/dist/index.js
@@ -378,7 +378,7 @@ trusting this file at a later commit.
 - **Never show a chord in the interface that is not in this file.** The copy deck carries the
   labels; this file carries the truth.
 - **Never ship a keyboard-only path.** WCAG 2.2 AA is the target
-  (`docs/mvp0/PRODUCT-PLAN.md:1378`), and so is the reverse: no pointer-only path either.
+  (`docs/mvp0/PRODUCT-PLAN.md` section 16), and so is the reverse: no pointer-only path either.
 
 ---
 
@@ -406,6 +406,6 @@ prefix is local to this file and is not an identifier under `65-CONVENTIONS.md` 
   pinned today (`@codemirror/search` 6.7.0, `@codemirror/commands` 6.10.3); a bump can change them
   without touching our source.
 - **One disagreement between sources, recorded rather than resolved.**
-  `docs/mvp0/PRODUCT-PLAN.md:354` says Shortcuts is gone from the workspace, while S28's Settings
+  `docs/mvp0/PRODUCT-PLAN.md` section 5 says Shortcuts is gone from the workspace, while S28's Settings
   list keeps a Shortcuts section (`docs/mvp0/screens/gen.mjs:1512`). Both are right: the panel went, the settings
   section stayed. Anyone reading only the first line would delete the wrong thing.

@@ -32,15 +32,15 @@ the same reason.
 as the name**, because it decides who can read it and when it is evicted.
 
 Key | Backend | Declared at | Holds | On a rename without migration
-`sgnk-md` database, `drafts` store | **IndexedDB**, via `idb-keyval` | `src/modules/drafts/infrastructure/draft-store.ts:19` | Every unsaved draft, under keys `draft:<path>` | **Every unsaved draft in every open document is orphaned**
-`sgnk-md:dirty` | **localStorage** | `src/modules/drafts/infrastructure/draft-store.ts:14` | The dirty-path index, kept in localStorage for fast synchronous lookups | Drafts survive but the app believes nothing is dirty, so no dot appears and nothing prompts a save
-`sgnk-md-bookmarks` | **localStorage** | `src/modules/editor/presentation/bookmarks.ts:31` | Starred note paths | Every bookmark disappears
-`sgnk-md-editor-settings` | **localStorage** | `src/modules/editor/presentation/editor-settings.ts:46` | `vimMode`, `lineNumbers`, `spellcheck`, `focusMode`, `aiGhostText` | Settings silently reset to defaults. **`aiGhostText` resets to `false`**, which is the safe direction, but the rest are the user's choices
-`sgnk-md-editor` | **sessionStorage** | `src/modules/editor/presentation/editor-store.ts:226` | `tabs` and `activePath` only, by `partialize` | Open tabs are lost on the next load. **Lowest stakes of the five**, because sessionStorage dies with the tab anyway
-`ai.sgnk.md` | Tauri bundle identifier | `src-tauri/tauri.conf.json` | The desktop app's identity, and everything macOS keys to it | The desktop app becomes a different application: new container, no preferences, sign-in lost
+`sgnk-md` database, `drafts` store | **IndexedDB**, via `idb-keyval` | `src/modules/drafts/infrastructure/draft-store.ts:19` | Every unsaved draft, under keys `draft:<path>` | **Every unsaved draft is orphaned.**
+`sgnk-md:dirty` | **localStorage** | `src/modules/drafts/infrastructure/draft-store.ts:14` | The dirty-path index, for fast synchronous lookups | Drafts survive, but the app believes nothing is dirty. No dot appears and nothing prompts a save.
+`sgnk-md-bookmarks` | **localStorage** | `src/modules/editor/presentation/bookmarks.ts:31` | Starred note paths | Every bookmark disappears.
+`sgnk-md-editor-settings` | **localStorage** | `src/modules/editor/presentation/editor-settings.ts:46` | `vimMode`, `lineNumbers`, `spellcheck`, `focusMode`, `aiGhostText` | Settings reset to defaults. **`aiGhostText` resets to `false`**, the safe direction. The rest are the user's choices.
+`sgnk-md-editor` | **sessionStorage** | `src/modules/editor/presentation/editor-store.ts:226` | `tabs` and `activePath` only, by `partialize` | Open tabs are lost on the next load. **Lowest stakes of the five.**
+`ai.sgnk.md` | Tauri bundle identifier | `src-tauri/tauri.conf.json` | The desktop app's identity | It becomes a different application: new container, no preferences, sign-in lost.
 
 **One field is deliberately not persisted.** `contentByPath` is excluded by `partialize` at
-`src/modules/editor/presentation/editor-store.ts:232`, and the comment says why: it is large, stale across commits, and re-seeded
+`src/modules/editor/presentation/editor-store.ts:233`, and the comment above it says why: it is large, stale across commits, and re-seeded
 from the vault API when a note loads. **Never add it to the persisted set.**
 
 ---
@@ -54,12 +54,12 @@ schedule.
 **Six steps, and steps 3 and 6 are the ones that get skipped.**
 
 Step | What | Why
-1 | **Write the new key alongside the old one.** Both exist | A user on an old tab and a user on a new tab must both work
-2 | **Read the new key, falling back to the old one.** On a successful fallback read, write the new key | This is the migration. It happens per user, on their next visit, with no batch job
-3 | **Do not delete the old key in the same release** | A rollback in that window would strand every migrated user. See section 6
-4 | **Ship, and wait.** Long enough that the people who visit rarely have visited | A month is a guess, not a measurement. Section 5 says how to replace the guess
-5 | **Then delete the old key on read**, after a successful migration only | Deleting on a failed read destroys the thing you were migrating
-6 | **Record the migration in the release note and in section 7 of this file** | An undocumented migration is indistinguishable from data loss when somebody investigates it a year later
+1 | **Write the new key alongside the old one.** Both exist | A user on an old tab and a user on a new tab must both work.
+2 | **Read the new key, falling back to the old one.** On a successful fallback read, write the new key | This is the migration. It happens per user, on their next visit, with no batch job.
+3 | **Do not delete the old key in the same release** | A rollback in that window would strand every migrated user. See section 6.
+4 | **Ship, and wait.** Long enough that the people who visit rarely have visited | A month is a guess, not a measurement. Section 5 says how to replace the guess.
+5 | **Then delete the old key on read**, after a successful migration only | Deleting on a failed read destroys the thing you were migrating.
+6 | **Record the migration in the release note and in section 7 of this file** | An undocumented migration is indistinguishable from data loss when somebody investigates it a year later.
 
 **The fallback read is the whole mechanism.** It is one function, it runs on the client, and it
 needs no backfill job for browser storage. **Reach for a batch job only when the data is on our
@@ -73,7 +73,7 @@ servers**, which is section 4.
 
 `src/modules/editor/presentation/path-rename.ts` migrates a draft when a note is renamed or moved.
 Without it, a rename leaves the open tab pointing at the deleted old path and the IndexedDB draft
-orphaned under the old key, so **unsaved edits are silently lost on the next snapshot refresh**.
+orphaned under the old key, so **unsaved edits are silently lost on the next snapshot refresh**
 
 **Four things it does right, in fourteen lines:**
 
@@ -99,14 +99,14 @@ every migration in section 7 is browser-local today.**
 **When records do land, the ordered procedure is:**
 
 Step | What | Gate
-1 | **Write the migration as a reviewable proposal**, never as an applied change | An applied schema change is a destructive operation
-2 | **Name the operation, the blast radius, and what you checked to confirm safety** | Per-operation approval. "Continue", "ok" and silence do not count
-3 | **Take a pre-operation backup and verify it**, path and size stated | Even with approval, mistakes happen. The dump is the only durable safety net
-4 | **Preview the match count before any filter that deletes rows.** Count first, delete second | A preview costs ten seconds. An over-broad filter costs the rows
-5 | **Apply** | Only after an explicit yes
-6 | **Verify the post-state and report it**, with the counts | A migration with no after-count is a hope
+1 | **Write the migration as a reviewable proposal**, never as an applied change | An applied schema change is a destructive operation.
+2 | **Name the operation, the blast radius, and what you checked to confirm safety** | Per-operation approval. "Continue", "ok" and silence do not count.
+3 | **Take a pre-operation backup and verify it**, path and size stated | Even with approval, mistakes happen. The dump is the only durable safety net.
+4 | **Preview the match count before any filter that deletes rows.** Count first, delete second | A preview costs ten seconds. An over-broad filter costs the rows.
+5 | **Apply** | Only after an explicit yes.
+6 | **Verify the post-state and report it**, with the counts | A migration with no after-count is a hope.
 
-**The Firestore-specific constraints**, from `docs/mvp0/PRODUCT-PLAN.md:1288`:
+**The Firestore-specific constraints**, from `docs/mvp0/PRODUCT-PLAN.md` section 15:
 
 - **A document cannot exceed 1 MiB.** Document bytes live in R2; a Firestore document holds
   metadata and a content hash. **A migration that starts putting content in Firestore has broken
@@ -125,18 +125,18 @@ while working locally against a small collection.
 
 ## 5. The first real migration: local drafts to the cloud
 
-**This one is already known and scheduled.** Phase A, `docs/mvp0/PRODUCT-PLAN.md:1313`, acceptance
+**This one is already known and scheduled.** Phase A, `docs/mvp0/PRODUCT-PLAN.md` section 15, acceptance
 criterion A33: "Migrates the local drafts the shipped app holds under its legacy keys into the
 signed-in account".
 
 **What has to move**, from section 1:
 
 Source | Destination | Note
-IndexedDB `sgnk-md` / `drafts`, keys `draft:<path>` | The account's drafts | **Carry `baseSha` and `updatedAt`.** Dropping `baseSha` turns every subsequent save into a blind write
-localStorage `sgnk-md:dirty` | Derived, not migrated | The dirty index is a cache over the drafts. **Rebuild it from the drafts after the move**, which is what `src/modules/drafts/infrastructure/draft-store.ts:63` already does on a corrupt index
-localStorage `sgnk-md-bookmarks` | The account's bookmarks | Paths only
-localStorage `sgnk-md-editor-settings` | The account's settings | **`aiGhostText` stays off unless the user turned it on.** The plan has ghost text off by default, and a migration must not flip a consent-shaped default
-sessionStorage `sgnk-md-editor` | **Not migrated** | Tabs are per-session by design
+IndexedDB `sgnk-md` / `drafts`, keys `draft:<path>` | The account's drafts | **Carry `baseSha` and `updatedAt`.** Dropping `baseSha` turns every subsequent save into a blind write.
+localStorage `sgnk-md:dirty` | Derived, not migrated | The dirty index is a cache over the drafts. **Rebuild it from the drafts after the move**, which is what `src/modules/drafts/infrastructure/draft-store.ts:63` already does on a corrupt index.
+localStorage `sgnk-md-bookmarks` | The account's bookmarks | Paths only.
+localStorage `sgnk-md-editor-settings` | The account's settings | **`aiGhostText` stays off unless the user turned it on.** The plan has ghost text off by default, and a migration must not flip a consent-shaped default.
+sessionStorage `sgnk-md-editor` | **Not migrated** | Tabs are per-session by design.
 
 **Six rules for this specific migration, because it is the first one a stranger will experience:**
 
@@ -154,7 +154,7 @@ sessionStorage `sgnk-md-editor` | **Not migrated** | Tabs are per-session by des
 
 **The eviction risk that sets the deadline.** Safari deletes all script-writable storage after
 seven days of Safari use without a visit, unless the app is on the home screen
-(`docs/mvp0/PRODUCT-PLAN.md:1072`). **So a Safari user who does not return within seven days has
+(`docs/mvp0/PRODUCT-PLAN.md` section 12). **So a Safari user who does not return within seven days has
 nothing left to migrate.** That is not a reason to rush the migration; it is a reason for the
 first connection to push everything to the server, which is what the plan already requires.
 
@@ -172,12 +172,12 @@ migration is at the top of it.
 **So every migration ships with its reverse, written and tested before the forward one runs.**
 
 Migration kind | Its reverse | Testable how
-A key rename in browser storage | The fallback read in step 2 **is** the reverse, as long as the old key still exists. **That is why step 3 forbids deleting it in the same release** | Load the new build against a profile holding only old keys
+A key rename in browser storage | The fallback read in step 2 **is** the reverse, as long as the old key still exists. **That is why step 3 forbids deleting it in the same release** | Load the new build against a profile holding only old keys.
 A key deletion, after the wait | **Not reversible.** The data is gone from that browser | Nothing. **This is why step 4 exists**
-A Firestore field added | Ignore the field | A read that does not require it
-A Firestore field renamed | Write both for a release, read with a fallback, exactly as for browser keys | An emulator run against a fixture holding the old shape
-An R2 key-layout change | **Write the new layout, keep the old objects.** R2 has no object versioning, so an overwrite is final | A read against both layouts
-Records moved between stores | A reverse copy, plus a decision about writes that landed in between | Only with a pre-operation dump
+A Firestore field added | Ignore the field | A read that does not require it.
+A Firestore field renamed | Write both for a release, read with a fallback, exactly as for browser keys | An emulator run against a fixture holding the old shape.
+An R2 key-layout change | **Write the new layout, keep the old objects.** R2 has no object versioning, so an overwrite is final | A read against both layouts.
+Records moved between stores | A reverse copy, plus a decision about writes that landed in between | Only with a pre-operation dump.
 
 **The R2 constraint governs, and it is settled: R2 has no object versioning.** An overwritten
 object is not recoverable. **So a migration never overwrites an R2 object. It writes a new key and
@@ -211,8 +211,8 @@ section 3. **Never reused, never renumbered.**
 alone would build the wrong thing.
 
 Source | What it says
-`docs/mvp0/PRODUCT-PLAN.md:1284` onward, section 15 | **The founders decided on 17 September: Firestore.** "The stack is the Next.js app we already run, Cloudflare R2 for bytes, and Firestore for records, with Firebase Auth for sign-in"
-`docs/mvp0/PRODUCT-PLAN.md:1432` onward, section 18 | The data-model table says **"Postgres rows"** for workspace, document head, share link, published page, collaborator, comment, change-queue item, connection, agent token, ledger entry, plan and invoice
+`docs/mvp0/PRODUCT-PLAN.md` section 15 onward, section 15 | **The founders decided on 17 September: Firestore.** "The stack is the Next.js app we already run, Cloudflare R2 for bytes, and Firestore for records, with Firebase Auth for sign-in".
+`docs/mvp0/PRODUCT-PLAN.md` section 18 onward, section 18 | The data-model table says **"Postgres rows"** for workspace, document head, share link, published page, collaborator, comment, change-queue item, connection, agent token, ledger entry, plan and invoice.
 
 **Read it this way.** Section 15 is the founders' decision and is the newer intent; section 18's
 table was not rewritten after the decision. **Read "Postgres row" as "a record in the database",

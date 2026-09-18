@@ -7,8 +7,8 @@ status: living
 updated: 2026-09-18
 owner: sagnik
 generated_by: node docs/pack/tools/gen-api-reference.mjs > docs/pack/22-API-REFERENCE.md
-verified_against: 6271499
-covers: [api, api-routes, handlers]
+verified_against: f237ece
+covers: [api, routes, handlers]
 ---
 
 # 22. API reference
@@ -21,7 +21,7 @@ node docs/pack/tools/gen-api-reference.mjs > docs/pack/22-API-REFERENCE.md
 node docs/pack/tools/gen-api-reference.mjs --check   # non-zero when this file is stale
 ```
 
-Read out of `src/app` at commit `6271499` on 2026-09-18.
+Read out of `src/app` at commit `f237ece` on 2026-09-18.
 **26 route files, 29 handlers.**
 
 **What the generator can and cannot tell you.** It reads the source text. A status code that

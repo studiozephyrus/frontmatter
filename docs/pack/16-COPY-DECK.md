@@ -6,8 +6,8 @@ tier: canonical
 status: living
 updated: 2026-09-18
 owner: sagnik
-verified_against: 0af3c90
-covers: [user-facing strings, refusal wording, error wording, standing promises]
+verified_against: f237ece
+covers: [user-facing-strings, refusal-wording, error-wording, standing-promises]
 ---
 
 # 16. Copy deck
@@ -30,13 +30,13 @@ row all point at an id in this deck.
 
 **Where a string contains a number, the number is a variable.** It is written `{docs}`, `{edits}`
 and so on in the notes column, and it is read from `limitsFor(account)`
-(`docs/mvp0/PRODUCT-PLAN.md:1833`). **A number typed into a string is a defect**, because the
+(`docs/mvp0/PRODUCT-PLAN.md` section 30). **A number typed into a string is a defect**, because the
 configuration panel of section 30 is the only home for a cap.
 
 ## 0.1 Provenance
 
 Mark | Meaning
-`[gen]` | Verbatim from `docs/mvp0/screens/gen.mjs`, read at commit `0af3c90` on 18 September 2026
+`[gen]` | Verbatim from `docs/mvp0/screens/gen.mjs`, read at commit `f237ece` on 18 September 2026
 `[code]` | Verbatim from the shipped source under `src/`
 `[plan]` | Taken from `docs/mvp0/PRODUCT-PLAN.md`, with the line cited
 `[new]` | Written in this file, because the screen needs a string nobody has written yet
@@ -76,7 +76,7 @@ Class | Ceiling, characters | Why
 4. **Never a screen id, a feature id, a file path in `docs/`, or any internal shorthand.** Section
    14 lists four live breaches of this rule.
 5. **Never a percentage of confidence from a model.** `[M]` PAIR, quoted at
-   `docs/mvp0/PRODUCT-PLAN.md:1374`.
+   `docs/mvp0/PRODUCT-PLAN.md` section 16.
 6. **A refusal says three things in order:** what will not happen, why, and what to do instead. Never
    an apology first.
 7. **A cost is stated before the click, never after.**
@@ -91,21 +91,21 @@ a change to one of them is a change to the product, not to a string. Any screen 
 these ideas uses the id rather than writing its own words.
 
 id | screen | string | tone | budget | notes
-`K.promise.nopassword` | S01 | No password, no puzzle, no tour. | `promise` | `label`, 34 | `[gen]` `docs/mvp0/screens/gen.mjs:811`. Three refusals in one line. `[L]` No captcha, ever (`docs/mvp0/PRODUCT-PLAN.md:323`).
+`K.promise.nopassword` | S01 | No password, no puzzle, no tour. | `promise` | `label`, 34 | `[gen]` `docs/mvp0/screens/gen.mjs:811`. Three refusals in one line. `[L]` No captcha, ever (`docs/mvp0/PRODUCT-PLAN.md` section 5).
 `K.promise.notraining` | S01 | We never train on your documents, and here are the providers that keep that true. | `promise` | `lede` | `[gen]` `docs/mvp0/screens/gen.mjs:811`. "here are the providers" is the link. **Only as true as the chain in S36**, which is why that screen disables a provider whose terms nobody opened.
 `K.promise.nocharge` | S32 | Nothing is deducted for a failed call. | `promise` | `label`, 40 | `[gen]` `docs/mvp0/screens/gen.mjs:1613`. The credit-ledger contract, stated to the person.
 `K.promise.untouched` | S32 | Your document is untouched and nothing was charged. | `promise` | `label` | `[gen]` `docs/mvp0/screens/gen.mjs:1610`. Said at the moment of failure, before any instruction.
-`K.promise.readable` | S33 | Everything you have still opens, edits and exports. Nothing is deleted. | `promise` | `lede` | `[gen]` `docs/mvp0/screens/gen.mjs:1627`. The plan's form of the same promise is "Every document stays readable and exportable" (`docs/mvp0/PRODUCT-PLAN.md:1113`); the screen's wording is the one that ships, and the plan's is the internal statement of it.
-`K.promise.nomerge` | many | Conflicts are never merged silently. Both versions are kept and you choose. | `promise` | `lede` | `[gen]` `docs/mvp0/screens/gen.mjs:1432`. Invariant 12 of the engine (`docs/mvp0/PRODUCT-PLAN.md:1397`), said in the person's words.
+`K.promise.readable` | S33 | Everything you have still opens, edits and exports. Nothing is deleted. | `promise` | `lede` | `[gen]` `docs/mvp0/screens/gen.mjs:1627`. The plan's form of the same promise is "Every document stays readable and exportable" (`docs/mvp0/PRODUCT-PLAN.md` section 13); the screen's wording is the one that ships, and the plan's is the internal statement of it.
+`K.promise.nomerge` | many | Conflicts are never merged silently. Both versions are kept and you choose. | `promise` | `lede` | `[gen]` `docs/mvp0/screens/gen.mjs:1432`. Invariant 12 of the engine (`docs/mvp0/PRODUCT-PLAN.md` section 17), said in the person's words.
 `K.promise.yourfiles` | S01 | Markdown that stays yours, in a Doc mode or a plain one. | `promise` | `lede` | `[gen]` `docs/mvp0/screens/gen.mjs:816`.
-`K.promise.docsonly` | S23 | frontmatter only ever writes under docs/, and that rule is tested. | `promise` | `lede` | `[gen]` `docs/mvp0/screens/gen.mjs:1435`. Enforced server-side (`docs/mvp0/PRODUCT-PLAN.md:1025`).
+`K.promise.docsonly` | S23 | frontmatter only ever writes under docs/, and that rule is tested. | `promise` | `lede` | `[gen]` `docs/mvp0/screens/gen.mjs:1435`. Enforced server-side (`docs/mvp0/PRODUCT-PLAN.md` section 11).
 `K.promise.drivescope` | S23 | Scope: only files this app created or you picked. We cannot see the rest of your Drive. | `promise` | `lede` | `[gen]` `docs/mvp0/screens/gen.mjs:1431`.
 `K.promise.nogate` | S18 | No account needed to read. | `promise` | `label`, 26 | `[gen]` `docs/mvp0/screens/gen.mjs:1343`.
-`K.promise.noindex` | many | Not indexed by search engines. | `promise` | `label`, 30 | `[gen]` `docs/mvp0/screens/gen.mjs:1308`. Whether this stays true is founder question 17 (`docs/mvp0/PRODUCT-PLAN.md:1803`).
+`K.promise.noindex` | many | Not indexed by search engines. | `promise` | `label`, 30 | `[gen]` `docs/mvp0/screens/gen.mjs:1308`. Whether this stays true is founder question 17 (`docs/mvp0/PRODUCT-PLAN.md` section 29).
 
 **One promise has no string yet.** `[new]` `K.promise.nocrdt`, the sentence a person reads when they
 ask what happens to their file in a live session. The plan has the engineering
-(`docs/mvp0/PRODUCT-PLAN.md:1331`, no persisted CRDT state) and no copy. Nobody has written it, and
+(`docs/mvp0/PRODUCT-PLAN.md` section 15, no persisted CRDT state) and no copy. Nobody has written it, and
 this file will not invent a promise.
 
 ---
@@ -149,7 +149,7 @@ id | string | tone | budget | notes
 `K.s01.google` | Continue with Google | `label` | `button`, 22 | `[gen]` `docs/mvp0/screens/gen.mjs:810`. The mark is Google's own four-colour G, not a Material Symbol (`docs/mvp0/screens/gen.mjs:598`).
 `K.s01.github` | Continue with GitHub | `label` | `button`, 22 | `[gen]` `docs/mvp0/screens/gen.mjs:810`.
 `K.s01.fine` | (uses `K.promise.nopassword` then `K.promise.notraining`) | `promise` | `lede` | `[gen]` `docs/mvp0/screens/gen.mjs:811`. One paragraph, two promise ids.
-`K.s01.privacy` | Privacy | `legal` | `label`, 10 | `[gen]` `docs/mvp0/screens/gen.mjs:811`. **Serves without an account** (`docs/mvp0/PRODUCT-PLAN.md:317`).
+`K.s01.privacy` | Privacy | `legal` | `label`, 10 | `[gen]` `docs/mvp0/screens/gen.mjs:811`. **Serves without an account** (`docs/mvp0/PRODUCT-PLAN.md` section 5).
 `K.s01.terms` | Terms | `legal` | `label`, 10 | `[gen]` `docs/mvp0/screens/gen.mjs:811`.
 `K.s01.write` | Write | `label` | `label`, 8 | `[gen]` `docs/mvp0/screens/gen.mjs:816`.
 `K.s01.writeline` | (uses `K.promise.yourfiles`) | `promise` | `lede` | `[gen]` `docs/mvp0/screens/gen.mjs:816`.
@@ -179,7 +179,7 @@ id | screen | string | tone | budget | notes
 `K.s02.start.github.sub` | S02, S03 | Open a repository's docs and write back to it | `plain` | `help` | `[gen]` `docs/mvp0/screens/gen.mjs:826`. The source uses a typographic apostrophe; the deck normalises to a plain one.
 `K.s02.start.template` | S02, S03 | A template | `label` | `label`, 14 | `[gen]` `docs/mvp0/screens/gen.mjs:827`.
 `K.s02.start.template.sub` | S02, S03 | Spec, meeting notes, decision record, README, 14 more | `plain` | `help` | `[gen]` `docs/mvp0/screens/gen.mjs:827`. `{more}` is a count, and 14 is drawn rather than derived.
-`K.s02.empty` | S02 | Nothing yet. Start above, or drop a folder anywhere on this page. | `plain` | `lede` | `[gen]` `docs/mvp0/screens/gen.mjs:841`. `[M]` Nielsen on empty states, quoted at `docs/mvp0/PRODUCT-PLAN.md:334`.
+`K.s02.empty` | S02 | Nothing yet. Start above, or drop a folder anywhere on this page. | `plain` | `lede` | `[gen]` `docs/mvp0/screens/gen.mjs:841`. `[M]` Nielsen on empty states, quoted at `docs/mvp0/PRODUCT-PLAN.md` section 5.
 `K.s02.empty.phone` | S02 | Nothing yet. Start above. | `plain` | `label`, 26 | `[gen]` `docs/mvp0/screens/gen.mjs:844`.
 `K.s02.caps` | S02 | Free: {docs} documents in the cloud, {pages} published pages, {collab} live collaborators. Unlimited on the desktop app. | `plain` | `body` | `[gen]` `docs/mvp0/screens/gen.mjs:841`. **Defect, see section 14, D1:** at `{collab}` of 1 the drawn string reads "1 live collaborators". The string needs a plural rule.
 `K.s03.usedpill` | S03 | {used} of {docs} cloud documents used | `plain` | `label`, 34 | `[gen]` `docs/mvp0/screens/gen.mjs:852`.
@@ -220,9 +220,9 @@ id | string | tone | budget | notes
 `K.s05.font` | Google Sans | `label` | `button`, 14 | `[gen]` `docs/mvp0/screens/gen.mjs:702`.
 `K.s05.font.tip` | Four faces only: Google Sans, a serif, a mono, and the system face | `help` | `help` | `[gen]` `docs/mvp0/screens/gen.mjs:702`. Answers the founders' "font editing is missing" of 18 September (`docs/mvp0/SCREEN-CHANGES-2026-09-18.md:52`).
 `K.s05.more` | More | `label` | `button`, 8 | `[gen]` `docs/mvp0/screens/gen.mjs:707`.
-`K.s05.more.tip` | Font, size, colour, highlight, alignment: render here, export to PDF, plain elsewhere | `help` | `help` | `[gen]` `docs/mvp0/screens/gen.mjs:707`. **This is a refusal in a tooltip.** `[M]` Google's own rule, quoted at `docs/mvp0/PRODUCT-PLAN.md:884`.
+`K.s05.more.tip` | Font, size, colour, highlight, alignment: render here, export to PDF, plain elsewhere | `help` | `help` | `[gen]` `docs/mvp0/screens/gen.mjs:707`. **This is a refusal in a tooltip.** `[M]` Google's own rule, quoted at `docs/mvp0/PRODUCT-PLAN.md` section 7.
 `K.s05.suggesting` | Suggesting | `label` | `label`, 14 | `[gen]` `docs/mvp0/screens/gen.mjs:709`.
-`K.s05.toast` | Doc mode is a view. The file is still {file}. Page setup lives in its front matter; colours and fonts render here and export to PDF only. | `plain` | `body` | `[gen]` `docs/mvp0/screens/gen.mjs:889`. **Shown once, ever.** Not a tour (`docs/mvp0/PRODUCT-PLAN.md:269`).
+`K.s05.toast` | Doc mode is a view. The file is still {file}. Page setup lives in its front matter; colours and fonts render here and export to PDF only. | `plain` | `body` | `[gen]` `docs/mvp0/screens/gen.mjs:889`. **Shown once, ever.** Not a tour (`docs/mvp0/PRODUCT-PLAN.md` section 4).
 
 ---
 
@@ -277,7 +277,7 @@ id | string | tone | budget | notes
 
 id | string | tone | budget | notes
 `K.s08.elsewhere` | Elsewhere | `label` | `label`, 12 | `[gen]` `docs/mvp0/screens/gen.mjs:982`.
-`K.s08.elsewhere.body` | (GitHub, Obsidian, VS Code): the table is still a table, and the chart block is a two-line code block under it. Mermaid renders on GitHub, GitLab and in Obsidian. The callout renders on GitHub as a note. Math renders on GitHub. | `plain` | `body` | `[gen]` `docs/mvp0/screens/gen.mjs:982`. **The degradation statement**, which `docs/mvp0/PRODUCT-PLAN.md:1484` requires of every format we invent.
+`K.s08.elsewhere.body` | (GitHub, Obsidian, VS Code): the table is still a table, and the chart block is a two-line code block under it. Mermaid renders on GitHub, GitLab and in Obsidian. The callout renders on GitHub as a note. Math renders on GitHub. | `plain` | `body` | `[gen]` `docs/mvp0/screens/gen.mjs:982`. **The degradation statement**, which `docs/mvp0/PRODUCT-PLAN.md` section 20 requires of every format we invent.
 `K.s08.tablefolded` | Table folded. Click to show the three rows. | `plain` | `label`, 44 | `[gen]` `docs/mvp0/screens/gen.mjs:972`. `{n}` rows.
 
 ---
@@ -309,7 +309,7 @@ strings are kept so the deferral does not cost the wording.
 ## 11. S10 Problems
 
 **The filter exists because a deterministic finding and a model's opinion must never sit in one
-list.** `[Z]` `docs/mvp0/PRODUCT-PLAN.md:420`.
+list.** `[Z]` `docs/mvp0/PRODUCT-PLAN.md` section 5.
 
 id | string | tone | budget | notes
 `K.s10.title` | Problems | `label` | `label`, 12 | `[gen]` `docs/mvp0/screens/gen.mjs:1040`.
@@ -403,8 +403,8 @@ id | string | tone | budget | notes
 `K.s13.progress` | Page {p} of {total} | `plain` | `label`, 20 | `[gen]` `docs/mvp0/screens/gen.mjs:1191`.
 `K.s13.progress.q` | {answered} of {questions} questions | `plain` | `label`, 28 | `[gen]` `docs/mvp0/screens/gen.mjs:1191`.
 `K.s13.recommended` | recommended | `label` | `label`, 14 | `[gen]` `docs/mvp0/screens/gen.mjs:1169`. Lower case, a tag rather than a badge.
-`K.s13.notsure` | Not sure, leave it open in DECISIONS.md | `label` | `label`, 42 | `[gen]` `docs/mvp0/screens/gen.mjs:1169`. **A quiet link, never a third option in every card** (`docs/mvp0/PRODUCT-PLAN.md:460`).
-`K.s13.rewriting` | Rewriting this and the next {n} pages from your answer to question {q} | `plain` | `body` | `[gen]` `docs/mvp0/screens/gen.mjs:1177`. **Shown only when a rewrite actually fires**, so it means something (`docs/mvp0/PRODUCT-PLAN.md:457`).
+`K.s13.notsure` | Not sure, leave it open in DECISIONS.md | `label` | `label`, 42 | `[gen]` `docs/mvp0/screens/gen.mjs:1169`. **A quiet link, never a third option in every card** (`docs/mvp0/PRODUCT-PLAN.md` section 5).
+`K.s13.rewriting` | Rewriting this and the next {n} pages from your answer to question {q} | `plain` | `body` | `[gen]` `docs/mvp0/screens/gen.mjs:1177`. **Shown only when a rewrite actually fires**, so it means something (`docs/mvp0/PRODUCT-PLAN.md` section 5).
 `K.s13.skip` | Skip | `label` | `button`, 8 | `[gen]` `docs/mvp0/screens/gen.mjs:1180`.
 `K.s13.choose` | Choose the recommendation | `label` | `button`, 28 | `[gen]` `docs/mvp0/screens/gen.mjs:1180`.
 `K.s13.choose.phone` | Recommended | `label` | `button`, 14 | `[gen]` `docs/mvp0/screens/gen.mjs:1199`.
@@ -421,7 +421,7 @@ id | string | tone | budget | notes
 `K.s14.gains` | Gains | `label` | `label`, 8 | `[gen]` `docs/mvp0/screens/gen.mjs:1205`.
 `K.s14.costs` | Costs | `label` | `label`, 8 | `[gen]` `docs/mvp0/screens/gen.mjs:1205`.
 `K.s14.evidence` | Evidence | `label` | `label`, 12 | `[gen]` `docs/mvp0/screens/gen.mjs:1207`.
-`K.s14.src.template` | template source · last checked {date} | `plain` | `label`, 40 | `[gen]` `docs/mvp0/screens/gen.mjs:1209`. **Medium may only cite the template and the person's own documents** (`docs/mvp0/PRODUCT-PLAN.md:949`). High cites pages it opened, with the date.
+`K.s14.src.template` | template source · last checked {date} | `plain` | `label`, 40 | `[gen]` `docs/mvp0/screens/gen.mjs:1209`. **Medium may only cite the template and the person's own documents** (`docs/mvp0/PRODUCT-PLAN.md` section 9). High cites pages it opened, with the date.
 `K.s14.notsure.take` | Not sure, take the recommendation | `label` | `button`, 36 | `[gen]` `docs/mvp0/screens/gen.mjs:1211`.
 `K.s14.recorded` | Recorded in DECISIONS.md with the evidence | `plain` | `label`, 44 | `[gen]` `docs/mvp0/screens/gen.mjs:1211`.
 `K.s14.foot` | Medium and High ask more, and show where each option stands. Everything else works exactly as it does on Low. | `plain` | `body` | `[gen]` `docs/mvp0/screens/gen.mjs:1224`. `[Z]` Do not fork the route (`docs/mvp0/SCREEN-CHANGES-2026-09-18.md:104`).
@@ -443,7 +443,7 @@ id | string | tone | budget | notes
 `K.s15.skillfolder` | A skill folder, so any agent that follows the standard can install it. SKILL.md loads first; the rest only when the agent needs them. | `plain` | `body` | `[gen]` `docs/mvp0/screens/gen.mjs:1241`.
 `K.s15.consistency` | Consistency check: every name in 02-DATA-AND-API appears in specs. {n} names were fixed before you saw them. | `plain` | `body` | `[gen]` `docs/mvp0/screens/gen.mjs:1242`.
 `K.s15.link.title` | Link, unlisted | `label` | `label`, 16 | `[gen]` `docs/mvp0/screens/gen.mjs:1243`.
-`K.s15.link.note` | Anyone with the link can read it. Not indexed. Revoke any time. The hash is printed here so an agent can check the kit before it unpacks it. | `promise` | `long` | `[gen]` `docs/mvp0/screens/gen.mjs:1245`. The out-of-band hash is the point (`docs/mvp0/PRODUCT-PLAN.md:492`).
+`K.s15.link.note` | Anyone with the link can read it. Not indexed. Revoke any time. The hash is printed here so an agent can check the kit before it unpacks it. | `promise` | `long` | `[gen]` `docs/mvp0/screens/gen.mjs:1245`. The out-of-band hash is the point (`docs/mvp0/PRODUCT-PLAN.md` section 5).
 `K.s15.kickoff.title` | Kickoff prompt | `label` | `label`, 18 | `[gen]` `docs/mvp0/screens/gen.mjs:1246`.
 `K.s15.kickoff.copy` | Copy the kickoff prompt | `label` | `button`, 26 | `[gen]` `docs/mvp0/screens/gen.mjs:1251`.
 `K.s15.kickoff.body` | (the prompt itself) | `plain` | `long` | `[gen]` `docs/mvp0/screens/gen.mjs:1247` to `:1250`. **Not translatable and not editable copy.** It is three shell steps and one instruction, and step 1 says "stop unless it prints {hash}".
@@ -491,7 +491,7 @@ id | string | tone | budget | notes
 `K.s17.password.sub` | Asked once per browser. You choose it; we store only a hash. | `promise` | `help` | `[gen]` `docs/mvp0/screens/gen.mjs:1309`.
 `K.s17.expires` | Expires | `label` | `label`, 10 | `[gen]` `docs/mvp0/screens/gen.mjs:1310`.
 `K.s17.expires.sub` | The link stops working after this. The document stays. | `plain` | `help` | `[gen]` `docs/mvp0/screens/gen.mjs:1310`.
-`K.s17.expires.default` | In 7 days | `label` | `button`, 12 | `[gen]` `docs/mvp0/screens/gen.mjs:1310`. `[M]` Bitwarden's default (`docs/mvp0/PRODUCT-PLAN.md:974`).
+`K.s17.expires.default` | In 7 days | `label` | `button`, 12 | `[gen]` `docs/mvp0/screens/gen.mjs:1310`. `[M]` Bitwarden's default (`docs/mvp0/PRODUCT-PLAN.md` section 10).
 `K.s17.publish` | Publish | `label` | `label`, 10 | `[gen]` `docs/mvp0/screens/gen.mjs:1312`.
 `K.s17.publish.page` | Published page | `label` | `label`, 18 | `[gen]` `docs/mvp0/screens/gen.mjs:1313`.
 `K.s17.publish.sub` | {url} · {used} of {pages} free published pages used | `plain` | `help` | `[gen]` `docs/mvp0/screens/gen.mjs:1313`.
@@ -518,7 +518,7 @@ id | string | tone | budget | notes
 `K.s18.card.google` | Sign in with Google | `label` | `button`, 22 | `[gen]` `docs/mvp0/screens/gen.mjs:1337`.
 `K.s18.card.notnow` | Not now | `label` | `button`, 10 | `[gen]` `docs/mvp0/screens/gen.mjs:1337`.
 `K.s18.made` | Made with frontmatter | `plain` | `label`, 24 | `[gen]` `docs/mvp0/screens/gen.mjs:1338`. Free only. Pro removes it.
-`K.s18.report` | Report this page | `legal` | `label`, 20 | `[gen]` `docs/mvp0/screens/gen.mjs:1338`. **Required before the first stranger publishes** (`docs/mvp0/PRODUCT-PLAN.md:1607`).
+`K.s18.report` | Report this page | `legal` | `label`, 20 | `[gen]` `docs/mvp0/screens/gen.mjs:1338`. **Required before the first stranger publishes** (`docs/mvp0/PRODUCT-PLAN.md` section 23).
 `K.s18.alsoat` | also at {url}.md | `plain` | `label`, 30 | `[gen]` `docs/mvp0/screens/gen.mjs:1338`. The markdown twin.
 `K.s18.pw.title` | This link needs a password | `plain` | `title`, 30 | `[gen]` `docs/mvp0/screens/gen.mjs:1341`.
 `K.s18.pw.body` | {owner} shared {file} with a password. Ask them for it. | `plain` | `lede` | `[gen]` `docs/mvp0/screens/gen.mjs:1341`. **Never says whether the password was wrong or the link expired**, so the page is not an oracle.
@@ -545,7 +545,7 @@ id | string | tone | budget | notes
 ## 14d. S20 Document review
 
 **The change queue. Human work and machine work are never one undifferentiated list.** `[Z]`
-`docs/mvp0/PRODUCT-PLAN.md:543`.
+`docs/mvp0/PRODUCT-PLAN.md` section 5.
 
 id | string | tone | budget | notes
 `K.s20.title` | Review | `label` | `label`, 10 | `[gen]` `docs/mvp0/screens/gen.mjs:1384`.
@@ -559,7 +559,7 @@ id | string | tone | budget | notes
 `K.s20.who.agent` | {agent} · edited the file on disk · {ago} | `plain` | `label`, 44 | `[gen]` `docs/mvp0/screens/gen.mjs:1375`.
 `K.s20.showdiff` | Show diff first | `label` | `button`, 18 | `[gen]` `docs/mvp0/screens/gen.mjs:1375`. **The agent row has no one-click Accept.** That is deliberate, not an omission.
 `K.s20.acceptall` | Accept {name}'s {n} change | `label` | `button`, 28 | `[gen]` `docs/mvp0/screens/gen.mjs:1376`. Plural on `{n}`. **Only ever a named person's edits**.
-`K.s20.acceptall.note` | Asks you to confirm the count. AI and agent items are accepted one at a time. | `promise` | `body` | `[gen]` `docs/mvp0/screens/gen.mjs:1376`. `[M]` The over-acceptance literature, cited at `docs/mvp0/PRODUCT-PLAN.md:551`.
+`K.s20.acceptall.note` | Asks you to confirm the count. AI and agent items are accepted one at a time. | `promise` | `body` | `[gen]` `docs/mvp0/screens/gen.mjs:1376`. `[M]` The over-acceptance literature, cited at `docs/mvp0/PRODUCT-PLAN.md` section 5.
 `K.s20.comments.open` | {n} open | `plain` | `label`, 12 | `[gen]` `docs/mvp0/screens/gen.mjs:1385`.
 
 ---
@@ -573,7 +573,7 @@ id | string | tone | budget | notes
 `K.s21.restore` | Restore this version | `label` | `button`, 24 | `[gen]` `docs/mvp0/screens/gen.mjs:1400`.
 `K.s21.copyasnew` | Copy as new document | `label` | `button`, 24 | `[gen]` `docs/mvp0/screens/gen.mjs:1400`.
 `K.s21.exportzip` | Export history as .zip | `label` | `button`, 26 | `[gen]` `docs/mvp0/screens/gen.mjs:1403`.
-`K.s21.author.ai` | AI edit, accepted by you | `plain` | `label`, 26 | `[gen]` `docs/mvp0/screens/gen.mjs:1393`. **Attribution survives here**, which is what replaced review state (`docs/mvp0/PRODUCT-PLAN.md:1411`).
+`K.s21.author.ai` | AI edit, accepted by you | `plain` | `label`, 26 | `[gen]` `docs/mvp0/screens/gen.mjs:1393`. **Attribution survives here**, which is what replaced review state (`docs/mvp0/PRODUCT-PLAN.md` section 17).
 `K.s21.author.blueprint` | Blueprint v{n} written | `plain` | `label`, 26 | `[gen]` `docs/mvp0/screens/gen.mjs:1393`.
 `K.s21.author.created` | Created | `plain` | `label`, 10 | `[gen]` `docs/mvp0/screens/gen.mjs:1393`.
 
@@ -607,7 +607,7 @@ id | string | tone | budget | notes
 `K.s22.warn` | {n} files need a look | `caution` | `label`, 24 | `[gen]` `docs/mvp0/screens/gen.mjs:1416`.
 `K.s22.warn.sub` | Two wikilinks point at notes that are not in the folder; one file is not UTF-8 | `caution` | `body` | `[gen]` `docs/mvp0/screens/gen.mjs:1416`. Each reason is its own row in `17`.
 `K.s22.refuse.gdoc` | {n} Google Doc refused | `refusal` | `label`, 26 | `[gen]` `docs/mvp0/screens/gen.mjs:1417`.
-`K.s22.refuse.gdoc.sub` | Google exports up to 10 MB; this one is {size}. Split it in Docs and try again | `refusal` | `body` | `[gen]` `docs/mvp0/screens/gen.mjs:1417`. **The model refusal row of the deck.** Three parts in order: what will not happen, why, what to do. `[M]` The 10 MB limit is Google's, quoted at `docs/mvp0/PRODUCT-PLAN.md:1032`.
+`K.s22.refuse.gdoc.sub` | Google exports up to 10 MB; this one is {size}. Split it in Docs and try again | `refusal` | `body` | `[gen]` `docs/mvp0/screens/gen.mjs:1417`. **The model refusal row of the deck.** Three parts in order: what will not happen, why, what to do. `[M]` The 10 MB limit is Google's, quoted at `docs/mvp0/PRODUCT-PLAN.md` section 11.
 `K.s22.obsidian` | Obsidian settings found | `plain` | `label`, 26 | `[gen]` `docs/mvp0/screens/gen.mjs:1418`.
 `K.s22.obsidian.sub` | Daily-note path and templates folder read from .obsidian, nothing else touched | `promise` | `body` | `[gen]` `docs/mvp0/screens/gen.mjs:1418`.
 `K.s22.openproject` | Open the project | `label` | `button`, 20 | `[gen]` `docs/mvp0/screens/gen.mjs:1424`.
@@ -622,21 +622,21 @@ id | string | tone | budget | notes
 `K.s23.title` | Connections | `label` | `title`, 16 | `[gen]` `docs/mvp0/screens/gen.mjs:1447`.
 `K.s23.lede` | Each connection asks for the least it can. Every one can be removed here or at the other end. | `promise` | `lede` | `[gen]` `docs/mvp0/screens/gen.mjs:1447`.
 `K.s23.drive.status` | Connected · {account} | `plain` | `label`, 28 | `[gen]` `docs/mvp0/screens/gen.mjs:1429`.
-`K.s23.drive.folder` | Folder: {folder}. Every save writes the .md there; a change made in Drive shows up here within a few minutes. | `plain` | `body` | `[gen]` `docs/mvp0/screens/gen.mjs:1430`. **"within a few minutes" is the honest form of the five-minute poll** (`docs/mvp0/PRODUCT-PLAN.md:1018`). Never promise seconds.
+`K.s23.drive.folder` | Folder: {folder}. Every save writes the .md there; a change made in Drive shows up here within a few minutes. | `plain` | `body` | `[gen]` `docs/mvp0/screens/gen.mjs:1430`. **"within a few minutes" is the honest form of the five-minute poll** (`docs/mvp0/PRODUCT-PLAN.md` section 11). Never promise seconds.
 `K.s23.drive.scope` | (uses `K.promise.drivescope`) | `promise` | `lede` | `[gen]` `docs/mvp0/screens/gen.mjs:1431`.
 `K.s23.drive.conflict` | (uses `K.promise.nomerge`) | `promise` | `lede` | `[gen]` `docs/mvp0/screens/gen.mjs:1432`.
 `K.s23.drive.change` | Change folder | `label` | `button`, 16 | `[gen]` `docs/mvp0/screens/gen.mjs:1433`.
 `K.s23.drive.pause` | Pause sync | `label` | `button`, 14 | `[gen]` `docs/mvp0/screens/gen.mjs:1433`.
 `K.s23.drive.disconnect` | Disconnect | `label` | `button`, 14 | `[gen]` `docs/mvp0/screens/gen.mjs:1433`.
 `K.s23.gh.status` | Installed on {n} repository | `plain` | `label`, 30 | `[gen]` `docs/mvp0/screens/gen.mjs:1434`. Plural on `{n}`.
-`K.s23.gh.scope` | {repo}. GitHub grants this app the whole repository; (then `K.promise.docsonly`) Commits are made as you, with the message you type. | `plain` | `long` | `[gen]` `docs/mvp0/screens/gen.mjs:1435`. **Says the uncomfortable thing first.** GitHub's grant is repository-wide; our restraint is ours (`docs/mvp0/PRODUCT-PLAN.md:1025`).
+`K.s23.gh.scope` | {repo}. GitHub grants this app the whole repository; (then `K.promise.docsonly`) Commits are made as you, with the message you type. | `plain` | `long` | `[gen]` `docs/mvp0/screens/gen.mjs:1435`. **Says the uncomfortable thing first.** GitHub's grant is repository-wide; our restraint is ours (`docs/mvp0/PRODUCT-PLAN.md` section 11).
 `K.s23.gh.quota` | {pushes} pushes a month on Free, {used} used. Pull is unlimited. | `cost` | `body` | `[gen]` `docs/mvp0/screens/gen.mjs:1436`.
 `K.s23.gh.app` | A GitHub App, not a personal token: you chose the repositories, and you can revoke it on GitHub at any time. | `promise` | `long` | `[gen]` `docs/mvp0/screens/gen.mjs:1437`.
 `K.s23.gh.add` | Add a repository | `label` | `button`, 20 | `[gen]` `docs/mvp0/screens/gen.mjs:1438`.
 `K.s23.gh.manage` | Manage on GitHub | `label` | `button`, 20 | `[gen]` `docs/mvp0/screens/gen.mjs:1438`.
 `K.s23.agents.title` | Your agents | `label` | `label`, 14 | `[gen]` `docs/mvp0/screens/gen.mjs:1439`.
 `K.s23.agents.later` | Later · with the MCP server | `plain` | `label`, 30 | `[gen]` `docs/mvp0/screens/gen.mjs:1439`.
-`K.s23.agents.row` | {name} · may read and propose · never applies or publishes · last used {ago} | `promise` | `long` | `[gen]` `docs/mvp0/screens/gen.mjs:1440`. **"never applies or publishes" is the permission matrix said aloud** (`docs/mvp0/PRODUCT-PLAN.md:1469`).
+`K.s23.agents.row` | {name} · may read and propose · never applies or publishes · last used {ago} | `promise` | `long` | `[gen]` `docs/mvp0/screens/gen.mjs:1440`. **"never applies or publishes" is the permission matrix said aloud** (`docs/mvp0/PRODUCT-PLAN.md` section 19).
 `K.s23.agents.new` | New token | `label` | `button`, 12 | `[gen]` `docs/mvp0/screens/gen.mjs:1442`.
 `K.s23.agents.setup` | Show the MCP setup | `label` | `button`, 22 | `[gen]` `docs/mvp0/screens/gen.mjs:1442`.
 
@@ -660,7 +660,7 @@ id | screen | string | tone | budget | notes
 `K.s25.mac` | S25 | Mac | `label` | `label`, 6 | `[gen]` `docs/mvp0/screens/gen.mjs:1480`.
 `K.s25.mac.sub` | S25 | Apple silicon and Intel · notarised | `plain` | `help` | `[gen]` `docs/mvp0/screens/gen.mjs:1480`.
 `K.s25.win` | S25 | Windows | `label` | `label`, 10 | `[gen]` `docs/mvp0/screens/gen.mjs:1481`.
-`K.s25.win.sub` | S25 | Coming. A signing certificate an Indian company can buy is being priced | `refusal` | `body` | `[gen]` `docs/mvp0/screens/gen.mjs:1481`. **Says why, not just "coming"** (`docs/mvp0/PRODUCT-PLAN.md:1090`).
+`K.s25.win.sub` | S25 | Coming. A signing certificate an Indian company can buy is being priced | `refusal` | `body` | `[gen]` `docs/mvp0/screens/gen.mjs:1481`. **Says why, not just "coming"** (`docs/mvp0/PRODUCT-PLAN.md` section 12).
 `K.s25.linux` | S25 | Linux | `label` | `label`, 8 | `[gen]` `docs/mvp0/screens/gen.mjs:1482`.
 `K.s25.linux.sub` | S25 | AppImage and .deb | `plain` | `help` | `[gen]` `docs/mvp0/screens/gen.mjs:1482`. Unsigned by choice.
 `K.s25.emailme` | S25 | Email me the link | `label` | `button`, 20 | `[gen]` `docs/mvp0/screens/gen.mjs:1483`.
@@ -690,7 +690,7 @@ id | string | tone | budget | notes
 `K.s28.nav.connections` | Connections | `label` | `label`, 14 | `[gen]` `docs/mvp0/screens/gen.mjs:1512`.
 `K.s28.nav.sharing` | Sharing | `label` | `label`, 10 | `[gen]` `docs/mvp0/screens/gen.mjs:1512`.
 `K.s28.nav.data` | Data and export | `label` | `label`, 18 | `[gen]` `docs/mvp0/screens/gen.mjs:1512`.
-`K.s28.nav.shortcuts` | Shortcuts | `label` | `label`, 12 | `[gen]` `docs/mvp0/screens/gen.mjs:1512`. The settings section survives; the workspace panel does not (`docs/mvp0/PRODUCT-PLAN.md:354`).
+`K.s28.nav.shortcuts` | Shortcuts | `label` | `label`, 12 | `[gen]` `docs/mvp0/screens/gen.mjs:1512`. The settings section survives; the workspace panel does not (`docs/mvp0/PRODUCT-PLAN.md` section 5).
 `K.s28.nav.plan` | Plan and usage | `label` | `label`, 18 | `[gen]` `docs/mvp0/screens/gen.mjs:1512`.
 `K.s28.defaultmode` | Default mode | `label` | `label`, 16 | `[gen]` `docs/mvp0/screens/gen.mjs:1518`.
 `K.s28.defaultmode.sub` | How a document opens | `help` | `help` | `[gen]` `docs/mvp0/screens/gen.mjs:1518`.
@@ -731,7 +731,7 @@ id | string | tone | budget | notes
 `K.s29.meter.docs` | Documents in the cloud | `label` | `label`, 26 | `[gen]` `docs/mvp0/screens/gen.mjs:1542`.
 `K.s29.meter.pages` | Published pages | `label` | `label`, 18 | `[gen]` `docs/mvp0/screens/gen.mjs:1543`.
 `K.s29.free.price` | ₹0 | `cost` | `label`, 6 | `[gen]` `docs/mvp0/screens/gen.mjs:1544`.
-`K.s29.free.everything` | Every feature: the editor, Doc mode, offline in the browser, every export, every view | `promise` | `body` | `[gen]` `docs/mvp0/screens/gen.mjs:1545`. The founders' rule, narrowed and recorded at `docs/mvp0/PRODUCT-PLAN.md:1808`.
+`K.s29.free.everything` | Every feature: the editor, Doc mode, offline in the browser, every export, every view | `promise` | `body` | `[gen]` `docs/mvp0/screens/gen.mjs:1545`. The founders' rule, narrowed and recorded at `docs/mvp0/PRODUCT-PLAN.md` section 29.
 `K.s29.free.caps` | {docs} documents in the cloud, {pages} published pages, {uploads} of uploads | `plain` | `body` | `[gen]` `docs/mvp0/screens/gen.mjs:1545`.
 `K.s29.free.ai` | {kits} blueprint at Low and {edits} AI edits a month | `cost` | `body` | `[gen]` `docs/mvp0/screens/gen.mjs:1545`.
 `K.s29.free.collab` | {collab} live collaborators per document · {repos} GitHub repository, {pushes} pushes a month · Google Drive sync | `plain` | `long` | `[gen]` `docs/mvp0/screens/gen.mjs:1545`. Plural defect again, section 15 D1.
@@ -751,7 +751,7 @@ id | string | tone | budget | notes
 `K.s29.enterprise` | Enterprise · later · talk to us | `plain` | `body` | `[gen]` `docs/mvp0/screens/gen.mjs:1549`.
 
 **One string this screen needs and does not have.** `[new]` An Indian card gets one payment attempt,
-and a mandate is capped at ₹15,000 (`docs/mvp0/PRODUCT-PLAN.md:641`). **A failed first attempt needs
+and a mandate is capped at ₹15,000 (`docs/mvp0/PRODUCT-PLAN.md` section 5). **A failed first attempt needs
 a string that says so**, or the person will assume the card is bad. It is `E`-numbered in `17` and
 has no words yet.
 
@@ -807,12 +807,12 @@ id | string | tone | budget | notes
 `K.s32.aioff` | Every provider is down. Try again in a minute. | `refusal` | `body` | `[gen]` `docs/mvp0/screens/gen.mjs:1622`.
 
 **The provider list is shown on purpose.** `[P]` The chain has four links and the plan says what
-happens when the fourth fails (`docs/mvp0/PRODUCT-PLAN.md:671`). A person who can see that four
+happens when the fourth fails (`docs/mvp0/PRODUCT-PLAN.md` section 5). A person who can see that four
 services refused knows the fault is not their document.
 
 **The graceful path, and it is the one that matters commercially.** When the model layer is degraded
 the idea flow falls back to a standard question set rather than an apology
-(`docs/mvp0/PRODUCT-PLAN.md:1241`). `[new]` That string does not exist yet: something in the register
+(`docs/mvp0/PRODUCT-PLAN.md` section 14). `[new]` That string does not exist yet: something in the register
 of "Use a standard question set", plus one line saying the questions will be good and not tailored.
 
 ---
@@ -846,7 +846,7 @@ id | string | tone | budget | notes
 `K.s34.prompt` | What are you building, and for whom? | `plain` | `title`, 40 | `[gen]` `docs/mvp0/screens/gen.mjs:1647`.
 `K.s34.example` | Open the example: a booking page for salons | `label` | `label`, 46 | `[gen]` `docs/mvp0/screens/gen.mjs:1648`.
 `K.s34.template` | Pick an industry template | `label` | `button`, 28 | `[gen]` `docs/mvp0/screens/gen.mjs:1648`.
-`K.s34.example.note` | The example is a real kit, made by hand, so you can read all fifteen files before spending your blueprint credit. | `plain` | `long` | `[gen]` `docs/mvp0/screens/gen.mjs:1649`. `[M]` Nielsen: do not default to totally empty states (`docs/mvp0/PRODUCT-PLAN.md:690`).
+`K.s34.example.note` | The example is a real kit, made by hand, so you can read all fifteen files before spending your blueprint credit. | `plain` | `long` | `[gen]` `docs/mvp0/screens/gen.mjs:1649`. `[M]` Nielsen: do not default to totally empty states (`docs/mvp0/PRODUCT-PLAN.md` section 5).
 `K.s34.railempty` | Your ideas will be listed here with where each one stands. | `plain` | `body` | `[gen]` `docs/mvp0/screens/gen.mjs:1653`.
 `K.s34.credit` | {n} blueprint credit this month | `cost` | `label`, 34 | `[gen]` `docs/mvp0/screens/gen.mjs:1653`.
 `K.s34.step1` | 1 Describe | `label` | `label`, 14 | `[gen]` `docs/mvp0/screens/gen.mjs:1654`.
@@ -863,7 +863,7 @@ morning makes the same mistake anyone else would.
 
 id | screen | string | tone | budget | notes
 `K.s35.title` | S35 | Plans and limits | `label` | `title`, 20 | `[gen]` `docs/mvp0/screens/gen.mjs:1686`.
-`K.s35.lede` | S35 | What each plan allows. The product reads this table and nothing else; there is no copy of these numbers in the source. | `promise` | `long` | `[gen]` `docs/mvp0/screens/gen.mjs:1686`. The one-read-path rule (`docs/mvp0/PRODUCT-PLAN.md:1833`).
+`K.s35.lede` | S35 | What each plan allows. The product reads this table and nothing else; there is no copy of these numbers in the source. | `promise` | `long` | `[gen]` `docs/mvp0/screens/gen.mjs:1686`. The one-read-path rule (`docs/mvp0/PRODUCT-PLAN.md` section 30).
 `K.s35.col.limit` | S35 | Limit | `label` | `label`, 8 | `[gen]` `docs/mvp0/screens/gen.mjs:1679`.
 `K.s35.col.lastchange` | S35 | Last change | `label` | `label`, 14 | `[gen]` `docs/mvp0/screens/gen.mjs:1679`.
 `K.s35.row.docs` | S35 | Documents in the cloud | `label` | `label`, 26 | `[gen]` `docs/mvp0/screens/gen.mjs:1669`.
@@ -876,7 +876,7 @@ id | screen | string | tone | budget | notes
 `K.s35.row.repos` | S35 | GitHub repositories | `label` | `label`, 22 | `[gen]` `docs/mvp0/screens/gen.mjs:1676`.
 `K.s35.row.pushes` | S35 | GitHub pushes a month | `label` | `label`, 24 | `[gen]` `docs/mvp0/screens/gen.mjs:1677`.
 `K.s35.bar.change` | S35 | {n} change · {what} | `plain` | `label`, 38 | `[gen]` `docs/mvp0/screens/gen.mjs:1687`.
-`K.s35.bar.warn` | S35 | {n} accounts go over their cap | `caution` | `label`, 34 | `[gen]` `docs/mvp0/screens/gen.mjs:1687`. **Said before the save, with the count** (`docs/mvp0/PRODUCT-PLAN.md:1842`).
+`K.s35.bar.warn` | S35 | {n} accounts go over their cap | `caution` | `label`, 34 | `[gen]` `docs/mvp0/screens/gen.mjs:1687`. **Said before the save, with the count** (`docs/mvp0/PRODUCT-PLAN.md` section 30).
 `K.s35.bar.seewho` | S35 | See who | `label` | `button`, 10 | `[gen]` `docs/mvp0/screens/gen.mjs:1687`.
 `K.s35.bar.discard` | S35 | Discard | `label` | `button`, 10 | `[gen]` `docs/mvp0/screens/gen.mjs:1687`.
 `K.s35.bar.save` | S35 | Review and save | `label` | `button`, 18 | `[gen]` `docs/mvp0/screens/gen.mjs:1687`. Never a bare Save.
@@ -935,8 +935,8 @@ The code's spelling of Summarize is American, against the house rule. `MEDIUM`.
 
 **D3. The live-collaborator number is 1 in three sources and 3 in two.** One is correct: the
 founders answered on 18 September (`docs/mvp0/SCREEN-CHANGES-2026-09-18.md:305`), and
-`docs/mvp0/PRODUCT-PLAN.md:510` and `:534` and `docs/mvp0/screens/gen.mjs:16` follow it.
-**`docs/mvp0/PRODUCT-PLAN.md:240` and `docs/mvp0/SCREENS.md:29` still say 3** and are stale. This
+`docs/mvp0/PRODUCT-PLAN.md` section 5 and `:534` and `docs/mvp0/screens/gen.mjs:16` follow it.
+**`docs/mvp0/PRODUCT-PLAN.md` section 3 and `docs/mvp0/SCREENS.md:29` still say 3** and are stale. This
 deck is written to 1. Recorded here rather than fixed, because both files belong to other owners.
 
 **D4. Screen ids leak into user-facing copy on the configuration panel.** `docs/mvp0/screens/gen.mjs:1716` reads "Turns
@@ -960,7 +960,7 @@ one-attempt payment failure on S29.
   copy. They do not change in any language.
 - **The kickoff prompt's body**, beyond the row above. It is a shell script that an agent reads.
 - **Legal page text.** Privacy, Terms, refunds and the grievance notice are written by counsel, are
-  due by 15 October 2026, and carry an owner per row at `docs/mvp0/PRODUCT-PLAN.md:1605`.
+  due by 15 October 2026, and carry an owner per row at `docs/mvp0/PRODUCT-PLAN.md` section 23.
 - **Error and refusal rows.** Their catalogue is `17-ERROR-AND-REFUSAL-CATALOGUE.md`. **Every row
   there points at an id in this deck**, and where a row has no id yet, that file says so.
 
@@ -972,13 +972,23 @@ one-attempt payment failure on S29.
   person. No translation was attempted, and section 0.3's budgets are derived from the drawn layout
   rather than measured in a browser.
 - **What could not be verified.** Every `[gen]` row is verbatim from the generator at commit
-  `0af3c90`. **The generator is not the running product**, so a string could differ in the shipped
+  `f237ece`. **The generator is not the running product**, so a string could differ in the shipped
   app; the shipped app has 24 of these 38 screens at most.
 - **What is not established.** Every `[new]` row. The founders have not seen them.
 - **What would falsify it.** A change to `gen.mjs`, which is the source of most of this deck, or the
   arrival of `10-FEATURE-REGISTER.md` and `17-ERROR-AND-REFUSAL-CATALOGUE.md` with ids that
   contradict the ones used here.
-- **The count.** This deck carries about 300 ids. `docs/mvp0/screens/gen.mjs` is 1,760 lines and
-  contains further literal text inside sample documents, which section 16 excludes by rule. **A
-  reader who wants the true count should run a script over the generator**, and this file does not
-  quote one it did not compute.
+- **The count, re-derived at write time rather than estimated.** This deck carries **574 ids, each
+  on exactly one row**, counted on 18 September 2026 with:
+
+  ```bash
+  grep -cE '^`K\.[a-z0-9.]+` \|' docs/pack/16-COPY-DECK.md               # 574 rows
+  grep -oE '^`K\.[a-z0-9.]+` \|' docs/pack/16-COPY-DECK.md \
+    | sed 's/ |$//' | sort -u | wc -l                                     # 574 distinct
+  ```
+
+  **The two numbers agreeing is the check**, because a repeated id would break the one-fact-one-home
+  rule this deck exists to keep.
+- **What that count does not cover.** `docs/mvp0/screens/gen.mjs` is 1,760 lines and holds further
+  literal text inside sample documents, which section 16 excludes by rule. **So 574 is the size of
+  the deck, not the size of the generator.**
