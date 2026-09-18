@@ -63,6 +63,15 @@ for lo, hi, band in BANDS:
                      f'reference | canonical | specified')
     lines.append('')
 
+adrs = sorted((PACK / 'adr').glob('ADR-*.md'))
+if adrs:
+    lines += ['### Decision records', '', 'File | What it is | Mode | Tier | Status']
+    for f in adrs:
+        m = meta(f)
+        lines.append(f'[adr/{f.name}](adr/{f.name}) | {m.get("title", f.stem).rstrip(".")}. | '
+                     f'{m.get("mode", "?")} | {m.get("tier", "?")} | {m.get("status", "?")}')
+    lines.append('')
+
 block = '\n'.join(lines)
 t = README.read_text(encoding='utf-8')
 if START not in t:

@@ -196,6 +196,28 @@ File | What it is | Mode | Tier | Status
 [63-AGENT-CONTRACT.md](63-AGENT-CONTRACT.md) | Agent contract. | reference | canonical | living
 [64-PORTABILITY-AND-HANDOVER.md](64-PORTABILITY-AND-HANDOVER.md) | Portability and handover. | how-to | canonical | living
 [65-CONVENTIONS.md](65-CONVENTIONS.md) | Conventions. | reference | canonical | living
+[66-FORMAT-SPECIFICATIONS.md](66-FORMAT-SPECIFICATIONS.md) | Format specifications. | reference | canonical | draft
+[67-SYNC-AND-CONFLICT.md](67-SYNC-AND-CONFLICT.md) | Sync and conflict. | reference | canonical | draft
+
+### Decision records
+
+File | What it is | Mode | Tier | Status
+[adr/ADR-0001-compiler-not-format.md](adr/ADR-0001-compiler-not-format.md) | Build a compiler and an IDE, not a new markdown format. | explanation | canonical | decided
+[adr/ADR-0002-render-carrier.md](adr/ADR-0002-render-carrier.md) | Callouts carry prose, fenced blocks carry opaque data. | explanation | canonical | decided
+[adr/ADR-0003-sync-without-crdt.md](adr/ADR-0003-sync-without-crdt.md) | Sync is git-merge plus a splice journal plus compare-and-swap, never a CRDT. | explanation | canonical | decided
+[adr/ADR-0004-r2-recovery-in-key-layout.md](adr/ADR-0004-r2-recovery-in-key-layout.md) | R2 has no object versioning, so recovery lives in the key layout. | explanation | canonical | decided
+[adr/ADR-0005-inr-mandate-ceiling.md](adr/ADR-0005-inr-mandate-ceiling.md) | ₹15,000 a transaction is an architectural constant, and an Indian card gets one attempt. | explanation | canonical | decided
+[adr/ADR-0006-projection-law-and-splice-only.md](adr/ADR-0006-projection-law-and-splice-only.md) | The projection law and splice-only writing, refuse rather than guess. | explanation | canonical | decided
+[adr/ADR-0007-stack.md](adr/ADR-0007-stack.md) | Next.js on Vercel, R2 for bytes, Firestore for records, Firebase Auth. | explanation | canonical | decided
+[adr/ADR-0008-change-queue-replaces-review-state.md](adr/ADR-0008-change-queue-replaces-review-state.md) | The change queue replaces review state. | explanation | canonical | decided
+[adr/ADR-0009-sign-in-first-no-captcha-no-tour.md](adr/ADR-0009-sign-in-first-no-captcha-no-tour.md) | Sign in first, with no captcha and no tour. | explanation | canonical | decided
+[adr/ADR-0010-broad-editor-internal-name-fmd.md](adr/ADR-0010-broad-editor-internal-name-fmd.md) | The product is the broad markdown editor, and its internal name is fmd. | explanation | canonical | decided
+[adr/ADR-0011-everything-in-batches.md](adr/ADR-0011-everything-in-batches.md) | Build everything, one batch at a time, each used internally before the next. | explanation | canonical | decided
+[adr/ADR-0012-canonical-copy-with-mirror.md](adr/ADR-0012-canonical-copy-with-mirror.md) | Our copy is canonical, and the person's GitHub or Drive holds a full mirror. | explanation | canonical | decided
+[adr/ADR-0013-accounts-to-the-company.md](adr/ADR-0013-accounts-to-the-company.md) | Every account moves to the company before the first stranger's document is stored. | explanation | canonical | decided
+[adr/ADR-0014-free-cap-as-tested-panel-value.md](adr/ADR-0014-free-cap-as-tested-panel-value.md) | The Free document cap is a panel value, A/B tested before it is fixed. | explanation | canonical | decided
+[adr/ADR-0015-one-live-collaborator-on-free.md](adr/ADR-0015-one-live-collaborator-on-free.md) | One live collaborator on Free. | explanation | canonical | decided
+[adr/ADR-0016-free-model-chain-and-training-gate.md](adr/ADR-0016-free-model-chain-and-training-gate.md) | A free-model fallback chain, behind a training gate. | explanation | canonical | decided
 <!-- INDEX:END -->
 
 ## Routing, by what you are trying to do
