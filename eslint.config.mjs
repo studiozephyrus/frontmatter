@@ -26,6 +26,12 @@ const config = [
       // config lints src/, specs/ and root config only, and these trees were simply
       // never listed. Its own gates are decisions/tools/validate.py and a node --check.
       "decisions/**",
+      // The founders' eighteen-question copy of the decisions site, same class as above.
+      // Added on 2026-09-17 after the lint gate went green, and it turned the gate red.
+      "decisions-founders/**",
+      // The pre-development pack's Node generators and checkers: standalone scripts that run
+      // under plain `node`, not app source. Their own gate is docs/pack/tools/validate-pack.py.
+      "docs/pack/tools/**",
       // Standalone Node build and probe scripts, not app source.
       "docs/build/**",
       // Rescued Workflow-tool scripts: they run inside the tool's own runtime, which
