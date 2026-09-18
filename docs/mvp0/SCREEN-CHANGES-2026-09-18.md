@@ -4,7 +4,7 @@
 2026 at about 06:00 IST, plus the research round of the same morning
 (`docs/research/2026-09-18/`, 178 findings).
 
-**Status.** Captured, not yet applied. Nothing in `PRODUCT-PLAN.md` or `SCREENS.md` has been edited.
+**Status.** Captured. The five open items were answered on 18 September and are recorded in section 10. Application to `PRODUCT-PLAN.md` and `SCREENS.md` is in progress.
 Five items marked **CONFLICT** need a founder answer before they can be drawn.
 
 **Tags.** `[Z]` founder instruction, given directly. `[O]` measured in the research round.
@@ -287,3 +287,77 @@ meet first, and Doc mode is the thing that makes a person who knows Google Docs 
 3. S18: does the open-in ladder apply to human readers only, leaving the markdown route ungated?
 4. S19: confirm one collaborator on Free, so section 13 can be changed to match.
 5. The configuration panel: defer it and answer the 11 questions now, or keep it in phase A?
+
+---
+
+## 10. The founder's answers, 18 September, and the two decisions handed to me
+
+### 10.1 Answered
+
+1. `[Z]` **Toggles everywhere, on both S10 and S20.** Wherever human and AI work sit together, split
+   them with a toggle rather than combining them into one list. The stated reason is cognitive load,
+   and it is a general rule, not a per-screen instruction. Apply it to every screen that mixes the
+   two.
+2. `[Z]` **Ideas become a bottom tab in the workspace**, the same way the outline sits on the right.
+   Notes expanded by default, Ideas collapsed. This resolves the S04 layout question and removes the
+   need for a separate route into ideas.
+3. `[Z]` **S11 follows the research.** The one-file health panel becomes the whole instruction-file
+   set.
+4. `[Z]` **One collaborator on Free.** Confirmed, on cost grounds. Section 13 changes from three to
+   one to match.
+5. `[Z]` **The configuration panel ships, with hardcoded defaults.** Everything we have discussed
+   goes into it, carrying our recommended values, and the values are revisited later. It is not
+   deferred. This resolves the eleven founder questions: they become rows with defaults.
+
+### 10.2 S18, decided: content first, invitation second
+
+The instruction was to pick the implementation that serves scalability, accessibility and the
+product. Those three point the same way, against a gate.
+
+- `[O]` Agents outread humans close to two to one, and 83 per cent of them arrive by the markdown
+  route. An app-detection gate is invisible to every one of those readers.
+- An install prompt in front of a shared link is hostile to the person who was sent it, and the
+  published page is the top of the funnel.
+- Probing for a desktop app on every page load costs latency on the one surface that must be fast.
+
+**What ships.**
+
+- The page renders immediately. No gate, no redirect, no probe before first paint.
+- **`page.md` and `llms.txt` are never gated, never redirected, and never given an interstitial.**
+  That rule is absolute and applies to every non-HTML route.
+- After first paint, a quiet dismissible bar offers **Open in the frontmatter app** when the app has
+  registered its protocol handler, and **Open in frontmatter** otherwise. Dismissal is remembered.
+- **The gate belongs on editing, not reading.** A reader who presses Edit meets sign-in. That is
+  the natural boundary and it costs nothing at the top of the funnel.
+
+### 10.3 Dynamic questions, decided: dynamic for everyone, bounded
+
+`[O]` I costed it rather than guessing. Against the plan's Low blueprint baseline of 15 calls,
+81,825 tokens in and 31,365 out:
+
+Regenerations | Extra tokens | Extra cost on a free model | 200 free users a month
+0 | 1,500 in, 2,500 out | $0.0009 | $3.12
+3 | 10,500 in, 7,000 out | $0.0029 | $3.51
+4 | 13,500 in, 8,500 out | $0.0035 | $3.64
+
+**Dynamic questioning costs about three tenths of a cent per blueprint.** Making it a Pro feature
+would mean the free product asks worse questions, and the free product is the funnel. So it is not
+a Pro feature.
+
+**What ships instead, and it is cheaper than the naive version.**
+
+- **Generate the whole question set once**, from the idea, in one call. Page one renders instantly
+  with all 10 to 15 questions already planned.
+- Each question is generated carrying a **branching flag**. Only an answer to a branching question
+  triggers a rewrite of the later pages. Most answers do not, so most page turns cost nothing and
+  are instant.
+- The blur and the processing state appear **only when a rewrite actually fires**, which makes them
+  informative rather than constant noise.
+- **Cap rewrites at three per blueprint on Free**, unbounded on Pro. That bounds both the cost and
+  the abuse surface.
+- The real cost is latency and request count against per-organisation free pools, not money.
+
+**The toggle the founder suggested, inverted.** Dynamic is the default. The toggle reads *use a
+standard question set*, and it is what we fall back to when the model layer is degraded or the
+person is over their cap. That turns it from a paywall into the graceful-degradation path, and it
+gives S32 "AI unavailable" something useful to offer instead of an apology.
