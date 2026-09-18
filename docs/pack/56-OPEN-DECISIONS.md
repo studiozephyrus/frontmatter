@@ -115,6 +115,14 @@ The earlier record, kept as written:
   - Correction recorded the same day: no voice code exists in `src/`. The plan called it a shipped
     Doc mode row; it is specified, not built.
 - Consequence for the roadmap: D09 and D13 move work earlier in `50-ROADMAP.md`.
+- **New on 19 September `[Z]`: PDF to Markdown**, a converter and not a chat feature. Three ways in:
+  from a document in its empty state; from the AI panel while editing, where the PDF is not stored
+  beyond the session; and a standalone "Convert a PDF to Markdown" tool that files the result into
+  notes. Free tools preferred, OCR for scanned pages. Research:
+  `docs/research/2026-09-19-pdf/PDF-TO-MARKDOWN.md`.
+- **New on 18 September `[Z]`: Sheets and Boards**, bare-bone, alongside documents, with one
+  platform joining docs, sheets, boards, notes and sites, and presentations later. Research:
+  `docs/research/2026-09-18-sheets-boards/`.
 
 ### D10, answered: all of them
 
