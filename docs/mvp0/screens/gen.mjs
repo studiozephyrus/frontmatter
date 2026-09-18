@@ -13,7 +13,7 @@ const ICONS = path.join(HERE, 'icons');
 const FONTS = fs.readFileSync(path.join(HERE, 'fonts.css'), 'utf8');
 
 // The free-tier caps, in one place. The plan document quotes the same numbers.
-const CAPS = { docs: 50, pub: 5, collab: 3, edits: 10, kits: 1, repos: 1, pushes: 20, uploads: '1 GB', history: 7 };
+const CAPS = { docs: 50, pub: 5, collab: 1, edits: 10, kits: 1, repos: 1, pushes: 20, uploads: '1 GB', history: 7 };
 
 const iconCache = {};
 // Fetch a Material Symbol on demand and keep it in the repo, so adding an icon to a
@@ -125,6 +125,17 @@ u{text-decoration-thickness:1px;text-underline-offset:2px}
 .row .badge{margin-left:auto;font-family:var(--font-mono);font-size:10px;color:var(--ai);background:color-mix(in srgb,var(--ai) 10%,transparent);border-radius:4px;padding:1px 5px}
 .d1{padding-left:22px}.d2{padding-left:38px}
 .sidefoot{margin-top:auto;padding:8px 6px 2px;font-size:11.5px;color:var(--muted);display:flex;align-items:center;gap:6px}
+/* The left rail's make-and-put block, added 18 September on the founder's review:
+   two primary creates plus one always-there drop hint, so upload has a home. */
+.makerow{display:grid;grid-template-columns:1fr 1fr;gap:6px;padding:6px 4px 2px}
+.sizer{display:inline-flex;align-items:center;gap:1px}
+.sizer .num{min-width:22px;text-align:center;font-size:12.5px;font-variant-numeric:tabular-nums;color:var(--fg)}
+.tool.sq{width:22px;min-width:22px;justify-content:center;font-size:14px}
+.btn.sm{height:28px;padding:0 9px;font-size:12px;gap:5px}
+.drophint{display:flex;align-items:center;gap:6px;margin:6px 4px 0;padding:7px 8px;font-size:11.5px;color:var(--muted);
+  border:1px dashed var(--border);border-radius:var(--r);background:transparent}
+.proj.shut .projrow{opacity:.82}
+.proj .projrow .cnt{font-size:11px;color:var(--muted);font-variant-numeric:tabular-nums;padding:0 4px}
 .main{display:flex;flex-direction:column;min-width:0;min-height:0;background:var(--bg);position:relative}
 .modebar{display:flex;align-items:center;gap:2px;padding:6px 10px;border-bottom:1px solid var(--border);background:var(--bg-subtle);overflow:hidden}
 .seg{display:inline-flex;padding:2px;gap:2px;background:var(--panel-2);border:1px solid var(--border);border-radius:8px}
@@ -138,7 +149,7 @@ u{text-decoration-thickness:1px;text-underline-offset:2px}
 .tool.on{background:var(--selected);color:var(--fg)}
 .tsep{width:1px;height:16px;background:var(--border-strong);margin:0 5px}
 .modebar .right{margin-left:auto;display:flex;align-items:center;gap:8px;color:var(--muted);font-size:11px;flex-shrink:0}
-.doc{flex:1;min-height:0;overflow:hidden;padding:34px 48px 0;position:relative}
+.doc{flex:1;min-height:0;overflow:hidden;padding:22px 48px 0;position:relative}
 .md{max-width:65ch;margin:0 auto;font-size:15px;line-height:1.7;color:var(--fg)}
 .md h1{font-size:1.9em;font-weight:650;letter-spacing:-.02em;line-height:1.3;margin:0 0 .6em;border-bottom:1px solid var(--border);padding-bottom:.3em}
 .md h2{font-size:1.5em;font-weight:650;letter-spacing:-.01em;margin:1.6em 0 .6em;border-bottom:1px solid var(--border);padding-bottom:.25em}
@@ -517,6 +528,20 @@ u{text-decoration-thickness:1px;text-underline-offset:2px}
 .capwin .foot .sp{flex:1}
 `;
 
+// Brand marks are NOT Material Symbols. Google's is the official four-colour G and keeps
+// its own fills; GitHub's is a single path and follows currentColor.
+const brandCache = {};
+function brand(name, size = 18) {
+  if (!brandCache[name]) {
+    const raw = fs.readFileSync(path.join(ICONS, 'brand-' + name + '.svg'), 'utf8');
+    const paths = [...raw.matchAll(/<path[^>]*>/g)].map(m => m[0])
+      .map(s => s.replace(/\s(height|width|style|class)="[^"]*"/g, ''));
+    brandCache[name] = paths.join('');
+  }
+  const fill = name === 'github' ? ' fill="currentColor"' : '';
+  return `<svg class="ic" width="${size}" height="${size}" viewBox="0 0 24 24"${fill} aria-hidden="true">${brandCache[name]}</svg>`;
+}
+
 const SW = { blue: '#5b8cff', green: '#4f8b6b', red: '#b2625e', amber: '#b8791b', grey: '#9b9ba3' };
 
 // WCAG 2.x contrast, asserted at generation so a token change cannot ship below 4.5:1 (F030).
@@ -542,11 +567,10 @@ function top({ tabs, share = true, presence = null, extra = '' }) {
   <span class="topleft">
     <span class="ibtn">${ic('menu', 18)}</span>
     <span class="mark">fm</span>
-    <span class="wordmark">frontmatter</span>
   </span>
   <span class="topright">
     ${presence ? `<span class="avatars">${presence.map(p => `<span class="avatar" style="background:${p.c}">${p.i}</span>`).join('')}</span>` : ''}
-    ${share ? `<span class="btn ghost">${ic('share', 16)} Share</span>` : ''}
+    ${share ? `<span class="ibtn" title="Share">${ic('share', 18)}</span>` : ''}
     <span class="search">${ic('search', 16)} Search<kbd>⌘K</kbd></span>
     ${extra}
     <span class="ibtn">${ic('home', 18)}</span>
@@ -557,10 +581,22 @@ function top({ tabs, share = true, presence = null, extra = '' }) {
   </span></header>${strip}`;
 }
 
-function tree({ projects, foot = '' }) {
+function tree({ projects, foot = '', ideas = true }) {
+  // The two primary creates live here, on the left, not in the right rail.
+  // Upload is inside Add file rather than a third button, and the whole tree is a
+  // drop target, so there is one place to put things and one place to make them.
+  const make = `<div class="makerow">
+    <span class="btn primary sm">${ic('note_add', 16)} Add file ${ic('expand_more', 14)}</span>
+    <span class="btn sm">${ic('lightbulb', 16)} Add idea</span></div>`;
+  // Ideas is a collapsed section at the foot of the tree, the way the outline sits on
+  // the right. Notes stays open, Ideas stays shut until it is wanted.
+  const ideaSec = ideas ? `<div class="proj shut"><div class="projrow">${ic('chevron_right', 15)} ${ic('lightbulb', 16)} Ideas<span class="sp"></span><span class="cnt">3</span></div></div>` : '';
   return `<aside class="side">
   <div class="sidehead">${ic('chevron_right', 16)} Tree<span class="sp"></span><span class="pill">${ic('add', 14)} project</span></div>
   ${treeRows(projects)}
+  ${ideaSec}
+  <div class="drophint">${ic('upload', 15)} Drop files or a folder anywhere</div>
+  ${make}
   <div class="sidefoot">${foot}</div></aside>`;
 }
 function treeRows(projects) {
@@ -596,6 +632,8 @@ function docbar() {
   return `<div class="docbar">
   <span class="tools">
     <span class="tool txt">Normal text ${ic('arrow_drop_down', 16)}</span><i class="tsep"></i>
+    <span class="tool txt" title="Four faces only: Google Sans, a serif, a mono, and the system face">Google Sans ${ic('arrow_drop_down', 16)}</span>
+    <span class="sizer"><span class="tool sq">&minus;</span><span class="num">15</span><span class="tool sq">+</span></span><i class="tsep"></i>
     ${t(ic('format_bold', 18))}${t(ic('format_italic', 18))}${t(ic('format_underlined', 18))}${t(ic('format_strikethrough', 18))}<i class="tsep"></i>
     ${t(ic('format_list_numbered', 18))}${t(ic('format_list_bulleted', 18))}${t(ic('check_box', 18))}<i class="tsep"></i>
     ${t(ic('image', 18))}${t(ic('table_chart', 18))}${t(ic('link', 18))}${t(ic('comment', 18))}${t(ic('insert_page_break', 18))}<i class="tsep"></i>
@@ -608,14 +646,16 @@ function docbar() {
 
 function rail({ outline, extra = '', showFoot = true, credits = [7, CAPS.edits], counts = [4, 2, 3], history = `${CAPS.history} days`, aiOff = '' }) {
   const cnt = (n) => n == null ? '' : `<span class="cnt">${n}</span>`;
+  // Every collapsible sits at the top, closed, so the outline gets the height and the
+  // AI panel has somewhere to open. Founder instruction, 18 September.
   return `<aside class="rail">
-  <div class="rsec grow"><div class="rh">${ic('format_list_bulleted', 14)} Outline<span class="sp"></span></div><div class="ol">${outline}</div></div>
-  ${extra}
   <div class="rrow">${ic('sell', 16)} Tags and bookmarks<span class="sp"></span>${cnt(counts[0])}${ic('chevron_right', 16)}</div>
   <div class="rrow">${ic('link', 16)} Backlinks<span class="sp"></span>${cnt(counts[1])}${ic('chevron_right', 16)}</div>
   <div class="rrow">${ic('history', 16)} Document history<span class="sp"></span><span class="cnt">${history}</span>${ic('chevron_right', 16)}</div>
   <div class="rrow">${ic('comment', 16)} Comments<span class="sp"></span>${cnt(counts[2])}${ic('chevron_right', 16)}</div>
-  ${showFoot ? `<div class="railfoot"><div class="two"><span class="btn">${ic('note_add', 16)} Add file</span><span class="btn">${ic('keyboard', 16)} Shortcuts</span></div>
+  <div class="rsec grow"><div class="rh">${ic('format_list_bulleted', 14)} Outline<span class="sp"></span></div><div class="ol">${outline}</div></div>
+  ${extra}
+  ${showFoot ? `<div class="railfoot">
   ${aiOff ? `<span class="btn" style="opacity:.55;cursor:default">${ic('auto_awesome', 16)} AI edit</span><div style="font-size:11.5px;color:var(--muted)">${aiOff}</div>` : `<span class="btn ai">${ic('auto_awesome', 16)} AI edit</span>`}
   <div class="credits">${ic('auto_awesome', 13)} ${credits[0]} of ${credits[1]} edits left <span class="meter"><i style="width:${Math.round(100 * credits[0] / credits[1])}%"></i></span></div></div>` : ''}
   </aside>`;
@@ -693,7 +733,7 @@ function screen(id, title, desktop, phoneHtml, cls = '') {
 const GATE_CARD = `<div class="cardx"><span class="mark lg">fm</span>
 <h1>Sign in to frontmatter</h1>
 <p class="lede">Your documents, your ideas and your agents' briefs, in one place. Same account on the web, the desktop app and your phone.</p>
-<div class="stack"><span class="btn primary">${ic('public', 18)} Continue with Google</span><span class="btn">${ic('terminal', 18)} Continue with GitHub</span></div>
+<div class="stack"><span class="btn primary">${brand('google', 18)} Continue with Google</span><span class="btn">${brand('github', 18)} Continue with GitHub</span></div>
 <p class="fine">No password, no puzzle, no tour. We never train on your documents, and <u>here are the providers</u> that keep that true. <u>Privacy</u> · <u>Terms</u></p></div>`;
 screen('s01-sign-in', 'Sign in', `<div class="gate">
 <div class="left">${GATE_CARD}</div>
@@ -1400,7 +1440,7 @@ ${tree({ projects: PROJECTS_MAIN, foot: `${ic('warning', 14)} 1 conflict to reso
 <main class="main"><div class="banner">${ic('warning', 16)} <span>Two versions of <b>00-BRIEF.md</b> changed the same paragraph while one of them was offline. Nothing was merged. Choose one, or keep both.</span></div>
 <div class="split"><div class="pane"><div class="rh">${ic('devices', 14)} This browser · you · today 14:02</div>${CONFLICT_L}<div style="margin-top:14px"><span class="btn primary">${ic('check', 15)} Keep this one</span></div></div><div class="gut"></div>
 <div class="pane"><div class="rh">${ic('add_to_drive', 14)} Google Drive · Amit · today 14:05</div>${CONFLICT_R}<div style="margin-top:14px"><span class="btn primary">${ic('check', 15)} Keep this one</span></div></div></div>
-<div style="padding:10px 28px 16px;display:flex;gap:10px;align-items:center;border-top:1px solid var(--border)"><span class="btn">${ic('content_copy', 15)} Keep both as two files</span><span style="font-size:12px;color:var(--fg-muted)">Whichever you choose, the other version stays in history. The same screen appears for a desktop edit against a GitHub change.</span></div>
+<div style="padding:10px 28px 16px;display:flex;gap:10px;align-items:center;border-top:1px solid var(--border)"><span class="btn">${ic('content_copy', 15)} Keep both as two files</span><span class="btn ai">${ic('auto_awesome', 15)} Let AI decide</span><span style="font-size:12px;color:var(--fg-muted)">Whichever you choose, the other version stays in history. The same screen appears for a desktop edit against a GitHub change.</span></div>
 </main></div></div>`,
 phone({ mode: 'Reading', title: '00-BRIEF.md', body: `<div class="banner">${ic('warning', 16)} <span>Two versions changed the same paragraph. Nothing was merged.</span></div>
 <div class="pdoc" style="padding:12px 14px 0"><div class="rh">${ic('devices', 14)} This phone · you · 14:02</div>${CONFLICT_L}<span class="btn primary" style="width:100%;margin:8px 0 16px">${ic('check', 15)} Keep this one</span>
