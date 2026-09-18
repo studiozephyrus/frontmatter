@@ -31,13 +31,17 @@ const missing = []
 
 for (const n of names) {
   const dest = path.join(OUT, n + '.svg')
-  if (!FORCE && fs.existsSync(dest) && fs.statSync(dest).size > 0) { ok++; continue }
+  if (!FORCE && fs.existsSync(dest) && fs.readFileSync(dest, 'utf8').includes('viewBox="0 -960 960 960"')) { ok++; continue }
   // curl, not fetch: node's fetch is blocked by the OS sandbox this repo builds under
   let got = false
-  for (const style of STYLES) {
+  // Google Fonts first: some GitHub files are the older 24-unit drawings, which ic()
+  // renders blank in its 960-unit box. Anything outside the 960 box is refused.
+  const urls = [`https://fonts.gstatic.com/s/i/short-term/release/materialsymbolsrounded/${n}/default/24px.svg`]
+    .concat(STYLES.map(style => url(n, style)))
+  for (const u of urls) {
     try {
-      const body = execFileSync('curl', ['-sfL', '-m', '25', url(n, style)], { encoding: 'utf8' })
-      if (!/<path[^>]*\sd="/.test(body)) continue
+      const body = execFileSync('curl', ['-sfL', '-m', '25', u], { encoding: 'utf8' })
+      if (!/<path[^>]*\sd="/.test(body) || !body.includes('viewBox="0 -960 960 960"')) continue
       fs.writeFileSync(dest, body)
       got = true
       break

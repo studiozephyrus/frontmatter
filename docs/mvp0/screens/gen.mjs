@@ -20,11 +20,15 @@ const iconCache = {};
 // screen needs no separate step and no scratchpad. Rounded first, outlined as a fallback.
 function fetchIcon(name) {
   fs.mkdirSync(ICONS, { recursive: true });
-  for (const style of ['materialsymbolsrounded', 'materialsymbolsoutlined']) {
-    const u = `https://raw.githubusercontent.com/google/material-design-icons/master/symbols/web/${name}/${style}/${name}_24px.svg`;
+  // Only the 960-unit Material Symbols box is accepted. Some files in the GitHub repository
+  // are the older 24-unit drawings, which ic() would render blank (audit row 81), so the
+  // Google Fonts copy is tried first and anything else is refused.
+  const urls = [`https://fonts.gstatic.com/s/i/short-term/release/materialsymbolsrounded/${name}/default/24px.svg`]
+    .concat(['materialsymbolsrounded', 'materialsymbolsoutlined'].map(style => `https://raw.githubusercontent.com/google/material-design-icons/master/symbols/web/${name}/${style}/${name}_24px.svg`));
+  for (const u of urls) {
     try {
       const body = execFileSync('curl', ['-sfL', '-m', '25', u], { encoding: 'utf8' });
-      if (/<path[^>]*\sd="/.test(body)) {
+      if (/<path[^>]*\sd="/.test(body) && body.includes('viewBox="0 -960 960 960"')) {
         fs.writeFileSync(path.join(ICONS, name + '.svg'), body);
         return true;
       }
@@ -38,6 +42,7 @@ function ic(name, size = 18, cls = '') {
     const f = path.join(ICONS, name + '.svg');
     if (!fs.existsSync(f) && !fetchIcon(name)) throw new Error('icon missing and could not be fetched: ' + name);
     const raw = fs.readFileSync(f, 'utf8');
+    if (!raw.includes('viewBox="0 -960 960 960"')) throw new Error('icon not in the 960-unit box, refetch it: ' + name);
     const m = /<path[^>]*d="([^"]+)"/.exec(raw);
     if (!m) throw new Error('no path in icon ' + name);
     iconCache[name] = m[1];
@@ -601,8 +606,10 @@ const brandCache = {};
 function brand(name, size = 18) {
   if (!brandCache[name]) {
     const raw = fs.readFileSync(path.join(ICONS, 'brand-' + name + '.svg'), 'utf8');
-    const paths = [...raw.matchAll(/<path[^>]*>/g)].map(m => m[0])
-      .map(s => s.replace(/\s(height|width|style|class)="[^"]*"/g, ''));
+    // Each path is closed on its own. Keeping only the opening tags nested the four
+    // Google paths inside one another, so only the blue one drew (audit row 1).
+    const paths = [...raw.matchAll(/<path\b[^>]*?\/?>/g)].map(m => m[0])
+      .map(s => s.replace(/\s(height|width|style|class)="[^"]*"/g, '').replace(/\s*\/?>$/, '/>'));
     brandCache[name] = paths.join('');
   }
   const fill = name === 'github' ? ' fill="currentColor"' : '';
