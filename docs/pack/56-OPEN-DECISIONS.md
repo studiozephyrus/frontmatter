@@ -27,19 +27,61 @@ recommendation nobody has answered is still open.**
 
 ---
 
+## 0. Answered on 18 September 2026
+
+The founder answered four of these in the session of 18 September. His words are summarised here,
+not paraphrased into a different decision. `[Z]` throughout.
+
+### D01, answered: the broad editor, and its internal name is fmd
+
+- **The product is the markdown editor for the agentic era**, option a, with more said than the
+  plan's sentence carried.
+- One editor with Doc mode and Markdown mode, switchable, rendering markdown in ways it was not
+  rendered before.
+- Rough ideas become concrete through questions, then become blueprints and flows. Plain text can
+  become other things, a command line among them.
+- From one markdown file a person can publish, share and use every feature built on it.
+- **Internally the product is called `fmd` from 18 September.** The public name stays frontmatter.
+- **The tagline is not decided.** It is to be researched, along with what fmd stands for.
+- Consequence: the 23 cards in `decisions/v2` that assumed recommendation b re-open, per section 6.
+  Files changed: `51-PRODUCT-PLAN.md`, and `docs/mvp0/PRODUCT-PLAN.md` section 29.
+
+### D02, answered: everything, in batches
+
+- **Every phase is built**, including the ones the default left in Later, and phase C with them.
+- **One batch at a time.** A module is built, used and tested internally, its issues fixed, and only
+  then does the next batch start.
+- Consequence: the roadmap in `50-ROADMAP.md` becomes an ordered list of batches with an internal
+  acceptance step between each, rather than a set of phases with some deferred.
+
+### D03, answered in part: the person's own storage, with a synced copy
+
+- A person who signs in with GitHub keeps documents in their GitHub. A person who signs in with
+  Google keeps them in their Google Drive.
+- A synced copy is kept on our side for sync and offline. `INFERENCE:` the founder's word was
+  "ATR", read here as R2, the object store in the plan's stack. To be confirmed.
+- Open: whether online documents also go to the person's drive or only to our layer, and what
+  happens past about 5 GB, where an upgrade was mentioned.
+- **The founder asked for the industry benchmark before deciding.** Research started 18 September.
+
+### D10, answered: all of them
+
+Every account in `docs/mvp0/PRODUCT-PLAN.md` section 24 moves to the company before the first
+stranger's document is stored.
+
 ## 1. The index
 
 Id | Decision | Blocks | Recommendation
-`D01` | **What the product is, in one sentence.** And the contradiction in our own documents about which answer we took | Build order, and 23 other decision cards | Take option **a**, the sentence the plan already carries, and mark the 23 re-opened
-`D02` | The pace, and which phases sit in Later | Every calendar date | The plan's default: 0, A, B, D and H at the measured pace
-`D03` | Which bytes we hold, and from which phase | The architecture of phase A | Hold them from phase A, because the projection law needs a canonical copy
+`D01` | **What the product is, in one sentence.** And the contradiction in our own documents about which answer we took | Build order, and 23 other decision cards | **Decided 18 September `[Z]`: the broad editor, option a, sharpened.** See section 0
+`D02` | The pace, and which phases sit in Later | Every calendar date | **Decided 18 September `[Z]`: everything, built in batches**, each used internally before the next. See section 0
+`D03` | Which bytes we hold, and from which phase | The architecture of phase A | **Answered in part 18 September `[Z]`**: the person's own GitHub or Drive plus a synced copy with us. Research running. See section 0
 `D04` | **Whether the Model Context Protocol server moves out of Later** and becomes the Max tier | The Max tier's existence | **Move it.** Ship a read-and-propose server in phase D
 `D05` | The name | The domain and every published URL | Run the trademark search first, then decide. Do not decide before the search
 `D06` | **Whether to reopen authorship marking**, now that Google's Open Knowledge Format defines `generated` and `verified` | A small amount of phase D | **Reopen it**, and stamp front matter on accept
 `D07` | The twenty-kit gate | Phase C | Keep the gate. It is cheap and it is the only real test of the funnel
 `D08` | Trial and dunning behaviour | Phase H | No trial. The free tier is the trial. Dunning as specified in `53`
 `D09` | The desktop's timing, and who signs Windows | The order of phases E and F | Desktop after sync. Price a Windows certificate before phase F
-`D10` | Which accounts move to the company | Phase 0 | All of them, before the first stranger
+`D10` | Which accounts move to the company | Phase 0 | **Decided 18 September `[Z]`: all of them**, before the first stranger
 `D11` | **The free document cap against the pilot cohort.** 50 documents, and a qualifying vault is 200 files | The pilot, before it recruits anybody | Exempt an import from the cap, and count imported files separately
 `D12` | **Whether a link-edit holder needs an account.** The front door forbids anonymous editing and the permission matrix grants it | Phase D | Require an account. It is the front door's rule and the matrix is wrong
 `D13` | **Database views over front matter.** Table stakes in one round, deferred in the plan | Phase G | State the test. Keep the deferral, and say why in one line
