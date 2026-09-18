@@ -492,6 +492,23 @@ u{text-decoration-thickness:1px;text-underline-offset:2px}
 .qstack .qcard .opt{padding:6px 9px;font-size:12.5px;border-radius:7px;margin-bottom:4px;align-items:center}
 .qstack .qcard .opt small{font-size:11px;margin-top:1px}
 .qskip{font-size:11.5px;color:var(--muted);text-decoration:underline;text-underline-offset:2px;margin-top:6px}
+/* The AI box names its target, so there is never a question about what it will touch. */
+.aibox .target{display:flex;align-items:center;gap:6px;padding:7px 12px;font-size:12px;color:var(--muted);
+  border-bottom:1px solid var(--border);background:var(--bg-subtle);border-radius:var(--r) var(--r) 0 0}
+.aibox .target b{color:var(--fg);font-weight:600}
+.aibox .target .sp{flex:1}
+.aibox .target .swap{color:var(--accent);font-weight:500}
+/* Sharing to somebody who is not on frontmatter yet. */
+.invite{display:flex;align-items:center;gap:10px;padding:10px 12px;margin-bottom:10px;border:1px solid var(--accent);
+  border-radius:var(--r);background:var(--bg-subtle)}
+.invite .t{flex:1;font-size:12.5px}
+.invite .t b{display:block}
+.invite .t em{display:block;font-style:normal;color:var(--muted);font-size:11.5px;margin-top:2px}
+/* The published page offers, and never gates. page.md and llms.txt never see this bar. */
+.openbar{display:flex;align-items:center;gap:8px;padding:9px 20px;font-size:12.5px;color:var(--fg-muted);
+  background:var(--bg-subtle);border-bottom:1px solid var(--border)}
+.openbar .t{margin-right:4px}
+.openbar .x{margin-left:auto;color:var(--muted)}
 .pagenav{display:flex;align-items:center;gap:8px;margin-top:4px}
 .pagenav .sp{flex:1}
 /* The rewriting state. Only appears when an answer actually changes a later page. */
@@ -881,7 +898,8 @@ ${top({ tabs: [...TABS_MAIN.map(t => ({ ...t, on: 0 })), { n: 'Untitled.md', c: 
 ${tree({ projects: [PROJECTS_MAIN[0], { n: 'Notes', rows: [{ n: 'meeting-16-sep.md', f: 1 }, { n: 'ideas.md', f: 1 }, { n: 'Untitled.md', f: 1, on: 1 }] }] })}
 <main class="main">${modebar('Live')}
 <div class="doc"><div class="md"><h1 style="color:var(--muted);border:0">Untitled</h1></div></div>
-<div class="aibox"><div class="in">${ic('auto_awesome', 18)} A booking page for small salons, deposits by UPI, reminders the day before<span class="go">${ic('arrow_forward', 16)}</span></div>
+<div class="aibox"><div class="target">${ic('description', 14)} Writing a new document <b>Untitled.md</b><span class="sp"></span><span class="swap">Change</span></div>
+<div class="in">${ic('auto_awesome', 18)} A booking page for small salons, deposits by UPI, reminders the day before<span class="go">${ic('arrow_forward', 16)}</span></div>
 <div class="chips"><span class="chip on">${ic('description', 14)} One document</span><span class="chip">${ic('lightbulb', 14)} Take it to Ideas: a brief and a blueprint</span><span class="chip">${ic('content_copy', 14)} Clean up a paste</span><span class="chip">${ic('checklist', 14)} Plan from notes</span></div>
 <div class="chips alt"><span class="lbl">Or start from</span><span class="chip">${ic('code', 14)} Open from GitHub</span><span class="chip">${ic('upload', 14)} Drop a file or folder</span><span class="chip">${ic('table_view', 14)} A template</span></div>
 <div class="foot">${ic('auto_awesome', 12)} A document uses 1 edit credit. This month: 7 of ${CAPS.edits} edits left. <u>Get more</u></div></div>
@@ -889,7 +907,8 @@ ${tree({ projects: [PROJECTS_MAIN[0], { n: 'Notes', rows: [{ n: 'meeting-16-sep.
 ${rail({ outline: '<div style="color:var(--muted)">Nothing yet.</div>', counts: [0, 0, 0] })}
 </div></div>`,
 phone({ mode: 'Live', title: 'Untitled.md', bottom: 'auto_awesome', body: `${pmodebar('Live')}<div class="pdoc"><div class="md"><h1 style="color:var(--muted);border:0">Untitled</h1></div></div>
-<div class="aibox"><div class="in">${ic('auto_awesome', 18)} A booking page for small salons…<span class="go">${ic('arrow_forward', 16)}</span></div>
+<div class="aibox"><div class="target">${ic('description', 14)} Writing <b>Untitled.md</b></div>
+<div class="in">${ic('auto_awesome', 18)} A booking page for small salons…<span class="go">${ic('arrow_forward', 16)}</span></div>
 <div class="chips"><span class="chip on">${ic('description', 14)} One document</span><span class="chip">${ic('lightbulb', 14)} Take it to Ideas</span><span class="chip">${ic('content_copy', 14)} Clean up a paste</span></div>
 <div class="foot">${ic('auto_awesome', 12)} 1 edit credit · 7 of ${CAPS.edits} left</div></div>` }));
 
@@ -1280,7 +1299,8 @@ phone({ title: 'Zephyrus booking · Map', bottom: 'more_horiz', body: `<div styl
 // ---------------------------------------------------------------------------
 // S17 share: people, link with password and expiry, publish
 const SHARE_BODY = `<div class="rh" style="margin-top:6px">People</div>
-<div style="display:flex;gap:8px;margin-bottom:10px"><span class="search" style="flex:1;min-width:0">${ic('person', 16)} Add by email or Google account</span><span class="btn">Can edit ${ic('expand_more', 14)}</span><span class="btn primary">Invite</span></div>
+<div style="display:flex;gap:8px;margin-bottom:8px"><span class="search" style="flex:1;min-width:0">${ic('mail', 16)} priya@studio.in</span><span class="btn">Can edit ${ic('expand_more', 14)}</span></div>
+<div class="invite">${ic('person', 16)}<span class="t"><b>priya@studio.in is not on frontmatter yet</b><em>Invite her and you both get 5 AI credits when she signs in for the first time.</em></span><span class="btn primary sm">${ic('mail', 14)} Send invite</span></div>
 <div class="vers"><div class="it on"><span class="avatar" style="width:24px;height:24px;font-size:9px;background:#18181b">SM</span> You <span class="sp"></span><span style="color:var(--muted)">Owner</span></div>
 <div class="it"><span class="avatar" style="width:24px;height:24px;font-size:9px;background:#b2625e">AM</span> Amit Kumar <span class="sp"></span><span style="color:var(--muted)">Can edit · live</span></div></div>
 <p class="fine" style="margin:8px 0 14px">${ic('lock', 12)} Free includes ${CAPS.collab} live collaborators per document. Pro removes the limit. <u>See Pro</u></p>
@@ -1308,6 +1328,9 @@ phone({ mode: 'Live', title: '00-BRIEF.md', bottom: 'more_horiz', body: `${pmode
 screen('s18-public-view', 'Published page', `<div class="pub">
 <header class="pubtop"><span class="mark">fm</span><span class="t">Zephyrus booking, in one page</span><span class="pill" style="margin-left:6px">Published 16 Sep</span>
 <span class="r"><span class="btn ghost">${ic('download', 16)} Download .md</span><span class="btn primary">${ic('open_in_new', 15)} Open in frontmatter</span></span></header>
+<div class="openbar">${ic('desktop_mac', 16)}<span class="t">You have the frontmatter desktop app. Open this there?</span>
+<span class="btn sm primary">${ic('desktop_mac', 14)} Open in the app</span><span class="btn sm">${ic('public', 14)} Open on the web</span><span class="btn sm">Stay here</span>
+<span class="x">${ic('close', 16)}</span></div>
 <div class="pubbody"><div class="md">${DOC_BRIEF}<h2>The kickoff prompt</h2><p>Copy this into Claude Code, Cursor or Codex and it builds from these documents.</p><pre>curl -sL https://frontmatter.in/k/7f3a…c91e/v1/kit.tar.gz -o kit.tar.gz
 shasum -a 256 kit.tar.gz   # must print 9c1e…4b7a, the hash on this page
 mkdir -p docs/kit && tar xzf kit.tar.gz -C docs/kit</pre></div>

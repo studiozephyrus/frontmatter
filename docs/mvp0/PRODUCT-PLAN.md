@@ -347,11 +347,14 @@ Later, named | A Max tier above Pro; a community as an opt-in index plus GitHub 
 
 <div class="pair"><img src="screens/s04-workspace.png"><img src="screens/s04-workspace-phone.png"></div>
 
-- The shipped layout, measured from source: tabs, the twelve-button toolbar, the four modes, the tree and the outline rail.
-- The tree shows all fifteen blueprint files (F019). The history row reads "7 days" on Free (F018). The right cluster folds bookmark, search and history into More so the mode segment fits at 1,440 px (F021).
+- Tabs at the top, then one toolbar row, then the document. Share is an icon. The workspace carries the mark and not the wordmark, because the wordmark is for the front door and the published page.
+- **The left rail is where things are made and put.** Two buttons, Add file and Add idea. Upload lives inside Add file, next to New document and Import from, and the whole tree is a drop target with the hint always visible. There is no third button competing with those two (F073).
+- **Ideas is a collapsed section at the foot of the tree**, the way the outline sits on the right. Notes stays open, Ideas stays shut until it is wanted `[Z]`.
+- **Every collapsible is at the top of the right rail**, closed, so the outline takes the height and the AI panel has room to open below `[Z]`.
+- Shortcuts is gone. The tree shows all fifteen blueprint files (F019). The history row reads "7 days" on Free (F018).
 - The phone keeps the toolbar to seven tools and puts the mode segment in the header.
 
-**Why.** `[R]` this is md.sgnk.ai as shipped, with the header a Home icon richer. `[M]` Material: a single pane under 600 dp.
+**Why.** `[Z]` the founder's review of 18 September, in full in `SCREEN-CHANGES-2026-09-18.md`. `[R]` this is md.sgnk.ai as shipped. `[M]` Material: a single pane under 600 dp.
 
 ### S05. Doc mode
 
@@ -367,6 +370,9 @@ Later, named | A Max tier above Pro; a community as an opt-in index plus GitHub 
 
 <div class="pair"><img src="screens/s06-ai-writing.png"><img src="screens/s06-ai-writing-phone.png"></div>
 
+- **The box names its target on its own first line**, so there is never a question about what is about to be touched: writing a new document, editing a named one, or working on a named idea. Change is one click away `[Z]` (F074).
+- When an idea is in progress that line is pinned and does not scroll away `[Z]`.
+- The box anchors to the content, below it when there is room and to the right when there is not `[Z]`.
 - One box on an empty document. Four chips for the common asks. A second row for the other ways to start.
 - The cost is stated before the click: one edit credit, seven of ten left. The rail counts are zero on an empty document (F022).
 - Taking it to Ideas is a chip, not a second product.
@@ -411,9 +417,11 @@ Later, named | A Max tier above Pro; a community as an opt-in index plus GitHub 
 
 <div class="pair"><img src="screens/s10-problems.png"><img src="screens/s10-problems-phone.png"></div>
 
+- **A filter across the top: All, Checks, Writing**, so a deterministic finding and a model's opinion are never mixed into one list `[Z]`.
 - Broken links, heading skips, missing alt text, table shape, and one advisory writing note, each true of the document shown (F022).
+- **Spelling with a project dictionary, and a front matter schema check**, because those are the two most-installed checks in the world and neither needs a model `[O]`.
 - Fix all safe. Rules.
-- Structural checks run on the device and cost nothing.
+- **Structural checks run on the device and cost nothing.** That is the sales line: eleven separate tools, four package managers and nine configuration files to get this elsewhere, or open the file `[O]`.
 
 **Why.** `[M]` markdownlint has 12,180,750 installs on VS Code and Prettier 71,626,148, so a checker and a formatter are expected. `[R]` the plain-language note never blocks, as our own gate works.
 
@@ -441,21 +449,33 @@ Later, named | A Max tier above Pro; a community as an opt-in index plus GitHub 
 
 <div class="pair"><img src="screens/s13-idea-low.png"><img src="screens/s13-idea-low-phone.png"></div>
 
-- Twelve decisions in pages of three. Each has a recommendation. Not sure records the question as open and takes the recommendation for now; DECISIONS.md carries it as open, not as decided.
-- The blueprint's fifteen files are listed before a credit is spent.
-- Steps: Describe, Decide, Write, Hand off.
+**The question set is generated, and it changes as you answer.** New on 18 September `[Z]`.
 
-**Why.** `[Z]` 10 to 15 questions on the free plan. `[M]` PAIR: show alternatives rather than confidence, "Showing multiple options prompts the user to rely on their own judgement."
+- **Ten to fifteen questions**, the count set by how complex the idea is, **four to a page at most**.
+- **The whole set is generated once**, from the idea, in one call, so the first page appears with everything already planned and nothing to wait for.
+- **Each question carries a branching flag.** Only an answer to a branching question rewrites the later pages. Most answers do not, so most page turns are instant and cost nothing.
+- **When a rewrite fires, the affected card blurs and says why**, naming the answer that caused it. It means something because it is rare (F075).
+- Rewrites are capped at three a blueprint on Free and unbounded on Pro. Costed in section 14.
+- **Skip and Choose the recommendation on every page. Skip all from page two**, behind a modal that says plainly that every remaining question takes its recommendation, and that the brief, the blueprint and the kickoff prompt all follow those defaults `[Z]`.
+- Only the recommended option carries its reason. Not sure is a quiet link, not a third option in every card.
+- Not sure records the question as open and takes the recommendation for now; DECISIONS.md carries it as open, not as decided.
+- The blueprint's fifteen files are listed before a credit is spent.
+
+**Why.** `[Z]` the founders' review of 18 September. `[Z]` 10 to 15 questions on the free plan. `[M]` PAIR: show alternatives rather than confidence, "Showing multiple options prompts the user to rely on their own judgement."
+
 
 ### S14. Idea mode, Medium and High
 
 <div class="pair"><img src="screens/s14-idea-medium.png"><img src="screens/s14-idea-medium-phone.png"></div>
 
+**The same layout as Low, deliberately.** There is no second route to learn `[Z]`.
+
+- The same progress line, the same selector pill, the same Skip, Choose the recommendation and Next.
 - A decision card: where it stands, what forces the choice, options with gains and costs, evidence rows, the recommendation. On Medium the web rows are labelled as the template's sources with the date they were last checked; only High opens pages (F037).
 - The answer is recorded in DECISIONS.md with its evidence.
 - High adds a research pass before this step, run in the background.
 
-**Why.** `[Z]` "proper insights and all evidence." `[R]` the card is the shape of our decisions site, which holds 210 decisions.
+**Why.** `[Z]` the founders' review of 18 September: Medium and High must not fork the interface. `[Z]` "proper insights and all evidence." `[R]` the card is the shape of our decisions site, which holds 210 decisions.
 
 ### S15. Blueprint ready
 
@@ -485,7 +505,9 @@ Later, named | A Max tier above Pro; a community as an opt-in index plus GitHub 
 
 <div class="pair"><img src="screens/s17-share.png"><img src="screens/s17-share-phone.png"></div>
 
-- People, with a role from the matrix in section 19. Three live collaborators on Free.
+- People, added **by their frontmatter email address**, with a role from the matrix in section 19.
+- **If the address is not a frontmatter account, the screen says so and offers an invite.** Both sides get 5 AI credits when the invited person signs in for the first time. The same modal is reused for referrals afterwards `[Z]`.
+- **One live collaborator on Free**, several on Pro `[Z]`. The free number is a cost decision, and section 13 carries it.
 - A link that can read, expire, or need a password on Pro.
 - The published page toggle, with pages used against the cap.
 
@@ -495,7 +517,10 @@ Later, named | A Max tier above Pro; a community as an opt-in index plus GitHub 
 
 <div class="pair"><img src="screens/s18-public-view.png"><img src="screens/s18-public-view-phone.png"></div>
 
-- Reads without an account. Download the markdown. Open in frontmatter. A quiet card offers sign-in once.
+- **The page renders first, with no gate, no redirect and no probe.** It reads without an account.
+- **After it has painted, a dismissible bar offers where to open it**: the desktop app when the app has registered its protocol handler, frontmatter on the web otherwise, or stay here. It is an offer, and dismissal is remembered `[Z]`.
+- **`page.md` and `llms.txt` are never gated, never redirected and never given an interstitial.** That rule is absolute and covers every non-HTML route (F076).
+- **The sign-in boundary is editing, not reading.** A reader who presses Edit meets sign-in, which costs nothing at the top of the funnel.
 - The footer carries Report, Privacy, Terms and the `.md` twin (F033).
 - The phone shows the password gate a reader meets on a protected link, with the same footer.
 
@@ -506,7 +531,7 @@ Later, named | A Max tier above Pro; a community as an opt-in index plus GitHub 
 <div class="pair"><img src="screens/s19-live-collab.png"><img src="screens/s19-live-collab-phone.png"></div>
 
 - Presence avatars, a named cursor, the other person's text highlighted as it lands.
-- The toast states the free limit once.
+- The toast states the free limit once: **one live collaborator on Free**, several on Pro `[Z]`.
 - On the phone, presence sits in the header.
 
 **Why.** `[M]` Obsidian's Multiplayer is Planned, not shipped, and section 27 carries it as a risk. `[R]` the session is the exception the no-CRDT rule allows, section 15.
@@ -515,6 +540,7 @@ Later, named | A Max tier above Pro; a community as an opt-in index plus GitHub 
 
 <div class="pair"><img src="screens/s20-review.png"><img src="screens/s20-review-phone.png"></div>
 
+- **A filter across the top: All, People, AI and agents.** Human work and machine work are never combined into one undifferentiated list `[Z]`.
 - Changes waiting, each with who made it: a person, an AI edit you asked for, or an agent that edited the file on disk through the desktop folder.
 - Accept, Reject and Reply of equal weight. Accept all applies only to a named person's edits and asks you to confirm the count first; AI and agent items are accepted one by one with the diff shown (F029).
 - Changed spans highlighted in the document.
@@ -630,6 +656,7 @@ Later, named | A Max tier above Pro; a community as an opt-in index plus GitHub 
 
 - Two versions of the same document side by side, each with its author, device and time. Nothing was merged.
 - Keep left, keep right, or keep both as two files. The other version is always in history.
+- **Let AI decide** is offered alongside those, not hidden. It proposes a merge, and that proposal enters the change queue like any other, to be accepted or rejected span by span `[Z]`. It never writes straight to the file, because no silent merge is a law and this is exactly the case it exists for.
 - The same screen serves a Drive edit against a web edit and a desktop edit against a GitHub change.
 
 **Why.** `[R]` settled: no silent merge, ever. The audit found the plan's central promise had no screen.
@@ -1076,7 +1103,7 @@ Windows | Shown as coming, until a commercial certificate is priced | Azure Arti
 Cap | Founders' candidate | Market | Recommendation
 Cloud documents on Free | 5 | Unlimited at Google Docs, Notion for one person, Obsidian, HackMD, Bear and 15 others. Metered by size at Craft (1,500 blocks, 1 GB), Anytype (100 MB), AFFiNE (10 GB), Nuclino (2 GB). Counted at 50 by Nuclino, Evernote and UpNote. Figma's 3 files is the only lower number, and it comes with unlimited drafts | 50, and 1 GB of uploads at 5 MB a file. A blueprint alone is 15 files and an imported vault is hundreds, so 5 would block both funnels on the first day
 Published pages on Free | 2 | No product caps public pages at a small number. Notion: "Unlimited published pages". The market gates the custom domain and the branding | 5 with the Made with line. Pro unbranded and unlimited
-Live collaborators on Free | 1 | HackMD "3 invitees", AFFiNE "Up to 3 members per Workspace", Notion 10 guests, Confluence 10 users | 3 people per document
+Live collaborators on Free | 1 | HackMD "3 invitees", AFFiNE "Up to 3 members per Workspace", Notion 10 guests, Confluence 10 users | **1 person per document.** The market says 3 and the founders chose 1 on 18 September, on cost: a live session is a Durable Object held open for as long as two people are in it, and that is the one free-tier cost that scales with time rather than with calls `[Z]`
 History on Free | none | Notion, Craft and AFFiNE 7 days free and 30 paid | 7 days free, 90 on Pro
 Uploads | none stated | Obsidian Sync Standard 1 GB and 5 MB a file, Plus 10 GB | Free 1 GB at 5 MB a file; Pro 10 GB at 25 MB a file; a 30-day trash on both (F026)
 AI on Free | credits | Every free tier with AI puts a number on it: Kiro 50 credits, Tana 50 queries, Mem 25 messages, Canva 20 uses, Craft 15 credits, GitBook 10 messages a week, ChatPRD 3 chats | 10 edits and 1 Low blueprint a month, top-ups on Pro
@@ -1200,6 +1227,18 @@ Sonnet 5 | $2 | $10 | $243.65 + $393.65 = $637.30, or half with batch
 - Sonnet 5 through the batch API for blueprints at half price: $0.239 each, so $1.19 for 5.
 - **Total $1.99**, ₹191, leaving about ₹55 on a fully active Pro user before fixed costs.
 - Haiku for everything comes to the same ₹191.
+
+**The dynamic question set, costed** `[O]`. New on 18 September. The set is generated once from the idea, and only a branching answer rewrites the later pages.
+
+Rewrites | Extra tokens | Extra cost per blueprint, free model | 200 free users a month
+0 | 1,500 in, 2,500 out | $0.0009 | $3.12
+3, the cap on Free | 10,500 in, 7,000 out | $0.0029 | $3.51
+4 | 13,500 in, 8,500 out | $0.0035 | $3.64
+
+- The working: generation is 1,500 in and 2,500 out; each rewrite is 3,000 in and 1,500 out; priced at Cloudflare qwen3-30b, $0.051 and $0.335 per million.
+- **So it is about three tenths of a cent a blueprint, and it is not a Pro feature.** Making it one would mean the free product asks worse questions, and the free product is the funnel.
+- **The real cost is latency and request count** against per-organisation pools, not money. Hence the cap of three rewrites on Free.
+- The fallback, when the model layer is degraded or a person is over their cap, is a standard question set rather than an apology. That is what S32 offers.
 
 **Two notes.** Prompt caching is measured in week one and is not counted here. The price and the routing are founder question 2.
 

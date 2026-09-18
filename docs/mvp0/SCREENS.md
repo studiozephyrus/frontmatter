@@ -72,8 +72,11 @@ Later | The portfolio at frontmatter.in/@handle, the MCP server and API, Team, a
 
 <div class="pair"><img src="screens/s04-workspace.png"><img src="screens/s04-workspace-phone.png"></div>
 
-- The shipped layout, measured from source: tabs, the twelve-button toolbar, the four modes, the tree and the outline rail.
-- The tree shows all fifteen blueprint files (F019). The history row reads "7 days" on Free (F018). The right cluster folds bookmark, search and history into More so the mode segment fits at 1,440 px (F021).
+- Tabs at the top, then one toolbar row, then the document. Share is an icon. The workspace carries the mark and not the wordmark, because the wordmark is for the front door and the published page.
+- **The left rail is where things are made and put.** Two buttons, Add file and Add idea. Upload lives inside Add file, next to New document and Import from, and the whole tree is a drop target with the hint always visible. There is no third button competing with those two (F073).
+- **Ideas is a collapsed section at the foot of the tree**, the way the outline sits on the right. Notes stays open, Ideas stays shut until it is wanted `[Z]`.
+- **Every collapsible is at the top of the right rail**, closed, so the outline takes the height and the AI panel has room to open below `[Z]`.
+- Shortcuts is gone. The tree shows all fifteen blueprint files (F019). The history row reads "7 days" on Free (F018).
 - The phone keeps the toolbar to seven tools and puts the mode segment in the header.
 
 ### S05. Doc mode
@@ -88,6 +91,9 @@ Later | The portfolio at frontmatter.in/@handle, the MCP server and API, Team, a
 
 <div class="pair"><img src="screens/s06-ai-writing.png"><img src="screens/s06-ai-writing-phone.png"></div>
 
+- **The box names its target on its own first line**, so there is never a question about what is about to be touched: writing a new document, editing a named one, or working on a named idea. Change is one click away `[Z]` (F074).
+- When an idea is in progress that line is pinned and does not scroll away `[Z]`.
+- The box anchors to the content, below it when there is room and to the right when there is not `[Z]`.
 - One box on an empty document. Four chips for the common asks. A second row for the other ways to start.
 - The cost is stated before the click: one edit credit, seven of ten left. The rail counts are zero on an empty document (F022).
 - Taking it to Ideas is a chip, not a second product.
@@ -120,9 +126,11 @@ Later | The portfolio at frontmatter.in/@handle, the MCP server and API, Team, a
 
 <div class="pair"><img src="screens/s10-problems.png"><img src="screens/s10-problems-phone.png"></div>
 
+- **A filter across the top: All, Checks, Writing**, so a deterministic finding and a model's opinion are never mixed into one list `[Z]`.
 - Broken links, heading skips, missing alt text, table shape, and one advisory writing note, each true of the document shown (F022).
+- **Spelling with a project dictionary, and a front matter schema check**, because those are the two most-installed checks in the world and neither needs a model `[O]`.
 - Fix all safe. Rules.
-- Structural checks run on the device and cost nothing.
+- **Structural checks run on the device and cost nothing.** That is the sales line: eleven separate tools, four package managers and nine configuration files to get this elsewhere, or open the file `[O]`.
 
 ### S11. Instruction files
 
@@ -146,14 +154,25 @@ Later | The portfolio at frontmatter.in/@handle, the MCP server and API, Team, a
 
 <div class="pair"><img src="screens/s13-idea-low.png"><img src="screens/s13-idea-low-phone.png"></div>
 
-- Twelve decisions in pages of three. Each has a recommendation. Not sure records the question as open and takes the recommendation for now; DECISIONS.md carries it as open, not as decided.
+**The question set is generated, and it changes as you answer.** New on 18 September `[Z]`.
+
+- **Ten to fifteen questions**, the count set by how complex the idea is, **four to a page at most**.
+- **The whole set is generated once**, from the idea, in one call, so the first page appears with everything already planned and nothing to wait for.
+- **Each question carries a branching flag.** Only an answer to a branching question rewrites the later pages. Most answers do not, so most page turns are instant and cost nothing.
+- **When a rewrite fires, the affected card blurs and says why**, naming the answer that caused it. It means something because it is rare (F075).
+- Rewrites are capped at three a blueprint on Free and unbounded on Pro. Costed in section 14.
+- **Skip and Choose the recommendation on every page. Skip all from page two**, behind a modal that says plainly that every remaining question takes its recommendation, and that the brief, the blueprint and the kickoff prompt all follow those defaults `[Z]`.
+- Only the recommended option carries its reason. Not sure is a quiet link, not a third option in every card.
+- Not sure records the question as open and takes the recommendation for now; DECISIONS.md carries it as open, not as decided.
 - The blueprint's fifteen files are listed before a credit is spent.
-- Steps: Describe, Decide, Write, Hand off.
 
 ### S14. Idea mode, Medium and High
 
 <div class="pair"><img src="screens/s14-idea-medium.png"><img src="screens/s14-idea-medium-phone.png"></div>
 
+**The same layout as Low, deliberately.** There is no second route to learn `[Z]`.
+
+- The same progress line, the same selector pill, the same Skip, Choose the recommendation and Next.
 - A decision card: where it stands, what forces the choice, options with gains and costs, evidence rows, the recommendation. On Medium the web rows are labelled as the template's sources with the date they were last checked; only High opens pages (F037).
 - The answer is recorded in DECISIONS.md with its evidence.
 - High adds a research pass before this step, run in the background.
@@ -180,7 +199,9 @@ Later | The portfolio at frontmatter.in/@handle, the MCP server and API, Team, a
 
 <div class="pair"><img src="screens/s17-share.png"><img src="screens/s17-share-phone.png"></div>
 
-- People, with a role from the matrix in section 19. Three live collaborators on Free.
+- People, added **by their frontmatter email address**, with a role from the matrix in section 19.
+- **If the address is not a frontmatter account, the screen says so and offers an invite.** Both sides get 5 AI credits when the invited person signs in for the first time. The same modal is reused for referrals afterwards `[Z]`.
+- **One live collaborator on Free**, several on Pro `[Z]`. The free number is a cost decision, and section 13 carries it.
 - A link that can read, expire, or need a password on Pro.
 - The published page toggle, with pages used against the cap.
 
@@ -188,7 +209,10 @@ Later | The portfolio at frontmatter.in/@handle, the MCP server and API, Team, a
 
 <div class="pair"><img src="screens/s18-public-view.png"><img src="screens/s18-public-view-phone.png"></div>
 
-- Reads without an account. Download the markdown. Open in frontmatter. A quiet card offers sign-in once.
+- **The page renders first, with no gate, no redirect and no probe.** It reads without an account.
+- **After it has painted, a dismissible bar offers where to open it**: the desktop app when the app has registered its protocol handler, frontmatter on the web otherwise, or stay here. It is an offer, and dismissal is remembered `[Z]`.
+- **`page.md` and `llms.txt` are never gated, never redirected and never given an interstitial.** That rule is absolute and covers every non-HTML route (F076).
+- **The sign-in boundary is editing, not reading.** A reader who presses Edit meets sign-in, which costs nothing at the top of the funnel.
 - The footer carries Report, Privacy, Terms and the `.md` twin (F033).
 - The phone shows the password gate a reader meets on a protected link, with the same footer.
 
@@ -197,13 +221,14 @@ Later | The portfolio at frontmatter.in/@handle, the MCP server and API, Team, a
 <div class="pair"><img src="screens/s19-live-collab.png"><img src="screens/s19-live-collab-phone.png"></div>
 
 - Presence avatars, a named cursor, the other person's text highlighted as it lands.
-- The toast states the free limit once.
+- The toast states the free limit once: **one live collaborator on Free**, several on Pro `[Z]`.
 - On the phone, presence sits in the header.
 
 ### S20. Document review
 
 <div class="pair"><img src="screens/s20-review.png"><img src="screens/s20-review-phone.png"></div>
 
+- **A filter across the top: All, People, AI and agents.** Human work and machine work are never combined into one undifferentiated list `[Z]`.
 - Changes waiting, each with who made it: a person, an AI edit you asked for, or an agent that edited the file on disk through the desktop folder.
 - Accept, Reject and Reply of equal weight. Accept all applies only to a named person's edits and asks you to confirm the count first; AI and agent items are accepted one by one with the diff shown (F029).
 - Changed spans highlighted in the document.
@@ -301,6 +326,7 @@ Later | The portfolio at frontmatter.in/@handle, the MCP server and API, Team, a
 
 - Two versions of the same document side by side, each with its author, device and time. Nothing was merged.
 - Keep left, keep right, or keep both as two files. The other version is always in history.
+- **Let AI decide** is offered alongside those, not hidden. It proposes a merge, and that proposal enters the change queue like any other, to be accepted or rejected span by span `[Z]`. It never writes straight to the file, because no silent merge is a law and this is exactly the case it exists for.
 - The same screen serves a Drive edit against a web edit and a desktop edit against a GitHub change.
 
 ### S32. AI unavailable

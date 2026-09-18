@@ -5,7 +5,6 @@
 (`docs/research/2026-09-18/`, 178 findings).
 
 **Status.** Captured. The five open items were answered on 18 September and are recorded in section 10. Application to `PRODUCT-PLAN.md` and `SCREENS.md` is in progress.
-Five items marked **CONFLICT** need a founder answer before they can be drawn.
 
 **Tags.** `[Z]` founder instruction, given directly. `[O]` measured in the research round.
 `[?]` my question back. `[X]` conflicts with the plan of record or with another instruction.
