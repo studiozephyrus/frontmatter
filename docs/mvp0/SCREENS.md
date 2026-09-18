@@ -352,10 +352,12 @@ Later | The portfolio at frontmatter.in/@handle, the MCP server and API, Team, a
 <div class="pair"><img src="screens/s31-conflict.png"><img src="screens/s31-conflict-phone.png"></div>
 
 - Two versions of the same document side by side, each with its author, device and time. Nothing was merged.
-- Keep left, keep right, or keep both as two files. The other version is always in history.
-- **Let AI decide** is offered alongside those, not hidden. It proposes a merge, and that proposal enters the change queue like any other, to be accepted or rejected span by span `[Z]`. It never writes straight to the file, because no silent merge is a law and this is exactly the case it exists for.
+- **Accept this version** under each side, or keep both as two files. The other version is always in history. `[Z]` 18 September: the per-side control reads Accept this version, where it read Keep this one.
+- **Let AI decide** is offered alongside those, not hidden. It proposes a merge as one change queue item and shows the merged result as a preview on this screen `[Z]`. It never writes straight to the file, because no silent merge is a law and this is exactly the case it exists for.
+- **Accept AI suggestion** sits beside Let AI decide `[Z]` 18 September. It is the person accepting that one previewed item, and it writes exactly the bytes shown. Until a preview exists it is disabled, with the reason under it.
+- **Review span by span** opens the same item in the change queue, S20, to accept or reject each span.
 - The same screen serves a Drive edit against a web edit and a desktop edit against a GitHub change.
-- The phone carries Let AI decide beside Keep both, so it is not hidden there either.
+- The phone carries Let AI decide beside Keep both, and Accept AI suggestion under them, so neither is hidden there. The phone view shows it disabled, before a preview; the desktop view shows the preview.
 
 ### S32. AI unavailable
 

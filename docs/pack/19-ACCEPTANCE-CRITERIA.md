@@ -607,6 +607,9 @@ id | feature | given | when | then | test | spec
 `A723` | `F258` | The accounts screen | Its meters and ledger render | Every figure equals the usage ledger's value, and the component source contains no summing code over ledger rows | `T723` | `12-screens/S38.md`.
 `A724` | `F275` | The audit log | An update and a delete are attempted on a row through the panel and through a direct server call | All four are refused and the row is unchanged | `T724` | `12-screens/S38.md`.
 `A725` | `F274` | A search string matching no account exactly | It is submitted | Zero results render | `T725` | `12-screens/S38.md`.
+`A726` | `F233` | A conflict whose AI proposal is one pending change queue item, previewed on S31 | Accept AI suggestion is pressed by the owner | The file's new bytes equal the previewed bytes, exactly one queue item moves to accepted with that person as the accepter, and no other item changes | `T726` | `12-screens/S31.md`.
+`A727` | `F233` | A conflict before Let AI decide, and separately a proposal that arrived only in part | Accept AI suggestion is pressed | The control is disabled with its reason shown, and zero bytes are written | `T727` | `12-screens/S31.md`.
+`A728` | `F233` | A previewed proposal, then the file or the item changed before the accept | Accept AI suggestion is pressed | The accept is refused, zero bytes are written, and the preview is redrawn | `T728` | `12-screens/S31.md`.
 
 ---
 
@@ -625,9 +628,9 @@ grep -E '^`A[0-9]{3}` \|' docs/pack/19-ACCEPTANCE-CRITERIA.md \
   | grep -cE '\| `(test/|scripts/|docs/mvp0/screens/gen)'
 ```
 
-- **355 criteria**: 129 written first, and 226 added in section 12a on 18 September.
+- **358 criteria**: 129 written first, 226 added in section 12a on 18 September, and 3 more for S31 (`A726` to `A728`) the same day.
 - **12 distinct real test paths.**
-- **19 criteria carry one.** The remaining 336 carry a `T` id and do not exist.
+- **19 criteria carry one.** The remaining 339 carry a `T` id and do not exist.
 - **One criterion is marked `Not yet checkable`**, in section 12a.2, because two screens disagree.
 
 **That ratio is the honest state of the product.** The engine has tests; almost nothing else does.

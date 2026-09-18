@@ -1176,11 +1176,15 @@ id | string | tone | budget | notes
 `K.s31.banner` | Two versions of {file} changed the same paragraph while one of them was offline. Nothing was merged. Choose one, or keep both. | `caution` | `long` | `[gen]` `docs/mvp0/screens/gen.mjs:1599`. **"Nothing was merged" comes before the instruction**, because that is the fear to answer first.
 `K.s31.banner.phone` | Two versions changed the same paragraph. Nothing was merged. | `caution` | `body` | `[gen]` `docs/mvp0/screens/gen.mjs:1604`.
 `K.s31.side` | {source} · {who} · {time} | `plain` | `label`, 34 | `[gen]` `docs/mvp0/screens/gen.mjs:1600`. `{source}` is "This browser", "This phone", "Google Drive", the desktop or GitHub.
-`K.s31.keep` | Keep this one | `label` | `button`, 16 | `[gen]` `docs/mvp0/screens/gen.mjs:1600`.
+`K.s31.keep` | Accept this version | `label` | `button`, 19 | `[gen]` `docs/mvp0/screens/gen.mjs:1870`. `[Z]` renamed from Keep this one on 18 September 2026 (S31, `D66`). The id is kept so nothing that points at it breaks.
 `K.s31.keepboth` | Keep both as two files | `label` | `button`, 26 | `[gen]` `docs/mvp0/screens/gen.mjs:1602`.
 `K.s31.letai` | Let AI decide | `label` | `button`, 16 | `[gen]` `docs/mvp0/screens/gen.mjs:1602`. **Offered, not hidden** `[Z]` (`docs/mvp0/SCREEN-CHANGES-2026-09-18.md:202`). Its proposal enters the change queue; it never writes to the file.
 `K.s31.note` | Whichever you choose, the other version stays in history. The same screen appears for a desktop edit against a GitHub change. | `promise` | `long` | `[gen]` `docs/mvp0/screens/gen.mjs:1602`.
 `K.s31.count` | {n} conflict to resolve | `caution` | `label`, 26 | `[gen]` `docs/mvp0/screens/gen.mjs:1598`. Plural on `{n}`.
+`K.s31.preview` | AI suggestion · a preview, nothing is written yet · one change in your queue | `promise` | `label`, 76 | `[gen]` `docs/mvp0/screens/gen.mjs:1872`. `[Z]` 18 September. Over the merged result once Let AI decide has answered. **"Nothing is written yet" is the promise**, so it is never cut for space.
+`K.s31.acceptai` | Accept AI suggestion | `label` | `button`, 20 | `[gen]` `docs/mvp0/screens/gen.mjs:1873`. `[Z]` 18 September. Accepts the one previewed proposal and writes exactly its bytes. Pressed by a person, never automatic.
+`K.s31.acceptai.off` | Accept AI suggestion opens once Let AI decide has shown you its merge. | `plain` | `body`, 70 | `[gen]` `docs/mvp0/screens/gen.mjs:1878`. Under the disabled control, before a preview exists, while it is being made, and when a merge arrived only in part.
+`K.s31.reviewspans` | Review span by span | `label` | `button`, 19 | `[gen]` `docs/mvp0/screens/gen.mjs:1873`. Opens S20 on the same proposal.
 
 **`K.s31.letai` needs a second string that does not exist.** `[new]` When the proposal arrives in the
 queue it needs a row that says it came from a merge attempt and is a proposal, not a result. Without
