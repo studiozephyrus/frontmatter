@@ -461,6 +461,51 @@ u{text-decoration-thickness:1px;text-underline-offset:2px}
 .phone .flow{flex-direction:column;gap:10px;padding:12px 14px 0}
 .phone .col{width:100%}
 /* depth chooser */
+/* Idea mode, rebuilt 18 September. The founder's note was that the old flow carried too
+   much at once: a four-step breadcrumb, three large depth cards and two columns. The
+   reference he gave was Claude and ChatGPT: one centred column, one input, and the depth
+   chosen from a small selector the way a model is chosen. */
+.icol{max-width:720px;margin:0 auto;padding:6px 0 0}
+.icol.wide{max-width:780px}
+.ihead{font-size:26px;font-weight:600;letter-spacing:-.02em;margin:10px 0 18px;text-align:center}
+.ihead em{font-style:normal;color:var(--muted);font-weight:400;font-size:15px;display:block;margin-top:6px;letter-spacing:0}
+.bigin{border:1px solid var(--border-strong);border-radius:14px;background:var(--panel);box-shadow:0 1px 3px rgba(0,0,0,.05)}
+.bigin .txt{padding:14px 16px 4px;font-size:14.5px;line-height:1.6;color:var(--fg);min-height:74px}
+.bigin .txt.ph{color:var(--muted)}
+.bigin .barrow{display:flex;align-items:center;gap:6px;padding:8px 10px 10px}
+.bigin .barrow .sp{flex:1}
+.selpill{display:inline-flex;align-items:center;gap:6px;height:28px;padding:0 9px;font-size:12.5px;font-weight:500;color:var(--fg);
+  border:1px solid var(--border);border-radius:999px;background:var(--bg-subtle)}
+.selpill .mut{color:var(--muted);font-weight:400}
+.iconbtn{display:inline-flex;align-items:center;justify-content:center;width:28px;height:28px;border:1px solid var(--border);border-radius:999px;color:var(--muted);background:var(--panel)}
+.sendbtn{display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:999px;background:var(--accent);color:var(--accent-fg)}
+.selmenu{position:absolute;border:1px solid var(--border);border-radius:12px;background:var(--panel);box-shadow:var(--shadow);padding:5px;min-width:320px;z-index:9}
+.selmenu .mi{display:block;padding:9px 10px;border-radius:8px;font-size:13px}
+.selmenu .mi.on{background:var(--bg-subtle)}
+.selmenu .mi b{display:flex;align-items:center;gap:7px;font-weight:600}
+.selmenu .mi span{display:block;color:var(--muted);font-size:11.5px;margin-top:2px;padding-left:25px}
+.prog{display:flex;align-items:center;gap:10px;font-size:12px;color:var(--muted);margin:2px 0 14px}
+.prog .bar{flex:1;height:4px;border-radius:999px;background:var(--border);overflow:hidden}
+.prog .bar i{display:block;height:100%;background:var(--accent)}
+.qstack .qcard{border-radius:11px;padding:11px 13px;margin-bottom:9px}
+.qstack .qcard .q{font-size:13.5px;margin-bottom:7px}
+.qstack .qcard .opt{padding:6px 9px;font-size:12.5px;border-radius:7px;margin-bottom:4px;align-items:center}
+.qstack .qcard .opt small{font-size:11px;margin-top:1px}
+.qskip{font-size:11.5px;color:var(--muted);text-decoration:underline;text-underline-offset:2px;margin-top:6px}
+.pagenav{display:flex;align-items:center;gap:8px;margin-top:4px}
+.pagenav .sp{flex:1}
+/* The rewriting state. Only appears when an answer actually changes a later page. */
+.ghost{position:relative;border:1px solid var(--border);border-radius:11px;padding:11px 13px;margin-bottom:9px;background:var(--panel);overflow:hidden}
+.ghost .blurred{filter:blur(3.5px);opacity:.5;pointer-events:none}
+.ghost .work{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;gap:8px;font-size:12.5px;font-weight:500;color:var(--ai)}
+.ghost .work .spin{width:13px;height:13px;border:2px solid var(--ai);border-right-color:transparent;border-radius:50%}
+.skipmodal{position:absolute;inset:0;background:rgba(15,15,17,.42);display:grid;place-items:center;z-index:20}
+.skipmodal .card{width:430px;background:var(--panel);border:1px solid var(--border);border-radius:14px;box-shadow:var(--shadow);padding:20px}
+.skipmodal h3{font-size:16px;font-weight:600;margin:0 0 8px}
+.skipmodal p{font-size:13px;color:var(--fg-muted);line-height:1.6;margin:0 0 6px}
+.phone .icol{max-width:none}
+.phone .ihead{font-size:19px;margin:6px 0 14px}
+.phone .bigin .txt{font-size:13.5px;min-height:62px}
 .depths{display:grid;grid-template-columns:1fr 1fr 1fr;gap:12px}
 .depth{border:1px solid var(--border);border-radius:12px;padding:14px;background:var(--panel);font-size:12.5px;display:flex;flex-direction:column;gap:6px}
 .depth.on{border-color:var(--accent);box-shadow:inset 0 0 0 1px var(--accent)}
@@ -1034,63 +1079,106 @@ ${tree({ projects: [{ ...PROJECTS_MAIN[0], rows: PROJECTS_MAIN[0].rows.map(r => 
 phone({ mode: 'Live', title: 'AGENTS.md', bottom: 'more_horiz', body: `${pmodebar('Live')}<div class="pdoc"><div class="md">${DOC_AGENTS}</div></div>`, overlay: pdrawer(AGENTS_HEALTH, 'right') }));
 
 // ---------------------------------------------------------------------------
-// S12 ideas: the list on the left, the idea, the depth chooser
+// ---------------------------------------------------------------------------
+// S12 to S14 rebuilt 18 September on the founder's review. The old flow put a
+// four-step breadcrumb, three large depth cards and two columns on the screen at
+// once. The reference given was Claude and ChatGPT: one centred column, one input,
+// and the depth picked from a small selector the way a model is picked. Medium and
+// High reuse this exact layout so there is no second route to learn.
 const IDEAS = [
-  { n: 'Zephyrus booking', e: 'Blueprint v1 · 15 files', on: 1 }, { n: 'Salon loyalty stamps', e: 'Low · 9 of 12 decided' }, { n: 'Clinic reminders over WhatsApp', e: 'Draft' },
+  { n: 'Zephyrus booking', e: 'Blueprint v1 · 15 files', on: 1 },
+  { n: 'Salon loyalty stamps', e: '9 of 12 answered' },
+  { n: 'Clinic reminders over WhatsApp', e: 'Draft' },
 ];
 function ideasTree() {
   return `<aside class="side ideas"><div class="sidehead">${ic('lightbulb', 16)} Ideas<span class="sp"></span><span class="pill">${ic('add', 14)} new</span></div>
   ${IDEAS.map(i => `<div class="row${i.on ? ' on' : ''}">${ic('lightbulb', 15)}<span class="n">${i.n}<em>${i.e}</em></span></div>`).join('')}
   <div class="sidefoot">${ic('auto_awesome', 14)} 1 blueprint credit left this month</div></aside>`;
 }
-const DEPTHS = `<div class="depths">
-<div class="depth on"><div class="nm">${ic('bolt', 18)} Low<span class="pill ok">Free</span></div><div style="color:var(--fg-muted)">10 to 15 questions, each with a recommendation. A brief and the blueprint.</div><ul><li>Answers come from your idea and the template</li><li>Not sure takes the recommendation</li><li>About four minutes</li></ul></div>
-<div class="depth"><div class="nm">${ic('insights', 18)} Medium<span class="pill pro">Pro</span></div><div style="color:var(--fg-muted)">20 to 30 questions. Every option shows where it stands and what forces the choice.</div><ul><li>Gains and costs per option</li><li>Evidence from your own documents and the template’s sources</li><li>About ten minutes</li></ul></div>
-<div class="depth"><div class="nm">${ic('psychology', 18)} High<span class="pill pro">Pro · 3 credits</span></div><div style="color:var(--fg-muted)">Medium, plus a research pass before the questions: the market, the standards, the pricing.</div><ul><li>Sources opened and quoted, dated</li><li>A decision record you can publish</li><li>Runs in the background, ready in an hour</li></ul></div></div>`;
-const INDUSTRY = `<div class="chips" style="margin-top:8px"><span class="lbl">Template</span><span class="chip on">${ic('store', 14)} Local service business</span><span class="chip">SaaS</span><span class="chip">Marketplace</span><span class="chip">Internal tool</span><span class="chip">Mobile app</span><span class="chip">Content site</span><span class="chip">Agency</span><span class="chip">${ic('auto_awesome', 14)} Generate one for my industry</span></div>`;
+
+// The depth selector. Three depths, one control, the shape of a model picker.
+function depthPill(cur = 'Low') {
+  return `<span class="selpill">${ic(cur === 'Low' ? 'bolt' : cur === 'Medium' ? 'insights' : 'psychology', 15)} ${cur} <span class="mut">depth</span> ${ic('expand_more', 15)}</span>`;
+}
+const DEPTH_MENU = `<div class="selmenu" style="left:0;top:calc(100% + 8px)">
+<div class="mi on"><b>${ic('bolt', 16)} Low <span class="pill ok">Free</span></b><span>10 to 15 questions, each with a recommendation</span></div>
+<div class="mi"><b>${ic('insights', 16)} Medium <span class="pill pro">Pro</span></b><span>20 to 30 questions, and every option says where it stands</span></div>
+<div class="mi"><b>${ic('psychology', 16)} High <span class="pill pro">Pro · 3 credits</span></b><span>Medium, plus a research pass before the questions</span></div></div>`;
+
+const IDEA_TEXT = 'A booking page for small salons that take appointments on WhatsApp today. One link for the Instagram bio, a calendar of open slots, a deposit, and a reminder the day before.';
+
+function ideaInput({ text = IDEA_TEXT, depth = 'Low', menu = '' } = {}) {
+  return `<div style="position:relative">
+  <div class="bigin"><div class="txt">${text}</div>
+    <div class="barrow">
+      ${depthPill(depth)}
+      <span class="iconbtn" title="Attach a drawing or a screenshot">${ic('image', 16)}</span>
+      <span class="iconbtn" title="Attach a document">${ic('description', 16)}</span>
+      <span class="iconbtn" title="Point at a repository">${ic('code', 16)}</span>
+      <span class="sp"></span>
+      <span class="sendbtn">${ic('arrow_forward', 17)}</span>
+    </div></div>${menu}</div>`;
+}
+
 screen('s12-ideas', 'Ideas', `<div class="app">
 ${top({ tabs: [{ n: 'Ideas', c: 'blue', on: 1 }, { n: '00-BRIEF.md', c: 'blue' }] })}
 <div class="body noright">
 ${ideasTree()}
-<main class="main"><div class="modebar"><span class="steps"><b>1 Describe</b> ${ic('chevron_right', 14)} 2 Decide ${ic('chevron_right', 14)} 3 Write ${ic('chevron_right', 14)} 4 Hand off</span><span class="right"><span class="pill ai">${ic('auto_awesome', 13)} 1 blueprint credit</span></span></div>
-<div class="doc" style="padding:26px 48px"><div style="max-width:860px;margin:0 auto">
-<div class="rh">Your idea</div>
-<div class="aibox" style="margin:8px 0 0"><div class="in" style="height:auto;padding:12px;align-items:flex-start;color:var(--fg)">A booking page for small salons that take appointments on WhatsApp today. One link for the Instagram bio, a calendar of open slots, a UPI deposit, and a reminder the day before. The owner runs everything from a phone.</div>
-<div class="attach"><span class="thumb"><svg viewBox="0 0 74 52" width="74" height="52"><rect x="5" y="6" width="28" height="14" rx="2" fill="none" stroke="var(--border-strong)"/><rect x="41" y="6" width="28" height="14" rx="2" fill="none" stroke="var(--border-strong)"/><rect x="5" y="28" width="64" height="18" rx="2" fill="none" stroke="var(--border-strong)"/><path d="M33 13 L41 13" stroke="var(--accent)" stroke-width="1.2"/><path d="M19 20 L19 28" stroke="var(--accent)" stroke-width="1.2"/></svg></span>
-<span class="meta">booking-flow.excalidraw<em>Attached. The blueprint will describe these screens and name them in the frontend spec.</em></span><span style="margin-left:auto">${ic('close', 16)}</span></div>
-<div class="chips" style="margin-top:10px"><span class="chip">${ic('image', 14)} Add a drawing or screenshot</span><span class="chip">${ic('description', 14)} Add a document</span><span class="chip">${ic('code', 14)} Point at a repository</span></div>
-${INDUSTRY}</div>
-<div class="rh" style="margin-top:20px">How deep</div>${DEPTHS}
-<div style="display:flex;gap:8px;justify-content:flex-end;margin-top:16px;align-items:center"><span style="font-size:12px;color:var(--muted);margin-right:auto">Low uses your blueprint credit. Medium and High need Pro; you can start Low now and go deeper later without losing answers.</span><span class="btn primary">Start: Low ${ic('arrow_forward', 16)}</span></div>
+<main class="main"><div class="doc" style="padding:40px 48px">
+<div class="icol">
+  <div class="ihead">What do you want to build?<em>Describe it in your own words. Questions come next, and you can skip any of them.</em></div>
+  ${ideaInput({ menu: DEPTH_MENU })}
+  <div class="attach" style="margin-top:12px"><span class="thumb"><svg viewBox="0 0 74 52" width="74" height="52"><rect x="5" y="6" width="28" height="14" rx="2" fill="none" stroke="var(--border-strong)"/><rect x="41" y="6" width="28" height="14" rx="2" fill="none" stroke="var(--border-strong)"/><rect x="5" y="26" width="64" height="20" rx="2" fill="none" stroke="var(--border-strong)"/></svg></span>
+  <span class="meta">booking-flow.excalidraw<em>Attached. The blueprint will describe these screens and name them in the frontend spec.</em></span><span style="margin-left:auto">${ic('close', 16)}</span></div>
+  <div class="chips" style="margin-top:14px;justify-content:center"><span class="lbl">Start from</span><span class="chip on">${ic('store', 14)} Local service business</span><span class="chip">SaaS</span><span class="chip">Marketplace</span><span class="chip">Internal tool</span><span class="chip">${ic('auto_awesome', 14)} One for my industry</span></div>
+  <div class="foot" style="text-align:center;margin-top:16px">Low uses your blueprint credit for the month. Nothing is sent to a model until you press the arrow.</div>
 </div></div></main></div></div>`,
-phone({ title: 'Ideas', bottom: 'auto_awesome', body: `<div class="pdoc" style="padding:12px 14px 0"><div class="rh">Your idea</div>
-<div class="aibox" style="margin:6px 0 0"><div class="in" style="height:auto;padding:10px;align-items:flex-start;color:var(--fg);font-size:13px">A booking page for small salons that take appointments on WhatsApp today. One link for the Instagram bio, a calendar of open slots, a UPI deposit, and a reminder the day before.</div>
-<div class="chips" style="margin-top:8px"><span class="chip">${ic('image', 14)} Drawing</span><span class="chip">${ic('description', 14)} Document</span><span class="chip on">${ic('store', 14)} Local service</span></div></div>
-<div class="rh" style="margin-top:14px">How deep</div>${DEPTHS}
-<div style="margin-top:12px"><span class="btn primary" style="width:100%">Start: Low ${ic('arrow_forward', 16)}</span></div></div>` }));
+phone({ title: 'Ideas', bottom: 'auto_awesome', body: `<div class="pdoc" style="padding:14px 14px 0">
+<div class="icol"><div class="ihead">What do you want to build?<em>Questions come next. Skip any of them.</em></div>
+${ideaInput()}
+<div class="chips" style="margin-top:12px"><span class="chip on">${ic('store', 14)} Local service</span><span class="chip">SaaS</span><span class="chip">${ic('image', 14)} Drawing</span></div>
+<div class="foot" style="margin-top:12px">Uses your blueprint credit for the month.</div></div></div>` }));
 
-// S13 idea mode, Low: questions with recommendations
+// S13 idea mode, Low. Four questions to a page, and the later pages are rewritten
+// live when an answer changes what is worth asking.
 const QCARDS = [
-  { q: '1. Who is the first user?', opts: [['a', 'A solo studio owner working from a phone', 'Fastest to reach; deposits matter most', 1], ['b', 'A small chain with a front desk', 'Bigger ticket, slower sale'], ['c', 'Not sure, keep it open', 'Takes the recommendation for now; DECISIONS.md records it as open']] },
-  { q: '2. What ships first?', opts: [['a', 'Booking link, calendar, deposit, reminder', 'The four things the brief names', 1], ['b', 'Booking link and calendar only', 'Cheaper, but the deposit is the point'], ['c', 'Not sure, keep it open', 'Takes the recommendation for now; DECISIONS.md records it as open']] },
-  { q: '3. Where does it run?', opts: [['a', 'A web page, no app', 'One link in the bio', 1], ['b', 'A web page and a WhatsApp bot', 'Two surfaces on day one']] },
+  { q: 'Who is the first user?', opts: [['a', 'A solo studio owner working from a phone', 'Fastest to reach, and deposits matter most to them', 1], ['b', 'A small chain with a front desk', 'Bigger ticket, slower to sell']] },
+  { q: 'What ships first?', opts: [['a', 'Booking link, calendar, deposit, reminder', 'The four things your idea names', 1], ['b', 'Booking link and calendar only', 'Cheaper, but the deposit is the point']] },
+  { q: 'Where does it run?', opts: [['a', 'A web page, no app', 'One link in the bio', 1], ['b', 'A web page and a WhatsApp bot', 'Two surfaces on day one']] },
+  { q: 'Who takes the money?', opts: [['a', 'Razorpay, UPI and cards', 'Works in India, one mandate for repeat customers', 1], ['b', 'Cash on arrival', 'No deposit, so no-shows stay']] },
 ];
-const QHTML = QCARDS.map(c => `<div class="qcard"><div class="q">${c.q}</div>${c.opts.map(o => `<div class="opt${o[3] ? ' rec' : ''}"><span class="k">${o[0]}</span><span>${o[1]}${o[3] ? '<span class="rec-tag">recommended</span>' : ''}<small>${o[2]}</small></span></div>`).join('')}</div>`).join('');
+const qhtml = (list, from = 0) => list.map((c, i) => `<div class="qcard"><div class="q">${from + i + 1}. ${c.q}</div>${c.opts.map(o => `<div class="opt${o[3] ? ' rec' : ''}"><span class="k">${o[0]}</span><span>${o[1]}${o[3] ? '<span class="rec-tag">recommended</span>' : ''}${o[3] ? `<small>${o[2]}</small>` : ''}</span></div>`).join('')}<div class="qskip">Not sure, leave it open in DECISIONS.md</div></div>`).join('');
+const QHTML = qhtml(QCARDS.slice(0, 3));
+
+// The rewrite state. It shows only when a branching answer has actually changed the
+// questions further on, so it means something when a person sees it.
+const GHOST = `<div class="ghost"><div class="blurred"><div class="q" style="font-weight:600;font-size:13.5px;margin-bottom:7px">4. How does a customer pay the deposit?</div>
+<div class="opt"><span class="k">a</span><span>UPI AutoPay mandate<small>Approved once, charged each time</small></span></div>
+<div class="opt"><span class="k">b</span><span>A one-off UPI request<small>One attempt per booking</small></span></div></div>
+<div class="work"><span class="spin"></span> Rewriting this and the next two pages from your answer to question 2</div></div>`;
+
+function pageNav({ all = false }) {
+  return `<div class="pagenav"><span class="btn">Skip</span><span class="btn">${ic('auto_awesome', 15)} Choose the recommendation</span>
+  ${all ? `<span class="btn">Skip all remaining</span>` : ''}<span class="sp"></span>
+  <span class="btn primary">Next ${ic('arrow_forward', 15)}</span></div>`;
+}
+
 screen('s13-idea-low', 'Idea mode, Low', `<div class="app">
 ${top({ tabs: [{ n: 'Ideas', c: 'blue', on: 1 }] })}
 <div class="body noright">
 ${ideasTree()}
-<main class="main"><div class="modebar"><span class="steps">1 Describe ${ic('chevron_right', 14)} <b>2 Decide</b> ${ic('chevron_right', 14)} 3 Write ${ic('chevron_right', 14)} 4 Hand off</span><span class="right"><span class="pill">${ic('bolt', 13)} Low · 3 of 12</span><span class="pill ai">${ic('auto_awesome', 13)} 1 blueprint credit</span></span></div>
-<div class="doc" style="padding:28px 48px"><div style="display:grid;grid-template-columns:1fr 1fr;gap:28px;max-width:1040px;margin:0 auto">
-<div><div class="rh">Your idea</div><div class="md" style="font-size:14px"><p>A booking page for small salons that take appointments on WhatsApp today. One link for the Instagram bio, a calendar of open slots, a UPI deposit, and a reminder the day before. The owner runs everything from a phone.</p></div>
-<div class="rh" style="margin-top:22px">What the blueprint will hold</div><div class="kit">${['SKILL.md and AGENTS.md', '00-BRIEF.md', '01-PRODUCT.md', '02-DATA-AND-API.md', '03-ARCHITECTURE.md', '04-SETUP.md', '05-FRONTEND-SPEC.md', 'specs/booking.md, specs/payments.md', 'DECISIONS.md', 'MAP.md and graph.json', 'MANIFEST.json and SHA256SUMS'].map(f => `<div class="file">${ic('description', 15)}<span class="sp">${f}</span></div>`).join('')}</div></div>
-<div><div class="rh">Twelve decisions, then it writes. <span style="text-transform:none;letter-spacing:0;font-weight:400">Not sure stays open in DECISIONS.md.</span></div>
-${QHTML}
-<div style="display:flex;gap:8px;justify-content:flex-end"><span class="btn">Back</span><span class="btn primary">Next: three more ${ic('arrow_forward', 14)}</span></div></div>
+<main class="main"><div class="doc" style="padding:30px 48px">
+<div class="icol wide">
+  <div class="prog"><span>Page 1 of 3</span><span class="bar"><i style="width:33%"></i></span><span>4 of 12 questions</span>${depthPill('Low')}</div>
+  <div class="qstack">${QHTML}${GHOST}</div>
+  ${pageNav({})}
+  <div class="foot" style="margin-top:10px">Anything you skip stays open in DECISIONS.md, and the blueprint says it is open rather than guessing.</div>
 </div></div></main></div></div>`,
-phone({ title: 'Ideas · Decide', bottom: 'auto_awesome', body: `<div class="modebar"><span class="steps"><b>2 Decide</b> · 3 of 12</span><span class="right"><span class="pill">${ic('bolt', 13)} Low</span></span></div><div class="pdoc" style="padding:12px 14px 0">${QHTML}<div style="display:flex;gap:8px"><span class="btn" style="flex:1">Back</span><span class="btn primary" style="flex:2">Next: three more</span></div></div>` }));
+phone({ title: 'Ideas', bottom: 'auto_awesome', body: `<div class="pdoc" style="padding:12px 14px 0">
+<div class="prog"><span>1 of 3</span><span class="bar"><i style="width:33%"></i></span>${depthPill('Low')}</div>
+<div class="qstack">${qhtml(QCARDS.slice(0, 2))}${GHOST}</div>
+<div style="display:flex;gap:6px;margin-top:4px"><span class="btn" style="flex:1">Skip</span><span class="btn primary" style="flex:1.4">${ic('auto_awesome', 14)} Recommended</span></div></div>` }));
 
-// S14 idea mode, Medium and High: a decision card with evidence
 const DCARD = `<div class="dcard"><div class="dq">4. Deposit before the booking is confirmed, or after?</div>
 <div class="dsec">Where it stands</div><p>Your brief says no-shows cost about four bookings a week. Every comparable booking tool for salons in the template takes a deposit before confirming, and refunds it on cancellation inside a window.</p>
 <div class="dsec">What forces the choice</div><p>UPI AutoPay needs a mandate the customer approves once; a card gets one attempt. A deposit after confirmation is a request the customer can ignore, which is the no-show again in a different shape.</p>
@@ -1102,14 +1190,30 @@ const DCARD = `<div class="dcard"><div class="dq">4. Deposit before the booking 
 <div class="ev">${ic('public', 14)}<span>RBI: UPI AutoPay mandates need a 24-hour pre-debit notice; ₹15,000 is the cap per transaction</span><span class="src">template source · last checked 16 Sep</span></div>
 <div class="ev">${ic('public', 14)}<span>Razorpay: 2% plus GST a transaction on the standard plan</span><span class="src">template source · last checked 16 Sep</span></div>
 <div style="display:flex;gap:8px;margin-top:14px;align-items:center"><span class="btn primary">${ic('check', 14)} Deposit before</span><span class="btn">Deposit after</span><span class="btn ghost">Not sure, take the recommendation</span><span style="margin-left:auto;font-size:11.5px;color:var(--muted)">Recorded in DECISIONS.md with the evidence</span></div></div>`;
+
+// S14 Medium and High. The same layout, the same controls, one question at a time with
+// the evidence opened out. Deliberately not a second route.
 screen('s14-idea-medium', 'Idea mode, Medium and High', `<div class="app">
 ${top({ tabs: [{ n: 'Ideas', c: 'blue', on: 1 }] })}
 <div class="body noright">
 ${ideasTree()}
-<main class="main"><div class="modebar"><span class="steps">1 Describe ${ic('chevron_right', 14)} <b>2 Decide</b> ${ic('chevron_right', 14)} 3 Write ${ic('chevron_right', 14)} 4 Hand off</span><span class="right"><span class="pill pro">${ic('insights', 13)} Medium · 4 of 24</span><span class="pill ai">${ic('auto_awesome', 13)} Pro</span></span></div>
-<div class="doc" style="padding:26px 48px"><div style="max-width:860px;margin:0 auto">${DCARD}
-<div style="font-size:12px;color:var(--muted);margin-top:14px">Medium cites your documents and the template’s sources, with the date the template last checked them. Only High opens pages, and it dates and quotes each one.</div></div></div></main></div></div>`,
-phone({ title: 'Ideas · Decide', bottom: 'auto_awesome', body: `<div class="modebar"><span class="steps"><b>2 Decide</b> · 4 of 24</span><span class="right"><span class="pill pro">${ic('insights', 13)} Medium</span></span></div><div class="pdoc" style="padding:12px 12px 0"><div style="font-size:13px">${DCARD.replace('<div class="dcard">', '<div class="dcard" style="padding:12px 12px">').replace('style="display:flex;gap:8px;margin-top:14px;align-items:center"', 'style="display:flex;flex-direction:column;gap:6px;margin-top:12px"')}</div></div>` }));
+<main class="main"><div class="doc" style="padding:30px 48px">
+<div class="icol wide">
+  <div class="prog"><span>Page 2 of 7</span><span class="bar"><i style="width:29%"></i></span><span>8 of 26 questions</span>${depthPill('Medium')}</div>
+  ${DCARD}
+  ${pageNav({ all: true })}
+  <div class="foot" style="margin-top:10px">Medium and High ask more, and show where each option stands. Everything else works exactly as it does on Low.</div>
+</div></div></main>
+<div class="skipmodal"><div class="card"><h3>Skip the remaining 18 questions?</h3>
+<p>Every one of them takes its recommended answer. You can see what was chosen, and change any of it, before the blueprint is written.</p>
+<p>The brief, the blueprint and the kickoff prompt are all generated from those defaults.</p>
+<div style="display:flex;gap:8px;margin-top:14px;justify-content:flex-end"><span class="btn">Keep answering</span><span class="btn primary">${ic('auto_awesome', 15)} Use the recommendations</span></div></div></div>
+</div></div>`,
+phone({ title: 'Ideas', bottom: 'auto_awesome', body: `<div class="pdoc" style="padding:12px 14px 0">
+<div class="prog"><span>2 of 7</span><span class="bar"><i style="width:29%"></i></span>${depthPill('Medium')}</div>
+${DCARD}
+<div style="display:flex;gap:6px;margin-top:4px"><span class="btn" style="flex:1">Skip</span><span class="btn primary" style="flex:1.4">${ic('auto_awesome', 14)} Recommended</span></div>
+<div style="margin-top:6px"><span class="btn" style="width:100%">Skip all remaining</span></div></div>` }));
 
 // S15 blueprint ready
 const KITLIST = [['SKILL.md', 0, 'Loaded first'], ['AGENTS.md', 0, 'Every agent reads it'], ['00-BRIEF.md', 0], ['01-PRODUCT.md', 0], ['02-DATA-AND-API.md', 0], ['03-ARCHITECTURE.md', 0], ['04-SETUP.md', 0], ['05-FRONTEND-SPEC.md', 0, 'From the drawing'], ['specs/', 1], ['booking.md', 2], ['payments.md', 2], ['DECISIONS.md', 0, '12 decisions, 2 open'], ['MAP.md', 0], ['graph.json', 0, 'For the agent'], ['MANIFEST.json', 0], ['SHA256SUMS', 0]];
