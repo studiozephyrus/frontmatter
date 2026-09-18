@@ -20,6 +20,32 @@ If you are an agent picking this up cold, read **`64-PORTABILITY-AND-HANDOVER.md
 you what to read in what order, what to run to prove the repository is healthy, and what not to
 touch.
 
+## Can development start? Checked 18 September 2026 at `dc42c49`
+
+**The documents are ready. The build is not, yet, because four founder answers are missing.**
+
+What is green, each re-run on 18 September:
+
+- `python3 docs/pack/tools/validate-pack.py` prints `problems: 0`. Every id cited anywhere has a home.
+- `npm run verify` exits 0: typecheck, lint, 1,598 tests with 6 expected failures, build, arch, spec.
+- Every pack file passes `gate.py --strict`.
+- All 38 screens are specified here and drawn in `docs/mvp0/frontmatter-Screens-v8.1-2026-09-18-1315.pdf`.
+
+What stops phase 0 and phase A starting, all in `56-OPEN-DECISIONS.md`:
+
+Decision | Blocks | The pack's recommendation
+`D10` which accounts move to the company | Phase 0 | All of them, before the first stranger
+`D03` which bytes we hold, and from when | The architecture of phase A | Hold them from phase A
+`D01` the product in one sentence | Build order | Option a, the sentence the plan carries
+`D02` the pace | Every calendar date | Phases 0, A, B, D and H at the measured pace
+
+**Before the pilot recruits anybody**, `D11` too: Free's 50 documents against pilot vaults of 200 files.
+
+Also waiting on the founders, none of which blocks phase 0: 152 copy strings marked `proposed` in
+`16-COPY-DECK.md`, and the six calls listed at the end of `docs/mvp0/REVIEW-COVERAGE-2026-09-18.md`.
+
+**The green signal is those four answers.** Once they are written into `56`, phase 0 can start.
+
 ## The product in seven lines
 
 1. **frontmatter is a markdown editor for people whose documents are increasingly written with, and
