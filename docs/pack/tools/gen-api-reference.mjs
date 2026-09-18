@@ -290,7 +290,11 @@ function render(routes, meta) {
   p("owner: sagnik");
   p("generated_by: node docs/pack/tools/gen-api-reference.mjs > docs/pack/22-API-REFERENCE.md");
   p(`verified_against: ${meta.commit}`);
-  p("covers: [api, routes, handlers]");
+  // `covers` is the one front-matter key this generator does NOT own. The pack validator
+  // enforces one home per covered id across all 95 files, and `docs/pack/tools/fix-pack.py`
+  // renames ids to resolve a collision. Regenerating with a hardcoded value would revert that
+  // fix every time, so an existing value wins and the default is only used on a first run.
+  p(`covers: ${meta.covers}`);
   p("---");
   p();
   p("# 22. API reference");
@@ -440,7 +444,15 @@ try {
 }
 const date = new Date().toISOString().slice(0, 10);
 
-const markdown = render(routes, { commit, date, handlerCount });
+// Keep whatever `covers` the file already carries, so a pack-wide id rename survives a rerun.
+const DEFAULT_COVERS = "[api, routes, handlers]";
+let covers = DEFAULT_COVERS;
+if (existsSync(OUT)) {
+  const existing = /^covers:\s*(.+)$/m.exec(readFileSync(OUT, "utf8"));
+  if (existing?.[1]) covers = existing[1].trim();
+}
+
+const markdown = render(routes, { commit, date, handlerCount, covers });
 
 if (process.argv.includes("--check")) {
   if (!existsSync(OUT)) {
