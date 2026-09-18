@@ -56,12 +56,21 @@ curl -sL --compressed "https://api.github.com/search/issues?q=repo:OWNER/REPO+is
   https://github.com/marktext/marktext/issues/1354 ,
   https://github.com/marktext/marktext/issues/1849 opened 2026-09-18
 - **Who ships it today:** nobody ships *guaranteed* byte-exactness as a named
-  promise. Typora (US$14.99 one-off, single licence, three devices) preserves
-  more than MarkText does but still normalises. Obsidian (free personal, US$50
-  per user per year commercial) keeps the file mostly intact because it edits
-  text rather than a block tree, but its own community threads are full of
-  formatting-on-save complaints from plugins. Every WYSIWYG that holds a block
-  tree in memory has this defect by construction.
+  promise. Typora preserves more than MarkText does but still normalises.
+  Obsidian keeps the file mostly intact because it edits text rather than a
+  block tree, but its own community threads are full of formatting-on-save
+  complaints from plugins. Every WYSIWYG that holds a block tree in memory has
+  this defect by construction.
+  Prices, fetched in this session rather than recalled. Typora: **"$ 14.99
+  (without tax)"**, with **"15 days free trial / up to 3 devices"**, copied from
+  https://typora.io/ and matched on https://store.typora.io/ , both opened
+  2026-09-18. Obsidian: free, and the pricing page opens with **"Free without
+  limits. No sign-up required. No strings attached."** Its paid lines are Sync
+  at **$4 USD per user per month billed annually** ($5 monthly), Publish at **$8
+  USD per site per month billed annually** ($10 monthly), Catalyst at **$25 USD
+  one-time**, and Commercial at **$50 USD per user per year**, which its own FAQ
+  says is voluntary: "No. You are not required to pay for a commercial license".
+  From https://obsidian.md/pricing opened 2026-09-18.
 - **Nobody ships:** a *stated, tested, refusable* guarantee that opening and
   closing a file leaves the bytes identical, and a visible diff when the editor
   wants to change anything.
@@ -1041,13 +1050,24 @@ exception noted at row 3.
 | 19 | **Authorship marking, human versus AI** | **28 opening-post likes**, topic likes 65, 38 posts; spec repo at 124 stars | Obsidian topic 72232; `iainc/Markdown-Annotations` | No. FD6 |
 | 20 | **A performance contract anyone can check** | no vote count; **five threads of contradictory anecdote** with numbers from 993 files to 100,000 notes | Obsidian topics 114864, 116296, 112785, 108119; outline#12589, #10697 | No. FD11 |
 
-Two honest notes on this table. First, rows 2, 4, 5 and 10 are real demand that I
-am reporting because the question asked for the top twenty, not because they suit
-us; vim bindings and a plugin system are the two largest single asks in the GitHub
-data and neither is a good fit for this product. Second, the Obsidian counts come
-from one forum, so theme 1 is partly an artefact of Obsidian having shipped a
-Properties feature that people then wanted more of. That does not make the demand
-unreal, but it is not evidence about markdown users in general.
+Three honest notes on this table. First, rows 2, 4, 5 and 10 are real demand that
+I am reporting because the question asked for the top twenty, not because they
+suit us; vim bindings and a plugin system are the two largest single asks in the
+GitHub data and neither is a good fit for this product. Second, the Obsidian
+counts come from one forum, so theme 1 is partly an artefact of Obsidian having
+shipped a Properties feature that people then wanted more of. That does not make
+the demand unreal, but it is not evidence about markdown users in general.
+
+Third, and this matters: **the single most important finding in this file does
+not appear in the table above**, because a table ranked by votes cannot see it.
+**FD17** is a wave of six agent-diff review plugins built for Obsidian during
+2026, with **2,525 combined downloads** across the five new ones and **nine stars
+on the largest repository**. By vote count that is nothing. By signal it
+outranks every row above, because votes measure what people asked for in the
+years when this problem did not exist yet, and a build measures what somebody
+needed badly enough to make. Read FD3 and FD17 together: **eleven people built
+pieces of this product inside somebody else's app this year.** That is the
+finding.
 
 ---
 
@@ -1162,3 +1182,196 @@ is a conversion problem, not a storage problem, and we would be the only tool
 treating it that way.
 
 ---
+## The 2026 wave, found late and the most important thing in this file
+
+### FD17. Six people built an agent-diff review pane for Obsidian in 2026, one of them describes our product back to us
+
+- **Demand:** this is the second independent 2026 build-wave I found, parallel
+  to the CriticMarkup wave in FD3 and pointed at exactly our thesis. All counts
+  from the registry files opened 2026-09-18, all repo dates from the GitHub
+  search API on the same day.
+
+  | Plugin id | Downloads | Repo created | Description, copied from the registry |
+  |---|---|---|---|
+  | `file-diff` | 21,220 | 2023-01-26 | "View the differences between two files with merge options." The pre-agentic one |
+  | `drift` | **999** | **2026-02-15** | "Detects external file changes and shows side-by-side diffs with per-chunk accept/reject." |
+  | `claude-code-ide-pro` | **662** | **2026-05-20** | "Help Claude Code see the active note, tabs, and selection, open files, and propose edits through a side-by-side diff view." |
+  | `side-by-side-diff` | **628** | **2026-08-18** | "Compare, review, and selectively merge two text files in a side-by-side view." |
+  | `git-history-reviewer` | **162** | **2026-06-20** | "Review every commit in your vault's git history with a dark-mode diff view, and track which commits you've reviewed and approved." |
+  | `inplace-diff-view` | **74** | **2026-09-08** | "Renders {old \| new} and {note\|...} correction markers with a hover tooltip to accept, reject, or delete them." |
+
+  `inplace-diff-view` was created **ten days before this research**.
+- **The Drift author's own account, copied exactly from the announcement
+  thread**, topic 113290, posted **2026-04-12**: "I frequently use Claude Code
+  to edit my Obsidian vault, and AI + Obsidian for knowledge management has been
+  gaining a lot of traction recently with Karpathy's tweet. I don't use Git for
+  my vault though, so after AI makes changes there's no easy way for me to view
+  those changes or selectively undo without relying on the coding agent's
+  built-in checkpointing. Even with Git, I'd want to review diffs inside
+  Obsidian, not a separate IDE. So I built Drift."
+  And what Drift does, copied exactly: "Drift is a VS Code-style side-by-side
+  diff viewer that lives inside Obsidian. It automatically detects external file
+  changes and shows you a before/after view with per-chunk accept/reject, accept
+  all/reject all, and collapsible unchanged regions." The mechanism, copied
+  exactly: "An external tool modifies a markdown file in your vault / Drift
+  instantly detects the change and opens a diff tab / You see old vs. new
+  content side-by-side with syntax highlighting / Accept or reject individual
+  c[hunks]".
+  That is the change queue, built as a plugin, by a user, five months ago,
+  because Claude Code was editing his notes and he had no way to review it.
+- **Source:** https://forum.obsidian.md/t/new-plugin-drift-vscode-style-diff-viewer-for-ai-powered-obsidian-editing/113290 opened 2026-09-18;
+  registry and stats files as in FD3; repo dates from
+  https://api.github.com/search/repositories?q=user:transept-ai+user:timdommett+user:nblum+user:glechic+user:friebetill&per_page=100
+  and the `ryanbbrown` query, both opened 2026-09-18
+- **Who ships it today:** nobody, as a product. `ryanbbrown/obsidian-drift` has
+  **9 stars**; `Transept-AI/obsidian-claude-code-ide-pro` has **2**;
+  `nblum/obsidian-side-by-side-diff` has **5**;
+  `TimDommett/Obsidian-Git-History-Reviewer` and `glechic/inplace-diff-view`
+  have **0**. Six builds, 2,525 combined downloads for the five 2026 ones, and
+  not one of them is more than a side project.
+- **Nobody ships:** an editor where reviewing an agent's change is the main
+  surface rather than a bolt-on pane.
+- **The problem it solves for us:** taken with FD3, this is eleven separate
+  people building pieces of frontmatter inside somebody else's app during 2026,
+  none of them succeeding, because a plugin cannot own the edit path. It is the
+  strongest evidence in this entire lens that the premise is right and the
+  timing is now. It also names our competition honestly: not Obsidian, but the
+  possibility that Obsidian ships this natively before we do.
+- **Fit:** it is what we are building. The only new information is **priority**:
+  per-chunk accept and reject on an externally-changed file, with the diff
+  opening by itself, is the thing people are hand-rolling this year.
+- **Effort:** already planned.
+- **Verdict:** must-have, and it should move up the order. If I could change one
+  thing about the plan on the strength of this lens, it would be to make the
+  external-change diff the demo, because six people have now built it badly and
+  none of them wanted to.
+
+---
+
+### FD18. Obsidian shipped a CLI, agents drove it, and the bug reports are about exit codes lying
+
+- **Demand:** this is not a feature request. It is two bug reports that show
+  what happens when agents start driving a document editor, and they are the
+  clearest evidence in this file that the agentic era has already arrived in
+  this category.
+  - **"CLI: `property:set` Silently Succeeds But Makes No Change on
+    Externally-Written Files"**, Obsidian bug reports, topic 113166, posted
+    **2026-04-09**. Copied exactly: "I've run into a silent failure in the
+    Obsidian CLI (installer 1.12.7+, Windows 11) that affects automation
+    workflows where files are written to the vault by external processes." And
+    the defect: "obsidian property:set exits with code 0 and produces no output
+    - indicating success - but makes no change to the file when that file was
+    written externally and Obsidian hasn't yet re-indexed it." (an em dash in
+    the original is written here as a hyphen, per house style.)
+    The three conditions, copied exactly, are a precise statement of the
+    editor-plus-agent race: "A file is written to the vault by an external
+    process - Node.js fs.writeFileSync, PowerShell Set-Content, Python, any
+    shell tool - anything other than Obsidian itself writing the file." Then:
+    "The property:set command is issued before Obsidian's file watcher has
+    processed the change. On Windows this window is roughly 0-3 seconds." And:
+    "The file is not currently open in an Obsidian editor tab. Files open as
+    tabs are in active memory and respond to CLI writes immediately."
+  - The second, quoted inside that thread by a moderator: **"Obsidian CLI: Make
+    Return Value / Exit Code reflect the success/fail state of the operation
+    performed"**. Copied exactly, including its own provenance note: "NOTE ::
+    This defect was found and verified during the use of AI agents in an
+    automated workflow. The `obsidian move` CLI command exits with code `0`
+    (success) even when the move operation fails. When the destination directory
+    does not exist, the CLI prints an `Error: ENOENT` message to stdout but
+    still returns exit code `0`. This makes it impossible for calling scripts to
+    detect failures via standard shell error handling (`$?`, `set -e`, `||`)."
+- **Source:** https://forum.obsidian.md/t/cli-property-set-silently-succeeds-but-makes-no-change-on-externally-written-files/113166 opened 2026-09-18;
+  https://obsidian.md/help/cli opened 2026-09-18
+- **Who ships it today:** Obsidian ships the CLI. Its exit codes do not report
+  failure, and a write can be lost to a file-watcher race of roughly zero to
+  three seconds on Windows.
+- **Nobody ships:** a command-line surface for a document editor whose exit code
+  means something. That is a one-line requirement and it is the difference
+  between an agent that can be trusted with a document and one that cannot.
+- **The problem it solves for us:** three lessons, and all three are cheap.
+  One, if we ship a command line, **every command must exit non-zero on
+  failure**, and that belongs in the contract gate, not in somebody's memory.
+  Two, **an operation must never be applied against a stale in-memory index**;
+  read the file, or refuse. Our splice engine already refuses when a range is
+  ambiguous, and "the file changed under me" is the same refusal. Three, the
+  second bug was found by an agent, which tells you who the users of this
+  surface will be.
+- **Fit:** direct, and it sharpens FD13 rather than replacing it. The ask is not
+  "have a CLI". It is "have a CLI an agent can trust": honest exit codes, no
+  stale-cache writes, and a blocking review mode.
+- **Effort:** small, and mostly discipline rather than code.
+- **Verdict:** good-to-have as a feature, must-have as a rule. Put the exit-code
+  contract in the gate on the day the first command ships, because the
+  competitor's version of this is a public bug report filed by a robot.
+
+---
+## What I could not reach
+
+- **Google Docs help community.** `https://support.google.com/docs/threads?hl=en&thread_filter=(query:markdown)`
+  returned HTTP 200 and 441,745 bytes, but the thread list is rendered by
+  JavaScript: stripping tags left 1,655 characters of page chrome and the string
+  "No results", with no thread titles and no counts. I have no vote data from
+  Google's forum and have not guessed any.
+- **Notion's request board.** `https://notion.canny.io/` returns HTTP 200 with
+  the body "Company Not Found. There is no such company. Did you enter the right
+  URL?", and `https://feedback.notion.so/` does not resolve (curl exit 6).
+  Notion appears to have no public, vote-counted request board. Opened
+  2026-09-18.
+- **Reddit.** `https://www.reddit.com/r/Notion/search.json` returned **HTTP 403**
+  with a block page, with and without a browser user agent. No Reddit counts
+  appear in this file. Recording, per the brief's rule 8, that the returned block
+  page tripped this session's injection-pattern scanner; I read none of it as
+  instruction and acted on none of it.
+- **iA Writer has no public request board.** `https://github.com/iainc/iA-Writer`
+  is a 404. `https://ia.net/support` exists but is a support page, not a
+  vote-counted board. The only iA artefact with counts is the Markdown
+  Annotations spec repo, used in FD6.
+- **GitHub core API rate limit.** Unauthenticated, 60 requests per hour, and I
+  exhausted it partway through. Repository metadata after that point came from
+  the search API, which has a separate quota. One consequence: **repository
+  creation dates in FD3 and FD17 come from `search/repositories`, not from the
+  per-repo endpoint.** They agree where both were available
+  (`philphilphil/obsidian-track-changes`, 2026-05-12).
+- **Obsidian's full CLI command list**, because `https://obsidian.md/help/cli`
+  needs JavaScript. See the UNVERIFIED note in FD13 and FD18.
+- **Obsidian forum topic bodies beyond post 20.** The Discourse topic endpoint
+  returns the first 20 posts. For topics with 73, 134, 149, 168 and 247 posts I
+  read the opening posts and the first twenty, not the whole thread. Every
+  quotation in this file is from a post I actually read.
+- **Not attempted:** Logseq's and Joplin's own forums (only their GitHub
+  trackers), Zettlr's Discord, and Typora's `support.typora.io` article pages
+  (its board is the GitHub tracker, which I did use).
+- **Prices were initially written from memory and have since been fetched and
+  corrected in place.** Typora's and Obsidian's figures in FD1 now come from
+  https://typora.io/ , https://store.typora.io/ and https://obsidian.md/pricing ,
+  all opened 2026-09-18. The correction also fixed a real error: Obsidian's
+  commercial licence is **voluntary**, not required, which my first draft
+  implied it was not.
+
+---
+
+## What surprised me
+
+1. **Eleven people built pieces of frontmatter inside Obsidian during 2026 and
+   every one of them is tiny.** Six CriticMarkup suggestion plugins created
+   between April and July, and five agent-diff review panes created between
+   February and September, the newest ten days old. The idea is being
+   independently rediscovered every few weeks by people who cannot ship it,
+   because a plugin cannot own the edit path.
+2. **CriticMarkup's own website is a domain-parking page**, and its substitution
+   mark is silently destroyed by GFM strikethrough in two of the three parsers I
+   tested. Everyone in every thread recommends it as the safe standard. It is a
+   five-year-dead spec with a live interoperability bug in its most important
+   mark.
+3. **Four of the top fourteen all-time Obsidian requests are about frontmatter**,
+   including numbers one and two, and the open ones have been open for three to
+   six years. For a product with this name that is either a coincidence or the
+   roadmap.
+4. **The change queue was specified by a user in March 2021**, three words at a
+   time: "Automatically / User Confirmation Required (Perhaps with the ability to
+   review changes before confirming.) / Never". It has 83 likes and it is still
+   open.
+5. **The best evidence for the agentic thesis is a bug report filed by an
+   agent.** Obsidian's CLI returns exit code 0 on failure, and the report says
+   so in its own header: "This defect was found and verified during the use of
+   AI agents in an automated workflow."
