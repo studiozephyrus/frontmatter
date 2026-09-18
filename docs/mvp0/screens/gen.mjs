@@ -1895,7 +1895,7 @@ ${rail({ outline: OUTLINE_BRIEF, aiOff: 'Every provider is down. Try again in a 
 phone({ mode: 'Live', title: '00-BRIEF.md', bottom: 'auto_awesome', body: `${pmodebar('Live')}<div class="pdoc"><div class="md">${DOC_BRIEF_SHORT}</div></div>${AI_DOWN}` }));
 
 // S33 over the cap: what happened, what still works, what to do
-const OVERCAP = `<div class="modal" style="width:520px"><h2>That is your 50th cloud document</h2><p>Free keeps 50 documents in the cloud. Everything you have still opens, edits and exports. Nothing is deleted.</p>
+const OVERCAP = `<div class="modal" style="width:520px"><h2>That is your 50th cloud document</h2><p>Free keeps 50 documents in the cloud. Everything you have still opens, and nothing is deleted.</p>
 <div class="kit"><div class="file">${ic('check', 14, 'ok')}<span class="sp">Open, edit and export every document</span></div><div class="file">${ic('check', 14, 'ok')}<span class="sp">Share and publish what you have</span></div><div class="file">${ic('close', 14)}<span class="sp">Create a new cloud document until you are under 50</span></div></div>
 <div class="stack" style="margin-top:14px"><span class="btn">${ic('delete', 18)} Delete or export something</span><span class="btn">${ic('desktop_mac', 18)} Use the desktop app, which has no cap</span><span class="btn primary">${ic('bolt', 18)} Move to Pro, ₹299 a month incl. GST</span></div>
 <p class="fine">A downgraded account meets this same screen: nothing is removed, nothing new is created until it is under the cap.</p></div>`;

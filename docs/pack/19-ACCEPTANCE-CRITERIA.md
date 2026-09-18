@@ -6,7 +6,7 @@ tier: canonical
 status: living
 updated: 2026-09-18
 owner: sagnik
-verified_against: f237ece
+verified_against: 31d3644
 covers: [acceptance-criteria, testable-assertions]
 ---
 
@@ -296,7 +296,7 @@ One row per slug used above, saying what the slug is and where the plan defines 
 
 **The other half of the join is `10-FEATURE-REGISTER.md` section 7**, which lists the numeric
 features each slug reaches. Read the two side by side: this table says what a slug means, that one
-says which features it tests. **Forty-two slugs, and the register records that they reach 137 of its
+says which features it tests. **Forty-two slugs until 18 September, forty-three with `F-trial` added for D08, and the register records that they reach 137 of its
 180 features**. The 43 that slugs left uncovered are now all covered: 21 by section 12a and 22 by
 section 12b, and the register's `acceptance` column points at each.
 
@@ -339,6 +339,7 @@ Slug | What it is | Where the plan defines it | Criteria
 `F-config` | The configuration panel | §30 | `A144` to `A148`.
 `F-ledger` | The usage ledger | §18 | `A149`, `A150`.
 `F-exception` | A time-boxed exception | §30 | `A151`.
+`F-trial` | The one-month Pro trial and its lock, D08 | §13, and `53-PRICING-AND-ENTITLEMENTS.md` sections 5.1 and 5.5 | `A797` to `A814`, section 12c. No register id yet.
 `F-empty` | Empty states | `18` §4 | `A200`.
 `F-a11y` | Accessibility | §16 | `A201`, `A202`.
 `F-perf` | Performance budgets | §21 | `A203`, `A204`.
@@ -696,6 +697,46 @@ id | feature | given | when | then | test | spec
 
 ---
 
+## 12c. The trial and its lock, 18 September 2026
+
+D08 `[Z]`: a one-month Pro trial for new accounts, reminders at 15, 10, 5, 3 and 2 days before the
+end, and if unpaid, editing, copy and export lock while reading stays. The spec is
+`53-PRICING-AND-ENTITLEMENTS.md` sections 5.1 and 5.5, and the events are
+`55-MEASUREMENT-AND-EVENTS.md` section 6.11a.
+
+- **New ids start at `A797`**, after the highest id in this file, `A796`. Nothing was renumbered.
+- **The feature column is the slug `F-trial`**, per section 0.2, because `10-FEATURE-REGISTER.md`
+  has no trial feature yet. That file owns the number, and adding it is its call.
+- **The test column is `T` plus the same three digits**, proposed and not written.
+- **Every day count is read from configuration**, `trial.length.days` and `trial.reminders.days`.
+  The defaults 30 and 15, 10, 5, 3, 2 appear only where a criterion pins the defaults.
+
+id | feature | given | when | then | test | spec
+`A797` | `F-trial` | No account for a Google `sub` or a GitHub user id, and `trial.length.days` at its default | The first sign-in creates the account | `trial.started_at` is set, `trial.ends_at` equals it plus `trial.length.days` times 86,400 seconds, exactly one `trial.started` event exists, and `limitsFor` returns the `plan.pro` row | `T797` | `53-PRICING-AND-ENTITLEMENTS.md` section 5.1.
+`A798` | `F-trial` | An account whose trial has started, converted or lapsed | The same `sub` or GitHub id signs in again, and the account is deleted and re-created with the same id | `trial.started_at` is unchanged, or refused on re-creation, and the count of `trial.started` events for that id is still 1 | `T798` | `53` section 5.1.1.
+`A799` | `F-trial` | An account with a running trial | `trial.length.days` is lowered on the panel | That account's stored `trial.ends_at` compares equal before and after the save | `T799` | `28-CONFIGURATION-PANEL-SPEC.md` section 4.2.
+`A800` | `F-trial` | An account with a running trial, the default reminder list, and a test clock | The clock advances one day at a time to `trial.ends_at`, running the reminder job twice each day | Exactly 5 `trial.reminder.sent` events exist, with `days_left` equal to 15, 10, 5, 3 and 2 in that order, and the email stub received exactly 5 messages | `T800` | `53` section 5.1.2.
+`A801` | `F-trial` | The same, with the job not run on the day `days_left` is 3 | The clock reaches `trial.ends_at` | No event with `days_left` 3 exists, and one with `days_left` 2 exists | `T801` | `53` section 5.1.2.
+`A802` | `F-trial` | A trial account that paid with 10 days left | The clock advances to `trial.ends_at` | Zero `trial.reminder.sent` events are dated after the `trial.converted` event, and no `trial.expired` or `trial.locked` event exists | `T802` | `53` section 5.1.2.
+`A803` | `F-trial` | A trial account with no payment | The clock passes `trial.ends_at` and the job runs | Exactly one `trial.expired` and one `trial.locked` exist, and `limitsFor` returns `access.docs.read` true and `access.docs.edit`, `access.docs.copy`, `access.export` and `access.ai` false | `T803` | `53` section 5.5.
+`A804` | `F-trial` | A locked account and one of its documents | An edit is submitted through the web editor, the API and an agent token | Each is refused with `K.trial.locked.edit` or its error row, the document's bytes compare equal before and after, and the change queue holds no new item | `T804` | `53` section 5.5.
+`A805` | `F-trial` | A locked account with a document open and the clipboard holding a known string | The copy command runs | The clipboard still holds the known string, and the rendered text equals `K.trial.locked.copy` | `T805` | `53` section 5.5.
+`A806` | `F-trial` | A locked account | Every export route, the history `.zip` and the account export are called | Each answers 403 with the string at `K.trial.locked.export`, and no response body contains any byte sequence of 32 or more bytes from the account's documents | `T806` | `53` section 5.5.
+`A807` | `F-trial` | A locked account with one shared link and one published page | Every document is opened, the link is fetched signed out, and the page is fetched | Every document renders, and the link and the page each answer 200 | `T807` | `53` section 5.5.
+`A808` | `F-trial` | A locked account with a GitHub mirror and N documents | The lock applies and 7 days pass on the test clock | The document count is N, every document's hash is unchanged, the GitHub App installation token is not revoked, and the mirror adapter records zero writes and zero pulls in that window | `T808` | `53` section 5.5, the proposed mirror rule.
+`A809` | `F-trial` | A locked account | A Pro payment completes | `trial.converted` and `trial.unlocked` each fire once, `limitsFor` returns the `plan.pro` row on the next read, and an edit then writes | `T809` | `53` section 5.5.
+`A810` | `F-trial` | A paying Pro account with no trial state, and its debit stubbed to fail | The clock walks the dunning ladder past day 14 | `access.docs.edit`, `access.docs.copy` and `access.export` are true at every day, and no `trial.locked` event exists | `T810` | `53` section 5.2.
+`A811` | `F-trial` | A trial account whose `trial.ends_at` is known, and a client clock set 3 days wrong | The plan route renders | The date inside `K.trial.countdown` equals the stored `trial.ends_at` date, not the client's | `T811` | `12-screens/S29.md`.
+`A812` | `F-trial` | Two locked accounts, one with a Drive mirror and one with none | The trial-locked state renders for each | `K.trial.locked.mirror` renders exactly once for the first and zero times for the second, and the cap exits `K.s33.do.delete` and `K.s33.do.desktop` render zero times for both | `T812` | `12-screens/S33.md`.
+`A813` | `F-trial` | The repository and this pack at any commit | `grep -rn "readable and exportable" src` runs, and the standing-promise rows in section 1 of `16-COPY-DECK.md` are read | The grep returns zero lines, and no standing-promise string contains the word export without also containing "trial" | `T813` | `16-COPY-DECK.md` section 1.
+`A814` | `F-trial` | The panel with `trial.length.days` at 30 | `trial.reminders.days` is saved as [2, 31, 5, 5] | The save is refused server side, naming 31 as over the length and 5 as repeated, and a save of [2, 15, 5] is stored as [15, 5, 2] | `T814` | `28-CONFIGURATION-PANEL-SPEC.md` section 4.2.
+
+**`A804`, `A806` and `A808` need a red proof** before they count, per `AGENTS.md` rule 1. Each
+describes a path where the tempting implementation is to hide a control in the interface and leave
+the route open, and a test that only clicks the interface would pass against that defect.
+
+---
+
 ## 13. Counts
 
 Counted from the tables above on 18 September 2026, with these three commands:
@@ -711,9 +752,9 @@ grep -E '^`A[0-9]{3}` \|' docs/pack/19-ACCEPTANCE-CRITERIA.md \
   | grep -cE '\| `(test/|scripts/|docs/mvp0/screens/gen)'
 ```
 
-- **426 criteria**: 129 written first, 226 added in section 12a on 18 September, 3 more for S31 (`A726` to `A728`) the same day, and 68 in section 12b (`A729` to `A796`).
+- **444 criteria**: 129 written first, 226 added in section 12a on 18 September, 3 more for S31 (`A726` to `A728`) the same day, 68 in section 12b (`A729` to `A796`), and 18 in section 12c for the trial (`A797` to `A814`).
 - **12 distinct real test paths.**
-- **19 criteria carry one.** The remaining 407 carry a `T` id and do not exist.
+- **19 criteria carry one.** The remaining 425 carry a `T` id and do not exist. Worked: 444 - 19 = 425.
 - **Six criteria are marked `Not yet checkable`**: one in section 12a.2, because two screens disagree, and five in section 12b, each naming what is missing. Counted with `grep -cE '^.A[0-9]{3}. \|.*Not yet checkable' docs/pack/19-ACCEPTANCE-CRITERIA.md`.
 
 **That ratio is the honest state of the product.** The engine has tests; almost nothing else does.
@@ -738,7 +779,7 @@ grep -E '^`A[0-9]{3}` \|' docs/pack/19-ACCEPTANCE-CRITERIA.md \
 - **Section 12a's rows were drafted from the screens' own wording**, one screen at a time. Where a
   screen's row carried two facts, the second fact's home is named in `tools/acceptance-reconciliation.md`
   section 4, not added to the screen.
-- **One thing a reader must not conclude.** A criterion here is not a passing test. **426 criteria,
+- **One thing a reader must not conclude.** A criterion here is not a passing test. **444 criteria,
   19 of them covered by a real test** is the number that matters, and section 13 gives the commands
   that re-derive it rather than asking anyone to trust this sentence.
 - **The rule this file exists to enforce, restated.** If a criterion cannot be checked by a machine,

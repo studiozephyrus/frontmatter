@@ -6,7 +6,7 @@ tier: canonical
 status: living
 updated: 2026-09-18
 owner: sagnik
-verified_against: e532e32
+verified_against: 31d3644
 covers: [config-panel, S35, S36, S37, S38, audit]
 ---
 
@@ -105,7 +105,7 @@ above the table rather than repeated, and a column that does not apply is left o
 
 Column | What it holds
 **Key** or **Entitlement id** | The dotted identifier the code reads. Lower case, dotted, never renamed. A rename is a new key plus a migration
-**Type** | `int`, `int \| null`, `money.inr`, `bool`, `enum`, `string`, `date`, `list<id>`
+**Type** | `int`, `int \| null`, `money.inr`, `bool`, `enum`, `string`, `date`, `list<id>`, `list<int>`
 **Bounds** | What the panel refuses to save. A bound is enforced server side, never only in the browser
 **Default** | The value the row ships with. **Only on rows this file owns.** For an entitlement or a price, the value is in `53-PRICING-AND-ENTITLEMENTS.md`
 **Who** | Who may change it. `founder` for every row today, because super admin is the only role that reaches this panel
@@ -141,7 +141,7 @@ the value of any row, follow the link.
 Ids are `53-PRICING-AND-ENTITLEMENTS.md` section 3.1. Nothing here repeats a number from it.
 
 Entitlement id | Type | Bounds the panel enforces | On lowering
-`limits.docs.cloud` | `int \| null` | 1 to 100,000, or null | S33 over the cap. Every document stays readable and exportable. Nothing new is created until under the cap
+`limits.docs.cloud` | `int \| null` | 1 to 100,000, or null | S33 over the cap. Every document stays readable, editable and exportable while over a cap. Nothing new is created until under the cap. The unpaid-trial lock is a separate state, 10.2
 `limits.pages.published` | `int \| null` | 0 to 10,000, or null | Existing pages keep serving. No new page is published. **A published page is never taken dark by a limit change**, because a stranger's link would break
 `limits.collab.live` | `int \| null` | 0 to 100, or null | A session already open finishes. No new session starts over the cap
 `limits.history.days` | `int` | 0 to 3,650 | Versions outside the new window are pruned to the head **after a 30-day grace**, never on save. See 4.5
@@ -186,6 +186,27 @@ Key | Type | Bounds | Default | What reads it
 `policy.trash.days` | `int` | 1 to 365 | **30** | The trash sweep
 `policy.invite.credits` | `int` | 0 to 100 | **5** | The invite on S17 and the referral after sign-up. Both sides get it once, on the invited person's first sign-in `[Z]`
 `policy.questions.default` | `enum` | `dynamic`, `standard` | **`dynamic`** | The idea flow on S13. The person's own switch overrides it; `standard` is also the degradation path when the chain is exhausted
+`trial.length.days` | `int` | 1 to 90 | **30** | Account creation, which writes `trial.ends_at`. `53-PRICING-AND-ENTITLEMENTS.md` section 5.1
+`trial.reminders.days` | `list<int>` | 0 to 10 entries, each 1 to `trial.length.days`, distinct | **[15, 10, 5, 3, 2]** | The reminder job of `53` section 5.1.2, and the countdown line on S29
+
+**The two trial rows, added 18 September for D08** `[Z]`.
+
+- **The defaults are the founder's**: one month, and reminders at 15, 10, 5, 3 and 2 days before
+  the end. One month is stored as 30 days `[P]`, because a calendar month varies and an instant
+  cannot.
+- **The bounds are mine.** `INFERENCE:` 90 days as the ceiling and 10 reminders as the most. Neither
+  comes from the plan or the founder.
+- **On lowering `trial.length.days`, a running trial is not shortened.** `trial.ends_at` is written
+  once at account creation, so the change reaches new accounts only. The panel says so before it
+  saves, and its blast radius is zero by construction.
+- **On changing `trial.reminders.days`, a running trial picks up the new list** for every day not
+  yet reached. A day already sent is never sent again. The panel stores the list sorted from
+  largest to smallest, whatever order it was typed in.
+- **An empty list is allowed** and sends no reminders. The lock at the end still applies, so the
+  row's help text says: an empty list means people are locked without warning.
+- **Neither row can turn the trial off.** Whether new accounts get a trial at all is D08, a
+  decision rather than a setting. `INFERENCE:` a switch to disable it would belong in section 6 as
+  a flag, and none is specified.
 
 ### 4.3 The refill row, and a disagreement worth naming
 
@@ -528,7 +549,8 @@ possible bug on this surface.
 
 **Lowering one is a downgrade**, and the plan states the rule
 (`docs/mvp0/PRODUCT-PLAN.md` section 30): everything stays readable and exportable, and nothing new is
-created until the account is under the cap. That is S33.
+created until the account is under the cap. That is S33. **This holds for a lowered limit only.** A
+trial that ended unpaid is locked instead, per D08, and no panel change can put an account there.
 
 ### 10.1 The save flow
 
@@ -556,6 +578,7 @@ Over `limits.ai.edits` | Everything that never touches a model, which is most of
 Over `limits.collab.live` | The open session finishes | No new session
 Outside `limits.history.days` | The head version, always | Older versions are pruned 30 days after the change
 A Pro account that lapses to Free | All of the above | The same, and the portfolio goes private rather than being deleted
+**A trial that ended unpaid**, not reached by any panel change | Reading every document. Shared links and published pages keep serving | **Editing, copy, export and AI.** `53-PRICING-AND-ENTITLEMENTS.md` section 5.5, D08 `[Z]`
 
 **The entitlement message and the outage message are different messages.** File 27 section 7 says the
 same thing from the router's side, and this is the panel side of the same rule. Conflating them

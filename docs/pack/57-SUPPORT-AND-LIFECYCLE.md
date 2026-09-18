@@ -6,7 +6,7 @@ tier: canonical
 status: living
 updated: 2026-09-18
 owner: sagnik
-verified_against: 0af3c90
+verified_against: 31d3644
 covers: [support, export, deletion, shutdown, promises]
 ---
 
@@ -83,8 +83,15 @@ written down so that nobody invents a different number in a reply.
 
 ### 2.3 The one promise that outranks the rest
 
-**A person can always get their documents out.** Whatever else is broken, whatever the account
-state, whatever the plan, whether or not the bill was paid.
+**A person can always read their documents, and nothing is deleted.** Whatever else is broken,
+whatever the account state, whatever the plan.
+
+**Getting them out through the app has one exception since 18 September** `[Z]` (D08): a trial that
+ended unpaid locks editing, copy and export until the person pays. It was "whether or not the bill
+was paid", and the founder chose the lock knowing it breaks that sentence. **The files still reach
+the person through their own GitHub or Drive mirror**, which the lock does not touch.
+`UNVERIFIED:` whether that is enough under the DPDP Act 2023 and GDPR Article 20. needs: legal
+opinion.
 
 That is not a support promise. It is an architectural one, and section 3 is how it is kept.
 
@@ -126,8 +133,13 @@ the promise in section 2.3 credible rather than a policy.
 
 ### 3.3 What export does when the account is over its cap or lapsed
 
-**It works.** `53-PRICING-AND-ENTITLEMENTS.md` section 5.3 is explicit: every document stays
-readable and exportable in every state. Export is never gated by a plan, a cap or an unpaid bill.
+**Over a cap, or after a paid plan lapses, it works.** `53-PRICING-AND-ENTITLEMENTS.md` section 5.3
+is explicit that export is never gated by a plan, a cap or a failed payment.
+
+**After a trial that ended unpaid, it does not.** D08 `[Z]`, 18 September: editing, copy and export
+lock, and reading stays (`53` section 5.5). The mirror in the person's own GitHub or Drive is not
+touched, so those files remain theirs. `UNVERIFIED:` whether the export lock is lawful under the
+DPDP Act 2023 and GDPR Article 20. needs: legal opinion.
 
 ### 3.4 How long it takes
 
@@ -215,7 +227,7 @@ Commitment | Detail
 **Notice** | **90 days** before anything is switched off, by email to every account with a document
 **Export stays on** | Export is the **last** thing to be switched off, after publishing, after AI, after sharing
 **Published pages get a grace period** | They keep serving for the 90 days, so a link in somebody else's document does not break the day we stop
-**No ransom** | Export is never moved behind a payment. Not at the end, not at any point
+**No ransom** | Export is never moved behind a payment at shutdown. **The one place it is, anywhere in the product, is the unpaid-trial lock** of `53-PRICING-AND-ENTITLEMENTS.md` section 5.5, D08 `[Z]`. `proposed (founder review)`: at shutdown that lock lifts for export, so no account leaves without its files
 **The format is documented** | `docs/mvp0/PRODUCT-PLAN.md` section 20 specifies every format we invented, each with a version field, a rule for unknown fields, a stated degradation in a plain markdown reader, and a test
 
 **The last row is the one that matters most and it is the least obvious.** Our own block formats

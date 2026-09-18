@@ -1192,12 +1192,13 @@ AI on Free | credits | Every free tier with AI puts a number on it: Kiro 50 cred
 GitHub on Free | open question | HackMD: free with "20 GitHub pushes per month", unlimited at $5. GitBook: Git Sync free. Notion gates GitHub to Business at $20 | Free with 20 pushes and 1 repository. Pro unlimited. The connection is the product, so it cannot sit behind a higher tier
 Password links | asked for | Paid at Dropbox, Figma and Loom. None at Notion | Pro
 Google Drive | asked for | Notion gates Drive to Plus at $10. It is the person's own storage and costs us nothing | Free. **A full mirror on both plans** `[Z]` (D03, 18 September), through `drive.file` only; our copy stays canonical
-Downgrade | not stated | Figma keeps files readable over the cap | Every document stays readable and exportable; nothing new is created until under the cap (S33)
+Downgrade | not stated | Figma keeps files readable over the cap | Every document stays readable, editable and exportable over a cap; nothing new is created until under the cap (S33). **The one exception is a trial that ended unpaid**, below `[Z]` (D08, 18 September)
 
 **Pricing** `[Z]` `[M]`.
 
 - **Free at ₹0.**
 - **Pro at ₹299 a month, or ₹2,499 a year**, both GST inclusive. That is ₹253.39 before GST and about ₹246 after Razorpay's fee, section 22, or about $3.12 at ₹95.96 to the dollar.
+- **A one-month Pro trial for every new account** `[Z]` (D08, 18 September). No card at the start. The rest is in the paragraph on the trial below.
 
 **The first paid tier across peers**, corrected this revision (F004, F059).
 
@@ -1240,6 +1241,16 @@ AI-forward tools | $15 to $20
 - **A GitHub mirror past 5 GB is a warning, not a block**, because 5 GB is GitHub's own recommended ceiling.
 
 **The Free document cap is a panel value** `[Z]` (D11, 18 September). The 50 above is where it starts. It is A/B tested on real accounts before it is fixed, per `docs/pack/28-CONFIGURATION-PANEL-SPEC.md` section 10.3.
+**The trial, decided on 18 September** `[Z]` (D08).
+
+- **One month of Pro for every new account, once per account.** The length and the reminder days are configuration-panel rows, `trial.length.days` at 30 and `trial.reminders.days` at 15, 10, 5, 3 and 2 days before the end (`docs/pack/28-CONFIGURATION-PANEL-SPEC.md` section 4.2).
+- **If the trial ends unpaid, editing locks, and copy and export lock too. Reading stays.** Nothing is deleted, and shared links and published pages keep serving (`docs/pack/53-PRICING-AND-ENTITLEMENTS.md` section 5.5).
+- **The mirror is untouched.** Under D03 every document is also in the person's own GitHub or Drive, and the in-app lock does not remove it. `proposed (founder review)`: sync pauses in both directions while locked, and resumes through the change queue on payment.
+- **This is not dunning.** A paying account whose debit fails follows the ladder in `docs/pack/53-PRICING-AND-ENTITLEMENTS.md` section 5.2 and is never locked.
+- `UNVERIFIED:` whether locking export is lawful against data-portability rights under the DPDP Act 2023 and GDPR Article 20. needs: legal opinion.
+
+**The standing promise, reworded for D08** `[Z]`. It was "every document stays readable and exportable". It is now: **every document stays readable in every state, and nothing is deleted. Editing, copy and export stay open on every plan and over any cap, and pause only when a trial ends unpaid.** The founder was told the old promise breaks and chose the trial lock anyway.
+
 
 ## 14. AI for the pilot, and after
 
@@ -2002,7 +2013,7 @@ Exceptions | A temporary limit granted to one account, with an expiry | The same
 **A limit that falls is a downgrade** `[L]`.
 
 - **Raising** a limit takes effect on the next read, and nobody notices.
-- **Lowering** one below what an account already holds puts that account into the over-cap state of S33: everything stays readable and exportable, nothing new is created until it is under the cap.
+- **Lowering** one below what an account already holds puts that account into the over-cap state of S33: everything stays readable, editable and exportable, nothing new is created until it is under the cap. No panel change can put an account into the trial lock of section 13, which is a separate state.
 - **So the panel says how many accounts a change puts over the line, and names them, before it saves.**
 
 **What the panel cannot do** `[L]`. Three things stay outside it, because a setting cannot undo a promise:

@@ -98,13 +98,20 @@ id | screen | string | tone | budget | notes
 `K.promise.notraining` | S01 | We never train on your documents, and here are the providers that keep that true. | `promise` | `lede` | `[gen]` `docs/mvp0/screens/gen.mjs:811`. "here are the providers" is the link. **Only as true as the chain in S36**, which is why that screen disables a provider whose terms nobody opened.
 `K.promise.nocharge` | S32 | Nothing is deducted for a failed call. | `promise` | `label`, 40 | `[gen]` `docs/mvp0/screens/gen.mjs:1613`. The credit-ledger contract, stated to the person.
 `K.promise.untouched` | S32 | Your document is untouched and nothing was charged. | `promise` | `label` | `[gen]` `docs/mvp0/screens/gen.mjs:1610`. Said at the moment of failure, before any instruction.
-`K.promise.readable` | S33 | Everything you have still opens, edits and exports. Nothing is deleted. | `promise` | `lede` | `[gen]` `docs/mvp0/screens/gen.mjs:1627`. The plan's form of the same promise is "Every document stays readable and exportable" (`docs/mvp0/PRODUCT-PLAN.md` section 13); the screen's wording is the one that ships, and the plan's is the internal statement of it.
+`K.promise.readable` | S33 | Everything you have still opens, and nothing is deleted. | `promise` | `lede`, 56 | `[gen]` `docs/mvp0/screens/gen.mjs:1898`, **reworded 18 September for D08** `[Z]`. It was "Everything you have still opens, edits and exports. Nothing is deleted." That stopped being true in every state once an unpaid trial locks editing and export (`53-PRICING-AND-ENTITLEMENTS.md` section 5.5), so the promise now says only what holds everywhere. On S33 over the cap, editing and export are still open and `K.s33.still.open` says so.
+`K.promise.readable.full` | S29 | Your documents always stay readable, and nothing is deleted. Editing, copying and export stay open on every plan, and pause only if a trial ends unpaid. | `promise` | `body`, 152 | `[new]` proposed 18 Sep, **not founder-reviewed**. The long form of the reworded promise, for S29, the pricing page and the trial emails. It replaces the plan's "Every document stays readable and exportable" (`docs/mvp0/PRODUCT-PLAN.md` section 13). `UNVERIFIED:` whether the export pause is lawful; needs: legal opinion, D08.
 `K.promise.nomerge` | many | Conflicts are never merged silently. Both versions are kept and you choose. | `promise` | `lede` | `[gen]` `docs/mvp0/screens/gen.mjs:1432`. Invariant 12 of the engine (`docs/mvp0/PRODUCT-PLAN.md` section 17), said in the person's words.
 `K.promise.yourfiles` | S01 | Markdown that stays yours, in a Doc mode or a plain one. | `promise` | `lede` | `[gen]` `docs/mvp0/screens/gen.mjs:816`.
 `K.promise.docsonly` | S23 | frontmatter only ever writes under docs/, and that rule is tested. | `promise` | `lede` | `[gen]` `docs/mvp0/screens/gen.mjs:1435`. Enforced server-side (`docs/mvp0/PRODUCT-PLAN.md` section 11).
 `K.promise.drivescope` | S23 | Scope: only files this app created or you picked. We cannot see the rest of your Drive. | `promise` | `lede` | `[gen]` `docs/mvp0/screens/gen.mjs:1431`.
 `K.promise.nogate` | S18 | No account needed to read. | `promise` | `label`, 26 | `[gen]` `docs/mvp0/screens/gen.mjs:1343`.
 `K.promise.noindex` | many | Not indexed by search engines. | `promise` | `label`, 30 | `[gen]` `docs/mvp0/screens/gen.mjs:1308`. Whether this stays true is founder question 17 (`docs/mvp0/PRODUCT-PLAN.md` section 29).
+
+**The one promise D08 changed** `[Z]`. The founder chose, on 18 September, to lock editing, copy
+and export when a trial ends unpaid, and was told it breaks "every document stays readable and
+exportable". So `K.promise.readable` keeps only the part that is still true in every state, and
+`K.promise.readable.full` says where the exception is. **Neither string may promise export
+unconditionally again** until D08 is reversed or a legal opinion forces it.
 
 **One promise has no string yet.** `[new]` `K.promise.nocrdt`, the sentence a person reads when they
 ask what happens to their file in a live session. The plan has the engineering
@@ -1143,6 +1150,27 @@ id | screen | string | tone | budget | notes
 `K.s29.pastdue` | S29 | Your payment on {date} did not go through. Nothing has been removed or locked. Pay again to keep Pro. | `caution` | `body`, 97 | `[new]` proposed, voice-checked 18 Sep. A failed mandate: one control to pay again (S29 spec, States). Related to, and not the same as, the gap noted under the S29 table: that one is a failed first payment attempt, which still has no string.
 `K.s29.pending` | S29 | Confirming your payment, started at {time}. There is nothing more to do here. | `plain` | `lede`, 73 | `[new]` proposed, voice-checked 18 Sep. **Says the payment is being confirmed rather than claiming it failed** when the webhook is late (S29 spec, Actions).
 
+
+**The trial and its lock, added 18 September for D08** `[Z]`. Specified in
+`53-PRICING-AND-ENTITLEMENTS.md` sections 5.1 and 5.5. Every row is `[new]`, proposed, and **not
+founder-reviewed**. The numbers are variables: `{days}` comes from `trial.reminders.days` and
+`{date}` from `trial.ends_at`, never typed.
+
+id | screen | string | tone | budget | notes
+`K.trial.countdown` | S29 | Pro trial, ends on {date} | `plain` | `label`, 25 | `[new]` proposed 18 Sep. Replaces `K.s29.current` on the Pro card while `trial.state` is `active`.
+`K.trial.reminder.subject` | email | Your Pro trial ends in {days} days | `caution` | `title`, 34 | `[new]` proposed 18 Sep. **Plural rule:** when `{days}` is 1 it reads "1 day", the same rule D1 below asks for.
+`K.trial.reminder` | email, S29 | Your Pro trial ends on {date}, in {days} days. If it is not paid by then, you can still read every document, but editing, copying and export pause until you pay. | `caution` | `body`, 161 | `[new]` proposed 18 Sep. **One string for every day in the schedule**, so changing `trial.reminders.days` needs no new copy. Says the consequence on the first reminder, not only the last.
+`K.trial.reminder.mirror` | email | Your copy in {mirror} is yours and is not affected. | `plain` | `help`, 51 | `[new]` proposed 18 Sep. `{mirror}` is "your GitHub repository" or "your Google Drive". **Omitted, not guessed**, when there is no mirror.
+`K.trial.banner` | many | Pro trial: {days} days left. Pay by {date} to keep editing. | `caution` | `body`, 59 | `[new]` proposed 18 Sep. In the app from the third-last reminder day onward, per `53` section 5.1.2.
+`K.trial.pay` | S29, S33 | Pay for Pro | `label` | `button`, 11 | `[new]` proposed 18 Sep. The one action on every trial string. Opens the same Razorpay path as `K.s29.upgrade`.
+`K.trial.locked.title` | S33 | Your Pro trial has ended | `caution` | `title`, 24 | `[new]` proposed 18 Sep.
+`K.trial.locked.banner` | many | Your trial ended on {date}. You can read every document. Editing, copying and export are paused until you pay for Pro. | `caution` | `body`, 118 | `[new]` proposed 18 Sep. Says what still works first, then what stopped, then the way out. No apology, per rule 6.
+`K.trial.locked.mirror` | S33 | Your copy in {mirror} is untouched, and nothing here has been deleted. | `promise` | `lede`, 70 | `[new]` proposed 18 Sep. **The in-app lock does not remove the mirror**, and the person is told so plainly. Omitted when there is no mirror.
+`K.trial.locked.edit` | many | Editing is paused because your trial ended. Pay for Pro to edit again. | `refusal` | `body`, 70 | `[new]` proposed 18 Sep. On any keystroke or accept in a locked document. Once per session, then the banner carries it.
+`K.trial.locked.copy` | many | Copying is paused because your trial ended. Pay for Pro to copy again. | `refusal` | `body`, 70 | `[new]` proposed 18 Sep. On the copy command.
+`K.trial.locked.export` | S28, many | Export is paused because your trial ended. Pay for Pro to export again. | `refusal` | `body`, 71 | `[new]` proposed 18 Sep. On every export control. `UNVERIFIED:` whether this refusal is lawful; needs: legal opinion.
+`K.trial.unlocked` | S29 | Payment received. Pro is on, and editing, copying and export are open again. | `plain` | `lede`, 76 | `[new]` proposed 18 Sep. Shown once, after `trial.unlocked`.
+
 ---
 
 ## 14k. S30 Portfolio
@@ -1452,7 +1480,7 @@ its namespace, or `K.s28.nav.<slug>` to mean one row per slug. The validator rea
 so this section is where each is recorded as what it is. Reconciled on 18 September; the working
 file is `docs/pack/tools/copy-reconciliation.md`.
 
-**Twenty-five screen namespaces**, then seven templates and the error namespace. None is a string.
+**Twenty-five screen namespaces and the trial namespace**, then seven templates and the error namespace. None is a string.
 
 family | kind | what it stands for | members in this deck
 `K.s01` | namespace, `K.s01.*` | every row for S01 | section 3
@@ -1475,6 +1503,7 @@ family | kind | what it stands for | members in this deck
 `K.s31` | namespace, `K.s31.*` | every row for S31 | section 14l
 `K.s32` | namespace, `K.s32.*` | every row for S32 | section 14m
 `K.s33` | namespace, `K.s33.*` | every row for S33 | section 14n
+`K.trial` | namespace, `K.trial.*` | every trial and trial-lock row, S29, S33 and the reminder emails | section 14j, added 18 September
 `K.s34` | namespace, `K.s34.*` | every row for S34 | section 14o
 `K.s35` | namespace, `K.s35.*` | every row for S35 | section 14p
 `K.s36` | namespace, `K.s36.*` | every row for S36 | section 14p
@@ -1553,17 +1582,18 @@ one-attempt payment failure on S29.
 - **What would falsify it.** A change to `gen.mjs`, which is the source of most of this deck, or the
   arrival of `10-FEATURE-REGISTER.md` and `17-ERROR-AND-REFUSAL-CATALOGUE.md` with ids that
   contradict the ones used here.
-- **The count, re-derived at write time rather than estimated.** This deck carries **574 ids, each
-  on exactly one row**, counted on 18 September 2026 with:
+- **The count, re-derived at write time rather than estimated.** This deck carries **996 ids, each
+  on exactly one row**, counted on 18 September 2026 after the D08 rows were added, with:
 
   ```bash
-  grep -cE '^`K\.[a-z0-9.]+` \|' docs/pack/16-COPY-DECK.md               # 574 rows
+  grep -cE '^`K\.[a-z0-9.]+` \|' docs/pack/16-COPY-DECK.md               # 996 rows
   grep -oE '^`K\.[a-z0-9.]+` \|' docs/pack/16-COPY-DECK.md \
-    | sed 's/ |$//' | sort -u | wc -l                                     # 574 distinct
+    | sed 's/ |$//' | sort -u | wc -l                                     # 996 distinct
   ```
 
   **The two numbers agreeing is the check**, because a repeated id would break the one-fact-one-home
   rule this deck exists to keep.
 - **What that count does not cover.** `docs/mvp0/screens/gen.mjs` is 1,760 lines and holds further
-  literal text inside sample documents, which section 16 excludes by rule. **So 574 is the size of
-  the deck, not the size of the generator.**
+  literal text inside sample documents, which section 16 excludes by rule. **So 996 is the size of
+  the deck, not the size of the generator.** The figure printed here before was 574; the same
+  command returned 981 at commit `31d3644`, before the D08 rows, so 574 was already stale.

@@ -6,8 +6,8 @@ tier: canonical
 status: living
 updated: 2026-09-18
 owner: sagnik
-verified_against: 0af3c90
-covers: [pricing, entitlements, limits, billing, tax, dunning]
+verified_against: 31d3644
+covers: [pricing, entitlements, limits, billing, tax, dunning, trial]
 ---
 
 # 53. Pricing and entitlements
@@ -195,20 +195,87 @@ list prices, not from live usage. Nobody has paid anything yet.
 
 ### 5.1 Trial
 
-**There is no trial, and that is a gap rather than a decision.**
+**Decided 18 September `[Z]`, D08 in `56-OPEN-DECISIONS.md` section 0.** Every new account starts on a
+one-month Pro trial. This supersedes the earlier line here, "No trial. The free tier is the trial",
+which was a proposal and was not taken. The rejected shape is kept in D08's own section for the record.
 
-- `docs/mvp0/PRODUCT-PLAN.md` section 13 specifies no trial period, and the plan's pricing
-  paragraph does not mention one.
-- **No trial. The free tier is the trial.** `resolved (proposed 18 Sep, founder review)`, and it is
-  D08 in `56-OPEN-DECISIONS.md`. Reason: an Indian card gets one attempt, so a card-on-file trial
-  ends in a charge with no retry. Rejected: a 14-day Pro trial, with or without a card.
-- **What the product does instead today:** the free tier is the trial. It is a whole editor with
-  quantities capped, and the upgrade moment is a cap, not a clock.
+**What the trial is.**
 
-`INFERENCE:` for an Indian card that gets one payment attempt, a free tier is a safer funnel than
-a card-on-file trial, because a failed attempt at the end of a trial has no retry.
+Field | Value | Tag
+Length | **30 days**, a configuration-panel row, `trial.length.days` in `28-CONFIGURATION-PANEL-SPEC.md` | `[Z]` one month; `[P]` 30 as the panel default
+What it grants | **Every `plan.pro` entitlement in section 3**, read through `limitsFor(account)` exactly as for a paying account | `[Z]`
+What it does not grant | Top-ups. Section 3.4 sells them to paying Pro only, and a trial has not paid | `[P]`
+A card at the start | **None.** The trial starts on sign-in with nothing to enter | `INFERENCE:` the decision names no card, and a card on file meets the one-attempt rail of section 5.2
+How many | **One per account, ever.** Not per plan change, not per year | `[Z]` for new accounts; `[P]` for the one-per-account rule
+Starts | At first sign-in, when the account record is created | `[P]`
+Ends | At `trial.ends_at`, an instant stored on the account, never recomputed from the length | `[P]`
+
+**The state it adds.** One field on the account, written once and never reset:
+
+Field | Type | Meaning
+`trial.started_at` | instant | Set at account creation. Never cleared, so its presence is the one-trial guard
+`trial.ends_at` | instant | `started_at` plus the panel's length at the moment of creation. Lowering the panel row later does not shorten a running trial
+`trial.state` | `active`, `converted`, `lapsed` | `lapsed` is the lock of section 5.5
+
+**`limitsFor(account)` reads the trial like an exception of section 5.4**, with the expiry already
+built in. It returns the `plan.pro` row while `trial.state` is `active`. It is `specified, not built`.
+
+#### 5.1.1 Repeat trials, bounded rather than prevented
+
+**The trial is keyed to the identity provider's stable id, never to an email address.** For Google
+that is the `sub` claim; for GitHub the numeric user id. `27-MODEL-ROUTING-SPEC.md` section 9.3 has
+Google's own warning against keying on email.
+
+**A person with a second Google account gets a second trial, and that is accepted.** The same
+reasoning as the free tier's abuse model in `27-MODEL-ROUTING-SPEC.md` section 9 applies: bound the
+tail, do not inspect the head.
+
+Guard | What it bounds | Source
+The trial is keyed to `sub` or the GitHub id | The same account claiming twice | `[P]`
+**Layer 1, the per-account token bucket** | The model spend of any one trial account, whatever the plan row says | `27` section 9.2
+**Layer 4, the starting allowance that rises with account history** | A new account's AI allowance on day one, trial or not. A one-week-old empty GitHub account on a Pro trial still starts low | `27` section 9.3
+Layer 2, the service-wide hourly breaker | A farm of trial accounts draining a shared pool together | `27` section 9.2
+**A trial on a document that another account created** | Nothing. There is no transfer path, so a new trial starts with nothing | `[P]`
+
+**What is deliberately not used**, for the reasons `27` section 9 gives: device fingerprinting, a
+card on file, an address block and any captcha. **A second trial costs the abuser a fresh identity
+and gets them one month of a bucket-capped account.** That is the bound.
+
+`INFERENCE:` the expensive part of Pro to an abuser is the Sonnet blueprint at 31.40 rupees a call,
+section 3.3. **Layer 4 is what bounds it on a trial**, because a Pro row alone would allow 5 on day one.
+
+#### 5.1.2 The reminder schedule
+
+**Reminders go out 15, 10, 5, 3 and 2 days before `trial.ends_at`** `[Z]`. The list is a
+configuration-panel row, `trial.reminders.days`, so it can change without a release.
+
+Days before the end | Channel | Copy key | Event
+15 | Email, and a quiet line on S29 | `K.trial.reminder` | `trial.reminder.sent` with `days_left: 15`
+10 | Email, and the S29 line | `K.trial.reminder` | the same, `days_left: 10`
+5 | Email, and a banner in the app, `K.trial.banner` | `K.trial.reminder` | the same, `days_left: 5`
+3 | Email, and the banner | `K.trial.reminder` | the same, `days_left: 3`
+2 | Email, and the banner | `K.trial.reminder` | the same, `days_left: 2`
+0 | Email, and the lock banner | `K.trial.locked.banner`, with `K.trial.locked.mirror` where a mirror exists | `trial.expired`, then `trial.locked`
+
+**One string serves every day** (`16-COPY-DECK.md`, `K.trial.reminder`), with `{days}` as a
+variable, so changing the list needs no new copy.
+
+**The rules for sending them.**
+
+- **A reminder is sent once.** The send is recorded against the account and the day, so a retry of
+  the scheduled job cannot send it twice.
+- **A reminder whose day has passed is skipped, not sent late.** If the job misses day 3, day 2
+  still goes, and day 3 does not.
+- **A converted account gets no further reminders.** Conversion stops the schedule at once.
+- **The email goes through Resend**, the same provider and budget as the pre-debit notice in
+  section 5.2. `UNVERIFIED:` whether five trial emails per new account fit the 3,000 a month the plan
+  budgets. needs: a sign-up forecast. `INFERENCE:` 3,000 / 6 emails is about 500 new accounts a month
+  before the budget is shared with pre-debit notices.
 
 ### 5.2 Dunning, and why it is short
+
+**Dunning applies only to an account that has paid.** A trial that ends unpaid is not dunned. It
+goes to the lock of section 5.5, and the two paths never meet.
 
 **`[L]` The payment-rail constants make this unusual and they are not negotiable.**
 
@@ -245,8 +312,10 @@ person on holiday keeps Pro. Rejected: a 7-day downgrade, which punishes one mis
 **The rule** `docs/mvp0/PRODUCT-PLAN.md` section 30, and it applies to a lapsed subscription and to a
 lowered limit in the configuration panel alike.
 
-- **Every document stays readable and exportable.** Always. There is no state in which a person
-  cannot get their files out.
+- **Every document stays readable, in every state.** Export and copy stay open on every plan and
+  over any cap. **The one exception is a trial that ended unpaid**, section 5.5, where editing, copy
+  and export pause until the person pays. The mirror in their own GitHub or Drive is never removed.
+  This sentence replaces "every document stays readable and exportable" `[Z]` (D08).
 - **Nothing new is created until the account is under the cap.** That is screen S33.
 - **Raising** a limit takes effect on the next read and nobody notices.
 - **Lowering** one below what an account already holds puts that account into the over-cap state.
@@ -279,6 +348,72 @@ Field | What it holds
 `reason` | Free text, for the audit row
 
 **An exception with no expiry is a plan change by another name**, so the field is required.
+
+### 5.5 The lock after an unpaid trial
+
+**Decided 18 September `[Z]`, D08.** If the trial ends and nobody has paid, **editing locks, and copy
+and export lock too. Reading stays.** The founder was told this breaks the standing promise and chose
+it anyway. Section 5.3 carries the reworded promise.
+
+**This is not the over-cap state of section 5.3, and not dunning.** Three states, kept apart:
+
+State | Who reaches it | Read | Edit | Copy | Export | Leaves it by
+Over the cap, section 5.3 | A lapsed paying account after day 14, or a lowered limit | **Yes** | **Yes** | **Yes** | **Yes** | Getting under the cap, or paying
+Dunning, section 5.2 | A paying account whose debit failed | Yes | Yes | Yes | Yes | Paying, or day 14
+**Trial lapsed, this section** | A trial account at `trial.ends_at` with no payment | **Yes** | **No** | **No** | **No** | **Paying**
+
+**The lock, written as entitlements.** `limitsFor(account)` returns this set while `trial.state` is
+`lapsed`. Every id not named here is the `plan.free` value.
+
+Entitlement id | Value while locked | What it controls
+`access.docs.read` | **yes** | Open and render any document, in every mode
+`access.docs.edit` | **no** | Any keystroke, splice, accept or reject in the change queue
+`access.docs.copy` | **no** | The copy command and the clipboard handler on rendered content
+`access.export` | **no** | Every route under `features.export.all`, the history `.zip` and the account export
+`access.share.read` | **yes** | Links already shared keep serving to readers
+`access.publish.serve` | **yes** | Pages already published keep serving
+`access.ai` | **no** | Every AI route, and `limits.ai.edits` reads 0
+
+**The three `access.*` ids are new on 18 September.** Before D08 every plan had all four set to yes,
+so no row was needed. `specified, not built`: no `access.*` key exists in `src/` today.
+
+**What the lock does not do.**
+
+- **It deletes nothing.** The 30-day trash runs as normal and nothing else is removed. `INFERENCE:`
+  how long a locked account is kept before it is closed is not decided. needs: founder review.
+- **It does not revoke the GitHub or Drive mirror.** Under D03 every document is already mirrored to
+  the person's own GitHub or Drive, and **the in-app lock does not remove that mirror.** The person
+  keeps full access to their files there. The founder was told this in D08.
+- **Copy is a best effort.** `INFERENCE:` a person can still select rendered text, take a screenshot
+  or read the page aloud. The lock removes our copy command, not their eyes.
+
+**Whether the mirror keeps syncing during the lock.** `proposed (founder review)`: **no, in both
+directions.**
+
+Direction | While locked | Reason
+Out, our copy to their mirror | **Paused.** Nothing to send anyway, because editing is locked | `[P]`
+In, their mirror to our copy | **Paused.** An inbound change would be a change queue item, and accepting it is an edit | `[P]` from D03, "edits made in the mirror come back as change queue items"
+The connection itself | **Kept.** No token revoked, no repository or folder touched | `[P]`
+On unlock | One resync. Every change made in the mirror during the lock arrives as a change queue item | `[P]`
+
+Rejected: keep pulling inbound changes so the read view stays current. It writes to our canonical
+copy while the account is locked, which is an edit by another name.
+
+**How the lock lifts.** A successful payment for `plan.pro` sets `trial.state` to `converted` and
+the lock lifts on the next read of `limitsFor`. Event `trial.unlocked`.
+
+**An open question the decision does not answer.** `UNVERIFIED:` whether a person may step down to
+`plan.free` to lift the lock without paying. As written, D08 names payment as the only way out, so
+**a new account can never reach an unlocked Free plan.** needs: founder review. This is written as
+open rather than as a value, for the same reason as `features.byok` in section 3.2.
+
+**The legal question.** `UNVERIFIED:` whether locking export is lawful against data-portability
+rights under the Digital Personal Data Protection Act 2023 and Article 20 of the General Data
+Protection Regulation. needs: legal opinion. Owner Sagnik. The Export row at `docs/pack/54-COMPLIANCE-AND-LEGAL.md:189` treats the mirror as
+a standing export under Article 20 and says export on request still works. The second half is no
+longer true for a locked account, and 54 is not in this change. `INFERENCE:` the untouched
+mirror may matter to the opinion, since the person still holds every file. Nothing here says it is
+sufficient.
 
 ---
 
@@ -345,7 +480,11 @@ Any other file in this pack | **No. Link here instead**
 
 **What could not be verified.**
 
-- Section 5.1 and 5.2 are now proposed resolutions, not decisions. The founder settles them in D08.
+- Section 5.1 and 5.5 are decided `[Z]` by D08. The dunning ladder in 5.2 is still a proposed
+  resolution, and the mirror's behaviour during the lock in 5.5 is `proposed (founder review)`.
+- `UNVERIFIED:` whether the export lock of section 5.5 is lawful under the DPDP Act 2023 and GDPR
+  Article 20. needs: legal opinion.
+- `UNVERIFIED:` whether a locked account may step down to Free, section 5.5. needs: founder review.
 - `UNVERIFIED:` the tax heading, section 6.2. needs: a chartered accountant's opinion.
 - Notesnook's India page **confirmed below 299 rupees** `[M]`. Opened 18 September 2026 at
   `https://notesnook.com/pricing`, served in rupees: Essential at "₹225.20 / month including tax",
@@ -358,5 +497,7 @@ Any other file in this pack | **No. Link here instead**
 - A real month of usage showing free users consuming more than 0.0194 dollars each would move
   every row in section 4.3 and the break-even with it.
 - A chartered accountant reading a different tax heading would change the net on every line.
+- A legal opinion that export may not be locked would remove `access.export: no` from section 5.5
+  and restore the old promise for export.
 - A pilot participant tripping a cap other than documents or AI edits first would say the caps are
   wrong, and `55-MEASUREMENT-AND-EVENTS.md` records which cap tripped for exactly that reason.

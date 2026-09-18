@@ -6,8 +6,8 @@ tier: canonical
 status: living
 updated: 2026-09-18
 owner: sagnik
-verified_against: 0af3c90
-covers: [metrics, definitions, funnel, events, properties]
+verified_against: 31d3644
+covers: [metrics, definitions, funnel, events, properties, trial-events]
 ---
 
 # 55. Measurement and events
@@ -82,6 +82,7 @@ Step | Event | What the drop to the next step means
 6. Shared something | `share.link.created` or `share.person.added` or `page.published` | The document had no audience
 7. Used AI | `ai.request.sent` | The AI box was not found, or not wanted
 8. Hit a cap | `cap.tripped` | **Not a drop. The upgrade moment**
+8a. Trial reached its end | `trial.expired` | **A second upgrade moment, a clock rather than a cap.** Added for D08, section 6.11a
 9. **Converted** | `plan.upgrade.completed` | The price, the moment, or the value
 
 ```mermaid
@@ -350,6 +351,44 @@ Event | When | Extra properties
 which the plan lists as a measure and which decides whether the caps in
 `53-PRICING-AND-ENTITLEMENTS.md` are the right ones.
 
+### 6.11a The trial and its lock, S29 and S33
+
+**Added 18 September for D08** `[Z]`. The trial, its reminders and its lock are specified in
+`53-PRICING-AND-ENTITLEMENTS.md` sections 5.1 and 5.5. Inserted as 6.11a so no later section is
+renumbered.
+
+Event | When, exactly | Extra properties
+`trial.started` | The account record was created with `trial.started_at` set. Once per account, ever | `trial_days`, `ends_at`
+`trial.reminder.sent` | **One reminder was handed to the email provider and accepted.** One event per day in `trial.reminders.days`, never repeated for the same day | `days_left`, `channel`: `email`
+`trial.converted` | **The first `plan.upgrade.completed` on an account whose `trial.state` was `active` or `lapsed`.** Fires with it, never alone | `days_left`, negative after the end, `period`, `was_locked`
+`trial.expired` | `trial.ends_at` passed with no conversion. Fires once, from the scheduled job, server side | `reminders_sent`
+`trial.locked` | `limitsFor(account)` first returned the lock set of `53` section 5.5 | `mirror`: `github`, `drive`, `none`
+`trial.unlocked` | The lock set was replaced by `plan.pro`, after payment | `days_locked`
+`trial.lock.refused` | **A locked action was attempted and refused.** Once per action kind per session, so a held key is one event | `action`: `edit`, `copy`, `export`, `ai`
+
+**Definitions, so two people counting agree.**
+
+- **A trial conversion** is a conversion by section 1 whose account has a `trial.started`. The
+  day it lands, `days_left`, is what tells the reminder schedule which day works.
+- **A locked account** is one with a `trial.locked` and no later `trial.unlocked`.
+- **`trial.expired` and `trial.locked` are two events on purpose.** The first is the clock; the
+  second is the entitlement change. If they ever disagree in count, the lock did not apply.
+
+**Measures these answer.**
+
+Measure | Events it comes from
+Trial to paid | `trial.started` then `trial.converted`, per start week
+Which reminder converts | `trial.converted` grouped by the last `trial.reminder.sent` before it
+Converted after the lock, against before | `trial.converted` with `was_locked`
+What a locked person tried to do | `trial.lock.refused` grouped by `action`
+Locked accounts that also hold a mirror | `trial.locked` with `mirror` not `none`
+
+**The last row matters for the D08 legal question** in `53` section 5.5: it counts how many
+locked people still hold every file in their own GitHub or Drive.
+
+**`trial.reminder.sent` never carries the email address or the message body**, per section 5.
+`channel` is the only detail.
+
 ### 6.12 The configuration panel, S35 to S38
 
 Event | When | Extra properties
@@ -447,6 +486,9 @@ event can capture it.
   in section 6 was searched in `src/` as a quoted string, `grep -rn -F '"<name>"' src`, and none
   was found. `grep -rln "posthog\|track(" src` finds nothing, and the only "analytics" hit is a
   reserved slug in `src/modules/share/domain/slug.ts:148`.
+- **The seven trial events of section 6.11a are not implemented either** `[O]`, checked 18
+  September with `grep -rn "trial\.\(started\|reminder\|converted\|expired\|locked\|unlocked\|lock\)" src`,
+  which returns nothing. They are not in the count of 141 above, which was taken before they were added.
 - **`kickoff.ran` has no mechanism in the code** `[O]`: `grep -rli "kickoff\|out-of-band" src`
   returns nothing. The hash is specified in the plan and not built, so the Phase 0 gate cannot be
   measured until it is.
