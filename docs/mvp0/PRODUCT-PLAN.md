@@ -269,13 +269,13 @@ Google Drive | Free. Two-way sync of the files the app created or you picked, wi
 Stack | The Next.js app on Vercel, Cloudflare R2 for bytes, Firestore for records and the ledger, Firebase Auth for sign-in, Durable Objects with hibernation for live sessions. Decided by the founders on 17 September, and already what the shipped code runs | `[Z]` costed in section 15 (F016)
 AI for the pilot | Free providers whose no-training clause was opened and quoted, in a fallback chain: Groq, Cloudflare Workers AI, Cerebras while its trial lasts, SambaNova. No OpenRouter endpoint. Claude for Pro from day one | `[M]` Groq, Cloudflare and SambaNova state no training. Gemini's free tier and Mistral's free plan train. OpenRouter's free endpoints carry their providers' terms, unopened (F006)
 Review | The change queue on S20 replaces the review-state sidecar of the 9 September plan. Attribution stays as a mark in the version record | `[Z]` the 13 September reset. `[R]` section 25 closes the earlier claim (F058)
-Plugins | No in-process plugin system in year one. An API and an MCP server instead, in Later | `[M]` Obsidian: "cannot reliably restrict plugins to specific permissions". VS Code: "the same permissions as VS Code itself"
+Plugins | No in-process plugin system in year one. An API and an MCP server instead. The server reads and proposes, never writes, and is the Max tier, scheduled as batch 10a (D04, 18 September); the API follows in batch 10 | `[M]` Obsidian: "cannot reliably restrict plugins to specific permissions". VS Code: "the same permissions as VS Code itself"
 Representations | Mermaid, Excalidraw, Marp and markmap are embedded. Flow, kanban and table-to-chart are ours as `fm-` blocks. Shapes, never code, from the two copyleft precedents | `[M]` licences and download counts in section 8 (F063)
 Portfolio | One markdown file with front matter, served at frontmatter.in/@handle. Pro, and late | `[Z]` late. `[M]` every site generator wants a folder and a build; a one-file page is the thing nobody offers
 Phone | Every screen has a phone layout. A bottom bar with five actions, drawers for the tree and the right pane | `[M]` Material: compact width under 600 dp uses a navigation bar with three to five destinations
 Legal | The floor in section 23 ships before the first stranger publishes and before the first rupee. Placeholder public pages serve today | `[L]` (F008)
 Engine | The twelve invariants of revision 3 stand unchanged | `[R]`
-Later, named | A Max tier above Pro; a community as an opt-in index plus GitHub Discussions; the MCP server and API; Team; a custom domain | `[Z]` asks 27 and 30 (F023)
+Later, named | A Max tier above Pro; a community as an opt-in index plus GitHub Discussions; the MCP server and API; Team; a custom domain. **Since 18 September none of it is Later:** D02 builds everything, and D04 makes the MCP server the Max tier and schedules it | `[Z]` asks 27 and 30 (F023), D02, D04
 
 # Part two. The product
 
@@ -628,7 +628,7 @@ Later, named | A Max tier above Pro; a community as an opt-in index plus GitHub 
 - GitHub: "GitHub grants this app the whole repository; frontmatter only ever writes under docs/" (F034). Pushes used, revocable on GitHub.
 - Both are labelled as a mirror: our copy is the one the editor works on, and this is a full copy in the person's own account (D03, 18 September).
 - An edit made in the mirror arrives as a change to accept, never a silent overwrite.
-- Your agents: marked Later, with the MCP server (F035).
+- Your agents: the MCP server, which reads and proposes and never writes. It is the Max tier, built in batch 10a, no longer marked Later (F035; D04, 18 September).
 
 **Why.** `[Z]` connect Drive and GitHub with the user's authorisation. `[M]` GitHub Apps carry "narrow, specific permissions" and installation tokens "expire after 1 hour". `[R]` permissions attach to the operation.
 
@@ -650,7 +650,9 @@ Later, named | A Max tier above Pro; a community as an opt-in index plus GitHub 
 - The same header, tabs and toolbar as the web.
 - The phone page emails you the download link: Mac now, Linux unsigned, Windows coming (F047).
 
-**Why.** `[Z]` the offline app is the one promoted. `[M]` Azure Artifact Signing's public trust is closed to organisations in India; Apple's programme is 99 USD a year; a commercial certificate for Windows is unpriced in this plan (F071).
+**Why.** `[Z]` the offline app is the one promoted. `[M]` Azure Artifact Signing's public trust is closed to organisations in India; Apple's programme is 99 USD a year.
+
+**Windows** `[Z]` (D09). The desktop comes early, so commercial certificates for Windows are now priced in `docs/pack/35-RELEASE-AND-VERSIONING.md` section 6.2a (F071).
 
 ### S26. Quick capture
 
@@ -797,7 +799,7 @@ Later, named | A Max tier above Pro; a community as an opt-in index plus GitHub 
 The rule: if a capability is a top add-on in three or more of the ecosystems we counted, it ships built in. Twenty pass `[M]`.
 
 Capability | Where it is a top add-on | Where it lives in frontmatter
-AI assistant and agent access | Docs, VS Code, Joplin, Logseq, Craft, Notion | The AI box, the AI menu; the agents card and the MCP server in Later
+AI assistant and agent access | Docs, VS Code, Joplin, Logseq, Craft, Notion | The AI box, the AI menu; the agents card and the MCP server in batch 10a, as the Max tier (D04)
 Maths and LaTeX | Docs 52M+ installs, VS Code, Joplin, Typora | KaTeX in every mode
 Diagrams | VS Code 5.3M, Docs 47M+, Joplin, Logseq | Mermaid in every mode, Excalidraw as a block
 Tasks and to-do views | Joplin, Logseq, Craft, Notion, VS Code | Checklists, the tasks panel, the kanban view
@@ -880,7 +882,7 @@ The @ menu | N | A command palette; what it inserts is classified per row
 Custom building blocks | N | Snippets of ordinary markdown
 Spelling and grammar, personal dictionary, autocorrect, Smart Compose | N | Tools over text
 Find and replace, word count | N | Tools
-Translate, voice typing | N | Tools; output is text
+Translate, voice typing | N | Tools; output is text. Voice typing is kept in Doc mode `[Z]` (D14, 18 September)
 Screen reader, braille | N | A property of the editor
 Offline | N | A local file is offline by nature
 Templates | N | A markdown file
@@ -963,7 +965,9 @@ PDF and print | Paged.js for the browser, Pandoc on the server | MIT, GPL | Univ
 - **tldraw**, whose licence forbids production use without a key, and which phones home.
 - **D2**, which is MPL and duplicates Mermaid.
 
-**One thing that waits.** Database views over front matter, as Obsidian's Bases, have no open renderer.
+**One thing we build early, and build ourselves** `[Z]` (D13, 18 September). Database views over front matter, as Obsidian's Bases, have no open renderer, so we write one.
+
+It is batch 9a in `docs/pack/50-ROADMAP.md`, straight after the desktop. It was "one thing that waits" until D13.
 
 **Two things we copy the shape of, and none of the code.** The kanban and chart blocks follow obsidian-kanban and obsidian-charts. The first is GPL, the second AGPL, and both are unmaintained (F063).
 
@@ -1162,6 +1166,7 @@ How the device and the mirror reconcile is in `docs/pack/67-SYNC-AND-CONFLICT.md
 
 - **What it gives.** Files on disk, no document limit, fully offline, and agents can read the folder.
 - **It is the one we promote**, and the web app stays.
+- **It comes early** `[Z]` (D09, 18 September): straight after the web editor, as batch 8 at step 4, not after sync.
 - **Each target builds on its own runner in CI.** Tauri says cross-compiling Windows from macOS is "a last resort", and signing it needs an external tool (F072).
 
 **Signing, per platform.**
@@ -1169,7 +1174,7 @@ How the device and the mirror reconcile is in `docs/pack/67-SYNC-AND-CONFLICT.md
 Platform | What we do | Why
 macOS | Signed on the Apple programme, 99 USD a year | Available to us
 Linux | Unsigned, by choice | Nothing to gain
-Windows | Shown as coming, until a commercial certificate is priced | Azure Artifact Signing's public trust is closed to organisations in India (F071)
+Windows | Signed in batch 8, once a founder buys a route. Shown as coming until then | Azure Artifact Signing's public trust is closed to organisations in India (F071). Commercial certificates are priced in `docs/pack/35-RELEASE-AND-VERSIONING.md` section 6.2a (D09)
 
 **The phone** `[M]`.
 
@@ -1197,8 +1202,8 @@ Downgrade | not stated | Figma keeps files readable over the cap | Every documen
 **Pricing** `[Z]` `[M]`.
 
 - **Free at ₹0.**
-- **Pro at ₹299 a month, or ₹2,499 a year**, both GST inclusive. That is ₹253.39 before GST and about ₹246 after Razorpay's fee, section 22, or about $3.12 at ₹95.96 to the dollar.
 - **A one-month Pro trial for every new account** `[Z]` (D08, 18 September). No card at the start. The rest is in the paragraph on the trial below.
+- **Pro at ₹299 a month, or ₹2,499 a year**, both GST inclusive. That is ₹253.39 before GST and about ₹246 after Razorpay's fee, section 22, or about $3.12 at ₹95.96 to the dollar.
 
 **The first paid tier across peers**, corrected this revision (F004, F059).
 
@@ -1227,7 +1232,7 @@ AI-forward tools | $15 to $20
 
 - **Top-ups:** 50 edits for ₹99, 3 blueprints for ₹149.
 - **Team**, with seats and one bill, after Pro. **Enterprise** later.
-- **Max**, a tier above Pro with more credits, later and unpriced (F023).
+- **Max**, a tier above Pro whose core is the MCP server, reading and proposing and never writing. Scheduled as batch 10a, no longer later `[Z]` (D04, 18 September). Unpriced (F023).
 - **No student tier** `[Z]`.
 
 **What Pro buys, in one line** `[P]`. Unlimited documents, pages and collaborators, 10 GB, 90-day history, password links, Medium and High ideas, 100 edits and 5 blueprints on Claude, the portfolio, no branding.
@@ -1240,7 +1245,6 @@ AI-forward tools | $15 to $20
 - **What holding costs us** `[O]`: $0.015 a GB-month on R2, so ₹1.44 a month at 1 GB and ₹14.39 at 10 GB, at ₹95.96 to the dollar. Working: GB × 0.015 × 95.96.
 - **A GitHub mirror past 5 GB is a warning, not a block**, because 5 GB is GitHub's own recommended ceiling.
 
-**The Free document cap is a panel value** `[Z]` (D11, 18 September). The 50 above is where it starts. It is A/B tested on real accounts before it is fixed, per `docs/pack/28-CONFIGURATION-PANEL-SPEC.md` section 10.3.
 **The trial, decided on 18 September** `[Z]` (D08).
 
 - **One month of Pro for every new account, once per account.** The length and the reminder days are configuration-panel rows, `trial.length.days` at 30 and `trial.reminders.days` at 15, 10, 5, 3 and 2 days before the end (`docs/pack/28-CONFIGURATION-PANEL-SPEC.md` section 4.2).
@@ -1251,6 +1255,7 @@ AI-forward tools | $15 to $20
 
 **The standing promise, reworded for D08** `[Z]`. It was "every document stays readable and exportable". It is now: **every document stays readable in every state, and nothing is deleted. Editing, copy and export stay open on every plan and over any cap, and pause only when a trial ends unpaid.** The founder was told the old promise breaks and chose the trial lock anyway.
 
+**The Free document cap is a panel value** `[Z]` (D11, 18 September). The 50 above is where it starts. It is A/B tested on real accounts before it is fixed, per `docs/pack/28-CONFIGURATION-PANEL-SPEC.md` section 10.3.
 
 ## 14. AI for the pilot, and after
 
@@ -1604,6 +1609,8 @@ Agent token | yes | no | yes | never | no | no | never | yes | yes | no | no
 - A revoked collaborator keeps nothing but the exports they already made.
 - Sharing a project shares every document in it at the same role. Sharing a document shares that document alone.
 
+**A link that edits needs an account** `[Z]` (D12, 18 September). Editing through a link asks for the one-tap sign-in; reading through a link asks for nothing. Every change in the queue keeps a named author.
+
 ## 20. Format specifications
 
 **Every format the plan invents or adopts carries four things** `[P]` (A34, F050).
@@ -1678,7 +1685,7 @@ The annual plan at ₹2,499 nets ₹171.57 a month.
 
 - One Vercel seat, $20.
 - The domain at $15 a year and Apple at $99 a year, together $9.50.
-- A second Vercel seat would add $20. The Windows certificate is unpriced.
+- A second Vercel seat would add $20. The Windows certificate is not yet in this model; its options are priced in `docs/pack/35-RELEASE-AND-VERSIONING.md` section 6.2a.
 
 **Outside that line.** Firestore and R2 are usage rather than subscription, about $2 and under $1 at 1,000 users, as they always were.
 
@@ -1758,7 +1765,7 @@ Firebase project `frontmatter-md` | a studio Gmail account | retired in phase A 
 Cloudflare zone `frontmatter.in` | a founder's personal account, by deliberate choice | the company | before the first stranger
 Domain registration | unverified | the company | before the first stranger
 Razorpay | not opened | the company | before the first rupee
-Apple Developer Program | not opened | the company | phase F
+Apple Developer Program | not opened | the company | phase F, now batch 8 at step 4 (D09)
 Model provider accounts | not opened | the company | phase B
 Analytics and error accounts | unverified | the company | phase A
 Intellectual property between the founders | unverified | a written agreement | before the first rupee
@@ -1776,7 +1783,7 @@ The twenty hand-made kits gate | 13 September plan | Restored as Phase 0 (F009)
 The extension form factor | earlier plans | Not planned
 Bring-your-own key | card F10 | Founder question 10 (F056)
 The community | revision 3 | Later, named (F023)
-The Max tier | revision 3 | Later, named (F023)
+The Max tier | revision 3 | Later, named (F023). Scheduled on 18 September as batch 10a, the MCP server's tier (D04)
 The 8 September gap register's Firestore contradiction | GAPS-2026-09-08 | Settled by the founders on 17 September: Firestore is the database, and firestore.rules is live work, so the removal proposed as F045 is withdrawn
 The shipped app's local drafts under legacy keys | AGENTS.md section 8 | Migrated in phase A, section 15 (A33)
 The image proxy and the delimited data block | revision 3 security | Restored, section 14
@@ -1785,51 +1792,65 @@ The image proxy and the delimited data block | revision 3 security | Restored, s
 
 The dev plan follows approval. Its shape, in fixed-time phases with variable scope `[M]` Shape Up.
 
-**Decided on 18 September** `[Z]` (D02): **everything is built, in twelve batches, one at a time.**
+**Decided on 18 September** `[Z]` (D02): **everything is built, in fourteen batches, one at a time.**
 
 A batch is built, used and tested internally, its issues fixed, and only then does the next start. The order, the gates and the calendar are in `docs/pack/50-ROADMAP.md`.
 
-**The phases below keep their appetites.** Each maps to one batch, per that file's section 4. Nothing moves to Later any more; Later becomes batches 10 to 12.
+**The phases below keep their appetites.** Each maps to one batch, per that file's section 4. Nothing moves to Later any more; Later becomes batches 10a, 10, 11 and 12.
+
+Batches 9a and 10a are new since the answers of 18 September.
 
 Phase | Appetite | What ships
-0 · Before code | 2 weeks | The legal floor's first rows; the accounts moved; the public pages written; the pace published every Friday; the `GITHUB_REPO` default fixed; the format specifications drafted; twenty blueprints made by hand for twenty people outside the studio, watched for whether five run the kickoff and two of ten edit a kit again
+0 · Before code | 2 weeks | The legal floor's first rows; the accounts moved; the public pages written; the pace published every Friday; the `GITHUB_REPO` default fixed; the format specifications drafted; twenty blueprints made by hand for twenty people outside the studio, watched for whether five run the kickoff and two of ten edit a kit again; the Windows signing route priced (D09)
 A · The door and the home | 3 weeks | Sign-in through Firebase Auth and Auth.js as already shipped, firestore.rules hardened from prototype to product, the local drafts migrated; Home, settings, plan page; the entitlements layer, the usage ledger and the configuration panel of section 30; Firestore and R2 adapters
 B · The editor as shipped, plus Doc mode | 4 weeks | The workspace on the new stack; the two engine defects and the audit's third fixed with red proofs; Doc mode with the 20 and the 15; problems and formatter; the AI box and menu on the free chain with the breaker; the `--ai` token and the code face in globals.css; bring-your-own key if question 10 says so
 C · Ideas | 4 weeks | The ideas tab, Low, the fifteen-file blueprint, the consistency check, the unlisted link, the kickoff prompt with the out-of-band hash, the map; gated on Phase 0's result
-D · Sharing | 3 weeks | People with the matrix, links with expiry, published pages with the `.md` twin, the footer and the grievance route; the change queue; history; live editing on Durable Objects under section 15's rule, or Later if question 8 says so; the Zed rebuttal written
+D · Sharing | 3 weeks | People with the matrix, links with expiry, published pages with the `.md` twin, the footer and the grievance route; the change queue; history; live editing on Durable Objects under section 15's rule, or Later if question 8 says so; the Zed rebuttal written; the `verified: [{by, at}]` stamp on accept (D06); sign-in to edit through a link (D12)
 E · In and out | 3 weeks | Folder upload, Obsidian and Notion import, Google Docs and Word with the 10 MB refusal, the GitHub and Drive mirrors of D03, whose mechanics are in `docs/pack/67-SYNC-AND-CONFLICT.md`
-F · Everywhere | 3 weeks | Offline in the browser, the desktop app on the new stack built on per-platform CI runners, signed for macOS at 99 USD a year, the phone layouts, quick capture, dark mode
+F · Everywhere | 3 weeks | Offline in the browser, the desktop app on the new stack built on per-platform CI runners, signed for macOS at 99 USD a year, the phone layouts, quick capture, dark mode. **Runs straight after B** `[Z]` (D09), and gains a signed Windows build
 G · Views and blocks | 3 weeks | Flow, slides, mind map, Excalidraw, Mermaid types, KaTeX, templates, tasks, calendar
 H · Pro | 2 weeks | Razorpay with the mandate rules, Medium and High, the Claude routing of section 14, password links, 90-day history
-Later | | Kanban and table-to-chart blocks, the portfolio, the MCP server and API with the agents card, Team, Max, the community, a custom domain, Notion API import, a signed Windows build
+Later | | Kanban and table-to-chart blocks, the portfolio, the API and the command line, Team, the community, a custom domain, Notion API import. **Moved out on 18 September** `[Z]`: the MCP server with the agents card, as Max (D04, batch 10a); a signed Windows build (D09, phase F)
 
 **Twenty-seven weeks of appetite at full time**, one more than revision 5. Phase A grew by a week for the configuration panel, and shrank by the Supabase migration it no longer has to do.
 
 **At the measured pace**, which the audit recomputed at 0.93 to 1.21 days a week, that is 99 to 129 calendar weeks.
 
-**The batches, in order** `[Z]` `[P]`, from `docs/pack/50-ROADMAP.md` section 2.
+**The batches, in order** `[Z]` `[P]`, from `docs/pack/50-ROADMAP.md` section 2. Batch numbers are ids, so they keep their numbers; the step is the order they run in.
 
-Batch | Name | Phase | Appetite
-1 | Before code | 0 | 2 weeks
-2 | The door, the home and the panel | A | 3 weeks
-3 | The editor and Doc mode | B | 4 weeks plus 11 days
-4 | Sharing and the change queue | D | 3 weeks plus 7 days
-5 | In and out | E | 3 weeks
-The pilot | Twenty people outside the studio | none | at least 2 weeks
-6 | Ideas | C | 4 weeks plus 10 to 12.5 days
-7 | Pro | H | 2 weeks
-8 | Everywhere | F | 3 weeks plus 2 days
-9 | Views and blocks | G | 3 weeks
-10 | Agents and Max | Later | unset
-11 | Later blocks, imports and Windows | Later | unset
-12 | Portfolio, Team and community | Later | unset
+Step | Batch | Name | Phase | Appetite
+1 | 1 | Before code | 0 | 2 weeks
+2 | 2 | The door, the home and the panel | A | 3 weeks
+3 | 3 | The editor and Doc mode | B | 4 weeks plus 11 days
+4 | 8 | Everywhere, with the desktop | F | 3 weeks plus 2 days
+5 | 9a | Database views over front matter | new, D13 | unset
+6 | 4 | Sharing and the change queue | D | 3 weeks plus 7 days
+7 | 10a | The agent server, read and propose | Later, D04 | 2 to 3 weeks plus 2 days
+8 | 5 | In and out | E | 3 weeks
+gate | The pilot | Twenty people outside the studio | none | at least 2 weeks
+9 | 6 | Ideas | C | 4 weeks plus 10 to 12.5 days
+10 | 7 | Pro, and Max on sale | H | 2 weeks
+11 | 9 | Views and blocks | G | 3 weeks
+12 | 10 | The API and the command line | Later | unset
+13 | 11 | Later blocks and imports | Later | unset
+14 | 12 | Portfolio, Team and community | Later | unset
+
+**What moved on 18 September, after D04 to D14** `[Z]`.
+
+- **D09:** phase F, the desktop with it, runs straight after the editor instead of after sync. A signed Windows build moves in from Later, and its certificate is priced in batch 1.
+- **D13:** database views over front matter become batch 9a, straight after the desktop. No appetite exists for them yet.
+- **D04:** the MCP server, reading and proposing and never writing, becomes batch 10a straight after the change queue. It is the Max tier, which goes on sale in batch 7.
+- **D06, D12 and D14** add work to batches that already exist: the stamp on accept and sign-in to edit through a link in batch 4, voice typing in batch 3.
 
 **The new calendar** `[P]`, re-derived in `docs/pack/50-ROADMAP.md` section 5.
 
-- **About 126 to 192 calendar weeks** for the nine priced batches, the use windows and the pilot. That is roughly 2.4 to 3.7 years.
-- **About 151 to 225 weeks** with the thirty days of content below, if the same hands write it.
-- **Batches 10, 11 and 12 have no appetite**, so every figure is a floor.
-- The additions of 18 September inside batches 3, 4, 6, 8 and 10 are `UNVERIFIED:` in that file, section 5.2.
+- **About 134 to 209 calendar weeks** for the ten priced batches, the use windows and the pilot. That is roughly 2.6 to 4.0 years.
+- The low end is (120 + 8.9 + 20) days / 1.21 + 9 windows + 2 pilot weeks.
+- The high end is (135 + 15 + 34.5) days / 0.93 + 9 + 2. Batch 10a adds the 8.9 to 15 days.
+- **About 159 to 242 weeks** with the thirty days of content below, if the same hands write it.
+- **Batches 9a, 10, 11 and 12 have no appetite**, so every figure is a floor.
+- **The pilot now starts about 107 to 143 calendar weeks in**, against about 81 to 104 before the reordering, because the desktop and the agent server run before it.
+- The additions of 18 September inside batches 3, 4, 6, 8 and 10a are appetites, not measurements, in that file, section 5.2.
 
 **What the batches replace.** The old default built phases 0, A, B, D and H, about 60 to 79 calendar weeks, with E, F and G in Later and a contractor for D and F.
 
@@ -1855,7 +1876,7 @@ Pro loses money at full use | The default routing keeps ₹55 a user; Sonnet for
 Safari evicts local drafts | The banner says so, persist is requested, the first connection pushes, the home-screen install exempts the app
 The Google OAuth app or the GitHub App is suspended | Every user is locked out or the write-back dies; an email magic link is the fallback sign-in (question 10 and section 15) and exports never need a connection
 The name collides with Front Matter CMS | The search is run before Razorpay goes live; the screens change in a day if the name changes
-Windows cannot be signed from India | Windows is shown as coming; a commercial certificate is priced before phase F
+Windows cannot be signed from India | Windows is shown as coming until a route is bought; commercial certificates are priced in `docs/pack/35-RELEASE-AND-VERSIONING.md` section 6.2a, in batch 1, because D09 brought phase F forward
 The scope is too large for the pace | The Later column is the release valve. Nothing in phases 0 to B is optional
 
 ## 28. What we measure, and the pilot
@@ -1925,10 +1946,23 @@ Google Docs writers | 5 | Write there and share by link
 
 Id | Question here | The answer
 D01 | 5 · K1, the one-sentence definition | The broad editor, option a. Internal name `fmd`, standing for nothing. Three taglines tested, section 1
-D02 | 1 · The pace | Everything, in twelve batches, one at a time, section 26
+D02 | 1 · The pace | Everything, in fourteen batches, one at a time, section 26
 D03 | 6 · K2, which bytes we hold | Ours in R2 and Firestore, canonical; a full mirror in the person's GitHub or Drive on both plans; a soft storage cap with blocks past 10 GB on Pro, sections 11 to 13
 D10 | 13 · The accounts that move | All of them, before the first stranger, section 24
 D11 | 9 · The free caps, in part | The Free document cap is a panel value, A/B tested before it is fixed, section 13
+
+**Answered later on 18 September** `[Z]`, D04 to D14, recorded in `docs/pack/56-OPEN-DECISIONS.md` section 0.
+
+Id | Question here | The answer
+D04 | Not among the eighteen: whether the MCP server leaves Later | Yes. It reads and proposes, never writes, and is the Max tier. Batch 10a, sections 3 and 26
+D05 | 7 · K3, the name | Keep frontmatter now. The trademark search is no longer a precondition
+D06 | Not among the eighteen: authorship marking | Yes. Stamp `verified: [{by, at}]` into front matter on accept, batch 4, section 26
+D07 | 14 · The twenty-kit gate | Keep it
+D08 | Not among the eighteen: trial and dunning | Answered. Written into this plan by separate work, and recorded in `docs/pack/56-OPEN-DECISIONS.md` section 0
+D09 | 11 · Desktop before or after sync, and who signs Windows | Desktop early, alongside the web editor, section 12. The Windows certificate is priced in `docs/pack/35-RELEASE-AND-VERSIONING.md` section 6.2a
+D12 | Not among the eighteen: whether a link-edit holder needs an account | Yes. Editing through a link needs the one-tap sign-in; reading needs nothing, section 19
+D13 | Not among the eighteen: database views over front matter | Build them early, batch 9a, sections 8 and 26
+D14 | Not among the eighteen: voice typing | Keep it in Doc mode, section 7
 
 **Deferred on purpose**, to be settled while phase A is built rather than before it: the tagline, the positioning and the product-market read.
 
@@ -1951,9 +1985,9 @@ Question | Why a setting cannot hold it
 6 · Which bytes we hold, and from which phase | It is an architecture, not a value. **Answered 18 September, D03**
 5 · The one-sentence definition | It decides build order. **Answered 18 September, D01**
 1 · The pace | It decides which phases are Later. **Answered 18 September, D02**
-14 · The twenty-kit gate | It is a gate on phase C, not a switch
-11 · The desktop's timing | It reorders phases E and F
-7 · The name | It changes the domain and every published URL
+14 · The twenty-kit gate | It is a gate on phase C, not a switch. **Answered 18 September, D07: kept**
+11 · The desktop's timing | It reorders phases E and F. **Answered 18 September, D09: desktop early**
+7 · The name | It changes the domain and every published URL. **Answered 18 September, D05: frontmatter**
 13 · The accounts that move to the company | It is ownership, not configuration. **Answered 18 September, D10**
 
 **The eighteen, in order.** The first sixteen are in `docs/mvp0/DECISIONS-FOR-FOUNDERS-2026-09-17.md`, each with a default this revision is written to.
@@ -1964,14 +1998,14 @@ Question | Why a setting cannot hold it
 4. The legal floor and the grievance officer.
 5. K1, what the product is in one sentence. Answered, D01.
 6. K2, which bytes we hold, and from which phase. Answered, D03.
-7. K3, the name.
+7. K3, the name. Answered, D05.
 8. Live editing and the CRDT ban.
 9. The free caps and the downgrade. The document cap answered, D11.
 10. Bring-your-own key.
-11. Desktop before or after sync, and who signs Windows.
+11. Desktop before or after sync, and who signs Windows. Answered, D09: before.
 12. The age floor.
 13. The accounts that move to the company. Answered, D10.
-14. The twenty hand-made kits.
+14. The twenty hand-made kits. Answered, D07: kept.
 15. The pilot's stop and continue lines.
 16. Which earlier positions stand.
 17. Whether published pages are indexed. Added from the audit's growth angle, because not indexing removes search as a channel and the plan has no other.
@@ -1982,7 +2016,7 @@ Question | Why a setting cannot hold it
 - **"Every feature free, quantities capped"** became "every editing feature free; password links, Medium and High, the portfolio and branding removal are Pro" (F003).
 - **The free caps** are the market's 50, 5 and 3, not the candidates' 5, 2 and 1.
 - **K1 and K2** were taken implicitly by revision 4 and answered by the founders on 18 September, D01 and D03 above.
-- D01 took option a, so the 23 cards in `decisions/v2` that depend on K1 re-open. **K3, the name**, stays open at the card's recommendation c.
+- D01 took option a, so the 23 cards in `decisions/v2` that depend on K1 re-open. **K3, the name**, was answered on 18 September, D05: keep frontmatter.
 
 ## 30. The configuration panel
 

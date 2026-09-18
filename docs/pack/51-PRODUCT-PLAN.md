@@ -4,9 +4,9 @@ title: Product plan
 mode: explanation
 tier: canonical
 status: living
-updated: 2026-09-18
+updated: 2026-09-19
 owner: sagnik
-verified_against: 4de879d
+verified_against: f3446ae
 covers: [position, claims, tiers, scope, never-build]
 ---
 
@@ -202,9 +202,9 @@ says what a tier means. That file says what it allows.
 internal gate, never on a date.
 
 Tier | Complete after batch | What that batch adds | Caveat
-**Free** | 5, In and out, then the pilot | Import, export, the GitHub and Drive mirrors | Batch 8 adds offline and the desktop app later, and batch 9 the views and blocks
+**Free** | 5, In and out, then the pilot | Import, export, the GitHub and Drive mirrors | The desktop app and offline, batch 8, and database views, batch 9a, now land before batch 5 (D09, D13). Batch 9's views and blocks come after Pro
 **Pro** | 7, Pro | Razorpay, Medium and High, password links, the 90-day window | **The portfolio is a Pro row but ships in batch 12.** Pro is sold without it until then
-**Max** | 10, Agents and Max | The MCP server, the API, agent tokens | Appetite unset. D04 may move part of it into batch 4
+**Max** | 10a, the agent server, then on sale in batch 7 | The MCP server that reads and proposes and never writes, agent tokens, propose scope, staleness anchors, the multi-file change | **Scheduled by D04** `[Z]`, 2 to 3 weeks plus 2 days. The API and the command line follow in batch 10, appetite unset
 **Team** | 12, Portfolio, Team and community | Seats and one bill | Appetite unset, unpriced
 
 `INFERENCE:` a tier is "complete" when the last batch its rows need has passed. Nothing in
@@ -254,12 +254,12 @@ important part.
 **What is in it.**
 
 Item | What it is | Why it is not Free or Pro
-**The Model Context Protocol server** | An agent connects to the person's documents over MCP, as a first-class client | Every call is a hosted request. Our compute, our egress
+**The Model Context Protocol server** | An agent connects to the person's documents over MCP, as a first-class client. **It reads and proposes, and never writes** `[Z]` (D04) | Every call is a hosted request. Our compute, our egress
 **Propose scope** | An agent token can read and propose, and can never apply or publish | `docs/mvp0/PRODUCT-PLAN.md` section 19 already writes this into the role matrix
 **Agent tokens** | Named, scoped, revocable, one per agent, with a hash rather than a secret at rest | Issuing and checking them is per request
 **Staleness anchors** | A proposal carries the content hash of the range it was written against, and refuses when that range has moved | This is the refusal law applied to time, and it is what makes an asynchronous agent safe
 **The multi-file reviewable change** | Fifteen files proposed together, accepted or rejected as a set or one by one | The blueprint's output shape, and spec-driven development's unsolved problem
-**The command line** | The same capability surface without a browser | A thin adapter over the same ports
+**The command line** | The same capability surface without a browser | A thin adapter over the same ports. Batch 10, after the server
 
 **Why the price tracks the cost, and this is the whole argument.**
 
@@ -270,11 +270,18 @@ Item | What it is | Why it is not Free or Pro
 - So Max is metered, and the meter is the honest shape. A flat price on an unbounded machine
   workload is a promise we cannot keep.
 
-**Where Max sits today.** **Changed 18 September:** D02 builds everything, so Max is no longer
-Later. It is batch 10 of `50-ROADMAP.md`, after Pro.
+**Where Max sits today.** **Decided 18 September** `[Z]` (D04): the MCP server reads and proposes,
+never writes, and is the Max tier. It is scheduled, not Later.
 
-The research argues it should come sooner, and
-`56-OPEN-DECISIONS.md` D04 carries that decision with its costs. **This file does not move it.**
+- **Built in batch 10a** of `50-ROADMAP.md`, straight after the change queue of batch 4, at step 7.
+  Its appetite is 2 to 3 weeks plus 2 days.
+- **On sale in batch 7**, the Pro batch, which builds the checkout Max needs.
+- **The meter ships before the price.** The events are in `55-MEASUREMENT-AND-EVENTS.md` section
+  6.13, and they ship in batch 10a.
+- **The API and the command line** stay in batch 10, with no appetite.
+
+**What never writes means.** An agent's token can read and propose. It can never apply, publish or
+splice a byte. Every proposal waits in the change queue for a person, like any other change.
 
 **What Max is not.** It is not Team. Team is seats and one bill, and it comes after Pro. Max is
 about machines, not about headcount.
@@ -354,15 +361,15 @@ of a machine is a machine-shaped cost.
 
 - Whether the position is right. It is the founders' and the evidence is in `52`, which measures
   demand rather than willingness to pay.
-- Whether Max is a tier or a feature of Pro. Section 4.3 argues the cost shape makes it a tier
-  and no customer has been asked.
+- Whether customers see Max as a tier or as a feature of Pro. D04 made it a tier `[Z]` on the cost
+  argument of section 4.3, and no customer has been asked.
 - The Team and Enterprise tiers are named and have no contents.
 
 **What could not be verified.**
 
 - **The Max price.** There is none `[O]`: section 4.3 prices nothing. `resolved (proposed 18 Sep,
   founder review)`, **needs founder** because it is money: Max is metered per agent request, and the
-  meter's rate is set from the configuration panel when batch 10 starts, from its measured cost.
+  meter's rate is set from the configuration panel when batch 10a starts, from its measured cost.
   Rejected: a flat Max price now, which section 4.3 already argues against.
 - **Whether the tagline test can tell three lines apart.** Derived 18 September `[O]`, two-proportion
   sample size at 5 per cent significance and 80 per cent power, computed in `python3` with

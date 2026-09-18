@@ -4,9 +4,9 @@ title: Release and versioning
 mode: how-to
 tier: canonical
 status: living
-updated: 2026-09-18
+updated: 2026-09-19
 owner: sagnik
-verified_against: 0af3c90
+verified_against: f3446ae
 covers: [release, versioning, deprecation, desktop-build, signing]
 ---
 
@@ -174,6 +174,12 @@ wrongly.
 unsigned. `31-LOCAL-SETUP.md` section 5 has the detail. The phase F rebuild is where this becomes
 real (`docs/mvp0/PRODUCT-PLAN.md` section 26).
 
+**Phase F now comes early** `[Z]` (D09, 18 September): desktop alongside the web editor, not after
+sync. It is batch 8, step 4 of `50-ROADMAP.md`, straight after the editor.
+
+So the desktop release, its continuous integration and its signing are all needed sooner than this
+file first assumed.
+
 ### 6.1 Building
 
 Script | Target
@@ -192,15 +198,58 @@ dependency, not a nicety.
 Platform | What we do | Why
 macOS | **Signed on the Apple programme, 99 USD a year** | Available to us
 Linux | **Unsigned, by choice** | Nothing to gain
-Windows | **Shown as coming**, until a commercial certificate is priced | Azure Artifact Signing's public trust is closed to organisations in India (F071)
+Windows | **Signed in batch 8**, once a founder buys a route. **Shown as coming** until then | Azure Artifact Signing's public trust is closed to organisations in India (F071), re-checked below. Commercial certificates are priced below
 
-**The Apple Developer Program is "not opened"** at `docs/mvp0/PRODUCT-PLAN.md` section 24, due in phase F.
+**The Apple Developer Program is "not opened"** at `docs/mvp0/PRODUCT-PLAN.md` section 24.
+It is due in phase F, which is now batch 8 at step 4.
 **Until it is, every macOS build is unsigned and Gatekeeper will say so.** `src-tauri/tauri.conf.json`
 has `signingIdentity`, `providerShortName` and `entitlements` all `null`.
 
 **Do not ship an unsigned build to a stranger and explain the warning in a message.** That teaches
 people to click through a security warning, which is a worse outcome than not shipping.
 `39-SHARING-A-BUILD.md` covers what to do instead.
+
+### 6.2a Pricing the Windows route
+
+**Why now.** D09 `[Z]` put the desktop straight after the editor, and the answer itself says the
+Windows certificate "is now needed sooner". Batch 1 of `50-ROADMAP.md` chooses and prices a route.
+
+Every figure below was read from the page named, opened with `curl -sL --compressed` on 2026-09-18
+UTC `[M]`. Prices are the vendor's list prices on that day, before tax.
+
+Route | Price as the page states it | Can Studio Zephyrus, an Indian company, use it? | Source
+Sectigo code signing | "starts at $536.25 per year when customers choose the five-year option". Shorter terms and EV cost more | `UNVERIFIED:` no country restriction was seen on the page. needs: Sectigo's validation terms | `https://sectigo.com/ssl-certificates-tls/code-signing`
+Certum Standard code signing | "price from € 139.00". Validity 1 to 3 years; for an individual or a company | `UNVERIFIED:` no country restriction was seen on the page | `https://www.certum.eu/en/code-signing-certificates/`
+Certum EV code signing | "price from € 329.00". Validity 1 to 3 years; organisations only | `UNVERIFIED:` as above | same page
+Certum Open Source | "price from € 25.00". Dedicated to open source licences | **No.** frontmatter is not an open source licence product | same page
+Azure Trusted Signing, Basic | 9.99 USD a month, meter "Basic Account" | **No.** Public trust is for organisations in a listed set of countries, and India is not among them | `https://prices.azure.com/api/retail/prices?$filter=contains(serviceName,'Signing')` and `https://learn.microsoft.com/en-us/azure/artifact-signing/quickstart`
+Azure Trusted Signing, Premium | 99.99 USD a month, meter "Premium Account" | **No**, for the same reason | the same two pages
+
+**The Azure answer is re-checked, not carried.** Microsoft's quickstart lists the countries whose
+organisations can get public trust certificates. India is not on the list, which confirms F071.
+
+**Two vendors could not be read from this network** `[O]`.
+
+- DigiCert's page returned a bot-protection page instead of prices.
+- SSL.com failed the TLS handshake through the sandbox's proxy. `UNVERIFIED:` its prices.
+
+**What the prices do not tell us.** `UNVERIFIED:` each needs the vendor's own terms, read before
+buying.
+
+- Which term Certum's "price from" refers to. The page shows a validity of 1 to 3 years beside it.
+- The cost of the hardware token or cloud key storage each vendor requires, which may be extra.
+- Whether a standard certificate or only EV avoids the Windows SmartScreen warning for a new
+  publisher. Neither page says.
+- Whether each vendor validates an Indian private limited company, and how long that takes.
+
+**Cheapest route seen that an Indian company may be able to use.** `INFERENCE:` Certum Standard,
+from €139, then Sectigo from $536.25 a year on a five-year term.
+
+The founder chooses, because it is money. **Buying one is a paid action for a founder, never for an
+agent.**
+
+`INFERENCE:` the certificate belongs to the company, not a founder, because D10 `[Z]` moves every
+account to the company before the first stranger.
 
 ### 6.3 Desktop bundle facts
 
@@ -333,7 +382,8 @@ the note. **Do not batch releases to hit a date, and do not release to have rele
   `package.json` unless pointed at it. **Resolved (proposed 18 Sep, founder review):** set it to
   `"../package.json"`, so one file carries the version. Rejected: three hand-kept copies, which agree
   today only by care.
-- The Windows certificate position. It is quoted from the plan's F071 and was not re-fetched.
+- The Windows certificate position. Re-fetched 2026-09-18 UTC `[M]`: Microsoft's quickstart still
+  excludes India from public trust, section 6.2a. DigiCert and SSL.com could not be read.
 
 **What is not established.**
 

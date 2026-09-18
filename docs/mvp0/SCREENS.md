@@ -286,7 +286,7 @@ Later | The portfolio at frontmatter.in/@handle, the MCP server and API, Team, a
 - GitHub: "GitHub grants this app the whole repository; frontmatter only ever writes under docs/" (F034). Pushes used, revocable on GitHub.
 - Both are labelled as a mirror: our copy is the one the editor works on, and this is a full copy in the person's own account (D03, 18 September).
 - An edit made in the mirror arrives as a change to accept, never a silent overwrite.
-- Your agents: marked Later, with the MCP server (F035).
+- Your agents: the MCP server, which reads and proposes and never writes. It is the Max tier, built in batch 10a, no longer marked Later (F035; D04, 18 September).
 
 ## 8. Everywhere
 

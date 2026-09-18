@@ -4,9 +4,9 @@ title: Platform, desktop and phone
 mode: reference
 tier: canonical
 status: living
-updated: 2026-09-18
+updated: 2026-09-19
 owner: sagnik
-verified_against: e532e32
+verified_against: f3446ae
 covers: [platform, desktop-capabilities, pwa, phone, parity]
 ---
 
@@ -20,6 +20,16 @@ planned.
 2026-09-18. `docs/mvp0/PRODUCT-PLAN.md` is being edited by other writers in the same pass and its
 line numbers moved by twelve while this file was written. **Confirm a citation by the phrase rather
 than by the number** if the two disagree.
+
+**When the desktop is built** `[Z]` (D09, 18 September): early, alongside the web editor, not after
+sync. Phase F is batch 8, and it runs at step 4 of `50-ROADMAP.md`, straight after the editor.
+
+- **What it has at that step:** the editor, Doc mode, the AI box, the engine, the change queue's
+  first form, and our canonical copy from batch 2.
+- **What it lacks until later steps:** sharing and publishing (batch 4, step 6), agent proposals
+  through the server (batch 10a, step 7), and the GitHub and Drive mirror (batch 5, step 8).
+- **What moved with it:** a signed Windows build, from Later. Its certificate is priced in batch 1,
+  per `35-RELEASE-AND-VERSIONING.md` section 6.2a.
 
 ---
 
@@ -229,7 +239,7 @@ readable on its own, with the detail there:
 Platform | Position | Cost
 macOS | Signed on the Apple programme. The account is not opened, and moves to the company in phase F | **99 USD a year**
 Linux | Unsigned, by choice. No Linux bundle target is configured, so today it means not built | none
-Windows | **Shown as coming**, until a commercial certificate is priced | **unquoted, and that is the problem**
+Windows | **Signed in batch 8**, once a founder buys a route; **shown as coming** until then | List prices opened 2026-09-18 UTC: Certum Standard from €139, Sectigo from $536.25 a year on a five-year term. Azure's route is closed to India. Detail in `35-RELEASE-AND-VERSIONING.md` section 6.2a
 
 **The two facts this file adds to those, because they are platform consequences rather than release
 steps.**
@@ -389,7 +399,8 @@ Continuous integration for any of it | **absent** | `.github/workflows/` is empt
 Phone layouts | partly built | the tree and right pane are already drawers
 Native mobile app | not planned into a phase | `lib.rs` carries the mobile entry point and nothing else
 
-**The build order for phase F.**
+**The build order for phase F**, which is now batch 8 at step 4 (D09 `[Z]`), so this order is needed
+straight after the editor rather than after sync.
 
 1. **Point the shell at frontmatter.** One commit, three strings, and it is the only item here that is
    a live defect rather than missing work.
@@ -401,7 +412,8 @@ Native mobile app | not planned into a phase | `lib.rs` carries the mobile entry
 6. **The local model, the watched folder and quick capture**, which are the reason the download
    exists.
 7. **Offline in the browser**, which is the same phase and a different codebase.
-8. **Windows, when a certificate has a price.**
+8. **Windows, on the route batch 1 chose.** D09 brought it into phase F. The prices are in
+   `35-RELEASE-AND-VERSIONING.md` section 6.2a, and buying one is a founder's paid action.
 
 ---
 
@@ -422,8 +434,9 @@ Native mobile app | not planned into a phase | `lib.rs` carries the mobile entry
 
 **What could not be verified.**
 
-- The price of a commercial Windows code-signing certificate for an Indian private company. The plan
-  records the Azure route as closed and nobody has quoted the alternative.
+- Whether a commercial Windows certificate can be bought by an Indian private company. List prices
+  were opened on 2026-09-18 UTC and are in `35-RELEASE-AND-VERSIONING.md` section 6.2a, but no
+  vendor's validation terms for an Indian company were read.
 - Whether notarisation adds a cost beyond the 99 USD a year. It should not, and it was not checked.
 - Safari's seven-day figure, and the Chrome and Firefox quota figures, which are carried from the
   plan's section 12 and were not re-opened here.
@@ -435,8 +448,8 @@ Native mobile app | not planned into a phase | `lib.rs` carries the mobile entry
 - That the desktop app is worth building before the progressive web app is finished. Section 6.4's
   own argument cuts both ways: **if installability plus offline plus the share target covers most of
   the need, the desktop app's four carrots reduce to two**, the local model and the watched folder.
-  Question 11 is the desktop's timing and it is one of the seven the configuration panel cannot
-  absorb (`docs/mvp0/PRODUCT-PLAN.md` section 29).
+- Question 11, the desktop's timing, was answered on 18 September `[Z]` (D09): desktop early. The
+  argument above stays as the caveat the founder decided against, not as an open question.
 - That anybody wants a watched folder. It is the most technically ambitious item here and no user
   evidence in the pack asks for it by name.
 
@@ -446,4 +459,5 @@ Native mobile app | not planned into a phase | `lib.rs` carries the mobile entry
   That would mean the download is buying a window, and the web app should be the whole product.
 - A published page's `Open in the app` bar measurably reducing reads. Section 2's decision assumes the
   bar is quiet and dismissible, and a measured drop would mean it is not.
-- Windows arriving cheaply, which would move it from `Later` into phase F and change the parity table.
+- No Windows route being available to an Indian company at a price the founder accepts. D09 moved
+  Windows into phase F; that would move it back to "coming" and change the parity table.
