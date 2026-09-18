@@ -6,19 +6,37 @@
 //   node docs/mvp0/screens/gen.mjs
 import fs from 'node:fs';
 import path from 'node:path';
+import { execFileSync } from 'node:child_process';
 
 const HERE = path.dirname(new URL(import.meta.url).pathname);
-const ICONS = '/private/tmp/claude-501/-Users-sagnikmitra-Desktop-GitHub-frontmatter/2e90ab3b-4a90-4362-bce4-042a842a2af5/scratchpad/icons';
+const ICONS = path.join(HERE, 'icons');
 const FONTS = fs.readFileSync(path.join(HERE, 'fonts.css'), 'utf8');
 
 // The free-tier caps, in one place. The plan document quotes the same numbers.
 const CAPS = { docs: 50, pub: 5, collab: 3, edits: 10, kits: 1, repos: 1, pushes: 20, uploads: '1 GB', history: 7 };
 
 const iconCache = {};
+// Fetch a Material Symbol on demand and keep it in the repo, so adding an icon to a
+// screen needs no separate step and no scratchpad. Rounded first, outlined as a fallback.
+function fetchIcon(name) {
+  fs.mkdirSync(ICONS, { recursive: true });
+  for (const style of ['materialsymbolsrounded', 'materialsymbolsoutlined']) {
+    const u = `https://raw.githubusercontent.com/google/material-design-icons/master/symbols/web/${name}/${style}/${name}_24px.svg`;
+    try {
+      const body = execFileSync('curl', ['-sfL', '-m', '25', u], { encoding: 'utf8' });
+      if (/<path[^>]*\sd="/.test(body)) {
+        fs.writeFileSync(path.join(ICONS, name + '.svg'), body);
+        return true;
+      }
+    } catch { /* try the next style */ }
+  }
+  return false;
+}
+
 function ic(name, size = 18, cls = '') {
   if (!iconCache[name]) {
     const f = path.join(ICONS, name + '.svg');
-    if (!fs.existsSync(f)) throw new Error('icon missing: ' + name);
+    if (!fs.existsSync(f) && !fetchIcon(name)) throw new Error('icon missing and could not be fetched: ' + name);
     const raw = fs.readFileSync(f, 'utf8');
     const m = /<path[^>]*d="([^"]+)"/.exec(raw);
     if (!m) throw new Error('no path in icon ' + name);
