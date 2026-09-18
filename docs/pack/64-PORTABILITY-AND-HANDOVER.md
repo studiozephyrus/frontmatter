@@ -331,6 +331,7 @@ Fact | Why it matters
 Neither `.cursorrules` nor `GEMINI.md` exists here | A tool that reads only those gets nothing. **Point it at `63-AGENT-CONTRACT.md`**
 The four overriding rules are in `AGENTS.md` section 0 | And gathered in `63-AGENT-CONTRACT.md` section 1
 A blocked tool is one tool's policy | **Test the alternative before concluding the capability is gone.** `63-AGENT-CONTRACT.md` section 7
+A knowledge graph of this pack exists, but only on the machine that built it | `docs/pack/graphify-out/` is git-ignored. Rebuild it with `cd docs/pack && graphify update .`, outside any OS sandbox that denies `.env.*` files. Then `graphify query "<question>"` answers from the graph instead of a read of every file
 
 ### 8.2 The paragraph to paste into a new tool
 
