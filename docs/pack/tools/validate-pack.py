@@ -34,6 +34,31 @@ problems = []
 covers_seen = {}   # id covered -> file that covers it
 today = datetime.date.today()
 
+SKIP = {'node_modules', '.next', '.git', 'out', 'dist', 'target', 'coverage'}
+
+
+def index_by_name():
+    """basename -> [paths], built once. Walking the tree per citation is minutes, not seconds."""
+    idx = {}
+    stack = [ROOT]
+    while stack:
+        d = stack.pop()
+        try:
+            entries = list(d.iterdir())
+        except OSError:
+            continue
+        for e in entries:
+            if e.name in SKIP or e.name.startswith('.') and e.is_dir():
+                continue
+            if e.is_dir():
+                stack.append(e)
+            else:
+                idx.setdefault(e.name, []).append(e)
+    return idx
+
+
+BY_NAME = index_by_name()
+
 
 def fm(text):
     """Parse the leading YAML block. Deliberately small: flat keys, and lists as [a, b]."""
@@ -125,15 +150,28 @@ for path in files:
             break
 
     # Citations of the form path/file.md:NNN have to point at a line that exists.
+    # A bare filename is allowed as a short form, as long as exactly one file in the
+    # repository carries that name. Two matches is an ambiguous citation, which is worse
+    # than a wrong one, because it looks right.
     for m in re.finditer(r'`([\w./-]+\.(?:md|ts|tsx|mjs|py|json)):(\d+)`', text):
-        target, line = ROOT / m.group(1), int(m.group(2))
+        ref, line = m.group(1), int(m.group(2))
+        target = ROOT / ref
         if not target.exists():
-            problems.append(f'{rel}: cites `{m.group(1)}:{line}` and that file does not exist')
+            hits = (BY_NAME.get(ref, []) if '/' not in ref
+                    else [h for h in BY_NAME.get(ref.rsplit('/', 1)[-1], [])
+                          if str(h).endswith('/' + ref)])
+            if len(hits) == 1:
+                target = hits[0]
+            elif len(hits) > 1:
+                problems.append(f'{rel}: cites `{ref}:{line}` and {len(hits)} files carry that name. Use the full path.')
+                continue
+        if not target.exists():
+            problems.append(f'{rel}: cites `{ref}:{line}` and that file does not exist')
         else:
             try:
                 n = len(target.read_text(encoding='utf-8', errors='replace').splitlines())
                 if line > n:
-                    problems.append(f'{rel}: cites `{m.group(1)}:{line}` but it has {n} lines')
+                    problems.append(f'{rel}: cites `{ref}:{line}` but it has {n} lines')
             except OSError:
                 pass
 
