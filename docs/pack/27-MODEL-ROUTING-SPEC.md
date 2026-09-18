@@ -330,7 +330,7 @@ A blueprint | Sonnet 5 through the batch API at half price, then Haiku, then the
 **The whole Pro margin depends on this table.** Sonnet 5 for everything is `$3.99` a month against
 `₹246` net of tax and the payment fee, which loses `₹137` on a fully active Pro user. The Haiku and
 batched Sonnet routing is `$1.99`, or about `₹191`, which leaves about `₹55`. Those figures are
-re-derived at `docs/mvp0/PRODUCT-PLAN.md` section 14 and section 14, and marked SIMULATED there.
+re-derived at `docs/mvp0/PRODUCT-PLAN.md` section 14, and marked SIMULATED there.
 
 ### 3.3 The rules that sit above the table
 
@@ -476,7 +476,7 @@ green because nothing in `application` or `domain` imports `infrastructure`.
 
 `docs/mvp0/PRODUCT-PLAN.md` section 15 decides the stack: `The stack is the Next.js app we already run,
 Cloudflare R2 for bytes, and Firestore for records, with Firebase Auth for sign-in.` Section 18's
-data model, at `docs/mvp0/PRODUCT-PLAN.md` section 18 onwards, and its ledger row at section 18, still writes `Postgres rows` for every
+data model, at `docs/mvp0/PRODUCT-PLAN.md` section 18, including its ledger row, still writes `Postgres rows` for every
 entity including the ledger entry. **Two sections of the plan of record name two different
 databases.** The section 15 decision is dated and attributed to the founders, so this spec follows
 Firestore and flags the section 18 table as owing a correction.
@@ -744,7 +744,7 @@ GitHub commits in 2025, including `113,000 leaked DeepSeek API keys`, and observ
 ## 8. Capacity arithmetic for 200 users
 
 Every number below was computed in Python on 18 September 2026 and the working is printed. Inputs are
-from `docs/mvp0/PRODUCT-PLAN.md` section 14 and section 14. The blueprint figures are assumed until measured.
+from `docs/mvp0/PRODUCT-PLAN.md` section 14. The blueprint figures are assumed until measured.
 
 ### 8.1 The demand
 

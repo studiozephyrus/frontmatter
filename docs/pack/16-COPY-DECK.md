@@ -935,7 +935,7 @@ The code's spelling of Summarize is American, against the house rule. `MEDIUM`.
 
 **D3. The live-collaborator number is 1 in three sources and 3 in two.** One is correct: the
 founders answered on 18 September (`docs/mvp0/SCREEN-CHANGES-2026-09-18.md:305`), and
-`docs/mvp0/PRODUCT-PLAN.md` section 5 and section 5 and `docs/mvp0/screens/gen.mjs:16` follow it.
+`docs/mvp0/PRODUCT-PLAN.md` section 5 and `docs/mvp0/screens/gen.mjs:16` follow it.
 **`docs/mvp0/PRODUCT-PLAN.md` section 3 and `docs/mvp0/SCREENS.md:29` still say 3** and are stale. This
 deck is written to 1. Recorded here rather than fixed, because both files belong to other owners.
 
