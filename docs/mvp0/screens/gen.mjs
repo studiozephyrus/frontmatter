@@ -128,6 +128,11 @@ u{text-decoration-thickness:1px;text-underline-offset:2px}
 /* The left rail's make-and-put block, added 18 September on the founder's review:
    two primary creates plus one always-there drop hint, so upload has a home. */
 .makerow{display:grid;grid-template-columns:1fr 1fr;gap:6px;padding:6px 4px 2px}
+.fseg{display:flex;gap:2px;padding:3px;margin:0 0 8px;background:var(--bg-subtle);border:1px solid var(--border);border-radius:var(--r)}
+.fseg span{flex:1;display:inline-flex;align-items:center;justify-content:center;gap:5px;height:26px;font-size:12px;font-weight:500;
+  color:var(--muted);border-radius:calc(var(--r) - 2px);cursor:default}
+.fseg span.on{background:var(--panel);color:var(--fg);box-shadow:0 1px 2px rgba(0,0,0,.06)}
+.fseg span i{font-style:normal;font-size:11px;font-variant-numeric:tabular-nums;opacity:.75}
 .sizer{display:inline-flex;align-items:center;gap:1px}
 .sizer .num{min-width:22px;text-align:center;font-size:12.5px;font-variant-numeric:tabular-nums;color:var(--fg)}
 .tool.sq{width:22px;min-width:22px;justify-content:center;font-size:14px}
@@ -644,6 +649,13 @@ function docbar() {
     <span class="seg"><span>Edit</span><span class="on">Live</span><span>Reading</span><span>Split</span></span></span></div>`;
 }
 
+// Founder rule, 18 September: wherever human work and machine work sit in one list,
+// split them with a toggle rather than combining them. Used by S10 and S20.
+function filterseg(items, on = 0) {
+  return `<div class="fseg">${items.map((x, i) =>
+    `<span class="${i === on ? 'on' : ''}">${x[0]}${x[1] != null ? `<i>${x[1]}</i>` : ''}</span>`).join('')}</div>`;
+}
+
 function rail({ outline, extra = '', showFoot = true, credits = [7, CAPS.edits], counts = [4, 2, 3], history = `${CAPS.history} days`, aiOff = '' }) {
   const cnt = (n) => n == null ? '' : `<span class="cnt">${n}</span>`;
   // Every collapsible sits at the top, closed, so the outline gets the height and the
@@ -942,7 +954,7 @@ phone({ mode: 'Reading', title: 'execution-flow.md', body: `${pmodebar('Reading'
 <div class="flow">${flowCols(FLOW.slice(0, 2)).replace('· 6 steps', '· 6 steps')}</div>` }));
 
 // S10 problems panel
-const PROBS = `<div class="prob"><i class="dot err"></i><div><b>Link goes nowhere</b><em>[[06-BACKEND-SPEC]] does not exist in this project</em></div><span class="ln">L9</span></div>
+const PROBS = `${filterseg([['All', 5], ['Checks', 4], ['Writing', 1]], 0)}<div class="prob"><i class="dot err"></i><div><b>Link goes nowhere</b><em>[[06-BACKEND-SPEC]] does not exist in this project</em></div><span class="ln">L9</span></div>
 <div class="prob"><i class="dot warn"></i><div><b>Heading level skips</b><em>H1 to H3 with no H2 between them</em></div><span class="ln">L11</span></div>
 <div class="prob"><i class="dot warn"></i><div><b>Image has no alt text</b><em>Screen readers and exports will show nothing</em></div><span class="ln">L13</span></div>
 <div class="prob"><i class="dot warn"></i><div><b>Table row has 3 cells, header has 2</b><em>It will render wrong on GitHub</em></div><span class="ln">L18</span></div>
@@ -980,18 +992,38 @@ const DOC_AGENTS = `<h1>AGENTS.md</h1>
 <ul><li>TypeScript strict, no default exports</li><li>British spelling in prose</li><li>Cross-module imports go through the barrel, never a deep path</li></ul>
 <h2>Do not</h2>
 <ul><li>Never commit a file you did not author in this session</li><li>Never write to <code>main</code> without a passing verify</li></ul>`;
-const AGENTS_HEALTH = `<div class="rsec"><div class="rh">${ic('verified', 14)} Instruction files<span class="sp"></span><span class="pill ok">Healthy</span></div>
-<div class="chk">${ic('check', 15, 'ok')}<div>One file, imported not copied<em>CLAUDE.md is a one-line <code>@AGENTS.md</code> import, so the two cannot drift</em></div></div>
-<div class="chk">${ic('check', 15, 'ok')}<div>1,363 words, 9.4 KB<em>Under the 32 KiB cap Codex applies to this file</em></div></div>
+// S11 rewritten 18 September. It was a health panel on one AGENTS.md. The research of
+// that morning found the demand is about SEVERAL files: 6,644 reactions on one request,
+// and an ordinary three-tool team keeps four or more near-identical copies. It also found
+// two studies saying these files do not raise task success, so the panel may claim the
+// file is CORRECT and must not claim it makes an agent smarter.
+const FILESET = [
+  ['AGENTS.md', 'the source', 'ok', 'Claude Code, Codex, Cursor, Jules, Amp, opencode, Zed, Warp'],
+  ['CLAUDE.md', 'one-line import', 'ok', 'Claude Code'],
+  ['.github/copilot-instructions.md', 'copy, in step', 'ok', 'Copilot coding agent'],
+  ['.cursor/rules/style.mdc', 'copy, drifted', 'warn', 'Cursor'],
+  ['GEMINI.md', 'missing', 'off', 'Gemini CLI'],
+];
+const AGENTS_HEALTH = `<div class="rsec"><div class="rh">${ic('account_tree', 14)} Instruction files<span class="sp"></span><span class="pill">4 of 5</span></div>
+${filterseg([['All', 5], ['Linked', 2], ['Copies', 2]], 0)}
+<div class="kit">${FILESET.map(([f, s, k, who]) => `<div class="file ${k}">${ic(k === 'ok' ? 'check' : k === 'warn' ? 'warning' : 'add', 14, k === 'ok' ? 'ok' : '')}<span class="sp"><b style="display:block">${f}</b><em style="display:block;margin-top:1px">${s} &middot; ${who.split(',')[0]}${who.includes(',') ? ' and ' + (who.split(',').length - 1) + ' more' : ''}</em></span></div>`).join('')}</div>
+<div class="drophint" style="margin:10px 0 0">${ic('add', 15)} Add GEMINI.md as an import</div></div>
+
+<div class="rsec"><div class="rh">${ic('warning', 14)} One copy has drifted</div>
+<div class="chk">${ic('warning', 15)}<div><b>.cursor/rules/style.mdc</b> is 3 lines behind AGENTS.md<em>Cursor does not read a plain .md in that folder, so this one has to be a copy. Diff it, or replace it with a generated copy that cannot drift</em></div></div>
+<div style="display:flex;gap:6px;margin-top:8px"><span class="btn sm">${ic('visibility', 14)} Diff</span><span class="btn sm">${ic('refresh', 14)} Regenerate</span></div></div>
+
+<div class="rsec"><div class="rh">${ic('checklist', 14)} Checks<span class="sp"></span><span class="pill ok">4 of 6</span></div>
+<div class="chk">${ic('check', 15, 'ok')}<div>Under every published size limit<em>1,363 words, 9.4 KB. Codex caps this file at 32 KiB</em></div></div>
 <div class="chk">${ic('check', 15, 'ok')}<div>Setup commands present<em>Install, dev and verify all named</em></div></div>
-<div class="chk">${ic('warning', 15)}<div>Two claims unverified since 10 Sep<em>Line 14 and line 31 name commands nobody has run this week. Check them</em></div></div></div>
-<div class="rsec"><div class="rh">${ic('terminal', 14)} Agents that read this</div>
-<div class="kit">${['Claude Code', 'Cursor', 'Codex', 'Jules', 'Copilot coding agent'].map(a => `<div class="file">${ic('check', 14, 'ok')}<span class="sp">${a}</span></div>`).join('')}</div>
-<div style="font-size:11.5px;color:var(--muted);margin-top:8px">AGENTS.md is an open format used by over 60,000 projects. Nothing here is ours to invent.</div></div>`;
+<div class="chk">${ic('warning', 15)}<div>Two claims unverified since 10 Sep<em>Line 14 and line 31 name commands nobody has run this week</em></div></div>
+<div class="chk">${ic('warning', 15)}<div>Rules a linter already enforces<em>Lines 22 to 26 restate what Prettier and ESLint check. They cost tokens in every session and change nothing</em></div></div>
+<div class="foot" style="margin-top:8px">These checks say the file is correct. They do not claim it makes an agent better at its job: two studies measured no gain in task success, and one measured over 20 per cent added cost.</div></div>`;
+
 screen('s11-instruction-files', 'Instruction files', `<div class="app">
 ${top({ tabs: [{ n: 'AGENTS.md', c: 'amber', on: 1 }, { n: '00-BRIEF.md', c: 'blue' }, { n: 'ideas.md', c: 'green' }] })}
 <div class="body">
-${tree({ projects: [{ ...PROJECTS_MAIN[0], rows: PROJECTS_MAIN[0].rows.map(r => ({ ...r, on: r.n === 'AGENTS.md' ? 1 : 0 })) }, PROJECTS_MAIN[1]], foot: `${ic('verified', 14)} 1 instruction file, no duplicate` })}
+${tree({ projects: [{ ...PROJECTS_MAIN[0], rows: PROJECTS_MAIN[0].rows.map(r => ({ ...r, on: r.n === 'AGENTS.md' ? 1 : 0 })) }, PROJECTS_MAIN[1]], foot: `${ic('account_tree', 14)} 5 instruction files, 1 drifted` })}
 <main class="main">${modebar('Live', '<span class="pill ok">' + ic('check', 13) + ' Saved</span>')}
 <div class="doc"><div class="md">${DOC_AGENTS}</div></div>
 </main>
@@ -1210,7 +1242,7 @@ const REVIEW_DOC = `<h1>Zephyrus booking, in one page</h1>
 <p>A two-chair salon in Kolkata that loses about four bookings a week to double-booking and no-shows. The owner runs everything from a phone.</p>
 <ul><li>Books from WhatsApp messages, by hand, into a paper diary</li><li><span class="chg">Takes deposits by UPI, then reconciles them on Sunday night</span></li><li>Wants a link to put in the Instagram bio</li></ul>
 <h2>The one metric</h2><p><span class="chg">No-shows per hundred bookings, measured for four weeks before the deposit step and four after.</span></p>`;
-const REVIEW_LIST = `<div class="chg-list">
+const REVIEW_LIST = `${filterseg([['All', 3], ['People', 1], ['AI and agents', 2]], 0)}<div class="chg-list">
 <div class="it"><div class="who"><span class="avatar" style="width:16px;height:16px;font-size:8px;background:#b2625e">AM</span> Amit · 10 min ago</div><div class="q">Changed "a deposit" to "a refundable deposit" in the summary.</div><div class="acts"><span class="btn">${ic('check', 13)} Accept</span><span class="btn">${ic('close', 13)} Reject</span><span class="btn">${ic('comment', 13)} Reply</span></div></div>
 <div class="it"><div class="who">${ic('auto_awesome', 13)} AI edit · you asked to tighten · 25 min ago</div><div class="q">Rewrote the deposit bullet to say when reconciliation happens.</div><div class="diff" style="margin:6px 0;font-size:11px"><div class="del">-Takes deposits by UPI, then forgets who paid</div><div class="add">+Takes deposits by UPI, then reconciles them on Sunday night</div></div><div class="acts"><span class="btn">${ic('check', 13)} Accept</span><span class="btn">${ic('close', 13)} Reject</span></div></div>
 <div class="it"><div class="who">${ic('terminal', 13)} Claude Code · edited the file on disk · 1 h ago</div><div class="q">Metric now says how long it is measured for.</div><div class="acts"><span class="btn">${ic('visibility', 13)} Show diff first</span><span class="btn">${ic('close', 13)} Reject</span></div></div>
