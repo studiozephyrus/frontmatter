@@ -280,9 +280,9 @@ Later, named | A Max tier above Pro; a community as an opt-in index plus GitHub 
 3. The problems panel.
 4. The instruction-file health panel.
 
-**Ideas.** A separate tab.
+**Ideas.** A collapsed section at the foot of the workspace tree, the way the outline sits on the right. There is no separate tab or route `[Z]`.
 
-- Ideas are listed on the left, with their state.
+- Ideas are listed in that section, with their state. Opening one expands the section and folds the projects above it.
 - The idea, its attachments and the industry template sit in the middle.
 - **Choose a depth. Answer.**
 - The blueprint is written, checked for consistency, and published at an unlisted link.
@@ -337,7 +337,7 @@ Later, named | A Max tier above Pro; a community as an opt-in index plus GitHub 
 
 <div class="pair"><img src="screens/s03-home.png"><img src="screens/s03-home-phone.png"></div>
 
-- Recent documents with project, opened and owner. The Ideas tab carries a count.
+- Recent documents with project, opened and owner. The Ideas count sits on the home tabs; in the workspace, ideas are a section of the tree.
 - A quiet pill shows cloud documents used against the cap.
 - The phone shows four starts and the list.
 
@@ -452,11 +452,12 @@ Later, named | A Max tier above Pro; a community as an opt-in index plus GitHub 
 
 <div class="pair"><img src="screens/s12-ideas.png"><img src="screens/s12-ideas-phone.png"></div>
 
-- Ideas listed on the left with their state: draft, decided so far, blueprint version.
+- **Inside the workspace.** Ideas is the collapsed section at the foot of the tree; opening it lists the ideas with their state (draft, decided so far, blueprint version), and a new idea opens as a tab like a document `[Z]`.
+- One centred column and one input, the way Claude and ChatGPT start. No step breadcrumb.
 - The idea, an attached drawing, a document or a repository. An industry template, or one generated for your industry. The drawing is described in the frontend spec the kit now carries (F025).
 - The depth chooser: Low free, Medium Pro, High Pro plus credits. Start at Low and go deeper later without losing answers.
 
-**Why.** `[Z]` a separate tab with ideas on the left. `[Z]` the three depths. `[M]` Nielsen's progressive disclosure has two levels at most, and this is the second.
+**Why.** `[Z]` ideas as a section of the workspace, collapsed until wanted, answered on 18 September. `[Z]` the three depths. `[M]` Nielsen's progressive disclosure has two levels at most, and this is the second.
 
 ### S13. Idea mode, Low
 
@@ -473,6 +474,8 @@ Later, named | A Max tier above Pro; a community as an opt-in index plus GitHub 
 - Only the recommended option carries its reason. Not sure is a quiet link, not a third option in every card.
 - Not sure records the question as open and takes the recommendation for now; DECISIONS.md carries it as open, not as decided.
 - The blueprint's fifteen files are listed before a credit is spent.
+- **Use a standard question set** is a switch under the page controls, off by default. It is the fallback when the model layer is degraded or the rewrites are spent, and it shows how many rewrites are left on Free.
+- **The phone carries the same controls as the desktop**: Skip and Choose recommendation, then Next, pinned to the foot of the screen, with Skip all added from page two.
 
 **Why.** `[Z]` the founders' review of 18 September. `[Z]` 10 to 15 questions on the free plan. `[M]` PAIR: show alternatives rather than confidence, "Showing multiple options prompts the user to rely on their own judgement."
 
@@ -679,7 +682,8 @@ Later, named | A Max tier above Pro; a community as an opt-in index plus GitHub 
 <div class="pair"><img src="screens/s32-ai-unavailable.png"><img src="screens/s32-ai-unavailable-phone.png"></div>
 
 - The AI box when every provider in the chain has refused or timed out: the document is untouched, nothing was charged, try again in a minute, or on the desktop use the local model.
-- The status of each provider in the chain, so the person knows it is not their document.
+- The status of each provider in the chain, in its real order with OpenRouter in it, so the person knows it is not their document.
+- For an idea, one more path: use the standard question set, which needs no model.
 
 **Why.** `[M]` PAIR: "Provide paths forward from failure." `[P]` the chain has four links and the plan says what happens when the fourth fails.
 
@@ -697,7 +701,8 @@ Later, named | A Max tier above Pro; a community as an opt-in index plus GitHub 
 
 <div class="pair"><img src="screens/s34-ideas-empty.png"><img src="screens/s34-ideas-empty-phone.png"></div>
 
-- The Ideas tab before the first idea: what a blueprint is in one line, the three depths in one line each, and one box to start.
+- The Ideas section before the first idea, drawn in the workspace like S12: the same centred column and input with the depth selector, what a blueprint is in one line, and no step breadcrumb.
+- The empty state says in plain words that a folder of notes can be dropped here to start from.
 - One hand-made example kit to open and read, so the person sees the fifteen files before spending a credit.
 
 **Why.** `[M]` Nielsen: "Do not default to totally empty states." `[R]` the example kit is one of the twenty hand-made ones from Phase 0.
@@ -1393,7 +1398,7 @@ Every rule below is quoted from the page it came from, and each names the screen
 
 - **Progressive disclosure, two levels at most.** Nielsen: "designs that go beyond 2 disclosure levels typically have low usability". The toolbar has its twelve buttons and one More. The AI box has four chips and one second row. Settings has ten sections and no sub-sections.
 - **No tour.** Nielsen: "Tutorials interrupt users, don't necessarily improve task performance, and are quickly forgotten." Apple: "Consider providing a collection of context-specific tips instead of a single onboarding flow." A tip appears on the first hover of a control, once.
-- **Empty states are pathways.** Nielsen: "Do not default to totally empty states." Home shows five starts. The review queue, when empty, says what would appear. The Ideas tab has S34.
+- **Empty states are pathways.** Nielsen: "Do not default to totally empty states." Home shows five starts. The review queue, when empty, says what would appear. The Ideas section has S34.
 - **Sign-in first, named honestly.** Apple: "Delay sign-in for as long as possible." Nielsen: "Users want to start using the product right away." Jakob's law is the one source that supports the founders' choice: "users prefer your site to work the same way as all the other sites they already know", if the reference class is Google Docs and Notion. It is. So the sign-in is one tap, the page shows the editor, and published pages need no account.
 - **Reversible, visible, confirmable.** Nielsen's direct manipulation: "physical, incremental, and reversible actions whose effects are immediately visible on the screen." Every AI proposal previews in place, applies on a click, and undoes in one step.
 - **No confidence numbers.** PAIR: do not show confidence when "The confidence level isn't impactful"; prefer alternatives, which "prompts the user to rely on their own judgement". Idea mode shows options and a recommendation, never a percentage.

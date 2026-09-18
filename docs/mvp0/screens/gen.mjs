@@ -606,6 +606,17 @@ u{text-decoration-thickness:1px;text-underline-offset:2px}
   background:var(--bg-subtle);border-bottom:1px solid var(--border)}
 .openbar .t{margin-right:4px}
 .openbar .x{margin-left:auto;color:var(--muted)}
+.stdset{display:flex;align-items:center;gap:10px;margin-top:14px;padding:10px 12px;border:1px solid var(--border);border-radius:10px;background:var(--panel);font-size:12.5px}
+.stdset b{font-weight:500;display:block}
+.stdset em{font-style:normal;font-size:11.5px;color:var(--muted);display:block}
+.stdset .rw{margin-left:auto;display:inline-flex;align-items:center;gap:5px;font-size:11.5px;color:var(--fg-muted);white-space:nowrap}
+.stdset.ph{margin-top:10px;padding:9px 10px}
+.pnav{display:grid;grid-template-columns:1fr 1.6fr;gap:6px;margin-top:6px}
+.pnav .btn{height:36px}
+.pnext{width:100%;height:40px;margin-top:6px}
+.pfoot{position:absolute;left:0;right:0;bottom:0;padding:8px 14px 10px;background:var(--bg);border-top:1px solid var(--border);box-shadow:0 -8px 24px rgba(17,18,22,.06);z-index:3}
+.pfoot .stdset.ph{margin:0 0 6px;padding:6px 10px}
+.icol .foot{color:var(--muted);font-size:12px}
 .pagenav{display:flex;align-items:center;gap:8px;margin-top:4px}
 .pagenav .sp{flex:1}
 /* The rewriting state. Only appears when an answer actually changes a later page. */
@@ -1293,9 +1304,20 @@ const IDEAS = [
   { n: 'Salon loyalty stamps', e: '9 of 12 answered' },
   { n: 'Clinic reminders over WhatsApp', e: 'Draft' },
 ];
-function ideasTree() {
-  return `<aside class="side ideas"><div class="sidehead">${ic('lightbulb', 16)} Ideas<span class="sp"></span><span class="pill">${ic('add', 14)} new</span></div>
-  ${IDEAS.map(i => `<div class="row${i.on ? ' on' : ''}">${ic('lightbulb', 15)}<span class="n">${i.n}<em>${i.e}</em></span></div>`).join('')}
+// Ideas live in the workspace, not on a route of their own. Founder answer, 18 September:
+// Ideas is a section at the foot of the tree, collapsed until wanted. When an idea is
+// open, the same tree shows that section expanded and the projects above it folded, so
+// S12 to S14 and S34 sit in the workspace a person already knows.
+function ideasTree(list = IDEAS) {
+  const shut = (icon, n, c) => `<div class="proj shut"><div class="projrow">${ic('chevron_right', 15)} ${ic(icon, 16)} ${n}<span class="sp"></span><span class="cnt">${c}</span></div></div>`;
+  const make = `<div class="makerow"><span class="btn primary sm">${ic('note_add', 16)} Add file ${ic('expand_more', 14)}</span><span class="btn sm">${ic('lightbulb', 16)} Add idea</span></div>`;
+  return `<aside class="side ideas">
+  <div class="sidehead">${ic('chevron_right', 16)} Tree<span class="sp"></span><span class="pill">${ic('add', 14)} project</span></div>
+  ${shut('rocket_launch', 'Zephyrus booking', 16)}${shut('folder', 'Notes', 2)}
+  <div class="proj"><div class="projrow">${ic('expand_more', 15)} ${ic('lightbulb', 16)} Ideas<span class="sp"></span><span class="cnt">${list.length}</span></div>
+  ${list.map(i => `<div class="row d1${i.on ? ' on' : ''}">${ic('lightbulb', 15)}<span class="n">${i.n}<em>${i.e}</em></span></div>`).join('') || `<div class="row d1" style="color:var(--muted)"><span class="n">No ideas yet</span></div>`}</div>
+  <div class="drophint">${ic('upload', 15)} Drop files or a folder anywhere</div>
+  ${make}
   <div class="sidefoot">${ic('auto_awesome', 14)} 1 blueprint credit left this month</div></aside>`;
 }
 
@@ -1324,9 +1346,9 @@ function ideaInput({ text = IDEA_TEXT, depth = 'Low', menu = '' } = {}) {
 }
 
 screen('s12-ideas', 'Ideas', `<div class="app">
-${top({ tabs: [{ n: 'Ideas', c: 'blue', on: 1 }, { n: '00-BRIEF.md', c: 'blue' }] })}
+${top({ tabs: [{ n: '00-BRIEF.md', c: 'blue' }, { n: 'New idea', c: 'amber', on: 1 }] })}
 <div class="body noright">
-${ideasTree()}
+${ideasTree([{ n: 'New idea', e: 'Not sent yet', on: 1 }, ...IDEAS.map(i => ({ ...i, on: 0 }))])}
 <main class="main"><div class="doc" style="padding:40px 48px">
 <div class="icol">
   <div class="ihead">What do you want to build?<em>Describe it in your own words. Questions come next, and you can skip any of them.</em></div>
@@ -1336,7 +1358,7 @@ ${ideasTree()}
   <div class="chips" style="margin-top:14px;justify-content:center"><span class="lbl">Start from</span><span class="chip on">${ic('store', 14)} Local service business</span><span class="chip">SaaS</span><span class="chip">Marketplace</span><span class="chip">Internal tool</span><span class="chip">${ic('auto_awesome', 14)} One for my industry</span></div>
   <div class="foot" style="text-align:center;margin-top:16px">Low uses your blueprint credit for the month. Nothing is sent to a model until you press the arrow.</div>
 </div></div></main></div></div>`,
-phone({ title: 'Ideas', bottom: 'auto_awesome', body: `<div class="pdoc" style="padding:14px 14px 0">
+phone({ title: 'New idea', sub: `${ic('lightbulb', 12)} Ideas`, bottom: 'auto_awesome', body: `<div class="pdoc" style="padding:14px 14px 0">
 <div class="icol"><div class="ihead">What do you want to build?<em>Questions come next. Skip any of them.</em></div>
 ${ideaInput()}
 <div class="chips" style="margin-top:12px"><span class="chip on">${ic('store', 14)} Local service</span><span class="chip">SaaS</span><span class="chip">${ic('image', 14)} Drawing</span></div>
@@ -1367,20 +1389,23 @@ function pageNav({ all = false }) {
 }
 
 screen('s13-idea-low', 'Idea mode, Low', `<div class="app">
-${top({ tabs: [{ n: 'Ideas', c: 'blue', on: 1 }] })}
+${top({ tabs: [{ n: '00-BRIEF.md', c: 'blue' }, { n: 'Salon booking', c: 'amber', on: 1 }] })}
 <div class="body noright">
-${ideasTree()}
+${ideasTree([{ n: 'Salon booking', e: 'Questions, page 1', on: 1 }, ...IDEAS.map(i => ({ ...i, on: 0 }))])}
 <main class="main"><div class="doc" style="padding:30px 48px">
 <div class="icol wide">
   <div class="prog"><span>Page 1 of 3</span><span class="bar"><i style="width:33%"></i></span><span>4 of 12 questions</span>${depthPill('Low')}</div>
   <div class="qstack">${QHTML}${GHOST}</div>
   ${pageNav({})}
+  <div class="stdset"><span class="cfgsw"><i></i></span><span><b>Use a standard question set</b><em>Fixed questions that never rewrite. Used on its own when the AI is busy or the rewrites are spent.</em></span><span class="rw">${ic('autorenew', 14)} 2 of 3 rewrites left on Free</span></div>
   <div class="foot" style="margin-top:10px">Anything you skip stays open in DECISIONS.md, and the blueprint says it is open rather than guessing.</div>
 </div></div></main></div></div>`,
-phone({ title: 'Ideas', bottom: 'auto_awesome', body: `<div class="pdoc" style="padding:12px 14px 0">
+phone({ title: 'Salon booking', sub: `${ic('lightbulb', 12)} Ideas · Low`, bottom: 'auto_awesome', body: `<div class="pdoc" style="padding:12px 14px 0">
 <div class="prog"><span>1 of 3</span><span class="bar"><i style="width:33%"></i></span>${depthPill('Low')}</div>
 <div class="qstack">${qhtml(QCARDS.slice(0, 2))}${GHOST}</div>
-<div style="display:flex;gap:6px;margin-top:4px"><span class="btn" style="flex:1">Skip</span><span class="btn primary" style="flex:1.4">${ic('auto_awesome', 14)} Recommended</span></div></div>` }));
+</div><div class="pfoot"><div class="stdset ph"><span class="cfgsw"><i></i></span><span><b>Use a standard question set</b><em>2 of 3 rewrites left on Free</em></span></div>
+<div class="pnav"><span class="btn">Skip</span><span class="btn">${ic('auto_awesome', 14)} Choose recommendation</span></div>
+<span class="btn primary pnext">Next ${ic('arrow_forward', 15)}</span></div>` }));
 
 const DCARD = `<div class="dcard"><div class="dq">4. Deposit before the booking is confirmed, or after?</div>
 <div class="dsec">Where it stands</div><p>Your brief says no-shows cost about four bookings a week. Every comparable booking tool for salons in the template takes a deposit before confirming, and refunds it on cancellation inside a window.</p>
@@ -1397,9 +1422,9 @@ const DCARD = `<div class="dcard"><div class="dq">4. Deposit before the booking 
 // S14 Medium and High. The same layout, the same controls, one question at a time with
 // the evidence opened out. Deliberately not a second route.
 screen('s14-idea-medium', 'Idea mode, Medium and High', `<div class="app">
-${top({ tabs: [{ n: 'Ideas', c: 'blue', on: 1 }] })}
+${top({ tabs: [{ n: '00-BRIEF.md', c: 'blue' }, { n: 'Salon booking', c: 'amber', on: 1 }] })}
 <div class="body noright">
-${ideasTree()}
+${ideasTree([{ n: 'Salon booking', e: 'Questions, page 2', on: 1 }, ...IDEAS.map(i => ({ ...i, on: 0 }))])}
 <main class="main"><div class="doc" style="padding:30px 48px">
 <div class="icol wide">
   <div class="prog"><span>Page 2 of 7</span><span class="bar"><i style="width:29%"></i></span><span>8 of 26 questions</span>${depthPill('Medium')}</div>
@@ -1412,11 +1437,11 @@ ${ideasTree()}
 <p>The brief, the blueprint and the kickoff prompt are all generated from those defaults.</p>
 <div style="display:flex;gap:8px;margin-top:14px;justify-content:flex-end"><span class="btn">Keep answering</span><span class="btn primary">${ic('auto_awesome', 15)} Use the recommendations</span></div></div></div>
 </div></div>`,
-phone({ title: 'Ideas', bottom: 'auto_awesome', body: `<div class="pdoc" style="padding:12px 14px 0">
+phone({ title: 'Salon booking', sub: `${ic('lightbulb', 12)} Ideas · Medium`, bottom: 'auto_awesome', body: `<div class="pdoc" style="padding:12px 14px 0">
 <div class="prog"><span>2 of 7</span><span class="bar"><i style="width:29%"></i></span>${depthPill('Medium')}</div>
 ${DCARD}
-<div style="display:flex;gap:6px;margin-top:4px"><span class="btn" style="flex:1">Skip</span><span class="btn primary" style="flex:1.4">${ic('auto_awesome', 14)} Recommended</span></div>
-<div style="margin-top:6px"><span class="btn" style="width:100%">Skip all remaining</span></div></div>` }));
+</div><div class="pfoot"><div class="pnav" style="margin-top:0"><span class="btn">Skip</span><span class="btn">${ic('auto_awesome', 14)} Choose recommendation</span></div>
+<div class="pnav"><span class="btn">Skip all</span><span class="btn primary">Next ${ic('arrow_forward', 15)}</span></div></div>` }));
 
 // S15 blueprint ready
 const KITLIST = [['SKILL.md', 0, 'Loaded first'], ['AGENTS.md', 0, 'Every agent reads it'], ['00-BRIEF.md', 0], ['01-PRODUCT.md', 0], ['02-DATA-AND-API.md', 0], ['03-ARCHITECTURE.md', 0], ['04-SETUP.md', 0], ['05-FRONTEND-SPEC.md', 0, 'From the drawing'], ['specs/', 1], ['booking.md', 2], ['payments.md', 2], ['DECISIONS.md', 0, '12 decisions, 2 open'], ['MAP.md', 0], ['graph.json', 0, 'For the agent'], ['MANIFEST.json', 0], ['SHA256SUMS', 0]];
@@ -1793,7 +1818,7 @@ phone({ mode: 'Reading', title: '00-BRIEF.md', body: `<div class="banner">${ic('
 // S32 AI unavailable: every provider in the chain refused or timed out
 const AI_DOWN = `<div class="aibox" style="border-color:var(--danger)"><div class="in" style="color:var(--fg)">${ic('cloud_off', 18)} AI is unavailable right now. Your document is untouched and nothing was charged.<span class="go" style="background:var(--panel-2);color:var(--fg-muted)">${ic('refresh', 16)}</span></div>
 <div class="kit" style="margin-top:10px">${[['Cloudflare Workers AI', 'daily pool used, resets 00:00 UTC'], ['Groq', 'rate limit, resets in 41 s'], ['Cerebras', 'trial ended'], ['OpenRouter', 'free requests for today used']].map(r => `<div class="file">${ic('close', 14)}<span class="sp">${r[0]}</span><em class="hint">${r[1]}</em></div>`).join('')}</div>
-<div class="chips" style="margin-top:10px"><span class="chip">${ic('refresh', 14)} Try again in a minute</span><span class="chip">${ic('desktop_mac', 14)} Use the local model on the desktop app</span><span class="chip">${ic('key', 14)} Use my own key</span></div>
+<div class="chips" style="margin-top:10px"><span class="chip">${ic('refresh', 14)} Try again in a minute</span><span class="chip">${ic('desktop_mac', 14)} Use the local model on the desktop app</span><span class="chip">${ic('key', 14)} Use my own key</span><span class="chip">${ic('checklist', 14)} For an idea: use the standard question set</span></div>
 <div class="foot">${ic('auto_awesome', 12)} Your 7 remaining edits are still yours. Nothing is deducted for a failed call.</div></div>`;
 screen('s32-ai-unavailable', 'AI unavailable', `<div class="app">
 ${top({ tabs: TABS_MAIN })}
@@ -1824,20 +1849,21 @@ ${rail({ outline: OUTLINE_BRIEF })}
 </div></div>`,
 phone({ mode: 'Live', title: '00-BRIEF.md', body: `${pmodebar('Live')}<div class="pdoc"><div class="md">${DOC_BRIEF_SHORT}</div></div>`, overlay: psheet(OVERCAP.replace('<div class="modal" style="width:520px">', '<div>').replace(/<\/div>$/, '')) }));
 
-// S34 ideas, empty: what a blueprint is, the three depths, one box, one example kit
-const IDEAS_EMPTY = `<div style="max-width:640px;margin:0 auto"><div class="rh">Ideas</div>
-<div class="md" style="font-size:14px"><p>Describe an idea. Answer a few questions. Get a brief and a blueprint of fifteen files that an agent can build from, checked for consistency, at a link you can hand to Claude Code, Cursor or Codex.</p></div>
-<div class="kit" style="margin:10px 0 16px"><div class="file">${ic('bolt', 14)}<span class="sp">Low, free: 10 to 15 questions with a recommendation each</span></div><div class="file">${ic('insights', 14)}<span class="sp">Medium, Pro: 20 to 30 questions, each with where it stands and what forces the choice</span></div><div class="file">${ic('psychology', 14)}<span class="sp">High, Pro: Medium plus a research pass with sources opened and dated</span></div></div>
-<div class="aibox" style="margin:0"><div class="in">${ic('lightbulb', 18)} What are you building, and for whom?<span class="go">${ic('arrow_forward', 16)}</span></div>
-<div class="chips"><span class="chip">${ic('description', 14)} Open the example: a booking page for salons</span><span class="chip">${ic('table_view', 14)} Pick an industry template</span></div>
-<div class="foot">${ic('auto_awesome', 12)} The example is a real kit, made by hand, so you can read all fifteen files before spending your blueprint credit.</div></div></div>`;
+// S34 ideas, empty. Rebuilt 18 September to match S12: the same centred column and the
+// same input with the depth selector, inside the workspace with the Ideas section open.
+// The four-step breadcrumb went, as it went from S12, because it was cognitive load.
+const IDEAS_EMPTY = `<div class="icol">
+<div class="ihead">What do you want to build?<em>Describe it. Answer a few questions. Get a brief and a blueprint of fifteen files an agent can build from.</em></div>
+${ideaInput({ text: '<span style="color:var(--muted)">A booking page for small salons…</span>' })}
+<div class="chips" style="margin-top:14px;justify-content:center"><span class="chip">${ic('description', 14)} Open the example: a booking page for salons</span><span class="chip">${ic('table_view', 14)} Pick an industry template</span></div>
+<div class="drophint" style="margin:18px auto 0;max-width:420px;justify-content:center">${ic('upload', 15)} Or drop a folder of notes here, and the questions start from them</div>
+<div class="foot" style="text-align:center;margin-top:14px">The example is a real kit, made by hand, so you can read all fifteen files before spending your blueprint credit.</div></div>`;
 screen('s34-ideas-empty', 'Ideas, empty', `<div class="app">
-${top({ tabs: [{ n: 'Ideas', c: 'blue', on: 1 }] })}
+${top({ tabs: [{ n: '00-BRIEF.md', c: 'blue' }, { n: 'New idea', c: 'amber', on: 1 }] })}
 <div class="body noright">
-<aside class="side ideas"><div class="sidehead">${ic('lightbulb', 16)} Ideas<span class="sp"></span><span class="pill">${ic('add', 14)} new</span></div><div style="padding:10px 8px;font-size:12.5px;color:var(--muted)">Your ideas will be listed here with where each one stands.</div><div class="sidefoot">${ic('auto_awesome', 14)} 1 blueprint credit this month</div></aside>
-<main class="main"><div class="modebar"><span class="steps"><b>1 Describe</b> ${ic('chevron_right', 14)} 2 Decide ${ic('chevron_right', 14)} 3 Write ${ic('chevron_right', 14)} 4 Hand off</span></div>
-<div class="doc" style="padding:40px 48px">${IDEAS_EMPTY}</div></main></div></div>`,
-phone({ title: 'Ideas', bottom: 'auto_awesome', body: `<div class="pdoc" style="padding:14px 14px 0">${IDEAS_EMPTY.replace('<div style="max-width:640px;margin:0 auto">', '<div>')}</div>` }));
+${ideasTree([])}
+<main class="main"><div class="doc" style="padding:60px 48px">${IDEAS_EMPTY}</div></main></div></div>`,
+phone({ title: 'New idea', sub: `${ic('lightbulb', 12)} Ideas`, bottom: 'auto_awesome', body: `<div class="pdoc" style="padding:14px 14px 0">${IDEAS_EMPTY}</div>` }));
 
 
 // ---------------------------------------------------------------- S35 to S38
