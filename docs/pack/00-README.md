@@ -31,7 +31,11 @@ Decision | Answer `[Z]`
 `D03` storage | Our copy canonical; the person's GitHub or Drive a full mirror; a soft cap over storage limits
 `D10` accounts | All of them move to the company before the first stranger
 
-**Start with batch 1 in `50-ROADMAP.md` section 3.1**, which is work before code: accounts, the legal
+**Before development: the founder reviews `review/00-FOUNDER-REVIEW.md`**, one generated file over every
+open point, with the 44 that need him at the top. Every other open point is resolved as a proposal
+and marked `resolved (proposed 18 Sep, founder review)` where it sits. D04 to D14 were answered too.
+
+**Then start with batch 1 in `50-ROADMAP.md` section 3.1**, which is work before code: accounts, the legal
 floor, the public pages, format specifications and twenty hand-made blueprints.
 
 What was green when this was written, each re-run on 18 September:

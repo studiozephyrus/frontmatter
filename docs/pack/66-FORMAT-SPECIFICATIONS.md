@@ -397,7 +397,7 @@ Key | Shape | Default | Examples
 
 ### 3.10 The `verified` stamp
 
-**Status: `needs founder`.** D06 in `56-OPEN-DECISIONS.md` is a founder decision and is not among
+**Status: answered 18 September `[Z]`, D06: stamp on accept.** Before that answer: D06 in `56-OPEN-DECISIONS.md` was a founder decision and is not among
 the four answered on 18 September. **Recommendation, as D06's: stamp on accept, in phase D.** The
 contract below is written so phase D can build it the day D06 is answered yes.
 
