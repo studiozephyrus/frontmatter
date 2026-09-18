@@ -267,6 +267,39 @@ u{text-decoration-thickness:1px;text-underline-offset:2px}
 .plan li.no{color:var(--muted)}.plan li.no .ic{color:var(--muted)}
 .usage{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;max-width:920px;margin:0 0 22px}
 /* configuration panel, founders only */
+.cfgcols{display:grid;grid-template-columns:minmax(0,1.5fr) minmax(0,1fr);gap:28px;align-items:start}
+.cfgcols .cfgt{max-width:none}
+.cfgt.cfgm td{padding:0 10px;font-size:12px;height:22px;line-height:22px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.cfgt.cfgm{table-layout:fixed}
+.cfgt.cfgm .mid{font-family:var(--font-mono);font-size:11.5px;color:var(--fg)}
+.cfgt.cfgm tr.grp td{padding:6px 10px 2px;height:28px;border-bottom:1px solid var(--border-strong);background:transparent}
+.cfgt.cfgm tr.grp td>*{vertical-align:middle}
+.cfgt.cfgm tr.grp b{font-weight:600;font-size:13px;margin:0 8px 0 2px}
+.cfgm .gi,.pgrp .gi{display:inline-grid;place-items:center;width:18px;height:18px;border-radius:5px;background:var(--panel-2);border:1px solid var(--border);font:500 10.5px/1 var(--font-mono);color:var(--fg-muted);margin-right:6px}
+.cfgt.cfgm .gcap{float:right;font-family:var(--font-mono);font-size:11px;color:var(--muted)}
+.cfgt.cfgm tr.off td{opacity:.6}
+.cfgt.cfgm .st{font-size:11px;color:var(--muted)}
+.cfgt.cfgm .st.pro{color:var(--accent);font-weight:500}
+.cfgt.cfgm .cfgsw{display:inline-block;width:26px;height:15px;vertical-align:middle}
+.cfgt.cfgm .cfgsw i{width:9px;height:9px;top:2px;left:2px}
+.cfgt.cfgm .cfgsw.on i{left:auto;right:2px}
+.cfgcols .cfgv{min-width:0;height:24px;font-size:11.5px;white-space:nowrap}
+.cfgcols td{white-space:nowrap}
+
+.cfgref .l{display:flex;gap:8px;align-items:center;padding:6px 0;border-bottom:1px solid var(--border);font-size:12px;color:var(--fg-muted)}
+.cfgref .l b{color:var(--fg);font-weight:500;white-space:nowrap}
+.cfgref .l .ic{color:var(--danger)}
+.cfgnote{font-size:12px;color:var(--muted);margin-top:12px;line-height:1.5}
+.pgrp{border:1px solid var(--border);border-radius:10px;background:var(--panel);margin-bottom:8px;overflow:hidden}
+.pgrp.off{opacity:.6}
+.pgrp .ph{display:flex;align-items:center;gap:6px;padding:10px 10px;font-size:13px}
+.pgrp .ph b{font-weight:600}
+.pgrp .ph .sp{flex:1}
+.pgrp .ph .cnt{font-size:11px;color:var(--muted);font-family:var(--font-mono)}
+.pgrp .pm{display:flex;flex-direction:column;padding:6px 12px;border-top:1px solid var(--border)}
+.pgrp .pm .mid{font-family:var(--font-mono);font-size:11px}
+.pgrp .pm .u{font-size:11.5px;color:var(--muted)}
+
 .cfgt{width:100%;border-collapse:collapse;font-size:13px;max-width:900px}
 .cfgt th{text-align:left;font:500 11px/1 var(--font-mono);letter-spacing:.07em;text-transform:uppercase;color:var(--muted);padding:0 12px 9px;border-bottom:1px solid var(--border)}
 .cfgt td{padding:9px 12px;border-bottom:1px solid var(--border);vertical-align:middle}
@@ -1742,13 +1775,45 @@ ${cfgNav('Plans and limits')}
 </main></div></div>`,
 phone({ title: 'Plans and limits', bottom: 'more_horiz', body: `<div class="pdoc" style="padding:10px 14px 0">${LIMITS.slice(0, 6).map(([k, f, p]) => `<div style="padding:9px 0;border-bottom:1px solid var(--border)"><div style="font-size:13px">${k}</div><div style="display:flex;gap:8px;margin-top:5px"><span class="cfgv" style="min-width:0;flex:1">Free ${f}</span><span class="cfgv inf" style="min-width:0;flex:1">Pro ${p}</span></div></div>`).join('')}<div style="margin-top:12px;font-size:12px;color:var(--muted)">Editing is on the desktop. The phone shows what is set.</div></div>` }));
 
-const PROVIDERS = [
-  ['Groq', 'gpt-oss-120b · no training stated', '14,200 tokens left today', 1],
-  ['Cloudflare Workers AI', 'qwen3-30b · no training stated', '6,410 of 10,000 neurons left', 1],
-  ['Cerebras', 'trial ends 12 Oct', 'trial', 1],
-  ['SambaNova', 'production models · no training stated', 'ready', 1],
-  ['OpenRouter, Nvidia', 'terms never opened', 'cannot enable', 0],
+// S36 redrawn 18 September, afternoon. The founder asked for 10 to 13 model layouts; the
+// real default set is 17 rows across 7 providers (docs/pack/28 section 5.1), plus the two
+// OpenRouter models admitted to the chain the same day (docs/pack/27 section 2.1 and 2.4).
+// Order, caps and states are copied from file 27 section 2.1, not invented.
+const CHAIN = [
+  { n: 'Cloudflare Workers AI', cap: '10,000 neurons a day', pool: 'account', on: 1, models: [
+    ['@cf/meta/llama-3.2-1b-instruct', 'Cheap edits', 'catalogue'],
+    ['@cf/meta/llama-3.2-3b-instruct', 'Default document and question set', 'catalogue', 1],
+    ['@cf/meta/llama-3.1-8b-instruct-fp8-fast', 'Larger edits', 'catalogue'],
+    ['@cf/qwen/qwen3-30b-a3b-fp8', 'Named edit fallback', 'catalogue'],
+    ['@cf/openai/gpt-oss-20b', 'Reserve', 'catalogue'],
+    ['@cf/openai/gpt-oss-120b', 'Reserve', 'catalogue']] },
+  { n: 'Groq', cap: '1,000 a day per model', pool: 'organisation', on: 1, models: [
+    ['openai/gpt-oss-120b', 'Default edit', 'catalogue', 1],
+    ['openai/gpt-oss-20b', 'Edit fallback', 'catalogue'],
+    ['qwen/qwen3.8-27b', 'Reserve', 'catalogue']] },
+  { n: 'Cerebras', cap: '1,000,000 tokens a day per model', pool: 'organisation', on: 1, tag: 'trial', models: [
+    ['gpt-oss-120b', 'Default blueprint', 'trial', 1],
+    ['qwen-3.8-27b', 'Blueprint fallback', 'trial']] },
+  { n: 'OpenRouter', cap: '50 a day, 1,000 after 10 credits once', pool: 'account', on: 1, tag: 'admitted 18 Sep', models: [
+    ['z-ai/glm-5.2:free', 'Edit and document fallback', 'catalogue'],
+    ['qwen/qwen3.8-27b:free', 'Edit and document fallback', 'catalogue']] },
+  { n: 'SambaNova', cap: '20 a day per model', pool: 'unverified', on: 0, lock: 'Nobody has opened this provider’s terms.', models: [] },
+  { n: 'Ollama, desktop only', cap: 'none, on the machine', pool: 'the machine', on: 1, tag: 'desktop', models: [
+    ['llama3.2:3b', 'Desktop edit · 2.0 GB', 'desktop', 1],
+    ['qwen3:4b', 'Desktop · 2.5 GB', 'desktop'],
+    ['gemma3:4b', 'Desktop · 3.3 GB', 'desktop'],
+    ['qwen3:8b', 'Desktop · 5.2 GB', 'desktop']] },
+  { n: 'The paid link', cap: '300 a minute', pool: 'account', on: 1, paid: 1, tag: 'last in every chain', models: [
+    ['claude-haiku-4-5', 'Pro edit and document', 'Pro only', 1],
+    ['claude-sonnet-5', 'Pro blueprint, through batch', 'Pro only', 1]] },
 ];
+const MODEL_ROWS = CHAIN.reduce((a, p) => a + p.models.length, 0);
+function chainTable() {
+  return `<table class="cfgt cfgm"><thead><tr><th style="width:43%">Model</th><th>Used for</th><th style="width:13%">State</th><th style="width:62px">Default</th></tr></thead><tbody>
+${CHAIN.map((p, i) => `<tr class="grp${p.on ? '' : ' off'}"><td colspan="4"><span class="gi">${i + 1}</span>${ic('expand_more', 15)}<b>${p.n}</b>${p.tag ? `<span class="pill${p.paid ? ' pro' : ''}">${p.tag}</span>` : ''}<span class="gcap">${p.cap}</span>${p.lock ? '' : ''}</td></tr>
+${p.lock ? `<tr class="off"><td colspan="3" style="color:var(--muted);font-size:12px">${ic('lock', 13)} ${p.lock} Disabled and explained, never hidden.</td><td>${cfgSw(0)}</td></tr>` : p.models.map(m => `<tr><td class="mid">${m[0]}</td><td>${m[1]}</td><td><span class="st${m[2] === 'Pro only' ? ' pro' : ''}">${m[2]}</span></td><td>${cfgSw(m[3] ? 1 : 0)}</td></tr>`).join('\n')}`).join('\n')}
+</tbody></table>`;
+}
 const ROUTING = `<table class="cfgt"><thead><tr><th style="width:26%">Call</th><th>Free</th><th>Pro</th><th style="width:22%">One call costs</th></tr></thead><tbody>
 <tr><td class="lim">An edit</td><td><span class="cfgv inf">The free chain</span></td><td><span class="cfgv">Haiku 4.5</span></td><td style="font-family:var(--font-mono);font-size:12px;color:var(--muted)">₹0.68</td></tr>
 <tr><td class="lim">A document</td><td><span class="cfgv inf">The free chain</span></td><td><span class="cfgv">Haiku 4.5</span></td><td style="font-family:var(--font-mono);font-size:12px;color:var(--muted)">₹1.20</td></tr>
@@ -1758,13 +1823,13 @@ screen('s36-config-models', 'Configuration, models and providers', `<div class="
 ${cfgTop}
 <div class="body noright" style="grid-template-columns:220px minmax(0,1fr)">
 ${cfgNav('Models and providers')}
-<main class="main"><div class="page" style="padding:30px 40px"><h1>Models and providers</h1><p class="sub">The free chain in fallback order, and which model serves which call on each plan.</p>
-<div class="cfgsec">The free chain, in order</div>
-${PROVIDERS.map(([nm, note, right, on], i) => `<div class="cfgprov${on ? '' : ' off'}"><span class="hd">${on ? i + 1 : '·'}</span>${ic('drag_indicator', 15)}<span class="nm">${nm}</span><span style="color:var(--muted);font-size:12px">${note}</span><span class="sp"></span><span style="font-family:var(--font-mono);font-size:11.5px;color:var(--muted)">${right}</span>${cfgSw(on)}</div>`).join('')}
-<div style="font-size:12px;color:var(--muted);margin:-2px 0 0;max-width:900px">A provider whose terms nobody has opened cannot be switched on. The sign-in page promises we never train on documents, and that promise is only as true as this list.</div>
-<div class="cfgsec">Routing, per call and per plan</div>
-${ROUTING}</div></main></div></div>`,
-phone({ title: 'Models', bottom: 'more_horiz', body: `<div class="pdoc" style="padding:10px 14px 0"><div class="cfgsec">The free chain</div>${PROVIDERS.map(([nm, , right, on]) => `<div class="cfgprov${on ? '' : ' off'}" style="padding:9px 10px"><span class="nm" style="font-size:12.5px">${nm}</span><span class="sp"></span><span style="font-family:var(--font-mono);font-size:10.5px;color:var(--muted)">${right}</span>${cfgSw(on)}</div>`).join('')}</div>` }));
+<main class="main" style="overflow:hidden"><div class="page" style="padding:22px 40px 0"><h1>Models and providers</h1><p class="sub">${MODEL_ROWS} models across ${CHAIN.length} providers, in fallback order. The list scrolls and groups by provider; a provider row is a base URL, a key name and a model id.</p>
+<div class="cfgcols"><div>${chainTable()}</div>
+<div><div class="cfgsec">Routing, per call and per plan</div>${ROUTING}
+<div class="cfgsec">Refused, and why</div>
+<div class="cfgref">${[['Google AI Studio, unpaid', 'Uses what you submit to improve its products'], ['Cohere trial keys', 'Shares API data with third parties'], ['NVIDIA NIM', 'Licence lets it improve its products, no training carve-out'], ['DeepSeek', 'Trains on what you send'], ['Mistral Free', 'Opt-out page returns 404']].map(([n, w]) => `<div class="l">${ic('block', 14)}<b>${n}</b><span>${w}</span></div>`).join('')}</div>
+<div class="cfgnote">A provider whose terms nobody has opened cannot be switched on, and one that trains on inputs cannot be switched on at all. The sign-in page promises we never train on documents, and that promise is only as true as this list.</div></div></div></div></main></div></div>`,
+phone({ title: 'Models', bottom: 'more_horiz', sub: `${MODEL_ROWS} models · ${CHAIN.length} providers`, body: `<div class="pdoc" style="padding:8px 14px 0">${CHAIN.map((p, i) => `<div class="pgrp${p.on ? '' : ' off'}"><div class="ph"><span class="gi">${i + 1}</span><b>${p.n}</b><span class="sp"></span><span class="cnt">${p.lock ? 'terms not opened' : p.models.length + (p.models.length === 1 ? ' model' : ' models')}</span>${cfgSw(p.on)}</div>${i < 1 ? p.models.map(m => `<div class="pm"><span class="mid">${m[0]}</span><span class="u">${m[1]}</span></div>`).join('') : ''}</div>`).join('')}<div style="margin:10px 0;font-size:12px;color:var(--muted)">Tap a provider to see its models. Editing is on the desktop.</div></div>` }));
 
 const FLAGS = [
   ['Live editing', 'Two people in one document at once. Turns S19 on. Free up to ' + CAPS.collab + ', unlimited on Pro.', 1, 0],
