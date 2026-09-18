@@ -199,8 +199,9 @@ list prices, not from live usage. Nobody has paid anything yet.
 
 - `docs/mvp0/PRODUCT-PLAN.md` section 13 specifies no trial period, and the plan's pricing
   paragraph does not mention one.
-- **`UNVERIFIED:` whether a trial is intended at all.** It is listed in `56-OPEN-DECISIONS.md` as
-  D08 with options and costs.
+- **No trial. The free tier is the trial.** `resolved (proposed 18 Sep, founder review)`, and it is
+  D08 in `56-OPEN-DECISIONS.md`. Reason: an Indian card gets one attempt, so a card-on-file trial
+  ends in a charge with no retry. Rejected: a 14-day Pro trial, with or without a card.
 - **What the product does instead today:** the free tier is the trial. It is a whole editor with
   quantities capped, and the upgrade moment is a cap, not a clock.
 
@@ -235,8 +236,9 @@ Day | What happens | Entitlement state
 14 | Plan moves to `plan.free` | **Downgrade, section 5.3**
 44 | The 30-day trash empties as normal | Unchanged by dunning
 
-**`UNVERIFIED:` every number in that ladder.** They are proposed, not decided, and D08 carries
-them.
+**The ladder is adopted as written, days 0, 3, 7 and 14.** `resolved (proposed 18 Sep, founder
+review)`, carried by D08. Reason: the only load-bearing number is day 14, far enough out that a
+person on holiday keeps Pro. Rejected: a 7-day downgrade, which punishes one missed email.
 
 ### 5.3 Downgrade, which is the behaviour that matters most
 
@@ -297,9 +299,13 @@ heading 9984.
 
 ### 6.2 What is not settled
 
-- **`UNVERIFIED:` which heading a subscription editor actually falls under.** That is a chartered
-  accountant's reading and it has not been obtained.
-- **`UNVERIFIED:` the single 2026 rate notification**, which the plan records as not opened.
+- **`UNVERIFIED:` which heading a subscription editor actually falls under.** needs: a chartered
+  accountant's written opinion. Not obtainable from here.
+- **The 2026 rate notification does not touch services** `[M]`. It is 01/2026-Central Tax (Rate) of
+  30 April 2026, and it amends 9/2025, the goods schedule, for beverage tariff lines under 2202. The
+  services notification 11/2017 has no 2026 amendment on record. Opened 18 September 2026 at
+  `https://nityalegal.com/notifications.html`, a Gazette-copy index, because `cbic-gst.gov.in`
+  refused `curl` again.
 - **Owner and date:** Sagnik, by **31 October 2026**, per `54-COMPLIANCE-AND-LEGAL.md`.
 
 ### 6.3 Invoice lines
@@ -339,11 +345,11 @@ Any other file in this pack | **No. Link here instead**
 
 **What could not be verified.**
 
-- `UNVERIFIED:` the whole of section 5.1 and 5.2. Trial and dunning are specified here and decided
-  nowhere.
-- `UNVERIFIED:` the tax heading, section 6.2.
-- `UNVERIFIED:` Notesnook's India page, which the audit read below 299 rupees and this round could
-  not reopen. If it is right, one peer sits under our price.
+- Section 5.1 and 5.2 are now proposed resolutions, not decisions. The founder settles them in D08.
+- `UNVERIFIED:` the tax heading, section 6.2. needs: a chartered accountant's opinion.
+- Notesnook's India page **confirmed below 299 rupees** `[M]`. Opened 18 September 2026 at
+  `https://notesnook.com/pricing`, served in rupees: Essential at "₹225.20 / month including tax",
+  or ₹188.52 a month billed annually. Pro is ₹791.04 a month. So one peer does sit under our price.
 - **Every figure in section 4.3 is SIMULATED.** Computed from caps and list prices. No user has
   paid and no model bill has arrived.
 

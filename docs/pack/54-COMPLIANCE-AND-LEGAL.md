@@ -47,7 +47,7 @@ plan's, and this file does not move them.
 
 Id | Requirement | **What it forbids** | Owner | Due
 `L01` | Privacy notice, terms and consent wording, with the age floor stated | Publishing a sign-up form with no notice behind it | Sagnik | 15 Oct 2026
-`L02` | A named grievance officer with a published address on every public page. 24-hour acknowledgement, 15-day resolution, 72-hour and 36-hour removal clocks, and a report link on S18 | Serving a stranger's page with no route to complain about it | Sagnik, as officer of record | 15 Oct 2026
+`L02` | A named grievance officer with a published address on every public page. 24-hour acknowledgement, 7-day resolution, and the 36-hour, 3-hour and 2-hour removal clocks of section 3.3, and a report link on S18 | Serving a stranger's page with no route to complain about it | Sagnik, as officer of record | 15 Oct 2026
 `L03` | **Every** account in `docs/mvp0/PRODUCT-PLAN.md` section 24 moved to the company, not only the Cloudflare zone, the domain and Razorpay. Widened 18 September by D10 `[Z]` | Holding a stranger's data on a personal account | Sagnik | 15 Oct 2026
 `L04` | European Union sign-ups blocked, or a representative engaged | Accepting a European sign-up with neither | Sagnik | 15 Oct 2026
 
@@ -55,6 +55,11 @@ Id | Requirement | **What it forbids** | Owner | Due
 
 Id | Requirement | **What it forbids** | Owner | Due
 `L05` | Breach contact filed; a six-hour incident runbook; an append-only security log kept 180 days in Indian jurisdiction | Storing a document with no incident path and no log | Amit | 15 Oct 2026
+
+**`L05`'s source** `[M]`: CERT-In directions under section 70B(6), 28 April 2022, opened 18 September
+2026 at `https://www.cert-in.org.in/PDF/CERT-In_Directions_70B_28.04.2022.pdf`. Direction (ii):
+report "within 6 hours of noticing such incidents". Direction (iv): keep logs "for a rolling period of
+180 days and the same shall be maintained within the Indian jurisdiction".
 
 ### 2.3 Before the first rupee
 
@@ -104,14 +109,24 @@ terms carry the floor from day one** `docs/mvp0/PRODUCT-PLAN.md` section 23.
 
 ### 3.3 The grievance route
 
-Clock | Duration | Where it appears
-Acknowledge a complaint | **24 hours** | The grievance route, S18's report link
-Resolve it | **15 days** | The same
-Remove on a takedown | **72 hours** | The published page
-Remove on the shorter class | **36 hours** | The same
+Clock | Duration | Where it appears | Rule
+Acknowledge a complaint | **24 hours** | The grievance route, S18's report link | 3(2)(a)(i)
+Resolve it | **7 days** | The same | 3(2)(a)(i), "seven days" substituted for "fifteen days"
+Remove on a complaint about a rule 3(1)(b) class of content | **36 hours** | The published page | 3(2)(a)(i) proviso, "thirty-six hours" substituted for "seventy-two hours"
+Remove on a court order or a government notice | **3 hours** | The same | 3(1)(d), "three hours" substituted for "thirty-six hours"
+Remove intimate imagery or impersonation, on the person's complaint | **2 hours** | The same | 3(2)(b), "two hours" substituted for "twenty-four hours"
 
-**Source:** IT Rules 2021 rule 3 as the audit read the MeitY PDF. `UNVERIFIED:` not re-opened by
-this pack.
+**Source** `[M]`: the MeitY consolidated text "updated as on 10.02.2026", opened 18 September 2026 at
+`https://www.meity.gov.in/static/uploads/2026/02/550681ab908f8afb135b0ad42816a1c9.pdf`. Every
+change above is footnoted there "Subs. by G.S.R. 120(E), dated 10.02.2026".
+
+**Corrected 18 September.** This table used to read 15 days, 72 hours and 36 hours. Those were the
+6 April 2023 text, which G.S.R. 120(E) replaced. **The 2-hour and 3-hour clocks cannot be met by a
+person reading email.** `INFERENCE:` they need an unpublish switch the officer can reach from a phone.
+The same stale figures sit in `38-INCIDENT-AND-SEVERITY.md` and the plan's section 23, outside this file.
+
+`UNVERIFIED:` whether frontmatter is an intermediary for published pages at all, and which of the
+five clocks bind a service of our size. needs: legal opinion. **Build to all five meanwhile.**
 
 **The consumer rules add a second, slower set**, at a 48-hour acknowledgement and a one-month
 resolution. **Build to the tighter of the two**, which is the IT Rules set above, and the slower
@@ -129,7 +144,7 @@ Ledger entries | 180 days, then aggregated | **Aggregates kept without the accou
 Plan and invoice records | At least the statutory period | **Kept as the law requires, unlinked from the profile**
 Security log | 180 days rolling | Kept for the period
 Local drafts | Until synced or evicted | **Not ours.** They live on the device
-The mirror's files in the person's GitHub or Drive | Theirs | `INFERENCE:` **left in place.** We revoke our access and stop writing. Section 3.6
+The mirror's files in the person's GitHub or Drive | Theirs | **Left in place**, proposed 18 September for founder review. We revoke our access and stop writing. Section 3.6
 The mirror's records on our side | Until disconnected | Removed, after the grant is revoked at the provider
 
 **Two of those rows are exceptions to "delete everything", and both are deliberate.** An invoice
@@ -142,10 +157,23 @@ The plan's stack puts storage and compute in Mumbai. `docs/mvp0/PRODUCT-PLAN.md`
 security log in Indian jurisdiction, so the location is a compliance fact rather than a latency
 one.
 
-**`UNVERIFIED:` the Cloudflare R2 and Durable Objects data-location pages were opened by the audit
-on 17 September and not re-opened here.** The plan itself records that the R2 pricing page is a
-script shell to `curl`, so two readings of the Mumbai storage price disagree and neither can be
-reproduced.
+**Corrected 18 September: Cloudflare cannot pin R2 or Durable Objects to India** `[M]`. Opened on
+18 September 2026:
+
+Service | What its data-location page offers | Source
+R2 | Location hints `wnam`, `enam`, `weur`, `eeur`, `apac`, `oc`. A hint is "only honored the first time a bucket with a given name is created". Jurisdictions `eu` and `fedramp` only | `https://developers.cloudflare.com/r2/reference/data-location/`
+Durable Objects | Jurisdictions `eu` and `fedramp` only | `https://developers.cloudflare.com/durable-objects/reference/data-location/`
+Firestore | `asia-south1` is listed as Mumbai, `asia-south2` as Delhi | `https://firebase.google.com/docs/firestore/locations`
+
+**So "R2 in Mumbai" is not a setting that exists.** The nearest is the `apac` hint, which names a
+region, not a country, and guarantees nothing. **The security log that CERT-In direction (iv) wants
+"within the Indian jurisdiction" therefore goes to Firestore in `asia-south1`**, not to R2.
+`resolved (proposed 18 Sep, founder review)`. The rejected alternative was an `apac` R2 bucket,
+which cannot show a country.
+
+`UNVERIFIED:` whether "maintained within the Indian jurisdiction" is about where the bytes sit or
+about being producible to CERT-In on demand. needs: legal opinion. Firestore in Mumbai satisfies both
+readings, which is why it is chosen.
 
 ### 3.6 What the mirror changes, decided 18 September
 
@@ -156,7 +184,7 @@ Question | Answer
 Does the mirror reduce our exposure? | **No.** We still hold every byte, so we are still the Data Fiduciary for all of it. DPDP section 8(1) keeps us responsible "irrespective of any agreement to the contrary"
 What does it add? | A scoped grant stored in `users/{uid}/connections`. Drive's refresh token is encrypted at rest; GitHub stores no token, `34-INTEGRATIONS.md`
 Whose are the mirror's files? | **The person's**, in their own account, under their provider's terms. They survive our shutdown
-Deletion | Account deletion revokes our grant and removes our records. `INFERENCE:` the mirror's files are left in place, because they are the person's copy. Not yet a founder decision. Whatever is chosen, the privacy notice says it in plain words
+Deletion | Account deletion revokes our grant and removes our records. **The mirror's files are left in place**, `resolved (proposed 18 Sep, founder review)`, because they are the person's copy in their own account, and deleting them would need a grant we have just revoked. Rejected: deleting the mirror first, which destroys the one copy that survives us. The privacy notice says it in plain words, and section 8 already forbids promising otherwise
 Erasure of one document | Removed from our copy. `INFERENCE:` whether the mirror copy is also removed is a product choice for `67-SYNC-AND-CONFLICT.md`; the notice must match it
 Export | The mirror is a standing export in markdown, which meets GDPR Article 20's "machine-readable". Export on request still works without a connection
 Drive scope | `drive.file` only. The full `drive` scope would bring a yearly CASA assessment, and is never requested
@@ -199,7 +227,7 @@ Provider | The sentence that disqualifies it
 **Google AI Studio and the Gemini free tier** | "Google uses the content you submit to the Services and any generated responses to provide, improve, and develop Google products and services and machine learning technologies". And: "To help with quality and improve our products, human reviewers may read, annotate, and process your API input and output." And: "Do not submit sensitive, confidential, or personal information to the Unpaid Services."
 **Cohere trial keys** | Grants itself the right to "IMPROVE AND ENHANCE THE SERVICES AND COHERE'S OTHER OFFERINGS AND BENCHMARK THE FOREGOING, INCLUDING BY SHARING API DATA AND FINETUNING DATA WITH THIRD PARTIES"
 **NVIDIA NIM** | "modify and improve NVIDIA products or services". And separately bans the data class outright: "does not include any confidential information"
-**Mistral** | Unresolved. Its clause turns on whether the free tier is opt-in or opt-out by default, and that page returned 404
+**Mistral** | **Trains by default on the free tier**, opened 18 September 2026 `[M]`. The help article at `https://help.mistral.ai/en/articles/347617-do-you-use-my-user-data-to-train-your-artificial-intelligence-models` says of Mistral Studio Free mode: "we may use your data (input and output) to train our artificial intelligence models", with a right to opt out. The commercial terms, section 4.2, train on a product "set to opt-out by default" unless you opted out, and always on "Labs or Preview Models". `resolved (proposed 18 Sep, founder review)`: disqualified. An opt-out is a toggle nobody audits, and the Labs clause ignores it. Rejected: enabling it with the opt-out recorded
 **OpenRouter free endpoints** | OpenRouter's own logging is off by default, but it disclaims the providers behind it: "OPENROUTER MAKES NO REPRESENTATION OR WARRANTY REGARDING ANY MODEL PROVIDER'S DATA HANDLING, RETENTION, TRAINING, SECURITY, AVAILABILITY, OR INTELLECTUAL PROPERTY PRACTICES."
 
 ### 4.4 The audit rule that came out of this, and it is the useful part
@@ -288,9 +316,12 @@ breaches it, whoever processes the card.
 - The two 2025 amendments, 05/2025 of 16 January and 15/2025 of 17 September, carry **no entry**
   for heading 9984.
 
-**Two things stay open.** `UNVERIFIED:` the single 2026 rate notification, and a chartered
-accountant's reading of which heading a subscription editor actually falls under. Both sit in
-`L06`.
+**The 2026 rate notification is closed** `[M]`: 01/2026-Central Tax (Rate) of 30 April 2026 amends
+only the goods schedule 9/2025, and 11/2017 has no 2026 amendment on record. Opened 18 September
+2026 at `https://nityalegal.com/notifications.html`, a Gazette-copy index.
+
+**One thing stays open.** `UNVERIFIED:` which heading a subscription editor falls under. needs: a
+chartered accountant's opinion. It sits in `L06`.
 
 ---
 
@@ -325,7 +356,7 @@ desktop About panel link once those ship.
 Font | Licence | Note
 **Google Sans Code** | SIL Open Font License 1.1 | Copyright 2025 The Google Sans Code Project Authors. Licence text is carried in full in the notices file
 **Google Sans Flex** | SIL Open Font License 1.1 | Copyright 2015 The Google Sans Flex Authors
-**"Google Sans"**, the family the app loads through Google Fonts | **`UNVERIFIED:`** | No separate licence file was found in the `google/fonts` repository on 17 September 2026. The Flex licence is the one on record until that is settled
+**"Google Sans"**, the family the app loads through Google Fonts | **SIL Open Font License 1.1** `[O]` | `google/fonts` holds `ofl/googlesans/OFL.txt`: "Copyright 2025 The Google Sans Project Authors", licensed under OFL 1.1, with no Reserved Font Name per its `TRADEMARKS.md`. The file has commits from 11 September 2026, so the 17 September search missed it. Checked with `gh api repos/google/fonts/contents/ofl/googlesans` on 18 September. `THIRD-PARTY-NOTICES.md` should gain this text, outside this file
 **Mosvita** | **None producible** | Was embedded in print files before 17 September. **Removed.** Do not re-embed it
 
 ### 7.2 Icons
@@ -385,17 +416,35 @@ For a reader who wants the constraints without the reasoning.
 
 **What could not be verified.**
 
-- `UNVERIFIED:` the IT Rules 2021 and CERT-In readings. Both were read by the audit on
-  17 September and neither was re-opened here.
-- `UNVERIFIED:` the tax heading, section 5.1.
-- `UNVERIFIED:` Mistral's default, section 4.3.
-- `UNVERIFIED:` the "Google Sans" family licence, section 7.1.
-- `UNVERIFIED:` Firebase's terms page, which did not render outside a browser. Firebase Auth stays
-  in the stack, so this row matters and is still open.
-- `UNVERIFIED:` whether a subscription editor is an e-commerce entity under the consumer rules.
-- `UNVERIFIED:` the DPDP Rules 2025 and any notified transfer restriction under section 16, as they
-  bear on the mirror. The benchmark opened only the Act.
-  The plan's position is to build to the duties either way.
+- The IT Rules 2021 and CERT-In readings were re-opened on 18 September. The IT Rules clocks were
+  stale and are corrected in section 3.3. CERT-In's six hours and 180 days held, below `L05`.
+- `UNVERIFIED:` the tax heading, section 5.1. needs: a chartered accountant's opinion.
+- Mistral's default was opened on 18 September: opt-out, so it trains. Section 4.3.
+- The "Google Sans" family licence was found on 18 September: OFL 1.1, section 7.1.
+- Firebase's terms page rendered to `curl` on 18 September `[M]`, `https://firebase.google.com/terms`,
+  "Terms last modified: September 02, 2026". Cloud Firestore and Firebase Authentication sit under
+  the **Google Cloud Platform Terms of Service**, and use must be for "trade, business, craft, or
+  profession". Footnote 1: without a Data Location Selection, "Google may process and store Customer
+  Data anywhere". **So Firestore's location must be chosen as `asia-south1` at creation**, section 3.5.
+  `UNVERIFIED:` whether Firebase Authentication's user records honour that selection. needs: the
+  Google Cloud location terms read by counsel under `L08`.
+- Whether a subscription editor is an e-commerce entity under the consumer rules. The text was
+  opened on 18 September `[M]`, `https://consumeraffairs.gov.in/public/upload/files/E%20commerce%20rules_1732703966.pdf`.
+  Rule 2(1)(a) applies them to "all goods and services bought or sold over digital or electronic
+  network including digital products". Rule 3(1)(b) defines the entity as "any person who owns,
+  operates or manages digital or electronic facility or platform for electronic commerce". Rule 4
+  sets the 48-hour acknowledgement and one-month resolution. `INFERENCE:` a paid subscription sold
+  on our own site reads as inside rule 2(1)(a). `UNVERIFIED:` whether it binds us. needs: legal
+  opinion. `L12` already builds the duties either way.
+- The DPDP transfer texts were opened on 18 September `[M]`. Act section 16(1), from
+  `https://www.indiacode.nic.in/bitstream/123456789/22037/1/a2023-22.pdf`: the government "may, by
+  notification, restrict the transfer" to a notified country. It is a negative list. Rules 2025
+  rule 15, from the Gazette copy `https://egazette.gov.in/WriteReadData/2025/267650.pdf`, allows
+  transfer subject to requirements the government may "specify in respect of making such personal
+  data available to any foreign State". Rule 15 commences with rules 5 to 16, on 14 May 2027.
+  `UNVERIFIED:` that no country is notified today. A search found secondary sources saying none as
+  of August 2026, and no primary list exists to open. needs: legal opinion, rechecked before 14 May
+  2027. The plan's position is to build to the duties either way.
 
 **What would falsify it.**
 

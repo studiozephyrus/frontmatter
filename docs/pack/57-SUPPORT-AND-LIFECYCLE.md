@@ -61,8 +61,8 @@ behalf.
 ### 2.1 The promises, by kind
 
 Kind | First reply | Resolution or a plan | Where the clock comes from
-**A data or content grievance** | **24 hours** | **15 days** | `54-COMPLIANCE-AND-LEGAL.md` section 3.3, and it is a legal clock
-**A takedown on a published page** | 24 hours | **72 hours to remove**, 36 hours on the shorter class | The same
+**A data or content grievance** | **24 hours** | **7 days** | `54-COMPLIANCE-AND-LEGAL.md` section 3.3, and it is a legal clock
+**A takedown on a published page** | 24 hours | **36 hours to remove** on a complaint, **3 hours** on a court or government order, **2 hours** for intimate imagery or impersonation | The same. Corrected 18 September from 15 days, 72 and 36 hours, the pre-2026 text
 **Data loss, or a document that cannot be opened** | **Same day** | As long as it takes, with a daily update | Ours
 **A payment problem** | **1 working day** | 3 working days | Ours
 **A bug** | 3 working days | No promise. It goes in the register with a severity | Ours
@@ -136,8 +136,11 @@ A single document | Immediate
 Under about 200 documents | Built while the person waits
 More | Built in the background, and an email carries the link
 
-`UNVERIFIED:` those thresholds are proposed. **No export has been built or timed**, and the
-performance targets in `docs/mvp0/PRODUCT-PLAN.md` section 21 do not cover export.
+`UNVERIFIED:` the 200-document line. **No export has been built or timed**, and the performance
+targets in `docs/mvp0/PRODUCT-PLAN.md` section 21 do not cover export. needs: a timed export on the
+built builder. **The rule is decided even though the number is not**, `resolved (proposed 18 Sep,
+founder review)`: an export goes to the background when building it would outlast one request.
+Rejected: a fixed count with no measurement behind it.
 
 ---
 
@@ -244,7 +247,7 @@ If a future feature would break that test, **it is the feature that is wrong**, 
 
 Role | Person | What they hold
 Support, first reply | Either founder | The routes in section 1
-**Grievance officer of record** | **Sagnik** | The 24-hour and 15-day clocks, `L02`
+**Grievance officer of record** | **Sagnik** | The 24-hour and 7-day clocks and the removal clocks, `L02`
 Breach contact | Amit | The six-hour incident runbook, `L05`
 Payments | Amit | Razorpay, refunds, the mandate rules
 
@@ -276,12 +279,13 @@ history is deleted with it**, except where an invoice dispute makes it a financi
 
 **What could not be verified.**
 
-- `UNVERIFIED:` the export timings in section 3.4. Proposed, never measured.
-- `UNVERIFIED:` the 90-day shutdown notice in section 5.2. **It is mine.** No founder has agreed
-  it and no document carries it. It is written as a commitment because a vaguer one is worthless,
-  and it needs a founder's yes.
-- `UNVERIFIED:` whether support records are a separate store or documents in our own product.
-  Section 6.2 assumes the latter.
+- `UNVERIFIED:` the export timings in section 3.4. needs: a timed export once the builder exists.
+- **The 90-day shutdown notice**, section 5.2. `resolved (proposed 18 Sep, founder review)`,
+  **needs founder**, because it is a promise to users. Recommended: 90 days. Rejected: 30 days,
+  which is shorter than one monthly billing cycle plus the time to move a published site.
+- **Support records are documents in our own product**, section 6.2. `resolved (proposed 18 Sep,
+  founder review)`: one retention and deletion path covers them, so no second store can leak a
+  deleted account's words. Rejected: a separate help-desk store, which needs its own deletion rule.
 - `INFERENCE:` the promise ladder in section 2.1, apart from the two legal rows, is mine.
 
 **What would falsify it.**

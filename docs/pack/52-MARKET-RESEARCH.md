@@ -107,8 +107,9 @@ Both sit above "Debugging or fixing code 20.7%", above "Writing code 16.9%", and
 **Source** `[M]`: <https://survey.stackoverflow.co/2025/ai>, opened 2026-09-18, HTTP 200.
 Recorded at `docs/research/2026-09-18/raw/F-complaints.md:262`.
 
-**Date it 2025, not 2026.** `UNVERIFIED:` there is no 2026 Stack Overflow AI page. The researcher
-probed `/2026/ai`, `/2026/` and `/2026/technology` on 2026-09-18 and all three returned 404.
+**Date it 2025, not 2026.** There is no 2026 Stack Overflow AI page `[O]`: re-probed on 2026-09-18
+with `curl -s -o /dev/null -w '%{http_code}'`, `/2026/ai`, `/2026/` and `/2026/technology` all
+returned 404, and `/2025/ai` returned 200.
 
 **The companion number, from the same survey**, on 25,332 responses:
 
@@ -161,13 +162,18 @@ Query | Reported count
 `total_count`, every figure came back suspiciously round, they are file counts rather than
 repository counts, and only public repositories are covered. **Orders of magnitude, not counts.**
 
+**Re-run the same day, the counts moved** `[O]`. `gh api -X GET search/code -f q='<query>' --jq
+.total_count` on 2026-09-18 returned 501,760 for AGENTS.md, 532,480 for CLAUDE.md and 27,072 for
+GEMINI.md. AGENTS.md fell by about 8 per cent between two runs a few hours apart.
+
 **Three things follow.**
 
 - The instruction file is not niche. Two of them clear half a million files at repository root.
-- **AGENTS.md and CLAUDE.md are within four per cent of each other.** Neither has won, so a team
-  using both tools maintains both files.
+- **AGENTS.md and CLAUDE.md are within about six per cent of each other, and which is larger
+  flipped between two runs on the same day.** Neither has won, so a team using both tools maintains
+  both files.
 - **Our own plan's figure is stale.** `docs/mvp0/PRODUCT-PLAN.md` section 2 says AGENTS.md is used
-  by over 60,000 projects. The root-level file count is about nine times that.
+  by over 60,000 projects. The root-level file count is eight to nine times that, across the two runs.
 
 ---
 
@@ -194,6 +200,11 @@ Its eight tools for an agent, quoted from its FAQ: `open_file`, `open_folder`, `
 **OpenKnowledge**, described by Tech Times on 27 June 2026 as a free, open-source editor wiring
 Claude Code, Codex and Cursor into a local markdown editor. **It uses a conflict-free replicated
 data type.**
+
+**Checked 18 September** `[O]`: the repository is `github.com/inkeep/open-knowledge`, GPL-3.0,
+4,251 stars, created 3 June 2026 and pushed the same day as this check
+(`gh api repos/inkeep/open-knowledge`). It carries `packages/app/src/editor/utils/get-ydoc.ts`, and
+a code search for `yjs` in the repository returns 323 hits, so the CRDT is Yjs.
 
 **What neither has**, and it is the whole hard half of our plan: no web app, no account, no
 sharing, no publishing, no live collaboration, no import, no idea mode, no doc mode, no phone, no
@@ -322,11 +333,14 @@ Claim | The problem
 
 ### 5.3 Opened but not verified
 
-- `UNVERIFIED:` OpenKnowledge beyond the Tech Times quotations. No repository link, no star count,
-  and the project's own pages were not opened.
-- `UNVERIFIED:` every GitHub code search count in section 2, for the reason stated there.
-- `UNVERIFIED:` Notesnook's India pricing page, which the audit read and this round could not
-  reopen. It sits below 299 rupees, which would put one peer under our price.
+- OpenKnowledge is now checked against its own repository, section 3.1. Its licence is GPL-3.0,
+  so no code from it may enter this repository.
+- `UNVERIFIED:` every GitHub code search count in section 2. Re-running three of them moved one
+  by 8 per cent, so no exact figure can be verified. needs: nothing more; quote them as orders of
+  magnitude only, which the file already does.
+- Notesnook's India page **confirmed below 299 rupees** `[M]`. Opened 18 September 2026 at
+  `https://notesnook.com/pricing`, served in rupees: Essential at "₹225.20 / month including tax",
+  or ₹188.52 a month billed annually. Pro is ₹791.04 a month. So one peer does sit under our price.
 
 ### 5.4 A standing warning about quotations
 
