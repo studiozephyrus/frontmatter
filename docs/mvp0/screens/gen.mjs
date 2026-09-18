@@ -322,15 +322,25 @@ u{text-decoration-thickness:1px;text-underline-offset:2px}
 .desk{position:absolute;inset:0;background:linear-gradient(135deg,#d9dee8,#c7d3e6 60%,#e8e2d5)}
 /* phone */
 .phone{width:390px;height:844px;background:var(--bg);display:flex;flex-direction:column;overflow:hidden;position:relative}
-.phone .top{padding:0 10px;gap:8px}
-.phone .top .ttl{font-weight:500;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1;min-width:0;font-size:14px}
+.phone .top{padding:0 10px 0 6px;gap:6px;height:56px}
+.phone .top .ttlbox{display:flex;flex-direction:column;flex:1;min-width:0;line-height:1.25;margin-left:2px}
+.phone .top .ttl{font-weight:600;overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1;min-width:0;font-size:14.5px;letter-spacing:-.01em}
+.phone .top .ttlbox .ttl{flex:none}
+.phone .top .tsub{display:flex;align-items:center;gap:4px;font-size:11px;color:var(--muted);white-space:nowrap;overflow:hidden}
+.phone .top .tsub .ic{color:var(--success)}
+.phone .top .dotsep{width:3px;height:3px;border-radius:50%;background:var(--border-strong)}
+.phone .top .ibtn{width:32px;height:32px}
 .phone .topright{gap:4px;margin-left:0}
 .phone .pbody{flex:1;min-height:0;overflow:hidden;position:relative;display:flex;flex-direction:column}
 .phone .pdoc{flex:1;min-height:0;overflow:hidden;padding:18px 18px 0}
 .phone .md{font-size:15px;max-width:none}
-.phone .bottombar{display:flex;justify-content:space-around;align-items:center;height:60px;border-top:1px solid var(--border);color:var(--muted);flex-shrink:0;background:var(--bg-subtle);padding-bottom:6px}
-.phone .bottombar .bi{display:flex;flex-direction:column;align-items:center;gap:2px;font-size:10px;color:var(--muted);width:64px}
-.phone .bottombar .bi.on{color:var(--fg)}
+.phone .bottombar{display:flex;justify-content:space-around;align-items:center;height:68px;border-top:1px solid var(--border);color:var(--muted);flex-shrink:0;background:var(--panel);padding:4px 4px 6px}
+.phone .bottombar .bi{display:flex;flex-direction:column;align-items:center;gap:3px;font-size:11px;font-weight:500;color:var(--fg-muted);width:68px}
+.phone .bottombar .bpill{display:grid;place-items:center;width:56px;height:30px;border-radius:15px}
+.phone .bottombar .bi.on{color:var(--fg);font-weight:600}
+.phone .bottombar .bi.on .bpill{background:var(--selected)}
+.phone .bottombar .bi.ai .ic{color:var(--ai)}
+.phone .bottombar .bi.ai.on .bpill{background:color-mix(in srgb,var(--ai) 12%,transparent)}
 .phone .bottombar .bi .ic{width:22px;height:22px}
 .phone .modebar{padding:6px 8px;gap:4px}
 .phone .modebar .tools{overflow:hidden}
@@ -361,7 +371,8 @@ u{text-decoration-thickness:1px;text-underline-offset:2px}
 .install b{display:block;font-size:13px}
 .install span{font-size:12px;color:var(--fg-muted)}
 .iosbar{height:44px;display:flex;align-items:center;justify-content:space-between;padding:0 22px;font-size:14px;font-weight:600}
-.iosbar .pillbox{display:flex;gap:5px;align-items:center;font-size:12px}
+.iosbar .pillbox{display:flex;gap:4px;align-items:center;font-size:12px}
+.iosbar .ic{vertical-align:0}
 .homeind{height:24px;display:grid;place-items:center}
 .homeind i{width:134px;height:5px;border-radius:3px;background:var(--fg);opacity:.85}
 /* diff */
@@ -394,6 +405,22 @@ u{text-decoration-thickness:1px;text-underline-offset:2px}
 .kit .file .ok{color:var(--success)}
 .linkbox{display:flex;align-items:center;gap:8px;border:1px solid var(--border);border-radius:8px;padding:8px 10px;font-family:var(--font-mono);font-size:11.5px;color:var(--fg);background:var(--panel-2);margin:8px 0}
 .prompt{border:1px solid var(--border);border-radius:8px;padding:10px 12px;font-family:var(--font-mono);font-size:11px;line-height:1.55;color:var(--fg-muted);background:var(--bg);white-space:pre-wrap;margin:8px 0}
+/* sign-in on the phone: the desktop's preview window and three verbs, stacked */
+.pgate{padding:6px 22px 0;display:block}
+.pgate .preview{border:1px solid var(--border-strong);border-radius:12px;overflow:hidden;background:var(--bg);box-shadow:0 14px 40px rgba(17,18,22,.10);margin:4px 0 22px}
+.pgate .preview .top{height:38px;padding:0 10px;border-bottom:1px solid var(--border)}
+.pgate .preview .pv{padding:14px 16px 4px}
+.pgate .preview .md{font-size:12.5px;max-width:none}
+.pgate .preview .md h1{font-size:17px;margin:0 0 8px;padding-bottom:6px}
+.pgate .preview .md p{margin:0 0 10px;color:var(--fg-muted)}
+.pgate h1{font-size:24px;font-weight:650;letter-spacing:-.02em;margin:0 0 6px}
+.pgate .lede{color:var(--fg-muted);font-size:14px;margin:0 0 18px;line-height:1.5}
+.pgate .stack{display:flex;flex-direction:column;gap:8px}
+.pgate .stack .btn{height:46px;font-size:15px;justify-content:center;padding:0 14px;border-radius:10px}
+.pgate .three{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px;margin:16px 0 0}
+.pgate .three div{display:flex;align-items:center;justify-content:center;gap:6px;height:36px;border:1px solid var(--border);border-radius:999px;font-size:12.5px;color:var(--fg-muted);background:var(--panel-2)}
+.pgate .three b{font-weight:600;color:var(--fg)}
+.pgate .fine{font-size:11.5px;color:var(--muted);margin-top:14px;line-height:1.55}
 /* sign-in and home */
 .gate{height:100vh;display:grid;grid-template-columns:1fr 1fr}
 .gate .left{display:grid;place-items:center;padding:40px;border-right:1px solid var(--border);background:var(--bg-subtle)}
@@ -566,6 +593,11 @@ u{text-decoration-thickness:1px;text-underline-offset:2px}
 .pf .pjc span{color:var(--fg-muted)}
 .pf .wr{display:flex;gap:10px;padding:7px 0;border-bottom:1px solid var(--border);font-size:13px}
 .pf .wr .dt{color:var(--muted);font-family:var(--font-mono);font-size:11px;margin-left:auto;white-space:nowrap}
+.phone .pf .head{align-items:flex-start}
+.phone .pf .head>div{min-width:0}
+.phone .pf .links{flex-wrap:wrap}
+.phone .pf h1{font-size:22px}
+.phone .top>.mark:first-child{margin-left:10px}
 .phone .pf{padding:18px 16px 0}
 .phone .pf .pj{grid-template-columns:1fr}
 /* import */
@@ -746,14 +778,22 @@ function rail({ outline, extra = '', showFoot = true, credits = [7, CAPS.edits],
 // editor full width, the tree as a 280px left drawer and the right pane as a
 // 300px right drawer over a backdrop. The bottom bar is new: five actions at
 // thumb height (Material's compact-width pattern).
-function phone({ title, body, bottom = 'doc', overlay = '', right = '', ttlExtra = '', bar = true, mode = null }) {
+// Founder review, 18 September: the phone view was bland and must carry the desktop
+// theme. So every phone header now has what the desktop header has, adapted to 390px:
+// the menu, the fm mark, the title with its project and save state underneath, the
+// share icon, and either the mode segment or the avatar. The bottom bar follows
+// Material's navigation bar, with the active item in a pill and AI in the accent blue.
+const IOSBAR = `<div class="iosbar"><span>9:41</span><span class="pillbox">${ic('signal_cellular_alt', 16)}${ic('wifi', 16)}${ic('battery_full', 18)}</span></div>`;
+function phone({ title, body, bottom = 'doc', overlay = '', right = '', ttlExtra = '', bar = true, mode = null, sub = null }) {
   if (mode && !right) right = pmodeseg(mode);
+  if (sub === null) sub = mode ? `Zephyrus booking ${ic('cloud_done', 13)}` : '';
   const items = [['home', 'Home'], ['search', 'Search'], ['auto_awesome', 'AI'], ['format_list_bulleted', 'Outline'], ['more_horiz', 'More']];
+  const tail = right ? right : `<span class="ibtn">${ic('search', 20)}</span><span class="avatar" style="background:#18181b">SM</span>`;
   return `<div class="phone">
-  <div class="iosbar"><span>9:41</span><span class="pillbox">${ic('wifi_off', 0).replace('width="0" height="0"', 'width="0" height="0" style="display:none"')}<span style="font-family:var(--font-mono);font-size:11px">●●●</span></span></div>
-  <header class="top"><span class="ibtn">${ic('menu', 22)}</span><span class="ttl">${title}</span>${ttlExtra}<span class="topright">${right || `<span class="avatar" style="background:#18181b">SM</span>`}</span></header>
+  ${IOSBAR}
+  <header class="top"><span class="ibtn">${ic('menu', 22)}</span><span class="mark">fm</span><span class="ttlbox"><span class="ttl">${title}</span>${sub ? `<span class="tsub">${sub}</span>` : ''}</span>${ttlExtra}<span class="topright">${mode ? `<span class="ibtn">${ic('share', 18)}</span>` : ''}${tail}</span></header>
   <div class="pbody">${body}${overlay}</div>
-  ${bar ? `<div class="bottombar">${items.map(([n, l]) => `<span class="bi${n === bottom ? ' on' : ''}">${ic(n, 22)}<span>${l}</span></span>`).join('')}</div>` : ''}
+  ${bar ? `<div class="bottombar">${items.map(([n, l]) => `<span class="bi${n === bottom ? ' on' : ''}${n === 'auto_awesome' ? ' ai' : ''}"><span class="bpill">${ic(n, 22)}</span><span>${l}</span></span>`).join('')}</div>` : ''}
   <div class="homeind"><i></i></div></div>`;
 }
 function pdrawer(inner, side = 'left') {
@@ -821,8 +861,15 @@ screen('s01-sign-in', 'Sign in', `<div class="gate">
 <div class="right"><div><div class="preview"><header class="top"><span class="topleft"><span class="mark">fm</span><span class="wordmark">frontmatter</span></span><span class="topright"><span class="seg tight"><span>Edit</span><span class="on">Live</span><span>Reading</span></span></span></header>
 <div class="pv"><div class="md" style="font-size:13px;max-width:none">${DOC_BRIEF_SHORT}</div></div></div>
 <div class="three"><div><b>Write</b>Markdown that stays yours, in a Doc mode or a plain one.</div><div><b>Decide</b>Turn an idea into a brief your agent can build from.</div><div><b>Ship</b>Share, publish, or push to GitHub and Google Drive.</div></div></div></div></div>`,
-`<div class="phone"><div class="iosbar"><span>9:41</span><span style="font-family:var(--font-mono);font-size:11px">●●●</span></div>
-<div class="pbody" style="display:grid;place-items:center;padding:24px"><div class="gate" style="display:block;height:auto"><div class="cardx" style="width:100%">${GATE_CARD.replace('<div class="cardx">', '').replace(/<\/div>$/, '')}</div></div></div>
+`<div class="phone">${IOSBAR}
+<header class="top" style="border-bottom:0"><span class="topleft" style="padding-left:8px"><span class="mark">fm</span><span class="wordmark">frontmatter</span></span></header>
+<div class="pbody pgate"><div class="preview"><header class="top"><span class="topleft"><span class="ttl" style="font-size:12.5px;font-weight:600">00-BRIEF.md</span></span><span class="topright"><span class="seg tight"><span>Edit</span><span class="on">Live</span><span>Read</span></span></span></header>
+<div class="pv"><div class="md"><h1>Zephyrus booking, in one page</h1><p>A booking page for small studios that take appointments by WhatsApp today. One link, a calendar of open slots, a deposit.</p></div></div></div>
+<h1>Sign in to frontmatter</h1>
+<p class="lede">Your documents, your ideas and your agents' briefs, in one place. Same account on the web, the desktop app and your phone.</p>
+<div class="stack"><span class="btn primary">${brand('google', 18)} Continue with Google</span><span class="btn">${brand('github', 18)} Continue with GitHub</span></div>
+<div class="three"><div>${ic('edit_note', 18)}<b>Write</b></div><div>${ic('lightbulb', 18)}<b>Decide</b></div><div>${ic('rocket_launch', 18)}<b>Ship</b></div></div>
+<p class="fine">No password, no puzzle, no tour. We never train on your documents, and <u>here are the providers</u> that keep that true. <u>Privacy</u> · <u>Terms</u></p></div>
 <div class="homeind"><i></i></div></div>`);
 
 // S02 home, first time. Empty, so the five ways to start are the whole page.
@@ -1343,7 +1390,7 @@ shasum -a 256 kit.tar.gz   # must print 9c1e…4b7a, the hash on this page
 mkdir -p docs/kit && tar xzf kit.tar.gz -C docs/kit</pre></div>
 <div class="card"><h3>Read this properly in frontmatter</h3><p>Outline, dark mode, comments and a copy you can edit. Free, no card.</p><div class="acts"><span class="btn primary">${ic('public', 15)} Sign in with Google</span><span class="btn ghost">Not now</span></div></div>
 <div style="position:absolute;left:24px;right:24px;bottom:18px;font-size:11.5px;color:var(--fg-muted);display:flex;gap:14px">Made with frontmatter <span>·</span> <u>Report this page</u> <span>·</span> <u>Privacy</u> <span>·</span> <u>Terms</u> <span style="margin-left:auto">also at <u>frontmatter.in/p/zephyrus-booking-brief.md</u></span></div></div></div>`,
-`<div class="phone"><div class="iosbar"><span>9:41</span><span style="font-family:var(--font-mono);font-size:11px">●●●</span></div>
+`<div class="phone">${IOSBAR}
 <header class="top"><span class="mark">fm</span><span class="ttl">Shared document</span></header>
 <div class="pbody" style="display:grid;place-items:center;padding:24px"><div style="width:100%"><div style="display:grid;place-items:center;margin-bottom:14px">${ic('password', 40)}</div><h2 style="margin:0 0 6px;font-size:18px;text-align:center">This link needs a password</h2><p style="color:var(--fg-muted);font-size:13px;text-align:center;margin:0 0 16px">Sagnik shared <b>00-BRIEF.md</b> with a password. Ask them for it.</p>
 <div class="search" style="height:42px;font-size:14px;margin-bottom:8px">${ic('key', 18)} Password</div><span class="btn primary lg" style="width:100%">Open</span>
@@ -1493,7 +1540,7 @@ phone({ title: 'frontmatter', bottom: 'home', bar: true, body: `<div class="page
 screen('s26-quick-capture', 'Quick capture', `<div class="desk" style="background:linear-gradient(135deg,#e6e9f0,#d8dfec 60%,#efe9dc)"></div><div class="capwin"><div style="display:flex;align-items:center;gap:8px;margin-bottom:10px"><span class="mark">fm</span><b style="font-size:13px">Quick capture</b><span class="pill" style="margin-left:auto">${ic('description', 13)} Into Notes / inbox.md</span><span class="kbd">⌘⇧Space</span></div>
 <div class="in">${ic('edit', 18)}<span>Call the salon about the deposit copy before Friday. Their WhatsApp said "we lose the ones who pay late".</span></div>
 <div class="foot"><span class="chip">${ic('sell', 13)} #zephyrus</span><span class="chip">${ic('schedule', 13)} Friday</span><span class="sp"></span><span>Enter to save · Esc to close · no credits used</span></div></div>`,
-`<div class="phone"><div class="iosbar"><span>9:41</span><span style="font-family:var(--font-mono);font-size:11px">●●●</span></div>
+`<div class="phone">${IOSBAR}
 <div class="pbody" style="background:#e8e8ec"><div style="padding:60px 22px 0;color:#6b6b73;font-size:13px"><div style="background:#fff;border-radius:14px;padding:14px;margin-bottom:12px;color:#18181b"><b>WhatsApp · Studio 12</b><br>we lose the ones who pay late, can the deposit go first?</div></div>
 <div class="sheet" style="height:560px"><div class="grab"></div><div style="display:flex;align-items:center;gap:10px;margin-bottom:12px"><span class="mark">fm</span><b>Save to frontmatter</b><span class="pill" style="margin-left:auto">Notes / inbox.md</span></div>
 <div class="aibox" style="margin:0"><div class="in" style="height:auto;padding:10px;align-items:flex-start;color:var(--fg);font-size:14px">we lose the ones who pay late, can the deposit go first?<br><span style="color:var(--muted);font-size:12px">From WhatsApp · Studio 12 · 9:40</span></div>
@@ -1592,7 +1639,7 @@ Small software, shipped weekly. Reach me by email.</div>
 <div class="elsewhere"><b>One file.</b> The front matter is the profile, the folder is the writing. Nothing here is a second format: the same file renders as a page in any markdown tool.</div></div><div class="gut"></div>
 <div class="pane" style="padding:0;overflow:hidden;background:var(--bg)">${PF_PAGE.replace('class="pf"', 'class="pf" style="padding:30px 28px 0"')}</div></div>
 </main></div></div>`,
-`<div class="phone"><div class="iosbar"><span>9:41</span><span style="font-family:var(--font-mono);font-size:11px">●●●</span></div>
+`<div class="phone">${IOSBAR}
 <header class="top"><span class="mark">fm</span><span class="ttl">frontmatter.in/@sagnik</span></header>
 <div class="pbody"><div class="pdoc" style="padding:0">${PF_PAGE}</div></div><div class="homeind"><i></i></div></div>`);
 
