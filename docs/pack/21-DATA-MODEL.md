@@ -6,8 +6,8 @@ tier: canonical
 status: living
 updated: 2026-09-18
 owner: sagnik
-verified_against: f237ece
-covers: [data-model, firestore, r2, indexeddb, retention]
+verified_against: 4de879d
+covers: [data-model, firestore, r2, indexeddb, retention, mirror, connections]
 ---
 
 # 21. Data model
@@ -91,6 +91,18 @@ Store | Holds | Mutable | Per device or shared
 Firestore | Records: who, what role, which key, how much, when | yes | shared.
 Cloudflare R2 | Bytes: document versions, uploads, rendered pages, the security log | no, write once | shared.
 IndexedDB and `localStorage` | The unsynced draft and the editor's own settings | yes | per device, per browser.
+The mirror, in the person's GitHub or Drive | A full copy of their markdown, written by us | yes, by the person too | theirs, not ours.
+
+**Which copy is canonical, decided on 18 September** `[Z]` (D03, `56-OPEN-DECISIONS.md` section 0).
+
+- **R2 and Firestore together are canonical.** R2 holds every version and upload. Firestore's
+  `headHash` decides which version is current.
+- **The mirror is never canonical.** We write to it, and an edit made in it comes back as a queue
+  item against its base, never as a silent overwrite of the head.
+- **Why.** The queue, history, offline and refusal each need one head that can be
+  compare-and-swapped. `docs/research/2026-09-18-storage/STORAGE-BENCHMARK.md` section 4.3.
+- How the device and the mirror reconcile is `67-SYNC-AND-CONFLICT.md`. This file holds only the
+  records that reconciliation reads and writes.
 
 **The rule.** A thing goes to R2 when any of these is true:
 
@@ -124,6 +136,7 @@ flowchart TB
     versions["vaults/{vaultId}/docs/{docId}/versions/{versionId}"]
     queue["vaults/{vaultId}/docs/{docId}/queue/{itemId}"]
     comments["vaults/{vaultId}/docs/{docId}/comments/{commentId}"]
+    mirror["vaults/{vaultId}/docs/{docId}/mirror/{provider}"]
     members["vaults/{vaultId}/members/{uid}"]
     conns["users/{uid}/connections/{provider}"]
 
@@ -141,6 +154,7 @@ flowchart TB
     docs --> versions
     docs --> queue
     docs --> comments
+    docs --> mirror
 ```
 
 Every path above is a **proposal for phase A**, not a shipped schema. Nothing in `src/` reads or
@@ -186,19 +200,35 @@ Field | Type | Notes
 
 ### users/{uid}/connections/{provider}
 
-One document per connected provider: `github`, `google-drive`.
+One document per connected provider: `github`, `google-drive`. **Since D03 this is the mirror's
+home record**, one per person per provider. Integration detail is in `34-INTEGRATIONS.md`.
 
 Field | Type | Notes
 `provider` | string | the document id too.
-`encryptedToken` | string | the OAuth or installation token, encrypted at rest by us before it is written.
-`scopes` | array of string | What the token may do at the provider.
+`encryptedToken` | string or null | **Drive only**: the OAuth refresh token, encrypted at rest by us before it is written. Null for GitHub.
+`installationId` | number or null | **GitHub only**: the GitHub App installation. Tokens are minted from it per request.
+`scopes` | array of string | What the grant allows. Drive: exactly `drive.file`. GitHub: the App's permissions.
+`target` | map | GitHub: `{ owner, repo, branch, pathPrefix }`. Drive: `{ folderId, folderName }`, the visible `frontmatter` folder.
+`status` | string | one of `active`, `paused`, `revoked`, `error`.
+`statusReason` | string or null | 300 chars. Shown on S23 when `status` is not `active`.
+`cursor` | string or null | Drive: the changes-feed page token. GitHub: the last commit sha seen from a webhook.
+`watchChannelId`, `watchExpiresAt` | string, timestamp, or null | **Drive only**: the watch channel and its expiry, so a renewal job can find it.
+`lastPushAt`, `lastPullAt` | timestamp or null | For S23's "last synced".
 `connectedAt`, `lastUsedAt` | timestamp | Required.
 
-- **Size.** `INFERENCE:` under 4 KB, dominated by the encrypted token.
+**Changed 18 September: GitHub no longer stores a token.** The earlier row encrypted "the OAuth or
+installation token". A GitHub App installation token expires after an hour, so storing it buys
+nothing.
+
+The server keeps the App's private key as a secret and mints a token from `installationId`.
+
+- **Size.** `INFERENCE:` under 4 KB, dominated by the encrypted refresh token on Drive.
 - **Retention.** Until disconnected.
 - **On account deletion.** Revoked at the provider first, then removed
   (`docs/mvp0/PRODUCT-PLAN.md` section 18).
 - **Never** readable by a client. Server reads only.
+- **Status is set by the server**, including to `revoked` when the provider tells us the grant is
+  gone: an uninstall webhook from GitHub, or a refused refresh on Drive.
 
 ### agentTokens/{tokenId}
 
@@ -360,6 +390,30 @@ Field | Type | Cap | Notes
 - **Size.** `INFERENCE:` up to about 4.2 KB.
 - **Retention.** With the document (`docs/mvp0/PRODUCT-PLAN.md` section 18).
 
+### vaults/{vaultId}/docs/{docId}/mirror/{provider}
+
+**New on 18 September, for D03.** One record per document per mirror: where it sits in the
+person's account, and which of our versions it last received.
+
+Field | Type | Cap | Notes
+`provider` | string | | `github` or `google-drive`, the document id too.
+`remoteId` | string | 1,024 chars | GitHub: the repository path. Drive: the file id.
+`lastPushedHash` | string or null | 64 chars | Our `headHash` at the last successful push.
+`lastPushedVersionId` | string or null | | The version that push carried.
+`remoteSha` | string or null | 40 chars | **GitHub:** the blob sha returned by the push. The next push must send it.
+`remoteRevisionId` | string or null | 200 chars | **Drive:** the revision id seen after the last push or pull.
+`status` | string | | one of `in-sync`, `pending`, `conflict`, `error`, `excluded`.
+`conflictItemId` | string or null | | The queue item raised when the mirror changed underneath us.
+`lastPushedAt`, `lastCheckedAt` | timestamp or null | | For the S23 and S31 surfaces.
+
+- **Why a subcollection, not a field on the head.** The head is written on every save. A mirror
+  worker writing status into the same document would race those saves.
+- **`excluded`.** Uploads are never pushed to GitHub, and a document may be excluded by the person.
+- **Size.** `INFERENCE:` under 1 KB. Ten short fields, the largest a 1,024-char path.
+- **Retention.** With the document, or until the connection is removed.
+- **What it does not say.** When a push happens, how a conflict is detected, and what `pending`
+  waits on. That is `67-SYNC-AND-CONFLICT.md`.
+
 ### shares/{slug}
 
 The document id **is** the public URL segment, which is what makes a slug globally unique without a
@@ -465,6 +519,7 @@ Collection group | Fields | Serves
 `comments` | `resolved` asc, `createdAt` asc | The comments panel.
 `ledger` | `createdAt` desc | The usage view of `docs/mvp0/PRODUCT-PLAN.md` section 5b.
 `shares` | `ownerUid` asc, `createdAt` desc | The owner's list of published pages.
+`mirror` | `provider` asc, `status` asc | `INFERENCE:` the mirror worker's scan for `pending` and `conflict`. S23's counts.
 
 **Two limits to respect.** A document may carry at most 40,000 index entries, which an array field
 of 500 entries eats into quickly. And Firestore has **no full-text index**, which the plan already
@@ -577,6 +632,7 @@ Queue item | Until decided, then with the versions | Removed.
 Comment | With the document | Removed.
 Share, and the rendered R2 object | Until unpublished or expired | Removed, and the URL goes dark.
 Connection | Until disconnected | **Revoked at the provider first**, then removed.
+Mirror state per document | With the document, or until disconnected | Removed. **The mirror's files stay in the person's account**, per `54-COMPLIANCE-AND-LEGAL.md`.
 Agent token | Until revoked. The revoked row stays | Revoked.
 Ledger entry | 180 days, then aggregated | Aggregates kept without the account id.
 Security log | 180 days rolling, Indian jurisdiction | Kept for the period.
@@ -586,19 +642,24 @@ Every row is `docs/mvp0/PRODUCT-PLAN.md` section 18, with the store
 corrected from Postgres to Firestore or R2 per this file.
 
 **One rule the table cannot show.** Deleting a Firestore document does **not** delete its
-subcollections. Deleting a vault means walking `members`, `docs`, and each document's `versions`,
-`queue` and `comments`, and then the R2 prefix. That walk is a server job with a log line per step,
+subcollections.
+
+Deleting a vault means walking `members`, `docs`, and each document's `versions`,
+`queue`, `comments` and `mirror`, and then the R2 prefix. That walk is a server job with a log line per step,
 not a client call.
 
 ## 21.11 What exists in code today
 
-`[O]` At `f237ece`.
+`[O]` At `f237ece`. The R2 and mirror rows were re-checked at `4de879d` on 18 September with
+`grep -rln "S3Client\|R2Bucket\|aws-sdk" src/`, which printed nothing, and a search for a GitHub App
+installation or a Drive client, which found none.
 
 Piece | State
 Firestore client | **Built.** `getFirestore` is exported from `src/shared/infrastructure/firebase/client.ts`, lazily, so importing it costs nothing at build time
 `firestore.rules` | **Prototype.** 17,304 bytes. Its own header says it is "not yet exercised against the emulator or a live client. Harden before taking paid signups"
 Any Firestore read or write from a use case | **Does not exist.** No collection in this file is read or written anywhere in `src/`
 R2 | **Does not exist.** No adapter, no key, no client
+The mirror | **Specified, not built.** No GitHub App, no Drive client, no `mirror` record
 The bytes today | A GitHub repository, through `githubVaultReader` and `githubWriter`, wired in `src/container/dependency-container.ts`
 IndexedDB drafts and the four `localStorage` keys | **Built**, and listed with line numbers in 21.9
 
@@ -621,6 +682,7 @@ Prototype path | This file | Note
 none | `.../docs/{docId}/queue/{itemId}` | new. The change queue has no prototype.
 none | `.../docs/{docId}/comments/{commentId}` | new.
 none | `agentTokens/{tokenId}`, `users/{uid}/connections/{provider}` | new.
+none | `.../docs/{docId}/mirror/{provider}` | new, for D03.
 
 ## 21.12 How to check any claim in this file
 
@@ -646,6 +708,9 @@ The section 18 table | `sed -n '1426,1458p' docs/mvp0/PRODUCT-PLAN.md`
 - **What is inference, marked as such.** The size estimates, the 64 KiB inline cut, the three-shard
   count, and the judgement that the 500-entry link arrays need re-cutting. None of them is a
   founders' decision and none should be quoted as one.
+- **What is not established.** That Drive can hold a byte-faithful mirror. The benchmark's
+  falsification tests in its section 6.7 have not run. If a byte changes, `remoteRevisionId` and the
+  Drive half of `mirror` fall with it.
 - **What is not established.** That this model survives the Team tier. Every path here is keyed on a
   vault owned by one uid, and a shared bill across seats is a different ownership shape.
 - **What would falsify this file.** A change-queue proposal that does not fit the inline cut and

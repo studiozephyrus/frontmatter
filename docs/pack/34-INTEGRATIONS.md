@@ -6,7 +6,7 @@ tier: canonical
 status: living
 updated: 2026-09-18
 owner: sagnik
-verified_against: 0af3c90
+verified_against: 4de879d
 covers: [integrations, third-party, firebase, r2-integration, github-app, drive, providers, razorpay]
 ---
 
@@ -19,6 +19,13 @@ running system would be the worst mistake it could cause.
 **How state was established** `[O]`. For each service, a grep over `src/` and over
 `package.json` dependencies at `0af3c90`. The command for each is given in its section.
 
+The R2, GitHub App and Drive rows were re-checked at `4de879d` on 18 September, and are still not built.
+
+**Changed 18 September, D03** `[Z]`. Our copy in R2 and Firestore is canonical.
+
+The GitHub App and Google Drive become **the mirror**: a full copy of the person's markdown in their own account, on
+both plans. Sections 7 and 8 are rewritten for it. `56-OPEN-DECISIONS.md` section 0.
+
 ---
 
 ## 1. The register, at a glance
@@ -29,8 +36,8 @@ Auth.js with GitHub | **CRITICAL** | **Wired.** The primary sign-in | `AUTH_GITH
 GitHub Contents API | **CRITICAL** | **Wired**, as a personal token against one repository | `GITHUB_REPO_TOKEN`, `GITHUB_REPO`, `GITHUB_BRANCH` | **Every document read and write fails.** This is the storage layer today
 Firestore | **CRITICAL** when it lands | **Initialised and unused.** A client exists; nothing calls it | The same seven variables, plus `firestore.rules` | Nothing, today
 Cloudflare R2 | **CRITICAL** when it lands | **Not built.** No client, no dependency | Not yet | Nothing, today
-The GitHub App | **HIGH** when it lands | **Not built.** The current integration is a token, not an App | Not yet | Write-back to a user's repository dies; exports still work
-Google Drive | **MEDIUM** | **Not built** | Not yet | Sync stops. Documents are unaffected
+The GitHub App, the GitHub mirror | **HIGH** when it lands | **Not built.** The current integration is a token, not an App | Not yet | The mirror stops. Our copy, the editor and exports are unaffected; pushes resume
+Google Drive, the Drive mirror | **MEDIUM** | **Not built** | Not yet | The mirror stops. Documents are unaffected, because Drive is never canonical
 Model providers | **MEDIUM** | **Wired**, five of them, all optional | Five key variables plus model overrides | AI features fail. Everything else works
 Razorpay | **HIGH** when it lands | **Not built.** No dependency, no account | Not yet | No new subscriptions. Existing ones are unaffected
 Resend, Sentry, PostHog | **LOW** to **MEDIUM** | **Not built.** None appears in `package.json` | Not yet | No mail, no error reports, no analytics
@@ -213,24 +220,48 @@ page unless it says so. **Design the refusal, do not let it happen by accident.*
 
 **Criticality: HIGH once it lands.** Distinct from section 4, which is a personal token.
 
-**State: not built.** The shipped integration is `GITHUB_REPO_TOKEN` against one repository. An App
-is phase E (`docs/mvp0/PRODUCT-PLAN.md` section 26).
+**What it is for, since D03** `[Z]`. The GitHub mirror: a person who signs in with GitHub gets a
+full copy of their markdown in one repository they choose or we create. It is never canonical.
 
-**The four facts that shape the design** (`docs/mvp0/PRODUCT-PLAN.md` section 11 onward):
+**State: not built.** The shipped integration is `GITHUB_REPO_TOKEN` against one repository. The
+App is batch 5 of `50-ROADMAP.md`, the old phase E.
 
-- **It asks for the Contents permission, read and write, and nothing else.**
-- **GitHub grants that for the whole repository.** There is no path-scoped permission. **So the
+**Why an App and not an OAuth App** `[M]` (`STORAGE-BENCHMARK.md` section 3.5, opened 18 September).
+
+- Permissions are granted repository by repository, not the broad `repo` scope.
+- Installation tokens expire after an hour, so nothing long-lived sits in our database.
+- Webhooks are configured once for every installed repository, not per repository.
+
+**Permissions and events.**
+
+What | Value | Source
+Repository permission | **Contents, read and write, and nothing else** | `docs/mvp0/PRODUCT-PLAN.md` section 11
+Metadata | `UNVERIFIED:` whether GitHub adds a read-only Metadata permission to every App. Not opened | none
+Event `push` | Subscribed. "a GitHub App must have at least read-level access for the "Contents" repository permission" | GitHub's webhook events page, opened 18 September 2026 `[M]`
+Event `installation` | Received by every App, not subscribable. Actions include `deleted` and `suspend`, which set the connection to `revoked` | The same page `[M]`
+
+**The facts that shape the design** (`docs/mvp0/PRODUCT-PLAN.md` section 11 onward).
+
+- **GitHub grants Contents for the whole repository.** There is no path-scoped permission. **So the
   promise to write only under `docs/` is ours to enforce server-side, and to test.** That is F034,
   and section 4 above records that it is not enforced yet.
 - **Installation tokens expire after one hour**, and carry their own 5,000 requests an hour. So the
-  token is fetched per operation or cached with an expiry, never held.
+  token is minted per operation from `installationId` in `21-DATA-MODEL.md`, never stored.
 - **Every update sends the file's blob sha and treats a 409 as a re-read.** That is the splice
   engine's compare-and-swap rule in GitHub's words, and `src/modules/repository/infrastructure/github-writer.ts:183` already implements
   the conflict half.
+- **Markdown only.** Uploads stay in R2 and are linked. GitHub blocks files over 100 MiB and
+  recommends repositories under 5 GB. Over 5 GB is a warning to the person, never a block.
+- **A push to the mirror is inbound.** The `push` webhook turns it into a change queue item against
+  its base, never a silent overwrite of our head.
 
-**Limits by plan.** Free: one repository, 20 pushes a month. Pro: unlimited.
+**Limits by plan.** Free: one repository, 20 pushes a month. Pro: unlimited. Both plans get the
+mirror; on Free it is current as of the last push.
 
-**When it is down, or suspended.** Write-back to a user's repository dies. The plan's stated
+**What this file does not say.** The push cadence, the batching, and what happens on a 409. Those
+are `67-SYNC-AND-CONFLICT.md`.
+
+**When it is down, or suspended.** The mirror stops and our copy carries on. The plan's stated
 mitigation is that **exports never need a connection**, so nobody's work is trapped
 (`docs/mvp0/PRODUCT-PLAN.md` section 27).
 
@@ -238,22 +269,51 @@ mitigation is that **exports never need a connection**, so nobody's work is trap
 
 ## 8. Google Drive
 
-**Criticality: MEDIUM.** A sync convenience, not a storage layer.
+**Criticality: MEDIUM.** A mirror, not a storage layer.
 
-**State: not built.** Phase E.
+**What it is for, since D03** `[Z]`. The Drive mirror: a person who signs in with Google gets a full
+copy of their markdown in a **visible** `frontmatter` folder in their Drive. It is never canonical.
+
+**State: not built.** Batch 5 of `50-ROADMAP.md`, the old phase E.
+
+**The scope is `drive.file`, and only `drive.file`** `[M]` (`STORAGE-BENCHMARK.md` section 2.1).
+
+- It reaches files our app created, and files the person picked in the Google Picker. That is
+  enough to create the folder and write every document into it.
+- It is non-sensitive, so it needs only basic verification.
+- Existing Drive files come in through the Picker, which is what `drive.file` permits.
+
+**Why the full `drive` scope is never requested** `[M]` (`STORAGE-BENCHMARK.md` section 2.2).
+
+- `drive` and `drive.readonly` are restricted scopes.
+- Google requires an app that stores restricted data on its servers to pass an annual security
+  assessment by an approved third party, under the App Defense Alliance's CASA framework.
+- Our server holds the bytes in R2, so holding `drive` would mean **a CASA assessment every 12
+  months**, and "several weeks" the first time. `UNVERIFIED:` its price; no page opened stated one.
+- `drive.file` does everything the mirror needs. The restricted scope would buy only the ability to
+  read files we did not create, and the Picker covers that.
+
+**Why not the hidden app folder.** `drive.appdata` is invisible in Drive's own interface and is
+deleted when the person uninstalls the app. It defeats the point of a mirror the person can open.
 
 Aspect | Detail and why
-Scope | `drive.file` only. It covers files the app created or the person picked, and needs only basic verification. Both `changes.list` and `files.watch` accept it
-**Poll, do not subscribe** | A change channel lasts a week at most, has no automatic renewal, and carries no content. So the app polls the change list from a stored page token
-Poll interval | Five minutes
-Quota arithmetic | 30 saves a day at 50 units is 1,500. A five-minute poll is 288 calls at 100 units, so 28,800. **Total 30,300 a day per user**
+Folder | One visible `frontmatter` folder. Its id is `target.folderId` on the connection record
+Watch channels | A channel on the changes feed expires after a week at most, and 3,600 seconds if unset. It carries no content, so a notification wakes a read of the change list from a stored page token. The channel id and expiry sit on the connection record for a renewal job
+**Poll or watch** | The plan's section 11 polls every five minutes and costs the quota on that basis. The benchmark proposes a watch channel renewed weekly. **Not reconciled here**; `67-SYNC-AND-CONFLICT.md` decides
+Quota arithmetic, on the poll | 30 saves a day at 50 units is 1,500. A five-minute poll is 288 calls at 100 units, so 28,800. **Total 30,300 a day per user**
 What that buys | Google's daily project threshold is 400,000,000 units. 400,000,000 / 30,300 = **13,201 connected users** before a quota increase, which the limits page says is billed
 Why not one minute | 145,500 units a day, serving 2,749 users. **That is why S23 promises "within a few minutes"**
-Conflicts | **Never merged silently.** Both versions are kept and the person chooses on S31
+No write precondition | `UNVERIFIED:` whether `files.update` honours `If-Match`. The v3 reference opened carried no such string. So a write is preceded by a read of the revision, and a race window remains
+Conflicts | **Never merged silently.** An edit made in Drive enters the change queue, and the person chooses on S31
 
-**When it is down.** Sync stops. Documents are unaffected, because Drive is a mirror and not the
-record. **The one thing that must not happen is a silent merge**, and the design already refuses
-one.
+**Before the Drive mirror ships**, the two falsification tests in `STORAGE-BENCHMARK.md` section 6.7
+run: every corpus file through Drive and back, compared by SHA-256, and 100 interleaved edits
+counting any lost without a queue item.
+
+Either failing removes or changes the Drive mirror.
+
+**When it is down.** The mirror stops. Documents are unaffected, because Drive is a mirror and not
+the record. **The one thing that must not happen is a silent merge**, and the design refuses one.
 
 ---
 
@@ -457,6 +517,10 @@ developer plan (a million characters), iframely (2,000 hits a month, billed once
 - `UNVERIFIED:` whether `firestore.rules` as written would pass an emulator run. Its own header
   says it has never been exercised.
 - `UNVERIFIED:` the state of the Google OAuth consent screen's verification.
+- `UNVERIFIED:` Drive byte fidelity for `text/markdown`, and whether `files.update` takes a
+  precondition. Neither Drive API was called; both are the benchmark's open tests.
+- `UNVERIFIED:` the CASA price. It matters only if the full `drive` scope is ever requested, which
+  this file forbids.
 
 **What is not established.**
 

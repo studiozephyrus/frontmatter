@@ -6,7 +6,7 @@ tier: canonical
 status: living
 updated: 2026-09-18
 owner: sagnik
-verified_against: 0af3c90
+verified_against: 4de879d
 covers: [position, claims, tiers, scope, never-build]
 ---
 
@@ -24,6 +24,29 @@ claims, which is `52-MARKET-RESEARCH.md` and is cited here once rather than repe
 
 **frontmatter is a markdown editor for people whose documents are increasingly written with, and
 for, AI agents.** `docs/mvp0/PRODUCT-PLAN.md` section 1
+
+**The founders confirmed it on 18 September as the broad editor, option a of D01** `[Z]`, and said
+more than the sentence carried. `56-OPEN-DECISIONS.md` section 0.
+
+- **One editor, two modes.** Doc mode and Markdown mode, switchable, rendering markdown in ways it
+  was not rendered before.
+- **Ideas become concrete.** A rough idea is sharpened through questions into blueprints and flows.
+  Plain text can become other things, a command line among them.
+- **One file, every feature.** From one markdown file a person can publish, share and use
+  everything built on it.
+
+**The internal name is `fmd`, and it stands for nothing** `[Z]`. The public name stays frontmatter.
+
+`fmd` is taken as an npm package and as a markdown renderer's command, so no binary, package or
+public handle uses it. `docs/research/2026-09-18-name/TAGLINE-AND-FMD.md` section 5.
+
+**The tagline is open, and three lines go to a test** `[Z]`. Each person sees one line, for five
+seconds, then is asked the next day what they recall. That file's section 4.1.
+
+Line | Angle
+Everything starts as one markdown file. | One file, many outputs
+Looks like a document. Saves as markdown. | The editor
+From rough idea to blueprint. | Ideas to blueprints
 
 Three sentences carry the whole product.
 
@@ -55,14 +78,15 @@ Obsidian and Notion people who want notes on the web, shared, agent-readable | I
 **The pilot recruits ten of twenty from the third group** `docs/mvp0/PRODUCT-PLAN.md` section 28.
 That is deliberate. It is the only group with a demonstrated wallet.
 
-### 1.3 The sentence is contested inside our own documents
+### 1.3 The sentence was contested, and D01 settled it
 
-`docs/mvp0/PRODUCT-PLAN.md` section 29 says the plan is written to K1 recommendation **b**. The
-sentence the plan actually carries at section 1 is K1 option **a**. Twenty-three other decision cards
-were closed on the strength of b.
+**Changed 18 September.** This section said the plan's section 29 was written to K1 recommendation
+**b** while its section 1 carried option **a**. The founders took **a** `[Z]`, and the plan's
+section 29 now says so.
 
-**This is D01 in `56-OPEN-DECISIONS.md` and it costs one sentence to settle.** It is named here
-because a reader who takes section 1 as final should know it is not.
+**The consequence is not finished.** Twenty-three decision cards in `decisions/v2` were closed on
+the strength of b. They re-open, per `56-OPEN-DECISIONS.md` section 6, and nobody has re-answered
+them yet.
 
 ---
 
@@ -77,7 +101,7 @@ Claim | What demonstrates it | State
 **Splice-only writing** | Open a 10 MB file, change one heading, diff the bytes. Everything outside the span is identical | Specified, partly built
 **A change queue a non-developer can use** | Give an agent's fifteen-file output to somebody who has never opened a pull request, and watch them accept six and reject nine | **Not built.** Phase D
 **The markdown route is never gated** | `curl` the `.md` twin of a published page and get markdown, with no redirect and no interstitial | Specified 18 September, not built
-**Every view is a projection** | Doc mode, the flow view, the portfolio and Drive sync over the same bytes, with no second format | Partly built
+**Every view is a projection** | Doc mode, the flow view, the portfolio and the Drive mirror over the same bytes, with no second format | Partly built
 
 ### 2.1 What we may not claim
 
@@ -139,7 +163,8 @@ API routes | 26 | Six under `api/ai/`, fourteen under `api/vault/`, plus auth, c
 ### 3.3 Storage, today against the plan
 
 Layer | The plan | What the code does today
-Bytes | Cloudflare R2 | **GitHub.** `src/modules/repository/infrastructure/github-writer.ts`. No R2 adapter exists
+Bytes | Cloudflare R2, **canonical** per D03 | **GitHub.** `src/modules/repository/infrastructure/github-writer.ts`. No R2 adapter exists
+The mirror | The person's GitHub repository through a GitHub App, or a Drive folder through `drive.file`. `34-INTEGRATIONS.md` | **Specified, not built.** The writer above uses a token, not a GitHub App, and no Drive code exists
 Records | Firestore | `firestore.rules` exists at the repository root, 17,304 bytes. No Firestore data adapter under `src/modules/`
 Sign-in | Firebase Auth behind Auth.js | **Built.** `src/modules/auth/infrastructure/firebase-auth-gateway.ts`
 
@@ -172,6 +197,20 @@ Tier | The sentence | Price
 **Every entitlement, with its numeric cap, is in `53-PRICING-AND-ENTITLEMENTS.md`.** This file
 says what a tier means. That file says what it allows.
 
+**When each tier is released, per D02** `[Z]` `[P]`. Every tier is built, in the batches of
+`50-ROADMAP.md`, one at a time. A tier is released when the batch that completes it passes its
+internal gate, never on a date.
+
+Tier | Complete after batch | What that batch adds | Caveat
+**Free** | 5, In and out, then the pilot | Import, export, the GitHub and Drive mirrors | Batch 8 adds offline and the desktop app later, and batch 9 the views and blocks
+**Pro** | 7, Pro | Razorpay, Medium and High, password links, the 90-day window | **The portfolio is a Pro row but ships in batch 12.** Pro is sold without it until then
+**Max** | 10, Agents and Max | The MCP server, the API, agent tokens | Appetite unset. D04 may move part of it into batch 4
+**Team** | 12, Portfolio, Team and community | Seats and one bill | Appetite unset, unpriced
+
+`INFERENCE:` a tier is "complete" when the last batch its rows need has passed. Nothing in
+`50-ROADMAP.md` says a tier cannot open to strangers earlier; the pilot after batch 5 is the first
+time any stranger sees the product.
+
 ### 4.1 Free: you write, and the file stays yours
 
 The free tier is not a demonstration. It is a whole editor with quantities capped.
@@ -180,9 +219,15 @@ The free tier is not a demonstration. It is a whole editor with quantities cappe
   offline, the desktop app, tags, backlinks, history.
 - The caps are on quantity, not capability. 50 documents, 5 published pages, 1 live collaborator,
   7 days of history, 10 AI edits and 1 Low blueprint a month.
+- **The mirror is free, on both plans** `[Z]` (D03). Our copy in R2 is canonical. A full copy sits
+  in the person's own GitHub repository or Drive folder.
+- An edit made in the mirror comes back as a change queue item. The mechanics are in
+  `67-SYNC-AND-CONFLICT.md`.
 - **Google Drive is free** because it is the person's own storage and costs us nothing.
 - **GitHub is free** at 20 pushes and 1 repository, because the connection is the product and
   cannot sit behind a higher tier.
+- **The Free document cap of 50 is a panel value** `[Z]` (D11), A/B tested on real accounts before
+  it is fixed. `28-CONFIGURATION-PANEL-SPEC.md` section 10.3.
 
 **One cap changed on 18 September.** Live collaborators went from three to one, on cost. A live
 session holds a Durable Object open for as long as two people are in it, and that is the one free
@@ -196,7 +241,7 @@ What | Why it is Pro
 Unlimited documents, pages and collaborators | Quantity, not capability
 100 AI edits and 5 blueprints on Claude, and Medium and High depth | Model cost, which is real and per call
 Password links, 90-day history, the portfolio, no branding | The sharing surface
-10 GB of uploads at 25 MB a file | Storage cost
+10 GB of uploads at 25 MB a file, a soft cap | Storage cost. Past 10 GB, storage is sold in blocks priced from the panel `[Z]` (D03)
 
 **What Pro does not buy.** It does not buy a better editor. A person on Free and a person on Pro
 open the same workspace and see the same features.
@@ -225,9 +270,11 @@ Item | What it is | Why it is not Free or Pro
 - So Max is metered, and the meter is the honest shape. A flat price on an unbounded machine
   workload is a promise we cannot keep.
 
-**Where Max sits today.** `docs/mvp0/PRODUCT-PLAN.md` section 26 has the MCP server and the API in
-Later, behind eight phases. The research argues that is wrong, and
-`56-OPEN-DECISIONS.md` D04 carries the decision with its costs. **This file does not move it.**
+**Where Max sits today.** **Changed 18 September:** D02 builds everything, so Max is no longer
+Later. It is batch 10 of `50-ROADMAP.md`, after Pro.
+
+The research argues it should come sooner, and
+`56-OPEN-DECISIONS.md` D04 carries that decision with its costs. **This file does not move it.**
 
 **What Max is not.** It is not Team. Team is seats and one bill, and it comes after Pro. Max is
 about machines, not about headcount.
@@ -242,8 +289,8 @@ graph LR
   T -.-> E["Enterprise<br/>Later"]
 ```
 
-**The dotted lines are the tiers with no price and no date.** Nothing in the pack should imply
-otherwise.
+**The dotted lines are the tiers with no price and no appetite.** D02 builds them, in batch 12, and
+nothing in the pack should imply a date.
 
 ---
 
@@ -313,7 +360,8 @@ of a machine is a machine-shaped cost.
 
 **What could not be verified.**
 
-- `UNVERIFIED:` the Max price. There is none, and the plan records Max as Later and unpriced.
+- `UNVERIFIED:` the Max price. There is none. Max is batch 10 and unpriced.
+- `UNVERIFIED:` whether the tagline test can tell three lines apart. No sample size has been derived.
 - `UNVERIFIED:` whether the three groups in section 1.2 are the real segments. The pilot of twenty
   is the first test and it has not run.
 - `INFERENCE:` section 3.3's reading that phase A is larger than a hardening. It follows from two
@@ -326,5 +374,7 @@ of a machine is a machine-shaped cost.
   whole position sits in. Two competitors already ship the refusal law.
 - A measured willingness to pay in group one or two would change which group the product is built
   for, and therefore the order in `50-ROADMAP.md`.
-- If the K1 contradiction in section 1.3 resolves to **b**, the position narrows to instruction
-  files and this file's section 1 is wrong rather than incomplete.
+- D01 took **a** on 18 September. If it were ever reversed to **b**, the position would narrow to
+  instruction files and this file's section 1 would be wrong rather than incomplete.
+- A byte changed in the Drive round trip of `STORAGE-BENCHMARK.md` section 6.7 would remove the
+  Drive half of the free mirror in section 4.1.

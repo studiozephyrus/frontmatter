@@ -1,6 +1,6 @@
 ---
 title: frontmatter, the product plan
-version: v6, 17 September 2026
+version: v6, 17 September 2026, updated 18 September
 status: final for the build, after the founders' stack and configuration decisions
 ---
 
@@ -27,9 +27,16 @@ Signal | What it means
 `[L]` | A constraint, with no choice in it
 `[P]` | Follows from another decision
 
-**Sixteen decisions the plan cannot take** are in `docs/mvp0/DECISIONS-FOR-FOUNDERS-2026-09-17.md`, each with a default. This revision is written to those defaults.
+**Sixteen decisions the plan cannot take** are in `docs/mvp0/DECISIONS-FOR-FOUNDERS-2026-09-17.md`, each with a default. Five were answered on 18 September, section 0. The rest are still written to their defaults.
 
 ## 0. What changed, and why
+
+**18 September, five founder answers** `[Z]`, recorded in `docs/pack/56-OPEN-DECISIONS.md` section 0 and carried here.
+
+- **D01.** The broad editor. Internally the product is `fmd`, which stands for nothing. Three taglines go to a test, section 1.
+- **D02.** Everything is built, in twelve batches, one at a time, section 26.
+- **D03.** Our copy in R2 and Firestore is canonical. The person's GitHub or Drive holds a full mirror on both plans, sections 11, 12, 13 and 15.
+- **D10.** Every account in section 24 moves to the company. **D11.** The Free document cap is a panel value, A/B tested, section 29.
 
 **Revision 6, the founders' two decisions.** Both were taken on 17 September, after revision 5 was read end to end.
 
@@ -98,7 +105,22 @@ Two shortened quotations are quoted in full | F042
 - A document is a markdown file that stays the person's own.
 - **The editor is the thing we sell. The files never are.**
 
-That sentence is K1, and the founders confirm or replace it in section 29 `[Z]`.
+That sentence is K1. **The founders confirmed it on 18 September as the broad editor, option a** `[Z]`, and said more than it carried.
+
+- **One editor, two modes.** Doc mode and Markdown mode, switchable, rendering markdown in ways it was not rendered before.
+- **Ideas become concrete.** A rough idea is sharpened through questions into blueprints and flows. Plain text can become other things, a command line among them.
+- **One file, every feature.** From one markdown file a person can publish, share and use everything built on it.
+
+**The internal name is `fmd`** `[Z]`. It stands for nothing. The public name stays frontmatter.
+
+- `fmd` is taken as an npm package and as a markdown renderer's command, so no binary, package or public handle uses it.
+- Source: `docs/research/2026-09-18-name/TAGLINE-AND-FMD.md` section 5.
+
+**The tagline is not decided.** Three lines go to the five-second and next-day recall test of that file's section 4.1, one line per person `[Z]`.
+
+- Everything starts as one markdown file.
+- Looks like a document. Saves as markdown.
+- From rough idea to blueprint.
 
 **The promise, in the founders' words** `[Z]`.
 
@@ -112,7 +134,7 @@ That sentence is K1, and the founders confirm or replace it in section 29 `[Z]`.
 2. You write in Markdown mode or Doc mode. Doc mode looks like Google Docs. The file underneath is the same markdown either way.
 3. You describe an idea, answer questions at the depth you choose, and get a brief and a blueprint an agent can build from.
 4. You share by link, with an expiry or a password, publish a page, or invite people to edit live.
-5. You bring in a folder, a Google Doc, a Word file, a Notion export or an Obsidian vault, and push documents to GitHub or keep them in Google Drive.
+5. You bring in a folder, a Google Doc, a Word file, a Notion export or an Obsidian vault. A full mirror of your documents sits in your own GitHub repository or Google Drive folder, section 11.
 6. It works offline in the browser, without limits on the desktop, and from the phone's share sheet.
 
 **Who it is for.**
@@ -604,6 +626,8 @@ Later, named | A Max tier above Pro; a community as an opt-in index plus GitHub 
 
 - Google Drive: the folder, the scope, the conflict rule, "a change in Drive shows up here within a few minutes" (F027). Change folder, pause, disconnect.
 - GitHub: "GitHub grants this app the whole repository; frontmatter only ever writes under docs/" (F034). Pushes used, revocable on GitHub.
+- Both are labelled as a mirror: our copy is the one the editor works on, and this is a full copy in the person's own account (D03, 18 September).
+- An edit made in the mirror arrives as a change to accept, never a silent overwrite.
 - Your agents: marked Later, with the MCP server (F035).
 
 **Why.** `[Z]` connect Drive and GitHub with the user's authorisation. `[M]` GitHub Apps carry "narrow, specific permissions" and installation tokens "expire after 1 hour". `[R]` permissions attach to the operation.
@@ -708,6 +732,7 @@ Later, named | A Max tier above Pro; a community as an opt-in index plus GitHub 
 - What happened: the 50th cloud document, or the tenth edit, or the fifth page. What still works: every document opens, edits and exports.
 - What to do: delete or export something, wait for the reset, or move to Pro. The desktop app has no cap and is named.
 - A downgraded account meets the same screen: nothing is deleted, nothing new is created until under the cap.
+- Storage is a soft cap (D03, 18 September). Text always saves; only new uploads stop. Three ways out: prune history, move uploads to the Drive mirror, or upgrade. Past 10 GB on Pro, storage blocks are offered.
 
 **Why.** `[M]` Nielsen: "Users often perform actions by mistake. They need a clearly marked "emergency exit"." `[Z]` founder question 9 on the caps and the downgrade.
 
@@ -1032,11 +1057,24 @@ Notion | "Can I password protect a page? Unfortunately, not at the moment."
 
 **An Obsidian vault imports as it is.** Its `.obsidian` folder is read for the daily-note path and the templates folder, and for nothing else.
 
+**Where documents live, decided on 18 September** `[Z]` (D03).
+
+- **Our copy is canonical.** R2 holds every version and upload, and Firestore holds the head pointer and the queue.
+- **The person's own storage holds a full mirror, on both plans.** A GitHub sign-in mirrors to one repository through a GitHub App. A Google sign-in mirrors to a visible `frontmatter` Drive folder through `drive.file`.
+- **An edit made in the mirror comes back as a change queue item**, never a silent overwrite of our head.
+- **Why ours and not theirs.** The queue, per-save history, offline and refusal each need one head we can compare-and-swap against. Drive's v3 reference showed no write precondition, so it cannot be that head.
+- Evidence: `docs/research/2026-09-18-storage/STORAGE-BENCHMARK.md` sections 4.3 and 6. The sync and conflict mechanics are in `docs/pack/67-SYNC-AND-CONFLICT.md`.
+- **Before the Drive mirror ships**, the benchmark's two falsification tests run: a byte round trip of the corpus through Drive, and a 100-edit concurrency test (its section 6.7).
+
 **Google Drive** `[M]`.
 
 **The scope.** `drive.file` covers files the app created or the person picked, and needs only basic verification. Both `changes.list` and `files.watch` accept it.
 
+**The full `drive` scope is never requested.** Our server holds the bytes, so it would bring Google's annual third-party security assessment (CASA), every 12 months, for as long as we held it (benchmark section 2.2).
+
 **Why we poll rather than subscribe.** A change channel lasts a week at most, has no automatic renewal, and carries no content. So the app polls the change list from a stored page token.
+
+**The benchmark proposes the other way round**: a watch channel renewed weekly that wakes a read of the change list (its section 2.5). The two are not reconciled here. `docs/pack/67-SYNC-AND-CONFLICT.md` settles it, and the cost below assumes the poll.
 
 **The cost per user per day, re-derived with the poll included** (F027).
 
@@ -1050,7 +1088,7 @@ Total | | 30,300
 - Google's daily project threshold is 400,000,000 units, so 400,000,000 / 30,300 = **13,201 connected users** before the quota increase, which the limits page now says is billed.
 - A one-minute poll would cost 145,500 units a day and serve 2,749 users. That is why S23 promises "within a few minutes".
 
-**Conflicts are never merged silently.** Both versions are kept, and the person chooses on S31.
+**Conflicts are never merged silently.** Both versions are kept, the mirror's side enters the change queue, and the person chooses on S31.
 
 **GitHub** `[M]`. A GitHub App, not a personal token.
 
@@ -1059,6 +1097,8 @@ Total | | 30,300
 - Installation tokens expire after an hour and carry their own 5,000 requests an hour.
 - Every update sends the file's blob sha and treats a 409 as a re-read. That is the splice engine's compare-and-swap rule, in GitHub's words.
 - **Free:** one repository, 20 pushes a month. **Pro:** unlimited.
+- **Markdown only goes to GitHub.** Uploads stay in R2 and are linked, because GitHub blocks files over 100 MiB and recommends repositories under 5 GB (benchmark section 3.4).
+- `INFERENCE:` a Free push carries every changed file, so 20 pushes a month still leave a full mirror, current as of the last push.
 
 **Google Docs and Word** `[M]`.
 
@@ -1109,6 +1149,15 @@ Safari | About 60 percent since macOS 14 and iOS 17, but deletes all script-writ
 
 **The one rule: never let the browser be the only copy.** Persist is requested inside a user gesture, and the first connection pushes everything to the server.
 
+**Three copies, one of them canonical** `[Z]` (D03, 18 September).
+
+Copy | Where | Canonical?
+Ours | R2 for bytes, Firestore for the head | Yes
+The device | IndexedDB in the browser, disk in Tauri | No. Reconciled against the head on reconnect
+The mirror | The person's GitHub repository or Drive folder | No. Written by us, and read back through the change queue
+
+How the device and the mirror reconcile is in `docs/pack/67-SYNC-AND-CONFLICT.md`.
+
 **The desktop app** `[Z]` `[M]`.
 
 - **What it gives.** Files on disk, no document limit, fully offline, and agents can read the folder.
@@ -1138,11 +1187,11 @@ Cloud documents on Free | 5 | Unlimited at Google Docs, Notion for one person, O
 Published pages on Free | 2 | No product caps public pages at a small number. Notion: "Unlimited published pages". The market gates the custom domain and the branding | 5 with the Made with line. Pro unbranded and unlimited
 Live collaborators on Free | 1 | HackMD "3 invitees", AFFiNE "Up to 3 members per Workspace", Notion 10 guests, Confluence 10 users | **1 person per document.** The market says 3 and the founders chose 1 on 18 September, on cost: a live session is a Durable Object held open for as long as two people are in it, and that is the one free-tier cost that scales with time rather than with calls `[Z]`
 History on Free | none | Notion, Craft and AFFiNE 7 days free and 30 paid | 7 days free, 90 on Pro
-Uploads | none stated | Obsidian Sync Standard 1 GB and 5 MB a file, Plus 10 GB | Free 1 GB at 5 MB a file; Pro 10 GB at 25 MB a file; a 30-day trash on both (F026)
+Uploads | none stated | Obsidian Sync Standard 1 GB and 5 MB a file, Plus 10 GB | Free 1 GB at 5 MB a file; Pro 10 GB at 25 MB a file; a 30-day trash on both (F026). **A soft cap** `[Z]` (D03, 18 September): text always saves, only new uploads stop, and past 10 GB Pro buys storage in blocks priced from the configuration panel
 AI on Free | credits | Every free tier with AI puts a number on it: Kiro 50 credits, Tana 50 queries, Mem 25 messages, Canva 20 uses, Craft 15 credits, GitBook 10 messages a week, ChatPRD 3 chats | 10 edits and 1 Low blueprint a month, top-ups on Pro
 GitHub on Free | open question | HackMD: free with "20 GitHub pushes per month", unlimited at $5. GitBook: Git Sync free. Notion gates GitHub to Business at $20 | Free with 20 pushes and 1 repository. Pro unlimited. The connection is the product, so it cannot sit behind a higher tier
 Password links | asked for | Paid at Dropbox, Figma and Loom. None at Notion | Pro
-Google Drive | asked for | Notion gates Drive to Plus at $10. It is the person's own storage and costs us nothing | Free
+Google Drive | asked for | Notion gates Drive to Plus at $10. It is the person's own storage and costs us nothing | Free. **A full mirror on both plans** `[Z]` (D03, 18 September), through `drive.file` only; our copy stays canonical
 Downgrade | not stated | Figma keeps files readable over the cap | Every document stays readable and exportable; nothing new is created until under the cap (S33)
 
 **Pricing** `[Z]` `[M]`.
@@ -1181,6 +1230,16 @@ AI-forward tools | $15 to $20
 - **No student tier** `[Z]`.
 
 **What Pro buys, in one line** `[P]`. Unlimited documents, pages and collaborators, 10 GB, 90-day history, password links, Medium and High ideas, 100 edits and 5 blueprints on Claude, the portfolio, no branding.
+
+**The storage cap, decided on 18 September** `[Z]` (D03).
+
+- **The cap measures what we hold**, not what sits in the person's GitHub or Drive.
+- **It is soft.** Text always saves. New uploads stop, with three ways out on S33: prune history, move uploads to the Drive mirror, or upgrade.
+- **Past 10 GB on Pro, storage is sold in blocks.** The block size and price are configuration-panel rows, not set here.
+- **What holding costs us** `[O]`: $0.015 a GB-month on R2, so ₹1.44 a month at 1 GB and ₹14.39 at 10 GB, at ₹95.96 to the dollar. Working: GB × 0.015 × 95.96.
+- **A GitHub mirror past 5 GB is a warning, not a block**, because 5 GB is GitHub's own recommended ceiling.
+
+**The Free document cap is a panel value** `[Z]` (D11, 18 September). The 50 above is where it starts. It is A/B tested on real accounts before it is fixed, per `docs/pack/28-CONFIGURATION-PANEL-SPEC.md` section 10.3.
 
 ## 14. AI for the pilot, and after
 
@@ -1406,6 +1465,15 @@ Errors | Sentry | 5,000 a month
 Analytics | PostHog | a million events
 Search | The browser, across the open workspace, because Firestore has no full-text index | Typesense when a server-side index is needed
 Live editing | Yjs on Durable Objects | Liveblocks as the fallback if we want a vendor, 10 connections a room free
+The GitHub mirror | A GitHub App, one repository per person, push webhooks | `UNVERIFIED:` no GitHub charge was checked; the installation token carries 5,000 requests an hour, up to 12,500
+The Drive mirror | `drive.file` and the changes feed | 400,000,000 quota units a day per project; past that, Google says billing details come later in 2026
+
+**What D03 changes in the cost** `[Z]` `[O]` (18 September).
+
+- **R2 is canonical, so it is a cost on every account**, not only on connected ones: ₹1.44 a person a month at the Free 1 GB cap, ₹14.39 at Pro's 10 GB, section 13.
+- **The mirror adds a worker, not a storage bill.** The bytes sit in the person's own account.
+- **Never the full `drive` scope.** It would add an annual CASA assessment whose price no page opened on 18 September stated. `UNVERIFIED:` that price.
+- The mirror's sources are the benchmark's sections 2.4, 3.1 and 4.1, each opened on 18 September.
 
 ## 16. Principles, applied
 
@@ -1668,6 +1736,10 @@ Now | Third-party notices: the OFL texts and the Apache notices in THIRD-PARTY-N
 
 ## 24. Ownership and accounts
 
+**Decided on 18 September** `[Z]` (D10): **every row below moves to the company before the first stranger's document is stored.**
+
+Where a row's date is later than that, D10 wins. An account not yet opened is opened in the company's name.
+
 Asset | Held by today | Moves to | By
 GitHub repository `studiozephyrus/frontmatter` | the studio's user account | the company's organisation | before the pilot
 Vercel project | team `zsco` | the company's team | before the pilot
@@ -1700,7 +1772,13 @@ The image proxy and the delimited data block | revision 3 security | Restored, s
 
 ## 26. The build, in appetites
 
-The dev plan follows approval. Its shape, in fixed-time phases with variable scope `[M]` Shape Up. Question 1 decides the pace and therefore which phases are Later.
+The dev plan follows approval. Its shape, in fixed-time phases with variable scope `[M]` Shape Up.
+
+**Decided on 18 September** `[Z]` (D02): **everything is built, in twelve batches, one at a time.**
+
+A batch is built, used and tested internally, its issues fixed, and only then does the next start. The order, the gates and the calendar are in `docs/pack/50-ROADMAP.md`.
+
+**The phases below keep their appetites.** Each maps to one batch, per that file's section 4. Nothing moves to Later any more; Later becomes batches 10 to 12.
 
 Phase | Appetite | What ships
 0 · Before code | 2 weeks | The legal floor's first rows; the accounts moved; the public pages written; the pace published every Friday; the `GITHUB_REPO` default fixed; the format specifications drafted; twenty blueprints made by hand for twenty people outside the studio, watched for whether five run the kickoff and two of ten edit a kit again
@@ -1708,7 +1786,7 @@ A · The door and the home | 3 weeks | Sign-in through Firebase Auth and Auth.js
 B · The editor as shipped, plus Doc mode | 4 weeks | The workspace on the new stack; the two engine defects and the audit's third fixed with red proofs; Doc mode with the 20 and the 15; problems and formatter; the AI box and menu on the free chain with the breaker; the `--ai` token and the code face in globals.css; bring-your-own key if question 10 says so
 C · Ideas | 4 weeks | The ideas tab, Low, the fifteen-file blueprint, the consistency check, the unlisted link, the kickoff prompt with the out-of-band hash, the map; gated on Phase 0's result
 D · Sharing | 3 weeks | People with the matrix, links with expiry, published pages with the `.md` twin, the footer and the grievance route; the change queue; history; live editing on Durable Objects under section 15's rule, or Later if question 8 says so; the Zed rebuttal written
-E · In and out | 3 weeks | Folder upload, Obsidian and Notion import, Google Docs and Word with the 10 MB refusal, the GitHub App, Google Drive sync at a five-minute poll
+E · In and out | 3 weeks | Folder upload, Obsidian and Notion import, Google Docs and Word with the 10 MB refusal, the GitHub and Drive mirrors of D03, whose mechanics are in `docs/pack/67-SYNC-AND-CONFLICT.md`
 F · Everywhere | 3 weeks | Offline in the browser, the desktop app on the new stack built on per-platform CI runners, signed for macOS at 99 USD a year, the phone layouts, quick capture, dark mode
 G · Views and blocks | 3 weeks | Flow, slides, mind map, Excalidraw, Mermaid types, KaTeX, templates, tasks, calendar
 H · Pro | 2 weeks | Razorpay with the mandate rules, Medium and High, the Claude routing of section 14, password links, 90-day history
@@ -1718,11 +1796,37 @@ Later | | Kanban and table-to-chart blocks, the portfolio, the MCP server and AP
 
 **At the measured pace**, which the audit recomputed at 0.93 to 1.21 days a week, that is 99 to 129 calendar weeks.
 
-**The default in question 1.**
+**The batches, in order** `[Z]` `[P]`, from `docs/pack/50-ROADMAP.md` section 2.
 
-- Phases 0, A, B, D and H at the measured pace, with dates published every Friday.
-- E, F and G Later.
-- A contractor for D and F if the pace has not doubled by the pilot.
+Batch | Name | Phase | Appetite
+1 | Before code | 0 | 2 weeks
+2 | The door, the home and the panel | A | 3 weeks
+3 | The editor and Doc mode | B | 4 weeks plus 11 days
+4 | Sharing and the change queue | D | 3 weeks plus 7 days
+5 | In and out | E | 3 weeks
+The pilot | Twenty people outside the studio | none | at least 2 weeks
+6 | Ideas | C | 4 weeks plus 10 to 12.5 days
+7 | Pro | H | 2 weeks
+8 | Everywhere | F | 3 weeks plus 2 days
+9 | Views and blocks | G | 3 weeks
+10 | Agents and Max | Later | unset
+11 | Later blocks, imports and Windows | Later | unset
+12 | Portfolio, Team and community | Later | unset
+
+**The new calendar** `[P]`, re-derived in `docs/pack/50-ROADMAP.md` section 5.
+
+- **About 126 to 192 calendar weeks** for the nine priced batches, the use windows and the pilot. That is roughly 2.4 to 3.7 years.
+- **About 151 to 225 weeks** with the thirty days of content below, if the same hands write it.
+- **Batches 10, 11 and 12 have no appetite**, so every figure is a floor.
+- The additions of 18 September inside batches 3, 4, 6, 8 and 10 are `UNVERIFIED:` in that file, section 5.2.
+
+**What the batches replace.** The old default built phases 0, A, B, D and H, about 60 to 79 calendar weeks, with E, F and G in Later and a contractor for D and F.
+
+**A contractor now speeds one batch; it no longer runs beside another.**
+
+**Where D03 may land.** `INFERENCE:` the storage key layout and the `connections` record belong in batch 2 under any answer.
+
+The mirror worker stays in batch 5 unless the founders want the mirror from the first document, per `docs/pack/50-ROADMAP.md` section 6.1.
 
 **Content is costed too.** The seven templates with their question banks, the consistency checks, the kickoff prompts, the help text and the empty states are about thirty days of writing the earlier plan did not count (A44).
 
@@ -1806,6 +1910,15 @@ Google Docs writers | 5 | Write there and share by link
 - **The stack** is Next.js with R2 and Firestore, section 15.
 - **Tier contents** are set from the configuration panel, section 30.
 
+**Answered on 18 September** `[Z]`, recorded in `docs/pack/56-OPEN-DECISIONS.md` section 0.
+
+Id | Question here | The answer
+D01 | 5 · K1, the one-sentence definition | The broad editor, option a. Internal name `fmd`, standing for nothing. Three taglines tested, section 1
+D02 | 1 · The pace | Everything, in twelve batches, one at a time, section 26
+D03 | 6 · K2, which bytes we hold | Ours in R2 and Firestore, canonical; a full mirror in the person's GitHub or Drive on both plans; a soft storage cap with blocks past 10 GB on Pro, sections 11 to 13
+D10 | 13 · The accounts that move | All of them, before the first stranger, section 24
+D11 | 9 · The free caps, in part | The Free document cap is a panel value, A/B tested before it is fixed, section 13
+
 **Deferred on purpose**, to be settled while phase A is built rather than before it: the tagline, the positioning and the product-market read.
 
 **What the configuration panel absorbs.** Eleven of the eighteen below stop being decisions the build waits on, because the panel sets them at run time.
@@ -1824,29 +1937,29 @@ Google Docs writers | 5 | Write there and share by link
 **What the panel cannot absorb, and still gates the build.**
 
 Question | Why a setting cannot hold it
-6 · Which bytes we hold, and from which phase | It is an architecture, not a value
-5 · The one-sentence definition | It decides build order
-1 · The pace | It decides which phases are Later
+6 · Which bytes we hold, and from which phase | It is an architecture, not a value. **Answered 18 September, D03**
+5 · The one-sentence definition | It decides build order. **Answered 18 September, D01**
+1 · The pace | It decides which phases are Later. **Answered 18 September, D02**
 14 · The twenty-kit gate | It is a gate on phase C, not a switch
 11 · The desktop's timing | It reorders phases E and F
 7 · The name | It changes the domain and every published URL
-13 · The accounts that move to the company | It is ownership, not configuration
+13 · The accounts that move to the company | It is ownership, not configuration. **Answered 18 September, D10**
 
 **The eighteen, in order.** The first sixteen are in `docs/mvp0/DECISIONS-FOR-FOUNDERS-2026-09-17.md`, each with a default this revision is written to.
 
-1. The pace, and which phases are Later.
+1. The pace, and which phases are Later. Answered, D02.
 2. The Pro price and the routing.
 3. The free chain and the sign-in promise.
 4. The legal floor and the grievance officer.
-5. K1, what the product is in one sentence.
-6. K2, which bytes we hold, and from which phase.
+5. K1, what the product is in one sentence. Answered, D01.
+6. K2, which bytes we hold, and from which phase. Answered, D03.
 7. K3, the name.
 8. Live editing and the CRDT ban.
-9. The free caps and the downgrade.
+9. The free caps and the downgrade. The document cap answered, D11.
 10. Bring-your-own key.
 11. Desktop before or after sync, and who signs Windows.
 12. The age floor.
-13. The accounts that move to the company.
+13. The accounts that move to the company. Answered, D10.
 14. The twenty hand-made kits.
 15. The pilot's stop and continue lines.
 16. Which earlier positions stand.
@@ -1857,7 +1970,8 @@ Question | Why a setting cannot hold it
 
 - **"Every feature free, quantities capped"** became "every editing feature free; password links, Medium and High, the portfolio and branding removal are Pro" (F003).
 - **The free caps** are the market's 50, 5 and 3, not the candidates' 5, 2 and 1.
-- **K1, K2 and K3** were taken implicitly by revision 4. They are now defaults, with the cards' recommendations beside them: K1 rec b, K2 rec b, K3 rec c in `decisions/v2`.
+- **K1 and K2** were taken implicitly by revision 4 and answered by the founders on 18 September, D01 and D03 above.
+- D01 took option a, so the 23 cards in `decisions/v2` that depend on K1 re-open. **K3, the name**, stays open at the card's recommendation c.
 
 ## 30. The configuration panel
 

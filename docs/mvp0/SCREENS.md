@@ -284,6 +284,8 @@ Later | The portfolio at frontmatter.in/@handle, the MCP server and API, Team, a
 
 - Google Drive: the folder, the scope, the conflict rule, "a change in Drive shows up here within a few minutes" (F027). Change folder, pause, disconnect.
 - GitHub: "GitHub grants this app the whole repository; frontmatter only ever writes under docs/" (F034). Pushes used, revocable on GitHub.
+- Both are labelled as a mirror: our copy is the one the editor works on, and this is a full copy in the person's own account (D03, 18 September).
+- An edit made in the mirror arrives as a change to accept, never a silent overwrite.
 - Your agents: marked Later, with the MCP server (F035).
 
 ## 8. Everywhere
@@ -374,6 +376,7 @@ Later | The portfolio at frontmatter.in/@handle, the MCP server and API, Team, a
 - What happened: the 50th cloud document, or the tenth edit, or the fifth page. What still works: every document opens, edits and exports.
 - What to do: delete or export something, wait for the reset, or move to Pro. The desktop app has no cap and is named.
 - A downgraded account meets the same screen: nothing is deleted, nothing new is created until under the cap.
+- Storage is a soft cap (D03, 18 September). Text always saves; only new uploads stop. Three ways out: prune history, move uploads to the Drive mirror, or upgrade. Past 10 GB on Pro, storage blocks are offered.
 
 ### S34. Ideas, empty
 

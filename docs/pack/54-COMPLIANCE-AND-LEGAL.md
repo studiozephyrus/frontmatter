@@ -6,7 +6,7 @@ tier: canonical
 status: living
 updated: 2026-09-18
 owner: sagnik
-verified_against: 0af3c90
+verified_against: 4de879d
 covers: [data-protection, provider-terms, training, licences, constraints]
 ---
 
@@ -48,7 +48,7 @@ plan's, and this file does not move them.
 Id | Requirement | **What it forbids** | Owner | Due
 `L01` | Privacy notice, terms and consent wording, with the age floor stated | Publishing a sign-up form with no notice behind it | Sagnik | 15 Oct 2026
 `L02` | A named grievance officer with a published address on every public page. 24-hour acknowledgement, 15-day resolution, 72-hour and 36-hour removal clocks, and a report link on S18 | Serving a stranger's page with no route to complain about it | Sagnik, as officer of record | 15 Oct 2026
-`L03` | Accounts moved to the company: the Cloudflare zone, the domain, Razorpay | Holding a stranger's data on a personal account | Sagnik | 15 Oct 2026
+`L03` | **Every** account in `docs/mvp0/PRODUCT-PLAN.md` section 24 moved to the company, not only the Cloudflare zone, the domain and Razorpay. Widened 18 September by D10 `[Z]` | Holding a stranger's data on a personal account | Sagnik | 15 Oct 2026
 `L04` | European Union sign-ups blocked, or a representative engaged | Accepting a European sign-up with neither | Sagnik | 15 Oct 2026
 
 ### 2.2 Before the first deploy that holds a document
@@ -129,6 +129,8 @@ Ledger entries | 180 days, then aggregated | **Aggregates kept without the accou
 Plan and invoice records | At least the statutory period | **Kept as the law requires, unlinked from the profile**
 Security log | 180 days rolling | Kept for the period
 Local drafts | Until synced or evicted | **Not ours.** They live on the device
+The mirror's files in the person's GitHub or Drive | Theirs | `INFERENCE:` **left in place.** We revoke our access and stop writing. Section 3.6
+The mirror's records on our side | Until disconnected | Removed, after the grant is revoked at the provider
 
 **Two of those rows are exceptions to "delete everything", and both are deliberate.** An invoice
 is a statutory record and an aggregate is not personal data once the account id is gone. **Say so
@@ -144,6 +146,24 @@ one.
 on 17 September and not re-opened here.** The plan itself records that the R2 pricing page is a
 script shell to `curl`, so two readings of the Mumbai storage price disagree and neither can be
 reproduced.
+
+### 3.6 What the mirror changes, decided 18 September
+
+**D03** `[Z]`: our copy in R2 and Firestore is canonical, and a full mirror sits in the person's own
+GitHub repository or Drive folder, on both plans. `56-OPEN-DECISIONS.md` section 0.
+
+Question | Answer
+Does the mirror reduce our exposure? | **No.** We still hold every byte, so we are still the Data Fiduciary for all of it. DPDP section 8(1) keeps us responsible "irrespective of any agreement to the contrary"
+What does it add? | A scoped grant stored in `users/{uid}/connections`. Drive's refresh token is encrypted at rest; GitHub stores no token, `34-INTEGRATIONS.md`
+Whose are the mirror's files? | **The person's**, in their own account, under their provider's terms. They survive our shutdown
+Deletion | Account deletion revokes our grant and removes our records. `INFERENCE:` the mirror's files are left in place, because they are the person's copy. Not yet a founder decision. Whatever is chosen, the privacy notice says it in plain words
+Erasure of one document | Removed from our copy. `INFERENCE:` whether the mirror copy is also removed is a product choice for `67-SYNC-AND-CONFLICT.md`; the notice must match it
+Export | The mirror is a standing export in markdown, which meets GDPR Article 20's "machine-readable". Export on request still works without a connection
+Drive scope | `drive.file` only. The full `drive` scope would bring a yearly CASA assessment, and is never requested
+
+**The source.** `docs/research/2026-09-18-storage/STORAGE-BENCHMARK.md` section 5, which opened the
+Act and GDPR on 18 September. `INFERENCE:` its reading that mirroring is a trust argument, not a
+compliance one, is carried here. No lawyer has read it.
 
 ---
 
@@ -343,6 +363,8 @@ For a reader who wants the constraints without the reasoning.
 - **Never** serve a published page without a route to complain about it.
 - **Never** accept a European sign-up while `L04` is open.
 - **Never** promise a clean deletion sweep, because invoices and aggregates survive it by law.
+- **Never** promise that deleting an account deletes the person's GitHub or Drive mirror. It does not.
+- **Never** request the full `drive` scope. It brings a yearly third-party assessment.
 - **Never** re-embed Mosvita.
 - **Never** link Pandoc into the application, or copy code from `obsidian-kanban` or
   `obsidian-charts`.
@@ -371,6 +393,8 @@ For a reader who wants the constraints without the reasoning.
 - `UNVERIFIED:` Firebase's terms page, which did not render outside a browser. Firebase Auth stays
   in the stack, so this row matters and is still open.
 - `UNVERIFIED:` whether a subscription editor is an e-commerce entity under the consumer rules.
+- `UNVERIFIED:` the DPDP Rules 2025 and any notified transfer restriction under section 16, as they
+  bear on the mirror. The benchmark opened only the Act.
   The plan's position is to build to the duties either way.
 
 **What would falsify it.**
