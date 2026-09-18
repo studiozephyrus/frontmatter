@@ -1053,6 +1053,16 @@ ${rail({ outline: OUTLINE_BRIEF, fab: false })}
 </div></div>`,
 phone({ mode: 'Live', title: '00-BRIEF.md', bottom: 'auto_awesome', body: `${pmodebar('Live')}<div class="pdoc"><div class="md">${DOC_BRIEF_SHORT}</div></div>`, overlay: `<div class="pdim" style="background:rgba(10,10,10,.12)"></div>${AI_FLOAT('left:10px;right:10px;bottom:10px', { target: 'Editing <b>00-BRIEF.md</b>', text: 'Say why the deposit matters', acts: true, esc: '' })}` }));
 
+// S05 properties (C041), 18 Sep review row 18: the research asked that nested front matter
+// round-trip, so the panel shows a nested key rather than a flat list.
+const PROPS_ROW = (k, v, pad = 0) => `<div style="display:flex;gap:10px;padding:3px 0 3px ${pad}px;font-size:12px"><span style="width:92px;color:var(--muted);font-family:var(--mono)">${k}</span><span>${v}</span></div>`;
+const PROPS = `<div style="border:1px solid var(--line);border-radius:8px;padding:10px 12px;margin:0 0 18px;background:var(--bg)">
+<div style="display:flex;align-items:center;gap:6px;font-size:11px;color:var(--muted);margin-bottom:4px">${ic('tune', 13)} Properties<span style="flex:1"></span>from the front matter</div>
+${PROPS_ROW('status', '<span class="pill">draft</span>')}${PROPS_ROW('owner', 'Sagnik')}
+${PROPS_ROW('page', '')}${PROPS_ROW('size', 'A4', 18)}${PROPS_ROW('margins', '20 mm', 18)}
+${PROPS_ROW('verified', '')}${PROPS_ROW('- by', 'Amit, 17 Sep', 18)}
+<div style="font-size:11px;color:var(--muted);margin-top:6px">Each change is written back into the front matter and nowhere else. A key this panel cannot write safely opens as markdown instead.</div></div>`;
+
 // S05 doc mode. Same file, a Google-Docs-shaped surface.
 const DOC_DOCMODE = `<h1 style="border:0;font-size:2em">Zephyrus booking, in one page</h1>
 <p>A booking page for small studios that take appointments by WhatsApp today. One link, a calendar of open slots, a deposit, and a reminder the day before.</p>
@@ -1067,7 +1077,7 @@ ${top({ tabs: TABS_MAIN, presence: [{ i: 'AM', c: '#b2625e' }, { i: 'SM', c: '#1
 <div class="body noright">
 ${tree({ projects: PROJECTS_MAIN, foot: `${ic('sync', 14)} Synced 2 min ago` })}
 <main class="main">${docbar()}<div class="ruler">1 · 2 · 3 · 4 · 5 · 6 · 7 · 8 · 9 · 10 · 11 · 12 · 13 · 14 · 15 · 16</div>
-<div class="doc" style="padding:22px 48px 0;background:var(--bg-subtle)"><div class="paper"><div class="md docmode">${DOC_DOCMODE}</div></div>
+<div class="doc" style="padding:22px 48px 0;background:var(--bg-subtle)"><div class="paper">${PROPS}<div class="md docmode">${DOC_DOCMODE}</div></div>
 <div class="cmtbox"><div class="who"><span class="avatar" style="width:16px;height:16px;font-size:8px;background:#b2625e">AM</span> Amit · 10 min ago</div>Is this still true after the laptop they bought in August?<div class="rep">Reply</div></div></div>
 <div class="toast">${ic('description', 15)} <span>Doc mode is a view. The file is still <b>00-BRIEF.md</b>. Page setup lives in its front matter; colours and fonts render here and export to PDF only.</span></div>
 </main>
@@ -1625,7 +1635,7 @@ const REVIEW_DOC = `<h1>Zephyrus booking, in one page</h1>
 <p>A two-chair salon in Kolkata that loses about four bookings a week to double-booking and no-shows. The owner runs everything from a phone.</p>
 <ul><li>Books from WhatsApp messages, by hand, into a paper diary</li><li><span class="chg">Takes deposits by UPI, then reconciles them on Sunday night</span></li><li>Wants a link to put in the Instagram bio</li></ul>
 <h2>The one metric</h2><p><span class="chg">No-shows per hundred bookings, measured for four weeks before the deposit step and four after.</span></p>`;
-const REVIEW_LIST = `${filterseg([['All', 3], ['People', 1], ['AI and agents', 2]], 0)}<div class="chg-list">
+const REVIEW_LIST = `${filterseg([['All', 3], ['People', 1], ['AI', 1], ['Agents', 1]], 0)}<div class="chg-list">
 <div class="it"><div class="who"><span class="avatar" style="width:16px;height:16px;font-size:8px;background:#b2625e">AM</span> Amit · 10 min ago</div><div class="q">Changed "a deposit" to "a refundable deposit" in the summary.</div><div class="acts"><span class="btn">${ic('check', 13)} Accept</span><span class="btn">${ic('close', 13)} Reject</span><span class="btn">${ic('comment', 13)} Reply</span></div></div>
 <div class="it"><div class="who">${ic('auto_awesome', 13)} AI edit · you asked to tighten · 25 min ago</div><div class="q">Rewrote the deposit bullet to say when reconciliation happens.</div><div class="diff" style="margin:6px 0;font-size:11px"><div class="del">-Takes deposits by UPI, then forgets who paid</div><div class="add">+Takes deposits by UPI, then reconciles them on Sunday night</div></div><div class="acts"><span class="btn">${ic('check', 13)} Accept</span><span class="btn">${ic('close', 13)} Reject</span></div></div>
 <div class="it"><div class="who">${ic('terminal', 13)} Claude Code · edited the file on disk · 1 h ago</div><div class="q">Metric now says how long it is measured for.</div><div class="acts"><span class="btn">${ic('visibility', 13)} Show diff first</span><span class="btn">${ic('close', 13)} Reject</span></div></div>
@@ -1649,7 +1659,7 @@ const HIST_DIFF = `<div class="diff"><div> A booking page for small studios that
 const HIST_LIST = `<div class="vers">${[['Today 14:02', 'Amit', 1], ['Today 11:40', 'You'], ['Today 10:05', 'AI edit, accepted by you'], ['Yesterday 18:30', 'You'], ['12 Sep 09:12', 'Blueprint v1 written'], ['12 Sep 09:10', 'Created']].map(v => `<div class="it${v[2] ? ' on' : ''}"><span class="avatar" style="width:20px;height:20px;font-size:8px;background:${v[1] === 'Amit' ? '#b2625e' : v[1].startsWith('AI') ? '#0055ff' : '#18181b'}">${v[1].startsWith('AI') ? ic('auto_awesome', 11) : v[1] === 'Amit' ? 'AM' : v[1] === 'You' ? 'SM' : 'fm'}</span><span><div>${v[0]}</div><div style="font-size:11px;color:var(--muted)">${v[1]}</div></span><span class="sp"></span>${v[2] ? ic('check', 14) : ''}</div>`).join('')}</div>`;
 // Founder rule, 18 September: where people's work and AI work sit in one list, split them
 // with a toggle. History mixes both, so it gets the same filter as S20.
-const HIST_FILTER = filterseg([['All', 6], ['People', 3], ['AI and agents', 2]], 0);
+const HIST_FILTER = filterseg([['All', 6], ['People', 3], ['AI', 2], ['Agents', 0]], 0);
 screen('s21-history', 'Document history', `<div class="app">
 ${top({ tabs: TABS_MAIN })}
 <div class="body">

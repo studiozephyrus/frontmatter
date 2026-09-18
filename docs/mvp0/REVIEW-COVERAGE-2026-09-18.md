@@ -183,3 +183,17 @@ Row | What was done | Commit
 - Row 50 and 51: no further decluttering of S20, and no "other reviews" position.
 - Row 64: file 28 section 5.1 still says OpenRouter carries no model rows, against file 27 section 2.1 and the redrawn S36.
 - Rows 26, 56, 59, 61, 80 and 82 need the founder, and were left as drawn.
+
+## 6. Closed after the v8 pass, same afternoon
+
+Row | What was done
+---|---
+18 | S05 draws the properties panel with nested keys (`page`, `verified`), and says a key it cannot write safely opens as markdown.
+50, 51 | S20 and S21 filters split AI from Agents: All, People, AI, Agents. The plan and `docs/pack/12-screens/S20.md` say the same.
+24 | `docs/pack/12-screens/S09.md` already opened with the deferral; the row was stale.
+43, 63 | `docs/pack/28-CONFIGURATION-PANEL-SPEC.md` section 4.2 carries `policy.invite.credits` (5) and `policy.questions.default`.
+64 | File 28 section 5.1 lists the two OpenRouter models, 19 rows, and file 53 no longer calls OpenRouter excluded.
+
+The PDF with these is `docs/mvp0/frontmatter-Screens-v8.1-2026-09-18-1315.pdf`; v7 and v8 are kept.
+
+**Left for the founder.** Row 9: "Commands" was never a collapsible in the screens reviewed, so it is not drawn. Say if it meant something. Rows 26, 56, 59, 61, 80 and 82 as listed above.

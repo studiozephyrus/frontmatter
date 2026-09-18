@@ -566,7 +566,7 @@ Later, named | A Max tier above Pro; a community as an opt-in index plus GitHub 
 
 <div class="pair"><img src="screens/s20-review.png"><img src="screens/s20-review-phone.png"></div>
 
-- **A filter across the top: All, People, AI and agents.** Human work and machine work are never combined into one undifferentiated list `[Z]`.
+- **A filter across the top: All, People, AI, Agents.** Human work and machine work are never combined into one undifferentiated list, and an AI edit someone asked for is kept apart from an agent writing on its own `[Z]`.
 - Changes waiting, each with who made it: a person, an AI edit you asked for, or an agent that edited the file on disk through the desktop folder.
 - Accept, Reject and Reply of equal weight. Accept all applies only to a named person's edits and asks you to confirm the count first; AI and agent items are accepted one by one with the diff shown (F029).
 - Changed spans highlighted in the document.
