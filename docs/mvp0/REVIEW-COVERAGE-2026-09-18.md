@@ -197,3 +197,15 @@ Row | What was done
 The PDF with these is `docs/mvp0/frontmatter-Screens-v8.1-2026-09-18-1315.pdf`; v7 and v8 are kept.
 
 **Left for the founder.** Row 9: "Commands" was never a collapsible in the screens reviewed, so it is not drawn. Say if it meant something. Rows 26, 56, 59, 61, 80 and 82 as listed above.
+
+## 7. The founder's answers to the open rows, 18 September
+
+Row | Answer `[Z]`
+---|---
+26 | S10 keeps checks against writing, as drawn.
+59, 61 | S31: each side's control becomes "Accept this version", and "Accept AI suggestion" is added beside "Let AI decide". The AI merge stays a single proposal that the person accepts.
+56 | Idea mode runs on the web as well as the desktop.
+80 | The one-time $10 OpenRouter credit is approved. The founder makes the purchase; no agent buys anything.
+82 | Abuse control is accepted as bounded: a per-account cap, an hourly breaker and a usage ledger, with no captcha, fingerprinting or card gate.
+D11 | The Free document cap is a configuration-panel value, A/B tested on real users before it is fixed.
+9 | "Commands" is still unanswered.
