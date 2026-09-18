@@ -39,6 +39,22 @@ Key | Backend | Declared at | Holds | On a rename without migration
 `sgnk-md-editor` | **sessionStorage** | `src/modules/editor/presentation/editor-store.ts:226` | `tabs` and `activePath` only, by `partialize` | Open tabs are lost on the next load. **Lowest stakes of the five.**
 `ai.sgnk.md` | Tauri bundle identifier | `src-tauri/tauri.conf.json` | The desktop app's identity | It becomes a different application: new container, no preferences, sign-in lost.
 
+**The wider check, run on 2026-09-18** `[O]`: `grep -rnE 'localStorage|sessionStorage|idb-keyval|caches\.open' src public`.
+It finds eleven more entries that do not carry the `sgnk-md` prefix. None holds document text, so
+losing one costs a preference, never writing. They still follow the procedure in section 2.
+
+Key | Backend | Declared at | Holds
+`sgnk-theme` | localStorage | `src/modules/app-shell/presentation/ThemeToggle.tsx:25` | Light or dark
+`sgnk-right-pane`, `sgnk-right-pane-mode` | localStorage | `src/modules/app-shell/presentation/RightPaneCycle.tsx:33` and `:58` | Right pane state
+`sgnk-left-pane` | localStorage | `src/modules/app-shell/presentation/VaultWorkspace.tsx:110` | Left pane open or closed
+`sgnk-scrollind` | localStorage | `src/modules/app-shell/presentation/ScrollbarToggle.tsx:38` | Scrollbar shown or hidden
+`sgnk-split` | localStorage | `src/modules/editor/presentation/EditorPane.tsx:452` | Split ratio
+`sgnk-snapshot-cache:v1` | localStorage | `src/modules/vault/presentation/SnapshotProvider.tsx:59` | The vault snapshot, a cache the server re-seeds
+`sgnk-tree-open:<path>` | localStorage, one key per folder | `src/modules/vault/presentation/file-tree/TreeItem.tsx:8` | Folder open or closed
+`sgnk:search-preset` | sessionStorage | `src/modules/preview/presentation/KnowledgePanels.tsx:40` | A one-shot search handoff
+`sgnk:pwa-reloaded` | sessionStorage | `src/modules/app-shell/presentation/PWARegister.tsx:21` | A reload guard
+`sgnk-md-v2` | Cache Storage, in the service worker | `public/sw.js:13` | The offline app shell
+
 **One field is deliberately not persisted.** `contentByPath` is excluded by `partialize` at
 `src/modules/editor/presentation/editor-store.ts:233`, and the comment above it says why: it is large, stale across commits, and re-seeded
 from the vault API when a note loads. **Never add it to the persisted set.**
@@ -241,12 +257,13 @@ apply. **Raise it rather than guessing**, and record the answer in `56-OPEN-DECI
 
 **What could not be verified.**
 
-- `UNVERIFIED:` whether any browser storage other than the six entries in section 1 is written.
-  The grep covered `sgnk-md`; **a key that does not carry that prefix would not appear.** Widening
-  the check to every `localStorage.setItem`, `sessionStorage.setItem` and `idb-keyval` call is the
-  first thing to do before writing `M001`.
-- `UNVERIFIED:` the Safari seven-day eviction behaviour in section 5. It is quoted from the plan,
-  which opened the page on 17 September, and was not re-fetched here.
+- Browser storage beyond the six `sgnk-md` entries: checked on 2026-09-18, eleven more found and
+  listed in section 1. Cookies set by Auth.js and Firebase's own IndexedDB were not in the grep's
+  reach; they belong to those libraries.
+- The Safari seven-day eviction in section 5, re-opened on 2026-09-18 `[M]`: WebKit's post
+  `https://webkit.org/blog/10218/full-third-party-cookie-blocking-and-more/` says the cap applies
+  `after seven days of Safari use without user interaction on the site`, and that home-screen apps
+  have `their own counter of days of use`. It dates from 2020; WebKit may have changed it since.
 
 **What is not established.**
 

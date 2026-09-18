@@ -316,17 +316,23 @@ the note. **Do not batch releases to hit a date, and do not release to have rele
   a proposal.
 - The Apple notarisation flow. The programme is not opened, so the steps beyond signing were not
   written and would be invented if they were.
-- Whether the corpus gate's 8,513 files is current. **The number is quoted from `AGENTS.md`
-  section 0.1 and was not re-derived by running the gate.**
 
 **What could not be verified.**
 
-- `UNVERIFIED:` that `npm run verify`, `npm run corpus` and
-  `node specs/harness/restamp-prd.mjs --check` all pass at `0af3c90`. **Only `npm run arch` was
-  run**, and it printed `"total": 0` over 214 files. **Run the other three before trusting step 2
-  and step 3 of the checklist.**
-- `UNVERIFIED:` whether Tauri reads its version from `tauri.conf.json` or from `package.json` when
-  both are present. All three agree today, so the question has not arisen.
+- The three gates, run on 2026-09-18 at `e0f6f89` `[O]`. `npm run corpus` printed `CORPUS CLEAN`
+  and `8513/8513 byte-identical`, exit 0. `node specs/harness/restamp-prd.mjs --check` printed `0 broken
+  citations`, exit 0. Inside `npm run verify`: typecheck and lint passed, the tests printed `1598
+  passed | 6 expected fail (1604)`, `npm run arch` printed `"total": 0`, and `npm run spec` printed
+  `0 errors`.
+- `UNVERIFIED:` `npm run build`, the fourth step of `verify`. In this session it stopped at
+  `Failed to fetch Google Sans from Google Fonts` (quoted without its inner backticks), because the sandbox blocks that host. Needs: the
+  same command on an open network, or on Vercel.
+- Where Tauri reads its version, answered `[M]` from `https://v2.tauri.app/reference/config/`, opened
+  2026-09-18: `version` is `a semver version number or a path to a package.json file`, and `If removed
+  the version number from Cargo.toml is used.` So `tauri.conf.json` wins, and it does not read
+  `package.json` unless pointed at it. **Resolved (proposed 18 Sep, founder review):** set it to
+  `"../package.json"`, so one file carries the version. Rejected: three hand-kept copies, which agree
+  today only by care.
 - The Windows certificate position. It is quoted from the plan's F071 and was not re-fetched.
 
 **What is not established.**

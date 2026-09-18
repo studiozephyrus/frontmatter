@@ -158,10 +158,10 @@ session can be recorded honestly.
 
 Item | Why | State
 A consent line, written and shown before recording | An entry with no consent may not be quoted | **Not written**
-A place to keep recordings that is not a personal drive | `08-ECOSYSTEM.md` names no store for research artefacts | **Not decided**
+A place to keep recordings that is not a personal drive | `08-ECOSYSTEM.md` names no store for research artefacts | **Resolved (proposed 18 Sep, founder review):** a private R2 bucket of its own, on the company's account per D10, readable by the founders only, never the product bucket. Rejected: the product bucket, which would mix research recordings with user data
 The five-minute script, written out | Twenty sessions only compare if they start the same way | Specified in the plan, not written as a script
 The three day-prompts for days 2, 4 and 7 | Same reason | Specified, not written
-A handle scheme | So a person can be followed across entries without naming them | **Not decided**
+A handle scheme | So a person can be followed across entries without naming them | **Resolved (proposed 18 Sep, founder review):** `U01` to `U20` in order of first session. The key from handle to person lives only beside the signed consent, never in an entry. Rejected: initials, which identify people in a small pilot
 
 ## 8. The limits of this file
 

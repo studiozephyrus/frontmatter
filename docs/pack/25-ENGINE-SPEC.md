@@ -505,6 +505,9 @@ The engine sections of the record | `grep -n '^## 7[0-9]\.' docs/ENGINE.md` then
 - **What would falsify this file.** `npm run corpus` exiting non-zero, a second splice
   implementation appearing in the repository, a parse tree reaching the writer, or a spec reaching
   `verified` without a red proof beside it.
-- **The open question nobody has answered.** `specs/engine/splice-writer.md` leaves NF-4's key
-  equality question open and says it blocks seam 3. Section 25.8 states the answer the engine
-  document proposes. Until a founder or the harness records that decision, it is a proposal.
+- **The key equality question, resolved (proposed 18 Sep, founder review).** `specs/engine/splice-writer.md:85`
+  asks whether `café` in NFC equals `café` in NFD. Answer, from `docs/ENGINE.md` section 75.1 and
+  stated in 25.8: normalise the request only; a file key in NFC matches by codepoints, and a file key
+  not in NFC is refused as `NOT_NFC` with the repair offered. Rejected: normalising the file to match,
+  which writes outside the target range and breaks invariant 1. The spec file itself still reads
+  unanswered; its owner updates it.

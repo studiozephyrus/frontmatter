@@ -154,12 +154,12 @@ IT Rules 2021, rule 3 | Content removal | **72 hours and 36 hours**, per categor
 Consumer Protection (E-Commerce) Rules 2020, as this plan opened it | Grievance acknowledgement | 48 hours
 Consumer Protection (E-Commerce) Rules 2020 | Grievance resolution | one month
 CERT-In directions of 28 April 2022, as the audit read them | **A six-hour incident runbook** | **6 hours**
-DPDP section 8(6) | Intimation to the regulator **and to each affected person** | **`UNVERIFIED:`** the deadline lives in rules that could not be opened
+DPDP section 8(6), DPDP Rules 2025 rule 7 `[M]` | To each affected person: `without delay`. To the Board: a first description `without delay`, then the detail `within seventy-two hours of becoming aware of the breach` | **72 hours** to the Board. Rule 7 comes into force `eighteen months after the date of publication`. The masthead says 13 November 2025 and the Gazette number carries `14112025`, so 13 or 14 May 2027. Source: the Rules, G.S.R. 846(E), `https://www.meity.gov.in/static/uploads/2025/11/53450e6e5dc0bfa85ebd78686cadad39.pdf`, opened 2026-09-18
 
 **So the working numbers are: acknowledge a grievance within 24 hours, resolve within 15 days, and
 have a six-hour incident procedure.** **Do not write a 72-hour breach-notification figure from
-memory.** The PRD records that the relevant pages returned empty bodies and 404s, and a number
-invented here would end up in a public policy.
+memory.** Write it from the Rules. The PRD recorded empty bodies and 404s; on 2026-09-18 the Rules
+PDF opened, and rule 7(2)(b) says 72 hours to the Board. **Adopt it now**, before it binds in May 2027.
 
 **Whether a subscription editor is an e-commerce entity is a counsel question**, and so is whether
 the accessibility rules reach it. Both are on the legal-floor list. **Build to the stricter reading
@@ -329,10 +329,11 @@ nothing.
 - **Every legal clock in section 5.1 is quoted from the plan's reading, not re-opened here.** The
   plan marks several of its own sources as read by an audit rather than by the current revision.
   **RE-DERIVE BEFORE PUBLISHING ANY OF THEM.**
-- `UNVERIFIED:` the breach-notification deadline. It is the one number most likely to be filled in
-  from memory, and it must not be.
+- The breach-notification deadline, now opened `[M]`: DPDP Rules 2025 rule 7(2)(b), 72 hours to the
+  Board, and `without delay` to each person. Section 5.1 cites the page.
 - `UNVERIFIED:` whether the IT Rules or the Consumer Protection Rules clock governs, or both.
-  Section 5.1 takes the stricter reading, which is safe but is not a legal answer.
+  Section 5.1 takes the stricter reading, which is safe but is not a legal answer. Needs: a lawyer's
+  opinion on which regime covers a paid document editor. **Needs founder.**
 
 **What is not established.**
 

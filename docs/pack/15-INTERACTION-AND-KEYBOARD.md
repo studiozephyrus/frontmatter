@@ -347,7 +347,8 @@ Outline, More (`docs/mvp0/screens/gen.mjs:744`). `[M]` Material's rule for compa
 
 - The tree is a left drawer, the right rail a right drawer (`docs/mvp0/screens/gen.mjs:752`).
 - An external keyboard on a tablet gets the section 3 map, because the editor is the same
-  CodeMirror instance. `UNVERIFIED:` nobody has tested this product with an iPad keyboard.
+  CodeMirror instance. `UNVERIFIED:` nobody has tested this product with an iPad keyboard. Needs:
+  an iPad with a hardware keyboard, running the section 3 checks in Safari.
 - **Long-press replaces right-click.** The context menu of `ContextMenu.tsx` needs a touch path,
   and does not have one today. `PROPOSED`.
 
@@ -384,11 +385,13 @@ trusting this file at a later commit.
 
 ## 14. Open questions
 
-Id | Question | Why it is not decided here
-`D-KB-1` | Does the graph keep `Cmd/Ctrl + G`, or move? | C1's fix needs a chord, and picking one is a product decision, not a document's
-`D-KB-2` | Does Vim mode survive MVP 0? | It is shipped and behind a setting, but nothing in the plan's section 26 phases names it
-`D-KB-3` | How does undo behave in a live session? | Section 8, rule 5. It needs the Yjs work of phase D before it can be answered honestly
-`D-KB-4` | Is there a Doc mode keyboard map distinct from markdown mode? | S05 draws a Google-Docs-shaped toolbar. Whether `Cmd + Shift + 7` makes a numbered list, as Docs does, is unasked
+All four were resolved on 18 September as proposals. Each is `resolved (proposed 18 Sep, founder review)`.
+
+Id | Question | Resolution | Rejected, and the evidence
+`D-KB-1` | Does the graph keep `Cmd/Ctrl + G`, or move? | **It loses its chord.** The graph opens from the command palette (`Cmd/Ctrl + P`) and from its button, and `use-hotkey.ts` gains the `e.defaultPrevented` test of C1 | Rejected: `Mod-Shift-g` and `Mod-Alt-g`. `[O]` `node_modules/@codemirror/search/dist/index.js:1038` and `:1048` bind them to find-previous and go-to-line. Every chord on G is taken
+`D-KB-2` | Does Vim mode survive MVP 0? | **Yes, off by default, behind the `vimMode` setting as today.** Tests of bare keys pin `vimMode: false` (C5) | Rejected: removing it. It is built, and decision D02 (`56-OPEN-DECISIONS.md` section 0) builds everything in batches rather than cutting
+`D-KB-3` | How does undo behave in a live session? | **Each person undoes only their own changes**, through a `Y.UndoManager` whose `trackedOrigins` holds only the local editor's origin | Rejected: one shared undo stack, which undoes a collaborator's typing. `[M]` `https://docs.yjs.dev/api/undo-manager`, opened 2026-09-18: `By default, all local changes that don't specify a transaction origin will be tracked`
+`D-KB-4` | Is there a Doc mode keyboard map distinct from markdown mode? | **Yes. Doc mode adds Google Docs' paragraph chords**, each written to the file as markdown by a splice: `⌘ + Shift + 7` numbered list, `⌘ + Shift + 8` bullets, `⌘ + Shift + 9` checklist, `⌘ + Option + [1-6]` headings, `⌘ + Option + 0` normal text | Rejected: one map for both modes, which makes Doc mode feel foreign to a Docs user. `[M]` `https://support.google.com/docs/answer/179738`, opened 2026-09-18. `[O]` none of the five is bound in `node_modules/@codemirror/*`. Browser-level collisions were not checked
 
 Each of these belongs in `56-OPEN-DECISIONS.md` and should take a `D` number there. The `D-KB`
 prefix is local to this file and is not an identifier under `65-CONVENTIONS.md` section 3.

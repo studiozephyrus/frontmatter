@@ -169,6 +169,17 @@ Plan and invoice | As the accountant requires, at least the statutory period | K
 **Security log** | **180 days rolling, append-only, in Indian jurisdiction** | **Kept for the period**
 Local draft | Until synced or evicted | **Not ours**
 
+**Cross-checked on 2026-09-18 against the plan and the DPDP Rules.** Every row matches
+`docs/mvp0/PRODUCT-PLAN.md` section 18 [O]. Two rows conflict with rule 8(3) of the Rules [M], which
+from May 2027 requires `personal data, associated traffic data and other logs of the processing` to be
+kept `for a minimum period of one year`, and whose illustration adds `even if X deletes her account`.
+
+- **Security log: resolved (proposed 18 Sep, founder review).** 365 days rolling, not 180. Rejected:
+  keeping 180, which falls short of the floor. The plan's 180 came from CERT-In's reading, a lower floor.
+- **Ledger and account deletion: needs founder.** Recommendation: keep the processing-log part of a
+  ledger entry and the security log for one year after deletion, unlinked from the profile, and say so
+  in the privacy notice. Rejected: "removed within 30 days" for logs. It is a promise to users.
+
 **The security log is its own store and its own line.** Free tiers of the usual error and analytics
 vendors may not pin to India, so it is R2 in Mumbai
 (`docs/mvp0/PRODUCT-PLAN.md` section 15). **Do not treat an error tracker as the security log.**
@@ -195,9 +206,18 @@ Rule | What it asks
 **rotate first and erase second**, and accept the hole in the record. Redacting at write time in the
 collector, so it never lands, is the only version of this that is not a trade.
 
-**`UNVERIFIED:` the breach-notification deadline and the prescribed inactivity period.** The PRD
-records that the relevant pages could not be opened. **Do not write a 72-hour figure into a runbook
-from memory.** `38-INCIDENT-AND-SEVERITY.md` carries the same caution.
+**The breach-notification deadline and the inactivity period, opened on 2026-09-18 `[M]`** in the
+DPDP Rules 2025, G.S.R. 846(E) (`https://www.meity.gov.in/static/uploads/2025/11/53450e6e5dc0bfa85ebd78686cadad39.pdf`):
+
+- Rule 7(2)(b): detail to the Board `within seventy-two hours of becoming aware of the breach`.
+- Rule 8 and the Third Schedule: erasure after `Three years` of inactivity binds only e-commerce and
+  social media platforms with `not less than two crore` users, and gaming with fifty lakh. Not us.
+- Rule 8(2): warn the person `At least forty-eight hours before` such an erasure.
+- Rule 8(3): keep processing logs `for a minimum period of one year`. This binds every fiduciary.
+- Rules 7 and 8 come into force eighteen months after publication, so 13 or 14 May 2027. The
+  masthead says 13 November 2025; the Gazette number `CG-DL-E-14112025-267650` carries the 14th.
+
+`38-INCIDENT-AND-SEVERITY.md` section 5.1 carries the same figure.
 
 ---
 
@@ -328,11 +348,10 @@ the reason no cost argument may ever appear in a decision to skip a drill.**
   which fetched them on 2026-08-29.** None was re-fetched here. **RE-DERIVE BEFORE QUOTING
   EXTERNALLY**, and note the PRD itself says R2's Mumbai pricing page is a script shell that two
   readers disagreed about.
-- `UNVERIFIED:` the breach-notification deadline and the prescribed inactivity period, per
-  section 5.
-- `UNVERIFIED:` whether the retention rows in section 4 are consistent with the plan's own account
-  deletion promise in every case. They are transcribed from one table and not cross-checked against
-  the legal section.
+- The breach-notification deadline and the inactivity period, opened in the Rules and quoted in
+  section 5. The one-year log floor of rule 8(3) is handled in section 4.
+- The section 4 rows were cross-checked against plan section 18 and the Rules on 2026-09-18. They match
+  the plan; two conflict with rule 8(3), and section 4 now says how.
 
 **What is not established.**
 

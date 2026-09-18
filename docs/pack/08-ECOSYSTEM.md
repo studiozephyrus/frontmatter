@@ -44,9 +44,14 @@ $ cat .vercel/project.json
 - **A bare `vercel` command run from this directory would therefore act against
   `team_CDEATPKml1m8SIZSJ0DKdEjG`**, which `CLAUDE.md` says is the decisions site's team, while the
   project name says `frontmatter`.
-- UNVERIFIED: whether a separate project called `frontmatter` exists on the personal team, or
-  whether this link is left over from before the migration. Resolving it needs a token this file
-  does not use.
+- **Checked on 2026-09-18 `[O]`, read-only, with the CLI's own login** (`vercel whoami` prints
+  `sagnikmitra`). `vercel project inspect frontmatter --scope team_CDEATPKml1m8SIZSJ0DKdEjG` shows a
+  project `prj_fdlYirEdleb91svwJwnWOz7XbiNj`, owner `Sagnik's projects`, created 13 July 2026, the
+  same id as the local link. `vercel ls` shows its newest deployment 48 days old. So it exists, and
+  it is the pre-migration project, not the live app.
+- **Needs founder**, because deleting a cloud project is a destructive operation. Recommendation:
+  re-link the local checkout to `zsco` with `vercel link --scope zsco`, then delete or archive the
+  old project once nothing points at it. Rejected: leaving it, which keeps the bare-command trap.
 - **Until it is resolved, never run a bare `vercel` command in this repository.** Always pass
   `--scope zsco --token "$VERCEL_TOKEN_ZEPHYRUS"` for the app.
 
@@ -219,11 +224,11 @@ Intellectual property between the founders | **Unverified** | A written agreemen
 **What was not assessed.** Billing state, spend and quota headroom on any account. Nothing here says
 whether a card is attached or a free tier is close to its ceiling.
 
-**What could not be verified.** Four things, each needing a credential this file does not use.
+**What could not be verified.** Four things, three of them needing a credential this file does not use.
 
 - Whether `frontmatter.in` is served from `main`. Taken from `AGENTS.md` section 7.
-- Whether a second Vercel project named `frontmatter` exists on the personal team, which is the
-  open question in section 1.
+- The second Vercel project named `frontmatter` on the personal team is now answered in section 1:
+  it exists and is stale. Its dashboard settings were not read.
 - Who registered the domain, and where. The plan marks it unverified and so does this file.
 - Which analytics and error accounts exist. The plan marks them unverified.
 

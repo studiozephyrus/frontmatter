@@ -234,8 +234,12 @@ has been audited by anyone, and the plan says so at `docs/mvp0/PRODUCT-PLAN.md` 
 
 **What could not be verified.** Whether `frontmatter.in` is served from `main` was taken from
 `AGENTS.md` section 7 and not confirmed against the Vercel project settings, because doing so needs
-a token this file does not use. UNVERIFIED: the causal link between the stale `main` tip and the
-four redirecting legal routes is an inference from those two facts.
+a token this file does not use; the CLI login on this machine cannot see scope `zsco` (`The specified
+scope does not exist`, 2026-09-18). The causal link to the four redirecting legal routes was checked
+from outside `[O]`: `/privacy`, `/terms`, `/pricing` and `/refunds` on `frontmatter.in` each return
+307 to `/login`, and `git cat-file -e 'origin/main:src/app/(public)/privacy/page.tsx'` fails, so
+those pages do not exist on `main` as last fetched. `INFERENCE:` production serves `main`, and the
+routes redirect because they are missing there.
 
 **What is not established.** That anyone will pay. No customer has been interviewed, no prototype
 tested and no price tested.

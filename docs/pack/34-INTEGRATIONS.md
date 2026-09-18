@@ -236,7 +236,7 @@ App is batch 5 of `50-ROADMAP.md`, the old phase E.
 
 What | Value | Source
 Repository permission | **Contents, read and write, and nothing else** | `docs/mvp0/PRODUCT-PLAN.md` section 11
-Metadata | `UNVERIFIED:` whether GitHub adds a read-only Metadata permission to every App. Not opened | none
+Metadata | Read. `UNVERIFIED:` whether GitHub adds it to every App by itself; the permissions pages opened on 2026-09-18 do not say so. Needs: the App registration form, which shows it. Request it either way, because the webhook events page says of several events that `a GitHub App must have at least read-level access for the "Metadata" repository permission` | GitHub webhook events page, opened 2026-09-18 `[M]`
 Event `push` | Subscribed. "a GitHub App must have at least read-level access for the "Contents" repository permission" | GitHub's webhook events page, opened 18 September 2026 `[M]`
 Event `installation` | Received by every App, not subscribable. Actions include `deleted` and `suspend`, which set the connection to `revoked` | The same page `[M]`
 
@@ -289,7 +289,9 @@ copy of their markdown in a **visible** `frontmatter` folder in their Drive. It 
 - Google requires an app that stores restricted data on its servers to pass an annual security
   assessment by an approved third party, under the App Defense Alliance's CASA framework.
 - Our server holds the bytes in R2, so holding `drive` would mean **a CASA assessment every 12
-  months**, and "several weeks" the first time. `UNVERIFIED:` its price; no page opened stated one.
+  months**, and "several weeks" the first time. `UNVERIFIED:` its price. Rechecked 2026-09-18: neither
+  `https://appdefensealliance.dev/casa` nor Google's security assessment help page states one. Needs:
+  a quote from an authorised assessor, and only if the full scope is ever wanted.
 - `drive.file` does everything the mirror needs. The restricted scope would buy only the ability to
   read files we did not create, and the Picker covers that.
 
@@ -303,7 +305,7 @@ Watch channels | A channel on the changes feed expires after a week at most, and
 Quota arithmetic, on the poll | 30 saves a day at 50 units is 1,500. A five-minute poll is 288 calls at 100 units, so 28,800. **Total 30,300 a day per user**
 What that buys | Google's daily project threshold is 400,000,000 units. 400,000,000 / 30,300 = **13,201 connected users** before a quota increase, which the limits page says is billed
 Why not one minute | 145,500 units a day, serving 2,749 users. **That is why S23 promises "within a few minutes"**
-No write precondition | `UNVERIFIED:` whether `files.update` honours `If-Match`. The v3 reference opened carried no such string. So a write is preceded by a read of the revision, and a race window remains
+No write precondition | Confirmed `[M]`: Google's v2 to v3 reference, opened 2026-09-18, lists `Files etag n/a`, so a v3 file has no ETag for `If-Match` to test (`https://developers.google.com/workspace/drive/api/guides/v2-to-v3-reference`). So a write is preceded by a read of the revision, and a race window remains
 Conflicts | **Never merged silently.** An edit made in Drive enters the change queue, and the person chooses on S31
 
 **Before the Drive mirror ships**, the two falsification tests in `STORAGE-BENCHMARK.md` section 6.7
@@ -515,12 +517,15 @@ developer plan (a million characters), iframely (2,000 hits a month, billed once
   EXTERNALLY.** Provider limits and prices change, and the plan itself says terms are re-read
   monthly.
 - `UNVERIFIED:` whether `firestore.rules` as written would pass an emulator run. Its own header
-  says it has never been exercised.
-- `UNVERIFIED:` the state of the Google OAuth consent screen's verification.
-- `UNVERIFIED:` Drive byte fidelity for `text/markdown`, and whether `files.update` takes a
-  precondition. Neither Drive API was called; both are the benchmark's open tests.
-- `UNVERIFIED:` the CASA price. It matters only if the full `drive` scope is ever requested, which
-  this file forbids.
+  says it has never been exercised. Rechecked 2026-09-18 `[O]`: this machine has no Java runtime and
+  no `firebase` binary. Needs: `firebase emulators:exec` with rules tests, on a machine with both.
+- `UNVERIFIED:` the state of the Google OAuth consent screen's verification. Needs: the Google
+  Cloud console for the project, which curl cannot read.
+- `UNVERIFIED:` Drive byte fidelity for `text/markdown`. Needs: the benchmark's section 6.7 round
+  trip, which calls the API with a real token. The precondition half is answered in section 8: v3
+  files carry no ETag.
+- `UNVERIFIED:` the CASA price, rechecked with no price found (section 8). It matters only if the
+  full `drive` scope is ever requested, which this file forbids.
 
 **What is not established.**
 

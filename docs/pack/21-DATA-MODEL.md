@@ -576,10 +576,13 @@ Security log | `log/{YYYY}/{MM}/{DD}/{hour}-{ulid}.jsonl` | One object per write
 - `{vaultId}` leads every key, so a single-tenant restore or a single-tenant delete is a prefix
   operation.
 
-**Two limits, stated rather than assumed.** `UNVERIFIED:` R2's own per-object and per-bucket limits
-were not re-opened in this session; the plan's R2 figures in section 15 carry their own `[M]` tags
-and dates. And R2 takes only an apac location hint, so the plan says plainly that the bytes sit
-under a hint and not in India (`docs/mvp0/PRODUCT-PLAN.md` section 15).
+**Two limits, stated rather than assumed.** R2's own limits, re-opened on 2026-09-18 `[M]` at
+`https://developers.cloudflare.com/r2/platform/limits/` (last updated Jun 8, 2026): `Data storage per
+bucket Unlimited`, `Object key length 1,024 bytes`, `Object size 5 TiB per object`, and `5 GiB
+(single-part)` per upload. The 1,024-byte key limit is the one this layout can meet, so keys stay
+short ids. And R2's location hints, per `https://developers.cloudflare.com/r2/reference/data-location/`
+opened the same day, go no finer than `apac Asia-Pacific`, so the bytes sit under a hint and not
+in India (`docs/mvp0/PRODUCT-PLAN.md` section 15).
 
 The restore drill itself, how often it runs and how it is proved, belongs in
 `37-BACKUP-AND-RECOVERY.md` and is not duplicated here.

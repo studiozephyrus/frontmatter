@@ -348,82 +348,90 @@ storage. Phase A is where that changes.
 guide can tell what it is without opening the audit. Ordered as the findings register orders them.
 
 Finding | Where it is cited | What it made the plan do | Feature it touches
-`AF001` | plan:49, plan:1215 | Pro's model cost re-derived, and routing moved to Haiku for edits with Sonnet through the batch API | `F160`
-`AF002` | plan:56, plan:807 | Doc mode's split restated as 20 lossless, 15 extensions and 29 refused of 64 | `F112`
-`AF003` | plan:239, plan:1808 | "Every feature free" narrowed to "every editing feature free" | the `plan` column
-`AF004` | plan:61, plan:1120 | Craft, Docmost and the cheaper note apps added to the pricing ladder | `F265`
-`AF005` | plan:50, plan:1168 | Cerebras named as the 30-day trial it is | `F159`
-`AF006` | plan:50, plan:248, plan:1170 | OpenRouter's free endpoints removed from the chain until their providers' terms are opened | `F159`
-`AF007` | plan:50, plan:1186 | The three free pools stated as one shared budget each | `F159`
-`AF008` | plan:51, plan:254 | The legal floor restored as plan section 23, with an owner and a date per row | `F104`
-`AF009` | plan:83, plan:1642 | Phase 0 and the twenty hand-made kits restored | `F201`
-`AF011` | plan:57, plan:787 | Notion's block inventory stated as 27 covered of 32 | `F236`
-`AF012` | plan:58 | The Obsidian plugin arithmetic corrected | `F235`
-`AF013` | plan:59 | The research rounds listed by date, 244 unique pages | none
-`AF015` | plan:1097 | The large-target number attributed to Material, not to Fitts | `F254`
-`AF016` | plan:247, plan:1286 | The stack decision recorded as the founders' | `F279`
-`AF017` | plan:66, plan:927, plan:1161 | The blueprint's token cost re-derived for fifteen files and marked assumed | `F201`
-`AF018` | plan:354 | The history row reads "7 days" on Free | `F229`
-`AF019` | plan:354, plan:433 | The tree shows all fifteen blueprint files | `F201`
-`AF020` | plan:243, plan:363 | Font, size, colour, highlight and alignment placed behind More | `F114`, `F115`
+`AF001` | plan:56, plan:1319 | Pro's model cost re-derived, and routing moved to Haiku for edits with Sonnet through the batch API | `F160`
+`AF002` | plan:63, plan:865 | Doc mode's split restated as 20 lossless, 15 extensions and 29 refused of 64 | `F112`
+`AF003` | plan:261, plan:1971 | "Every feature free" narrowed to "every editing feature free" | the `plan` column
+`AF004` | plan:68, plan:1202 | Craft, Docmost and the cheaper note apps added to the pricing ladder | `F265`
+`AF005` | plan:57, plan:1260 | Cerebras named as the 30-day trial it is | `F159`
+`AF006` | plan:57, plan:270, plan:1262 | OpenRouter's free endpoints removed from the chain until their providers' terms are opened | `F159`
+`AF007` | plan:57, plan:1290 | The three free pools stated as one shared budget each | `F159`
+`AF008` | plan:58, plan:276 | The legal floor restored as plan section 23, with an owner and a date per row | `F104`
+`AF009` | plan:90, plan:1764 | Phase 0 and the twenty hand-made kits restored | `F201`
+`AF011` | plan:64, plan:845 | Notion's block inventory stated as 27 covered of 32 | `F236`
+`AF012` | plan:65 | The Obsidian plugin arithmetic corrected | `F235`
+`AF013` | plan:66 | The research rounds listed by date, 244 unique pages | none
+`AF015` | plan:1179 | The large-target number attributed to Material, not to Fitts | `F254`
+`AF016` | plan:269, plan:1390 | The stack decision recorded as the founders' | `F279`
+`AF017` | plan:73, plan:985, plan:1253 | The blueprint's token cost re-derived for fifteen files and marked assumed | `F201`
+`AF018` | plan:376 | The history row reads "7 days" on Free | `F229`
+`AF019` | plan:376, plan:469 | The tree shows all fifteen blueprint files | `F201`
+`AF020` | plan:265, plan:394 | Font, size, colour, highlight and alignment placed behind More | `F114`, `F115`
 `AF021` | guide:1019 only | Bookmark, search and history folded into More at 1,440 px | `F122`
-`AF022` | plan:377, plan:421 | The rail counts are zero on an empty document, and the problems shown are true of it | `F154`, `F165`
-`AF023` | plan:87, plan:256, plan:1147 | Max and the community named as Later | `F246`
-`AF024` | plan:569, plan:1032 | The 10 MB Google Docs export limit stated at the point of refusal | `F237`
-`AF025` | plan:66, plan:443, plan:925 | The frontend spec added to the blueprint | `F201`
-`AF026` | plan:1108 | Upload caps set at 1 GB and 5 MB on Free, 10 GB and 25 MB on Pro | `F257`
-`AF027` | plan:60, plan:246, plan:578, plan:1008 | The Drive quota re-derived with polling included | `F244`
-`AF028` | plan:485, plan:1266 | The kickoff prompt verifies the tarball against a hash before unpacking | `F204`, `F205`
-`AF029` | plan:545 | Accept all bounded to a named person's edits | `F225`
-`AF030` | plan:324, plan:1378 | The muted, danger and success tokens retuned to 4.5:1 | `F170`
-`AF031` | plan:1308 | What the code runs today separated from what phase A keeps | section 4.5
-`AF033` | plan:524 | The published footer carries Report, Privacy, Terms and the `.md` twin | `F220`
-`AF034` | plan:245, plan:579, plan:1025 | GitHub grants the whole repository, so writing only under `docs/` is our own rule | `F242`
-`AF035` | plan:580 | The agents card marked Later with the MCP server | `F246`
-`AF036` | plan:570 | The Android share target offered after install, and its absence on iOS said plainly | `F255`
-`AF037` | plan:474 | Medium labels the template's sources with a date; only High opens pages | `F197`, `F198`
-`AF038` | plan:498 | The map counts twelve markdown documents and excludes the three data files | `F186`
-`AF039` | plan:589 | AI edit disabled offline with a one-line reason, local model on the desktop | `F163`, `F248`
-`AF040` | plan:1282 | The Mumbai storage price recorded as irreproducible, with both readings kept | none
-`AF041` | plan:1335 | Where the objects live, stated | `F279`
-`AF042` | plan:67, plan:1639 | Two shortened quotations restored in full after a fabrication | none
-`AF043` | plan:1377 | Material's navigation-bar rule confirmed in a rendered browser | `F254`
-`AF044` | plan:309 | The `--ai` token and the code face named as missing from globals.css | `F109`
-`AF045` | plan:36, plan:1322, plan:1647 | The proposal to delete `firestore.rules` withdrawn | none
-`AF047` | plan:600 | The desktop download page states Mac now, Linux unsigned, Windows coming | `F252`
-`AF048` | plan:628 | Spellcheck named as the browser's own | `F140`
-`AF049` | plan:628 | Two AI switches, with ghost text off by default | `F157`
-`AF050` | plan:1480 | Every format the plan invents or adopts carries four things | `F142`, `F216`
-`AF051` | plan:638 | The price marked GST inclusive | `F262`
-`AF052` | plan:647 | The portfolio's front matter keys fixed to one list | `F230`
-`AF053` | plan:637 | The four meters carry a reset date | `F259`
-`AF054` | plan:51, plan:317 | Privacy and Terms link to pages that serve without an account | `F104`
-`AF055` | plan:85, plan:1324 | The Yjs exception restored beside the rule against conflict-free replicated data types | `F221`
-`AF056` | plan:1644 | Bring-your-own key sent to the founders as question 10 | `F164`
-`AF058` | plan:84, plan:249, plan:1406 | Review state declared dropped in favour of the change queue | `F223`
-`AF059` | plan:61, plan:1120 | The first paid tier across peers corrected | `F265`
-`AF060` | plan:86 | Obsidian Multiplayer and Obsidian for Work given risk rows | none
-`AF061` | plan:62, plan:894 | The slides signal attributed to slides-from-markdown, not to Marp | `F182`
-`AF062` | plan:63, plan:1063, plan:1064 | The Semantic Scholar clause withdrawn and four API conditions added | `F147`
-`AF063` | plan:251, plan:404, plan:910 | The kanban and chart blocks copy the shape and none of the code | `F180`, `F184`
-`AF064` | plan:64 | The Model Context Protocol described as "a Series of LF Projects, LLC" | `F246`
-`AF065` | plan:65 | The decision cards counted at 210 | none
-`AF067` | plan:1698 | Definitions written so two people counting cannot disagree | none
-`AF068` | plan:51 | Part of the legal floor | `F104`
-`AF069` | plan:51, plan:1267, plan:1353 | An append-only security log for 180 days in Indian jurisdiction | `F275`
-`AF070` | plan:1617 | Third-party notices, with the OFL texts opened | none
-`AF071` | plan:602, plan:1090 | Windows shown as coming until a commercial certificate is priced | `F252`
-`AF072` | plan:1083 | Each target builds on its own CI runner | `F252`
-`AF073` | plan:351, plan:1617 | No third button competing with Add file and Add idea | `F118`, `F119`
-`AF074` | plan:373, plan:641 | The AI box names its target, and the RBI mandate ceiling | `F151`, `F263`
-`AF075` | plan:457, plan:1378, plan:1615 | The rewrite blur, and the Rights of Persons with Disabilities rule 15 question | `F192`, `F170`
-`AF076` | plan:522 only | `page.md` and `llms.txt` never gated, never redirected, never given an interstitial | `F216`, `F217`
-`AF077` | plan:51 | Part of the legal floor | `F104`
+`AF022` | plan:408, plan:457 | The rail counts are zero on an empty document, and the problems shown are true of it | `F154`, `F165`
+`AF023` | plan:94, plan:278, plan:1229, plan:1767, plan:1768 | Max and the community named as Later | `F246`
+`AF024` | plan:618, plan:1105 | The 10 MB Google Docs export limit stated at the point of refusal | `F237`
+`AF025` | plan:73, plan:481, plan:983 | The frontend spec added to the blueprint | `F201`
+`AF026` | plan:1190 | Upload caps set at 1 GB and 5 MB on Free, 10 GB and 25 MB on Pro | `F257`
+`AF027` | plan:67, plan:268, plan:627, plan:1079 | The Drive quota re-derived with polling included | `F244`
+`AF028` | plan:525, plan:1370 | The kickoff prompt verifies the tarball against a hash before unpacking | `F204`, `F205`
+`AF029` | plan:593 | Accept all bounded to a named person's edits | `F225`
+`AF030` | plan:346, plan:1491 | The muted, danger and success tokens retuned to 4.5:1 | `F170`
+`AF031` | plan:1412 | What the code runs today separated from what phase A keeps | section 4.5
+`AF033` | plan:568 | The published footer carries Report, Privacy, Terms and the `.md` twin | `F220`
+`AF034` | plan:267, plan:628, plan:1096 | GitHub grants the whole repository, so writing only under `docs/` is our own rule | `F242`
+`AF035` | plan:631 | The agents card marked Later with the MCP server | `F246`
+`AF036` | plan:619 | The Android share target offered after install, and its absence on iOS said plainly | `F255`
+`AF037` | plan:514 | Medium labels the template's sources with a date; only High opens pages | `F197`, `F198`
+`AF038` | plan:538 | The map counts twelve markdown documents and excludes the three data files | `F186`
+`AF039` | plan:640 | AI edit disabled offline with a one-line reason, local model on the desktop | `F163`, `F248`
+`AF040` | plan:1386 | The Mumbai storage price recorded as irreproducible, with both readings kept | none
+`AF041` | plan:1439 | Where the objects live, stated | `F279`
+`AF042` | plan:74, plan:1761 | Two shortened quotations restored in full after a fabrication | none
+`AF043` | plan:1490 | Material's navigation-bar rule confirmed in a rendered browser | `F254`
+`AF044` | plan:331 | The `--ai` token and the code face named as missing from globals.css | `F109`
+`AF045` | plan:43, plan:1426, plan:1769 | The proposal to delete `firestore.rules` withdrawn | none
+`AF047` | plan:651 | The desktop download page states Mac now, Linux unsigned, Windows coming | `F252`
+`AF048` | plan:679 | Spellcheck named as the browser's own | `F140`
+`AF049` | plan:679 | Two AI switches, with ghost text off by default | `F157`
+`AF050` | plan:1598 | Every format the plan invents or adopts carries four things | `F142`, `F216`
+`AF051` | plan:689 | The price marked GST inclusive | `F262`
+`AF052` | plan:698 | The portfolio's front matter keys fixed to one list | `F230`
+`AF053` | plan:688 | The four meters carry a reset date | `F259`
+`AF054` | plan:58, plan:339 | Privacy and Terms link to pages that serve without an account | `F104`
+`AF055` | plan:92, plan:1428 | The Yjs exception restored beside the rule against conflict-free replicated data types | `F221`
+`AF056` | plan:1766 | Bring-your-own key sent to the founders as question 10 | `F164`
+`AF058` | plan:91, plan:271, plan:1519 | Review state declared dropped in favour of the change queue | `F223`
+`AF059` | plan:68, plan:1202 | The first paid tier across peers corrected | `F265`
+`AF060` | plan:93 | Obsidian Multiplayer and Obsidian for Work given risk rows | none
+`AF061` | plan:69, plan:952 | The slides signal attributed to slides-from-markdown, not to Marp | `F182`
+`AF062` | plan:70, plan:1136, plan:1137 | The Semantic Scholar clause withdrawn and four API conditions added | `F147`
+`AF063` | plan:273, plan:439, plan:968 | The kanban and chart blocks copy the shape and none of the code | `F180`, `F184`
+`AF064` | plan:71 | The Model Context Protocol described as "a Series of LF Projects, LLC" | `F246`
+`AF065` | plan:72 | The decision cards counted at 210 | none
+`AF067` | plan:1852 | Definitions written so two people counting cannot disagree | none
+`AF068` | plan:58 | Part of the legal floor | `F104`
+`AF069` | plan:58, plan:1371, plan:1457 | An append-only security log for 180 days in Indian jurisdiction | `F275`
+`AF070` | plan:1735 | Third-party notices, with the OFL texts opened | none
+`AF071` | plan:653, plan:1172 | Windows shown as coming until a commercial certificate is priced | `F252`
+`AF072` | plan:1165 | Each target builds on its own CI runner | `F252`
+`AF073` | plan:373, plan:1735 | No third button competing with Add file and Add idea | `F118`, `F119`
+`AF074` | plan:404, plan:692 | The AI box names its target, and the RBI mandate ceiling | `F151`, `F263`
+`AF075` | plan:495, plan:1491, plan:1733 | The rewrite blur, and the Rights of Persons with Disabilities rule 15 question | `F192`, `F170`
+`AF076` | plan:566 | `page.md` and `llms.txt` never gated, never redirected, never given an interstitial | `F216`, `F217`
+`AF077` | plan:58 | Part of the legal floor | `F104`
 
-**UNVERIFIED:** the "What it made the plan do" column summarises the cited line, not the finding's
-own text in `CLAUDE-AUDIT-FINDINGS.jsonl`. A reader who needs the finding as written should open
-that file. The line citations were all produced by
-`grep -n 'F[0-9]\{3\}' docs/mvp0/PRODUCT-PLAN.md` in this session.
+**Checked on 2026-09-18** `[O]`, against `verify/2026-09-17/CLAUDE-AUDIT-FINDINGS.jsonl` (77 lines).
+
+- **The line citations had all gone stale.** The plan was edited on 18 September (last in `2e82bc3`),
+  and 0 of the 119 `plan:NNN` citations still pointed at a line carrying their id. The column was
+  regenerated with `grep -n '\bF0NN\b' docs/mvp0/PRODUCT-PLAN.md` per row; 70 rows changed.
+  `AF021` cites the guide and was left alone. **Re-run the same grep after any plan edit.**
+- **The summaries match the findings on a sample of six** (`AF001`, `AF002`, `AF031`, `AF074`,
+  `AF075`, `AF077`), read against each finding's `claim` field. The seventh sampled, `AF076`, did not.
+- **One mislabel, on the plan's side.** The plan tags its `page.md` rule `(F076)` at `plan:566`, but
+  finding `F076` in the audit file is about icons delivered by `material-symbols`. The finding about
+  `llms.txt` and the `.md` twin is `F066`. `INFERENCE:` the plan meant `F066`. The row follows the
+  plan, and the plan's owner should fix the tag.
 
 ## 6. What `shipped` was checked against
 

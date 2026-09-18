@@ -180,8 +180,12 @@ exactly when people think it is.
 
 - `UNVERIFIED:` the exact wording of the Vercel error for an invalid `vercel.json`. The phrasing in
   section 5 is the shape of the message, taken from the repository's own record, not re-fetched.
-- `UNVERIFIED:` whether the 66.4 percent figure in section 3 is current. It was true when the
-  `vitest.config.ts` exclusion was written.
+  Checked 2026-09-18 `[O]`: the string is not in the installed CLI 50.13.2 bundle, so Vercel's
+  server writes it. Needs: a CLI deploy of a deliberately invalid config to a scratch project.
+- The 66.4 percent figure in section 3 is historical, not current. Measured 2026-09-18 `[O]` with
+  `find`: `.claude/worktrees` now holds 2 worktrees and 164 test files, against 100 outside `.claude/`.
+  So without the exclusion the suite would now more than double by file count. The exclusion at
+  `vitest.config.ts:9` matters more than the comment says.
 - Whether any entry in section 4 can still reproduce. Each has a guard, and **a guard's presence is
   not proof the guard works.** Making each one fail against the unguarded code is the red proof
   `AGENTS.md` rule 1 asks for, and it was not done here.

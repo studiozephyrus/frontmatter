@@ -292,10 +292,18 @@ Every dynamic route, set in `src/proxy.ts` | `Content-Security-Policy-Report-Onl
 `nosniff`, `X-Frame-Options: DENY` and `Referrer-Policy` are set globally in `next.config.ts` so
 they cover static assets too, which the proxy matcher skips.
 
-**UNVERIFIED:** the enforced header is written for `/p/:slug*`, and the public note now lives at
-`/[slug]`. Whether the tight policy still reaches the page a stranger actually loads was not tested
-against a deployment in this session. It is worth one `curl -sI` against production before the
-pilot.
+**Checked on 2026-09-18, and it does not reach it** `[O]`. The enforced header is written for
+`/p/:slug*` at `next.config.ts:48`, and `/p/<slug>` now only redirects to `/<slug>`
+(`src/app/(public)/p/[slug]/page.tsx:17`). `curl -sI` against the branch preview
+`frontmatter-git-audit-response-2026-09-17-zsco.vercel.app`: `/p/nonexistent-slug-xyz` carries
+`content-security-policy`, but `/nonexistent-slug-xyz` carries only
+`content-security-policy-report-only`, with `'unsafe-eval'`. **The page a stranger loads is not under
+the tight policy.** Production runs `main` and was not tested.
+
+**Resolved (proposed 18 Sep, founder review):** set the enforced policy for the public note route in
+`src/proxy.ts`, where the route is known, rather than as a `next.config.ts` pattern. Rejected: a
+`/:slug` pattern in `next.config.ts`, which would also match `/login`, `/privacy` and every other
+single-segment route.
 
 ## 23.7 How to check any claim in this file
 

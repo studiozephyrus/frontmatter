@@ -294,8 +294,13 @@ Step 4 is the one that gets skipped, and it fails at first request rather than a
 `AUTH_GITHUB_SECRET`, `AUTH_SECRET`, `SGNK_AUTH_HASH`, `GITHUB_REPO_TOKEN`, and the five provider
 API keys. Eleven in total. Everything else is configuration.
 
-**Rotation.** There is no rotation procedure today. `UNVERIFIED:` no schedule, owner or runbook for
-rotating any of the eleven exists in the repository at `0af3c90`. Writing one belongs with the
+**Rotation.** There is no rotation procedure today. Confirmed on 2026-09-18 `[O]`: `git grep -n -i
+rotat` outside `docs/pack` and the research finds no schedule, owner or runbook. It does find two
+personal access tokens recorded as exposed and still unrotated, at `HANDOFF-frontmatter-2026-09-13.md:109`.
+**Resolved (proposed 18 Sep, founder review):** rotate on a suspected leak (rotate first, erase
+second), when a person with access leaves, and once a year otherwise; the owner is the owner of the
+security-log row in plan section 23. Rejected: no schedule. **Needs founder** for the two exposed
+tokens, which only he can rotate. Writing one belongs with the
 phase 0 legal-floor rows in `docs/mvp0/PRODUCT-PLAN.md` section 23, and the trigger list belongs in
 `38-INCIDENT-AND-SEVERITY.md`.
 
@@ -351,8 +356,10 @@ Those are claims and architecture, not rows.
 **What could not be verified.**
 
 - `AUTH_URL` appears in `AGENTS.md` section 6 and in no file under `src/`. It is read by Auth.js
-  itself. `UNVERIFIED:` the exact resolution order Auth.js v5 beta 31 uses between `AUTH_URL`,
-  `NEXTAUTH_URL` and the request origin was not checked against the library source.
+  itself. The order, read in the installed library on 2026-09-18 `[O]`
+  (`node_modules/next-auth/package.json` says `5.0.0-beta.31`): `process.env.AUTH_URL ??
+  process.env.NEXTAUTH_URL` at `node_modules/next-auth/lib/env.js:6`, then the request's
+  `x-forwarded-host` or `host` when neither is set, at `node_modules/@auth/core/lib/utils/env.js:81`.
 - Whether `SGNK_AUTH_USER` and `SGNK_AUTH_HASH` are set in any live environment.
 - Rotation history for any secret.
 

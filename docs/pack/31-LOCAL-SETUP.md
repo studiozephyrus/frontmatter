@@ -326,7 +326,9 @@ an inline `new Set(...)` triggers an infinite render loop. Derive sets in `useMe
 
 **The Firebase emulators.** `firebase.json` declares them: auth on port `9099`, Firestore on `8080`,
 with the emulator UI enabled. **No npm script starts them, and the Firebase CLI is not a
-dependency.** `UNVERIFIED:` whether anybody has run them against this repository.
+dependency.** Checked on 2026-09-18 `[O]`: the repository carries no trace of a run. There is no
+`firestore-debug.log`, no `.firebaserc`, and no `FIRESTORE_EMULATOR_HOST` or `emulators:` string in
+any file outside `docs/`. `INFERENCE:` they have never been run here; treat the first run as new work.
 
 To use them you need the Firebase CLI installed separately, then `firebase emulators:start` from the
 repository root. **That is not part of any documented flow yet**, and `firestore.rules` is still

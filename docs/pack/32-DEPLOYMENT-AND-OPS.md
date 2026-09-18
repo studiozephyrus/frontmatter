@@ -385,11 +385,14 @@ touches the index only. **Never `git stash` somebody else's dirty tree.**
 
 **What could not be verified.**
 
-- `UNVERIFIED:` the exact `vercel promote` syntax for the installed CLI version. The CLI was not
-  invoked, and Vercel's command surface changes between major versions. **Read `vercel promote
-  --help` before using section 5.1.**
-- `UNVERIFIED:` the domain registration owner. The plan lists it as unverified too
-  (`docs/mvp0/PRODUCT-PLAN.md` section 24).
+- The `vercel promote` syntax, checked on 2026-09-18 `[O]` with Vercel CLI 50.13.2 (`vercel
+  --version`). `vercel promote --help` prints `vercel promote url|deploymentId [options]`, and lists
+  `--scope` and `--token` as global options, so section 5.1's command is valid. One caveat: the repo
+  does not pin `vercel` in `package.json`, so `npx vercel` runs whatever version npm serves that day.
+- `UNVERIFIED:` the domain registration owner. The registry's RDAP record, read 2026-09-18 `[O]` at
+  `https://rdap.nixiregistry.in/rdap/domain/frontmatter.in`, shows registrar `GoDaddy`, registered
+  `2026-06-24`, expiring `2029-06-24`, and a registrant redacted except `West Bengal`. Needs: the
+  GoDaddy account that holds it. Decision D10 moves it to the company either way.
 - The name of the Vercel team holding `frontmatter-decisions`. Only the id appears in the
   repository.
 

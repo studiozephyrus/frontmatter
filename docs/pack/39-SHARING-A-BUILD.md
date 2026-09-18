@@ -152,8 +152,11 @@ The result is a 404 that looks like a data bug. **Set it per preview, or expect 
 **Protection defaults on for a new Vercel project.** If a preview asks a stranger to log in to
 Vercel, that is why, and no amount of application configuration fixes it.
 
-`UNVERIFIED:` the current setting on the `frontmatter` project. It is a dashboard fact and was not
-checked in the session that wrote this file. **Check it before promising somebody a link.**
+**Checked from outside on 2026-09-18 `[O]`:** an anonymous request to the branch alias
+`https://frontmatter-git-audit-response-2026-09-17-zsco.vercel.app/` returns `HTTP/2 200` with the
+app's own `<title>frontmatter</title>`, and no Vercel login redirect. So previews on this project are
+not behind protection today. The dashboard setting itself was not read. **Re-run that request before
+promising somebody a link**, because a dashboard change would flip it.
 
 ### 5.5 So, the honest recipe
 
@@ -271,11 +274,17 @@ temporary allowlist becomes permanent, and nobody audits it because nobody remem
 
 **What could not be verified.**
 
-- `UNVERIFIED:` deployment protection on the `frontmatter` project. Section 5.4 says so and it is
-  the first thing to check.
-- `UNVERIFIED:` the GitHub OAuth App's registered callback list.
-- `UNVERIFIED:` whether the legal placeholder pages still say the text is pending. The plan says they
-  serve on this branch and the routes exist; their content was not read.
+- Deployment protection, checked from outside only (section 5.4): a branch preview answered an
+  anonymous request with 200 on 2026-09-18. The dashboard value was not read.
+- `UNVERIFIED:` the GitHub OAuth App's registered callback list. Needs: the OAuth App's settings
+  page on GitHub, which needs the owner's sign-in.
+- The legal placeholder pages, checked `[O]` on 2026-09-18. On the branch preview `/privacy` returns
+  200 and reads `This text is being written and is due by 15 October 2026`, from
+  `src/app/(public)/pending-legal-page.tsx`. **On production, `https://frontmatter.in/privacy`
+  returns 307 to `/login`**. `INFERENCE:` the cause is that `origin/main` as last fetched (`8eb4de2`)
+  has neither the page (`src/app/(public)/privacy/page.tsx` is absent there) nor `"/privacy"` in
+  `src/proxy.ts`, while this branch has both, the proxy entry at `src/proxy.ts:69`.
+  A stranger on production cannot read the privacy notice until this branch merges.
 
 **What is not established.**
 

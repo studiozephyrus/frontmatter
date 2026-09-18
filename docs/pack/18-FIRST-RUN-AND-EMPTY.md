@@ -271,13 +271,13 @@ command is in the table; re-run it rather than trusting this sentence.
 
 ## 12. Open questions
 
-Question | Why this file cannot answer it
-Is there a third sign-in route, and does it change second 2? | Founder question 18, an email magic link, is a flag on S37 and not yet on
-What does second 0 look like to a person in the European Union? | EU sign-ups are blocked until a representative is engaged (`docs/mvp0/PRODUCT-PLAN.md` section 23), and nobody has written what that person sees
-Does the age floor appear in the first sixty seconds? | The floor is in the terms, and whether it needs a statement at sign-up is a counsel question (`docs/mvp0/PRODUCT-PLAN.md` section 23)
-What is the greeting's timezone? | `K.s02.greeting` says "Good evening" and nobody has defined evening
+Question | Why this file cannot answer it | Resolution, 18 September
+Is there a third sign-in route, and does it change second 2? | Founder question 18, an email magic link, is a flag on S37 and not yet on | **Needs founder**, because it is his question 18. Recommendation: the flag stays off at launch, so second 2 is unchanged. When on, it is a third button under Google and GitHub, never a form on the first screen, which keeps the one-tap front door of ADR-0009. Rejected: an email field on S37
+What does second 0 look like to a person in the European Union? | EU sign-ups are blocked until a representative is engaged (`docs/mvp0/PRODUCT-PLAN.md` section 23), and nobody has written what that person sees | **Resolved (proposed 18 Sep, founder review).** The server reads Vercel's `x-vercel-ip-country` header (`[M]` `https://vercel.com/docs/headers/request-headers`, opened 2026-09-18). For an EU country it shows S37 with the sign-in buttons replaced by one plain line saying sign-ups are not open there yet, and a link to the privacy notice. Nothing is stored. Rejected: letting them sign in and refusing afterwards, which creates an account we may not hold
+Does the age floor appear in the first sixty seconds? | The floor is in the terms, and whether it needs a statement at sign-up is a counsel question (`docs/mvp0/PRODUCT-PLAN.md` section 23) | **Needs founder**, because it is legal risk and his question 12. Recommendation: one line under the sign-in buttons stating the floor, linked to the terms, and no date-of-birth field. Rejected: a birth-date step, which breaks the one-tap sign-in
+What is the greeting's timezone? | `K.s02.greeting` says "Good evening" and nobody has defined evening | **Resolved (proposed 18 Sep, founder review).** The device's own clock, read in the browser. Morning from 05:00, afternoon from 12:00, evening from 17:00, as a copy choice rather than a measured fact. Rejected: the server's clock, which greets an Indian user at night with a UTC afternoon
 
-Each belongs in `56-OPEN-DECISIONS.md` with a `D` number.
+The two resolved rows still want a `D` number in `56-OPEN-DECISIONS.md`, which another writer owns.
 
 ---
 

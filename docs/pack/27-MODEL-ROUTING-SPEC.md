@@ -80,7 +80,7 @@ type. Every quotation was copied from the provider's own page on 18 September 20
 2 | Groq | `openai/gpt-oss-120b`, `openai/gpt-oss-20b`, `openai/gpt-oss-safeguard-20b`, `qwen/qwen3.8-27b` | 30 a minute, **1,000 a day and 200,000 tokens a day per model**, 8,000 tokens a minute | organisation | data at rest in `Google Cloud Platform (GCP) buckets located in the United States` | in the plan's chain
 3 | Cerebras | `gpt-oss-120b`, `qwen-3.8-27b` | **5 a minute**, 30,000 uncached tokens a minute, 90,000 total, 1,000,000 a day per model | organisation | administered `from its offices in California` | in the plan's chain while the trial lasts
 4 | OpenRouter | 21 model ids ending `:free`, of 445 listed | 20 a minute; **50 a day, or 1,000 a day after buying 10 credits once** | account, and **readable before spending** | no Asian region; in-region routing is enterprise-only | **in the chain, admitted 18 September. See 2.4**
-5 | SambaNova | DeepSeek-V3.1, Llama 3.3 70B, gpt-oss-120b | 20 requests a day per model | `UNVERIFIED:` not opened by L1 | `UNVERIFIED:` | in the plan's chain, smoke test only
+5 | SambaNova | DeepSeek-V3.1, Llama 3.3 70B, gpt-oss-120b | 20 requests a day per model, `UNVERIFIED:` the rate-limits page returned 403 to curl on 2026-09-18; needs: a signed-in read of the console | `UNVERIFIED:` needs: the same console read | `UNVERIFIED:` needs: the same console read | **held out of the chain.** `https://cloud.sambanova.ai/plans`, opened 2026-09-18 [M], says of Free: `Add a payment method and purchase credits to run your first requests.` So it is not a no-card free tier today
 6 | Ollama, on the desktop only | `llama3.2:3b` at 2.0 GB, `qwen3:4b` at 2.5 GB, `gemma3:4b` at 3.3 GB, `qwen3:8b` at 5.2 GB | none | the machine | the machine | desktop, `specified, not built`
 7 | The paid link | Cloudflare Workers Paid neurons, then Anthropic for Pro | Cloudflare text generation stays at `300 requests per minute` on the paid plan | account | as above | the reason the router cannot run out
 
@@ -103,7 +103,7 @@ Cloudflare | `Cloudflare does not use your Customer Content to (1) train any AI 
 Groq | `For clarity, Groq is not permitted to use Inputs or Outputs for training or fine-tuning any AI Model Services or other models, unless explicitly granted permission or instructed by Customer.`
 Cerebras | `For clarity, the foregoing does not grant Cerebras the right to use Service Content for the purpose of training or fine-tuning models.`
 OpenRouter | Its own logging is off unless turned on: `Unless explicitly opted in to prompt logging, we do not store your Inputs after categorizing them and do not associate the categorized Inputs with any specific user or organizational accounts.` The upstream is a separate question, answered per provider in its register and disclaimed by OpenRouter.
-SambaNova | `UNVERIFIED:` no sentence was opened. Under gate B this row cannot be enabled until one is.
+SambaNova | [M] `https://sambanova.ai/cloud-end-user-license-agreement`, opened 2026-09-18: `you hereby grant to SambaNova and its Affiliates a non-exclusive, worldwide, royalty-free right to access, store and/or process the Customer Content during the Term solely to the extent necessary to provide the Service to you or as may be required by law, and for no other purposes.` Gate B is met on the clause. The row stays off for the reason in 2.1, row 5.
 Ollama | Nothing leaves the machine, so the clause does not arise.
 
 **Commercial use on the free tier, quoted.**
@@ -228,10 +228,12 @@ requests a day, which is a quarter of what 200 users need. The purchase has to b
 **Cerebras.** The plan describes the free tier as `A trial: "$5 in free credits after adding a
 verified payment method. These credits expire 30 days after they're granted"`. L1 read the Free
 Trial tab on the same day and reports 5 requests a minute and 1,000,000 tokens a day per model, with
-no mention of the credit. `UNVERIFIED:` the two readings may describe the same offer from two pages,
-or the terms may have changed. **Before phase B, one person opens the Cerebras rate-limit page and
-the billing page in a signed-in browser and writes down which is true.** The capacity arithmetic in
-section 8 is given with and without Cerebras for that reason.
+no mention of the credit. **Checked 2026-09-18, both are true of one offer** [M]. The page
+`https://inference-docs.cerebras.ai/support/rate-limits` carries the Free Trial table (`gpt-oss-120b`
+at 5 a minute, 1M tokens a day) and, in its FAQ, `New accounts receive $5 in free credits after adding
+a verified payment method.` It also says `Is there a permanently free tier? No.` So the limits apply
+only while the $5 lasts, for at most 30 days. The capacity arithmetic in section 8 is given with and
+without Cerebras for that reason.
 
 **Groq's daily pool.** The plan counts 200,000 tokens a day, which is one chat model. L1 reads the
 same table and counts four chat models at 200,000 each, for 800,000. Both are correct readings of
@@ -276,7 +278,9 @@ Indian user base and to the ledger of section 4.4.
 `UNVERIFIED:` neither window is a full history. Groq's status endpoint returns a recent window whose
 oldest record was `2025-12-24`, and Cloudflare's 50 records buy only eighteen days.
 `status.openrouter.ai` and `status.mistral.ai` both returned HTTP 403, so two of the four chain
-members have no incident history in this document at all.
+members have no incident history in this document at all. Rechecked 2026-09-18 [O]: `status.mistral.ai`
+still returns 403, and `status.openrouter.ai` returns a 599-byte script shell with its incidents API
+at 503. Needs: one person reading both pages in a browser and recording the last 90 days.
 
 ### 2.6 The one structural fact about pooling
 
@@ -485,7 +489,7 @@ Firestore and flags the section 18 table as owing a correction.
 
 Pool | Resets | Stated where | What our ledger does
 Cloudflare neurons | `All limits reset daily at 00:00 UTC.` | the pricing page | new `utcDay` key at 00:00 UTC
-Groq requests and tokens a day | daily; the reset instant is not stated on the page | `UNVERIFIED:` | assume 00:00 UTC, and correct it the first time the headers disagree
+Groq requests and tokens a day | not stated. The rate-limits page, rechecked 2026-09-18 [M], shows `x-ratelimit-reset-requests 2m59.56s Always refers to Requests Per Day (RPD)`. `INFERENCE:` that reads as continuous replenishment, not a midnight reset | `https://console.groq.com/docs/rate-limits` | **resolved (proposed 18 Sep, founder review):** read `x-ratelimit-reset-requests` on every response and store the reset instant it implies; no fixed day key. Rejected: assuming 00:00 UTC, which over-counts if the bucket refills continuously
 Cerebras | **never.** `We use the token bucketing algorithm for rate limiting, which means your capacity replenishes continuously rather than resetting at fixed intervals.` | the rate-limits page | no reset; the ledger carries a rolling 24-hour window instead of a day key
 OpenRouter free requests | `Free-model requests left in the current UTC day` | the limits page | new `utcDay` key at 00:00 UTC, and we can also read it
 Vercel AI Gateway daily budget | `Midnight UTC each day` | the budgets page | not used on free
@@ -867,9 +871,11 @@ engineering goes into the chain.
 
 1. **Turn on Workers Paid for Workers AI.** The plan fee is the cost, not the inference. Text
    generation stays at `300 requests per minute`, and a provider at 300 a minute with no daily cap
-   removes constraints 1, 2 and 3 above. `UNVERIFIED:` the Workers Paid plan fee was quoted by L3 as
-   a `$5 USD per month` minimum for an account, and nobody has modelled our Worker usage on top of
-   it.
+   removes constraints 1, 2 and 3 above. The fee is confirmed [M]: the Workers pricing page, opened
+   2026-09-18, says `a minimum charge of $5 USD per month for an account`
+   (`https://developers.cloudflare.com/workers/platform/pricing/`). Our own Worker usage on top of it
+   is nil today: `git ls-files | grep -ci wrangler` prints 0 [O], because the app calls Workers AI
+   over REST from Vercel. Neurons past the free 10,000 a day cost `$0.011 / 1,000 Neurons`.
 2. **Buy 10 OpenRouter credits, once**, if the founders admit OpenRouter under 2.4. Twenty times the
    request budget, permanently, on the one provider whose remaining budget we can read.
 3. **Vercel AI Gateway paid tier as the last link.** Not for price. For the `modelAttempts` failover
@@ -993,8 +999,10 @@ the widget.`, and `Invisible: The widget is completely hidden from the visitor.`
   invisible CAPTCHA in its own first sentence.** If the founder's rule bans the word, BotID is out;
   if it bans the experience, it passes. He should be shown that sentence and decide which he meant.
 - **Never on a document route.** A false positive there loses somebody's writing.
-- `UNVERIFIED:` Turnstile's free usage ceiling. Its limits page returned 404 on 2026-09-18, so do not
-  write a free-forever claim without checking.
+- Turnstile's free usage ceiling, checked [M]. The limits page still returns 404, but
+  `https://developers.cloudflare.com/turnstile/plans/` (last updated Aug 14, 2026, opened 2026-09-18)
+  lists Free as `Up to 20 widgets` with `Unlimited challenges (traffic or verification requests)`.
+  The ceiling is widgets, not traffic. Plans pages change, so quote the date with any claim.
 
 ### 9.5 Layer 10, and the Indian Digital Personal Data Protection Act
 
@@ -1034,8 +1042,10 @@ A card gate is the most effective anti-farming control on the list, and the wron
 
 - Outstanding credit cards in India were reported at 119.44 million in April 2026 against a
   population well over a billion. `UNVERIFIED:` this is a news report of central bank data, not the
-  release. Cards are held several to a person, so the share of people is lower than the share of
-  cards.
+  release. The release exists: RBI's Bankwise ATM/POS/Card Statistics page lists `April 2026
+  (Revised)`, but its XLSX returned an empty reply to curl on 2026-09-18. Needs: that file opened in
+  a browser and its credit-card total copied. Cards are held several to a person, so the share of
+  people is lower than the share of cards.
 - The plan already records that `₹15,000` per transaction is an architectural constant set by the
   Reserve Bank and that Indian cards get one payment attempt. A card gate in this market fails for
   reasons unrelated to intent to pay.
@@ -1168,8 +1178,8 @@ SambaNova as a provider | `specified, not built` |
    tested without a network.
 4. Upgrade to AI SDK 7, or write the first-chunk hold against an `AbortController`.
 5. Build the Firestore ledger behind the port, with the in-memory adapter for tests.
-6. Add the Cloudflare Workers AI provider through its REST API, and add SambaNova only once its terms
-   are opened.
+6. Add the Cloudflare Workers AI provider through its REST API. SambaNova's terms were opened on
+   18 September and pass gate B, but its Free plan now asks for credits first, so it waits (2.1).
 7. Build the per-account bucket and the service-wide breaker together with the usage log, because a
    budget with no telemetry cannot be tuned.
 
@@ -1192,8 +1202,8 @@ each captured fixture and re-capture on a schedule.
   section 6 for 63 per cent of the load.
 - The Workers Paid plan fee against our actual Worker usage.
 - Any provider on the long tail that L1 could not reach, including ModelScope, Ollama Cloud, Z AI,
-  SiliconFlow, DeepSeek, SambaNova and Nebius. SambaNova is in the plan's chain and has no opened
-  terms, which means today it fails gate B.
+  SiliconFlow, DeepSeek, SambaNova and Nebius. SambaNova's terms were opened on 18 September and
+  pass gate B; its rate-limits page still returns 403, and its Free plan asks for credits first.
 
 **What could not be verified.**
 

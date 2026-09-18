@@ -154,8 +154,11 @@ put a splice journal.
 
 **The rebuttal we owe now names two products, not one.** OpenKnowledge is described by Tech Times on
 2026-06-27 as using "a dual-observer CRDT architecture" so the agent can "write directly to the
-markdown file". UNVERIFIED: that article gives no repository link, and the project's own pages were
-not opened.
+markdown file". **Checked on 2026-09-18** `[M]`. The Show HN post (`https://news.ycombinator.com/item?id=48675435`,
+25 June 2026) links `https://github.com/inkeep/open-knowledge`, a GPL-3.0 repository last pushed on 18 September 2026.
+Its `packages/core/package.json` depends on `yjs` `^13.6.30` and `y-prosemirror`, and
+`packages/server/package.json` on `@hocuspocus/server`. So the CRDT is real, and it is Yjs. The
+phrase "dual-observer" is the article's; it is not in the README.
 
 ## 4. Obsidian, which is the one that matters
 
