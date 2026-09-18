@@ -216,11 +216,11 @@ Commit | Time | What changed | Deliberately not done
 `07-CLAIMS-REGISTER.md` section 6.
 
 Id | What is wrong | Where | Owner
-C401 | `CLAUDE.md` says review state was dropped partly because Almanac "shipped the same read receipts and shut down". Almanac's own farewell page gives a different reason | `CLAUDE.md` | The owner of `CLAUDE.md`
-C402 | The AGENTS.md adoption figure is stale by roughly nine times | The plan, section 2 | The plan's owner
-C403 | The decision-card count says 210 and the validator says 275 | The plan, section 0 | The plan's owner
-C404 | The legal floor says placeholder pages serve. True of the branch, false of the deployment | The plan, section 23 | The plan's owner
-C405 | The `GITHUB_REPO` default fix is listed as phase 0 work and is already done | The plan, section 26 | The plan's owner
+CL401 | `CLAUDE.md` says review state was dropped partly because Almanac "shipped the same read receipts and shut down". Almanac's own farewell page gives a different reason | `CLAUDE.md` | The owner of `CLAUDE.md`
+CL402 | The AGENTS.md adoption figure is stale by roughly nine times | The plan, section 2 | The plan's owner
+CL403 | The decision-card count says 210 and the validator says 275 | The plan, section 0 | The plan's owner
+CL404 | The legal floor says placeholder pages serve. True of the branch, false of the deployment | The plan, section 23 | The plan's owner
+CL405 | The `GITHUB_REPO` default fix is listed as phase 0 work and is already done | The plan, section 26 | The plan's owner
 
 **Two older debts, both still open.**
 

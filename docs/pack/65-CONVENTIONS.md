@@ -57,6 +57,7 @@ Acceptance criterion | `A` plus three digits | `A042` | `19-ACCEPTANCE-CRITERIA.
 Engine refusal | `nf-` plus three digits plus a slug | `nf-001-zero-indent-sequence` | `specs/engine/`.
 Decision record | `ADR-` plus four digits | `ADR-0007` | `adr/`.
 Open decision | `D` plus two digits | `D11` | `56-OPEN-DECISIONS.md`.
+Claim we may or may not make | `CL` plus three digits | `CL201` | `07-CLAIMS-REGISTER.md`. It was `C` until 18 September 2026, which collided with components: `C001` to `C008` were both a claim and a component.
 Event | dotted, lower case | `doc.change.accepted` | `55-MEASUREMENT-AND-EVENTS.md`.
 Entitlement | dotted, lower case | `limits.collab.live` | `53-PRICING-AND-ENTITLEMENTS.md`.
 

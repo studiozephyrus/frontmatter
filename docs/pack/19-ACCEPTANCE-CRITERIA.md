@@ -357,6 +357,257 @@ id | feature | given | when | then | test | spec
 `A205` | `F-legal` | Any published page | It is rendered | A report route is present and resolves | `T204` | `docs/mvp0/PRODUCT-PLAN.md` section 23.
 `A206` | `F-legal` | Any price shown to a person | It is read | It states that it is inclusive of tax | `T205` | `docs/mvp0/PRODUCT-PLAN.md` section 23.
 
+
+---
+
+## 12a. Criteria reconciled from the screen specs, 18 September 2026
+
+The 38 screen specs cited `A` ids that this file never defined, and many reused numbers this file
+already gives another meaning. `tools/acceptance-reconciliation.md` records every decision, and
+`tools/acceptance-map.json` tells the coordinator what each screen token becomes.
+
+- **New ids start at `A500`.** The screens used provisional ids up to `A428`, so no new id can be
+  mistaken for a provisional one. No existing id was renumbered.
+- **The feature column holds register ids** from `10-FEATURE-REGISTER.md`, not section 0.2 slugs.
+- **The test column is `T` plus the same three digits as the criterion**, proposed, not written.
+- **A `then` marked `Not yet checkable`** says what would make it checkable.
+
+### 12a.1 The five that encode the differentiation
+
+These must never regress silently. Each one names its red proof.
+
+id | feature | given | when | then | test | spec
+`A500` | `F276` | Every file in the pinned corpus, with a byte range `[s, e)` and a replacement `r` drawn from a fixed seed | The splice writer applies the replacement | The output bytes equal `input[0:s] + r + input[e:]` for every file and every seed, and one differing byte anywhere else fails the run. **Red proof: it must fail against a writer that re-serialises the file** | `T500` | `specs/engine/splice-writer`.
+`A501` | `F276` | A document and a captured range whose bytes changed after capture, or whose anchor occurs more than once | A splice is attempted through each caller: AI accept, queue accept, a conflict proposal and a decision-record write | Each call returns bytes equal to the input and a refusal code, and zero versions are written. **Red proof: it must fail against a build that re-resolves offsets or takes the first match** | `T501` | `specs/engine/splice-writer`.
+`A502` | `F280` | A document and one change from each source: a person's suggestion, an AI edit, an agent write through the API or the watched folder, a Tidy proposal and a conflict proposal | Each change is submitted and nobody presses Accept | The document bytes compare equal to the bytes before submission, exactly one change-queue item exists per change, and the accept handler is the only function whose call changes the bytes. **Red proof: a build with any auto-apply path must fail it** | `T502` | `12-screens/S20.md`.
+`A503` | `F216`, `F217` | A published page | `page.md` and `llms.txt` are requested with `curl -sI` four times: with no cookie, with an expired session cookie, with a crawler user agent, and with the owner over the published-pages cap | All eight responses are 200 with zero 3xx in the chain and no interstitial body, and `isPublicPath()` in `src/proxy.ts` returns true for both paths in a unit test | `T503` | `docs/mvp0/SCREEN-CHANGES-2026-09-18.md:325`.
+`A504` | `F276` | The pinned corpus and a fixed seed choosing 100 single-byte positions across it | For each position one byte is flipped and `npm run corpus` runs, then the byte is restored | All 100 mutated runs exit 1 and name the changed file, and the restored corpus exits 0. **This is `A010`'s red proof made repeatable** | `T504` | `specs/engine/splice-writer`.
+
+### 12a.2 From the screens
+
+id | feature | given | when | then | test | spec
+`A505` | `F101`, `F102` | A signed-out browser | The sign-in page loads | Both provider marks are inline `<svg>` elements, and the network log holds zero requests for an image or font serving either mark | `T505` | `12-screens/S01.md`.
+`A506` | `F101` | A signed-out browser | The sign-in page loads | The Google mark's `<svg>` carries exactly four distinct `fill` values, each equal to a value in the source file under `docs/mvp0/screens/icons/` | `T506` | `12-screens/S01.md`.
+`A507` | `F103` | Any route | It loads | The network log holds zero requests to `fonts.googleapis.com/icon` or for any font family containing `Material Symbols` | `T507` | `65-CONVENTIONS.md` section 9.
+`A508` | `F101` | A signed-out browser | The sign-in page finishes loading | `document.activeElement` is the Google button | `T508` | `12-screens/S01.md`.
+`A509` | `F101`, `F102` | The provider popup is open | The popup is closed without signing in | The sign-in card is in the DOM and both provider buttons have no `disabled` attribute | `T509` | `12-screens/S01.md`.
+`A510` | `F101` | A browser holding a valid session | The sign-in route is requested | The route is replaced by home and the sign-in card element is never inserted into the DOM, checked by a mutation observer from first byte | `T510` | `12-screens/S01.md`.
+`A511` | `F101` | A 390 px wide viewport | The sign-in page loads | The preview column has no rendered box, and `scrollWidth` is at or under `clientWidth` on the scrolling element | `T511` | `12-screens/S01.md`.
+`A512` | `F101` | A first sign-in whose profile write is made to fail | The provider returns success | No session cookie is set, and the store holds zero account records for that identity | `T512` | `12-screens/S01.md`.
+`A513` | `F105` | A signed-in account with zero documents | `/` is requested | The S02 root element is present and the S03 root element is absent | `T513` | `12-screens/S02.md`.
+`A514` | `F105` | Home, first run, at 1,440 px | It renders | Exactly five start cards are in the DOM, and exactly one carries the accent class | `T514` | `12-screens/S02.md`.
+`A515` | `F105` | Home, first run, at 390 px | It renders | Exactly four start cards are rendered, and `scrollWidth` is at or under `clientWidth` | `T515` | `12-screens/S02.md`.
+`A516` | `F121` | Home, first run | A folder is dropped on any point of the page | An import job is created for that folder, and the import panel opens | `T516` | `12-screens/S02.md`.
+`A517` | `F222` | A Free account on the seeded configuration | Home, first run, renders | The caps line's collaborator figure equals `limitsFor(account)` collaborators, and that value is 1 | `T517` | `12-screens/S02.md`.
+`A518` | `F105` | Home, first run | It finishes loading | `document.activeElement` is the first start card | `T518` | `12-screens/S02.md`.
+`A519` | `F105`, `F106` | An account with zero documents | One document is created and `/` is requested again | The S03 root element is present and the S02 root element is absent | `T519` | `12-screens/S03.md`.
+`A520` | `F106` | An account that opened documents X then Y | Home loads | The first recent row is Y | `T520` | `12-screens/S03.md`.
+`A521` | `F106` | A Pro account on the web, and any account on the desktop build | Home loads | The usage pill element is absent in both | `T521` | `12-screens/S03.md`.
+`A522` | `F106`, `F107` | The ideas-count request delayed by 10 s | Home loads | Before the count resolves, the recent list is rendered and a click on its first row navigates to that document | `T522` | `12-screens/S03.md`.
+`A523` | `F138` | A recent row | Every action in its menu is invoked in turn on a fresh fixture | No action removes the document from both the store and the trash; the only removing action moves it to the trash | `T523` | `12-screens/S03.md`.
+`A524` | `F106` | Home at 390 px | It renders | Project and owner render inside the row's subline element, and `scrollWidth` is at or under `clientWidth` | `T524` | `12-screens/S03.md`.
+`A525` | `F106` | An account with 200 documents | Home loads | Zero object reads for document bytes are made to storage, counted from the storage adapter's request log | `T525` | `12-screens/S03.md`.
+`A526` | `F118`, `F119` | The workspace | It renders | The left rail contains exactly two `button` elements | `T526` | `12-screens/S04.md`.
+`A527` | `F118`, `F121` | The workspace | Every control is enumerated and a folder is dropped on the tree | Exactly one Upload control exists, inside the Add file menu, and the drop creates the same import job as that control | `T527` | `12-screens/S04.md`.
+`A528` | `F121` | The workspace with no pointer over the tree and nothing focused | It renders | The drop hint has a rendered box and computed `visibility: visible` | `T528` | `12-screens/S04.md`.
+`A529` | `F120` | The workspace | It loads | The Ideas section has `aria-expanded="false"` and shows a count, and Notes has `aria-expanded="true"`, on the same load | `T529` | `12-screens/S04.md`.
+`A530` | `F122`, `F123` | The right rail with all four collapsible rows closed | It renders | All four rows sit above the outline, the outline fills the remaining height, and zero reads are issued for any closed row | `T530` | `12-screens/S04.md`.
+`A531` | `F122` | The workspace route | Its DOM is searched | The string `Shortcuts` occurs zero times in text nodes and in `title` and `aria-label` attributes | `T531` | `12-screens/S04.md`.
+`A532` | `F208` | The workspace header | It renders | The Share control has a non-empty accessible name and zero visible text characters | `T532` | `12-screens/S04.md`.
+`A533` | `F111` | The workspace header | It renders | It contains the brand mark element and zero wordmark elements | `T533` | `12-screens/S04.md`.
+`A534` | `F114`, `F116` | The workspace at 1,440 px | It renders | The tab strip's top edge is above the toolbar's, and the toolbar holds twelve tools in the order listed in `12-screens/S04.md` | `T534` | `12-screens/S04.md`.
+`A535` | `F253` | The workspace at 390 px | It renders | The toolbar holds exactly seven tools, and the mode segment is a descendant of the header | `T535` | `12-screens/S04.md`.
+`A536` | `F115` | Doc mode | The toolbar renders | A face selector and a size stepper are both direct children of the first-level toolbar, not inside More | `T536` | `12-screens/S05.md`.
+`A537` | `F115` | Doc mode | The face selector is opened | Exactly four options are listed | `T537` | `12-screens/S05.md`.
+`A538` | `F276` | A document, then one edit: a face change in Doc mode, or an accepted AI splice | Undo is pressed once | The bytes on disk compare equal to the bytes before the edit | `T538` | `12-screens/S05.md`.
+`A539` | `F112` | A document in Doc mode | A comment is added | The file's bytes compare equal to the bytes before, and the comment exists in the comment store | `T539` | `12-screens/S05.md`.
+`A540` | `F128` | The properties panel on a file with a nested key | Invalid YAML is submitted, then a valid edit to the nested key | The first returns a refusal and the bytes are unchanged; the second changes only the nested key's value bytes | `T540` | `12-screens/S05.md`.
+`A541` | `F112` | Doc mode | It renders | The right-rail element is absent | `T541` | `12-screens/S05.md`.
+`A542` | `F112`, `F240` | A Doc-mode document with a set face, colour and page setup | It is exported to PDF, then rendered at 390 px | The PDF's font name, text colour and page size equal the settings, and at 390 px comments render inside the drawer with `scrollWidth` at or under `clientWidth` | `T542` | `12-screens/S05.md`.
+`A543` | `F151` | The AI box in each of its states, on desktop and in the phone sheet | It renders | The target line is the first child element in every state | `T543` | `12-screens/S06.md`.
+`A544` | `F151` | A selection from offset 120 to 180 | The box opens | Before any network request, the target line contains the selected range | `T544` | `12-screens/S06.md`.
+`A545` | `F152` | Two fixtures: room below the content, and none | The box opens in each | Its top edge is below the content's bottom edge in the first, and its left edge is right of the content's right edge in the second | `T545` | `12-screens/S06.md`.
+`A546` | `F152` | A selection | The box opens | The box's bounding rectangle does not intersect any client rectangle of the selection | `T546` | `12-screens/S06.md`.
+`A547` | `F161` | Each AI failure path: provider refusal, chain exhausted, timeout, offline | It is forced | The rendered text includes the copy ids for document untouched and nothing charged | `T547` | `12-screens/S06.md`.
+`A548` | `F150` | The workspace | The AI box is opened | `location.pathname` is unchanged and the workspace root element is the same node before and after | `T548` | `12-screens/S06.md`.
+`A549` | `F155` | A collapsed selection, then a non-empty one | The menu chord is pressed in each | The menu is absent for the first and present for the second | `T549` | `12-screens/S07.md`.
+`A550` | `F155` | A non-empty selection | The menu opens | It lists exactly seven verbs in the order in `12-screens/S07.md`, with Refine first | `T550` | `12-screens/S07.md`.
+`A551` | `F154`, `F158` | The menu is open | Its foot is read | It contains the per-call cost, the ledger's remaining credits and the current provider's name, each equal to the stored value | `T551` | `12-screens/S07.md`.
+`A552` | `F155` | A selection | Summarise into a callout is accepted | The selection's bytes are still present and unchanged, and one `> [!` callout is inserted next to them | `T552` | `12-screens/S07.md`.
+`A553` | `F155` | A selection holding emphasis, links and a fenced block | Translate is accepted | The multiset of mark delimiters, every link target and every fence body compare equal before and after. **Red proof: it must fail against a build that sends the raw selection** | `T553` | `12-screens/S07.md`.
+`A554` | `F180` | An `fm-chart` block with no table above it | It renders | The block's source text is displayed, and the reason string's copy id is present | `T554` | `12-screens/S08.md`.
+`A555` | `F180` | An `fm-` block carrying a field the renderer does not know | It is parsed and serialised | The output bytes compare equal to the input | `T555` | `12-screens/S08.md`.
+`A556` | `F176` | A `> [!unknownkind]` callout | It renders | It renders as a `blockquote`, and its text content equals the source text without the marker | `T556` | `12-screens/S08.md`.
+`A557` | `F174` | A `mermaid` fence that fails to parse | It renders | The fence's source text is displayed in the block's place, and the block's rendered height is above zero | `T557` | `12-screens/S08.md`.
+`A558` | `F180` | A new chart inserted from the toolbar | The file is read | The fence's info string is exactly `fm-chart@1` | `T558` | `12-screens/S08.md`.
+`A559` | `F174`, `F180` | The production dependency tree | Licences are listed | Zero packages carry a GNU Affero General Public Licence (AGPL) identifier | `T559` | `12-screens/S08.md`.
+`A560` | `F113` | A viewport under the phone breakpoint | The mode segment renders | Split is absent or carries `aria-disabled="true"` | `T560` | `12-screens/S08.md`.
+`A561` | `F181` | A document with two H2 headings, each followed by two H3 headings | Flow view opens | Exactly two phase columns and four step cards render, with the heading texts in source order | `T561` | `12-screens/S09.md`.
+`A562` | `F181` | A document with no H2 | Flow view is selected | The Page view offer and its reason copy id are rendered, and no phase column is | `T562` | `12-screens/S09.md`.
+`A563` | `F181` | A document whose first heading is an H3 | Flow view opens | A leading column holds that step, and the count of rendered steps equals the count of H3 headings | `T563` | `12-screens/S09.md`.
+`A564` | `F181` | Two steps, one starting `[api]` and one with no bracket | Flow view opens | The first step renders one badge reading `api`, and the second renders zero badges | `T564` | `12-screens/S09.md`.
+`A565` | `F181` | A board wider than the viewport, with focus on it | The right arrow, then the left arrow, is pressed | `scrollLeft` increases after the first and decreases after the second | `T565` | `12-screens/S09.md`.
+`A566` | `F181` | Flow view open | The toolbar and the tree foot are read | The phase count and the step count are equal in both places, and both equal the heading counts in the file | `T566` | `12-screens/S09.md`.
+`A567` | `F181` | A step whose trailing reference names no existing document | Flow view opens | The reference renders as a text node with no enclosing `a` element | `T567` | `12-screens/S09.md`.
+`A568` | `F181` | Flow view open on the fixture used by the drawn example | Badge colours and legend entries are collected | Every badge colour drawn appears in the legend on the same screen | `T568` | `12-screens/S09.md`.
+`A569` | `F166` | The problems panel | It opens | The filter has exactly three segments, labelled All, Checks and Writing in that order | `T569` | `12-screens/S10.md`.
+`A570` | `F166` | A document with one structural finding and one advisory note | The panel opens on All | The two rows sit under different group headings, and the filter element is present | `T570` | `12-screens/S10.md`.
+`A571` | `F165` | An account and its ledger | The Checks segment runs | The ledger holds zero new entries and the credit balance is unchanged. **Red proof: it must fail against a build that routes a check through a model** | `T571` | `12-screens/S10.md`.
+`A572` | `F165` | The document shown in the drawn example, as a fixture | The checks run on it | The set of findings produced equals the set of findings drawn | `T572` | `12-screens/S10.md`.
+`A573` | `F168` | A document with three safe fixes | Fix all safe is pressed, confirmed, then undo is pressed once | The confirmation text contains the number 3 before any byte changes, and one undo restores the original bytes | `T573` | `12-screens/S10.md`.
+`A574` | `F168` | A document with a missing alt text, a broken link and a misspelling, and nothing else | Fix all safe is offered | Zero safe fixes are listed and the bytes are unchanged | `T574` | `12-screens/S10.md`.
+`A575` | `F165` | One check made to throw | The panel runs every check | Every other check's findings are present, and only the throwing check's findings are absent | `T575` | `12-screens/S10.md`.
+`A576` | `F165` | The network disabled | The Checks segment runs | It returns the same findings as with the network enabled | `T576` | `12-screens/S10.md`.
+`A577` | `F171` | A project with one instruction file of each relationship: source, import, copy and missing | The panel opens | Each row's relationship cell equals its fixture's relationship | `T577` | `12-screens/S11.md`.
+`A578` | `F172` | The S11 copy ids in `16-COPY-DECK.md` | They are searched | No string matches a claim of improved agent task success, by the pattern list kept beside the test. **Red proof: it must fail on a planted string** | `T578` | `12-screens/S11.md`.
+`A579` | `F172` | Instruction files for a tool with a known cap and a tool with none | The panel opens | The first row shows the cap for its tool only, and the second shows the copy id for unknown | `T579` | `12-screens/S11.md`.
+`A580` | `F171` | A tool that supports imports | Add as an import is pressed | The written file contains the import line and not the source file's body | `T580` | `12-screens/S11.md`.
+`A581` | `F172` | A copy carrying hand edits since generation | Regenerate is pressed | A refusal is returned, and the copy's bytes are unchanged | `T581` | `12-screens/S11.md`.
+`A582` | `F171` | The network disabled | Every control on the panel except Tidy is used | Each returns a result and none makes a network request | `T582` | `12-screens/S11.md`.
+`A583` | `F188` | The idea composer at 1,440 px | It renders | One centred column renders, with zero second columns and zero breadcrumb elements | `T583` | `12-screens/S12.md`.
+`A584` | `F189` | The idea composer, and the ideas empty state | Each renders | The three depths are the options of one control in each, and no route exists per depth | `T584` | `12-screens/S12.md`.
+`A585` | `F189` | The idea composer | The depth is changed through all three values | The bounding boxes of the composer and its bar row are identical after each change | `T585` | `12-screens/S12.md`.
+`A586` | `F188` | An idea typed into the composer | Everything except the send arrow is used | Zero model calls are made, counted at the router | `T586` | `12-screens/S12.md`.
+`A587` | `F188` | A typed idea and a send made to fail | The send arrow is pressed | The composer's value equals the typed text in full | `T587` | `12-screens/S12.md`.
+`A588` | `F200` | An attachment added to an idea | Its chip renders | The chip contains the copy id stating what the attachment will be used for | `T588` | `12-screens/S12.md`.
+`A589` | `F189` | An idea with three answers at Low | The depth is raised to Medium | All three answers are still stored with their values unchanged | `T589` | `12-screens/S12.md`.
+`A590` | `F154` | The idea composer | It renders | The rail foot credit count and the cost foot credit count are equal, and both equal the ledger | `T590` | `12-screens/S12.md`.
+`A591` | `F189` | The idea composer at 390 px | It renders | The depth pill is a descendant of the bar row | `T591` | `12-screens/S12.md`.
+`A592` | `F190` | A sent idea | Page one renders | The full question set is already stored, and zero model calls are made on arrival | `T592` | `12-screens/S13.md`.
+`A593` | `F191` | Pages one to three with page one answered | A branching question on page two is answered | Every answered question's stored text and answer are unchanged, and only questions on later pages differ | `T593` | `12-screens/S13.md`.
+`A594` | `F195` | Page one, then page two | Each renders | Skip and Choose the recommendation are present on both, and Skip all is absent on page one and present on page two | `T594` | `12-screens/S13.md`.
+`A595` | `F201` | The last question page | It renders | The fifteen file names are listed, and the ledger holds no blueprint entry yet | `T595` | `12-screens/S13.md`.
+`A596` | `F198` | A High-depth decision card | Its evidence rows are read | Every row's URL appears in the research pass's fetch log with a 200 status, and every row carries an opened date | `T596` | `12-screens/S14.md`.
+`A597` | `F195` | An idea with answers, skips and a rewrite, part way through | The page is reloaded | The same page renders, and every stored answer, skip and rewrite equals its value before the reload | `T597` | `12-screens/S14.md`.
+`A598` | `F201` | A finished blueprint | The file list and the manifest are compared | The two sets of paths are equal | `T598` | `12-screens/S15.md`.
+`A599` | `F203` | A revoked kit link | It is requested with `curl -sI` | The status is 404 or 410, and no response in the chain is a 3xx to sign-in | `T599` | `12-screens/S15.md`.
+`A600` | `F206` | A blueprint published as v1, then as v2 | The v1 link is requested | It answers 200 and its bytes hash to v1's printed hash | `T600` | `12-screens/S15.md`.
+`A601` | `F202` | A consistency check made not to run | The screen renders | The check renders the not-run state and zero passed marks | `T601` | `12-screens/S15.md`.
+`A602` | `F203`, `F204` | A kit with one manifest file missing | The screen renders | The link element and the hash element are both absent | `T602` | `12-screens/S15.md`.
+`A603` | `F186` | A built map | Each node's path is checked on disk | Every node's path exists as a file | `T603` | `12-screens/S16.md`.
+`A604` | `F186` | A kit with three data files | The map is built | The file count includes the three, and zero nodes have their paths | `T604` | `12-screens/S16.md`.
+`A605` | `F186` | A built map | The toolbar, tree foot and rail counts are read | The three values are equal and come from one function, checked by a spy that counts one call per render | `T605` | `12-screens/S16.md`.
+`A606` | `F186` | A built map | It is walked by Tab alone | Every node receives focus, and every node's accessible name contains its kind | `T606` | `12-screens/S16.md`.
+`A607` | `F187` | A built map, then a rebuild made to fail | The document is saved | The previous graph's nodes are still rendered, and the stale marker is present | `T607` | `12-screens/S16.md`.
+`A608` | `F186` | A built map | It renders | The graph is an inline `svg` element, and the map region contains zero `img` and zero `canvas` elements | `T608` | `12-screens/S16.md`.
+`A609` | `F208` | An address the directory reports as no account | Add is pressed | Zero people are added to the document's access list | `T609` | `12-screens/S17.md`.
+`A610` | `F210` | An invite accepted, then the invited person signing in three times | The ledger is read | Exactly one invite grant exists for each side, dated at the first sign-in | `T610` | `12-screens/S17.md`.
+`A611` | `F211` | The invite block and the referral entry point | Both render | They render the same component with equal terms strings | `T611` | `12-screens/S17.md`.
+`A612` | `F214` | A Free account | The link password switch is pressed | The switch stays off, no password is stored, and the plan page link is present | `T612` | `12-screens/S17.md`.
+`A613` | `F215` | A published page and a fresh browser | It loads | Zero requests to an auth, session or bot-detection endpoint start before first paint, from the network log | `T613` | `12-screens/S18.md`.
+`A614` | `F218` | The open-in bar dismissed on one page | Another page on the same origin loads | The bar element is absent | `T614` | `12-screens/S18.md`.
+`A615` | `F215` | A slug that was never published | The HTML route, `page.md` and `llms.txt` are requested with `curl -sI` | All three answer 404, and none answers a 3xx to sign-in | `T615` | `12-screens/S18.md`.
+`A616` | `F215` | A published page | Every link and button is enumerated | Exactly one control leads to sign-in, and it is Edit | `T616` | `12-screens/S18.md`.
+`A617` | `F214` | A password link and a slug that does not exist | A wrong password is submitted to each | The two response bodies and statuses are identical | `T617` | `12-screens/S18.md`.
+`A618` | `F221` | A live session with two editors making ten edits | The session saves | Every write passes through the splice writer, counted by a spy, and each save adds exactly one version | `T618` | `12-screens/S19.md`.
+`A619` | `F221` | A live session whose connection is dropped mid-edit | Typing continues | No dialog element opens, and every keystroke is in the saved bytes after reconnect | `T619` | `12-screens/S19.md`.
+`A620` | `F221` | A live session with avatars, cursors and highlights shown | The file is saved | The bytes contain none of the presence markers, compared against a save with presence off | `T620` | `12-screens/S19.md`.
+`A621` | `F221` | A remote edit that deletes the range under a remote cursor | The edit arrives | That cursor element is hidden until a new position arrives | `T621` | `12-screens/S19.md`.
+`A622` | `F221`, `F231` | Queued offline edits whose ranges no longer exist | The connection returns | The conflict screen opens, and the version store holds zero merged versions | `T622` | `12-screens/S19.md`.
+`A623` | `F156`, `F223` | An AI suggestion or a queue item showing Accept and Reject | It renders and Enter is pressed | Neither control is `document.activeElement` or has `autofocus`, and the Enter press changes no bytes and no queue state | `T623` | `12-screens/S20.md`.
+`A624` | `F225` | A queue holding AI and agent items | The filter is set to each position in turn | In every position, Accept all is absent or carries `aria-disabled="true"` whenever an AI or agent item is in the listed set | `T624` | `12-screens/S20.md`.
+`A625` | `F223` | A queue with one AI item | The rail renders | The item's diff element is rendered with no click | `T625` | `12-screens/S20.md`.
+`A626` | `F226` | A queue with three proposed spans on the open document | The rail opens | Exactly three highlight elements render in the document, one over each span's range | `T626` | `12-screens/S20.md`.
+`A627` | `F227` | A history with a person's version and an accepted AI edit | The list renders | Every row has a non-empty author cell, and the AI row's text contains the accepting person's name | `T627` | `12-screens/S21.md`.
+`A628` | `F228` | A document and one of its versions | Copy as new is pressed | The source document's bytes compare equal to before, and one new document exists | `T628` | `12-screens/S21.md`.
+`A629` | `F229` | A version outside the retention window | The screen renders | Its row text equals the out-of-window copy id, and the string `deleted` does not appear | `T629` | `12-screens/S21.md`.
+`A630` | `F228` | A diff with one added and one removed line | It renders with colour disabled | Each line still carries a text marker or an accessible name saying added or removed | `T630` | `12-screens/S21.md`.
+`A631` | `F234` | A project holding `a.md`, and an import containing a different `a.md` | The import runs | The original `a.md`'s bytes are unchanged, and the imported file exists under a second path | `T631` | `12-screens/S22.md`.
+`A632` | `F234` | A browser with no directory input support | Upload a folder is chosen | A file picker opens, and zero controls on the screen are left without an action | `T632` | `12-screens/S22.md`.
+`A633` | `F121` | The import screen | The drop area is reached by Tab and Enter is pressed | It receives focus and the Enter press opens the file picker | `T633` | `12-screens/S22.md`.
+`A634` | `F239` | An import of 100 files cancelled after 40 are written | The store is read | The 40 written files are present with their bytes, and zero further files are created | `T634` | `12-screens/S22.md`.
+`A635` | `F245` | The connections screen with every connection connected, then errored | Each state renders | The DOM contains zero strings matching the stored token or key values, checked against the fixture secrets | `T635` | `12-screens/S23.md`.
+`A636` | `F245` | Each unconnected card | It renders | The scope text element precedes the connect control in DOM order | `T636` | `12-screens/S23.md`.
+`A637` | `F245` | A connected GitHub repository and Drive folder | Disconnect is pressed on each | Our connection row is removed, a revoke call is recorded to the provider, and zero of the person's files or documents are deleted | `T637` | `12-screens/S23.md`.
+`A638` | `F246` | The agents card | It renders | Its text contains the copy id saying an agent may propose, and no string offers apply or publish to an agent | `T638` | `12-screens/S23.md`.
+`A639` | `F247` | Keystrokes typed offline | The page is reloaded with no connection | The editor's bytes equal the bytes typed before the reload | `T639` | `12-screens/S24.md`.
+`A640` | `F249` | A fresh page load | The page loads, then the person types | `navigator.storage.persist` is never called during load, and is first called inside a user-gesture handler | `T640` | `12-screens/S24.md`.
+`A641` | `F247` | Local storage made to throw on write | A key is typed | The interrupt element renders within the same task, and its text is the not-kept copy id | `T641` | `12-screens/S24.md`.
+`A642` | `F247`, `F250` | The repository at any commit | The persistence names are searched | The IndexedDB store `sgnk-md` with object store `drafts`, the key `sgnk-md:dirty`, the key `sgnk-md-editor-settings` and the Tauri bundle id `ai.sgnk.md` each appear at their use site, and a rename fails the test | `T642` | `AGENTS.md` section 8.
+`A643` | `F250` | A desktop account with one cloud project and one local folder | The tree renders | Both appear in one tree, under group labels that name cloud and local | `T643` | `12-screens/S25.md`.
+`A644` | `F250` | A local document | It is saved | The file on disk has the editor's bytes, compared byte for byte | `T644` | `12-screens/S25.md`.
+`A645` | `F252` | An update whose signature does not verify | The updater runs | The update is not installed and no prompt offering it is shown | `T645` | `12-screens/S25.md`.
+`A646` | `F252` | The platform rows | They render | Every row has a non-empty state cell and a non-empty reason cell | `T646` | `12-screens/S25.md`.
+`A647` | `F149` | The desktop app running in the background | The global chord is pressed | The box is visible within 100 ms at p95 over 100 samples, and zero network requests are made | `T647` | `12-screens/S26.md`.
+`A648` | `F149` | A destination note of N bytes | A capture is saved | The first N bytes of the note are unchanged, and the capture follows them | `T648` | `12-screens/S26.md`.
+`A649` | `F149` | Any capture path on this screen | A capture is saved | The ledger holds zero new entries and `limitsFor` is called zero times, counted by a spy | `T649` | `12-screens/S26.md`.
+`A650` | `F149` | A capture with suggested chips, none tapped | It is saved | The saved bytes contain none of the chips' text | `T650` | `12-screens/S26.md`.
+`A651` | `F149` | A capture whose save is made to fail | Save is pressed | The box is still open and its value equals the typed text | `T651` | `12-screens/S26.md`.
+`A652` | `F149` | A capture with typed text | Escape is pressed | The box closes and the destination note's bytes are unchanged | `T652` | `12-screens/S26.md`.
+`A653` | `F149` | A capture saved offline | The connection returns | The destination note ends with the captured text | `T653` | `12-screens/S26.md`.
+`A654` | `F255` | The installed web app on iOS | The capture screen renders | The share-route copy id saying it is absent is present, and no share control exists | `T654` | `12-screens/S26.md`.
+`A655` | `F149` | A global chord already claimed by another application | The desktop app launches | The named-conflict message element renders at launch | `T655` | `12-screens/S26.md`.
+`A656` | `F109` | No stored preference and the system set to dark | The page loads | The first painted frame has the dark background token, and no frame with the light background is painted | `T656` | `12-screens/S27.md`.
+`A657` | `F109` | Light mode | The theme toggle is pressed | `localStorage` key `sgnk-theme` and the `dark` class on `<html>` both change within the same task | `T657` | `12-screens/S27.md`.
+`A658` | `F109` | An account preference of dark and a second device with no local key and the system light | The account signs in there | The page renders dark | `T658` | `12-screens/S27.md`.
+`A659` | `F109` | A stored preference | Match the system is chosen | The `sgnk-theme` key is absent, and the theme follows the media query | `T659` | `12-screens/S27.md`.
+`A660` | `F109` | `localStorage` made to throw on every access | The page loads and the toggle is pressed | The page renders light, and the toggle changes the theme for the session | `T660` | `12-screens/S27.md`.
+`A661` | `F109` | The stylesheet | Custom properties under `:root` and under `.dark` are listed | Every token under `:root` has a counterpart under `.dark` | `T661` | `12-screens/S27.md`.
+`A662` | `F109` | Every screen's source | Colour literals are searched outside the token file | Zero hex, rgb or hsl colour literals are found | `T662` | `12-screens/S27.md`.
+`A663` | `F108` | Settings | Each of the ten slugs is requested, and each nav entry is clicked | All ten answer 200 and all ten nav entries reach their section | `T663` | `12-screens/S28.md`.
+`A664` | `F108` | A toggle changed on device one | Device one reloads, and device two signs in | Both read the changed value | `T664` | `12-screens/S28.md`.
+`A665` | `F108` | Settings with the network disabled | Every control is used | Every local preference changes, and every network-bound row carries `aria-disabled="true"` with a reason string | `T665` | `12-screens/S28.md`.
+`A666` | `F108`, `F257` | Settings | Every control is used | Zero writes reach the configuration store, counted at its adapter | `T666` | `12-screens/S28.md`.
+`A667` | `F108` | The delete-account control | It is pressed once, then confirmed with the wrong typed text | The account still exists after both | `T667` | `12-screens/S28.md`.
+`A668` | `F266`, `F270`, `F272` | A running deployment | A limit, a routing cell and the indexing flag are each changed in the configuration store | The next request reflects each change, with no deploy and no restart between, checked by the deployment id being unchanged | `T668` | `12-screens/S35.md`.
+`A669` | `F259` | A meter at 100 per cent | The screen renders | The meter carries the full marker and names the plan that lifts it, and every control on the screen is enabled | `T669` | `12-screens/S29.md`.
+`A670` | `F262` | A failed payment | The account signs in | The past-due line renders, and the document count and every document's bytes are unchanged | `T670` | `12-screens/S29.md`.
+`A671` | `F262` | The plan route | Its DOM is searched | Zero inputs have a card number, expiry or security code `autocomplete` value or name | `T671` | `12-screens/S29.md`.
+`A672` | `F263` | Every mandate the checkout can create | Their amounts are read | None exceeds ₹15,000 | `T672` | `12-screens/S29.md`.
+`A673` | `F230` | Two `portfolio.md` files with equal bytes, one typed by hand and one made from a template | Both are published | The two rendered HTML bodies compare equal | `T673` | `12-screens/S30.md`.
+`A674` | `F230` | A `portfolio.md` | It is parsed by a plain CommonMark parser with front matter support | Every heading and paragraph of the product's render is present in the plain parse, and the front matter parses as YAML | `T674` | `12-screens/S30.md`.
+`A675` | `F230` | A `portfolio.md` with a front matter key the product does not know | It is saved, then published | The stored bytes and the served `page.md` bytes both compare equal to the input | `T675` | `12-screens/S30.md`.
+`A676` | `F230` | A publish of `portfolio.md` | It completes | Zero build jobs are recorded, and the stored object for the page is the file itself | `T676` | `12-screens/S30.md`.
+`A677` | `F230` | A `portfolio.md` with no `handle` key | Publish is pressed | A refusal is returned and zero objects are written | `T677` | `12-screens/S30.md`.
+`A678` | `F230` | An existing `portfolio.md` | A template is applied | A refusal is returned and the file's bytes are unchanged | `T678` | `12-screens/S30.md`.
+`A679` | `F219` | A Free and a Pro portfolio | Both render, then the Pro entitlement is changed in the store | The made-with line is present on Free and absent on Pro, and it follows the stored entitlement on the next request | `T679` | `12-screens/S30.md`.
+`A680` | `F231` | A document with an open conflict | It is opened from the tree | The conflict screen renders and the editor root element is absent | `T680` | `12-screens/S31.md`.
+`A681` | `F233` | A proposal of three spans | One span is accepted | Only that span's range differs from the previous bytes, and the other two items are still queued | `T681` | `12-screens/S31.md`.
+`A682` | `F232` | A conflict, resolved once by each of the four resolutions on fresh fixtures | History is read after each | The version not chosen is present in history each time, with bytes equal to its side | `T682` | `12-screens/S31.md`.
+`A683` | `F232` | A conflict with one side unreadable | The screen renders | Zero keep controls render | `T683` | `12-screens/S31.md`.
+`A684` | `F232` | Every provider made to fail | Keep left, keep right and keep both are each used on fresh fixtures | Each completes, and the ledger is unchanged | `T684` | `12-screens/S31.md`.
+`A685` | `F280` | The full test suite | It runs | The merges-attempted counter reads zero at the end | `T685` | `12-screens/S31.md`.
+`A686` | `F161` | An AI call made to fail in each way: refusal, timeout, error chunk, chain exhausted | It returns | The document bytes compare equal to the bytes before the call | `T686` | `12-screens/S32.md`.
+`A687` | `F159`, `F161` | A chain of four providers, each made to fail differently | The screen renders | Four rows are listed in chain order, each with its own reason string | `T687` | `12-screens/S32.md`.
+`A688` | `F159` | A recorded Cloudflare `3036` response, and a recorded `3040` | Each is shown | The first renders the exhausted copy id with a 00:00 UTC reset, the second the transient copy id, and the two strings differ. **Red proof against a recorded response** | `T688` | `12-screens/S32.md`.
+`A689` | `F159` | A recorded exhaustion from a provider whose response carries no reset time, Cerebras among them | It is shown | No reset time element renders for that row | `T689` | `12-screens/S32.md`.
+`A690` | `F159` | A provider marked exhausted with a stated reset | Retry is pressed ten times before the reset | Zero requests reach that provider | `T690` | `12-screens/S32.md`.
+`A691` | `F194` | Idea mode with the chain down, and separately with the account over its allowance | The idea continues | The standard question set renders, zero model calls are made, and the ledger is unchanged | `T691` | `12-screens/S32.md`.
+`A692` | `F159` | A recorded stream answering 200, then an error chunk with no content | It is consumed | The call is recorded as failed, and none of its partial text reaches the document or the suggestion | `T692` | `12-screens/S32.md`.
+`A693` | `F260` | An account over its cap, with the chain healthy | An AI edit is attempted | S33 renders and S32 does not | `T693` | `12-screens/S32.md`.
+`A694` | `F161`, `F248` | The network disabled | An AI edit is attempted | The offline line renders, and the provider list element is absent | `T694` | `12-screens/S32.md`.
+`A695` | `F260` | An account over its published-pages cap with three live pages | Each page is requested | All three answer 200 | `T695` | `12-screens/S33.md`.
+`A696` | `F266`, `F260` | Accounts holding more than a new, lower limit | The limit is lowered and saved | Each affected account renders S33 on its next request, and its document count and bytes are unchanged. **Red proof: it must fail against a build that trims to the cap** | `T696` | `12-screens/S35.md`.
+`A697` | `F260`, `F161` | An account over its cap, with the chain down | An AI edit is attempted | **Not yet checkable:** S32 `A328` says an over-cap account never sees S32, and S33 `A337` says it does when the chain is down. The founders must pick the precedence; until then either result can be called a pass. Proposed assertion: S32 renders and S33 does not | `T697` | `12-screens/S33.md`.
+`A698` | `F259`, `F260` | A monthly cap and a standing cap, each exceeded | S33 renders for each | The monthly one shows a reset date element and the standing one shows none | `T698` | `12-screens/S33.md`.
+`A699` | `F207` | An account with no ideas | The ideas section is opened | Zero ideas and zero writes are recorded | `T699` | `12-screens/S34.md`.
+`A700` | `F207` | The example kit | It is opened | Fifteen files are listed, and the ledger is unchanged | `T700` | `12-screens/S34.md`.
+`A701` | `F189` | A Free account | The depth control is opened | Medium and High are listed, each carrying the Pro marker | `T701` | `12-screens/S34.md`.
+`A702` | `F189` | The empty state before submit | The depth is changed through all three values | Zero ideas and zero writes are recorded | `T702` | `12-screens/S34.md`.
+`A703` | `F207` | An account over its blueprint allowance | The empty state renders and the example is opened | Every section of the empty state renders, and the example lists fifteen files | `T703` | `12-screens/S34.md`.
+`A704` | `F207` | An account with no ideas | The section renders | Zero list elements render, and the empty-state element has non-empty text | `T704` | `12-screens/S34.md`.
+`A705` | `F267` | A lowered limit whose impact names K accounts | It is saved | Exactly those K accounts move over the cap, compared by account id | `T705` | `12-screens/S35.md`.
+`A706` | `F266` | A row read by one founder, then changed by another | The first founder saves | The save is refused, the refusal names the row, and the row keeps the second founder's value | `T706` | `12-screens/S35.md`.
+`A707` | `F268`, `F275` | A configuration save in S35, S36 or S37 whose audit write is made to fail, and one whose setting write is made to fail | Each is saved | In both cases neither the setting row nor an audit row is written | `T707` | `12-screens/S35.md`.
+`A708` | `F271`, `F273` | A provider whose stored terms record permits training on inputs | It is enabled, through the screen and through a direct write | Both are refused, and the refusal names the clause. **Red proof against a real clause quoted in `docs/mvp0/PRODUCT-PLAN.md` section 14** | `T708` | `12-screens/S36.md`.
+`A709` | `F270` | A routing cell | Its cost is read | It equals the token shape multiplied by the stored model price, and the component source holds no cost literal | `T709` | `12-screens/S36.md`.
+`A710` | `F269` | A provider that reports no remaining pool | Its row renders | The pool cell equals the ledger's count and carries the copy id saying it is ours | `T710` | `12-screens/S36.md`.
+`A711` | `F269` | Fourteen model rows at 1,440 px | The screen renders | Every row's text is untruncated, with `scrollWidth` equal to `clientWidth` on every cell and on the page | `T711` | `12-screens/S36.md`.
+`A712` | `F269` | A chain with one enabled provider | It is disabled and saved | The save is refused and the provider stays enabled | `T712` | `12-screens/S36.md`.
+`A713` | `F269` | A chain order shown on the screen | Every provider is made to fail and the router's attempts are logged | The logged order equals the shown order | `T713` | `12-screens/S36.md`.
+`A714` | `F269`, `F161` | A provider disabled on S36 | S32 renders after a failed call | That provider appears in no row | `T714` | `12-screens/S36.md`.
+`A715` | `F272` | The repository at any commit | Feature availability checks are searched | Every one reads the flag through the one flag gate, and zero components decide availability from a constant | `T715` | `12-screens/S37.md`.
+`A716` | `F273` | A locked flag | A write is attempted through the screen and through a direct server call | Both are refused, and the writer's accepted id list does not contain the locked id | `T716` | `12-screens/S37.md`.
+`A717` | `F272` | A flag turned off | Each screen it governs is requested | Each answers 200 with the explanation copy id, and none answers 404 | `T717` | `12-screens/S37.md`.
+`A718` | `F273` | The training row and the sign-in page | Their promise text is read | Both render the same copy id | `T718` | `12-screens/S37.md`.
+`A719` | `F272` | A running live session | Live editing is turned off | The session stays connected and its next edit saves | `T719` | `12-screens/S37.md`.
+`A720` | `F273` | The locked block made unreadable | The screen renders | The locked block element is absent | `T720` | `12-screens/S37.md`.
+`A721` | `F274` | An exception grant with no expiry | It is saved | The save is refused and no grant is stored | `T721` | `12-screens/S38.md`.
+`A722` | `F274` | The accounts screen | Every control is used | Zero writes reach a plan row, counted at the configuration adapter | `T722` | `12-screens/S38.md`.
+`A723` | `F258` | The accounts screen | Its meters and ledger render | Every figure equals the usage ledger's value, and the component source contains no summing code over ledger rows | `T723` | `12-screens/S38.md`.
+`A724` | `F275` | The audit log | An update and a delete are attempted on a row through the panel and through a direct server call | All four are refused and the row is unchanged | `T724` | `12-screens/S38.md`.
+`A725` | `F274` | A search string matching no account exactly | It is submitted | Zero results render | `T725` | `12-screens/S38.md`.
+
 ---
 
 ## 13. Counts
@@ -374,9 +625,10 @@ grep -E '^`A[0-9]{3}` \|' docs/pack/19-ACCEPTANCE-CRITERIA.md \
   | grep -cE '\| `(test/|scripts/|docs/mvp0/screens/gen)'
 ```
 
-- **129 criteria.**
+- **355 criteria**: 129 written first, and 226 added in section 12a on 18 September.
 - **12 distinct real test paths.**
-- **19 criteria carry one.** The remaining 110 carry a `T` id and do not exist.
+- **19 criteria carry one.** The remaining 336 carry a `T` id and do not exist.
+- **One criterion is marked `Not yet checkable`**, in section 12a.2, because two screens disagree.
 
 **That ratio is the honest state of the product.** The engine has tests; almost nothing else does.
 
@@ -394,7 +646,14 @@ grep -E '^`A[0-9]{3}` \|' docs/pack/19-ACCEPTANCE-CRITERIA.md \
 - **What would falsify it.** The register changing which features a slug reaches, which is its call
   and not this file's. Or the NF-1 and NF-3 fixes landing, which change `A013`, `A016` and `A017` on
   the day they do.
-- **One thing a reader must not conclude.** A criterion here is not a passing test. **129 criteria,
+- **Section 12a changes the coverage figure above and does not re-derive it.** Its 226 rows cite
+  register ids directly, including the portfolio (`F230`) and the payment rows (`F262`, `F263`), but
+  the register's `acceptance` column does not list `A500` onward yet. The 43 is the register's count
+  from before section 12a, and that file owns the recount.
+- **Section 12a's rows were drafted from the screens' own wording**, one screen at a time. Where a
+  screen's row carried two facts, the second fact's home is named in `tools/acceptance-reconciliation.md`
+  section 4, not added to the screen.
+- **One thing a reader must not conclude.** A criterion here is not a passing test. **355 criteria,
   19 of them covered by a real test** is the number that matters, and section 13 gives the commands
   that re-derive it rather than asking anyone to trust this sentence.
 - **The rule this file exists to enforce, restated.** If a criterion cannot be checked by a machine,
