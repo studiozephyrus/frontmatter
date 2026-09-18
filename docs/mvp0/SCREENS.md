@@ -1,6 +1,6 @@
 ---
 title: frontmatter, the screens
-version: v6, 17 September 2026
+version: v8, 18 September 2026
 status: the final screens, for printing
 ---
 
@@ -19,21 +19,21 @@ status: the final screens, for printing
 Area | What is in it
 The door | Sign in with Google or GitHub, one tap. Home with five ways to start. Settings on the account
 Writing | Markdown mode and Doc mode in one Live editor. Four modes: Edit, Live, Reading, Split. The twelve-button toolbar. Tabs. A rail with the outline, tags, backlinks and comments in it. Dark mode
-Help while writing | An AI box on an empty document. Seven AI verbs on a selection, with accept and reject in place. A problems panel and a formatter. A health panel for instruction files
-Blocks and views | Tables, callouts, Mermaid, maths, a chart block that reads the table above it, an Excalidraw drawing block. A document viewed as a page, a flow, slides, a mind map, a kanban or an outline. The project map
-Ideas | A separate tab. Ideas listed with their state. An industry template. Three depths: Low free, Medium and High on Pro. A blueprint of fifteen files in a skill folder, with a consistency check, an unlisted link, a hash printed on the page and a kickoff prompt that checks it
-Sharing | People with roles. Links that expire, and on Pro need a password. Published pages with a markdown twin. Live editing with three people on Free. A change queue for every change by a person, an AI edit or an agent. Document history
+Help while writing | An AI box on an empty document. Seven AI verbs on a selection, with accept and reject in place. A problems panel and a formatter. The whole set of instruction files an agent reads
+Blocks and views | Tables, callouts, Mermaid, maths, a chart block that reads the table above it, an Excalidraw drawing block. A document viewed as a page, slides, a mind map, a kanban or an outline; the flow view is deferred. The project map
+Ideas | A collapsed section at the foot of the workspace tree. Ideas listed with their state. An industry template. Three depths: Low free, Medium and High on Pro. A blueprint of fifteen files in a skill folder, with a consistency check, an unlisted link, a hash printed on the page and a kickoff prompt that checks it
+Sharing | People with roles. Links that expire, and on Pro need a password. Published pages with a markdown twin. Live editing with one collaborator on Free. A change queue for every change by a person, an AI edit or an agent. Document history
 In and out | Drop files or a whole folder. Import from Obsidian, Notion, Google Docs or Word. GitHub connected as an app, Google Drive as two-way sync. Export to markdown, HTML, Word or PDF
 Everywhere | Offline in the browser. The desktop app, with files on disk and no document limit. The phone, with a bottom bar, drawers, quick capture and the share sheet
 Configuration | What each plan allows, the model routing, the provider chain and four feature flags, all set from a panel rather than from the source. Founders only
-Money | Free: 50 cloud documents, 1 GB of uploads, 5 published pages, 3 live collaborators, 7-day history, 1 repository with 20 pushes, 1 Low blueprint and 10 AI edits a month. Pro at ₹299 a month: unlimited, 90-day history, password links, Medium and High, 100 edits and 5 blueprints on Claude, the portfolio
+Money | Free: 50 cloud documents, 1 GB of uploads, 5 published pages, 1 live collaborator, 7-day history, 1 repository with 20 pushes, 1 Low blueprint and 10 AI edits a month. Pro at ₹299 a month: unlimited, 90-day history, password links, Medium and High, 100 edits and 5 blueprints on Claude, the portfolio
 Later | The portfolio at frontmatter.in/@handle, the MCP server and API, Team, a custom domain, kanban and chart blocks
 
 ## 2. Reading the screens
 
-- **Thirty-eight screens.** Thirty-four are the product. The last four are the configuration panel, which only a founder sees.
+- **Thirty-eight screens.** Thirty-four are the product. The last four are the configuration panel, which only a founder sees. Four screens carry a second or third frame for a state the founders asked to see.
 - **Each screen** shows the desktop at 1,440 by 900 beside the phone at 390 by 844, both drawn from the design tokens of the shipped app, and then lists what is on it.
-- **The phone follows the shipped code:** a 52 px bar, the editor full width, and the tree and the right pane as drawers.
+- **The phone follows the shipped code and carries the desktop's theme:** the mark, the title with its project, the editor full width, and the tree and the right pane as drawers.
 - **The bottom bar** carries five actions at thumb height: Home, Search, AI, Outline and More, in that order.
 - **The order follows a person's day:** sign in, write, decide, share, bring things in, use it everywhere, and then the states nobody wants to see.
 - **The reasons behind each screen** are in the product guide, sections 21 and 22. This sheet shows only what a person sees.
@@ -62,7 +62,7 @@ Later | The portfolio at frontmatter.in/@handle, the MCP server and API, Team, a
 
 <div class="pair"><img src="screens/s03-home.png"><img src="screens/s03-home-phone.png"></div>
 
-- Recent documents with project, opened and owner. The Ideas tab carries a count.
+- Recent documents with project, opened and owner. The Ideas count sits on the home tabs; in the workspace, ideas are a section of the tree.
 - A quiet pill shows cloud documents used against the cap.
 - The phone shows four starts and the list.
 
@@ -78,12 +78,21 @@ Later | The portfolio at frontmatter.in/@handle, the MCP server and API, Team, a
 - **Every collapsible is at the top of the right rail**, closed, so the outline takes the height and the AI panel has room to open below `[Z]`.
 - Shortcuts is gone. The tree shows all fifteen blueprint files (F019). The history row reads "7 days" on Free (F018).
 - The phone keeps the toolbar to seven tools and puts the mode segment in the header.
+- **The AI launch works like Notion's.** A small Ask AI button floats at the bottom right of the document, and Space on an empty line does the same. It opens the AI box over the workspace, anchored under the block being worked on, rather than taking a row of the layout. The rail keeps only the credit meter `[Z]`.
+
+<div class="pair"><img src="screens/s04-workspace-add.png"><img src="screens/s04-workspace-add-phone.png"></div>
+
+- **The Add file menu:** New document, Upload files, Upload a folder, and Import from. On the phone it is a sheet with Add idea at the foot.
+
+<div class="pair"><img src="screens/s04-workspace-ai.png"><img src="screens/s04-workspace-ai-phone.png"></div>
+
+- **The AI box open over the workspace.** The paragraph it will touch is tinted, the first line names the document and the section, and the common verbs sit under the input with their cost.
 
 ### S05. Doc mode
 
 <div class="pair"><img src="screens/s05-doc-mode.png"><img src="screens/s05-doc-mode-phone.png"></div>
 
-- The Google-Docs-shaped toolbar's first level: style, bold, italic, underline, strikethrough, lists, checklist, image, table, link, comment, page break. Font, size, colour, highlight and alignment sit behind More (F020).
+- The Google-Docs-shaped toolbar's first level: style, bold, italic, underline, strikethrough, lists, checklist, image, table, link, comment, page break. **Font face and size sit on this first level**, a short list of fonts and a size stepper `[Z]`. Colour, highlight and alignment sit behind More (F020).
 - A paper surface with a ruler. Comments in the margin. Suggesting mode.
 - One toast, once: Doc mode is a view; the file is still 00-BRIEF.md; page setup lives in its front matter; colours and fonts render here and export to PDF only.
 
@@ -97,6 +106,10 @@ Later | The portfolio at frontmatter.in/@handle, the MCP server and API, Team, a
 - One box on an empty document. Four chips for the common asks. A second row for the other ways to start.
 - The cost is stated before the click: one edit credit, seven of ten left. The rail counts are zero on an empty document (F022).
 - Taking it to Ideas is a chip, not a second product.
+
+<div class="pair"><img src="screens/s06-ai-writing-idea.png"><img src="screens/s06-ai-writing-idea-phone.png"></div>
+
+- **Beside the content, on an idea.** On a page that already has text the box opens to the right of it. Working on an idea, the first line reads Idea and the idea's name, and it stays pinned while the idea is open. The idea itself is open from the Ideas section of the tree.
 
 ### S07. AI edit
 
@@ -118,6 +131,7 @@ Later | The portfolio at frontmatter.in/@handle, the MCP server and API, Team, a
 
 <div class="pair"><img src="screens/s09-flow-view.png"><img src="screens/s09-flow-view-phone.png"></div>
 
+- **Deferred to Later by the founder, 18 September.** Drawn for the record, not built in MVP 0 `[Z]`.
 - View as: Page, Flow, Slides, Mind map, Kanban, Outline.
 - Flow reads the document as phases and steps: an H2 is a phase, an H3 is a step, a bracketed first word is the tag, a trailing line is the reference.
 - A legend for the lanes. Scrolls sideways with the arrow keys.
@@ -136,8 +150,9 @@ Later | The portfolio at frontmatter.in/@handle, the MCP server and API, Team, a
 
 <div class="pair"><img src="screens/s11-instruction-files.png"><img src="screens/s11-instruction-files-phone.png"></div>
 
-- AGENTS.md with a health panel: one file imported not copied, size under the 32 KiB cap, setup commands present, claims not verified this week.
-- The agents that read it. The tree shows the full kit (F019).
+- **The whole instruction-file set, not one file** `[Z]`: AGENTS.md as the source, CLAUDE.md as a one-line import, and the copies for Copilot, Cursor and Gemini, each with the tools that read it.
+- A copy that has drifted from the source is flagged, and a missing one is named. The tree shows the full kit (F019).
+- The panel says a file is correct. It never claims that tidying it makes an agent better, because two studies found these files do not raise task success `[O]`.
 - Tidy this file, one credit.
 
 ## 5. Ideas
@@ -146,7 +161,8 @@ Later | The portfolio at frontmatter.in/@handle, the MCP server and API, Team, a
 
 <div class="pair"><img src="screens/s12-ideas.png"><img src="screens/s12-ideas-phone.png"></div>
 
-- Ideas listed on the left with their state: draft, decided so far, blueprint version.
+- **Inside the workspace.** Ideas is the collapsed section at the foot of the tree; opening it lists the ideas with their state (draft, decided so far, blueprint version), and a new idea opens as a tab like a document `[Z]`.
+- One centred column and one input, the way Claude and ChatGPT start. No step breadcrumb.
 - The idea, an attached drawing, a document or a repository. An industry template, or one generated for your industry. The drawing is described in the frontend spec the kit now carries (F025).
 - The depth chooser: Low free, Medium Pro, High Pro plus credits. Start at Low and go deeper later without losing answers.
 
@@ -165,6 +181,8 @@ Later | The portfolio at frontmatter.in/@handle, the MCP server and API, Team, a
 - Only the recommended option carries its reason. Not sure is a quiet link, not a third option in every card.
 - Not sure records the question as open and takes the recommendation for now; DECISIONS.md carries it as open, not as decided.
 - The blueprint's fifteen files are listed before a credit is spent.
+- **Use a standard question set** is a switch under the page controls, off by default. It is the fallback when the model layer is degraded or the rewrites are spent, and it shows how many rewrites are left on Free.
+- **The phone carries the same controls as the desktop**: Skip and Choose recommendation, then Next, pinned to the foot of the screen, with Skip all added from page two.
 
 ### S14. Idea mode, Medium and High
 
@@ -205,6 +223,10 @@ Later | The portfolio at frontmatter.in/@handle, the MCP server and API, Team, a
 - A link that can read, expire, or need a password on Pro.
 - The published page toggle, with pages used against the cap.
 
+<div class="pair"><img src="screens/s17-share-referral.png"><img src="screens/s17-share-referral-phone.png"></div>
+
+- **The same modal after sign-up.** The invited person lands on the shared document with a welcome that says both sides got the credits, and a field to invite someone of their own. Nothing is sent until they press Send `[Z]`.
+
 ### S18. Published page
 
 <div class="pair"><img src="screens/s18-public-view.png"><img src="screens/s18-public-view-phone.png"></div>
@@ -214,7 +236,11 @@ Later | The portfolio at frontmatter.in/@handle, the MCP server and API, Team, a
 - **`page.md` and `llms.txt` are never gated, never redirected and never given an interstitial.** That rule is absolute and covers every non-HTML route (F076).
 - **The sign-in boundary is editing, not reading.** A reader who presses Edit meets sign-in, which costs nothing at the top of the funnel.
 - The footer carries Report, Privacy, Terms and the `.md` twin (F033).
-- The phone shows the password gate a reader meets on a protected link, with the same footer.
+- On the phone the same bar opens out into the ladder: open in the app, open in frontmatter, or continue in browser `[Z]`.
+
+<div class="pair"><img src="screens/s18-public-view-password.png"><img src="screens/s18-public-view-password-phone.png"></div>
+
+- **A password link**, which is Pro: the gate a reader meets on a protected link, with the same footer. The published page itself never has one.
 
 ### S19. Live collaboration
 
@@ -240,6 +266,7 @@ Later | The portfolio at frontmatter.in/@handle, the MCP server and API, Team, a
 - Every version with its author, including the AI edit and the blueprint write.
 - A diff against the current version. Restore, or copy as a new document.
 - Seven days on Free, 90 on Pro.
+- **A People and AI filter**, the same as S20's, because history mixes the two `[Z]`.
 
 ## 7. Bringing things in and out
 
@@ -328,13 +355,15 @@ Later | The portfolio at frontmatter.in/@handle, the MCP server and API, Team, a
 - Keep left, keep right, or keep both as two files. The other version is always in history.
 - **Let AI decide** is offered alongside those, not hidden. It proposes a merge, and that proposal enters the change queue like any other, to be accepted or rejected span by span `[Z]`. It never writes straight to the file, because no silent merge is a law and this is exactly the case it exists for.
 - The same screen serves a Drive edit against a web edit and a desktop edit against a GitHub change.
+- The phone carries Let AI decide beside Keep both, so it is not hidden there either.
 
 ### S32. AI unavailable
 
 <div class="pair"><img src="screens/s32-ai-unavailable.png"><img src="screens/s32-ai-unavailable-phone.png"></div>
 
 - The AI box when every provider in the chain has refused or timed out: the document is untouched, nothing was charged, try again in a minute, or on the desktop use the local model.
-- The status of each provider in the chain, so the person knows it is not their document.
+- The status of each provider in the chain, in its real order with OpenRouter in it, so the person knows it is not their document.
+- For an idea, one more path: use the standard question set, which needs no model.
 
 ### S33. Over the cap
 
@@ -348,7 +377,8 @@ Later | The portfolio at frontmatter.in/@handle, the MCP server and API, Team, a
 
 <div class="pair"><img src="screens/s34-ideas-empty.png"><img src="screens/s34-ideas-empty-phone.png"></div>
 
-- The Ideas tab before the first idea: what a blueprint is in one line, the three depths in one line each, and one box to start.
+- The Ideas section before the first idea, drawn in the workspace like S12: the same centred column and input with the depth selector, what a blueprint is in one line, and no step breadcrumb.
+- The empty state says in plain words that a folder of notes can be dropped here to start from.
 - One hand-made example kit to open and read, so the person sees the fifteen files before spending a credit.
 
 ## 11. The configuration panel, which only a founder sees
@@ -360,6 +390,7 @@ Later | The portfolio at frontmatter.in/@handle, the MCP server and API, Team, a
 - Every limit in one table, Free against Pro, each cell editable. This row is what the product reads; there is no second copy in the source.
 - Saving says how many accounts the change moves over their cap, and names them, before it writes.
 - Each row carries its own last change: who, from what, to what, and when.
+- **Three rows from the review of 18 September:** question rewrites a blueprint (3 on Free, unlimited on Pro), invite credits to each side (5), and the standard question set, which is the fallback and on for both plans.
 
 ### S36. Configuration, models and providers
 

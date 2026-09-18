@@ -1940,7 +1940,7 @@ const LIMITS = [
   ['Standard question set', 'Fallback, on', 'Fallback, on', ''],
 ];
 const CFG_TABLE = `<table class="cfgt"><thead><tr><th style="width:38%">Limit</th><th>Free</th><th>Pro</th><th style="width:26%">Last change</th></tr></thead><tbody>
-${LIMITS.map(([k, f, p, w], i) => `<tr><td class="lim">${k}</td><td><span class="cfgv${i === 5 ? ' ed' : ''}">${f}</span></td><td><span class="cfgv inf">${p}</span></td><td style="font-size:11.5px;color:var(--muted)">${w || '—'}</td></tr>`).join('\n')}
+${LIMITS.map(([k, f, p, w], i) => `<tr><td class="lim">${k}</td><td><span class="cfgv${i === 5 ? ' ed' : ''}">${f}</span></td><td><span class="cfgv inf">${p}</span></td><td style="font-size:11.5px;color:var(--muted)">${w || 'Not changed'}</td></tr>`).join('\n')}
 </tbody></table>`;
 screen('s35-config-plans', 'Configuration, plans and limits', `<div class="app">
 ${cfgTop}

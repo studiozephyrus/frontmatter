@@ -237,10 +237,10 @@ Section 28's pilot and Phase 0's twenty hand-made kits are the first of those.
 Where it lands | Decision | Signal
 Front door | Sign in first. No anonymous editing. Google or GitHub, one tap, no password, no puzzle | `[Z]` the founders chose the Google Docs model. `[M]` four of five UX sources argue for delaying sign-in, so the sign-in must cost one tap and nothing else
 Free and Pro | Every editing feature is free. Sharing controls (password links), idea depth (Medium and High), identity (the portfolio) and branding removal are Pro. Quantities are capped on Free | `[Z]` the founders' rule was "every feature free, quantities capped"; the plan narrows it to these four exceptions and records that in section 29 (F003)
-Free caps | 50 cloud documents, 1 GB of uploads at 5 MB a file, 5 published pages, 3 live collaborators, 7-day history, 1 GitHub repository with 20 pushes a month, 1 Low blueprint and 10 AI edits a month | `[M]` 50 is the market floor (Nuclino, Evernote, UpNote); 1 GB is Craft's free storage; 3 is HackMD's "3 invitees" and AFFiNE's "Up to 3 members"; 7 days is Notion's, Craft's and AFFiNE's history; 20 pushes is HackMD's exact free quota. The founders' candidates of 5, 2 and 1 are below every comparable, section 13
+Free caps | 50 cloud documents, 1 GB of uploads at 5 MB a file, 5 published pages, 1 live collaborator, 7-day history, 1 GitHub repository with 20 pushes a month, 1 Low blueprint and 10 AI edits a month | `[M]` 50 is the market floor (Nuclino, Evernote, UpNote); 1 GB is Craft's free storage; 1 live collaborator is the founders' decision of 18 September on cost, below HackMD's "3 invitees" and AFFiNE's "Up to 3 members"; 7 days is Notion's, Craft's and AFFiNE's history; 20 pushes is HackMD's exact free quota. The founders' candidates of 5, 2 and 1 are below every comparable, section 13
 Pro | ₹299 a month or ₹2,499 a year, GST inclusive. Unlimited documents, pages and collaborators, 25 MB a file and 10 GB, 90-day history, password links, 5 blueprints at any depth and 100 edits, the portfolio. Edits on Haiku 4.5, blueprints on Sonnet 5 through the batch API | `[Z]` price. `[M]` the first paid tier across peers runs from $1.99 to $10; ₹299 is about $3.12, section 13. `[O]` the routing is the default that keeps a margin, section 14 and founder question 2
 Idea mode | Three depths. Low is free with 10 to 15 questions and a recommendation each. Medium is Pro with 20 to 30 questions, each showing where it stands and what forces the choice. High adds a research pass with sources opened and dated. Not sure is recorded as open, not as a decision | `[Z]` the founders' Low, Medium and High. `[R]` the decision-card shape is our own decisions site. `[M]` PAIR on not laundering the model's choice
-Doc mode | A Google-Docs-shaped surface inside Live. Ships the 20 lossless features and 15 extensions, refuses the 29 that cannot live in a text file. Font, size, colour, highlight and alignment sit behind More, not in the first level | `[M]` Google's own rule when exporting to markdown: "Font colors, highlights, and text alignment are removed" (F020)
+Doc mode | A Google-Docs-shaped surface inside Live. Ships the 20 lossless features and 15 extensions, refuses the 29 that cannot live in a text file. Font face and size sit on the Doc mode bar itself, from a short list of fonts; colour, highlight and alignment sit behind More | `[M]` Google's own rule when exporting to markdown: "Font colors, highlights, and text alignment are removed" (F020)
 Sharing | Expiring links are free. Password links are Pro. Every published page carries Report, Privacy and Terms | `[M]` Dropbox, Figma and Loom sell passwords; Bitwarden gives free expiry with a 7-day default. `[L]` the intermediary duties in section 23
 GitHub | Free with a quota, unlimited on Pro, as a GitHub App with the Contents permission, which GitHub grants for the whole repository; frontmatter writes only under docs/ by its own rule, tested | `[M]` HackMD's exact model. `[M]` GitHub: "select the minimum permissions required for the app" (F034)
 Google Drive | Free. Two-way sync of the files the app created or you picked, with the `drive.file` scope, polled every five minutes | `[M]` the scope is non-sensitive; at a five-minute poll one project serves 13,201 connected users (F027)
@@ -278,7 +278,7 @@ Later, named | A Max tier above Pro; a community as an opt-in index plus GitHub 
 1. The AI box on an empty document.
 2. The AI menu on a selection.
 3. The problems panel.
-4. The instruction-file health panel.
+4. The instruction-file set: every file an agent reads, which tool reads it, and whether the copies agree.
 
 **Ideas.** A collapsed section at the foot of the workspace tree, the way the outline sits on the right. There is no separate tab or route `[Z]`.
 
@@ -369,7 +369,7 @@ Later, named | A Max tier above Pro; a community as an opt-in index plus GitHub 
 
 <div class="pair"><img src="screens/s05-doc-mode.png"><img src="screens/s05-doc-mode-phone.png"></div>
 
-- The Google-Docs-shaped toolbar's first level: style, bold, italic, underline, strikethrough, lists, checklist, image, table, link, comment, page break. Font, size, colour, highlight and alignment sit behind More (F020).
+- The Google-Docs-shaped toolbar's first level: style, bold, italic, underline, strikethrough, lists, checklist, image, table, link, comment, page break. **Font face and size sit on this first level**, a short list of fonts and a size stepper `[Z]`. Colour, highlight and alignment sit behind More (F020).
 - A paper surface with a ruler. Comments in the margin. Suggesting mode.
 - One toast, once: Doc mode is a view; the file is still 00-BRIEF.md; page setup lives in its front matter; colours and fonts render here and export to PDF only.
 
@@ -420,6 +420,7 @@ Later, named | A Max tier above Pro; a community as an opt-in index plus GitHub 
 
 <div class="pair"><img src="screens/s09-flow-view.png"><img src="screens/s09-flow-view-phone.png"></div>
 
+- **Deferred to Later by the founder, 18 September.** Drawn for the record, not built in MVP 0 `[Z]`.
 - View as: Page, Flow, Slides, Mind map, Kanban, Outline.
 - Flow reads the document as phases and steps: an H2 is a phase, an H3 is a step, a bracketed first word is the tag, a trailing line is the reference.
 - A legend for the lanes. Scrolls sideways with the arrow keys.
@@ -442,8 +443,9 @@ Later, named | A Max tier above Pro; a community as an opt-in index plus GitHub 
 
 <div class="pair"><img src="screens/s11-instruction-files.png"><img src="screens/s11-instruction-files-phone.png"></div>
 
-- AGENTS.md with a health panel: one file imported not copied, size under the 32 KiB cap, setup commands present, claims not verified this week.
-- The agents that read it. The tree shows the full kit (F019).
+- **The whole instruction-file set, not one file** `[Z]`: AGENTS.md as the source, CLAUDE.md as a one-line import, and the copies for Copilot, Cursor and Gemini, each with the tools that read it.
+- A copy that has drifted from the source is flagged, and a missing one is named. The tree shows the full kit (F019).
+- The panel says a file is correct. It never claims that tidying it makes an agent better, because two studies found these files do not raise task success `[O]`.
 - Tidy this file, one credit.
 
 **Why.** `[M]` AGENTS.md is used by over 60,000 projects. `[O]` all six of our own dual-file repositories use the import, so the tool teaches the import rather than diffing two copies.
@@ -917,7 +919,7 @@ Google's markdown export | "Font colors, highlights, and text alignment are remo
 ## 8. What a document can become
 
 Representation | Renderer | Licence | Signal | Ships
-Flow view | Ours: H2 as phase, H3 as step, bracketed tag, trailing reference | Ours | `[Z]` the founders' flow site | MVP 0
+Flow view | Ours: H2 as phase, H3 as step, bracketed tag, trailing reference | Ours | `[Z]` the founders' flow site | Later, deferred by the founder on 18 September
 Diagrams | Mermaid, 90,268 stars, 12,122,962 weekly downloads, block, architecture and kanban types now exist | MIT | Renders on GitHub, Obsidian and HackMD | Ships today
 Drawing and canvas | Excalidraw, 132,141 stars, saved beside the note as JSON Canvas 1.0 | MIT | 7,974,073 plugin downloads | MVP 0
 Slides | Marp core, splits on a horizontal rule, no new syntax | MIT | Slides from markdown: Advanced Slides at 837,129 Obsidian downloads renders with reveal.js; Marp's own signal is marp-vscode at 857,640 installs (F061) | MVP 0
@@ -1551,7 +1553,7 @@ The kit tarball | `MANIFEST.json` version | n/a | a folder | the kickoff test in
 - The old version is still read.
 - The map shows which version a kit carries.
 
-**Two formats are not ours.** SKILL.md follows the skills guide's size limits, AGENTS.md follows agents.md, and both are checked by the health panel.
+**Two formats are not ours.** SKILL.md follows the skills guide's size limits, AGENTS.md follows agents.md, and both are checked on S11.
 
 ## 21. Performance and reliability targets
 

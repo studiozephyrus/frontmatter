@@ -44,7 +44,7 @@ assert '**Why.**' not in screens
 
 HEAD = '''---
 title: frontmatter, the screens
-version: v6, 17 September 2026
+version: v8, 18 September 2026
 status: the final screens, for printing
 ---
 
@@ -63,21 +63,21 @@ status: the final screens, for printing
 Area | What is in it
 The door | Sign in with Google or GitHub, one tap. Home with five ways to start. Settings on the account
 Writing | Markdown mode and Doc mode in one Live editor. Four modes: Edit, Live, Reading, Split. The twelve-button toolbar. Tabs. A rail with the outline, tags, backlinks and comments in it. Dark mode
-Help while writing | An AI box on an empty document. Seven AI verbs on a selection, with accept and reject in place. A problems panel and a formatter. A health panel for instruction files
-Blocks and views | Tables, callouts, Mermaid, maths, a chart block that reads the table above it, an Excalidraw drawing block. A document viewed as a page, a flow, slides, a mind map, a kanban or an outline. The project map
-Ideas | A separate tab. Ideas listed with their state. An industry template. Three depths: Low free, Medium and High on Pro. A blueprint of fifteen files in a skill folder, with a consistency check, an unlisted link, a hash printed on the page and a kickoff prompt that checks it
-Sharing | People with roles. Links that expire, and on Pro need a password. Published pages with a markdown twin. Live editing with three people on Free. A change queue for every change by a person, an AI edit or an agent. Document history
+Help while writing | An AI box on an empty document. Seven AI verbs on a selection, with accept and reject in place. A problems panel and a formatter. The whole set of instruction files an agent reads
+Blocks and views | Tables, callouts, Mermaid, maths, a chart block that reads the table above it, an Excalidraw drawing block. A document viewed as a page, slides, a mind map, a kanban or an outline; the flow view is deferred. The project map
+Ideas | A collapsed section at the foot of the workspace tree. Ideas listed with their state. An industry template. Three depths: Low free, Medium and High on Pro. A blueprint of fifteen files in a skill folder, with a consistency check, an unlisted link, a hash printed on the page and a kickoff prompt that checks it
+Sharing | People with roles. Links that expire, and on Pro need a password. Published pages with a markdown twin. Live editing with one collaborator on Free. A change queue for every change by a person, an AI edit or an agent. Document history
 In and out | Drop files or a whole folder. Import from Obsidian, Notion, Google Docs or Word. GitHub connected as an app, Google Drive as two-way sync. Export to markdown, HTML, Word or PDF
 Everywhere | Offline in the browser. The desktop app, with files on disk and no document limit. The phone, with a bottom bar, drawers, quick capture and the share sheet
 Configuration | What each plan allows, the model routing, the provider chain and four feature flags, all set from a panel rather than from the source. Founders only
-Money | Free: 50 cloud documents, 1 GB of uploads, 5 published pages, 3 live collaborators, 7-day history, 1 repository with 20 pushes, 1 Low blueprint and 10 AI edits a month. Pro at ₹299 a month: unlimited, 90-day history, password links, Medium and High, 100 edits and 5 blueprints on Claude, the portfolio
+Money | Free: 50 cloud documents, 1 GB of uploads, 5 published pages, 1 live collaborator, 7-day history, 1 repository with 20 pushes, 1 Low blueprint and 10 AI edits a month. Pro at ₹299 a month: unlimited, 90-day history, password links, Medium and High, 100 edits and 5 blueprints on Claude, the portfolio
 Later | The portfolio at frontmatter.in/@handle, the MCP server and API, Team, a custom domain, kanban and chart blocks
 
 ## 2. Reading the screens
 
-- **Thirty-eight screens.** Thirty-four are the product. The last four are the configuration panel, which only a founder sees.
+- **Thirty-eight screens.** Thirty-four are the product. The last four are the configuration panel, which only a founder sees. Four screens carry a second or third frame for a state the founders asked to see.
 - **Each screen** shows the desktop at 1,440 by 900 beside the phone at 390 by 844, both drawn from the design tokens of the shipped app, and then lists what is on it.
-- **The phone follows the shipped code:** a 52 px bar, the editor full width, and the tree and the right pane as drawers.
+- **The phone follows the shipped code and carries the desktop's theme:** the mark, the title with its project, the editor full width, and the tree and the right pane as drawers.
 - **The bottom bar** carries five actions at thumb height: Home, Search, AI, Outline and More, in that order.
 - **The order follows a person's day:** sign in, write, decide, share, bring things in, use it everywhere, and then the states nobody wants to see.
 - **The reasons behind each screen** are in the product guide, sections 21 and 22. This sheet shows only what a person sees.
