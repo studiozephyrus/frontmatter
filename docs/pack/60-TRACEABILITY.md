@@ -74,7 +74,7 @@ S | Features | Route | Module | Port | Adapter | Storage | Spec | Acceptance | T
 ### 2.2 Writing
 
 S | Features | Route | Module | Port | Adapter | Storage | Spec | Acceptance | Test | Status
-`S04` | 34 | `/`, `api/vault/*` (14 routes) | `editor`, `vault`, `app-shell`, `graph` | `VaultReader`, `NoteParserFn` | `vault-reader.ts`, `markdown-parser.ts`, `search-index.ts`, `snapshot-cache.ts` | GitHub | `12-screens/S04.md` | `A030` to `A040`, `A203`, `A204` | `editor/*` (7), `vault/*` (16), `graph/graph-data.test.ts` | **partly shipped**.
+`S04` | 34 | `/`, `api/vault/*` (14 routes) | `editor`, `vault`, `app-shell`, `graph` | `VaultReader`, `NoteParserFn` | `vault-reader.ts`, `markdown-parser.ts`, `search-index.ts`, `snapshot-cache.ts` | GitHub | `12-screens/S04.md` | `A030` to `A040`, `A203`, `A204` | `editor/*` (9), `vault/*` (19), `graph/graph-data.test.ts` | **partly shipped**.
 `S05` | 5 | `/` | `editor`, `preview` | `NoteParserFn` | `markdown-parser.ts` | GitHub | `12-screens/S05.md` | `A041` to `A043` | `preview/frontmatter.test.ts`, `editor/toolbar-transforms.test.ts` | planned.
 `S06` | 5 | `api/ai/complete`, `api/ai/generate-doc`, `api/ai/refine` | `ai`, `ai-tools` | `LlmClient` | `gateway-client.ts`, `provider-race.ts` | none, the model is remote | `12-screens/S06.md` | see register | `ai/generate-document.test.ts` | **building**.
 `S07` | 6 | `api/ai/refine` | `ai`, `editor` | `LlmClient` | `gateway-client.ts` | none | `12-screens/S07.md` | see register | `editor/ai-suggestion.test.ts` | **building**.
@@ -96,7 +96,7 @@ S | Features | Route | Module | Port | Adapter | Storage | Spec | Acceptance | T
 ### 2.4 Sharing
 
 S | Features | Route | Module | Port | Adapter | Storage | Spec | Acceptance | Test | Status
-`S17` | 8 | `api/share` | `share` | `ShareWriter`, `ShareSnapshotPort` | `share-writer.ts`, `share-snapshot-port.ts` | GitHub | `12-screens/S17.md` | see register | `share/*` (8), `api/share-route.test.ts` | **partly shipped**.
+`S17` | 8 | `api/share` | `share` | `ShareWriter`, `ShareSnapshotPort` | `share-writer.ts`, `share-snapshot-port.ts` | GitHub | `12-screens/S17.md` | see register | `share/*` (11), `api/share-route.test.ts` | **partly shipped**.
 `S18` | 9 | `/p/[slug]`, `/[slug]`, `api/vault/raw/[...path]` | `share`, `preview` | `ShareSnapshotPort` | `share-snapshot-port.ts` | GitHub, ISR at 60s | `12-screens/S18.md` | `A205`, `A206` | `share/resolve-public-note.test.ts`, `vault/raw-content-type.test.ts`, `vault/snapshot-public-slug.test.ts` | **partly shipped**.
 `S19` | 2 | none | none | none | none | Durable Objects, planned | `12-screens/S19.md` | see register | none | planned.
 `S20` | 8 | none | none | none | none | none | `12-screens/S20.md` | see register | none | **planned. This is the product**.
@@ -253,23 +253,26 @@ Layer | What exists | The gap
 **App** | 8 pages, 26 API routes | **19 of 38 screens have no route at all**
 **Container** | 2 files | Fine. It is the one place that changes when the adapters do
 **Specs** | 5 spec files, 7 harness scripts | **3 engine spec files against 5 `nf-` ids in the catalogue**
-**Tests** | **81 files** | See section 5.1
+**Tests** | **100 files, 1,598 passing and 6 expected to fail** | See section 5.1
 
 ### 5.1 Where the tests are, and where they are not
 
 Area | Test files | Reading
-`mdmax`, the engine | **10** | **The best-covered area in the repository, and it is the part no screen uses**.
-`vault` | 17 | Good.
-`share` | 8 | Good.
-`repository` | 9 | Good.
-`preview` | 8 | Good.
-`editor` | 7 | Good.
-`api` | 4 | Thin against 26 routes.
-`ai` | 3 | Thin.
+`vault` | 19 | Good.
+`preview` | 13 | Good.
+`share` | 11 | Good.
+`repository` | 10 | Good.
+`mdmax`, the engine | **10** | **The best-covered area for its size, and it is the part no screen uses**.
+`editor` | 9 | Good.
+`export` | 4 | Adequate.
+`app-shell` | 4 | Adequate.
+`api` | 4 | **Thin against 26 routes**.
 `auth` | 3 | Adequate.
+`ai` | 3 | Thin.
+`shared` | 2 | Adequate.
 `config` | 2 | Adequate.
 `corpus/foreign` | **2** | **The two red proofs**.
-`drafts`, `graph`, `export`, `shared`, `app-shell`, `proxy` | 1 each | Thin.
+`graph`, `drafts`, `ai-tools`, and `proxy.test.ts` at the root | 1 each | Thin.
 **Everything in phases C, D, G and H** | **0** | Nothing exists to test
 
 **The shape of that table is the whole project in one picture.** The engine is tested and unused.
