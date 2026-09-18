@@ -58,7 +58,7 @@ That is deliberate. It is the only group with a demonstrated wallet.
 ### 1.3 The sentence is contested inside our own documents
 
 `docs/mvp0/PRODUCT-PLAN.md` section 29 says the plan is written to K1 recommendation **b**. The
-sentence the plan actually carries at `:95` is K1 option **a**. Twenty-three other decision cards
+sentence the plan actually carries at section 1 is K1 option **a**. Twenty-three other decision cards
 were closed on the strength of b.
 
 **This is D01 in `56-OPEN-DECISIONS.md` and it costs one sentence to settle.** It is named here

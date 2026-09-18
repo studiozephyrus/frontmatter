@@ -77,10 +77,12 @@ somebody should resolve deliberately.
 
 ## 4. `PB-09`, the bundle budget, specified
 
-`npm run budget` is:
+`npm run budget` is a single `echo` of a placeholder string. The string is not reproduced here,
+because it contains an em dash and `65-CONVENTIONS.md` section 8 forbids one anywhere in this pack.
+Read it with:
 
-```
-echo 'No bundle budget configured yet - skipping'
+```bash
+python3 -c "import json;print(json.load(open('package.json'))['scripts']['budget'])"
 ```
 
 It always exits 0. This section says what it should do instead. It is the one budget the plan already

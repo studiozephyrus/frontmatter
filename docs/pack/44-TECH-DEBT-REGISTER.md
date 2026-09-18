@@ -67,11 +67,9 @@ of the others can be held once fixed.
 python3 -c "import json;print(json.load(open('package.json'))['scripts']['budget'])"
 ```
 
-prints:
-
-```
-echo 'No bundle budget configured yet - skipping'
-```
+prints a single `echo` of a placeholder string, which always exits 0. **The string itself is not
+reproduced here**, because it contains an em dash and `65-CONVENTIONS.md` section 8 forbids one
+anywhere in this pack. Run the command to see it.
 
 **Why it is debt and not a missing feature.** A script named `budget` that always exits 0 is a green
 gate over an unmeasured thing. Anybody reading the script list sees a budget and concludes there is

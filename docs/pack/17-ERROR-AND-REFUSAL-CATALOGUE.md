@@ -184,7 +184,7 @@ id | class | trigger | string | recovery | unchanged | event | test
 `E060` | permission | Ownership transfer requested by an agent | none yet | None. **Transfers go to another account on request, never by an agent** | `yes` | `owner.transfer_refused` | `T038`.
 
 **`E051`, `E052` and `E060` are the permission matrix said in code.** `docs/mvp0/PRODUCT-PLAN.md` section 19
-gives the agent-token row as never for apply and never for publish, and `:1474` gives the ownership
+gives the agent-token row as never for apply and never for publish, and section 19 gives the ownership
 rule. **These three are the rows an attacker tries first**, so each needs a test before phase D.
 
 ---

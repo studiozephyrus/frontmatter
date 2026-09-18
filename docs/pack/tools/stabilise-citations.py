@@ -74,6 +74,24 @@ for f in sorted(PACK.rglob('*.md')):
 
         out = re.sub(rf'`{esc}:(\d+)`', sub, out)
 
+    # A bare `:NNN` is a legitimate continuation of the citation before it, as in
+    # `file.ts:56` to `:58`. But once the citation before it became a SECTION reference,
+    # the line number has no file attached and points at nothing. Convert those too.
+    def orphan(m):
+        global converted
+        before = out[max(0, m.start() - 200):m.start()]
+        sec = list(re.finditer(r'`(' + '|'.join(re.escape(x) for x in TARGETS) + r')` section', before))
+        fil = list(re.finditer(r'`[\w./-]+\.(?:md|ts|tsx|mjs|py|json)(?::\d+)?`', before))
+        if not sec or (fil and fil[-1].start() > sec[-1].start()):
+            return m.group(0)
+        s = section_for(sec[-1].group(1), int(m.group(1)))
+        if not s:
+            return m.group(0)
+        converted += 1
+        return f'section {s[0]}'
+
+    out = re.sub(r'`:(\d+)`', orphan, out)
+
     if out != src:
         changed += 1
         if not DRY:

@@ -17,8 +17,8 @@ covers: [first-run, empty-states]
 **One tap with Google or GitHub. No password. No captcha. No puzzle. No tour. Ever.**
 
 `[Z]` It is the founders' standing rule, and it is absolute. The plan states it three times over:
-`docs/mvp0/PRODUCT-PLAN.md` section 1 ("No captchas, no puzzles, no tour"), `:254` ("No tour appears"), and
-`:323` ("`[L]` No captcha, ever").
+`docs/mvp0/PRODUCT-PLAN.md` section 1 ("No captchas, no puzzles, no tour"), section 3 ("No tour appears"), and
+section 5 ("`[L]` No captcha, ever").
 
 **Nothing in this file may be built in a way that breaks it.** If a first-run idea needs a step, a
 walkthrough, a checklist of tasks to tick, a progress ring, a confetti moment or a "3 of 5 done"
@@ -173,7 +173,7 @@ State | Why nothing is offered
 ## 7. The first-hover tip, which is the only teaching in the product
 
 `docs/mvp0/PRODUCT-PLAN.md` section 4: a tip appears only the first time a person hovers a control they
-have not used. `[M]` Apple, quoted at `:1370`: "Consider providing a collection of context-specific
+have not used. `[M]` Apple, quoted at section 15: "Consider providing a collection of context-specific
 tips instead of a single onboarding flow."
 
 **The rules that keep it a tip and not a tour.**

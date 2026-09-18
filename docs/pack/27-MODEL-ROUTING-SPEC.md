@@ -299,7 +299,7 @@ of the provider's pooled one, in section 9, and bring-your-own-key, in section 7
 ## 3. The routing table
 
 Call types are the five the product makes. Sizes are from `docs/mvp0/PRODUCT-PLAN.md` section 14 and
-`:1243`, and the blueprint figures are assumed until measured (F017).
+section 14, and the blueprint figures are assumed until measured (F017).
 
 Call | Tokens in | Tokens out | Calls | Latency matters
 An edit on a selection | 4,000 | 800 | 1 | yes, a person is watching the cursor
@@ -330,12 +330,12 @@ A blueprint | Sonnet 5 through the batch API at half price, then Haiku, then the
 **The whole Pro margin depends on this table.** Sonnet 5 for everything is `$3.99` a month against
 `₹246` net of tax and the payment fee, which loses `₹137` on a fully active Pro user. The Haiku and
 batched Sonnet routing is `$1.99`, or about `₹191`, which leaves about `₹55`. Those figures are
-re-derived at `docs/mvp0/PRODUCT-PLAN.md` section 14 and `:1240`, and marked SIMULATED there.
+re-derived at `docs/mvp0/PRODUCT-PLAN.md` section 14 and section 14, and marked SIMULATED there.
 
 ### 3.3 The rules that sit above the table
 
 1. **Every row is a configuration row, not a constant.** `docs/mvp0/PRODUCT-PLAN.md` section 30 puts model
-   routing in the panel, and `:1838` puts the chain order and the per-provider on switch there.
+   routing in the panel, and section 30 puts the chain order and the per-provider on switch there.
    Section 27 of this pack is the spec; file 28 is the panel that edits it.
 2. **A blueprint pins one provider for all 15 calls.** Pass a stable key so we get OpenRouter's
    sticky routing if we land there (`session_id`, `at most 256 characters`), and the prefix cache if
@@ -476,7 +476,7 @@ green because nothing in `application` or `domain` imports `infrastructure`.
 
 `docs/mvp0/PRODUCT-PLAN.md` section 15 decides the stack: `The stack is the Next.js app we already run,
 Cloudflare R2 for bytes, and Firestore for records, with Firebase Auth for sign-in.` Section 18's
-data model, at `docs/mvp0/PRODUCT-PLAN.md` section 18 onwards, and its ledger row at `:1457`, still writes `Postgres rows` for every
+data model, at `docs/mvp0/PRODUCT-PLAN.md` section 18 onwards, and its ledger row at section 18, still writes `Postgres rows` for every
 entity including the ledger entry. **Two sections of the plan of record name two different
 databases.** The section 15 decision is dated and attributed to the founders, so this spec follows
 Firestore and flags the section 18 table as owing a correction.
@@ -744,7 +744,7 @@ GitHub commits in 2025, including `113,000 leaked DeepSeek API keys`, and observ
 ## 8. Capacity arithmetic for 200 users
 
 Every number below was computed in Python on 18 September 2026 and the working is printed. Inputs are
-from `docs/mvp0/PRODUCT-PLAN.md` section 14 and `:1243`. The blueprint figures are assumed until measured.
+from `docs/mvp0/PRODUCT-PLAN.md` section 14 and section 14. The blueprint figures are assumed until measured.
 
 ### 8.1 The demand
 

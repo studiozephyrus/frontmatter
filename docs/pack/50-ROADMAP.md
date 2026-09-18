@@ -160,7 +160,7 @@ world answering, and it can fail.
 
 ## 4. The phases, each with what ships
 
-Taken from `docs/mvp0/PRODUCT-PLAN.md` section 26 to `:1665`, with the 18 September additions folded
+Taken from `docs/mvp0/PRODUCT-PLAN.md` section 26 to section 26, with the 18 September additions folded
 into the phase they belong to and marked.
 
 ### Phase 0. Before code. 2 weeks
