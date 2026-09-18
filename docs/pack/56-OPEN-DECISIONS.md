@@ -58,7 +58,24 @@ not paraphrased into a different decision. `[Z]` throughout.
 - Consequence: the roadmap in `50-ROADMAP.md` becomes an ordered list of batches with an internal
   acceptance step between each, rather than a set of phases with some deferred.
 
-### D03, answered in part: the person's own storage, with a synced copy
+### D03, decided: our copy is canonical, and theirs is a mirror
+
+**Decided 18 September, after the benchmark** in `docs/research/2026-09-18-storage/STORAGE-BENCHMARK.md`
+section 6:
+
+- R2 holds every version and upload, and Firestore holds the head. That copy is canonical.
+- A person signed in with GitHub gets a full mirror in one repository through a GitHub App. A person
+  signed in with Google gets one in a visible `frontmatter` Drive folder, through `drive.file` only.
+  The full `drive` scope is never requested. Both plans get the mirror.
+- Edits made in the mirror come back as change queue items, never as a silent overwrite.
+- **Over the storage cap, a soft cap.** Text always saves. New uploads stop, with three ways out:
+  prune history, move uploads to the Drive mirror, or upgrade. Past 10 GB on Pro, storage is sold
+  in blocks priced from the configuration panel.
+- Before the Drive mirror ships, the two falsification tests of the benchmark's section 6.7 run.
+
+The earlier record, kept as written:
+
+#### D03, answered in part: the person's own storage, with a synced copy
 
 - A person who signs in with GitHub keeps documents in their GitHub. A person who signs in with
   Google keeps them in their Google Drive.
@@ -79,7 +96,7 @@ stranger's document is stored.
 Id | Decision | Blocks | Recommendation
 `D01` | **What the product is, in one sentence.** And the contradiction in our own documents about which answer we took | Build order, and 23 other decision cards | **Decided 18 September `[Z]`: the broad editor, option a, sharpened.** See section 0
 `D02` | The pace, and which phases sit in Later | Every calendar date | **Decided 18 September `[Z]`: everything, built in batches**, each used internally before the next. See section 0
-`D03` | Which bytes we hold, and from which phase | The architecture of phase A | **Answered in part 18 September `[Z]`**: the person's own GitHub or Drive plus a synced copy with us. Research running. See section 0
+`D03` | Which bytes we hold, and from which phase | The architecture of phase A | **Decided 18 September `[Z]`: our copy is canonical, the person's GitHub or Drive holds a full mirror.** See section 0
 `D04` | **Whether the Model Context Protocol server moves out of Later** and becomes the Max tier | The Max tier's existence | **Move it.** Ship a read-and-propose server in phase D
 `D05` | The name | The domain and every published URL | Run the trademark search first, then decide. Do not decide before the search
 `D06` | **Whether to reopen authorship marking**, now that Google's Open Knowledge Format defines `generated` and `verified` | A small amount of phase D | **Reopen it**, and stamp front matter on accept

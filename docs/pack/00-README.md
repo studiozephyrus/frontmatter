@@ -20,31 +20,30 @@ If you are an agent picking this up cold, read **`64-PORTABILITY-AND-HANDOVER.md
 you what to read in what order, what to run to prove the repository is healthy, and what not to
 touch.
 
-## Can development start? Checked 18 September 2026 at `dc42c49`
+## Can development start? Yes, from batch 1. Decided 18 September 2026
 
-**The documents are ready. The build is not, yet, because four founder answers are missing.**
+**The green signal is given.** The four founder answers the build was waiting on were given on 18
+September and are recorded in `56-OPEN-DECISIONS.md` section 0:
 
-What is green, each re-run on 18 September:
+Decision | Answer `[Z]`
+`D01` the product | The broad markdown editor for the agentic era. Internal name `fmd`, which stands for nothing
+`D02` the pace | Everything, in batches, each used internally before the next. The order is `50-ROADMAP.md`
+`D03` storage | Our copy canonical; the person's GitHub or Drive a full mirror; a soft cap over storage limits
+`D10` accounts | All of them move to the company before the first stranger
 
-- `python3 docs/pack/tools/validate-pack.py` prints `problems: 0`. Every id cited anywhere has a home.
+**Start with batch 1 in `50-ROADMAP.md` section 3.1**, which is work before code: accounts, the legal
+floor, the public pages, format specifications and twenty hand-made blueprints.
+
+What was green when this was written, each re-run on 18 September:
+
+- `python3 docs/pack/tools/validate-pack.py` prints `problems: 0`.
 - `npm run verify` exits 0: typecheck, lint, 1,598 tests with 6 expected failures, build, arch, spec.
 - Every pack file passes `gate.py --strict`.
-- All 38 screens are specified here and drawn in `docs/mvp0/frontmatter-Screens-v8.1-2026-09-18-1315.pdf`.
+- All 38 screens are specified here and drawn in `docs/mvp0/`, newest PDF first by its date.
 
-What stops phase 0 and phase A starting, all in `56-OPEN-DECISIONS.md`:
-
-Decision | Blocks | The pack's recommendation
-`D10` which accounts move to the company | Phase 0 | All of them, before the first stranger
-`D03` which bytes we hold, and from when | The architecture of phase A | Hold them from phase A
-`D01` the product in one sentence | Build order | Option a, the sentence the plan carries
-`D02` the pace | Every calendar date | Phases 0, A, B, D and H at the measured pace
-
-**Before the pilot recruits anybody**, `D11` too: Free's 50 documents against pilot vaults of 200 files.
-
-Also waiting on the founders, none of which blocks phase 0: 152 copy strings marked `proposed` in
-`16-COPY-DECK.md`, and the six calls listed at the end of `docs/mvp0/REVIEW-COVERAGE-2026-09-18.md`.
-
-**The green signal is those four answers.** Once they are written into `56`, phase 0 can start.
+Still open, none blocking batch 1: `D11` runs as an A/B test (`28-CONFIGURATION-PANEL-SPEC.md`); the
+tagline is tested three ways first (`docs/research/2026-09-18-name/`); 152 copy strings marked
+`proposed` in `16-COPY-DECK.md` await the founders.
 
 ## The product in seven lines
 
