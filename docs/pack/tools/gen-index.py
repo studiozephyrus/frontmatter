@@ -53,11 +53,13 @@ for lo, hi, band in BANDS:
         continue
     lines += [f'### {lo:02d} to {hi:02d}. {band}', '', 'File | What it is | Mode | Tier | Status']
     for _, name, title, mode, tier, status in band_rows:
-        lines.append(f'[{name}]({name}) | {title} | {mode} | {tier} | {status}')
+        # A full stop after the title: without one the writing gate reads a whole band's table as one
+        # sentence of 120 words and blocks the README.
+        lines.append(f'[{name}]({name}) | {title.rstrip(".")}. | {mode} | {tier} | {status}')
     if lo == 10 and screens:
         first, last = screens[0].stem, screens[-1].stem
         lines.append(f'[12-screens/]({"12-screens/" + screens[0].name}) | '
-                     f'One specification per screen, {first} to {last}, {len(screens)} files | '
+                     f'One specification per screen, {first} to {last}, {len(screens)} files. | '
                      f'reference | canonical | specified')
     lines.append('')
 

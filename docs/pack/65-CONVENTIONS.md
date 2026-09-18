@@ -18,7 +18,7 @@ Read this before writing anything else in this pack. Every rule here is checkabl
 ## 1. The four rules the pack keeps about itself
 
 1. **Generated beats written, dated beats undated, owned beats orphaned.** Anything derivable from
-   the code is generated and diff-gated. Anything not derivable is dated, owned and small.
+   the code is generated and diff-gated. Anything not derivable is dated and owned, and kept small.
 2. **One fact, one home.** A feature id lives in `10-FEATURE-REGISTER.md` and nowhere else. A
    user-facing string lives in `16-COPY-DECK.md` and nowhere else. Everything else links.
 3. **Never renumber. Supersede, and name the successor in the old record.** This applies to
@@ -32,15 +32,15 @@ Every file in this pack opens with YAML front matter. The contract is `62-DOC-SC
 validator fails a build on a breach. The short version:
 
 Key | Required | Notes
-`id` | yes | The filename without `.md`, or the screen id inside `12-screens/`
-`title` | yes |
-`mode` | yes | `tutorial`, `how-to`, `reference` or `explanation`
-`tier` | yes | `canonical`, `derived`, `archive` or `superseded`
-`status` | yes | See the vocabulary below
-`updated` | yes | ISO date
-`owner` | yes | A person, never a team
-`verified_against` | when `tier: canonical` | The commit the claims were checked against
-`generated_by` | when `tier: derived` | The exact command
+`id` | yes | The filename without `.md`, or the screen id inside `12-screens/`.
+`title` | yes | Plain text, the heading the file opens with.
+`mode` | yes | `tutorial`, `how-to`, `reference` or `explanation`.
+`tier` | yes | `canonical`, `derived`, `archive` or `superseded`.
+`status` | yes | See the vocabulary below.
+`updated` | yes | ISO date.
+`owner` | yes | A person, never a team.
+`verified_against` | when `tier: canonical` | The commit the claims were checked against.
+`generated_by` | when `tier: derived` | The exact command.
 
 **An `archive` is never freshness-reviewed.** It is a record of what was true then, and editing it
 destroys the record.
@@ -48,17 +48,17 @@ destroys the record.
 ## 3. Identifier formats
 
 Kind | Format | Example | Home
-Feature | `F` plus three digits | `F001` | `10-FEATURE-REGISTER.md`
-Screen | `S` plus two digits | `S04` | `12-screens/S04.md`
-Component | `C` plus three digits | `C014` | `14-COMPONENT-INVENTORY.md`
-Copy string | `K` plus a dotted path | `K.s04.addfile` | `16-COPY-DECK.md`
-Error or refusal | `E` plus three digits | `E007` | `17-ERROR-AND-REFUSAL-CATALOGUE.md`
-Acceptance criterion | `A` plus three digits | `A042` | `19-ACCEPTANCE-CRITERIA.md`
-Engine refusal | `nf-` plus three digits plus a slug | `nf-001-zero-indent-sequence` | `specs/engine/`
-Decision record | `ADR-` plus four digits | `ADR-0007` | `adr/`
-Open decision | `D` plus two digits | `D11` | `56-OPEN-DECISIONS.md`
-Event | dotted, lower case | `doc.change.accepted` | `55-MEASUREMENT-AND-EVENTS.md`
-Entitlement | dotted, lower case | `limits.collab.live` | `53-PRICING-AND-ENTITLEMENTS.md`
+Feature | `F` plus three digits | `F001` | `10-FEATURE-REGISTER.md`.
+Screen | `S` plus two digits | `S04` | `12-screens/S04.md`.
+Component | `C` plus three digits | `C014` | `14-COMPONENT-INVENTORY.md`.
+Copy string | `K` plus a dotted path | `K.s04.addfile` | `16-COPY-DECK.md`.
+Error or refusal | `E` plus three digits | `E007` | `17-ERROR-AND-REFUSAL-CATALOGUE.md`.
+Acceptance criterion | `A` plus three digits | `A042` | `19-ACCEPTANCE-CRITERIA.md`.
+Engine refusal | `nf-` plus three digits plus a slug | `nf-001-zero-indent-sequence` | `specs/engine/`.
+Decision record | `ADR-` plus four digits | `ADR-0007` | `adr/`.
+Open decision | `D` plus two digits | `D11` | `56-OPEN-DECISIONS.md`.
+Event | dotted, lower case | `doc.change.accepted` | `55-MEASUREMENT-AND-EVENTS.md`.
+Entitlement | dotted, lower case | `limits.collab.live` | `53-PRICING-AND-ENTITLEMENTS.md`.
 
 **An id is never reused and never renumbered.** If `F031` is withdrawn, its row stays and says so.
 
@@ -75,12 +75,12 @@ Entitlement | dotted, lower case | `limits.collab.live` | `53-PRICING-AND-ENTITL
 These come from the plan and mean the same thing here.
 
 Tag | Meaning
-`[Z]` | A founders' decision, given directly
-`[M]` | A page was opened and the string quoted
-`[R]` | Earlier research of ours
-`[O]` | Measured in the session that wrote the line
-`[L]` | An external constraint we do not control
-`[P]` | Follows from another decision in this pack
+`[Z]` | A founders' decision, given directly.
+`[M]` | A page was opened and the string quoted.
+`[R]` | Earlier research of ours.
+`[O]` | Measured in the session that wrote the line.
+`[L]` | An external constraint we do not control.
+`[P]` | Follows from another decision in this pack.
 
 Anything that is inference is written `INFERENCE:`. Anything unchecked is written `UNVERIFIED:`.
 Both are allowed. Silence dressed as fact is not.
@@ -88,11 +88,11 @@ Both are allowed. Silence dressed as fact is not.
 ## 6. Status vocabulary
 
 Domain | Values
-Document | `draft`, `living`, `frozen`, `superseded`
-Screen | `specified`, `building`, `built`, `verified`
-Feature | `planned`, `building`, `shipped`, `withdrawn`
-Defect | `open`, `fixed`, `wontfix`, `duplicate`
-Decision | `open`, `decided`, `reversed`
+Document | `draft`, `living`, `frozen`, `superseded`.
+Screen | `specified`, `building`, `built`, `verified`.
+Feature | `planned`, `building`, `shipped`, `withdrawn`.
+Defect | `open`, `fixed`, `wontfix`, `duplicate`.
+Decision | `open`, `decided`, `reversed`.
 
 **`verified` and `built` are written by the harness, never by hand.** A hand edit is reverted by the
 next build.
@@ -100,10 +100,10 @@ next build.
 ## 7. Severity
 
 Level | Meaning
-`CRITICAL` | Data loss, a security hole, or money moving wrongly
-`HIGH` | A person cannot complete a core job
-`MEDIUM` | A person can complete the job, badly
-`LOW` | Cosmetic, or an internal annoyance
+`CRITICAL` | Data loss, a security hole, or money moving wrongly.
+`HIGH` | A person cannot complete a core job.
+`MEDIUM` | A person can complete the job, badly.
+`LOW` | Cosmetic, or an internal annoyance.
 
 ## 8. Prose
 
