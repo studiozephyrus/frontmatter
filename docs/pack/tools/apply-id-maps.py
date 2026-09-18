@@ -54,6 +54,11 @@ def main():
             if tok not in table:
                 gaps.append(f'{sid}: {tok} has no entry in {KINDS[tok[0]][0]}')
                 return tok
+            # null means the id appears only inside the screen's id-scheme note, which is rewritten
+            # by hand once the maps land. It stays as it is, so the validator keeps flagging that
+            # note until somebody does.
+            if table[tok] is None:
+                return tok
             if table[tok] != tok:
                 n += 1
             return table[tok]

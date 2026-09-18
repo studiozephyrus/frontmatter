@@ -73,6 +73,31 @@ Class | What it covers | Who owns the fix
 `network` | The connection, the browser or the device | The offline layer
 `conflict` | Two versions of the same bytes | The change queue and S31
 
+## 0.4 How the ids run, and the rows added on 18 September
+
+The 38 screen specs first allocated `E` ids by screen, and those ids collided with this file's. They
+were reconciled into this file on 18 September. The audit trail and the per-screen map are
+`docs/pack/tools/error-reconciliation.md` and `docs/pack/tools/error-map.json`.
+
+- **No existing row moved or changed meaning.** Each class kept its first block, filled its free
+  space, then continued in a second block of its own.
+- **Every row added that day is `specified, not built`.** Each came from a screen spec, not from
+  shipped source, and each `T` id from `T300` on is a proposal.
+
+Class | First block | Second block
+`engine` | `E001` to `E029` | `E500` to `E549`
+`validation` | `E030` to `E049` | `E550` to `E599`
+`permission` | `E050` to `E069` | `E600` to `E649`
+`quota` | `E070` to `E079` | `E650` to `E699`
+`model` | `E080` to `E089` | `E700` to `E749`
+`provider` | `E090` to `E099` | `E750` to `E799`
+`network` | `E100` to `E109` | `E800` to `E849`
+`conflict` | `E110` to `E119` | `E850` to `E899`
+
+**`E105` and `E106` stretch the `network` class.** They cover a failed read or write against our
+own store, which is not the connection, the browser or the device. `E102` already sat here, so they
+follow it. A ninth class would be cleaner and is the owner's call.
+
 ---
 
 ## 1. Engine refusals
@@ -116,8 +141,8 @@ is not recognised, so the writer believes the file has no front matter and prepe
 this row's `unchanged` column from `no` to `yes`, and **until then the catalogue records a known
 corruption rather than hiding it**.
 
-**Two more rows are allowed to write, and both are writes the person asked for**: `E100` re-reads and
-retries under compare-and-swap, and `E106` writes conflict markers into a draft that only exists
+**Two more rows are allowed to write, and both are writes the person asked for**: `E111` re-reads and
+retries under compare-and-swap, and `E115` writes conflict markers into a draft that only exists
 locally. Neither touches a saved version.
 
 ### 1.2 What the corpus can and cannot prove
@@ -144,6 +169,31 @@ Two message shapes exist in the specs and should seed the copy:
 **These belong in `16-COPY-DECK.md` under `K.err.*` and are not written there yet**, because this
 file does not own copy.
 
+### 1.4 Engine rows the screens need, specified and not built
+
+**Section 1's opening sentence does not cover these rows.** They were not read from shipped source.
+They come from the 38 screen specs in `docs/pack/12-screens/`, and each is `specified, not built`.
+Section 0.4 says how their ids were chosen.
+
+id | class | trigger | string | recovery | unchanged | event | test
+`E026` | engine | A splice in the document body, from a keystroke, a toolbar mark, a restore or a queue item, cannot locate its range unambiguously | none yet | None. The edit is refused and the document stays as it was | `yes` | `engine.refused` | `T300`.
+`E027` | engine | The document changed after a proposal or a fix recorded its range, so the range no longer matches | none yet | Re-open the item against the current bytes | `yes` | `engine.range_stale` | `T301`.
+`E028` | engine | A fenced block in the body has no closing fence, so its range cannot be closed | none yet | Close the fence, then try again | `yes` | `engine.refused` | `T302`.
+`E029` | engine | A check, a parse or a graph build threw, so its result is absent | none yet | The failing part is named and the other checks still run. Retry | `yes` | `engine.threw` | `T303`.
+`E500` | engine | A table row's cell count does not match its header, so the table editor refuses the edit | none yet | Fix the row in the source pane | `yes` | `engine.refused` | `T304`.
+`E501` | engine | A custom block's source, such as Mermaid or maths, does not parse | none yet | The source is shown in place of a rendering. Fix the source | `yes` | `block.render_failed` | `T305`.
+`E502` | engine | A chart block has no table above it, no numeric column, or names a kind we do not draw | none yet | The source is shown. Add a table, or change the kind | `yes` | `block.render_failed` | `T306`.
+`E503` | engine | A callout names a kind we do not know | none yet | It renders as a plain blockquote | `yes` | `block.render_fallback` | `T307`.
+`E504` | engine | A build, a drawing or a check exceeds its budget | none yet | A narrower result is drawn and the limit is named. Narrow the range, or switch view | `yes` | `engine.budget` | `T308`.
+`E505` | engine | The document has no H2, so the flow projection has no column to make | none yet | Switch to Page view, or add a heading | `yes` | `view.unavailable` | `T309`.
+`E506` | engine | An H3 appears before any H2, so that step has no phase | none yet | The step renders in a leading column. Fix the heading levels | `yes` | `view.step_unplaced` | `T310`.
+`E507` | engine | No fix in the set can be applied safely | none yet | None is applied, and the panel says so rather than doing nothing silently | `yes` | `problems.none_safe` | `T311`.
+`E508` | engine | Two files have drifted too far apart for a clean diff | none yet | Open both files side by side | `yes` | `instructions.diff_refused` | `T312`.
+`E509` | engine | A file in a set fails to parse, or cannot be read as a file | none yet | It is named and the rest still process | `yes` | `engine.refused` | `T313`.
+`E510` | engine | Doc mode has no carrier for a feature in the file | none yet | A toast names the feature. Edit it in Edit mode | `yes` | `doc.mode_unsupported` | `T314`.
+`E511` | engine | An export could not be produced | none yet | Nothing is downloaded. Try again | `yes` | `export.failed` | `T315`.
+`E512` | engine | A derived view, such as a kit map, is stale | none yet | It is rebuilt before it is shown, and says so | `yes` | `view.rebuilt` | `T316`.
+
 ---
 
 ## 2. Validation
@@ -161,6 +211,29 @@ id | class | trigger | string | recovery | unchanged | event | test
 `E039` | validation | A share is addressed to an email that is not a frontmatter account | `K.s17.invite.title` | Send an invite. **This is an offer, not an error** | `n/a` | `share.invite_offered` | `T027`.
 `E040` | validation | A property key typed in the panel is outside the writer's address space | `internal` | The field refuses at typing time, before a write is attempted | `yes` | `properties.refused` | `T028`.
 `E041` | validation | A published-page slug is already taken | none yet | Choose another slug | `n/a` | `share.slug_taken` | `test/share/slug.test.ts`.
+`E042` | validation | A named document, version, idea, file, node or attachment no longer exists | none yet | Go back, or rebuild the list that named it | `n/a` | `record.not_found` | `T317`.
+`E043` | validation | A reference resolves to a file but not to the heading or anchor inside it | none yet | The file opens at its top, and says why | `n/a` | `reference.anchor_missing` | `T318`.
+`E044` | validation | A request names a route, a settings slug or a target the product does not know | none yet | The default is used, such as the first target or the Account section, and it says so | `n/a` | `route.unknown` | `T319`.
+`E045` | validation | A public slug is requested that is not published | none yet | None. A plain not-found is served, never a redirect to sign-in | `n/a` | `pub.not_found` | `T320`.
+`E046` | validation | A required field is empty, or below the minimum the flow needs | none yet | Fill the field | `n/a` | `input.missing` | `T321`.
+`E047` | validation | An input, a prompt or a selection is longer than the flow accepts | none yet | Shorten it | `n/a` | `input.too_long` | `T322`.
+`E048` | validation | A submitted value is not valid for its field | none yet | Correct the value. Nothing is written until it is | `yes` | `input.invalid` | `T323`.
+`E049` | validation | A project rule file does not parse, or names a rule the checker does not have | none yet | Fix the rule file. The other rules still run | `yes` | `problems.rules_invalid` | `T324`.
+`E550` | validation | A name, handle or address the person chose is already in use | none yet | Choose another. It asks rather than renaming silently | `n/a` | `input.taken` | `T325`.
+`E551` | validation | The thing the action would create already exists | none yet | The existing one is offered and never overwritten | `yes` | `create.exists` | `T326`.
+`E552` | validation | An instruction set's source file is missing | none yet | The copies are listed as orphans. Promote one to the source, or create it | `yes` | `instructions.source_missing` | `T327`.
+`E553` | validation | A third-party tool's published size cap is unknown | none yet | None. The row says unknown rather than ok | `n/a` | `instructions.cap_unknown` | `T328`.
+`E554` | validation | A tool has no import mechanism | none yet | A copy is offered instead | `n/a` | `instructions.import_unsupported` | `T329`.
+`E555` | validation | No standard question set exists for this template | none yet | The template is named. Retry the model, or answer without the set | `n/a` | `ideas.no_standard_set` | `T330`.
+`E556` | validation | No desktop build exists for this platform | none yet | None. The control says so before it is pressed | `n/a` | `desktop.unavailable` | `T331`.
+`E557` | validation | No local model is installed | none yet | None. The chip says so before it is pressed | `yes` | `ai.local_missing` | `T332`.
+`E558` | validation | A search matched nothing | none yet | None. It is said plainly, without guessing at a near match | `n/a` | `search.empty` | `T333`.
+`E559` | validation | A drop carries no readable entries | none yet | Use the picker instead | `n/a` | `import.drop_empty` | `T334`.
+`E560` | validation | A file's type is not one the product can open or convert | none yet | None. The file is named and the rest continue | `n/a` | `upload.unsupported` | `T335`.
+`E561` | validation | A conversion, such as a Word file to markdown, failed | none yet | The original is kept as an attachment, and it says so | `yes` | `import.convert_failed` | `T336`.
+`E562` | validation | The person cancelled at the sign-in provider | none yet | They return to the card with nothing changed. **Not an error to apologise for** | `n/a` | `auth.signin.cancelled` | `T337`.
+`E563` | validation | A portfolio publish is attempted with no handle claimed | none yet | Claim a handle first | `n/a` | `portfolio.no_handle` | `T338`.
+`E564` | validation | A generator returned a set that fails its own schema | none yet | The run holds at the last good page. Retry, or drop to the standard set | `yes` | `ideas.schema_failed` | `T339`.
 
 **`E040` is the pattern the rest should copy.** `src/modules/preview/presentation/PropertiesPanel.tsx`
 refuses the same shapes the writer refuses, at the point of typing. Its own comment records why:
@@ -182,6 +255,18 @@ id | class | trigger | string | recovery | unchanged | event | test
 `E058` | permission | The Google OAuth app or the GitHub App is suspended | none yet | Sign in by email magic link, if that flag is on. **Exports never need a connection** | `yes` | `provider.suspended` | `T036`.
 `E059` | permission | A configuration write arrives without the super-admin flag | `internal` | None. Checked server-side on every write, never in the browser | `n/a` | `config.refused` | `T037`.
 `E060` | permission | Ownership transfer requested by an agent | none yet | None. **Transfers go to another account on request, never by an agent** | `yes` | `owner.transfer_refused` | `T038`.
+`E061` | permission | A sign-in provider account the allowlist refuses | none yet | The reason is shown on the card. Try the other provider | `n/a` | `auth.refused` | `T340`.
+`E062` | permission | A control this screen does not own is reached, or a locked row is touched | none yet | None. Nothing happens, the attempt is audited, and the row already says why | `n/a` | `config.blocked` | `T341`.
+`E063` | permission | The last owner of a document would be demoted or removed | none yet | Add another owner first | `n/a` | `share.last_owner` | `T342`.
+`E064` | permission | The operating system refused access to a folder | none yet | The folder and the setting are named. Grant access, then retry | `n/a` | `desktop.folder_refused` | `T343`.
+`E065` | permission | Access was withdrawn while the document was open | none yet | The session drops and the local copy stays readable. Export, or ask the owner | `yes` | `share.access_withdrawn` | `T344`.
+`E066` | permission | The record belongs to another account | none yet | None. Go back | `n/a` | `record.foreign` | `T345`.
+`E067` | permission | A link password is wrong | none yet | Try again | `n/a` | `pub.link.password_wrong` | `T346`.
+`E068` | permission | A link has expired | none yet | Ask the owner for a new link | `n/a` | `pub.link.expired` | `T347`.
+`E069` | permission | Account deletion is requested while a payment is in flight | none yet | Wait for the payment to settle, then delete | `n/a` | `account.delete_blocked` | `T348`.
+`E600` | permission | A desktop update's signature does not verify | none yet | None. The update is refused rather than installed | `n/a` | `desktop.update_refused` | `T349`.
+`E601` | permission | A revoked kit or share link is fetched | none yet | None. A plain refusal, never a redirect to sign-in | `n/a` | `kit.link_revoked` | `T350`.
+`E602` | permission | A feature flag is off | none yet | None. The control is not offered, and the screens it governs say why rather than 404 | `n/a` | `flag.off` | `T351`.
 
 **`E051`, `E052` and `E060` are the permission matrix said in code.** `docs/mvp0/PRODUCT-PLAN.md` section 19
 gives the agent-token row as never for apply and never for publish, and section 19 gives the ownership
@@ -206,6 +291,10 @@ id | class | trigger | string | recovery | unchanged | event | test
 `E077` | quota | A fourth question-set rewrite on Free | none yet | Answer the remaining questions, or move to Pro | `n/a` | `cap.rewrites` | `T047`.
 `E078` | quota | A downgrade leaves the account over a cap | `K.s33.downgrade` | Delete or export until under the cap | `yes` | `cap.downgrade` | `T048`.
 `E079` | quota | A founder lowers a limit below what accounts already hold | `K.s35.bar.warn` | See who, then discard or save | `n/a` | `config.overcap_warned` | `T049`.
+`E650` | quota | The plan does not include the feature that was chosen | none yet | The plan page is offered | `n/a` | `cap.plan_feature` | `T352`.
+`E651` | quota | A limit or a ledger could not be read | none yet | The action takes the safe direction: it is refused, or only the lowest option is offered, and the meter says the count is unavailable | `n/a` | `cap.unreadable` | `T353`.
+`E652` | quota | A capped action was refused and S33 was shown | `internal` | None. The entitlement id is written to the log. The person sees S33, not the code | `yes` | `cap.tripped` | `T354`.
+`E653` | quota | The impact of a limit change could not be computed | none yet | None. The save is blocked, because an unknown blast radius is not a small one | `yes` | `config.impact_unknown` | `T355`.
 
 **`E078` and `E079` are the same event from two sides**, and the product's answer to both is the same
 screen. **Nothing is deleted.** `K.promise.readable` is the sentence.
@@ -223,6 +312,9 @@ id | class | trigger | string | recovery | unchanged | event | test
 `E085` | model | The model returned nothing, or only whitespace | none yet | Try again. **No credit is spent** | `yes` | `ai.empty` | `T053`.
 `E086` | model | The model layer is degraded during an idea flow | none yet | Fall back to a standard question set, not an apology | `n/a` | `ideas.fallback_static` | `T054`.
 `E087` | model | An AI edit is attempted while offline in the browser | `K.s24.aioff` | Use the desktop app's local model | `yes` | `ai.offline` | `T055`.
+`E088` | model | A background research pass failed | none yet | A shallower evidence level is offered. **Nothing is charged** | `n/a` | `ideas.research_failed` | `T356`.
+`E089` | model | A routing cell names a model that no enabled provider serves | none yet | Choose a served model, or enable its provider | `n/a` | `config.route_unserved` | `T357`.
+`E700` | model | The model returned the input unchanged | none yet | None needed. **This is a correct outcome, not a failure** | `yes` | `ai.unchanged` | `T358`.
 
 **Three promises are load-bearing here, and each needs its own test.**
 
@@ -246,6 +338,14 @@ id | class | trigger | string | recovery | unchanged | event | test
 `E095` | provider | A Razorpay mandate over ₹15,000 is attempted | none yet | Pay per period instead | `n/a` | `pay.mandate_refused` | `T065`.
 `E096` | provider | An Indian card is declined, and there is only one attempt | none yet | Use UPI, or another card | `n/a` | `pay.declined` | `T066`.
 `E097` | provider | The email allowance is spent | `internal` | None. The notice is queued | `n/a` | `email.quota` | `T067`.
+`E098` | provider | Consent was refused at the provider's own screen | none yet | Nothing is stored. Connect again | `n/a` | `conn.consent_refused` | `T359`.
+`E099` | provider | A revocation call to the provider failed | none yet | The manual step at the provider is named. **S23 removes the row and S28 keeps it, and that is not yet settled** | `n/a` | `conn.revoke_failed` | `T360`.
+`E750` | provider | A provider refused a connection attempt | none yet | The provider and its reason are named. Try again | `n/a` | `conn.refused` | `T361`.
+`E751` | provider | An integration source or a connected repository is unreachable | none yet | It is named and the others stay | `n/a` | `conn.unreachable` | `T362`.
+`E752` | provider | A verb is not available on the provider the chain chose | none yet | Choose another verb, or try again later | `yes` | `ai.verb_unavailable` | `T363`.
+`E753` | provider | An email address is not deliverable | none yet | Check the address | `n/a` | `email.undeliverable` | `T364`.
+`E754` | provider | A call to the payment provider failed | none yet | The reason is named. No charge was made and no plan changed. Try again | `n/a` | `pay.call_failed` | `T365`.
+`E755` | provider | The payment webhook has not landed inside the wait | none yet | The page says the payment is being confirmed, rather than claiming failure | `n/a` | `pay.webhook_pending` | `T366`.
 
 **`E095` and `E096` are architectural constants, not our choices.** ₹15,000 per transaction is the
 RBI cap and an Indian card gets one payment attempt
@@ -263,6 +363,17 @@ id | class | trigger | string | recovery | unchanged | event | test
 `E102` | network | A request to our own API times out | none yet | Try again. The draft is held locally | `queued` | `api.timeout` | `T071`.
 `E103` | network | A live session's Durable Object is unreachable | none yet | Keep writing. The session ends and the document saves normally | `queued` | `live.session_lost` | `T072`.
 `E104` | network | Persistent storage was requested and refused by the browser | none yet | None shown. **The first connection pushes everything to the server** | `n/a` | `storage.not_persisted` | `T073`.
+`E105` | network | A read this screen depends on failed, including a read from our own store | none yet | The part it feeds says so and the rest still works. Retry | `n/a` | `read.failed` | `T367`.
+`E106` | network | A write this product made failed, including a write to our own store | none yet | The control returns to its stored state and nothing is claimed. Retry | `yes` | `write.failed` | `T368`.
+`E107` | network | Browser storage refused the write, or is full, so the keystroke is not being kept | none yet | Free space, or use the desktop app. **The one interruption allowed while offline** | `yes` | `offline.storage_full` | `T369`.
+`E108` | network | The clipboard refused a copy | none yet | The string is shown to select by hand | `n/a` | `clipboard.refused` | `T370`.
+`E109` | network | An action that needs the network was attempted offline and cannot be queued | none yet | Retry when back online. Nothing is queued | `n/a` | `offline.refused` | `T371`.
+`E800` | network | The browser blocked a popup | none yet | Allow popups for this site, then retry | `n/a` | `browser.popup_blocked` | `T372`.
+`E801` | network | The browser has no directory picker | none yet | File selection is offered instead | `n/a` | `browser.no_directory` | `T373`.
+`E802` | network | The browser's install prompt is unavailable | none yet | The browser's own menu route is named | `n/a` | `browser.install_unavailable` | `T374`.
+`E803` | network | A protocol handler did not answer in time | none yet | The web option is used | `n/a` | `pub.openin_fallback` | `T375`.
+`E804` | network | A global shortcut is already claimed by another application | none yet | The chord is named at launch. Choose another | `n/a` | `capture.shortcut_taken` | `T376`.
+`E805` | network | The viewport is too small for this surface | none yet | It is not offered, and the reason is named. Widen the window, or switch view | `n/a` | `view.too_narrow` | `T377`.
 
 **`E104` is the row behind the plan's one rule for offline**: never let the browser be the only copy
 (`docs/mvp0/PRODUCT-PLAN.md` section 12). It is silent on purpose, and the recovery is architectural rather
@@ -284,6 +395,10 @@ id | class | trigger | string | recovery | unchanged | event | test
 `E115` | conflict | A local draft and the remote both moved | `internal` | A three-way merge runs; genuine conflicts come back with markers | `no`, in the local draft only | `draft.merged` | `test/repository/merge3.test.ts`.
 `E116` | conflict | Two share records claim the same slug | none yet | Choose another slug | `n/a` | `share.duplicate` | `test/share/duplicate-conflict-modal.test.tsx`.
 `E117` | conflict | Accept all is pressed on the change queue | `K.s20.acceptall.note` | Confirm the count first. **Only a named person's edits** | `n/a` | `queue.accept_all` | `T082`.
+`E118` | conflict | A regenerate would overwrite hand edits in a copy | none yet | It refuses. Diff the copy, then merge by hand | `yes` | `instructions.regen_refused` | `T378`.
+`E119` | conflict | A configuration row or flag changed underneath since it was read | none yet | Nothing is written and the row is named. Reload, then save again | `yes` | `config.stale` | `T379`.
+`E850` | conflict | One side of a conflict cannot be read | none yet | The readable side is shown and no keep control is offered. Retry, or open read-only | `yes` | `conflict.side_unreadable` | `T380`.
+`E851` | conflict | An AI edit is attempted on a document with an unresolved conflict | none yet | Resolve the conflict on S31 first | `yes` | `ai.conflict_blocked` | `T381`.
 
 ### 8.1 The measure that must be zero
 
@@ -336,7 +451,7 @@ Level | Rows | Note
 2. **`E096` has no words**, and a declined Indian card with one attempt reads as a broken product.
 3. **`E114` has no words**, so the merge proposal from S31 arrives in the queue unlabelled.
 4. **`E086` has no words**, so the graceful path the plan designed cannot be taken.
-5. **Of 87 rows, 62 carry a `T` id rather than a test, and 25 carry a real test path.** Counted from
+5. **Of 169 rows, 144 carry a `T` id rather than a test, and 25 carry a real test path.** Counted from
    the tables above on 18 September 2026 with this command, which anyone can re-run:
 
    ```bash
@@ -367,7 +482,7 @@ Real tests, cited above by path:
 `test/api/share-conflicts-route.test.ts`, `test/ai/provider-race.test.ts`,
 `test/auth/allowlist.test.ts`, `test/drafts/draft-store.test.ts`.
 
-**`T001` to `T082` are proposed and do not exist.** `19-ACCEPTANCE-CRITERIA.md` uses the same
+**`T001` to `T082`, and `T300` to `T381`, are proposed and do not exist.** `19-ACCEPTANCE-CRITERIA.md` uses the same
 numbers, so a `T` id means the same test in both files. **Neither file may renumber one.**
 
 **A red proof comes first for every `T` id in section 1.** `AGENTS.md` section 0 rule 1: a test on a
@@ -384,6 +499,9 @@ rare fault proves nothing until it fails against the unfixed code.
   measurement.
 - **What is not established.** Every `none yet` string, every `T` id, and the whole of sections 4
   through 7, which describe a product that is mostly not built.
+- **Not assessed for the 82 rows added on 18 September:** their severity. Section 10 files them
+  under `LOW` by default, and `E026` and `E106` in particular may deserve more. Nor was any of
+  them triggered; each is `specified, not built`.
 - **What would falsify it.** The NF-1 and NF-3 fixes land in phase B
   (`docs/mvp0/PRODUCT-PLAN.md` section 26), and `E009` and `E011` change on that day. A `16-COPY-DECK.md`
   that gains `K.err.*` ids would fill twenty-two `none yet` cells at once.
