@@ -107,7 +107,13 @@ The earlier record, kept as written:
   certificate is still unpriced, and is now needed sooner.
 - **D12, yes.** Editing through a link needs the one-tap sign-in; reading needs nothing.
 - **D13, build database views over front matter early**, not deferred.
-- **D14, keep voice typing** in Doc mode.
+- **D14, keep voice typing** in Doc mode. **Widened on 19 September `[Z]`** into a full voice feature:
+  free speech-to-text APIs, English only for now; transcripts restructured automatically, the way
+  Wispr Flow does, with a setting for raw text; restructuring levels low, medium and high, plus a
+  tone; a command mode that tells dictation from an instruction by context; a 1 to 2 second model
+  call is acceptable. Research: `docs/research/2026-09-19-voice/VOICE.md`.
+  - Correction recorded the same day: no voice code exists in `src/`. The plan called it a shipped
+    Doc mode row; it is specified, not built.
 - Consequence for the roadmap: D09 and D13 move work earlier in `50-ROADMAP.md`.
 
 ### D10, answered: all of them
