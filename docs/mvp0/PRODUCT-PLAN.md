@@ -527,6 +527,10 @@ Later, named | A Max tier above Pro; a community as an opt-in index plus GitHub 
 - A link that can read, expire, or need a password on Pro.
 - The published page toggle, with pages used against the cap.
 
+<div class="pair"><img src="screens/s17-share-referral.png"><img src="screens/s17-share-referral-phone.png"></div>
+
+- **The same modal after sign-up.** The invited person lands on the shared document with a welcome that says both sides got the credits, and a field to invite someone of their own. Nothing is sent until they press Send `[Z]`.
+
 **Why.** `[Z]` password-protected sharing. `[M]` password is paid at Dropbox, Figma and Loom; expiry is free at Bitwarden with a seven-day default.
 
 ### S18. Published page
@@ -538,7 +542,11 @@ Later, named | A Max tier above Pro; a community as an opt-in index plus GitHub 
 - **`page.md` and `llms.txt` are never gated, never redirected and never given an interstitial.** That rule is absolute and covers every non-HTML route (F076).
 - **The sign-in boundary is editing, not reading.** A reader who presses Edit meets sign-in, which costs nothing at the top of the funnel.
 - The footer carries Report, Privacy, Terms and the `.md` twin (F033).
-- The phone shows the password gate a reader meets on a protected link, with the same footer.
+- On the phone the same bar opens out into the ladder: open in the app, open in frontmatter, or continue in browser `[Z]`.
+
+<div class="pair"><img src="screens/s18-public-view-password.png"><img src="screens/s18-public-view-password-phone.png"></div>
+
+- **A password link**, which is Pro: the gate a reader meets on a protected link, with the same footer. The published page itself never has one.
 
 **Why.** `[R]` the published page is the funnel. `[M]` llms.txt and the `.md` twin pattern are what Anthropic, Cloudflare, Stripe and Vercel serve. `[L]` a page a stranger publishes needs a report route, section 23.
 
@@ -574,6 +582,7 @@ Later, named | A Max tier above Pro; a community as an opt-in index plus GitHub 
 - Every version with its author, including the AI edit and the blueprint write.
 - A diff against the current version. Restore, or copy as a new document.
 - Seven days on Free, 90 on Pro.
+- **A People and AI filter**, the same as S20's, because history mixes the two `[Z]`.
 
 **Why.** `[R]` every save is a new immutable key. `[M]` Notion, Craft and AFFiNE give 7 days free and 30 paid, so 90 is a visible reason to pay.
 
@@ -674,6 +683,7 @@ Later, named | A Max tier above Pro; a community as an opt-in index plus GitHub 
 - Keep left, keep right, or keep both as two files. The other version is always in history.
 - **Let AI decide** is offered alongside those, not hidden. It proposes a merge, and that proposal enters the change queue like any other, to be accepted or rejected span by span `[Z]`. It never writes straight to the file, because no silent merge is a law and this is exactly the case it exists for.
 - The same screen serves a Drive edit against a web edit and a desktop edit against a GitHub change.
+- The phone carries Let AI decide beside Keep both, so it is not hidden there either.
 
 **Why.** `[R]` settled: no silent merge, ever. The audit found the plan's central promise had no screen.
 
@@ -716,6 +726,7 @@ Later, named | A Max tier above Pro; a community as an opt-in index plus GitHub 
 - Every limit in one table, Free against Pro, each cell editable. This row is what the product reads; there is no second copy in the source.
 - Saving says how many accounts the change moves over their cap, and names them, before it writes.
 - Each row carries its own last change: who, from what, to what, and when.
+- **Three rows from the review of 18 September:** question rewrites a blueprint (3 on Free, unlimited on Pro), invite credits to each side (5), and the standard question set, which is the fallback and on for both plans.
 
 **Why.** `[Z]` the founders' decision of 17 September. `[P]` section 30 names one read path, `limitsFor(account)`, so a cap that appears anywhere else in the product is a defect the architecture gate should fail on.
 

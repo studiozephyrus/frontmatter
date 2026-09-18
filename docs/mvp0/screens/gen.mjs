@@ -14,6 +14,12 @@ const FONTS = fs.readFileSync(path.join(HERE, 'fonts.css'), 'utf8');
 
 // The free-tier caps, in one place. The plan document quotes the same numbers.
 const CAPS = { docs: 50, pub: 5, collab: 1, edits: 10, kits: 1, repos: 1, pushes: 20, uploads: '1 GB', history: 7 };
+// One collaborator on Free since 18 September, so the noun follows the number.
+const COLLAB_WORD = CAPS.collab === 1 ? 'live collaborator' : 'live collaborators';
+// The other founder numbers the panel holds, from the plan: rewrites a blueprint on Free,
+// and the credits an accepted invite gives each side.
+const REWRITES_FREE = 3;
+const INVITE_CREDITS = 5;
 
 const iconCache = {};
 // Fetch a Material Symbol on demand and keep it in the repo, so adding an icon to a
@@ -338,7 +344,7 @@ u{text-decoration-thickness:1px;text-underline-offset:2px}
 .cfgt tr:hover td{background:var(--panel)}
 .cfgt .lim{color:var(--fg)}
 .cfgt .was{display:block;font-size:11px;color:var(--muted);margin-top:2px}
-.cfgv{display:inline-flex;align-items:center;justify-content:flex-end;min-width:74px;height:28px;padding:0 9px;border:1px solid var(--border);border-radius:7px;background:var(--bg);font-family:var(--font-mono);font-size:12.5px;color:var(--fg)}
+.cfgv{white-space:nowrap;display:inline-flex;align-items:center;justify-content:flex-end;min-width:74px;height:28px;padding:0 9px;border:1px solid var(--border);border-radius:7px;background:var(--bg);font-family:var(--font-mono);font-size:12.5px;color:var(--fg)}
 .cfgv.ed{border-color:var(--accent);color:var(--accent);background:color-mix(in srgb,var(--accent) 7%,var(--bg))}
 .cfgv.inf{color:var(--muted);font-family:var(--font-ui)}
 .cfgbar{position:absolute;left:0;right:0;bottom:0;display:flex;align-items:center;gap:12px;padding:12px 56px;border-top:1px solid var(--border);background:var(--panel);font-size:12.5px}
@@ -606,6 +612,10 @@ u{text-decoration-thickness:1px;text-underline-offset:2px}
   background:var(--bg-subtle);border-bottom:1px solid var(--border)}
 .openbar .t{margin-right:4px}
 .openbar .x{margin-left:auto;color:var(--muted)}
+.openbar.ph{flex-wrap:wrap;padding:10px 14px;background:var(--bg-subtle);border-bottom:1px solid var(--border)}
+.openbar.ph .ladder{display:flex;flex-direction:column;gap:6px;width:100%;margin-top:8px}
+.openbar.ph .ladder .btn{height:38px;justify-content:flex-start}
+
 .stdset{display:flex;align-items:center;gap:10px;margin-top:14px;padding:10px 12px;border:1px solid var(--border);border-radius:10px;background:var(--panel);font-size:12.5px}
 .stdset b{font-weight:500;display:block}
 .stdset em{font-style:normal;font-size:11.5px;color:var(--muted);display:block}
@@ -975,10 +985,10 @@ screen('s02-home-first', 'Home, first time', `<div class="app">${homeTop()}
 <div class="htabs"><span class="on">Documents</span><span>Ideas</span><span>Shared with me</span></div>
 ${starts()}
 <div class="recent"><div class="r h"><span>Recent</span><span>Project</span><span>Opened</span><span>Owner</span><span></span></div>
-<div style="padding:34px 0;color:var(--muted);font-size:13px;text-align:center;border-bottom:1px solid var(--border)">Nothing yet. Start above, or drop a folder anywhere on this page.<br><span style="font-size:12px">Free: ${CAPS.docs} documents in the cloud, ${CAPS.pub} published pages, ${CAPS.collab} live collaborators. Unlimited on the desktop app.</span></div></div></div></div>`,
+<div style="padding:34px 0;color:var(--muted);font-size:13px;text-align:center;border-bottom:1px solid var(--border)">Nothing yet. Start above, or drop a folder anywhere on this page.<br><span style="font-size:12px">Free: ${CAPS.docs} documents in the cloud, ${CAPS.pub} published pages, ${CAPS.collab} ${COLLAB_WORD}. Unlimited on the desktop app.</span></div></div></div></div>`,
 phone({ title: 'Home', bottom: 'home', right: `<span class="avatar" style="background:#18181b">SM</span>`, body: `<div class="home"><div class="htabs" style="margin-top:0"><span class="on">Documents</span><span>Ideas</span><span>Shared</span></div>
 ${starts(STARTS.slice(0, 4))}
-<div style="padding:22px 0;color:var(--muted);font-size:13px;text-align:center">Nothing yet. Start above.<br><span style="font-size:12px">Free: ${CAPS.docs} documents, ${CAPS.pub} published pages, ${CAPS.collab} live collaborators.</span></div></div>` }));
+<div style="padding:22px 0;color:var(--muted);font-size:13px;text-align:center">Nothing yet. Start above.<br><span style="font-size:12px">Free: ${CAPS.docs} documents, ${CAPS.pub} published pages, ${CAPS.collab} ${COLLAB_WORD}.</span></div></div>` }));
 
 // S03 home, returning. Recent documents, the ideas tab count, shared pages.
 const RECENT = [
@@ -1397,13 +1407,13 @@ ${ideasTree([{ n: 'Salon booking', e: 'Questions, page 1', on: 1 }, ...IDEAS.map
   <div class="prog"><span>Page 1 of 3</span><span class="bar"><i style="width:33%"></i></span><span>4 of 12 questions</span>${depthPill('Low')}</div>
   <div class="qstack">${QHTML}${GHOST}</div>
   ${pageNav({})}
-  <div class="stdset"><span class="cfgsw"><i></i></span><span><b>Use a standard question set</b><em>Fixed questions that never rewrite. Used on its own when the AI is busy or the rewrites are spent.</em></span><span class="rw">${ic('autorenew', 14)} 2 of 3 rewrites left on Free</span></div>
+  <div class="stdset"><span class="cfgsw"><i></i></span><span><b>Use a standard question set</b><em>Fixed questions that never rewrite. Used on its own when the AI is busy or the rewrites are spent.</em></span><span class="rw">${ic('autorenew', 14)} 2 of ${REWRITES_FREE} rewrites left on Free</span></div>
   <div class="foot" style="margin-top:10px">Anything you skip stays open in DECISIONS.md, and the blueprint says it is open rather than guessing.</div>
 </div></div></main></div></div>`,
 phone({ title: 'Salon booking', sub: `${ic('lightbulb', 12)} Ideas · Low`, bottom: 'auto_awesome', body: `<div class="pdoc" style="padding:12px 14px 0">
 <div class="prog"><span>1 of 3</span><span class="bar"><i style="width:33%"></i></span>${depthPill('Low')}</div>
 <div class="qstack">${qhtml(QCARDS.slice(0, 2))}${GHOST}</div>
-</div><div class="pfoot"><div class="stdset ph"><span class="cfgsw"><i></i></span><span><b>Use a standard question set</b><em>2 of 3 rewrites left on Free</em></span></div>
+</div><div class="pfoot"><div class="stdset ph"><span class="cfgsw"><i></i></span><span><b>Use a standard question set</b><em>2 of ${REWRITES_FREE} rewrites left on Free</em></span></div>
 <div class="pnav"><span class="btn">Skip</span><span class="btn">${ic('auto_awesome', 14)} Choose recommendation</span></div>
 <span class="btn primary pnext">Next ${ic('arrow_forward', 15)}</span></div>` }));
 
@@ -1509,10 +1519,10 @@ phone({ title: 'Zephyrus booking · Map', bottom: 'more_horiz', body: `<div styl
 // S17 share: people, link with password and expiry, publish
 const SHARE_BODY = `<div class="rh" style="margin-top:6px">People</div>
 <div style="display:flex;gap:8px;margin-bottom:8px"><span class="search" style="flex:1;min-width:0">${ic('mail', 16)} priya@studio.in</span><span class="btn">Can edit ${ic('expand_more', 14)}</span></div>
-<div class="invite">${ic('person', 16)}<span class="t"><b>priya@studio.in is not on frontmatter yet</b><em>Invite her and you both get 5 AI credits when she signs in for the first time.</em></span><span class="btn primary sm">${ic('mail', 14)} Send invite</span></div>
+<div class="invite">${ic('person', 16)}<span class="t"><b>priya@studio.in is not on frontmatter yet</b><em>Invite her and you both get ${INVITE_CREDITS} AI credits when she signs in for the first time.</em></span><span class="btn primary sm">${ic('mail', 14)} Send invite</span></div>
 <div class="vers"><div class="it on"><span class="avatar" style="width:24px;height:24px;font-size:9px;background:#18181b">SM</span> You <span class="sp"></span><span style="color:var(--muted)">Owner</span></div>
 <div class="it"><span class="avatar" style="width:24px;height:24px;font-size:9px;background:#b2625e">AM</span> Amit Kumar <span class="sp"></span><span style="color:var(--muted)">Can edit · live</span></div></div>
-<p class="fine" style="margin:8px 0 14px">${ic('lock', 12)} Free includes ${CAPS.collab} live collaborators per document. Pro removes the limit. <u>See Pro</u></p>
+<p class="fine" style="margin:8px 0 14px">${ic('lock', 12)} Free includes ${CAPS.collab} ${COLLAB_WORD} per document. Pro removes the limit. <u>See Pro</u></p>
 <div class="rh">Link</div>
 <div class="srow" style="padding:8px 0"><span class="t">Anyone with the link<em>Can read. Not indexed by search engines.</em></span><span class="sel">Can read ${ic('expand_more', 14)}</span></div>
 <div class="srow" style="padding:8px 0">${ic('password', 18)}<span class="t">Password <span class="pill pro" style="margin-left:6px">Pro</span><em>Asked once per browser. You choose it; we store only a hash.</em></span><span class="tog on"><i></i></span></div>
@@ -1533,6 +1543,28 @@ ${rail({ outline: OUTLINE_BRIEF })}
 </div></div>`,
 phone({ mode: 'Live', title: '00-BRIEF.md', bottom: 'more_horiz', body: `${pmodebar('Live')}<div class="pdoc"><div class="md">${DOC_BRIEF}</div></div>`, overlay: psheet(`<h2>Share</h2>${SHARE_BODY.replace('<span class="btn">Can edit ' + ic('expand_more', 14) + '</span>', '')}`) }));
 
+// S17, frame b. The same referral modal, reused once the invited person creates an
+// account (founder review, 18 September). Priya signed in from Sagnik's invite; both
+// sides get the invite credits, and she can pass the invite on.
+const REFERRAL = `<div class="modal" style="width:480px"><div style="display:flex;align-items:center;gap:10px;margin-bottom:10px"><span class="avatar" style="background:#4f8b6b">PR</span>${ic('add', 16)}<span class="avatar" style="background:#18181b">SM</span></div>
+<h2>Welcome, Priya. You and Sagnik each got ${INVITE_CREDITS} AI credits</h2>
+<p>Sagnik shared <b>00-BRIEF.md</b> with you, and it is open behind this. The credits are yours this month, on top of the ${CAPS.edits} edits Free includes.</p>
+<div class="rh" style="margin-top:12px">Invite someone yourself</div>
+<div style="display:flex;gap:8px;margin-bottom:6px"><span class="search" style="flex:1;min-width:0">${ic('mail', 16)} Their email address</span><span class="btn primary">${ic('mail', 14)} Send invite</span></div>
+<p class="fine" style="margin:0 0 14px;font-size:11.5px;color:var(--muted)">When they sign in for the first time, you both get ${INVITE_CREDITS} AI credits. Nothing is sent until you press Send.</p>
+<div style="display:flex;gap:8px;justify-content:flex-end"><span class="btn primary">Open the document</span></div></div>`;
+screen('s17-share-referral', 'Share, the referral after sign-up', `<div class="app">
+${top({ tabs: [{ n: '00-BRIEF.md', c: 'blue', on: 1 }] }).replace('<span class="avatar" style="background:#18181b">SM</span><span class="uname">Sagnik</span>', '<span class="avatar" style="background:#4f8b6b">PR</span><span class="uname">Priya</span>')}
+<div class="body">
+${tree({ projects: [{ n: 'Shared with me', icon: 'group', rows: [{ n: '00-BRIEF.md', f: 1, on: 1 }] }], ideas: false })}
+<main class="main">${modebar('Live')}
+<div class="doc"><div class="md">${DOC_BRIEF}</div></div>
+<div class="dim">${REFERRAL}</div>
+</main>
+${rail({ outline: OUTLINE_BRIEF, credits: [CAPS.edits + INVITE_CREDITS, CAPS.edits + INVITE_CREDITS], fab: false })}
+</div></div>`,
+phone({ mode: 'Live', title: '00-BRIEF.md', sub: `Shared by Sagnik`, body: `${pmodebar('Live')}<div class="pdoc"><div class="md">${DOC_BRIEF_SHORT}</div></div>`, overlay: psheet(REFERRAL.replace('<div class="modal" style="width:480px">', '<div>').replace(/<\/div>$/, '')) }));
+
 // S18 published page, and the password gate on the phone
 screen('s18-public-view', 'Published page', `<div class="pub">
 <header class="pubtop"><span class="mark">fm</span><span class="t">Zephyrus booking, in one page</span><span class="pill" style="margin-left:6px">Published 16 Sep</span>
@@ -1545,6 +1577,21 @@ shasum -a 256 kit.tar.gz   # must print 9c1e…4b7a, the hash on this page
 mkdir -p docs/kit && tar xzf kit.tar.gz -C docs/kit</pre></div>
 <div class="card"><h3>Read this properly in frontmatter</h3><p>Outline, dark mode, comments and a copy you can edit. Free, no card.</p><div class="acts"><span class="btn primary">${ic('public', 15)} Sign in with Google</span><span class="btn ghost">Not now</span></div></div>
 <div style="position:absolute;left:24px;right:24px;bottom:18px;font-size:11.5px;color:var(--fg-muted);display:flex;gap:14px">Made with frontmatter <span>·</span> <u>Report this page</u> <span>·</span> <u>Privacy</u> <span>·</span> <u>Terms</u> <span style="margin-left:auto">also at <u>frontmatter.in/p/zephyrus-booking-brief.md</u></span></div></div></div>`,
+`<div class="phone">${IOSBAR}
+<header class="top"><span class="mark">fm</span><span class="ttlbox"><span class="ttl">Zephyrus booking, in one page</span><span class="tsub">Published 16 Sep · by Sagnik</span></span><span class="topright"><span class="ibtn">${ic('download', 18)}</span></span></header>
+<div class="pbody"><div class="openbar ph">${ic('open_in_new', 16)}<span class="t">Open this in frontmatter?</span><span class="x">${ic('close', 16)}</span>
+<div class="ladder"><span class="btn primary">${ic('install_mobile', 15)} Open in the app</span><span class="btn">${ic('public', 15)} Open in frontmatter</span><span class="btn ghost">Continue in browser</span></div></div>
+<div class="pdoc"><div class="md">${DOC_BRIEF_SHORT}</div></div>
+<div style="padding:10px 18px 14px;font-size:11px;color:var(--fg-muted);border-top:1px solid var(--border)">Made with frontmatter · <u>Report</u> · <u>Privacy</u> · <u>Terms</u><br>also at <u>frontmatter.in/p/zephyrus-booking-brief.md</u>, never gated</div></div>
+<div class="homeind"><i></i></div></div>`);
+
+// S18, frame b. A password link, which is Pro. The gate is on this link only; the
+// published page above never has one, and page.md and llms.txt are never gated.
+screen('s18-public-view-password', 'Published page, a password link', `<div class="pub">
+<header class="pubtop"><span class="mark">fm</span><span class="t">Shared document</span></header>
+<div class="pubbody" style="display:grid;place-items:center;padding:0"><div style="width:380px;text-align:center"><div style="margin-bottom:14px;color:var(--fg-muted)">${ic('password', 40)}</div><h2 style="margin:0 0 6px;font-size:20px">This link needs a password</h2><p style="color:var(--fg-muted);font-size:13.5px;margin:0 0 16px">Sagnik shared <b>00-BRIEF.md</b> with a password. Ask them for it.</p>
+<div class="search" style="height:42px;font-size:14px;margin-bottom:8px;text-align:left">${ic('key', 18)} Password</div><span class="btn primary lg" style="width:100%">Open</span>
+<p style="font-size:12px;color:var(--fg-muted);margin-top:12px">Link expires in 6 days. No account needed to read.</p><p style="font-size:11.5px;color:var(--fg-muted);margin-top:18px"><u>Report</u> · <u>Privacy</u> · <u>Terms</u></p></div></div></div>`,
 `<div class="phone">${IOSBAR}
 <header class="top"><span class="mark">fm</span><span class="ttl">Shared document</span></header>
 <div class="pbody" style="display:grid;place-items:center;padding:24px"><div style="width:100%"><div style="display:grid;place-items:center;margin-bottom:14px">${ic('password', 40)}</div><h2 style="margin:0 0 6px;font-size:18px;text-align:center">This link needs a password</h2><p style="color:var(--fg-muted);font-size:13px;text-align:center;margin:0 0 16px">Sagnik shared <b>00-BRIEF.md</b> with a password. Ask them for it.</p>
@@ -1565,7 +1612,7 @@ ${tree({ projects: PROJECTS_MAIN, foot: `${ic('group', 14)} Amit is editing this
 <main class="main">${modebar('Edit', '<span class="pill ok">' + ic('sync', 13) + ' Live</span>')}
 <div class="doc" style="position:relative"><div class="md">${DOC_LIVE}</div>
 <span class="cursor" style="left:calc(50% + 214px);top:246px"><i>Amit</i></span></div>
-<div class="toast">${ic('group', 15)} <span>Free includes <b>${CAPS.collab}</b> live collaborators per document.</span> <span class="btn sm" style="background:var(--accent-fg);color:var(--accent)">Invite more with Pro</span></div>
+<div class="toast">${ic('group', 15)} <span>Free includes <b>${CAPS.collab}</b> ${COLLAB_WORD} per document.</span> <span class="btn sm" style="background:var(--accent-fg);color:var(--accent)">Invite more with Pro</span></div>
 </main>
 ${rail({ outline: OUTLINE_BRIEF })}
 </div></div>`,
@@ -1600,6 +1647,9 @@ phone({ mode: 'Reading', title: '00-BRIEF.md', bottom: 'more_horiz', body: `${pm
 // S21 document history (Pro)
 const HIST_DIFF = `<div class="diff"><div> A booking page for small studios that take appointments by WhatsApp today.</div><div class="del">-One link, a calendar of open slots, a deposit, and a reminder the day before.</div><div class="add">+One link, a calendar of open slots, a refundable deposit, and a reminder the day before.</div><div> </div><div> ## The first user</div><div> A two-chair salon in Kolkata that loses about four bookings a week to double-booking</div><div class="del">-and no-shows.</div><div class="add">+and no-shows, which is a day's takings. The owner runs everything from a phone.</div></div>`;
 const HIST_LIST = `<div class="vers">${[['Today 14:02', 'Amit', 1], ['Today 11:40', 'You'], ['Today 10:05', 'AI edit, accepted by you'], ['Yesterday 18:30', 'You'], ['12 Sep 09:12', 'Blueprint v1 written'], ['12 Sep 09:10', 'Created']].map(v => `<div class="it${v[2] ? ' on' : ''}"><span class="avatar" style="width:20px;height:20px;font-size:8px;background:${v[1] === 'Amit' ? '#b2625e' : v[1].startsWith('AI') ? '#0055ff' : '#18181b'}">${v[1].startsWith('AI') ? ic('auto_awesome', 11) : v[1] === 'Amit' ? 'AM' : v[1] === 'You' ? 'SM' : 'fm'}</span><span><div>${v[0]}</div><div style="font-size:11px;color:var(--muted)">${v[1]}</div></span><span class="sp"></span>${v[2] ? ic('check', 14) : ''}</div>`).join('')}</div>`;
+// Founder rule, 18 September: where people's work and AI work sit in one list, split them
+// with a toggle. History mixes both, so it gets the same filter as S20.
+const HIST_FILTER = filterseg([['All', 6], ['People', 3], ['AI and agents', 2]], 0);
 screen('s21-history', 'Document history', `<div class="app">
 ${top({ tabs: TABS_MAIN })}
 <div class="body">
@@ -1608,10 +1658,10 @@ ${tree({ projects: PROJECTS_MAIN })}
 <div class="doc" style="padding:28px 48px 0"><div class="md"><h1>Zephyrus booking, in one page</h1>${HIST_DIFF}
 <div style="display:flex;gap:8px;margin-top:14px"><span class="btn primary">${ic('history', 15)} Restore this version</span><span class="btn">Copy as new document</span></div></div></div>
 </main>
-<aside class="rail"><div class="rsec grow"><div class="rh">${ic('history', 14)} Document history<span class="sp"></span><span class="pill">Pro · 90 days</span></div>${HIST_LIST}</div>
+<aside class="rail"><div class="rsec grow"><div class="rh">${ic('history', 14)} Document history<span class="sp"></span><span class="pill">Pro · 90 days</span></div>${HIST_FILTER}${HIST_LIST}</div>
 <div class="railfoot"><span class="btn">${ic('download', 15)} Export history as .zip</span></div></aside>
 </div></div>`,
-phone({ title: '00-BRIEF.md · History', bottom: 'more_horiz', body: `<div class="pdoc" style="padding:14px 14px 0"><div class="rh">${ic('history', 14)} Document history<span class="sp"></span><span class="pill">Pro · 90 days</span></div>${HIST_LIST}<div style="margin-top:12px;font-size:12px">${HIST_DIFF}</div><div style="display:flex;gap:8px;margin-top:12px"><span class="btn primary" style="flex:1">Restore</span><span class="btn" style="flex:1">Copy as new</span></div></div>` }));
+phone({ title: '00-BRIEF.md · History', bottom: 'more_horiz', body: `<div class="pdoc" style="padding:14px 14px 0"><div class="rh">${ic('history', 14)} Document history<span class="sp"></span><span class="pill">Pro · 90 days</span></div>${HIST_FILTER}${HIST_LIST}<div style="margin-top:12px;font-size:12px">${HIST_DIFF}</div><div style="display:flex;gap:8px;margin-top:12px"><span class="btn primary" style="flex:1">Restore</span><span class="btn" style="flex:1">Copy as new</span></div></div>` }));
 
 // ---------------------------------------------------------------------------
 // S22 import: files, a folder, and the other places documents live
@@ -1751,7 +1801,7 @@ const USAGE = `<div class="usage"><div class="ucard"><div class="k">AI edits</di
 <div class="ucard"><div class="k">Documents in the cloud</div><div class="v">12 <small>of ${CAPS.docs}</small></div><div class="meter"><i style="width:24%;background:var(--accent)"></i></div></div>
 <div class="ucard"><div class="k">Published pages</div><div class="v">3 <small>of ${CAPS.pub}</small></div><div class="meter"><i style="width:60%;background:var(--accent)"></i></div></div></div>`;
 const PLANS = `<div class="plans"><div class="plan"><div class="nm">Free</div><div class="pr">₹0</div><ul>
-<li>${ic('check', 15)} Every feature: the editor, Doc mode, offline in the browser, every export, every view</li><li>${ic('check', 15)} ${CAPS.docs} documents in the cloud, ${CAPS.pub} published pages, ${CAPS.uploads} of uploads</li><li>${ic('check', 15)} ${CAPS.kits} blueprint at Low and ${CAPS.edits} AI edits a month</li><li>${ic('check', 15)} ${CAPS.collab} live collaborators per document · ${CAPS.repos} GitHub repository, ${CAPS.pushes} pushes a month · Google Drive sync</li><li>${ic('check', 15)} Document history, ${CAPS.history} days · expiring links · the desktop app with unlimited documents on disk</li><li class="no">${ic('close', 15)} Password on links · Medium and High ideas · portfolio</li></ul><span class="btn" style="width:100%">Current plan</span></div>
+<li>${ic('check', 15)} Every feature: the editor, Doc mode, offline in the browser, every export, every view</li><li>${ic('check', 15)} ${CAPS.docs} documents in the cloud, ${CAPS.pub} published pages, ${CAPS.uploads} of uploads</li><li>${ic('check', 15)} ${CAPS.kits} blueprint at Low and ${CAPS.edits} AI edits a month</li><li>${ic('check', 15)} ${CAPS.collab} ${COLLAB_WORD} per document · ${CAPS.repos} GitHub repository, ${CAPS.pushes} pushes a month · Google Drive sync</li><li>${ic('check', 15)} Document history, ${CAPS.history} days · expiring links · the desktop app with unlimited documents on disk</li><li class="no">${ic('close', 15)} Password on links · Medium and High ideas · portfolio</li></ul><span class="btn" style="width:100%">Current plan</span></div>
 <div class="plan pro"><div class="nm">Pro</div><div class="pr">₹299 <small>a month incl. GST, or ₹2,499 a year</small></div><ul>
 <li>${ic('check', 15)} Unlimited documents, published pages and collaborators</li><li>${ic('check', 15)} 5 blueprints at any depth and 100 AI edits a month, on Claude</li><li>${ic('check', 15)} Document history, 90 days · unlimited repositories and pushes</li><li>${ic('check', 15)} Password and expiry on every link · no "made with" line</li><li>${ic('check', 15)} Your portfolio at frontmatter.in/@you</li></ul><span class="btn primary" style="width:100%">Upgrade to Pro</span>
 <div style="margin-top:10px;font-size:11.5px;color:var(--muted)">UPI, cards. Cancel any time. Top-up: 50 edits for ₹99, 3 blueprints for ₹149.</div></div></div>
@@ -1813,7 +1863,7 @@ ${tree({ projects: PROJECTS_MAIN, foot: `${ic('warning', 14)} 1 conflict to reso
 phone({ mode: 'Reading', title: '00-BRIEF.md', body: `<div class="banner">${ic('warning', 16)} <span>Two versions changed the same paragraph. Nothing was merged.</span></div>
 <div class="pdoc" style="padding:12px 14px 0"><div class="rh">${ic('devices', 14)} This phone · you · 14:02</div>${CONFLICT_L}<span class="btn primary" style="width:100%;margin:8px 0 16px">${ic('check', 15)} Keep this one</span>
 <div class="rh">${ic('add_to_drive', 14)} Google Drive · Amit · 14:05</div>${CONFLICT_R}<span class="btn primary" style="width:100%;margin:8px 0 10px">${ic('check', 15)} Keep this one</span>
-<span class="btn" style="width:100%">${ic('content_copy', 15)} Keep both as two files</span><div style="font-size:12px;color:var(--fg-muted);margin-top:8px">The other version stays in history.</div></div>` }));
+<div style="display:grid;grid-template-columns:1fr 1fr;gap:6px"><span class="btn">${ic('content_copy', 15)} Keep both</span><span class="btn ai">${ic('auto_awesome', 15)} Let AI decide</span></div><div style="font-size:12px;color:var(--fg-muted);margin-top:8px">The other version stays in history.</div></div>` }));
 
 // S32 AI unavailable: every provider in the chain refused or timed out
 const AI_DOWN = `<div class="aibox" style="border-color:var(--danger)"><div class="in" style="color:var(--fg)">${ic('cloud_off', 18)} AI is unavailable right now. Your document is untouched and nothing was charged.<span class="go" style="background:var(--panel-2);color:var(--fg-muted)">${ic('refresh', 16)}</span></div>
@@ -1885,6 +1935,9 @@ const LIMITS = [
   ['Blueprints a month', `${CAPS.kits} · Low only`, '5 · any depth', ''],
   ['GitHub repositories', String(CAPS.repos), 'Unlimited', ''],
   ['GitHub pushes a month', String(CAPS.pushes), 'Unlimited', ''],
+  ['Question rewrites a blueprint', String(REWRITES_FREE), 'Unlimited', ''],
+  ['Invite credits, to each side', `${INVITE_CREDITS} AI credits`, `${INVITE_CREDITS} AI credits`, ''],
+  ['Standard question set', 'Fallback, on', 'Fallback, on', ''],
 ];
 const CFG_TABLE = `<table class="cfgt"><thead><tr><th style="width:38%">Limit</th><th>Free</th><th>Pro</th><th style="width:26%">Last change</th></tr></thead><tbody>
 ${LIMITS.map(([k, f, p, w], i) => `<tr><td class="lim">${k}</td><td><span class="cfgv${i === 5 ? ' ed' : ''}">${f}</span></td><td><span class="cfgv inf">${p}</span></td><td style="font-size:11.5px;color:var(--muted)">${w || '—'}</td></tr>`).join('\n')}
