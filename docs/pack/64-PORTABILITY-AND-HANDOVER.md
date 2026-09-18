@@ -450,10 +450,14 @@ Gathered from the whole pack, because each of these has already cost somebody a 
 
 **What could not be verified.**
 
-- `UNVERIFIED:` the claim that Claude Code does not read `AGENTS.md`. It comes from `CLAUDE.md`'s
-  own first line.
+- **Confirmed: Claude Code reads `CLAUDE.md`, not `AGENTS.md`** `[M]`. Anthropic's memory page,
+  `https://code.claude.com/docs/en/memory.md`, opened 18 September 2026: "Claude Code reads
+  `CLAUDE.md`, not `AGENTS.md`." It recommends a `CLAUDE.md` that imports `@AGENTS.md`, which is
+  what this repository's `CLAUDE.md` does.
 - `UNVERIFIED:` section 7.1's clone command. It was not run, because the tokens are deliberately
-  unreadable from here.
+  unreadable from here. Its target matches `[O]`: `git remote get-url origin` prints
+  `https://github.com/studiozephyrus/frontmatter.git`. needs: one run of section 7.1 by a founder in
+  a fresh directory.
 - The health numbers in section 6.2 were measured at one moment `[O]` and the repository is being
   edited by several writers. **Re-run them.**
 - `INFERENCE:` the reading order in section 2 is mine. It is reasoned from which file makes which

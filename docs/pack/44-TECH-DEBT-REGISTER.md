@@ -261,7 +261,7 @@ NF-4 have none, and no fixture.
 
 Defect | What it is | Where it is described
 NF-2 | A flow-sequence close bracket at column zero is still refused after the NF-1 fix | a behaviour-table row inside the NF-1 spec
-NF-4 | The safe-key pattern excludes a space, so a key such as `date created` cannot be addressed | an interface note inside the NF-1 spec, and an open question in the writer spec
+NF-4 | The safe-key pattern excludes a space, so a key such as `date created` cannot be addressed | an interface note inside the NF-1 spec; the writer spec's open question has a proposed answer in `41-FIXTURE-REGISTER.md` section 7, byte equality with a refusal on a normalised near-match
 
 **NF-4 carries an unanswered design question, not just a missing test.** The writer spec asks whether
 an accented word in one Unicode normalisation form should address the same key as the same word in

@@ -351,8 +351,10 @@ If an agent reads nothing else in this file, these nine lines.
 
 **What could not be verified.**
 
-- `UNVERIFIED:` the claim that Claude Code does not read `AGENTS.md`. It comes from `CLAUDE.md`'s
-  own first line and was not tested.
+- **Confirmed: Claude Code reads `CLAUDE.md`, not `AGENTS.md`** `[M]`. Anthropic's memory page,
+  `https://code.claude.com/docs/en/memory.md`, opened 18 September 2026: "Claude Code reads
+  `CLAUDE.md`, not `AGENTS.md`." It recommends a `CLAUDE.md` that imports `@AGENTS.md`, which is
+  what this repository's `CLAUDE.md` does.
 - `INFERENCE:` section 7's rule is general and its evidence is from another repository in the same
   workspace, not from this one.
 - The five unauthored commits in section 3.2 are recorded elsewhere in the workspace and were not

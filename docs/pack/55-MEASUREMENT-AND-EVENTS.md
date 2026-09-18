@@ -443,10 +443,13 @@ event can capture it.
 
 - `INFERENCE:` the activation metric in section 2, the session and save definitions in section 1,
   and the funnel order in section 3 are all mine. The plan implies them and states none.
-- **`UNVERIFIED:` no event in section 6 is implemented.** This is a specification. Nothing in
-  `src/` emits any of it.
-- `UNVERIFIED:` `kickoff.ran` depends on an out-of-band hash reaching us, and that mechanism is
-  specified in the plan and not built.
+- **No event in section 6 is implemented** `[O]`, checked 18 September. Each of the 141 event names
+  in section 6 was searched in `src/` as a quoted string, `grep -rn -F '"<name>"' src`, and none
+  was found. `grep -rln "posthog\|track(" src` finds nothing, and the only "analytics" hit is a
+  reserved slug in `src/modules/share/domain/slug.ts:148`.
+- **`kickoff.ran` has no mechanism in the code** `[O]`: `grep -rli "kickoff\|out-of-band" src`
+  returns nothing. The hash is specified in the plan and not built, so the Phase 0 gate cannot be
+  measured until it is.
 
 **What would falsify it.**
 

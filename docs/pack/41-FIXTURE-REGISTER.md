@@ -226,6 +226,14 @@ normalisation form should address the same key as the same word in another form.
 defensible, and the source file's own comment flags it. A fixture cannot be written before the
 question is answered, because the fixture would encode the answer.
 
+**Proposed answer**, `resolved (proposed 18 Sep, founder review)`: **keys are equal only when their
+bytes are equal.** `café` in NFC and `café` in NFD are two keys. A lookup that matches no key by
+bytes but matches one after NFC normalisation is **refused, with the near-match named**, and nothing
+is written. Reason: splice-only writing replaces exact bytes, and a normalised match is a guess
+about which bytes were meant. Rejected: NFC equality, which is friendlier and would let a write land
+on a key the caller did not spell. With this answer, the NF-4 fixture can be written: one file
+holding both forms, one lookup per form, and one lookup that must refuse.
+
 ## 8. How to add a fixture
 
 The rules below are taken from the two red proofs and from `AGENTS.md:10`, not invented here.

@@ -344,9 +344,17 @@ Class | Colour | Severity
 `.prob .warn` | `#d97706` | warning
 `.prob .info` | `--muted` | information
 
-**`UNVERIFIED:` those two hexadecimal values are not asserted by the contrast check**, because
-they are a dot rather than text. They are the only colours in the system outside the token set
-and the swatch map, and they should either join the tokens or be justified.
+**Measured 18 September `[O]`**, WCAG relative luminance computed in `python3`:
+
+Dot | On `--bg` light, `#fafafa` | On `--bg` dark, `#1a1a1a`
+`#dc2626` | 4.63 to 1 | 3.6 to 1
+`#d97706` | **3.05 to 1** | 5.46 to 1
+
+Both clear the 3 to 1 that WCAG 2.2 success criterion 1.4.11 asks of a graphical object, and the
+amber in light mode clears it by a hair. **They join the tokens as `--prob-err` and `--prob-warn`**,
+`resolved (proposed 18 Sep, founder review)`, and `gen.mjs` asserts 3 to 1 on them. Rejected:
+leaving them as literals, which is how an unchecked colour gets in. **The dot never carries the
+severity alone**: the row's text names it, per criterion 1.4.1.
 
 ### 5.7 Cursors, for live editing
 
@@ -444,9 +452,16 @@ view.** Recorded at `docs/mvp0/SCREEN-CHANGES-2026-09-18.md` section 1, S01.
 **It is a theming instruction, not a layout one, and it applies to more than S01.** Every phone
 panel in the set is in scope, and `50-ROADMAP.md` section 2.1 costs it at two days.
 
-`UNVERIFIED:` what "the same theme treatment" means concretely has not been written down by
-anybody. **The screens' own phone shell uses the same tokens as the desktop already**, so the
-instruction is about density, surface and hierarchy rather than about colour.
+**What "the same theme treatment" means**, `resolved (proposed 18 Sep, founder review)`, **needs
+founder** because it is his taste to confirm. The screens' own phone shell already uses the desktop
+tokens, so the instruction is read as three concrete changes:
+
+1. **Surface.** Phone panels layer `--panel` and `--panel-2` with hairline `--border` exactly as the
+   desktop panes do, instead of one flat background.
+2. **Hierarchy.** The same heading and label steps as the desktop, not a smaller uniform size.
+3. **Density.** Desktop row padding, not a looser phone-only spacing.
+
+Rejected: a separate phone palette, which would put a second set of values into section 1.
 
 ---
 
@@ -484,12 +499,16 @@ instruction is about density, surface and hierarchy rather than about colour.
 
 **What could not be verified.**
 
-- `UNVERIFIED:` the two problem-dot colours in section 5.6 are outside the token set and outside
-  the contrast assertion.
-- `UNVERIFIED:` the "Google Sans" family licence, `54-COMPLIANCE-AND-LEGAL.md` section 7.1.
-- `UNVERIFIED:` whether these tokens survive contact with the real application. **`gen.mjs`
-  generates pictures of an interface, not the interface**, and no component in `src/` uses any
-  token in section 1.
+- The two problem-dot colours were measured on 18 September and proposed as tokens, section 5.6.
+- The "Google Sans" family licence was found on 18 September: OFL 1.1, `54-COMPLIANCE-AND-LEGAL.md`
+  section 7.1.
+- **Corrected 18 September: the tokens are in the application already, and four differ** `[O]`.
+  Of the 22 names in section 1, 21 are defined in `src/app/globals.css` and used by `var()` in
+  `src/`, and 18 carry the same light value as `gen.mjs`. The four that differ: `--ai` is missing,
+  `--danger` is `#b2625e` against `#aa5e5a`, `--success` is `#4f8b6b` against `#487d60`, and
+  **`--muted` is `#9b9ba3` against `#73737b`**. The application's `--muted` on `#fafafa` is **2.64
+  to 1**, under the 4.5 to 1 that `gen.mjs` enforces, and it is used 93 times. Checked with a
+  `python3` diff of the two files' custom properties and `grep -rn -- "var(--muted)" src`.
 - `INFERENCE:` section 1.3's reading of why the accent is near-black. The code shows the values,
   and the reasoning is mine.
 

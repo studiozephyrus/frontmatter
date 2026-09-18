@@ -92,8 +92,8 @@ The pilot | Twenty people outside the studio | none | at least 2 weeks | none | 
 two", so the pilot cannot read out in less than two weeks.
 
 **The 18 September additions are not the plan's.** They are carried from the previous revision of
-this file, which itemised the screen review and the research round. Section 5.2 shows why they are
-`UNVERIFIED:`.
+this file, which itemised the screen review and the research round. **They are appetites, a budget
+we set, not measurements**, so there is nothing to verify until a batch is built. Section 5.2.
 
 ### 2.1 Why this order and not the phase letters
 
@@ -203,7 +203,7 @@ The instruction-file set, rebuilt from the one-file panel | `F171`, `F172`, `F17
 The engine: splice-only writing, the two refusals, the projection law, with the two measured defects and the audit's third fixed | `F276`, `F277`, `F278`, `F279` | every editing screen
 The `--ai` token and the code face in `globals.css` | none | none
 
-**The 11 days added on 18 September** `UNVERIFIED:`.
+**The 11 days added on 18 September**, an appetite, `resolved (proposed 18 Sep, founder review)`.
 
 Item | Days | Source
 The workspace rearranged | 3 | `docs/mvp0/SCREEN-CHANGES-2026-09-18.md:31` to `:47`
@@ -245,7 +245,7 @@ The Zed Delta rebuttal, written | none | none
 decides whether live editing is built. `INFERENCE:` it may still decide whether it waits for its
 own batch.
 
-**The 7 days added on 18 September** `UNVERIFIED:`.
+**The 7 days added on 18 September**, an appetite, `resolved (proposed 18 Sep, founder review)`.
 
 Item | Days | Source
 Share by frontmatter address, with an invite that earns credits | 2 | `docs/mvp0/SCREEN-CHANGES-2026-09-18.md:136` to `:139`
@@ -310,7 +310,7 @@ The fifteen-file blueprint, consistency check, unlisted link, out-of-band hash, 
 The ideas empty state | `F207` | S34
 The map, rebuilt on save | `F186`, `F187` | S16
 
-**The 10 to 12.5 days added on 18 September** `UNVERIFIED:` are one item: idea mode rebuilt as one
+**The 10 to 12.5 days added on 18 September**, an appetite, `resolved (proposed 18 Sep, founder review)`, are one item: idea mode rebuilt as one
 column with a dynamic question flow, 2 to 2.5 weeks. Source:
 `docs/mvp0/SCREEN-CHANGES-2026-09-18.md:99` to `:124`.
 
@@ -357,7 +357,7 @@ The progressive web app and the protocol handler | `F255`, `F256` | S18, S22, S2
 Quick capture | `F149` | S26
 Dark mode | `F109` | S27
 
-**The 2 days added on 18 September** `UNVERIFIED:`: phone views given the desktop theme treatment,
+**The 2 days added on 18 September**, an appetite, `resolved (proposed 18 Sep, founder review)`: phone views given the desktop theme treatment,
 `docs/mvp0/SCREEN-CHANGES-2026-09-18.md:19`.
 
 **Depends on:** batch 3 for the editor, and batch 5 for sync.
@@ -397,7 +397,7 @@ The Model Context Protocol server and the API | none yet | none yet
 The Max tier | none yet | S29
 A `wait_for_change` equivalent, so an agent parks instead of leaving | none yet | none
 
-**The 2 days** `UNVERIFIED:` are for `wait_for_change`, from
+**The 2 days**, an appetite, `resolved (proposed 18 Sep, founder review)`, are for `wait_for_change`, from
 `docs/research/2026-09-18/raw/Z2-position-taken.md`. The rest has no appetite.
 
 **Depends on:** batch 4 for the queue an agent proposes into, batch 7 for billing.
@@ -500,6 +500,12 @@ by batch: 11 (B3) + 7 (B4) + 10 to 12.5 (B6) + 2 (B8) + 2 (B10) = 32 to 34.5
 
 **The range below uses the low headline and the high itemisation**, 20 to 34.5 days. Neither figure
 has been checked against anybody building anything.
+
+**Where the headline came from** `[O]`: `git show f237ece:docs/pack/50-ROADMAP.md`, this file's own
+earlier revision, whose section 2 gave "3 to 4 weeks" and "about 1 week" before the rows were
+itemised. So both figures are ours. **The itemised rows are the appetite**, `resolved (proposed 18
+Sep, founder review)`, because each names its screen and its source line. The range keeps the
+headline as its floor so that `ADR-0011` and section 5.4 stay one set of numbers.
 
 ### 5.3 Per batch, at the measured pace
 
@@ -620,10 +626,13 @@ Obsidian ships a web version | `docs/mvp0/PRODUCT-PLAN.md` section 27 names this
 
 **What could not be verified.**
 
-- `UNVERIFIED:` every 18 September addition in days. They are the previous revision's itemisation,
-  and the brief's headline is lower.
-- `UNVERIFIED:` the feature-to-batch assignment for features the plan does not name by phase, such
-  as `F145` to `F147`. It follows the screen each sits on.
+- Every 18 September addition in days is an appetite, not a measurement, and is now marked as a
+  proposed resolution. The headline traces to this file's revision `f237ece`, section 5.2.
+- The feature-to-batch assignment for features the plan does not name by phase, such as `F145` to
+  `F147`, `resolved (proposed 18 Sep, founder review)`: **a feature with no phase goes in the batch
+  of the screen it sits on.** `F145` to `F147` sit on S04 in `10-FEATURE-REGISTER.md`, so batch 3.
+  Rejected: parking them in batch 11, which would split one screen across two batches and two use
+  windows.
 - 43 features have no acceptance criterion, per `10-FEATURE-REGISTER.md` section 0. A batch gate
   that names none is weaker than one that does.
 

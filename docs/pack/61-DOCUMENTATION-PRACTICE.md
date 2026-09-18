@@ -275,8 +275,10 @@ For somebody who has to follow it rather than read about it.
 
 **What could not be verified.**
 
-- `UNVERIFIED:` whether `gen-api-reference.mjs` is deterministic and diff-gateable. It was written
-  by another author in this session and this file did not run it.
+- **`gen-api-reference.mjs` is diff-gateable** `[O]`, run 18 September: `node
+  docs/pack/tools/gen-api-reference.mjs --check` printed `FRESH` (26 routes, 29 handlers) and
+  exited 0 on two consecutive runs. Its `--check` compares everything except the `updated`,
+  `verified_against` and "Read out of" lines, which carry the date and commit and move every run.
 - `INFERENCE:` section 5.1's list of things that should be generated is mine. Nobody has agreed to
   build any of those generators.
 - The counts in section 1 were taken at one moment while other writers were still working, and

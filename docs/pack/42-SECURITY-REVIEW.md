@@ -226,8 +226,10 @@ documents to whichever of 88 upstream providers answers, under no policy at all.
 
 **Note on reachability.** The chain is assembled from whichever keys the environment holds, so
 whether any forbidden provider is live depends on deployment configuration this file did not read.
-**UNVERIFIED: whether `GOOGLE_GENERATIVE_AI_API_KEY` or `MISTRAL_API_KEY` is set in production.** The
-defect is that the code will use either one if it is there, with no gate.
+**UNVERIFIED: whether `GOOGLE_GENERATIVE_AI_API_KEY` or `MISTRAL_API_KEY` is set in production.**
+needs: `vercel env ls production --scope zsco` run by a founder, because the Zephyrus token is outside
+this session's reach. The defect is that the code will use either one if it is there, with no gate.
+Mistral is now confirmed to train by default on its free tier, `54-COMPLIANCE-AND-LEGAL.md` section 4.3.
 
 **Fix, in order.**
 
@@ -301,9 +303,12 @@ export.
 `--disable-setuid-sandbox` at line 133. That is a development path, and it means a renderer escape on
 a developer's machine has nothing between it and the machine.
 
-**UNVERIFIED:** `src/modules/export/presentation/pdf-doc.ts` was not read, so how much raw HTML from a
-note survives into the rendered page is not established. That decides whether this is HIGH or
-CRITICAL.
+**Checked 18 September `[O]`: raw HTML does not survive, markdown images do.** `pdf-doc.ts` runs
+`remark-rehype` 11.1.2 with no options and no `rehype-raw`, and `mdast-util-to-hast` 13.2.1 drops an
+`html` node unless `allowDangerousHtml` is set. Feeding the same plugin chain a note with a raw
+`<img>`, a `<script>`, an `<iframe>` and a markdown image `![x](http://169.254.169.254/md-image)`
+printed only `<img src="http://169.254.169.254/md-image" alt="x">`. **So the rating stays HIGH, not
+CRITICAL:** no script runs, but a markdown image still makes the server issue a GET to any address.
 
 **Fix.**
 
@@ -468,8 +473,9 @@ unconditional in the source.
 
 **What the code does.** `grep -rni "console.log\|logger\|audit" src/modules/ai/` returns nothing.
 There is no logger, no ledger write, no correlation id, and no record of which provider served a
-call. `src/instrumentation.ts` exists; **UNVERIFIED: whether it registers anything that would
-capture a model call.**
+call. `src/instrumentation.ts` exists, and **it captures no model call** `[O]`: `register()` is an empty body,
+and the only other export, `onRequestError`, logs server errors with the path and route. A
+successful model call raises no error, so it leaves no trace.
 
 **Why it ranks HIGH and not MEDIUM.** Without attribution, none of the following can be answered
 after the fact: which provider saw a given document, whether a budget was exceeded, whether an
@@ -594,7 +600,8 @@ configuration.
 
 **Two unverified points, both material.** **UNVERIFIED: whether this rules file is deployed to the
 live Firebase project.** **UNVERIFIED: whether the live project has any data in it.** Neither can be
-answered from the repository.
+answered from the repository. needs: a founder signed in to the Firebase console for
+`frontmatter-md`, reading the Rules tab's publish history and the Data tab.
 
 ## 13. SEC-013 and SEC-014, MEDIUM. Two policy details
 

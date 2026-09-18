@@ -360,10 +360,19 @@ of a machine is a machine-shaped cost.
 
 **What could not be verified.**
 
-- `UNVERIFIED:` the Max price. There is none. Max is batch 10 and unpriced.
-- `UNVERIFIED:` whether the tagline test can tell three lines apart. No sample size has been derived.
-- `UNVERIFIED:` whether the three groups in section 1.2 are the real segments. The pilot of twenty
-  is the first test and it has not run.
+- **The Max price.** There is none `[O]`: section 4.3 prices nothing. `resolved (proposed 18 Sep,
+  founder review)`, **needs founder** because it is money: Max is metered per agent request, and the
+  meter's rate is set from the configuration panel when batch 10 starts, from its measured cost.
+  Rejected: a flat Max price now, which section 4.3 already argues against.
+- **Whether the tagline test can tell three lines apart.** Derived 18 September `[O]`, two-proportion
+  sample size at 5 per cent significance and 80 per cent power, computed in `python3` with
+  `statistics.NormalDist`: telling an 80 per cent pass rate from 30 per cent needs **15 people a
+  line**; 80 from 50 needs 39. A pilot of twenty gives about 7 a line (20 / 3 = 6.7). **So the test
+  cannot rank the lines, only screen out a line that clearly fails.** `resolved (proposed 18 Sep,
+  founder review)`: run it as a screen, and retire any line that at most 2 of its 7 people pass.
+  Rejected: treating the winner at 7 a line as a measured preference.
+- `UNVERIFIED:` whether the three groups in section 1.2 are the real segments. needs: the pilot of
+  twenty, which has not run. Nothing from here can check it.
 - `INFERENCE:` section 3.3's reading that phase A is larger than a hardening. It follows from two
   adapters being absent from the tree, and nobody has costed the difference.
 

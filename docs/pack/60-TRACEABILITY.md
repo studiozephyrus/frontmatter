@@ -67,72 +67,72 @@ section 6.
 ### 2.1 Getting in
 
 S | Features | Route | Module | Port | Adapter | Storage | Spec | Acceptance | Test | Status
-`S01` | `F101` to `F104`, 4 | `/login`, `/privacy`, `/terms`, `/pricing`, `/refunds` | `auth` | `AuthGateway` | `firebase-auth-gateway.ts`, `auth-options.ts` | Firebase Auth | `12-screens/S01.md` | `A001` to `A007` | `auth/firebase-auth-gateway.test.ts`, `auth/auth-options.test.ts`, `auth/allowlist.test.ts` | **building**.
+`S01` | `F101` to `F104`, 4 | `/login`, `/privacy`, `/terms`, `/pricing`, `/refunds` | `auth` | `AuthGateway` | `firebase-auth-gateway.ts`, `auth-options.ts` | Firebase Auth | `12-screens/S01.md` | `A001-A007` | `auth/firebase-auth-gateway.test.ts`, `auth/auth-options.test.ts`, `auth/allowlist.test.ts` | **building**.
 `S02` | 3 | `/` | `app-shell`, `vault` | `VaultReader` | `vault-reader.ts` | GitHub | `12-screens/S02.md` | `A008`, `A200` | none | planned.
 `S03` | 2 | `/` | `app-shell`, `vault` | `VaultReader` | `vault-reader.ts` | GitHub | `12-screens/S03.md` | none yet | `vault/get-snapshot.test.ts` | planned.
 
 ### 2.2 Writing
 
 S | Features | Route | Module | Port | Adapter | Storage | Spec | Acceptance | Test | Status
-`S04` | 34 | `/`, `api/vault/*` (14 routes) | `editor`, `vault`, `app-shell`, `graph` | `VaultReader`, `NoteParserFn` | `vault-reader.ts`, `markdown-parser.ts`, `search-index.ts`, `snapshot-cache.ts` | GitHub | `12-screens/S04.md` | `A030` to `A040`, `A203`, `A204` | `editor/*` (9), `vault/*` (19), `graph/graph-data.test.ts` | **partly shipped**.
-`S05` | 5 | `/` | `editor`, `preview` | `NoteParserFn` | `markdown-parser.ts` | GitHub | `12-screens/S05.md` | `A041` to `A043` | `preview/frontmatter.test.ts`, `editor/toolbar-transforms.test.ts` | planned.
-`S06` | 5 | `api/ai/complete`, `api/ai/generate-doc`, `api/ai/refine` | `ai`, `ai-tools` | `LlmClient` | `gateway-client.ts`, `provider-race.ts` | none, the model is remote | `12-screens/S06.md` | see register | `ai/generate-document.test.ts` | **building**.
-`S07` | 6 | `api/ai/refine` | `ai`, `editor` | `LlmClient` | `gateway-client.ts` | none | `12-screens/S07.md` | see register | `editor/ai-suggestion.test.ts` | **building**.
-`S08` | 9 | none | `preview` | none | none | GitHub | `12-screens/S08.md` | see register | `preview/callout.test.ts`, `preview/embeds.test.ts` | planned.
-`S09` | 5 | none | none | none | none | none | `12-screens/S09.md` | see register | none | **deferred 18 Sep**.
-`S10` | 10 | `api/ai/link-doctor` | `ai`, `graph` | `LlmClient` | `gateway-client.ts` | GitHub | `12-screens/S10.md` | see register | `graph/graph-data.test.ts` | planned.
-`S11` | 3 | none | none | none | none | GitHub | `12-screens/S11.md` | see register | none | planned.
+`S04` | 34 | `/`, `api/vault/*` (14 routes) | `editor`, `vault`, `app-shell`, `graph` | `VaultReader`, `NoteParserFn` | `vault-reader.ts`, `markdown-parser.ts`, `search-index.ts`, `snapshot-cache.ts` | GitHub | `12-screens/S04.md` | `A030-A040`, `A203`, `A204` | `editor/*` (9), `vault/*` (19), `graph/graph-data.test.ts` | **partly shipped**.
+`S05` | 5 | `/` | `editor`, `preview` | `NoteParserFn` | `markdown-parser.ts` | GitHub | `12-screens/S05.md` | `A041-A043` | `preview/frontmatter.test.ts`, `editor/toolbar-transforms.test.ts` | planned.
+`S06` | 5 | `api/ai/complete`, `api/ai/generate-doc`, `api/ai/refine` | `ai`, `ai-tools` | `LlmClient` | `gateway-client.ts`, `provider-race.ts` | none, the model is remote | `12-screens/S06.md` | `A050-A052`, `A063`, 4 | `ai/generate-document.test.ts` | **building**.
+`S07` | 6 | `api/ai/refine` | `ai`, `editor` | `LlmClient` | `gateway-client.ts` | none | `12-screens/S07.md` | `A053-A059`, `A063-A064`, 9 | `editor/ai-suggestion.test.ts` | **building**.
+`S08` | 9 | none | `preview` | none | none | GitHub | `12-screens/S08.md` | `A045-A046`, `A554-A555`, `A558-A559`, `A776-A778`, 9 | `preview/callout.test.ts`, `preview/embeds.test.ts` | planned.
+`S09` | 5 | none | none | none | none | none | `12-screens/S09.md` | `A044`, 1 | none | **deferred 18 Sep**.
+`S10` | 10 | `api/ai/link-doctor` | `ai`, `graph` | `LlmClient` | `gateway-client.ts` | GitHub | `12-screens/S10.md` | `A070-A073`, `A110-A113`, `A201-A202`, `A749-A750`, 12 | `graph/graph-data.test.ts` | planned.
+`S11` | 3 | none | none | none | none | GitHub | `12-screens/S11.md` | `A074-A075`, `A771-A775`, 7 | none | planned.
 
 ### 2.3 Ideas
 
 S | Features | Route | Module | Port | Adapter | Storage | Spec | Acceptance | Test | Status
-`S12` | 7 | none | none | none | none | none | `12-screens/S12.md` | see register | none | planned.
-`S13` | 9 | none | none | `LlmClient` when built | none | none | `12-screens/S13.md` | see register | none | planned.
-`S14` | 6 | none | none | `LlmClient` when built | none | none | `12-screens/S14.md` | see register | none | planned.
-`S15` | 6 | none | none | none | none | none | `12-screens/S15.md` | `A201` to `A206` | none | planned.
-`S16` | 2 | none | `graph` | none | none | GitHub | `12-screens/S16.md` | see register | `graph/graph-data.test.ts` | planned.
-`S34` | 2 | none | none | none | none | none | `12-screens/S34.md` | see register | none | planned.
+`S12` | 7 | none | none | none | none | none | `12-screens/S12.md` | `A080-A089`, `A526`, `A529`, `A588`, `A776-A781`, 19 | none | planned.
+`S13` | 9 | none | none | `LlmClient` when built | none | none | `12-screens/S13.md` | `A050-A052`, `A080-A089`, 13 | none | planned.
+`S14` | 6 | none | none | `LlmClient` when built | none | none | `12-screens/S14.md` | `A080-A089`, 10 | none | planned.
+`S15` | 6 | none | none | none | none | none | `12-screens/S15.md` | `A201-A206` | none | planned.
+`S16` | 2 | none | `graph` | none | none | GitHub | `12-screens/S16.md` | `A095`, 1 | `graph/graph-data.test.ts` | planned.
+`S34` | 2 | none | none | none | none | none | `12-screens/S34.md` | `A080-A089`, `A200`, 11 | none | planned.
 
 ### 2.4 Sharing
 
 S | Features | Route | Module | Port | Adapter | Storage | Spec | Acceptance | Test | Status
-`S17` | 8 | `api/share` | `share` | `ShareWriter`, `ShareSnapshotPort` | `share-writer.ts`, `share-snapshot-port.ts` | GitHub | `12-screens/S17.md` | see register | `share/*` (11), `api/share-route.test.ts` | **partly shipped**.
+`S17` | 8 | `api/share` | `share` | `ShareWriter`, `ShareSnapshotPort` | `share-writer.ts`, `share-snapshot-port.ts` | GitHub | `12-screens/S17.md` | `A100-A102`, `A610-A611`, `A729-A733`, 10 | `share/*` (11), `api/share-route.test.ts` | **partly shipped**.
 `S18` | 9 | `/p/[slug]`, `/[slug]`, `api/vault/raw/[...path]` | `share`, `preview` | `ShareSnapshotPort` | `share-snapshot-port.ts` | GitHub, ISR at 60s | `12-screens/S18.md` | `A205`, `A206` | `share/resolve-public-note.test.ts`, `vault/raw-content-type.test.ts`, `vault/snapshot-public-slug.test.ts` | **partly shipped**.
-`S19` | 2 | none | none | none | none | Durable Objects, planned | `12-screens/S19.md` | see register | none | planned.
-`S20` | 8 | none | none | none | none | none | `12-screens/S20.md` | see register | none | **planned. This is the product**.
-`S21` | 5 | `api/vault/history`, `api/vault/version`, `api/vault/restore` | `vault` | `VaultReader` | `vault-reader.ts` | GitHub commits | `12-screens/S21.md` | see register | `vault/get-history.test.ts` | **partly shipped**.
-`S30` | 1 | none | none | none | none | none | `12-screens/S30.md` | see register | none | planned.
+`S19` | 2 | none | none | none | none | Durable Objects, planned | `12-screens/S19.md` | `A108-A109`, 2 | none | planned.
+`S20` | 8 | none | none | none | none | none | `12-screens/S20.md` | `A010-A020`, `A024`, `A053-A056`, `A110-A113`, `A729-A733`, `A782-A784`, 28 | none | **planned. This is the product**.
+`S21` | 5 | `api/vault/history`, `api/vault/version`, `api/vault/restore` | `vault` | `VaultReader` | `vault-reader.ts` | GitHub commits | `12-screens/S21.md` | `A061-A062`, `A114-A115`, `A600`, 5 | `vault/get-history.test.ts` | **partly shipped**.
+`S30` | 1 | none | none | none | none | none | `12-screens/S30.md` | `A673-A678`, 6 | none | planned.
 
 ### 2.5 In and out
 
 S | Features | Route | Module | Port | Adapter | Storage | Spec | Acceptance | Test | Status
-`S22` | 11 | `api/vault/upload`, `api/vault/create`, `api/vault/folder` | `vault`, `repository` | `RepositoryWriter` | `github-writer.ts` | GitHub | `12-screens/S22.md` | `A120` to `A123` | `repository/upload-attachment.test.ts`, `api/folder-route.test.ts` | **building**.
-`S23` | 5 | `api/commit` | `repository` | `RepositoryWriter` | `github-writer.ts` | GitHub | `12-screens/S23.md` | see register | `repository/commit-changes.test.ts`, `repository/github-writer.test.ts`, `shared/github-client.test.ts` | **partly shipped**.
+`S22` | 11 | `api/vault/upload`, `api/vault/create`, `api/vault/folder` | `vault`, `repository` | `RepositoryWriter` | `github-writer.ts` | GitHub | `12-screens/S22.md` | `A120-A123` | `repository/upload-attachment.test.ts`, `api/folder-route.test.ts` | **building**.
+`S23` | 5 | `api/commit` | `repository` | `RepositoryWriter` | `github-writer.ts` | GitHub | `12-screens/S23.md` | `A023`, `A124-A127`, `A635-A638`, 9 | `repository/commit-changes.test.ts`, `repository/github-writer.test.ts`, `shared/github-client.test.ts` | **partly shipped**.
 
 ### 2.6 Everywhere
 
 S | Features | Route | Module | Port | Adapter | Storage | Spec | Acceptance | Test | Status
-`S24` | 4 | none | `drafts` | none | `draft-store.ts` | IndexedDB, `sgnk-md` keys | `12-screens/S24.md` | see register | `drafts/draft-store.test.ts` | **partly shipped**.
-`S25` | 5 | none, it is a shell | `src-tauri/` | none | Tauri v2 | the device | `12-screens/S25.md` | see register | none | **partly shipped**.
-`S26` | 2 | none | none | none | none | none | `12-screens/S26.md` | see register | none | planned.
-`S27` | 1 | `/` | `app-shell` | none | none | the account | `12-screens/S27.md` | see register | none | **shipped**.
+`S24` | 4 | none | `drafts` | none | `draft-store.ts` | IndexedDB, `sgnk-md` keys | `12-screens/S24.md` | `A130-A132`, 3 | `drafts/draft-store.test.ts` | **partly shipped**.
+`S25` | 5 | none, it is a shell | `src-tauri/` | none | Tauri v2 | the device | `12-screens/S25.md` | `A130-A133`, `A645-A646`, `A782-A787`, 12 | none | **partly shipped**.
+`S26` | 2 | none | none | none | none | none | `12-screens/S26.md` | `A647-A655`, 9 | none | planned.
+`S27` | 1 | `/` | `app-shell` | none | none | the account | `12-screens/S27.md` | `A656-A662`, 7 | none | **shipped**.
 
 ### 2.7 Account and the states
 
 S | Features | Route | Module | Port | Adapter | Storage | Spec | Acceptance | Test | Status
-`S28` | 8 | `/` | `app-shell` | none | none | the account | `12-screens/S28.md` | see register | none | **partly shipped**.
-`S29` | 9 | none | none | none | none | none | `12-screens/S29.md` | see register | none | planned.
-`S31` | 4 | `api/vault/merge`, `api/share/conflicts` | `repository`, `share` | `RepositoryWriter` | `github-writer.ts` | GitHub | `12-screens/S31.md` | see register | `repository/merge3.test.ts`, `repository/merge-note.test.ts`, `share/list-conflicts.test.ts`, `api/share-conflicts-route.test.ts` | **partly shipped**.
-`S32` | 4 | `api/ai/*` | `ai` | `LlmClient` | `provider-race.ts` | none | `12-screens/S32.md` | see register | `ai/provider-race.test.ts` | **building**.
-`S33` | 3 | none | none | none | none | the ledger, planned | `12-screens/S33.md` | see register | none | planned.
+`S28` | 8 | `/` | `app-shell` | none | none | the account | `12-screens/S28.md` | `A060-A062`, `A116`, `A656-A667`, `A749-A750`, `A766-A770`, 23 | none | **partly shipped**.
+`S29` | 9 | none | none | none | none | none | `12-screens/S29.md` | `A063`, `A103-A107`, `A140-A143`, `A149-A150`, `A670-A672`, `A788-A796`, 24 | none | planned.
+`S31` | 4 | `api/vault/merge`, `api/share/conflicts` | `repository`, `share` | `RepositoryWriter` | `github-writer.ts` | GitHub | `12-screens/S31.md` | `A010-A020`, `A024`, `A128-A129`, 14 | `repository/merge3.test.ts`, `repository/merge-note.test.ts`, `share/list-conflicts.test.ts`, `api/share-conflicts-route.test.ts` | **partly shipped**.
+`S32` | 4 | `api/ai/*` | `ai` | `LlmClient` | `provider-race.ts` | none | `12-screens/S32.md` | `A057-A059`, `A064`, `A080-A089`, 14 | `ai/provider-race.test.ts` | **building**.
+`S33` | 3 | none | none | none | none | the ledger, planned | `12-screens/S33.md` | `A140-A143`, 4 | none | planned.
 
 ### 2.8 The configuration panel
 
 S | Features | Route | Module | Port | Adapter | Storage | Spec | Acceptance | Test | Status
-`S35` | 8 | none | none | none | none | Firestore, planned | `12-screens/S35.md` | see register | none | planned.
-`S36` | 6 | none | none | none | none | Firestore, planned | `12-screens/S36.md` | see register | none | planned.
-`S37` | 4 | none | none | none | none | Firestore, planned | `12-screens/S37.md` | see register | none | planned.
-`S38` | 3 | none | none | none | none | Firestore, planned | `12-screens/S38.md` | see register | none | planned.
+`S35` | 8 | none | none | none | none | Firestore, planned | `12-screens/S35.md` | `A080-A089`, `A108-A109`, `A114-A115`, `A124-A125`, `A140-A148`, 25 | none | planned.
+`S36` | 6 | none | none | none | none | Firestore, planned | `12-screens/S36.md` | `A057-A059`, `A064`, `A144-A148`, 9 | none | planned.
+`S37` | 4 | none | none | none | none | Firestore, planned | `12-screens/S37.md` | `A144-A148`, `A766-A770`, 10 | none | planned.
+`S38` | 3 | none | none | none | none | Firestore, planned | `12-screens/S38.md` | `A144-A151`, 8 | none | planned.
 
 ### 2.9 The engine, which no screen owns
 
@@ -332,13 +332,19 @@ against them.
 
 **What could not be verified.**
 
-- `UNVERIFIED:` the acceptance cells that read `see register`. `19-ACCEPTANCE-CRITERIA.md` was
-  being written while this matrix was being built, and joining every row would have produced a
-  number that was wrong by the afternoon.
+- The acceptance cells that read `see register` were **joined on 18 September** `[O]`. All 30 were
+  filled from `10-FEATURE-REGISTER.md`: for each screen, the union of the acceptance ranges of every
+  feature row that names it, with the count. When the register changes, re-run the join by
+  that rule rather than editing a cell by hand. `INFERENCE:` a criterion shared by two
+  screens is counted under both.
 - `INFERENCE:` the status column in section 2 is my reading of what exists, not the register's
   per-feature status. Where they disagree, the register is authoritative.
-- `UNVERIFIED:` the storage-in-the-plan column of section 3.2. It follows from the stack decision
-  and no adapter exists to check it against.
+- The storage-in-the-plan column of section 3.2 was **checked against the decisions** on 18
+  September `[P]`. It matches `adr/ADR-0007-stack.md`, "Bytes: every version and every upload" in
+  R2 and "the head pointer, the queue, the ledger" in Firestore, and `adr/ADR-0012` for GitHub as a
+  mirror rather than the store. The storage-today column was checked in code `[O]`: the share
+  adapters import no GitHub client and write through `@/modules/repository`, so GitHub is right.
+  No plan adapter exists yet, so the column describes a target, not a build.
 
 **What would falsify it.**
 
