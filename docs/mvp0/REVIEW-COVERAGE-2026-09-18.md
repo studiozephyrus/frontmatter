@@ -143,3 +143,43 @@ Total | 87
 - **Nothing was run.** I did not regenerate screens, run the pack validator or run `npm run verify`.
 - **The pack was sampled, not read whole.** Files 27, 28, 29, 58, 64 and several screen specs were checked by grep and sed around the relevant sections.
 
+
+## 5. Fixed on 18 September, afternoon
+
+Each row below was fixed, rendered, and the PNG opened and looked at before the commit. The v8 PDF is `docs/mvp0/frontmatter-Screens-v8-2026-09-18-1307.pdf`, 30 pages, 43 screen pairs, and `check-pdf.py` passes on it.
+
+Row | What was done | Commit
+---|---|---
+1, 87 | `brand()` closes each path, so the four-colour Google G draws on S01, desktop and phone. | `58f00ca`
+29, 77, 81 | `auto_awesome` and `insights` refetched in the 960-unit box from Google Fonts. Every icon file was scanned; those two were the only ones outside it. The generator and `fetch-icons.mjs` now refuse any icon outside the 960 box. | `58f00ca`
+2, 3, 86 | Every phone header carries the fm mark, the title with its project and save state, share and the avatar or mode segment. The status bar uses Material icons, the bottom bar follows Material's navigation bar with AI in the accent blue, and S01 on the phone shows the desktop's preview window. | `5260993`
+64, 85 | S36 redrawn from file 28 section 5.1 and file 27 section 2.1: 19 models across 7 providers in fallback order, OpenRouter in the chain, SambaNova disabled and explained, the refused providers listed. | `2d6688f`
+8, 53 | New frame `s04-workspace-add`: the Add file menu with New document, Upload files, Upload a folder and Import from; a sheet on the phone. | `ce3c954`
+14 | The rail's full-width AI button is gone. A small Ask AI launcher floats over the document, and the new frame `s04-workspace-ai` draws the box open over the workspace, anchored under the paragraph it will touch. | `ce3c954`
+20, 21 | New frame `s06-ai-writing-idea`: the box to the right of the content, with the pinned Idea line. | `ce3c954`
+15, 62 | S34 rebuilt on S12's column and input; the four-step breadcrumb is gone. | `5edacc0`
+66 | S12, S13, S14 and S34 sit in the workspace with the Ideas section of the tree expanded. No separate route or sidebar. | `5edacc0`
+71 | The standard question set switch is drawn on S13, with the rewrites left on Free, and S32 offers it for an idea. | `5edacc0`
+37 | The S13 phone pins Skip, Choose recommendation and Next to the foot; S14 adds Skip all. | `5edacc0`
+44 | New frame `s17-share-referral`: the modal an invited person meets after sign-up. | `804a353`
+45 | The S18 phone shows the open-in ladder. The password gate moves to the new frame `s18-public-view-password`, with a desktop drawing. | `804a353`
+60 | The S31 phone offers Let AI decide beside Keep both. | `804a353`
+65 | S21 history carries the People and AI filter, as S20 does. | `804a353`
+48 | The copy reads "1 live collaborator", from one constant. `PRODUCT-PLAN.md` summary table and `SCREENS.md` say 1. | `804a353`, `bc85c69`
+63, 70 | S35 carries the rewrites cap, the invite credits and the standard question set as rows. | `804a353`
+17 | The plan says font face and size sit on the Doc mode bar; colour, highlight and alignment behind More. | `bc85c69`
+24 | S09 marked deferred to Later by the founder in the plan's screen section and in the section 8 table. | `bc85c69`
+27 | The plan's list of help places and the S11 bullets describe the whole instruction-file set. | `bc85c69`
+72 | Screens re-rendered and the v8 PDF built; v7 kept. | `d1438f6`
+
+**Also changed along the way.** S32 lists the chain in its real order with OpenRouter in it. The opening table of `SCREENS.md` lives in `docs/mvp0/tools/make-screens-md.py`, which still said "a separate tab", "three people on Free" and "3 live collaborators"; it was corrected so the regenerated sheet agrees.
+
+**Still open after this pass.**
+
+- Row 9: "Commands" is still named nowhere.
+- Row 18: the nested-YAML properties panel is not drawn.
+- Row 24: `docs/pack/12-screens/S09.md` does not yet say deferred; the pack was out of this pass's scope.
+- Row 43: the invite credits are a row on S35 but not yet in `docs/pack/28-CONFIGURATION-PANEL-SPEC.md` or file 53.
+- Row 50 and 51: no further decluttering of S20, and no "other reviews" position.
+- Row 64: file 28 section 5.1 still says OpenRouter carries no model rows, against file 27 section 2.1 and the redrawn S36.
+- Rows 26, 56, 59, 61, 80 and 82 need the founder, and were left as drawn.
