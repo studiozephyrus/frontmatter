@@ -31,7 +31,7 @@ Later | The portfolio at frontmatter.in/@handle, the MCP server and API, Team, a
 
 ## 2. Reading the screens
 
-- **Thirty-eight screens.** Thirty-four are the product. The last four are the configuration panel, which only a founder sees. Four screens carry a second or third frame for a state the founders asked to see.
+- **Forty screens.** Thirty-six are the product. Four are the configuration panel, which only a founder sees. The last two are the sheet and the board, drawn on 19 September. Six screens carry a second or third frame for a state the founders asked to see.
 - **Each screen** shows the desktop at 1,440 by 900 beside the phone at 390 by 844, both drawn from the design tokens of the shipped app, and then lists what is on it.
 - **The phone follows the shipped code and carries the desktop's theme:** the mark, the title with its project, the editor full width, and the tree and the right pane as drawers.
 - **The bottom bar** carries five actions at thumb height: Home, Search, AI, Outline and More, in that order.
@@ -420,3 +420,27 @@ Later | The portfolio at frontmatter.in/@handle, the MCP server and API, Team, a
 - Find one account, see it against every limit, and grant a time-boxed exception without moving the plan for everyone else.
 - That account's ledger: what it spent, on which model, and what it cost us.
 - The audit log across every setting, newest first, read-only in the panel.
+
+## 12. Sheets and boards
+
+### S39. Sheet
+
+<div class="pair"><img src="screens/s39-sheet.png"><img src="screens/s39-sheet-phone.png"></div>
+<div class="pair"><img src="screens/s39-sheet-in-doc.png"><img src="screens/s39-sheet-in-doc-phone.png"></div>
+
+- A table in a document, worked as a grid: column headers with a type mark, row numbers, a computed Total column, and a sum under the grid.
+- A formula bar names the focused cell by its column and row, never by an address like `B2`, and shows the column's formula: `= Qty * Price`.
+- Sort and filter chips, with one line saying they are the viewer's own and the file keeps its order. Add a row, add a column, and a Grid and MD switch to see the table's source.
+- The second frame is the same kind of table inside `00-BRIEF.md`, with Open as a sheet, and a line naming the formula block under it.
+- On the phone the first column is pinned, the rest are a swipe away, and a cell is edited in a bottom sheet that shows what the change recomputes.
+
+### S40. Board
+
+<div class="pair"><img src="screens/s40-board.png"><img src="screens/s40-board-phone.png"></div>
+<div class="pair"><img src="screens/s40-board-card.png"><img src="screens/s40-board-card-phone.png"></div>
+
+- Columns from each card's `status`: Backlog, To do, Doing, Review, Done, each with its count. Doing has a limit of 3 and holds 4, so its count reads `4 / 3` in the warning colour. Nothing is blocked.
+- A card shows its title, labels, due date, one document link and the assignee. No body text. An overdue date is in the warning colour.
+- A quick filter row: Mine, Due this week, a label, and text search, never written. Swimlanes are drawn off.
+- The second frame opens a card in a side panel. An agent's proposed move, Doing to Review, is ghosted in Review and shown in the panel as a one-line diff with Accept, Reject and Reply at equal weight.
+- On the phone one column shows at a time, with a switcher of pills and counts, and the pending move sits inside the real card.

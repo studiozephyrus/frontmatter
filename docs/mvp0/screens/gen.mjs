@@ -716,6 +716,148 @@ u{text-decoration-thickness:1px;text-underline-offset:2px}
 .capwin .in{display:flex;align-items:flex-start;gap:10px;min-height:88px;border:1px solid var(--border-strong);border-radius:10px;background:var(--bg);padding:10px 12px;font-size:14px}
 .capwin .foot{display:flex;align-items:center;gap:8px;margin-top:10px;font-size:12px;color:var(--muted)}
 .capwin .foot .sp{flex:1}
+/* S39 sheet. A grid over a GFM table: header types, row numbers, a formula bar,
+   a computed column, and summaries drawn under the grid and never written. */
+.shbar{display:flex;align-items:center;gap:8px;padding:8px 14px;border-bottom:1px solid var(--border);background:var(--bg-subtle);font-size:12.5px;white-space:nowrap}
+.shbar .t{display:flex;align-items:center;gap:6px;font-weight:600}
+.shbar .m{color:var(--muted);font-size:12px}
+.shbar .sp{flex:1}
+.shbar .note{color:var(--muted);font-size:11.5px}
+.chip .x{display:inline-flex;color:var(--muted);margin-right:-4px}
+.fxbar{display:flex;align-items:center;gap:10px;padding:0 14px;height:38px;border-bottom:1px solid var(--border);font-size:12.5px;white-space:nowrap}
+.fxbar .ref{display:inline-flex;align-items:center;height:24px;padding:0 9px;border:1px solid var(--border-strong);border-radius:6px;font-size:12px;font-weight:500;min-width:112px}
+.fxbar .fx{display:inline-flex;color:var(--ai)}
+.fxbar code{font-family:var(--font-mono);font-size:13px;color:var(--fg)}
+.fxbar .sp{flex:1}
+.fxbar .hint{color:var(--muted);font-size:11.5px}
+.shwrap{flex:1;min-height:0;overflow:hidden;padding:16px 20px 0}
+.grid{border-collapse:separate;border-spacing:0;font-size:13px;font-variant-numeric:tabular-nums;background:var(--bg)}
+.grid th,.grid td{border-right:1px solid var(--border);border-bottom:1px solid var(--border);height:34px;padding:0 10px;text-align:left;white-space:nowrap}
+.grid tr>*:first-child{border-left:1px solid var(--border)}
+.grid thead th{border-top:1px solid var(--border);background:var(--panel-2);font-weight:600;font-size:12.5px;position:relative}
+.grid thead th .h{display:inline-flex;align-items:center;gap:6px}
+.grid thead th .h .ic{color:var(--muted)}
+.grid thead th.calc .h .ic{color:var(--ai)}
+.grid .rn{width:40px;min-width:40px;text-align:center;color:var(--muted);font-size:11.5px;background:var(--panel-2);padding:0}
+.grid td.num{text-align:right}
+.grid th.num .h{justify-content:flex-end;width:100%}
+.grid td.calc{background:color-mix(in srgb,var(--ai) 4%,transparent);color:var(--fg)}
+.grid td.cur{box-shadow:inset 0 0 0 2px var(--ai);background:color-mix(in srgb,var(--ai) 7%,var(--bg))}
+.grid tr.selrow .rn{color:var(--ai);font-weight:600}
+.grid td .ic.cb{color:var(--fg-muted);vertical-align:-3px}
+.grid td .ic.cb.on{color:var(--ai)}
+.grid td.muted,.grid td .muted{color:var(--muted)}
+.grid .addcol{width:40px;min-width:40px;text-align:center;color:var(--muted);padding:0}
+.grid tfoot td{background:var(--panel-2);color:var(--fg-muted);font-size:12px;height:32px}
+.grid tfoot td b{color:var(--fg);font-weight:600;margin-left:6px}
+.grid .addrow td{color:var(--muted);font-size:12.5px;height:32px}
+.grid .addrow td .in{display:inline-flex;align-items:center;gap:6px}
+.shfoot{display:flex;align-items:center;gap:8px;margin-top:14px;font-size:11.5px;color:var(--muted)}
+.fmcode{font-family:var(--font-mono);font-size:11.5px;line-height:1.7;color:var(--fg-muted);background:var(--panel-2);border:1px solid var(--border);border-radius:8px;padding:8px 10px;white-space:pre;overflow:hidden}
+.fmcode b{color:var(--fg);font-weight:500}
+.embsheet{margin:1em 0 1.1em;border:1px solid var(--border);border-radius:10px;background:var(--bg);overflow:hidden;box-shadow:0 0 0 4px color-mix(in srgb,var(--ai) 5%,transparent)}
+.embsheet .shbar{padding:6px 10px;font-size:12px}
+.embsheet .grid{width:100%;font-size:13px;margin:0}
+.embsheet .grid th,.embsheet .grid td{height:30px}
+.embsheet .grid tr>*:first-child{border-left:0}
+.embsheet .grid tr>*:last-child{border-right:0}
+.embsheet .grid thead th{border-top:0}
+.embsheet .emfoot{display:flex;align-items:center;gap:8px;padding:6px 10px;font-size:11.5px;color:var(--muted);border-top:1px solid var(--border)}
+.embsheet .emfoot code{font-family:var(--font-mono);font-size:11px}
+/* phone sheet */
+.pgrid{flex:1;min-height:0;overflow:hidden;padding:8px 10px 0;position:relative}
+.pgrid .pnote{font-size:11.5px;color:var(--muted);margin:0 2px 8px;display:flex;align-items:center;gap:5px}
+.pgrid .grid{font-size:13px}
+.pgrid .grid th,.pgrid .grid td{height:40px;padding:0 8px}
+.pgrid .grid .rn{width:28px;min-width:28px}
+.pgrid .grid td:nth-child(2){white-space:normal;width:150px;line-height:1.3}
+.pgrid .grid{width:100%}
+.pchips{display:flex;align-items:center;gap:6px;padding:8px 12px;border-bottom:1px solid var(--border);white-space:nowrap;overflow:hidden}
+.pchips .sp{flex:1}
+.cellsheet .field{display:flex;align-items:center;gap:8px;height:48px;border:2px solid var(--ai);border-radius:10px;padding:0 12px;font-size:18px;font-variant-numeric:tabular-nums;margin:6px 0 8px}
+.cellsheet .field .ic{color:var(--muted)}
+.cellsheet .field .sp{flex:1}
+.cellsheet .field .ty{font-size:11px;color:var(--muted)}
+.cellsheet .ctx{display:flex;flex-direction:column;gap:6px;font-size:12.5px;color:var(--fg-muted);margin:4px 0 12px;border:1px solid var(--border);border-radius:10px;padding:10px 12px}
+.cellsheet .ctx div{display:flex;justify-content:space-between}
+.cellsheet .ctx b{color:var(--fg);font-weight:600;font-variant-numeric:tabular-nums}
+.cellsheet .nav{display:flex;gap:8px}
+.cellsheet .nav .btn{flex:1;justify-content:center}
+/* S40 board. Columns from status:, counts and limits in the header, short card faces. */
+.bdbar{display:flex;align-items:center;gap:8px;padding:8px 16px;border-bottom:1px solid var(--border);background:var(--bg-subtle);font-size:12.5px;white-space:nowrap}
+.bdbar .t{display:flex;align-items:center;gap:6px;font-weight:600;font-size:13px}
+.bdbar .m{color:var(--muted);font-size:12px}
+.bdbar .sp{flex:1}
+.qf{display:flex;align-items:center;gap:6px;padding:8px 16px;border-bottom:1px solid var(--border);white-space:nowrap}
+.qf .sp{flex:1}
+.qf .note{font-size:11.5px;color:var(--muted)}
+.qf .find{display:inline-flex;align-items:center;gap:6px;height:26px;padding:0 10px;width:190px;border:1px solid var(--border-strong);border-radius:999px;font-size:12px;color:var(--muted)}
+.qf .lanes{display:inline-flex;align-items:center;gap:6px;font-size:12px;color:var(--fg-muted)}
+.board{flex:1;min-height:0;display:grid;grid-template-columns:repeat(5,minmax(0,1fr));gap:12px;padding:14px 16px 0;overflow:hidden}
+.bcol{display:flex;flex-direction:column;gap:8px;min-width:0;background:var(--panel-2);border:1px solid var(--border);border-radius:10px;padding:8px}
+.bcol .bh{display:flex;align-items:center;gap:6px;padding:2px 4px 4px;font-size:12.5px;font-weight:600}
+.bcol .bh .n{font-family:var(--font-mono);font-size:11px;font-weight:500;color:var(--muted)}
+.bcol .bh .n.over{color:var(--danger);font-weight:600;display:inline-flex;align-items:center;gap:3px}
+.bcol .bh .sp{flex:1}
+.bcol .bh .ic{color:var(--muted)}
+.bcol.over{border-color:color-mix(in srgb,var(--danger) 35%,transparent)}
+.bcol .addc{display:flex;align-items:center;gap:6px;padding:4px 6px;font-size:12px;color:var(--muted)}
+.bcd{background:var(--bg);border:1px solid var(--border-strong);border-radius:8px;padding:9px 10px;display:flex;flex-direction:column;gap:7px;box-shadow:0 1px 2px rgba(0,0,0,.03)}
+.bcd .ct{font-size:13px;font-weight:500;line-height:1.35;color:var(--fg)}
+.bcd .cm{display:flex;align-items:center;gap:8px;font-size:11.5px;color:var(--muted);min-width:0}
+.bcd .cm .sp{flex:1}
+.bcd .cm .due{display:inline-flex;align-items:center;gap:3px;white-space:nowrap}
+.bcd .cm .due.late{color:var(--danger);font-weight:500}
+.bcd .cm .lk{display:inline-flex;align-items:center;gap:3px;color:var(--link);overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
+.bcd .cm .lk .ic{flex:none}
+.bcd .cm .lk span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;min-width:0}
+.bcd .cm .due,.bcd .cm .lb,.bcd .cm .avatar{flex:none}
+.bcd .cm .avatar{width:20px;height:20px;font-size:8.5px}
+.bcd .lb{display:inline-flex;align-items:center;height:18px;padding:0 6px;border-radius:4px;font-size:10.5px;color:var(--fg-muted);background:var(--panel-2);border:1px solid var(--border)}
+.bcd.on{border-color:var(--ai);box-shadow:0 0 0 1px var(--ai)}
+.bcd.pend{border:1px dashed color-mix(in srgb,var(--ai) 60%,transparent);background:color-mix(in srgb,var(--ai) 4%,var(--bg));box-shadow:none}
+.bcd.pend .ct{color:var(--fg-muted)}
+.bcd .prop{display:flex;align-items:center;gap:5px;font-size:11px;color:var(--ai);font-weight:500}
+.bcd .pacts{display:flex;gap:6px}
+.bcd .pacts .btn{height:24px;font-size:11.5px;padding:0 9px;flex:1}
+.cardpanel{border-left:1px solid var(--border);background:var(--bg);display:flex;flex-direction:column;min-height:0;overflow:hidden}
+.cardpanel .ph{display:flex;align-items:center;gap:8px;padding:12px 16px;border-bottom:1px solid var(--border)}
+.cardpanel .ph b{font-size:15px;font-weight:650;letter-spacing:-.01em}
+.cardpanel .ph .sp{flex:1}
+.cardpanel .pb{padding:12px 16px;display:flex;flex-direction:column;gap:12px;overflow:hidden;flex:1;min-height:0}
+.cardpanel .path{font-family:var(--font-mono);font-size:11px;color:var(--muted)}
+.cardpanel .kv{display:grid;grid-template-columns:84px 1fr;row-gap:8px;font-size:12.5px;align-items:center}
+.cardpanel .kv .k{color:var(--muted);font-family:var(--font-mono);font-size:11.5px}
+.cardpanel .kv .v{display:flex;align-items:center;gap:6px}
+.cardpanel .kv .avatar{width:20px;height:20px;font-size:8.5px}
+.cardpanel .propbox{border:1px solid color-mix(in srgb,var(--ai) 35%,transparent);border-radius:10px;padding:10px 12px;display:flex;flex-direction:column;gap:8px;background:color-mix(in srgb,var(--ai) 3%,var(--bg))}
+.cardpanel .propbox .who{display:flex;align-items:center;gap:6px;font-size:11.5px;color:var(--muted)}
+.cardpanel .propbox .who b{color:var(--fg);font-weight:500}
+.cardpanel .propbox .acts{display:flex;gap:6px}
+.cardpanel .propbox .acts .btn{flex:1;height:28px}
+.cardpanel .propbox .fine{font-size:11px;color:var(--muted)}
+.cardpanel .cbody{font-size:13px;line-height:1.6;color:var(--fg)}
+.cardpanel .cbody h4{margin:0 0 4px;font-size:13px;font-weight:650}
+.cardpanel .cbody p{margin:0 0 8px}
+.cardpanel .cbody .li{display:flex;align-items:center;gap:6px;color:var(--fg-muted)}
+.cardpanel .cpf{display:flex;gap:8px;padding:10px 16px 14px;border-top:1px solid var(--border)}
+/* phone board: one column at a time */
+.colsw{display:flex;gap:4px;padding:8px 10px;border-bottom:1px solid var(--border);overflow:hidden}
+.colsw span{flex:none;display:inline-flex;align-items:center;gap:4px;height:30px;padding:0 10px;border-radius:999px;font-size:12px;font-weight:500;color:var(--fg-muted);border:1px solid var(--border)}
+.colsw span i{font-style:normal;font-family:var(--font-mono);font-size:10.5px;color:var(--muted)}
+.colsw span.on{background:var(--accent);border-color:var(--accent);color:var(--accent-fg)}
+.colsw span.on i{color:var(--accent-fg);opacity:.8}
+.colsw span i.over{color:var(--danger)}
+.colsw span.on i.over{color:#f3b2ae;opacity:1}
+.pcol{flex:1;min-height:0;overflow:hidden;padding:10px 12px 0;display:flex;flex-direction:column;gap:8px}
+.pcol .ph{display:flex;align-items:center;gap:6px;font-size:13px;font-weight:600}
+.pcol .ph .sp{flex:1}
+.pcol .ph .n.over{color:var(--danger);font-family:var(--font-mono);font-size:11.5px;display:inline-flex;align-items:center;gap:3px}
+.pcol .bcd .ct{font-size:14px}
+.pcol .bcd .cm{font-size:12px}
+.pcol .dots{display:flex;justify-content:center;gap:5px;padding:4px 0}
+.pcol .dots i{width:6px;height:6px;border-radius:50%;background:var(--border-strong)}
+.pcol .dots i.on{background:var(--fg)}
 `;
 
 // Brand marks are NOT Material Symbols. Google's is the official four-colour G and keeps
@@ -2060,6 +2202,197 @@ ${ACC_USAGE}
 <div class="cfgsec">This account's ledger</div>
 ${LEDGER}</div></main></div></div>`,
 phone({ title: 'Accounts', bottom: 'more_horiz', body: `<div class="pdoc" style="padding:10px 14px 0"><div class="cfgacc" style="padding:10px 12px;margin-bottom:12px">${ic('search', 15)}<span style="font-weight:500;font-size:12.5px">priya@studio.in</span><span class="pill">Free</span></div>${ACC_USAGE.replace('grid-template-columns:repeat(4,1fr)', 'grid-template-columns:1fr 1fr')}</div>` }));
+
+// ---------------------------------------------------------------------------
+// S39 sheet, drawn 19 September. A grid over a GFM pipe table in a markdown document,
+// its formulas in an fm-sheet@1 block under the table (SHEETS.md section 3.3). Formulas
+// name columns, never A1 cells. Sort and filter change the view, never the file.
+// Summaries (foot.) are drawn under the grid and never written. The row numbers, the
+// widths and the frozen header are view settings, never written.
+const SHEET_COLS = [
+  ['Item', 'text_fields', ''], ['Qty', 'tag', 'num'], ['Price', 'tag', 'num'],
+  ['Total', 'functions', 'num calc'], ['Paid', 'check_box', ''], ['Due', 'calendar_today', ''],
+];
+// File order. Total = Qty * Price, computed in decimal, so 400 * 0.8 is 320 and not 320.00000000000006.
+const SHEET_ROWS = [
+  ['Domain name', 1, 900, 900, 1, '2026-09-12'],
+  ['SMS reminders, per 100', 12, 25, 300, 0, '2026-09-30'],
+  ['WhatsApp template messages', 400, 0.8, 320, 0, '2026-09-30'],
+  ['Design hours', 16, 1200, 19200, 0, '2026-10-03'],
+  ['Test phones, used', 2, 7500, 15000, 1, '2026-09-15'],
+  ['QR standees for the salon', 20, 150, 3000, 0, '2026-10-10'],
+];
+const SHEET_SUM = SHEET_ROWS.reduce((s, r) => s + r[3], 0); // 38720
+const SHEET_SORTED = [...SHEET_ROWS].sort((a, b) => b[3] - a[3]);
+function sheetGrid(rows, { cols = [0, 1, 2, 3, 4, 5], sel = 'Design hours', sortCol = 3, addCol = true, addRow = true, curCol = 3 } = {}) {
+  const head = cols.map(i => { const [n, icn, cls] = SHEET_COLS[i];
+    return `<th class="${cls}"><span class="h">${ic(icn, 14)}${n}${i === sortCol ? ic('arrow_downward', 13) : ''}</span></th>`; }).join('');
+  const cell = (r, i) => {
+    const cls = SHEET_COLS[i][2];
+    if (i === 4) return `<td>${r[4] ? ic('check_box', 17, 'cb on') : ic('check_box_outline_blank', 17, 'cb')}</td>`;
+    if (i === 5) return `<td class="muted">${r[5]}</td>`;
+    const selc = (i === curCol && r[0] === sel) ? ' cur' : '';
+    return `<td class="${cls}${selc}">${r[i]}</td>`;
+  };
+  const body = rows.map((r, k) => `<tr class="${r[0] === sel ? 'selrow' : ''}"><td class="rn">${k + 1}</td>${cols.map(i => cell(r, i)).join('')}${addCol ? '<td class="addcol"></td>' : ''}</tr>`).join('');
+  const foot = `<tfoot><tr><td class="rn"></td>${cols.map(i => i === 0 ? `<td>Summary</td>` : i === 3 ? `<td class="num">sum<b>${SHEET_SUM}</b></td>` : '<td></td>').join('')}${addCol ? '<td class="addcol"></td>' : ''}</tr></tfoot>`;
+  const add = addRow ? `<tr class="addrow"><td class="rn">${ic('add', 14)}</td><td colspan="${cols.length + (addCol ? 1 : 0)}"><span class="in">Add row</span></td></tr>` : '';
+  return `<table class="grid"><thead><tr><th class="rn"></th>${head}${addCol ? `<th class="addcol" title="Add column">${ic('add', 16)}</th>` : ''}</tr></thead><tbody>${body}${add}</tbody>${foot}</table>`;
+}
+const FM_SHEET = `<span style="color:var(--muted)">~~~fm-sheet@1</span>
+table: above
+<b>col.Total: "Qty * Price"</b>
+foot.Total: "sum(Total)"
+<span style="color:var(--muted)">~~~</span>`;
+const PROJECTS_SHEET = [
+  { n: 'Zephyrus booking', icon: 'rocket_launch', rows: [
+    { n: 'SKILL.md', f: 1 }, { n: 'AGENTS.md', f: 1 }, { n: '00-BRIEF.md', f: 1 }, { n: '01-PRODUCT.md', f: 1 }, { n: '02-DATA-AND-API.md', f: 1 },
+    { n: 'launch-costs.md', f: 1, on: 1 }, { n: 'specs', d: 1 }, { n: 'booking.md', f: 1, d: 2 }, { n: 'payments.md', f: 1, d: 2 },
+    { n: 'tasks', d: 1 }, { n: 'DECISIONS.md', f: 1 }, { n: 'MAP.md', f: 1 } ] },
+  PROJECTS_MAIN[1],
+];
+const TABS_SHEET = [{ n: 'launch-costs.md', c: 'blue', on: 1 }, { n: '00-BRIEF.md', c: 'blue' }, { n: 'tasks/BOARD.md', c: 'blue' }];
+const SHBAR = (extra = '') => `<div class="shbar"><span class="t">${ic('table_chart', 16)} Launch costs</span><span class="m">6 rows · 6 columns</span>
+<span class="chip on">${ic('swap_vert', 14)} Total, high to low<span class="x">${ic('close', 13)}</span></span><span class="chip">${ic('filter_list', 14)} Filter</span>${extra}
+<span class="sp"></span><span class="note">Sort and filter are yours. The file keeps its order.</span><span class="seg tight"><span class="on">Grid</span><span>MD</span></span></div>`;
+const FXBAR = `<div class="fxbar"><span class="ref">Total, Design hours</span><span class="fx">${ic('functions', 18)}</span><code>= Qty * Price</code><span class="sp"></span><span class="hint">A row formula. Each result is written into its own cell, one cell at a time.</span></div>`;
+screen('s39-sheet', 'Sheet', `<div class="app">
+${top({ tabs: TABS_SHEET })}
+<div class="body">
+${tree({ projects: PROJECTS_SHEET, foot: `${ic('sync', 14)} Synced 2 min ago` })}
+<main class="main">${SHBAR()}${FXBAR}
+<div class="shwrap">${sheetGrid(SHEET_SORTED)}
+<div class="shfoot">${ic('info', 14)} Row numbers, widths and the frozen header are yours too. Only a cell you type into changes the file.</div></div>
+</main>
+${rail({ outline: `<div class="on">Launch costs</div><div class="l2">The table</div><div class="l2">Formulas</div>`, extra: `<div class="rsec"><div class="rh">${ic('functions', 14)} Formulas in this file<span class="sp"></span></div><div class="fmcode">${FM_SHEET}</div><div style="font-size:11.5px;color:var(--muted);margin-top:8px">Under the table, where an agent reads them. The sum is drawn, never written.</div></div>` })}
+</div></div>`,
+phone({ mode: 'Live', title: 'launch-costs.md', body: `<div class="pchips"><span class="chip on">${ic('swap_vert', 14)} Total</span><span class="chip">${ic('filter_list', 14)} Filter</span><span class="sp"></span><span class="seg tight"><span class="on">Grid</span><span>MD</span></span></div>
+<div class="pgrid"><div class="pnote">${ic('swap_horiz', 14)} Qty, Paid and Due are a swipe away. Item stays pinned.</div>${sheetGrid(SHEET_SORTED, { cols: [0, 2, 3], addCol: false, addRow: false, curCol: 2 })}</div>`,
+overlay: psheet(`<div class="cellsheet"><h2>Price</h2><p>Design hours</p>
+<div class="field">1100<span class="sp"></span><span class="ty">number</span>${ic('tag', 16)}</div>
+<div class="ctx"><div><span>Qty</span><b>16</b></div><div><span>Total, recomputed</span><b>17600</b></div></div>
+<div class="nav"><span class="btn">${ic('arrow_upward', 16)} Previous</span><span class="btn">${ic('arrow_downward', 16)} Next</span><span class="btn primary">Save</span></div>
+<div class="fine">Saving changes this cell and the Total beside it. Nothing else in the file moves.</div></div>`) }));
+
+// Frame b: the same kind of table, living in a document. The grid is a way of editing a
+// table that is already there, so the page reads as prose with a table in it.
+const DOC_EMBED = `<h1>Zephyrus booking, in one page</h1>
+<p>A booking page for small studios that take appointments by WhatsApp today. One link, a calendar of open slots, a deposit, and a reminder the day before.</p>
+<h2>What it costs to launch</h2>
+<p>Everything before the first salon pays. The two big lines are design and the test phones; the rest is small.</p>
+<div class="embsheet">${SHBAR().replace('6 rows · 6 columns', 'in this document').replace(' Total, high to low', ' Total').replace(/<span class="chip">[^]*?Filter<\/span>/, '').replace('<span class="note">Sort and filter are yours. The file keeps its order.</span>', `<span class="chip">${ic('open_in_full', 13)} Open as a sheet</span>`)}
+${sheetGrid(SHEET_SORTED, { cols: [0, 1, 2, 3], addCol: true, addRow: false, sel: '' })}
+<div class="emfoot">${ic('functions', 13)} <code>fm-sheet@1</code> under this table holds 2 formulas. Switch to MD to see them as text.</div></div>
+<p>If the deposit step does not bring no-shows below eight per hundred, the design hours are the line to cut first.</p>`;
+screen('s39-sheet-in-doc', 'Sheet, in a document', `<div class="app">
+${top({ tabs: [{ n: '00-BRIEF.md', c: 'blue', on: 1 }, { n: 'launch-costs.md', c: 'blue' }] })}
+<div class="body">
+${tree({ projects: PROJECTS_SHEET.map((p, k) => k ? p : { ...p, rows: p.rows.map(r => ({ ...r, on: r.n === '00-BRIEF.md' ? 1 : 0 })) }), foot: `${ic('sync', 14)} Synced 2 min ago` })}
+<main class="main">${modebar('Live', '<span class="pill ok">' + ic('check', 13) + ' Saved</span>')}
+<div class="doc"><div class="md">${DOC_EMBED}</div></div>
+</main>
+${rail({ outline: `<div class="on">Zephyrus booking, in one page</div><div class="l2">What it costs to launch</div>` })}
+</div></div>`,
+phone({ mode: 'Live', title: '00-BRIEF.md', body: `${pmodebar('Live')}<div class="pdoc"><div class="md"><h2 style="margin-top:0">What it costs to launch</h2><p>Everything before the first salon pays.</p><div class="embsheet">${sheetGrid(SHEET_SORTED, { cols: [0, 3], addCol: false, addRow: false, sel: '' })}<div class="emfoot">${ic('swap_horiz', 13)} Qty and Price are a swipe away</div></div><p>If no-shows stay above eight per hundred, design is the line to cut.</p></div></div>` }));
+
+// ---------------------------------------------------------------------------
+// S40 board, drawn 19 September. One card is one markdown file with a status key; the
+// board file names the folder, the key, the column order and the limits (BOARDS.md
+// section 4.4). A limit warns and never blocks. An agent never moves a card: its move is
+// drawn as a pending change, ghosted in the target column, and waits in the queue.
+const BD_COLS = [
+  { n: 'Backlog', cards: [
+    { t: 'Reminder the day before', a: ['SM', '#18181b'], lb: 'sms' },
+    { t: 'Instagram bio link page', a: ['AM', '#b2625e'], d: '2026-10-14' },
+    { t: 'Refund rules for deposits', lb: 'decision', l: 'DECISIONS.md' } ] },
+  { n: 'To do', cards: [
+    { t: 'Calendar of open slots', a: ['AM', '#b2625e'], d: '2026-10-06', l: 'specs/booking.md' },
+    { t: 'Salon onboarding call', a: ['SM', '#18181b'], d: '2026-09-24' },
+    { t: 'Pick an SMS provider', lb: 'decision', l: 'DECISIONS.md' } ] },
+  { n: 'Doing', lim: 3, cards: [
+    { t: 'Booking form', a: ['AM', '#b2625e'], d: '2026-10-03', l: 'specs/booking.md', lb: 'frontend' },
+    { t: 'Deposit by UPI', a: ['SM', '#18181b'], d: '2026-09-17', late: 1, l: 'specs/payments.md', id: 'upi' },
+    { t: 'Double-booking check', a: ['AM', '#b2625e'], d: '2026-10-02', l: 'specs/booking.md' },
+    { t: 'Launch costs sheet', a: ['SM', '#18181b'], d: '2026-09-25', l: 'launch-costs.md' } ] },
+  { n: 'Review', cards: [
+    { t: 'Slot data model', a: ['AM', '#b2625e'], d: '2026-09-22', l: '02-DATA-AND-API.md' },
+    { t: 'Landing copy', a: ['SM', '#18181b'], l: '00-BRIEF.md' } ] },
+  { n: 'Done', cards: [
+    { t: 'Brief agreed', a: ['SM', '#18181b'] }, { t: 'Kit generated', a: ['SM', '#18181b'] }, { t: 'Domain bought', a: ['AM', '#b2625e'], l: 'launch-costs.md' } ] },
+];
+const fmtDue = (iso) => { const [, m, d] = iso.split('-'); return `${+d} ${['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'][+m - 1]}`; };
+function bcard(c, { on = false, ghost = null, phoneW = false } = {}) {
+  const meta = `<div class="cm">${c.lb ? `<span class="lb">${c.lb}</span>` : ''}${c.d ? `<span class="due${c.late ? ' late' : ''}">${ic(c.late ? 'event_busy' : 'event', 13)} ${fmtDue(c.d)}</span>` : ''}${c.l ? `<span class="lk">${ic('description', 13)}<span>${phoneW ? c.l : c.l.split('/').pop()}</span></span>` : ''}<span class="sp"></span>${c.a ? `<span class="avatar" style="background:${c.a[1]}">${c.a[0]}</span>` : ''}</div>`;
+  if (ghost) return `<div class="bcd pend"><div class="prop">${ic('terminal', 13)} Proposed by ${ghost}</div><div class="ct">${c.t}</div>${meta}<div class="pacts"><span class="btn">${ic('difference', 14)} Show diff</span><span class="btn">Reject</span></div></div>`;
+  return `<div class="bcd${on ? ' on' : ''}"><div class="ct">${c.t}</div>${meta}</div>`;
+}
+const AGENT = 'Claude Code on my laptop';
+function boardCols({ sel = null, ghost = false } = {}) {
+  return BD_COLS.map(col => {
+    const n = col.cards.length + 0;
+    const over = col.lim && n > col.lim;
+    const count = col.lim ? `<span class="n${over ? ' over' : ''}" title="Limit ${col.lim}. Past it the count turns red; nothing is blocked.">${over ? ic('warning', 12) : ''}${n} / ${col.lim}</span>` : `<span class="n">${n}</span>`;
+    const cards = col.cards.map(c => bcard(c, { on: sel && c.id === sel })).join('');
+    const g = ghost && col.n === 'Review' ? bcard(BD_COLS[2].cards[1], { ghost: AGENT }) : '';
+    return `<div class="bcol${over ? ' over' : ''}"><div class="bh">${col.n}${count}<span class="sp"></span>${ic('more_horiz', 16)}</div>${g}${cards}<div class="addc">${ic('add', 15)} New card</div></div>`;
+  }).join('');
+}
+const BDBAR = (extra = '') => `<div class="bdbar"><span class="t">${ic('view_kanban', 17)} Launch tasks</span><span class="m">15 cards in tasks/ · columns from <code style="font-family:var(--font-mono)">status</code></span><span class="sp"></span>${extra}<span class="seg tight"><span class="on">Board</span><span>MD</span></span></div>`;
+const QF = `<div class="qf"><span class="chip">${ic('person', 14)} Mine</span><span class="chip">${ic('event', 14)} Due this week</span><span class="chip">${ic('sell', 14)} Label</span><span class="find">${ic('search', 14)} Filter cards</span>
+<span class="sp"></span><span class="note">Filters are yours. The board file never changes.</span><i class="tsep"></i><span class="lanes">Swimlanes ${cfgSw(false)}</span></div>`;
+const PROJECTS_BOARD = [
+  { n: 'Zephyrus booking', icon: 'rocket_launch', rows: [
+    { n: 'SKILL.md', f: 1 }, { n: 'AGENTS.md', f: 1 }, { n: '00-BRIEF.md', f: 1 }, { n: '02-DATA-AND-API.md', f: 1 }, { n: 'launch-costs.md', f: 1 },
+    { n: 'specs', d: 1 }, { n: 'booking.md', f: 1, d: 2 }, { n: 'payments.md', f: 1, d: 2 },
+    { n: 'tasks', d: 1 }, { n: 'BOARD.md', f: 1, d: 2, on: 1 }, { n: 'booking-form.md', f: 1, d: 2 }, { n: 'deposit-upi.md', f: 1, d: 2 }, { n: 'slot-data-model.md', f: 1, d: 2, b: '12 more' },
+    { n: 'DECISIONS.md', f: 1 } ] },
+  PROJECTS_MAIN[1],
+];
+const TABS_BOARD = [{ n: 'tasks/BOARD.md', c: 'blue', on: 1 }, { n: 'launch-costs.md', c: 'blue' }, { n: 'specs/booking.md', c: 'blue' }];
+screen('s40-board', 'Board', `<div class="app">
+${top({ tabs: TABS_BOARD, presence: [{ i: 'AM', c: '#b2625e' }, { i: 'SM', c: '#18181b' }] })}
+<div class="body noright">
+${tree({ projects: PROJECTS_BOARD, foot: `${ic('sync', 14)} Synced 2 min ago` })}
+<main class="main">${BDBAR(`<span class="pill ai">${ic('terminal', 13)} 1 proposed move</span>`)}${QF}
+<div class="board">${boardCols({ ghost: true })}</div>
+</main></div></div>`,
+phone({ mode: null, title: 'Launch tasks', sub: `tasks/BOARD.md ${ic('cloud_done', 13)}`, right: `<span class="seg tight"><span class="on">Board</span><span>MD</span></span>`, body: `<div class="colsw">${BD_COLS.map(c => `<span class="${c.n === 'Doing' ? 'on' : ''}">${c.n}<i class="${c.lim && c.cards.length > c.lim ? 'over' : ''}">${c.cards.length}${c.lim ? '/' + c.lim : ''}</i></span>`).join('')}</div>
+<div class="pchips"><span class="chip">${ic('person', 14)} Mine</span><span class="chip">${ic('event', 14)} Due this week</span><span class="chip">${ic('search', 14)}</span></div>
+<div class="pcol"><div class="ph">Doing<span class="n over">${ic('warning', 12)} 4 / 3</span><span class="sp"></span><span style="font-size:11.5px;color:var(--muted);font-weight:400">Swipe for Review</span></div>
+${BD_COLS[2].cards.map(c => c.id === 'upi' ? bcard(c, { phoneW: true }).replace('</div></div>', `</div><div class="prop">${ic('terminal', 13)} ${AGENT} proposes a move to Review</div><div class="pacts"><span class="btn">${ic('difference', 14)} Show diff</span><span class="btn">Reject</span></div></div>`) : bcard(c, { phoneW: true })).join('')}
+<div class="addc" style="display:flex;align-items:center;gap:6px;font-size:13px;color:var(--muted);padding:4px 2px">${ic('add', 16)} New card in Doing</div>
+<div class="dots"><i></i><i></i><i class="on"></i><i></i><i></i></div></div>` }));
+
+// Frame b: the card opened in a side panel, with the agent's proposed move as a pending
+// change. The diff is shown before any accept exists, as S20 rules for agent items.
+const UPI = BD_COLS[2].cards[1];
+screen('s40-board-card', 'Board, a card and a proposed move', `<div class="app">
+${top({ tabs: TABS_BOARD, presence: [{ i: 'AM', c: '#b2625e' }, { i: 'SM', c: '#18181b' }] })}
+<div class="body" style="grid-template-columns:minmax(0,1fr) 392px">
+<main class="main">${BDBAR(`<span class="pill ai">${ic('terminal', 13)} 1 proposed move</span>`)}${QF.replace('<span class="sp"></span><span class="note">Filters are yours. The board file never changes.</span><i class="tsep"></i>', '<span class="sp"></span>')}
+<div class="board">${boardCols({ sel: 'upi', ghost: true })}</div>
+</main>
+<aside class="cardpanel"><div class="ph">${ic('description', 17)}<b>${UPI.t}</b><span class="sp"></span><span class="ibtn">${ic('open_in_new', 17)}</span><span class="ibtn">${ic('close', 18)}</span></div>
+<div class="pb"><div class="path">tasks/deposit-upi.md</div>
+<div class="kv"><span class="k">status</span><span class="v"><span class="pill">Doing ${ic('expand_more', 13)}</span></span>
+<span class="k">assignee</span><span class="v"><span class="avatar" style="background:#18181b">SM</span> Sagnik</span>
+<span class="k">due</span><span class="v" style="color:var(--danger);font-weight:500">${ic('event_busy', 14)} ${fmtDue(UPI.d)}, overdue</span>
+<span class="k">labels</span><span class="v"><span class="pill">payments</span></span></div>
+<div class="propbox"><div class="who">${ic('terminal', 14)} <b>${AGENT}</b> · agent · 4 min ago</div>
+<div style="font-size:12.5px">Moves this card from Doing to Review. One line in one file.</div>
+<div class="diff"><div class="del">-status: Doing</div><div class="add">+status: Review</div></div>
+<div class="acts"><span class="btn">Accept</span><span class="btn">Reject</span><span class="btn">Reply</span></div>
+<div class="fine">Nothing moves until a person accepts. Agent changes are accepted one at a time.</div></div>
+<div class="cbody"><p>Built from <a style="color:var(--link)">specs/payments.md</a>. The salon owner gets the deposit by UPI with the booking name attached.</p>
+<h4>Acceptance</h4><div class="li">${ic('check_box', 16)} A deposit carries the booking name</div><div class="li">${ic('check_box_outline_blank', 16)} An unpaid slot frees itself after 30 minutes</div></div></div>
+<div class="cpf"><span class="btn">${ic('open_in_new', 15)} Open as a document</span></div></aside>
+</div></div>`,
+phone({ mode: null, title: 'Deposit by UPI', sub: `tasks/deposit-upi.md`, right: `<span class="ibtn">${ic('close', 20)}</span>`, body: `<div class="cardpanel" style="border:0;flex:1"><div class="pb">
+<div class="kv"><span class="k">status</span><span class="v"><span class="pill">Doing ${ic('expand_more', 13)}</span></span><span class="k">assignee</span><span class="v"><span class="avatar" style="background:#18181b">SM</span> Sagnik</span><span class="k">due</span><span class="v" style="color:var(--danger);font-weight:500">${ic('event_busy', 14)} ${fmtDue(UPI.d)}, overdue</span></div>
+<div class="propbox"><div class="who">${ic('terminal', 14)} <b>${AGENT}</b> · 4 min ago</div><div style="font-size:13px">Moves this card from Doing to Review.</div>
+<div class="diff"><div class="del">-status: Doing</div><div class="add">+status: Review</div></div>
+<div class="acts" style="flex-direction:column"><span class="btn" style="height:42px;flex:none">Accept</span><span class="btn" style="height:42px;flex:none">Reject</span><span class="btn" style="height:42px;flex:none">Reply</span></div>
+<div class="fine">Nothing moves until a person accepts.</div></div><div class="cbody"><h4>Acceptance</h4><div class="li">${ic('check_box', 16)} A deposit carries the booking name</div><div class="li">${ic('check_box_outline_blank', 16)} An unpaid slot frees itself after 30 minutes</div></div><span class="btn" style="height:42px">${ic('open_in_new', 16)} Open as a document</span></div></div>` }));
 
 for (const [name, html] of Object.entries(screens)) {
   fs.writeFileSync(path.join(HERE, name + '.html'), html);

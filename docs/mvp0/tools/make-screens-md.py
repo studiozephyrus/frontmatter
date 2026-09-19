@@ -16,7 +16,7 @@ import re
 REPO = pathlib.Path(__file__).resolve().parents[3]
 PLAN = REPO / 'docs/mvp0/PRODUCT-PLAN.md'
 OUT = REPO / 'docs/mvp0/SCREENS.md'
-EXPECTED = 38
+EXPECTED = 40
 
 t = PLAN.read_text(encoding='utf-8')
 screens = t[t.index('### S01.'):t.index('## 6. Built in by default')].rstrip() + '\n'
@@ -37,6 +37,7 @@ screens = re.sub(r'\n{3,}', '\n\n', '\n'.join(kept))
 
 # The plan numbers the panel group 5b so it sits inside its own part two.
 screens = screens.replace('## 5b. The configuration panel', '## 11. The configuration panel')
+screens = screens.replace('## 5c. Sheets and boards', '## 12. Sheets and boards')
 
 found = re.findall(r'^### (S\d\d)\.', screens, re.M)
 assert found == [f'S{i:02d}' for i in range(1, EXPECTED + 1)], found
@@ -75,7 +76,7 @@ Later | The portfolio at frontmatter.in/@handle, the MCP server and API, Team, a
 
 ## 2. Reading the screens
 
-- **Thirty-eight screens.** Thirty-four are the product. The last four are the configuration panel, which only a founder sees. Four screens carry a second or third frame for a state the founders asked to see.
+- **Forty screens.** Thirty-six are the product. Four are the configuration panel, which only a founder sees. The last two are the sheet and the board, drawn on 19 September. Six screens carry a second or third frame for a state the founders asked to see.
 - **Each screen** shows the desktop at 1,440 by 900 beside the phone at 390 by 844, both drawn from the design tokens of the shipped app, and then lists what is on it.
 - **The phone follows the shipped code and carries the desktop's theme:** the mark, the title with its project, the editor full width, and the tree and the right pane as drawers.
 - **The bottom bar** carries five actions at thumb height: Home, Search, AI, Outline and More, in that order.

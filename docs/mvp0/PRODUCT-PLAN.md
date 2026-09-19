@@ -318,7 +318,7 @@ Later, named | A Max tier above Pro; a community as an opt-in index plus GitHub 
 
 ## 5. The screens
 
-**Thirty-eight screens, each on desktop and on the phone.** Thirty-four are the product. The last four are the configuration panel of section 30, which only a founder sees.
+**Forty screens, each on desktop and on the phone.** Thirty-six are the product. Four are the configuration panel of section 30, which only a founder sees. The last two, S39 and S40, are the sheet and the board, drawn on 19 September for the founders' ask to hold sheets and boards on one platform.
 
 **The phone follows the shipped code.**
 
@@ -793,6 +793,42 @@ Later, named | A Max tier above Pro; a community as an opt-in index plus GitHub 
 
 - `[P]` The ledger of section 18 is the counter every cap check reads, so this screen is a view of it rather than a second store.
 - `[Z]` An exception is the honest answer to one support mail, and section 30 requires it to expire.
+
+## 5c. Sheets and boards
+
+### S39. Sheet
+
+<div class="pair"><img src="screens/s39-sheet.png"><img src="screens/s39-sheet-phone.png"></div>
+<div class="pair"><img src="screens/s39-sheet-in-doc.png"><img src="screens/s39-sheet-in-doc-phone.png"></div>
+
+- A table in a document, worked as a grid: column headers with a type mark, row numbers, a computed Total column, and a sum under the grid.
+- A formula bar names the focused cell by its column and row, never by an address like `B2`, and shows the column's formula: `= Qty * Price`.
+- Sort and filter chips, with one line saying they are the viewer's own and the file keeps its order. Add a row, add a column, and a Grid and MD switch to see the table's source.
+- The second frame is the same kind of table inside `00-BRIEF.md`, with Open as a sheet, and a line naming the formula block under it.
+- On the phone the first column is pinned, the rest are a swipe away, and a cell is edited in a bottom sheet that shows what the change recomputes.
+
+**Why.**
+
+- `[P]` The table stays a plain GFM table that every other tool reads, with its formulas in an `fm-sheet@1` block under it (`docs/pack/68-SHEETS-SPEC.md` sections 2 and 3). A cell edit is a one-line diff.
+- `[M]` Google Sheets, Notion and Airtable set the expectations drawn here: a formula bar, a plus to add a column, a type per column, a filter view that is not saved (`docs/research/2026-09-18-sheets-boards/SCREEN-REFERENCES.md` section 2).
+- `[L]` Formulas name columns, because a cell address goes stale when a row is added to a text file.
+
+### S40. Board
+
+<div class="pair"><img src="screens/s40-board.png"><img src="screens/s40-board-phone.png"></div>
+<div class="pair"><img src="screens/s40-board-card.png"><img src="screens/s40-board-card-phone.png"></div>
+
+- Columns from each card's `status`: Backlog, To do, Doing, Review, Done, each with its count. Doing has a limit of 3 and holds 4, so its count reads `4 / 3` in the warning colour. Nothing is blocked.
+- A card shows its title, labels, due date, one document link and the assignee. No body text. An overdue date is in the warning colour.
+- A quick filter row: Mine, Due this week, a label, and text search, never written. Swimlanes are drawn off.
+- The second frame opens a card in a side panel. An agent's proposed move, Doing to Review, is ghosted in Review and shown in the panel as a one-line diff with Accept, Reject and Reply at equal weight.
+- On the phone one column shows at a time, with a switcher of pills and counts, and the pending move sits inside the real card.
+
+**Why.**
+
+- `[P]` One card is one markdown file, so a move is one line in one file and two people moving two cards never conflict (`docs/pack/69-BOARDS-SPEC.md` sections 2 and 3).
+- `[M]` Jira and GitHub Projects both say a column limit warns and does not block; Linear keeps descriptions off the card face (`docs/research/2026-09-18-sheets-boards/SCREEN-REFERENCES.md` section 3).
+- `[L]` An agent never moves a card. Its move waits in the change queue, and the diff comes before any accept, as on S20.
 
 ## 6. Built in by default, so nobody needs a plugin
 
