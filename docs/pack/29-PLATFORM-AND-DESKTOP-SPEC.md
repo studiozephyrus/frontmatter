@@ -6,7 +6,7 @@ tier: canonical
 status: living
 updated: 2026-09-19
 owner: sagnik
-verified_against: f3446ae
+verified_against: 1335518
 covers: [platform, desktop-capabilities, pwa, phone, parity]
 ---
 
@@ -103,6 +103,8 @@ Capability | What it is | State
 **The watched folder** | An agent editing on disk feeds the change queue (`docs/mvp0/SCREEN-CHANGES-2026-09-18.md:264`) | `specified, not built`, and **blocked by the capability set**, section 4.3
 **Quick capture** | A global shortcut opens one box that saves into an inbox note. No credits (`docs/mvp0/SCREENS.md:284`) | `specified, not built`, and **blocked by the capability set**
 **No caps** | The document limit does not apply to files on disk | `specified, not built`
+**Local speech recognition** | Voice dictation recognised on the machine by `whisper.cpp`, so speech never leaves it, and it works offline. Added 19 September, section 4.5 | `specified, not built`
+**Native text recognition for scanned PDFs** | The Tesseract binary reads scanned pages on the machine, with no per-conversion cap. Added 19 September, section 4.5 | `specified, not built`
 A native menu bar | Already built. File, Edit, View and Window, with `CmdOrCtrl+N`, `CmdOrCtrl+B`, `CmdOrCtrl+P`, `CmdOrCtrl+K`, `CmdOrCtrl+Shift+F` | **built**
 
 **Three of the four carrots are not built, and two of them cannot be built without changing the
@@ -188,6 +190,7 @@ Missing | What it blocks | Needed for
 **`deep-link`** | Registering a protocol handler | The `Open in the frontmatter app` bar on a published page, which the 18 September decision says appears `when the app has registered its protocol handler`
 **`notification`** | A system notification | Nothing promised yet, but a watched folder that finds a conflict will want one
 **`http`** | A request that bypasses the webview's origin rules | A local Ollama call, if it is made from Rust rather than from the page
+**Microphone access** | Recording in the webview | **Voice**, section 4.5. `UNVERIFIED:` which Tauri v2 permission and which macOS usage string it needs
 
 `Cargo.toml` agrees: the only plugins compiled in are `tauri-plugin-shell`, `tauri-plugin-os`,
 `tauri-plugin-process`, `tauri-plugin-clipboard-manager` and `tauri-plugin-dialog`.
@@ -214,6 +217,54 @@ Tauri v2 injects, and returns early when it is absent. Native menu clicks are em
 gated on it, and the same build serves both surfaces.
 
 ---
+
+### 4.5 Local Whisper and Tesseract, added 19 September
+
+**Two desktop engines, both from the founder's 19 September asks** `[Z]`: voice (`71-VOICE-SPEC.md`
+section 10.3) and PDF to Markdown (`72-PDF-TO-MARKDOWN-SPEC.md` sections 3.3 and 10). Neither exists:
+`grep -rli 'microphone|whisper|tesseract' src-tauri` returned nothing at `1335518` `[O]`.
+
+**Local Whisper, for voice.**
+
+Item | Contract, from `71` section 10.3
+Engine | `whisper.cpp` through the `whisper-rs` crate, as a Tauri command in `src-tauri/src/`. Metal on Apple Silicon
+Default model | `small.en`, downloaded on first use, not bundled: 466 MiB on disk, about 852 MB in memory, per the whisper.cpp README as the research read it
+Optional model | `large-v3-turbo`, downloaded on request. Panel row `routing.desktop.voice`
+Why not `base.en` | The Svarah study (2023) measured Whisper base at 13.6 per cent word error on Indian English and large at 7.2
+Default engine | Local, if the founder answers V5 yes (`71` section 1); the panel key is `voice.desktopEngine`
+Before the download | The desktop uses the cloud chain and says so
+Offline | Transcription works. Restructuring on the chain needs a connection, and falls back to raw text offline
+Restructuring locally | A local Ollama model, when the person chooses "nothing leaves this computer"
+The screen says | Whether restructuring leaves the machine, every time the local engine is on
+Partial results while speaking | Not in v1. `UNVERIFIED:` `whisper-rs` does not give them by default
+Audio | Held in memory only, never written to disk (`71` section 13)
+
+**Native Tesseract, for scanned PDFs.**
+
+Item | Contract, from `72` sections 2, 3.3 and 10
+Engine | The Tesseract 5 binary, language `eng`, run by a Tauri command in `src-tauri/src/`
+Input | One PNG per page, rendered by pdf.js in the webview at `pdf.ocr.dpi`, 200 by default
+Temporary files | Written to the app's temporary directory, deleted when the page returns, and swept on app start for any left over
+Bundled | The binary and its English data ship inside the app. `UNVERIFIED:` their size, and whether a sidecar or a linked library is the better shape
+Licence | Apache-2.0; the desktop's third-party notice lists Tesseract with its licence text, because the desktop redistributes the binary
+Why native, not `tesseract.js` | On the research fixture, `tesseract.js` dropped three table rows the native binary kept (`72` section 3.3)
+Caps | None on the desktop (`72` section 9)
+Vision pass | Not offered on the desktop in v1
+
+**What each needs from section 4.3.**
+
+- **Model storage.** `small.en` is 466 MiB written after install. `INFERENCE:` it belongs in the
+  app's data directory, which is a narrower grant than the vault `fs` scope; nobody has specified it.
+- **The Tesseract temporary directory** needs a write grant scoped to the app's own temporary
+  directory, never the vault.
+- **The microphone** needs a permission the set lacks today, and a macOS usage string in the bundle.
+- Both engines are Rust commands, so neither needs the `http` permission.
+
+**Where they are built.** `INFERENCE:` Whisper in batch 4a and Tesseract in batch 5 of
+`50-ROADMAP.md`, both after the desktop's batch 8.
+
+The capability grants belong in batch 8's
+decision, step 2 of section 8's build order, so they are not discovered one at a time.
 
 ## 5. Update and signing
 
@@ -358,6 +409,8 @@ Caps and entitlements | applied | **not applied to files on disk** | applied | d
 AI edit on the free chain | yes | yes | yes | same
 **AI edit with no network** | no | **local model** | no | differs, and it is the carrot
 **Watched folder** | impossible | **specified, not built, and blocked by the capability set** | impossible | **gap**
+Voice dictation | the cloud chain | **local Whisper**, `specified, not built` | the cloud chain, toggle mode only | differs, section 4.5
+Scanned PDF to Markdown | `tesseract.js`, 100 scanned pages a conversion | **native Tesseract**, no cap, `specified, not built` | as web | differs, section 4.5
 **Quick capture** | share target, Chromium only | **specified, not built, and blocked by the capability set** | share sheet after install | **gap**
 Files on disk | origin private file system | **specified, not built** | origin private file system | **gap**
 Offline editing | **installable but not offline** | webview, so also not offline | same as web | **gap**, and it is phase F for all three
@@ -398,6 +451,8 @@ Linux build | `specified, not built` | no target
 Continuous integration for any of it | **absent** | `.github/workflows/` is empty
 Phone layouts | partly built | the tree and right pane are already drawers
 Native mobile app | not planned into a phase | `lib.rs` carries the mobile entry point and nothing else
+Local Whisper | `specified, not built` | no `whisper` in `src-tauri/`; no microphone permission
+Native Tesseract | `specified, not built` | no `tesseract` in `src-tauri/`
 
 **The build order for phase F**, which is now batch 8 at step 4 (D09 `[Z]`), so this order is needed
 straight after the editor rather than after sync.
@@ -410,7 +465,7 @@ straight after the editor rather than after sync.
 4. **macOS signing and notarisation**, on the company's Apple account.
 5. **The updater**, before the first build a stranger downloads.
 6. **The local model, the watched folder and quick capture**, which are the reason the download
-   exists.
+   exists. Local Whisper and native Tesseract follow in batches 4a and 5, on the grants of step 2.
 7. **Offline in the browser**, which is the same phase and a different codebase.
 8. **Windows, on the route batch 1 chose.** D09 brought it into phase F. The prices are in
    `35-RELEASE-AND-VERSIONING.md` section 6.2a, and buying one is a founder's paid action.
@@ -429,6 +484,8 @@ straight after the editor rather than after sync.
   carry the `₹299` price at all. No store policy page was opened in this session.
 - Accessibility on any of the three surfaces. The plan carries a WCAG 2.2 AA commitment and an IS
   17802 target, and nothing here tests either.
+- The size of the bundled Tesseract binary and data, and where the downloaded Whisper model lives.
+  Neither spec gives a number, and nothing was built to measure it.
 - The webview's own behaviour on an unreliable connection, which is the case an Indian user meets most
   often and which no shell setting addresses.
 
@@ -440,6 +497,8 @@ straight after the editor rather than after sync.
 - Whether notarisation adds a cost beyond the 99 USD a year. It should not, and it was not checked.
 - Safari's seven-day figure, and the Chrome and Firefox quota figures, which are carried from the
   plan's section 12 and were not re-opened here.
+- The microphone permission's name in Tauri v2 and the macOS usage string. `71` section 10.3 marks
+  both `UNVERIFIED:`, and neither was opened here.
 - Whether `macOSPrivateApi: true` has any App Store consequence, which would matter if the native app
   is ever distributed through it.
 

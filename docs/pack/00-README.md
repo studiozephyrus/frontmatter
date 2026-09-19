@@ -45,6 +45,8 @@ What was green when this was written, each re-run on 18 September:
 - Every pack file passes `gate.py --strict`.
 - All 38 screens are specified here and drawn in `docs/mvp0/`, newest PDF first by its date.
 
+**New on 19 September:** `68` to `72` specify Sheets, Boards, one type registry for every kind of file, voice, and PDF to Markdown; `50-ROADMAP.md` section 2.3 places them, none before batch 3.
+
 Still open, none blocking batch 1: `D11` runs as an A/B test (`28-CONFIGURATION-PANEL-SPEC.md`); the
 tagline is tested three ways first (`docs/research/2026-09-18-name/`); 152 copy strings marked
 `proposed` in `16-COPY-DECK.md` await the founders.
@@ -133,7 +135,7 @@ File | What it is | Mode | Tier | Status
 [17-ERROR-AND-REFUSAL-CATALOGUE.md](17-ERROR-AND-REFUSAL-CATALOGUE.md) | Error and refusal catalogue. | reference | canonical | living
 [18-FIRST-RUN-AND-EMPTY.md](18-FIRST-RUN-AND-EMPTY.md) | First run and empty states. | how-to | canonical | living
 [19-ACCEPTANCE-CRITERIA.md](19-ACCEPTANCE-CRITERIA.md) | Acceptance criteria. | reference | canonical | living
-[12-screens/](12-screens/S01.md) | One specification per screen, S01 to S38, 38 files. | reference | canonical | specified
+[12-screens/](12-screens/S01.md) | One specification per screen, S01 to S42, 42 files. | reference | canonical | specified
 
 ### 20 to 29. Engineer
 
@@ -202,6 +204,15 @@ File | What it is | Mode | Tier | Status
 [65-CONVENTIONS.md](65-CONVENTIONS.md) | Conventions. | reference | canonical | living
 [66-FORMAT-SPECIFICATIONS.md](66-FORMAT-SPECIFICATIONS.md) | Format specifications. | reference | canonical | draft
 [67-SYNC-AND-CONFLICT.md](67-SYNC-AND-CONFLICT.md) | Sync and conflict. | reference | canonical | draft
+[68-SHEETS-SPEC.md](68-SHEETS-SPEC.md) | Sheets specification. | reference | canonical | draft
+[69-BOARDS-SPEC.md](69-BOARDS-SPEC.md) | Boards specification. | reference | canonical | draft
+
+### 70 to 79. Content types and capture
+
+File | What it is | Mode | Tier | Status
+[70-PLATFORM-AND-TYPES.md](70-PLATFORM-AND-TYPES.md) | One platform, many content types. | reference | canonical | draft
+[71-VOICE-SPEC.md](71-VOICE-SPEC.md) | Voice typing, restructuring and voice commands. | reference | canonical | living
+[72-PDF-TO-MARKDOWN-SPEC.md](72-PDF-TO-MARKDOWN-SPEC.md) | PDF to Markdown, the converter. | reference | canonical | living
 
 ### Decision records
 
@@ -222,6 +233,11 @@ File | What it is | Mode | Tier | Status
 [adr/ADR-0014-free-cap-as-tested-panel-value.md](adr/ADR-0014-free-cap-as-tested-panel-value.md) | The Free document cap is a panel value, A/B tested before it is fixed. | explanation | canonical | decided
 [adr/ADR-0015-one-live-collaborator-on-free.md](adr/ADR-0015-one-live-collaborator-on-free.md) | One live collaborator on Free. | explanation | canonical | decided
 [adr/ADR-0016-free-model-chain-and-training-gate.md](adr/ADR-0016-free-model-chain-and-training-gate.md) | A free-model fallback chain, behind a training gate. | explanation | canonical | decided
+[adr/ADR-0017-sheet-format.md](adr/ADR-0017-sheet-format.md) | A sheet is a pipe table with a formula fence below it. | explanation | canonical | open
+[adr/ADR-0018-board-format.md](adr/ADR-0018-board-format.md) | A board is a folder of card files and one board file. | explanation | canonical | open
+[adr/ADR-0019-type-registry-and-embedding.md](adr/ADR-0019-type-registry-and-embedding.md) | One type registry, and embedding by reference. | explanation | canonical | open
+[adr/ADR-0020-voice-typing.md](adr/ADR-0020-voice-typing.md) | Voice typing on free speech-to-text, restructured through the change queue. | explanation | canonical | decided
+[adr/ADR-0021-pdf-to-markdown.md](adr/ADR-0021-pdf-to-markdown.md) | PDF to Markdown as an on-device converter, with three entry points. | explanation | canonical | decided
 <!-- INDEX:END -->
 
 ## Routing, by what you are trying to do

@@ -6,7 +6,7 @@ tier: canonical
 status: living
 updated: 2026-09-19
 owner: sagnik
-verified_against: f3446ae
+verified_against: 1335518
 covers: [position, claims, tiers, scope, never-build]
 ---
 
@@ -34,6 +34,26 @@ more than the sentence carried. `56-OPEN-DECISIONS.md` section 0.
   Plain text can become other things, a command line among them.
 - **One file, every feature.** From one markdown file a person can publish, share and use
   everything built on it.
+
+**One platform, many kinds of file** `[Z]` (19 September). The founder asked for docs, sheets,
+boards, notes and sites on one platform, with presentations later. `56-OPEN-DECISIONS.md` section 0.
+
+- **The position widens from documents to files.** A sheet is a markdown table or a `.csv`; a board
+  is a board file over a folder of card files.
+- **Each is text on disk**, so the three sentences below hold for every kind.
+- **One registry decides a file's kind**, and every kind shares search, links, history, the change
+  queue and the mirror (`70-PLATFORM-AND-TYPES.md` sections 2 and 7 to 9).
+- **Sheets and Boards are bare-bone by design.** A sheet refuses a formula that reads the clock or the
+  network, and a board move changes one key in one file (`68-SHEETS-SPEC.md`, `69-BOARDS-SPEC.md`).
+- **Two input features joined on 19 September** `[Z]`: voice, with restructuring and commands
+  (`71-VOICE-SPEC.md`), and PDF to Markdown (`72-PDF-TO-MARKDOWN-SPEC.md`). Both land their text
+  through the change queue, so neither changes the position.
+
+`INFERENCE:` the position sentence still reads "a markdown editor". A sheet or a board is a
+markdown-adjacent text file, and the review surface is the same queue.
+
+Whether the sentence should
+name them is the founder's call, and nobody has asked.
 
 **The internal name is `fmd`, and it stands for nothing** `[Z]`. The public name stays frontmatter.
 
@@ -202,9 +222,9 @@ says what a tier means. That file says what it allows.
 internal gate, never on a date.
 
 Tier | Complete after batch | What that batch adds | Caveat
-**Free** | 5, In and out, then the pilot | Import, export, the GitHub and Drive mirrors | The desktop app and offline, batch 8, and database views, batch 9a, now land before batch 5 (D09, D13). Batch 9's views and blocks come after Pro
-**Pro** | 7, Pro | Razorpay, Medium and High, password links, the 90-day window | **The portfolio is a Pro row but ships in batch 12.** Pro is sold without it until then
-**Max** | 10a, the agent server, then on sale in batch 7 | The MCP server that reads and proposes and never writes, agent tokens, propose scope, staleness anchors, the multi-file change | **Scheduled by D04** `[Z]`, 2 to 3 weeks plus 2 days. The API and the command line follow in batch 10, appetite unset
+**Free** | 5, In and out, then the pilot | Import, export, the GitHub and Drive mirrors, PDF to Markdown | The desktop app and offline, batch 8; views, boards and sheets, batch 9a; and voice, batch 4a, now land before batch 5 (D09, D13, 19 Sep). Batch 9's views and blocks, decks among them, come after Pro
+**Pro** | 7, Pro | Razorpay, Medium and High, password links, the 90-day window, the PDF vision pass | **The portfolio is a Pro row but ships in batch 12.** Pro is sold without it until then
+**Max** | 10a, the agent server, then on sale in batch 7 | The MCP server that reads and proposes and never writes, agent tokens, propose scope, staleness anchors, the multi-file change | **Scheduled by D04** `[Z]`, 2 to 3 weeks plus 4 days, 2 of them for every type on 19 September. The API and the command line follow in batch 10, appetite unset
 **Team** | 12, Portfolio, Team and community | Seats and one bill | Appetite unset, unpriced
 
 `INFERENCE:` a tier is "complete" when the last batch its rows need has passed. Nothing in
@@ -217,6 +237,10 @@ The free tier is not a demonstration. It is a whole editor with quantities cappe
 
 - Every editing feature is free. Doc mode, the problems panel, the formatter, import, export,
   offline, the desktop app, tags, backlinks, history.
+- **Sheets, boards, voice and PDF to Markdown are free too** `[Z]` (19 September), with quantities
+  capped rather than features withheld.
+- Proposed caps, awaiting the founders and the register in `53-PRICING-AND-ENTITLEMENTS.md`: 60 voice minutes a month (`71` section 17.2), and PDFs up to
+  1,000 pages and 100 MB (`72` section 9).
 - The caps are on quantity, not capability. 50 documents, 5 published pages, 1 live collaborator,
   7 days of history, 10 AI edits and 1 Low blueprint a month.
 - **The mirror is free, on both plans** `[Z]` (D03). Our copy in R2 is canonical. A full copy sits
@@ -242,9 +266,14 @@ Unlimited documents, pages and collaborators | Quantity, not capability
 100 AI edits and 5 blueprints on Claude, and Medium and High depth | Model cost, which is real and per call
 Password links, 90-day history, the portfolio, no branding | The sharing surface
 10 GB of uploads at 25 MB a file, a soft cap | Storage cost. Past 10 GB, storage is sold in blocks priced from the panel `[Z]` (D03)
+300 voice minutes a month, proposed | Speech-to-text is a hosted call once the free pools are spent (`71` sections 12 and 17.2)
+200 PDF pages a month read by the vision pass, proposed | A model call per scanned page; Free gets none (`72` section 9)
 
 **What Pro does not buy.** It does not buy a better editor. A person on Free and a person on Pro
 open the same workspace and see the same features.
+
+`INFERENCE:` the vision pass is the one exception in shape. It is a Pro-only way to read a scan, but
+Free still converts the same scan with Tesseract on the device, so no Free person loses a feature.
 
 ### 4.3 Max: your agents work here
 
@@ -273,8 +302,10 @@ Item | What it is | Why it is not Free or Pro
 **Where Max sits today.** **Decided 18 September** `[Z]` (D04): the MCP server reads and proposes,
 never writes, and is the Max tier. It is scheduled, not Later.
 
-- **Built in batch 10a** of `50-ROADMAP.md`, straight after the change queue of batch 4, at step 7.
-  Its appetite is 2 to 3 weeks plus 2 days.
+- **Built in batch 10a** of `50-ROADMAP.md`, after the change queue of batch 4 and voice's batch 4a,
+  at step 8. Its appetite is 2 to 3 weeks plus 4 days.
+- **It reads and proposes for every kind of file** from 19 September: an agent change over a document
+  and a sheet arrives as two items, grouped (`70-PLATFORM-AND-TYPES.md` section 10).
 - **On sale in batch 7**, the Pro batch, which builds the checkout Max needs.
 - **The meter ships before the price.** The events are in `55-MEASUREMENT-AND-EVENTS.md` section
   6.13, and they ship in batch 10a.
@@ -364,6 +395,9 @@ of a machine is a machine-shaped cost.
 - Whether customers see Max as a tier or as a feature of Pro. D04 made it a tier `[Z]` on the cost
   argument of section 4.3, and no customer has been asked.
 - The Team and Enterprise tiers are named and have no contents.
+- Whether sheets, boards, voice or PDF conversion change who pays. No market research on willingness
+  to pay for them was read for this file.
+- Every voice and PDF cap in section 4 is a spec's proposal, not a register value.
 
 **What could not be verified.**
 

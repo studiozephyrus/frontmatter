@@ -1,6 +1,6 @@
 ---
 title: frontmatter, the product plan
-version: v6, 17 September 2026, updated 18 September
+version: v6, 17 September 2026, updated 18 and 19 September
 status: final for the build, after the founders' stack and configuration decisions
 ---
 
@@ -31,10 +31,25 @@ Signal | What it means
 
 ## 0. What changed, and why
 
+**19 September, the founders' new asks** `[Z]`, recorded in `docs/pack/56-OPEN-DECISIONS.md` section 0.
+
+- **Sheets and Boards**, bare-bone, alongside documents, on **one platform** that joins docs, sheets,
+  boards, notes and sites, with presentations later. Sections 1, 6 and 26; specs
+  `docs/pack/68-SHEETS-SPEC.md`, `69-BOARDS-SPEC.md` and `70-PLATFORM-AND-TYPES.md`.
+- **Voice typing widened into a full feature** (D14): English only, restructured by default with a
+  raw setting, three levels and a tone, and a command mode. Sections 7, 13, 14 and 26; spec
+  `docs/pack/71-VOICE-SPEC.md`.
+- **PDF to Markdown**, a converter with three ways in and text recognition for scanned pages.
+  Sections 11, 13, 14 and 26; spec `docs/pack/72-PDF-TO-MARKDOWN-SPEC.md`.
+- **A correction.** Section 7 listed voice typing as a Doc mode row as though it existed. No voice
+  code exists in `src/`; it is specified, not built.
+- **The build grows to fifteen batches** and about 201 to 296 calendar weeks, from 134 to 209.
+  Section 26 shows the sum; every new appetite is proposed.
+
 **18 September, five founder answers** `[Z]`, recorded in `docs/pack/56-OPEN-DECISIONS.md` section 0 and carried here.
 
 - **D01.** The broad editor. Internally the product is `fmd`, which stands for nothing. Three taglines go to a test, section 1.
-- **D02.** Everything is built, in twelve batches, one at a time, section 26.
+- **D02.** Everything is built, in batches, one at a time, section 26. Fifteen batches since 19 September.
 - **D03.** Our copy in R2 and Firestore is canonical. The person's GitHub or Drive holds a full mirror on both plans, sections 11, 12, 13 and 15.
 - **D10.** Every account in section 24 moves to the company. **D11.** The Free document cap is a panel value, A/B tested, section 29.
 
@@ -110,6 +125,16 @@ That sentence is K1. **The founders confirmed it on 18 September as the broad ed
 - **One editor, two modes.** Doc mode and Markdown mode, switchable, rendering markdown in ways it was not rendered before.
 - **Ideas become concrete.** A rough idea is sharpened through questions into blueprints and flows. Plain text can become other things, a command line among them.
 - **One file, every feature.** From one markdown file a person can publish, share and use everything built on it.
+
+**One platform, many kinds of file** `[Z]` (19 September). The product now spans docs, sheets, boards
+and notes, with sites and presentations later.
+
+- **Every kind is a text file on disk.** A note or doc is `.md`, a sheet is a markdown table or a
+  `.csv`, a board is a board file over a folder of card files.
+- **One registry decides a file's kind**, so search, links, history, the change queue and the mirror
+  work the same for all of them (`docs/pack/70-PLATFORM-AND-TYPES.md` sections 1 and 2).
+- **The projection law still holds.** A sheet, a board or a view is a projection of files, and an
+  edit in one is a splice that can refuse.
 
 **The internal name is `fmd`** `[Z]`. It stands for nothing. The public name stays frontmatter.
 
@@ -882,7 +907,7 @@ Outline and table of contents | Joplin, Typora, VS Code, Notion | The rail, a `[
 Export | VS Code 4.1M, Bear, Typora, iA | Markdown, HTML, Word, PDF, and the `.md` twin on every page
 Themes | Joplin, Typora, Bear, Logseq, VS Code | Appearance settings, dark mode
 Calendar and daily notes | Joplin, Logseq, Craft | The month panel, daily notes
-Kanban | Joplin, Notion, Obsidian 2,668,372 | View as Kanban
+Kanban | Joplin, Notion, Obsidian 2,668,372 | View as Kanban, read-only, and a board over a folder of card files from 19 September, below
 Backlinks and link graph | Joplin, Logseq, Typora, Notion | Shipped today, plus the map
 Tags | Joplin, Bear, Craft, Logseq | Shipped today, rename and merge added
 Lint, style and spelling | VS Code 12.2M and 71.6M, Docs, iA | The problems panel, the formatter, the browser's spellcheck
@@ -893,11 +918,22 @@ Drawing | Joplin, Craft, Bear, Obsidian 7,974,073 | The Excalidraw block
 Version history and diff | Joplin, Craft, Notion, Docs | Document history
 Citations | Logseq, Docs, VS Code | A DOI lookup in the slash menu
 
+**Added on 19 September, on the founders' ask rather than the three-ecosystem rule** `[Z]`. Each is
+built in, with no plugin, and none exists in the code yet.
+
+Capability | What it is | Spec | Batch in `docs/pack/50-ROADMAP.md`
+Sheets | A grid over any markdown table or `.csv`, with row formulas and column summaries, where an edit changes only that cell's bytes | `docs/pack/68-SHEETS-SPEC.md` | 9a
+Boards | A board file over a folder of card files; a move changes one key in one card, through the change queue | `docs/pack/69-BOARDS-SPEC.md` | 9a
+Views over front matter | A table of files with front matter keys as columns (D13) | `docs/pack/70-PLATFORM-AND-TYPES.md` section 3 | 9a
+Embeds across types | A sheet or board shown inside a document; an edit in it lands on the source file | `docs/pack/70-PLATFORM-AND-TYPES.md` section 4 | 4
+Voice | Dictation, restructured or raw, and ten voice commands | `docs/pack/71-VOICE-SPEC.md` | 4a
+PDF to Markdown | A converter with three ways in; scans read on the device | `docs/pack/72-PDF-TO-MARKDOWN-SPEC.md` | 5 and 7
+
 **What the earlier plan did not mention, now placed** `[O]`.
 
 - A table of contents marker, footnotes, emoji input.
 - Link previews for external links.
-- OCR search inside images and PDFs, through Tesseract.js.
+- OCR search inside images and PDFs, through Tesseract.js. The PDF converter reuses the same engine (`docs/pack/72-PDF-TO-MARKDOWN-SPEC.md` section 1.2).
 - A formatter, an accessibility check on the document, and a stated API rate limit.
 
 **Two are refused.** Meeting notes, and a sandboxed HTML block. The second because the plan bans third-party scripts on published pages.
@@ -955,7 +991,7 @@ The @ menu | N | A command palette; what it inserts is classified per row
 Custom building blocks | N | Snippets of ordinary markdown
 Spelling and grammar, personal dictionary, autocorrect, Smart Compose | N | Tools over text
 Find and replace, word count | N | Tools
-Translate, voice typing | N | Tools; output is text. Voice typing is kept in Doc mode `[Z]` (D14, 18 September)
+Translate, voice typing | N | Tools; output is text. Voice typing is kept `[Z]` (D14, 18 September) and widened on 19 September, below. **Specified, not built**
 Screen reader, braille | N | A property of the editor
 Offline | N | A local file is offline by nature
 Templates | N | A markdown file
@@ -1004,6 +1040,22 @@ Version history | X | Document history
 Assign tasks | X | Google Tasks; the checklist item itself is N
 eSignature, Meet, Keep, add-ons | X | External services
 Publish to web | X | Hosting state
+
+**Voice typing, corrected and widened on 19 September** `[Z]`.
+
+- **The correction.** The row above sat in the table as though voice typing existed. It does not:
+  `docs/pack/71-VOICE-SPEC.md` records that a search of `src` for voice code returned nothing. It is
+  specified, not built.
+- **The widened feature.** Free speech-to-text services, English only. Transcripts are restructured
+  automatically, the way Wispr Flow does, with a setting for raw text.
+- **Three levels and a tone.** Low, medium and high restructuring, and a tone of neutral, formal,
+  friendly or concise.
+- **A command mode** that tells dictation from an instruction by context, with ten commands in v1.
+- **The change queue holds.** Restructured text lands as a pending insertion, a real proposal that
+  `Tab` accepts; raw text lands as the person's own typing (`71` section 8).
+- **Audio is never stored.** On the desktop, speech is recognised locally by default (`71` sections
+  10.3 and 13).
+- Where it is built: batch 4a in `docs/pack/50-ROADMAP.md`. Its screen is S41.
 
 **The substitutes for the twenty-nine** `[P]`: a page-break marker and page setup as front matter honoured only by export; comments and suggestions in the change queue and the version record; versions in history; tabs as files.
 
@@ -1185,6 +1237,32 @@ Total | | 30,300
 
 **Notion** `[M]`. The export zip imports as a project. The API allows 180 requests a minute on a non-business workspace, which is enough to pull a workspace page by page as a later feature.
 
+**Sheets in** `[Z]` (19 September). A `.csv` or `.tsv` opens as a sheet, and a `.csv` or `.xlsx`
+imports as a proposal into one.
+
+`.xlsx` is never edited in place, because a binary file has no bytes
+to splice (`docs/pack/70-PLATFORM-AND-TYPES.md` sections 14 and 15).
+
+**PDF to Markdown** `[Z]` (19 September). A converter, not a chat feature. The contract is
+`docs/pack/72-PDF-TO-MARKDOWN-SPEC.md`, and the screen is S42.
+
+Way in | Where | Where the result lands
+An empty document | S04, "Start from a PDF" | That document, as its first version
+The AI panel, while editing | S06, "Convert a PDF", with a page range | At the cursor, as one change-queue item. The PDF is held only for the session
+The standalone tool | S22, a seventh source card, and "Convert a PDF to Markdown" in the palette | A new note in the chosen folder
+
+- **The PDF is read in the tab or on the desktop and never uploaded**, on the text path and the scan
+  path. pdf.js through `unpdf` reads text pages; Tesseract reads scanned pages, page by page.
+- **Only permissive licences ship.** Marker, Surya, Nougat, PyMuPDF4LLM and Scribe.js are refused on
+  their licences (`72` section 2).
+- **Flagged, never guessed.** Low-confidence words, headings guessed from font size and rebuilt tables
+  are listed in a report and marked in the preview. Nothing flagged is written into the file.
+- **An optional Pro vision pass** reads a scanned page through a model, off by default until its
+  fixture bench has run. Sections 13 and 14.
+- **A PDF inside a folder import is not converted.** It is stored as an upload, and converted only
+  when a person asks through one of the three doors.
+- Where it is built: batch 5, with the vision pass in batch 7, in `docs/pack/50-ROADMAP.md`.
+
 **The twenty public APIs worth using** `[M]`. Grouped by what leaves the machine, because that is the only grouping that matters here.
 
 **Seven run entirely in the browser, with no key, and send no text anywhere.** KaTeX, Mermaid, Tesseract.js for OCR, pdf.js, pdf-lib, the DiceBear library, and self-hosted Google Fonts.
@@ -1272,6 +1350,25 @@ Password links | asked for | Paid at Dropbox, Figma and Loom. None at Notion | P
 Google Drive | asked for | Notion gates Drive to Plus at $10. It is the person's own storage and costs us nothing | Free. **A full mirror on both plans** `[Z]` (D03, 18 September), through `drive.file` only; our copy stays canonical
 Downgrade | not stated | Figma keeps files readable over the cap | Every document stays readable, editable and exportable over a cap; nothing new is created until under the cap (S33). **The one exception is a trial that ended unpaid**, below `[Z]` (D08, 18 September)
 
+**Voice and PDF caps, proposed on 19 September** `[R]`. Values from the specs, awaiting the founders.
+Their home is `docs/pack/53-PRICING-AND-ENTITLEMENTS.md`, and until they are written there these are
+proposals, not limits.
+
+Cap | Free | Pro | Why | Source
+Voice minutes a month, refilling daily | 60 | 300 | Wispr's free plan is "2,000 words per week", about 60 minutes a month at 130 to 150 words a minute, `UNVERIFIED:` the speaking rate. Pro stops at 300 because 600 would take up to 85 per cent of Pro's margin at full caps, SIMULATED | `docs/pack/71-VOICE-SPEC.md` sections 12 and 17.2, awaiting V4
+Longest voice turn | 120 seconds | 300 seconds | Bounds one upload | `71` section 17.2
+Voice commands that call a model | spend AI edits | spend AI edits | Otherwise voice is a side door around the edit cap | `71` section 12, awaiting V3
+Pages in one PDF conversion | 1,000 | 1,000 | Leaves room under the 4 MiB output gate | `docs/pack/72-PDF-TO-MARKDOWN-SPEC.md` section 9
+Size of a PDF | 100 MB | 100 MB | The file is never uploaded; `INFERENCE:` to be measured on a phone | `72` section 9
+Scanned pages read in the browser, per conversion | 100 | 100 | About 42 seconds on a laptop at the measured 0.42 seconds a page | `72` section 9
+Pages read by the vision pass, a month | 0 | 200 | Free's neurons already serve every Free AI edit | `72` section 9
+
+- **The browser paths cost us nothing**, so the PDF caps are the same on both plans and protect the
+  tab, not our bill. Only the vision pass is counted on the server.
+- **A PDF conversion that used no model spends no AI edit** (`72` section 4.2).
+- **The desktop's local speech recognition is unlimited** (`71` section 3.1), and PDF conversion
+  on the desktop has no cap (`72` section 9). Both run on the person's machine.
+
 **Pricing** `[Z]` `[M]`.
 
 - **Free at ₹0.**
@@ -1309,6 +1406,8 @@ AI-forward tools | $15 to $20
 - **No student tier** `[Z]`.
 
 **What Pro buys, in one line** `[P]`. Unlimited documents, pages and collaborators, 10 GB, 90-day history, password links, Medium and High ideas, 100 edits and 5 blueprints on Claude, the portfolio, no branding.
+
+**Proposed on 19 September:** 300 voice minutes and 200 vision pages a month on Pro.
 
 **The storage cap, decided on 18 September** `[Z]` (D03).
 
@@ -1361,6 +1460,24 @@ An edit | Groq gpt-oss-120b, then Cloudflare qwen3-30b, then Cerebras while the 
 A document | Cloudflare first, then Groq
 A blueprint | Cerebras while the trial lasts, then Cloudflare, then paid Cloudflare neurons
 On the desktop | A local model for edits, with nothing leaving the machine
+Voice, speech to text | Groq `whisper-large-v3-turbo`, then Cloudflare `@cf/openai/whisper-large-v3-turbo`, then paid Cloudflare neurons. Proposed 19 September
+Voice, restructuring and command detection | Groq `openai/gpt-oss-20b` at low reasoning effort, then Cloudflare `@cf/qwen/qwen3-30b-a3b-fp8`, then Cerebras while the trial lasts, then paid Cloudflare. The same chain on Pro. Proposed 19 September
+Voice commands that rewrite text | The edit chain above, one AI edit each
+Voice on the desktop | Local `whisper.cpp`, `small.en` by default, so speech never leaves the machine; restructuring on the chain, or a local Ollama model if the person chooses
+PDF text and scanned pages | No model. pdf.js and Tesseract on the device
+PDF vision pass, Pro only | Cloudflare `@cf/google/gemma-4-26b-a4b-it`, one page image a call, falling back to Tesseract. Off until its fixture bench has run. Proposed 19 September
+
+**Voice and PDF routing, why** `[R]`. From `docs/pack/71-VOICE-SPEC.md` sections 3 and 5.6 and
+`docs/pack/72-PDF-TO-MARKDOWN-SPEC.md` section 3.4.
+
+- **Every call goes through the one router**, its ledger, bucket, breaker and failover. Voice and the
+  vision pass add call types, not a second router (`docs/pack/27-MODEL-ROUTING-SPEC.md`).
+- **Restructuring uses Groq's 20b, not the 120b**, because its daily pool is separate from the one
+  the edit chain uses. Cloudflare is second for speech so voice does not drain the neurons AI edits
+  depend on.
+- **Restructuring stays on the free chain on Pro.** `INFERENCE:` a cleanup call does not need the
+  paid model; `71` section 5.6 asks for confirmation.
+- **Text recognition never calls a model** unless a Pro person turns on the vision pass for a scan.
 
 **Never in the chain, and the list grew on 18 September** `[O]`. Gemini's unpaid tier, Mistral Free, and anything whose terms were not opened. **Newly disqualified, each in its own words, for training on inputs: Cohere's trial keys, NVIDIA NIM and DeepSeek.** None of the three was in the earlier chain, and recording them stops somebody reaching for an obvious free provider later. GitHub Models was retired on 30 July 2026.
 
@@ -1435,10 +1552,19 @@ Rewrites | Extra tokens | Extra cost per blueprint, free model | 200 free users 
 
 **Two notes.** Prompt caching is measured in week one and is not counted here. The price and the routing are founder question 2.
 
+**Voice and the PDF vision pass, costed, SIMULATED** `[O]`, re-derived in the specs from the
+research's list prices, with no live usage.
+
+- **A paid voice minute**, both halves on paid Cloudflare: $0.000636 at one turn a minute, $0.000818
+  at four 15-second turns (`71` section 12.1).
+- **At the proposed caps, if every minute were paid:** Free $0.038 to $0.049 a month, Pro $0.19 to
+  $0.25. Most minutes are free, because Groq's free 480 minutes a day are spent first.
+- **200 vision pages on Pro:** 200 at $0.047 per 100 is $0.094 a month, about ₹9 (`72` section 9).
+
 **Work that never touches a model** `[P]`. This is most of what the editor does in a day, and it costs nothing per use.
 
 - Structural checks, the formatter, search, the map.
-- Table-to-chart, word counts, spellcheck, OCR, the dictionary.
+- Table-to-chart, word counts, spellcheck, OCR, the dictionary, and PDF conversion off the vision pass.
 - Citations, currency, link previews, folder import, and every representation.
 
 **Security** `[R]` `[M]`. We render untrusted markdown, run a model over private documents, and write to GitHub. A memory vendor put the risk plainly this month: "Persistent memory makes prompt injection durable."
@@ -1865,13 +1991,14 @@ The image proxy and the delimited data block | revision 3 security | Restored, s
 
 The dev plan follows approval. Its shape, in fixed-time phases with variable scope `[M]` Shape Up.
 
-**Decided on 18 September** `[Z]` (D02): **everything is built, in fourteen batches, one at a time.**
+**Decided on 18 September** `[Z]` (D02): **everything is built, in batches, one at a time.** Fourteen
+batches on 18 September, fifteen since 19 September.
 
 A batch is built, used and tested internally, its issues fixed, and only then does the next start. The order, the gates and the calendar are in `docs/pack/50-ROADMAP.md`.
 
 **The phases below keep their appetites.** Each maps to one batch, per that file's section 4. Nothing moves to Later any more; Later becomes batches 10a, 10, 11 and 12.
 
-Batches 9a and 10a are new since the answers of 18 September.
+Batches 9a and 10a are new since the answers of 18 September. Batch 4a, voice, is new on 19 September.
 
 Phase | Appetite | What ships
 0 · Before code | 2 weeks | The legal floor's first rows; the accounts moved; the public pages written; the pace published every Friday; the `GITHUB_REPO` default fixed; the format specifications drafted; twenty blueprints made by hand for twenty people outside the studio, watched for whether five run the kickoff and two of ten edit a kit again; the Windows signing route priced (D09)
@@ -1879,11 +2006,11 @@ A · The door and the home | 3 weeks | Sign-in through Firebase Auth and Auth.js
 B · The editor as shipped, plus Doc mode | 4 weeks | The workspace on the new stack; the two engine defects and the audit's third fixed with red proofs; Doc mode with the 20 and the 15; problems and formatter; the AI box and menu on the free chain with the breaker; the `--ai` token and the code face in globals.css; bring-your-own key if question 10 says so
 C · Ideas | 4 weeks | The ideas tab, Low, the fifteen-file blueprint, the consistency check, the unlisted link, the kickoff prompt with the out-of-band hash, the map; gated on Phase 0's result
 D · Sharing | 3 weeks | People with the matrix, links with expiry, published pages with the `.md` twin, the footer and the grievance route; the change queue; history; live editing on Durable Objects under section 15's rule, or Later if question 8 says so; the Zed rebuttal written; the `verified: [{by, at}]` stamp on accept (D06); sign-in to edit through a link (D12)
-E · In and out | 3 weeks | Folder upload, Obsidian and Notion import, Google Docs and Word with the 10 MB refusal, the GitHub and Drive mirrors of D03, whose mechanics are in `docs/pack/67-SYNC-AND-CONFLICT.md`
+E · In and out | 3 weeks | Folder upload, Obsidian and Notion import, Google Docs and Word with the 10 MB refusal, the GitHub and Drive mirrors of D03, whose mechanics are in `docs/pack/67-SYNC-AND-CONFLICT.md`. **Gains on 19 September:** PDF to Markdown, and the mirror for every type
 F · Everywhere | 3 weeks | Offline in the browser, the desktop app on the new stack built on per-platform CI runners, signed for macOS at 99 USD a year, the phone layouts, quick capture, dark mode. **Runs straight after B** `[Z]` (D09), and gains a signed Windows build
 G · Views and blocks | 3 weeks | Flow, slides, mind map, Excalidraw, Mermaid types, KaTeX, templates, tasks, calendar
 H · Pro | 2 weeks | Razorpay with the mandate rules, Medium and High, the Claude routing of section 14, password links, 90-day history
-Later | | Kanban and table-to-chart blocks, the portfolio, the API and the command line, Team, the community, a custom domain, Notion API import. **Moved out on 18 September** `[Z]`: the MCP server with the agents card, as Max (D04, batch 10a); a signed Windows build (D09, phase F)
+Later | | Kanban, now a read-only view, and table-to-chart blocks, the portfolio, the API and the command line, Team, the community, a custom domain, Notion API import. **Moved out on 18 September** `[Z]`: the MCP server with the agents card, as Max (D04, batch 10a); a signed Windows build (D09, phase F)
 
 **Twenty-seven weeks of appetite at full time**, one more than revision 5. Phase A grew by a week for the configuration panel, and shrank by the Supabase migration it no longer has to do.
 
@@ -1894,19 +2021,41 @@ Later | | Kanban and table-to-chart blocks, the portfolio, the API and the comma
 Step | Batch | Name | Phase | Appetite
 1 | 1 | Before code | 0 | 2 weeks
 2 | 2 | The door, the home and the panel | A | 3 weeks
-3 | 3 | The editor and Doc mode | B | 4 weeks plus 11 days
+3 | 3 | The editor and Doc mode | B | 4 weeks plus 13 days
 4 | 8 | Everywhere, with the desktop | F | 3 weeks plus 2 days
-5 | 9a | Database views over front matter | new, D13 | unset
-6 | 4 | Sharing and the change queue | D | 3 weeks plus 7 days
-7 | 10a | The agent server, read and propose | Later, D04 | 2 to 3 weeks plus 2 days
-8 | 5 | In and out | E | 3 weeks
+5 | 9a | Database views, boards and sheets | new, D13 and 19 Sep | 25 days, proposed
+6 | 4 | Sharing and the change queue | D | 3 weeks plus 12 days
+7 | 4a | Voice | new, D14 widened | 21 days, proposed
+8 | 10a | The agent server, read and propose | Later, D04 | 2 to 3 weeks plus 4 days
+9 | 5 | In and out, with PDF to Markdown | E | 3 weeks plus 19 days
 gate | The pilot | Twenty people outside the studio | none | at least 2 weeks
-9 | 6 | Ideas | C | 4 weeks plus 10 to 12.5 days
-10 | 7 | Pro, and Max on sale | H | 2 weeks
-11 | 9 | Views and blocks | G | 3 weeks
-12 | 10 | The API and the command line | Later | unset
-13 | 11 | Later blocks and imports | Later | unset
-14 | 12 | Portfolio, Team and community | Later | unset
+10 | 6 | Ideas | C | 4 weeks plus 10 to 12.5 days
+11 | 7 | Pro, and Max on sale | H | 2 weeks plus 2 days
+12 | 9 | Views and blocks, with decks | G | 3 weeks plus 3 days
+13 | 10 | The API and the command line | Later | unset
+14 | 11 | Later blocks and imports | Later | 1 day known, the rest unset
+15 | 12 | Portfolio, Team, community and sites | Later | 13 days known, the rest unset
+
+**What was added on 19 September** `[Z]`, placed in `docs/pack/50-ROADMAP.md` section 2.3. Every
+appetite below is proposed, a budget chosen, not an estimate.
+
+Batch | Addition | Days | Where the number comes from
+3 | The type registry | 2 | `docs/pack/70-PLATFORM-AND-TYPES.md` section 14
+9a | Views and boards 15, sheets v1 10 | 25 | `70` section 14. It fills an appetite that was unset
+4 | Embeds, backlinks and search across types | 5 | `70` section 14
+4a | Voice, the whole of `docs/pack/71-VOICE-SPEC.md` | 21 | `50-ROADMAP.md` section 3.7a, itemised
+10a | Every type through the agent server | 2 | `70` section 14
+5 | Every type mirrored 3; PDF to Markdown 16 | 19 | `70` section 14; `50-ROADMAP.md` section 3.8, itemised
+7 | The PDF vision pass, Pro | 2 | `50-ROADMAP.md` section 3.11
+9 | Decks on the slides view | 3 | `70` section 14
+11 and 12 | A chart reading a sheet 1; sites 10 and the slide player 3 | 14 | `70` section 14, in batches still otherwise unpriced
+
+- **Voice is its own batch, 4a, after sharing.** Its restructured text and commands land as queue
+  proposals, and its desktop default is local, so it waits for batch 4's queue and batch 8's desktop.
+- **PDF to Markdown sits in batch 5 whole**, because its third door is a card on the Import screen
+  that batch builds. The Pro vision pass waits for batch 7.
+- **A board from a blueprint** sits in batch 6 with no appetite (`docs/pack/69-BOARDS-SPEC.md`
+  section 6). **Canvas** sits after batch 12 with none.
 
 **What moved on 18 September, after D04 to D14** `[Z]`.
 
@@ -1914,16 +2063,24 @@ gate | The pilot | Twenty people outside the studio | none | at least 2 weeks
 - **D13:** database views over front matter become batch 9a, straight after the desktop. No appetite exists for them yet.
 - **D04:** the MCP server, reading and proposing and never writing, becomes batch 10a straight after the change queue. It is the Max tier, which goes on sale in batch 7.
 - **D06, D12 and D14** add work to batches that already exist: the stamp on accept and sign-in to edit through a link in batch 4, voice typing in batch 3.
+- **Voice left batch 3 on 19 September** for batch 4a, above.
 
-**The new calendar** `[P]`, re-derived in `docs/pack/50-ROADMAP.md` section 5.
+**The new calendar** `[P]`, re-derived in `docs/pack/50-ROADMAP.md` sections 5.5 and 5.8.
 
-- **About 134 to 209 calendar weeks** for the ten priced batches, the use windows and the pilot. That is roughly 2.6 to 4.0 years.
-- The low end is (120 + 8.9 + 20) days / 1.21 + 9 windows + 2 pilot weeks.
-- The high end is (135 + 15 + 34.5) days / 0.93 + 9 + 2. Batch 10a adds the 8.9 to 15 days.
-- **About 159 to 242 weeks** with the thirty days of content below, if the same hands write it.
-- **Batches 9a, 10, 11 and 12 have no appetite**, so every figure is a floor.
-- **The pilot now starts about 107 to 143 calendar weeks in**, against about 81 to 104 before the reordering, because the desktop and the agent server run before it.
-- The additions of 18 September inside batches 3, 4, 6, 8 and 10a are appetites, not measurements, in that file, section 5.2.
+- **About 201 to 296 calendar weeks** for the twelve priced batches, the use windows and the pilot.
+  That is roughly 3.9 to 5.7 years.
+- The low end is (120 + 8.9 + 20 + 79) days / 1.21 + 11 windows + 2 pilot weeks = 201.3.
+- The high end is (135 + 15 + 34.5 + 79) days / 0.93 + 11 + 2 = 296.3.
+- **It grew by about 67 to 87 weeks** from 18 September's 134 to 209: the 79 proposed days, 79 / 1.21
+  = 65.3 to 79 / 0.93 = 84.9 weeks, plus two use windows for batches 9a and 4a.
+- **About 226 to 329 weeks** with the thirty days of content below, if the same hands write it.
+- **Batch 10, and the rest of 11 and 12, have no appetite**, so every figure is a floor.
+- **The pilot now starts about 170 to 224 calendar weeks in**, against about 107 to 143 on 18
+  September. Views, boards, sheets, voice and PDF to Markdown all run before it.
+- `INFERENCE:` moving batch 4a after the pilot would start it about 18 to 24 weeks sooner, because
+  the pilot's script uses no voice.
+- The additions of 18 and 19 September are appetites, not measurements, in that file, sections 5.2
+  and 5.8.
 
 **What the batches replace.** The old default built phases 0, A, B, D and H, about 60 to 79 calendar weeks, with E, F and G in Later and a contractor for D and F.
 
@@ -2019,7 +2176,7 @@ Google Docs writers | 5 | Write there and share by link
 
 Id | Question here | The answer
 D01 | 5 · K1, the one-sentence definition | The broad editor, option a. Internal name `fmd`, standing for nothing. Three taglines tested, section 1
-D02 | 1 · The pace | Everything, in fourteen batches, one at a time, section 26
+D02 | 1 · The pace | Everything, in batches, one at a time, section 26. Fourteen then, fifteen since 19 September
 D03 | 6 · K2, which bytes we hold | Ours in R2 and Firestore, canonical; a full mirror in the person's GitHub or Drive on both plans; a soft storage cap with blocks past 10 GB on Pro, sections 11 to 13
 D10 | 13 · The accounts that move | All of them, before the first stranger, section 24
 D11 | 9 · The free caps, in part | The Free document cap is a panel value, A/B tested before it is fixed, section 13
@@ -2035,7 +2192,24 @@ D08 | Not among the eighteen: trial and dunning | Answered. Written into this pl
 D09 | 11 · Desktop before or after sync, and who signs Windows | Desktop early, alongside the web editor, section 12. The Windows certificate is priced in `docs/pack/35-RELEASE-AND-VERSIONING.md` section 6.2a
 D12 | Not among the eighteen: whether a link-edit holder needs an account | Yes. Editing through a link needs the one-tap sign-in; reading needs nothing, section 19
 D13 | Not among the eighteen: database views over front matter | Build them early, batch 9a, sections 8 and 26
-D14 | Not among the eighteen: voice typing | Keep it in Doc mode, section 7
+D14 | Not among the eighteen: voice typing | Keep it in Doc mode, section 7. **Widened on 19 September**, below
+
+**Asked on 18 and 19 September** `[Z]`, recorded in `docs/pack/56-OPEN-DECISIONS.md` section 0.
+
+Ask | The answer | Where it is written
+Sheets and Boards | Bare-bone, alongside documents | Sections 6 and 26; `docs/pack/68-SHEETS-SPEC.md`, `69-BOARDS-SPEC.md`
+One platform | Docs, sheets, boards, notes and sites on one platform; presentations later | Section 1; `docs/pack/70-PLATFORM-AND-TYPES.md`
+Voice, widened from D14 | Free speech-to-text, English only; restructured with a raw setting; three levels and a tone; a command mode; 1 to 2 seconds of model time is acceptable | Sections 7, 13, 14 and 26; `docs/pack/71-VOICE-SPEC.md`
+PDF to Markdown | A converter with three ways in; free tools preferred; OCR for scans | Sections 11, 13, 14 and 26; `docs/pack/72-PDF-TO-MARKDOWN-SPEC.md`
+
+**Still open from those asks**, each written to its default until answered.
+
+Question | Default | Where
+V1 to V5: pending insertion, a sure command key, commands spending AI edits, Free 60 and Pro 300 minutes, local recognition on the desktop | Yes to each | `docs/pack/71-VOICE-SPEC.md` section 1
+Does the Kanban view become read-only, and does a board take a new feature id | Yes to both | `docs/pack/69-BOARDS-SPEC.md` section 8
+The default board columns, whether Make a board spends a blueprint credit, the phone board | `Todo, Doing, Done`; the rest open | `69` section 8
+Whether an empty document's PDF import skips the queue, and whether a conversion's `source` is `ai` or a new `convert` | Skips it; `ai` | `docs/pack/72-PDF-TO-MARKDOWN-SPEC.md` section 15
+Every appetite added on 19 September | As proposed | `docs/pack/50-ROADMAP.md` section 2.3
 
 **Deferred on purpose**, to be settled while phase A is built rather than before it: the tagline, the positioning and the product-market read.
 
