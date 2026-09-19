@@ -5,7 +5,7 @@ mode: reference
 tier: canonical
 status: living
 verified_against: cb7c16f
-updated: 2026-09-19
+updated: 2026-09-20
 owner: sagnik
 covers: [voice, dictation, speech-to-text, restructuring, voice-commands]
 ---
@@ -44,16 +44,17 @@ returned nothing at `cb7c16f`. No voice feature id exists in `10-FEATURE-REGISTE
 **Decided `[Z]`.** Everything in the founder's ask above. It overrides anything below that
 disagrees with it.
 
-**Recommended, not yet answered.** The research put five questions to the founder at its section
-5.10. Per `56-OPEN-DECISIONS.md`, a recommendation is the default the pack is written to, and it
-stays open until answered.
+**Resolved as proposals on 20 September.** The research put five questions to the founder at its
+section 5.10. Each is now resolved (proposed 20 Sep, founder review), or marked needs founder where it
+touches money or the core promise. The founder's checklist items are in
+`review/voice-pdf-19sep.md` section 2.
 
-# | Question | Default this file is written to | If the founder says no
-V1 | Restructured dictation lands as a one-key pending insertion, not pasted straight in | Yes, section 8 | Section 8.3 changes; the change queue promise then has an exception, and ADR-0020 must say so
-V2 | Command detection is a hybrid with a sure key as well as context | Yes, section 7 | Stage 0 in 7.1 is removed; nothing else changes
-V3 | Voice commands that call a model spend `limits.ai.edits` | Yes, section 12 | A separate `limits.voice.*` counter is needed for commands
-V4 | Free 60 minutes a month, Pro 300, on a daily-refill bucket | Yes, section 12 | The numbers in the 53 register rows change
-V5 | The desktop defaults to local speech recognition | Yes, section 10 | `voice.desktopEngine` defaults to `cloud`
+# | Question | Resolution | Rejected, and why | If the founder says no
+V1 | Restructured dictation lands as a one-key pending insertion, not pasted straight in | **Needs founder**, recommended yes (item VP-03). ADR-0008's queue already covers an AI rewrite `[P]`, and the raw text shows at once, so the cost is one key, not a wait | Pasting straight in, as Wispr does: a silent AI edit | Section 8.3 changes; the change queue promise then has an exception, and ADR-0020 must say so
+V2 | Command detection is a hybrid with a sure key as well as context | Resolved (proposed 20 Sep, founder review): yes. The classifier is wrong some of the time, and the sure key costs nothing | Context alone, which guesses | Stage 0 in 7.1 is removed; nothing else changes
+V3 | Voice commands that call a model spend `limits.ai.edits` | Resolved (proposed 20 Sep, founder review): yes. One counter per kind of work, and voice is no side door around the edit cap | A separate `limits.voice.commands` counter, a second cap to explain | A separate `limits.voice.*` counter is needed for commands
+V4 | Free 60 minutes a month, Pro 300, on a daily-refill bucket | **Needs founder**, recommended as written (item VP-01). Money and a plan promise | 600 on Pro, up to 85 per cent of Pro's margin at full use (12.1) | The numbers in the 53 register rows change
+V5 | The desktop defaults to local speech recognition | Resolved (proposed 20 Sep, founder review): yes, once the model is downloaded. Nothing leaves the machine, which is the stronger privacy promise | Cloud by default, which sends audio for no gain offline | `voice.desktopEngine` defaults to `cloud`
 
 **Record of the decision.** `adr/ADR-0020-voice-typing.md`.
 
@@ -161,7 +162,7 @@ Groq | `response_format` | `json` | `INFERENCE:` the transcript text is all we k
 Cloudflare | `language` | `en` |
 Cloudflare | `vad_filter` | `true` | Trims silence at the provider as a second line
 Cloudflare | `initial_prompt` | The dictionary |
-Cloudflare | `hallucination_silence_threshold` | A panel row, `voice.cf.silenceThreshold` | Whisper invents text over silence. `UNVERIFIED:` the right value; section 15 measures it
+Cloudflare | `hallucination_silence_threshold` | A panel row, `voice.cf.silenceThreshold`, sent only when set | Whisper invents text over silence. `[M]` Cloudflare's input schema types it `number`, in seconds, optional, with no default and no range. The value is set by section 15's bench
 
 ### 3.3 The terms, quoted from the research
 
@@ -180,7 +181,15 @@ whisper.cpp | MIT licence. Nothing leaves the machine, so the clause does not ar
   to 30 days".
 - `/openai/v1/audio/transcriptions` is listed as "ZDR Eligible", and "You may opt out of this storage
   in Data Controls settings".
-- Cloudflare: `UNVERIFIED:` no audio-specific retention page was opened.
+- Cloudflare `[M]`, Workers AI "Data usage", last updated 21 April 2026, opened 2026-09-20 at
+  https://developers.cloudflare.com/workers-ai/platform/data-usage/: inputs include "audio files" and
+  are Customer Content, and Customer Content "may be stored by Cloudflare if you specifically use a
+  storage service (e.g., R2, KV, DO, Vectorize, etc.)".
+- The page states no retention period and no abuse logging, either way. So we can say Cloudflare
+  does not train on audio, and that our voice route stores nothing. We cannot say Cloudflare keeps
+  nothing.
+- **Never route voice through Cloudflare AI Gateway with logging on.** `INFERENCE:` a gateway log is
+  the storage service the page names.
 
 **Groq limits and shape, quoted.** File size "25 MB (free tier), 100MB (dev tier)". Minimum billed
 length "10 seconds". Formats include `mp4`, `m4a`, `ogg`, `wav` and `webm`.
@@ -191,7 +200,10 @@ length "10 seconds". Formats include `mp4`, `m4a`, `ogg`, `wav` and `webm`.
   same table as the free tier. `UNVERIFIED:` needs a signed-in read of the free organisation's
   limits page.
 - `UNVERIFIED:` whether the 10-second minimum also spends the free 28,800 seconds. If it does, a
-  3-second command costs 10 seconds of pool.
+  3-second command costs 10 seconds of pool. Re-opened 2026-09-20 `[M]`: the speech page says "you will
+  still be billed for 10 seconds", and the rate-limit page's headers report requests and tokens only,
+  never audio seconds. needs: the founder's signed-in Groq limits page, read before and after one
+  3-second request (section 16).
 
 ### 3.4 Refused options
 
@@ -344,9 +356,10 @@ Order | Provider and model | Why | Pool
 **Re-derived `[O]`**, at about 958 tokens a call: `200,000 / 958 = 208` restructures a day on Groq
 `gpt-oss-20b`, and `10,000 / 11.15 = 896` on Cloudflare if nothing else used the pool.
 
-**Pro.** `INFERENCE:` restructuring stays on this chain on Pro. The research does not route it to
-Haiku, and a cleanup call does not need the paid model. The coordinator should confirm when adding
-the routing rows.
+**Pro.** Resolved (proposed 20 Sep, founder review): restructuring stays on this chain on Pro. The
+research does not route it to Haiku, and a cleanup call checked by 5.5 does not need the paid model.
+Rejected: Haiku on Pro, a paid call per turn for no checked gain. `routing.voice.restructure.pro`
+starts equal to `.free`, so the founder can change it from the panel.
 
 ---
 
@@ -364,7 +377,17 @@ Run the chip's command | `Tab`, or tap the chip | Section 7.3
 
 **Why not `Cmd/Ctrl + Shift + Space`.** `15-INTERACTION-AND-KEYBOARD.md` gives it to quick capture.
 `[O]` `grep -n "Cmd/Ctrl + \." docs/pack/15-INTERACTION-AND-KEYBOARD.md` returns nothing, so the voice
-chord is free in file 15. `UNVERIFIED:` against every browser's own chords.
+chord is free in file 15.
+
+**Against the browsers' own lists `[M]`, opened 2026-09-20.** Chrome's shortcut page, for Windows and
+Mac, has no `Ctrl + .` or `⌘ + .`; its nearest is `⌘ + ,` for settings. Safari's guide and Apple's
+Mac shortcuts page list no Command-Period either.
+
+- Pages: https://support.google.com/chrome/answer/157179, https://support.apple.com/en-gb/guide/safari/cpsh003/mac
+  and https://support.apple.com/en-gb/102650.
+- `UNVERIFIED:` Firefox, whose shortcut page answered with a bot challenge, and any chord that
+  Safari's menus hold but its guide omits. needs: one press of the chord in Firefox and Safari on a
+  Mac and on Windows, before `flag.voice` is turned on.
 
 ### 6.2 Behaviour, both modes
 
@@ -376,7 +399,8 @@ chord is free in file 15. `UNVERIFIED:` against every browser's own chords.
   microphone track ending.
 - Toggle mode has no silence auto-stop in v1. `INFERENCE:` an automatic stop is a guess about when the
   person has finished.
-- **Audio is recorded into memory** as Opus at 32 kbit/s, mono. Never IndexedDB, never disk.
+- **Audio is recorded into memory** as Opus at 32 kbit/s, mono, or AAC in MP4 where the browser has
+  no Opus recorder, such as Safari (10.1). Never IndexedDB, never disk.
 - **Silence is trimmed on the device before upload.** Under 0.5 s of speech left means no upload, and
   the "nothing heard" state of section 11.
 - A second turn cannot start while one is in flight. `limits.voice.concurrent` is 1 (section 12).
@@ -392,6 +416,18 @@ A 300 s Pro turn:          32,000 x 300 / 8 = 1,200,000 bytes
 The Vercel function body limit is "4.5 MB", as quoted in the research's section 5.7. The largest turn
 fits with room. The server refuses a body larger than `limits.voice.turn.seconds x 32 kbit/s` plus
 `voice.upload.marginPct` before any provider call.
+
+**The margin, measured `[O]`** with `ffmpeg` 8.1 on 20 September, pink noise at 32 kbit/s mono:
+
+```
+60 s:   Opus CBR in WebM 258,987 bytes (+7.9%)   AAC in MP4 255,932 (+6.6%)   Opus VBR 224,704 (-6.4%)
+300 s:  Opus CBR in WebM 1,292,521 (+7.7%)       AAC in MP4 1,276,738 (+6.4%)
+```
+
+**`voice.upload.marginPct` starts at 20.** Resolved (proposed 20 Sep, founder review). `INFERENCE:`
+the worst measured overhead is 7.9 per cent, and a browser's encoder was not measured, so the margin
+leaves room. It only guards body size; duration is still measured on the server. Rejected: 10, too
+close to the measured worst case.
 
 ---
 
@@ -425,10 +461,13 @@ Selection present: {has_selection}. Utterance: <u>{utterance}</u>
 **Parsing is strict.** Anything unparsable, any `command` outside the ten of 7.4, or any exhausted
 chain counts as `unsure`.
 
-**A mismatch in the research, named rather than fixed silently.** The classifier's enum lists
+**A mismatch in the research, resolved (proposed 20 Sep, founder review).** The research's enum lists
 `table`, but the ten commands of 7.4 have no table command and do have bold and italic.
 
-`INFERENCE:` until the prompt row is corrected, the server maps `table` to `unsure`.
+- The panel row `voice.prompt.classifier` ships with `table` replaced by `bold, italic`, both mapped
+  to command 5. The block above is the research's text; the shipped default is this corrected one.
+- The server still maps an unknown value, `table` included, to `unsure`.
+- Rejected: adding a table command, which v1 does not specify.
 
 **The classifier call's chain** is the restructure chain of 5.6. `INFERENCE:` the research gives it no
 chain of its own.
@@ -558,7 +597,7 @@ proposed for the account's settings schema, and none is written there yet.
 
 Key | Values | Default | Note
 `voice.mode` | `raw`, `restructured` | `restructured` | The founder's raw setting `[Z]`
-`voice.level` | `low`, `medium`, `high` | `medium` | Ignored in raw mode
+`voice.level` | `low`, `medium`, `high` | `medium` | Ignored in raw mode. **Needs founder**, item VP-02: medium recommended, because it keeps the speaker's words and still gives lists and paragraphs
 `voice.tone` | `neutral`, `formal`, `friendly`, `concise` | `neutral` | Used at `high` only
 `voice.language` | `en` | `en` | A fixed row, so the limit is visible `[Z]`
 `voice.spelling` | `british`, `american` | `british` | Section 5.3
@@ -588,8 +627,17 @@ Any, on `language-not-supported` from `start()` | The same | The chain | The lev
 transcript. The server-based Web Speech mode is never called (3.4).
 
 **Recording.** `MediaRecorder`: Chrome 47, Firefox 25, Safari 14.1, iOS 14, per browser-compat-data
-as the research read it. Chrome records `audio/webm`. `UNVERIFIED:` Safari's default container; Groq
-accepts `mp4` and `m4a` either way.
+as the research read it. Chrome records `audio/webm`.
+
+**Safari records MP4 with AAC, not Opus `[M]`.** WebKit's MediaRecorder post of 23 November 2020,
+opened 2026-09-20 at https://webkit.org/blog/11353/mediarecorder-api/: "Safari currently supports the
+MP4 file format with H.264 as video codec and AAC as audio codec". Groq accepts `mp4` and `m4a`.
+
+So the recorder asks, in order, for `audio/webm;codecs=opus` and then `audio/mp4`, taking the first
+that `MediaRecorder.isTypeSupported` accepts. It sets `audioBitsPerSecond: 32000` on either.
+`INFERENCE:` the post is from 2020, so feature detection, not a browser check, picks the format.
+
+The size cap of 6.3 is written in seconds times the bit rate, so it holds for either container.
 
 ### 10.2 The phone
 
@@ -600,6 +648,7 @@ accepts `mp4` and `m4a` either way.
   modifier key.
 - The pending insertion shows Accept and Raw buttons instead of `Tab` and `Esc`.
 - `UNVERIFIED:` iOS home-screen web apps and whether microphone permission persists between launches.
+  needs: a live iPhone, the web app added to the home screen, opened twice.
 
 ### 10.3 The desktop, Tauri
 
@@ -611,8 +660,9 @@ Why not `base.en` | Svarah (2023): Whisper base 13.6 per cent word error on Indi
 Restructuring | The text chain, or a local Ollama model when the person chooses "nothing leaves this computer"
 Offline | Transcription works offline. Restructuring on the chain needs a connection; offline it falls back to raw
 The screen says | Whether restructuring leaves the machine, every time the local engine is on
-Microphone permission | `UNVERIFIED:` the macOS usage string and the Tauri v2 capability were not opened. `src-tauri/capabilities/default.json` holds nothing for a microphone `[O]`
-Partial results while speaking | `UNVERIFIED:` not built into `whisper-rs` by default. v1 ships without them
+Microphone permission | Three pieces, checked 2026-09-20. **1.** A new `src-tauri/Info.plist` with `NSMicrophoneUsageDescription`, which Tauri merges into the bundle `[M]` https://v2.tauri.app/distribute/macos-application-bundle/. **2.** A new `src-tauri/Entitlements.plist` with `com.apple.security.device.audio-input`, which Apple ties to the Hardened Runtime, and `bundle.macOS.entitlements` pointed at it; today it is `null` `[O]` `grep -n entitlements src-tauri/tauri.conf.json`. **3.** No capability entry: Tauri allows every app command by default unless `build.rs` sets an app manifest, and ours calls plain `tauri_build::build()` `[M]` https://v2.tauri.app/security/capabilities/ `[O]` `cat src-tauri/build.rs`
+Partial results while speaking | Not a library feature. whisper.cpp's own live example is "a naive example" that "samples the audio every half a second and runs the transcription continuously", a loop around full inference `[M]` https://raw.githubusercontent.com/ggml-org/whisper.cpp/master/examples/stream/README.md, 2026-09-20. v1 ships without them
+Binding | `whisper-rs` 0.16.0, published 12 March 2026, now maintained on Codeberg, licence Unlicense `[M]` crates.io API and its README, 2026-09-20
 
 **Before download.** The model is not bundled. Until it is downloaded, the desktop uses the cloud
 chain and says so.
@@ -634,17 +684,19 @@ Id | State | Detected by | What the person sees | The audio
 `E756` | Every provider exhausted | The chain's last link refuses | "Voice is busy right now. Try again in a minute." | Discarded
 `E701` | Restructure too slow | Past `voice.timeout.restructureMs` | The raw transcript stays, with "Showing the raw text; cleanup took too long." | Already transcribed
 `E702` | A check failed | Section 5.5 | "Cleanup changed words, so the raw text is shown." | Already transcribed
-`E655` | Plan cap reached | The bucket is empty (section 12) | "You've used this month's voice minutes. They refill daily." On Free, with the upgrade path | Not sent
+`E655` | Plan cap reached | The bucket is empty (section 12) | "You've used your voice minutes for now. More arrive each day." On Free, with the upgrade path | Not sent
 `E568` | Command with no target | Section 7.5 | "Select the text first" | Already transcribed
 `E529` | Target in a fence, table or front matter | Section 7.5 | A refusal naming where the cursor is | Already transcribed
 `E569` | Selection over 1,500 words | Section 7.5 | A refusal naming the limit | Already transcribed
-`E703` | Speech in another language | `UNVERIFIED:` Whisper with `language: en` forced on other speech was not tested | Whatever the recogniser returns, then the checks | Transcribed
+`E703` | Speech in another language | `UNVERIFIED:` Whisper with `language: en` forced on other speech was not tested. `whisper-cli` is on the machine that wrote this line but no model file is, and downloading one needs the founder's permission. needs: a French and a Hindi clip in the section 15 bench | Whatever the recogniser returns, then the checks | Transcribed
 
 **No state stores audio to retry later.** Wispr keeps failed dictations "for up to 14 days", per the
 research. fmd does not. `INFERENCE:` losing a 30-second turn is a smaller harm than keeping recordings.
 
-**A copy clash to resolve in 16.** The cap string says "this month's voice minutes" and "refill
-daily" in one breath. `INFERENCE:` the copy deck should pick words that fit a bucket.
+**A copy clash, resolved (proposed 20 Sep, founder review) for 16 to adopt.** The cap string said
+"this month's voice minutes" and "refill daily" in one breath. Proposed words that fit a bucket: "You've
+used your voice minutes for now. More arrive each day." `16-COPY-DECK.md` owns the final wording, and
+its `K.s41.err.*` row still carries the old string. Rejected: a monthly counter, which 12 does not use.
 
 ---
 
@@ -711,7 +763,7 @@ neurons are spent first.
 Promise | How it is kept
 **Audio is never stored** | Memory only on the client. Passed through our route to the provider and dropped when the response returns. Never IndexedDB, never our disk, never a retry queue
 **Never trained on** | Gate A applies to every speech and text provider, section 3.3
-**Provider retention off** | Groq's logging "for up to 30 days" is turned off in its Data Controls before launch. A founder action, section 16. `UNVERIFIED:` Cloudflare's audio retention
+**Provider retention off** | Groq's logging "for up to 30 days" is turned off in its Data Controls before launch. A founder action, section 16. Cloudflare publishes no retention period and stores audio only through a storage service we do not use, section 3.3 `[M]`
 **Never logged** | No audio, transcript, restructured text or command words in any log, extending `27` section 10.3
 **Smallest context** | Section 13.1. No screenshots, no other documents, no file names
 **Local on the desktop** | Speech never leaves the machine by default. The screen says whether restructuring does
@@ -733,8 +785,9 @@ text", per the research. fmd sends the smallest span that does the job.
   that it is not kept. Copy id `K.s41.firstuse`.
 - **The sign-in promise must name voice.** It promises no training on documents. `INFERENCE:` one
   clause, "or on your voice", keeps it true. `16-COPY-DECK.md` owns the wording.
-- `UNVERIFIED:` whether the DPDP Act 2023 needs a separate consent for voice. It belongs with the
-  legal opinion already open under D08.
+- `UNVERIFIED:` whether India's Digital Personal Data Protection Act 2023 needs a separate consent
+  for voice. needs: a lawyer, in the same opinion already sought under D08. Until then the first-use
+  sheet asks once, which is the stricter reading.
 
 ---
 
@@ -744,16 +797,16 @@ text", per the research. fmd sends the smallest span that does the job.
 Every figure is arithmetic on stated speeds, from the research's sections 2.8 and 3.7.
 
 Step | Budget | Basis
-Upload 60 s of speech | 240,000 bytes | `32,000 x 60 / 8`. `UNVERIFIED:` network time on Indian mobile uplinks
-Groq transcription of 60 s | 0.28 s of compute | `60 / 216`, Groq's stated speed factor. `UNVERIFIED:` queue and network overhead
-Restructure at medium | About 0.26 to 0.3 s of generation | About 260 output tokens at Groq's stated "~1000 tps" for `gpt-oss-20b`. `UNVERIFIED:` time to first token
+Upload 60 s of speech | 240,000 bytes | `32,000 x 60 / 8`. `UNVERIFIED:` network time on Indian mobile uplinks. needs: the section 15 bench, run once on a phone on a mobile network
+Groq transcription of 60 s | 0.28 s of compute | `60 / 216`; the factor 216 re-read on Groq's speech page 2026-09-20 `[M]`. `UNVERIFIED:` queue and network overhead. needs: the section 15 bench
+Restructure at medium | About 0.26 to 0.3 s of generation | About 260 output tokens at Groq's stated "~1000 tps" for `gpt-oss-20b`. `UNVERIFIED:` time to first token. needs: the section 15 bench
 **Total after release, 60 s of speech** | **About 1 to 1.5 s** | `INFERENCE:` the sum plus overheads
 
 **Timeouts, as panel rows.**
 
 Row | Starting value | On expiry
 `voice.timeout.restructureMs` | 4,000 | Keep the raw transcript, cancel the call, `E701`
-`voice.timeout.transcribeMs` | `UNVERIFIED:` the research sets none. The router's own `router.stream.firstChunkMs` does not fit a non-streaming call | Fail over to the next speech link
+`voice.timeout.transcribeMs` | **4,000**. Resolved (proposed 20 Sep, founder review): the research sets none, and the router's `router.stream.firstChunkMs` does not fit a non-streaming call. `INFERENCE:` the restructure rule below, double the founder's 2 seconds. The longest Pro turn is `300 / 216 = 1.39` s of Groq compute `[O]`, which leaves 2.6 s for upload and queue. Rejected: leaving it unset, which means no failover on a hung call | Fail over to the next speech link
 
 **Why 4 s.** `INFERENCE:` double the founder's upper bound, so a slow call gets a fair chance before
 the raw text is kept. The research names it a configuration row, and section 15 should set it.
@@ -783,8 +836,12 @@ on the founders' machines and never enter the repository.
 
 - Turn off reliability and abuse logging for audio endpoints in Groq's Data Controls, and record the
   date on the provider row, as gate B requires for any row.
-- Read the Groq free organisation's limits page, signed in, and settle the two ambiguities in 3.3.
-- Answer V1 to V5 in section 1.
+- Read the Groq free organisation's limits page, signed in, and settle the two ambiguities in 3.3
+  (item VP-05).
+  For the second, read the audio-seconds figure, send one 3-second clip, and read it again.
+- Answer V1 and V4 in section 1, items VP-03 and VP-01, and the default level, item VP-02. V2, V3
+  and V5 are resolved as proposals and need only a review.
+- Include voice in the lawyer's opinion already sought under D08, item VP-09.
 
 ---
 
@@ -801,10 +858,10 @@ Columns as 28's section 3. Who: `founder` on every row.
 
 Key | Type | Bounds | Default | Read by | On lowering | Screen
 `flag.voice` | `bool` | n/a | **false** until section 15 has run | The mic button, the voice key, the four routes | Turning off stops new turns; pending insertions stay pending | S37
-`voice.chain.speech` | `list<modelId>` | Gate A and gate B rows only | Groq `whisper-large-v3-turbo`, Cloudflare `@cf/openai/whisper-large-v3-turbo`, paid Cloudflare | `transcribeTurn` | Applies to the next turn | S36
-`voice.chain.restructure` | `list<modelId>` | The same | Groq `openai/gpt-oss-20b`, Cloudflare `@cf/qwen/qwen3-30b-a3b-fp8`, Cerebras `gpt-oss-120b`, paid Cloudflare | `restructureTranscript`, `classifyUtterance` | Applies to the next call | S36
+`voice.chain.speech`, **withdrawn 20 Sep**, see the note below | `list<modelId>` | Gate A and gate B rows only | Groq `whisper-large-v3-turbo`, Cloudflare `@cf/openai/whisper-large-v3-turbo`, paid Cloudflare | `transcribeTurn` | Applies to the next turn | S36
+`voice.chain.restructure`, **withdrawn 20 Sep**, see the note below | `list<modelId>` | The same | Groq `openai/gpt-oss-20b`, Cloudflare `@cf/qwen/qwen3-30b-a3b-fp8`, Cerebras `gpt-oss-120b`, paid Cloudflare | `restructureTranscript`, `classifyUtterance` | Applies to the next call | S36
 `voice.timeout.restructureMs` | `int` | 500 to 30,000, `INFERENCE:` bounds are this file's | **4000** | `restructureTranscript` | Next call | S36
-`voice.timeout.transcribeMs` | `int` | 500 to 60,000, `INFERENCE:` | `UNVERIFIED:` unset until section 15 | `transcribeTurn` | Next call | S36
+`voice.timeout.transcribeMs` | `int` | 500 to 60,000, `INFERENCE:` | **4000**, section 14; section 15 may change it | `transcribeTurn` | Next call | S36
 `voice.checks.medium.maxGrowthPct` | `int` | 0 to 100 | **10** | The medium check | Next call | S36
 `voice.checks.high.minPct` | `int` | 1 to 100 | **40** | The high check | Next call | S36
 `voice.checks.high.maxPct` | `int` | 100 to 300 | **130** | The high check | Next call | S36
@@ -814,15 +871,16 @@ Key | Type | Bounds | Default | Read by | On lowering | Screen
 `voice.commands.verbs` | `list<string>` | 1 to 50 entries | The list in 7.4 | The stage 1 rule | Next turn | S36
 `voice.commands.maxWords` | `int` | 1 to 50 | **12** | The stage 1 rule | Next turn | S36
 `voice.command.maxSelectionWords` | `int` | 1 to 5,000 | **1500** | `runVoiceCommand` | Next command | S36
-`voice.cf.silenceThreshold` | `number` | `UNVERIFIED:` Cloudflare's accepted range not opened | `UNVERIFIED:` unset | The Cloudflare speech adapter | Next call | S36
-`voice.upload.marginPct` | `int` | 0 to 100 | `UNVERIFIED:` the research says "a margin" and names no number | The transcribe route | Next upload | S36
+`voice.cf.silenceThreshold` | `number`, seconds | Above 0; Cloudflare states no range `[M]` | Unset, so the parameter is not sent, until section 15 sets it | The Cloudflare speech adapter | Next call | S36
+`voice.upload.marginPct` | `int` | 0 to 100 | **20**, section 6.3 | The transcribe route | Next upload | S36
 `routing.voice.transcribe.free` / `.pro` | `list<modelId>` | As 28 section 5.4 | Same as `voice.chain.speech` | The router | Next call | S36
 `routing.voice.restructure.free` / `.pro` | `list<modelId>` | As 28 section 5.4 | Same as `voice.chain.restructure`, both plans, `INFERENCE:` (5.6) | The router | Next call | S36
 `routing.desktop.voice` | `modelId` | `small.en`, `large-v3-turbo` | `small.en` | The Tauri command | Next download | S36
 
-**A duplication for the coordinator to settle.** `voice.chain.*` and `routing.voice.*` say the same
-thing. `INFERENCE:` keep the `routing.*` pair, which matches 28's section 5.4 shape, and drop
-`voice.chain.*`. This file uses `voice.chain.*` only because the research named it.
+**A duplication, resolved (proposed 20 Sep, founder review).** `voice.chain.*` and `routing.voice.*`
+say the same thing. Keep the `routing.*` pair, which matches 28's section 5.4 shape; the two
+`voice.chain.*` rows above are withdrawn and never built. 28 already carries 17.1 without them.
+Rejected: keeping both, two rows that can disagree.
 
 ### 17.2 `53-PRICING-AND-ENTITLEMENTS.md`, section 3.1
 
@@ -834,8 +892,12 @@ Entitlement id | What it counts | `plan.free` | `plan.pro` | Unit | Resets
 `limits.voice.turns.perMinute` | Turns started in one minute | **6** | **12** | count | rolling minute
 `limits.voice.concurrent` | Transcriptions in flight | **1** | **1** | count | n/a
 
-**Why 60 on Free.** Wispr's free plan is "2,000 words per week". `UNVERIFIED:` speaking rate; at 130
-to 150 words a minute that is about 13 to 15 minutes a week, about 60 a month.
+**Why 60 on Free.** Wispr's free plan is "2,000 words per week". Its home page, opened 2026-09-20 at
+https://wisprflow.ai, puts Flow at "220 wpm" `[M]`. At that rate `2,000 / 220 = 9.1` minutes a week,
+and `9.1 x 52 / 12 = 39` a month `[O]`.
+
+So 60 minutes is at or above Wispr's free plan by its own speed claim. The research's 130 to 150 words
+a minute had no source and is dropped. A slower speaker gets more minutes' worth of Wispr's words.
 
 **Why 300 on Pro, not 600.** SIMULATED in 12.1: 600 would cost up to 85 per cent of Pro's margin at
 full caps.
@@ -861,7 +923,7 @@ Register | Rows needed
 `19-ACCEPTANCE-CRITERIA.md` | One criterion per check in 5.5, each with its planted-bad-output red proof; one per failure state; "audio never reaches disk"; "no voice log line holds text"
 `55-MEASUREMENT-AND-EVENTS.md` | `voice.turn.started`, `voice.turn.transcribed`, `voice.restructure.served`, `voice.restructure.fellback`, `voice.command.proposed`, `voice.chip.run`, `voice.insertion.accepted`, `voice.insertion.rejected`. Payloads hold seconds, level, outcome and timings, never text
 `15-INTERACTION-AND-KEYBOARD.md` | `Cmd/Ctrl + .`, its `Alt` or `Option` variant, and `Tab` and `Esc` on a pending insertion
-`29-PLATFORM-AND-DESKTOP-SPEC.md` | The macOS microphone usage string and the Tauri v2 capability, both `UNVERIFIED:` today
+`29-PLATFORM-AND-DESKTOP-SPEC.md` | The macOS microphone usage string and the audio-input entitlement of 10.3. No Tauri capability row is needed
 `12-screens/S28.md` | The Voice group of section 9
 `54-COMPLIANCE-AND-LEGAL.md` | The DPDP consent question of 13.2
 
@@ -897,18 +959,22 @@ Never | Why
 
 Where | The disagreement | Owner
 `56-OPEN-DECISIONS.md` D14 body | Still recommends dropping voice typing, while section 0 records it kept and widened `[Z]`. Section 0 wins | 56
-Research section 4.2 against 4.3 | The classifier enum lists `table`; the ten commands have no table command. Mapped to `unsure` until fixed (7.2) | This file, row `voice.prompt.classifier`
+Research section 4.2 against 4.3 | The classifier enum lists `table`; the ten commands have no table command. Resolved in 7.2: the shipped prompt lists `bold, italic` instead | This file, row `voice.prompt.classifier`
 `53` section 3.1 against `28` section 4.3 | 53 resets AI caps by calendar month; 28 and `27` recommend a bucket. Voice rows are proposed as a bucket from the start | 53
-Section 11 copy | "This month's voice minutes" beside "refill daily" | 16
+Section 11 copy | "This month's voice minutes" beside "refill daily". Resolved in 11 with bucket words; 16 to adopt | 16
 Owner's own typing | Whether it enters the queue is unstated, and raw dictation inherits the answer (8.1) | ADR-0008's owner
 
 ---
 
 ## 20. Limits of this document
 
-**What was not re-opened.** Every provider quotation, price and limit was copied from the research,
-which opened the pages with `curl` on 2026-09-19. None was re-opened for this file. Re-open before any
-of them goes into a shipped screen.
+**What was re-opened on 20 September.** Groq's speech and rate-limit pages, Cloudflare's model page,
+input schema and data usage page, WebKit's MediaRecorder post, the Tauri and Apple pages of 10.3,
+whisper.cpp's live example, and Wispr's home page. Groq's `$0.04` an hour, its speed factor 216 and
+Cloudflare's `$0.000513` an audio minute held.
+
+**What was not re-opened.** Every other quotation, price and limit is the research's, from 2026-09-19.
+Re-open before any of them goes into a shipped screen.
 
 **What rests on one source.**
 

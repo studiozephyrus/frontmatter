@@ -5,7 +5,7 @@ mode: explanation
 tier: canonical
 status: decided
 verified_against: cb7c16f
-updated: 2026-09-19
+updated: 2026-09-20
 owner: sagnik
 covers: [ADR-0020]
 ---
@@ -83,8 +83,10 @@ Sending the screen or other documents as context, as Wispr does | Not needed, an
 
 ## Still open inside this decision
 
-The research's questions V1 to V5 are recommendations the founder has not answered. `71` section 1
-lists each with what changes if the answer is no. The broad decision above does not depend on them.
+The research's questions V1 to V5 were resolved as proposals on 20 September, in `71` section 1. V2,
+V3 and V5 need only review. V1, the one-key pending insertion, and V4, the minutes per plan, need the
+founder, with the default level; they are items VP-01 to VP-03 in `review/voice-pdf-19sep.md`. The
+broad decision above does not depend on them.
 
 ## What would reverse it
 
@@ -97,4 +99,4 @@ lists each with what changes if the answer is no. The broad decision above does 
 - No latency or accuracy was measured. Every timing is arithmetic on stated speeds.
 - Indian-English accuracy rests on one 2023 paper, Svarah, which predates the turbo model.
 - No provider page was re-opened for this record. The quotes are the research's, from 2026-09-19.
-- Cloudflare's retention for audio is `UNVERIFIED:`.
+- Cloudflare's data usage page, opened 2026-09-20, says audio is stored only if a storage service is used, and names no retention period `[M]`. `71-VOICE-SPEC.md` section 3.3 quotes it.

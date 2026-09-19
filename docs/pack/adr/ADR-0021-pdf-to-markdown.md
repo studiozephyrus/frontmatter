@@ -5,7 +5,7 @@ mode: explanation
 tier: canonical
 status: decided
 verified_against: e5fa544
-updated: 2026-09-19
+updated: 2026-09-20
 owner: sagnik
 covers: [ADR-0021]
 ---
@@ -77,16 +77,20 @@ Writing entry 2 straight into the document | A silent machine edit. It breaks AD
 - New entitlement rows `limits.pdf.*` for `53-PRICING-AND-ENTITLEMENTS.md` and panel rows for
   `28-CONFIGURATION-PANEL-SPEC.md`, listed in `72` section 14.
 - S22 gains a seventh source card; S04 and S06 each gain one control. The screen owners write them.
-- `21-DATA-MODEL.md` must rule on a `convert` value for `source`. Until then a conversion is `ai`.
+- `21-DATA-MODEL.md` is asked to add `convert` to `source`, proposed on 20 September. Until it does, a
+  conversion is written `ai`, with the engine in `model`.
 - A failed PDF conversion keeps nothing, unlike Word import's `E561`, because the PDF is not stored.
 - The desktop bundle carries the Tesseract binary and its English data, with licence notices.
 
 ## Still open inside this decision
 
-- The OCR page floor, the sparse-page threshold and eight of eleven escapes are unmeasured. `72`
-  section 13 lists the fixtures that set them.
-- Entry 1 skipping the queue is this record's reading of ADR-0008. Its owner may rule otherwise.
-- Whether the vision cap resets monthly or refills daily follows the ruling owed in `53`.
+- The OCR page floor is unmeasured; `72` section 13 lists the fixture that sets it. On 20 September
+  the escapes were measured, the sparse-page threshold was set to 100, and a stamped scan was shown to
+  need OCR (`72` sections 3.1 and 5.6).
+- Entry 1 skipping the queue is this record's reading of ADR-0008. It goes to the founder, item VP-08
+  in `review/voice-pdf-19sep.md`.
+- The vision cap is proposed as a daily-refill bucket, as voice minutes are. `53` owns the row.
+- The caps per plan and the vision pass at launch are founder items VP-06 and VP-07.
 
 ## What would reverse it
 

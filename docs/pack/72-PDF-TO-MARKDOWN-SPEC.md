@@ -5,7 +5,7 @@ mode: reference
 tier: canonical
 status: living
 verified_against: e5fa544
-updated: 2026-09-19
+updated: 2026-09-20
 owner: sagnik
 covers: [pdf-import, pdf-to-markdown, ocr]
 ---
@@ -114,7 +114,7 @@ Tool | Why refused `[R]`
 Marker, and Surya under it | Code is Apache-2.0, but the weights' `MODEL_LICENSE` bars an entity over five million US dollars of revenue or funding, and **any product that competes with Datalab's**. A PDF converter inside fmd competes from the day it ships. `INFERENCE:` the research's reading of clause (c)
 Surya alone | Same weights licence; Hugging Face also tags `surya_layout` CC-BY-NC-SA-4.0
 Nougat | Weights are CC-BY-NC, non-commercial
-PyMuPDF4LLM | AGPL-3.0. `UNVERIFIED:` the price of its commercial licence
+PyMuPDF4LLM | AGPL-3.0. `UNVERIFIED:` the price of its commercial licence. needs: a quote from Artifex, and only if the refusal is ever reconsidered
 Scribe.js | AGPL-3.0
 MinerU | Avoided, not strictly refused: an attribution duty for online services, an AGPL-3.0 vision model, and a Python server we do not run
 Mistral OCR, LlamaParse, Google Document AI | Fail gate B on paper today, per research section 2.6. None is needed for v1
@@ -136,17 +136,32 @@ to travel with a redistribution, and the desktop redistributes the Tesseract bin
 
 Rule | Contract
 A page whose text layer yields **zero characters** after whitespace is removed | Scanned. It goes to OCR
+A page under `pdf.classify.sparseChars` characters that carries an image | Both. OCR runs as well, and the longer reading is kept, flagged `sparse-text-page`
 Any other page | Text. It goes to the text path, even if it also holds a large image
 A text page with a hidden OCR layer made by another tool | Text. We use the layer the PDF carries and do not re-OCR it
 
 The zero-character rule is the research's measured signal: the scan fixture returned 0 characters
 and all 182 real pages returned text `[R]` (research sections 4.4 and 5.2).
 
-`UNVERIFIED:` pages that carry a few stray characters over a scanned image, such as a stamped page number.
+**A scan with a stamped page number, tested `[O]` on 20 September.** Two one-page PDFs were built in
+`$TMPDIR`: a scanned page image alone, and the same image with the text `12` stamped at its foot.
 
-v1 treats them as text pages, and the report flags any text page under a threshold `pdf.classify.sparseChars` as `sparse-text-page` so the person can see it.
+```
+pdftotext, characters without whitespace:   scan alone 0    scan with stamp 2
+tesseract 5.5.2 on the stamped page at 200 dpi:   1,716 characters
+```
 
-No default is set until a fixture sets one.
+So the zero-character rule alone sends the stamped page to the text path, and 1,716 characters of scan
+are lost behind a flag. `pdftotext` is Poppler, not pdf.js; `INFERENCE:` both read the same text
+objects, and the `pdf/stamped-scan` fixture of section 13 checks pdf.js itself.
+
+**The rule, resolved (proposed 20 Sep, founder review).** A text page with fewer than
+`pdf.classify.sparseChars` characters **that also carries an image record** is read by OCR as well.
+
+- The page keeps whichever reading has more characters, and is flagged `sparse-text-page` either way.
+- **Starting value 100.** `INFERENCE:` far above a stamp's 2 characters and far below the 2,885 of the
+  research's mean real page. The bench may move it.
+- Rejected: flagging alone, which leaves the page's content out with only a note.
 
 ### 3.2 The text chain, in the browser
 
@@ -174,7 +189,14 @@ Output | both | Per word: text, confidence 0 to 100, bounding box, and the line,
 
 **What the browser downloads for OCR, and only when the first scanned page appears.** One WebAssembly build of Tesseract, 2,855,361 bytes for the smallest the research measured, plus English data `[R]`.
 
-`UNVERIFIED:` which data file `tesseract.js` fetches by default, and its size.
+**The default English data, checked 2026-09-20 `[M]`.** With the default engine, LSTM only,
+`tesseract.js` 7.0.0 fetches `@tesseract.js-data/eng/4.0.0_best_int/eng.traineddata.gz`. Its size is
+2,952,873 bytes by the CDN's `content-length`; the legacy file is 10,923,060.
+
+- Source: `src/worker-script/index.js` at https://cdn.jsdelivr.net/npm/tesseract.js@7.0.0/, and the
+  package listing at https://data.jsdelivr.com/v1/package/npm/@tesseract.js-data/eng@1.0.0/flat.
+- **Three paths default to the jsDelivr CDN**: `workerPath`, `corePath` and `langPath`, per the same
+  release's `src/worker/browser/defaultOptions.js` and `getCore.js`. The adapter sets all three.
 
 **Self-hosted, never from a third-party CDN.** The engine and data files are served from our origin with long cache headers, so a second use works offline.
 
@@ -184,14 +206,15 @@ Output | both | Per word: text, confidence 0 to 100, bounding box, and the line,
 
 fmd refuses rather than guesses, so an engine that can say it is unsure fits better than a stronger one that cannot `[R]` (research section 3.1).
 
-**A known weakness, stated.** On the fixture, `tesseract.js` dropped all three table rows that the native binary kept, and read bullets as stray characters `[R]` (research section 4.4). `UNVERIFIED:` why.
+**A known weakness, stated.** On the fixture, `tesseract.js` dropped all three table rows that the native binary kept, and read bullets as stray characters `[R]` (research section 4.4). `UNVERIFIED:` why. One candidate, not tested: the two engines read different data. The browser default is `4.0.0_best_int` (above); the Homebrew binary's `eng.traineddata` is 4,113,088 bytes `[O]` `ls -la /opt/homebrew/share/tessdata/eng.traineddata`, 2026-09-20. needs: the section 13 bench, running both engines on the same data file.
 
 So OCR pages get no table or list inference in v1 (section 5.4).
 
 ### 3.4 The optional Pro vision pass
 
 **Off by default, Pro only, behind `flag.pdf.vision`**, which stays `false` until the fixture bench of
-section 13 has measured it. No vision model has touched our fixtures `[R]`.
+section 13 has measured it. No vision model has touched our fixtures `[R]`. Whether it is on at launch
+is item VP-07 for the founder; the recommendation is off at launch, on once the bench passes.
 
 Item | Contract
 Model | `@cf/google/gemma-4-26b-a4b-it` on Cloudflare Workers AI, the panel row `routing.pdf.vision.pro`
@@ -245,8 +268,16 @@ uses Tesseract.
 - `limits.pdf.visionPages` is decremented only on `DONE`. A fallback costs nothing.
 - The PNG is decoded and its dimensions checked before any provider call. A body over
   `pdf.vision.maxImageBytes` is refused unread.
-- `UNVERIFIED:` the request body ceiling of the platform the route runs on, and so the default for
-  `pdf.vision.maxImageBytes`. Measure a 200 dpi page before setting it.
+- **The ceiling is Vercel's 4.5 MB `[M]`.** "The maximum payload size for the request body or the
+  response body of a Vercel Function is **4.5 MB**", https://vercel.com/docs/functions/limitations,
+  opened 2026-09-20. Over it, Vercel returns `413`.
+- **A 200 dpi page, measured `[O]`** on 20 September, a US Letter scan rendered by `pdftoppm` and
+  saved by Pillow: clean, 262,630 bytes; with scanner grain, 3,120,659 to 3,289,548 bytes as RGBA
+  PNG, which is what a canvas gives.
+- **`pdf.vision.maxImageBytes` starts at 4,000,000.** Resolved (proposed 20 Sep, founder review).
+  `INFERENCE:` under the ceiling with room for the form envelope, and above every page measured. A
+  larger page is never sent; it falls back to Tesseract with `vision-fallback`. Rejected: 4,500,000,
+  which leaves no room for the envelope.
 - The image is held in memory, sent, and dropped when the response ends. Never written to R2, never
   logged (section 10).
 
@@ -332,7 +363,7 @@ The queue item and the version record carry the fields of `21-DATA-MODEL.md`, th
 
 Field | Value
 `author` | The person who asked
-`source` | `ai`, until the owner of 21 decides on `convert` (section 15). Never `person`
+`source` | **`convert`**, resolved (proposed 20 Sep, founder review). A text-layer or Tesseract reading involves no model, so `ai` would put the AI mark on text no model wrote. `ai` only for a page the vision pass read. Until 21 adds `convert`, the code writes `ai` and `model` names the engine. Rejected: `ai` for every conversion. Never `person`
 `model` | The engines that produced the text, joined: `pdf.js text layer`, `tesseract 5`, `tesseract.js 7`, or the vision model's id
 `ask` | `Convert PDF: <file name>, pages <a> to <b>`
 `spanStart`, `spanEnd` | Both the insertion offset. A conversion inserts; it never replaces
@@ -379,7 +410,7 @@ Case | Rule
 Tagged page | `H1` to `H6` from the structure tree, as given. No flag
 Untagged page | Rank font sizes. The body size is the size carrying the most characters in the whole document. Every distinct size larger than the body, largest first, is the next heading level
 More than six larger sizes | The largest six map to levels 1 to 6. Text in any smaller heading-sized font is written as a paragraph and flagged `heading-level-overflow`
-A heading-sized line over `pdf.heading.maxChars` | Written as a paragraph and flagged. `INFERENCE:` a long line in a large font is usually a pull-quote. No default until a fixture sets one
+A heading-sized line over `pdf.heading.maxChars` | Written as a paragraph and flagged. `INFERENCE:` a long line in a large font is usually a pull-quote. Starting value **120** characters, resolved (proposed 20 Sep, founder review): across 12,590 headings in this repository's `docs/`, the 99th percentile is 104 characters and the longest 190 `[O]`. Rejected: unset, which turns every large-font pull-quote into a heading
 Every heading from font size | Flagged `heading-from-size`
 
 The research's untagged fixture held four font sizes, 24, 16, 13 and 11 points, one per heading level
@@ -421,17 +452,29 @@ Text in the PDF | Written as | Unescaped, the stack does this
 `H~2~O` | `H\~2\~O` | GFM strikes the 2 through
 `a \| b` in a table cell | `a \\| b`, which a raw reader sees as a backslash before the pipe | The cell splits in two
 
-**Specified, not yet measured.** Each needs a fixture in section 13 before ship. `UNVERIFIED:` none of
-these was run against the stack.
+**Measured on 20 September `[O]`**, through `unified` with the product's remark plugins in the order
+`src/modules/preview/presentation/Markdown.tsx` lists them (frontmatter, gfm, breaks, math), then
+`remark-rehype`, `rehype-raw` and `rehype-stringify`. Run from the repository root with `node`.
 
-Text in the PDF | Written as
-A line starting `#`, `>`, `-`, `+` or `*` that is body text | The character preceded by `\`
-A line starting digits then `.` or `)` that is not a list item | The `.` or `)` preceded by `\`
-`[[` | `\[\[`, so it is not read as a wikilink
-`<` | `\<`, so it is not read as raw HTML
-`*` and `_` inside text | `\*` and `\_`
-A backtick | `` \` ``
-A backslash | `\\`
+Text in the PDF | Written as | Measured result | Unescaped, the stack did this
+A line starting `#`, `>`, `-`, `+` or `*` that is body text | The character preceded by `\` | All five render as the printed characters | A heading, a quote, three bullet lists
+A line starting digits then `.` or `)` that is not a list item | The `.` or `)` preceded by `\` | Both render as printed | Two numbered lists
+`[[` | `\[\[`, and the report flags it | Renders `[[Page]]` as text, **but the preview still links it**, see below | The same
+`<` | `\<`, so it is not read as raw HTML | Renders as printed | A real `<b>` element
+`*` and `_` inside text | `\*` and `\_` | Render as printed | Emphasis
+A backtick | `` \` `` | Renders as printed | Inline code
+A backslash | `\\` | Renders as one backslash | The same, before a letter; needed before punctuation
+
+**Red proof.** The same run on the unescaped lines turned ten of the twelve into markup, so the check
+can fail. The two that did not are `[[Page]]`, at this layer, and a backslash before a letter.
+
+**`[[` cannot be escaped in markdown today `[O]`.** The preview's wikilink rule is a regex over
+rendered text (`src/modules/preview/presentation/markdown/wikilinks.tsx:10`), applied to children at
+`components.tsx:94`. After parsing, `\[\[Page\]\]` is the text `[[Page]]`, and the regex matched it.
+
+Resolved (proposed 20 Sep, founder review): the writer still writes `\[\[`, and every `[[` raises a
+new flag, `wikilink-literal`. Section 15 asks the preview's owner to skip escaped brackets. Rejected: a
+zero-width character between the brackets, which changes the printed characters.
 
 **The rule behind the table.** Anything the PDF printed must render as the same characters. A writer
 that lets a printed character become markup has changed the document.
@@ -471,8 +514,9 @@ Flag kind | Raised when | In the preview
 `list-nesting-unknown` | 5.2 | A note on the list
 `column-order-uncertain` | 5.5 | A note on the page's first block
 `maths-as-text` | A run of text in a mathematical font, or the tagged role `Formula` | A note. Formulas are kept as printed, never rebuilt into LaTeX
+`wikilink-literal` | Any printed `[[`, section 5.6 | A note that the preview may show it as a link until its owner fixes the rule
 `image-dropped` | Each image when Keep images is off | Listed by page
-`sparse-text-page` | 3.1 | A note on the page
+`sparse-text-page` | 3.1 | A note on the page, naming which reading was kept
 `vision-read` | A page read by the vision pass | "Read by the AI model. No per-word confidence is available"
 `vision-fallback` | The vision pass failed or its cap was reached | The reason, and that Tesseract was used
 `vision-illegible` | 3.4 | Listed by page
@@ -487,7 +531,7 @@ opens by default when any flag is raised.
 
 ### 6.1 Pages left out
 
-**A page whose mean OCR confidence is below `pdf.ocr.pageFloor` is left out and named**, and the rest converts. `UNVERIFIED:` the floor.
+**A page whose mean OCR confidence is below `pdf.ocr.pageFloor` is left out and named**, and the rest converts. `UNVERIFIED:` the floor. needs: the section 13 bench, with scans of known bad quality.
 
 **Its starting value is 0**, so until a fixture sets it no page is omitted for confidence and every low word is still flagged.
 
@@ -566,13 +610,15 @@ PDF is not stored `[Z]`.
 
 **The principle.** The browser paths cost us nothing, so they are capped for the tab's sake, and the same on both plans. Only quantities differ, per `53-PRICING-AND-ENTITLEMENTS.md` section 3.2 `[R]`.
 
-All values are the research's proposal, section 5.4, not yet in the register.
+All values are the research's proposal, section 5.4, not yet in the register. **Needs founder**: item
+VP-06 for the page, size and scanned-page caps, and item VP-07 for the vision pass at launch and Pro's
+200 pages, both in `review/voice-pdf-19sep.md` section 2.
 
 Entitlement id | What it counts | Free | Pro | Desktop | Unit | Resets
 `limits.pdf.pages` | Pages in one conversion | **1,000** | **1,000** | none | count | per conversion
 `limits.pdf.bytes` | Size of the PDF | **100 MB** | **100 MB** | none | bytes | per conversion
 `limits.pdf.scannedPages` | Scanned pages OCR'd in the browser, in one conversion | **100** | **100** | none | count | per conversion
-`limits.pdf.visionPages` | Pages read by the vision pass | **0** | **200** | not offered in v1 | count | monthly, see 15
+`limits.pdf.visionPages` | Pages read by the vision pass | **0** | **200** | not offered in v1 | count | a bucket refilling daily at the monthly rate, as voice minutes do, see 15
 `limits.docs.cloud` | Documents the tool creates | 50 in total | unlimited | none | count | unchanged
 `limits.uploads.file`, `limits.uploads.total` | Images kept | 5 MB a file | 25 MB a file | none | bytes | unchanged
 
@@ -592,8 +638,12 @@ Entitlement id | What it counts | Free | Pro | Desktop | Unit | Resets
 
 A client that skips them harms only its own tab.
 
-**The desktop has no vision pass in v1.** The research lists a local model as `UNVERIFIED:`, and
-vision on the `gemma3:4b` tag was not checked.
+**The desktop has no vision pass in v1.** Resolved (proposed 20 Sep, founder review). The research's
+local candidate, Ollama's `gemma3:4b`, is listed as "Multimodal (Vision)", 3.3 GB, under the "Gemma
+Terms of Use", not Apache-2.0 `[M]` https://ollama.com/library/gemma3:4b, opened 2026-09-20.
+
+- A local vision pass would therefore need a licence read of its own and a 3.3 GB download, and no
+  fixture has measured it. Rejected for v1: Tesseract already covers the desktop offline.
 
 ---
 
@@ -636,12 +686,15 @@ Path | Measured `[R]` | Not measured
 Text layer | About 10 ms a page, in Node, on an arm64 Mac; 182 pages in 1,768 ms | A browser tab; a phone
 Tesseract, native | 0.43 s for one 200 dpi page | 300 dpi; dense small print
 `tesseract.js` | 0.10 s to load, 0.42 s to read one page, in Node | A browser tab; a phone
-Vision pass | nothing | `UNVERIFIED:` the whole round trip
+Vision pass | nothing | `UNVERIFIED:` the whole round trip. needs: one Workers AI call on the founder's Cloudflare account, in the vision bench of section 13
 
 **The contracts that follow.**
 
 - **Progress is per page** once a conversion passes `pdf.progress.afterMs`, and it is cancellable.
-  `INFERENCE:` no default until a tab measurement sets one.
+  Starting value **1,000** ms, resolved (proposed 20 Sep, founder review). Nielsen: "1.0 second is
+  about the limit for the user's flow of thought to stay uninterrupted" `[M]`
+  https://www.nngroup.com/articles/response-times-3-important-limits/, opened 2026-09-20. Rejected: his
+  10-second rule for percent-done bars, since a scan's length is not known until it is read.
 - **OCR runs on a worker**, so typing in the editor never waits on it.
 - **No latency figure goes into copy** until measured in a tab. `INFERENCE:` a 20-page text PDF in well
   under a second, a 20-page scan in about ten seconds on a laptop.
@@ -664,7 +717,7 @@ Never | Why
 **Replace a selection** from entry 2 | A conversion inserts; it never replaces
 **Load an OCR file from a third-party CDN** | Section 3.3
 **Convert a PDF during a folder import** | Only when asked, through one of the three doors
-**Other OCR languages** in v1 | English data only. `UNVERIFIED:` any Indian script
+**Other OCR languages** in v1 | English data only. Data packages exist for nine Indian languages, `hin`, `ben`, `tam`, `tel`, `mar`, `guj`, `kan`, `mal` and `pan` `[M]` jsDelivr's `@tesseract.js-data` listings, 2026-09-20. `UNVERIFIED:` their accuracy on Indian print. needs: Indian-script fixtures in the section 13 bench, before any is offered
 **A captcha, a puzzle or a tour** on any door | The founders' standing rule, ADR-0009
 
 ---
@@ -679,6 +732,7 @@ Fixture | Built from | Expected
 `pdf/untagged` | The same page, untagged | Headings from sizes, all flagged; numbered list kept; bullets written as paragraphs, and the table rebuilt from lines or flagged
 `pdf/scan` | The same page at 200 dpi, no text layer | Every word below the floor in the report; no word silently changed; `ocr-no-structure` raised
 `pdf/mixed` | Two text pages and one scanned page | Three pages classified two text, one OCR
+`pdf/stamped-scan` | A scanned page with a two-character page number stamped on it | Read by OCR as well, the OCR reading kept, `sparse-text-page` raised
 `pdf/dollar` | A line `It cost $5 and $10` | `\$5 and \$10`, renders as text
 `pdf/tilde` | `H~2~O` | `H\~2\~O`, renders as text
 `pdf/pipe-cell` | A tagged table with `a \| b` in a cell | One cell, escaped
@@ -714,15 +768,15 @@ Key | Type | Bounds | Default | Read by | On lowering | Screen
 `flag.pdf.vision` | `bool` | n/a | **false** until 13's vision bench has run | The preview's vision toggle, the route | Next conversion | S37
 `routing.pdf.vision.pro` | `list<modelId>` | Gate A and gate B rows with `vision: true` only | `@cf/google/gemma-4-26b-a4b-it` | The route | Next call | S36
 `pdf.vision.prompt` | `string` | Non-empty | The text in 3.4 | The route | Next call; audit record kept | S36
-`pdf.vision.maxImageBytes` | `int` | `UNVERIFIED:` | `UNVERIFIED:` unset until measured (3.5) | The route | Next call | S36
+`pdf.vision.maxImageBytes` | `int` | 1 to 4,500,000, Vercel's body limit `[M]` | **4000000**, section 3.5 | The route, and the client before it sends | Next call | S36
 `pdf.ocr.dpi` | `int` | 100 to 400, `INFERENCE:` | **200** | The renderer | Next conversion | S36
 `pdf.ocr.wordFloor` | `int` | 0 to 100 | **80** | The report | Next conversion | S36
 `pdf.ocr.pageFloor` | `int` | 0 to 100 | **0** until measured (6.1) | The page filter | Next conversion | S36
-`pdf.classify.sparseChars` | `int` | 0 to 1,000, `INFERENCE:` | `UNVERIFIED:` unset | The classifier | Next conversion | S36
-`pdf.heading.maxChars` | `int` | 1 to 1,000, `INFERENCE:` | `UNVERIFIED:` unset | The heading ranker | Next conversion | S36
+`pdf.classify.sparseChars` | `int` | 0 to 1,000, `INFERENCE:` | **100**, section 3.1, `INFERENCE:` | The classifier | Next conversion | S36
+`pdf.heading.maxChars` | `int` | 1 to 1,000, `INFERENCE:` | **120**, section 5.3 | The heading ranker | Next conversion | S36
 `pdf.furniture.minShare` | `int`, per cent | 1 to 100 | **50**, `INFERENCE:` | The furniture rule | Next conversion | S36
 `pdf.furniture.minPages` | `int` | 2 to 100 | **3**, `INFERENCE:` | The furniture rule | Next conversion | S36
-`pdf.progress.afterMs` | `int` | 0 to 10,000, `INFERENCE:` | `UNVERIFIED:` unset | The progress sheet | Next conversion | S36
+`pdf.progress.afterMs` | `int` | 0 to 10,000, `INFERENCE:` | **1000**, section 11 | The progress sheet | Next conversion | S36
 
 ### 14.2 `53-PRICING-AND-ENTITLEMENTS.md`, section 3.1
 
@@ -761,20 +815,25 @@ Register | Rows needed
 ## 15. Contradictions this file found
 
 Where | The disagreement | Owner
-ADR-0008 against research section 6.1 | ADR-0008 puts every change in the queue; the research lands entry 1 with no queue item. This file reads the preview's Accept as the owner's decision and keeps attribution in the version record (4.1) | ADR-0008's owner
-`21-DATA-MODEL.md` against research section 6.5 | 21 allows `person`, `ai`, `agent`; the research wants a new `convert`. This file writes `ai` until 21 decides | 21
+ADR-0008 against research section 6.1 | ADR-0008 puts every change in the queue; the research lands entry 1 with no queue item. This file reads the preview's Accept as the owner's decision and keeps attribution in the version record (4.1). **Needs founder**, item VP-08, recommended as written | ADR-0008's owner, and the founder
+`21-DATA-MODEL.md` against research section 6.5 | 21 allows `person`, `ai`, `agent`; the research wants a new `convert`. Resolved (proposed 20 Sep, founder review): **`convert`**, see 4.4 | 21
 Research section 5.2 against `27` | The research routes the vision page through "our Worker"; this file routes it through the app's model layer (3.5) | This file
 `12-screens/S22.md` | It lists six sources and forbids a third creation button; the converter adds a seventh source and no button | S22
 `12-screens/S06.md` | It shows a proposal with `C093` but never says the proposal is a queue item on S20 | S06
-`53` section 3.1 against `28` section 4.3 | 53 resets AI caps by calendar month; 28 and `27` recommend a bucket. `limits.pdf.visionPages` needs the same ruling | 53
+`src/modules/preview/presentation/markdown/wikilinks.tsx:10` | The wikilink regex runs on rendered text, so an escaped `\[\[` still becomes a link (5.6). The rule should skip brackets that were escaped in the source | The preview module's owner
+`53` section 3.1 against `28` section 4.3 | 53 resets AI caps by calendar month; 28 and `27` recommend a bucket. Resolved here (proposed 20 Sep, founder review): `limits.pdf.visionPages` is a bucket, as `71-VOICE-SPEC.md` makes voice minutes. Rejected: a calendar month, which lets a person spend 200 pages on the first day and the service carry the spike | 53
 
 ---
 
 ## 16. Limits of this document
 
-**What was not re-opened.** Every licence, price, limit and benchmark was copied from the research,
-which opened the pages on 2026-09-19. None was re-opened for this file. Re-open before any goes into a
-shipped screen or copy.
+**What was re-opened or measured on 20 September.** The `tesseract.js` 7.0.0 source and its data
+file, Vercel's body limit, Ollama's `gemma3:4b` page, the Indian-language data listings and Nielsen's
+response-time page. Measured: the stamped-scan classification, a 200 dpi page's PNG size, and the twelve
+escape lines against the product's remark plugins.
+
+**What was not re-opened.** Every other licence, price, limit and benchmark is the research's, from
+2026-09-19. Re-open before any goes into a shipped screen or copy.
 
 **What rests on one page.** Every accuracy statement about pdf.js and Tesseract rests on one English
 page printed by Chrome, in three forms. No LaTeX paper, no InDesign layout, no phone photo, no skewed
@@ -789,7 +848,8 @@ or on a phone.
 - The line-end hyphen rule, the no-page-break rule, the vision prompt and its `[illegible]` placeholder.
 - The furniture thresholds, the dpi bounds, and every panel default marked `INFERENCE:`.
 - Entry 1 skipping the queue, entry 2 without images, and the default folder of entry 3.
-- Eight of the eleven escapes in 5.6.
+- The twelve escape lines of 5.6 were measured once, on 20 September, outside the React renderer, so
+  the `rehype-katex`, `rehype-highlight` and HTML-policy steps did not run.
 
 **What would falsify it.**
 
@@ -800,4 +860,5 @@ or on a phone.
   than refusing the page.
 - Cloudflare changing its terms to allow training, which removes the vision pass at once.
 - A reading of Datalab's clause (c) that does not bar us, which would reopen Marker. `UNVERIFIED:` no
-  legal opinion was sought.
+  legal opinion was sought. needs: a lawyer, only if the founder wants Marker reopened; item VP-10
+  recommends not paying for it, since v1 needs no Marker.
