@@ -52,6 +52,7 @@ ADR | Decision in one line | Source of the decision
 [ADR-0018](ADR-0018-board-format.md) | **Open, proposed.** A board is a folder of card files with `status` in front matter, plus one board file; a move is a one-line splice | `BOARDS.md`, 18 September 2026; the ask is `[Z]`
 [ADR-0019](ADR-0019-type-registry-and-embedding.md) | **Open, proposed.** One type registry picks a file's type by extension then a profile key, and an embed is a reference by path and anchor | `ONE-PLATFORM.md`, 18 September 2026; the ask is `[Z]`
 [ADR-0020](ADR-0020-voice-typing.md) | Voice typing on free speech-to-text, restructured in three levels plus raw, with a hybrid command mode, every edit a proposal | D14, widened 19 September 2026
+[ADR-0021](ADR-0021-pdf-to-markdown.md) | PDF to Markdown converts on the device with pdf.js and Tesseract, flags what it cannot decide, never stores the PDF, and has no chat | `56-OPEN-DECISIONS.md` section 0, 19 September 2026
 
 **ADR-0017 to ADR-0019 are open.** The founder asked for sheets, boards and one platform on 18 September
 2026. The formats are recommendations awaiting him, recorded now so a builder can see them. Each
