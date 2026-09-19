@@ -1,6 +1,5 @@
 <title>frontmatter review checklist</title>
-<meta name="description" content="The 44 items the founders review before development starts.">
-<link rel="preconnect" href="https://fonts.googleapis.com">
+<meta name="description" content="Every question the founders answer before frontmatter development starts.">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Google+Sans+Code&display=swap">
 <style>
 :root{
@@ -22,9 +21,9 @@
 }
 *{box-sizing:border-box}
 body{background:var(--bg);color:var(--ink);font:15px/1.55 "Google Sans",system-ui,-apple-system,"Segoe UI",sans-serif;margin:0}
-.wrap{max-width:860px;margin:0 auto;padding-inline:16px;padding-block:28px 80px}
+.wrap{max-width:880px;margin:0 auto;padding-inline:16px;padding-block:28px 80px}
 header h1{font-size:28px;line-height:1.15;margin:0 0 6px;text-wrap:balance;letter-spacing:-.01em}
-header p{color:var(--ink2);margin:0 0 4px;max-width:65ch}
+header p{color:var(--ink2);margin:0 0 4px;max-width:66ch}
 .bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--hair);display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;padding-block:12px;margin:18px 0 8px}
 .meter{flex:1;min-width:160px;height:6px;background:var(--hair);border-radius:3px;overflow:hidden}
 .meter i{display:block;height:100%;background:var(--accent);width:0;transition:width .25s}
@@ -34,187 +33,142 @@ header p{color:var(--ink2);margin:0 0 4px;max-width:65ch}
 .filters button[aria-pressed="true"]{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
 .status{font-size:13px;color:var(--ink3)}
 .status.err{color:var(--risk)}
-h2{font-size:15px;text-transform:uppercase;letter-spacing:.08em;color:var(--ink3);margin:30px 0 10px;font-weight:500}
+h2{font-size:14px;text-transform:uppercase;letter-spacing:.08em;color:var(--ink3);margin:30px 0 10px;font-weight:500}
 h2 small{text-transform:none;letter-spacing:0;font-size:13px;margin-left:8px}
 .item{background:var(--card);border:1px solid var(--hair);border-radius:10px;padding:14px 16px;margin:0 0 10px;display:grid;grid-template-columns:auto 1fr;gap:4px 12px}
 .item.done{border-color:color-mix(in srgb,var(--ok) 45%,var(--hair))}
-.item.risk{border-left:3px solid var(--risk)}
-.num{font:500 13px "Google Sans Code",ui-monospace,monospace;color:var(--ink3);padding-top:2px;font-variant-numeric:tabular-nums;min-width:22px}
+.item.act{border-left:3px solid var(--risk)}
+.item.big{border:1.5px solid var(--accent);background:linear-gradient(var(--accent-soft),var(--card) 70%)}
+.num{font:500 12px "Google Sans Code",ui-monospace,monospace;color:var(--ink3);padding-top:3px;font-variant-numeric:tabular-nums;min-width:44px}
 .q{font-weight:500;margin:0}
-.rec{color:var(--ink2);margin:4px 0 0;font-size:14px}
+.big .q{font-size:17px}
+.opts{margin:8px 0 0;display:grid;gap:4px;font-size:14px;color:var(--ink2)}
+.opts span b{color:var(--ink);font-weight:500}
+.rec{color:var(--ink2);margin:8px 0 0;font-size:14px}
+.rec::before{content:"Recommended: ";color:var(--ink);font-weight:500}
 .rec b{color:var(--ink);font-weight:500}
 .tag{display:inline-block;font-size:11px;letter-spacing:.04em;text-transform:uppercase;padding:1px 7px;border-radius:4px;margin-right:6px;vertical-align:1px}
-.t-decide{background:var(--accent-soft);color:var(--accent)}
+.t-decide,.t-big{background:var(--accent-soft);color:var(--accent)}
 .t-confirm{background:var(--ok-soft);color:var(--ok)}
 .t-pro{background:var(--warn-soft);color:var(--warn)}
-.t-risk{background:var(--risk-soft);color:var(--risk)}
+.t-act{background:var(--risk-soft);color:var(--risk)}
 .controls{grid-column:2;display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;margin-top:10px}
 .controls label{display:inline-flex;align-items:center;gap:7px;cursor:pointer;font-size:14px}
 .controls input[type=radio]{accent-color:var(--accent);width:16px;height:16px;margin:0}
 textarea{grid-column:2;width:100%;font:inherit;font-size:14px;border:1px solid var(--hair);border-radius:8px;background:var(--bg);color:var(--ink);padding:8px 10px;min-height:56px;resize:vertical;margin-top:8px}
-textarea[hidden]{display:none}
 :focus-visible{outline:2px solid var(--accent);outline-offset:2px}
 .src{grid-column:2;font:12px "Google Sans Code",ui-monospace,monospace;color:var(--ink3);margin-top:6px;overflow-wrap:anywhere}
-.note{background:var(--risk-soft);color:var(--ink);border-radius:8px;padding:10px 12px;font-size:14px;margin:8px 0 0}
 footer{color:var(--ink3);font-size:13px;margin-top:30px}
-@media (max-width:520px){header h1{font-size:23px}.item{padding:12px}}
+@media (max-width:520px){header h1{font-size:23px}.item{padding:12px;grid-template-columns:1fr}.controls,textarea,.src{grid-column:1}}
 @media (prefers-reduced-motion:reduce){.meter i{transition:none}}
 </style>
 
 <div class="wrap">
 <header>
   <h1>frontmatter review checklist</h1>
-  <p>The 44 items that need a founder before development starts, from <code>docs/pack/review/00-FOUNDER-REVIEW.md</code>. Each has a recommendation. Tick <b>Approve</b> to accept it, or <b>Change</b> and say what you want instead.</p>
-  <p>Your answers save as you go. Claude reads them back from this page and applies them to the pack.</p>
+  <p>Every question that needs a founder before development starts: 75 items. Each has a recommendation. Pick one and it saves at once; Claude reads the answers back and writes the final plan from them.</p>
+  <p>Start with the calendar at the top. It decides how much of the rest matters now.</p>
 </header>
 
 <div class="bar">
   <div class="meter" aria-hidden="true"><i id="meterFill"></i></div>
-  <span class="count" id="count">0 of 44 answered</span>
+  <span class="count" id="count"></span>
   <div class="filters" role="group" aria-label="Show">
     <button type="button" data-f="all" aria-pressed="true">All</button>
     <button type="button" data-f="open" aria-pressed="false">Unanswered</button>
-    <button type="button" data-f="decide" aria-pressed="false">Decisions</button>
+    <button type="button" data-f="decide" aria-pressed="false">Decisions only</button>
   </div>
   <span class="status" id="status" role="status">Connecting</span>
 </div>
 
 <div id="list"></div>
 
-<footer>Kinds: <span class="tag t-decide">decide</span> a real choice. <span class="tag t-confirm">confirm</span> already checked or fixed, say it is fine. <span class="tag t-pro">professional</span> needs a lawyer or accountant; approve means "get the opinion". <span class="tag t-risk">act</span> something only you can do.</footer>
+<footer>Kinds: <span class="tag t-decide">decide</span> a choice between options. <span class="tag t-act">act</span> something only you can do or approve. <span class="tag t-pro">professional</span> needs a lawyer or accountant. <span class="tag t-confirm">confirm</span> already checked or fixed; say it is fine. The source line under each item is where it lives in the pack.</footer>
 </div>
 
 <script>
+const ITEMS = [{"key": "i10", "label": "10", "kind": "act", "q": "Two exposed GitHub tokens are still not rotated, and there is no rotation policy for the eleven secrets.", "rec": "<b>Rotate the two exposed tokens yourself</b> (Claude must not touch token values). Adopt the proposed policy: rotate on a leak, when someone leaves, and yearly.", "a": null, "b": null, "src": "30-ENVIRONMENT-AND-CONFIG line 297"}, {"key": "i13", "label": "13", "kind": "act", "q": "An old frontmatter project is still on your personal Vercel team, 48 days since its last deploy.", "rec": "Re-link everything to the company team, then <b>retire the old project</b>. Deleting it is permanent, so it waits for your yes.", "a": null, "b": null, "src": "08-ECOSYSTEM section 1"}, {"key": "i07", "label": "7", "kind": "act", "q": "Is there an intellectual property agreement between the founders?", "rec": "Nobody can check this but you and Amit. <b>Sign one before the first stranger's document is stored.</b>", "a": null, "b": null, "src": "ADR-0013, the IP row"}, {"key": "i01", "label": "1", "kind": "decide", "q": "When a person accepts a change, the file is stamped \"verified by\". What name goes in the stamp?", "rec": "<b>Their public handle</b>, written <code>human:&lt;handle&gt;</code>. Not their email, which every published page would expose, and not an internal id nobody can read.", "a": null, "b": null, "src": "66-FORMAT-SPECIFICATIONS section 3.10"}, {"key": "i02", "label": "2", "kind": "decide", "q": "On Free, does syncing to GitHub use up the 20 pushes a month?", "rec": "Yes. <b>Free never pushes to GitHub automatically</b>; each push is a button the person presses, and it counts. The Drive mirror stays automatic on Free.", "a": null, "b": null, "src": "67-SYNC-AND-CONFLICT section 7.2"}, {"key": "i04", "label": "4", "kind": "decide", "q": "Over the storage cap, a person can move uploads into their Drive mirror. Then only Drive holds them.", "rec": "Allow it, <b>warned first</b>: the moved file becomes a link we no longer guarantee. Checked before the move, logged, and offered only with Drive connected.", "a": null, "b": null, "src": "67-SYNC-AND-CONFLICT section 10.1"}, {"key": "i05", "label": "5", "kind": "decide", "q": "When a document is deleted for good, do we also delete the person's copy in GitHub or Drive?", "rec": "<b>Never.</b> Our copy goes; theirs stays theirs, and the confirmation says so.", "a": null, "b": null, "src": "67-SYNC-AND-CONFLICT section 13"}, {"key": "i22", "label": "22", "kind": "decide", "q": "When someone deletes their account, what happens to their GitHub or Drive mirror?", "rec": "<b>Left in place</b>, and our access to it is revoked. The files are theirs.", "a": null, "b": null, "src": "54-COMPLIANCE-AND-LEGAL section 3.6"}, {"key": "i09", "label": "9", "kind": "decide", "q": "How long do we keep logs after an account is deleted?", "rec": "Security log kept <b>365 days</b> (the law asks for it). Keeping ordinary processing logs a year after deletion changes a promise to users, so <b>your call</b>; recommended no.", "a": null, "b": null, "src": "37-BACKUP-AND-RECOVERY line 333"}, {"key": "i11", "label": "11", "kind": "decide", "q": "Should there be a third way to sign in, an email magic link?", "rec": "<b>Off at launch.</b> If turned on later, a third button, never a form. Useful only when Google or GitHub sign-in is down.", "a": null, "b": null, "src": "18-FIRST-RUN-AND-EMPTY section 12"}, {"key": "i12", "label": "12", "kind": "decide", "q": "Do we show the minimum age on the sign-in page?", "rec": "<b>One line under the buttons</b>, no date of birth asked.", "a": null, "b": null, "src": "18-FIRST-RUN-AND-EMPTY section 12"}, {"key": "i16", "label": "16", "kind": "decide", "q": "When a Pro payment fails, when do we remind, and when does Pro pause?", "rec": "Remind on <b>days 0, 3, 7 and 14</b>, then pause Pro. Nothing is ever deleted. Separate from the trial, which you already decided.", "a": null, "b": null, "src": "53-PRICING-AND-ENTITLEMENTS section 5.2"}, {"key": "i23", "label": "23", "kind": "decide", "q": "If frontmatter ever shuts down, how much notice do people get?", "rec": "<b>90 days</b>, with export working throughout. 30 is too short.", "a": null, "b": null, "src": "57-SUPPORT-AND-LIFECYCLE line 280"}, {"key": "i30", "label": "30", "kind": "decide", "q": "What does Max cost? There is no price yet.", "rec": "<b>Metered per agent request</b>, with the rate set in the admin panel from measured cost when the agents batch starts. No flat price now.", "a": null, "b": null, "src": "51-PRODUCT-PLAN, limits"}, {"key": "i31", "label": "31", "kind": "decide", "q": "The tagline test: the pilot is too small to rank three lines properly. What do we do?", "rec": "Use it as a <b>screen, not a ranking</b>: drop any line that 2 or fewer of 7 people get right. Ranking properly needs 15 to 39 people a line.", "a": null, "b": null, "src": "51-PRODUCT-PLAN, limits"}, {"key": "i32", "label": "32", "kind": "decide", "q": "What does \"the same theme as desktop\" mean on the phone?", "rec": "Three changes: <b>the same surface layers, the same heading sizes, the same density</b>. No separate phone colours. v8 already draws this; say if it looks right.", "a": null, "b": null, "src": "58-DESIGN-SYSTEM section 7.4"}, {"key": "i34", "label": "34", "kind": "decide", "q": "Where does the full \"frontmatter\" wordmark appear, and where only the fm mark?", "rec": "<b>Mark alone</b> inside the app. <b>Full wordmark</b> on the sign-in page and on published pages only.", "a": null, "b": null, "src": "12-screens/S04, D01"}, {"key": "i35", "label": "35", "kind": "decide", "q": "The plan puts the wordmark on the sign-in card; the drawn screen shows the mark.", "rec": "Follow item 34: the sign-in page gets the <b>full wordmark</b>. Approving 34 settles this.", "a": null, "b": null, "src": "12-screens/S01"}, {"key": "i36", "label": "36", "kind": "decide", "q": "The five collapsible panels on the right: what is \"Commands\"?", "rec": "The four drawn (Tags and bookmarks, Backlinks, History, Comments) plus Outline. <b>\"Commands\" read as the Command K palette</b> that already exists. Say if you meant something else.", "a": null, "b": null, "src": "12-screens/S04, D11"}, {"key": "i37", "label": "37", "kind": "decide", "q": "Inviting someone gives both sides 5 AI credits. How do we stop people farming it?", "rec": "Keep <b>5 each</b>, and add a <b>monthly cap per inviter</b>, both set in the admin panel.", "a": null, "b": null, "src": "12-screens/S17, D38"}, {"key": "i38", "label": "38", "kind": "decide", "q": "Are published pages findable on Google by default?", "rec": "<b>Conflicts with item 43.</b> This item recommends yes, and saying \"findable\" when publishing. Item 43 recommends no. Pick one; your answer here sets both.", "a": null, "b": null, "src": "12-screens/S18, D42"}, {"key": "i43", "label": "43", "kind": "decide", "q": "Is the Google-indexing setting one global switch, or per page?", "rec": "<b>Both</b>: a global default plus a per-page choice when publishing. The default follows your answer to 38 (this item leans off).", "a": null, "b": null, "src": "12-screens/S37, D92"}, {"key": "i39", "label": "39", "kind": "decide", "q": "Who buys the Windows code-signing certificate, and which one?", "rec": "Get <b>two written quotes in batch 1</b>. Found so far: Sectigo from $536.25 a year, Certum from EUR 139. Windows shows \"coming\" until signed. Now urgent, since desktop ships early.", "a": null, "b": null, "src": "12-screens/S25, D63"}, {"key": "i40", "label": "40", "kind": "decide", "q": "Do we offer an annual Pro plan?", "rec": "Offer it as a choice. Note: at full use, annual <b>loses about Rs 19 a month</b> per user against monthly (a simulated figure).", "a": null, "b": null, "src": "12-screens/S29, D60"}, {"key": "i41", "label": "41", "kind": "decide", "q": "Portfolio handles: what is a valid one, and who settles a dispute over a name?", "rec": "Handles follow the <b>same rules as page links</b>. Disputes go through the <b>grievance process</b>; you decide outcomes.", "a": null, "b": null, "src": "12-screens/S30, D61"}, {"key": "i42", "label": "42", "kind": "decide", "q": "Out of blueprint credits: can someone still run the questions?", "rec": "<b>Yes, on the standard question set.</b> The generated files wait for the monthly reset or a top-up.", "a": null, "b": null, "src": "12-screens/S34, D81"}, {"key": "i44", "label": "44", "kind": "decide", "q": "If \"bring your own AI key\" is switched off in the admin panel, what happens to keys people saved?", "rec": "<b>Stop using them, keep them stored, tell people</b>, and restore on re-enable. Their calls move onto our cost meanwhile.", "a": null, "b": null, "src": "12-screens/S37, D86"}, {"key": "i21", "label": "21", "kind": "decide", "q": "Mistral's free tier trains on what you send by default. Keep it in the free model chain?", "rec": "<b>Remove Mistral.</b> Our sign-in promise is that we never train on documents.", "a": null, "b": null, "src": "54-COMPLIANCE-AND-LEGAL section 4.3"}, {"key": "i15", "label": "15", "kind": "decide", "q": "Cloudflare R2 has no India region. Where does the government-required security log live?", "rec": "In <b>Firestore Mumbai</b> (<code>asia-south1</code>), not R2. The plan's \"R2 in Mumbai\" line was wrong and gets corrected.", "a": null, "b": null, "src": "54-COMPLIANCE-AND-LEGAL section 3.5"}, {"key": "i08", "label": "8", "kind": "pro", "q": "Which complaint deadline applies to us: the IT Rules, the consumer rules, or both?", "rec": "<b>Ask a lawyer.</b> Until then we follow the stricter one.", "a": null, "b": null, "src": "38-INCIDENT-AND-SEVERITY line 334"}, {"key": "i14", "label": "14", "kind": "pro", "q": "The 2026 IT Rules cut the deadlines (7 days to resolve, 36 hours to remove, 3 hours on an order). Are we even an intermediary for published pages?", "rec": "The deadlines are updated in the pack. <b>Whether we are an intermediary needs a lawyer.</b>", "a": null, "b": null, "src": "54-COMPLIANCE-AND-LEGAL section 3.3"}, {"key": "i17", "label": "17", "kind": "pro", "q": "Which GST heading does a subscription editor fall under?", "rec": "<b>Ask a chartered accountant.</b> Items 18, 19 and 20 are the same question in other files.", "a": null, "b": null, "src": "53-PRICING-AND-ENTITLEMENTS section 6.2"}, {"key": "i18", "label": "18", "kind": "pro", "q": "The tax heading (repeat of 17, in the pricing limits).", "rec": "Settled with item 17.", "a": null, "b": null, "src": "53-PRICING-AND-ENTITLEMENTS, limits"}, {"key": "i19", "label": "19", "kind": "pro", "q": "The tax heading and the 2026 rate notification (repeat of 17).", "rec": "Rate notification closed; heading settled with item 17.", "a": null, "b": null, "src": "54-COMPLIANCE-AND-LEGAL section 5.1"}, {"key": "i20", "label": "20", "kind": "pro", "q": "The tax heading (repeat of 17, in the legal limits).", "rec": "Settled with item 17.", "a": null, "b": null, "src": "54-COMPLIANCE-AND-LEGAL, limits"}, {"key": "i03", "label": "3", "kind": "confirm", "q": "The table of how often we sync to GitHub and Drive.", "rec": "Adopted as the storage research proposed. Settled by item 2.", "a": null, "b": null, "src": "67-SYNC-AND-CONFLICT section 15"}, {"key": "i06", "label": "6", "kind": "confirm", "q": "We said Indian cards get only one payment attempt. Is that true of Razorpay?", "rec": "<b>It was wrong.</b> Razorpay retries subscriptions automatically. The record is corrected; we simply do not build our own retry scheduler.", "a": null, "b": null, "src": "ADR-0005"}, {"key": "i24", "label": "24", "kind": "confirm", "q": "11 extra days added to batch 3 (editor and Doc mode) for the 18 September changes.", "rec": "A proposed estimate; nothing to check until it is built.", "a": null, "b": null, "src": "50-ROADMAP, batch 3"}, {"key": "i25", "label": "25", "kind": "confirm", "q": "7 extra days added to batch 4 (sharing and the change queue).", "rec": "A proposed estimate.", "a": null, "b": null, "src": "50-ROADMAP, batch 4"}, {"key": "i26", "label": "26", "kind": "confirm", "q": "10 to 12.5 extra days for the idea mode redesign.", "rec": "A proposed estimate.", "a": null, "b": null, "src": "50-ROADMAP, batch 6"}, {"key": "i27", "label": "27", "kind": "confirm", "q": "2 extra days for the phone theme.", "rec": "A proposed estimate.", "a": null, "b": null, "src": "50-ROADMAP, batch 8"}, {"key": "i28", "label": "28", "kind": "confirm", "q": "2 extra days for agents waiting on a change.", "rec": "A proposed estimate.", "a": null, "b": null, "src": "50-ROADMAP, batch 10"}, {"key": "i29", "label": "29", "kind": "confirm", "q": "Two different totals for the 18 September additions were both ours.", "rec": "Use the <b>itemised rows</b> as the estimate; the headline figure came from an earlier draft of the same file.", "a": null, "b": null, "src": "50-ROADMAP section 5.2"}, {"key": "i33", "label": "33", "kind": "confirm", "q": "Two keys that look the same but are written with different Unicode bytes: are they the same key?", "rec": "<b>Only if the bytes match.</b> A near-match is refused and named, never guessed. This is the product's core rule.", "a": null, "b": null, "src": "41-FIXTURE-REGISTER section 7"}, {"key": "x-n1", "label": "N1", "kind": "decide", "q": "When someone ends the free month without paying, their account is locked to reading. How long do we keep that account?", "rec": "A, because the app already tells people nothing is deleted, and the law does not ask us to erase it.", "a": "Keep it with no end date: nothing is ever deleted, as the app promises.", "b": "Close it after a year with no sign-in, after a warning email.", "src": "Pricing file, the lock after an unpaid trial"}, {"key": "x-n2", "label": "N2", "kind": "decide", "q": "While an account is locked after an unpaid free month, should changes the person makes in their own GitHub or Google Drive copy still flow back into frontmatter?", "rec": "A, because pulling changes in means writing to a locked account, which is editing by another name.", "a": "No. Syncing pauses both ways and catches up in one go when they pay; their GitHub or Drive copy is never touched.", "b": "Yes. Keep pulling their changes in, so what they read in frontmatter stays current.", "src": "Pricing file, the lock after an unpaid trial"}, {"key": "x-n3", "label": "N3", "kind": "decide", "q": "Every new account starts with a free month of Pro. If someone does not pay at the end, can they carry on with the free plan, or must they pay to edit at all?", "rec": "A, because B quietly removes the free plan that the pricing page and the free AI setup are built for.", "a": "They can choose the free plan. Editing comes back within the free limits, and nothing above those limits is lost.", "b": "Paying is the only way to edit again. The free plan is then never reachable by anyone who signs up after launch.", "src": "Pricing file, the lock after an unpaid trial"}, {"key": "x-n4", "label": "N4", "kind": "pro", "q": "You chose to block downloads when a free month ends unpaid. Indian and European privacy law give people a right to take their data with them. Is blocking the download legal?", "rec": "B, because turning the block on later is cheap, and a complaint to a regulator is not.", "a": "Ship the block as decided, and get a lawyer's written opinion before the first stranger signs up.", "b": "Leave downloads open during the lock until a lawyer says the block is legal, and lock only editing and copying.", "src": "Pricing file and support file, the lock after an unpaid trial"}, {"key": "x-n5", "label": "N5", "kind": "decide", "q": "If frontmatter ever shuts down, should people whose free month ended unpaid be allowed to download their documents before the end?", "rec": "A, because we promise that downloads are the last thing we switch off, and B makes that untrue for some people.", "a": "Yes. At shutdown the lock lifts for downloads, so nobody leaves without their files.", "b": "No. The lock stays, and only paying and never-locked accounts can download.", "src": "Support and lifecycle file, what happens if frontmatter shuts down"}, {"key": "x-n6", "label": "N6", "kind": "decide", "q": "The app used to promise \"every document stays readable and downloadable\". Your trial decision made that untrue, so the promise is reworded. Do you approve the new wording: \"Your documents always stay readable, and nothing is deleted. Editing, copying and export stay open on every plan, and pause only if a trial ends unpaid.\"?", "rec": "A, because it is true in every state today; revisit only if N3 or N4 changes the lock.", "a": "Approve it as written.", "b": "Rewrite it, for example to name the free plan once the answer to N3 is known.", "src": "Copy deck, the standing promises"}, {"key": "x-n7", "label": "N7", "kind": "act", "q": "The frontmatter.in web address is registered at GoDaddy until June 2029, but the public record hides whose account it sits in. Whose account holds it, and will you move it to the company as you decided for every other account?", "rec": "A, because losing the web address is the one account failure that takes the whole product offline, and the check takes minutes.", "a": "Check the GoDaddy account now and move the address to the company's account before the first stranger signs up.", "b": "Leave it where it is until the company's other accounts are moved, then move them together.", "src": "Decision record on moving accounts to the company, the domain row"}, {"key": "x-f-eng-1", "label": "F-ENG-1", "kind": "act", "q": "Windows shows a scary \"unknown publisher\" warning unless the app is signed with a certificate the company buys. Microsoft's own signing service is closed to Indian companies. Which certificate should the company buy?", "rec": "A: Microsoft now says the dearer EV kind no longer removes the warning faster, so the extra money buys nothing we need", "a": "A: Certum Standard, from €139 on the list price, in the company's name", "b": "B: Certum EV, from €329, or Sectigo, from $536.25 a year on a five-year term", "src": "35-RELEASE-AND-VERSIONING.md section 6.2a; 29-PLATFORM-AND-DESKTOP-SPEC.md build order step 8"}, {"key": "x-sbr-01", "label": "SBR-01", "kind": "big", "q": "Building everything you have asked for takes about 245 to 352 weeks (4.7 to 6.8 years) at today's pace of roughly one working day a week, and the paid launch comes about 209 to 276 weeks in. Do we accept that, or shorten it?", "rec": "B, two extra days a week plus voice and PDF after launch: launch in about 73 to 82 weeks, because deferring alone still leaves launch 3.4 to 4.5 years away.", "a": "Accept the full plan at today's pace, with nothing moved.", "b": "Shorten it. One extra working day a week cuts the total to 141 to 178 weeks, two days to 102 to 123, three to 82 to 96; separately, moving voice typing and PDF conversion to after launch brings launch 33 to 43 weeks sooner.", "src": "50-ROADMAP.md section 5.9"}, {"key": "x-sbr-02", "label": "SBR-02", "kind": "decide", "q": "If the trial with twenty outside people misses its minimum (for example, fewer than four still using it in week two), do we keep building everything anyway?", "rec": "A, because building on regardless turns the trial into a formality, while an automatic stop would contradict your answer to build everything.", "a": "Pause the build for one meeting of both founders, then choose to continue, change the order or stop.", "b": "Keep building regardless, and use the trial only to adjust.", "src": "50-ROADMAP.md section 3.9"}, {"key": "x-sbr-03", "label": "SBR-03", "kind": "decide", "q": "Do you approve the proposed way sheets, boards and mixed files are saved: a sheet as an ordinary table in a document with its formulas written just below it, a board as a folder with one small file per card, and one embedded file shown by a link to the original, never a copy?", "rec": "A, because every file people write will carry these formats, each record lists what would reverse it, and the first build step is itself the prototype.", "a": "Approve all three as the basis for building.", "b": "Hold them until a small prototype of each has been tried.", "src": "adr/ADR-0017, ADR-0018, ADR-0019"}, {"key": "x-sbr-04", "label": "SBR-04", "kind": "decide", "q": "When someone turns a finished project plan into a task board, should that use up one of their plan credits?", "rec": "A, because it is one small extra AI call on a plan the person already paid for.", "a": "No extra credit: it counts as part of the plan they already paid for.", "b": "It uses one credit, like making a new plan.", "src": "69-BOARDS-SPEC.md section 6; 50-ROADMAP.md section 3.10"}, {"key": "x-sbr-05", "label": "SBR-05", "kind": "decide", "q": "When you move your own card on a board, or rename your own column, should it save at once, or wait for you to approve it like every change from someone else?", "rec": "A, because approving your own drag turns one action into two, and your own typing already saves at once.", "a": "It saves at once, like your own typing; only changes from other people, AI and agents wait for approval.", "b": "It waits in the list of changes to approve, like everything else.", "src": "69-BOARDS-SPEC.md section 3.3; 12-screens/S40.md open questions"}, {"key": "x-sbr-06", "label": "SBR-06", "kind": "decide", "q": "Our one-line description says \"a markdown editor\". Now that the product also does sheets and boards, should the line change?", "rec": "A, because every new kind is still a plain text file reviewed the same way, and listing kinds reads like the all-in-one suites we stand against.", "a": "Keep \"a markdown editor\".", "b": "Widen it to name documents, sheets and boards.", "src": "51-PRODUCT-PLAN.md section 1"}, {"key": "x-sbr-07", "label": "SBR-07", "kind": "decide", "q": "Are these starting limits right: free users get 60 minutes of voice typing a month and PDFs up to 1,000 pages and 100 MB; paid users get 300 minutes and 200 scanned PDF pages read by AI a month?", "rec": "<b>Same question as VP-01 (voice minutes) and VP-06 (PDF size). Your answers there settle this.</b> A, because the limits can be changed without a release, which is how the free document limit is already handled. If the voice and PDF log asks the same, answer once.", "a": "Start with these, and change them from the settings panel once real costs are measured.", "b": "Start lower until costs are measured.", "src": "51-PRODUCT-PLAN.md sections 4.1 and 4.2"}, {"key": "x-sbr-08", "label": "SBR-08", "kind": "act", "q": "About thirty working days of writing (templates, help text, question sets, empty screens) is not assigned to anyone. Who writes it?", "rec": "A, because the text has to match features as they land, and no budget for a writer exists yet.", "a": "The two founders, each piece in the same step as the feature it explains.", "b": "Hire or commission a writer.", "src": "50-ROADMAP.md section 8"}, {"key": "x-vp-01", "label": "VP-01", "kind": "decide", "q": "How many minutes of voice typing should each plan get a month, topped up a little each day rather than all at once on the 1st?", "rec": "A, because 600 could eat up to 85 per cent of what a Pro subscription earns us if fully used, and 60 already beats Wispr&#x27;s free plan.", "a": "Free 60 minutes, Pro 300 minutes", "b": "Free 60 minutes, Pro 600 minutes", "src": "71-VOICE-SPEC.md sections 1 (V4) and 17.2"}, {"key": "x-vp-02", "label": "VP-02", "kind": "decide", "q": "When someone dictates, how much should the app tidy their words by default? They can change it in settings.", "rec": "A, because it gives tidy paragraphs and lists while every word stays the speaker&#x27;s own.", "a": "Medium: remove ums and false starts, add punctuation, split paragraphs, turn spoken lists into lists, keep their own words", "b": "Low: only remove ums and add punctuation, change nothing else", "src": "71-VOICE-SPEC.md sections 5.1 and 9"}, {"key": "x-vp-03", "label": "VP-03", "kind": "decide", "q": "When the app tidies what someone said, should the tidied text wait for one key press (Tab) before it counts, or go straight into the document the way Wispr Flow does?", "rec": "A, because it keeps our promise that no AI change lands unseen, and the person never waits for it.", "a": "Wait for one key press; the raw words appear instantly while the tidy-up runs", "b": "Go straight in, with no key press", "src": "71-VOICE-SPEC.md sections 1 (V1) and 8"}, {"key": "x-vp-04", "label": "VP-04", "kind": "act", "q": "Before voice typing launches, switch off Groq's setting that keeps voice recordings for up to 30 days for abuse checks, and note the date you did it.", "rec": "A, because we promise that voice recordings are not kept anywhere.", "a": "Switch it off before launch", "b": "Leave Groq's default on", "src": "71-VOICE-SPEC.md sections 13 and 16"}, {"key": "x-vp-05", "label": "VP-05", "kind": "act", "q": "Sign in to Groq, read the free account's real daily limits for speech, then send one 3-second test clip to see whether it uses 10 seconds of the free daily allowance.", "rec": "A, because the free allowance is shared by every user and the plan&#x27;s arithmetic depends on it.", "a": "Do it before the voice test runs", "b": "Skip it, and plan on the smaller reading", "src": "71-VOICE-SPEC.md sections 3.3 and 16"}, {"key": "x-vp-06", "label": "VP-06", "kind": "decide", "q": "How big a PDF may someone convert at once? The conversion runs on their own computer or phone.", "rec": "A, because conversion costs us nothing and the limits only protect the person&#x27;s own browser tab.", "a": "The same on Free and Pro: up to 1,000 pages, 100 MB, and 100 scanned pages", "b": "Smaller limits on Free, to give people a reason to upgrade", "src": "72-PDF-TO-MARKDOWN-SPEC.md section 9"}, {"key": "x-vp-07", "label": "VP-07", "kind": "decide", "q": "Pro can have an AI read scanned pages more accurately than the free reader, up to 200 pages a month. Should it be switched on the day the PDF converter launches?", "rec": "A, because no AI reader has been tried on our test pages yet, and the free reader is already there as the fallback.", "a": "Off at launch; on once our test pages show it reads accurately", "b": "On at launch", "src": "72-PDF-TO-MARKDOWN-SPEC.md sections 3.4 and 9"}, {"key": "x-vp-08", "label": "VP-08", "kind": "decide", "q": "When someone fills a new, empty document from a PDF and presses Accept on the preview, should that Accept count as their approval, or should the text also wait in the list of changes to approve?", "rec": "A, because they have just read and accepted that exact text, and nothing of theirs is overwritten.", "a": "The Accept counts; the history still records that a converter wrote it", "b": "It also waits in the list of changes", "src": "72-PDF-TO-MARKDOWN-SPEC.md sections 4.1 and 15; S42"}, {"key": "x-vp-09", "label": "VP-09", "kind": "pro", "q": "Ask the lawyer already reviewing the paid-trial lock whether India's data protection law needs a separate consent for voice recordings.", "rec": "A, because it adds one question to advice already being paid for, and the app asks once meanwhile.", "a": "Add it to the opinion already being sought", "b": "Launch voice without asking", "src": "71-VOICE-SPEC.md section 13.2"}, {"key": "x-vp-10", "label": "VP-10", "kind": "pro", "q": "A strong PDF tool, Marker, has a licence that bars products competing with its maker's. Should we pay a lawyer to check whether we could use it anyway?", "rec": "A, because the free tools we chose already do the job, and the opinion would cost money for an option we are not taking.", "a": "No; the converter does not need it", "b": "Yes; get an opinion", "src": "72-PDF-TO-MARKDOWN-SPEC.md sections 2 and 16"}, {"key": "x-m1", "label": "M1", "kind": "act", "q": "The live site sends the privacy, terms, pricing and refunds pages to the login screen. The fix is on the working branch, not on the one that deploys.", "rec": "A, because a stranger cannot read the price or the terms today. It also deploys everything else on the branch; verify is green on it.", "a": "Merge the branch into main now, which puts it live on frontmatter.in", "b": "Wait until batch 2 and merge then", "src": "founder action"}, {"key": "x-m2", "label": "M2", "kind": "act", "q": "You decided every account moves to the company before the first stranger. Who moves them, and when?", "rec": "A, because batch 1 is where the plan puts it and nothing in it needs code.", "a": "You do it in batch 1, the first two weeks", "b": "Later, before the pilot", "src": "founder action"}, {"key": "x-m3", "label": "M3", "kind": "act", "q": "You approved the one-time $10 OpenRouter credit. It lifts the free pool from 50 to 1,000 requests a day.", "rec": "B is fine: nothing uses it before batch 4. Claude will not buy anything.", "a": "Buy it now", "b": "Buy it when the AI batch starts", "src": "founder action"}, {"key": "x-m4", "label": "M4", "kind": "pro", "q": "Five legal questions are waiting for one lawyer: the export lock after an unpaid trial, whether we are an intermediary for published pages, which complaint deadline applies, how long logs are kept after deletion, and whether voice needs its own consent.", "rec": "A, because one brief costs less than five and two of the answers shape batch 2.", "a": "Brief one lawyer with all five together", "b": "Ask one at a time as each batch needs it", "src": "founder action"}, {"key": "x-m5", "label": "M5", "kind": "pro", "q": "Which GST heading a subscription editor falls under.", "rec": "A, because nothing is sold until batch 7. Items 17 to 20 are this same question.", "a": "Ask a chartered accountant before Pro goes on sale", "b": "Ask now", "src": "founder action"}];
 const SECTIONS = [
-  ["act", "Only you can do these", "security and accounts"],
-  ["decide", "Decisions", "a real choice between options"],
-  ["pro", "Needs a professional", "approve means: get the opinion"],
-  ["confirm", "Confirm", "already checked or fixed; say it is fine"],
+  ["big", "The calendar", "decide this first"],
+  ["act", "Only you can do or approve these", "accounts, money, security, deploys"],
+  ["decide", "Decisions", "a choice between options"],
+  ["pro", "Needs a professional", "a lawyer or an accountant"],
+  ["confirm", "Confirm", "already checked or fixed"],
 ];
-const ITEMS = [
-  {n:10,k:"act",q:"Two exposed GitHub tokens are still not rotated, and there is no rotation policy for the eleven secrets.",r:"<b>Rotate the two exposed tokens yourself</b> (Claude must not touch token values). Adopt the proposed policy: rotate on a leak, when someone leaves, and yearly.",s:"30-ENVIRONMENT-AND-CONFIG line 297"},
-  {n:13,k:"act",q:"An old frontmatter project is still on your personal Vercel team, 48 days since its last deploy.",r:"Re-link everything to the company team, then <b>retire the old project</b>. Deleting it is permanent, so it waits for your yes.",s:"08-ECOSYSTEM section 1"},
-  {n:7,k:"act",q:"Is there an intellectual property agreement between the founders?",r:"Nobody can check this but you and Amit. <b>Sign one before the first stranger's document is stored.</b>",s:"ADR-0013, the IP row"},
-  {n:1,k:"decide",q:"When a person accepts a change, the file is stamped \"verified by\". What name goes in the stamp?",r:"<b>Their public handle</b>, written <code>human:&lt;handle&gt;</code>. Not their email, which every published page would expose, and not an internal id nobody can read.",s:"66-FORMAT-SPECIFICATIONS section 3.10"},
-  {n:2,k:"decide",q:"On Free, does syncing to GitHub use up the 20 pushes a month?",r:"Yes. <b>Free never pushes to GitHub automatically</b>; each push is a button the person presses, and it counts. The Drive mirror stays automatic on Free.",s:"67-SYNC-AND-CONFLICT section 7.2"},
-  {n:4,k:"decide",q:"Over the storage cap, a person can move uploads into their Drive mirror. Then only Drive holds them.",r:"Allow it, <b>warned first</b>: the moved file becomes a link we no longer guarantee. Checked before the move, logged, and offered only with Drive connected.",s:"67-SYNC-AND-CONFLICT section 10.1"},
-  {n:5,k:"decide",q:"When a document is deleted for good, do we also delete the person's copy in GitHub or Drive?",r:"<b>Never.</b> Our copy goes; theirs stays theirs, and the confirmation says so.",s:"67-SYNC-AND-CONFLICT section 13"},
-  {n:22,k:"decide",q:"When someone deletes their account, what happens to their GitHub or Drive mirror?",r:"<b>Left in place</b>, and our access to it is revoked. The files are theirs.",s:"54-COMPLIANCE-AND-LEGAL section 3.6"},
-  {n:9,k:"decide",q:"How long do we keep logs after an account is deleted?",r:"Security log kept <b>365 days</b> (the law asks for it). Keeping ordinary processing logs a year after deletion changes a promise to users, so <b>your call</b>; recommended no.",s:"37-BACKUP-AND-RECOVERY line 333"},
-  {n:11,k:"decide",q:"Should there be a third way to sign in, an email magic link?",r:"<b>Off at launch.</b> If turned on later, a third button, never a form. Useful only when Google or GitHub sign-in is down.",s:"18-FIRST-RUN-AND-EMPTY section 12"},
-  {n:12,k:"decide",q:"Do we show the minimum age on the sign-in page?",r:"<b>One line under the buttons</b>, no date of birth asked.",s:"18-FIRST-RUN-AND-EMPTY section 12"},
-  {n:16,k:"decide",q:"When a Pro payment fails, when do we remind, and when does Pro pause?",r:"Remind on <b>days 0, 3, 7 and 14</b>, then pause Pro. Nothing is ever deleted. Separate from the trial, which you already decided.",s:"53-PRICING-AND-ENTITLEMENTS section 5.2"},
-  {n:23,k:"decide",q:"If frontmatter ever shuts down, how much notice do people get?",r:"<b>90 days</b>, with export working throughout. 30 is too short.",s:"57-SUPPORT-AND-LIFECYCLE line 280"},
-  {n:30,k:"decide",q:"What does Max cost? There is no price yet.",r:"<b>Metered per agent request</b>, with the rate set in the admin panel from measured cost when the agents batch starts. No flat price now.",s:"51-PRODUCT-PLAN, limits"},
-  {n:31,k:"decide",q:"The tagline test: the pilot is too small to rank three lines properly. What do we do?",r:"Use it as a <b>screen, not a ranking</b>: drop any line that 2 or fewer of 7 people get right. Ranking properly needs 15 to 39 people a line.",s:"51-PRODUCT-PLAN, limits"},
-  {n:32,k:"decide",q:"What does \"the same theme as desktop\" mean on the phone?",r:"Three changes: <b>the same surface layers, the same heading sizes, the same density</b>. No separate phone colours. v8 already draws this; say if it looks right.",s:"58-DESIGN-SYSTEM section 7.4"},
-  {n:34,k:"decide",q:"Where does the full \"frontmatter\" wordmark appear, and where only the fm mark?",r:"<b>Mark alone</b> inside the app. <b>Full wordmark</b> on the sign-in page and on published pages only.",s:"12-screens/S04, D01"},
-  {n:35,k:"decide",q:"The plan puts the wordmark on the sign-in card; the drawn screen shows the mark.",r:"Follow item 34: the sign-in page gets the <b>full wordmark</b>. Approving 34 settles this.",s:"12-screens/S01"},
-  {n:36,k:"decide",q:"The five collapsible panels on the right: what is \"Commands\"?",r:"The four drawn (Tags and bookmarks, Backlinks, History, Comments) plus Outline. <b>\"Commands\" read as the Command K palette</b> that already exists. Say if you meant something else.",s:"12-screens/S04, D11"},
-  {n:37,k:"decide",q:"Inviting someone gives both sides 5 AI credits. How do we stop people farming it?",r:"Keep <b>5 each</b>, and add a <b>monthly cap per inviter</b>, both set in the admin panel.",s:"12-screens/S17, D38"},
-  {n:38,k:"decide",q:"Are published pages findable on Google by default?",r:"<b>Conflicts with item 43.</b> This item recommends yes, and saying \"findable\" when publishing. Item 43 recommends no. Pick one; your answer here sets both.",s:"12-screens/S18, D42"},
-  {n:43,k:"decide",q:"Is the Google-indexing setting one global switch, or per page?",r:"<b>Both</b>: a global default plus a per-page choice when publishing. The default follows your answer to 38 (this item leans off).",s:"12-screens/S37, D92"},
-  {n:39,k:"decide",q:"Who buys the Windows code-signing certificate, and which one?",r:"Get <b>two written quotes in batch 1</b>. Found so far: Sectigo from $536.25 a year, Certum from EUR 139. Windows shows \"coming\" until signed. Now urgent, since desktop ships early.",s:"12-screens/S25, D63"},
-  {n:40,k:"decide",q:"Do we offer an annual Pro plan?",r:"Offer it as a choice. Note: at full use, annual <b>loses about Rs 19 a month</b> per user against monthly (a simulated figure).",s:"12-screens/S29, D60"},
-  {n:41,k:"decide",q:"Portfolio handles: what is a valid one, and who settles a dispute over a name?",r:"Handles follow the <b>same rules as page links</b>. Disputes go through the <b>grievance process</b>; you decide outcomes.",s:"12-screens/S30, D61"},
-  {n:42,k:"decide",q:"Out of blueprint credits: can someone still run the questions?",r:"<b>Yes, on the standard question set.</b> The generated files wait for the monthly reset or a top-up.",s:"12-screens/S34, D81"},
-  {n:44,k:"decide",q:"If \"bring your own AI key\" is switched off in the admin panel, what happens to keys people saved?",r:"<b>Stop using them, keep them stored, tell people</b>, and restore on re-enable. Their calls move onto our cost meanwhile.",s:"12-screens/S37, D86"},
-  {n:21,k:"decide",q:"Mistral's free tier trains on what you send by default. Keep it in the free model chain?",r:"<b>Remove Mistral.</b> Our sign-in promise is that we never train on documents.",s:"54-COMPLIANCE-AND-LEGAL section 4.3"},
-  {n:15,k:"decide",q:"Cloudflare R2 has no India region. Where does the government-required security log live?",r:"In <b>Firestore Mumbai</b> (<code>asia-south1</code>), not R2. The plan's \"R2 in Mumbai\" line was wrong and gets corrected.",s:"54-COMPLIANCE-AND-LEGAL section 3.5"},
-  {n:8,k:"pro",q:"Which complaint deadline applies to us: the IT Rules, the consumer rules, or both?",r:"<b>Ask a lawyer.</b> Until then we follow the stricter one.",s:"38-INCIDENT-AND-SEVERITY line 334"},
-  {n:14,k:"pro",q:"The 2026 IT Rules cut the deadlines (7 days to resolve, 36 hours to remove, 3 hours on an order). Are we even an intermediary for published pages?",r:"The deadlines are updated in the pack. <b>Whether we are an intermediary needs a lawyer.</b>",s:"54-COMPLIANCE-AND-LEGAL section 3.3"},
-  {n:17,k:"pro",q:"Which GST heading does a subscription editor fall under?",r:"<b>Ask a chartered accountant.</b> Items 18, 19 and 20 are the same question in other files.",s:"53-PRICING-AND-ENTITLEMENTS section 6.2"},
-  {n:18,k:"pro",q:"The tax heading (repeat of 17, in the pricing limits).",r:"Settled with item 17.",s:"53-PRICING-AND-ENTITLEMENTS, limits"},
-  {n:19,k:"pro",q:"The tax heading and the 2026 rate notification (repeat of 17).",r:"Rate notification closed; heading settled with item 17.",s:"54-COMPLIANCE-AND-LEGAL section 5.1"},
-  {n:20,k:"pro",q:"The tax heading (repeat of 17, in the legal limits).",r:"Settled with item 17.",s:"54-COMPLIANCE-AND-LEGAL, limits"},
-  {n:3,k:"confirm",q:"The table of how often we sync to GitHub and Drive.",r:"Adopted as the storage research proposed. Settled by item 2.",s:"67-SYNC-AND-CONFLICT section 15"},
-  {n:6,k:"confirm",q:"We said Indian cards get only one payment attempt. Is that true of Razorpay?",r:"<b>It was wrong.</b> Razorpay retries subscriptions automatically. The record is corrected; we simply do not build our own retry scheduler.",s:"ADR-0005"},
-  {n:24,k:"confirm",q:"11 extra days added to batch 3 (editor and Doc mode) for the 18 September changes.",r:"A proposed estimate; nothing to check until it is built.",s:"50-ROADMAP, batch 3"},
-  {n:25,k:"confirm",q:"7 extra days added to batch 4 (sharing and the change queue).",r:"A proposed estimate.",s:"50-ROADMAP, batch 4"},
-  {n:26,k:"confirm",q:"10 to 12.5 extra days for the idea mode redesign.",r:"A proposed estimate.",s:"50-ROADMAP, batch 6"},
-  {n:27,k:"confirm",q:"2 extra days for the phone theme.",r:"A proposed estimate.",s:"50-ROADMAP, batch 8"},
-  {n:28,k:"confirm",q:"2 extra days for agents waiting on a change.",r:"A proposed estimate.",s:"50-ROADMAP, batch 10"},
-  {n:29,k:"confirm",q:"Two different totals for the 18 September additions were both ours.",r:"Use the <b>itemised rows</b> as the estimate; the headline figure came from an earlier draft of the same file.",s:"50-ROADMAP section 5.2"},
-  {n:33,k:"confirm",q:"Two keys that look the same but are written with different Unicode bytes: are they the same key?",r:"<b>Only if the bytes match.</b> A near-match is refused and named, never guessed. This is the product's core rule.",s:"41-FIXTURE-REGISTER section 7"},
-];
-
+const TAG = {big:["t-big","decide"],decide:["t-decide","decide"],confirm:["t-confirm","confirm"],pro:["t-pro","professional"],act:["t-act","act"]};
 const $ = (id) => document.getElementById(id);
-let answers = {};          // n -> {choice, note}
-let db = null;
-let filter = "all";
-const pending = {};        // n -> timer for coalescing note typing
-const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
-const tagOf = {decide:["t-decide","decide"],confirm:["t-confirm","confirm"],pro:["t-pro","professional"],act:["t-risk","act"]};
+const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+let answers = {}, db = null, filter = "all";
+const timers = {};
+
+function choices(it){
+  return it.a ? [["a","Option A"],["b","Option B"],["change","Something else"],["later","Later"]]
+              : [["approve","Approve"],["change","Change"],["later","Later"]];
+}
 
 function render(){
-  const list = $("list");
-  list.textContent = "";
+  const list = $("list"); list.textContent = "";
   for (const [k, title, sub] of SECTIONS){
-    const rows = ITEMS.filter((it) => it.k === k).filter((it) =>
-      filter === "all" ? true : filter === "open" ? !answers[it.n]?.choice : it.k === "decide");
+    const rows = ITEMS.filter((it) => it.kind === k).filter((it) =>
+      filter === "all" ? true : filter === "open" ? !answers[it.key]?.choice : (k === "decide" || k === "big"));
     if (!rows.length) continue;
     const h = document.createElement("h2");
     h.innerHTML = `${esc(title)}<small>${esc(sub)}</small>`;
     list.appendChild(h);
-    for (const it of rows) list.appendChild(card(it));
+    rows.forEach((it) => list.appendChild(card(it)));
   }
-  const done = ITEMS.filter((it) => answers[it.n]?.choice).length;
-  $("count").textContent = `${done} of ${ITEMS.length} answered`;
-  $("meterFill").style.width = (done / ITEMS.length * 100) + "%";
+  updateCount();
 }
 
 function card(it){
-  const a = answers[it.n] || {};
+  const a = answers[it.key] || {};
   const el = document.createElement("article");
-  el.className = "item" + (a.choice ? " done" : "") + (it.k === "act" ? " risk" : "");
-  const [cls, label] = tagOf[it.k];
-  const name = "c" + it.n;
+  el.className = `item ${it.kind}` + (a.choice ? " done" : "");
+  const [cls, label] = TAG[it.kind];
+  const opts = it.a ? `<div class="opts"><span><b>A.</b> ${esc(it.a)}</span><span><b>B.</b> ${esc(it.b)}</span></div>` : "";
+  const radios = choices(it).map(([v, t]) =>
+    `<label><input type="radio" name="r-${it.key}" id="r-${it.key}-${v}" value="${v}" ${a.choice === v ? "checked" : ""}> ${t}</label>`).join("");
   el.innerHTML = `
-    <span class="num">${it.n}</span>
+    <span class="num">${esc(it.label)}</span>
     <div>
       <p class="q"><span class="tag ${cls}">${label}</span>${esc(it.q)}</p>
-      <p class="rec">${it.r}</p>
+      ${opts}
+      <p class="rec">${it.rec}</p>
     </div>
-    <div class="controls">
-      <label><input type="radio" name="${name}" id="${name}-a" value="approve" ${a.choice === "approve" ? "checked" : ""}> Approve</label>
-      <label><input type="radio" name="${name}" id="${name}-c" value="change" ${a.choice === "change" ? "checked" : ""}> Change</label>
-      <label><input type="radio" name="${name}" id="${name}-l" value="later" ${a.choice === "later" ? "checked" : ""}> Later</label>
-    </div>
-    <textarea id="n${it.n}" placeholder="What you want instead, or any note" ${a.choice === "change" || a.note ? "" : "hidden"}>${esc(a.note || "")}</textarea>
-    <div class="src">${esc(it.s)}</div>`;
-  el.querySelectorAll('input[type=radio]').forEach((r) => r.addEventListener("change", () => {
+    <div class="controls">${radios}</div>
+    <textarea id="n-${it.key}" placeholder="Anything you want to add" ${a.choice === "change" || a.note ? "" : "hidden"}>${esc(a.note)}</textarea>
+    <div class="src">${esc(it.src)}</div>`;
+  el.querySelectorAll("input[type=radio]").forEach((r) => r.addEventListener("change", () => {
     const note = el.querySelector("textarea");
     if (r.value === "change") { note.hidden = false; note.focus(); }
-    save(it.n, {choice: r.value, note: note.value});
+    save(it.key, {choice: r.value, note: note.value});
     el.classList.add("done");
-    updateCount();
   }));
   el.querySelector("textarea").addEventListener("input", (e) => {
-    clearTimeout(pending[it.n]);
+    clearTimeout(timers[it.key]);
     const v = e.target.value;
-    pending[it.n] = setTimeout(() => save(it.n, {choice: (answers[it.n] || {}).choice || "change", note: v}), 700);
+    timers[it.key] = setTimeout(() => save(it.key, {choice: (answers[it.key] || {}).choice || "change", note: v}), 700);
   });
   return el;
 }
 
 function updateCount(){
-  const done = ITEMS.filter((it) => answers[it.n]?.choice).length;
+  const done = ITEMS.filter((it) => answers[it.key]?.choice).length;
   $("count").textContent = `${done} of ${ITEMS.length} answered`;
   $("meterFill").style.width = (done / ITEMS.length * 100) + "%";
 }
 
-async function save(n, value){
-  answers[n] = value;
+async function save(key, value){
+  answers[key] = value; updateCount();
   if (!db) { setStatus("Not saved: this view cannot store answers", true); return; }
   try {
     setStatus("Saving");
-    await db.doc("answers/i" + String(n).padStart(2, "0")).set({n, ...value, at: new Date().toISOString()});
+    await db.doc("answers/" + key).set({key, ...value, at: new Date().toISOString()});
     setStatus("Saved");
   } catch (e) {
     setStatus(e && e.code === "invalid_argument" ? "You can view but not answer here" : "Not saved, try again", true);
   }
 }
-
 function setStatus(t, err){ const s = $("status"); s.textContent = t; s.classList.toggle("err", !!err); }
 
 document.querySelectorAll(".filters button").forEach((b) => b.addEventListener("click", () => {
@@ -224,17 +178,16 @@ document.querySelectorAll(".filters button").forEach((b) => b.addEventListener("
 }));
 
 render();
-
 (async () => {
   try { db = window.claude ? await window.claude.use("db") : null; } catch { db = null; }
   if (!db) { setStatus("Answers cannot be saved in this view", true); return; }
   setStatus("Ready");
   db.collection("answers").onSnapshot((snap) => {
     const next = {};
-    snap.docs.forEach((d) => { const v = d.data(); if (v && v.n) next[v.n] = {choice: v.choice, note: v.note || ""}; });
+    snap.docs.forEach((d) => { const v = d.data(); if (v && v.key) next[v.key] = {choice: v.choice, note: v.note || ""}; });
+    answers = next;
     const typing = document.activeElement && document.activeElement.tagName === "TEXTAREA";
-    answers = Object.assign(next, typing ? {} : {});
-    if (!typing) render(); else updateCount();
-  }, () => setStatus("Live updates stopped; reload to see others' answers", true));
+    if (typing) updateCount(); else render();
+  }, () => setStatus("Live updates stopped; reload to see the latest", true));
 })();
 </script>

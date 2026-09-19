@@ -1,0 +1,310 @@
+[
+ {
+  "n": 10,
+  "k": "act",
+  "q": "Two exposed GitHub tokens are still not rotated, and there is no rotation policy for the eleven secrets.",
+  "r": "<b>Rotate the two exposed tokens yourself</b> (Claude must not touch token values). Adopt the proposed policy: rotate on a leak, when someone leaves, and yearly.",
+  "s": "30-ENVIRONMENT-AND-CONFIG line 297"
+ },
+ {
+  "n": 13,
+  "k": "act",
+  "q": "An old frontmatter project is still on your personal Vercel team, 48 days since its last deploy.",
+  "r": "Re-link everything to the company team, then <b>retire the old project</b>. Deleting it is permanent, so it waits for your yes.",
+  "s": "08-ECOSYSTEM section 1"
+ },
+ {
+  "n": 7,
+  "k": "act",
+  "q": "Is there an intellectual property agreement between the founders?",
+  "r": "Nobody can check this but you and Amit. <b>Sign one before the first stranger's document is stored.</b>",
+  "s": "ADR-0013, the IP row"
+ },
+ {
+  "n": 1,
+  "k": "decide",
+  "q": "When a person accepts a change, the file is stamped \"verified by\". What name goes in the stamp?",
+  "r": "<b>Their public handle</b>, written <code>human:&lt;handle&gt;</code>. Not their email, which every published page would expose, and not an internal id nobody can read.",
+  "s": "66-FORMAT-SPECIFICATIONS section 3.10"
+ },
+ {
+  "n": 2,
+  "k": "decide",
+  "q": "On Free, does syncing to GitHub use up the 20 pushes a month?",
+  "r": "Yes. <b>Free never pushes to GitHub automatically</b>; each push is a button the person presses, and it counts. The Drive mirror stays automatic on Free.",
+  "s": "67-SYNC-AND-CONFLICT section 7.2"
+ },
+ {
+  "n": 4,
+  "k": "decide",
+  "q": "Over the storage cap, a person can move uploads into their Drive mirror. Then only Drive holds them.",
+  "r": "Allow it, <b>warned first</b>: the moved file becomes a link we no longer guarantee. Checked before the move, logged, and offered only with Drive connected.",
+  "s": "67-SYNC-AND-CONFLICT section 10.1"
+ },
+ {
+  "n": 5,
+  "k": "decide",
+  "q": "When a document is deleted for good, do we also delete the person's copy in GitHub or Drive?",
+  "r": "<b>Never.</b> Our copy goes; theirs stays theirs, and the confirmation says so.",
+  "s": "67-SYNC-AND-CONFLICT section 13"
+ },
+ {
+  "n": 22,
+  "k": "decide",
+  "q": "When someone deletes their account, what happens to their GitHub or Drive mirror?",
+  "r": "<b>Left in place</b>, and our access to it is revoked. The files are theirs.",
+  "s": "54-COMPLIANCE-AND-LEGAL section 3.6"
+ },
+ {
+  "n": 9,
+  "k": "decide",
+  "q": "How long do we keep logs after an account is deleted?",
+  "r": "Security log kept <b>365 days</b> (the law asks for it). Keeping ordinary processing logs a year after deletion changes a promise to users, so <b>your call</b>; recommended no.",
+  "s": "37-BACKUP-AND-RECOVERY line 333"
+ },
+ {
+  "n": 11,
+  "k": "decide",
+  "q": "Should there be a third way to sign in, an email magic link?",
+  "r": "<b>Off at launch.</b> If turned on later, a third button, never a form. Useful only when Google or GitHub sign-in is down.",
+  "s": "18-FIRST-RUN-AND-EMPTY section 12"
+ },
+ {
+  "n": 12,
+  "k": "decide",
+  "q": "Do we show the minimum age on the sign-in page?",
+  "r": "<b>One line under the buttons</b>, no date of birth asked.",
+  "s": "18-FIRST-RUN-AND-EMPTY section 12"
+ },
+ {
+  "n": 16,
+  "k": "decide",
+  "q": "When a Pro payment fails, when do we remind, and when does Pro pause?",
+  "r": "Remind on <b>days 0, 3, 7 and 14</b>, then pause Pro. Nothing is ever deleted. Separate from the trial, which you already decided.",
+  "s": "53-PRICING-AND-ENTITLEMENTS section 5.2"
+ },
+ {
+  "n": 23,
+  "k": "decide",
+  "q": "If frontmatter ever shuts down, how much notice do people get?",
+  "r": "<b>90 days</b>, with export working throughout. 30 is too short.",
+  "s": "57-SUPPORT-AND-LIFECYCLE line 280"
+ },
+ {
+  "n": 30,
+  "k": "decide",
+  "q": "What does Max cost? There is no price yet.",
+  "r": "<b>Metered per agent request</b>, with the rate set in the admin panel from measured cost when the agents batch starts. No flat price now.",
+  "s": "51-PRODUCT-PLAN, limits"
+ },
+ {
+  "n": 31,
+  "k": "decide",
+  "q": "The tagline test: the pilot is too small to rank three lines properly. What do we do?",
+  "r": "Use it as a <b>screen, not a ranking</b>: drop any line that 2 or fewer of 7 people get right. Ranking properly needs 15 to 39 people a line.",
+  "s": "51-PRODUCT-PLAN, limits"
+ },
+ {
+  "n": 32,
+  "k": "decide",
+  "q": "What does \"the same theme as desktop\" mean on the phone?",
+  "r": "Three changes: <b>the same surface layers, the same heading sizes, the same density</b>. No separate phone colours. v8 already draws this; say if it looks right.",
+  "s": "58-DESIGN-SYSTEM section 7.4"
+ },
+ {
+  "n": 34,
+  "k": "decide",
+  "q": "Where does the full \"frontmatter\" wordmark appear, and where only the fm mark?",
+  "r": "<b>Mark alone</b> inside the app. <b>Full wordmark</b> on the sign-in page and on published pages only.",
+  "s": "12-screens/S04, D01"
+ },
+ {
+  "n": 35,
+  "k": "decide",
+  "q": "The plan puts the wordmark on the sign-in card; the drawn screen shows the mark.",
+  "r": "Follow item 34: the sign-in page gets the <b>full wordmark</b>. Approving 34 settles this.",
+  "s": "12-screens/S01"
+ },
+ {
+  "n": 36,
+  "k": "decide",
+  "q": "The five collapsible panels on the right: what is \"Commands\"?",
+  "r": "The four drawn (Tags and bookmarks, Backlinks, History, Comments) plus Outline. <b>\"Commands\" read as the Command K palette</b> that already exists. Say if you meant something else.",
+  "s": "12-screens/S04, D11"
+ },
+ {
+  "n": 37,
+  "k": "decide",
+  "q": "Inviting someone gives both sides 5 AI credits. How do we stop people farming it?",
+  "r": "Keep <b>5 each</b>, and add a <b>monthly cap per inviter</b>, both set in the admin panel.",
+  "s": "12-screens/S17, D38"
+ },
+ {
+  "n": 38,
+  "k": "decide",
+  "q": "Are published pages findable on Google by default?",
+  "r": "<b>Conflicts with item 43.</b> This item recommends yes, and saying \"findable\" when publishing. Item 43 recommends no. Pick one; your answer here sets both.",
+  "s": "12-screens/S18, D42"
+ },
+ {
+  "n": 43,
+  "k": "decide",
+  "q": "Is the Google-indexing setting one global switch, or per page?",
+  "r": "<b>Both</b>: a global default plus a per-page choice when publishing. The default follows your answer to 38 (this item leans off).",
+  "s": "12-screens/S37, D92"
+ },
+ {
+  "n": 39,
+  "k": "decide",
+  "q": "Who buys the Windows code-signing certificate, and which one?",
+  "r": "Get <b>two written quotes in batch 1</b>. Found so far: Sectigo from $536.25 a year, Certum from EUR 139. Windows shows \"coming\" until signed. Now urgent, since desktop ships early.",
+  "s": "12-screens/S25, D63"
+ },
+ {
+  "n": 40,
+  "k": "decide",
+  "q": "Do we offer an annual Pro plan?",
+  "r": "Offer it as a choice. Note: at full use, annual <b>loses about Rs 19 a month</b> per user against monthly (a simulated figure).",
+  "s": "12-screens/S29, D60"
+ },
+ {
+  "n": 41,
+  "k": "decide",
+  "q": "Portfolio handles: what is a valid one, and who settles a dispute over a name?",
+  "r": "Handles follow the <b>same rules as page links</b>. Disputes go through the <b>grievance process</b>; you decide outcomes.",
+  "s": "12-screens/S30, D61"
+ },
+ {
+  "n": 42,
+  "k": "decide",
+  "q": "Out of blueprint credits: can someone still run the questions?",
+  "r": "<b>Yes, on the standard question set.</b> The generated files wait for the monthly reset or a top-up.",
+  "s": "12-screens/S34, D81"
+ },
+ {
+  "n": 44,
+  "k": "decide",
+  "q": "If \"bring your own AI key\" is switched off in the admin panel, what happens to keys people saved?",
+  "r": "<b>Stop using them, keep them stored, tell people</b>, and restore on re-enable. Their calls move onto our cost meanwhile.",
+  "s": "12-screens/S37, D86"
+ },
+ {
+  "n": 21,
+  "k": "decide",
+  "q": "Mistral's free tier trains on what you send by default. Keep it in the free model chain?",
+  "r": "<b>Remove Mistral.</b> Our sign-in promise is that we never train on documents.",
+  "s": "54-COMPLIANCE-AND-LEGAL section 4.3"
+ },
+ {
+  "n": 15,
+  "k": "decide",
+  "q": "Cloudflare R2 has no India region. Where does the government-required security log live?",
+  "r": "In <b>Firestore Mumbai</b> (<code>asia-south1</code>), not R2. The plan's \"R2 in Mumbai\" line was wrong and gets corrected.",
+  "s": "54-COMPLIANCE-AND-LEGAL section 3.5"
+ },
+ {
+  "n": 8,
+  "k": "pro",
+  "q": "Which complaint deadline applies to us: the IT Rules, the consumer rules, or both?",
+  "r": "<b>Ask a lawyer.</b> Until then we follow the stricter one.",
+  "s": "38-INCIDENT-AND-SEVERITY line 334"
+ },
+ {
+  "n": 14,
+  "k": "pro",
+  "q": "The 2026 IT Rules cut the deadlines (7 days to resolve, 36 hours to remove, 3 hours on an order). Are we even an intermediary for published pages?",
+  "r": "The deadlines are updated in the pack. <b>Whether we are an intermediary needs a lawyer.</b>",
+  "s": "54-COMPLIANCE-AND-LEGAL section 3.3"
+ },
+ {
+  "n": 17,
+  "k": "pro",
+  "q": "Which GST heading does a subscription editor fall under?",
+  "r": "<b>Ask a chartered accountant.</b> Items 18, 19 and 20 are the same question in other files.",
+  "s": "53-PRICING-AND-ENTITLEMENTS section 6.2"
+ },
+ {
+  "n": 18,
+  "k": "pro",
+  "q": "The tax heading (repeat of 17, in the pricing limits).",
+  "r": "Settled with item 17.",
+  "s": "53-PRICING-AND-ENTITLEMENTS, limits"
+ },
+ {
+  "n": 19,
+  "k": "pro",
+  "q": "The tax heading and the 2026 rate notification (repeat of 17).",
+  "r": "Rate notification closed; heading settled with item 17.",
+  "s": "54-COMPLIANCE-AND-LEGAL section 5.1"
+ },
+ {
+  "n": 20,
+  "k": "pro",
+  "q": "The tax heading (repeat of 17, in the legal limits).",
+  "r": "Settled with item 17.",
+  "s": "54-COMPLIANCE-AND-LEGAL, limits"
+ },
+ {
+  "n": 3,
+  "k": "confirm",
+  "q": "The table of how often we sync to GitHub and Drive.",
+  "r": "Adopted as the storage research proposed. Settled by item 2.",
+  "s": "67-SYNC-AND-CONFLICT section 15"
+ },
+ {
+  "n": 6,
+  "k": "confirm",
+  "q": "We said Indian cards get only one payment attempt. Is that true of Razorpay?",
+  "r": "<b>It was wrong.</b> Razorpay retries subscriptions automatically. The record is corrected; we simply do not build our own retry scheduler.",
+  "s": "ADR-0005"
+ },
+ {
+  "n": 24,
+  "k": "confirm",
+  "q": "11 extra days added to batch 3 (editor and Doc mode) for the 18 September changes.",
+  "r": "A proposed estimate; nothing to check until it is built.",
+  "s": "50-ROADMAP, batch 3"
+ },
+ {
+  "n": 25,
+  "k": "confirm",
+  "q": "7 extra days added to batch 4 (sharing and the change queue).",
+  "r": "A proposed estimate.",
+  "s": "50-ROADMAP, batch 4"
+ },
+ {
+  "n": 26,
+  "k": "confirm",
+  "q": "10 to 12.5 extra days for the idea mode redesign.",
+  "r": "A proposed estimate.",
+  "s": "50-ROADMAP, batch 6"
+ },
+ {
+  "n": 27,
+  "k": "confirm",
+  "q": "2 extra days for the phone theme.",
+  "r": "A proposed estimate.",
+  "s": "50-ROADMAP, batch 8"
+ },
+ {
+  "n": 28,
+  "k": "confirm",
+  "q": "2 extra days for agents waiting on a change.",
+  "r": "A proposed estimate.",
+  "s": "50-ROADMAP, batch 10"
+ },
+ {
+  "n": 29,
+  "k": "confirm",
+  "q": "Two different totals for the 18 September additions were both ours.",
+  "r": "Use the <b>itemised rows</b> as the estimate; the headline figure came from an earlier draft of the same file.",
+  "s": "50-ROADMAP section 5.2"
+ },
+ {
+  "n": 33,
+  "k": "confirm",
+  "q": "Two keys that look the same but are written with different Unicode bytes: are they the same key?",
+  "r": "<b>Only if the bytes match.</b> A near-match is refused and named, never guessed. This is the product's core rule.",
+  "s": "41-FIXTURE-REGISTER section 7"
+ }
+]

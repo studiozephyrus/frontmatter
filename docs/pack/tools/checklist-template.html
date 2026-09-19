@@ -1,0 +1,193 @@
+<title>frontmatter review checklist</title>
+<meta name="description" content="Every question the founders answer before frontmatter development starts.">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Google+Sans:wght@400;500;700&family=Google+Sans+Code&display=swap">
+<style>
+:root{
+  --bg:#fbfbfc; --card:#ffffff; --ink:#18181b; --ink2:#52525b; --ink3:#8a8a93;
+  --hair:#e4e4e9; --accent:#0055ff; --accent-soft:#e8efff;
+  --ok:#157f3b; --ok-soft:#e5f5ea; --warn:#9a5b00; --warn-soft:#fdf2df; --risk:#b42318; --risk-soft:#fdeceb;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0d0e11; --card:#15161b; --ink:#ececf1; --ink2:#b4b4bd; --ink3:#80808a;
+    --hair:#2a2b33; --accent:#60a5fa; --accent-soft:#16233d;
+    --ok:#4ade80; --ok-soft:#10261a; --warn:#fbbf24; --warn-soft:#2a2110; --risk:#f87171; --risk-soft:#2c1414;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0d0e11; --card:#15161b; --ink:#ececf1; --ink2:#b4b4bd; --ink3:#80808a;
+  --hair:#2a2b33; --accent:#60a5fa; --accent-soft:#16233d;
+  --ok:#4ade80; --ok-soft:#10261a; --warn:#fbbf24; --warn-soft:#2a2110; --risk:#f87171; --risk-soft:#2c1414;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font:15px/1.55 "Google Sans",system-ui,-apple-system,"Segoe UI",sans-serif;margin:0}
+.wrap{max-width:880px;margin:0 auto;padding-inline:16px;padding-block:28px 80px}
+header h1{font-size:28px;line-height:1.15;margin:0 0 6px;text-wrap:balance;letter-spacing:-.01em}
+header p{color:var(--ink2);margin:0 0 4px;max-width:66ch}
+.bar{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);border-bottom:1px solid var(--hair);display:flex;flex-wrap:wrap;gap:10px 16px;align-items:center;padding-block:12px;margin:18px 0 8px}
+.meter{flex:1;min-width:160px;height:6px;background:var(--hair);border-radius:3px;overflow:hidden}
+.meter i{display:block;height:100%;background:var(--accent);width:0;transition:width .25s}
+.count{font-variant-numeric:tabular-nums;color:var(--ink2);font-size:14px}
+.filters{display:flex;gap:6px;flex-wrap:wrap}
+.filters button{font:inherit;font-size:13px;border:1px solid var(--hair);background:var(--card);color:var(--ink2);padding:5px 11px;border-radius:999px;cursor:pointer}
+.filters button[aria-pressed="true"]{border-color:var(--accent);color:var(--accent);background:var(--accent-soft)}
+.status{font-size:13px;color:var(--ink3)}
+.status.err{color:var(--risk)}
+h2{font-size:14px;text-transform:uppercase;letter-spacing:.08em;color:var(--ink3);margin:30px 0 10px;font-weight:500}
+h2 small{text-transform:none;letter-spacing:0;font-size:13px;margin-left:8px}
+.item{background:var(--card);border:1px solid var(--hair);border-radius:10px;padding:14px 16px;margin:0 0 10px;display:grid;grid-template-columns:auto 1fr;gap:4px 12px}
+.item.done{border-color:color-mix(in srgb,var(--ok) 45%,var(--hair))}
+.item.act{border-left:3px solid var(--risk)}
+.item.big{border:1.5px solid var(--accent);background:linear-gradient(var(--accent-soft),var(--card) 70%)}
+.num{font:500 12px "Google Sans Code",ui-monospace,monospace;color:var(--ink3);padding-top:3px;font-variant-numeric:tabular-nums;min-width:44px}
+.q{font-weight:500;margin:0}
+.big .q{font-size:17px}
+.opts{margin:8px 0 0;display:grid;gap:4px;font-size:14px;color:var(--ink2)}
+.opts span b{color:var(--ink);font-weight:500}
+.rec{color:var(--ink2);margin:8px 0 0;font-size:14px}
+.rec::before{content:"Recommended: ";color:var(--ink);font-weight:500}
+.rec b{color:var(--ink);font-weight:500}
+.tag{display:inline-block;font-size:11px;letter-spacing:.04em;text-transform:uppercase;padding:1px 7px;border-radius:4px;margin-right:6px;vertical-align:1px}
+.t-decide,.t-big{background:var(--accent-soft);color:var(--accent)}
+.t-confirm{background:var(--ok-soft);color:var(--ok)}
+.t-pro{background:var(--warn-soft);color:var(--warn)}
+.t-act{background:var(--risk-soft);color:var(--risk)}
+.controls{grid-column:2;display:flex;flex-wrap:wrap;gap:8px 16px;align-items:center;margin-top:10px}
+.controls label{display:inline-flex;align-items:center;gap:7px;cursor:pointer;font-size:14px}
+.controls input[type=radio]{accent-color:var(--accent);width:16px;height:16px;margin:0}
+textarea{grid-column:2;width:100%;font:inherit;font-size:14px;border:1px solid var(--hair);border-radius:8px;background:var(--bg);color:var(--ink);padding:8px 10px;min-height:56px;resize:vertical;margin-top:8px}
+:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.src{grid-column:2;font:12px "Google Sans Code",ui-monospace,monospace;color:var(--ink3);margin-top:6px;overflow-wrap:anywhere}
+footer{color:var(--ink3);font-size:13px;margin-top:30px}
+@media (max-width:520px){header h1{font-size:23px}.item{padding:12px;grid-template-columns:1fr}.controls,textarea,.src{grid-column:1}}
+@media (prefers-reduced-motion:reduce){.meter i{transition:none}}
+</style>
+
+<div class="wrap">
+<header>
+  <h1>frontmatter review checklist</h1>
+  <p>Every question that needs a founder before development starts: {{COUNT}} items. Each has a recommendation. Pick one and it saves at once; Claude reads the answers back and writes the final plan from them.</p>
+  <p>Start with the calendar at the top. It decides how much of the rest matters now.</p>
+</header>
+
+<div class="bar">
+  <div class="meter" aria-hidden="true"><i id="meterFill"></i></div>
+  <span class="count" id="count"></span>
+  <div class="filters" role="group" aria-label="Show">
+    <button type="button" data-f="all" aria-pressed="true">All</button>
+    <button type="button" data-f="open" aria-pressed="false">Unanswered</button>
+    <button type="button" data-f="decide" aria-pressed="false">Decisions only</button>
+  </div>
+  <span class="status" id="status" role="status">Connecting</span>
+</div>
+
+<div id="list"></div>
+
+<footer>Kinds: <span class="tag t-decide">decide</span> a choice between options. <span class="tag t-act">act</span> something only you can do or approve. <span class="tag t-pro">professional</span> needs a lawyer or accountant. <span class="tag t-confirm">confirm</span> already checked or fixed; say it is fine. The source line under each item is where it lives in the pack.</footer>
+</div>
+
+<script>
+const ITEMS = /*ITEMS*/[];
+const SECTIONS = [
+  ["big", "The calendar", "decide this first"],
+  ["act", "Only you can do or approve these", "accounts, money, security, deploys"],
+  ["decide", "Decisions", "a choice between options"],
+  ["pro", "Needs a professional", "a lawyer or an accountant"],
+  ["confirm", "Confirm", "already checked or fixed"],
+];
+const TAG = {big:["t-big","decide"],decide:["t-decide","decide"],confirm:["t-confirm","confirm"],pro:["t-pro","professional"],act:["t-act","act"]};
+const $ = (id) => document.getElementById(id);
+const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]));
+let answers = {}, db = null, filter = "all";
+const timers = {};
+
+function choices(it){
+  return it.a ? [["a","Option A"],["b","Option B"],["change","Something else"],["later","Later"]]
+              : [["approve","Approve"],["change","Change"],["later","Later"]];
+}
+
+function render(){
+  const list = $("list"); list.textContent = "";
+  for (const [k, title, sub] of SECTIONS){
+    const rows = ITEMS.filter((it) => it.kind === k).filter((it) =>
+      filter === "all" ? true : filter === "open" ? !answers[it.key]?.choice : (k === "decide" || k === "big"));
+    if (!rows.length) continue;
+    const h = document.createElement("h2");
+    h.innerHTML = `${esc(title)}<small>${esc(sub)}</small>`;
+    list.appendChild(h);
+    rows.forEach((it) => list.appendChild(card(it)));
+  }
+  updateCount();
+}
+
+function card(it){
+  const a = answers[it.key] || {};
+  const el = document.createElement("article");
+  el.className = `item ${it.kind}` + (a.choice ? " done" : "");
+  const [cls, label] = TAG[it.kind];
+  const opts = it.a ? `<div class="opts"><span><b>A.</b> ${esc(it.a)}</span><span><b>B.</b> ${esc(it.b)}</span></div>` : "";
+  const radios = choices(it).map(([v, t]) =>
+    `<label><input type="radio" name="r-${it.key}" id="r-${it.key}-${v}" value="${v}" ${a.choice === v ? "checked" : ""}> ${t}</label>`).join("");
+  el.innerHTML = `
+    <span class="num">${esc(it.label)}</span>
+    <div>
+      <p class="q"><span class="tag ${cls}">${label}</span>${esc(it.q)}</p>
+      ${opts}
+      <p class="rec">${it.rec}</p>
+    </div>
+    <div class="controls">${radios}</div>
+    <textarea id="n-${it.key}" placeholder="Anything you want to add" ${a.choice === "change" || a.note ? "" : "hidden"}>${esc(a.note)}</textarea>
+    <div class="src">${esc(it.src)}</div>`;
+  el.querySelectorAll("input[type=radio]").forEach((r) => r.addEventListener("change", () => {
+    const note = el.querySelector("textarea");
+    if (r.value === "change") { note.hidden = false; note.focus(); }
+    save(it.key, {choice: r.value, note: note.value});
+    el.classList.add("done");
+  }));
+  el.querySelector("textarea").addEventListener("input", (e) => {
+    clearTimeout(timers[it.key]);
+    const v = e.target.value;
+    timers[it.key] = setTimeout(() => save(it.key, {choice: (answers[it.key] || {}).choice || "change", note: v}), 700);
+  });
+  return el;
+}
+
+function updateCount(){
+  const done = ITEMS.filter((it) => answers[it.key]?.choice).length;
+  $("count").textContent = `${done} of ${ITEMS.length} answered`;
+  $("meterFill").style.width = (done / ITEMS.length * 100) + "%";
+}
+
+async function save(key, value){
+  answers[key] = value; updateCount();
+  if (!db) { setStatus("Not saved: this view cannot store answers", true); return; }
+  try {
+    setStatus("Saving");
+    await db.doc("answers/" + key).set({key, ...value, at: new Date().toISOString()});
+    setStatus("Saved");
+  } catch (e) {
+    setStatus(e && e.code === "invalid_argument" ? "You can view but not answer here" : "Not saved, try again", true);
+  }
+}
+function setStatus(t, err){ const s = $("status"); s.textContent = t; s.classList.toggle("err", !!err); }
+
+document.querySelectorAll(".filters button").forEach((b) => b.addEventListener("click", () => {
+  filter = b.dataset.f;
+  document.querySelectorAll(".filters button").forEach((x) => x.setAttribute("aria-pressed", String(x === b)));
+  render();
+}));
+
+render();
+(async () => {
+  try { db = window.claude ? await window.claude.use("db") : null; } catch { db = null; }
+  if (!db) { setStatus("Answers cannot be saved in this view", true); return; }
+  setStatus("Ready");
+  db.collection("answers").onSnapshot((snap) => {
+    const next = {};
+    snap.docs.forEach((d) => { const v = d.data(); if (v && v.key) next[v.key] = {choice: v.choice, note: v.note || ""}; });
+    answers = next;
+    const typing = document.activeElement && document.activeElement.tagName === "TEXTAREA";
+    if (typing) updateCount(); else render();
+  }, () => setStatus("Live updates stopped; reload to see the latest", true));
+})();
+</script>

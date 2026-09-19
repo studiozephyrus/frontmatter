@@ -45,3 +45,18 @@ The log is how the founder reviews. An item missing from the log did not happen.
 
 Final reply: counts of decisions resolved, needs-founder items, unverified checked, confirmed, fixed,
 still unverified, and the commit. No em or en dashes.
+
+## Second pass, 19 September 2026
+
+The files written on 19 September (68 to 72, S39 to S42, ADR-0017 to ADR-0021, and the rows added to
+27, 28, 29, 50, 51, 53, 54 and 57) were never swept. Same treatment as above, with two additions:
+
+1. **Skip an `UNVERIFIED:` that already carries a `needs:` naming a person or a paid source** (a
+   lawyer, an accountant, a console, a quote). It was swept once. Leave it, and count it in your reply.
+2. **Every item that needs the founder goes to your log in this exact shape**, so it can go straight
+   onto his checklist page:
+
+   `id | file and place | the question, in plain words a non-engineer understands | option A | option B | recommended (A or B) and why in one line | kind (decide, professional, act)`
+
+   Plain words means no file numbers, no ids and no internal shorthand in the question itself. A
+   question he cannot answer without opening the pack is not finished.
