@@ -107,7 +107,20 @@ const gfmTables = (md) => {
 const render = (md) => {
   let h = String(proc.processSync(gfmTables(md)))
   // Keep a screen block (heading + shot + the note under it) on one page.
-  h = h.replace(/<h3>(S\d\d\.[\s\S]*?)(?=<h3>|$)/g, (m) => `<div class="sblock">${m}</div>`)
+  // The first screen of a section is never forced onto a new page, or the section heading
+  // above it is left at the foot of the page before.
+  let first = true
+  h = h.replace(/<h3>(S\d\d\.[\s\S]*?)(?=<h3>|$)/g, (m) => {
+    // Three or more frames are taller than a page: start them on a fresh page, or Chrome
+    // leaves the heading stranded at the foot of the one before (seen on S41 and S42).
+    const frames = (m.match(/class="pair/g) || []).length
+    const tall = frames >= 3 && !first
+    first = false
+    return `<div class="sblock${tall ? ' tall' : ''}">${m}</div>`
+  })
+  // A screen with several frames is taller than a page, so the block above cannot hold. The
+  // heading must still travel with its first frame, or it is stranded at a page foot.
+  h = h.replace(/(<h3>S\d\d\.[\s\S]*?<\/h3>\s*<div class="pair[^"]*">[\s\S]*?<\/div>)/g, '<div class="skeep">$1</div>')
   // Wrap tables so a wide one can scroll/shrink instead of blowing the page box.
   h = h.replace(/<(ol|ul)>[\s\S]*?<\/\1>/g, (lst) => {
     const items = (lst.match(/<li>/g) || []).length
@@ -188,6 +201,9 @@ hr{border:0;border-top:.4pt solid var(--hair);margin:6mm 0}
 .toc h2{font:700 18pt/1.1 var(--disp)}
 .toc h2{margin:0 0 6mm}
 .tr{display:flex;align-items:baseline;gap:3mm;padding:1.5mm 0;border-bottom:.4pt solid var(--hair)}
+/* A long document's contents must still fit one page: past 24 rows the rows tighten. */
+.toc.long .tr{padding:1mm 0}
+.toc.long .tpart{margin:2.5mm 0 .8mm}
 .tn{font:400 8pt var(--mono);color:var(--blue);min-width:8mm}
 .tr a{flex:1;color:var(--ink);font-size:9.5pt}
 .chap{break-before:auto;margin-top:6mm}
@@ -212,6 +228,8 @@ figcaption{font:400 7.4pt/1.4 var(--mono);color:var(--ink3);margin-top:1.4mm}
 .onit li{margin:0 0 .7mm}
 .why{font-size:8.6pt;color:var(--ink2);margin:0 0 3mm}
 .sblock{break-inside:avoid;margin:0 0 1mm}
+.skeep{break-inside:avoid}
+.sblock.tall{break-before:page;break-inside:auto}
 .two{display:grid;grid-template-columns:1fr 1fr;gap:4mm}
 .note{border:.4pt solid var(--hair);border-left:1.2pt solid var(--blue);background:var(--bg2);padding:2.5mm 3.5mm;margin:3.5mm 0;font-size:9pt}
 .kv{display:grid;grid-template-columns:1fr 1fr 1fr;gap:3mm;margin:3mm 0}
@@ -224,7 +242,7 @@ figcaption{font:400 7.4pt/1.4 var(--mono);color:var(--ink3);margin-top:1.4mm}
 <p class="lede">${coverLede || ''}</p></div>
 <div class="cmeta"><div><b>${chunks.length}</b>sections</div><div><b>${(words / 1000).toFixed(1)}k</b>words</div><div><b>${screensCount}</b>screens</div><div><b>print</b>${printDate}</div></div></div>
 
-<section class="toc"><h2>Contents</h2>${toc}</section>
+<section class="toc${chunks.length > 24 ? ' long' : ''}"><h2>Contents</h2>${toc}</section>
 ${intro.trim() ? `<section class="lead"><h2>How to read this guide</h2>${intro}</section>` : ''}${body}</body></html>`
 
 const dir = path.resolve(path.dirname(input))

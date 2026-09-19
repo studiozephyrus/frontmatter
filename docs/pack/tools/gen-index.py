@@ -20,7 +20,7 @@ START, END = '<!-- INDEX:START -->', '<!-- INDEX:END -->'
 
 BANDS = [
     (0, 9, 'Orient'), (10, 19, 'Specify'), (20, 29, 'Engineer'),
-    (30, 39, 'Run'), (40, 49, 'Judge'), (50, 59, 'Steer'), (60, 69, 'Trace and meta'),
+    (30, 39, 'Run'), (40, 49, 'Judge'), (50, 59, 'Steer'), (60, 69, 'Trace and meta'), (70, 79, 'Content types and capture'),
 ]
 
 

@@ -66,6 +66,19 @@ for n, why in bleed:
 print(f'nearly empty pages: {len(sparse)}' + (
     '  ' + ', '.join(f'{n} ({v * 100:.1f}%)' for n, v in sparse) if sparse else ''))
 
+def heading_low_on_page(pdf, n, line):
+    """True when the first word of `line` on page n starts below 75 per cent of the page height."""
+    html = subprocess.run(['pdftotext', '-f', str(n), '-l', str(n), '-bbox', str(pdf), '-'],
+                          capture_output=True, text=True).stdout
+    page = re.search(r'<page width="([\d.]+)" height="([\d.]+)"', html)
+    if not page:
+        return True
+    height = float(page.group(2))
+    first = re.escape(line.split()[0])
+    ys = [float(m.group(1)) for m in re.finditer(r'yMin="([\d.]+)"[^>]*>' + first + r'</word>', html)]
+    return (max(ys) / height > 0.75) if ys else True
+
+
 # ---- headings stranded at the foot of a page, read from the text layer
 text = subprocess.run(['pdftotext', '-layout', str(pdf), '-'],
                       capture_output=True, text=True).stdout
@@ -77,7 +90,10 @@ for n, page in enumerate(text.split('\f'), 1):
     last = lines[-1]
     if re.match(r'^PART [A-Z]+\.', last) or re.match(r'^§\s?\d+\b', last) \
             or re.match(r'^S\d\d\. ', last):
-        stranded.append((n, last[:70]))
+        # The last TEXT line is not always the last thing on the page: a screen heading is
+        # followed only by images. Stranded means the heading sits in the page's bottom quarter.
+        if heading_low_on_page(pdf, n, last):
+            stranded.append((n, last[:70]))
 print(f'headings stranded at the foot of a page: {len(stranded)}')
 for n, last in stranded:
     print(f'   page {n}: {last}')

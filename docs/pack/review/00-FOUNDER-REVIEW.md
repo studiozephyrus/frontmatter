@@ -73,6 +73,7 @@ Log | Items | Need the founder
 [16-copy.md](16-copy.md) | 24. | 0.
 [66-formats.md](66-formats.md) | 41. | 1.
 [67-14-adr.md](67-14-adr.md) | 38. | 6.
+[AUDIT-2026-09-19.md](AUDIT-2026-09-19.md) | 6. | 0.
 [files-01-39.md](files-01-39.md) | 55. | 6.
 [files-40-65.md](files-40-65.md) | 63. | 20.
 [screens-S01-S13.md](screens-S01-S13.md) | 58. | 3.
