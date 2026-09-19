@@ -5,7 +5,7 @@ mode: reference
 tier: canonical
 status: living
 verified_against: 4de879d
-updated: 2026-09-18
+updated: 2026-09-19
 owner: sagnik
 covers: [adr-index]
 ---
@@ -48,7 +48,14 @@ ADR | Decision in one line | Source of the decision
 [ADR-0014](ADR-0014-free-cap-as-tested-panel-value.md) | The Free document cap is a panel value, A/B tested on new accounts before it is fixed | D11, 18 September 2026
 [ADR-0015](ADR-0015-one-live-collaborator-on-free.md) | Free allows one live collaborator per document, on cost | Founders' screen review, 18 September 2026
 [ADR-0016](ADR-0016-free-model-chain-and-training-gate.md) | Free AI runs on a fallback chain of free providers, and any provider that trains on inputs is barred | `27-MODEL-ROUTING-SPEC.md`, 18 September 2026
+[ADR-0017](ADR-0017-sheet-format.md) | **Open, proposed.** A sheet is a GFM pipe table with an `fm-sheet@1` formula fence below it; a `.csv` opens in the same grid | `SHEETS.md`, 18 September 2026; the ask is `[Z]`
+[ADR-0018](ADR-0018-board-format.md) | **Open, proposed.** A board is a folder of card files with `status` in front matter, plus one board file; a move is a one-line splice | `BOARDS.md`, 18 September 2026; the ask is `[Z]`
+[ADR-0019](ADR-0019-type-registry-and-embedding.md) | **Open, proposed.** One type registry picks a file's type by extension then a profile key, and an embed is a reference by path and anchor | `ONE-PLATFORM.md`, 18 September 2026; the ask is `[Z]`
 [ADR-0020](ADR-0020-voice-typing.md) | Voice typing on free speech-to-text, restructured in three levels plus raw, with a hybrid command mode, every edit a proposal | D14, widened 19 September 2026
+
+**ADR-0017 to ADR-0019 are open.** The founder asked for sheets, boards and one platform on 18 September
+2026. The formats are recommendations awaiting him, recorded now so a builder can see them. Each
+becomes `decided` or is reversed when he answers.
 
 ## Contradictions these records found
 
@@ -62,6 +69,7 @@ ADR-0007 and ADR-0013 | The plan's section 24 retires the Firebase project in ph
 ADR-0008 | The recorded Almanac reason is wrong. Its shutdown page gives capacity as the cause
 ADR-0014 | The A/B test does not by itself stop pilot recruits meeting the cap when they import a vault
 ADR-0016 | The plan's section 3 still excludes OpenRouter. Its section 14 and `27` admit it
+ADR-0017 to ADR-0019 | `ONE-PLATFORM.md` proposed a `.csv` sheet, computed values never written, and a one-file `board: 1`. `SHEETS.md` and `BOARDS.md` disagree on all three and win, by `ONE-PLATFORM.md` section 6
 
 ## How to add one
 

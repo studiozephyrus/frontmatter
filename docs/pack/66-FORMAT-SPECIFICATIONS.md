@@ -5,7 +5,7 @@ mode: reference
 tier: canonical
 status: draft
 verified_against: d5cda79
-updated: 2026-09-18
+updated: 2026-09-19
 owner: sagnik
 covers: [formats, file-formats, block-formats, page-twin, llms-txt, blueprint-kit]
 ---
@@ -763,6 +763,39 @@ The person wants it converted | the problems panel (S10) offers the conversion a
   on GitHub, so the author's emphasis survives in a plain reader.
 - Rejected: an exception to invariant 6. ADR-0002 rejects `:::` as an output form, and the carrier
   bench measured a multi-paragraph `:::` container splitting silently on its closer.
+
+### 4.11 `fm-sheet@1` and the board file
+
+**Added 19 September 2026, checked at `cb7c16f`. Both are `specified, not built`.** This section is a
+pointer. The full contracts live in `68-SHEETS-SPEC.md` and `69-BOARDS-SPEC.md`, so each fact has one
+home.
+
+**`fm-sheet@1`** is an `fm-` block (section 4.3) that sits directly below a GFM table, as `fm-chart@1`
+does (section 4.4). The table does not know about it.
+
+Key | Required | Meaning
+`table` | yes | `above`, the only value in version 1
+`col.<header>` | no | a row formula, named by column; its result is written into the cells through the change queue
+`foot.<header>` | no | a summary, drawn under the grid and never written
+
+- **Its render failure is `E501`**, the source shown with the reason, as for any `fm-` block.
+- **The table under it is never rewritten to suit it**, as section 4.8 already says for a chart.
+- Grammar, functions, evaluator and refusals: `68-SHEETS-SPEC.md` sections 3, 4 and 7.
+
+**The board file** is not a block kind. It is a markdown file whose front matter carries the version
+key `board: 1`, beside the reserved keys of section 3.9.
+
+Key | Required | Shape
+`board` | yes | `1`
+`cards` | yes | a vault path to the folder of card files
+`key` | yes | the card key that picks a column, `status` by default
+`columns` | yes | a flow list of scalars
+`limits` | no | a flow list of whole numbers, paired with `columns`
+
+- **Every key is a scalar or a flow list of scalars**, so the writer emits them today (section 3.4).
+- **A card is a plain note.** A move is a `set` of one key in one card file (section 3.3), and
+  defect 3.6.1 must be fixed before any move ships.
+- Folder rule, moves, refusals and agents: `69-BOARDS-SPEC.md` sections 2, 3 and 5.
 
 ---
 

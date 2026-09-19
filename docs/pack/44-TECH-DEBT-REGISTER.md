@@ -5,7 +5,7 @@ mode: explanation
 tier: canonical
 status: living
 verified_against: f237ece
-updated: 2026-09-18
+updated: 2026-09-19
 owner: sagnik
 covers: [tech-debt]
 ---
@@ -52,9 +52,14 @@ Id | Title | Effort | Status
 `TD-021` | No coverage tool is configured | M | open
 `TD-022` | The screens hold hand-written numbers beside a constants table | M | open
 `TD-023` | There is no continuous integration, so no gate runs on a push | M | open
+`TD-024` | One table cell edit rewrites the whole table | M | open
+`TD-025` | An escaped pipe splits a table cell, and the edit lands in the wrong cell | M | open
+`TD-026` | A typed line break in a table cell is replaced with a space, a guess | S | open
 
-**Twenty-two open, one fixed.** Nine of the twenty-two are `S`, and eight of those nine are one line
-each. Section 13 sequences them. **`TD-023` is the one to read first**, because it decides whether any
+**Twenty-five open, one fixed.** Nine of the first twenty-two open are `S`, and eight of those nine
+are one line each.
+
+`TD-024` to `TD-026` were added on 19 September. Section 13 sequences them. **`TD-023` is the one to read first**, because it decides whether any
 of the others can be held once fixed.
 
 ## TD-001
@@ -463,6 +468,120 @@ done.
 the pack validator and the writing gate once they are stable. Start with the gates that are green
 today, so the first run passes and the workflow is trusted rather than muted.
 
+## TD-024
+
+**One table cell edit rewrites the whole table. Effort M. Status open.**
+
+**Evidence.** `[O]` reproduced on 19 September 2026 at `cb7c16f`, as `docs/research/2026-09-18-sheets-boards/SHEETS.md`
+section 7 describes: `setTableCell` from `src/modules/preview/presentation/table-edit.ts`, run under
+`node --experimental-strip-types`. The script, saved under `$TMPDIR` and never in the repository:
+
+```ts
+import { setTableCell } from "<repo>/src/modules/preview/presentation/table-edit.ts";
+const t1 = "| Item   |  Qty |\n|:-------|-----:|\n| Flour  |  110 |\n| Salt   |   18 |\n";
+console.log("D1 out:", JSON.stringify(setTableCell(t1, 0, 2, 1, "20")));
+```
+
+It printed:
+
+```text
+D1 in : "| Item   |  Qty |\n|:-------|-----:|\n| Flour  |  110 |\n| Salt   |   18 |\n"
+D1 out: "| Item | Qty |\n|:-------|-----:|\n| Flour | 110 |\n| Salt | 20 |\n"
+```
+
+**One cell changed, and every row lost its padding.** `setTableCell` rebuilds each row with
+`serializePipeRow`, which writes `` `| ${cells.join(" | ")} |` ``. So a one-cell edit is a whole-table
+diff, which breaks splice-only writing (ADR-0006).
+
+**Why the tests are green.** `test/preview/table-edit.test.ts` uses tables written with single spaces,
+`| Alice | 30 |`, which the re-serialiser happens to reproduce. No fixture has padding.
+
+**Fix, red proof first.**
+
+1. Add a test with the padded table above that asserts the output equals the input with only `18`
+   replaced by `20`. **Run it against the current code and confirm it fails** with the output quoted
+   here.
+2. Replace the rebuild with a one-cell splice: locate the target cell's byte range inside its line with
+   an escape-aware split (`TD-025`), and replace only the text between its surrounding spaces.
+3. The delimiter row and every other row are never touched. Run the whole suite.
+
+**Blocks.** `68-SHEETS-SPEC.md` SH1, the sheet grid.
+
+## TD-025
+
+**An escaped pipe splits a table cell, and the edit lands in the wrong cell. Effort M. Status open.**
+
+**Evidence.** `[O]` same run, same script, with:
+
+```ts
+const t2 = "| Name | N |\n|---|---|\n| a \\| b | 1 |\n";
+console.log("D2 out:", JSON.stringify(setTableCell(t2, 0, 1, 1, "2")));
+```
+
+It printed:
+
+```text
+D2 in : "| Name | N |\n|---|---|\n| a \\| b | 1 |\n"
+D2 out: "| Name | N |\n|---|---|\n| a \\ | 2 | 1 |\n"
+```
+
+**The text `b` was lost, and the value `1` the person meant to change was left as it was.**
+`parsePipeRow` splits on every `|` with `stripped.split("|")`, ignoring the `\|` escape the GFM
+specification defines. The row reads as three cells under a two-column header.
+
+**A second gap the same run shows.** `[O]` `grep -rn "E500" src` returns nothing: the shape refusal
+`E500` in `17-ERROR-AND-REFUSAL-CATALOGUE.md` is not implemented, so the misread row was edited rather
+than refused.
+
+**Fix, red proof first.**
+
+1. Add a test with the row above that asserts column 1 becomes `2` and the first cell stays `a \| b`.
+   **Confirm it fails against the current code.**
+2. Split cells on a `|` not preceded by a backslash, in one helper that `findGfmTables`, `setTableCell`
+   and the grid all use.
+3. Add a second test: a row whose cell count differs from the header's is refused, and the content is
+   returned unchanged. That is `E500`.
+
+**Blocks.** `68-SHEETS-SPEC.md` SH1. `TD-024`'s fix depends on this split.
+
+## TD-026
+
+**A typed line break in a table cell is replaced with a space, a guess. Effort S. Status open.**
+
+**Evidence.** `[O]` same run, with:
+
+```ts
+const t3 = "| A | B |\n|---|---|\n| x | y |\n";
+console.log("D3 out:", JSON.stringify(setTableCell(t3, 0, 1, 0, "line one\nline two")));
+```
+
+It printed:
+
+```text
+D3 in : "| A | B |\n|---|---|\n| x | y |\n"
+D3 out: "| A | B |\n|---|---|\n| line one line two | y |\n"
+```
+
+`escapeCellValue` runs `value.replace(/\r?\n/g, " ")`. A GFM cell is single-line, so the break cannot
+be kept.
+
+Turning it into a space writes a value the person did not type. The product refuses rather than guesses
+(`AGENTS.md` section 0, rule 2).
+
+**The existing test encodes the guess.** `test/preview/table-edit.test.ts`, the case "strips newlines in
+the new value", expects `Alice Smith`. It passes today because it asserts the defect.
+
+**Fix, red proof first.**
+
+1. Replace that case with one asserting that a value holding a line break returns the content
+   unchanged, with a refusal. **Confirm it fails against the current code**, which returns the joined
+   value.
+2. Make `setTableCell` refuse such a value, and have the grid show the reason. The refusal id is
+   `new:sheet-cell-linebreak` in `68-SHEETS-SPEC.md` section 7, awaiting a row in
+   `17-ERROR-AND-REFUSAL-CATALOGUE.md`.
+
+**Blocks.** Nothing on its own; it is the smallest of the three and can land first.
+
 ## 13. The order to work through them
 
 Not by severity. By what unblocks what, and by what is nearly free.
@@ -475,6 +594,7 @@ Order | Ids | Why together
 4 | `TD-013` | Removes a security cost and matches the specified screen
 5 | `TD-001`, `TD-021` | Two measurements the project has opinions about and no numbers for
 6 | `TD-011`, `TD-012` | The specification debt. Red proofs first
+6a | `TD-026`, `TD-025`, `TD-024` | The table editor, smallest first. Each gates the sheet grid, and each starts with a failing test
 7 | `TD-002`, `TD-003` | Decide the engine's status, then wire or park it
 8 | `TD-005` | Needs a founder decision, so it waits on people rather than on work
 9 | `TD-014`, `TD-015` | Multi-tenancy, and the constant that has to move with it
