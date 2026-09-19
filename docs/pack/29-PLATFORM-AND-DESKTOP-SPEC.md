@@ -6,7 +6,7 @@ tier: canonical
 status: living
 updated: 2026-09-19
 owner: sagnik
-verified_against: 1335518
+verified_against: 6c44319
 covers: [platform, desktop-capabilities, pwa, phone, parity]
 ---
 
@@ -190,7 +190,7 @@ Missing | What it blocks | Needed for
 **`deep-link`** | Registering a protocol handler | The `Open in the frontmatter app` bar on a published page, which the 18 September decision says appears `when the app has registered its protocol handler`
 **`notification`** | A system notification | Nothing promised yet, but a watched folder that finds a conflict will want one
 **`http`** | A request that bypasses the webview's origin rules | A local Ollama call, if it is made from Rust rather than from the page
-**Microphone access** | Recording in the webview | **Voice**, section 4.5. `UNVERIFIED:` which Tauri v2 permission and which macOS usage string it needs
+**Microphone access** | Recording in the webview | **Voice**, section 4.5. No Tauri permission: the webview's `getUserMedia` is not a Tauri command, and the locked `wry` 0.55.1 answers every media-capture request with `WKPermissionDecision::Grant` `[O]`. macOS needs `NSMicrophoneUsageDescription` in `src-tauri/Info.plist` and the `com.apple.security.device.audio-input` entitlement, section 4.5
 
 `Cargo.toml` agrees: the only plugins compiled in are `tauri-plugin-shell`, `tauri-plugin-os`,
 `tauri-plugin-process`, `tauri-plugin-clipboard-manager` and `tauri-plugin-dialog`.
@@ -231,12 +231,12 @@ Engine | `whisper.cpp` through the `whisper-rs` crate, as a Tauri command in `sr
 Default model | `small.en`, downloaded on first use, not bundled: 466 MiB on disk, about 852 MB in memory, per the whisper.cpp README as the research read it
 Optional model | `large-v3-turbo`, downloaded on request. Panel row `routing.desktop.voice`
 Why not `base.en` | The Svarah study (2023) measured Whisper base at 13.6 per cent word error on Indian English and large at 7.2
-Default engine | Local, if the founder answers V5 yes (`71` section 1); the panel key is `voice.desktopEngine`
+Default engine | Local, once the model is downloaded. V5 in `71` section 1 now carries that answer as a proposal for founder review; the panel key is `voice.desktopEngine`
 Before the download | The desktop uses the cloud chain and says so
 Offline | Transcription works. Restructuring on the chain needs a connection, and falls back to raw text offline
 Restructuring locally | A local Ollama model, when the person chooses "nothing leaves this computer"
 The screen says | Whether restructuring leaves the machine, every time the local engine is on
-Partial results while speaking | Not in v1. `UNVERIFIED:` `whisper-rs` does not give them by default
+Partial results while speaking | Not in v1. Confirmed: `whisper-rs` 0.16.0 has no streaming call. It transcribes a buffer already recorded, and its segment callback fires during that run. Its docs say only that single-segment output "may be useful for streaming", so partials would mean re-running on a growing buffer `[M]` `https://docs.rs/whisper-rs/latest/whisper_rs/struct.FullParams.html`, 2026-09-19 UTC
 Audio | Held in memory only, never written to disk (`71` section 13)
 
 **Native Tesseract, for scanned PDFs.**
@@ -245,7 +245,7 @@ Item | Contract, from `72` sections 2, 3.3 and 10
 Engine | The Tesseract 5 binary, language `eng`, run by a Tauri command in `src-tauri/src/`
 Input | One PNG per page, rendered by pdf.js in the webview at `pdf.ocr.dpi`, 200 by default
 Temporary files | Written to the app's temporary directory, deleted when the page returns, and swept on app start for any left over
-Bundled | The binary and its English data ship inside the app. `UNVERIFIED:` their size, and whether a sidecar or a linked library is the better shape
+Bundled | The binary and its English data ship inside the app, as a **sidecar**: a separate executable in `bundle.externalBin`, one per target triple, started from the Rust command. Resolved (proposed 19 Sep, founder review). Rejected: linking `libtesseract` into the app, because a crash in C++ OCR code would then take the editor down with it. **Size, measured on one machine** `[O]`: the Homebrew build of Tesseract 5.5.2 on arm64 macOS and its 14 Homebrew libraries come to 8,943,184 bytes, plus 4,113,088 for `eng.traineddata` (the `tessdata_fast` file), 13.1 MB in all. That build links its libraries dynamically, so it cannot ship as is. `INFERENCE:` a self-contained build per target is of the same order; nobody has made one
 Licence | Apache-2.0; the desktop's third-party notice lists Tesseract with its licence text, because the desktop redistributes the binary
 Why native, not `tesseract.js` | On the research fixture, `tesseract.js` dropped three table rows the native binary kept (`72` section 3.3)
 Caps | None on the desktop (`72` section 9)
@@ -253,11 +253,29 @@ Vision pass | Not offered on the desktop in v1
 
 **What each needs from section 4.3.**
 
-- **Model storage.** `small.en` is 466 MiB written after install. `INFERENCE:` it belongs in the
-  app's data directory, which is a narrower grant than the vault `fs` scope; nobody has specified it.
+- **Model storage.** `small.en` is 466 MiB written after install. It goes in `models/whisper/` under
+  the app's data directory (Tauri's `app_data_dir`), resolved (proposed 19 Sep, founder review): a
+  narrower grant than the vault `fs` scope, and never synced. Rejected: the vault, where the sync
+  would upload it.
 - **The Tesseract temporary directory** needs a write grant scoped to the app's own temporary
   directory, never the vault.
-- **The microphone** needs a permission the set lacks today, and a macOS usage string in the bundle.
+- **The microphone** needs no Tauri capability, and three macOS pieces the bundle lacks today. Checked
+  2026-09-19 UTC, replacing an `UNVERIFIED:`.
+  - **No Tauri permission.** Recording is `getUserMedia` in the webview, which never crosses Tauri's
+    IPC. The locked `wry` 0.55.1 (`Cargo.lock`) grants every capture request itself, in
+    `wry_web_view_ui_delegate.rs`, `request_media_capture_permission` `[O]`.
+  - **A usage string.** `NSMicrophoneUsageDescription` in a new `src-tauri/Info.plist`. Tauri's own
+    example shows exactly this key, and `tauri-utils` 2.9.2 merges that file into the bundle `[M]`
+    `https://v2.tauri.app/distribute/macos-application-bundle/` and `[O]` its `config.rs`. The
+    wording is a row for `16-COPY-DECK.md`, not written yet.
+  - **An entitlement.** `com.apple.security.device.audio-input`, which Apple describes as whether the
+    app "may record audio using the built-in microphone" `[M]`
+    `https://developer.apple.com/documentation/bundleresources/entitlements/com.apple.security.device.audio-input`.
+    It is needed because `hardened_runtime` defaults to `true` in `tauri-utils` 2.9.2 `[O]`, while
+    `bundle.macOS.entitlements` is `null` in `src-tauri/tauri.conf.json` today.
+  - **So the macOS prompt is the only gate.** `INFERENCE:` since `wry` grants any frame's request, the
+    desktop must never load a remote origin in a frame, or that origin could record once the person
+    has allowed the app.
 - Both engines are Rust commands, so neither needs the `http` permission.
 
 **Where they are built.** `INFERENCE:` Whisper in batch 4a and Tesseract in batch 5 of
@@ -484,21 +502,22 @@ straight after the editor rather than after sync.
   carry the `₹299` price at all. No store policy page was opened in this session.
 - Accessibility on any of the three surfaces. The plan carries a WCAG 2.2 AA commitment and an IS
   17802 target, and nothing here tests either.
-- The size of the bundled Tesseract binary and data, and where the downloaded Whisper model lives.
-  Neither spec gives a number, and nothing was built to measure it.
+- The Tesseract size is one Homebrew build on one arm64 Mac (section 4.5), not a shipped sidecar.
+  Windows and Intel sizes were not measured.
 - The webview's own behaviour on an unreliable connection, which is the case an Indian user meets most
   often and which no shell setting addresses.
 
 **What could not be verified.**
 
-- Whether a commercial Windows certificate can be bought by an Indian private company. List prices
-  were opened on 2026-09-18 UTC and are in `35-RELEASE-AND-VERSIONING.md` section 6.2a, but no
-  vendor's validation terms for an Indian company were read.
+- Whether a commercial Windows certificate can be bought by an Indian private company. Certum's
+  required-documents page, read 2026-09-19 UTC, names no country bar; Sectigo's terms were not
+  found. Detail and the recommendation in `35-RELEASE-AND-VERSIONING.md` section 6.2a. Nobody has
+  applied, so no vendor has actually said yes.
 - Whether notarisation adds a cost beyond the 99 USD a year. It should not, and it was not checked.
 - Safari's seven-day figure, and the Chrome and Firefox quota figures, which are carried from the
   plan's section 12 and were not re-opened here.
-- The microphone permission's name in Tauri v2 and the macOS usage string. `71` section 10.3 marks
-  both `UNVERIFIED:`, and neither was opened here.
+- The microphone's wiring was checked on 2026-09-19 UTC (section 4.5) against the locked crates and
+  two vendor pages, not against a built app. Nobody has recorded audio in this shell yet.
 - Whether `macOSPrivateApi: true` has any App Store consequence, which would matter if the native app
   is ever distributed through it.
 

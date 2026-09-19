@@ -6,7 +6,7 @@ tier: canonical
 status: living
 updated: 2026-09-19
 owner: sagnik
-verified_against: f3446ae
+verified_against: 6c44319
 covers: [release, versioning, deprecation, desktop-build, signing]
 ---
 
@@ -218,32 +218,42 @@ Every figure below was read from the page named, opened with `curl -sL --compres
 UTC `[M]`. Prices are the vendor's list prices on that day, before tax.
 
 Route | Price as the page states it | Can Studio Zephyrus, an Indian company, use it? | Source
-Sectigo code signing | "starts at $536.25 per year when customers choose the five-year option". Shorter terms and EV cost more | `UNVERIFIED:` no country restriction was seen on the page. needs: Sectigo's validation terms | `https://sectigo.com/ssl-certificates-tls/code-signing`
-Certum Standard code signing | "price from € 139.00". Validity 1 to 3 years; for an individual or a company | `UNVERIFIED:` no country restriction was seen on the page | `https://www.certum.eu/en/code-signing-certificates/`
-Certum EV code signing | "price from € 329.00". Validity 1 to 3 years; organisations only | `UNVERIFIED:` as above | same page
-Certum Open Source | "price from € 25.00". Dedicated to open source licences | **No.** frontmatter is not an open source licence product | same page
+Sectigo code signing | "starts at $536.25 per year when customers choose the five-year option". Shorter terms and EV cost more | `UNVERIFIED:` no country restriction was seen on the page. The guessed validation article returned 404 on 2026-09-19 UTC. needs: Sectigo's validation terms, asked of Sectigo when buying | `https://sectigo.com/ssl-certificates-tls/code-signing`
+Certum Standard code signing | "price from € 139.00". Validity 1 to 3 years; for an individual or a company; issue time 1 to 5 days; "Cloud-based certificate availability" | **Yes, on the published terms.** Checked 2026-09-19 UTC `[M]`: the required-documents page names no country. For a company it asks an identity check of the applicant (a passport is accepted), a power of attorney only if the applicant cannot represent the company alone, and "company registration document, when the company is not listed in the registry". `UNVERIFIED:` that Certum's automatic identity check accepts an Indian passport. needs: Certum's answer at purchase | `https://www.certum.eu/en/code-signing-certificates/` and `https://support.certum.eu/en/code-signing-required-documents/`
+Certum EV code signing | "price from € 329.00". Validity 1 to 3 years; organisations only | **Yes, on the published terms**, the same page as Standard, which adds a utility bill issued for the organisation. **Not worth the premium**: see the SmartScreen note below | the same two pages
+Certum Open Source | "price from € 25.00". Dedicated to open source licences | **No.** frontmatter is not an open source licence product. The required-documents page adds that it is issued only for individuals and is revoked if used on software distributed commercially `[M]` | same two pages
 Azure Trusted Signing, Basic | 9.99 USD a month, meter "Basic Account" | **No.** Public trust is for organisations in a listed set of countries, and India is not among them | `https://prices.azure.com/api/retail/prices?$filter=contains(serviceName,'Signing')` and `https://learn.microsoft.com/en-us/azure/artifact-signing/quickstart`
 Azure Trusted Signing, Premium | 99.99 USD a month, meter "Premium Account" | **No**, for the same reason | the same two pages
+Microsoft Store | No registration fee for a company account, per Microsoft's page. **It does not remove the certificate**: Tauri's Store route submits an MSI or EXE, and Microsoft requires that binary "digitally signed with a code signing certificate that chains up to" a CA in its Trusted Root Program | Yes, as a second channel once a certificate exists | `https://learn.microsoft.com/en-us/windows/apps/publish/partner-center/account-types-locations-and-fees`, `https://learn.microsoft.com/en-us/windows/apps/publish/publish-your-app/msi/app-package-requirements` and `https://v2.tauri.app/distribute/microsoft-store/`, all 2026-09-19 UTC `[M]`
 
 **The Azure answer is re-checked, not carried.** Microsoft's quickstart lists the countries whose
 organisations can get public trust certificates. India is not on the list, which confirms F071.
 
 **Two vendors could not be read from this network** `[O]`.
 
-- DigiCert's page returned a bot-protection page instead of prices.
-- SSL.com failed the TLS handshake through the sandbox's proxy. `UNVERIFIED:` its prices.
+- DigiCert's page returned a bot-protection page instead of prices. Retried 2026-09-19 UTC: it
+  redirects to a health probe. `UNVERIFIED:` its prices. needs: a browser read.
+- SSL.com failed the TLS handshake through the sandbox's proxy, again on 2026-09-19 UTC.
+  `UNVERIFIED:` its prices. needs: a browser read.
 
-**What the prices do not tell us.** `UNVERIFIED:` each needs the vendor's own terms, read before
-buying.
+**What the prices do not tell us**, rechecked 2026-09-19 UTC.
 
-- Which term Certum's "price from" refers to. The page shows a validity of 1 to 3 years beside it.
-- The cost of the hardware token or cloud key storage each vendor requires, which may be extra.
-- Whether a standard certificate or only EV avoids the Windows SmartScreen warning for a new
-  publisher. Neither page says.
-- Whether each vendor validates an Indian private limited company, and how long that takes.
+- **Settled: EV buys nothing against SmartScreen.** Microsoft's page says "EV certificates no longer
+  bypass SmartScreen", and that a premium for EV to avoid the warning "is no longer justified" `[M]`
+  `https://learn.microsoft.com/en-us/windows/apps/package-and-deploy/smartscreen-reputation`.
+  A signed app starts with a warning either way, and reputation builds with clean installs.
+- **Settled for Certum: validation of a company.** No country is named, per the Certum row above.
+  Sectigo's terms were not found.
+- `UNVERIFIED:` which term Certum's "price from" refers to. The page shows 1 to 3 years beside it,
+  and the store (`shop.certum.eu`) did not answer from this network. needs: the store's price list.
+- `UNVERIFIED:` whether cloud key storage costs extra. Certum advertises "Cloud-based certificate
+  availability" and does not price it. needs: the same price list.
 
-**Cheapest route seen that an Indian company may be able to use.** `INFERENCE:` Certum Standard,
-from €139, then Sectigo from $536.25 a year on a five-year term.
+**Recommended route: Certum Standard, with the company's data**, needs founder (proposed 19 Sep,
+founder review). It is the cheapest route seen that names no bar to an Indian company, and EV's
+extra €190 buys no SmartScreen standing. Rejected: Sectigo, dearer and its terms unread.
+
+Then list the signed app in the Microsoft Store as well, which costs nothing more.
 
 The founder chooses, because it is money. **Buying one is a paid action for a founder, never for an
 agent.**

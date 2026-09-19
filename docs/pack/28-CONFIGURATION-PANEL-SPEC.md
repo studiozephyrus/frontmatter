@@ -6,7 +6,7 @@ tier: canonical
 status: living
 updated: 2026-09-19
 owner: sagnik
-verified_against: 31d3644
+verified_against: 6c44319
 covers: [config-panel, S35, S36, S37, S38, audit]
 ---
 
@@ -413,7 +413,7 @@ Key | Type | Bounds | Default | Read by | On lowering
 `routing.voice.restructure.free` / `.pro` | `list<modelId>` | Gate A and gate B rows only | Groq `openai/gpt-oss-20b`, Cloudflare `@cf/qwen/qwen3-30b-a3b-fp8`, Cerebras `gpt-oss-120b`, paid Cloudflare, on both plans. `INFERENCE:` `71` section 5.6 | The router, for `voice.restructure` and `voice.classify` | Applies to the next call
 `routing.desktop.voice` | `modelId` | `small.en`, `large-v3-turbo` | `small.en` | The Tauri transcription command | Applies to the next download
 `voice.timeout.restructureMs` | `int` | 500 to 30,000. `INFERENCE:` the bounds are `71`'s | **4000** | `restructureTranscript` | Next call
-`voice.timeout.transcribeMs` | `int` | 500 to 60,000. `INFERENCE:` | `UNVERIFIED:` unset until `71` section 15 | `transcribeTurn` | Next call
+`voice.timeout.transcribeMs` | `int` | 500 to 60,000. `INFERENCE:` | `UNVERIFIED:` unset. needs: the latency bench of `71` section 15, which sets it from the 95th percentile. `flag.voice` stays off until the bench has run, so no live call runs unbounded | `transcribeTurn` | Next call
 `voice.checks.medium.maxGrowthPct` | `int` | 0 to 100 | **10** | The medium check of `71` section 5.5 | Next call
 `voice.checks.high.minPct` | `int` | 1 to 100 | **40** | The high check | Next call
 `voice.checks.high.maxPct` | `int` | 100 to 300 | **130** | The high check | Next call
@@ -423,19 +423,19 @@ Key | Type | Bounds | Default | Read by | On lowering
 `voice.commands.verbs` | `list<string>` | 1 to 50 entries | The list in `71` section 7.4 | The stage 1 command rule | Next turn
 `voice.commands.maxWords` | `int` | 1 to 50 | **12** | The stage 1 command rule | Next turn
 `voice.command.maxSelectionWords` | `int` | 1 to 5,000 | **1500** | `runVoiceCommand`, and the refusal `E569` | Next command
-`voice.cf.silenceThreshold` | `number` | `UNVERIFIED:` Cloudflare's accepted range was not opened | `UNVERIFIED:` unset | The Cloudflare speech adapter's `hallucination_silence_threshold` | Next call
-`voice.upload.marginPct` | `int` | 0 to 100 | `UNVERIFIED:` the research says a margin and names no number | The transcribe route, before any provider call | Next upload
+`voice.cf.silenceThreshold` | `number`, seconds | 0 to 30. `INFERENCE:` the bounds are ours. Cloudflare's model page, opened 2026-09-19 UTC `[M]`, types the field as a `number`, "Optional threshold (in seconds) to skip silent periods that may cause hallucinations", and states no range and no default | Unset, and an unset row sends no `hallucination_silence_threshold` at all, so Cloudflare's own behaviour applies | The Cloudflare speech adapter's `hallucination_silence_threshold` | Next call
+`voice.upload.marginPct` | `int` | 0 to 100 | **25**, resolved (proposed 19 Sep, founder review). The research names no number. At 25 the largest Pro body is 1,500,000 bytes, a third of Vercel's 4.5 MB body limit, so a variable-bitrate overshoot passes and a padded upload does not. Rejected: 0, which refuses an honest overshoot | The transcribe route, before any provider call | Next upload
 `routing.pdf.vision.pro` | `list<modelId>` | Gate A and gate B rows with `vision: true` only | `@cf/google/gemma-4-26b-a4b-it` | The PDF vision route, for `pdf.vision` | Next call
 `pdf.vision.prompt` | `string` | Non-empty | The text in `72` section 3.4 | The PDF vision route | Next call; the audit record keeps the old text
-`pdf.vision.maxImageBytes` | `int` | `UNVERIFIED:` | `UNVERIFIED:` unset until measured, `72` section 3.5 | The PDF vision route | Next call
+`pdf.vision.maxImageBytes` | `int` | 1 to 4,500,000. The ceiling is Vercel's: "The maximum payload size for the request body or the response body of a Vercel Function is 4.5 MB", with a 413 above it, opened 2026-09-19 UTC `[M]` at `https://vercel.com/docs/functions/limitations`. Cloudflare's Gemma 4 page states no image size limit `[M]` | `UNVERIFIED:` unset, so only the platform's 413 applies. needs: the 200 dpi scan fixture of `72` section 13 run through the renderer, which gives the real page size. `flag.pdf.vision` stays off until then | The PDF vision route | Next call
 `pdf.ocr.dpi` | `int` | 100 to 400. `INFERENCE:` | **200** | The page renderer before OCR | Next conversion
 `pdf.ocr.wordFloor` | `int` | 0 to 100 | **80** | The report's low-confidence count | Next conversion
 `pdf.ocr.pageFloor` | `int` | 0 to 100 | **0** until measured, `72` section 6.1 | The page filter, and `E531` | Next conversion
-`pdf.classify.sparseChars` | `int` | 0 to 1,000. `INFERENCE:` | `UNVERIFIED:` unset | The page classifier of `72` section 3.1 | Next conversion
-`pdf.heading.maxChars` | `int` | 1 to 1,000. `INFERENCE:` | `UNVERIFIED:` unset | The heading ranker | Next conversion
+`pdf.classify.sparseChars` | `int` | 0 to 1,000. `INFERENCE:` | `UNVERIFIED:` unset, so no page is flagged `sparse-text-page`. needs: the `pdf/mixed` and `pdf/scan` fixtures of `72` section 13, which do not exist yet (`test/fixtures/pdf/` is absent at `6c44319` `[O]`) | The page classifier of `72` section 3.1 | Next conversion
+`pdf.heading.maxChars` | `int` | 1 to 1,000. `INFERENCE:` | `UNVERIFIED:` unset, so no heading-sized line is demoted for length. needs: the `pdf/untagged` fixture of `72` section 13, not built yet `[O]` | The heading ranker | Next conversion
 `pdf.furniture.minShare` | `int`, per cent | 1 to 100 | **50**. `INFERENCE:` | The running-furniture rule | Next conversion
 `pdf.furniture.minPages` | `int` | 2 to 100 | **3**. `INFERENCE:` | The running-furniture rule | Next conversion
-`pdf.progress.afterMs` | `int` | 0 to 10,000. `INFERENCE:` | `UNVERIFIED:` unset | The progress sheet | Next conversion
+`pdf.progress.afterMs` | `int` | 0 to 10,000. `INFERENCE:` | **2000**, resolved (proposed 19 Sep, founder review). Nielsen's response-time limits say "Anything slower than 10 seconds needs a percent-done indicator", and call one overkill between 2 and 10 seconds; opened 2026-09-19 UTC `[M]` at `https://www.nngroup.com/articles/response-times-3-important-limits/`. At 2 s every conversion that reaches 10 s already shows its count and its cancel control. Rejected: 0, which flashes on a fast text PDF. `72` section 11 waits for a tab measurement instead; this threshold is about people, not devices | The progress sheet | Next conversion
 
 ---
 

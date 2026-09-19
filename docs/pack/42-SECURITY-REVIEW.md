@@ -4,8 +4,8 @@ title: Security review
 mode: explanation
 tier: canonical
 status: living
-verified_against: e532e32
-updated: 2026-09-18
+verified_against: 6c44319
+updated: 2026-09-19
 owner: sagnik
 covers: [security-findings]
 ---
@@ -114,7 +114,8 @@ validated `makeGetFile` wrapper. `src/modules/repository/application/merge-note.
 the response, so this one also reads rather than probes.
 
 **Blast radius.** Anything the `GITHUB_REPO_TOKEN` can reach, which is a value this review did not
-see and whose scopes are therefore **UNVERIFIED**. If it is an account-wide token, every private
+see and whose scopes are therefore **UNVERIFIED**. needs: the owner of the token reading its scopes
+on GitHub's token settings page; an agent must not read the value. If it is an account-wide token, every private
 repository on the account is readable through a signed-in session. Today one login is permitted, so
 the attacker has to be that person or hold their session; that is the only thing keeping this from
 being reachable by a stranger, and it stops being true on the first second account.
@@ -452,8 +453,12 @@ own domain as the referrer source.
 **A second, separate defect on the same line.** A vault-relative image on a **public** page is
 rewritten to `/api/vault/raw/...`, which returns 401 to an anonymous reader. So a published note
 whose images are ordinary vault files shows broken images to everyone who is not signed in.
-**UNVERIFIED against a running app**, but the route's auth check and the rewrite are both
-unconditional in the source.
+**Half checked against the live app** on 2026-09-19 UTC `[O]`: an anonymous
+`curl -sI https://frontmatter.in/api/vault/raw/README.md` returns `401`. The rewrite is
+`src/modules/preview/presentation/markdown/image-src.ts:15`.
+
+`UNVERIFIED:` a published page with a
+vault image, rendered for a signed-out reader. needs: one such page published on the live app.
 
 **Fix.**
 
