@@ -48,6 +48,7 @@ ADR | Decision in one line | Source of the decision
 [ADR-0014](ADR-0014-free-cap-as-tested-panel-value.md) | The Free document cap is a panel value, A/B tested on new accounts before it is fixed | D11, 18 September 2026
 [ADR-0015](ADR-0015-one-live-collaborator-on-free.md) | Free allows one live collaborator per document, on cost | Founders' screen review, 18 September 2026
 [ADR-0016](ADR-0016-free-model-chain-and-training-gate.md) | Free AI runs on a fallback chain of free providers, and any provider that trains on inputs is barred | `27-MODEL-ROUTING-SPEC.md`, 18 September 2026
+[ADR-0020](ADR-0020-voice-typing.md) | Voice typing on free speech-to-text, restructured in three levels plus raw, with a hybrid command mode, every edit a proposal | D14, widened 19 September 2026
 
 ## Contradictions these records found
 
