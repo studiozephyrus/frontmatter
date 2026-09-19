@@ -1019,16 +1019,16 @@ function rail({ outline, extra = '', showFoot = true, credits = [7, CAPS.edits],
 // share icon, and either the mode segment or the avatar. The bottom bar follows
 // Material's navigation bar, with the active item in a pill and AI in the accent blue.
 const IOSBAR = `<div class="iosbar"><span>9:41</span><span class="pillbox">${ic('signal_cellular_alt', 16)}${ic('wifi', 16)}${ic('battery_full', 18)}</span></div>`;
-function phone({ title, body, bottom = 'doc', overlay = '', right = '', ttlExtra = '', bar = true, mode = null, sub = null }) {
+function phone({ title, body, bottom = 'doc', overlay = '', right = '', ttlExtra = '', bar = true, mode = null, sub = null, items = null }) {
   if (mode && !right) right = pmodeseg(mode);
   if (sub === null) sub = mode ? `Zephyrus booking ${ic('cloud_done', 13)}` : '';
-  const items = [['home', 'Home'], ['search', 'Search'], ['auto_awesome', 'AI'], ['format_list_bulleted', 'Outline'], ['more_horiz', 'More']];
+  if (!items) items = [['home', 'Home'], ['search', 'Search'], ['auto_awesome', 'AI'], ['format_list_bulleted', 'Outline'], ['more_horiz', 'More']];
   const tail = right ? right : `<span class="ibtn">${ic('search', 20)}</span><span class="avatar" style="background:#18181b">SM</span>`;
   return `<div class="phone">
   ${IOSBAR}
   <header class="top"><span class="ibtn">${ic('menu', 22)}</span><span class="mark">fm</span><span class="ttlbox"><span class="ttl">${title}</span>${sub ? `<span class="tsub">${sub}</span>` : ''}</span>${ttlExtra}<span class="topright">${mode ? `<span class="ibtn">${ic('share', 18)}</span>` : ''}${tail}</span></header>
   <div class="pbody">${body}${overlay}</div>
-  ${bar ? `<div class="bottombar">${items.map(([n, l]) => `<span class="bi${n === bottom ? ' on' : ''}${n === 'auto_awesome' ? ' ai' : ''}"><span class="bpill">${ic(n, 22)}</span><span>${l}</span></span>`).join('')}</div>` : ''}
+  ${bar ? `<div class="bottombar">${items.map(([n, l]) => `<span class="bi${n === bottom ? ' on' : ''}${n === 'auto_awesome' ? ' ai' : ''}${n === 'mic' ? ' mic' : ''}"><span class="bpill">${ic(n, 22)}</span><span>${l}</span></span>`).join('')}</div>` : ''}
   <div class="homeind"><i></i></div></div>`;
 }
 function pdrawer(inner, side = 'left') {
@@ -1074,10 +1074,10 @@ const PHONE_TREE = `<div class="sidehead">${ic('chevron_right', 16)} Tree<span c
 void PHONE_TREE;
 
 function page(title, body, cls = '') {
-  return `<!doctype html><html lang="en" class="${cls}"><head><meta charset="utf-8"><title>${title}</title><style>${CSS}</style></head><body>${body}</body></html>`;
+  return `<!doctype html><html lang="en" class="${cls}"><head><meta charset="utf-8"><title>${title}</title><style>${CSS}${EXTRA_CSS}</style></head><body>${body}</body></html>`;
 }
 
-const screens = {};
+const screens = {}; let EXTRA_CSS = ''; // S41 and S42 append their styles here, so no line above moves
 // Each screen is written twice: sNN-name.html (1440x900) and sNN-name-phone.html (390x844).
 function screen(id, title, desktop, phoneHtml, cls = '') {
   screens[id] = page(title, desktop, cls);
@@ -2393,6 +2393,286 @@ phone({ mode: null, title: 'Deposit by UPI', sub: `tasks/deposit-upi.md`, right:
 <div class="diff"><div class="del">-status: Doing</div><div class="add">+status: Review</div></div>
 <div class="acts" style="flex-direction:column"><span class="btn" style="height:42px;flex:none">Accept</span><span class="btn" style="height:42px;flex:none">Reject</span><span class="btn" style="height:42px;flex:none">Reply</span></div>
 <div class="fine">Nothing moves until a person accepts.</div></div><div class="cbody"><h4>Acceptance</h4><div class="li">${ic('check_box', 16)} A deposit carries the booking name</div><div class="li">${ic('check_box_outline_blank', 16)} An unpaid slot frees itself after 30 minutes</div></div><span class="btn" style="height:42px">${ic('open_in_new', 16)} Open as a document</span></div></div>` }));
+
+// ---------------------------------------------------------------------------
+// S41 and S42 styles, kept apart from CSS above so the line numbers other specs cite do not move.
+EXTRA_CSS = `
+/* S41 voice: the listening pill, the pending insertion, the command proposal */
+.vpill{position:absolute;left:50%;transform:translateX(-50%);bottom:22px;z-index:5;display:flex;align-items:center;gap:10px;height:46px;padding:0 8px 0 10px;border-radius:999px;background:var(--bg);border:1px solid var(--border-strong);box-shadow:0 12px 36px rgba(17,18,22,.16);font-size:12.5px;white-space:nowrap}
+.vpill .rec{width:30px;height:30px;border-radius:50%;background:var(--ai);color:#fff;display:grid;place-items:center;flex:none}
+.vpill .t{font-family:var(--font-mono);font-size:12px;color:var(--fg-muted);font-variant-numeric:tabular-nums}
+.vpill .vs{width:1px;height:22px;background:var(--border)}
+.vpill .lv{display:inline-flex;align-items:center;gap:4px;height:28px;padding:0 8px 0 10px;border:1px solid var(--border);border-radius:999px;font-weight:500;color:var(--fg)}
+.vpill .lv em{font-style:normal;font-weight:400;color:var(--muted)}
+.vpill .hold{display:inline-flex;align-items:center;gap:6px;color:var(--muted);font-size:11.5px;padding-right:6px}
+.wave{display:inline-flex;align-items:center;gap:2px;height:24px}
+.wave i{display:block;width:3px;border-radius:2px;background:var(--ai)}
+.wave.big{gap:3px;height:56px}.wave.big i{width:4px}
+.pend{color:var(--fg-muted);text-decoration:underline;text-decoration-color:color-mix(in srgb,var(--ai) 55%,transparent);text-decoration-thickness:1.5px;text-underline-offset:4px}
+.pendbox{position:relative;border-left:2px solid color-mix(in srgb,var(--ai) 50%,transparent);padding:2px 0 2px 14px;margin:14px 0 6px -16px}
+.pendbar{display:flex;align-items:center;gap:8px;margin-top:8px;font-size:11.5px;color:var(--muted);flex-wrap:wrap}
+.pendbar .vsrc{display:inline-flex;align-items:center;gap:5px;color:var(--ai);font-weight:500}
+.pendbar .k{display:inline-flex;align-items:center;gap:4px}
+.pendbar .btn{height:24px;font-size:11.5px;padding:0 9px}
+.selp{background:color-mix(in srgb,var(--ai) 10%,transparent);border-radius:4px;box-shadow:0 0 0 4px color-mix(in srgb,var(--ai) 10%,transparent)}
+.ghostlist{border:1px dashed color-mix(in srgb,var(--ai) 55%,transparent);border-radius:8px;padding:6px 12px;margin:10px 0;background:color-mix(in srgb,var(--ai) 3%,var(--bg))}
+.ghostlist ul{margin:.2em 0}
+.ghostlist .gl{font-size:11px;color:var(--ai);font-weight:500;display:flex;align-items:center;gap:5px}
+.vprop{border:1px solid color-mix(in srgb,var(--ai) 35%,transparent);border-radius:12px;background:var(--bg);box-shadow:0 12px 36px rgba(17,18,22,.12);padding:12px 14px;display:flex;flex-direction:column;gap:8px;font-size:12.5px}
+.vprop .who{display:flex;align-items:center;gap:6px;font-size:11.5px;color:var(--muted)}
+.vprop .who b{color:var(--fg);font-weight:600}
+.vprop .who span::before{content:'·';margin-right:6px}
+.vprop .acts{display:flex;gap:6px;align-items:center;flex-wrap:wrap}
+.vprop .acts .btn{height:28px;font-size:12px}
+.vprop .alt{font-size:12px;color:var(--link)}
+.vprop .fine{font-size:11px;color:var(--muted)}
+.lvls{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;max-width:720px;margin:4px 0 6px}
+.lvls div{border:1px solid var(--border);border-radius:10px;padding:10px 12px;font-size:12px;color:var(--fg-muted);line-height:1.45}
+.lvls div b{display:flex;align-items:center;gap:6px;font-size:13px;color:var(--fg);margin-bottom:3px}
+.lvls div.on{border-color:var(--ai);box-shadow:inset 0 0 0 1px var(--ai)}
+.lvls div.on b{color:var(--ai)}
+.srow.vdim .t{color:var(--muted)}.srow.vdim .sel{opacity:.55}
+.vnote{display:flex;gap:10px;align-items:flex-start;max-width:720px;margin-top:18px;padding:12px 14px;border:1px solid var(--border);border-radius:10px;background:var(--bg-subtle);font-size:12.5px;color:var(--fg-muted);line-height:1.5}
+.vnote b{color:var(--fg);font-weight:600}
+.vnote .ic{color:var(--success);flex:none;margin-top:1px}
+.phone .bottombar .bi.mic.on .bpill{background:var(--ai);color:#fff}
+.phone .bottombar .bi.mic{color:var(--ai)}
+.vsheet{text-align:center}
+.vsheet .st{display:flex;align-items:center;justify-content:center;gap:8px;font-size:13px;color:var(--fg-muted);margin:6px 0 4px}
+.vsheet .st b{color:var(--fg)}
+.vsheet .live{font-size:14px;color:var(--fg-muted);font-style:italic;margin:6px 4px 12px;line-height:1.5}
+.vsheet .row{display:flex;justify-content:center;gap:8px;margin-bottom:14px}
+.vsheet .stop{width:64px;height:64px;border-radius:50%;background:var(--ai);color:#fff;display:grid;place-items:center;margin:0 auto 8px}
+/* S42 PDF to Markdown */
+.starts2{display:flex;flex-direction:column;gap:2px;max-width:420px;margin-top:6px}
+.starts2 .s{display:flex;align-items:center;gap:10px;padding:8px 10px;border-radius:8px;font-size:14px;color:var(--fg-muted)}
+.starts2 .s .ic{color:var(--muted)}
+.starts2 .s em{margin-left:auto;font-style:normal;font-size:11.5px;color:var(--muted)}
+.starts2 .s.on{background:var(--hover);color:var(--fg)}
+.starts2 .s.on .ic{color:var(--ai)}
+.starts2 .s .new{font-size:10.5px;font-weight:600;color:var(--ai);border:1px solid color-mix(in srgb,var(--ai) 35%,transparent);border-radius:999px;padding:0 6px;margin-left:6px}
+.pdffile{display:flex;align-items:center;gap:10px;padding:10px 14px;border-bottom:1px solid var(--border);font-size:13px}
+.ic.pdf{color:var(--danger)}
+.pdffile .m{color:var(--muted);font-size:12px}
+.pdffile .sp{flex:1}
+.cprog{padding:10px 14px;border-bottom:1px solid var(--border);display:flex;flex-direction:column;gap:8px;font-size:12.5px}
+.cprog .l{display:flex;align-items:center;gap:8px}
+.cprog .l .sp{flex:1}
+.pages{display:flex;gap:3px}
+.pages i{flex:1;height:8px;border-radius:2px;background:var(--panel-2);border:1px solid var(--border)}
+.pages i.t{background:color-mix(in srgb,var(--success) 55%,transparent);border-color:transparent}
+.pages i.o{background:color-mix(in srgb,#b8791b 55%,transparent);border-color:transparent}
+.pages i.w{background:repeating-linear-gradient(45deg,var(--panel-2) 0 3px,color-mix(in srgb,var(--ai) 25%,transparent) 3px 6px)}
+.legend{display:flex;gap:12px;font-size:11px;color:var(--muted)}
+.legend span{display:inline-flex;align-items:center;gap:5px}
+.legend b{display:inline-block;width:10px;height:8px;border-radius:2px}
+.mdprev{font-family:var(--font-mono);font-size:12px;line-height:1.65;color:var(--fg);white-space:pre-wrap;padding:10px 14px;background:var(--bg-subtle)}
+.mdprev .lo{background:color-mix(in srgb,#b8791b 20%,transparent);border-bottom:1.5px dotted #b8791b;border-radius:2px}
+.mdprev .mu{color:var(--muted)}
+.flagrow{display:flex;align-items:flex-start;gap:8px;padding:5px 0;font-size:12.5px}
+.flagrow .ic{flex:none;margin-top:1px;color:#b8791b}
+.flagrow.ok .ic{color:var(--success)}
+.flagrow em{display:block;font-style:normal;font-size:11.5px;color:var(--muted)}
+.cvt{display:grid;grid-template-columns:minmax(0,1fr) 340px;gap:22px;align-items:start}
+.cvt .ccard{border:1px solid var(--border);border-radius:12px;overflow:hidden;background:var(--bg)}
+.cvt .ccard .h{display:flex;align-items:center;gap:8px;padding:9px 14px;border-bottom:1px solid var(--border);font-size:12.5px;font-weight:600;background:var(--bg-subtle)}
+.cvt .ccard .h .sp{flex:1}
+.cvt .ccard .h .seg{font-weight:400}
+.cvt .ccard .b{padding:10px 14px}
+.dest{display:flex;flex-direction:column;gap:8px;font-size:12.5px}
+.dest .fld{display:flex;align-items:center;gap:8px;height:34px;border:1px solid var(--border-strong);border-radius:8px;padding:0 10px;background:var(--bg)}
+.dest .fld .sp{flex:1}
+.dest .lb{font-size:11.5px;color:var(--muted)}
+.keepnote{display:flex;gap:8px;align-items:flex-start;font-size:12px;color:var(--fg-muted);line-height:1.45;padding:10px 12px;border-radius:8px;background:var(--bg-subtle);border:1px solid var(--border)}
+.keepnote .ic{color:var(--success);flex:none;margin-top:1px}
+`;
+// S41 voice, drawn 19 September (docs/pack/71-VOICE-SPEC.md). Push-to-talk on Cmd or
+// Ctrl + period. The raw transcript lands at once as a pending insertion, the restructured
+// text replaces it while still pending, Tab accepts and Esc swaps to raw (71 section 8.2).
+// Tone applies at High only, so at Medium it is drawn greyed (71 section 5.2). A command
+// is a change-queue proposal, never an edit (71 section 7.3). Audio is never stored.
+const WAVE_H = [6, 10, 16, 22, 14, 8, 18, 24, 12, 7, 15, 20, 11, 6, 9, 17, 23, 13, 8, 5];
+const wave = (big = false, n = WAVE_H.length) => `<span class="wave${big ? ' big' : ''}">${WAVE_H.slice(0, n).map(h => `<i style="height:${big ? Math.round(h * 2.2) : h}px"></i>`).join('')}</span>`;
+const VPILL = `<div class="vpill"><span class="rec">${ic('mic', 18)}</span>${wave()}<span class="t">0:14</span><i class="vs"></i>
+<span class="lv">Medium <em>· neutral tone at High only</em> ${ic('expand_more', 14)}</span><i class="vs"></i>
+<span class="hold"><span class="kbd">⌘ .</span> held · release to finish</span></div>`;
+const PEND_TEXT = `<p class="pend">The deposit is 200 rupees and follows three rules:</p>
+<ul class="pend"><li>Refunded in full if the client cancels a day before</li><li>Kept if the client does not come</li><li>Taken by UPI, with the booking name attached</li></ul>`;
+const PEND_BAR = (phoneW = false) => phoneW
+  ? `<div class="pendbar"><span class="vsrc">${ic('mic', 13)} Voice, Medium · pending</span><span class="sp" style="flex:1"></span><span class="btn">${ic('check', 14)} Accept</span><span class="btn">Raw</span></div>`
+  : `<div class="pendbar"><span class="vsrc">${ic('mic', 13)} Voice, Medium · pending</span><span class="k"><span class="kbd">Tab</span> accept</span><span class="k"><span class="kbd">Esc</span> raw words</span><span class="btn">Show raw</span><span style="margin-left:auto">Speak again to add to this block</span></div>`;
+const DOC_VOICE = DOC_BRIEF.replace(/<ul>.*?<\/ul>/, '').replace('<h2>The one metric</h2>', `<h2>The deposit</h2><div class="pendbox">${PEND_TEXT}${PEND_BAR()}</div><h2>The one metric</h2>`);
+const OUTLINE_VOICE = `<div class="on">00-BRIEF</div><div class="l2">The first user</div><div class="l2 on">The deposit</div><div class="l2">The one metric</div>`;
+const V_ITEMS = [['home', 'Home'], ['search', 'Search'], ['mic', 'Voice'], ['auto_awesome', 'AI'], ['more_horiz', 'More']];
+screen('s41-voice', 'Voice, dictating', `<div class="app">
+${top({ tabs: TABS_MAIN })}
+<div class="body">
+${tree({ projects: PROJECTS_MAIN, foot: `${ic('sync', 14)} Synced 2 min ago` })}
+<main class="main">${modebar('Live', `<span class="pill ai">${ic('mic', 13)} Listening</span>`)}
+<div class="doc"><div class="md">${DOC_VOICE}</div></div>
+${VPILL}
+</main>
+${rail({ outline: OUTLINE_VOICE, fab: false })}
+</div></div>`,
+phone({ mode: 'Live', title: '00-BRIEF.md', bottom: 'mic', items: V_ITEMS, body: `${pmodebar('Live')}<div class="pdoc"><div class="md"><h2 style="margin-top:0">The deposit</h2><div class="pendbox" style="margin-left:-12px;padding-left:10px"><p class="pend">The deposit is 200 rupees and follows three rules:</p></div></div></div>`,
+  overlay: psheet(`<div class="vsheet"><div class="st">${ic('mic', 15)} <b>Listening</b> · 0:14</div>${wave(true)}
+<div class="live">refunded in full if the client cancels a day before…</div>
+<div class="row"><span class="chip on">Medium ${ic('expand_more', 13)}</span><span class="chip">${ic('bolt', 13)} Command</span></div>
+<div class="stop">${ic('stop', 30)}</div>
+<div class="fine" style="text-align:center">Tap to stop. Your words land as a pending block you accept. Audio is never stored.</div></div>`) }));
+
+// Frame b: a command. The person selected a paragraph and said "make this a list". It is
+// a proposal on the selection with Show diff and Reject; nothing in the file changes until
+// it is accepted (71 sections 7.3 and 8.3). The proposal records the command, never the words.
+const CMD_PARA = 'Today the owner books from WhatsApp messages by hand into a paper diary, takes deposits by UPI and then forgets who paid, and wants a link to put in the Instagram bio.';
+const DOC_CMD = `<h1>Zephyrus booking, in one page</h1>
+<p>A booking page for small studios that take appointments by WhatsApp today. One link, a calendar of open slots, a deposit, and a reminder the day before.</p>
+<h2>The first user</h2>
+<p>A two-chair salon in Kolkata that loses about four bookings a week to double-booking and no-shows. The owner runs everything from a phone.</p>
+<p><span class="selp">${CMD_PARA}</span></p>
+<div class="ghostlist"><div class="gl">${ic('mic', 13)} Proposed, not written</div><ul><li>Books from WhatsApp messages, by hand, into a paper diary</li><li>Takes deposits by UPI, then forgets who paid</li><li>Wants a link to put in the Instagram bio</li></ul></div>
+__VPROP__
+<h2>The one metric</h2>
+<p>No-shows per hundred bookings, before and after the deposit step.</p>`;
+const VPROP = (w) => `<div class="vprop" style="${w}"><div class="who">${ic('mic', 14)} <b>Voice command</b><span>Make a bullet list, on your selection</span></div>
+<div>One paragraph becomes three bullets, one per thing the owner does.</div>
+<div class="acts"><span class="btn">${ic('difference', 14)} Show diff</span><span class="btn">${ic('close', 14)} Reject</span><span class="alt">Insert as text instead</span></div>
+<div class="fine">Nothing changes until you accept. It waits in Review with your other changes.</div></div>`;
+screen('s41-voice-command', 'Voice, a command', `<div class="app">
+${top({ tabs: TABS_MAIN })}
+<div class="body">
+${tree({ projects: PROJECTS_MAIN, foot: `${ic('sync', 14)} Synced 2 min ago` })}
+<main class="main">${modebar('Live', `<span class="pill ai">${ic('mic', 13)} 1 proposal</span>`)}
+<div class="doc"><div class="md">${DOC_CMD.replace('__VPROP__', VPROP('max-width:520px;margin:-2px 0 18px;box-shadow:0 8px 24px rgba(17,18,22,.08)'))}</div></div>
+</main>
+${rail({ outline: OUTLINE_BRIEF, fab: false })}
+</div></div>`,
+phone({ mode: 'Live', title: '00-BRIEF.md', bottom: 'none', items: V_ITEMS, body: `${pmodebar('Live')}<div class="pdoc"><div class="md"><h2 style="margin-top:0">The first user</h2><p><span class="selp">${CMD_PARA}</span></p>
+<div class="ghostlist"><div class="gl">${ic('mic', 13)} Proposed, not written</div><ul><li>Books from WhatsApp messages, by hand, into a paper diary</li><li>Takes deposits by UPI, then forgets who paid</li><li>Wants a link to put in the Instagram bio</li></ul></div>
+${VPROP('box-shadow:none;margin-top:4px')}</div></div>` }));
+
+// Frame c: the Voice group in settings (71 section 9). The face is four controls: raw or
+// restructured, the level, the tone, and the key. Everything else sits behind More.
+const SET_NAV_V = ['Account', 'Appearance', 'Editor', 'Writing', 'Voice', 'AI', 'Connections', 'Sharing', 'Data and export', 'Shortcuts', 'Plan and usage'];
+const SET_ICON_V = { ...SET_ICON, Voice: 'mic' };
+const LEVELS = [['Low', 'Takes out ums, false starts and self-corrections. Every other word stays, in order.'], ['Medium', 'Also splits sentences, groups paragraphs, and makes a list where you spoke one.'], ['High', 'Rewrites into clear prose in your tone. Every fact, name and number stays.']];
+const SET_VOICE = `<h2>Voice</h2>
+${srow('Clean up what I say', 'Off gives the raw words, exactly as heard, and sends nothing to a text model', TOG(true))}
+<div class="srow" style="border-bottom:0;padding-bottom:2px"><span class="t">How much to clean up<em>Every level keeps your facts. You can see the raw words on any block before you accept it</em></span></div>
+<div class="lvls">${LEVELS.map(([n, d]) => `<div class="${n === 'Medium' ? 'on' : ''}"><b>${n}${n === 'Medium' ? ' · default' : ''}</b>${d}</div>`).join('')}</div>
+<div class="srow vdim"><span class="t">Tone<em>Used at High only. At Low and Medium the words stay yours</em></span>${SEL('Neutral')}</div>
+${srow('Push-to-talk key', 'Hold to speak, release to finish. Hold Option as well to give a command', `<span class="kbd" style="font-size:12px;padding:3px 8px">⌘ .</span>${SEL('Hold')}`)}
+${srow('Language', 'English only for now', `<span class="sel" style="opacity:.7">English</span>`)}
+${srow('More', 'Commands, spelling, your own words, live preview while speaking', ic('chevron_right', 18))}
+<div class="vnote">${ic('lock', 18)}<div><b>Audio is never stored.</b> It is held in memory, sent to be transcribed, and dropped when the words come back. It is never kept to retry, never logged, and never used for training.</div></div>`;
+screen('s41-voice-settings', 'Voice settings', `<div class="app">
+${top({ tabs: [{ n: 'Settings', c: 'grey', on: 1 }], share: false })}
+<div class="body noright" style="grid-template-columns:220px minmax(0,1fr)">
+<aside class="side setnav" style="padding:14px 8px">${SET_NAV_V.map(s => `<div class="row${s === 'Voice' ? ' on' : ''}">${ic(SET_ICON_V[s], 15)}<span class="n">${s}</span></div>`).join('')}</aside>
+<main class="main"><div class="set"><h1>Settings</h1><p class="sub">Settings live on your account, so the web app, the desktop app and your phone agree.</p>${SET_VOICE}</div></main>
+</div></div>`,
+phone({ title: 'Voice', bottom: 'more_horiz', items: V_ITEMS, body: `<div class="pdoc set" style="padding:6px 16px 0">
+${srow('Clean up what I say', 'Off gives the raw words', TOG(true))}
+<div class="lvls" style="grid-template-columns:1fr;gap:6px">${LEVELS.map(([n, d]) => `<div class="${n === 'Medium' ? 'on' : ''}" style="padding:8px 10px"><b>${n}</b>${d}</div>`).join('')}</div>
+<div class="srow vdim"><span class="t">Tone<em>High only</em></span>${SEL('Neutral')}</div>
+${srow('Language', 'English only for now', '')}
+<div class="vnote" style="margin-top:10px">${ic('lock', 16)}<div><b>Audio is never stored.</b> Tap the mic to start, tap again to stop.</div></div></div>` }));
+
+// ---------------------------------------------------------------------------
+// S42 PDF to Markdown, drawn 19 September (docs/pack/72-PDF-TO-MARKDOWN-SPEC.md and the
+// research at docs/research/2026-09-19-pdf/PDF-TO-MARKDOWN.md section 6). Three ways in.
+// Text pages are read in the browser; scanned pages go through Tesseract in the browser.
+// Low-confidence OCR words are flagged in the report, never written as marks in the file.
+// Frame a: the empty document, with Start from a PDF beside the existing starts (72 section 4.1).
+const EMPTY_STARTS = [['auto_awesome', 'Write with AI', '<span class="kbd">Space</span>'], ['table_view', 'A template', ''], ['code', 'Open from GitHub', ''], ['picture_as_pdf', 'Start from a PDF', '']];
+screen('s42-pdf-empty', 'PDF to Markdown, an empty document', `<div class="app">
+${top({ tabs: [...TABS_MAIN.map(t => ({ ...t, on: 0 })).slice(0, 2), { n: 'Untitled.md', c: 'green', on: 1 }] })}
+<div class="body">
+${tree({ projects: [{ ...PROJECTS_MAIN[0], rows: PROJECTS_MAIN[0].rows.map(r => ({ ...r, on: 0 })) }, { n: 'Notes', rows: [{ n: 'meeting-16-sep.md', f: 1 }, { n: 'ideas.md', f: 1 }, { n: 'Untitled.md', f: 1, on: 1 }] }] })}
+<main class="main">${modebar('Live')}
+<div class="doc"><div class="md"><h1 style="color:var(--muted);border:0">Untitled</h1><p style="color:var(--muted)">Start typing, or start from:</p>
+<div class="starts2">${EMPTY_STARTS.map(s => `<div class="s${s[1] === 'Start from a PDF' ? ' on' : ''}">${ic(s[0], 18)}<span>${s[1]}${s[1] === 'Start from a PDF' ? '<span class="new">new</span>' : ''}</span><em>${s[1] === 'Start from a PDF' ? 'Converted in your browser' : s[2]}</em></div>`).join('')}</div>
+<p style="color:var(--muted);font-size:13px;margin-top:18px">${ic('info', 14)} A PDF becomes this document's first version. It is read in your browser and not kept.</p></div></div>
+</main>
+${rail({ outline: '<div style="color:var(--muted)">Nothing yet.</div>', counts: [0, 0, 0] })}
+</div></div>`,
+phone({ mode: 'Live', title: 'Untitled.md', body: `${pmodebar('Live')}<div class="pdoc"><div class="md"><h1 style="color:var(--muted);border:0">Untitled</h1><p style="color:var(--muted)">Start typing, or start from:</p>
+<div class="starts2">${EMPTY_STARTS.map(s => `<div class="s${s[1] === 'Start from a PDF' ? ' on' : ''}" style="padding:11px 10px">${ic(s[0], 20)}<span>${s[1]}</span></div>`).join('')}</div>
+<p style="color:var(--muted);font-size:12.5px;margin-top:14px">A PDF is read on this phone and not kept.</p></div></div>` }));
+
+// Frame b: the AI panel over the workspace, a PDF dropped into it, converting. The PDF is
+// kept in the tab for this panel only. The result lands at the cursor as one proposal.
+const PDF_NAME = 'salon-interviews-aug.pdf';
+const PAGES = [...Array(12)].map((_, k) => k < 7 ? 't' : k < 9 ? 'o' : 'w');
+const PDF_PANEL = (style, phoneW = false) => `<div class="aifloat" style="${style}">
+<div class="target">${ic('description', 14)} Editing <b>00-BRIEF.md</b> · at the cursor, under The first user<span class="sp"></span><span class="swap">Change</span></div>
+<div class="pdffile">${ic('picture_as_pdf', 20, 'pdf')}<div><b>${PDF_NAME}</b><div class="m">12 pages · all pages${phoneW ? '' : ' · <u>choose a range</u>'}</div></div><span class="sp"></span><span class="btn" style="height:28px">Cancel</span></div>
+<div class="cprog"><div class="l">${ic('progress_activity', 15)} <b>Converting</b> · 9 of 12 pages<span class="sp"></span><span style="color:var(--muted)">in your browser</span></div>
+<div class="pages">${PAGES.map(p => `<i class="${p}"></i>`).join('')}</div>
+<div class="legend"><span><b style="background:color-mix(in srgb,var(--success) 55%,transparent)"></b>Text, 7</span><span><b style="background:color-mix(in srgb,#b8791b 55%,transparent)"></b>Scanned, read by OCR, 2</span>${phoneW ? '' : '<span><b style="background:var(--panel-2);border:1px solid var(--border)"></b>Waiting, 3</span>'}</div></div>
+<div class="mdprev">## Salon 4, Gariahat
+<span class="mu">page 8, scanned: this label is not written</span>
+The owner takes a <span class="lo">₹2OO</span> advance on WhatsApp and keeps a <span class="lo">regsiter</span> by the chair for walk-ins.</div>
+<div class="cprog" style="border-top:1px solid var(--border);gap:2px"><div class="flagrow">${ic('warning', 15)}<div>4 words read with low confidence, marked. None is changed for you</div></div>
+${phoneW ? '' : `<div class="flagrow">${ic('warning', 15)}<div>2 headings guessed from font size, because the PDF has no tags</div></div>`}</div>
+<div class="foot">${ic('difference', 13)} Lands as one change for you to accept. The PDF is dropped when this panel closes.</div></div>`;
+screen('s42-pdf-panel', 'PDF to Markdown, in the AI panel', `<div class="app">
+${top({ tabs: TABS_MAIN })}
+<div class="body">
+${tree({ projects: PROJECTS_MAIN, foot: `${ic('sync', 14)} Synced 2 min ago` })}
+<main class="main">${modebar('Live', `<span class="pill ai">${ic('auto_awesome', 13)} AI open</span>`)}
+<div class="doc"><div class="md">${DOC_BRIEF_SHORT.replace(/<ul>.*?<\/ul>/, '')}<p style="border-left:2px solid var(--ai);padding-left:10px;color:var(--muted);font-size:13px">${ic('picture_as_pdf', 14)} The converted pages will be proposed here, at the cursor</p></div>
+${PDF_PANEL('left:60px;right:60px;top:332px')}</div>
+</main>
+${rail({ outline: OUTLINE_BRIEF, fab: false })}
+</div></div>`,
+phone({ mode: 'Live', title: '00-BRIEF.md', bottom: 'auto_awesome', body: `${pmodebar('Live')}<div class="pdoc"><div class="md">${DOC_BRIEF_SHORT}</div></div>`, overlay: `<div class="pdim" style="background:rgba(10,10,10,.12)"></div>${PDF_PANEL('left:8px;right:8px;bottom:8px;z-index:8', true).replace(' · at the cursor, under The first user', '').replace('<span class="sp"></span><span class="swap">Change</span>', '')}` }));
+
+// Frame c: the standalone tool, a source on Import (S22) with its own view. Drop a PDF,
+// preview the markdown with its flags, choose where in notes to file it. Nothing is kept.
+const PDF2 = 'deposit-policy-draft.pdf';
+const TOOL_PREVIEW = `<div class="mdprev" style="background:var(--bg);padding:14px 16px"># Deposit policy, draft
+
+A booking is held for 30 minutes while the deposit is paid by UPI.
+
+## Refunds
+
+- Cancelled a day before: refunded in full
+- Cancelled on the day: kept
+- The salon cancels: refunded in full, the same day
+
+## Fees
+
+| Service | Deposit |
+| --- | --- |
+| Haircut | ₹100 |
+| Colour | <span class="lo">₹25O</span> |
+
+<span class="mu">page 3, scanned: this label is not written</span>
+Signed by the owner, <span class="lo">Sumitra</span> Das.</div>`;
+const TOOL_FLAGS = `<div class="flagrow ok">${ic('check', 15)}<div>2 text pages read directly<em>Headings and the table came from the PDF's own tags</em></div></div>
+<div class="flagrow">${ic('warning', 15)}<div>1 scanned page, read by OCR<em>2 words below confidence 80, marked in the preview</em></div></div>
+<div class="flagrow">${ic('image', 15)}<div>1 image dropped, on page 1<em>Turn on Keep images to upload it with the note</em></div></div>
+<div class="flagrow ok">${ic('check', 15)}<div>Page numbers and the running footer left out<em>They repeated on every page</em></div></div>`;
+const TOOL_DEST = `<div class="dest"><span class="lb">File into</span><div class="fld">${ic('folder', 16)} Notes / policies<span class="sp"></span>${ic('expand_more', 16)}</div>
+<span class="lb">As</span><div class="fld">${ic('description', 16)} deposit-policy-draft.md</div>
+<div style="display:flex;align-items:center;gap:8px;padding:2px 0">${TOG(false)}<span>Keep images<em style="display:block;font-style:normal;font-size:11.5px;color:var(--muted)">Uploads them next to the note</em></span></div>
+<span class="btn primary" style="height:36px">${ic('note_add', 16)} File into Notes</span><span class="btn" style="height:32px">Discard</span>
+<div class="keepnote">${ic('lock', 16)}<span>The PDF is not kept after conversion. It was read in this tab and is dropped when you file or discard.</span></div></div>`;
+screen('s42-pdf-tool', 'Convert a PDF to Markdown', `<div class="app">
+${top({ tabs: [{ n: 'Convert a PDF', c: 'grey', on: 1 }, { n: '00-BRIEF.md', c: 'blue' }] })}
+<div class="body noright">
+${tree({ projects: [{ ...PROJECTS_MAIN[0], rows: PROJECTS_MAIN[0].rows.map(r => ({ ...r, on: 0 })) }, { n: 'Notes', rows: [{ n: 'meeting-16-sep.md', f: 1 }, { n: 'ideas.md', f: 1 }, { n: 'policies', d: 1 }, { n: 'cancellations.md', f: 1, d: 2 }] }] })}
+<main class="main"><div class="page" style="padding:26px 40px;overflow:hidden"><h1>Convert a PDF to Markdown</h1><p class="sub">One PDF in, one note out. Read in your browser, so the file never leaves this computer.</p>
+<div class="cvt"><div class="ccard"><div class="h">${ic('picture_as_pdf', 16, 'pdf')} ${PDF2} · 3 pages<span class="sp"></span><span class="seg tight"><span class="on">Markdown</span><span>Rendered</span></span></div>${TOOL_PREVIEW}</div>
+<div style="display:flex;flex-direction:column;gap:16px"><div class="ccard"><div class="h">${ic('fact_check', 16)} Report</div><div class="b">${TOOL_FLAGS}</div></div><div class="ccard"><div class="b">${TOOL_DEST}</div></div></div></div></div></main>
+</div></div>`,
+phone({ title: 'Convert a PDF', bottom: 'home', body: `<div class="pdoc" style="padding:12px 14px 0;display:flex;flex-direction:column;gap:10px">
+<div class="pdffile" style="border:1px solid var(--border);border-radius:10px">${ic('picture_as_pdf', 20, 'pdf')}<div><b>${PDF2}</b><div class="m">3 pages · converted</div></div></div>
+<div style="border:1px solid var(--border);border-radius:10px;overflow:hidden;max-height:250px">${TOOL_PREVIEW.replace('padding:14px 16px', 'padding:10px 12px;font-size:11px').replace(/# Deposit policy, draft[^]*?## Fees/, '<span class="mu">2 sections above</span>\n\n## Fees')}</div>
+<div class="flagrow">${ic('warning', 15)}<div>2 words read with low confidence<em>Marked in yellow. None is changed for you</em></div></div>
+<div class="dest"><div class="fld">${ic('folder', 16)} Notes / policies<span class="sp"></span>${ic('expand_more', 16)}</div><span class="btn primary" style="height:42px">${ic('note_add', 16)} File into Notes</span></div>
+<div class="keepnote">${ic('lock', 15)}<span>The PDF is not kept after conversion.</span></div></div>` }));
 
 for (const [name, html] of Object.entries(screens)) {
   fs.writeFileSync(path.join(HERE, name + '.html'), html);

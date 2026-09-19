@@ -318,7 +318,7 @@ Later, named | A Max tier above Pro; a community as an opt-in index plus GitHub 
 
 ## 5. The screens
 
-**Forty screens, each on desktop and on the phone.** Thirty-six are the product. Four are the configuration panel of section 30, which only a founder sees. The last two, S39 and S40, are the sheet and the board, drawn on 19 September for the founders' ask to hold sheets and boards on one platform.
+**Forty-two screens, each on desktop and on the phone.** Thirty-eight are the product. Four are the configuration panel of section 30, which only a founder sees. S39 and S40 are the sheet and the board, drawn on 19 September for the founders' ask to hold sheets and boards on one platform. S41 and S42, voice and PDF to Markdown, were drawn the same day for the founders' voice and PDF asks.
 
 **The phone follows the shipped code.**
 
@@ -829,6 +829,43 @@ Later, named | A Max tier above Pro; a community as an opt-in index plus GitHub 
 - `[P]` One card is one markdown file, so a move is one line in one file and two people moving two cards never conflict (`docs/pack/69-BOARDS-SPEC.md` sections 2 and 3).
 - `[M]` Jira and GitHub Projects both say a column limit warns and does not block; Linear keeps descriptions off the card face (`docs/research/2026-09-18-sheets-boards/SCREEN-REFERENCES.md` section 3).
 - `[L]` An agent never moves a card. Its move waits in the change queue, and the diff comes before any accept, as on S20.
+
+## 5d. Voice and PDF to Markdown
+
+### S41. Voice
+
+<div class="pair"><img src="screens/s41-voice.png"><img src="screens/s41-voice-phone.png"></div>
+<div class="pair"><img src="screens/s41-voice-command.png"><img src="screens/s41-voice-command-phone.png"></div>
+<div class="pair"><img src="screens/s41-voice-settings.png"><img src="screens/s41-voice-settings-phone.png"></div>
+
+- Dictating in `00-BRIEF.md`: a small listening pill at the foot of the page with a live waveform, the time, the level (Medium, changeable from the pill) and the push-to-talk key, held.
+- The words land as a pending block, grey and underlined. Tab accepts it, Esc swaps it to the raw words, and Show raw compares the two. Speaking again adds to the same block.
+- The second frame is a command. A paragraph is selected and the person said "make this a list". The list is ghosted under it, and a proposal card offers Show diff, Reject and Insert as text instead. Nothing in the file changes until it is accepted.
+- The third frame is the Voice group in settings: clean up on or off (off is the raw setting), Low, Medium and High with one line each, the tone, the key, English only, and a note that audio is never stored.
+- On the phone the mic sits in the middle of the bottom bar, and Outline steps out of the bar on these screens. A tap opens a listening sheet with the waveform, the level, a Command chip and a stop button.
+
+**Why.**
+
+- `[Z]` The founders asked for free speech to text, English only, cleanup with a raw setting, three levels and a tone, and a command mode that reads intent from context (`docs/pack/71-VOICE-SPEC.md`, the founder's ask).
+- `[P]` Cleaned-up dictation is a model's rewrite of the person's words, so it waits as one pending block for one key, not a delay (`docs/pack/71-VOICE-SPEC.md` section 8.2). A command becomes a proposal on S20 (section 7.3).
+- `[P]` Tone applies at High only, so it is drawn greyed at Medium (`docs/pack/71-VOICE-SPEC.md` section 5.2). Audio lives in memory and is dropped when the words come back (section 13).
+
+### S42. PDF to Markdown
+
+<div class="pair"><img src="screens/s42-pdf-empty.png"><img src="screens/s42-pdf-empty-phone.png"></div>
+<div class="pair"><img src="screens/s42-pdf-panel.png"><img src="screens/s42-pdf-panel-phone.png"></div>
+<div class="pair"><img src="screens/s42-pdf-tool.png"><img src="screens/s42-pdf-tool-phone.png"></div>
+
+- An empty document offers Start from a PDF beside Write with AI, a template and GitHub. The PDF becomes the document's first version.
+- The second frame is the AI panel over the workspace with a 12-page PDF dropped in. It shows pages done by kind, text or scanned, a preview of the markdown with low-confidence OCR words marked, and a line saying the result lands at the cursor as one change to accept. Cancel is always there.
+- The third frame is the standalone tool, Convert a PDF to Markdown: the markdown preview with its flags, a report, a folder picker in notes, Keep images, File into Notes and Discard, and the line "The PDF is not kept after conversion".
+- On the phone the tool is one column: the file, the preview, the flag line, the folder and one button.
+
+**Why.**
+
+- `[Z]` The founders asked for a PDF in and markdown out, with three ways in, and no chat over the PDF (`docs/research/2026-09-19-pdf/PDF-TO-MARKDOWN.md` section 0).
+- `[P]` A text PDF is read in the browser and a scanned page by Tesseract on the device, so the file never leaves the machine (`docs/pack/72-PDF-TO-MARKDOWN-SPEC.md` section 3). Flags are shown and listed, never written into the file (section 6).
+- `[P]` Entry 2 lands as one queue item and changes no byte of the document until it is accepted (`docs/pack/72-PDF-TO-MARKDOWN-SPEC.md` section 4.2).
 
 ## 6. Built in by default, so nobody needs a plugin
 

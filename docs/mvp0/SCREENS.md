@@ -27,14 +27,15 @@ In and out | Drop files or a whole folder. Import from Obsidian, Notion, Google 
 Everywhere | Offline in the browser. The desktop app, with files on disk and no document limit. The phone, with a bottom bar, drawers, quick capture and the share sheet
 Configuration | What each plan allows, the model routing, the provider chain and four feature flags, all set from a panel rather than from the source. Founders only
 Money | Free: 50 cloud documents, 1 GB of uploads, 5 published pages, 1 live collaborator, 7-day history, 1 repository with 20 pushes, 1 Low blueprint and 10 AI edits a month. Pro at ₹299 a month: unlimited, 90-day history, password links, Medium and High, 100 edits and 5 blueprints on Claude, the portfolio
+Voice and PDF | Push-to-talk dictation in English, cleaned up at three levels or left raw, and spoken commands that wait as proposals. A PDF read into markdown in the browser, from an empty document, the AI panel or its own tool
 Later | The portfolio at frontmatter.in/@handle, the MCP server and API, Team, a custom domain, kanban and chart blocks
 
 ## 2. Reading the screens
 
-- **Forty screens.** Thirty-six are the product. Four are the configuration panel, which only a founder sees. The last two are the sheet and the board, drawn on 19 September. Six screens carry a second or third frame for a state the founders asked to see.
+- **Forty-two screens.** Thirty-eight are the product. Four are the configuration panel, which only a founder sees. The sheet, the board, voice and PDF to Markdown were drawn on 19 September. Eight screens carry a second or third frame for a state the founders asked to see.
 - **Each screen** shows the desktop at 1,440 by 900 beside the phone at 390 by 844, both drawn from the design tokens of the shipped app, and then lists what is on it.
 - **The phone follows the shipped code and carries the desktop's theme:** the mark, the title with its project, the editor full width, and the tree and the right pane as drawers.
-- **The bottom bar** carries five actions at thumb height: Home, Search, AI, Outline and More, in that order.
+- **The bottom bar** carries five actions at thumb height: Home, Search, AI, Outline and More, in that order. On the voice screens the mic takes the middle place and Outline steps out.
 - **The order follows a person's day:** sign in, write, decide, share, bring things in, use it everywhere, and then the states nobody wants to see.
 - **The reasons behind each screen** are in the product guide, sections 21 and 22. This sheet shows only what a person sees.
 
@@ -444,3 +445,28 @@ Later | The portfolio at frontmatter.in/@handle, the MCP server and API, Team, a
 - A quick filter row: Mine, Due this week, a label, and text search, never written. Swimlanes are drawn off.
 - The second frame opens a card in a side panel. An agent's proposed move, Doing to Review, is ghosted in Review and shown in the panel as a one-line diff with Accept, Reject and Reply at equal weight.
 - On the phone one column shows at a time, with a switcher of pills and counts, and the pending move sits inside the real card.
+
+## 13. Voice and PDF to Markdown
+
+### S41. Voice
+
+<div class="pair"><img src="screens/s41-voice.png"><img src="screens/s41-voice-phone.png"></div>
+<div class="pair"><img src="screens/s41-voice-command.png"><img src="screens/s41-voice-command-phone.png"></div>
+<div class="pair"><img src="screens/s41-voice-settings.png"><img src="screens/s41-voice-settings-phone.png"></div>
+
+- Dictating in `00-BRIEF.md`: a small listening pill at the foot of the page with a live waveform, the time, the level (Medium, changeable from the pill) and the push-to-talk key, held.
+- The words land as a pending block, grey and underlined. Tab accepts it, Esc swaps it to the raw words, and Show raw compares the two. Speaking again adds to the same block.
+- The second frame is a command. A paragraph is selected and the person said "make this a list". The list is ghosted under it, and a proposal card offers Show diff, Reject and Insert as text instead. Nothing in the file changes until it is accepted.
+- The third frame is the Voice group in settings: clean up on or off (off is the raw setting), Low, Medium and High with one line each, the tone, the key, English only, and a note that audio is never stored.
+- On the phone the mic sits in the middle of the bottom bar, and Outline steps out of the bar on these screens. A tap opens a listening sheet with the waveform, the level, a Command chip and a stop button.
+
+### S42. PDF to Markdown
+
+<div class="pair"><img src="screens/s42-pdf-empty.png"><img src="screens/s42-pdf-empty-phone.png"></div>
+<div class="pair"><img src="screens/s42-pdf-panel.png"><img src="screens/s42-pdf-panel-phone.png"></div>
+<div class="pair"><img src="screens/s42-pdf-tool.png"><img src="screens/s42-pdf-tool-phone.png"></div>
+
+- An empty document offers Start from a PDF beside Write with AI, a template and GitHub. The PDF becomes the document's first version.
+- The second frame is the AI panel over the workspace with a 12-page PDF dropped in. It shows pages done by kind, text or scanned, a preview of the markdown with low-confidence OCR words marked, and a line saying the result lands at the cursor as one change to accept. Cancel is always there.
+- The third frame is the standalone tool, Convert a PDF to Markdown: the markdown preview with its flags, a report, a folder picker in notes, Keep images, File into Notes and Discard, and the line "The PDF is not kept after conversion".
+- On the phone the tool is one column: the file, the preview, the flag line, the folder and one button.

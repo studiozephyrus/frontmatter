@@ -16,7 +16,7 @@ import re
 REPO = pathlib.Path(__file__).resolve().parents[3]
 PLAN = REPO / 'docs/mvp0/PRODUCT-PLAN.md'
 OUT = REPO / 'docs/mvp0/SCREENS.md'
-EXPECTED = 40
+EXPECTED = 42
 
 t = PLAN.read_text(encoding='utf-8')
 screens = t[t.index('### S01.'):t.index('## 6. Built in by default')].rstrip() + '\n'
@@ -38,6 +38,7 @@ screens = re.sub(r'\n{3,}', '\n\n', '\n'.join(kept))
 # The plan numbers the panel group 5b so it sits inside its own part two.
 screens = screens.replace('## 5b. The configuration panel', '## 11. The configuration panel')
 screens = screens.replace('## 5c. Sheets and boards', '## 12. Sheets and boards')
+screens = screens.replace('## 5d. Voice and PDF to Markdown', '## 13. Voice and PDF to Markdown')
 
 found = re.findall(r'^### (S\d\d)\.', screens, re.M)
 assert found == [f'S{i:02d}' for i in range(1, EXPECTED + 1)], found
@@ -72,14 +73,15 @@ In and out | Drop files or a whole folder. Import from Obsidian, Notion, Google 
 Everywhere | Offline in the browser. The desktop app, with files on disk and no document limit. The phone, with a bottom bar, drawers, quick capture and the share sheet
 Configuration | What each plan allows, the model routing, the provider chain and four feature flags, all set from a panel rather than from the source. Founders only
 Money | Free: 50 cloud documents, 1 GB of uploads, 5 published pages, 1 live collaborator, 7-day history, 1 repository with 20 pushes, 1 Low blueprint and 10 AI edits a month. Pro at ₹299 a month: unlimited, 90-day history, password links, Medium and High, 100 edits and 5 blueprints on Claude, the portfolio
+Voice and PDF | Push-to-talk dictation in English, cleaned up at three levels or left raw, and spoken commands that wait as proposals. A PDF read into markdown in the browser, from an empty document, the AI panel or its own tool
 Later | The portfolio at frontmatter.in/@handle, the MCP server and API, Team, a custom domain, kanban and chart blocks
 
 ## 2. Reading the screens
 
-- **Forty screens.** Thirty-six are the product. Four are the configuration panel, which only a founder sees. The last two are the sheet and the board, drawn on 19 September. Six screens carry a second or third frame for a state the founders asked to see.
+- **Forty-two screens.** Thirty-eight are the product. Four are the configuration panel, which only a founder sees. The sheet, the board, voice and PDF to Markdown were drawn on 19 September. Eight screens carry a second or third frame for a state the founders asked to see.
 - **Each screen** shows the desktop at 1,440 by 900 beside the phone at 390 by 844, both drawn from the design tokens of the shipped app, and then lists what is on it.
 - **The phone follows the shipped code and carries the desktop's theme:** the mark, the title with its project, the editor full width, and the tree and the right pane as drawers.
-- **The bottom bar** carries five actions at thumb height: Home, Search, AI, Outline and More, in that order.
+- **The bottom bar** carries five actions at thumb height: Home, Search, AI, Outline and More, in that order. On the voice screens the mic takes the middle place and Outline steps out.
 - **The order follows a person's day:** sign in, write, decide, share, bring things in, use it everywhere, and then the states nobody wants to see.
 - **The reasons behind each screen** are in the product guide, sections 21 and 22. This sheet shows only what a person sees.
 
