@@ -358,7 +358,7 @@ id | class | trigger | string | recovery | unchanged | event | test
 `E700` | model | The model returned the input unchanged | none yet | None needed. **This is a correct outcome, not a failure** | `yes` | `ai.unchanged` | `T358`.
 `E701` | model | Restructuring a voice turn passes `voice.timeout.restructureMs` | `K.s41.err.slow` | The call is cancelled and the raw transcript stays as the pending block | `yes` | `voice.restructure.fellback` | `T879`.
 `E702` | model | Restructured voice text fails a check of `71-VOICE-SPEC.md` section 5.5 | `K.s41.err.changed` | The raw transcript is shown instead | `yes` | `voice.restructure.fellback` | `T880`.
-`E703` | model | Speech in a language other than English. `UNVERIFIED:` Whisper with `language: en` forced on other speech was not tested | none yet | Whatever the recogniser returns goes through the checks as any turn does | `yes` | `voice.turn.transcribed` | `T881`.
+`E703` | model | Speech in a language other than English. `UNVERIFIED:` Whisper with `language: en` forced on other speech was not tested. needs: a French and a Hindi clip run through the bench of `71-VOICE-SPEC.md` section 15, which needs a model download the founder has not approved | none yet | Whatever the recogniser returns goes through the checks as any turn does | `yes` | `voice.turn.transcribed` | `T881`.
 `E704` | model | The Pro vision pass is out of pages, switched off or failing. A notice, not a refusal | none yet | Tesseract reads the page and the report says so | `yes` | `pdf.vision.fellback` | `T882`.
 
 **Three promises are load-bearing here, and each needs its own test.**

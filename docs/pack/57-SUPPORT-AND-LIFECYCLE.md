@@ -4,7 +4,7 @@ title: Support and lifecycle
 mode: how-to
 tier: canonical
 status: living
-updated: 2026-09-18
+updated: 2026-09-19
 owner: sagnik
 verified_against: 31d3644
 covers: [support, export, deletion, shutdown, promises]
@@ -227,7 +227,7 @@ Commitment | Detail
 **Notice** | **90 days** before anything is switched off, by email to every account with a document
 **Export stays on** | Export is the **last** thing to be switched off, after publishing, after AI, after sharing
 **Published pages get a grace period** | They keep serving for the 90 days, so a link in somebody else's document does not break the day we stop
-**No ransom** | Export is never moved behind a payment at shutdown. **The one place it is, anywhere in the product, is the unpaid-trial lock** of `53-PRICING-AND-ENTITLEMENTS.md` section 5.5, D08 `[Z]`. `proposed (founder review)`: at shutdown that lock lifts for export, so no account leaves without its files
+**No ransom** | Export is never moved behind a payment at shutdown. **The one place it is, anywhere in the product, is the unpaid-trial lock** of `53-PRICING-AND-ENTITLEMENTS.md` section 5.5, D08 `[Z]`. `needs founder`, a promise to users. Recommended: at shutdown that lock lifts for export, so no account leaves without its files. Rejected: keeping it, which makes the shutdown promise untrue for locked accounts
 **The format is documented** | `docs/mvp0/PRODUCT-PLAN.md` section 20 specifies every format we invented, each with a version field, a rule for unknown fields, a stated degradation in a plain markdown reader, and a test
 
 **The last row is the one that matters most and it is the least obvious.** Our own block formats

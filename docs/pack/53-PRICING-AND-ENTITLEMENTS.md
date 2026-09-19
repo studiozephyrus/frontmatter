@@ -289,9 +289,15 @@ variable, so changing the list needs no new copy.
   still goes, and day 3 does not.
 - **A converted account gets no further reminders.** Conversion stops the schedule at once.
 - **The email goes through Resend**, the same provider and budget as the pre-debit notice in
-  section 5.2. `UNVERIFIED:` whether five trial emails per new account fit the 3,000 a month the plan
-  budgets. needs: a sign-up forecast. `INFERENCE:` 3,000 / 6 emails is about 500 new accounts a month
-  before the budget is shared with pre-debit notices.
+  section 5.2.
+- **The capacity, checked 19 September.** `[M]` `https://resend.com/pricing`, opened 19 September
+  2026: the free plan reads "3,000 emails / mo" and "100 emails a day". A trial sends six emails, the
+  five reminders and the day-0 notice. So the free plan carries at most 3,000 / 6 = 500 new accounts
+  a month, and 100 / 6, about 16, new accounts a day, before any pre-debit notice is counted.
+- **What happens past it.** `resolved (proposed 19 Sep, founder review)`: a send over the daily limit
+  is retried the next day only if its reminder day has not passed, per the rule above. When sign-ups
+  pass 12 a day for a week, move to Resend's paid plan. Rejected: dropping reminders to fit, because
+  D08 fixed the schedule. `INFERENCE:` 12 leaves a quarter of the daily 16 for pre-debit notices.
 
 ### 5.2 Dunning, and why it is short
 
@@ -400,16 +406,19 @@ so no row was needed. `specified, not built`: no `access.*` key exists in `src/`
 
 **What the lock does not do.**
 
-- **It deletes nothing.** The 30-day trash runs as normal and nothing else is removed. `INFERENCE:`
-  how long a locked account is kept before it is closed is not decided. needs: founder review.
+- **It deletes nothing.** The 30-day trash runs as normal and nothing else is removed.
+- **How long a locked account is kept.** `needs founder`, because it is a promise to users.
+  Recommended: **kept with no end date**, since `K.promise.readable` says nothing is deleted. Rejected:
+  closing it after a year without a sign-in, which breaks that sentence. `37-BACKUP-AND-RECOVERY.md`
+  section 5 finds the DPDP three-year erasure rule does not bind us.
 - **It does not revoke the GitHub or Drive mirror.** Under D03 every document is already mirrored to
   the person's own GitHub or Drive, and **the in-app lock does not remove that mirror.** The person
   keeps full access to their files there. The founder was told this in D08.
 - **Copy is a best effort.** `INFERENCE:` a person can still select rendered text, take a screenshot
   or read the page aloud. The lock removes our copy command, not their eyes.
 
-**Whether the mirror keeps syncing during the lock.** `proposed (founder review)`: **no, in both
-directions.**
+**Whether the mirror keeps syncing during the lock.** `needs founder`, because the person's own
+edits in their mirror wait until they pay. Recommended: **no, in both directions.**
 
 Direction | While locked | Reason
 Out, our copy to their mirror | **Paused.** Nothing to send anyway, because editing is locked | `[P]`
@@ -423,16 +432,25 @@ copy while the account is locked, which is an edit by another name.
 **How the lock lifts.** A successful payment for `plan.pro` sets `trial.state` to `converted` and
 the lock lifts on the next read of `limitsFor`. Event `trial.unlocked`.
 
-**An open question the decision does not answer.** `UNVERIFIED:` whether a person may step down to
-`plan.free` to lift the lock without paying. As written, D08 names payment as the only way out, so
-**a new account can never reach an unlocked Free plan.** needs: founder review. This is written as
-open rather than as a value, for the same reason as `features.byok` in section 3.2.
+**A question the decision does not answer: may a locked account step down to Free?** `needs
+founder`, because it decides whether the Free plan exists for anyone who signs up after launch.
+
+- **The consequence as written.** D08 names payment as the only way out. Every new account starts on
+  the trial (section 5.1), so **no new account can ever reach an unlocked `plan.free`**. Every Free
+  row in section 3 would then serve only accounts made before the trial shipped.
+- **Recommended: yes.** At `trial.ends_at` the person may choose Free. The lock lifts, `limitsFor`
+  returns the `plan.free` row, and anything above a Free cap enters the over-cap state of section
+  5.3, where export stays open. With no choice made, the lock of this section holds.
+- **Rejected: payment as the only way out.** It removes the free tier the pricing page, the
+  free-model chain and the abuse model in `27-MODEL-ROUTING-SPEC.md` section 9 are built for.
+- `INFERENCE:` the step-down also shrinks the legal question below, since a person who chooses Free
+  can export again.
 
 **The legal question.** `UNVERIFIED:` whether locking export is lawful against data-portability
 rights under the Digital Personal Data Protection Act 2023 and Article 20 of the General Data
-Protection Regulation. needs: legal opinion. Owner Sagnik. The Export row at `docs/pack/54-COMPLIANCE-AND-LEGAL.md:189` treats the mirror as
-a standing export under Article 20 and says export on request still works. The second half is no
-longer true for a locked account, and 54 is not in this change. `INFERENCE:` the untouched
+Protection Regulation. needs: legal opinion. Owner Sagnik. The Export row of
+`54-COMPLIANCE-AND-LEGAL.md` section 3.6 treats the mirror as a standing export under Article 20, and
+since 19 September it names this lock as the one state where export on request stops. `INFERENCE:` the untouched
 mirror may matter to the opinion, since the person still holds every file. Nothing here says it is
 sufficient.
 
@@ -505,7 +523,7 @@ Any other file in this pack | **No. Link here instead**
   resolution, and the mirror's behaviour during the lock in 5.5 is `proposed (founder review)`.
 - `UNVERIFIED:` whether the export lock of section 5.5 is lawful under the DPDP Act 2023 and GDPR
   Article 20. needs: legal opinion.
-- `UNVERIFIED:` whether a locked account may step down to Free, section 5.5. needs: founder review.
+- Whether a locked account may step down to Free, section 5.5, `needs founder`. Recommended: yes.
 - `UNVERIFIED:` the tax heading, section 6.2. needs: a chartered accountant's opinion.
 - Notesnook's India page **confirmed below 299 rupees** `[M]`. Opened 18 September 2026 at
   `https://notesnook.com/pricing`, served in rupees: Essential at "₹225.20 / month including tax",

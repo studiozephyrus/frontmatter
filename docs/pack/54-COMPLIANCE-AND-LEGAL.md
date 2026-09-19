@@ -4,7 +4,7 @@ title: Compliance and legal
 mode: reference
 tier: canonical
 status: living
-updated: 2026-09-18
+updated: 2026-09-19
 owner: sagnik
 verified_against: 4de879d
 covers: [data-protection, provider-terms, training, licences, constraints]
@@ -185,8 +185,8 @@ Does the mirror reduce our exposure? | **No.** We still hold every byte, so we a
 What does it add? | A scoped grant stored in `users/{uid}/connections`. Drive's refresh token is encrypted at rest; GitHub stores no token, `34-INTEGRATIONS.md`
 Whose are the mirror's files? | **The person's**, in their own account, under their provider's terms. They survive our shutdown
 Deletion | Account deletion revokes our grant and removes our records. **The mirror's files are left in place**, `resolved (proposed 18 Sep, founder review)`, because they are the person's copy in their own account, and deleting them would need a grant we have just revoked. Rejected: deleting the mirror first, which destroys the one copy that survives us. The privacy notice says it in plain words, and section 8 already forbids promising otherwise
-Erasure of one document | Removed from our copy. `INFERENCE:` whether the mirror copy is also removed is a product choice for `67-SYNC-AND-CONFLICT.md`; the notice must match it
-Export | The mirror is a standing export in markdown, which meets GDPR Article 20's "machine-readable". Export on request still works without a connection
+Erasure of one document | Removed from our copy. **The mirror copy is never removed**, per `67-SYNC-AND-CONFLICT.md` section 13, a proposal the founder is reviewing. The notice must match it
+Export | The mirror is a standing export in markdown, which meets GDPR Article 20's "machine-readable". Export on request works without a connection **in every state but one**: a trial that ended unpaid locks export in the app, D08 `[Z]`, `53-PRICING-AND-ENTITLEMENTS.md` section 5.5. The mirror is untouched by that lock. `UNVERIFIED:` whether the lock is lawful under DPDP and Article 20. needs: legal opinion
 Drive scope | `drive.file` only. The full `drive` scope would bring a yearly CASA assessment, and is never requested
 
 **The source.** `docs/research/2026-09-18-storage/STORAGE-BENCHMARK.md` section 5, which opened the

@@ -77,7 +77,7 @@ Class | Ceiling, characters | Why
 2. **Plain hyphens. No em dashes and no en dashes**, anywhere.
 3. **Second person, and no exclamation marks.** The product speaks to one person doing their work.
 4. **Never a screen id, a feature id, a file path in `docs/`, or any internal shorthand.** Section
-   14 lists four live breaches of this rule.
+   15, D4, lists four live breaches of this rule.
 5. **Never a percentage of confidence from a model.** `[M]` PAIR, quoted at
    `docs/mvp0/PRODUCT-PLAN.md` section 16.
 6. **A refusal says three things in order:** what will not happen, why, and what to do instead. Never
@@ -99,7 +99,7 @@ id | screen | string | tone | budget | notes
 `K.promise.nocharge` | S32 | Nothing is deducted for a failed call. | `promise` | `label`, 40 | `[gen]` `docs/mvp0/screens/gen.mjs:1613`. The credit-ledger contract, stated to the person.
 `K.promise.untouched` | S32 | Your document is untouched and nothing was charged. | `promise` | `label` | `[gen]` `docs/mvp0/screens/gen.mjs:1610`. Said at the moment of failure, before any instruction.
 `K.promise.readable` | S33 | Everything you have still opens, and nothing is deleted. | `promise` | `lede`, 56 | `[gen]` `docs/mvp0/screens/gen.mjs:1898`, **reworded 18 September for D08** `[Z]`. It was "Everything you have still opens, edits and exports. Nothing is deleted." That stopped being true in every state once an unpaid trial locks editing and export (`53-PRICING-AND-ENTITLEMENTS.md` section 5.5), so the promise now says only what holds everywhere. On S33 over the cap, editing and export are still open and `K.s33.still.open` says so.
-`K.promise.readable.full` | S29 | Your documents always stay readable, and nothing is deleted. Editing, copying and export stay open on every plan, and pause only if a trial ends unpaid. | `promise` | `body`, 152 | `[new]` proposed 18 Sep, **not founder-reviewed**. The long form of the reworded promise, for S29, the pricing page and the trial emails. It replaces the plan's "Every document stays readable and exportable" (`docs/mvp0/PRODUCT-PLAN.md` section 13). `UNVERIFIED:` whether the export pause is lawful; needs: legal opinion, D08.
+`K.promise.readable.full` | S29 | Your documents always stay readable, and nothing is deleted. Editing, copying and export stay open on every plan, and pause only if a trial ends unpaid. | `promise` | `body`, 152 | `[new]` proposed 18 Sep, voice-checked 19 Sep against section 0.4, **`needs founder`**, because it is a standing promise. The long form of the reworded promise, for S29, the pricing page and the trial emails. It replaces the plan's "Every document stays readable and exportable" (`docs/mvp0/PRODUCT-PLAN.md` section 13). `UNVERIFIED:` whether the export pause is lawful; needs: legal opinion, D08.
 `K.promise.nomerge` | many | Conflicts are never merged silently. Both versions are kept and you choose. | `promise` | `lede` | `[gen]` `docs/mvp0/screens/gen.mjs:1432`. Invariant 12 of the engine (`docs/mvp0/PRODUCT-PLAN.md` section 17), said in the person's words.
 `K.promise.yourfiles` | S01 | Markdown that stays yours, in a Doc mode or a plain one. | `promise` | `lede` | `[gen]` `docs/mvp0/screens/gen.mjs:816`.
 `K.promise.docsonly` | S23 | frontmatter only ever writes under docs/, and that rule is tested. | `promise` | `lede` | `[gen]` `docs/mvp0/screens/gen.mjs:1435`. Enforced server-side (`docs/mvp0/PRODUCT-PLAN.md` section 11).
@@ -204,7 +204,7 @@ id | screen | string | tone | budget | notes
 `K.s02.start.template.sub` | S02, S03 | Spec, meeting notes, decision record, README, 14 more | `plain` | `help` | `[gen]` `docs/mvp0/screens/gen.mjs:827`. `{more}` is a count, and 14 is drawn rather than derived.
 `K.s02.empty` | S02 | Nothing yet. Start above, or drop a folder anywhere on this page. | `plain` | `lede` | `[gen]` `docs/mvp0/screens/gen.mjs:841`. `[M]` Nielsen on empty states, quoted at `docs/mvp0/PRODUCT-PLAN.md` section 5.
 `K.s02.empty.phone` | S02 | Nothing yet. Start above. | `plain` | `label`, 26 | `[gen]` `docs/mvp0/screens/gen.mjs:844`.
-`K.s02.caps` | S02 | Free: {docs} documents in the cloud, {pages} published pages, {collab} live collaborators. Unlimited on the desktop app. | `plain` | `body` | `[gen]` `docs/mvp0/screens/gen.mjs:841`. **Defect, see section 14, D1:** at `{collab}` of 1 the drawn string reads "1 live collaborators". The string needs a plural rule.
+`K.s02.caps` | S02 | Free: {docs} documents in the cloud, {pages} published pages, {collab} live collaborators. Unlimited on the desktop app. | `plain` | `body` | `[gen]` `docs/mvp0/screens/gen.mjs:841`. **Defect, see section 15, D1:** at `{collab}` of 1 the drawn string reads "1 live collaborators". The string needs a plural rule.
 `K.s03.usedpill` | S03 | {used} of {docs} cloud documents used | `plain` | `label`, 34 | `[gen]` `docs/mvp0/screens/gen.mjs:852`.
 `K.s03.ideascount` | S03 | Ideas · {n} | `label` | `label`, 14 | `[gen]` `docs/mvp0/screens/gen.mjs:853`.
 `K.s03.sharedcount` | S03 | Shared with me · {n} | `label` | `label`, 22 | `[gen]` `docs/mvp0/screens/gen.mjs:853`.
@@ -376,7 +376,7 @@ id | screen | string | tone | budget | notes
 ## 8. S07 AI edit
 
 **Seven verbs. Each is a label and a one-line description.** The deck's wording is the screen's, and
-section 14 D2 records that the shipped menu says something different.
+section 15 D2 records that the shipped menu says something different.
 
 id | string | tone | budget | notes
 `K.s07.refine` | Refine selection | `label` | `button`, 20 | `[gen]` `docs/mvp0/screens/gen.mjs:921`.
@@ -1530,12 +1530,15 @@ family | kind | what it stands for | members in this deck
 
 - **`[gen]` rows are verbatim** from `docs/mvp0/screens/gen.mjs` at `1335518`, read by line number.
   Where the drawing holds a number, the row holds a variable, and the note gives the drawn value.
-- **`[new]` rows are proposed and not voice-checked.** The first-run lines, the Other column, three
-  refusals and the download notice were never drawn. The founders review the wording.
+- **`[new]` rows are proposed.** The first-run lines, the Other column, three refusals and the
+  download notice were never drawn. **Voice-checked on 19 September** against section 0.4: two
+  refusals were reworded to say what did not happen before what to do, `K.s41.err.nomic` and
+  `K.s41.err.notarget`. The rest pass.
 - **The voice refusals take their wording from `71-VOICE-SPEC.md` section 11**, which calls them
   proposals. They are `[new]` for the same reason.
-- **Five rows are marked Review** in their notes, where a drawn string may break a rule of section 0.4
-  or disagree with its spec.
+- **Three rows were marked Review** in their notes, where a drawn string may break a rule of section
+  0.4 or disagree with its spec. The line said five; `grep -n 'Review:'` found three on 19 September.
+  All three are resolved in their notes: `K.s39.embed.foot`, `K.s40.limit` and `K.s41.err.cap`.
 
 id | screen | string | tone | budget | notes
 `K.s39.rows` | S39 | {rows} rows · {cols} columns | `plain` | `label`, 28 | `[gen]` `docs/mvp0/screens/gen.mjs:2255`. `{rows}` and `{cols}` are counts of the table, drawn as 6 and 6
@@ -1553,14 +1556,14 @@ id | screen | string | tone | budget | notes
 `K.s39.formulas` | S39 | Formulas in this file | `label` | `label`, 21 | `[gen]` `docs/mvp0/screens/gen.mjs:2267`.
 `K.s39.formulas.note` | S39 | Under the table, where an agent reads them. The sum is drawn, never written. | `plain` | `help`, 76 | `[gen]` `docs/mvp0/screens/gen.mjs:2267`.
 `K.s39.open.full` | S39 | Open as a sheet | `label` | `button`, 15 | `[gen]` `docs/mvp0/screens/gen.mjs:2283`.
-`K.s39.embed.foot` | S39 | fm-sheet@1 under this table holds {n} formulas. Switch to MD to see them as text. | `plain` | `help`, 81 | `[gen]` `docs/mvp0/screens/gen.mjs:2285`. Drawn with 2 formulas. **Review:** it names a format, which section 0.4 rule 4 may count as internal shorthand
+`K.s39.embed.foot` | S39 | fm-sheet@1 under this table holds {n} formulas. Switch to MD to see them as text. | `plain` | `help`, 81 | `[gen]` `docs/mvp0/screens/gen.mjs:2285`. Drawn with 2 formulas. **Kept, `resolved (proposed 19 Sep, founder review)`:** it names a format, but `fm-sheet@1` is the literal text the person sees in their own file in the MD view, so it is not internal shorthand under section 0.4 rule 4. Rejected: "the formula block", which hides the words they would search for.
 `K.s39.swipe` | S39 | {columns} are a swipe away. {first} stays pinned. | `plain` | `help`, 49 | `[gen]` `docs/mvp0/screens/gen.mjs:2270`. Drawn as Qty, Paid and Due are a swipe away. Item stays pinned
 `K.s39.cell.save` | S39 | Saving changes this cell and the {column} beside it. Nothing else in the file moves. | `promise` | `help`, 84 | `[gen]` `docs/mvp0/screens/gen.mjs:2275`. Drawn with Total as the dependent column
 `K.s39.firstrun` | S39 | Sorting and filtering change only your view. Typing into a cell changes the file. | `plain` | `help`, 81 | `[new]` proposed, not drawn. The first-run line of S39's States.
 `K.s40.count` | S40 | {n} cards in {folder} | `plain` | `label`, 21 | `[gen]` `docs/mvp0/screens/gen.mjs:2340`. Drawn as 15 cards in tasks/
 `K.s40.groupedby` | S40 | columns from {key} | `plain` | `label`, 18 | `[gen]` `docs/mvp0/screens/gen.mjs:2340`. Drawn with the key `status` in code type
 `K.s40.pending` | S40 | {n} proposed move | `label` | `label`, 17 | `[gen]` `docs/mvp0/screens/gen.mjs:2356`. Needs the plural rule of section 15 D1: {n} proposed moves
-`K.s40.limit` | S40 | Limit {limit}. Past it the count turns red; nothing is blocked. | `plain` | `help`, 63 | `[gen]` `docs/mvp0/screens/gen.mjs:2334`. The tooltip on the count, which reads {n} / {limit}. **Review:** red names a colour, and `69-BOARDS-SPEC.md` section 4.1 says the warning colour
+`K.s40.limit` | S40 | Limit {limit}. Past it the count is marked as over; nothing is blocked. | `plain` | `help`, 71 | `[gen]` `docs/mvp0/screens/gen.mjs:2334`, **reworded 19 Sep, `resolved (proposed 19 Sep, founder review)`**. The drawing reads "Past it the count turns red". The tooltip on the count, which reads {n} / {limit}. `69-BOARDS-SPEC.md` section 4.1 says the warning colour, which may not be red, and a meaning carried by colour alone fails a colour-blind reader. Rejected: naming the colour.
 `K.s40.newcard` | S40 | New card | `label` | `button`, 8 | `[gen]` `docs/mvp0/screens/gen.mjs:2337`.
 `K.s40.newcard.in` | S40 | New card in {column} | `label` | `button`, 20 | `[gen]` `docs/mvp0/screens/gen.mjs:2363`. On the phone
 `K.s40.mine` | S40 | Mine | `label` | `button`, 4 | `[gen]` `docs/mvp0/screens/gen.mjs:2341`.
@@ -1609,7 +1612,7 @@ id | screen | string | tone | budget | notes
 `K.s41.firstuse` | S41 | Your voice is sent to be turned into text, then dropped. It is never stored. | `promise` | `help`, 76 | `[new]` proposed, not drawn. The one-line sheet before the browser's own prompt, `71-VOICE-SPEC.md` section 13.2.
 `K.s41.insert.text` | S41 | Insert as text instead | `label` | `button`, 22 | `[gen]` `docs/mvp0/screens/gen.mjs:2539`.
 `K.s41.err.micdenied` | S41 | Microphone access is off. Turn it on in the browser's site settings to use voice. | `refusal` | `body`, 81 | `[new]` proposed, wording from `71-VOICE-SPEC.md` section 11. `E806`. With a link to how.
-`K.s41.err.nomic` | S41 | No microphone found. | `refusal` | `body`, 20 | `[new]` proposed, wording from `71-VOICE-SPEC.md` section 11. `E807`.
+`K.s41.err.nomic` | S41 | No microphone found, so nothing was recorded. Connect one and try again. | `refusal` | `body`, 72 | `[new]` proposed. `E807`. **Reworded 19 Sep in the voice check**: `71-VOICE-SPEC.md` section 11 had "No microphone found.", which says what went wrong but not what to do, against rule 6 of section 0.4.
 `K.s41.err.miclost` | S41 | The microphone stopped. What you said so far is below. | `caution` | `body`, 54 | `[new]` proposed, wording from `71-VOICE-SPEC.md` section 11. `E808`.
 `K.s41.err.nothing` | S41 | Didn't catch anything. Hold the key and speak. | `refusal` | `body`, 46 | `[new]` proposed, wording from `71-VOICE-SPEC.md` section 11. `E567`.
 `K.s41.err.turnlimit` | S41 | That's the limit for one turn. Your words so far are below; hold the key again to go on. | `caution` | `body`, 88 | `[new]` proposed, wording from `71-VOICE-SPEC.md` section 11. `E654`.
@@ -1617,8 +1620,8 @@ id | screen | string | tone | budget | notes
 `K.s41.err.busy` | S41 | Voice is busy right now. Try again in a minute. | `refusal` | `body`, 47 | `[new]` proposed, wording from `71-VOICE-SPEC.md` section 11. `E756`.
 `K.s41.err.slow` | S41 | Showing the raw text; cleanup took too long. | `caution` | `body`, 44 | `[new]` proposed, wording from `71-VOICE-SPEC.md` section 11. `E701`.
 `K.s41.err.changed` | S41 | Cleanup changed words, so the raw text is shown. | `caution` | `body`, 48 | `[new]` proposed, wording from `71-VOICE-SPEC.md` section 11. `E702`.
-`K.s41.err.cap` | S41 | You've used this month's voice minutes. They refill daily. | `refusal` | `body`, 58 | `[new]` proposed, wording from `71-VOICE-SPEC.md` section 11. `E655`. **Review:** `71` section 11 names the clash between this month and refill daily.
-`K.s41.err.notarget` | S41 | Select the text first | `refusal` | `body`, 21 | `[new]` proposed, wording from `71-VOICE-SPEC.md` section 11. `E568`.
+`K.s41.err.cap` | S41 | You've used your voice minutes for now. A little more is added each day, so try again tomorrow. | `refusal` | `body`, 95 | `[new]` proposed. `E655`. **Reworded 19 Sep, `resolved (proposed 19 Sep, founder review)`:** the allowance is a bucket that refills daily (`53` section 3.1), so the old "this month's minutes. They refill daily" said two things at once. Rejected: "this month", which describes a calendar counter we do not run. `71-VOICE-SPEC.md` section 11 still quotes the old string, for its owner.
+`K.s41.err.notarget` | S41 | Nothing was changed, because no text is selected. Select the text first. | `refusal` | `body`, 72 | `[new]` proposed. `E568`. **Reworded 19 Sep in the voice check**: `71-VOICE-SPEC.md` section 11 had "Select the text first", an instruction with no refusal before it and no full stop, against rule 6 of section 0.4.
 `K.s41.err.protected` | S41 | Voice commands change prose only. This is inside {where}, so nothing was changed. Select prose and try again. | `refusal` | `body`, 109 | `[new]` proposed, not drawn. `E529`. `{where}` is a code block, a table or the front matter.
 `K.s41.err.toolong` | S41 | That selection is {words} words, and a voice command takes up to {max}. Nothing was changed. Select less and try again. | `refusal` | `body`, 119 | `[new]` proposed, not drawn. `E569`. `{max}` is `voice.command.maxSelectionWords`.
 `K.s42.start` | S42 | Start from a PDF | `label` | `button`, 16 | `[gen]` `docs/mvp0/screens/gen.mjs:2587`. The label is open, D25
@@ -1709,18 +1712,18 @@ one-attempt payment failure on S29.
 - **What would falsify it.** A change to `gen.mjs`, which is the source of most of this deck, or the
   arrival of `10-FEATURE-REGISTER.md` and `17-ERROR-AND-REFUSAL-CATALOGUE.md` with ids that
   contradict the ones used here.
-- **The count, re-derived at write time rather than estimated.** This deck carries **996 ids, each
-  on exactly one row**, counted on 18 September 2026 after the D08 rows were added, with:
+- **The count, re-derived at write time rather than estimated.** This deck carries **1,107 ids, each
+  on exactly one row**, counted on 19 September 2026 at `6c44319`, with:
 
   ```bash
-  grep -cE '^`K\.[a-z0-9.]+` \|' docs/pack/16-COPY-DECK.md               # 996 rows
+  grep -cE '^`K\.[a-z0-9.]+` \|' docs/pack/16-COPY-DECK.md               # 1107 rows
   grep -oE '^`K\.[a-z0-9.]+` \|' docs/pack/16-COPY-DECK.md \
-    | sed 's/ |$//' | sort -u | wc -l                                     # 996 distinct
+    | sed 's/ |$//' | sort -u | wc -l                                     # 1107 distinct
   ```
 
   **The two numbers agreeing is the check**, because a repeated id would break the one-fact-one-home
   rule this deck exists to keep.
-- **What that count does not cover.** `docs/mvp0/screens/gen.mjs` is 1,760 lines and holds further
-  literal text inside sample documents, which section 16 excludes by rule. **So 996 is the size of
-  the deck, not the size of the generator.** The figure printed here before was 574; the same
-  command returned 981 at commit `31d3644`, before the D08 rows, so 574 was already stale.
+- **What that count does not cover.** `docs/mvp0/screens/gen.mjs` is 2,680 lines (`wc -l`, 19 September) and holds further
+  literal text inside sample documents, which section 16 excludes by rule. **So 1,107 is the size of
+  the deck, not the size of the generator.** The same command returned 981 at `31d3644`, before the
+  D08 rows, and 996 on 18 September; 1,107 minus 996 is 111 rows added since, most of them in section 14r.

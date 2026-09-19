@@ -576,9 +576,9 @@ the new value", expects `Alice Smith`. It passes today because it asserts the de
 1. Replace that case with one asserting that a value holding a line break returns the content
    unchanged, with a refusal. **Confirm it fails against the current code**, which returns the joined
    value.
-2. Make `setTableCell` refuse such a value, and have the grid show the reason. The refusal id is
-   `new:sheet-cell-linebreak` in `68-SHEETS-SPEC.md` section 7, awaiting a row in
-   `17-ERROR-AND-REFUSAL-CATALOGUE.md`.
+2. Make `setTableCell` refuse such a value, and have the grid show the reason. The refusal is
+   `E513` in `17-ERROR-AND-REFUSAL-CATALOGUE.md`, allocated on 19 September for the placeholder
+   `sheet-cell-linebreak` of `68-SHEETS-SPEC.md` section 7.
 
 **Blocks.** Nothing on its own; it is the smallest of the three and can land first.
 
