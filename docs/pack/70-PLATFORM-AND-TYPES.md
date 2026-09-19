@@ -5,7 +5,7 @@ mode: reference
 tier: canonical
 status: draft
 verified_against: ee73929
-updated: 2026-09-19
+updated: 2026-09-20
 owner: sagnik
 covers: [type-registry, content-types, embedding, fm-embed, fm-view, cross-type-links, calibration]
 ---
@@ -222,8 +222,12 @@ layout: table
 **A board file is a view with its query fixed**: `cards` is `from`, `key` is `group`, and the layout is
 columns. One renderer serves both.
 
-**Whether `fm-view@1` also offers `layout: board`** is `needs founder`. This file recommends not in v1,
-so there is one way to make a board.
+**`fm-view@1` does not offer `layout: board` in v1**, `resolved (proposed 19 Sep, founder review)`.
+There is one way to make a board, the board file of `69-BOARDS-SPEC.md`, and one renderer draws it.
+
+- It is not a founder matter: no money, law, brand or promise to users turns on it.
+- Rejected: a second way to make the same board, which needs the `where` grammar before a board
+  needs a folder (`ADR-0018`).
 
 ## 4. Embedding one type in another
 
@@ -365,8 +369,15 @@ flowchart TB
   every text type gets history with no change.
 - **A view's history is its view file's history.** What it showed on a past date is a projection of
   the files at that date, recomputed, never stored.
-- `UNVERIFIED:` that the version records carry enough time data to find every source's head at one
-  moment. A document with embeds needs that to be shown as it was. `21-DATA-MODEL.md` owns the answer.
+- **The version records carry enough time data to find every source's version at one moment**
+  `[O]`. Each version has an immutable `createdAt`, and versions are indexed by `createdAt`
+  descending per document (`21-DATA-MODEL.md` sections 21.4 and 21.6).
+- So a document with embeds is shown as it was at time T by taking, for each source, its newest
+  version created at or before T.
+- **One limit.** Versions older than the history window, 7 days on Free and 90 on Pro, are pruned to
+  the head (`21-DATA-MODEL.md` section 21.4). Past that window a source's old version is gone.
+- **So a past view older than the window shows the embed's placeholder**, `resolved (proposed 19 Sep,
+  founder review)`. Rejected: showing the source's head, a later version passed off as the old one.
 
 ## 9. The mirror to GitHub and Drive
 
@@ -377,8 +388,13 @@ only". It becomes every registered text type. Uploads stay in R2 and linked, as 
   within the limits `68-SHEETS-SPEC.md` section 8 records.
 - **Drive.** Each file is uploaded as a plain file with its own media type, `text/markdown` or
   `text/csv`. It is never converted to a Google format, because a converted file is no longer our bytes.
-- `UNVERIFIED:` that the Drive API leaves a `.csv` unconverted when no Google target type is named.
-  The mirror worker must be tested against that before it ships.
+- **The Drive API converts a file only when asked** `[M]`. Google's upload guide says to convert,
+  "specify the Google Workspace mimeType when creating the file". So a `.csv` sent with `text/csv`
+  and no Google type stays a CSV. Source:
+  `https://developers.google.com/workspace/drive/api/guides/manage-uploads`, opened 2026-09-19 UTC.
+- The same page lists Markdown among the formats Drive can import into Google Docs, so the rule
+  holds for `.md` too: never name a Google type. The mirror worker's test still runs before it ships
+  (`A835`).
 - **Inbound edits stay proposals, for every type** (`67` section 8.1). A CSV re-saved by a spreadsheet
   with new line endings arrives as one item, and S20 names the line-ending change as such.
 

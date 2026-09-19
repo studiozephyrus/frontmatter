@@ -5,7 +5,7 @@ mode: reference
 tier: canonical
 status: draft
 verified_against: ee73929
-updated: 2026-09-19
+updated: 2026-09-20
 owner: sagnik
 covers: [sheets, fm-sheet, sheet-formulas, sheet-evaluator, sheet-csv, published-sheet]
 ---
@@ -232,10 +232,18 @@ an error for that row. The cell's bytes are unchanged.
 - **A result is written with the fewest digits that are exact**: `80`, not `80.00`.
 - **A quotient with no exact finite decimal form**, such as `1 / 3`, is an error for that row unless
   the formula rounds it with `round(x, n)`.
-- `INFERENCE:` choosing a number of places for the person is a guess. This rule is `needs founder`.
+- `INFERENCE:` choosing a number of places for the person is a guess.
+- **The rule above stands**, `resolved (proposed 19 Sep, founder review)`: a quotient with no exact
+  decimal form is an error for that row until the formula says `round(x, n)`. Rejected: a default of
+  two places, which writes a guess into the person's file.
 - **Division by zero** is an error for that row. Nothing is written.
-- `round` follows formula.js's `ROUND`, which the tests compare against. `UNVERIFIED:` its rounding
-  mode for a tie was not opened in this session.
+- `round` follows formula.js's `ROUND`, which the tests compare against. **A tie rounds half away
+  from zero, the same for negative numbers** `[M]`.
+- formula.js rounds the absolute value with JavaScript's `Math.round`, then puts the sign back, so
+  `2.5` gives `3` and `-2.5` gives `-3`.
+- Source: `roundBase` in
+  `https://raw.githubusercontent.com/formulajs/formulajs/master/src/math-trig.js`, opened 2026-09-19
+  UTC at commit `af0f0b41ed`. Our decimal evaluator must match it.
 
 ### 4.6 How a computed value reaches the file
 
@@ -357,11 +365,22 @@ Contributor names or emails in the page | None | Notion's published metadata car
 Embed in another site | Not in v1 | No demand signal in the sample
 A public form that adds rows | Not in v1 | `INFERENCE:` strangers writing into a file is an abuse surface with no demand behind it
 
-**How a download cell is neutralised.** `INFERENCE:` a leading apostrophe, which spreadsheets read
-as a sign to treat the cell as text. `UNVERIFIED:` the exact escape each spreadsheet honours.
+**How a download cell is neutralised**, `resolved (proposed 19 Sep, founder review)`. OWASP's CSV
+injection page gives three steps, applied to every field of the download `[M]`:
 
-OWASP warns that escaping may fail once a file is saved and re-opened, so the download also carries a
-notice.
+1. Wrap the field in double quotes.
+2. Prepend a single quote, the apostrophe.
+3. Double every double quote inside the field.
+
+Source: `https://owasp.org/www-community/attacks/CSV_Injection`, opened 2026-09-19 UTC.
+
+- **The page says these steps are "not reliable in Microsoft Excel"** after saving and re-opening, so
+  the download also carries a notice.
+- **Rejected: OWASP's Excel fix**, a tab inside the quoted field. The page itself says the tab
+  "remains part of the underlying data", and a download must equal the file apart from the escape.
+- **The page also says no one strategy is safe for every spreadsheet.** `UNVERIFIED:` which
+  applications honour the apostrophe. needs: one neutralised download opened in Excel, Google Sheets,
+  Numbers and LibreOffice on a live machine, in batch 4's use window.
 
 **The twin.** A table in a published document is served in the page's twin, `/<slug>.md`, as bytes
 (`66-FORMAT-SPECIFICATIONS.md` section 5.2).
@@ -419,7 +438,7 @@ SH8 | Freeze the header, set column width; view only | `F288` | SH1
 SH9 | Show the plain text | `F289` | SH1
 SH10 | Open `.csv` and `.tsv` in the same grid | `F290` | the registry, `70` section 2
 SH11 | Import CSV into a document as a pipe table | `F291` | SH1
-SH12 | Paste a range from another spreadsheet | `F292` | SH1. `UNVERIFIED:` that their clipboard carries tab-separated text
+SH12 | Paste a range from another spreadsheet | `F292` | SH1. `UNVERIFIED:` that their clipboard carries tab-separated text. needs: a paste from Excel, Google Sheets and Numbers into a live build
 SH13 | Copy and download as CSV, neutralised | `F293` | SH1
 SH14 | Published sheet | `F294` | section 6.3
 SH15 | Chart from the sheet | `F180` | `fm-chart@1`

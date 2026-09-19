@@ -5,7 +5,7 @@ mode: reference
 tier: canonical
 status: draft
 verified_against: ee73929
-updated: 2026-09-19
+updated: 2026-09-20
 owner: sagnik
 covers: [boards, board-file, card-file, board-moves, blueprint-board]
 ---
@@ -198,8 +198,17 @@ Rename a column | the board file's `columns`, and the new value on every affecte
   change across files.
 - **A card whose item is rejected keeps its old value**, so it falls into Other. `INFERENCE:` that is
   the deterministic result, not a guess.
-- **Whether a person's own rename may be accepted in one action** is `needs founder`. Agent and
-  mirror rows are never bulk-accepted (`67-SYNC-AND-CONFLICT.md` section 8.1).
+- **Whether a person's own rename may be accepted in one action** stays `needs founder`, because it
+  reads the founder's own rule. ADR-0008 `[Z]` says every change, a person's edit included, enters
+  the queue. It is the same question as S40's `D20`, for a person's own drag.
+- **Recommended: the owner's own rename and drag are saved like their own typing**, through the save
+  path of `67-SYNC-AND-CONFLICT.md` section 3, one splice per file. The queue keeps every change by
+  somebody else: another person, an AI edit, an agent or a mirror.
+- Rejected in the recommendation: holding the owner's own action for the owner's own acceptance,
+  which turns one drag into two. Agent and mirror rows are never bulk-accepted
+  (`67-SYNC-AND-CONFLICT.md` section 8.1).
+- If the founder holds ADR-0008 literally, the table in section 3.1 stands as written: every move is
+  one queue item.
 
 ### 3.4 What is refused rather than guessed
 
@@ -292,9 +301,11 @@ Step | What happens | Evidence or rule
 
 - **Step 2 is a model call.** `INFERENCE:` its cost belongs in the blueprint costing on S13, which
   assumes one call per kit file. A board draft adds at least one call.
-- **Whether it spends a blueprint credit** is `needs founder` (`BOARDS.md` section 5.4).
+- **Whether it spends a blueprint credit** is `needs founder`, because it is money (`BOARDS.md`
+  section 5.4). Recommended: it spends none, and counts as part of the blueprint it reads. It is one
+  more model call on a kit the person already paid a credit for.
 - `UNVERIFIED:` how many cards a blueprint yields. Nobody has run the kit generator, and `66` section
-  6 is `specified, not built`. So no card count is given.
+  6 is `specified, not built`. So no card count is given. needs: the first generated kit, in batch 6.
 
 ## 7. The read-only Kanban view of one document
 
@@ -334,14 +345,18 @@ From `BOARDS.md` section 5.1. Every row is a proposal for the founder.
 stamped on entering the last column; a board embedded in a document; dependencies between cards;
 saved filters as named views.
 
-**Open for the founders** (`BOARDS.md` section 5.4):
+**Open for the founders** (`BOARDS.md` section 5.4). Three are resolved as proposals, and one is
+the founder's.
 
-1. Does `F184` become read-only, and does Board take a new feature id in batch 9a? Recommended yes to
-   both.
-2. The default columns. `INFERENCE:` `Todo, Doing, Done` is the bare bone. Linear's and Jira's
-   defaults are listed in `BOARDS.md` section 5.4.
-3. Does Make a board spend a blueprint credit?
-4. The phone board as a list grouped by status.
+1. Does `F184` become read-only, and does Board take a new feature id in batch 9a? **Yes to both**,
+   `resolved (proposed 19 Sep, founder review)`. `F296` is allocated. Rejected: a writable one-file
+   board, section 7's reason.
+2. The default columns. **`Todo, Doing, Done`**, `resolved (proposed 19 Sep, founder review)`: the
+   bare bone, and a person adds a column in one action. Rejected: the five drawn on S40, which that
+   screen's `D19` now resolves to three. Linear's and Jira's defaults are in `BOARDS.md` section 5.4.
+3. Does Make a board spend a blueprint credit? **`needs founder`**, section 6.
+4. The phone board as a list grouped by status. **Yes**, `resolved (proposed 19 Sep, founder
+   review)`: columns side by side do not fit a phone. Rejected: a sideways-scrolling board.
 
 ## 9. Never build
 

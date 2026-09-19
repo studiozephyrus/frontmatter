@@ -4,9 +4,9 @@ title: Roadmap
 mode: explanation
 tier: canonical
 status: living
-updated: 2026-09-19
+updated: 2026-09-20
 owner: sagnik
-verified_against: 1335518
+verified_against: 6c44319
 covers: [phases, batches, dependencies, appetites, pace, sequencing, acceptance-gates]
 ---
 
@@ -53,11 +53,15 @@ batches that now have an appetite.
 **That is 67 to 87 weeks more than the 134 to 209 of 18 September.** The 19 September features add
 79 proposed working days to priced batches, and two use windows. Section 5.8 shows the sum.
 
-**Three batches still have no full appetite**: 10, 11 and 12. Batches 11 and 12 carry 14 proposed
-days for the new types, and nothing else in them is costed. The range above is a floor, not a total.
+**On 19 September the last three batches took proposed appetites**: 10, 11 and 12, at 10, 11 and
+28 days. With them, **everything asked for takes about 245 to 352 calendar weeks**, 4.7 to 6.8 years
+at the measured pace. Section 5.5 shows the sum.
 
-**At the measured pace that is roughly 3.9 to 5.7 years**, before the thirty days of content
-writing and before the unpriced batches. Section 5 shows every step of the arithmetic.
+**At the measured pace the twelve batches priced before that are roughly 3.9 to 5.7 years**, before
+the thirty days of content writing. Section 5 shows every step of the arithmetic.
+
+**The calendar itself is a founder question**, section 5.9: accept it, raise the weekly pace, or move
+named work to after launch. Each option is computed there.
 
 ---
 
@@ -84,9 +88,9 @@ graph TD
   P --> B6["6. Ideas<br/>4 weeks + 10 to 12.5 days"]
   B6 --> B7["7. Pro, and Max on sale<br/>2 weeks + 2 days"]
   B7 --> B9["9. Views and blocks, with decks<br/>3 weeks + 3 days"]
-  B9 --> B10["10. The API and the command line<br/>appetite unset"]
-  B10 --> B11["11. Later blocks and imports<br/>1 day known, rest unset"]
-  B11 --> B12["12. Portfolio, Team, community, sites<br/>13 days known, rest unset"]
+  B9 --> B10["10. The API and the command line<br/>2 weeks, proposed"]
+  B10 --> B11["11. Later blocks and imports<br/>11 days, proposed"]
+  B11 --> B12["12. Portfolio, Team, community, sites<br/>28 days, proposed"]
 ```
 
 Step | Batch | Name | Old phase | Plan appetite | 18 Sep additions | 19 Sep additions, proposed | Depends on
@@ -100,12 +104,12 @@ Step | Batch | Name | Old phase | Plan appetite | 18 Sep additions | 19 Sep addi
 8 | 10a | The agent server, read and propose | Later | 2 to 3 weeks, from D04 | 2 days | 2 days, every type | 4
 9 | 5 | In and out | E | 3 weeks | none | 19 days: every type mirrored 3, PDF to Markdown 16 | 3, and 4 for the queue
 gate | The pilot | Twenty people outside the studio | none | at least 2 weeks | none | none | every step before it
-10 | 6 | Ideas | C | 4 weeks | 10 to 12.5 days | a board from a blueprint, unset | 3, the kit gate from 1, the pilot
+10 | 6 | Ideas | C | 4 weeks | 10 to 12.5 days | a board from a blueprint, inside the appetite | 3, the kit gate from 1, the pilot
 11 | 7 | Pro, and Max on sale | H | 2 weeks | none | 2 days, the PDF vision pass | 2, 4, 6, 10a
 12 | 9 | Views and blocks | G | 3 weeks | none | 3 days, decks | 3
-13 | 10 | The API and the command line | Later | unset | none | none | 10a
-14 | 11 | Later blocks and imports | Later | unset | none | 1 day, a chart reading a sheet | 5, 9
-15 | 12 | Portfolio, Team and community | Later | unset | none | 13 days: sites 10, the slide player 3 | 4, 7
+13 | 10 | The API and the command line | Later | unset; 2 weeks proposed on 19 Sep | none | none | 10a
+14 | 11 | Later blocks and imports | Later | unset; 2 weeks proposed on 19 Sep | none | 1 day, a chart reading a sheet | 5, 9
+15 | 12 | Portfolio, Team and community | Later | unset; 3 weeks proposed on 19 Sep | none | 13 days: sites 10, the slide player 3 | 4, 7
 after 15 | none | Canvas | none | unset | none | unset | 12
 
 **The pilot's two weeks come from the plan, not from here.** Section 28 measures "active in week
@@ -139,7 +143,11 @@ The rest of Later last | The plan never costs it, so it cannot be scheduled with
 allows one batch at a time. Running the desktop inside batch 3 would break D02's gate.
 
 `INFERENCE:` phase F moves whole, offline and phone included, because the plan prices F as one
-3-week appetite. Splitting it would need a number nobody has. The founder can split it.
+3-week appetite. Splitting it would need a number nobody has.
+
+**Phase F stays whole**, `resolved (proposed 19 Sep, founder review)`. Rejected: moving only the
+desktop to step 4 and leaving offline and the phone at step 8, which would need two new appetites
+carved out of one with no evidence for the split.
 
 ### 2.2 What moved on 18 September, and why
 
@@ -197,7 +205,7 @@ Voice v1, all of `71-VOICE-SPEC.md` | 4a, step 7 | 21 days | This file, section 
 `read`, `read_view` and `propose` for every registered type | 10a, step 8 | 2 days | `70` section 14 | The registry does the work; the server only exposes it
 The mirror carries every text type; `.csv` and `.xlsx` import as proposals | 5, step 9 | 3 days | `70` section 14 | `67` section 7.1 is rewritten before strangers mirror anything
 PDF to Markdown: both device chains, the three entry points, the desktop's Tesseract | 5, step 9 | 16 days | This file, section 3.8 | Entry 3 is an Import source on S22, which this batch builds
-A board from a blueprint | 6, step 10 | unset | `69` section 6 | It reads the kit that batch 6 builds
+A board from a blueprint | 6, step 10 | inside the batch's appetite, section 3.10 | `69` section 6 | It reads the kit that batch 6 builds
 The PDF vision pass, Pro only | 7, step 11 | 2 days | This file, section 3.11 | It is a Pro row, and Pro ships here
 Decks: `slides: 1`, speaker view, PDF, on `F182` | 9, step 12 | 3 days | `70` section 14 | `F182` is already here
 A chart reading a sheet by path; `F184` becomes the read-only Kanban view | 11, step 14 | 1 day | `70` section 14; `69` section 7 | Board files came first, in 9a
@@ -249,8 +257,9 @@ The batch's criteria pass | Every `A` id named in the batch's row passes, or is 
 No serious defect is open | Zero `CRITICAL` and zero `HIGH` defects open against the batch, severity per `65-CONVENTIONS.md` section 7
 The founders used it | Both founders, Sagnik and Amit, did their own real work in the batch for the use window below
 
-**The use window is a proposal, not the plan's.** `INFERENCE:` it is one seven-day window in which
-each founder uses the batch on at least two distinct days.
+**The use window is a proposal, not the plan's**, `resolved (proposed 19 Sep, founder review)`.
+`INFERENCE:` it is one seven-day window in which each founder uses the batch on at least two distinct
+days. Rejected: a two-week window, which adds a week to every batch, section 7.
 
 That borrows the plan's own definition of an active user from section 28.
 
@@ -259,8 +268,8 @@ so the fixes found in the use window come out of the batch's own weeks.
 
 If they do not fit, scope is cut, and the cut is written down.
 
-**The founder can change the window.** Each extra week per batch adds eleven calendar weeks, one for
-each priced batch after batch 1: 2, 3, 4, 4a, 5, 6, 7, 8, 9, 9a and 10a.
+**The founder can change the window.** Each extra week per batch adds fourteen calendar weeks, one
+for each batch after batch 1 with an appetite: 2, 3, 4, 4a, 5, 6, 7, 8, 9, 9a, 10a, 10, 11 and 12.
 
 Batch 1 has nothing to use.
 
@@ -377,8 +386,16 @@ Dark mode | `F109` | S27
 **The 2 days added on 18 September**, an appetite, `resolved (proposed 18 Sep, founder review)`: phone views given the desktop theme treatment,
 `docs/mvp0/SCREEN-CHANGES-2026-09-18.md:19`.
 
-**The Windows build has no appetite.** The plan's 3 weeks for phase F priced macOS signing and left
-Windows in Later. `UNVERIFIED:` the extra work of a Windows signing step in CI is not costed.
+**The Windows build has no appetite of its own.** The plan's 3 weeks for phase F priced macOS signing
+and left Windows in Later.
+
+**It sits inside batch 8's appetite**, `resolved (proposed 19 Sep, founder review)`. The appetite is
+fixed and the scope varies, so if Windows does not fit, it is the first thing cut. Batch 8 then ships
+macOS, and Windows stays "coming", as section 7's last Windows row already allows.
+
+- Rejected: a new number of days for Windows, which nothing in the corpus supports.
+- `UNVERIFIED:` the extra work of a Windows signing step in CI. needs: the signing route chosen in
+  batch 1, since the vendor's key storage decides what the CI step does.
 
 **Depends on:** batch 3 for the editor and for the change queue's first form. **It no longer waits
 on batch 5.**
@@ -400,8 +417,10 @@ changing the watched folder's contract.
 - **Use:** each founder works a full day offline in the browser and a full day in the desktop app on
   macOS, installs the signed Windows build on one Windows machine, and captures from a phone.
 - **Criteria:** `A130` to `A135`, `A639` to `A641`, `A643` to `A662`.
-- `A645` and `A646` cover desktop signing. `UNVERIFIED:` whether either names Windows was not
-  checked; if not, a Windows criterion is written in this batch.
+- `A645` and `A646` cover desktop signing, and **neither names Windows** `[O]`. `A645` is an update
+  whose signature does not verify; `A646` is the platform rows on S25. So a Windows criterion is
+  written in this batch, `grep -n -i windows docs/pack/19-ACCEPTANCE-CRITERIA.md` having returned
+  nothing on 19 September.
 
 ### 3.5 Step 5. Batch 9a, database views, boards and sheets. 25 days, proposed
 
@@ -430,6 +449,14 @@ added to an old one.
 
 `INFERENCE:` the 15 days were written for a board as a view layout.
 `69-BOARDS-SPEC.md` since made the board a folder of card files, and nobody has re-costed it.
+
+**The 15 days stand**, `resolved (proposed 19 Sep, founder review)`. `70-PLATFORM-AND-TYPES.md`
+section 3.2 makes a board file a view with its query fixed, drawn by the one renderer.
+
+- The view no longer offers `layout: board`, so the work the estimate gave that layout now reads a
+  folder instead.
+- `INFERENCE:` the swap is roughly even. If it is not, boards' pending moves, `F305`, are cut first.
+- Rejected: adding days before anybody has built the view, which would be a guess on a guess.
 
 **The rule this batch must keep.** Every view, board and sheet is a projection of the files on disk,
 per the projection law, and holds no state of its own.
@@ -478,6 +505,9 @@ Backlinks and one search across every registered type | none yet, `new:cross-typ
 decides whether live editing is built. `INFERENCE:` it may still decide whether it waits for its
 own batch.
 
+**It stays in batch 4**, `resolved (proposed 19 Sep, founder review)`: phase D's appetite already
+priced it. Rejected: a batch of its own, which adds a use window and prices nothing new.
+
 **The 7 days added on 18 September**, an appetite, `resolved (proposed 18 Sep, founder review)`.
 
 Item | Days | Source
@@ -498,6 +528,10 @@ It is a splice into front matter, never the per-span read state on the never-bui
 
 `INFERENCE:` a published sheet (`68` section 6.3) belongs here with publishing, and no source costs
 it.
+
+**It sits inside this batch's appetite**, `resolved (proposed 19 Sep, founder review)`. A published
+sheet is the published page's own HTML table plus a neutralised CSV download. If it does not fit, it
+moves to batch 12 with sites. Rejected: a day count with no source.
 
 **Depends on:** batch 3, for the change queue's first form and the version record.
 
@@ -663,10 +697,21 @@ Not a batch. A gate the world answers, and it can fail. `docs/mvp0/PRODUCT-PLAN.
   again; one person asks how to pay before being told the price.
 
 **The stop lines and D02 disagree, and this file does not pick.** Section 28 says any one stop line
-"stops the next phase". D02 says every phase is built. Section 6 lists it as open.
+"stops the next phase". D02 says every phase is built. It is `needs founder`, because it decides
+whether money keeps being spent after strangers say no.
+
+- **Recommended: a failed stop line pauses the build**, for one meeting of both founders before
+  batch 6 starts. They then continue, change the order, or stop. Nothing continues by default.
+- Rejected in the recommendation: continuing whatever the pilot shows, which makes the pilot a
+  ceremony, and stopping automatically, which D02 rules out.
 
 `INFERENCE:` the pilot now meets a desktop app, database views and an agent server, which the plan's
-section 28 did not script. Whether its script grows is the founder's call.
+section 28 did not script.
+
+**The script does not grow**, `resolved (proposed 19 Sep, founder review)`. Its three stop lines
+and three continue lines measure the core: people active in week two, the kickoff, the problem named.
+Each pilot interview adds one question, which of the newer features the person used, unprompted.
+Rejected: new scripted steps, which would measure features the stop lines do not read.
 
 ### 3.10 Step 10. Batch 6, ideas. 4 weeks plus 10 to 12.5 days
 
@@ -686,11 +731,16 @@ Make a board from a blueprint, as one grouped proposal of card files | none yet,
 column with a dynamic question flow, 2 to 2.5 weeks. Source:
 `docs/mvp0/SCREEN-CHANGES-2026-09-18.md:99` to `:124`.
 
-**A board from a blueprint has no appetite.** `69-BOARDS-SPEC.md` section 6 specifies it and costs
-nothing.
+**A board from a blueprint has no appetite of its own.** `69-BOARDS-SPEC.md` section 6 specifies it
+and costs nothing.
 
 `INFERENCE:` it is a model call over the kit plus a grouped `create` proposal, both of which
-exist by this batch. Whether it spends a blueprint credit is open (`69` section 8).
+exist by this batch.
+
+- **It sits inside this batch's appetite**, `resolved (proposed 19 Sep, founder review)`, and is cut
+  first if the batch runs over. Rejected: a day count with no source.
+- **Whether it spends a blueprint credit is `needs founder`**, because it is money (`69` section 6).
+  Recommended: no extra credit.
 
 **Depends on:** batch 3 for the AI box, the free chain and the breaker; batch 1 for the kit gate,
 which D07 keeps `[Z]`; the pilot for its reading.
@@ -716,6 +766,10 @@ The PDF vision pass, Pro only, behind `flag.pdf.vision`, with its own fixture ru
 
 **Max adds no appetite here.** `INFERENCE:` it is one more plan row on a checkout this batch already
 builds, priced from the configuration panel like Pro. Its price is not set in this file.
+
+**The Max price is already a founder item** from 18 September, in `51-PRODUCT-PLAN.md` section 7:
+metered per agent request, its rate set from the panel when batch 10a measures the cost. Nothing new
+is asked here.
 
 **The 2 days for the vision pass, proposed by this file.** `72-PDF-TO-MARKDOWN-SPEC.md` sections 3.4
 and 3.5 ask for one route through the model layer, a fixed prompt and a fallback to Tesseract.
@@ -765,7 +819,7 @@ Templates, daily notes and calendar, tasks | `F135`, `F136`, `F137` | S02, S04, 
   reader cannot show.
 - **Criteria:** `A044`, `A045`, `A046`, `A554` to `A568`.
 
-### 3.13 Step 13. Batch 10, the API and the command line. Appetite unset
+### 3.13 Step 13. Batch 10, the API and the command line. 2 weeks, proposed
 
 Was "Agents and Max". The server, the agents card, `wait_for_change` and Max moved to batches 10a
 and 7. What is left is the plan's "API", and the command line D04's fourth option names.
@@ -774,13 +828,20 @@ What | Feature ids | Screens
 The public API over the same ports as the server | none yet | none yet
 The command line, a thin adapter over the same ports | none yet | none
 
+**The appetite, 2 weeks**, `resolved (proposed 19 Sep, founder review)`. It is the plan's smallest
+phase appetite, that of phases 0 and H, because both adapters are thin layers over ports batch 10a
+already built. `INFERENCE:` a budget chosen, not an estimate.
+
+- Cut first if it runs over: the command line, since the server already serves agents.
+- Rejected: leaving it unset, which keeps every total a floor.
+
 **Depends on:** batch 10a, whose ports both adapters reuse, per plan section 17's principle of a
 capability surface.
 
 **Internal gate.** Each founder drives one real project from the command line. **No criterion
 exists yet**, and writing them is the batch's first task.
 
-### 3.14 Step 14. Batch 11, later blocks and imports. 1 day known, the rest unset
+### 3.14 Step 14. Batch 11, later blocks and imports. 11 days, proposed
 
 Was "Later blocks, imports and Windows". The Windows build moved to batch 8.
 
@@ -792,12 +853,23 @@ Notion import through its API | none yet | S22
 **The 1 day, proposed**, is the chart reading a sheet: `fm-chart@1` with `table: <path>#<anchor>`,
 `70-PLATFORM-AND-TYPES.md` section 4.3. The day count is `ONE-PLATFORM.md` section 4.2's.
 
+**The rest, 2 weeks**, `resolved (proposed 19 Sep, founder review)`: the read-only Kanban view, the
+chart from a table and Notion's API import. The plan's smallest phase appetite again, because the
+first two are views over parts that exist, and Notion import extends batch 5's importer.
+
+```text
+1 day (a chart reading a sheet) + 10 days (the rest) = 11 days
+```
+
+- Cut first if it runs over: Notion's API import, since batch 5 already imports from Notion.
+- Rejected: leaving it unset.
+
 **Depends on:** batch 5 for import, batch 9 for the views, batch 9a for sheets.
 
 **Internal gate.** Use as batches 5 and 9. `A044` covers kanban as a view. Nothing covers the rest
 yet.
 
-### 3.15 Step 15. Batch 12, portfolio, Team, community and sites. 13 days known, the rest unset
+### 3.15 Step 15. Batch 12, portfolio, Team, community and sites. 28 days, proposed
 
 What | Feature ids | Screens
 The portfolio | `F230` | S30
@@ -810,8 +882,20 @@ The published slide player | none yet | none yet
 **The 13 days, proposed**: sites 10, the slide player 3, `70-PLATFORM-AND-TYPES.md` section 13. The
 day counts are `ONE-PLATFORM.md` section 4.2's. The rest of the batch is still unset.
 
+**The rest, 3 weeks**, `resolved (proposed 19 Sep, founder review)`: the portfolio, the Team tier,
+the community and a custom domain. Three weeks is the plan's most common phase appetite, and Team is
+the one new billing shape in the batch.
+
+```text
+13 days (sites 10, the slide player 3) + 15 days (the rest) = 28 days
+```
+
+- Cut first if it runs over: the community, which no file in the pack yet defines.
+- Rejected: leaving it unset.
+
 **After this batch, canvas** (JSON Canvas 1.0) has no batch and no appetite. It is not in the
-founder's list (`70` section 14).
+founder's list (`70` section 14). **It stays out of every total**, `resolved (proposed 19 Sep,
+founder review)`, until the founder asks for it. Rejected: pricing a feature nobody asked for.
 
 **Depends on:** batch 4 for publishing, batch 7 for billing.
 
@@ -829,13 +913,13 @@ Old phase | Old appetite | Batch | Step | What changed
 0. Before code | 2 weeks | 1 | 1 | Gains the Windows certificate's pricing, D09
 A. The door and the home | 3 weeks | 2 | 2 | The storage answer may add to it, section 6.1
 B. The editor as shipped, plus Doc mode | 4 weeks | 3 | 3 | S11 moves in; the 18 Sep additions total 11 days; the type registry adds 2 on 19 Sep; voice typing left for 4a
-C. Ideas | 4 weeks | 6 | 10 | After the pilot, and no longer optional; a board from a blueprint, unset
+C. Ideas | 4 weeks | 6 | 10 | After the pilot, and no longer optional; a board from a blueprint, inside the appetite
 D. Sharing | 3 weeks | 4 | 6 | Live editing is in; 7 days added; the stamp decided, D06; sign in to edit a link, D12; embeds and cross-type search add 5 on 19 Sep
 E. In and out | 3 weeks | 5 | 9 | Out of Later and ahead of the pilot; every type mirrored, 3 days, and PDF to Markdown, 16 days, on 19 Sep
 F. Everywhere | 3 weeks | 8 | 4 | **Moved to straight after the editor, D09**, with the signed Windows build
 G. Views and blocks | 3 weeks | 9 | 12 | After Pro; database views split out to 9a; decks add 3 days on 19 Sep
 H. Pro | 2 weeks | 7 | 11 | After C and the pilot; Max goes on sale here, D04; the PDF vision pass adds 2 days on 19 Sep
-Later | unset | 10a, 10, 11, 12 | 8, 13, 14, 15 | 10a has an appetite from D04, plus 2 days for every type; 11 and 12 carry 14 proposed days; the rest has none
+Later | unset | 10a, 10, 11, 12 | 8, 13, 14, 15 | 10a has an appetite from D04, plus 2 days for every type; on 19 Sep 10, 11 and 12 took proposed appetites of 10, 11 and 28 days
 none | none | 9a | 5 | **New, D13**: database views over front matter; boards and sheets v1 join it on 19 Sep, 25 days
 none | none | 4a | 7 | **New, D14 widened on 19 Sep**: voice, 21 days
 
@@ -937,9 +1021,9 @@ Step | Batch | Working days | At 1.21 days a week | At 0.93 days a week
 10 | 6 | 20 + 10 to 12.5 = 30 to 32.5 | 24.8 weeks | 34.9 weeks
 11 | 7 | 10 + 2 = 12 | 9.9 weeks | 12.9 weeks
 12 | 9 | 15 + 3 = 18 | 14.9 weeks | 19.4 weeks
-13 | 10 | unset | unset | unset
-14 | 11 | 1 known, the rest unset | 0.8 weeks known | 1.1 weeks known
-15 | 12 | 13 known, the rest unset | 10.7 weeks known | 14.0 weeks known
+13 | 10 | 10, proposed | 8.3 weeks | 10.8 weeks
+14 | 11 | 1 + 10 = 11, proposed | 9.1 weeks | 11.8 weeks
+15 | 12 | 13 + 15 = 28, proposed | 23.1 weeks | 30.1 weeks
 
 **Batch 3 alone is six to eight months of calendar.** That is the editor, before anybody else sees
 it. The desktop now follows it directly. Batch 5, with PDF to Markdown, is now the same size.
@@ -979,9 +1063,26 @@ total:       188.3 + 11 + 2 = 201.3 weeks,  to  283.3 + 11 + 2 = 296.3 weeks
 - With content, the total is about **226 to 329 weeks**: 201.3 + 24.8 = 226.1, and
   296.3 + 32.3 = 328.6.
 - **The 14 known days in batches 11 and 12** add 14 / 1.21 = 11.6 to 14 / 0.93 = 15.1 weeks. They
-  are left out of the total above because both batches are otherwise unpriced.
-- **Batch 10, and the rest of 11 and 12,** have no appetite. Whatever they cost is added to every
-  figure here. So does a board from a blueprint, in batch 6, and canvas after batch 12.
+  are left out of the total above because both batches were otherwise unpriced on 19 September.
+- **Batch 10, and the rest of 11 and 12,** had no appetite. The total below gives them one.
+
+**The total with every batch priced**, from the proposed appetites of sections 3.13 to 3.15. A board
+from a blueprint and a published sheet sit inside their batches, and canvas stays out.
+
+```
+added days:  batch 10: 10;  batch 11: 1 + 10 = 11;  batch 12: 13 + 15 = 28;  10 + 11 + 28 = 49
+build, low:  (128.9 + 20   + 79 + 49) days / 1.21 = 276.9 / 1.21 = 228.8 weeks
+build, high: (150   + 34.5 + 79 + 49) days / 0.93 = 312.5 / 0.93 = 336.0 weeks
+use windows: 14 batches, the 11 above plus 10, 11 and 12, x 1 week = 14 weeks
+the pilot:   at least 2 weeks
+total:       228.8 + 14 + 2 = 244.8 weeks,  to  336.0 + 14 + 2 = 352.0 weeks
+in years:    244.8 / 52 = 4.71,  to  352.0 / 52 = 6.77
+with content: 244.8 + 24.8 = 269.6,  to  352.0 + 32.3 = 384.3 weeks
+```
+
+**So everything the founder has asked for takes about 245 to 352 calendar weeks at the measured
+pace**, 270 to 384 with the content. The 49 days are budgets this file chose on 19 September, not
+estimates. Section 5.9 puts the calendar to the founder.
 
 ### 5.6 When the pilot starts
 
@@ -1027,7 +1128,8 @@ The old default, plan section 26 | about 60 to 79 | Phases 0, A, B, D, H
 An earlier revision's "everything" | about 116 to 151 | Phases 0 to H, no use windows, no pilot
 The previous revision, D02 only | about 126 to 192 | Batches 1 to 9, use windows, the pilot
 The revision of 18 September, D02 and D04 to D14 | about 134 to 209, 159 to 242 with content | Batches 1 to 9 and 10a, use windows, the pilot, and four unpriced batches still to add
-**This revision, 19 September** | **about 201 to 296**, 226 to 329 with content | Batches 1 to 9, 9a, 4a and 10a, use windows, the pilot, and three batches still without a full appetite
+This revision, 19 September, priced batches only | about 201 to 296, 226 to 329 with content | Batches 1 to 9, 9a, 4a and 10a, use windows, the pilot, and three batches still without a full appetite
+**The same revision, every batch priced** | **about 245 to 352**, 270 to 384 with content | All fifteen batches, the three proposed appetites of sections 3.13 to 3.15 included, 14 use windows, the pilot; canvas left out
 
 **Why it grew on 18 September.** Batch 10a gained an appetite, 8.9 to 15 days, and one more use
 window. Nothing else changed in size; D09 and D13 changed the order, not the sum.
@@ -1089,6 +1191,87 @@ the other types: 15 / 1.21 = 12.4   to  15 / 0.93 = 16.1 weeks
 check:           25 + 39 + 15 = 79 days
 ```
 
+### 5.9 The calendar, put to the founder
+
+**This is `needs founder`**, because it is time and money. Everything asked for takes **about 245 to
+352 calendar weeks at the measured pace**, 4.7 to 6.8 years, section 5.5. Content adds 25 to 32
+weeks more.
+
+**Launch, as this section uses the word**, is the end of batch 7, step 11. Free and Pro are then
+complete and Pro is on sale (`51-PRODUCT-PLAN.md` section 4). It is computed from section 5.4's rows,
+as section 5.6 computes the pilot:
+
+```
+days, steps 1 to 11:
+  low  10 + 15 + 33 + 17 + 25 + 27 + 21 + 14 + 34 + 30   + 12 = 238   days
+  high 10 + 15 + 33 + 17 + 25 + 27 + 21 + 19 + 34 + 32.5 + 12 = 245.5 days
+windows: batches 2, 3, 8, 9a, 4, 4a, 10a, 5, 6 and 7 = 10;   the pilot: 2
+launch: 238 / 1.21 + 12 = 208.7 weeks,  to  245.5 / 0.93 + 12 = 276.0 weeks
+```
+
+So launch is about 209 to 276 weeks away, 4.0 to 5.3 years: 208.7 / 52 = 4.01, 276.0 / 52 = 5.31.
+
+**There are three honest options.**
+
+#### Option A. Accept the full sequence
+
+Nothing changes. The total is 244.8 to 352.0 weeks, and launch is 208.7 to 276.0 weeks in.
+
+#### Option B. Raise the weekly pace
+
+The pace is the days of build work done in a week, measured at 0.93 to 1.21. The use windows and the
+pilot are calendar weeks, so they do not shrink: 16 weeks on the total, 12 on the way to launch.
+
+```
+total  = build days / pace + 16,   build days 276.9 (low) and 312.5 (high), section 5.5
+launch = launch days / pace + 12,  launch days 238 (low) and 245.5 (high)
+```
+
+Extra days a week | Pace | Total, weeks | Saved on the total | Launch, weeks
+none | 1.21 to 0.93 | 244.8 to 352.0 | none | 208.7 to 276.0
+1 | 2.21 to 1.93 | 276.9 / 2.21 + 16 = 141.3, to 312.5 / 1.93 + 16 = 177.9 | 103.5 to 174.1 | 119.7 to 139.2
+2 | 3.21 to 2.93 | 276.9 / 3.21 + 16 = 102.3, to 312.5 / 2.93 + 16 = 122.7 | 142.5 to 229.3 | 86.1 to 95.8
+3 | 4.21 to 3.93 | 276.9 / 4.21 + 16 = 81.8, to 312.5 / 3.93 + 16 = 95.5 | 163.0 to 256.5 | 68.5 to 74.5
+full time | 5 | 276.9 / 5 + 16 = 71.4, to 312.5 / 5 + 16 = 78.5 | 173.4 to 273.5 | 59.6 to 61.1
+
+- **The first extra day saves the most**, 103.5 to 174.1 weeks, because the pace roughly doubles.
+  Each later day saves less.
+- **A day a week is a person's time**, and nobody has priced it. Who works it is the founder's to say.
+
+#### Option C. Move named work to after launch
+
+**D02 still builds everything**, so a deferral brings launch sooner and leaves the total unchanged.
+Each saving below is days / 1.21 + windows, to days / 0.93 + windows.
+
+Work deferred | Days | Windows saved | Launch sooner by, weeks | Reverses a founder answer
+Voice, batch 4a | 21 | 1 | 18.4 to 23.6 | No. This file placed it
+PDF to Markdown, with the vision pass | 16 + 2 = 18 | 0 | 14.9 to 19.4 | No. This file placed it
+Sheets v1 | 10 | 0 | 8.3 to 10.8 | No
+Embeds, backlinks and search across types | 5 | 0 | 4.1 to 5.4 | No
+Views and boards | 15 | 0 | 12.4 to 16.1 | Yes, D13 built views early
+All of batch 9a, views, boards and sheets | 25 | 1 | 21.7 to 27.9 | Yes, D13
+The agent server, batch 10a | 14 to 19 | 1 | 12.6 to 21.4 | Yes, D04 put Max on sale in batch 7
+The desktop, batch 8 | 17 | 1 | 15.0 to 19.3 | Yes, D09
+
+- Savings add up only for rows that do not overlap. The all-of-9a row already holds sheets, views
+  and boards.
+- **Voice and PDF to Markdown together** save 39 days and one window: 39 / 1.21 + 1 = 33.2, to
+  39 / 0.93 + 1 = 42.9 weeks. Launch then comes 175.5 to 233.0 weeks in, 3.4 to 4.5 years.
+- Neither is on the pilot's script, and neither was placed by a founder answer, so they are the two
+  cheapest to move.
+
+#### The recommendation
+
+**B and C together.** At the measured pace, even the two cheapest deferrals leave launch 3.4 to 4.5
+years away, and only the pace moves the total.
+
+- **Two extra days a week, with voice and PDF to Markdown after launch**, bring launch to
+  199 / 3.21 + 11 = 62.0 + 11 = 73.0, to 206.5 / 2.93 + 11 = 70.5 + 11 = 81.5 weeks, 1.4 to 1.6 years.
+- The total is then 102.3 to 122.7 weeks, from the option B table.
+- The 199 and 206.5 are 238 - 39 and 245.5 - 39, and the 11 weeks are nine windows and the pilot.
+- `INFERENCE:` these are appetites divided by a pace, and no batch has been built at any pace but the
+  measured one.
+
 ---
 
 ## 6. The decisions still open that move this order
@@ -1098,7 +1281,8 @@ From `56-OPEN-DECISIONS.md`. Silence is not agreement. D04 to D14 were answered 
 
 Decision | State | What it moves
 **D03, where bytes live** | Decided `[Z]` | **Batch 2, and possibly batch 5 into batch 2.** Section 6.1
-**The pilot's stop lines against D02** | Open | Whether a failed pilot stops batch 6, or only informs it
+**The pilot's stop lines against D02** | Needs founder, section 3.9. Recommended: a failed line pauses the build for one meeting | Whether a failed pilot stops batch 6, or only informs it
+**The calendar** | Needs founder, section 5.9 | Nothing, or the pace, or which work moves to after launch
 D04, the MCP server | Answered `[Z]` | New batch 10a, now at step 8; Max on sale in batch 7
 D05, the name | Answered `[Z]`: keep frontmatter | Nothing moves
 D06, authorship marking | Answered `[Z]` | The 2-day stamp in batch 4 is decided
@@ -1112,7 +1296,7 @@ D14, voice typing | Answered `[Z]`, widened on 19 Sep | New batch 4a at step 7, 
 Sheets, Boards, one platform | Asked `[Z]`, 18 and 19 Sep | Batches 3, 9a, 4, 10a, 5, 9, 11 and 12, section 2.3
 PDF to Markdown | Asked `[Z]`, 19 Sep | Batch 5, and the vision pass in batch 7
 Voice V1 to V5, `71` section 1 | Open, defaults written | V5 says no: the desktop engine row of 4a shrinks. The rest move no batch
-Whether `F184` becomes read-only, `69` section 8 | Open | Batch 11's row
+Whether `F184` becomes read-only, `69` section 8 | Resolved as proposed on 19 Sep: yes | Batch 11's row
 
 ### 6.1 Why the storage answer may change batch 2
 
@@ -1126,6 +1310,14 @@ batch 2 under any answer.
 
 The mirror worker moves from batch 5 into batch 2 only if the founder wants the person's own
 storage from day one. Neither is costed.
+
+**Resolved as proposed**, `resolved (proposed 19 Sep, founder review)`: the key layout and the
+`connections` record go in batch 2, inside its 3 weeks; the mirror worker stays in batch 5.
+
+- The first stranger arrives at the pilot, after batch 5, so the mirror exists before anybody but the
+  founders has a document. D03's promise holds for every stranger.
+- Rejected: the mirror worker in batch 2, which adds uncosted work to the batch every later one
+  waits on.
 
 **The benchmark's own tests have not run.** A byte round trip through Drive and a 100-edit
 concurrency test come first. Until they do, batch 2's appetite stays the plan's 3 weeks.
@@ -1142,7 +1334,7 @@ desktop user's folder.
 
 Event | What moves
 The pace doubles | Every calendar figure halves; the appetites do not move
-The use window changes | Each extra week per batch adds 11 calendar weeks to the priced total
+The use window changes | Each extra week per batch adds 14 calendar weeks to the total
 The pilot fails a stop line | Batch 6 onward, if the founder reads section 28 over D02
 The twenty-kit gate fails | Batch 6, since D07 keeps the gate as a gate
 D03 puts the mirror in batch 2 | Batch 2 grows and batch 5 shrinks, by an amount nobody has costed
@@ -1166,9 +1358,15 @@ Obsidian ships a web version | `docs/mvp0/PRODUCT-PLAN.md` section 27 names this
   PDF are this file's. None was checked against the code or a prototype.
 - Whether 0.93 to 1.21 days a week still holds. It comes from the audit of 17 September and has not
   been remeasured.
-- The cost of batch 10 and the rest of 11 and 12, of a board from a blueprint, of canvas, of a
-  published sheet, of the Windows build, and of the fixes each use window finds.
-- Who writes the thirty days of content. Nobody is named.
+- The cost of batch 10 and the rest of 11 and 12. On 19 September each took a proposed appetite,
+  sections 3.13 to 3.15, chosen by analogy to the plan's phases, not costed from the code.
+- The cost of a board from a blueprint, a published sheet and the Windows build. Each now sits inside
+  its batch's appetite and is cut first; none was costed. Canvas is out of every total.
+- The fixes each use window finds.
+- **Who writes the thirty days of content** is `needs founder`: nobody is named, and it is a person's
+  time. Recommended: the founders write it, each piece in the batch that ships the thing it
+  explains, so the help text and templates land with their feature. Its thirty days stay on top of
+  the appetites, as section 5.5 counts them.
 
 **What could not be verified.**
 
@@ -1178,7 +1376,7 @@ Obsidian ships a web version | `docs/mvp0/PRODUCT-PLAN.md` section 27 names this
   phone. Section 2.1 says why the whole phase moved.
 - What D13's "database views" contain beyond a table over front matter keys. Section 3.5 writes the
   smallest reading and marks it.
-- Whether `A645` and `A646` cover Windows signing.
+- `A645` and `A646` do not cover Windows signing, checked on 19 September `[O]`. Section 3.4.
 - Features the plan does not name by phase, such as `F145` to `F147`, `resolved (proposed 18 Sep,
   founder review)`: **a feature with no phase goes in the batch of the screen it sits on.**
 - `F145` to `F147` sit on S04, so batch 3.
@@ -1188,14 +1386,16 @@ Obsidian ships a web version | `docs/mvp0/PRODUCT-PLAN.md` section 27 names this
 - A gate that names none is weaker than one that
   does.
 - Whether the 15 days `ONE-PLATFORM.md` gave views and board layouts still cover a board built as a
-  folder of card files, which `69-BOARDS-SPEC.md` chose after that estimate.
+  folder of card files, which `69-BOARDS-SPEC.md` chose after that estimate. Section 3.5 keeps them,
+  as a proposal.
 
 **What is proposal, not source.**
 
 - The one-week use window, the order of steps after the founders' answers, fixes coming out of the
   appetite, and 10a's place at step 8 rather than after the pilot.
 - Voice in its own batch, 4a, at step 7 rather than in batch 3; PDF to Markdown whole in batch 5;
-  and every 19 September appetite.
+  and every 19 September appetite, the three for batches 10, 11 and 12 included.
+- The meaning of "launch" in section 5.9, the end of batch 7.
 - Each is marked `INFERENCE:` where it appears, and each is the founder's to change.
 
 **What would falsify it.**

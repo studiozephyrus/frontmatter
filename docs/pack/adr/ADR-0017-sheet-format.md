@@ -5,7 +5,7 @@ mode: explanation
 tier: canonical
 status: open
 verified_against: ee73929
-updated: 2026-09-19
+updated: 2026-09-20
 owner: sagnik
 covers: [ADR-0017]
 ---
@@ -89,5 +89,9 @@ A1 addressing through fast-formula-parser | Goes stale when a row is added
 ## Limits of this record
 
 - **Not decided.** The founder has asked for sheets; he has not chosen this format.
+- **`resolved (proposed 19 Sep, founder review)`, `needs founder`.** The recommendation is to adopt
+  this format as the basis batch 9a builds on, since it is what every file a person writes will carry.
+  A format on disk is a promise to users that outlives any screen. The status stays `open` until he
+  answers, because only the founder moves it to `decided`.
 - **No prototype exists.** The evaluator, the grammar and the decimal rule are specified, not built.
 - **Licence readings are not legal advice.**

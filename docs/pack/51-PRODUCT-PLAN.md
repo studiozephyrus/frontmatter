@@ -4,7 +4,7 @@ title: Product plan
 mode: explanation
 tier: canonical
 status: living
-updated: 2026-09-19
+updated: 2026-09-20
 owner: sagnik
 verified_against: 1335518
 covers: [position, claims, tiers, scope, never-build]
@@ -52,8 +52,11 @@ boards, notes and sites on one platform, with presentations later. `56-OPEN-DECI
 `INFERENCE:` the position sentence still reads "a markdown editor". A sheet or a board is a
 markdown-adjacent text file, and the review surface is the same queue.
 
-Whether the sentence should
-name them is the founder's call, and nobody has asked.
+**Whether the sentence should name them is `needs founder`**, because it is the brand. Recommended,
+`resolved (proposed 19 Sep, founder review)`: keep "a markdown editor". Every new kind is a markdown
+or plain-text file reviewed in the same queue, and the tagline test later in this section is planned.
+Rejected in the recommendation: a sentence that lists docs, sheets and boards, which reads like the
+all-in-one suites the position stands against.
 
 **The internal name is `fmd`, and it stands for nothing** `[Z]`. The public name stays frontmatter.
 
@@ -224,8 +227,8 @@ internal gate, never on a date.
 Tier | Complete after batch | What that batch adds | Caveat
 **Free** | 5, In and out, then the pilot | Import, export, the GitHub and Drive mirrors, PDF to Markdown | The desktop app and offline, batch 8; views, boards and sheets, batch 9a; and voice, batch 4a, now land before batch 5 (D09, D13, 19 Sep). Batch 9's views and blocks, decks among them, come after Pro
 **Pro** | 7, Pro | Razorpay, Medium and High, password links, the 90-day window, the PDF vision pass | **The portfolio is a Pro row but ships in batch 12.** Pro is sold without it until then
-**Max** | 10a, the agent server, then on sale in batch 7 | The MCP server that reads and proposes and never writes, agent tokens, propose scope, staleness anchors, the multi-file change | **Scheduled by D04** `[Z]`, 2 to 3 weeks plus 4 days, 2 of them for every type on 19 September. The API and the command line follow in batch 10, appetite unset
-**Team** | 12, Portfolio, Team and community | Seats and one bill | Appetite unset, unpriced
+**Max** | 10a, the agent server, then on sale in batch 7 | The MCP server that reads and proposes and never writes, agent tokens, propose scope, staleness anchors, the multi-file change | **Scheduled by D04** `[Z]`, 2 to 3 weeks plus 4 days, 2 of them for every type on 19 September. The API and the command line follow in batch 10, 2 weeks proposed on 19 September (`50-ROADMAP.md` section 3.13)
+**Team** | 12, Portfolio, Team and community | Seats and one bill | Unpriced. The batch took a proposed appetite of 28 days on 19 September (`50-ROADMAP.md` section 3.15)
 
 `INFERENCE:` a tier is "complete" when the last batch its rows need has passed. Nothing in
 `50-ROADMAP.md` says a tier cannot open to strangers earlier; the pilot after batch 5 is the first
@@ -239,8 +242,12 @@ The free tier is not a demonstration. It is a whole editor with quantities cappe
   offline, the desktop app, tags, backlinks, history.
 - **Sheets, boards, voice and PDF to Markdown are free too** `[Z]` (19 September), with quantities
   capped rather than features withheld.
-- Proposed caps, awaiting the founders and the register in `53-PRICING-AND-ENTITLEMENTS.md`: 60 voice minutes a month (`71` section 17.2), and PDFs up to
-  1,000 pages and 100 MB (`72` section 9).
+- Proposed caps, awaiting the founders and the register in `53-PRICING-AND-ENTITLEMENTS.md`: 60 voice
+  minutes a month (`71` section 17.2), and PDFs up to 1,000 pages and 100 MB (`72` section 9).
+- **The caps are `needs founder`**, because they are money. Recommended, `resolved (proposed 19 Sep,
+  founder review)`: adopt the specs' values as starting panel values, changed from the configuration
+  panel once batch 4a's bench and batch 5's fixtures show the real cost. That is how D11 treats the
+  document cap. Rejected: lower caps now, set before any cost is measured.
 - The caps are on quantity, not capability. 50 documents, 5 published pages, 1 live collaborator,
   7 days of history, 10 AI edits and 1 Low blueprint a month.
 - **The mirror is free, on both plans** `[Z]` (D03). Our copy in R2 is canonical. A full copy sits

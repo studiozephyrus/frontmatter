@@ -5,7 +5,7 @@ mode: explanation
 tier: canonical
 status: open
 verified_against: ee73929
-updated: 2026-09-19
+updated: 2026-09-20
 owner: sagnik
 covers: [ADR-0018]
 ---
@@ -87,5 +87,9 @@ Workflow transitions that refuse a move | In a file any value is legal. Nobody i
 ## Limits of this record
 
 - **Not decided.** The founder has asked for boards; he has not chosen this format.
+- **`resolved (proposed 19 Sep, founder review)`, `needs founder`.** The recommendation is to adopt
+  this format as the basis batch 9a builds on, since it is what every file a person writes will carry.
+  A format on disk is a promise to users that outlives any screen. The status stays `open` until he
+  answers, because only the founder moves it to `decided`.
 - **The merge test is one scenario each**, on synthetic files, per `BOARDS.md` section 6.
 - **No board code exists.** The front matter writer a move would use is built, with one defect.

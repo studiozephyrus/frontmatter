@@ -5,7 +5,7 @@ mode: explanation
 tier: canonical
 status: open
 verified_against: ee73929
-updated: 2026-09-19
+updated: 2026-09-20
 owner: sagnik
 covers: [ADR-0019]
 ---
@@ -88,6 +88,10 @@ A third-party plugin API that defines formats | `INFERENCE:` where Obsidian's fo
 ## Limits of this record
 
 - **Not decided.** The founder asked for one platform; he has not chosen this model.
+- **`resolved (proposed 19 Sep, founder review)`, `needs founder`.** The recommendation is to adopt
+  this model as the basis batch 3 builds on, since it is what every file a person writes will carry.
+  A format on disk is a promise to users that outlives any screen. The status stays `open` until he
+  answers, because only the founder moves it to `decided`.
 - **The registry interface, `fm-view@1` and `fm-embed@1` are inference.** None has a prototype or a
   test.
 - **The survey was not re-run.** Its claims are `ONE-PLATFORM.md`'s, from 18 September 2026.
