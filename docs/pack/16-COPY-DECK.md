@@ -4,7 +4,7 @@ title: Copy deck
 mode: reference
 tier: canonical
 status: living
-updated: 2026-09-18
+updated: 2026-09-19
 owner: sagnik
 verified_against: f237ece
 covers: [user-facing-strings, refusal-wording, error-wording, standing-promises]
@@ -1480,7 +1480,7 @@ its namespace, or `K.s28.nav.<slug>` to mean one row per slug. The validator rea
 so this section is where each is recorded as what it is. Reconciled on 18 September; the working
 file is `docs/pack/tools/copy-reconciliation.md`.
 
-**Twenty-five screen namespaces and the trial namespace**, then seven templates and the error namespace. None is a string.
+**Twenty-nine screen namespaces and the trial namespace**, then seven templates and the error namespace. None is a string.
 
 family | kind | what it stands for | members in this deck
 `K.s01` | namespace, `K.s01.*` | every row for S01 | section 3
@@ -1509,6 +1509,11 @@ family | kind | what it stands for | members in this deck
 `K.s36` | namespace, `K.s36.*` | every row for S36 | section 14p
 `K.s37` | namespace, `K.s37.*` | every row for S37 | section 14p
 `K.s38` | namespace, `K.s38.*` | every row for S38 | section 14p
+`K.s39` | namespace, `K.s39.*` | every row for S39 | section 14r, added 19 September
+`K.s40` | namespace, `K.s40.*` | every row for S40 | section 14r
+`K.s41` | namespace, `K.s41.*` | every row for S41, including its refusals under `K.s41.err` | section 14r
+`K.s42` | namespace, `K.s42.*` | every row for S42 | section 14r
+`K.s41.err` | namespace, `K.s41.err.*` | the S41 refusal strings, one per voice error of `17-ERROR-AND-REFUSAL-CATALOGUE.md` | section 14r
 `K.s28.nav` | template, `K.s28.nav.<slug>` | one label per settings section | all ten, `K.s28.nav.account` to `K.s28.nav.plan`, matching the slugs in the S28 spec
 `K.s30.templates` | template, `K.s30.templates.<slug>` | one name and one line per portfolio template | **none written.** The templates themselves are not chosen
 `K.s33.heading` | template, `K.s33.heading.<entitlement>` | one heading per cap, naming the limit and the number | only the documents cap, as `K.s33.title`. The other caps have no heading yet
@@ -1517,6 +1522,128 @@ family | kind | what it stands for | members in this deck
 `K.s36.routing.col` | template, `K.s36.routing.col.<plan>` | one heading per plan column | the two plans, as `K.common.free` and `K.common.pro`
 `K.s38.meter` | template, `K.s38.meter.<entitlement>` | one label per usage meter | only `K.s38.meter.spend`. gen.mjs draws Documents, AI edits this month and Blueprints (`docs/mvp0/screens/gen.mjs:1736` to `:1738`) with no ids yet
 `K.err` | namespace, `K.err.*` | the words for every row of `17-ERROR-AND-REFUSAL-CATALOGUE.md` | **none written.** Named at `17-ERROR-AND-REFUSAL-CATALOGUE.md` lines 144 and 389, and owned there
+
+## 14r. S39 to S42, sheets, boards, voice and PDF
+
+**Added 19 September 2026**, for screens S39 to S42 and specs `68-SHEETS-SPEC.md` to
+`72-PDF-TO-MARKDOWN-SPEC.md`. The slug each id replaced is in `tools/new-ids-allocation.md` section 9.
+
+- **`[gen]` rows are verbatim** from `docs/mvp0/screens/gen.mjs` at `1335518`, read by line number.
+  Where the drawing holds a number, the row holds a variable, and the note gives the drawn value.
+- **`[new]` rows are proposed and not voice-checked.** The first-run lines, the Other column, three
+  refusals and the download notice were never drawn. The founders review the wording.
+- **The voice refusals take their wording from `71-VOICE-SPEC.md` section 11**, which calls them
+  proposals. They are `[new]` for the same reason.
+- **Five rows are marked Review** in their notes, where a drawn string may break a rule of section 0.4
+  or disagree with its spec.
+
+id | screen | string | tone | budget | notes
+`K.s39.rows` | S39 | {rows} rows · {cols} columns | `plain` | `label`, 28 | `[gen]` `docs/mvp0/screens/gen.mjs:2255`. `{rows}` and `{cols}` are counts of the table, drawn as 6 and 6
+`K.s39.sort` | S39 | {column}, high to low | `label` | `label`, 21 | `[gen]` `docs/mvp0/screens/gen.mjs:2256`. Drawn as Total, high to low. The other direction, low to high, is `[new]` proposed
+`K.s39.filter` | S39 | Filter | `label` | `button`, 6 | `[gen]` `docs/mvp0/screens/gen.mjs:2256`.
+`K.s39.viewnote` | S39 | Sort and filter are yours. The file keeps its order. | `promise` | `help`, 52 | `[gen]` `docs/mvp0/screens/gen.mjs:2257`.
+`K.s39.grid` | S39 | Grid | `label` | `button`, 4 | `[gen]` `docs/mvp0/screens/gen.mjs:2257`.
+`K.s39.md` | S39 | MD | `label` | `button`, 2 | `[gen]` `docs/mvp0/screens/gen.mjs:2257`.
+`K.s39.fxref` | S39 | {column}, {row} | `label` | `label`, 15 | `[gen]` `docs/mvp0/screens/gen.mjs:2258`. Drawn as Total, Design hours: the column, then the row's first cell. Never an address such as B2
+`K.s39.fxhint` | S39 | A row formula. Each result is written into its own cell, one cell at a time. | `help` | `help`, 76 | `[gen]` `docs/mvp0/screens/gen.mjs:2258`.
+`K.s39.summary` | S39 | Summary | `label` | `label`, 7 | `[gen]` `docs/mvp0/screens/gen.mjs:2238`.
+`K.s39.addrow` | S39 | Add row | `label` | `button`, 7 | `[gen]` `docs/mvp0/screens/gen.mjs:2239`.
+`K.s39.addcol` | S39 | Add column | `label` | `button`, 10 | `[gen]` `docs/mvp0/screens/gen.mjs:2240`. The accessible name of the plus at the end of the header
+`K.s39.viewonly` | S39 | Row numbers, widths and the frozen header are yours too. Only a cell you type into changes the file. | `promise` | `help`, 100 | `[gen]` `docs/mvp0/screens/gen.mjs:2265`.
+`K.s39.formulas` | S39 | Formulas in this file | `label` | `label`, 21 | `[gen]` `docs/mvp0/screens/gen.mjs:2267`.
+`K.s39.formulas.note` | S39 | Under the table, where an agent reads them. The sum is drawn, never written. | `plain` | `help`, 76 | `[gen]` `docs/mvp0/screens/gen.mjs:2267`.
+`K.s39.open.full` | S39 | Open as a sheet | `label` | `button`, 15 | `[gen]` `docs/mvp0/screens/gen.mjs:2283`.
+`K.s39.embed.foot` | S39 | fm-sheet@1 under this table holds {n} formulas. Switch to MD to see them as text. | `plain` | `help`, 81 | `[gen]` `docs/mvp0/screens/gen.mjs:2285`. Drawn with 2 formulas. **Review:** it names a format, which section 0.4 rule 4 may count as internal shorthand
+`K.s39.swipe` | S39 | {columns} are a swipe away. {first} stays pinned. | `plain` | `help`, 49 | `[gen]` `docs/mvp0/screens/gen.mjs:2270`. Drawn as Qty, Paid and Due are a swipe away. Item stays pinned
+`K.s39.cell.save` | S39 | Saving changes this cell and the {column} beside it. Nothing else in the file moves. | `promise` | `help`, 84 | `[gen]` `docs/mvp0/screens/gen.mjs:2275`. Drawn with Total as the dependent column
+`K.s39.firstrun` | S39 | Sorting and filtering change only your view. Typing into a cell changes the file. | `plain` | `help`, 81 | `[new]` proposed, not drawn. The first-run line of S39's States.
+`K.s40.count` | S40 | {n} cards in {folder} | `plain` | `label`, 21 | `[gen]` `docs/mvp0/screens/gen.mjs:2340`. Drawn as 15 cards in tasks/
+`K.s40.groupedby` | S40 | columns from {key} | `plain` | `label`, 18 | `[gen]` `docs/mvp0/screens/gen.mjs:2340`. Drawn with the key `status` in code type
+`K.s40.pending` | S40 | {n} proposed move | `label` | `label`, 17 | `[gen]` `docs/mvp0/screens/gen.mjs:2356`. Needs the plural rule of section 15 D1: {n} proposed moves
+`K.s40.limit` | S40 | Limit {limit}. Past it the count turns red; nothing is blocked. | `plain` | `help`, 63 | `[gen]` `docs/mvp0/screens/gen.mjs:2334`. The tooltip on the count, which reads {n} / {limit}. **Review:** red names a colour, and `69-BOARDS-SPEC.md` section 4.1 says the warning colour
+`K.s40.newcard` | S40 | New card | `label` | `button`, 8 | `[gen]` `docs/mvp0/screens/gen.mjs:2337`.
+`K.s40.newcard.in` | S40 | New card in {column} | `label` | `button`, 20 | `[gen]` `docs/mvp0/screens/gen.mjs:2363`. On the phone
+`K.s40.mine` | S40 | Mine | `label` | `button`, 4 | `[gen]` `docs/mvp0/screens/gen.mjs:2341`.
+`K.s40.duesoon` | S40 | Due this week | `label` | `button`, 13 | `[gen]` `docs/mvp0/screens/gen.mjs:2341`.
+`K.s40.label` | S40 | Label | `label` | `button`, 5 | `[gen]` `docs/mvp0/screens/gen.mjs:2341`.
+`K.s40.find` | S40 | Filter cards | `label` | `label`, 12 | `[gen]` `docs/mvp0/screens/gen.mjs:2341`. The search field's placeholder
+`K.s40.filternote` | S40 | Filters are yours. The board file never changes. | `promise` | `help`, 48 | `[gen]` `docs/mvp0/screens/gen.mjs:2342`.
+`K.s40.swimlanes` | S40 | Swimlanes | `label` | `label`, 9 | `[gen]` `docs/mvp0/screens/gen.mjs:2342`. Drawn off and disabled; not in v1
+`K.s40.proposedby` | S40 | Proposed by {agent} | `plain` | `label`, 19 | `[gen]` `docs/mvp0/screens/gen.mjs:2326`. `{agent}` is the name the person gave the agent
+`K.s40.showdiff` | S40 | Show diff | `label` | `button`, 9 | `[gen]` `docs/mvp0/screens/gen.mjs:2326`. `K.s20.showdiff` may serve instead, if its owner agrees
+`K.s40.moves` | S40 | Moves this card from {from} to {to}. One line in one file. | `plain` | `help`, 58 | `[gen]` `docs/mvp0/screens/gen.mjs:2382`.
+`K.s40.onlyaccept` | S40 | Nothing moves until a person accepts. Agent changes are accepted one at a time. | `promise` | `help`, 79 | `[gen]` `docs/mvp0/screens/gen.mjs:2385`.
+`K.s40.overdue` | S40 | {date}, overdue | `caution` | `label`, 15 | `[gen]` `docs/mvp0/screens/gen.mjs:2379`.
+`K.s40.opendoc` | S40 | Open as a document | `label` | `button`, 18 | `[gen]` `docs/mvp0/screens/gen.mjs:2388`.
+`K.s40.swipe` | S40 | Swipe for {column} | `plain` | `label`, 18 | `[gen]` `docs/mvp0/screens/gen.mjs:2361`.
+`K.s40.other` | S40 | Other | `label` | `label`, 5 | `[new]` proposed, not drawn. The column for cards whose key holds no known value, `69-BOARDS-SPEC.md` section 2.3.
+`K.s40.firstrun` | S40 | Each card is a file. Moving a card changes one line in it. | `plain` | `help`, 58 | `[new]` proposed, not drawn. The first-run line of S40's States.
+`K.s41.listening` | S41 | Listening | `label` | `label`, 9 | `[gen]` `docs/mvp0/screens/gen.mjs:2511`. Also the phone sheet's heading, line 2518
+`K.s41.level` | S41 | {level} | `label` | `label`, 7 | `[gen]` `docs/mvp0/screens/gen.mjs:2497`. One of Low, Medium, High, the names at line 2558
+`K.s41.tone.note` | S41 | {tone} tone at High only | `help` | `label`, 24 | `[gen]` `docs/mvp0/screens/gen.mjs:2497`. Drawn greyed as neutral tone at High only
+`K.s41.held` | S41 | {key} held · release to finish | `help` | `help`, 30 | `[gen]` `docs/mvp0/screens/gen.mjs:2498`. `{key}` is the voice key, drawn as the Mac chord
+`K.s41.pending` | S41 | Voice, {level} · pending | `plain` | `label`, 24 | `[gen]` `docs/mvp0/screens/gen.mjs:2502`.
+`K.s41.accept` | S41 | accept | `label` | `label`, 6 | `[gen]` `docs/mvp0/screens/gen.mjs:2503`. Follows the Tab key. The phone draws a button, Accept, at line 2502
+`K.s41.raw` | S41 | raw words | `label` | `label`, 9 | `[gen]` `docs/mvp0/screens/gen.mjs:2503`. Follows the Esc key. The phone draws a button, Raw, at line 2502
+`K.s41.raw.show` | S41 | Show raw | `label` | `button`, 8 | `[gen]` `docs/mvp0/screens/gen.mjs:2503`.
+`K.s41.append` | S41 | Speak again to add to this block | `help` | `help`, 32 | `[gen]` `docs/mvp0/screens/gen.mjs:2503`.
+`K.s41.proposed` | S41 | Proposed, not written | `plain` | `label`, 21 | `[gen]` `docs/mvp0/screens/gen.mjs:2533`.
+`K.s41.command` | S41 | Voice command | `label` | `label`, 13 | `[gen]` `docs/mvp0/screens/gen.mjs:2537`.
+`K.s41.command.target` | S41 | {command}, on your selection | `plain` | `label`, 28 | `[gen]` `docs/mvp0/screens/gen.mjs:2537`. Drawn as Make a bullet list, on your selection. The command's name, never the spoken words
+`K.s41.command.what` | S41 | One paragraph becomes three bullets, one per thing the owner does. | `plain` | `help`, 66 | `[gen]` `docs/mvp0/screens/gen.mjs:2538`. **A drawn example, not a template.** `INFERENCE:` each command of `71-VOICE-SPEC.md` section 7.4 needs its own line; none is written
+`K.s41.command.fine` | S41 | Nothing changes until you accept. It waits in Review with your other changes. | `promise` | `help`, 77 | `[gen]` `docs/mvp0/screens/gen.mjs:2540`.
+`K.s41.stop` | S41 | Tap to stop. Your words land as a pending block you accept. Audio is never stored. | `promise` | `help`, 82 | `[gen]` `docs/mvp0/screens/gen.mjs:2522`.
+`K.s41.command.chip` | S41 | Command | `label` | `button`, 7 | `[gen]` `docs/mvp0/screens/gen.mjs:2520`.
+`K.s41.set.cleanup` | S41 | Clean up what I say | `label` | `label`, 19 | `[gen]` `docs/mvp0/screens/gen.mjs:2560`.
+`K.s41.set.cleanup.help` | S41 | Off gives the raw words, exactly as heard, and sends nothing to a text model | `help` | `help`, 76 | `[gen]` `docs/mvp0/screens/gen.mjs:2560`. The phone shortens it to Off gives the raw words, line 2575
+`K.s41.set.levels` | S41 | How much to clean up | `label` | `label`, 20 | `[gen]` `docs/mvp0/screens/gen.mjs:2561`.
+`K.s41.set.levels.help` | S41 | Every level keeps your facts. You can see the raw words on any block before you accept it | `help` | `help`, 89 | `[gen]` `docs/mvp0/screens/gen.mjs:2561`.
+`K.s41.set.level.low` | S41 | Takes out ums, false starts and self-corrections. Every other word stays, in order. | `help` | `help`, 83 | `[gen]` `docs/mvp0/screens/gen.mjs:2558`. Under the card named Low
+`K.s41.set.level.medium` | S41 | Also splits sentences, groups paragraphs, and makes a list where you spoke one. | `help` | `help`, 79 | `[gen]` `docs/mvp0/screens/gen.mjs:2558`. Under the card named Medium, marked default
+`K.s41.set.level.high` | S41 | Rewrites into clear prose in your tone. Every fact, name and number stays. | `help` | `help`, 74 | `[gen]` `docs/mvp0/screens/gen.mjs:2558`. Under the card named High
+`K.s41.set.key` | S41 | Push-to-talk key | `label` | `label`, 16 | `[gen]` `docs/mvp0/screens/gen.mjs:2564`.
+`K.s41.set.key.help` | S41 | Hold to speak, release to finish. Hold Option as well to give a command | `help` | `help`, 71 | `[gen]` `docs/mvp0/screens/gen.mjs:2564`. Option is the Mac name. Windows and Linux need Alt in its place
+`K.s41.set.language` | S41 | English only for now | `help` | `help`, 20 | `[gen]` `docs/mvp0/screens/gen.mjs:2565`.
+`K.s41.set.more` | S41 | Commands, spelling, your own words, live preview while speaking | `help` | `help`, 63 | `[gen]` `docs/mvp0/screens/gen.mjs:2566`.
+`K.s41.privacy` | S41 | Audio is never stored. It is held in memory, sent to be transcribed, and dropped when the words come back. It is never kept to retry, never logged, and never used for training. | `promise` | `body`, 176 | `[gen]` `docs/mvp0/screens/gen.mjs:2567`. The phone keeps the first sentence, line 2579
+`K.s41.firstuse` | S41 | Your voice is sent to be turned into text, then dropped. It is never stored. | `promise` | `help`, 76 | `[new]` proposed, not drawn. The one-line sheet before the browser's own prompt, `71-VOICE-SPEC.md` section 13.2.
+`K.s41.insert.text` | S41 | Insert as text instead | `label` | `button`, 22 | `[gen]` `docs/mvp0/screens/gen.mjs:2539`.
+`K.s41.err.micdenied` | S41 | Microphone access is off. Turn it on in the browser's site settings to use voice. | `refusal` | `body`, 81 | `[new]` proposed, wording from `71-VOICE-SPEC.md` section 11. `E806`. With a link to how.
+`K.s41.err.nomic` | S41 | No microphone found. | `refusal` | `body`, 20 | `[new]` proposed, wording from `71-VOICE-SPEC.md` section 11. `E807`.
+`K.s41.err.miclost` | S41 | The microphone stopped. What you said so far is below. | `caution` | `body`, 54 | `[new]` proposed, wording from `71-VOICE-SPEC.md` section 11. `E808`.
+`K.s41.err.nothing` | S41 | Didn't catch anything. Hold the key and speak. | `refusal` | `body`, 46 | `[new]` proposed, wording from `71-VOICE-SPEC.md` section 11. `E567`.
+`K.s41.err.turnlimit` | S41 | That's the limit for one turn. Your words so far are below; hold the key again to go on. | `caution` | `body`, 88 | `[new]` proposed, wording from `71-VOICE-SPEC.md` section 11. `E654`.
+`K.s41.err.offline` | S41 | Voice needs a connection on the web. On the desktop app it works offline. | `refusal` | `body`, 73 | `[new]` proposed, wording from `71-VOICE-SPEC.md` section 11. `E809`.
+`K.s41.err.busy` | S41 | Voice is busy right now. Try again in a minute. | `refusal` | `body`, 47 | `[new]` proposed, wording from `71-VOICE-SPEC.md` section 11. `E756`.
+`K.s41.err.slow` | S41 | Showing the raw text; cleanup took too long. | `caution` | `body`, 44 | `[new]` proposed, wording from `71-VOICE-SPEC.md` section 11. `E701`.
+`K.s41.err.changed` | S41 | Cleanup changed words, so the raw text is shown. | `caution` | `body`, 48 | `[new]` proposed, wording from `71-VOICE-SPEC.md` section 11. `E702`.
+`K.s41.err.cap` | S41 | You've used this month's voice minutes. They refill daily. | `refusal` | `body`, 58 | `[new]` proposed, wording from `71-VOICE-SPEC.md` section 11. `E655`. **Review:** `71` section 11 names the clash between this month and refill daily.
+`K.s41.err.notarget` | S41 | Select the text first | `refusal` | `body`, 21 | `[new]` proposed, wording from `71-VOICE-SPEC.md` section 11. `E568`.
+`K.s41.err.protected` | S41 | Voice commands change prose only. This is inside {where}, so nothing was changed. Select prose and try again. | `refusal` | `body`, 109 | `[new]` proposed, not drawn. `E529`. `{where}` is a code block, a table or the front matter.
+`K.s41.err.toolong` | S41 | That selection is {words} words, and a voice command takes up to {max}. Nothing was changed. Select less and try again. | `refusal` | `body`, 119 | `[new]` proposed, not drawn. `E569`. `{max}` is `voice.command.maxSelectionWords`.
+`K.s42.start` | S42 | Start from a PDF | `label` | `button`, 16 | `[gen]` `docs/mvp0/screens/gen.mjs:2587`. The label is open, D25
+`K.s42.start.sub` | S42 | Converted in your browser | `help` | `label`, 25 | `[gen]` `docs/mvp0/screens/gen.mjs:2594`.
+`K.s42.start.note` | S42 | A PDF becomes this document's first version. It is read in your browser and not kept. | `promise` | `help`, 85 | `[gen]` `docs/mvp0/screens/gen.mjs:2595`. The phone reads A PDF is read on this phone and not kept, line 2601
+`K.s42.converting` | S42 | Converting · {done} of {total} pages | `plain` | `help`, 36 | `[gen]` `docs/mvp0/screens/gen.mjs:2610`. Drawn as 9 of 12
+`K.s42.converting.where` | S42 | in your browser | `plain` | `label`, 15 | `[gen]` `docs/mvp0/screens/gen.mjs:2610`.
+`K.s42.legend.text` | S42 | Text, {n} | `label` | `label`, 9 | `[gen]` `docs/mvp0/screens/gen.mjs:2612`.
+`K.s42.legend.scanned` | S42 | Scanned, read by OCR, {n} | `label` | `label`, 25 | `[gen]` `docs/mvp0/screens/gen.mjs:2612`.
+`K.s42.legend.waiting` | S42 | Waiting, {n} | `label` | `label`, 12 | `[gen]` `docs/mvp0/screens/gen.mjs:2612`.
+`K.s42.label.not.written` | S42 | page {n}, scanned: this label is not written | `plain` | `help`, 44 | `[gen]` `docs/mvp0/screens/gen.mjs:2614`. A preview annotation. It never reaches the file
+`K.s42.flag.low` | S42 | {n} words read with low confidence, marked. None is changed for you | `caution` | `help`, 67 | `[gen]` `docs/mvp0/screens/gen.mjs:2616`. Drawn with 4
+`K.s42.flag.heading` | S42 | {n} headings guessed from font size, because the PDF has no tags | `caution` | `help`, 64 | `[gen]` `docs/mvp0/screens/gen.mjs:2617`. Drawn with 2
+`K.s42.lands` | S42 | Lands as one change for you to accept. | `plain` | `help`, 38 | `[gen]` `docs/mvp0/screens/gen.mjs:2618`.
+`K.s42.dropped` | S42 | The PDF is dropped when this panel closes. | `promise` | `help`, 42 | `[gen]` `docs/mvp0/screens/gen.mjs:2618`.
+`K.s42.tool.title` | S42 | Convert a PDF to Markdown | `label` | `title`, 25 | `[gen]` `docs/mvp0/screens/gen.mjs:2666`.
+`K.s42.tool.sub` | S42 | One PDF in, one note out. Read in your browser, so the file never leaves this computer. | `promise` | `lede`, 87 | `[gen]` `docs/mvp0/screens/gen.mjs:2666`.
+`K.s42.file.into` | S42 | File into | `label` | `label`, 9 | `[gen]` `docs/mvp0/screens/gen.mjs:2657`.
+`K.s42.file.as` | S42 | As | `label` | `label`, 2 | `[gen]` `docs/mvp0/screens/gen.mjs:2658`.
+`K.s42.file.button` | S42 | File into Notes | `label` | `button`, 15 | `[gen]` `docs/mvp0/screens/gen.mjs:2660`.
+`K.s42.keep.images` | S42 | Keep images | `label` | `label`, 11 | `[gen]` `docs/mvp0/screens/gen.mjs:2659`.
+`K.s42.keep.images.help` | S42 | Uploads them next to the note | `help` | `help`, 29 | `[gen]` `docs/mvp0/screens/gen.mjs:2659`.
+`K.s42.not.kept` | S42 | The PDF is not kept after conversion. It was read in this tab and is dropped when you file or discard. | `promise` | `body`, 102 | `[gen]` `docs/mvp0/screens/gen.mjs:2661`. The phone keeps the first sentence, line 2675
+`K.s42.err.password` | S42 | This PDF is locked with a password, so nothing was converted. Remove the password in the app that made it, then try again. | `refusal` | `body`, 122 | `[new]` proposed, not drawn. `E570`. The last sentence is `72-PDF-TO-MARKDOWN-SPEC.md` section 8's.
+`K.s18.sheet.download` | S18 | Cells that began with a formula character now begin with an apostrophe, so a spreadsheet reads them as text. This page is unchanged. | `promise` | `body`, 132 | `[new]` proposed, not drawn. The notice on a neutralised CSV download, `68-SHEETS-SPEC.md` section 6.3.
 
 ---
 

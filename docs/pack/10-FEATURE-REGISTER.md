@@ -4,10 +4,10 @@ title: Feature register
 mode: reference
 tier: canonical
 status: living
-updated: 2026-09-18
+updated: 2026-09-19
 owner: sagnik
 verified_against: 0af3c90
-covers: [features, F101-F280, AF001-AF077]
+covers: [features, F101-F323, AF001-AF077]
 ---
 
 # 10. Feature register
@@ -241,21 +241,82 @@ id | name | one line | plan | screens | spec file | acceptance | status
 `F278` | Bare carriage return refusal | A refusal rather than a guess where a lone carriage return inside a fence would destroy a set | Free+Pro | S22 | specs/engine/nf-003-bare-cr-fence.md | A021, A022 | shipped
 `F279` | The projection law | The file on disk is the only source of truth, and every view is a stateless projection of it | Free+Pro | every screen | 20-ARCHITECTURE.md | A010-A020, A024 | shipped
 `F280` | No silent merge | Nothing reaches the file without a person accepting it, in any flow including conflict resolution | Free+Pro | S20, S31 | 67-SYNC-AND-CONFLICT.md | A010-A020, A024 | planned
+`F281` | Sheet grid over a table | A spreadsheet grid over any GFM table in a document, where an edit splices only that cell's bytes. Extends `F131` and is blocked on `TD-024` to `TD-026` | Free | S08, S39 | 68-SHEETS-SPEC.md | A815, A816, A820, A822 | planned
+`F282` | Sheet keyboard and structure | Tab, Enter and arrows, and adding, deleting and moving rows and columns, each as the fewest lines that change | Free | S39 | 68-SHEETS-SPEC.md | none yet | planned
+`F283` | Checkbox cells | A `[ ]` or `[x]` cell drawn as a toggle, whose click changes that cell's three bytes | Free | S39 | 68-SHEETS-SPEC.md | none yet | planned
+`F284` | Sort and filter the view | Sort and filter a sheet for this viewer only, never written to the file | Free | S39 | 68-SHEETS-SPEC.md | A821 | planned
+`F285` | Sort the file | Reorder a table's rows in the file as one change-queue item, kept apart from the view sort | Free | S39 | 68-SHEETS-SPEC.md | none yet | planned
+`F286` | Column summaries | `foot.` formulas drawn under the grid and never written to the file | Free | S39 | 68-SHEETS-SPEC.md | A823 | planned
+`F287` | Row formulas | `col.` formulas that compute a column in decimal and write each result into its own cell | Free | S39 | 68-SHEETS-SPEC.md | A817, A818, A824 | planned
+`F288` | Sheet view settings | Freeze the header and set column widths, held per viewer and never written | Free | S39 | 68-SHEETS-SPEC.md | A821 | planned
+`F289` | Show a sheet as text | The Grid and MD switch, showing the table and its `fm-sheet@1` block as markdown in place | Free | S39 | 68-SHEETS-SPEC.md | A821 | planned
+`F290` | CSV and TSV in the grid | Open a `.csv` or `.tsv` file in the same grid, editing one field of one record | Free | S39 | 68-SHEETS-SPEC.md | A835 | planned
+`F291` | Import CSV as a table | A CSV brought into a document as a GFM pipe table, as one proposal | Free | S39 | 68-SHEETS-SPEC.md | none yet | planned
+`F292` | Paste a spreadsheet range | A range pasted from another spreadsheet lands as table rows | Free | S39 | 68-SHEETS-SPEC.md | none yet | planned
+`F293` | Download a sheet as CSV | Copy or download a table as CSV with formula-leading cells neutralised in the download only | Free | S39, S18 | 68-SHEETS-SPEC.md | A819 | planned
+`F294` | Published sheet | A read-only HTML table with its summaries, reader sort and filter never saved, and no hidden columns | Free+Pro | S18 | 68-SHEETS-SPEC.md | A819 | planned
+`F295` | Database view over notes | A `view: 1` file whose `fm-view@1` fence lists notes as rows and front matter keys as columns, laid out with the sheet's grid | Free | no screen drawn yet | 70-PLATFORM-AND-TYPES.md | none yet | planned
+`F296` | Board over card files | A board file that groups a folder of card files into columns by one front matter key, with an Other column and short card faces | Free | S40 | 69-BOARDS-SPEC.md | A831 | planned
+`F297` | Move a card | Dragging a card to another column changes one key in one card file | Free | S40 | 69-BOARDS-SPEC.md | A825, A826, A828 | planned
+`F298` | Reorder cards | Dragging within a column changes one `order` line in that card | Free | S40 | 69-BOARDS-SPEC.md | none yet | planned
+`F299` | Change board columns | Add, rename, reorder and remove columns, a rename proposing each card's new value | Free | S40 | 69-BOARDS-SPEC.md | none yet | planned
+`F300` | New card | A new card file in a column, as a `create` item | Free | S40 | 69-BOARDS-SPEC.md | none yet | planned
+`F301` | Column limits | A work-in-progress limit per column that turns the count to the warning colour and never blocks a move | Free | S40 | 69-BOARDS-SPEC.md | A828 | planned
+`F302` | Card detail | A card opens as a document, or peeks in a side panel, with links in its body followed on click | Free | S40 | 69-BOARDS-SPEC.md | A831 | planned
+`F303` | Card fields | Assignee and due date edited from the card, one line each | Free | S40 | 69-BOARDS-SPEC.md | none yet | planned
+`F304` | Board filters | Filter cards by label, assignee or text, held per viewer and never written | Free | S40 | 69-BOARDS-SPEC.md | A830 | planned
+`F305` | Pending moves on the board | An agent's proposed move is drawn ghosted in its target column and decided in place | Free | S40, S20 | 69-BOARDS-SPEC.md | A827, A829 | planned
+`F306` | Board from a blueprint | A board file and one card per task and open decision, drafted from a kit and proposed as one grouped change | Free+Pro | S15, S40 | 69-BOARDS-SPEC.md | none yet | planned
+`F307` | The type registry | One lookup that decides a file's type from its extension and one reserved profile key, and never sniffs content | Free | every screen | 70-PLATFORM-AND-TYPES.md | A832, A836 | planned
+`F308` | Embeds across types | An `fm-embed@1` reference by path and anchor that draws another file in place and never copies it | Free | S04, S18 | 70-PLATFORM-AND-TYPES.md | A833, A834 | planned
+`F309` | Search across types | One search over every registered type, each result opening its view at the hit | Free | S04 | 70-PLATFORM-AND-TYPES.md | none yet | planned
+`F310` | Backlinks across types | One link index for the vault, backlinks grouped by type | Free | S04 | 70-PLATFORM-AND-TYPES.md | none yet | planned
+`F311` | Deck profile | `slides: 1` marks a note as a deck on the `F182` shape, with no new syntax | Free | S09 | 70-PLATFORM-AND-TYPES.md | none yet | planned
+`F312` | Site from a folder | A folder whose `index.md` carries `site: 1` publishes as a site, with navigation and a twin per page | Free+Pro | S18 | 70-PLATFORM-AND-TYPES.md | none yet | planned
+`F313` | Voice dictation | Push-to-talk speech lands as a pending insertion the person accepts with Tab, and the audio is never stored | Free+Pro | S41 | 71-VOICE-SPEC.md | A837, A839, A841 | planned
+`F314` | Voice clean-up levels | Low, Medium and High restructuring of a transcript, each checked so that a failed check shows the raw words | Free+Pro | S41 | 71-VOICE-SPEC.md | A842 | planned
+`F315` | Voice commands | A spoken command on a selection becomes a change-queue proposal, never an edit | Free+Pro | S41 | 71-VOICE-SPEC.md | A838, A840 | planned
+`F316` | Local voice on the desktop | Transcription through `whisper.cpp` on the desktop, offline, once a model is downloaded | Free | S25, S41 | 71-VOICE-SPEC.md | none yet | planned
+`F317` | Live preview while speaking | On-device words shown while speaking where the browser supports it, never the text that lands | Free | S41 | 71-VOICE-SPEC.md | none yet | planned
+`F318` | PDF text layer conversion | A PDF's text pages converted to markdown in the browser from the text layer | Free | S42 | 72-PDF-TO-MARKDOWN-SPEC.md | A843, A845 | planned
+`F319` | PDF OCR on the device | Scanned pages read by Tesseract in the browser or on the desktop, low-confidence words flagged in the report | Free | S42 | 72-PDF-TO-MARKDOWN-SPEC.md | A843 | planned
+`F320` | PDF vision pass | Scanned pages read by a vision model on Pro, falling back to Tesseract | Pro | S42 | 72-PDF-TO-MARKDOWN-SPEC.md | none yet | planned
+`F321` | Start from a PDF | An empty document takes a converted PDF as its first version | Free | S04, S42 | 72-PDF-TO-MARKDOWN-SPEC.md | A846, A847 | planned
+`F322` | Convert a PDF in the AI panel | A converted PDF lands at the cursor as one change-queue item | Free | S06, S42 | 72-PDF-TO-MARKDOWN-SPEC.md | A844 | planned
+`F323` | Convert a PDF to a note | The standalone tool on Import files a converted PDF as a new note in a chosen folder | Free | S22, S42 | 72-PDF-TO-MARKDOWN-SPEC.md | A846 | planned
 
-**Count: 180 features, F101 to F280.** Re-derived at write time with
-`grep -c '^`F[0-9]' docs/pack/10-FEATURE-REGISTER.md`.
+**Count: 223 features, F101 to F323.** Re-derived at write time on 19 September with the
+eight-column match in section 3, which returned 158 planned, 20 building and 45 shipped. The older
+command, `grep -c '^`F[0-9]' docs/pack/10-FEATURE-REGISTER.md`, returns 240, because it also counts
+17 lines in sections 5 and 6 that open with a feature id and are not register rows.
+
+## 2a. Rows added on 19 September, `F281` to `F323`
+
+- **Where they came from.** The placeholders of `68-SHEETS-SPEC.md` to `72-PDF-TO-MARKDOWN-SPEC.md`
+  and screens S39 to S42. The slug each replaced is in `tools/new-ids-allocation.md` section 3.
+- **`F295` is one feature named twice.** `70` section 3.1 calls it the database view, and `68` SH16
+  calls its table layout a sheet feature. The layout is the view's, so it takes one id.
+- **18 of the 43 rows read `none yet`** in the acceptance column. Their specs name no criterion, and
+  none was invented to fill the cell. Each is a hole a validator should count.
+- **Plan cells that are inference.** `INFERENCE:` every editing feature is Free by the rule in
+  `53-PRICING-AND-ENTITLEMENTS.md` section 3.2. `F294` and `F312` are `Free+Pro` because the
+  published-page cap differs by plan. `F306` is `Free+Pro` because blueprint credits differ, and
+  whether it spends one is open in `69` section 6. `F313` to `F315` differ by the voice caps of `53`
+  section 3.1. `F320` is Pro because `72` section 9 gives Free zero vision pages.
+- **`F295` has no screen.** Nothing draws the database view yet, so `11-SCREEN-INDEX.md` cannot
+  carry it.
 
 ## 3. Status counts
 
 Status | Count | What it means here
 `shipped` | 45 | A file under `src/` implements it at `0af3c90`. Most are rebuilt in phases A, B and D
 `building` | 20 | Part of it exists in code and the rest is specified
-`planned` | 115 | Specified in the plan, nothing in code
+`planned` | 158 | Specified in the plan or in the pack specs `68` to `72`, nothing in code
 `withdrawn` | 0 | No feature has been withdrawn yet. See section 4 for what was withdrawn as a claim
 
 Coverage | Count | Command
-Has at least one acceptance criterion | **180** | `grep -cE '^`F[0-9]{3}` \|.*\| A[0-9]{3}[^|]*\| (planned\|building\|shipped)$' <this file>`
-Has none | **0** | `grep -cE '^`F[0-9]{3}` \|.*\| none yet \| (planned\|building\|shipped)$' <this file>`
+Has at least one acceptance criterion | **205** | `grep -cE '^`F[0-9]{3}` \|.*\| A[0-9]{3}[^|]*\| (planned\|building\|shipped)$' <this file>`
+Has none | **18** | `grep -cE '^`F[0-9]{3}` \|.*\| none yet \| (planned\|building\|shipped)$' <this file>`
 
 **These counts are derived, not carried.** Re-derive at write time with the command that produced
 them, which matches only the eight-column register rows and not the prose that mentions an id:

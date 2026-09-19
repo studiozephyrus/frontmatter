@@ -4,7 +4,7 @@ title: Open decisions
 mode: explanation
 tier: canonical
 status: living
-updated: 2026-09-18
+updated: 2026-09-19
 owner: sagnik
 verified_against: 0af3c90
 covers: [decisions, options, costs, recommendations]
@@ -147,6 +147,18 @@ Id | Decision | Blocks | Recommendation
 `D13` | **Database views over front matter.** Table stakes in one round, deferred in the plan | Phase G | **Decided 18 September `[Z]`: build views early**
 `D14` | **Voice typing.** A shipped Doc mode row, and the research's clearest negative | Phase B, one contractor row | **Decided 18 September `[Z]`: keep voice typing** in Doc mode
 `D15` | **The data model says Postgres and the stack decision says Firestore** | Phase A, all of it | **Closed 18 September.** Section 18 now names Firestore collections and points at `21-DATA-MODEL.md`
+`D16` | Where Sort the file lives on S39: the column menu only, or also beside the sort chip | S39 | Open. Drawn in the column menu only
+`D17` | Whether a phone may set a sheet formula at all | S39 on the phone | Open. Drawn for values only
+`D18` | Whether the sheet grid shows `1200` or `1,200` | S39 | Open. Drawn as `1200`, so the grid agrees with the file
+`D19` | The default columns for a new board | S40, and `F306` from a blueprint | Open. Drawn as Backlog, To do, Doing, Review, Done; `69-BOARDS-SPEC.md` names Todo, Doing, Done
+`D20` | Whether a person's own board drag lands at once or waits in the queue | S40, and the queue rule of plan v5 | Open. Drawn as landing at once
+`D21` | Whether the card panel edits the body, or shows it and sends the person to the document | S40 | Open. Drawn read-only for the body
+`D22` | Whether the mic replaces Outline in the phone's bottom bar, or a sixth item is added | S41 on the phone | Open. Drawn as a replacement
+`D23` | Whether the listening pill shows the tone at all below High | S41 | Open. Drawn as a greyed note
+`D24` | Whether a voice command's proposal offers Accept before the diff is opened | S41 | Open. Drawn with Show diff and Reject only, as S20 draws agent items
+`D25` | Start from a PDF, or Upload a PDF, as the label | S42 and S04 | Open. Drawn with `72-PDF-TO-MARKDOWN-SPEC.md` section 4's words
+`D26` | Whether a conversion's queue item is `ai` or a new `convert` | S42, S20 and `21-DATA-MODEL.md` | Open. `72-PDF-TO-MARKDOWN-SPEC.md` section 4.4 writes `ai` until it is settled
+`D27` | Whether entry 1 of the PDF converter skips the queue | S42, and ADR-0008 | Open. `72-PDF-TO-MARKDOWN-SPEC.md` section 4.1 reads the preview's Accept as the owner's decision
 
 ---
 
@@ -464,6 +476,30 @@ the person is in the middle of doing something they want to finish.**
 **On dunning: adopt the ladder in `53` section 5.2 as written**, and treat its day numbers as the
 decision. They are 0, 3, 7 and 14, and nothing about them is load-bearing except that the last one
 is far enough out that a person on holiday does not lose Pro.
+
+## 5a. Twelve questions from screens S39 to S42
+
+**Opened on 19 September 2026**, when the placeholders in `12-screens/S39.md` to `S42.md` were given ids.
+The slug each replaced is in `tools/new-ids-allocation.md` section 7. **None is a founder decision
+yet**, and a drawing is not a recommendation: each screen was drawn one way so the page could exist.
+
+Id | Why it is open | Where the question is written
+`D16` | Side by side risks a person writing when they meant to view; hidden, nobody finds it | `12-screens/S39.md`, Open questions
+`D17` | The cell editor is drawn for values. A formula field on a 390 px sheet is untested | `12-screens/S39.md`
+`D18` | The file must hold `1200` to stay a number (`68-SHEETS-SPEC.md` section 4.4). `1,200` is kinder to read and makes the grid disagree with the MD view | `12-screens/S39.md`
+`D19` | The drawing, `69-BOARDS-SPEC.md` section 2.1 and its section 8 name three different sets | `12-screens/S40.md`
+`D20` | The plan sends every change by a person into the queue, and a board whose own drags wait for self-acceptance is a board nobody uses | `12-screens/S40.md`
+`D21` | `69-BOARDS-SPEC.md` section 4.3 names both a document and a side panel | `12-screens/S40.md`
+`D22` | Five items fit at 390 px; six are tight at 68 px each | `12-screens/S41.md`
+`D23` | The brief asked for the tone to be shown; `71-VOICE-SPEC.md` section 5.2 greys it below High | `12-screens/S41.md`
+`D24` | `71-VOICE-SPEC.md` section 7.3 says only that the proposal carries its diff | `12-screens/S41.md`
+`D25` | The drawing's brief said Upload a PDF; `72-PDF-TO-MARKDOWN-SPEC.md` section 4 says Start from a PDF | `12-screens/S42.md`
+`D26` | Owned by `21-DATA-MODEL.md`; `72-PDF-TO-MARKDOWN-SPEC.md` section 15 names it | `12-screens/S42.md`
+`D27` | ADR-0008 puts every change in the queue; `72-PDF-TO-MARKDOWN-SPEC.md` reads the preview's Accept as the owner's decision | `12-screens/S42.md`
+
+**`D20` is the one to take first.** It decides whether the change queue's rule holds on a person's
+own drag, and the answer reaches beyond boards to every direct-manipulation view.
+`INFERENCE:` this ranking is the writer's, not a founder's.
 
 ---
 

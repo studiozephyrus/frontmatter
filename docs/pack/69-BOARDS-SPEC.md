@@ -206,12 +206,12 @@ Rename a column | the board file's `columns`, and the new value on every affecte
 Situation | Outcome | Id
 The card's `key` line cannot be addressed: a block scalar, anchor, or a block sequence at column 0 | The move is refused; the card stays where it was | `E004`, `E009`, as the writer refuses today
 A card file has no front matter block | A `set` prepends one, as the writer does today (`66` section 3.3) | none
-`limits` and `columns` differ in length | The board shows no limits and names the key in the problems panel | `new:board-limits-mismatch`
-A column name contains a comma, or would need quoting in a flow list | The column change is refused | `new:board-column-name`
-Two columns share a name | The board renders its source, with the reason | `new:board-duplicate-column`
-`board` is missing its value, or names a major version the client does not know | The board file opens as a note, with the reason | `new:board-version`
-`cards` names a folder that does not exist | The board shows no cards and names the path | `new:board-missing-folder`
-A file carries both `board` and another reserved profile key | Opens as a note, and the problems panel names both keys (`70-PLATFORM-AND-TYPES.md` section 2) | `new:type-profile-conflict`
+`limits` and `columns` differ in length | The board shows no limits and names the key in the problems panel | `E521`
+A column name contains a comma, or would need quoting in a flow list | The column change is refused | `E566`
+Two columns share a name | The board renders its source, with the reason | `E522`
+`board` is missing its value, or names a major version the client does not know | The board file opens as a note, with the reason | `E523`
+`cards` names a folder that does not exist | The board shows no cards and names the path | `E524`
+A file carries both `board` and another reserved profile key | Opens as a note, and the problems panel names both keys (`70-PLATFORM-AND-TYPES.md` section 2) | `E525`
 A move past a WIP limit | Written as any move. The count turns to the warning colour | none; a limit warns, never blocks
 
 ## 4. Viewing
@@ -302,7 +302,7 @@ Step | What happens | Evidence or rule
 
 Thing | Carrier | Writes | Register
 Kanban view of a document | Headings as columns, list items as cards, the existing `F184` shape | None. Read-only, as Flow view is | `F184`, reworded to read-only
-Board | A board file plus card files | One key per move, through the change queue | `new:board`, batch 9a
+Board | A board file plus card files | One key per move, through the change queue | `F296`, batch 9a
 
 - `INFERENCE:` this keeps what `F184` promised, any document viewed as a kanban, without body-span
   splicing. A spec-kit or Kiro `tasks.md` then opens as a read-only kanban of its phases.
@@ -314,21 +314,21 @@ Board | A board file plus card files | One key per move, through the change queu
 From `BOARDS.md` section 5.1. Every row is a proposal for the founder.
 
 # | Feature | What it writes | Proposed id
-1 | Columns from the board file's `key` and `columns` | nothing | `new:board`
-2 | Drag a card to another column | the card's `key` | `new:board-move`
-3 | Drag to reorder within a column | the card's `order` | `new:board-reorder`
-4 | Add, rename, reorder and remove columns | `columns`; a rename also proposes each card's new value | `new:board-columns`
-5 | New card in a column | a new file | `new:board-new-card`
-6 | An Other column for unknown or missing values | nothing | `new:board`
-7 | WIP limit per column, warning past it; never blocks | `limits` | `new:board-wip`
-8 | Card face: title, assignee, due, labels, overdue mark | nothing | `new:board`
-9 | Card detail: the card opens as a document | the body, as any document | `new:board-card-detail`
-10 | Assignee and due date edited from the card | `assignee`, `due` | `new:board-card-fields`
-11 | Filter by label, assignee or text, per viewer | nothing | `new:board-filter`
-12 | Links to documents in the card body | nothing | `new:board-card-detail`
-13 | Proposed moves drawn on the board, decided in place | nothing until accepted | `new:board-pending-moves`
+1 | Columns from the board file's `key` and `columns` | nothing | `F296`
+2 | Drag a card to another column | the card's `key` | `F297`
+3 | Drag to reorder within a column | the card's `order` | `F298`
+4 | Add, rename, reorder and remove columns | `columns`; a rename also proposes each card's new value | `F299`
+5 | New card in a column | a new file | `F300`
+6 | An Other column for unknown or missing values | nothing | `F296`
+7 | WIP limit per column, warning past it; never blocks | `limits` | `F301`
+8 | Card face: title, assignee, due, labels, overdue mark | nothing | `F296`
+9 | Card detail: the card opens as a document | the body, as any document | `F302`
+10 | Assignee and due date edited from the card | `assignee`, `due` | `F303`
+11 | Filter by label, assignee or text, per viewer | nothing | `F304`
+12 | Links to documents in the card body | nothing | `F302`
+13 | Proposed moves drawn on the board, decided in place | nothing until accepted | `F305`
 14 | A read-only Kanban view of any single document | nothing | `F184`, reworded
-15 | Make a board from a blueprint, as one grouped proposal | new card files | `new:board-from-blueprint`
+15 | Make a board from a blueprint, as one grouped proposal | new card files | `F306`
 
 **Next, once v1 is used** (`BOARDS.md` section 5.2): swimlanes by a second key; a completion date
 stamped on entering the last column; a board embedded in a document; dependencies between cards;
@@ -359,19 +359,21 @@ Directories as columns, moving files between folders | `INFERENCE:` a move would
 
 ## 10. Register rows needed
 
-None of these is written here. Each register has one owner.
+**Allocated on 19 September**, see `tools/new-ids-allocation.md`. Every id below now has its row in
+its register. The rows that ask an owner to change an existing row, such as `F184`, `C101`, `44`
+and `21`, are still open for that owner.
 
 Register | Row | For
-`10-FEATURE-REGISTER.md` | `new:board`, `new:board-move`, `new:board-reorder`, `new:board-columns`, `new:board-new-card`, `new:board-wip`, `new:board-card-detail`, `new:board-card-fields`, `new:board-filter`, `new:board-pending-moves`, `new:board-from-blueprint` | Section 8, batch 9a
+`10-FEATURE-REGISTER.md` | `F296`, `F297`, `F298`, `F299`, `F300`, `F301`, `F302`, `F303`, `F304`, `F305`, `F306` | Section 8, batch 9a
 `10-FEATURE-REGISTER.md` | `F184` reworded: a read-only Kanban view of one document | Section 7
 `14-COMPONENT-INVENTORY.md` | `C101` KanbanBoard split into the read-only view and the writable board | Section 7
-`17-ERROR-AND-REFUSAL-CATALOGUE.md` | `new:board-limits-mismatch`, `new:board-column-name`, `new:board-duplicate-column`, `new:board-version`, `new:board-missing-folder` | Section 3.4
-`17-ERROR-AND-REFUSAL-CATALOGUE.md` | `new:type-profile-conflict`, shared with `70` | Section 3.4
+`17-ERROR-AND-REFUSAL-CATALOGUE.md` | `E521`, `E566`, `E522`, `E523`, `E524` | Section 3.4
+`17-ERROR-AND-REFUSAL-CATALOGUE.md` | `E525`, shared with `70` | Section 3.4
 `16-COPY-DECK.md` | One string per new error; the WIP count; the Other column's name; the Make a board control | Sections 3.4, 4.1, 2.3, 6
-`19-ACCEPTANCE-CRITERIA.md` | `new:board-move-one-line`: a card move changes one key in one file, checked by byte diff | Section 3.1; `ONE-PLATFORM.md` section 4.3's gate
-`19-ACCEPTANCE-CRITERIA.md` | `new:board-merge-clean`: two moves of two different cards on two branches merge without conflict | Section 2.4
-`19-ACCEPTANCE-CRITERIA.md` | `new:board-agent-proposes`: an agent's move leaves the card file unchanged until accepted | Section 5
-`19-ACCEPTANCE-CRITERIA.md` | `new:board-wip-never-blocks`: a move past the limit is written | Section 4.1
+`19-ACCEPTANCE-CRITERIA.md` | `A825`: a card move changes one key in one file, checked by byte diff | Section 3.1; `ONE-PLATFORM.md` section 4.3's gate
+`19-ACCEPTANCE-CRITERIA.md` | `A826`: two moves of two different cards on two branches merge without conflict | Section 2.4
+`19-ACCEPTANCE-CRITERIA.md` | `A827`: an agent's move leaves the card file unchanged until accepted | Section 5
+`19-ACCEPTANCE-CRITERIA.md` | `A828`: a move past the limit is written | Section 4.1
 `44-TECH-DEBT-REGISTER.md` | The two front matter writer defects of `66` section 3.6, as `66` section 8 already asks | Section 3.1
 `21-DATA-MODEL.md` | The queue's `kind` for `create`, as `67` section 8.4 proposes | Section 3.1
 S15's owner | A Make a board control | Section 6

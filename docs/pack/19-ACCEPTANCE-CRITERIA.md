@@ -4,7 +4,7 @@ title: Acceptance criteria
 mode: reference
 tier: canonical
 status: living
-updated: 2026-09-18
+updated: 2026-09-19
 owner: sagnik
 verified_against: 31d3644
 covers: [acceptance-criteria, testable-assertions]
@@ -735,6 +735,52 @@ id | feature | given | when | then | test | spec
 describes a path where the tempting implementation is to hide a control in the interface and leave
 the route open, and a test that only clicks the interface would pass against that defect.
 
+## 12d. Sheets, boards, one platform, voice and PDF, 19 September 2026
+
+From `68-SHEETS-SPEC.md` to `72-PDF-TO-MARKDOWN-SPEC.md` and screens S39 to S42. The slug each id
+replaced is in `tools/new-ids-allocation.md` section 6.
+
+- **New ids start at `A815`**, after the highest id in this file, `A814`. Nothing was renumbered.
+- **The feature column is the register's id**, `F281` to `F323`, since those rows now exist.
+- **The test column is `T` plus the same three digits**, proposed and not written.
+- **`A815` and `A816` need a red proof first.** Each is a defect already in the shipped table
+  editor, `TD-024` and `TD-025`, and a test that passes on the unfixed code proves nothing.
+
+id | feature | given | when | then | test | spec
+`A815` | `F281` | A document holding a GFM table whose columns are padded with spaces to align. | One cell's value is changed through the grid | A byte diff of the file shows exactly one changed line, and every byte outside that cell's range on that line compares equal. | `T815` | `68-SHEETS-SPEC.md` section 5.1. Red proof first, `TD-024`.
+`A816` | `F281` | A table row holding an escaped pipe inside a cell. | The cell to the right of the escaped pipe is edited | The new value lands in that cell, and the cell holding the escaped pipe compares equal before and after. | `T816` | `68-SHEETS-SPEC.md` section 5.2. Red proof first, `TD-025`.
+`A817` | `F287` | A sheet whose computed cells disagree with their `col.` formula. | The sheet is opened and closed with no edit | The file's bytes compare equal before and after, and zero splices are recorded. | `T817` | `68-SHEETS-SPEC.md` section 4.6.
+`A818` | `F287` | One fixed sheet file and its formulas. | The evaluator runs in two browsers on two machines | The four sets of computed values compare equal, value by value. | `T818` | `68-SHEETS-SPEC.md` section 4.3.
+`A819` | `F293` | A table with cells beginning `=`, `+`, `-`, `@`, a tab and a carriage return. | The table is downloaded as CSV | Each of those six cells in the download begins with an apostrophe, and the document's bytes compare equal before and after. | `T819` | `68-SHEETS-SPEC.md` section 6.3.
+`A820` | `F281` | A table of N rows, where N is the row count to be recorded in `68-SHEETS-SPEC.md` section 8. | 100 keystrokes are typed into one cell | Keystroke echo is under 250 ms at p95 over the 100 samples. **Not yet checkable**: N has not been measured. | `T820` | `68-SHEETS-SPEC.md` section 8.
+`A821` | `F284` | A sheet open in the grid. | It is sorted, filtered, a column resized, and Grid and MD toggled | The file's bytes compare equal before and after each of the four actions. | `T821` | `12-screens/S39.md`.
+`A822` | `F281` | S39 rendered at 1,440 px and at 390 px, with a computed cell focused. | The text of the formula bar, the column headers and every control is searched for a cell address such as `B2` | Zero matches of `[A-Z]{1,2}[0-9]+` as a whole word. | `T822` | `12-screens/S39.md`.
+`A823` | `F286` | A sheet with a `foot.` sum whose value appears nowhere else in the file. | The sheet renders and the file is read | The summary row renders the value exactly once, and the file contains it zero times. | `T823` | `12-screens/S39.md`.
+`A824` | `F287` | A row with Qty 400 and Price 0.8 under `col.Total: "Qty * Price"`. | The column is computed and written | The Total cell's bytes are exactly `320`. | `T824` | `68-SHEETS-SPEC.md` section 4.5.
+`A825` | `F297` | A board and a card file in the column Doing. | The card is moved to Review and the move is accepted | A byte diff of the card file shows exactly one changed line, its `status` line, and every other file in the folder compares equal. | `T825` | `69-BOARDS-SPEC.md` section 3.1.
+`A826` | `F297` | Two branches of one vault, each moving a different card. | The branches are merged with `git merge` | The merge exits 0 and no card file contains a conflict marker. | `T826` | `69-BOARDS-SPEC.md` section 2.4.
+`A827` | `F305` | A card file and an agent token. | The agent proposes a move through the agent server | The card file's bytes compare equal until the item is accepted, and the queue holds exactly one item for that card. | `T827` | `69-BOARDS-SPEC.md` section 5.
+`A828` | `F301` | A column whose limit is 3, holding 3 cards. | A fourth card is moved into it and accepted | The card's `status` line is written, the column renders 4 cards, and zero refusal events exist for the move. | `T828` | `69-BOARDS-SPEC.md` section 4.1.
+`A829` | `F305` | A board with one pending move from Doing to Review. | The board renders | Each column's count equals the number of card files whose key holds that column, so neither count includes the ghost. | `T829` | `12-screens/S40.md`.
+`A830` | `F304` | A board with 15 card files. | Each filter chip and a text search are applied and then cleared | The board file and every card file compare equal before and after. | `T830` | `12-screens/S40.md`.
+`A831` | `F296` | Card files whose bodies hold text. | The board renders | Zero characters of any card body appear inside any card face element. | `T831` | `12-screens/S40.md`.
+`A832` | `F307` | The repository at the commit before the registry lands and at the commit after. | `npm run corpus` runs at both | Both exit 0 with changed 0, and the snapshot's file count is equal at both. | `T832` | `70-PLATFORM-AND-TYPES.md` section 2.
+`A833` | `F308` | A host document embedding a section of a source file. | A word inside the embed is edited | The host's bytes compare equal, and exactly one new queue item exists, on the source file. | `T833` | `70-PLATFORM-AND-TYPES.md` section 4.2, rule 1.
+`A834` | `F308` | A published page embedding an unpublished source. | The page is fetched signed out | The response holds the placeholder element and zero byte sequences of 32 or more bytes from the source. | `T834` | `70-PLATFORM-AND-TYPES.md` section 4.2, rules 2 and 3.
+`A835` | `F290` | A `.csv` file in a vault mirrored to GitHub. | The mirror runs | The mirrored file's bytes compare equal to R2's head for that file. | `T835` | `70-PLATFORM-AND-TYPES.md` section 9.
+`A836` | `F307` | An agent change touching one document and one sheet. | It is proposed | The queue holds exactly two items sharing one change id, and accepting one leaves the other pending. | `T836` | `70-PLATFORM-AND-TYPES.md` section 10.
+`A837` | `F313` | A pending voice block and a test clock. | The clock advances 10 minutes with no key pressed | The block is still pending and the file's bytes compare equal. | `T837` | `12-screens/S41.md`.
+`A838` | `F315` | A document with a selection and a recognised voice command on it. | The proposal renders | The file's bytes compare equal to their bytes before the command, until Accept. | `T838` | `12-screens/S41.md`.
+`A839` | `F313` | A completed voice turn. | IndexedDB, the Cache API and the server's object store are listed | Zero entries have an audio media type. | `T839` | `71-VOICE-SPEC.md` section 13.
+`A840` | `F315` | A stored voice command proposal. | Its `intent` field is read | It equals the command's number and contains zero words of the transcript. | `T840` | `71-VOICE-SPEC.md` section 8.3.
+`A841` | `F313` | Hold mode and a stubbed microphone sampled every 50 ms. | The voice key goes down and then up | The track's `readyState` is `live` only at samples between key down and key up, and `ended` at every other sample. | `T841` | `71-VOICE-SPEC.md` section 6.2.
+`A842` | `F314` | Voice settings with the level set to Low, then Medium, then High. | The tone control renders at each level | It is disabled with its reason text present at Low and Medium, and enabled at High. | `T842` | `71-VOICE-SPEC.md` section 5.2.
+`A843` | `F318` | A text PDF and a scanned PDF, with every network request recorded. | Each is converted in the browser | Zero requests carry a body holding 1 KB or more of the PDF's bytes, the shape of `A123`. | `T843` | `72-PDF-TO-MARKDOWN-SPEC.md` section 10.
+`A844` | `F322` | A document open with the AI panel. | A PDF is converted there | The document's bytes compare equal, and the queue holds exactly one new item. | `T844` | `72-PDF-TO-MARKDOWN-SPEC.md` section 4.2.
+`A845` | `F318` | A scanned PDF whose preview shows low-confidence marks and page labels. | The result is accepted | The written file holds zero page labels and zero marks, and each low-confidence word exactly as read. | `T845` | `72-PDF-TO-MARKDOWN-SPEC.md` section 6.
+`A846` | `F321` | A converted PDF. | File into Notes, Discard, or closing the panel is done | A heap snapshot and IndexedDB hold zero copies of the PDF's first 1 KB. | `T846` | `72-PDF-TO-MARKDOWN-SPEC.md` section 10.
+`A847` | `F321` | The three frames of S42. | Each renders | Zero text inputs accept a question about the PDF. | `T847` | `72-PDF-TO-MARKDOWN-SPEC.md` section 12.
+
 ---
 
 ## 13. Counts
@@ -752,10 +798,10 @@ grep -E '^`A[0-9]{3}` \|' docs/pack/19-ACCEPTANCE-CRITERIA.md \
   | grep -cE '\| `(test/|scripts/|docs/mvp0/screens/gen)'
 ```
 
-- **444 criteria**: 129 written first, 226 added in section 12a on 18 September, 3 more for S31 (`A726` to `A728`) the same day, 68 in section 12b (`A729` to `A796`), and 18 in section 12c for the trial (`A797` to `A814`).
+- **477 criteria**: 129 written first, 226 added in section 12a on 18 September, 3 more for S31 (`A726` to `A728`) the same day, 68 in section 12b (`A729` to `A796`), 18 in section 12c for the trial (`A797` to `A814`), and 33 in section 12d on 19 September (`A815` to `A847`).
 - **12 distinct real test paths.**
-- **19 criteria carry one.** The remaining 425 carry a `T` id and do not exist. Worked: 444 - 19 = 425.
-- **Six criteria are marked `Not yet checkable`**: one in section 12a.2, because two screens disagree, and five in section 12b, each naming what is missing. Counted with `grep -cE '^.A[0-9]{3}. \|.*Not yet checkable' docs/pack/19-ACCEPTANCE-CRITERIA.md`.
+- **19 criteria carry one.** The remaining 458 carry a `T` id and do not exist. Worked: 477 - 19 = 458.
+- **Seven criteria are marked `Not yet checkable`**: one in section 12a.2, because two screens disagree, five in section 12b, each naming what is missing, and `A820` in section 12d, whose row count is unmeasured. Counted with `grep -cE '^.A[0-9]{3}. \|.*Not yet checkable' docs/pack/19-ACCEPTANCE-CRITERIA.md`.
 
 **That ratio is the honest state of the product.** The engine has tests; almost nothing else does.
 
@@ -779,7 +825,7 @@ grep -E '^`A[0-9]{3}` \|' docs/pack/19-ACCEPTANCE-CRITERIA.md \
 - **Section 12a's rows were drafted from the screens' own wording**, one screen at a time. Where a
   screen's row carried two facts, the second fact's home is named in `tools/acceptance-reconciliation.md`
   section 4, not added to the screen.
-- **One thing a reader must not conclude.** A criterion here is not a passing test. **444 criteria,
+- **One thing a reader must not conclude.** A criterion here is not a passing test. **477 criteria,
   19 of them covered by a real test** is the number that matters, and section 13 gives the commands
   that re-derive it rather than asking anyone to trust this sentence.
 - **The rule this file exists to enforce, restated.** If a criterion cannot be checked by a machine,

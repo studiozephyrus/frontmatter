@@ -4,7 +4,7 @@ title: Error and refusal catalogue
 mode: reference
 tier: canonical
 status: living
-updated: 2026-09-18
+updated: 2026-09-19
 owner: sagnik
 verified_against: f237ece
 covers: [refusals, errors, recovery, unchanged-input-guarantee]
@@ -93,6 +93,16 @@ Class | First block | Second block
 `provider` | `E090` to `E099` | `E750` to `E799`
 `network` | `E100` to `E109` | `E800` to `E849`
 `conflict` | `E110` to `E119` | `E850` to `E899`
+
+**Rows added on 19 September, 42 of them.** Sheets, boards, embeds, voice and PDF conversion, from
+`68-SHEETS-SPEC.md` to `72-PDF-TO-MARKDOWN-SPEC.md` and screens S39 to S42. Each took the next free id
+in its class's second block, so `E513` to `E531`, `E565` to `E570`, `E603`, `E654` to `E658`, `E701`
+to `E704`, `E756`, `E806` to `E810` and `E852`. Every one is `specified, not built`, and its test is
+`T848` to `T889`. The slug each replaced is in `tools/new-ids-allocation.md` section 5.
+
+- **A microphone refusal is `network`, not `permission`**, because the browser is the device.
+- **Two rows are notices, not refusals**: `E704`, where the vision pass falls back, and `E852`, where a
+  PDF lands as a proposal instead. They sit here so the report and the event have an id.
 
 **`E105` and `E106` stretch the `network` class.** They cover a failed read or write against our
 own store, which is not the connection, the browser or the device. `E102` already sat here, so they
@@ -193,6 +203,25 @@ id | class | trigger | string | recovery | unchanged | event | test
 `E510` | engine | Doc mode has no carrier for a feature in the file | none yet | A toast names the feature. Edit it in Edit mode | `yes` | `doc.mode_unsupported` | `T314`.
 `E511` | engine | An export could not be produced | none yet | Nothing is downloaded. Try again | `yes` | `export.failed` | `T315`.
 `E512` | engine | A derived view, such as a kit map, is stale | none yet | It is rebuilt before it is shown, and says so | `yes` | `view.rebuilt` | `T316`.
+`E513` | engine | A value typed into a pipe-table cell contains a line break. GFM cells are single-line, and stripping the break would be a guess | none yet | The cell keeps its old value. Type the value on one line | `yes` | `sheet.edit.refused` | `T848`.
+`E514` | engine | A sheet formula refers to itself, directly or through another column | none yet | That column is not computed. Change the formula in the block under the table | `yes` | `sheet.edit.refused` | `T849`.
+`E515` | engine | A sheet formula meets a cell that is not a number, such as `1,200` | none yet | That row shows the error. Write the number without separators | `yes` | `sheet.edit.refused` | `T850`.
+`E516` | engine | A summary function such as `sum` appears inside a `col.` row formula | none yet | That column is not computed. Move the summary to a `foot.` line | `yes` | `sheet.edit.refused` | `T851`.
+`E517` | engine | A sheet formula names a function outside the set of `68-SHEETS-SPEC.md` section 4.3 | none yet | That column is not computed. Use a function from the set | `yes` | `sheet.edit.refused` | `T852`.
+`E518` | engine | A division gives a quotient that does not terminate and the formula has no `round` | none yet | That row shows the error. Wrap the formula in `round` | `yes` | `sheet.edit.refused` | `T853`.
+`E519` | engine | A `.csv` has mixed line endings, a delimiter other than comma, a `.tsv` a delimiter other than tab, or a record holds a quoted line break | none yet | The file opens read-only with the reason | `yes` | `sheet.edit.refused` | `T854`.
+`E520` | engine | An edit to a `.csv` record whose field count differs from the header's | none yet | The edit is refused. Fix the record in the plain text | `yes` | `sheet.edit.refused` | `T855`.
+`E521` | engine | A board file's `limits` and `columns` differ in length | none yet | The board shows no limits and the problems panel names the key. Fix the board file | `yes` | `engine.refusal.raised` | `T856`.
+`E522` | engine | Two columns in a board file share a name | none yet | The board renders its source with the reason. Rename one column | `yes` | `engine.refusal.raised` | `T857`.
+`E523` | engine | A board file's `board` key is missing its value, or names a major version this client does not know | none yet | The board file opens as a note with the reason | `yes` | `engine.refusal.raised` | `T858`.
+`E524` | engine | A board file's `cards` names a folder that does not exist | none yet | The board shows no cards and names the path. Create the folder or fix the path | `yes` | `engine.refusal.raised` | `T859`.
+`E525` | engine | One `.md` file carries two reserved profile keys, such as `board` and `slides` | none yet | The file opens as a note and the problems panel names both keys. The product never picks one | `yes` | `engine.refusal.raised` | `T860`.
+`E526` | engine | An `fm-embed@1` fence names a `src` path that does not exist | none yet | The embed shows the reference and the reason. Fix the path | `yes` | `engine.refusal.raised` | `T861`.
+`E527` | engine | An `fm-embed@1` anchor resolves to more than one place in the source | none yet | The embed shows the reference and the reason. Make the anchor unique | `yes` | `engine.refusal.raised` | `T862`.
+`E528` | engine | An embed reaches a file already visited on its own chain | none yet | The embed refuses at the second visit and names the cycle | `yes` | `engine.refusal.raised` | `T863`.
+`E529` | engine | A voice command's target sits in a code fence, a table or front matter | `K.s41.err.protected` | None is applied. Select prose, or edit that part by hand | `yes` | `voice.turn.refused` | `T864`.
+`E530` | engine | A PDF is damaged or cannot be read by pdf.js | none yet | Nothing is converted, and pdf.js's reason is given in plain words | `yes` | `pdf.convert.refused` | `T865`.
+`E531` | engine | No page of a PDF reached the confidence floor, so every page was left out | none yet | Nothing is converted. Try a clearer scan | `yes` | `pdf.convert.refused` | `T866`.
 
 ---
 
@@ -234,6 +263,12 @@ id | class | trigger | string | recovery | unchanged | event | test
 `E562` | validation | The person cancelled at the sign-in provider | none yet | They return to the card with nothing changed. **Not an error to apologise for** | `n/a` | `auth.signin.cancelled` | `T337`.
 `E563` | validation | A portfolio publish is attempted with no handle claimed | none yet | Claim a handle first | `n/a` | `portfolio.no_handle` | `T338`.
 `E564` | validation | A generator returned a set that fails its own schema | none yet | The run holds at the last good page. Retry, or drop to the standard set | `yes` | `ideas.schema_failed` | `T339`.
+`E565` | validation | A `.csv` is not UTF-8 | none yet | The first bad byte is named, and conversion to UTF-8 is offered as a proposal | `yes` | `sheet.edit.refused` | `T867`.
+`E566` | validation | A column name contains a comma, or would need quoting in a YAML flow list | none yet | The column change is refused. Choose a name without a comma | `yes` | `engine.refusal.raised` | `T868`.
+`E567` | validation | Under 0.5 s of speech is left after trimming silence | `K.s41.err.nothing` | Nothing is sent to a provider. Hold the key and speak | `yes` | `voice.turn.refused` | `T869`.
+`E568` | validation | A voice command has no selection and no recent insertion to act on | `K.s41.err.notarget` | Select the text first | `yes` | `voice.turn.refused` | `T870`.
+`E569` | validation | A voice command's selection is over `voice.command.maxSelectionWords` words | `K.s41.err.toolong` | None is applied, and the limit is named. Select less | `yes` | `voice.turn.refused` | `T871`.
+`E570` | validation | A PDF is password protected | `K.s42.err.password` | Remove the password in the app that made it, then try again | `yes` | `pdf.convert.refused` | `T872`.
 
 **`E040` is the pattern the rest should copy.** `src/modules/preview/presentation/PropertiesPanel.tsx`
 refuses the same shapes the writer refuses, at the point of typing. Its own comment records why:
@@ -267,6 +302,7 @@ id | class | trigger | string | recovery | unchanged | event | test
 `E600` | permission | A desktop update's signature does not verify | none yet | None. The update is refused rather than installed | `n/a` | `desktop.update_refused` | `T349`.
 `E601` | permission | A revoked kit or share link is fetched | none yet | None. A plain refusal, never a redirect to sign-in | `n/a` | `kit.link_revoked` | `T350`.
 `E602` | permission | A feature flag is off | none yet | None. The control is not offered, and the screens it governs say why rather than 404 | `n/a` | `flag.off` | `T351`.
+`E603` | permission | A viewer cannot read the source of an embed, or a published page embeds an unpublished source | none yet | A placeholder is drawn in place of the content, and the publish screen lists the source | `yes` | `engine.refusal.raised` | `T873`.
 
 **`E051`, `E052` and `E060` are the permission matrix said in code.** `docs/mvp0/PRODUCT-PLAN.md` section 19
 gives the agent-token row as never for apply and never for publish, and section 19 gives the ownership
@@ -295,6 +331,11 @@ id | class | trigger | string | recovery | unchanged | event | test
 `E651` | quota | A limit or a ledger could not be read | none yet | The action takes the safe direction: it is refused, or only the lowest option is offered, and the meter says the count is unavailable | `n/a` | `cap.unreadable` | `T353`.
 `E652` | quota | A capped action was refused and S33 was shown | `internal` | None. The entitlement id is written to the log. The person sees S33, not the code | `yes` | `cap.tripped` | `T354`.
 `E653` | quota | The impact of a limit change could not be computed | none yet | None. The save is blocked, because an unknown blast radius is not a small one | `yes` | `config.impact_unknown` | `T355`.
+`E654` | quota | A voice turn reaches `limits.voice.turn.seconds` | `K.s41.err.turnlimit` | The recording stops and what was said so far is transcribed. Hold the key again to go on | `yes` | `voice.turn.refused` | `T874`.
+`E655` | quota | The account's `limits.voice.minutes` bucket is empty | `K.s41.err.cap` | Nothing is sent. Wait for the daily refill, or on Free see the upgrade path | `yes` | `voice.turn.refused` | `T875`.
+`E656` | quota | A PDF has more pages than `limits.pdf.pages` | none yet | Both numbers are named and a page-range picker is offered | `yes` | `pdf.convert.refused` | `T876`.
+`E657` | quota | A PDF is larger than `limits.pdf.bytes` | none yet | Both numbers are named. Split the PDF | `yes` | `pdf.convert.refused` | `T877`.
+`E658` | quota | A PDF has more scanned pages than `limits.pdf.scannedPages` for browser OCR | none yet | Both numbers are named, a page-range picker is offered, and the desktop app is named | `yes` | `pdf.convert.refused` | `T878`.
 
 **`E078` and `E079` are the same event from two sides**, and the product's answer to both is the same
 screen. **Nothing is deleted.** `K.promise.readable` is the sentence.
@@ -315,6 +356,10 @@ id | class | trigger | string | recovery | unchanged | event | test
 `E088` | model | A background research pass failed | none yet | A shallower evidence level is offered. **Nothing is charged** | `n/a` | `ideas.research_failed` | `T356`.
 `E089` | model | A routing cell names a model that no enabled provider serves | none yet | Choose a served model, or enable its provider | `n/a` | `config.route_unserved` | `T357`.
 `E700` | model | The model returned the input unchanged | none yet | None needed. **This is a correct outcome, not a failure** | `yes` | `ai.unchanged` | `T358`.
+`E701` | model | Restructuring a voice turn passes `voice.timeout.restructureMs` | `K.s41.err.slow` | The call is cancelled and the raw transcript stays as the pending block | `yes` | `voice.restructure.fellback` | `T879`.
+`E702` | model | Restructured voice text fails a check of `71-VOICE-SPEC.md` section 5.5 | `K.s41.err.changed` | The raw transcript is shown instead | `yes` | `voice.restructure.fellback` | `T880`.
+`E703` | model | Speech in a language other than English. `UNVERIFIED:` Whisper with `language: en` forced on other speech was not tested | none yet | Whatever the recogniser returns goes through the checks as any turn does | `yes` | `voice.turn.transcribed` | `T881`.
+`E704` | model | The Pro vision pass is out of pages, switched off or failing. A notice, not a refusal | none yet | Tesseract reads the page and the report says so | `yes` | `pdf.vision.fellback` | `T882`.
 
 **Three promises are load-bearing here, and each needs its own test.**
 
@@ -346,6 +391,7 @@ id | class | trigger | string | recovery | unchanged | event | test
 `E753` | provider | An email address is not deliverable | none yet | Check the address | `n/a` | `email.undeliverable` | `T364`.
 `E754` | provider | A call to the payment provider failed | none yet | The reason is named. No charge was made and no plan changed. Try again | `n/a` | `pay.call_failed` | `T365`.
 `E755` | provider | The payment webhook has not landed inside the wait | none yet | The page says the payment is being confirmed, rather than claiming failure | `n/a` | `pay.webhook_pending` | `T366`.
+`E756` | provider | Every link in the speech chain refused or failed for one voice turn | `K.s41.err.busy` | The turn is discarded and nothing is kept to retry. Try again in a minute | `yes` | `voice.turn.refused` | `T883`.
 
 **`E095` and `E096` are architectural constants, not our choices.** ₹15,000 per transaction is the
 RBI cap and an Indian card gets one payment attempt
@@ -374,6 +420,11 @@ id | class | trigger | string | recovery | unchanged | event | test
 `E803` | network | A protocol handler did not answer in time | none yet | The web option is used | `n/a` | `pub.openin_fallback` | `T375`.
 `E804` | network | A global shortcut is already claimed by another application | none yet | The chord is named at launch. Choose another | `n/a` | `capture.shortcut_taken` | `T376`.
 `E805` | network | The viewport is too small for this surface | none yet | It is not offered, and the reason is named. Widen the window, or switch view | `n/a` | `view.too_narrow` | `T377`.
+`E806` | network | The browser's microphone permission is denied, `getUserMedia` rejecting with `NotAllowedError` | `K.s41.err.micdenied` | Nothing is recorded. Turn the microphone on in the browser's site settings | `yes` | `voice.turn.refused` | `T884`.
+`E807` | network | No audio input device is present | `K.s41.err.nomic` | Nothing is recorded. Connect a microphone | `yes` | `voice.turn.refused` | `T885`.
+`E808` | network | The microphone track ends in the middle of a voice turn | `K.s41.err.miclost` | What was recorded so far is transcribed as a pending block | `yes` | `voice.turn.refused` | `T886`.
+`E809` | network | A voice turn on the web with no connection, or its upload fails | `K.s41.err.offline` | The audio is dropped from memory, never queued to disk. Type, or use the desktop app | `yes` | `voice.turn.refused` | `T887`.
+`E810` | network | Browser OCR is needed and its files are not yet cached, with no connection | none yet | Text pages still convert. Connect once, or use the desktop app | `yes` | `pdf.convert.refused` | `T888`.
 
 **`E104` is the row behind the plan's one rule for offline**: never let the browser be the only copy
 (`docs/mvp0/PRODUCT-PLAN.md` section 12). It is silent on purpose, and the recovery is architectural rather
@@ -399,6 +450,7 @@ id | class | trigger | string | recovery | unchanged | event | test
 `E119` | conflict | A configuration row or flag changed underneath since it was read | none yet | Nothing is written and the row is named. Reload, then save again | `yes` | `config.stale` | `T379`.
 `E850` | conflict | One side of a conflict cannot be read | none yet | The readable side is shown and no keep control is offered. Retry, or open read-only | `yes` | `conflict.side_unreadable` | `T380`.
 `E851` | conflict | An AI edit is attempted on a document with an unresolved conflict | none yet | Resolve the conflict on S31 first | `yes` | `ai.conflict_blocked` | `T381`.
+`E852` | conflict | A PDF accepted into an empty document finds the document no longer empty. A notice, not a refusal | none yet | The write is refused and the preview offers Add as a proposal, which lands it at the end as one queue item | `yes` | `pdf.convert.refused` | `T889`.
 
 ### 8.1 The measure that must be zero
 
@@ -482,7 +534,7 @@ Real tests, cited above by path:
 `test/api/share-conflicts-route.test.ts`, `test/ai/provider-race.test.ts`,
 `test/auth/allowlist.test.ts`, `test/drafts/draft-store.test.ts`.
 
-**`T001` to `T082`, and `T300` to `T381`, are proposed and do not exist.** `19-ACCEPTANCE-CRITERIA.md` uses the same
+**`T001` to `T082`, `T300` to `T381`, and `T848` to `T889`, are proposed and do not exist.** `19-ACCEPTANCE-CRITERIA.md` uses the same
 numbers, so a `T` id means the same test in both files. **Neither file may renumber one.**
 
 **A red proof comes first for every `T` id in section 1.** `AGENTS.md` section 0 rule 1: a test on a

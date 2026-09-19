@@ -4,7 +4,7 @@ title: Pricing and entitlements
 mode: reference
 tier: canonical
 status: living
-updated: 2026-09-18
+updated: 2026-09-19
 owner: sagnik
 verified_against: 31d3644
 covers: [pricing, entitlements, limits, billing, tax, dunning, trial]
@@ -75,6 +75,25 @@ Entitlement id | What it counts | `plan.free` | `plan.pro` | Unit | Resets
 `limits.github.repos` | Connected GitHub repositories | **1** | unlimited | count | never
 `limits.github.pushes` | Pushes to GitHub | **20** | unlimited | count | calendar month
 `limits.blueprint.rewrites` | Question-set rewrites inside one blueprint | **3** | unlimited | count | per blueprint
+`limits.voice.minutes` | Audio minutes transcribed, measured on our server from the decoded audio. Proposed | 60 | 300 | minutes | continuous, a bucket refilling daily at the monthly rate
+`limits.voice.turn.seconds` | The longest single voice turn. Proposed | 120 | 300 | seconds | per turn
+`limits.voice.turns.perMinute` | Voice turns started in one rolling minute. Proposed | 6 | 12 | count | rolling minute
+`limits.voice.concurrent` | Transcriptions in flight at once. Proposed | 1 | 1 | count | n/a
+`limits.pdf.pages` | Pages in one PDF conversion. Proposed | 1,000 | 1,000 | count | per conversion
+`limits.pdf.bytes` | Size of the PDF being converted. Proposed | 100 MB | 100 MB | bytes | per conversion
+`limits.pdf.scannedPages` | Scanned pages read by OCR in the browser, in one conversion. Proposed | 100 | 100 | count | per conversion
+`limits.pdf.visionPages` | Pages read by the Pro vision pass. Proposed | 0 | 200 | count | monthly, see `72-PDF-TO-MARKDOWN-SPEC.md` section 15
+
+**The eight voice and PDF rows are proposed, not decided.** They were added on 19 September from
+`71-VOICE-SPEC.md` section 17.2 and `72-PDF-TO-MARKDOWN-SPEC.md` section 9, and none is bold, because
+a bold value in this table is one the founders set. The voice values await the founders' question V4
+of `71` section 1. Where each number comes from is written in those two sections, not repeated here.
+
+- **The desktop has no cap** on the four PDF rows. `72` section 9 gives the desktop column as none,
+  because the file never leaves the machine.
+- **Only `limits.pdf.visionPages` is enforced on the server.** The other three PDF rows are enforced in
+  the client, since the PDF never reaches us (`72` section 9).
+- **Voice minutes are a bucket, not a calendar counter**, per `27-MODEL-ROUTING-SPEC.md` section 9, the per-account bucket.
 
 **Two rows need their history explained.**
 
@@ -103,6 +122,8 @@ Entitlement id | What it allows | `plan.free` | `plan.pro`
 `features.docmode` | Doc mode | **yes** | yes
 `features.problems` | The problems panel and the formatter | **yes** | yes
 `features.byok` | Bring your own model key | **open** | **open**
+`features.voice` | Voice typing, restructuring and voice commands. Proposed, `INFERENCE:` so the feature can be withheld from a plan without a flag | yes | yes
+`features.pdfConvert` | The PDF to Markdown converter. Proposed, `INFERENCE:` the same reason | yes | yes
 
 **The rule behind that table** `[Z]`, narrowed from the founders' original ask at
 `docs/mvp0/PRODUCT-PLAN.md section 29`:

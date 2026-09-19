@@ -375,19 +375,19 @@ From `SHEETS.md` section 3.4, with this file's additions marked.
 
 Situation | Outcome | Id
 A row's cell count differs from the header's, on an edit | That edit is refused. Nothing is written | `E500`, `K.s08.table.shape`
-A typed value contains a line break, in a pipe table | Refused. GFM cells are single-line, and stripping the break is a guess | `new:sheet-cell-linebreak`
+A typed value contains a line break, in a pipe table | Refused. GFM cells are single-line, and stripping the break is a guess | `E513`
 An `fm-sheet@1` block with no table directly above | The block renders its source | `E501`
 `col.X` names a missing header, or two headers share a name | The block renders its source | `E501`
-A formula refers to itself, directly or through another column | That column is not computed; the file is unchanged | `new:sheet-formula-cycle`
-A formula meets a cell that is not a number | That row shows an error; the cell's bytes are unchanged | `new:sheet-formula-not-number`
-A summary function inside a `col.` formula (this file) | That column is not computed | `new:sheet-formula-summary-in-row`
-An unknown function name (this file) | That column is not computed | `new:sheet-formula-unknown-function`
-A non-terminating quotient with no `round` (this file) | That row shows an error | `new:sheet-formula-inexact`
+A formula refers to itself, directly or through another column | That column is not computed; the file is unchanged | `E514`
+A formula meets a cell that is not a number | That row shows an error; the cell's bytes are unchanged | `E515`
+A summary function inside a `col.` formula (this file) | That column is not computed | `E516`
+An unknown function name (this file) | That column is not computed | `E517`
+A non-terminating quotient with no `round` (this file) | That row shows an error | `E518`
 A computed cell disagrees with its formula | Both values shown; a recompute is offered as a queue item. Opening never writes | none; not a refusal
-A `.csv` with mixed line endings, or a delimiter other than comma for `.csv` or tab for `.tsv` | Opens read-only, with the reason | `new:sheet-csv-readonly`
-A `.csv` record holding a quoted line break | Opens read-only in v1. `INFERENCE:` a v1 simplification | `new:sheet-csv-readonly`
-A `.csv` record whose field count differs from the header's, on an edit | That edit is refused | `new:sheet-csv-ragged`
-A `.csv` that is not UTF-8 | Refused, the byte named, conversion offered as a proposal | `new:sheet-csv-encoding`
+A `.csv` with mixed line endings, or a delimiter other than comma for `.csv` or tab for `.tsv` | Opens read-only, with the reason | `E519`
+A `.csv` record holding a quoted line break | Opens read-only in v1. `INFERENCE:` a v1 simplification | `E519`
+A `.csv` record whose field count differs from the header's, on an edit | That edit is refused | `E520`
+A `.csv` that is not UTF-8 | Refused, the byte named, conversion offered as a proposal | `E565`
 An edit that would need the table re-padded to stay aligned | The cell is spliced alone; alignment is left as it was | none; a rule, not a refusal
 
 ## 8. Limits
@@ -396,7 +396,7 @@ Limit | Value | Source
 Document size | 4 MiB | `MAX_BYTES = 4 * 1024 * 1024`, `src/modules/mdmax/domain/shape-gate.ts:23`
 Document lines | 200,000 | `MAX_LINES = 200_000`, `src/modules/mdmax/domain/shape-gate.ts:24`
 Keystroke budget | 250 ms | `keystroke: 250`, `src/modules/mdmax/domain/shape-gate.ts:30`
-Rows a grid holds inside the keystroke budget | **unmeasured** | Needs a benchmark before a number is written, `new:sheet-row-budget`
+Rows a grid holds inside the keystroke budget | **unmeasured** | Needs a benchmark before a number is written, `A820`
 GitHub's own rendering of a mirrored CSV | 512 KB, per GitHub's page as `SHEETS.md` section 3.2 read it | An external limit; fmd does not enforce it
 
 **No row limit is set in this file**, because none has been measured. `SHEETS.md` section 8 says the
@@ -408,22 +408,22 @@ Every row is a proposal for the founder, from `SHEETS.md` section 6.1. The `SH` 
 file's, kept so the two can be read side by side. None is a feature id.
 
 SH | Feature | Proposed id | Depends on
-SH1 | Grid over any GFM table; only the edited cell's bytes change | `new:sheet-grid`, extends `F131` | `TD-024`, `TD-025`, `TD-026`
-SH2 | Keyboard and structure: Tab, Enter and arrows; add, delete and move rows and columns | `new:sheet-structure` | SH1
-SH3 | Checkbox cells, `[ ]` and `[x]`, drawn as a toggle | `new:sheet-checkbox` | SH1
-SH4 | Sort and filter for viewing; never writes | `new:sheet-view-sort-filter` | SH1
-SH5 | Sort the file, as one queue item | `new:sheet-sort-file` | SH1
-SH6 | Column summaries, `foot.` | `new:sheet-summaries` | the evaluator
-SH7 | Row formulas, `col.` | `new:sheet-row-formulas` | the evaluator
-SH8 | Freeze the header, set column width; view only | `new:sheet-view-settings` | SH1
-SH9 | Show the plain text | `new:sheet-plain-toggle` | SH1
-SH10 | Open `.csv` and `.tsv` in the same grid | `new:sheet-csv` | the registry, `70` section 2
-SH11 | Import CSV into a document as a pipe table | `new:sheet-csv-import` | SH1
-SH12 | Paste a range from another spreadsheet | `new:sheet-paste-range` | SH1. `UNVERIFIED:` that their clipboard carries tab-separated text
-SH13 | Copy and download as CSV, neutralised | `new:sheet-csv-download` | SH1
-SH14 | Published sheet | `new:sheet-published` | section 6.3
+SH1 | Grid over any GFM table; only the edited cell's bytes change | `F281`, extends `F131` | `TD-024`, `TD-025`, `TD-026`
+SH2 | Keyboard and structure: Tab, Enter and arrows; add, delete and move rows and columns | `F282` | SH1
+SH3 | Checkbox cells, `[ ]` and `[x]`, drawn as a toggle | `F283` | SH1
+SH4 | Sort and filter for viewing; never writes | `F284` | SH1
+SH5 | Sort the file, as one queue item | `F285` | SH1
+SH6 | Column summaries, `foot.` | `F286` | the evaluator
+SH7 | Row formulas, `col.` | `F287` | the evaluator
+SH8 | Freeze the header, set column width; view only | `F288` | SH1
+SH9 | Show the plain text | `F289` | SH1
+SH10 | Open `.csv` and `.tsv` in the same grid | `F290` | the registry, `70` section 2
+SH11 | Import CSV into a document as a pipe table | `F291` | SH1
+SH12 | Paste a range from another spreadsheet | `F292` | SH1. `UNVERIFIED:` that their clipboard carries tab-separated text
+SH13 | Copy and download as CSV, neutralised | `F293` | SH1
+SH14 | Published sheet | `F294` | section 6.3
 SH15 | Chart from the sheet | `F180` | `fm-chart@1`
-SH16 | D13's table layout over notes | `new:database-view-table`, batch 9a | `70` section 3
+SH16 | D13's table layout over notes | `F295`, batch 9a | `70` section 3
 
 ## 10. Never build
 
@@ -446,23 +446,25 @@ A 400-function Excel-compatible engine | Nobody in the sample asked for more tha
 
 ## 11. Register rows needed
 
-None of these is written here. Each file has one owner, and this file does not own the registers.
+**Allocated on 19 September**, see `tools/new-ids-allocation.md`. Every id below now has its row in
+its register. The rows that ask an owner to change an existing row, such as `F131` or `E501`, are
+still open for that owner.
 
 Register | Row | For
-`10-FEATURE-REGISTER.md` | `new:sheet-grid` and the fourteen other `new:sheet-*` slugs in section 9 | SH1 to SH14
-`10-FEATURE-REGISTER.md` | `new:database-view-table` | SH16, batch 9a
+`10-FEATURE-REGISTER.md` | `F281` to `F294`, the fourteen rows of section 9 | SH1 to SH14
+`10-FEATURE-REGISTER.md` | `F295` | SH16, batch 9a
 `10-FEATURE-REGISTER.md` | `F131` note: blocked on `TD-024` to `TD-026` | SH1
-`17-ERROR-AND-REFUSAL-CATALOGUE.md` | `new:sheet-cell-linebreak`, `new:sheet-formula-cycle`, `new:sheet-formula-not-number`, `new:sheet-formula-summary-in-row`, `new:sheet-formula-unknown-function`, `new:sheet-formula-inexact` | Section 7
-`17-ERROR-AND-REFUSAL-CATALOGUE.md` | `new:sheet-csv-readonly`, `new:sheet-csv-ragged`, `new:sheet-csv-encoding` | Section 7
+`17-ERROR-AND-REFUSAL-CATALOGUE.md` | `E513`, `E514`, `E515`, `E516`, `E517`, `E518` | Section 7
+`17-ERROR-AND-REFUSAL-CATALOGUE.md` | `E519`, `E520`, `E565` | Section 7
 `17-ERROR-AND-REFUSAL-CATALOGUE.md` | `E501`'s trigger widened to name `fm-sheet@1` | Section 3.3
 `16-COPY-DECK.md` | One refusal string per new error above, in the voice of `K.s08.table.shape` | Section 7
-`16-COPY-DECK.md` | `new:k-sheet-download-notice`, the notice on a neutralised CSV download | Section 6.3
-`19-ACCEPTANCE-CRITERIA.md` | `new:sheet-one-cell-one-line`: a cell edit in a padded table changes one line and only that cell's bytes | Section 5.1, red proof `TD-024`
-`19-ACCEPTANCE-CRITERIA.md` | `new:sheet-escaped-pipe`: an edit to a row holding `\|` lands in the intended cell | `TD-025`
-`19-ACCEPTANCE-CRITERIA.md` | `new:sheet-no-write-on-open`: opening a sheet whose computed cells disagree writes no byte | Section 4.6
-`19-ACCEPTANCE-CRITERIA.md` | `new:sheet-deterministic`: the same bytes give the same computed values on every machine | Section 4.3
-`19-ACCEPTANCE-CRITERIA.md` | `new:sheet-download-neutralised`: a downloaded CSV neutralises the six leading characters and the file is unchanged | Section 6.3
-`19-ACCEPTANCE-CRITERIA.md` | `new:sheet-row-budget`: a measured row count within the 250 ms keystroke budget | Section 8
+`16-COPY-DECK.md` | `K.s18.sheet.download`, the notice on a neutralised CSV download | Section 6.3
+`19-ACCEPTANCE-CRITERIA.md` | `A815`: a cell edit in a padded table changes one line and only that cell's bytes | Section 5.1, red proof `TD-024`
+`19-ACCEPTANCE-CRITERIA.md` | `A816`: an edit to a row holding `\|` lands in the intended cell | `TD-025`
+`19-ACCEPTANCE-CRITERIA.md` | `A817`: opening a sheet whose computed cells disagree writes no byte | Section 4.6
+`19-ACCEPTANCE-CRITERIA.md` | `A818`: the same bytes give the same computed values on every machine | Section 4.3
+`19-ACCEPTANCE-CRITERIA.md` | `A819`: a downloaded CSV neutralises the six leading characters and the file is unchanged | Section 6.3
+`19-ACCEPTANCE-CRITERIA.md` | `A820`: a measured row count within the 250 ms keystroke budget | Section 8
 `56-OPEN-DECISIONS.md` | Whether a non-terminating quotient errors or rounds | Section 4.5
 
 ## 12. Limits of this file

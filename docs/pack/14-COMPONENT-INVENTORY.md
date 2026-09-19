@@ -4,17 +4,18 @@ title: Component inventory
 mode: reference
 tier: canonical
 status: living
-updated: 2026-09-18
+updated: 2026-09-19
 owner: sagnik
 verified_against: 0af3c90
-covers: [component-ids, C001-C154, component-props, component-boundaries]
+covers: [component-ids, C001-C185, component-props, component-boundaries]
 ---
 
 # 14. Component inventory
 
-**One row per component, 154 rows.** Sixty-two exist in the code at `0af3c90`. Ninety-two are named
-by the screens and have never been built. Rows `C125` to `C154` were added on 18 September by the
-component reconciliation in section 5.5.
+**One row per component, 185 rows.** Sixty-two exist in the code at `0af3c90`. The other 123 are
+named by the screens and have never been built. Rows `C125` to `C154` were added on 18 September by
+the component reconciliation in section 5.5. Rows `C155` to `C185` were added on 19 September for
+screens S39 to S42; the slugs they replaced are in `tools/new-ids-allocation.md` section 4.
 
 This file is the one home for a component id. A screen's `Anatomy` table in `12-screens/SNN.md`
 names regions by `C-id`, and nothing else defines what a `C-id` is.
@@ -226,6 +227,37 @@ C151 | GrantExceptionDialog | config | composition | implied by screens, not bui
 C152 | AuditLog | config | composition | implied by screens, not built | S38
 C153 | HomeScreen | app-shell | composition | implied by screens, not built | S02, S03
 C154 | GitHubSignInButton | auth | primitive | implied by screens, not built | S01
+C155 | SheetToolbar | sheet | composition | implied by screens, not built | S39
+C156 | SheetViewChip | sheet | primitive | implied by screens, not built | S39
+C157 | GridSourceSwitch | sheet | primitive | implied by screens, not built | S39
+C158 | FormulaBar | sheet | composition | implied by screens, not built | S39
+C159 | SheetSummaryRow | sheet | primitive | implied by screens, not built | S39
+C160 | EmbeddedSheet | sheet | composition | implied by screens, not built | S39
+C161 | OpenAsSheetButton | sheet | primitive | implied by screens, not built | S39
+C162 | BoardToolbar | unassigned | composition | implied by screens, not built | S40
+C163 | PendingMovePill | unassigned | primitive | implied by screens, not built | S40
+C164 | BoardQuickFilter | unassigned | composition | implied by screens, not built | S40
+C165 | BoardColumn | unassigned | composition | implied by screens, not built | S40
+C166 | BoardCard | unassigned | primitive | implied by screens, not built | S40
+C167 | PendingMoveCard | unassigned | composition | implied by screens, not built | S40
+C168 | CardPanel | unassigned | composition | implied by screens, not built | S40
+C169 | ColumnSwitcher | unassigned | primitive | implied by screens, not built | S40
+C170 | ListeningPill | voice | composition | implied by screens, not built | S41
+C171 | VoiceLevelChip | voice | primitive | implied by screens, not built | S41
+C172 | PendingInsertion | voice | primitive | implied by screens, not built | S41
+C173 | PendingInsertionBar | voice | primitive | implied by screens, not built | S41
+C174 | GhostedResult | voice | primitive | implied by screens, not built | S41
+C175 | VoiceCommandProposal | voice | composition | implied by screens, not built | S41
+C176 | VoiceLevelCards | voice | primitive | implied by screens, not built | S41, S28
+C177 | VoicePrivacyNote | voice | primitive | implied by screens, not built | S41, S28
+C178 | BottomBarMic | voice | primitive | implied by screens, not built | S41
+C179 | PdfStartRow | pdf-import | primitive | implied by screens, not built | S42, S04
+C180 | PdfFileRow | pdf-import | primitive | implied by screens, not built | S42
+C181 | ConversionProgress | pdf-import | composition | implied by screens, not built | S42
+C182 | ConversionPreview | pdf-import | composition | implied by screens, not built | S42
+C183 | ConversionReport | pdf-import | composition | implied by screens, not built | S42
+C184 | ConversionDestination | pdf-import | composition | implied by screens, not built | S42, S22
+C185 | PdfNotKeptNote | pdf-import | primitive | implied by screens, not built | S42
 
 ## 3. The contract
 
@@ -384,15 +416,46 @@ C151 | `account: string`, `limit: string`, `value: number`, `until: string`, `re
 C152 | `entries: AuditEntry[]` | full log, per-row last change | loading, entries, empty | A table with real headers, read-only | **Never editable.** S38 draws it read-only, and an audit you can edit is not an audit
 C153 | `recent: Recent[]`, `tab: 'documents' \| 'ideas' \| 'shared'`, `counts?: [number, number]` | first time, returning | empty, rows, drag over | A `main` landmark. The whole page is the drop target on S02, so the same upload must be reachable from a button | Never edits a document. It opens one. The workspace is `C004`
 C154 | `onSignedIn?: (user: AuthUser) => void`, `label?: string` | default label, custom label | idle, pending, error | As `C023`. The GitHub mark is decorative and the button carries the words | Never with a password field beside it, as `C023`. Today the button is drawn inline in `src/modules/auth/presentation/LoginScreen.tsx`, near line 119, and has not been extracted
+C155 | `name: string`, `rows: number`, `cols: number`, `sort: ViewSort \| null`, `filterCount: number`, `view: 'grid' \| 'md'`, `onViewChange: (v) => void`, `compact?: boolean = false` | full, compact in a document | no sort, sorted, filtered | A `toolbar` role with a label naming the table. The view-only note is text, not a tooltip | Never with a control that writes. Sort the file lives in the column menu, `F285`
+C156 | `kind: 'sort' \| 'filter'`, `label: string`, `active: boolean`, `onClear?: () => void` | sort, filter | off, on | A button whose name says the column and the direction in words. The clear control has its own label | Never to sort the file. A chip is a view
+C157 | `value: 'grid' \| 'md'`, `onChange: (v) => void` | none | grid, md | A two-option radio group, as the Doc and MD switch of `C077` | Never to change a document's mode. That is `C077`
+C158 | `column: string`, `rowLabel: string`, `formula: string \| null`, `onSet: (f: string) => void` | none | empty, showing, editing, refused | The cell is named in words, never as an address such as `B2`. The formula field is a labelled text input | Never to accept `=` typed into a cell. A formula lives in the block under the table
+C159 | `summaries: Record<string, { fn: string, value: string \| SheetError }>` | none | empty, values, error | A table footer row with a row header naming it a summary | Never as a row in the file. It is drawn from `foot.` and never written
+C160 | `table: ParsedSheet`, `onOpenFull: () => void` | none | computed, error | A labelled region inside the document, with the formula-block line as text | Never to show a second copy of the table. It is the table in place
+C161 | `onOpen: () => void` | none | idle | A button with the words Open as a sheet | Never on a table the viewer cannot read
+C162 | `name: string`, `cardCount: number`, `folder: string`, `groupKey: string`, `pending: number`, `view: 'board' \| 'md'`, `onViewChange: (v) => void` | none | no pending, pending | A `toolbar` role with a label naming the board | Never with a control that edits the board file. Column changes live in the column menu
+C163 | `count: number`, `onOpen: () => void` | none | hidden at zero, shown | A button whose name includes the count | Never to accept anything. It opens S20 filtered to Agents
+C164 | `filters: BoardFilter`, `onChange: (f: BoardFilter) => void`, `swimlanes: false` | none | none active, active | Each chip is a toggle button with `aria-pressed`. The search is a labelled input | Never saved into a file. A saved filter is a write and is later
+C165 | `name: string`, `cards: Card[]`, `limit?: number`, `pending: PendingMove[]`, `onNewCard: () => void` | desktop column, phone list | under limit, over limit, empty | A `list` with a heading that says the count and the limit in words | Never block a drop because the column is over its limit
+C166 | `card: CardFace`, `overdue: boolean`, `onOpen: () => void` | desktop, phone | resting, focused, overdue | A focusable item whose name is the card title. Drag has a keyboard equivalent, the Move to menu | Never show body text on the face
+C167 | `card: CardFace`, `proposedBy: string`, `onShowDiff: () => void`, `onReject: () => void` | ghost in the target column, inline on the phone | pending, stale | A labelled item saying who proposed the move. Show diff and Reject are buttons | Never with Accept. Accept appears beside the diff only
+C168 | `path: string`, `fields: CardFields`, `proposal?: Proposal`, `body: string`, `onOpenDoc: () => void` | side panel, full screen on the phone | reading, proposal shown, editing a field | A `complementary` region labelled by the card title. Escape returns focus to the card | Never accept a move before its diff is shown
+C169 | `columns: { name: string, count: number, limit?: number }[]`, `current: number`, `onPick: (i: number) => void` | none | one per column | A tab list, one tab per column | Never on the desktop, where every column is on screen
+C170 | `seconds: number`, `level: VoiceLevel`, `toneNote: string`, `keyLabel: string` | none | listening, working | A `status` live region that announces start and stop, never the words | Never shown when the microphone is off
+C171 | `level: 'low' \| 'medium' \| 'high'`, `onChange: (l) => void` | in the pill, on the phone sheet | closed, open | A menu button naming the current level | Never to change a turn already recorded
+C172 | `text: string`, `raw: string`, `showing: 'restructured' \| 'raw'` | none | raw, restructured, stale | Announced as a pending insertion, with its text read as text | Never accept on a timer or without Tab or Accept
+C173 | `level: VoiceLevel`, `onAccept: () => void`, `onRaw: () => void`, `onShowRaw: () => void` | desktop keys, phone buttons | pending | The keys are named in the bar's text. The phone buttons are equal in weight | Never with an Accept more prominent than Raw
+C174 | `proposed: string` | none | shown | A region labelled Proposed, not written | Never as text in the document. It is drawn beside the target
+C175 | `command: string`, `target: string`, `summary: string`, `onShowDiff: () => void`, `onReject: () => void`, `onInsertAsText: () => void` | desktop, phone stacked | pending, stale | A labelled region naming the command, never the spoken words | Never with an Accept before the diff opens, as S20 draws agent items
+C176 | `value: VoiceLevel`, `onChange: (l) => void` | desktop row, phone column | one selected | A radio group of three, the default marked in text | Never to set the tone. Tone is its own control
+C177 | none | desktop, phone | none | Plain text with a decorative lock icon | Never with a link or control that stores audio
+C178 | `listening: boolean`, `onToggle: () => void` | none | idle, listening | A toggle button with `aria-pressed`, labelled Voice | Never on a document the viewer cannot write
+C179 | `onPick: (file: File) => void` | desktop, phone | idle | A button labelled Start from a PDF, its sub-line as description | Never on a document that is not empty
+C180 | `name: string`, `pages: number`, `range: PageRange \| null`, `onRange: () => void`, `onCancel: () => void` | desktop, phone without the range link | picked, converting | The file name and page count as text. Cancel is always a reachable button | Never without Cancel while a conversion runs
+C181 | `done: number`, `total: number`, `kinds: PageKind[]` | desktop, phone | converting, done | A `progressbar` with the count as text, and the legend as text | Never as the only place a page kind is named. The report names them too
+C182 | `markdown: string`, `lowWords: Range[]`, `view: 'markdown' \| 'rendered'` | panel, tool | converting, done | Low-confidence words carry a text marker a screen reader announces, not colour alone | Never write a mark, a tint or a page label into the file
+C183 | `report: ConversionReport` | panel lines, tool card | no flags, flags | A list, one item per flag kind with its count | Never as a chat or a summary of the PDF
+C184 | `folder: string`, `name: string`, `keepImages: boolean`, `onFile: () => void`, `onDiscard: () => void` | desktop, phone | ready, filing, refused | File into Notes and Discard are equal-width buttons. Every field is labelled | Never on entry 2, which lands at the cursor
+C185 | none | desktop, phone | none | Plain text with a decorative lock icon | Never beside a control that keeps the PDF
 
 ## 4. The counts
 
 Kind | Count
-Total | **154**
+Total | **185**
 `exists` | **62**
-`implied by screens, not built` | **92**
-`primitive` | **61**
-`composition` | **93**
+`implied by screens, not built` | **123**
+`primitive` | **78**
+`composition` | **107**
 
 **Re-derive** with
 `grep -cE '^C[0-9]{3} \| .* \| exists \| ' docs/pack/14-COMPONENT-INVENTORY.md`, then the same
@@ -533,3 +596,12 @@ Counts come from the map, with the script in section 5 of the reconciliation fil
 - **What would falsify the count of 92 implied:** a different reading of `gen.mjs` and the screens.
   The mapping from 283 classes to 64 components, then from 237 screen ids to 30 more, is a judgement made once, in this session, and another reader would
   draw the lines differently. The classes are the fact; the components are the proposal.
+- **The 31 rows of 19 September, `C155` to `C185`, name modules nobody has built.** `sheet`, `voice`
+  and `pdf-import` are the homes `68-SHEETS-SPEC.md` section 4.7, `71-VOICE-SPEC.md` section 2.1 and
+  `72-PDF-TO-MARKDOWN-SPEC.md` section 1.1 propose. `69-BOARDS-SPEC.md` proposes none, so the eight
+  board rows read `unassigned`, and the unassigned count above is now 10, not 2. Their props, states
+  and contracts are read from the drawings at `docs/mvp0/screens/gen.mjs` and the four screen files,
+  and are `INFERENCE:` in the same way as the 92 above.
+- **Not done on 19 September:** the screen widenings S39 to S42 ask for on existing rows, such as
+  `C045` to S39, `C101` split into a read-only view and a writable board, and `C119`, `C120`, `C139`
+  and others to S40 to S42. They change existing rows, which is that row's owner's call.

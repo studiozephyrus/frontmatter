@@ -34,7 +34,8 @@ is no `src/modules/import/`, as S22 already records.
 
 **How to read the marks.** `[Z]`, `[M]`, `[R]`, `[O]`, `[L]` and `[P]` mean what `65-CONVENTIONS.md`
 section 5 says. `INFERENCE:` is reasoning, `UNVERIFIED:` was not checked. `SIMULATED:` is list
-prices times caps. `new:` marks an id no register holds yet.
+prices times caps. The placeholder ids this file first carried were allocated on 19 September;
+`tools/new-ids-allocation.md` maps each slug to its id.
 
 **Record of the decision.** `adr/ADR-0021-pdf-to-markdown.md`.
 
@@ -537,17 +538,17 @@ failure.
 
 Condition | What happens | Id
 Not a PDF | Named, nothing done | `E560`
-Password protected | Refused: "Remove the password in the app that made it, then try again" | `new:pdf-password`
-Damaged or unreadable | Refused, with pdf.js's reason in plain words | `new:pdf-damaged`
-Over the page cap | Refused with both numbers, and a page-range picker offered | `new:pdf-too-many-pages`
-Over the size cap | Refused with both numbers | `new:pdf-too-large`
-Over the scanned-page cap in the browser | Refused with both numbers; the page-range picker offered; the desktop named | `new:pdf-too-many-scanned`
-OCR could not start | Refused: offline on first use, because the OCR files are not yet cached | `new:pdf-ocr-offline`
+Password protected | Refused: "Remove the password in the app that made it, then try again" | `E570`
+Damaged or unreadable | Refused, with pdf.js's reason in plain words | `E530`
+Over the page cap | Refused with both numbers, and a page-range picker offered | `E656`
+Over the size cap | Refused with both numbers | `E657`
+Over the scanned-page cap in the browser | Refused with both numbers; the page-range picker offered; the desktop named | `E658`
+OCR could not start | Refused: offline on first use, because the OCR files are not yet cached | `E810`
 Output over the shape gate | Refused with the number, and a page range offered | `E016`, `E017`, `E018`
 Output not valid, or the parser failed | Refused, nothing shown | `E019` to `E022`
-Every page omitted | Refused: no page reached the confidence floor | `new:pdf-nothing-readable`
-Vision pass out of pages, off, or failing | Tesseract used; the report says so | `new:pdf-vision-fallback`, a notice not a refusal
-Entry 1 and the document is no longer empty | Offered as a proposal, 4.1 | `new:pdf-doc-not-empty`, a notice
+Every page omitted | Refused: no page reached the confidence floor | `E531`
+Vision pass out of pages, off, or failing | Tesseract used; the report says so | `E704`, a notice not a refusal
+Entry 1 and the document is no longer empty | Offered as a proposal, 4.1 | `E852`, a notice
 Entry 2 and the range is stale at Accept | Refused; re-open against current bytes | `E027`
 Entry 3 at the document cap | Nothing created | `E070`
 An image over the per-file cap | That image skipped, the rest continue | `E038`
@@ -684,8 +685,8 @@ Fixture | Built from | Expected
 `pdf/escapes` | One line per row of 5.6's unmeasured table | Each renders as the printed characters
 `pdf/ligature` | Text set with `fi` and `fl` ligatures | Plain letters in the output
 `pdf/furniture` | Ten pages with a running header and page numbers | Header and numbers dropped, count in the report
-`pdf/password` | An encrypted PDF | `new:pdf-password`, nothing written
-`pdf/damaged` | A truncated PDF | `new:pdf-damaged`
+`pdf/password` | An encrypted PDF | `E570`, nothing written
+`pdf/damaged` | A truncated PDF | `E530`
 `pdf/over-gate` | Enough pages to pass 4 MiB of output | `E016` with the number
 `pdf/panel` | Any PDF through entry 2 | Exactly one queue item; no byte of the document changed
 `pdf/no-trace` | Any PDF through each entry | After the run, no IndexedDB entry, Cache API entry or R2 object holds the PDF
@@ -700,8 +701,9 @@ its pass counts, per `AGENTS.md` section 0.
 
 ## 14. Register rows needed
 
-**For the coordinator.** Nothing below has been written into its register. Every id is `new:` until
-the register's owner assigns it.
+**Allocated on 19 September**, see `tools/new-ids-allocation.md`. Every row below now sits in its
+register, except where a note says otherwise. The rows that ask an owner to change an existing file,
+such as `21`, `29`, `34`, `47`, `54` and the screens S04, S06, S20 and S22, are still open.
 
 ### 14.1 `28-CONFIGURATION-PANEL-SPEC.md`
 
@@ -738,9 +740,9 @@ and prompt and output are `INFERENCE:`.
 ### 14.4 Other registers
 
 Register | Rows needed
-`10-FEATURE-REGISTER.md` | `new:pdf-convert-text`, `new:pdf-convert-ocr`, `new:pdf-convert-vision`, `new:pdf-entry-empty-doc`, `new:pdf-entry-ai-panel`, `new:pdf-entry-tool`
+`10-FEATURE-REGISTER.md` | `F318`, `F319`, `F320`, `F321`, `F322`, `F323`
 `16-COPY-DECK.md` | "Start from a PDF"; "Convert a PDF"; the S22 card "PDF" and its sub-line; the view title "Convert a PDF to Markdown"; Keep images; the page-range labels; every flag's line in section 6; every refusal in section 8; the vision-page line; "Add as a proposal"
-`17-ERROR-AND-REFUSAL-CATALOGUE.md` | The ten `new:pdf-*` ids of section 8
+`17-ERROR-AND-REFUSAL-CATALOGUE.md` | The nine ids of section 8, `E530`, `E531`, `E570`, `E656` to `E658`, `E704`, `E810` and `E852`. This line said ten; section 8 lists nine
 `19-ACCEPTANCE-CRITERIA.md` | One per fixture in section 13; "no request carries the PDF's bytes off the machine on the text or browser OCR path", the shape of `A123`; "entry 2 changes no byte and creates one item"; "no log line or event holds text or a file name"
 `55-MEASUREMENT-AND-EVENTS.md` | `pdf.convert.started`, `pdf.convert.previewed`, `pdf.convert.accepted`, `pdf.convert.discarded`, `pdf.convert.refused`, `pdf.vision.served`, `pdf.vision.fellback`. Payloads hold counts, kinds and timings, never text or names
 `21-DATA-MODEL.md` | The `source` value `convert` on `queue` and `versions`, or a ruling that `ai` stands (section 15)

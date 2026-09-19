@@ -34,7 +34,8 @@ returned nothing at `cb7c16f`. No voice feature id exists in `10-FEATURE-REGISTE
 **How to read the marks.** `[Z]`, `[M]`, `[R]`, `[O]`, `[L]` and `[P]` mean what
 `65-CONVENTIONS.md` section 5 says. `INFERENCE:` is reasoning, `UNVERIFIED:` was not checked.
 
-`SIMULATED:` is list prices times caps. `new:` marks an id this file needs and no register holds yet.
+`SIMULATED:` is list prices times caps. The placeholder ids this file first carried were allocated on
+19 September; `tools/new-ids-allocation.md` maps each slug to its id.
 
 ---
 
@@ -103,9 +104,9 @@ before any provider call. Route names for classify and command are `INFERENCE:` 
 only the first two.
 
 Route | Body in | Body out | Call type
-`/api/voice/transcribe` | `multipart/form-data`, one field `audio`, one turn | `{ intent, transcript, audioSeconds }` | `new:voice.transcribe`
-`/api/voice/restructure` | `{ transcript, level, tone, spelling, dictionary, before }` | `{ intent, text, levelServed, fallbackReason }` | `new:voice.restructure`
-`/api/voice/classify` | `{ utterance, hasSelection }` | `{ intent, command, target, tone }` | `new:voice.classify`
+`/api/voice/transcribe` | `multipart/form-data`, one field `audio`, one turn | `{ intent, transcript, audioSeconds }` | `voice.transcribe`
+`/api/voice/restructure` | `{ transcript, level, tone, spelling, dictionary, before }` | `{ intent, text, levelServed, fallbackReason }` | `voice.restructure`
+`/api/voice/classify` | `{ utterance, hasSelection }` | `{ intent, command, target, tone }` | `voice.classify`
 `/api/voice/command` | `{ command, tone, targetText }` | `{ intent, proposedText, fallbackReason }` | The edit call of `27` section 3
 
 **Every response puts a categorical `intent` first.** Values: `DONE`, `FALLBACK`, `REFUSED`. A client
@@ -118,7 +119,7 @@ that reads anything else treats it as `REFUSED`.
   `concise`. Anything else is `REFUSED`.
 - `dictionary` holds at most 100 entries of at most 60 characters each.
 - `before` is cut to 200 tokens on the server, counted in `o200k_base`.
-- `targetText` is at most 1,500 words. Over that, `REFUSED` with `new:voice-selection-too-long`.
+- `targetText` is at most 1,500 words. Over that, `REFUSED` with `E569`.
 
 ---
 
@@ -160,7 +161,7 @@ Groq | `response_format` | `json` | `INFERENCE:` the transcript text is all we k
 Cloudflare | `language` | `en` |
 Cloudflare | `vad_filter` | `true` | Trims silence at the provider as a second line
 Cloudflare | `initial_prompt` | The dictionary |
-Cloudflare | `hallucination_silence_threshold` | A panel row, `new:voice.cf.silenceThreshold` | Whisper invents text over silence. `UNVERIFIED:` the right value; section 15 measures it
+Cloudflare | `hallucination_silence_threshold` | A panel row, `voice.cf.silenceThreshold` | Whisper invents text over silence. `UNVERIFIED:` the right value; section 15 measures it
 
 ### 3.3 The terms, quoted from the research
 
@@ -313,7 +314,7 @@ times: about 2,860 tokens a minute against about 960 for one call (research sect
 the first. A failed check offers a lower level or the raw transcript, with one line saying why.
 
 Level | Check | On failure
-Low | Every word in the output, lower-cased and without punctuation, appears in the transcript | Offer raw, `new:voice-check-changed-words`
+Low | Every word in the output, lower-cased and without punctuation, appears in the transcript | Offer raw, `E702`
 Medium | Every number, every capitalised word not at a sentence start, every dictionary word and every URL in the transcript appears in the output. Output length at most transcript length plus `voice.checks.medium.maxGrowthPct` | Offer the low result if it passed, else raw
 High | The same keep-list as medium. Output length between `voice.checks.high.minPct` and `voice.checks.high.maxPct` of the transcript | Offer the medium result if it passed, else raw
 All | No em or en dash, and no text outside markdown | A dash becomes a plain hyphen; anything else fails
@@ -390,7 +391,7 @@ A 300 s Pro turn:          32,000 x 300 / 8 = 1,200,000 bytes
 
 The Vercel function body limit is "4.5 MB", as quoted in the research's section 5.7. The largest turn
 fits with room. The server refuses a body larger than `limits.voice.turn.seconds x 32 kbit/s` plus
-`new:voice.upload.marginPct` before any provider call.
+`voice.upload.marginPct` before any provider call.
 
 ---
 
@@ -436,7 +437,7 @@ chain of its own.
 
 Answer | What the person sees
 `dictation` | The text is offered at the cursor, as in section 8
-`command` | A proposal in the change queue, with the diff. The spoken words are **not** inserted. The proposal carries one extra button, `new:voice-insert-as-text`: "Insert as text instead"
+`command` | A proposal in the change queue, with the diff. The spoken words are **not** inserted. The proposal carries one extra button, `K.s41.insert.text`: "Insert as text instead"
 `unsure` | The text is inserted as dictation, with a chip: "Run as a command: make this a list". `Tab` or one tap runs it
 
 **Both mistakes are recoverable, and that is the design.** A command taken as dictation inserts a few
@@ -461,7 +462,7 @@ type, checked as in 5.5.
 
 **The stage 1 verb list** is the first word of each "say it like" phrase above: make, bullet, heading,
 split, italicise, rewrite, shorten, fix, delete, undo, scratch. It is a panel row,
-`new:voice.commands.verbs`.
+`voice.commands.verbs`.
 
 ### 7.5 Targets, and the refusals
 
@@ -473,9 +474,9 @@ Word said | Means
 **The engine refuses an ambiguous target.** It never guesses.
 
 Situation | Answer | Id
-No selection and no recent insertion | "Select the text first" | `new:voice-no-target`
-Cursor inside a code fence, a table or front matter | A refusal naming where the cursor is | `new:voice-target-protected`
-Selection over 1,500 words, model command | A refusal naming the limit | `new:voice-selection-too-long`
+No selection and no recent insertion | "Select the text first" | `E568`
+Cursor inside a code fence, a table or front matter | A refusal naming where the cursor is | `E529`
+Selection over 1,500 words, model command | A refusal naming the limit | `E569`
 A target like "the second bullet under risks" | Not resolved in v1. Treated as `unsure` | none
 
 **Why 1,500 words.** `INFERENCE:` from the research: it fits the edit call's 4,000 input tokens in
@@ -553,7 +554,7 @@ renames, moves or deletes a file.
 ## 9. Settings
 
 **Where.** Settings, S28, a Voice group. Per account, synced across devices. Every key below is
-`new:` and belongs in the settings schema.
+proposed for the account's settings schema, and none is written there yet.
 
 Key | Values | Default | Note
 `voice.mode` | `raw`, `restructured` | `restructured` | The founder's raw setting `[Z]`
@@ -567,7 +568,7 @@ Key | Values | Default | Note
 `voice.dictionary` | up to 100 entries, 60 characters each | empty | Sent as Groq `prompt` and Cloudflare `initial_prompt`
 `voice.livePreview` | `on`, `off` | `on` where supported | Hidden where unsupported, section 10.1
 `voice.desktopEngine` | `local`, `cloud` | `local` once a model is downloaded | Desktop only, section 10.3
-`voice.desktopModel` | `small.en`, `large-v3-turbo` | `small.en` | `new:` key, `INFERENCE:` the research names the choice but not a key
+`voice.desktopModel` | `small.en`, `large-v3-turbo` | `small.en` | Proposed key. `INFERENCE:` the research names the choice but not a key. `routing.desktop.voice` in `28-CONFIGURATION-PANEL-SPEC.md` section 5.6 is the founder's default; this key is the person's own choice
 
 **The face of the menu is four controls**: raw or restructured, level, tone, and the key. The rest sit
 behind "More". `INFERENCE:` the founder's Google Docs feel rule argues for the short face.
@@ -621,23 +622,23 @@ chain and says so.
 ## 11. Failure states
 
 **Every state has a visible line.** The strings are proposals for `16-COPY-DECK.md`, which owns the
-final wording. The ids are `new:`.
+final wording. The ids were allocated on 19 September, and each string except `E703`'s has a `K.s41.err.*` row.
 
 Id | State | Detected by | What the person sees | The audio
-`new:voice-mic-denied` | Microphone permission denied | `getUserMedia` rejects with `NotAllowedError` | "Microphone access is off. Turn it on in the browser's site settings to use voice." With a link to how | Nothing recorded
-`new:voice-no-mic` | No microphone | No audio input device | "No microphone found." | Nothing recorded
-`new:voice-mic-lost` | Microphone lost mid-turn | The track ends | "The microphone stopped. What you said so far is below." | The recorded part is transcribed
-`new:voice-nothing-heard` | Nothing heard | Under 0.5 s left after trimming | "Didn't catch anything. Hold the key and speak." | Discarded, no provider call
-`new:voice-turn-limit` | Turn too long | The client stops at `limits.voice.turn.seconds` | "That's the limit for one turn. Your words so far are below; hold the key again to go on." | The recorded part is transcribed
-`new:voice-offline` | Offline, on the web | `navigator.onLine` false, or the upload fails | "Voice needs a connection on the web. On the desktop app it works offline." | Dropped from memory, never queued to disk
-`new:voice-busy` | Every provider exhausted | The chain's last link refuses | "Voice is busy right now. Try again in a minute." | Discarded
-`new:voice-restructure-slow` | Restructure too slow | Past `voice.timeout.restructureMs` | The raw transcript stays, with "Showing the raw text; cleanup took too long." | Already transcribed
-`new:voice-check-changed-words` | A check failed | Section 5.5 | "Cleanup changed words, so the raw text is shown." | Already transcribed
-`new:voice-cap-reached` | Plan cap reached | The bucket is empty (section 12) | "You've used this month's voice minutes. They refill daily." On Free, with the upgrade path | Not sent
-`new:voice-no-target` | Command with no target | Section 7.5 | "Select the text first" | Already transcribed
-`new:voice-target-protected` | Target in a fence, table or front matter | Section 7.5 | A refusal naming where the cursor is | Already transcribed
-`new:voice-selection-too-long` | Selection over 1,500 words | Section 7.5 | A refusal naming the limit | Already transcribed
-`new:voice-not-english` | Speech in another language | `UNVERIFIED:` Whisper with `language: en` forced on other speech was not tested | Whatever the recogniser returns, then the checks | Transcribed
+`E806` | Microphone permission denied | `getUserMedia` rejects with `NotAllowedError` | "Microphone access is off. Turn it on in the browser's site settings to use voice." With a link to how | Nothing recorded
+`E807` | No microphone | No audio input device | "No microphone found." | Nothing recorded
+`E808` | Microphone lost mid-turn | The track ends | "The microphone stopped. What you said so far is below." | The recorded part is transcribed
+`E567` | Nothing heard | Under 0.5 s left after trimming | "Didn't catch anything. Hold the key and speak." | Discarded, no provider call
+`E654` | Turn too long | The client stops at `limits.voice.turn.seconds` | "That's the limit for one turn. Your words so far are below; hold the key again to go on." | The recorded part is transcribed
+`E809` | Offline, on the web | `navigator.onLine` false, or the upload fails | "Voice needs a connection on the web. On the desktop app it works offline." | Dropped from memory, never queued to disk
+`E756` | Every provider exhausted | The chain's last link refuses | "Voice is busy right now. Try again in a minute." | Discarded
+`E701` | Restructure too slow | Past `voice.timeout.restructureMs` | The raw transcript stays, with "Showing the raw text; cleanup took too long." | Already transcribed
+`E702` | A check failed | Section 5.5 | "Cleanup changed words, so the raw text is shown." | Already transcribed
+`E655` | Plan cap reached | The bucket is empty (section 12) | "You've used this month's voice minutes. They refill daily." On Free, with the upgrade path | Not sent
+`E568` | Command with no target | Section 7.5 | "Select the text first" | Already transcribed
+`E529` | Target in a fence, table or front matter | Section 7.5 | A refusal naming where the cursor is | Already transcribed
+`E569` | Selection over 1,500 words | Section 7.5 | A refusal naming the limit | Already transcribed
+`E703` | Speech in another language | `UNVERIFIED:` Whisper with `language: en` forced on other speech was not tested | Whatever the recogniser returns, then the checks | Transcribed
 
 **No state stores audio to retry later.** Wispr keeps failed dictations "for up to 14 days", per the
 research. fmd does not. `INFERENCE:` losing a 30-second turn is a smaller harm than keeping recordings.
@@ -729,7 +730,7 @@ text", per the research. fmd sends the smallest span that does the job.
 ### 13.2 Consent and the sign-in promise
 
 - **First use asks once.** Before the browser's own prompt, a one-line sheet says where audio goes and
-  that it is not kept. Copy id `new:voice-first-use`.
+  that it is not kept. Copy id `K.s41.firstuse`.
 - **The sign-in promise must name voice.** It promises no training on documents. `INFERENCE:` one
   clause, "or on your voice", keeps it true. `16-COPY-DECK.md` owns the wording.
 - `UNVERIFIED:` whether the DPDP Act 2023 needs a separate consent for voice. It belongs with the
@@ -751,8 +752,8 @@ Restructure at medium | About 0.26 to 0.3 s of generation | About 260 output tok
 **Timeouts, as panel rows.**
 
 Row | Starting value | On expiry
-`voice.timeout.restructureMs` | 4,000 | Keep the raw transcript, cancel the call, `new:voice-restructure-slow`
-`new:voice.timeout.transcribeMs` | `UNVERIFIED:` the research sets none. The router's own `router.stream.firstChunkMs` does not fit a non-streaming call | Fail over to the next speech link
+`voice.timeout.restructureMs` | 4,000 | Keep the raw transcript, cancel the call, `E701`
+`voice.timeout.transcribeMs` | `UNVERIFIED:` the research sets none. The router's own `router.stream.firstChunkMs` does not fit a non-streaming call | Fail over to the next speech link
 
 **Why 4 s.** `INFERENCE:` double the founder's upper bound, so a slow call gets a fair chance before
 the raw text is kept. The research names it a configuration row, and section 15 should set it.
@@ -789,8 +790,10 @@ on the founders' machines and never enter the repository.
 
 ## 17. Register rows needed
 
-**For the coordinator.** Nothing below has been written into its register. Every id is `new:` until
-the register's owner assigns it.
+**Allocated on 19 September**, see `tools/new-ids-allocation.md`. Every row below now sits in its
+register, except where a note says otherwise. `28-CONFIGURATION-PANEL-SPEC.md` section 5.6 carries
+17.1 without the two `voice.chain.*` rows, as the duplication note recommends. The rows that ask an
+owner to change an existing file, such as `15`, `29`, `12-screens/S28.md` and `54`, are still open.
 
 ### 17.1 `28-CONFIGURATION-PANEL-SPEC.md`
 
@@ -852,9 +855,9 @@ Token figures are the research's section 3.5, measured on one 162-word sample, n
 ### 17.4 Other registers
 
 Register | Rows needed
-`10-FEATURE-REGISTER.md` | `new:voice-dictation`, `new:voice-restructure`, `new:voice-commands`, `new:voice-desktop-local`, `new:voice-live-preview`
-`16-COPY-DECK.md` | Every string in section 11; `new:voice-first-use`; `new:voice-insert-as-text`; the chip "Run as a command"; the tone help line of 5.2; the sign-in clause of 13.2; the S28 Voice group labels
-`17-ERROR-AND-REFUSAL-CATALOGUE.md` | The fourteen `new:voice-*` ids of section 11
+`10-FEATURE-REGISTER.md` | `F313`, `F314`, `F315`, `F316`, `F317`
+`16-COPY-DECK.md` | Every string in section 11; `K.s41.firstuse`; `K.s41.insert.text`; the chip "Run as a command"; the tone help line of 5.2; the sign-in clause of 13.2; the S28 Voice group labels
+`17-ERROR-AND-REFUSAL-CATALOGUE.md` | The fourteen ids of section 11: `E529`, `E567` to `E569`, `E654`, `E655`, `E701` to `E703`, `E756` and `E806` to `E809`
 `19-ACCEPTANCE-CRITERIA.md` | One criterion per check in 5.5, each with its planted-bad-output red proof; one per failure state; "audio never reaches disk"; "no voice log line holds text"
 `55-MEASUREMENT-AND-EVENTS.md` | `voice.turn.started`, `voice.turn.transcribed`, `voice.restructure.served`, `voice.restructure.fellback`, `voice.command.proposed`, `voice.chip.run`, `voice.insertion.accepted`, `voice.insertion.rejected`. Payloads hold seconds, level, outcome and timings, never text
 `15-INTERACTION-AND-KEYBOARD.md` | `Cmd/Ctrl + .`, its `Alt` or `Option` variant, and `Tab` and `Esc` on a pending insertion

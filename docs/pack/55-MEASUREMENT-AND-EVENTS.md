@@ -4,7 +4,7 @@ title: Measurement and events
 mode: reference
 tier: canonical
 status: living
-updated: 2026-09-18
+updated: 2026-09-19
 owner: sagnik
 verified_against: 31d3644
 covers: [metrics, definitions, funnel, events, properties, trial-events]
@@ -422,6 +422,50 @@ Event | When | Extra properties
 **Every row here is unbuilt.** The Model Context Protocol server sits in Later, and whether it
 moves is D04 in `56-OPEN-DECISIONS.md`. The events are specified now so that the tier can be
 measured from its first day rather than instrumented afterwards.
+
+### 6.14 Sheets, boards, voice and PDF, S39 to S42
+
+Added 19 September 2026 from `68-SHEETS-SPEC.md`, `69-BOARDS-SPEC.md`, `71-VOICE-SPEC.md`,
+`72-PDF-TO-MARKDOWN-SPEC.md` and screens S39 to S42. The slugs they replaced are in
+`tools/new-ids-allocation.md` section 8. **Every row is unbuilt.**
+
+- **No cell value, card title, transcript, file name or page text is ever a property.** The voice and
+  PDF specs say so in their own words, and section 5 already bans it.
+- **Refusal events carry the `E` id** of `17-ERROR-AND-REFUSAL-CATALOGUE.md` as `error_id`, so a
+  rising refusal can be traced to its row.
+
+Event | When | Extra properties
+`sheet.opened` | A table was opened as a sheet, full width or from an embed. | `from`: `tree`, `embed`, `search`; `row_count`; `is_csv`
+`sheet.cell.edited` | One cell's bytes were spliced, including a checkbox toggle. | `cell_kind`: `text`, `number`, `checkbox`, `date`; `dependent_count`
+`sheet.edit.refused` | A sheet edit or a formula was refused and the file is unchanged. | `error_id`
+`sheet.view.changed` | A sort, filter, width or frozen header changed for this viewer. Never a write. | `change`: `sort`, `filter`, `width`, `freeze`
+`sheet.file.sorted` | Sort the file created a queue item. | `row_count`
+`sheet.structure.changed` | A row or column was added, deleted or moved. | `change`: `row_added`, `row_deleted`, `column_added`, `column_deleted`, `moved`
+`sheet.formula.set` | A `col.` or `foot.` line was added or changed. | `kind`: `col`, `foot`; `function_count`
+`sheet.source.toggled` | The Grid and MD switch changed. | `to`: `grid`, `md`
+`board.card.moved` | A card's key line was spliced into a new column, including past a limit. | `by`: `person`, `agent`; `over_limit`
+`board.card.reordered` | A card's `order` line changed within its column. | `renumbered_count`
+`board.card.opened` | A card's panel opened on the board. | `has_pending_move`
+`board.filter.applied` | A filter chip or text search changed for this viewer. Never a write. | `filter`: `mine`, `due_soon`, `label`, `text`; `to`: `on`, `off`
+`board.card.created` | New card created a `create` queue item. | |
+`board.field.edited` | An `assignee` or `due` line was spliced from the panel. | `field`: `assignee`, `due`
+`board.source.toggled` | The Board and MD switch changed. | `to`: `board`, `md`
+`voice.turn.started` | The microphone opened for a turn. | `mode`: `hold`, `toggle`; `surface_kind`: `web`, `desktop_local`, `phone`
+`voice.turn.transcribed` | A transcript came back and a pending block appeared. | `audio_seconds`, `provider`, `latency_ms`
+`voice.turn.refused` | A turn or a command was refused before it reached the document. | `error_id`
+`voice.restructure.served` | Checked, restructured text replaced the raw words in the pending block. | `level`, `latency_ms`
+`voice.restructure.fellback` | Restructuring timed out or failed a check, so the raw words stayed. | `level`, `reason`: `timeout`, `check_failed`
+`voice.command.proposed` | A recognised command became a change-queue proposal. | `command_number`, `stage`: `forced`, `classified`
+`voice.chip.run` | The unsure chip was used to run a command. | `command_number`
+`voice.insertion.accepted` | A pending block was accepted. | `showing`: `restructured`, `raw`; `seconds_pending`
+`voice.insertion.rejected` | A pending block was rejected. | `seconds_pending`
+`pdf.convert.started` | A PDF was picked and conversion began. | `entry`: `empty_doc`, `ai_panel`, `tool`; `page_count`; `has_range`
+`pdf.convert.previewed` | The preview and its report rendered. | `text_pages`, `scanned_pages`, `omitted_pages`, `flag_count`, `duration_ms`
+`pdf.convert.accepted` | The result was written, queued or filed. | `entry`, `images_kept`
+`pdf.convert.discarded` | Discard, Cancel or closing the panel released the PDF. | `entry`, `stage`: `converting`, `previewed`
+`pdf.convert.refused` | A conversion was refused, or landed as a proposal instead. | `error_id`
+`pdf.vision.served` | The Pro vision pass read a page. | `provider`, `latency_ms`
+`pdf.vision.fellback` | The vision pass was out of pages, off or failing, so Tesseract read the page. | `reason`: `no_pages`, `off`, `failed`
 
 ---
 

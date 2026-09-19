@@ -109,7 +109,7 @@ Each step decides or passes to the next. None of them guesses.
    `67-SYNC-AND-CONFLICT.md` section 7.1 already treats uploads.
 2. **Inside `.md`, one reserved profile key picks the profile.** No key means a note.
 3. **Two reserved profile keys in one file is a conflict.** The file opens as a note, and the problems
-   panel names both keys. The product never picks one. `new:type-profile-conflict`.
+   panel names both keys. The product never picks one. `E525`.
 4. **Content is never sniffed.** Deciding a type by reading content is a guess.
 
 ### 2.2 Why a version key and not a `type:` key
@@ -492,22 +492,25 @@ the folder of card files the only writable board, so the batch 11 row keeps only
 
 ## 16. Register rows needed
 
-None of these is written here. Each register has one owner.
+**Allocated on 19 September**, see `tools/new-ids-allocation.md`. Every id below now has its row in
+its register. `F295` also serves `68-SHEETS-SPEC.md` SH16, the same view's table layout. The rows
+that ask an owner to change an existing file, such as `21`, `66`, `67` and `50`, are still open for
+that owner.
 
 Register | Row | For
-`10-FEATURE-REGISTER.md` | `new:type-registry`, batch 3 | Section 2
-`10-FEATURE-REGISTER.md` | `new:database-view`, batch 9a, D13 | Section 3
-`10-FEATURE-REGISTER.md` | `new:embed`, batch 4 | Section 4
-`10-FEATURE-REGISTER.md` | `new:cross-type-search` and `new:cross-type-backlinks`, batch 4 | Sections 5 and 6
-`10-FEATURE-REGISTER.md` | `new:deck-profile` on `F182`; `new:site`, batch 12 | Section 13
-`17-ERROR-AND-REFUSAL-CATALOGUE.md` | `new:type-profile-conflict` | Section 2.1
-`17-ERROR-AND-REFUSAL-CATALOGUE.md` | `new:embed-missing-source`, `new:embed-ambiguous-anchor`, `new:embed-cycle`, `new:embed-no-permission` | Section 4.2
+`10-FEATURE-REGISTER.md` | `F307`, batch 3 | Section 2
+`10-FEATURE-REGISTER.md` | `F295`, batch 9a, D13 | Section 3
+`10-FEATURE-REGISTER.md` | `F308`, batch 4 | Section 4
+`10-FEATURE-REGISTER.md` | `F309` and `F310`, batch 4 | Sections 5 and 6
+`10-FEATURE-REGISTER.md` | `F311` on `F182`; `F312`, batch 12 | Section 13
+`17-ERROR-AND-REFUSAL-CATALOGUE.md` | `E525` | Section 2.1
+`17-ERROR-AND-REFUSAL-CATALOGUE.md` | `E526`, `E527`, `E528`, `E603` | Section 4.2
 `16-COPY-DECK.md` | One string per new error; the embed placeholder; the publish screen's list of unpublished sources | Section 4.2
-`19-ACCEPTANCE-CRITERIA.md` | `new:registry-no-drift`: `npm run corpus` stays at changed 0 and the snapshot's file count is unchanged after the registry lands | Section 2
-`19-ACCEPTANCE-CRITERIA.md` | `new:embed-edit-lands-on-source`: an edit in an embed is a queue item on the source file | Section 4.2 rule 1
-`19-ACCEPTANCE-CRITERIA.md` | `new:embed-no-leak`: an unshared source shows a placeholder to a reader | Section 4.2 rules 2 and 3
-`19-ACCEPTANCE-CRITERIA.md` | `new:mirror-csv-byte-identical`: a mirrored `.csv` equals R2's head byte for byte | Section 9
-`19-ACCEPTANCE-CRITERIA.md` | `new:agent-cross-type-grouped`: an agent change over a document and a sheet is two items, grouped, decided one at a time | Section 10
+`19-ACCEPTANCE-CRITERIA.md` | `A832`: `npm run corpus` stays at changed 0 and the snapshot's file count is unchanged after the registry lands | Section 2
+`19-ACCEPTANCE-CRITERIA.md` | `A833`: an edit in an embed is a queue item on the source file | Section 4.2 rule 1
+`19-ACCEPTANCE-CRITERIA.md` | `A834`: an unshared source shows a placeholder to a reader | Section 4.2 rules 2 and 3
+`19-ACCEPTANCE-CRITERIA.md` | `A835`: a mirrored `.csv` equals R2's head byte for byte | Section 9
+`19-ACCEPTANCE-CRITERIA.md` | `A836`: an agent change over a document and a sheet is two items, grouped, decided one at a time | Section 10
 `21-DATA-MODEL.md` | The queue's `kind` for `create` and `delete`, per `67` section 8.4 | Section 7
 `67-SYNC-AND-CONFLICT.md` | Section 7.1's "Markdown only" widened to every registered text type | Section 9
 `66-FORMAT-SPECIFICATIONS.md` | `fm-embed@1` and `fm-view@1` added to section 4 when their batches start | Sections 3 and 4

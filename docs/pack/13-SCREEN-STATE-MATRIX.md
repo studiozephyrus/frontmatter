@@ -4,7 +4,7 @@ title: Screen state matrix
 mode: reference
 tier: canonical
 status: living
-updated: 2026-09-18
+updated: 2026-09-19
 owner: sagnik
 verified_against: 0af3c90
 covers: [screen-states]
@@ -231,6 +231,33 @@ nothing distinguishes them. That is the risk, and it is the reason sections 3 an
 mark each reviewed row in `12-screens/SNN.md` with the plan's evidence tag: `[Z]` if a founder
 confirms it, `[P]` if it follows from a decision already taken, and `INFERENCE:` if it is neither.
 A row with no tag is the one to ask about.
+
+### 6.2 S39 to S42, added 19 September
+
+**The plan of record has no row for these four screens.** `docs/mvp0/SCREENS.md` was frozen at 38
+screens before sheets, boards, voice and PDF conversion were specified, so sections 3 and 4 cannot
+carry them, and every cell below is a provenance hole in the sense of section 1: **44 cells, 42
+answered and 2 ruled out, all by a documentation author and none by a founder.**
+
+This table is the pack view only, read from each file's `States` section on 19 September. A cell
+naming the row's own screen means that file answers the state.
+
+id | first-run | empty | loading | partial | offline | unauthorised | conflict | over-cap | AI-unavailable | error | degraded
+S39 | `S39` | `S39` | `S39` | `S39` | `S39` | `S39` | `S39` | `S39` | n/a | `S39` | `S39`
+S40 | `S40` | `S40` | `S40` | `S40` | `S40` | `S40` | `S40` | `S40` | n/a | `S40` | `S40`
+S41 | `S41` | `S41` | `S41` | `S41` | `S41` | `S41` | `S41` | `S41` | `S41` | `S41` | `S41`
+S42 | `S42` | `S42` | `S42` | `S42` | `S42` | `S42` | `S42` | `S42` | `S42` | `S42` | `S42`
+
+- **Worked:** 4 screens times 11 states is 44 cells. S39 and S40 each rule out AI-unavailable, because
+  nothing on either calls a model, so 44 - 2 = 42 are answered.
+- **S39's degraded cell is answered with an unmeasured threshold.** It says a row budget exists and
+  gives no number, `A820` in `19-ACCEPTANCE-CRITERIA.md`. That is an answer in form only.
+- **S41 adds a twelfth state, `unsure`**, for a classifier that cannot tell dictation from a command.
+  It is not one of the eleven in section 2, so it has no column here.
+- **Section 5's counts are unchanged**, because they read the plan, which has no rows for these
+  screens. **`docs/pack/tools/state-coverage.py` does not see them either**: run from the repository
+  root on 19 September it printed `screen files 42 of 38` and counted only S01 to S38. So this table
+  was read by eye from four files, and the tool needs widening before it can check it.
 
 ## 7. The twenty-five the plan never answered, ranked by how likely a person is to hit them
 

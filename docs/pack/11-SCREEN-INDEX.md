@@ -4,15 +4,15 @@ title: Screen index
 mode: reference
 tier: canonical
 status: living
-updated: 2026-09-18
+updated: 2026-09-19
 owner: sagnik
 verified_against: 0af3c90
-covers: [screens, S01-S38]
+covers: [screens, S01-S42]
 ---
 
 # 11. Screen index
 
-**One row per screen, thirty-eight rows.** The detail for each lives in `12-screens/SNN.md`, built
+**One row per screen, forty-two rows.** S39 to S42 were added on 19 September. The detail for each lives in `12-screens/SNN.md`, built
 from `tools/SCREEN-TEMPLATE.md`. This file is the index into those, and the place a reader finds out
 that most of them do not exist yet.
 
@@ -50,28 +50,28 @@ id | name | area | route | plan | features it carries | spec file | build status
 `S01` | Sign in | Getting in | `/login`, and `/` when signed out | Free+Pro | F101, F102, F103, F104 | 12-screens/S01.md | building
 `S02` | Home, first time | Getting in | none | Free+Pro | F105, F107, F135 | 12-screens/S02.md | specified
 `S03` | Home | Getting in | none | Free+Pro | F106, F107 | 12-screens/S03.md | specified
-`S04` | Workspace | Writing | `/` | Free+Pro | F111, F113, F114, F116, F117, F118, F119, F120, F121, F122, F123, F124, F125, F126, F127, F129, F130, F131, F132, F133, F134, F135, F136, F137, F138, F139, F142, F143, F144, F145, F146, F147, F157, F240 | 12-screens/S04.md | building
+`S04` | Workspace | Writing | `/` | Free+Pro | F111, F113, F114, F116, F117, F118, F119, F120, F121, F122, F123, F124, F125, F126, F127, F129, F130, F131, F132, F133, F134, F135, F136, F137, F138, F139, F142, F143, F144, F145, F146, F147, F157, F240, F308, F309, F310, F321 | 12-screens/S04.md | building
 `S05` | Doc mode | Writing | `/`, a mode of S04 | Free+Pro | F112, F113, F114, F115, F128 | 12-screens/S05.md | specified
-`S06` | AI writing box | Writing | `/`, an overlay on S04 | Free+Pro | F150, F151, F152, F153, F154 | 12-screens/S06.md | building
+`S06` | AI writing box | Writing | `/`, an overlay on S04 | Free+Pro | F150, F151, F152, F153, F154, F322 | 12-screens/S06.md | building
 `S07` | AI edit | Writing | `/`, a menu on S04 | Free+Pro | F154, F155, F156, F158, F159, F160 | 12-screens/S07.md | building
-`S08` | Custom blocks | Writing | `/`, content inside S04 | Free+Pro | F131, F137, F174, F175, F176, F177, F178, F179, F180 | 12-screens/S08.md | building
-`S09` | Flow view | Writing | none | Free+Pro | F181, F182, F183, F184, F185 | 12-screens/S09.md | specified
+`S08` | Custom blocks | Writing | `/`, content inside S04 | Free+Pro | F131, F137, F174, F175, F176, F177, F178, F179, F180, F281 | 12-screens/S08.md | building
+`S09` | Flow view | Writing | none | Free+Pro | F181, F182, F183, F184, F185, F311 | 12-screens/S09.md | specified
 `S10` | Problems | Writing | none | Free+Pro | F140, F141, F148, F165, F166, F167, F168, F169, F170, F224 | 12-screens/S10.md | specified
 `S11` | Instruction files | Writing | none | Free+Pro | F171, F172, F173 | 12-screens/S11.md | specified
 `S12` | Ideas | Ideas | none | Free+Pro | F119, F120, F179, F188, F189, F199, F200 | 12-screens/S12.md | specified
 `S13` | Idea mode, Low | Ideas | none | Free | F153, F189, F190, F191, F192, F193, F194, F195, F196 | 12-screens/S13.md | specified
 `S14` | Idea mode, Medium and High | Ideas | none | Pro | F189, F190, F195, F196, F197, F198 | 12-screens/S14.md | specified
-`S15` | Blueprint ready | Ideas | none | Free+Pro | F201, F202, F203, F204, F205, F206 | 12-screens/S15.md | specified
+`S15` | Blueprint ready | Ideas | none | Free+Pro | F201, F202, F203, F204, F205, F206, F306 | 12-screens/S15.md | specified
 `S16` | The map | Ideas | `/`, a modal on S04 | Free+Pro | F186, F187 | 12-screens/S16.md | building
 `S17` | Share | Sharing | `/`, a modal on S04 | Free+Pro | F110, F208, F209, F210, F211, F212, F213, F214 | 12-screens/S17.md | building
-`S18` | Published page | Sharing | `/[slug]`, and `/p/[slug]` which redirects to it | Free+Pro | F104, F214, F215, F216, F217, F218, F219, F220, F256 | 12-screens/S18.md | building
+`S18` | Published page | Sharing | `/[slug]`, and `/p/[slug]` which redirects to it | Free+Pro | F104, F214, F215, F216, F217, F218, F219, F220, F256, F293, F294, F308, F312 | 12-screens/S18.md | building
 `S19` | Live collaboration | Sharing | none | Free+Pro | F221, F222 | 12-screens/S19.md | specified
-`S20` | Document review | Sharing | none | Free+Pro | F110, F156, F223, F224, F225, F226, F251, F280 | 12-screens/S20.md | specified
+`S20` | Document review | Sharing | none | Free+Pro | F110, F156, F223, F224, F225, F226, F251, F280, F305 | 12-screens/S20.md | specified
 `S21` | Document history | Sharing | `/`, a modal on S04 | Free+Pro | F162, F206, F227, F228, F229 | 12-screens/S21.md | building
-`S22` | Import | In and out | `/`, a modal on S04 | Free+Pro | F118, F121, F234, F235, F236, F237, F238, F239, F255, F277, F278 | 12-screens/S22.md | building
+`S22` | Import | In and out | `/`, a modal on S04 | Free+Pro | F118, F121, F234, F235, F236, F237, F238, F239, F255, F277, F278, F323 | 12-screens/S22.md | building
 `S23` | Connections | In and out | none | Free+Pro | F242, F243, F244, F245, F246 | 12-screens/S23.md | specified
 `S24` | Offline | Everywhere | none | Free+Pro | F163, F247, F248, F249 | 12-screens/S24.md | specified
-`S25` | Desktop app | Everywhere | none on the web; the Tauri shell loads `/` | Free+Pro | F163, F250, F251, F252, F256 | 12-screens/S25.md | building
+`S25` | Desktop app | Everywhere | none on the web; the Tauri shell loads `/` | Free+Pro | F163, F250, F251, F252, F256, F316 | 12-screens/S25.md | building
 `S26` | Quick capture | Everywhere | none | Free+Pro | F149, F255 | 12-screens/S26.md | specified
 `S27` | Dark mode | Everywhere | `/`, a toggle on S04 | Free+Pro | F109 | 12-screens/S27.md | building
 `S28` | Settings | Account | `/`, a modal on S04 | Free+Pro | F108, F109, F140, F157, F162, F164, F240, F241 | 12-screens/S28.md | building
@@ -85,11 +85,22 @@ id | name | area | route | plan | features it carries | spec file | build status
 `S36` | Configuration, models and providers | Configuration | none | Founder | F159, F160, F268, F269, F270, F271 | 12-screens/S36.md | specified
 `S37` | Configuration, features and flags | Configuration | none | Founder | F164, F268, F272, F273 | 12-screens/S37.md | specified
 `S38` | Configuration, accounts and usage | Configuration | none | Founder | F258, F274, F275 | 12-screens/S38.md | specified
+`S39` | Sheet | Writing | none | Free | F281, F282, F283, F284, F285, F286, F287, F288, F289, F290, F291, F292, F293 | 12-screens/S39.md | specified
+`S40` | Board | Writing | none | Free+Pro | F296, F297, F298, F299, F300, F301, F302, F303, F304, F305, F306 | 12-screens/S40.md | specified
+`S41` | Voice | Writing | none | Free+Pro | F313, F314, F315, F316, F317 | 12-screens/S41.md | specified
+`S42` | PDF to Markdown | In and out | none | Free+Pro | F318, F319, F320, F321, F322, F323 | 12-screens/S42.md | specified
 
-**Four features belong to no single screen** and so appear in no row above: `F253` the phone layout
-and `F254` the bottom bar, which are every screen; `F279` the projection law, which is every screen;
-and `F276` splice-only writing, which is every editing screen. They are checked in
+**Six features belong to no single screen** and so appear in no row above: `F253` the phone layout
+and `F254` the bottom bar, which are every screen; `F279` the projection law and `F307` the type
+registry, which are every screen; `F276` splice-only writing, which is every editing screen; and
+`F295` the database view, which no screen draws yet. They are checked in
 `19-ACCEPTANCE-CRITERIA.md` per screen, not once.
+
+**S39 to S42 were added on 19 September**, after `docs/mvp0/SCREENS.md` was frozen, so the source this
+index reads has no heading for them. Their names are the screen files' own titles, and their areas are
+this index's choice: sheets, boards and voice happen while writing, and a PDF comes in from outside.
+`INFERENCE:` the areas are a reading, not a source. The features of S04, S06, S08, S09, S15, S18, S20,
+S22 and S25 grew the same day, because `F281` to `F323` name those screens too.
 
 **Every screen carries at least one feature.** Checked by inverting the register's `screens` column
 and looking for an empty list. There were none. That is the one consistency property this file
@@ -99,10 +110,10 @@ guarantees, and a validator should assert it.
 
 Area | Screens | Heading in `docs/mvp0/SCREENS.md`
 Getting in | S01, S02, S03 | `## 3. Getting in`
-Writing | S04 to S11 | `## 4. Writing`
+Writing | S04 to S11, and S39 to S41 | `## 4. Writing`. S39 to S41 have no heading there; see section 2
 Ideas | S12 to S16 | `## 5. Ideas`
 Sharing | S17 to S21 | `## 6. Sharing`
-In and out | S22, S23 | `## 7. Bringing things in and out`
+In and out | S22, S23, and S42 | `## 7. Bringing things in and out`. S42 has no heading there
 Everywhere | S24 to S27 | `## 8. Everywhere`
 Account | S28, S29, S30 | `## 9. Account`
 The states | S31 to S34 | `## 10. The states nobody wants, drawn anyway`
@@ -116,10 +127,10 @@ from the source. The heading is given in full in the third column so the mapping
 Kind | Count | Which
 A route of its own | **2** | S01 at `/login`, S18 at `/[slug]`
 Reachable only as a state of `/` | **12** | S04, S05, S06, S07, S08, S16, S17, S21, S22, S27, S28, S31
-No route at all | **24** | S02, S03, S09, S10, S11, S12, S13, S14, S15, S19, S20, S23, S24, S25, S26, S29, S30, S32, S33, S34, S35, S36, S37, S38
+No route at all | **28** | S02, S03, S09, S10, S11, S12, S13, S14, S15, S19, S20, S23, S24, S25, S26, S29, S30, S32, S33, S34, S35, S36, S37, S38, S39, S40, S41, S42
 
-**So thirty-six of thirty-eight screens have no URL.** Twelve of those are reachable inside the
-workspace. Twenty-four cannot be reached at all at `0af3c90`.
+**So forty of forty-two screens have no URL.** Twelve of those are reachable inside the
+workspace. Twenty-eight cannot be reached at all at `0af3c90`; S39 to S42 are specified only.
 
 **The routes, in full**, from `find src/app -name 'page.tsx'`:
 

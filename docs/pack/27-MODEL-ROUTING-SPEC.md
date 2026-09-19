@@ -4,7 +4,7 @@ title: The model routing layer
 mode: reference
 tier: canonical
 status: living
-updated: 2026-09-18
+updated: 2026-09-19
 owner: sagnik
 verified_against: e532e32
 covers: [ai-routing, provider-chain, quota, failover, abuse, logging]
@@ -365,6 +365,26 @@ re-derived at `docs/mvp0/PRODUCT-PLAN.md` section 14, and marked SIMULATED there
    own that decision.
 
 ---
+
+
+### 3.4 Call types added 19 September
+
+**Four call types, each named by its dotted id**, from `71-VOICE-SPEC.md` section 17.3 and
+`72-PDF-TO-MARKDOWN-SPEC.md` section 14.3. Their chains are the `routing.voice.*` and `routing.pdf.*`
+rows of `28-CONFIGURATION-PANEL-SPEC.md` section 5.6. **All four are `specified, not built`.**
+
+Call | Tokens in | Tokens out | Calls | Latency matters
+`voice.transcribe` | Audio, up to one turn | About 165 a minute | 1 per turn | yes
+`voice.restructure` | About 700 | About 260 | 1 per turn | yes
+`voice.classify` | About 200 | Under 50. `INFERENCE:` a short JSON object | 1 per stage 1 pass | yes
+`pdf.vision` | One page image, 1,100 to 2,048 image tokens, plus about 300 of prompt | About 800 | 1 per scanned page | somewhat; a person watches the progress
+
+- **The voice token figures** are `71`'s research section 3.5, measured on one 162-word sample, not a
+  corpus.
+- **The vision figures** are `72`'s research section 3.3. The image range is `INFERENCE:` from Groq's
+  figure, and the prompt and output sizes are `INFERENCE:`.
+- **A voice attempt writes the usage line of section 10.1 with one field added**, `audioSeconds`, and
+  `task` set to the call type above, as `71` section 17.5 asks.
 
 ## 4. Quota accounting
 

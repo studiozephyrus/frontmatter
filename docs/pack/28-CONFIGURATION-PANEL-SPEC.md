@@ -4,7 +4,7 @@ title: The configuration panel
 mode: reference
 tier: canonical
 status: living
-updated: 2026-09-18
+updated: 2026-09-19
 owner: sagnik
 verified_against: 31d3644
 covers: [config-panel, S35, S36, S37, S38, audit]
@@ -396,17 +396,61 @@ Key | Type | Bounds | Default | Note
 `router.stream.chunkMs` | `int` | 500 to 120,000 | **8000** |
 `router.freeQueue.hourlyCeiling` | `int \| null` | 0 upward, or null | **null** | The service-wide breaker of file 27 section 9.2
 
+### 5.6 Voice and PDF rows, added 19 September
+
+From `71-VOICE-SPEC.md` section 17.1 and `72-PDF-TO-MARKDOWN-SPEC.md` section 14.1. Who: `founder` on
+every row. Screen: S36. **Every row is `specified, not built`**, and the voice rows stay dark behind
+`flag.voice` until `71` section 15 has measured the chain.
+
+- **`voice.chain.speech` and `voice.chain.restructure` are not here.** They say what the
+  `routing.voice.*` rows say, and `71` section 17.1 recommends keeping the `routing.*` pair because it
+  matches section 5.4's shape. `INFERENCE:` that is `71`'s recommendation, taken as written.
+- **Defaults marked `UNVERIFIED:` are unset** until the measurement their spec names has run. An
+  unset row means the caller uses no bound of its own, and the panel says so on the row.
+
+Key | Type | Bounds | Default | Read by | On lowering
+`routing.voice.transcribe.free` / `.pro` | `list<modelId>` | Gate A and gate B rows only | Groq `whisper-large-v3-turbo`, Cloudflare `@cf/openai/whisper-large-v3-turbo`, paid Cloudflare, on both plans | The router, for `voice.transcribe` | Applies to the next call
+`routing.voice.restructure.free` / `.pro` | `list<modelId>` | Gate A and gate B rows only | Groq `openai/gpt-oss-20b`, Cloudflare `@cf/qwen/qwen3-30b-a3b-fp8`, Cerebras `gpt-oss-120b`, paid Cloudflare, on both plans. `INFERENCE:` `71` section 5.6 | The router, for `voice.restructure` and `voice.classify` | Applies to the next call
+`routing.desktop.voice` | `modelId` | `small.en`, `large-v3-turbo` | `small.en` | The Tauri transcription command | Applies to the next download
+`voice.timeout.restructureMs` | `int` | 500 to 30,000. `INFERENCE:` the bounds are `71`'s | **4000** | `restructureTranscript` | Next call
+`voice.timeout.transcribeMs` | `int` | 500 to 60,000. `INFERENCE:` | `UNVERIFIED:` unset until `71` section 15 | `transcribeTurn` | Next call
+`voice.checks.medium.maxGrowthPct` | `int` | 0 to 100 | **10** | The medium check of `71` section 5.5 | Next call
+`voice.checks.high.minPct` | `int` | 1 to 100 | **40** | The high check | Next call
+`voice.checks.high.maxPct` | `int` | 100 to 300 | **130** | The high check | Next call
+`voice.prompt.preamble` | `string` | Non-empty | The text in `71` section 5.3 | `restructureTranscript` | Next call; the audit record keeps the old text
+`voice.prompt.low`, `.medium`, `.high` | `string` | Non-empty | The texts in `71` section 5.3 | `restructureTranscript` | Next call
+`voice.prompt.classifier` | `string` | Non-empty | The text in `71` section 7.2 | `classifyUtterance` | Next call
+`voice.commands.verbs` | `list<string>` | 1 to 50 entries | The list in `71` section 7.4 | The stage 1 command rule | Next turn
+`voice.commands.maxWords` | `int` | 1 to 50 | **12** | The stage 1 command rule | Next turn
+`voice.command.maxSelectionWords` | `int` | 1 to 5,000 | **1500** | `runVoiceCommand`, and the refusal `E569` | Next command
+`voice.cf.silenceThreshold` | `number` | `UNVERIFIED:` Cloudflare's accepted range was not opened | `UNVERIFIED:` unset | The Cloudflare speech adapter's `hallucination_silence_threshold` | Next call
+`voice.upload.marginPct` | `int` | 0 to 100 | `UNVERIFIED:` the research says a margin and names no number | The transcribe route, before any provider call | Next upload
+`routing.pdf.vision.pro` | `list<modelId>` | Gate A and gate B rows with `vision: true` only | `@cf/google/gemma-4-26b-a4b-it` | The PDF vision route, for `pdf.vision` | Next call
+`pdf.vision.prompt` | `string` | Non-empty | The text in `72` section 3.4 | The PDF vision route | Next call; the audit record keeps the old text
+`pdf.vision.maxImageBytes` | `int` | `UNVERIFIED:` | `UNVERIFIED:` unset until measured, `72` section 3.5 | The PDF vision route | Next call
+`pdf.ocr.dpi` | `int` | 100 to 400. `INFERENCE:` | **200** | The page renderer before OCR | Next conversion
+`pdf.ocr.wordFloor` | `int` | 0 to 100 | **80** | The report's low-confidence count | Next conversion
+`pdf.ocr.pageFloor` | `int` | 0 to 100 | **0** until measured, `72` section 6.1 | The page filter, and `E531` | Next conversion
+`pdf.classify.sparseChars` | `int` | 0 to 1,000. `INFERENCE:` | `UNVERIFIED:` unset | The page classifier of `72` section 3.1 | Next conversion
+`pdf.heading.maxChars` | `int` | 1 to 1,000. `INFERENCE:` | `UNVERIFIED:` unset | The heading ranker | Next conversion
+`pdf.furniture.minShare` | `int`, per cent | 1 to 100 | **50**. `INFERENCE:` | The running-furniture rule | Next conversion
+`pdf.furniture.minPages` | `int` | 2 to 100 | **3**. `INFERENCE:` | The running-furniture rule | Next conversion
+`pdf.progress.afterMs` | `int` | 0 to 10,000. `INFERENCE:` | `UNVERIFIED:` unset | The progress sheet | Next conversion
+
 ---
 
 ## 6. S37. Features and flags
 
-**Four flags, and two locked rows.** Who: `founder`.
+**Seven flags, and two locked rows.** Who: `founder`. The last three were added on 19 September for voice and PDF conversion.
 
 Key | Type | Default | Turns on | Reaches | Question
 `flag.collab.live` | `bool` | **false** | S19 live collaboration, and the Durable Object session | Free at `limits.collab.live`, Pro unlimited | 8
 `flag.byok` | `bool` | **false** | The key field in S28 settings, and the bring-your-own-key rung of the exhaustion ladder | both plans | 10
 `flag.auth.magiclink` | `bool` | **false** | A third sign-in beside Google and GitHub on S01 | everyone | 18
 `flag.publish.indexed` | `bool` | **true** | Whether a new published page is indexable by default | Free and Pro | 17
+`flag.voice` | `bool` | **false** until `71-VOICE-SPEC.md` section 15 has run | S41: the mic button, the voice key and the four voice routes. Off stops new turns; pending insertions stay pending | Free and Pro | none, added 19 September
+`flag.pdf` | `bool` | **false** until `72-PDF-TO-MARKDOWN-SPEC.md` section 13 has run | S42: the three entry controls. Off hides the doors; a conversion in progress finishes | Free and Pro | none, added 19 September
+`flag.pdf.vision` | `bool` | **false** until `72` section 13's vision bench has run | S42: the preview's vision toggle and the route | Pro | none, added 19 September
 
 **Each flag names the screens it turns on or off and the plans it reaches**, on the row, so nobody has
 to guess what a switch does.
