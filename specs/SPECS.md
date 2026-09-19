@@ -36,6 +36,15 @@ The contract layer. One spec per **contract**, never per file of code.
 | `render/carrier` | draft | T2 | How a render profile is written on disk: callout for prose, fence for data, nothing else |
 | `engine/nf-001-zero-indent-sequence` | draft | R0 | A zero-indent YAML block sequence must not refuse the write — 83% of foreign refusals |
 | `engine/nf-003-bare-cr-fence` | draft | R0 | A bare-CR fence prepends a second frontmatter block — set-destructive, and the corpus cannot see it |
+| `auth/sign-in` | draft | none, batch 2 | The front door, S01: one tap with Google or GitHub, no password, no captcha, no tour |
+| `auth/session` | draft | none, batch 2 | One session model on Firebase Auth, verified on the server; the account record; Auth.js removed |
+| `app-shell/home` | draft | none, batch 2 | Home, S02 and S03: the document count is the only switch, five ways to start, no bytes read |
+| `app-shell/settings` | draft | none, batch 2 | Settings, S28: ten sections synced across devices, which read limits and never write them |
+| `entitlements/limits-for` | draft | none, batch 2 | `limitsFor(account)` is the one read path for every cap; the ledger; over the cap never deletes |
+| `config/panel` | draft | none, batch 2 | The configuration panel, S35 to S38: the only writer, server-checked, atomic with its audit row |
+| `data/firestore-rules` | draft | none, batch 2 | `firestore.rules` from prototype to product for the account, usage, config and audit records |
+| `data/storage-adapters` | draft | none, batch 2 | The Firestore and R2 adapters; an R2 key is never overwritten; every call counted at the adapter |
+| `drafts/legacy-migration` | draft | none, batch 2 | Local drafts under the legacy `sgnk-md` keys move into the account; the key names never change |
 
 ## Navigate
 

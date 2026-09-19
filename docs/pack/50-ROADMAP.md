@@ -311,6 +311,9 @@ Firestore and R2 adapters | none | none
   one routing cell and one flag in the panel, then see the change take effect.
 - **Criteria:** `A001` to `A008`, `A140` to `A151`, `A505` to `A525`, `A642`, `A663` to `A672`,
   `A695` to `A698`, `A705` to `A725`.
+- **Spec lanes:** `auth/sign-in`, `auth/session`, `app-shell/home`, `app-shell/settings`,
+  `entitlements/limits-for`, `config/panel`, `data/firestore-rules`, `data/storage-adapters` and
+  `drafts/legacy-migration`, each `draft` in `specs/` and indexed in `specs/SPECS.md`.
 
 ### 3.3 Step 3. Batch 3, the editor and Doc mode. 4 weeks plus 13 days
 
